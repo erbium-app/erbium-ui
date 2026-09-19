@@ -1,0 +1,20 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import ComponentPreview from "../../../components/ComponentPreview.tsx";
+import { components } from "../../../data/components";
+
+export function getStaticPaths() { return components.map((component) => ({ params: { name: component.name }, props: { component } })); }
+const { component } = Astro.props;
+const sourcePath = path.resolve(process.cwd(), "packages/ui/src/components", `${component.name}.tsx`);
+const source = fs.existsSync(sourcePath) ? fs.readFileSync(sourcePath, "utf8") : "Source file is not available yet.";
+---
+<DocsLayout title={component.title} description={component.description}>
+  <div class="component-header"><p class="eyebrow">Component</p><h1>{component.title}</h1><p class="lede">{component.description} Built to be accessible, composable, and comfortable to customize.</p></div>
+  <section class="demo-section"><div class="section-label">Preview</div><div class="component-demo"><ComponentPreview name={component.name} client:load /></div></section>
+  <section class="source-section"><div class="source-heading"><div><div class="section-label">Source</div><h2>Own the details.</h2></div><a href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/src/components/${component.name}.tsx`}>Open on GitHub ↗</a></div><pre><code>{source}</code></pre></section>
+</DocsLayout>
+<style>
+  .component-header{max-width:42rem}.eyebrow,.section-label{color:#c2410c;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.component-header h1{margin:.8rem 0;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.07em}.lede{color:#737373;font-size:1.05rem;line-height:1.7}.demo-section{margin-top:3.5rem}.section-label{color:#a8a29e;font-size:.68rem}.component-demo{display:grid;place-items:center;min-height:16rem;margin-top:.8rem;padding:2rem;border:1px solid #e7e5e4;border-radius:1rem;background:#f5f5f4;background-image:radial-gradient(#d6d3d1 1px,transparent 1px);background-size:16px 16px}.source-section{margin-top:3.5rem}.source-heading{display:flex;justify-content:space-between;align-items:end}.source-heading h2{margin:.5rem 0 1rem;font-size:1.45rem;letter-spacing:-.04em}.source-heading a{color:#c2410c;font-size:.8rem;font-weight:600}.source-section pre{max-height:34rem;overflow:auto;padding:1.25rem;border-radius:.8rem;background:#1c1917;color:#e7e5e4;font: .76rem/1.7 var(--font-mono)}
+</style>

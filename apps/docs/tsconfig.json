@@ -4,7 +4,9 @@
     "target": "es2023",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "skipLibCheck": true
   },
-  "files": []
+  "include": [".astro/types.d.ts", "src/**/*", "astro.config.mjs"]
 }
