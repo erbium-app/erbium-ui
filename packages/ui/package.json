@@ -29,7 +29,7 @@
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts",
-    "./styles.css": "./src/styles.css",
+    "./globals.css": "./src/styles/globals.css",
     "./package.json": "./package.json"
   },
   "scripts": {

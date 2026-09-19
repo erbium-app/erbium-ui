@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "shadow-plugin";
+@import "tw-animate-css";
+@import "./fonts.css";
+@import "./theme.css";
+@import "./variants.css";
+@import "./scroll.css";
+@import "./effects.css";
+@import "./typeset.css";
+@import "./base.css";
+
+@plugin "easing-gradients";

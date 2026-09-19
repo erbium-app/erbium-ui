@@ -26,7 +26,7 @@ The long-term goal is a shared component system for React, Astro, and React Nati
 
 React is the current implementation target. Astro and React Native are part of the platform direction; shared tokens, component contracts, and behavior conventions are being established so those adapters can be added without fragmenting the system.
 
-The UI stylesheet enables the [Easing Gradients](https://easing-gradients.ibelick.com/) and [Shadow](https://shadow.floriankiem.com/) Tailwind plugins. Their utilities are available to consumers through `@erbium/ui/styles.css`.
+The UI stylesheet enables the [Easing Gradients](https://easing-gradients.ibelick.com/) and [Shadow](https://shadow.floriankiem.com/) Tailwind plugins. Their utilities are available to consumers through `@erbium/ui/globals.css`.
 
 ## Development
 
@@ -69,7 +69,7 @@ npx shadcn@latest init
 npx shadcn@latest add @erbium/button
 ```
 
-The registry owns copied source files, while `@erbium/ui` remains useful as a conventional package dependency. Components use relative internal imports so copied files do not depend on the `@erbium/ui` package name. Consumers should also include the CSS tokens from `packages/ui/src/styles.css` (or provide equivalent tokens and Tailwind plugins) in their global stylesheet.
+The registry owns copied source files, while `@erbium/ui` remains useful as a conventional package dependency. Components use relative internal imports so copied files do not depend on the `@erbium/ui` package name. Consumers should also include the CSS tokens from `packages/ui/src/styles/globals.css` (or provide equivalent tokens and Tailwind plugins) in their global stylesheet.
 
 ## Quality bar
 
