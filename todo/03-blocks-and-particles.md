@@ -22,6 +22,20 @@ Port the Coss families in this order:
 6. [ ] Content and data: `card`, `table`, `avatar`, `badge`, `calendar`, and date-picker compositions.
 7. [ ] Remaining Coss particles and Erbium-specific examples.
 
+## Required coverage for missing pieces
+
+Before declaring parity for a family, add at least one block or particle for:
+
+- autocomplete with loading, empty, and highlighted results;
+- checkbox group with validation and orientation;
+- number field with increment/decrement and invalid input;
+- meter alongside progress to demonstrate the semantic difference;
+- toolbar with roving focus and mixed controls;
+- generic menu with checkbox, radio, submenu, shortcut, and disabled items;
+- fieldset and Base UI-backed field validation;
+- toast/notification with action, close, loading, and stacked states;
+- direction/CSP/provider setup where the primitive requires it.
+
 ## Block quality requirements
 
 - [ ] Every block uses only public Erbium primitives and documented APIs.
@@ -31,6 +45,7 @@ Port the Coss families in this order:
 - [ ] Examples include loading, empty, error, disabled, and success states where relevant.
 - [ ] Examples are RTL-safe and keyboard accessible.
 - [ ] Blocks have visual regression or story coverage where practical.
+- [ ] Every block documents whether it uses a Base UI behavior primitive, a shadcn composition pattern, or a Coss-derived layout pattern.
 
 ## Deferred higher-order blocks
 

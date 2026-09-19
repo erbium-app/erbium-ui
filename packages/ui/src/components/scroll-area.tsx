@@ -1,47 +1,133 @@
+import * as React from "react";
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 import { cn } from "../lib/utils";
 
-function ScrollArea({ className, children, ...props }: ScrollAreaPrimitive.Root.Props) {
+type ScrollAreaFade = "vertical" | "horizontal" | false;
+type ScrollBarSize = "thin" | "default";
+type ScrollBarVisibility = "always" | "hover" | "scroll";
+
+type ScrollAreaProps = ScrollAreaPrimitive.Root.Props & {
+  /** Adds a scroll-aware fade at the edges of the selected axis. */
+  fade?: ScrollAreaFade;
+  /** Controls the visual size of the custom scrollbar. */
+  scrollbar?: ScrollBarSize | "none";
+  /** Controls when the custom scrollbar is visible. */
+  scrollbarVisibility?: ScrollBarVisibility;
+  viewportClassName?: string;
+  contentClassName?: string;
+  scrollbarClassName?: string;
+  thumbClassName?: string;
+};
+
+function ScrollArea({
+  className,
+  children,
+  fade = "vertical",
+  scrollbar = "thin",
+  scrollbarVisibility = "always",
+  viewportClassName,
+  contentClassName,
+  scrollbarClassName,
+  thumbClassName,
+  ...props
+}: ScrollAreaProps) {
+  const showScrollbar = scrollbar !== "none";
+
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-      className={cn("relative", className)}
+      data-scrollbar-size={scrollbar}
+      data-scrollbar-visibility={scrollbarVisibility}
+      className={cn("group/scroll-area relative", className)}
       {...props}
     >
-      <ScrollAreaPrimitive.Viewport
+      <ScrollAreaViewport
         data-slot="scroll-area-viewport"
-        className="size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1"
+        className={cn(
+          "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1",
+          fade === "vertical" && "data-has-overflow-y:scroll-fade-y",
+          fade === "horizontal" && "data-has-overflow-x:scroll-fade-x",
+          scrollbar === "none" && "scrollbar-none",
+          viewportClassName,
+        )}
       >
-        {children}
-      </ScrollAreaPrimitive.Viewport>
-      <ScrollBar />
+        <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>
+      </ScrollAreaViewport>
+      {showScrollbar && (
+        <ScrollBar
+          size={scrollbar}
+          visibility={scrollbarVisibility}
+          className={scrollbarClassName}
+          thumbClassName={thumbClassName}
+        />
+      )}
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
+  );
+}
+
+function ScrollAreaViewport({ className, ...props }: ScrollAreaPrimitive.Viewport.Props) {
+  return (
+    <ScrollAreaPrimitive.Viewport
+      data-slot="scroll-area-viewport"
+      className={cn("size-full", className)}
+      {...props}
+    />
+  );
+}
+
+function ScrollAreaContent({ className, ...props }: ScrollAreaPrimitive.Content.Props) {
+  return (
+    <ScrollAreaPrimitive.Content
+      data-slot="scroll-area-content"
+      className={cn("min-w-full", className)}
+      {...props}
+    />
   );
 }
 
 function ScrollBar({
   className,
   orientation = "vertical",
+  size = "thin",
+  visibility = "always",
+  thumbClassName,
   ...props
-}: ScrollAreaPrimitive.Scrollbar.Props) {
+}: ScrollAreaPrimitive.Scrollbar.Props & {
+  size?: ScrollBarSize;
+  visibility?: ScrollBarVisibility;
+  thumbClassName?: string;
+}) {
   return (
     <ScrollAreaPrimitive.Scrollbar
       data-slot="scroll-area-scrollbar"
       data-orientation={orientation}
+      data-size={size}
+      data-visibility={visibility}
       orientation={orientation}
       className={cn(
-        "flex touch-none p-px transition-colors select-none data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:border-t data-horizontal:border-t-transparent data-vertical:h-full data-vertical:w-2.5 data-vertical:border-s data-vertical:border-s-transparent",
+        "flex touch-none select-none transition-opacity duration-200 data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:flex-col data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+        "data-[visibility=hover]:opacity-0 data-[visibility=hover]:data-hovering:opacity-100 data-[visibility=scroll]:opacity-0 data-[visibility=scroll]:data-scrolling:opacity-100",
+        "data-[size=default]:data-[orientation=horizontal]:h-2.5 data-[size=default]:data-[orientation=vertical]:w-2.5",
         className,
       )}
       {...props}
     >
       <ScrollAreaPrimitive.Thumb
         data-slot="scroll-area-thumb"
-        className="relative flex-1 rounded-full bg-border"
+        className={cn(
+          "relative flex-1 rounded-full bg-muted-foreground/35 transition-[background-color,transform] duration-200 hover:bg-muted-foreground/55 active:bg-muted-foreground/70 data-scrolling:bg-muted-foreground/60",
+          orientation === "vertical" && "mx-auto w-1.5",
+          orientation === "horizontal" && "my-auto h-1.5",
+          size === "default" && orientation === "vertical" && "w-2",
+          size === "default" && orientation === "horizontal" && "h-2",
+          thumbClassName,
+        )}
       />
     </ScrollAreaPrimitive.Scrollbar>
   );
 }
 
-export { ScrollArea, ScrollBar };
+export { ScrollArea, ScrollAreaContent, ScrollAreaViewport, ScrollBar };
+
+export type { ScrollAreaFade, ScrollBarSize, ScrollBarVisibility };
