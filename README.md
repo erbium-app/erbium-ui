@@ -39,7 +39,7 @@ bun run typecheck       # TypeScript checks
 bun run build           # library, website, Storybook, and docs
 bun run ready           # check, test, and build together
 bun run knip            # unused files and dependencies
-bun run taze            # dependency update cycle
+bun run update          # update all workspace dependencies with Taze
 ```
 
 Use `bun run ui:add <component>` to add shadcn-compatible building blocks while the library evolves. New reusable components belong in `packages/ui`; use the website, Storybook, and docs apps to develop and verify them.

@@ -1,3 +1,1 @@
-{
-  "exclude": ["astro", "typescript", "@typescript/native-preview"]
-}
+{}
