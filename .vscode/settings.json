@@ -4,13 +4,25 @@
   "[javascriptreact]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
   "[typescript]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
   "[typescriptreact]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
-  "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "file",
+  "[json]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[css]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[scss]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[yaml]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[markdown]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[mdx]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll.oxc": "explicit"
+    "source.format.oxc": "always",
+    "source.fixAll.oxc": "always"
   },
   "oxc.enable": true,
-  "oxc.fmt.configPath": "./vite.config.ts",
+  "oxc.configPath": "./oxlint.config.ts",
+  "oxc.fmt.configPath": "./oxfmt.config.ts",
+  "oxc.lint.run": "onSave",
+  "biome.enabled": false,
+  "prettier.enable": false,
+  "eslint.enable": false,
   "npm.scriptRunner": "vp",
   "typescript.tsdk": "node_modules/typescript/lib",
   "files.exclude": {
@@ -18,5 +30,5 @@
     "**/dist": true,
     "**/node_modules": true
   },
-  "cSpell.words": ["Blume", "taze"]
+  "cSpell.words": ["autoscrolling", "Blume", "cmdk", "Embla", "frontmost", "taze"]
 }
