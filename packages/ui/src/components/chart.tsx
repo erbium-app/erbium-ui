@@ -3,17 +3,14 @@ import { Chart as TanStackChart } from "@tanstack/charts/react";
 import type { ChartProps as TanStackChartProps } from "@tanstack/charts/react";
 import { cn } from "../lib/utils";
 
-const THEMES = { light: "", dark: ".dark" } as const;
+type ChartTheme = "light" | "dark";
 
 export type ChartConfig = Record<
   string,
   {
     label?: React.ReactNode;
     icon?: React.ComponentType;
-  } & (
-    | { color?: string; theme?: never }
-    | { color?: never; theme: Record<keyof typeof THEMES, string> }
-  )
+  } & ({ color?: string; theme?: never } | { color?: never; theme: Record<ChartTheme, string> })
 >;
 
 type ChartContextProps = {
@@ -53,42 +50,22 @@ function ChartContainer({
         className={cn("flex min-h-0 w-full justify-center text-xs", className)}
         {...props}
       >
-        <ChartStyle id={chartId} config={config} />
         {children}
       </div>
     </ChartContext.Provider>
   );
 }
 
-const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
-  const colorConfig = Object.entries(config).filter(
-    ([, itemConfig]) => itemConfig.theme ?? itemConfig.color,
-  );
-
-  if (!colorConfig.length) {
-    return null;
-  }
-
-  return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) =>
-              `${prefix} [data-chart=${id}] {\n${colorConfig
-                .map(([key, itemConfig]) => {
-                  const color =
-                    itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ?? itemConfig.color;
-                  return color ? `  --color-${key}: ${color};` : null;
-                })
-                .filter(Boolean)
-                .join("\n")}\n}`,
-          )
-          .join("\n"),
-      }}
-    />
-  );
-};
+/**
+ * Kept as a compatibility export for shadcn chart compositions.
+ *
+ * TanStack Charts receives colors and theme tokens through its chart
+ * definition, so chart-specific CSS is no longer generated at runtime.
+ * Shared tokens such as `--chart-1` through `--chart-5` live in theme.css.
+ */
+function ChartStyle(_props: { id: string; config: ChartConfig }) {
+  return null;
+}
 
 /** TanStack Charts' built-in interactive tooltip is enabled by the chart definition. */
 function ChartTooltip() {
