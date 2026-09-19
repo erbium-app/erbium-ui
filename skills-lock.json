@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "find-skills": {
+      "source": "./skills/find-skills",
+      "sourceType": "local",
+      "computedHash": "194c3980976c350daa9a1325447c70ddcf03db2fa5f8fda4214c47484199fc48"
+    }
+  }
+}

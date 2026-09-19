@@ -1,0 +1,57 @@
+<!-- Source: .ruler/agent-quality.md -->
+
+# Agent quality workflow
+
+- When asked to validate, typecheck, clean up, run Knip, or prepare changes for review, use the repository checks below.
+- The default command is `bun run check`. Fix actionable failures and repeat the same command until it passes.
+- Use `bun run ready` for release-readiness checks covering check, tests, and builds.
+- Run `bun run knip` only when unused files or dependencies are in scope.
+
+<!-- Source: .ruler/bts.md -->
+
+# Erbium UI Monorepo
+
+- Bun workspaces + Vite+. Apps live in `apps/`; the shared component library lives in `packages/ui/`.
+- `apps/website` is the React + Vite playground, `apps/storybook` is the component workbench, and `apps/docs` is the Astro/Blume documentation site.
+
+<!-- Source: .ruler/code-quality.md -->
+
+# Code quality
+
+- Ultracite provides the code-quality policy through the root `oxlint.config.ts` and `oxfmt.config.ts`; Vite+ is the task/runtime layer.
+- Do not add Biome, ESLint, or Prettier configuration.
+- Run `bun run fix` after editing JavaScript, TypeScript, JSON, CSS, Markdown, or YAML when mechanical fixes are appropriate. Run `bun run check` for a non-mutating repository check.
+- Do not suppress diagnostics merely to make the gate pass. Correctness, accessibility, and type-aware findings require review.
+- Use the official Oxc editor extension with the repository's Vite+ configuration so humans and agents share the same formatting and linting behavior.
+
+<!-- Source: .ruler/commit-conventions.md -->
+
+# Commit conventions
+
+- Work on `main` unless asked otherwise.
+- Use lowercase conventional commits: `<type>[scope]: <imperative description>`.
+- Add an intent/why body for non-trivial, dependency, infrastructure, security, migration, breaking, or revert commits.
+- Never add AI attribution or agent co-author trailers such as Codex or Claude Code or Cursor.
+
+<!-- Source: .ruler/no-use-client.md -->
+
+# Client directive policy
+
+- Do not add `"use client"` directives. This monorepo uses Vite, Astro, and native React runtimes rather than React Server Components.
+- Do not inject `"use client"` through bundler banners or generated output.
+- React hooks and browser APIs do not require a client directive in this repository.
+
+<!-- Source: .ruler/testing.md -->
+
+# Test runner policy
+
+- Use Vitest through Vite+ (`vp test run`) for unit and integration tests.
+- Keep tests close to the package or app they exercise and preserve workspace-level test scripts.
+
+<!-- Source: .ruler/ui-conventions.md -->
+
+# UI conventions
+
+- `packages/ui` is the source of truth for reusable components and styles.
+- Follow the existing shadcn component patterns and preserve RTL support.
+- Keep application-specific composition in `apps/`; do not duplicate shared primitives there.

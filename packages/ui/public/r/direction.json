@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "direction",
+  "title": "Direction",
+  "description": "Erbium direction component.",
+  "dependencies": ["@base-ui/react"],
+  "files": [
+    {
+      "path": "src/components/direction.tsx",
+      "content": "export { DirectionProvider, useDirection } from \"@base-ui/react/direction-provider\";\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

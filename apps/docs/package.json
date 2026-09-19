@@ -1,0 +1,23 @@
+{
+  "name": "docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun ../../../../Packages/blume/packages/blume/bin/blume.mjs dev",
+    "build": "bun ../../../../Packages/blume/packages/blume/bin/blume.mjs build",
+    "preview": "bun ../../../../Packages/blume/packages/blume/bin/blume.mjs preview",
+    "typecheck": "tsc --noEmit --skipLibCheck",
+    "audit": "bun ../../../../Packages/blume/packages/blume/bin/blume.mjs audit"
+  },
+  "dependencies": {
+    "@erbium/ui": "workspace:*",
+    "blume": "file:../../../../Packages/blume/packages/blume",
+    "es-module-lexer": "^3.0.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "astro": "^6.1.0",
+    "typescript": "^5.9.3"
+  }
+}

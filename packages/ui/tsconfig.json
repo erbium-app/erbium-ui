@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@erbium/ui/*": ["./src/*"]
+    },
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "types": ["vitest/globals"],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"]
+  },
+  "include": ["src", "tests"],
+  "exclude": ["public"]
+}

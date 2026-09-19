@@ -1,0 +1,25 @@
+# Ruler Configuration File
+# See https://okigu.com/ruler for documentation.
+
+default_agents = ["claude", "codex", "cursor", "warp"]
+
+[skills]
+enabled = false
+
+[mcp]
+enabled = true
+merge_strategy = "merge"
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+
+[mcp_servers.better-auth]
+url = "https://mcp.chonkie.ai/better-auth/better-auth-builder/mcp"
+
+[gitignore]
+enabled = false

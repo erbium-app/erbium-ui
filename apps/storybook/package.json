@@ -1,0 +1,25 @@
+{
+  "name": "storybook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@erbium/ui": "workspace:*",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "10.6.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "storybook": "latest",
+    "typescript": "next",
+    "vite-plus": "catalog:",
+    "vitest": "latest"
+  }
+}

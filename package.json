@@ -1,0 +1,90 @@
+{
+  "name": "erbium-ui",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Agent-first, cross-platform UI primitives and components for React, Astro, and React Native.",
+  "keywords": [
+    "accessibility",
+    "astro",
+    "components",
+    "design-system",
+    "react",
+    "react-native",
+    "rtl",
+    "shadcn",
+    "ui"
+  ],
+  "homepage": "https://github.com/erbium-app/erbium-ui#readme",
+  "bugs": {
+    "url": "https://github.com/erbium-app/erbium-ui/issues"
+  },
+  "author": "erbium-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erbium-app/erbium-ui.git",
+    "directory": "."
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "tools/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vp run --parallel --filter './apps/*' dev",
+    "build": "vp run -r build",
+    "test": "vp run -r test",
+    "test:coverage": "vp run -r test:coverage",
+    "typecheck": "vp run -r typecheck",
+    "lint": "vp lint",
+    "format": "vp fmt",
+    "format:check": "vp fmt --check",
+    "check": "vp check",
+    "fix": "vp check --fix",
+    "knip": "knip",
+    "skills": "skills",
+    "skills:add": "skills add",
+    "skills:list": "skills ls",
+    "skills:remove": "skills remove",
+    "skills:update": "skills update",
+    "ruler:apply": "ruler apply --local-only",
+    "taze": "taze -r",
+    "ui:add": "bunx --bun shadcn@latest add",
+    "ui:registry": "bun run --cwd packages/ui registry:build",
+    "ready": "bun run check && bun run test && bun run build",
+    "prepare": "vp config"
+  },
+  "devDependencies": {
+    "@intellectronica/ruler": "0.3.44",
+    "@oxlint/plugins": "^1.83.0",
+    "@shadcn/lint": "^0.1.0",
+    "@types/node": "^24.0.0",
+    "anti-slop": "file:../../Packages/anti-slop",
+    "knip": "^6.37.0",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
+    "skills": "^1.7.0",
+    "taze": "^21.1.0",
+    "typescript": "next",
+    "ultracite": "^7.11.1",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "overrides": {
+    "vite": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "bun",
+      "version": "1.4.2",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "catalog": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.8",
+    "vite-plus": "0.2.8"
+  }
+}
