@@ -10,3 +10,21 @@
 @import "./base.css";
 
 @plugin "easing-gradients";
+
+@utility animate-in {
+  animation: var(--animate-in);
+}
+
+@utility animate-out {
+  animation: var(--animate-out);
+}
+
+@utility animate-caret-blink {
+  animation: caret-blink 1s step-end infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
