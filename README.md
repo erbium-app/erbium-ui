@@ -52,24 +52,32 @@ The UI package also publishes a shadcn-compatible registry. Build the registry a
 bun run ui:registry
 ```
 
-Host `packages/ui/public/r` at a stable HTTPS URL (for example, from the repository's raw files or a static site), then consumers can add the registry to their `components.json`:
+Build the Erbium registry whenever you add or change a UI component, hook, utility, stylesheet, or Storybook example:
+
+```bash
+bun run ui:registry
+```
+
+This generates `packages/ui/registry.json` and the static install payloads in `packages/ui/public/r`. The catalog includes the package's components, hooks, utilities, global styles, and Storybook examples. Internal component dependencies use the `@erbium/` namespace, and file targets preserve the `src/components`, `src/hooks`, `src/lib`, and `src/styles` layout so relative imports keep working after installation.
+
+Host `packages/ui/public/r` at a stable HTTPS URL, then consumers can add the registry to their `components.json`:
 
 ```json
 {
-  "registries": {
-    "@erbium": "https://your-domain.example/r/{name}.json"
-  }
+  "registries": { "@erbium": "https://your-domain.example/r/{name}.json" }
 }
 ```
 
-They can then initialize their project and install components with the standard CLI:
+They can then use the standard CLI to discover and install components, hooks, styles, utilities, and Storybook examples:
 
 ```bash
-npx shadcn@latest init
-npx shadcn@latest add @erbium/button
+bunx shadcn@latest list @erbium
+bunx shadcn@latest add @erbium/sidebar @erbium/use-mobile
+bunx shadcn@latest add @erbium/styles
+bunx shadcn@latest add @erbium/storybook-button
 ```
 
-The registry owns copied source files, while `@erbium/ui` remains useful as a conventional package dependency. Components use relative internal imports so copied files do not depend on the `@erbium/ui` package name. Consumers should also include the CSS tokens from `packages/ui/src/styles/globals.css` (or provide equivalent tokens and Tailwind plugins) in their global stylesheet.
+The registry installs copied source files, while `@erbium/ui` remains useful as a conventional package dependency. Add `@erbium/styles` when you want Erbium's global tokens and Tailwind utilities; include `src/styles/globals.css` in the app's stylesheet entry. The styles item also declares its Tailwind plugins and font dependencies.
 
 ## Quality bar
 

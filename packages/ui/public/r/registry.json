@@ -4,43 +4,17 @@
   "homepage": "https://github.com/erbium-app/erbium-ui",
   "items": [
     {
-      "name": "utils",
-      "type": "registry:lib",
-      "title": "Class name utility",
-      "description": "The Erbium class name merge utility.",
-      "dependencies": ["cn"],
-      "files": [
-        {
-          "path": "src/lib/utils.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Erbium accordion component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/accordion.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "alert-dialog",
-      "type": "registry:ui",
-      "title": "Alert Dialog",
-      "description": "Erbium alert-dialog component.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["button", "utils"],
-      "files": [
-        {
-          "path": "src/components/alert-dialog.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/accordion.tsx"
         }
       ]
     },
@@ -50,11 +24,27 @@
       "title": "Alert",
       "description": "Erbium alert component.",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/alert.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Erbium alert dialog component.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/alert-dialog.tsx"
         }
       ]
     },
@@ -62,12 +52,13 @@
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect Ratio",
-      "description": "Erbium aspect-ratio component.",
-      "registryDependencies": ["utils"],
+      "description": "Erbium aspect ratio component.",
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/aspect-ratio.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/aspect-ratio.tsx"
         }
       ]
     },
@@ -77,11 +68,12 @@
       "title": "Attachment",
       "description": "Erbium attachment component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/attachment.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/attachment.tsx"
         }
       ]
     },
@@ -91,11 +83,12 @@
       "title": "Avatar",
       "description": "Erbium avatar component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/avatar.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/avatar.tsx"
         }
       ]
     },
@@ -105,11 +98,12 @@
       "title": "Badge",
       "description": "Erbium badge component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/badge.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/badge.tsx"
         }
       ]
     },
@@ -119,11 +113,12 @@
       "title": "Breadcrumb",
       "description": "Erbium breadcrumb component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/breadcrumb.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/breadcrumb.tsx"
         }
       ]
     },
@@ -133,25 +128,12 @@
       "title": "Bubble",
       "description": "Erbium bubble component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/bubble.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "button-group",
-      "type": "registry:ui",
-      "title": "Button Group",
-      "description": "Erbium button-group component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["separator", "utils"],
-      "files": [
-        {
-          "path": "src/components/button-group.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/bubble.tsx"
         }
       ]
     },
@@ -161,11 +143,27 @@
       "title": "Button",
       "description": "Erbium button component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/button.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "Erbium button group component.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/button-group.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/button-group.tsx"
         }
       ]
     },
@@ -175,11 +173,12 @@
       "title": "Calendar",
       "description": "Erbium calendar component.",
       "dependencies": ["lucide-react", "react-day-picker"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/calendar.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/calendar.tsx"
         }
       ]
     },
@@ -188,11 +187,12 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Erbium card component.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/card.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/card.tsx"
         }
       ]
     },
@@ -202,11 +202,12 @@
       "title": "Carousel",
       "description": "Erbium carousel component.",
       "dependencies": ["embla-carousel-react", "lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/carousel.tsx"
         }
       ]
     },
@@ -216,11 +217,12 @@
       "title": "Chart",
       "description": "Erbium chart component.",
       "dependencies": ["@tanstack/charts"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/chart.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/chart.tsx"
         }
       ]
     },
@@ -230,11 +232,12 @@
       "title": "Checkbox",
       "description": "Erbium checkbox component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/checkbox.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/checkbox.tsx"
         }
       ]
     },
@@ -247,7 +250,8 @@
       "files": [
         {
           "path": "src/components/collapsible.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/collapsible.tsx"
         }
       ]
     },
@@ -257,11 +261,12 @@
       "title": "Combobox",
       "description": "Erbium combobox component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button", "input-group", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/input-group", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/combobox.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/combobox.tsx"
         }
       ]
     },
@@ -271,11 +276,12 @@
       "title": "Command",
       "description": "Erbium command component.",
       "dependencies": ["cmdk", "lucide-react"],
-      "registryDependencies": ["dialog", "input-group", "utils"],
+      "registryDependencies": ["@erbium/dialog", "@erbium/input-group", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/command.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/command.tsx"
         }
       ]
     },
@@ -283,13 +289,14 @@
       "name": "context-menu",
       "type": "registry:ui",
       "title": "Context Menu",
-      "description": "Erbium context-menu component.",
+      "description": "Erbium context menu component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/context-menu.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/context-menu.tsx"
         }
       ]
     },
@@ -299,11 +306,12 @@
       "title": "Dialog",
       "description": "Erbium dialog component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/dialog.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/dialog.tsx"
         }
       ]
     },
@@ -316,7 +324,8 @@
       "files": [
         {
           "path": "src/components/direction.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/direction.tsx"
         }
       ]
     },
@@ -326,11 +335,12 @@
       "title": "Drawer",
       "description": "Erbium drawer component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/drawer.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/drawer.tsx"
         }
       ]
     },
@@ -338,13 +348,14 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown Menu",
-      "description": "Erbium dropdown-menu component.",
+      "description": "Erbium dropdown menu component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/dropdown-menu.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/dropdown-menu.tsx"
         }
       ]
     },
@@ -354,11 +365,12 @@
       "title": "Empty",
       "description": "Erbium empty component.",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/empty.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/empty.tsx"
         }
       ]
     },
@@ -368,11 +380,26 @@
       "title": "Field",
       "description": "Erbium field component.",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["label", "separator", "utils"],
+      "registryDependencies": ["@erbium/label", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/field.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:lib",
+      "title": "Form",
+      "description": "Erbium form lib.",
+      "dependencies": ["@tanstack/react-form"],
+      "files": [
+        {
+          "path": "src/components/form.ts",
+          "type": "registry:lib",
+          "target": "~/src/components/form.ts"
         }
       ]
     },
@@ -380,41 +407,14 @@
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
-      "description": "Erbium hover-card component.",
+      "description": "Erbium hover card component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/hover-card.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "input-group",
-      "type": "registry:ui",
-      "title": "Input Group",
-      "description": "Erbium input-group component.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["button", "input", "textarea", "utils"],
-      "files": [
-        {
-          "path": "src/components/input-group.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "input-otp",
-      "type": "registry:ui",
-      "title": "Input Otp",
-      "description": "Erbium input-otp component.",
-      "dependencies": ["input-otp", "lucide-react"],
-      "registryDependencies": ["utils"],
-      "files": [
-        {
-          "path": "src/components/input-otp.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/hover-card.tsx"
         }
       ]
     },
@@ -424,11 +424,47 @@
       "title": "Input",
       "description": "Erbium input component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/input.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Erbium input group component.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/input",
+        "@erbium/textarea",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/input-group.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/input-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp",
+      "description": "Erbium input otp component.",
+      "dependencies": ["input-otp", "lucide-react"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/input-otp.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/input-otp.tsx"
         }
       ]
     },
@@ -438,11 +474,12 @@
       "title": "Item",
       "description": "Erbium item component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["separator", "utils"],
+      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/item.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/item.tsx"
         }
       ]
     },
@@ -451,11 +488,12 @@
       "type": "registry:ui",
       "title": "Kbd",
       "description": "Erbium kbd component.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/kbd.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/kbd.tsx"
         }
       ]
     },
@@ -464,11 +502,12 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Erbium label component.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/label.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/label.tsx"
         }
       ]
     },
@@ -478,11 +517,12 @@
       "title": "Marker",
       "description": "Erbium marker component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/marker.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/marker.tsx"
         }
       ]
     },
@@ -492,25 +532,12 @@
       "title": "Menubar",
       "description": "Erbium menubar component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["dropdown-menu", "utils"],
+      "registryDependencies": ["@erbium/dropdown-menu", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/menubar.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "message-scroller",
-      "type": "registry:ui",
-      "title": "Message Scroller",
-      "description": "Erbium message-scroller component.",
-      "dependencies": ["@shadcn/react", "lucide-react"],
-      "registryDependencies": ["button", "utils"],
-      "files": [
-        {
-          "path": "src/components/message-scroller.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/menubar.tsx"
         }
       ]
     },
@@ -519,11 +546,27 @@
       "type": "registry:ui",
       "title": "Message",
       "description": "Erbium message component.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/message.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/message.tsx"
+        }
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "title": "Message Scroller",
+      "description": "Erbium message scroller component.",
+      "dependencies": ["@shadcn/react", "lucide-react"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/message-scroller.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/message-scroller.tsx"
         }
       ]
     },
@@ -531,13 +574,14 @@
       "name": "native-select",
       "type": "registry:ui",
       "title": "Native Select",
-      "description": "Erbium native-select component.",
+      "description": "Erbium native select component.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/native-select.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/native-select.tsx"
         }
       ]
     },
@@ -545,13 +589,14 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
-      "description": "Erbium navigation-menu component.",
+      "description": "Erbium navigation menu component.",
       "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/navigation-menu.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/navigation-menu.tsx"
         }
       ]
     },
@@ -561,11 +606,12 @@
       "title": "Pagination",
       "description": "Erbium pagination component.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/pagination.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/pagination.tsx"
         }
       ]
     },
@@ -575,11 +621,12 @@
       "title": "Popover",
       "description": "Erbium popover component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/popover.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/popover.tsx"
         }
       ]
     },
@@ -589,11 +636,12 @@
       "title": "Progress",
       "description": "Erbium progress component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/progress.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/progress.tsx"
         }
       ]
     },
@@ -603,11 +651,12 @@
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
       "dependencies": ["@shadcn/react", "lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/questionnaire.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/questionnaire.tsx"
         }
       ]
     },
@@ -615,13 +664,14 @@
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
-      "description": "Erbium radio-group component.",
+      "description": "Erbium radio group component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/radio-group.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/radio-group.tsx"
         }
       ]
     },
@@ -631,11 +681,12 @@
       "title": "Resizable",
       "description": "Erbium resizable component.",
       "dependencies": ["react-resizable-panels"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/resizable.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/resizable.tsx"
         }
       ]
     },
@@ -643,13 +694,14 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll Area",
-      "description": "Erbium scroll-area component.",
+      "description": "Erbium scroll area component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/scroll-area.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/scroll-area.tsx"
         }
       ]
     },
@@ -659,11 +711,12 @@
       "title": "Select",
       "description": "Erbium select component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/select.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/select.tsx"
         }
       ]
     },
@@ -673,11 +726,12 @@
       "title": "Separator",
       "description": "Erbium separator component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/separator.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/separator.tsx"
         }
       ]
     },
@@ -687,11 +741,12 @@
       "title": "Sheet",
       "description": "Erbium sheet component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/sheet.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/sheet.tsx"
         }
       ]
     },
@@ -702,18 +757,20 @@
       "description": "Erbium sidebar component.",
       "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
       "registryDependencies": [
-        "button",
-        "input",
-        "separator",
-        "sheet",
-        "skeleton",
-        "tooltip",
-        "utils"
+        "@erbium/button",
+        "@erbium/input",
+        "@erbium/separator",
+        "@erbium/sheet",
+        "@erbium/skeleton",
+        "@erbium/tooltip",
+        "@erbium/use-mobile",
+        "@erbium/utils"
       ],
       "files": [
         {
           "path": "src/components/sidebar.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/sidebar.tsx"
         }
       ]
     },
@@ -722,11 +779,12 @@
       "type": "registry:ui",
       "title": "Skeleton",
       "description": "Erbium skeleton component.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/skeleton.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/skeleton.tsx"
         }
       ]
     },
@@ -736,11 +794,12 @@
       "title": "Slider",
       "description": "Erbium slider component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/slider.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/slider.tsx"
         }
       ]
     },
@@ -750,11 +809,83 @@
       "title": "Spinner",
       "description": "Erbium spinner component.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/spinner.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/spinner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "storybook-button",
+      "type": "registry:component",
+      "title": "Button Storybook example",
+      "description": "Storybook stories for the Erbium button component.",
+      "devDependencies": ["@storybook/react-vite"],
+      "registryDependencies": ["@erbium/button"],
+      "files": [
+        {
+          "path": ".registry-build/stories/button.stories.tsx",
+          "type": "registry:component",
+          "target": "~/src/stories/button.stories.tsx"
+        }
+      ]
+    },
+    {
+      "name": "styles",
+      "type": "registry:item",
+      "title": "Erbium styles",
+      "description": "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
+      "dependencies": [
+        "@fontsource-variable/geist",
+        "@fontsource-variable/inter",
+        "easing-gradients",
+        "shadow-plugin",
+        "tailwindcss",
+        "tw-animate-css"
+      ],
+      "files": [
+        {
+          "path": "src/styles/base.css",
+          "type": "registry:file",
+          "target": "~/src/styles/base.css"
+        },
+        {
+          "path": "src/styles/effects.css",
+          "type": "registry:file",
+          "target": "~/src/styles/effects.css"
+        },
+        {
+          "path": "src/styles/fonts.css",
+          "type": "registry:file",
+          "target": "~/src/styles/fonts.css"
+        },
+        {
+          "path": "src/styles/globals.css",
+          "type": "registry:file",
+          "target": "~/src/styles/globals.css"
+        },
+        {
+          "path": "src/styles/scroll.css",
+          "type": "registry:file",
+          "target": "~/src/styles/scroll.css"
+        },
+        {
+          "path": "src/styles/theme.css",
+          "type": "registry:file",
+          "target": "~/src/styles/theme.css"
+        },
+        {
+          "path": "src/styles/typeset.css",
+          "type": "registry:file",
+          "target": "~/src/styles/typeset.css"
+        },
+        {
+          "path": "src/styles/variants.css",
+          "type": "registry:file",
+          "target": "~/src/styles/variants.css"
         }
       ]
     },
@@ -764,11 +895,12 @@
       "title": "Switch",
       "description": "Erbium switch component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/switch.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/switch.tsx"
         }
       ]
     },
@@ -778,11 +910,12 @@
       "title": "Table",
       "description": "Erbium table component.",
       "dependencies": ["@tanstack/react-table"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/table.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/table.tsx"
         }
       ]
     },
@@ -792,11 +925,12 @@
       "title": "Tabs",
       "description": "Erbium tabs component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/tabs.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/tabs.tsx"
         }
       ]
     },
@@ -805,11 +939,12 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "Erbium textarea component.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/textarea.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/textarea.tsx"
         }
       ]
     },
@@ -819,25 +954,12 @@
       "title": "Toast",
       "description": "Erbium toast component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["button", "utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/toast.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "toggle-group",
-      "type": "registry:ui",
-      "title": "Toggle Group",
-      "description": "Erbium toggle-group component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["toggle", "utils"],
-      "files": [
-        {
-          "path": "src/components/toggle-group.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/toast.tsx"
         }
       ]
     },
@@ -847,11 +969,27 @@
       "title": "Toggle",
       "description": "Erbium toggle component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/toggle.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/toggle.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "Erbium toggle group component.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["@erbium/toggle", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/toggle-group.tsx"
         }
       ]
     },
@@ -861,11 +999,39 @@
       "title": "Tooltip",
       "description": "Erbium tooltip component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/tooltip.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "~/src/components/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "title": "Use Mobile",
+      "description": "Erbium use mobile hook.",
+      "files": [
+        {
+          "path": "src/hooks/use-mobile.ts",
+          "type": "registry:hook",
+          "target": "~/src/hooks/use-mobile.ts"
+        }
+      ]
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "Erbium utils lib.",
+      "dependencies": ["cn"],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib",
+          "target": "~/src/lib/utils.ts"
         }
       ]
     }

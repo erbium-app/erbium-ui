@@ -8,7 +8,8 @@
     {
       "path": "src/components/collapsible.tsx",
       "content": "import { Collapsible as CollapsiblePrimitive } from \"@base-ui/react/collapsible\";\n\nfunction Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {\n  return <CollapsiblePrimitive.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger({ ...props }: CollapsiblePrimitive.Trigger.Props) {\n  return <CollapsiblePrimitive.Trigger data-slot=\"collapsible-trigger\" {...props} />;\n}\n\nfunction CollapsibleContent({ ...props }: CollapsiblePrimitive.Panel.Props) {\n  return <CollapsiblePrimitive.Panel data-slot=\"collapsible-content\" {...props} />;\n}\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent };\n",
-      "type": "registry:ui"
+      "type": "registry:ui",
+      "target": "~/src/components/collapsible.tsx"
     }
   ],
   "type": "registry:ui"

@@ -12,6 +12,7 @@ dist
 storybook-static
 dist-ssr
 *.local
+packages/ui/.registry-build/
 
 # dotenv environment variable files
 .env
