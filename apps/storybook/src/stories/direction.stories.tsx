@@ -15,7 +15,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof DirectionProvider>;
 
 export default meta;
 type Story = StoryObj;

@@ -24,7 +24,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Calendar>;
 
 export default meta;
 type Story = StoryObj;

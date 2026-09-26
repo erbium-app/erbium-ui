@@ -18,7 +18,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof HoverCard>;
 
 export default meta;
 type Story = StoryObj;

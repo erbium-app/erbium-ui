@@ -30,7 +30,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof AlertDialog>;
 
 export default meta;
 type Story = StoryObj;

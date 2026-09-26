@@ -18,7 +18,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Label>;
 
 export default meta;
 type Story = StoryObj;

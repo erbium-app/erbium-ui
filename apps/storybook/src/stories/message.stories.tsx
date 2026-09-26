@@ -20,7 +20,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Message>;
 
 export default meta;
 type Story = StoryObj;

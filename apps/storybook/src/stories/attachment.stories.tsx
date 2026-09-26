@@ -29,7 +29,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Attachment>;
 
 export default meta;
 type Story = StoryObj;

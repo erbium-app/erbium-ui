@@ -16,7 +16,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof ScrollArea>;
 
 export default meta;
 type Story = StoryObj;

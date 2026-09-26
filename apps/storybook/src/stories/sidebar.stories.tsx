@@ -26,7 +26,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Sidebar>;
 
 export default meta;
 type Story = StoryObj;

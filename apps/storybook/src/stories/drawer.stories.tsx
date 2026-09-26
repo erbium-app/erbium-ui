@@ -32,7 +32,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Drawer>;
 
 export default meta;
 type Story = StoryObj;

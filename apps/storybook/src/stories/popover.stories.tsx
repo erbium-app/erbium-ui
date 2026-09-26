@@ -25,7 +25,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Popover>;
 
 export default meta;
 type Story = StoryObj;

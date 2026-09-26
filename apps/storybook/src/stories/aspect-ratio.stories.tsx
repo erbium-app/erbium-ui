@@ -15,7 +15,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof AspectRatio>;
 
 export default meta;
 type Story = StoryObj;

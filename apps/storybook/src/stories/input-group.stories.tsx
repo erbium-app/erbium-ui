@@ -33,7 +33,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof InputGroup>;
 
 export default meta;
 type Story = StoryObj;

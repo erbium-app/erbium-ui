@@ -19,7 +19,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Kbd>;
 
 export default meta;
 type Story = StoryObj;

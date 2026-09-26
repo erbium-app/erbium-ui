@@ -27,7 +27,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Carousel>;
 
 export default meta;
 type Story = StoryObj;

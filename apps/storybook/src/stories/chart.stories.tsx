@@ -20,7 +20,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Chart>;
 
 export default meta;
 type Story = StoryObj;

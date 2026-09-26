@@ -29,7 +29,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof ContextMenu>;
 
 export default meta;
 type Story = StoryObj;

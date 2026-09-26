@@ -26,7 +26,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Command>;
 
 export default meta;
 type Story = StoryObj;

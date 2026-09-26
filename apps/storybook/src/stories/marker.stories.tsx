@@ -22,7 +22,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Marker>;
 
 export default meta;
 type Story = StoryObj;

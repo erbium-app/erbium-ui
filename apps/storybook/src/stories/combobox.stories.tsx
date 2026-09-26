@@ -32,7 +32,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Combobox>;
 
 export default meta;
 type Story = StoryObj;

@@ -31,7 +31,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof DropdownMenu>;
 
 export default meta;
 type Story = StoryObj;

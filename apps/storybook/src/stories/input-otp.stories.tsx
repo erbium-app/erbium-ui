@@ -23,7 +23,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof InputOTP>;
 
 export default meta;
 type Story = StoryObj;

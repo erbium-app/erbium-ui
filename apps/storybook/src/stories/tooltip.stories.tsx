@@ -18,7 +18,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Tooltip>;
 
 export default meta;
 type Story = StoryObj;
