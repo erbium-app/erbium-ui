@@ -1,5 +1,5 @@
 // @ts-expect-error Vite resolves CSS asset imports at runtime.
-import "@erbium/ui/styles.css";
+import "@erbium/ui/globals.css";
 import type { Preview } from "@storybook/react-vite";
 
 const preview: Preview = {

@@ -26,6 +26,7 @@
   },
   "type": "module",
   "exports": {
+    "./components/form": "./src/components/form.ts",
     "./components/*": "./src/components/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts",

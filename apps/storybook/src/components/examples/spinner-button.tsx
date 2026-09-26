@@ -1,0 +1,21 @@
+import { Button } from "@erbium/ui/components/button";
+import { Spinner } from "@erbium/ui/components/spinner";
+
+export default function SpinnerButton() {
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <Button disabled size="sm">
+        <Spinner />
+        Loading...
+      </Button>
+      <Button variant="outline" disabled size="sm">
+        <Spinner />
+        Please wait
+      </Button>
+      <Button variant="secondary" disabled size="sm">
+        <Spinner />
+        Processing
+      </Button>
+    </div>
+  );
+}
