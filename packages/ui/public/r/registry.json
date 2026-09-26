@@ -571,21 +571,6 @@
       ]
     },
     {
-      "name": "native-select",
-      "type": "registry:ui",
-      "title": "Native Select",
-      "description": "Erbium native select component.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@erbium/utils"],
-      "files": [
-        {
-          "path": "src/components/native-select.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/native-select.tsx"
-        }
-      ]
-    },
-    {
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
@@ -815,21 +800,6 @@
           "path": "src/components/spinner.tsx",
           "type": "registry:ui",
           "target": "~/src/components/spinner.tsx"
-        }
-      ]
-    },
-    {
-      "name": "storybook-button",
-      "type": "registry:component",
-      "title": "Button Storybook example",
-      "description": "Storybook stories for the Erbium button component.",
-      "devDependencies": ["@storybook/react-vite"],
-      "registryDependencies": ["@erbium/button"],
-      "files": [
-        {
-          "path": ".registry-build/stories/button.stories.tsx",
-          "type": "registry:component",
-          "target": "~/src/stories/button.stories.tsx"
         }
       ]
     },

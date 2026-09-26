@@ -1,9 +1,8 @@
-import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const packageRoot = dirname(dirname(fileURLToPath(import.meta.url)));
-const repoRoot = dirname(dirname(packageRoot));
 const sourceRoot = join(packageRoot, "src");
 const packageJson = JSON.parse(await readFile(join(packageRoot, "package.json"), "utf8"));
 const dependencies = new Set([
@@ -119,36 +118,6 @@ items.push({
     target: `~/src/styles/${file}`,
   })),
 });
-
-// Storybook stories can be installed as examples alongside their Erbium component.
-const storyDir = join(repoRoot, "apps/storybook/src");
-for (const file of await filesIn(storyDir)) {
-  if (!file.endsWith(".stories.tsx")) continue;
-  const storyName = file.slice(0, -".stories.tsx".length);
-  const sourceFile = join(storyDir, file);
-  const content = (await readFile(sourceFile, "utf8")).replaceAll(
-    `"@erbium/ui/components/${storyName}"`,
-    `"../components/${storyName}"`,
-  );
-  const stagedStoryPath = join(packageRoot, ".registry-build/stories", file);
-  await mkdir(dirname(stagedStoryPath), { recursive: true });
-  await writeFile(stagedStoryPath, content);
-  items.push({
-    name: `storybook-${storyName}`,
-    type: "registry:component",
-    title: `${title(storyName)} Storybook example`,
-    description: `Storybook stories for the Erbium ${storyName} component.`,
-    devDependencies: ["@storybook/react-vite"],
-    registryDependencies: [`@erbium/${storyName}`],
-    files: [
-      {
-        path: relative(packageRoot, stagedStoryPath).split(sep).join("/"),
-        type: "registry:component",
-        target: `~/src/stories/${file}`,
-      },
-    ],
-  });
-}
 
 items.sort((a, b) => a.name.localeCompare(b.name));
 await writeFile(

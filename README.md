@@ -58,7 +58,7 @@ Build the Erbium registry whenever you add or change a UI component, hook, utili
 bun run ui:registry
 ```
 
-This generates `packages/ui/registry.json` and the static install payloads in `packages/ui/public/r`. The catalog includes the package's components, hooks, utilities, global styles, and Storybook examples. Internal component dependencies use the `@erbium/` namespace, and file targets preserve the `src/components`, `src/hooks`, `src/lib`, and `src/styles` layout so relative imports keep working after installation.
+This generates `packages/ui/registry.json` and the static install payloads in `packages/ui/public/r`. The catalog includes the package's components, hooks, utilities, and global styles. Internal component dependencies use the `@erbium/` namespace, and file targets preserve the `src/components`, `src/hooks`, `src/lib`, and `src/styles` layout so relative imports keep working after installation.
 
 Host `packages/ui/public/r` at a stable HTTPS URL, then consumers can add the registry to their `components.json`:
 
@@ -68,13 +68,12 @@ Host `packages/ui/public/r` at a stable HTTPS URL, then consumers can add the re
 }
 ```
 
-They can then use the standard CLI to discover and install components, hooks, styles, utilities, and Storybook examples:
+They can then use the standard CLI to discover and install components, hooks, styles, and utilities:
 
 ```bash
 bunx shadcn@latest list @erbium
 bunx shadcn@latest add @erbium/sidebar @erbium/use-mobile
 bunx shadcn@latest add @erbium/styles
-bunx shadcn@latest add @erbium/storybook-button
 ```
 
 The registry installs copied source files, while `@erbium/ui` remains useful as a conventional package dependency. Add `@erbium/styles` when you want Erbium's global tokens and Tailwind utilities; include `src/styles/globals.css` in the app's stylesheet entry. The styles item also declares its Tailwind plugins and font dependencies.
