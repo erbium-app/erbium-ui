@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
-import { Toaster, toast } from "@erbium/ui/components/toast";
+import { toast } from "@erbium/ui/components/toast";
 export default function Demo() {
   return (
     <>
@@ -8,7 +8,6 @@ export default function Demo() {
       >
         Show toast
       </Button>
-      <Toaster />
     </>
   );
 }

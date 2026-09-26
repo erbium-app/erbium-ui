@@ -1,6 +1,6 @@
 import { getFormValue } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import {
   Questionnaire,
@@ -32,7 +32,8 @@ export function QuestionnaireAnimated() {
 
     const formData = new FormData(event.currentTarget);
 
-    toast("Agent workflow saved", {
+    toast.add({
+      title: "Agent workflow saved",
       description: `Task: ${getFormValue(formData, "task", "None")} · Review: ${getFormValue(formData, "review", "None")} · Delivery: ${getFormValue(formData, "delivery", "None")}`,
     });
   }

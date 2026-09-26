@@ -1,5 +1,5 @@
 import { GitBranchIcon, RotateCcwIcon } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import { Marker, MarkerContent, MarkerIcon } from "@erbium/ui/components/marker";
 
@@ -17,7 +17,7 @@ export function MarkerLinkButtonDemo() {
           <button
             type="button"
             className="transition-colors hover:text-foreground"
-            onClick={() => toast("You clicked the revert button")}
+            onClick={() => toast.add({ title: "You clicked the revert button" })}
           />
         }
       >

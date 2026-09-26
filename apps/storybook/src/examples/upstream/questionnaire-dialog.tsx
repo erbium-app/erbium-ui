@@ -1,6 +1,6 @@
 import { getFormValue } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -42,7 +42,8 @@ export function QuestionnaireDialog() {
     const formData = new FormData(event.currentTarget);
 
     setOpen(false);
-    toast("Clarification sent", {
+    toast.add({
+      title: "Clarification sent",
       description: `Scope: ${getFormValue(formData, "scope", "None")} · Verification: ${getFormValue(formData, "tests", "None")}`,
     });
   }

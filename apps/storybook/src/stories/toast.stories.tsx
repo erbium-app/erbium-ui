@@ -1,9 +1,8 @@
 import { ToastTypes } from "../examples/upstream/toast-types";
 import { ToastPromise } from "../examples/upstream/toast-promise";
 import { Button } from "@erbium/ui/components/button";
-import { toast as sonnerToast } from "sonner";
+import { Toast, toast } from "@erbium/ui/components/toast";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Toast } from "@erbium/ui/components/toast";
 import Demo from "../examples/toast-demo";
 
 const meta = {
@@ -43,8 +42,7 @@ export const Types: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Set the `type` option to render a status icon. The built-in renderer recognizes\n\n`success`, `info`, `warning`, `error`, and `loading`.",
+        story: "Set `type` to success, info, warning, error, or loading to show a status icon.",
       },
       source: {
         code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastTypes() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Button\n        variant="outline"\n        onClick={() => toast.add({ description: "Event has been created." })}\n      >\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "success",\n            description: "Event has been created.",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "info",\n            description: "Arrive 10 minutes before the event.",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "warning",\n            description: "The event cannot start before 8:00 AM.",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "error",\n            description: "The event could not be created.",\n            priority: "high",\n          })\n        }\n      >\n        Error\n      </Button>\n    </div>\n  );\n}\n',
@@ -80,12 +78,40 @@ export const Action: Story = {
   render: () => (
     <Button
       onClick={() =>
-        sonnerToast("Draft saved", {
-          action: { label: "Undo", onClick: () => sonnerToast("Draft restored") },
+        toast.add({
+          title: "Draft saved",
+          actionProps: {
+            children: "Undo",
+            onClick: () => toast.add({ title: "Draft restored" }),
+          },
         })
       }
     >
       Show action toast
+    </Button>
+  ),
+};
+
+export const Progress: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.",
+      },
+    },
+  },
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() => {
+        const id = toast.add({ title: "Syncing changes…", type: "loading", timeout: 0 });
+        window.setTimeout(() => {
+          toast.update(id, { title: "Changes synced", type: "success", timeout: 4000 });
+        }, 1200);
+      }}
+    >
+      Show progress toast
     </Button>
   ),
 };

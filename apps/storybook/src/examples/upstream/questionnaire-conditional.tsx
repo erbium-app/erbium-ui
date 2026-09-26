@@ -1,6 +1,6 @@
 import { getFormValue } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import {
   Questionnaire,
@@ -37,7 +37,8 @@ export function QuestionnaireConditional() {
 
     const formData = new FormData(event.currentTarget);
 
-    toast("Execution plan saved", {
+    toast.add({
+      title: "Execution plan saved",
       description: `Runtime: ${getFormValue(formData, "runtime", "None")} · Environment: ${getFormValue(formData, "environment", "Not applicable")} · Approval: ${getFormValue(formData, "approval", "None")}`,
     });
   }

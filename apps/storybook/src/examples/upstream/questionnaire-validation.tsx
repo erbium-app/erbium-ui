@@ -1,5 +1,5 @@
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 import { z } from "zod";
 
 import { Card, CardAction, CardContent, CardFooter, CardHeader } from "@erbium/ui/components/card";
@@ -79,7 +79,8 @@ export function QuestionnaireValidation() {
 
     if (result.success) {
       setErrors({});
-      toast("Agent response configured", {
+      toast.add({
+        title: "Agent response configured",
         description: `Detail: ${result.data.detail} · Audience: ${result.data.audience}`,
       });
       return;

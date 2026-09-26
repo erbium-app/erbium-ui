@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import { Bubble, BubbleContent, BubbleReactions } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -41,7 +41,9 @@ export function BubbleReactionsDemo() {
           <Button
             variant="ghost"
             size="xs"
-            onClick={() => toast.success("You clicked yes, running command...")}
+            onClick={() =>
+              toast.add({ type: "success", title: "You clicked yes, running command..." })
+            }
           >
             Yes, run it
           </Button>

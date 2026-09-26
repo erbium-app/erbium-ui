@@ -1,7 +1,7 @@
 // @ts-expect-error Vite resolves CSS asset imports at runtime.
 import "@erbium/ui/globals.css";
 import { createElement, Fragment } from "react";
-import { Toaster } from "sonner";
+import { Toaster } from "@erbium/ui/components/toast";
 import type { Preview } from "@storybook/tanstack-react";
 
 const preview: Preview = {

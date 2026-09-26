@@ -1,6 +1,6 @@
 import { getFormValues } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import {
   Questionnaire,
@@ -28,7 +28,8 @@ export function QuestionnaireMultiple() {
 
     const context = getFormValues(new FormData(event.currentTarget), "context");
 
-    toast("Context selected", {
+    toast.add({
+      title: "Context selected",
       description: `Context: ${context.join(", ") || "None"}`,
     });
   }

@@ -1,6 +1,6 @@
 import { getFormValue } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import {
   Questionnaire,
@@ -32,7 +32,8 @@ export function QuestionnaireShortcuts() {
 
     const action = getFormValue(new FormData(event.currentTarget), "action");
 
-    toast("Next action selected", {
+    toast.add({
+      title: "Next action selected",
       description: `Action: ${action ?? "None"} · Shortcuts: ${shortcuts ?? "none"}`,
     });
   }

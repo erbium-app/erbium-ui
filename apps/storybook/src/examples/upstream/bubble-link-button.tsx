@@ -1,4 +1,4 @@
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import { Bubble, BubbleContent, BubbleGroup } from "@erbium/ui/components/bubble";
 
@@ -10,13 +10,17 @@ export function BubbleLinkButtonDemo() {
       </Bubble>
       <BubbleGroup>
         <Bubble variant="tinted" align="end">
-          <BubbleContent render={<button onClick={() => toast("You clicked forgot password")} />}>
+          <BubbleContent
+            render={<button onClick={() => toast.add({ title: "You clicked forgot password" })} />}
+          >
             I forgot my password
           </BubbleContent>
         </Bubble>
         <Bubble variant="tinted" align="end">
           <BubbleContent
-            render={<button onClick={() => toast("You clicked help with subscription")} />}
+            render={
+              <button onClick={() => toast.add({ title: "You clicked help with subscription" })} />
+            }
           >
             I need help with my subscription
           </BubbleContent>
@@ -24,7 +28,9 @@ export function BubbleLinkButtonDemo() {
         <Bubble variant="tinted" align="end">
           <BubbleContent
             render={
-              <button onClick={() => toast("You clicked something else. Talk to a human.")} />
+              <button
+                onClick={() => toast.add({ title: "You clicked something else. Talk to a human." })}
+              />
             }
           >
             Something else. Talk to a human.

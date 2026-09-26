@@ -1,6 +1,6 @@
 import { getFormValue } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import {
   Questionnaire,
@@ -29,9 +29,7 @@ export function QuestionnaireFreeform() {
 
     const approach = getFormValue(new FormData(event.currentTarget), "approach");
 
-    toast("Approach selected", {
-      description: `Approach: ${approach ?? "None"}`,
-    });
+    toast.add({ title: "Approach selected", description: `Approach: ${approach ?? "None"}` });
   }
 
   return (

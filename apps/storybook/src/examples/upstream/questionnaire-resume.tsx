@@ -1,6 +1,6 @@
 import { getFormValue, getFormValues } from "./form-value";
 import * as React from "react";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -36,7 +36,8 @@ export function QuestionnaireResume() {
       notes: getFormValue(formData, "notes"),
     };
 
-    toast("Draft updated", {
+    toast.add({
+      title: "Draft updated",
       description: `Migration: ${answers.change ?? "None"} · Verification: ${answers.verification.join(", ") || "None"} · Notes: ${answers.notes || "None"}`,
     });
   }
@@ -46,7 +47,7 @@ export function QuestionnaireResume() {
       className="mx-auto max-w-md"
       defaultItem="verification"
       items={items}
-      onReset={() => toast("Saved answers restored")}
+      onReset={() => toast.add({ title: "Saved answers restored" })}
       onSubmit={handleSubmit}
     >
       <QuestionnaireProgress />

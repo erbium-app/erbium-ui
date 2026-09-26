@@ -1,7 +1,7 @@
 import { getFormValue } from "./form-value";
 import * as React from "react";
 import type { QuestionnaireItemStatus } from "@shadcn/react/questionnaire";
-import { toast } from "sonner";
+import { toast } from "@erbium/ui/components/toast";
 
 import {
   Questionnaire,
@@ -42,7 +42,8 @@ export function QuestionnaireNavigationState() {
 
     const formData = new FormData(event.currentTarget);
 
-    toast("Permissions saved", {
+    toast.add({
+      title: "Permissions saved",
       description: `Permission: ${getFormValue(formData, "permission")} · Verification: ${getFormValue(formData, "verification")}`,
     });
   }
