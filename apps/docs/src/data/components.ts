@@ -22,7 +22,10 @@ export const componentGroups = [
     names: ["breadcrumb", "pagination", "tabs", "menubar", "navigation-menu"],
   },
   { label: "Overlays", names: ["dialog", "alert-dialog", "popover", "tooltip", "sheet", "drawer"] },
-  { label: "Data display", names: ["table", "avatar", "calendar", "carousel", "progress"] },
+  {
+    label: "Data display",
+    names: ["table", "avatar", "calendar", "carousel", "chart", "progress"],
+  },
 ];
 
 export function getComponent(name: string) {

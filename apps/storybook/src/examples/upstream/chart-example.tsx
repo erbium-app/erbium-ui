@@ -1,8 +1,12 @@
-import { Bar, BarChart } from "recharts";
+import { barY, defineChart, group } from "@tanstack/charts";
+import { scaleBand } from "@tanstack/charts/scales/band";
+import { scaleLinear } from "@tanstack/charts/scales/linear";
+import { scaleOrdinal } from "@tanstack/charts/scales/ordinal";
+import { tooltip } from "@tanstack/charts/tooltip";
+import { colorLegend } from "@tanstack/charts/legend";
+import { Chart } from "@erbium/ui/components/chart";
 
-import { ChartContainer, type ChartConfig } from "@erbium/ui/components/chart";
-
-const chartData = [
+const monthlyVisitors = [
   { month: "January", desktop: 186, mobile: 80 },
   { month: "February", desktop: 305, mobile: 200 },
   { month: "March", desktop: 237, mobile: 120 },
@@ -11,24 +15,48 @@ const chartData = [
   { month: "June", desktop: 214, mobile: 140 },
 ];
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "#2563eb",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
-  },
-} satisfies ChartConfig;
+const visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [
+  { month, device: "Desktop", visitors: desktop },
+  { month, device: "Mobile", visitors: mobile },
+]);
+
+export function visitorChart(
+  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},
+) {
+  return defineChart({
+    marks: [
+      barY(visitors, {
+        x: "month",
+        y: "visitors",
+        z: "device",
+        color: "device",
+        layout: group({ padding: 0.12 }),
+        radius: 4,
+        inset: 1,
+      }),
+    ],
+    scales: {
+      x: {
+        scale: scaleBand,
+        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,
+      },
+      y: { scale: scaleLinear, nice: true, grid: options.grid },
+    },
+    color: {
+      scale: scaleOrdinal(["Desktop", "Mobile"], ["#2563eb", "#60a5fa"]),
+      ...(options.legend ? { legend: colorLegend({ label: "Device" }) } : {}),
+    },
+    ...(options.tooltip ? { focus: "group-x" as const, tooltip: { use: tooltip } } : {}),
+  });
+}
 
 export function ChartExample() {
   return (
-    <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-      <BarChart accessibilityLayer data={chartData}>
-        <Bar dataKey="desktop" fill="#2563eb" radius={4} />
-        <Bar dataKey="mobile" fill="#60a5fa" radius={4} />
-      </BarChart>
-    </ChartContainer>
+    <Chart
+      definition={visitorChart()}
+      height={240}
+      initialWidth={640}
+      ariaLabel="Desktop and mobile visitors by month"
+    />
   );
 }

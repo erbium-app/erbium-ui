@@ -565,7 +565,8 @@
           "type": "registry:component",
           "target": "~/src/examples/chart-demo.tsx"
         }
-      ]
+      ],
+      "dependencies": ["@tanstack/charts"]
     },
     {
       "name": "checkbox-demo",

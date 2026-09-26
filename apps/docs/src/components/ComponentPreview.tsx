@@ -1,3 +1,7 @@
+import { barY, defineChart } from "@tanstack/charts";
+import { scaleBand } from "@tanstack/charts/scales/band";
+import { scaleLinear } from "@tanstack/charts/scales/linear";
+import { Chart } from "@erbium/ui/components/chart";
 import { Badge } from "@erbium/ui/components/badge";
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -11,8 +15,32 @@ import { Input } from "@erbium/ui/components/input";
 import { Switch } from "@erbium/ui/components/switch";
 import { useState } from "react";
 
+const chartDefinition = defineChart({
+  marks: [
+    barY(
+      [
+        { month: "Jan", visitors: 186 },
+        { month: "Feb", visitors: 305 },
+        { month: "Mar", visitors: 237 },
+        { month: "Apr", visitors: 73 },
+      ],
+      { x: "month", y: "visitors", fill: "var(--chart-1)", radius: 4 },
+    ),
+  ],
+  scales: { x: { scale: scaleBand }, y: { scale: scaleLinear, grid: true } },
+});
+
 export default function ComponentPreview({ name }: { name: string }) {
   const [enabled, setEnabled] = useState(true);
+  if (name === "chart")
+    return (
+      <Chart
+        definition={chartDefinition}
+        height={240}
+        initialWidth={640}
+        ariaLabel="Monthly visitors"
+      />
+    );
   if (name === "button")
     return (
       <div className="preview-row">

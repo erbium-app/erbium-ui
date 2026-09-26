@@ -217,7 +217,6 @@
       "title": "Chart",
       "description": "Erbium chart component.",
       "dependencies": ["@tanstack/charts"],
-      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/chart.tsx",
