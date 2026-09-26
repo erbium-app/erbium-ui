@@ -78,6 +78,21 @@
       ]
     },
     {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "description": "Erbium autocomplete component.",
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "registryDependencies": ["@erbium/input", "@erbium/scroll-area", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/autocomplete.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/autocomplete.tsx"
+        }
+      ]
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
