@@ -1,4 +1,3 @@
-import ExampleSpinnerCustom from "../examples/spinner-custom";
 import ExampleSpinnerSize from "../examples/spinner-size";
 import ExampleSpinnerButton from "../examples/spinner-button";
 import ExampleSpinnerBadge from "../examples/spinner-badge";
@@ -17,7 +16,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An indicator that can be used to show a loading state.\n\n**Import:** `@erbium/ui/components/spinner`  \n\n**shadcn/ui page:** [Spinner](https://ui.shadcn.com/docs/components/base/spinner)\n\n### Usage\n\n```tsx\nimport { Spinner } from "@erbium/ui/components/spinner"\n```\n\n```tsx\n<Spinner />\n```\n\n### Customization\n\nYou can replace the default spinner icon with any other icon by editing the `Spinner` component.\n\n```tsx\nimport { cn } from "cn"\nimport { LoaderIcon } from "lucide-react"\n\nfunction Spinner({ className, ...props }: React.ComponentProps<"svg">) {\n  return (\n    <LoaderIcon\n      role="status"\n      aria-label="Loading"\n      className={cn("size-4 animate-spin", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Spinner }\n```\n\n### Size\n\nUse the `size-*` utility class to change the size of the spinner.\n\n### Button\n\nAdd a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.\n\n### Badge\n\nAdd a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.\n\n### Input Group\n\n### Empty',
+          'An indicator that can be used to show a loading state.\n\n**Import:** `@erbium/ui/components/spinner`  \n\n**shadcn/ui page:** [Spinner](https://ui.shadcn.com/docs/components/base/spinner)\n\n### Usage\n\n```tsx\nimport { Spinner } from "@erbium/ui/components/spinner"\n```\n\n```tsx\n<Spinner />\n```\n\n### Size\n\nUse the `size-*` utility class to change the size of the spinner.\n\n### Button\n\nAdd a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.\n\n### Badge\n\nAdd a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.\n\n### Input Group\n\n### Empty',
       },
     },
   },
@@ -41,20 +40,6 @@ export const Overview: Story = {
   ),
 };
 
-export const Customization: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: 'import { cn } from "@erbium/ui/lib/utils"\nimport { LoaderIcon } from "lucide-react"\n\nfunction Spinner({ className, ...props }: React.ComponentProps<"svg">) {\n  return (\n    <LoaderIcon\n      role="status"\n      aria-label="Loading"\n      className={cn("size-4 animate-spin", className)}\n      {...props}\n    />\n  )\n}\n\nexport default function SpinnerCustom() {\n  return (\n    <div className="flex items-center gap-4">\n      <Spinner />\n    </div>\n  )\n}\n',
-      },
-    },
-  },
-  render: () => (
-    <div className="w-full min-w-72 max-w-2xl p-4">
-      <ExampleSpinnerCustom />
-    </div>
-  ),
-};
 export const Size: Story = {
   parameters: {
     docs: {
