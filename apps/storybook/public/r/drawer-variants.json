@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-variants",
+  "title": "Drawer Variants",
+  "description": "Erbium drawer variants example.",
+  "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/drawer"],
+  "files": [
+    {
+      "path": "registry/examples/drawer-variants.tsx",
+      "content": "// @ts-nocheck\nimport * as React from \"react\";\nimport { Button } from \"../components/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"../components/drawer\";\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"../components/dialog\";\n\nfunction DrawerExample({ className, label }: { className?: string; label: string }) {\n  return (\n    <Drawer>\n      <DrawerTrigger render={<Button variant=\"outline\" />}>{label}</DrawerTrigger>\n      <DrawerContent className={className}>\n        <DrawerHeader>\n          <DrawerTitle>{label}</DrawerTitle>\n          <DrawerDescription>Adjust the drawer layout for your content.</DrawerDescription>\n        </DrawerHeader>\n        <div className=\"min-h-20 flex-1 overflow-y-auto p-4\">\n          This region scrolls when the content grows.\n        </div>\n        <DrawerFooter>\n          <DrawerClose render={<Button />}>Done</DrawerClose>\n        </DrawerFooter>\n      </DrawerContent>\n    </Drawer>\n  );\n}\n\nexport function CustomSizes() {\n  return <DrawerExample className=\"h-[50vh] max-h-[50vh]\" label=\"Open half-height drawer\" />;\n}\n\nexport function Styling() {\n  return (\n    <DrawerExample\n      className=\"[--drawer-inset:--spacing(4)] [--drawer-bleed-background:var(--color-muted)]\"\n      label=\"Open inset drawer\"\n    />\n  );\n}\n\nfunction useIsNarrow() {\n  const [narrow, setNarrow] = React.useState(false);\n  React.useEffect(() => {\n    const query = window.matchMedia(\"(max-width: 640px)\");\n    const update = () => setNarrow(query.matches);\n    update();\n    query.addEventListener(\"change\", update);\n    return () => query.removeEventListener(\"change\", update);\n  }, []);\n  return narrow;\n}\n\nexport function Responsive() {\n  const narrow = useIsNarrow();\n  if (narrow) return <DrawerExample label=\"Edit profile\" />;\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\" />}>Edit profile</DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Edit profile</DialogTitle>\n          <DialogDescription>\n            The dialog is used above 640px; resize to see a drawer.\n          </DialogDescription>\n        </DialogHeader>\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/drawer-variants.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

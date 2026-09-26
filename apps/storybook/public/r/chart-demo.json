@@ -3,6 +3,7 @@
   "name": "chart-demo",
   "title": "Chart Demo",
   "description": "Erbium chart demo example.",
+  "dependencies": ["@tanstack/charts"],
   "registryDependencies": ["@erbium/chart"],
   "files": [
     {
@@ -12,6 +13,5 @@
       "target": "~/src/examples/chart-demo.tsx"
     }
   ],
-  "type": "registry:component",
-  "dependencies": ["@tanstack/charts"]
+  "type": "registry:component"
 }

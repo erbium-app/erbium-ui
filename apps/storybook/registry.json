@@ -470,6 +470,35 @@
       ]
     },
     {
+      "name": "calendar-hijri",
+      "type": "registry:component",
+      "title": "Calendar Hijri",
+      "description": "Erbium calendar hijri example.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@erbium/button"],
+      "files": [
+        {
+          "path": "registry/examples/calendar-hijri.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/calendar-hijri.tsx"
+        }
+      ]
+    },
+    {
+      "name": "calendar-timezone",
+      "type": "registry:component",
+      "title": "Calendar Timezone",
+      "description": "Erbium calendar timezone example.",
+      "registryDependencies": ["@erbium/calendar"],
+      "files": [
+        {
+          "path": "registry/examples/calendar-timezone.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/calendar-timezone.tsx"
+        }
+      ]
+    },
+    {
       "name": "card-demo",
       "type": "registry:component",
       "title": "Card Demo",
@@ -558,6 +587,7 @@
       "type": "registry:component",
       "title": "Chart Demo",
       "description": "Erbium chart demo example.",
+      "dependencies": ["@tanstack/charts"],
       "registryDependencies": ["@erbium/chart"],
       "files": [
         {
@@ -565,8 +595,7 @@
           "type": "registry:component",
           "target": "~/src/examples/chart-demo.tsx"
         }
-      ],
-      "dependencies": ["@tanstack/charts"]
+      ]
     },
     {
       "name": "checkbox-demo",
@@ -723,6 +752,20 @@
           "path": "registry/examples/drawer-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/drawer-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "drawer-variants",
+      "type": "registry:component",
+      "title": "Drawer Variants",
+      "description": "Erbium drawer variants example.",
+      "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/drawer"],
+      "files": [
+        {
+          "path": "registry/examples/drawer-variants.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/drawer-variants.tsx"
         }
       ]
     },
@@ -1448,6 +1491,20 @@
       ]
     },
     {
+      "name": "message-scroller-variants",
+      "type": "registry:component",
+      "title": "Message Scroller Variants",
+      "description": "Erbium message scroller variants example.",
+      "registryDependencies": ["@erbium/button", "@erbium/message-scroller"],
+      "files": [
+        {
+          "path": "registry/examples/message-scroller-variants.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/message-scroller-variants.tsx"
+        }
+      ]
+    },
+    {
       "name": "navigation-menu-demo",
       "type": "registry:component",
       "title": "Navigation Menu Demo",
@@ -1743,21 +1800,6 @@
           "path": "registry/examples/spinner-button.tsx",
           "type": "registry:component",
           "target": "~/src/examples/spinner-button.tsx"
-        }
-      ]
-    },
-    {
-      "name": "spinner-custom",
-      "type": "registry:component",
-      "title": "Spinner Custom",
-      "description": "Erbium spinner custom example.",
-      "dependencies": ["lucide-react"],
-      "registryDependencies": ["@erbium/utils"],
-      "files": [
-        {
-          "path": "registry/examples/spinner-custom.tsx",
-          "type": "registry:component",
-          "target": "~/src/examples/spinner-custom.tsx"
         }
       ]
     },

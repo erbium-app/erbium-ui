@@ -51,7 +51,14 @@ export function AutocompleteInput({
           className,
         )}
         data-slot="autocomplete-input"
-        render={<Input />}
+        render={
+          <Input
+            className={cn(
+              sizeValue === "sm" && "h-7 px-2 text-xs",
+              sizeValue === "lg" && "h-9 px-3 text-base",
+            )}
+          />
+        }
         {...props}
       />
       {showTrigger && (

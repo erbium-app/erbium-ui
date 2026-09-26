@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Button } from "../components/button";
-import { Toaster, toast } from "../components/toast";
+import { toast } from "../components/toast";
 export default function Demo() {
   return (
     <>
@@ -9,7 +9,6 @@ export default function Demo() {
       >
         Show toast
       </Button>
-      <Toaster />
     </>
   );
 }
