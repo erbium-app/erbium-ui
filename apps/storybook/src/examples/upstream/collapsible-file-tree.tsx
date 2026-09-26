@@ -73,7 +73,7 @@ export function CollapsibleFileTree() {
               />
             }
           >
-            <ChevronRightIcon className="transition-transform group-data-[state=open]:rotate-90" />
+            <ChevronRightIcon className="transition-transform duration-200 ease-in-out group-data-open:rotate-90" />
             <FolderIcon />
             {fileItem.name}
           </CollapsibleTrigger>

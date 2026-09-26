@@ -1,26 +1,27 @@
 import AccordionCard from "../examples/upstream/accordion-card";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@erbium/ui/components/accordion";
+import { Button } from "@erbium/ui/components/button";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
+import { useState } from "react";
 import { Accordion } from "@erbium/ui/components/accordion";
 import Demo from "../examples/accordion-demo";
 
 const meta = {
   title: "UI/Accordion",
   component: Accordion,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     docs: {
       description: {
         component:
-          'A vertically stacked set of interactive headings that each reveal a section of content.\n\n**Import:** `@erbium/ui/components/accordion`  \n\n**shadcn/ui page:** [Accordion](https://ui.shadcn.com/docs/components/base/accordion)\n\n### Usage\n\n```tsx\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from "@erbium/ui/components/accordion"\n```\n\n```tsx\n<Accordion defaultValue={["item-1"]}>\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>\n      Yes. It adheres to the WAI-ARIA design pattern.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>\n```\n\n### Composition\n\nUse the following composition to build an `Accordion`:\n\n```text\nAccordion\n├── AccordionItem\n│   ├── AccordionTrigger\n│   └── AccordionContent\n└── AccordionItem\n    ├── AccordionTrigger\n    └── AccordionContent\n```',
+          'A vertically stacked set of interactive headings that each reveal a section of content.\n\n**Import:** `@erbium/ui/components/accordion`  \n\n**shadcn/ui page:** [Accordion](https://ui.shadcn.com/docs/components/base/accordion)  \n\n**COSS UI page:** [Accordion](https://coss.com/ui/docs/components/accordion)\n\n### Usage\n\n```tsx\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from "@erbium/ui/components/accordion"\n```\n\n```tsx\n<Accordion defaultValue={["item-1"]}>\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>\n      Yes. It adheres to the WAI-ARIA design pattern.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>\n```\n\n### Composition\n\nUse the following composition to build an `Accordion`:\n\n```text\nAccordion\n├── AccordionItem\n│   ├── AccordionTrigger\n│   └── AccordionContent\n└── AccordionItem\n    ├── AccordionTrigger\n    └── AccordionContent\n```',
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Accordion>;
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof meta>;
 
 export const Playground: StoryObj<typeof Accordion> = {
   args: { defaultValue: ["one"], multiple: false },
@@ -86,11 +87,7 @@ function AccordionExample({
       multiple={multiple}
     >
       {accordionItems.map((item) => (
-        <AccordionItem
-          className={bordered ? "border-b last:border-b-0" : undefined}
-          key={item.value}
-          value={item.value}
-        >
+        <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
           <AccordionContent>{item.answer}</AccordionContent>
         </AccordionItem>
@@ -109,6 +106,45 @@ export const Multiple: Story = {
   parameters: { docs: { description: { story: "Allow several items to remain open at once." } } },
   render: () => <AccordionExample multiple />,
 };
+export const Controlled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Control expanded items externally and use buttons to update the open panels.",
+      },
+    },
+  },
+  render: () => <ControlledAccordionExample />,
+};
+
+function ControlledAccordionExample() {
+  const [value, setValue] = useState<string[]>(["item-1"]);
+
+  return (
+    <div className="flex w-80 flex-col gap-4">
+      <Accordion multiple onValueChange={setValue} value={value}>
+        {accordionItems.map((item) => (
+          <AccordionItem key={item.value} value={item.value}>
+            <AccordionTrigger>{item.question}</AccordionTrigger>
+            <AccordionContent>{item.answer}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => setValue(["item-1", "item-2"])} variant="outline">
+          Open first two
+        </Button>
+        <Button onClick={() => setValue([])} variant="outline">
+          Close all
+        </Button>
+      </div>
+      <p className="text-muted-foreground text-sm">
+        Open items: {value.length > 0 ? value.join(", ") : "None"}
+      </p>
+    </div>
+  );
+}
+
 export const Disabled: Story = {
   parameters: { docs: { description: { story: "Disable an individual accordion item." } } },
   render: () => (
