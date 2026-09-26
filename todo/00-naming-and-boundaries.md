@@ -24,7 +24,9 @@ Before adding components, agree on the public names and avoid having two names f
 
 ## Erbium-only components
 
-Review these deliberately rather than removing them because Coss does not list them: `aspect-ratio`, `attachment`, `bubble`, `button-group`, `carousel`, `chart`, `direction`, `item`, `marker`, `message`, `message-scroller`, `native-select`, `questionnaire`, and `resizable`.
+Review these deliberately rather than removing them because Coss does not list them: `aspect-ratio`, `attachment`, `bubble`, `button-group`, `carousel`, `chart`, `direction`, `item`, `marker`, `message`, `message-scroller`, `questionnaire`, and `resizable`.
+
+`native-select` was removed from the component inventory; use the public `select` component for select menus and native HTML `<select>` where native platform behavior is desired.
 
 For each one:
 

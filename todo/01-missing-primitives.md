@@ -13,12 +13,13 @@ Implement the genuinely missing primitives before porting blocks. Each item must
 
 ## Priority 1: direct Base UI/Coss gaps
 
-- [ ] `autocomplete`
+- [x] `autocomplete` component, registry output, docs preview, and Storybook coverage
   - Base UI source: `@base-ui/react/autocomplete`.
   - Distinguish free-text suggestions from `combobox` selection.
-  - Define async/loading, empty, clear, highlighted-option, filtering, and error states.
+  - Define async/loading, empty, clear, highlighted-option, filtering, and error states. Storybook covers loading/results; retry/error behavior remains to be added.
   - Provide input, trigger, list, item, group, separator, empty, status, portal, positioner, and popup wrappers.
-  - Add examples for local filtering, async results, and no results.
+  - Add examples for local filtering, async results, and no results in Storybook.
+  - [ ] Add focused interaction tests for keyboard use, controlled/uncontrolled values, and RTL.
 - [ ] `checkbox-group`
   - Base UI source: `@base-ui/react/checkbox-group`.
   - Support controlled/uncontrolled values, orientation, disabled state, validation, and group labeling.
@@ -80,7 +81,7 @@ Implement the genuinely missing primitives before porting blocks. Each item must
 
 Review these components and mark each as core, optional, block-only, or candidate for a dedicated package:
 
-- Erbium-specific: `aspect-ratio`, `attachment`, `bubble`, `button-group`, `carousel`, `chart`, `direction`, `item`, `marker`, `message`, `message-scroller`, `native-select`, `questionnaire`, `resizable`.
+- Erbium-specific: `aspect-ratio`, `attachment`, `bubble`, `button-group`, `carousel`, `chart`, `direction`, `item`, `marker`, `message`, `message-scroller`, `questionnaire`, `resizable`.
 - Styling/composition components: `alert`, `card`, `empty`, `kbd`, `label`, `pagination`, `skeleton`, `spinner`, `table`, `textarea`.
 - Feature-risk components: `command`, `attachment`, `message`, `message-scroller`, `questionnaire`, and `chart`.
 

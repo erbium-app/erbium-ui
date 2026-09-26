@@ -7,15 +7,32 @@ export type ComponentEntry = {
   files?: Array<{ path: string }>;
 };
 
-export const components = (registry.items as ComponentEntry[]).filter(
-  (item) => item.name !== "utils",
-);
+export const components = (registry.items as ComponentEntry[])
+  .filter((item) => item.name !== "utils")
+  .map((item) =>
+    item.name === "autocomplete"
+      ? {
+          ...item,
+          description:
+            "An accessible free-text input with filtered suggestions, async search states, and keyboard-highlighted options. Use Combobox when users must select a listed value.",
+        }
+      : item,
+  );
 
 export const componentGroups = [
   { label: "Foundations", names: ["button", "badge", "card", "separator", "skeleton"] },
   {
     label: "Forms",
-    names: ["input", "textarea", "checkbox", "radio-group", "select", "switch", "slider"],
+    names: [
+      "input",
+      "textarea",
+      "checkbox",
+      "radio-group",
+      "select",
+      "autocomplete",
+      "switch",
+      "slider",
+    ],
   },
   {
     label: "Navigation",

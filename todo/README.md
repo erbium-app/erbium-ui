@@ -22,7 +22,7 @@ The goal is not to copy every package blindly. Each component should have one ca
 
 The package already wraps most Base UI overlay, selection, navigation, and feedback primitives. The most important gaps are:
 
-- missing Base UI wrappers: `autocomplete`, `checkbox-group`, `meter`, `number-field`, and `toolbar`;
+- missing Base UI wrappers: `checkbox-group`, `meter`, `number-field`, and `toolbar`;
 - missing or indirect wrappers: `form`, `fieldset`, generic `menu`, standalone `radio`, and `otp-field`;
 - custom hand-rolled behavior in `field.tsx` that should be reconciled with Base UI Field;
 - incomplete shared conventions for `useRender`, `mergeProps`, portals, direction, CSP, and state attributes;

@@ -13,7 +13,22 @@ import {
 } from "@erbium/ui/components/card";
 import { Input } from "@erbium/ui/components/input";
 import { Switch } from "@erbium/ui/components/switch";
+import {
+  Autocomplete,
+  AutocompleteEmpty,
+  AutocompleteInput,
+  AutocompleteItem,
+  AutocompleteList,
+  AutocompletePopup,
+} from "@erbium/ui/components/autocomplete";
 import { useState } from "react";
+
+const autocompleteItems = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Grape", value: "grape" },
+  { label: "Orange", value: "orange" },
+];
 
 const chartDefinition = defineChart({
   marks: [
@@ -65,6 +80,24 @@ export default function ComponentPreview({ name }: { name: string }) {
         <label htmlFor="preview-email">Email address</label>
         <Input id="preview-email" placeholder="you@example.com" />
         <small>We'll never share your email.</small>
+      </div>
+    );
+  if (name === "autocomplete")
+    return (
+      <div className="w-full max-w-72">
+        <Autocomplete items={autocompleteItems}>
+          <AutocompleteInput aria-label="Search fruits" placeholder="Search fruits…" />
+          <AutocompletePopup>
+            <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
+            <AutocompleteList>
+              {(item) => (
+                <AutocompleteItem key={item.value} value={item}>
+                  {item.label}
+                </AutocompleteItem>
+              )}
+            </AutocompleteList>
+          </AutocompletePopup>
+        </Autocomplete>
       </div>
     );
   if (name === "switch")
