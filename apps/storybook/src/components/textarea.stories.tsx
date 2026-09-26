@@ -1,5 +1,5 @@
 import ExampleTextareaDisabled from "./examples/textarea-disabled";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Textarea } from "@erbium/ui/components/textarea";
 import Demo from "./examples/textarea-demo";
 

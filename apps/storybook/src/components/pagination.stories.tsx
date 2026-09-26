@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Pagination } from "@erbium/ui/components/pagination";
 import Demo from "./examples/pagination-demo";
 

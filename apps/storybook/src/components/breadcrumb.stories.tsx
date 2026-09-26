@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Breadcrumb } from "@erbium/ui/components/breadcrumb";
 import Demo from "./examples/breadcrumb-demo";
 

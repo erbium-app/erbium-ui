@@ -1,6 +1,6 @@
 import ExampleInputOtpSeparator from "./examples/input-otp-separator";
 import ExampleInputOtpControlled from "./examples/input-otp-controlled";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { InputOTP } from "@erbium/ui/components/input-otp";
 import Demo from "./examples/input-otp-demo";
 

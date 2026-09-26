@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Combobox } from "@erbium/ui/components/combobox";
 import Demo from "./examples/combobox-demo";
 

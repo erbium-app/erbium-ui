@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { RadioGroup } from "@erbium/ui/components/radio-group";
 import Demo from "./examples/radio-group-demo";
 

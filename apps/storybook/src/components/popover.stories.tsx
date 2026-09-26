@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Popover } from "@erbium/ui/components/popover";
 import Demo from "./examples/popover-demo";
 

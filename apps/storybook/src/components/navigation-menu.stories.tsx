@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { NavigationMenu } from "@erbium/ui/components/navigation-menu";
 import Demo from "./examples/navigation-menu-demo";
 

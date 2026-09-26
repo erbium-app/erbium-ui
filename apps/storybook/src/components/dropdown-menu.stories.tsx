@@ -1,5 +1,5 @@
 import ExampleDropdownMenuRadioGroup from "./examples/dropdown-menu-radio-group";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { DropdownMenu } from "@erbium/ui/components/dropdown-menu";
 import Demo from "./examples/dropdown-menu-demo";
 

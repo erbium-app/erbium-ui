@@ -2,7 +2,7 @@ import ExampleKbdGroup from "./examples/kbd-group";
 import ExampleKbdButton from "./examples/kbd-button";
 import ExampleKbdTooltip from "./examples/kbd-tooltip";
 import ExampleKbdInputGroup from "./examples/kbd-input-group";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Kbd } from "@erbium/ui/components/kbd";
 import Demo from "./examples/kbd-demo";
 

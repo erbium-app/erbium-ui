@@ -1,10 +1,10 @@
 import tailwindcss from "@tailwindcss/vite";
-import type { StorybookConfig } from "@storybook/react-vite";
+import type { StorybookConfig } from "@storybook/tanstack-react";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
   addons: ["@storybook/addon-docs"],
-  framework: { name: "@storybook/react-vite", options: {} },
+  framework: { name: "@storybook/tanstack-react", options: {} },
   viteFinal: (config) => {
     config.plugins = [
       ...(config.plugins ?? []),

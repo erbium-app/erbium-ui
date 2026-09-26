@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Switch } from "@erbium/ui/components/switch";
 import Demo from "./examples/switch-demo";
 

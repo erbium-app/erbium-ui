@@ -1,7 +1,7 @@
 import ExampleEmptyAvatar from "./examples/empty-avatar";
 import ExampleEmptyAvatarGroup from "./examples/empty-avatar-group";
 import ExampleEmptyInputGroup from "./examples/empty-input-group";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Empty } from "@erbium/ui/components/empty";
 import Demo from "./examples/empty-demo";
 

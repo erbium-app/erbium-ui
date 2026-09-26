@@ -1,6 +1,6 @@
 import ExampleResizableVertical from "./examples/resizable-vertical";
 import ExampleResizableHandle from "./examples/resizable-handle";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import Demo from "./examples/resizable-demo";
 
 const meta = {

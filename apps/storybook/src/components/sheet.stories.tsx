@@ -1,5 +1,5 @@
 import ExampleSheetSide from "./examples/sheet-side";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Sheet } from "@erbium/ui/components/sheet";
 import Demo from "./examples/sheet-demo";
 

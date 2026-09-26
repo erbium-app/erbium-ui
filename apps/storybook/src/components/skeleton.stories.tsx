@@ -1,5 +1,5 @@
 import ExampleSkeletonCard from "./examples/skeleton-card";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Skeleton } from "@erbium/ui/components/skeleton";
 import Demo from "./examples/skeleton-demo";
 

@@ -1,5 +1,5 @@
 import ExampleCheckboxDisabled from "./examples/checkbox-disabled";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Checkbox } from "@erbium/ui/components/checkbox";
 import Demo from "./examples/checkbox-demo";
 

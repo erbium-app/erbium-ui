@@ -1,5 +1,5 @@
 import ExampleAlertDestructive from "./examples/alert-destructive";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Alert } from "@erbium/ui/components/alert";
 import Demo from "./examples/alert-demo";
 

@@ -7,7 +7,7 @@ import ExampleButtonGroupInputGroup from "./examples/button-group-input-group";
 import ExampleButtonGroupDropdown from "./examples/button-group-dropdown";
 import ExampleButtonGroupSelect from "./examples/button-group-select";
 import ExampleButtonGroupPopover from "./examples/button-group-popover";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
 import Demo from "./examples/button-group-demo";
 

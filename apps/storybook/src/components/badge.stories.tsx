@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Badge } from "@erbium/ui/components/badge";
 import Demo from "./examples/badge-demo";
 

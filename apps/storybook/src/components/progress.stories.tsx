@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Progress } from "@erbium/ui/components/progress";
 import Demo from "./examples/progress-demo";
 

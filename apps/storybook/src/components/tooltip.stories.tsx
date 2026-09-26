@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Tooltip } from "@erbium/ui/components/tooltip";
 import Demo from "./examples/tooltip-demo";
 

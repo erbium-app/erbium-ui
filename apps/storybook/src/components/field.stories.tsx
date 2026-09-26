@@ -9,7 +9,7 @@ import ExampleFieldSwitch from "./examples/field-switch";
 import ExampleFieldChoiceCard from "./examples/field-choice-card";
 import ExampleFieldGroup from "./examples/field-group";
 import ExampleFieldResponsive from "./examples/field-responsive";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Field } from "@erbium/ui/components/field";
 import Demo from "./examples/field-demo";
 

@@ -1,5 +1,5 @@
 import ExampleSelectScrollable from "./examples/select-scrollable";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Select } from "@erbium/ui/components/select";
 import Demo from "./examples/select-demo";
 

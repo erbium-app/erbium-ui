@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ScrollArea } from "@erbium/ui/components/scroll-area";
 import Demo from "./examples/scroll-area-demo";
 

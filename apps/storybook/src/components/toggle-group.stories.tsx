@@ -1,7 +1,7 @@
 import ExampleToggleGroupOutline from "./examples/toggle-group-outline";
 import ExampleToggleGroupSpacing from "./examples/toggle-group-spacing";
 import ExampleToggleGroupDisabled from "./examples/toggle-group-disabled";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ToggleGroup } from "@erbium/ui/components/toggle-group";
 import Demo from "./examples/toggle-group-demo";
 

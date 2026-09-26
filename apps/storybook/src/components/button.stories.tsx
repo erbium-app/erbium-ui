@@ -9,7 +9,7 @@ import ExampleButtonIcon from "./examples/button-icon";
 import ExampleButtonRounded from "./examples/button-rounded";
 import ExampleButtonGroupDemo from "./examples/button-group-demo";
 import { Spinner } from "@erbium/ui/components/spinner";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Button } from "@erbium/ui/components/button";
 import Demo from "./examples/button-demo";
 

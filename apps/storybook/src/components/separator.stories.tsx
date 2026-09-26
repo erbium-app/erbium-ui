@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Separator } from "@erbium/ui/components/separator";
 import Demo from "./examples/separator-demo";
 

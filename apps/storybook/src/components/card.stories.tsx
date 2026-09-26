@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Card } from "@erbium/ui/components/card";
 import Demo from "./examples/card-demo";
 

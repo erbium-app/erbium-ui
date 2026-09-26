@@ -1,5 +1,5 @@
 import ExampleFieldDemo from "./examples/field-demo";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Label } from "@erbium/ui/components/label";
 import Demo from "./examples/label-demo";
 

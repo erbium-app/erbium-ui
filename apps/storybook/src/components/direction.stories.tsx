@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { DirectionProvider } from "@erbium/ui/components/direction";
 import Demo from "./examples/direction-demo";
 

@@ -1,5 +1,5 @@
 import ExampleDialogCloseButton from "./examples/dialog-close-button";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Dialog } from "@erbium/ui/components/dialog";
 import Demo from "./examples/dialog-demo";
 

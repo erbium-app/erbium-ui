@@ -17,8 +17,10 @@
   },
   "devDependencies": {
     "@storybook/addon-docs": "10.6.0",
-    "@storybook/react-vite": "10.6.0",
+    "@storybook/tanstack-react": "10.6.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/react-router": "1.168.10",
+    "@tanstack/router-core": "1.168.9",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "storybook": "latest",

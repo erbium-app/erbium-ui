@@ -2,7 +2,7 @@ import ExampleCarouselSize from "./examples/carousel-size";
 import ExampleCarouselSpacing from "./examples/carousel-spacing";
 import ExampleCarouselOrientation from "./examples/carousel-orientation";
 import ExampleCarouselApi from "./examples/carousel-api";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Carousel } from "@erbium/ui/components/carousel";
 import Demo from "./examples/carousel-demo";
 

@@ -1,5 +1,5 @@
 import { AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Avatar } from "@erbium/ui/components/avatar";
 import Demo from "./examples/avatar-demo";
 

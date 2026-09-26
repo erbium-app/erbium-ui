@@ -4,7 +4,7 @@ import ExampleSpinnerButton from "./examples/spinner-button";
 import ExampleSpinnerBadge from "./examples/spinner-badge";
 import ExampleSpinnerInputGroup from "./examples/spinner-input-group";
 import ExampleSpinnerEmpty from "./examples/spinner-empty";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Spinner } from "@erbium/ui/components/spinner";
 import Demo from "./examples/spinner-demo";
 

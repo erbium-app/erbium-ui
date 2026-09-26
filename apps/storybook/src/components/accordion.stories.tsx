@@ -1,5 +1,5 @@
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@erbium/ui/components/accordion";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Accordion } from "@erbium/ui/components/accordion";
 import Demo from "./examples/accordion-demo";
 

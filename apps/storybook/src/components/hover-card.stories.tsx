@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { HoverCard } from "@erbium/ui/components/hover-card";
 import Demo from "./examples/hover-card-demo";
 

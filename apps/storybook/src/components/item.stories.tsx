@@ -5,7 +5,7 @@ import ExampleItemAvatar from "./examples/item-avatar";
 import ExampleItemGroup from "./examples/item-group";
 import ExampleItemLink from "./examples/item-link";
 import ExampleItemDropdown from "./examples/item-dropdown";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Item } from "@erbium/ui/components/item";
 import Demo from "./examples/item-demo";
 

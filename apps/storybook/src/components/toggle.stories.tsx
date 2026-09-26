@@ -1,6 +1,6 @@
 import ExampleToggleOutline from "./examples/toggle-outline";
 import ExampleToggleDisabled from "./examples/toggle-disabled";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Toggle } from "@erbium/ui/components/toggle";
 import Demo from "./examples/toggle-demo";
 

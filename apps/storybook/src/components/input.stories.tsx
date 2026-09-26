@@ -1,6 +1,6 @@
 import ExampleInputDisabled from "./examples/input-disabled";
 import ExampleInputFile from "./examples/input-file";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Input } from "@erbium/ui/components/input";
 import Demo from "./examples/input-demo";
 

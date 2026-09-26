@@ -2,7 +2,7 @@ import ExampleInputGroupIcon from "./examples/input-group-icon";
 import ExampleInputGroupText from "./examples/input-group-text";
 import ExampleInputGroupDropdown from "./examples/input-group-dropdown";
 import ExampleInputGroupSpinner from "./examples/input-group-spinner";
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { InputGroup } from "@erbium/ui/components/input-group";
 import Demo from "./examples/input-group-demo";
 

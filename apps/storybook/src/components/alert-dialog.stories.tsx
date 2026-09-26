@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { AlertDialog } from "@erbium/ui/components/alert-dialog";
 import Demo from "./examples/alert-dialog-demo";
 

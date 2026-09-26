@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { AspectRatio } from "@erbium/ui/components/aspect-ratio";
 import Demo from "./examples/aspect-ratio-demo";
 
