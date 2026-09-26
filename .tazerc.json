@@ -1,0 +1,3 @@
+{
+  "exclude": ["@tanstack/react-router", "@tanstack/router-core"]
+}
