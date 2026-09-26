@@ -1,3 +1,12 @@
+import {
+  AttachmentMedia,
+  AttachmentContent,
+  AttachmentTitle,
+  AttachmentDescription,
+  AttachmentActions,
+  AttachmentAction,
+  AttachmentTrigger,
+} from "@erbium/ui/components/attachment";
 import { AttachmentImage } from "../examples/upstream/attachment-image";
 import { AttachmentStates } from "../examples/upstream/attachment-states";
 import { AttachmentSizes } from "../examples/upstream/attachment-sizes";
@@ -24,6 +33,69 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  state: "idle" | "uploading" | "processing" | "error" | "done";
+  size: "default" | "sm" | "xs";
+  orientation: "horizontal" | "vertical";
+  mediaVariant: "icon" | "image";
+  className: string;
+  title: string;
+  actionSize: "icon-xs" | "icon-sm" | "icon";
+  triggerAsLink: boolean;
+}> = {
+  args: {
+    state: "done",
+    size: "default",
+    orientation: "horizontal",
+    mediaVariant: "icon",
+    className: "",
+    title: "document.pdf",
+    actionSize: "icon-xs",
+    triggerAsLink: false,
+  },
+  argTypes: {
+    state: { control: "select", options: ["idle", "uploading", "processing", "error", "done"] },
+    size: { control: "select", options: ["default", "sm", "xs"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    mediaVariant: { control: "select", options: ["icon", "image"] },
+    className: { control: "text" },
+    title: { control: "text" },
+    actionSize: { control: "select", options: ["icon-xs", "icon-sm", "icon"] },
+    triggerAsLink: { control: "boolean" },
+  },
+  render: (args) => (
+    <Attachment
+      state={args.state}
+      size={args.size}
+      orientation={args.orientation}
+      className={args.className}
+    >
+      <AttachmentMedia variant={args.mediaVariant}>
+        {args.mediaVariant === "icon" ? (
+          "📄"
+        ) : (
+          <span role="img" aria-label="Attachment preview">
+            🖼️
+          </span>
+        )}
+      </AttachmentMedia>
+      <AttachmentContent>
+        <AttachmentTitle>{args.title}</AttachmentTitle>
+        <AttachmentDescription>2.4 MB</AttachmentDescription>
+      </AttachmentContent>
+      <AttachmentActions>
+        <AttachmentAction size={args.actionSize} aria-label="Remove attachment">
+          ×
+        </AttachmentAction>
+      </AttachmentActions>
+      <AttachmentTrigger
+        aria-label={`Open ${args.title}`}
+        render={args.triggerAsLink ? <a href="#" /> : undefined}
+      />
+    </Attachment>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

@@ -27,15 +27,29 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Marker> = {
-  args: { variant: "default", className: "" },
+export const Playground: StoryObj<{
+  variant: "default" | "separator" | "border";
+  asSpan: boolean;
+  className: string;
+}> = {
+  args: { variant: "default", asSpan: false, className: "" },
   argTypes: {
     variant: {
       control: "select",
       options: ["default", "separator", "border"],
     },
+    asSpan: { control: "boolean" },
+    className: { control: "text" },
   },
-  render: (args) => <Marker {...args}>Marker</Marker>,
+  render: (args) => (
+    <Marker
+      variant={args.variant}
+      render={args.asSpan ? <span /> : undefined}
+      className={args.className}
+    >
+      Marker
+    </Marker>
+  ),
 };
 
 export const Overview: Story = {

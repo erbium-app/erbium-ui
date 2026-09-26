@@ -1,3 +1,11 @@
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+} from "@erbium/ui/components/drawer";
 import { DrawerNested } from "../examples/upstream/drawer-nested";
 import {
   CustomSizes as CustomSizesExample,
@@ -9,7 +17,6 @@ import { DrawerSwipeHandle } from "../examples/upstream/drawer-swipe-handle";
 import { DrawerNonModal } from "../examples/upstream/drawer-non-modal";
 import { DrawerSnapPoints } from "../examples/upstream/drawer-snap-points";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Drawer } from "@erbium/ui/components/drawer";
 import Demo from "../examples/drawer-demo";
 
 const meta = {
@@ -29,6 +36,34 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  swipeDirection: "up" | "down" | "left" | "right";
+  modal: boolean;
+  showSwipeHandle: boolean;
+}> = {
+  args: { swipeDirection: "down", modal: true, showSwipeHandle: false },
+  argTypes: {
+    swipeDirection: { control: "select", options: ["up", "down", "left", "right"] },
+    modal: { control: "boolean" },
+    showSwipeHandle: { control: "boolean" },
+  },
+  render: (args) => (
+    <Drawer
+      swipeDirection={args.swipeDirection}
+      modal={args.modal}
+      showSwipeHandle={args.showSwipeHandle}
+    >
+      <DrawerTrigger>Open drawer</DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer title</DrawerTitle>
+          <DrawerDescription>Drawer description.</DrawerDescription>
+        </DrawerHeader>
+      </DrawerContent>
+    </Drawer>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

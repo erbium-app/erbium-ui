@@ -27,15 +27,30 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Empty> = {
-  args: { className: "" },
-  argTypes: { className: { control: "text" } },
+export const Playground: StoryObj<{
+  className: string;
+  mediaVariant: "default" | "icon";
+  title: string;
+  description: string;
+}> = {
+  args: {
+    className: "",
+    mediaVariant: "icon",
+    title: "No results",
+    description: "Try another search.",
+  },
+  argTypes: {
+    className: { control: "text" },
+    mediaVariant: { control: "select", options: ["default", "icon"] },
+    title: { control: "text" },
+    description: { control: "text" },
+  },
   render: (args) => (
-    <Empty {...args} className={`w-80 ${args.className ?? ""}`}>
+    <Empty className={`w-80 ${args.className}`}>
       <EmptyHeader>
-        <EmptyMedia variant="icon">☆</EmptyMedia>
-        <EmptyTitle>No results</EmptyTitle>
-        <EmptyDescription>Try another search.</EmptyDescription>
+        <EmptyMedia variant={args.mediaVariant}>☆</EmptyMedia>
+        <EmptyTitle>{args.title}</EmptyTitle>
+        <EmptyDescription>{args.description}</EmptyDescription>
       </EmptyHeader>
     </Empty>
   ),

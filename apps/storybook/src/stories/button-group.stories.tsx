@@ -10,6 +10,8 @@ import ExampleButtonGroupSelect from "../examples/button-group-select";
 import ExampleButtonGroupPopover from "../examples/button-group-popover";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
+import { ButtonGroupText } from "@erbium/ui/components/button-group";
+import { Button } from "@erbium/ui/components/button";
 import Demo from "../examples/button-group-demo";
 
 const meta = {
@@ -30,13 +32,26 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof ButtonGroup> = {
-  args: { orientation: "horizontal" },
-  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+export const Playground: StoryObj<{
+  orientation: "horizontal" | "vertical";
+  size: "default" | "xs" | "sm" | "lg";
+  textAsSpan: boolean;
+}> = {
+  args: { orientation: "horizontal", size: "default", textAsSpan: false },
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    size: { control: "select", options: ["default", "xs", "sm", "lg"] },
+    textAsSpan: { control: "boolean" },
+  },
   render: (args) => (
-    <ButtonGroup {...args}>
-      <button className="rounded border px-3 py-2">First</button>
-      <button className="rounded border px-3 py-2">Second</button>
+    <ButtonGroup orientation={args.orientation}>
+      <Button variant="outline" size={args.size}>
+        First
+      </Button>
+      <Button variant="outline" size={args.size}>
+        Second
+      </Button>
+      <ButtonGroupText render={args.textAsSpan ? <span /> : undefined}>Group</ButtonGroupText>
     </ButtonGroup>
   ),
 };

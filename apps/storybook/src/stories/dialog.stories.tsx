@@ -1,9 +1,16 @@
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@erbium/ui/components/dialog";
 import { DialogNoCloseButton } from "../examples/upstream/dialog-no-close-button";
 import { DialogStickyFooter } from "../examples/upstream/dialog-sticky-footer";
 import { DialogScrollableContent } from "../examples/upstream/dialog-scrollable-content";
 import ExampleDialogCloseButton from "../examples/dialog-close-button";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Dialog } from "@erbium/ui/components/dialog";
 import Demo from "../examples/dialog-demo";
 
 const meta = {
@@ -23,6 +30,22 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{ defaultOpen: boolean; showCloseButton: boolean }> = {
+  args: { defaultOpen: false, showCloseButton: true },
+  argTypes: { defaultOpen: { control: "boolean" }, showCloseButton: { control: "boolean" } },
+  render: (args) => (
+    <Dialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <DialogTrigger>Open dialog</DialogTrigger>
+      <DialogContent showCloseButton={args.showCloseButton}>
+        <DialogHeader>
+          <DialogTitle>Dialog title</DialogTitle>
+          <DialogDescription>Dialog description.</DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

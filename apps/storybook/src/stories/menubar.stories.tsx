@@ -1,9 +1,15 @@
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+} from "@erbium/ui/components/menubar";
 import { MenubarIcons } from "../examples/upstream/menubar-icons";
 import { MenubarCheckbox } from "../examples/upstream/menubar-checkbox";
 import { MenubarRadio } from "../examples/upstream/menubar-radio";
 import { MenubarSubmenu } from "../examples/upstream/menubar-submenu";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Menubar } from "@erbium/ui/components/menubar";
 import Demo from "../examples/menubar-demo";
 
 const meta = {
@@ -23,6 +29,32 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  className: string;
+  align: "start" | "center" | "end";
+  itemVariant: "default" | "destructive";
+  disabled: boolean;
+}> = {
+  args: { className: "", align: "start", itemVariant: "default", disabled: false },
+  argTypes: {
+    className: { control: "text" },
+    align: { control: "select", options: ["start", "center", "end"] },
+    itemVariant: { control: "select", options: ["default", "destructive"] },
+    disabled: { control: "boolean" },
+  },
+  render: (args) => (
+    <Menubar className={args.className}>
+      <MenubarMenu>
+        <MenubarTrigger disabled={args.disabled}>File</MenubarTrigger>
+        <MenubarContent align={args.align}>
+          <MenubarItem variant={args.itemVariant}>New</MenubarItem>
+          <MenubarItem>Open</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

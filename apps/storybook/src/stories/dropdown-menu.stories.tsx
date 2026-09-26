@@ -1,3 +1,9 @@
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@erbium/ui/components/dropdown-menu";
 import { DropdownMenuBasic } from "../examples/upstream/dropdown-menu-basic";
 import { DropdownMenuSubmenu } from "../examples/upstream/dropdown-menu-submenu";
 import { DropdownMenuShortcuts } from "../examples/upstream/dropdown-menu-shortcuts";
@@ -10,7 +16,6 @@ import { DropdownMenuAvatar } from "../examples/upstream/dropdown-menu-avatar";
 import { DropdownMenuComplex } from "../examples/upstream/dropdown-menu-complex";
 import ExampleDropdownMenuRadioGroup from "../examples/dropdown-menu-radio-group";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { DropdownMenu } from "@erbium/ui/components/dropdown-menu";
 import Demo from "../examples/dropdown-menu-demo";
 
 const meta = {
@@ -30,6 +35,28 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  side: "top" | "right" | "bottom" | "left";
+  align: "start" | "center" | "end";
+  defaultOpen: boolean;
+}> = {
+  args: { side: "bottom", align: "start", defaultOpen: false },
+  argTypes: {
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <DropdownMenu key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
+      <DropdownMenuContent side={args.side} align={args.align}>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

@@ -1,3 +1,12 @@
+import {
+  QuestionnaireItem,
+  QuestionnaireTitle,
+  QuestionnaireDescription,
+  QuestionnaireChoices,
+  QuestionnaireChoice,
+  QuestionnaireActions,
+  QuestionnaireNext,
+} from "@erbium/ui/components/questionnaire";
 import { QuestionnaireNavigationState } from "../examples/upstream/questionnaire-navigation-state";
 import { QuestionnaireSkipExample } from "../examples/upstream/questionnaire-skip";
 import { QuestionnaireMultiple } from "../examples/upstream/questionnaire-multiple";
@@ -32,6 +41,44 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  prompt: string;
+  description: string;
+  required: boolean;
+  choices: number;
+}> = {
+  args: {
+    prompt: "Which plan works best?",
+    description: "Choose one option.",
+    required: true,
+    choices: 2,
+  },
+  argTypes: {
+    prompt: { control: "text" },
+    description: { control: "text" },
+    required: { control: "boolean" },
+    choices: { control: { type: "number", min: 1, max: 5 } },
+  },
+  render: (args) => (
+    <Questionnaire className="w-80">
+      <QuestionnaireItem name="plan" required={args.required}>
+        <QuestionnaireTitle>{args.prompt}</QuestionnaireTitle>
+        <QuestionnaireDescription>{args.description}</QuestionnaireDescription>
+        <QuestionnaireChoices>
+          {Array.from({ length: args.choices }, (_, index) => (
+            <QuestionnaireChoice key={index} value={`option-${index}`}>
+              Option {index + 1}
+            </QuestionnaireChoice>
+          ))}
+        </QuestionnaireChoices>
+        <QuestionnaireActions>
+          <QuestionnaireNext>Continue</QuestionnaireNext>
+        </QuestionnaireActions>
+      </QuestionnaireItem>
+    </Questionnaire>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

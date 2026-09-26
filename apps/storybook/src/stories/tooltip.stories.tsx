@@ -1,8 +1,8 @@
+import { Tooltip, TooltipTrigger, TooltipContent } from "@erbium/ui/components/tooltip";
 import { TooltipDisabled } from "../examples/upstream/tooltip-disabled";
 import { TooltipKeyboard } from "../examples/upstream/tooltip-keyboard";
 import { TooltipSides } from "../examples/upstream/tooltip-sides";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Tooltip } from "@erbium/ui/components/tooltip";
 import Demo from "../examples/tooltip-demo";
 
 const meta = {
@@ -22,6 +22,29 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  side: "top" | "right" | "bottom" | "left";
+  align: "start" | "center" | "end";
+  sideOffset: number;
+  defaultOpen: boolean;
+}> = {
+  args: { side: "top", align: "center", sideOffset: 4, defaultOpen: false },
+  argTypes: {
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+    sideOffset: { control: "number" },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <Tooltip key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <TooltipTrigger>Hover for tooltip</TooltipTrigger>
+      <TooltipContent side={args.side} align={args.align} sideOffset={args.sideOffset}>
+        Helpful information
+      </TooltipContent>
+    </Tooltip>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

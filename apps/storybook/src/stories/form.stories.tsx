@@ -1,4 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
+import { useState } from "react";
+import { useForm } from "@erbium/ui/components/form";
+import { Button } from "@erbium/ui/components/button";
+import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
+import { Input } from "@erbium/ui/components/input";
 import Demo from "../examples/form-demo";
 
 const meta = {
@@ -16,6 +21,72 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+function FormPlayground({
+  defaultEmail,
+  required,
+  submitLabel,
+}: {
+  defaultEmail: string;
+  required: boolean;
+  submitLabel: string;
+}) {
+  const [submitted, setSubmitted] = useState("");
+  const form = useForm({
+    defaultValues: { email: defaultEmail },
+    onSubmit: async ({ value }) => setSubmitted(value.email),
+  });
+
+  return (
+    <form
+      className="w-80 space-y-4"
+      onSubmit={(event) => {
+        event.preventDefault();
+        void form.handleSubmit();
+      }}
+    >
+      <form.Field
+        name="email"
+        validators={{
+          onBlur: ({ value }) =>
+            required && !value.includes("@") ? "Enter a valid email address." : undefined,
+        }}
+      >
+        {(field) => (
+          <Field>
+            <FieldLabel htmlFor="playground-form-email">Email</FieldLabel>
+            <Input
+              id="playground-form-email"
+              type="email"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(event) => field.handleChange(event.target.value)}
+            />
+            {field.state.meta.errors.map((error) => (
+              <FieldError key={String(error)}>{error}</FieldError>
+            ))}
+          </Field>
+        )}
+      </form.Field>
+      <Button type="submit">{submitLabel}</Button>
+      {submitted && <p role="status">Submitted: {submitted}</p>}
+    </form>
+  );
+}
+
+export const Playground: StoryObj<{
+  defaultEmail: string;
+  required: boolean;
+  submitLabel: string;
+}> = {
+  args: { defaultEmail: "", required: true, submitLabel: "Submit" },
+  argTypes: {
+    defaultEmail: { control: "text" },
+    required: { control: "boolean" },
+    submitLabel: { control: "text" },
+  },
+  render: (args) => <FormPlayground key={args.defaultEmail} {...args} />,
+};
 export const Validation: Story = {
   parameters: {
     docs: {

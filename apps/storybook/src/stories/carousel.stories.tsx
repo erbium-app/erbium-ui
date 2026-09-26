@@ -36,7 +36,7 @@ export const Playground: StoryObj<typeof Carousel> = {
   args: { orientation: "horizontal" },
   argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
   render: (args) => (
-    <Carousel {...args} className="w-72">
+    <Carousel {...args} className={args.orientation === "vertical" ? "h-64 w-72" : "w-72"}>
       <CarouselContent>
         {[1, 2, 3].map((item) => (
           <CarouselItem key={item}>

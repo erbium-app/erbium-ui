@@ -1,3 +1,13 @@
+import {
+  SidebarProvider,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+} from "@erbium/ui/components/sidebar";
 import AppSidebar from "../examples/upstream/sidebar-controlled";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Sidebar } from "@erbium/ui/components/sidebar";
@@ -20,6 +30,44 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  side: "left" | "right";
+  variant: "sidebar" | "floating" | "inset";
+  collapsible: "offcanvas" | "icon" | "none";
+  defaultOpen: boolean;
+}> = {
+  args: { side: "left", variant: "sidebar", collapsible: "none", defaultOpen: true },
+  argTypes: {
+    side: { control: "select", options: ["left", "right"] },
+    variant: { control: "select", options: ["sidebar", "floating", "inset"] },
+    collapsible: { control: "select", options: ["offcanvas", "icon", "none"] },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <SidebarProvider key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <div className="relative h-64 w-80 overflow-hidden rounded border">
+        <Sidebar side={args.side} variant={args.variant} collapsible={args.collapsible}>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>Overview</SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>Settings</SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
+      </div>
+    </SidebarProvider>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

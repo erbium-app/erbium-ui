@@ -29,6 +29,49 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<{
+  showOutsideDays: boolean;
+  fixedWeeks: boolean;
+  numberOfMonths: number;
+  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  captionLayout: "label" | "dropdown" | "dropdown-months" | "dropdown-years";
+  buttonVariant: "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
+}> = {
+  args: {
+    showOutsideDays: true,
+    fixedWeeks: false,
+    numberOfMonths: 1,
+    weekStartsOn: 0,
+    captionLayout: "label",
+    buttonVariant: "ghost",
+  },
+  argTypes: {
+    showOutsideDays: { control: "boolean" },
+    fixedWeeks: { control: "boolean" },
+    numberOfMonths: { control: { type: "number", min: 1, max: 3 } },
+    weekStartsOn: { control: "select", options: [0, 1, 2, 3, 4, 5, 6] },
+    captionLayout: {
+      control: "select",
+      options: ["label", "dropdown", "dropdown-months", "dropdown-years"],
+    },
+    buttonVariant: {
+      control: "select",
+      options: ["default", "outline", "secondary", "ghost", "destructive", "link"],
+    },
+  },
+  render: (args) => (
+    <Calendar
+      mode="single"
+      showOutsideDays={args.showOutsideDays}
+      fixedWeeks={args.fixedWeeks}
+      numberOfMonths={args.numberOfMonths}
+      weekStartsOn={args.weekStartsOn}
+      captionLayout={args.captionLayout}
+      buttonVariant={args.buttonVariant}
+    />
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

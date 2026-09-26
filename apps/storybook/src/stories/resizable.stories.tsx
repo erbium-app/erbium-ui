@@ -25,16 +25,34 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof ResizablePanelGroup> = {
-  args: { orientation: "horizontal" },
-  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+export const Playground: StoryObj<{
+  orientation: "horizontal" | "vertical";
+  firstPanelSize: number;
+  showHandle: boolean;
+}> = {
+  args: { orientation: "horizontal", firstPanelSize: 50, showHandle: true },
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    firstPanelSize: { control: { type: "range", min: 10, max: 90, step: 5 } },
+    showHandle: { control: "boolean" },
+  },
   render: (args) => (
-    <ResizablePanelGroup {...args} className="h-48 w-80 rounded border">
-      <ResizablePanel defaultSize="50%" className="flex items-center justify-center">
+    <ResizablePanelGroup
+      key={`${args.orientation}-${args.firstPanelSize}`}
+      orientation={args.orientation}
+      className="h-48 w-80 rounded border"
+    >
+      <ResizablePanel
+        defaultSize={`${args.firstPanelSize}%`}
+        className="flex items-center justify-center"
+      >
         First
       </ResizablePanel>
-      <ResizableHandle withHandle />
-      <ResizablePanel defaultSize="50%" className="flex items-center justify-center">
+      <ResizableHandle withHandle={args.showHandle} />
+      <ResizablePanel
+        defaultSize={`${100 - args.firstPanelSize}%`}
+        className="flex items-center justify-center"
+      >
         Second
       </ResizablePanel>
     </ResizablePanelGroup>

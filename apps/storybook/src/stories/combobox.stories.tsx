@@ -1,3 +1,10 @@
+import {
+  ComboboxInput,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxList,
+  ComboboxItem,
+} from "@erbium/ui/components/combobox";
 import { ComboboxWithClear } from "../examples/upstream/combobox-clear";
 import { ComboboxWithCustomItems } from "../examples/upstream/combobox-custom";
 import ComboboxBasic from "../examples/upstream/combobox-basic";
@@ -29,6 +36,49 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  placeholder: string;
+  disabled: boolean;
+  showTrigger: boolean;
+  showClear: boolean;
+  autoHighlight: boolean;
+}> = {
+  args: {
+    placeholder: "Select a framework",
+    disabled: false,
+    showTrigger: true,
+    showClear: false,
+    autoHighlight: false,
+  },
+  argTypes: {
+    placeholder: { control: "text" },
+    disabled: { control: "boolean" },
+    showTrigger: { control: "boolean" },
+    showClear: { control: "boolean" },
+    autoHighlight: { control: "boolean" },
+  },
+  render: (args) => (
+    <Combobox items={["React", "Vue", "Svelte"]} autoHighlight={args.autoHighlight}>
+      <ComboboxInput
+        placeholder={args.placeholder}
+        disabled={args.disabled}
+        showTrigger={args.showTrigger}
+        showClear={args.showClear}
+      />
+      <ComboboxContent>
+        <ComboboxEmpty>No results.</ComboboxEmpty>
+        <ComboboxList>
+          {(item: string) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

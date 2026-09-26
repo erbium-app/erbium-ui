@@ -1,4 +1,4 @@
-import { BubbleContent } from "@erbium/ui/components/bubble";
+import { BubbleContent, BubbleReactions } from "@erbium/ui/components/bubble";
 import { BubbleVariantsDemo } from "../examples/upstream/bubble-variants";
 import { BubbleLinkButtonDemo } from "../examples/upstream/bubble-link-button";
 import { BubbleReactionsDemo } from "../examples/upstream/bubble-reactions";
@@ -29,19 +29,55 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Bubble> = {
-  args: { variant: "default", align: "start", className: "" },
+export const Playground: StoryObj<{
+  variant: "default" | "secondary" | "muted" | "tinted" | "outline" | "ghost" | "destructive";
+  align: "start" | "end";
+  reactionSide: "top" | "bottom";
+  reactionAlign: "start" | "end";
+  contentAs: "text" | "button" | "link";
+  className: string;
+}> = {
+  args: {
+    variant: "default",
+    align: "start",
+    reactionSide: "bottom",
+    reactionAlign: "end",
+    contentAs: "text",
+    className: "",
+  },
   argTypes: {
     variant: {
       control: "select",
       options: ["default", "secondary", "muted", "tinted", "outline", "ghost", "destructive"],
     },
     align: { control: "select", options: ["start", "end"] },
+    reactionSide: { control: "select", options: ["top", "bottom"] },
+    reactionAlign: { control: "select", options: ["start", "end"] },
+    contentAs: { control: "select", options: ["text", "button", "link"] },
+    className: { control: "text" },
   },
   render: (args) => (
     <div className="flex w-80 flex-col">
-      <Bubble {...args}>
-        <BubbleContent>How can I help you?</BubbleContent>
+      <Bubble variant={args.variant} align={args.align} className={args.className}>
+        <BubbleContent
+          render={
+            args.contentAs === "button" ? (
+              <button type="button" />
+            ) : args.contentAs === "link" ? (
+              <a href="#" />
+            ) : undefined
+          }
+        >
+          How can I help you?
+        </BubbleContent>
+        <BubbleReactions
+          side={args.reactionSide}
+          align={args.reactionAlign}
+          role="img"
+          aria-label="Thumbs up reaction"
+        >
+          👍
+        </BubbleReactions>
       </Bubble>
     </div>
   ),

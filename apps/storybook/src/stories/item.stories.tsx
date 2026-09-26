@@ -1,4 +1,4 @@
-import { ItemContent, ItemTitle, ItemDescription } from "@erbium/ui/components/item";
+import { ItemContent, ItemTitle, ItemDescription, ItemMedia } from "@erbium/ui/components/item";
 import { ItemImage } from "../examples/upstream/item-image";
 import { ItemHeaderDemo } from "../examples/upstream/item-header";
 import ExampleItemVariant from "../examples/item-variant";
@@ -30,14 +30,35 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Item> = {
-  args: { variant: "default", size: "default", className: "" },
+export const Playground: StoryObj<{
+  variant: "default" | "outline" | "muted";
+  size: "default" | "sm" | "xs";
+  mediaVariant: "default" | "icon" | "image";
+  asLink: boolean;
+  className: string;
+}> = {
+  args: {
+    variant: "default",
+    size: "default",
+    mediaVariant: "icon",
+    asLink: false,
+    className: "",
+  },
   argTypes: {
     variant: { control: "select", options: ["default", "outline", "muted"] },
     size: { control: "select", options: ["default", "sm", "xs"] },
+    mediaVariant: { control: "select", options: ["default", "icon", "image"] },
+    asLink: { control: "boolean" },
+    className: { control: "text" },
   },
   render: (args) => (
-    <Item {...args} className={`w-80 ${args.className ?? ""}`}>
+    <Item
+      variant={args.variant}
+      size={args.size}
+      render={args.asLink ? <a href="#" /> : undefined}
+      className={`w-80 ${args.className}`}
+    >
+      <ItemMedia variant={args.mediaVariant}>☆</ItemMedia>
       <ItemContent>
         <ItemTitle>Item title</ItemTitle>
         <ItemDescription>Item description</ItemDescription>

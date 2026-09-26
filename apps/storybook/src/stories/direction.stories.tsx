@@ -20,6 +20,22 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<{ direction: "ltr" | "rtl" }> = {
+  args: { direction: "ltr" },
+  argTypes: { direction: { control: "select", options: ["ltr", "rtl"] } },
+  render: (args) => (
+    <DirectionProvider direction={args.direction}>
+      <div dir={args.direction} className="w-72 rounded border p-4">
+        Direction: {args.direction}
+        <div className="mt-2 flex gap-2">
+          <button className="rounded border p-2">First</button>
+          <button className="rounded border p-2">Second</button>
+        </div>
+      </div>
+    </DirectionProvider>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

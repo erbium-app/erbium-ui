@@ -29,12 +29,25 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Avatar> = {
-  args: { size: "default", className: "" },
-  argTypes: { size: { control: "select", options: ["default", "sm", "lg"] } },
+export const Playground: StoryObj<{
+  size: "default" | "sm" | "lg";
+  src: string;
+  alt: string;
+  fallback: string;
+  className: string;
+}> = {
+  args: { size: "default", src: "", alt: "Profile photo", fallback: "AN", className: "" },
+  argTypes: {
+    size: { control: "select", options: ["default", "sm", "lg"] },
+    src: { control: "text" },
+    alt: { control: "text" },
+    fallback: { control: "text" },
+    className: { control: "text" },
+  },
   render: (args) => (
-    <Avatar {...args}>
-      <AvatarFallback>AN</AvatarFallback>
+    <Avatar size={args.size} className={args.className}>
+      {args.src && <AvatarImage src={args.src} alt={args.alt} />}
+      <AvatarFallback>{args.fallback}</AvatarFallback>
     </Avatar>
   ),
 };

@@ -1,3 +1,10 @@
+import {
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@erbium/ui/components/table";
 import { TableFooterExample } from "../examples/upstream/table-footer";
 import { TableActions } from "../examples/upstream/table-actions";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -21,6 +28,33 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{ rows: number; caption: string }> = {
+  args: { rows: 3, caption: "Example data" },
+  argTypes: {
+    rows: { control: { type: "number", min: 1, max: 10 } },
+    caption: { control: "text" },
+  },
+  render: (args) => (
+    <Table className="w-80">
+      <caption>{args.caption}</caption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Item</TableHead>
+          <TableHead>Value</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {Array.from({ length: args.rows }, (_, index) => (
+          <TableRow key={index}>
+            <TableCell>Item {index + 1}</TableCell>
+            <TableCell>{index + 1}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

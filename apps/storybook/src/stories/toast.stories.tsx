@@ -23,6 +23,22 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<{
+  type: "success" | "info" | "warning" | "error";
+  description: string;
+}> = {
+  args: { type: "success", description: "Saved successfully" },
+  argTypes: {
+    type: { control: "select", options: ["success", "info", "warning", "error"] },
+    description: { control: "text" },
+  },
+  render: (args) => (
+    <Button onClick={() => toast.add({ type: args.type, description: args.description })}>
+      Show toast
+    </Button>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

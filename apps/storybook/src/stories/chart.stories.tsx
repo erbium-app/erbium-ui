@@ -1,3 +1,4 @@
+import { visitorChart } from "../examples/upstream/chart-example";
 import { ChartExample } from "../examples/upstream/chart-example";
 import { ChartBarDemoGrid } from "../examples/upstream/chart-example-grid";
 import { ChartBarDemoAxis } from "../examples/upstream/chart-example-axis";
@@ -23,6 +24,38 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  height: number;
+  initialWidth: number;
+  grid: boolean;
+  axis: boolean;
+  tooltip: boolean;
+  legend: boolean;
+}> = {
+  args: { height: 240, initialWidth: 640, grid: false, axis: false, tooltip: false, legend: false },
+  argTypes: {
+    height: { control: { type: "number", min: 120, max: 600 } },
+    initialWidth: { control: { type: "number", min: 320, max: 960 } },
+    grid: { control: "boolean" },
+    axis: { control: "boolean" },
+    tooltip: { control: "boolean" },
+    legend: { control: "boolean" },
+  },
+  render: (args) => (
+    <Chart
+      definition={visitorChart({
+        grid: args.grid,
+        axis: args.axis,
+        tooltip: args.tooltip,
+        legend: args.legend,
+      })}
+      height={args.height}
+      initialWidth={args.initialWidth}
+      ariaLabel="Visitors by month"
+    />
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

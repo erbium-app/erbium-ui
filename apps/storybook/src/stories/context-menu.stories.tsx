@@ -1,3 +1,9 @@
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+} from "@erbium/ui/components/context-menu";
 import { ContextMenuBasic } from "../examples/upstream/context-menu-basic";
 import { ContextMenuSubmenu } from "../examples/upstream/context-menu-submenu";
 import { ContextMenuShortcuts } from "../examples/upstream/context-menu-shortcuts";
@@ -8,7 +14,6 @@ import { ContextMenuRadio } from "../examples/upstream/context-menu-radio";
 import { ContextMenuDestructive } from "../examples/upstream/context-menu-destructive";
 import { ContextMenuSides } from "../examples/upstream/context-menu-sides";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { ContextMenu } from "@erbium/ui/components/context-menu";
 import Demo from "../examples/context-menu-demo";
 
 const meta = {
@@ -28,6 +33,26 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  side: "top" | "right" | "bottom" | "left";
+  align: "start" | "center" | "end";
+}> = {
+  args: { side: "bottom", align: "start" },
+  argTypes: {
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+  },
+  render: (args) => (
+    <ContextMenu>
+      <ContextMenuTrigger className="rounded border p-8">Right click here</ContextMenuTrigger>
+      <ContextMenuContent side={args.side} align={args.align}>
+        <ContextMenuItem>Copy</ContextMenuItem>
+        <ContextMenuItem>Paste</ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

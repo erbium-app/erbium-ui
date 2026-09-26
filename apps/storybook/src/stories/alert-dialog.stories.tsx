@@ -1,10 +1,20 @@
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@erbium/ui/components/alert-dialog";
 import { AlertDialogBasic } from "../examples/upstream/alert-dialog-basic";
 import { AlertDialogSmall } from "../examples/upstream/alert-dialog-small";
 import { AlertDialogWithMedia } from "../examples/upstream/alert-dialog-media";
 import { AlertDialogSmallWithMedia } from "../examples/upstream/alert-dialog-small-media";
 import { AlertDialogDestructive } from "../examples/upstream/alert-dialog-destructive";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { AlertDialog } from "@erbium/ui/components/alert-dialog";
 import Demo from "../examples/alert-dialog-demo";
 
 const meta = {
@@ -24,6 +34,29 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{ size: "default" | "sm"; defaultOpen: boolean }> = {
+  args: { size: "default", defaultOpen: false },
+  argTypes: {
+    size: { control: "select", options: ["default", "sm"] },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <AlertDialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <AlertDialogTrigger>Open alert dialog</AlertDialogTrigger>
+      <AlertDialogContent size={args.size}>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Confirm action</AlertDialogTitle>
+          <AlertDialogDescription>This action needs confirmation.</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

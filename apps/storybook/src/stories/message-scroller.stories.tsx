@@ -1,3 +1,10 @@
+import {
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerButton,
+} from "@erbium/ui/components/message-scroller";
 import { MessageScrollerGroupChat } from "../examples/upstream/message-scroller-group-chat";
 import { MessageScrollerOpeningPosition } from "../examples/upstream/message-scroller-opening-position";
 import {
@@ -31,6 +38,40 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  autoScroll: boolean;
+  scrollPreviousItemPeek: number;
+  messageCount: number;
+  busy: boolean;
+}> = {
+  args: { autoScroll: false, scrollPreviousItemPeek: 0, messageCount: 12, busy: false },
+  argTypes: {
+    autoScroll: { control: "boolean" },
+    scrollPreviousItemPeek: { control: { type: "number", min: 0, max: 200 } },
+    messageCount: { control: { type: "number", min: 1, max: 40 } },
+    busy: { control: "boolean" },
+  },
+  render: (args) => (
+    <MessageScrollerProvider
+      autoScroll={args.autoScroll}
+      scrollPreviousItemPeek={args.scrollPreviousItemPeek}
+    >
+      <MessageScroller className="h-48 w-80">
+        <MessageScrollerViewport>
+          <MessageScrollerContent aria-busy={args.busy}>
+            {Array.from({ length: args.messageCount }, (_, index) => (
+              <MessageScrollerItem key={index} messageId={`message-${index}`}>
+                Message {index + 1}
+              </MessageScrollerItem>
+            ))}
+          </MessageScrollerContent>
+        </MessageScrollerViewport>
+        <MessageScrollerButton />
+      </MessageScroller>
+    </MessageScrollerProvider>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

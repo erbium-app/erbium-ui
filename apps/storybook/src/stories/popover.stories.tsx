@@ -1,8 +1,15 @@
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTitle,
+  PopoverDescription,
+} from "@erbium/ui/components/popover";
 import { PopoverForm } from "../examples/upstream/popover-form";
 import { PopoverAlignments } from "../examples/upstream/popover-alignments";
 import { PopoverBasic } from "../examples/upstream/popover-basic";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Popover } from "@erbium/ui/components/popover";
 import Demo from "../examples/popover-demo";
 
 const meta = {
@@ -22,6 +29,30 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  side: "top" | "right" | "bottom" | "left";
+  align: "start" | "center" | "end";
+  defaultOpen: boolean;
+}> = {
+  args: { side: "bottom", align: "center", defaultOpen: false },
+  argTypes: {
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <Popover key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <PopoverTrigger>Open popover</PopoverTrigger>
+      <PopoverContent side={args.side} align={args.align}>
+        <PopoverHeader>
+          <PopoverTitle>Popover title</PopoverTitle>
+          <PopoverDescription>Popover description.</PopoverDescription>
+        </PopoverHeader>
+      </PopoverContent>
+    </Popover>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

@@ -12,14 +12,6 @@ import ExampleButtonRounded from "../examples/button-rounded";
 import ExampleButtonGroupDemo from "../examples/button-group-demo";
 import { Spinner } from "@erbium/ui/components/spinner";
 import { ArrowUpIcon } from "lucide-react";
-import {
-  Controls,
-  Description,
-  Primary,
-  Stories,
-  Subtitle,
-  Title,
-} from "@storybook/addon-docs/blocks";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Button, buttonVariants } from "@erbium/ui/components/button";
 import Demo from "../examples/button-demo";
@@ -31,16 +23,6 @@ const meta = {
   parameters: {
     layout: "centered",
     docs: {
-      page: () => (
-        <>
-          <Title />
-          <Subtitle />
-          <Description of="meta" />
-          <Primary />
-          <Controls />
-          <Stories includePrimary={false} />
-        </>
-      ),
       description: {
         component:
           'Displays a button or a component that looks like a button.\n\n**Import:** `@erbium/ui/components/button`  \n\n**shadcn/ui page:** [Button](https://ui.shadcn.com/docs/components/base/button)\n\n### Usage\n\n```tsx\nimport { Button } from "@erbium/ui/components/button"\n```\n\n```tsx\n<Button variant="outline">Button</Button>\n```\n\n### Cursor\n\nTailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.\n\nIf you want to keep the `cursor: pointer` behavior, add the following code to your CSS file:\n\nYou can also enable this during project setup with `npx shadcn@latest init --pointer`.',

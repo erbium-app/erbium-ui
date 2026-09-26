@@ -1,3 +1,10 @@
+import {
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
+  BreadcrumbPage,
+} from "@erbium/ui/components/breadcrumb";
 import { BreadcrumbLinkDemo } from "../examples/upstream/breadcrumb-link";
 import { BreadcrumbSeparatorDemo } from "../examples/upstream/breadcrumb-separator";
 import { BreadcrumbDropdown } from "../examples/upstream/breadcrumb-dropdown";
@@ -24,6 +31,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{ separator: string; currentPage: string }> = {
+  args: { separator: "/", currentPage: "Current page" },
+  argTypes: { separator: { control: "text" }, currentPage: { control: "text" } },
+  render: (args) => (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>{args.separator}</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbPage>{args.currentPage}</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

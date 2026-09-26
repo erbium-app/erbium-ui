@@ -28,14 +28,30 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof InputOTP> = {
-  args: { maxLength: 6, disabled: false },
+export const Playground: StoryObj<{
+  maxLength: number;
+  disabled: boolean;
+  patternMode: "digits" | "alphanumeric" | "any";
+}> = {
+  args: { maxLength: 6, disabled: false, patternMode: "digits" },
   argTypes: {
     maxLength: { control: { type: "number", min: 1, max: 8 } },
     disabled: { control: "boolean" },
+    patternMode: { control: "select", options: ["digits", "alphanumeric", "any"] },
   },
   render: (args) => (
-    <InputOTP maxLength={args.maxLength} disabled={args.disabled}>
+    <InputOTP
+      key={`${args.maxLength}-${args.patternMode}`}
+      maxLength={args.maxLength}
+      disabled={args.disabled}
+      pattern={
+        args.patternMode === "digits"
+          ? "^\\d+$"
+          : args.patternMode === "alphanumeric"
+            ? "^[a-zA-Z0-9]+$"
+            : undefined
+      }
+    >
       <InputOTPGroup>
         {Array.from({ length: args.maxLength ?? 6 }, (_, index) => (
           <InputOTPSlot key={index} index={index} />

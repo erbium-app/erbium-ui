@@ -23,6 +23,29 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<{
+  side: "top" | "right" | "bottom" | "left";
+  align: "start" | "center" | "end";
+  sideOffset: number;
+  defaultOpen: boolean;
+}> = {
+  args: { side: "bottom", align: "center", sideOffset: 4, defaultOpen: false },
+  argTypes: {
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+    sideOffset: { control: "number" },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <HoverCard key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <HoverCardTrigger>Hover for card</HoverCardTrigger>
+      <HoverCardContent side={args.side} align={args.align} sideOffset={args.sideOffset}>
+        Preview content
+      </HoverCardContent>
+    </HoverCard>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

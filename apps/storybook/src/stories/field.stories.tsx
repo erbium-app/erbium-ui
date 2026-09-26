@@ -13,7 +13,7 @@ import ExampleFieldChoiceCard from "../examples/field-choice-card";
 import ExampleFieldGroup from "../examples/field-group";
 import ExampleFieldResponsive from "../examples/field-responsive";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
+import { Field, FieldError, FieldLabel, FieldLegend, FieldSet } from "@erbium/ui/components/field";
 import { Input as UIInput } from "@erbium/ui/components/input";
 import Demo from "../examples/field-demo";
 
@@ -35,17 +35,45 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Field> = {
-  args: { orientation: "vertical" },
+export const Playground: StoryObj<{
+  orientation: "vertical" | "horizontal" | "responsive";
+  invalid: boolean;
+  error: string;
+  className: string;
+  legendVariant: "legend" | "label";
+}> = {
+  args: {
+    orientation: "vertical",
+    invalid: false,
+    error: "Enter a valid email.",
+    className: "",
+    legendVariant: "legend",
+  },
   argTypes: {
     orientation: { control: "select", options: ["vertical", "horizontal", "responsive"] },
+    invalid: { control: "boolean" },
+    error: { control: "text" },
+    className: { control: "text" },
+    legendVariant: { control: "select", options: ["legend", "label"] },
   },
   render: (args) => (
-    <Field {...args} className="w-80">
-      <FieldLabel htmlFor="playground-field">Email</FieldLabel>
-      <input id="playground-field" className="rounded border p-2" placeholder="name@example.com" />
-      <FieldDescription>We will use this to contact you.</FieldDescription>
-    </Field>
+    <FieldSet>
+      <FieldLegend variant={args.legendVariant}>Contact details</FieldLegend>
+      <Field
+        orientation={args.orientation}
+        data-invalid={args.invalid}
+        className={`w-80 ${args.className}`}
+      >
+        <FieldLabel htmlFor="playground-field">Email</FieldLabel>
+        <input
+          id="playground-field"
+          className="rounded border p-2"
+          placeholder="name@example.com"
+        />
+        <FieldDescription>We will use this to contact you.</FieldDescription>
+        {args.invalid && <FieldError errors={[{ message: args.error }]} />}
+      </Field>
+    </FieldSet>
   ),
 };
 

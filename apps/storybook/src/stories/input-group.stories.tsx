@@ -1,3 +1,9 @@
+import {
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+} from "@erbium/ui/components/input-group";
 import InputGroupCustom from "../examples/upstream/input-group-custom";
 import InputGroupButtonExample from "../examples/upstream/input-group-button";
 import InputGroupTextareaExample from "../examples/upstream/input-group-textarea";
@@ -31,6 +37,48 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  align: "inline-start" | "inline-end" | "block-start" | "block-end";
+  placeholder: string;
+  buttonSize: "xs" | "sm" | "icon-xs" | "icon-sm";
+  buttonVariant: "default" | "secondary" | "outline" | "ghost" | "destructive" | "link";
+  className: string;
+}> = {
+  args: {
+    align: "inline-start",
+    placeholder: "Search",
+    buttonSize: "xs",
+    buttonVariant: "ghost",
+    className: "",
+  },
+  argTypes: {
+    align: {
+      control: "select",
+      options: ["inline-start", "inline-end", "block-start", "block-end"],
+    },
+    placeholder: { control: "text" },
+    buttonSize: { control: "select", options: ["xs", "sm", "icon-xs", "icon-sm"] },
+    buttonVariant: {
+      control: "select",
+      options: ["default", "secondary", "outline", "ghost", "destructive", "link"],
+    },
+    className: { control: "text" },
+  },
+  render: (args) => (
+    <InputGroup className={`w-72 ${args.className}`}>
+      <InputGroupAddon align={args.align}>
+        <InputGroupText>⌕</InputGroupText>
+      </InputGroupAddon>
+      <InputGroupInput placeholder={args.placeholder} />
+      <InputGroupAddon align="inline-end">
+        <InputGroupButton size={args.buttonSize} variant={args.buttonVariant}>
+          Go
+        </InputGroupButton>
+      </InputGroupAddon>
+    </InputGroup>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

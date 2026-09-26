@@ -1,7 +1,14 @@
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@erbium/ui/components/sheet";
 import SheetNoCloseButton from "../examples/upstream/sheet-no-close-button";
 import ExampleSheetSide from "../examples/sheet-side";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Sheet } from "@erbium/ui/components/sheet";
 import Demo from "../examples/sheet-demo";
 
 const meta = {
@@ -21,6 +28,30 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  side: "top" | "right" | "bottom" | "left";
+  showCloseButton: boolean;
+  defaultOpen: boolean;
+}> = {
+  args: { side: "right", showCloseButton: true, defaultOpen: false },
+  argTypes: {
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    showCloseButton: { control: "boolean" },
+    defaultOpen: { control: "boolean" },
+  },
+  render: (args) => (
+    <Sheet key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+      <SheetTrigger>Open sheet</SheetTrigger>
+      <SheetContent side={args.side} showCloseButton={args.showCloseButton}>
+        <SheetHeader>
+          <SheetTitle>Sheet title</SheetTitle>
+          <SheetDescription>Sheet description.</SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

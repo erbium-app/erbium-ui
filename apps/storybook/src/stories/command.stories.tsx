@@ -1,3 +1,10 @@
+import {
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+} from "@erbium/ui/components/command";
 import { CommandBasic } from "../examples/upstream/command-basic";
 import { CommandWithShortcuts } from "../examples/upstream/command-shortcuts";
 import { CommandWithGroups } from "../examples/upstream/command-groups";
@@ -23,6 +30,23 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{ placeholder: string; disabled: boolean }> = {
+  args: { placeholder: "Search commands", disabled: false },
+  argTypes: { placeholder: { control: "text" }, disabled: { control: "boolean" } },
+  render: (args) => (
+    <Command className="w-72 rounded border">
+      <CommandInput placeholder={args.placeholder} disabled={args.disabled} />
+      <CommandList>
+        <CommandEmpty>No results.</CommandEmpty>
+        <CommandGroup heading="Actions">
+          <CommandItem>Open file</CommandItem>
+          <CommandItem>Open settings</CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

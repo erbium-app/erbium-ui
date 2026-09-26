@@ -1,3 +1,9 @@
+import {
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@erbium/ui/components/select";
 import { SelectAlignItem } from "../examples/upstream/select-align-item";
 import { SelectGroups } from "../examples/upstream/select-groups";
 import { SelectDisabled } from "../examples/upstream/select-disabled";
@@ -24,6 +30,40 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  size: "default" | "sm";
+  disabled: boolean;
+  placeholder: string;
+  side: "top" | "right" | "bottom" | "left";
+  align: "start" | "center" | "end";
+}> = {
+  args: {
+    size: "default",
+    disabled: false,
+    placeholder: "Select a fruit",
+    side: "bottom",
+    align: "start",
+  },
+  argTypes: {
+    size: { control: "select", options: ["default", "sm"] },
+    disabled: { control: "boolean" },
+    placeholder: { control: "text" },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+  },
+  render: (args) => (
+    <Select>
+      <SelectTrigger size={args.size} disabled={args.disabled} className="w-48">
+        <SelectValue placeholder={args.placeholder} />
+      </SelectTrigger>
+      <SelectContent side={args.side} align={args.align}>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+      </SelectContent>
+    </Select>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

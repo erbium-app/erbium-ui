@@ -4,6 +4,8 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
 } from "@erbium/ui/components/navigation-menu";
 import Demo from "../examples/navigation-menu-demo";
 
@@ -24,6 +26,32 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  orientation: "horizontal" | "vertical";
+  align: "start" | "center" | "end";
+}> = {
+  args: { orientation: "horizontal", align: "start" },
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    align: { control: "select", options: ["start", "center", "end"] },
+  },
+  render: (args) => (
+    <NavigationMenu orientation={args.orientation} align={args.align}>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="#">Overview</NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Guides</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="#">Getting started</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {
