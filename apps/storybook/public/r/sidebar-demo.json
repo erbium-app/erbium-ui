@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-demo",
+  "title": "Sidebar Demo",
+  "description": "Erbium sidebar demo example.",
+  "registryDependencies": ["@erbium/sidebar"],
+  "files": [
+    {
+      "path": "registry/examples/sidebar-demo.tsx",
+      "content": "// @ts-nocheck\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupContent,\n  SidebarGroupLabel,\n  SidebarMenu,\n  SidebarMenuButton,\n  SidebarMenuItem,\n  SidebarProvider,\n} from \"../components/sidebar\";\nexport default function Demo() {\n  return (\n    <SidebarProvider defaultOpen>\n      <div className=\"relative h-64 w-80 overflow-hidden border\">\n        <Sidebar collapsible=\"none\">\n          <SidebarContent>\n            <SidebarGroup>\n              <SidebarGroupLabel>Workspace</SidebarGroupLabel>\n              <SidebarGroupContent>\n                <SidebarMenu>\n                  <SidebarMenuItem>\n                    <SidebarMenuButton>Overview</SidebarMenuButton>\n                  </SidebarMenuItem>\n                  <SidebarMenuItem>\n                    <SidebarMenuButton>Settings</SidebarMenuButton>\n                  </SidebarMenuItem>\n                </SidebarMenu>\n              </SidebarGroupContent>\n            </SidebarGroup>\n          </SidebarContent>\n        </Sidebar>\n      </div>\n    </SidebarProvider>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/sidebar-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

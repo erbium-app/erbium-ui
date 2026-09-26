@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-demo",
+  "title": "Message Demo",
+  "description": "Erbium message demo example.",
+  "registryDependencies": ["@erbium/message"],
+  "files": [
+    {
+      "path": "registry/examples/message-demo.tsx",
+      "content": "// @ts-nocheck\nimport { Message, MessageContent, MessageGroup } from \"../components/message\";\nexport default function Demo() {\n  return (\n    <MessageGroup className=\"w-80\">\n      <Message>\n        <MessageContent>Hello, how can I help?</MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>Please show me an example.</MessageContent>\n      </Message>\n    </MessageGroup>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/message-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

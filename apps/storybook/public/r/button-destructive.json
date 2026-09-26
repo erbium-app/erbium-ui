@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-destructive",
+  "title": "Button Destructive",
+  "description": "Erbium button destructive example.",
+  "registryDependencies": ["@erbium/button"],
+  "files": [
+    {
+      "path": "registry/examples/button-destructive.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\n\nexport default function ButtonDestructive() {\n  return <Button variant=\"destructive\">Destructive</Button>;\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/button-destructive.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

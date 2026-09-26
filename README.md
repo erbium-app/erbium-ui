@@ -46,37 +46,33 @@ Use `bun run ui:add <component>` to add shadcn-compatible building blocks while 
 
 ### Installing Erbium components
 
-The UI package also publishes a shadcn-compatible registry. Build the registry after changing a component:
+The UI components and Storybook examples have separate shadcn registries. Build them after changing their source files:
 
 ```bash
 bun run ui:registry
+bun run storybook:registry
 ```
 
-Build the Erbium registry whenever you add or change a UI component, hook, utility, stylesheet, or Storybook example:
+The UI registry lives in `packages/ui/registry.json` and builds to `packages/ui/public/r`. The example registry lives in `apps/storybook/registry.json` and builds to `apps/storybook/public/r`. Storybook source is organized as `src/stories` for Storybook definitions and `src/examples` for reusable example components. The generated `registry/examples` files adapt package imports to the component files installed by the UI registry.
 
-```bash
-bun run ui:registry
-```
-
-This generates `packages/ui/registry.json` and the static install payloads in `packages/ui/public/r`. The catalog includes the package's components, hooks, utilities, and global styles. Internal component dependencies use the `@erbium/` namespace, and file targets preserve the `src/components`, `src/hooks`, `src/lib`, and `src/styles` layout so relative imports keep working after installation.
-
-Host `packages/ui/public/r` at a stable HTTPS URL, then consumers can add the registry to their `components.json`:
+Host both `public/r` directories at stable HTTPS URLs and configure both namespaces in the consuming project's `components.json`:
 
 ```json
 {
-  "registries": { "@erbium": "https://your-domain.example/r/{name}.json" }
+  "registries": {
+    "@erbium": "https://your-domain.example/ui/r/{name}.json",
+    "@erbium-examples": "https://your-domain.example/storybook/r/{name}.json"
+  }
 }
 ```
 
-They can then use the standard CLI to discover and install components, hooks, styles, and utilities:
+Install an example with the shadcn CLI. Its registry dependencies install the matching Erbium components into `src/components`; the example goes into `src/examples`:
 
 ```bash
-bunx shadcn@latest list @erbium
-bunx shadcn@latest add @erbium/sidebar @erbium/use-mobile
-bunx shadcn@latest add @erbium/styles
+bunx shadcn@latest add @erbium-examples/button-demo
 ```
 
-The registry installs copied source files, while `@erbium/ui` remains useful as a conventional package dependency. Add `@erbium/styles` when you want Erbium's global tokens and Tailwind utilities; include `src/styles/globals.css` in the app's stylesheet entry. The styles item also declares its Tailwind plugins and font dependencies.
+Add `@erbium/styles` for Erbium's global tokens and Tailwind utilities, and include `src/styles/globals.css` in the app's stylesheet entry.
 
 ## Quality bar
 

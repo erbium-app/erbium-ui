@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-orientation",
+  "title": "Button Group Orientation",
+  "description": "Erbium button group orientation example.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["@erbium/button", "@erbium/button-group"],
+  "files": [
+    {
+      "path": "registry/examples/button-group-orientation.tsx",
+      "content": "// @ts-nocheck\nimport { MinusIcon, PlusIcon } from \"lucide-react\";\n\nimport { Button } from \"../components/button\";\nimport { ButtonGroup } from \"../components/button-group\";\n\nexport default function ButtonGroupOrientation() {\n  return (\n    <ButtonGroup orientation=\"vertical\" aria-label=\"Media controls\" className=\"h-fit\">\n      <Button variant=\"outline\" size=\"icon\">\n        <PlusIcon />\n      </Button>\n      <Button variant=\"outline\" size=\"icon\">\n        <MinusIcon />\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/button-group-orientation.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

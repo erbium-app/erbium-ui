@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "direction-demo",
+  "title": "Direction Demo",
+  "description": "Erbium direction demo example.",
+  "registryDependencies": ["@erbium/button", "@erbium/direction"],
+  "files": [
+    {
+      "path": "registry/examples/direction-demo.tsx",
+      "content": "// @ts-nocheck\nimport { DirectionProvider } from \"../components/direction\";\nimport { Button } from \"../components/button\";\nexport default function Demo() {\n  return (\n    <div className=\"flex gap-8\">\n      <DirectionProvider direction=\"ltr\">\n        <Button>Left to right</Button>\n      </DirectionProvider>\n      <DirectionProvider direction=\"rtl\">\n        <Button>من اليمين إلى اليسار</Button>\n      </DirectionProvider>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/direction-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

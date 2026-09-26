@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-demo",
+  "title": "Chart Demo",
+  "description": "Erbium chart demo example.",
+  "registryDependencies": ["@erbium/chart"],
+  "files": [
+    {
+      "path": "registry/examples/chart-demo.tsx",
+      "content": "// @ts-nocheck\nimport { ChartContainer } from \"../components/chart\";\nexport default function Demo() {\n  return (\n    <ChartContainer\n      config={{ desktop: { label: \"Desktop\", color: \"var(--chart-1)\" } }}\n      className=\"h-40 w-80\"\n    >\n      <div className=\"flex size-full items-end gap-3 p-4\">\n        <div className=\"h-1/2 flex-1 bg-primary\" />\n        <div className=\"h-3/4 flex-1 bg-primary\" />\n        <div className=\"h-full flex-1 bg-primary\" />\n      </div>\n    </ChartContainer>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/chart-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

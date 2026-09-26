@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-demo",
+  "title": "Empty Demo",
+  "description": "Erbium empty demo example.",
+  "registryDependencies": ["@erbium/button", "@erbium/empty"],
+  "files": [
+    {
+      "path": "registry/examples/empty-demo.tsx",
+      "content": "// @ts-nocheck\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"../components/empty\";\nimport { Button } from \"../components/button\";\nexport default function Demo() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>No projects yet</EmptyTitle>\n        <EmptyDescription>Create a project to get started.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button>Create project</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/empty-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "questionnaire-demo",
+  "title": "Questionnaire Demo",
+  "description": "Erbium questionnaire demo example.",
+  "registryDependencies": ["@erbium/questionnaire"],
+  "files": [
+    {
+      "path": "registry/examples/questionnaire-demo.tsx",
+      "content": "// @ts-nocheck\nimport {\n  Questionnaire,\n  QuestionnaireItem,\n  QuestionnaireTitle,\n  QuestionnaireDescription,\n  QuestionnaireChoices,\n  QuestionnaireChoice,\n  QuestionnaireActions,\n  QuestionnaireNext,\n} from \"../components/questionnaire\";\nexport default function Demo() {\n  return (\n    <Questionnaire>\n      <QuestionnaireItem name=\"plan\">\n        <QuestionnaireTitle>What is your preferred plan?</QuestionnaireTitle>\n        <QuestionnaireDescription>Choose one option to continue.</QuestionnaireDescription>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"starter\">Starter</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"pro\">Pro</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireActions>\n          <QuestionnaireNext>Continue</QuestionnaireNext>\n        </QuestionnaireActions>\n      </QuestionnaireItem>\n    </Questionnaire>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/questionnaire-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp-controlled",
+  "title": "Input Otp Controlled",
+  "description": "Erbium input otp controlled example.",
+  "registryDependencies": ["@erbium/input-otp"],
+  "files": [
+    {
+      "path": "registry/examples/input-otp-controlled.tsx",
+      "content": "// @ts-nocheck\nimport * as React from \"react\";\n\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"../components/input-otp\";\n\nexport default function InputOTPControlled() {\n  const [value, setValue] = React.useState(\"\");\n\n  return (\n    <div className=\"space-y-2\">\n      <InputOTP maxLength={6} value={value} onChange={(value) => setValue(value)}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <div className=\"text-center text-sm\">\n        {value === \"\" ? <>Enter your one-time password.</> : <>You entered: {value}</>}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/input-otp-controlled.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-checkbox",
+  "title": "Field Checkbox",
+  "description": "Erbium field checkbox example.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field"],
+  "files": [
+    {
+      "path": "registry/examples/field-checkbox.tsx",
+      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n} from \"../components/field\";\n\nexport default function FieldCheckbox() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldGroup>\n        <FieldSet>\n          <FieldLegend variant=\"label\">Show these items on the desktop</FieldLegend>\n          <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>\n          <FieldGroup className=\"gap-3\">\n            <Field orientation=\"horizontal\">\n              <Checkbox id=\"finder-pref-9k2-hard-disks-ljj\" />\n              <FieldLabel\n                htmlFor=\"finder-pref-9k2-hard-disks-ljj\"\n                className=\"font-normal\"\n                defaultChecked\n              >\n                Hard disks\n              </FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox id=\"finder-pref-9k2-external-disks-1yg\" />\n              <FieldLabel htmlFor=\"finder-pref-9k2-external-disks-1yg\" className=\"font-normal\">\n                External disks\n              </FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox id=\"finder-pref-9k2-cds-dvds-fzt\" />\n              <FieldLabel htmlFor=\"finder-pref-9k2-cds-dvds-fzt\" className=\"font-normal\">\n                CDs, DVDs, and iPods\n              </FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox id=\"finder-pref-9k2-connected-servers-6l2\" />\n              <FieldLabel htmlFor=\"finder-pref-9k2-connected-servers-6l2\" className=\"font-normal\">\n                Connected servers\n              </FieldLabel>\n            </Field>\n          </FieldGroup>\n        </FieldSet>\n        <FieldSeparator />\n        <Field orientation=\"horizontal\">\n          <Checkbox id=\"finder-pref-9k2-sync-folders-nep\" defaultChecked />\n          <FieldContent>\n            <FieldLabel htmlFor=\"finder-pref-9k2-sync-folders-nep\">\n              Sync Desktop & Documents folders\n            </FieldLabel>\n            <FieldDescription>\n              Your Desktop & Documents folders are being synced with iCloud Drive. You can access\n              them from other devices.\n            </FieldDescription>\n          </FieldContent>\n        </Field>\n      </FieldGroup>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/field-checkbox.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-outline",
+  "title": "Toggle Outline",
+  "description": "Erbium toggle outline example.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["@erbium/toggle"],
+  "files": [
+    {
+      "path": "registry/examples/toggle-outline.tsx",
+      "content": "// @ts-nocheck\nimport { Italic } from \"lucide-react\";\n\nimport { Toggle } from \"../components/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Italic />\n    </Toggle>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/toggle-outline.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

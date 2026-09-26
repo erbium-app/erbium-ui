@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-empty",
+  "title": "Spinner Empty",
+  "description": "Erbium spinner empty example.",
+  "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/spinner"],
+  "files": [
+    {
+      "path": "registry/examples/spinner-empty.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"../components/empty\";\nimport { Spinner } from \"../components/spinner\";\n\nexport default function SpinnerEmpty() {\n  return (\n    <Empty className=\"w-full\">\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <Spinner />\n        </EmptyMedia>\n        <EmptyTitle>Processing your request</EmptyTitle>\n        <EmptyDescription>\n          Please wait while we process your request. Do not refresh the page.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\" size=\"sm\">\n          Cancel\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/spinner-empty.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

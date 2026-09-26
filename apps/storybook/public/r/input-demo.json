@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-demo",
+  "title": "Input Demo",
+  "description": "Erbium input demo example.",
+  "registryDependencies": ["@erbium/input"],
+  "files": [
+    {
+      "path": "registry/examples/input-demo.tsx",
+      "content": "// @ts-nocheck\nimport { Input } from \"../components/input\";\n\nexport default function InputDemo() {\n  return <Input type=\"email\" placeholder=\"Email\" />;\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/input-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

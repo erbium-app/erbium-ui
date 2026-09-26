@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog-close-button",
+  "title": "Dialog Close Button",
+  "description": "Erbium dialog close button example.",
+  "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/input", "@erbium/label"],
+  "files": [
+    {
+      "path": "registry/examples/dialog-close-button.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"../components/dialog\";\nimport { Input } from \"../components/input\";\nimport { Label } from \"../components/label\";\n\nexport default function DialogCloseButton() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\">Share</Button>} />\n      <DialogContent className=\"sm:max-w-md\">\n        <DialogHeader>\n          <DialogTitle>Share link</DialogTitle>\n          <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>\n        </DialogHeader>\n        <div className=\"flex items-center gap-2\">\n          <div className=\"grid flex-1 gap-2\">\n            <Label htmlFor=\"link\" className=\"sr-only\">\n              Link\n            </Label>\n            <Input id=\"link\" defaultValue=\"https://ui.shadcn.com/docs/installation\" readOnly />\n          </div>\n        </div>\n        <DialogFooter className=\"sm:justify-start\">\n          <DialogClose\n            render={\n              <Button type=\"button\" variant=\"secondary\">\n                Close\n              </Button>\n            }\n          />\n        </DialogFooter>\n      </DialogContent>\n    </Dialog>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/dialog-close-button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

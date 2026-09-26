@@ -7,7 +7,8 @@
     "build": "storybook build",
     "preview": "storybook dev -p 6006",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "registry:build": "node scripts/build-registry.mjs && ../../packages/ui/node_modules/.bin/shadcn build registry.json --output public/r && vp fmt registry.json registry public/r --write"
   },
   "dependencies": {
     "@erbium/ui": "workspace:*",

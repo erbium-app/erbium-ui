@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd-button",
+  "title": "Kbd Button",
+  "description": "Erbium kbd button example.",
+  "registryDependencies": ["@erbium/button", "@erbium/kbd"],
+  "files": [
+    {
+      "path": "registry/examples/kbd-button.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport { Kbd } from \"../components/kbd\";\n\nexport default function KbdButton() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Button variant=\"outline\" size=\"sm\" className=\"pr-2\">\n        Accept <Kbd>⏎</Kbd>\n      </Button>\n      <Button variant=\"outline\" size=\"sm\" className=\"pr-2\">\n        Cancel <Kbd>Esc</Kbd>\n      </Button>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/kbd-button.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

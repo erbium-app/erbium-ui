@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-link",
+  "title": "Item Link",
+  "description": "Erbium item link example.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["@erbium/item"],
+  "files": [
+    {
+      "path": "registry/examples/item-link.tsx",
+      "content": "// @ts-nocheck\nimport { ChevronRightIcon, ExternalLinkIcon } from \"lucide-react\";\n\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from \"../components/item\";\n\nexport default function ItemLink() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-4\">\n      <Item\n        render={\n          <a href=\"#\">\n            <ItemContent>\n              <ItemTitle>Visit our documentation</ItemTitle>\n              <ItemDescription>Learn how to get started with our components.</ItemDescription>\n            </ItemContent>\n            <ItemActions>\n              <ChevronRightIcon className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n      <Item\n        variant=\"outline\"\n        render={\n          <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\">\n            <ItemContent>\n              <ItemTitle>External resource</ItemTitle>\n              <ItemDescription>Opens in a new tab with security attributes.</ItemDescription>\n            </ItemContent>\n            <ItemActions>\n              <ExternalLinkIcon className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/item-link.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

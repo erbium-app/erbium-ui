@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-disabled",
+  "title": "Input Disabled",
+  "description": "Erbium input disabled example.",
+  "registryDependencies": ["@erbium/input"],
+  "files": [
+    {
+      "path": "registry/examples/input-disabled.tsx",
+      "content": "// @ts-nocheck\nimport { Input } from \"../components/input\";\n\nexport default function InputDisabled() {\n  return <Input disabled type=\"email\" placeholder=\"Email\" />;\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/input-disabled.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

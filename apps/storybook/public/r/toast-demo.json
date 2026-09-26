@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-demo",
+  "title": "Toast Demo",
+  "description": "Erbium toast demo example.",
+  "registryDependencies": ["@erbium/button", "@erbium/toast"],
+  "files": [
+    {
+      "path": "registry/examples/toast-demo.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport { Toaster, toast } from \"../components/toast\";\nexport default function Demo() {\n  return (\n    <>\n      <Button\n        onClick={() => toast.add({ title: \"Saved\", description: \"Your changes have been saved.\" })}\n      >\n        Show toast\n      </Button>\n      <Toaster />\n    </>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/toast-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

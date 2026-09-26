@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-scroller-demo",
+  "title": "Message Scroller Demo",
+  "description": "Erbium message scroller demo example.",
+  "registryDependencies": ["@erbium/message-scroller"],
+  "files": [
+    {
+      "path": "registry/examples/message-scroller-demo.tsx",
+      "content": "// @ts-nocheck\nimport {\n  MessageScroller,\n  MessageScrollerContent,\n  MessageScrollerItem,\n  MessageScrollerProvider,\n  MessageScrollerViewport,\n} from \"../components/message-scroller\";\nexport default function Demo() {\n  return (\n    <MessageScrollerProvider>\n      <MessageScroller className=\"h-40 w-80\">\n        <MessageScrollerViewport>\n          <MessageScrollerContent>\n            {Array.from({ length: 8 }, (_, i) => (\n              <MessageScrollerItem key={i}>Message {i + 1}</MessageScrollerItem>\n            ))}\n          </MessageScrollerContent>\n        </MessageScrollerViewport>\n      </MessageScroller>\n    </MessageScrollerProvider>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/message-scroller-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-demo",
+  "title": "Popover Demo",
+  "description": "Erbium popover demo example.",
+  "registryDependencies": ["@erbium/button", "@erbium/input", "@erbium/label", "@erbium/popover"],
+  "files": [
+    {
+      "path": "registry/examples/popover-demo.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport { Input } from \"../components/input\";\nimport { Label } from \"../components/label\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"../components/popover\";\n\nexport default function PopoverDemo() {\n  return (\n    <Popover>\n      <PopoverTrigger render={<Button variant=\"outline\">Open popover</Button>} />\n      <PopoverContent className=\"w-80\">\n        <div className=\"grid gap-4\">\n          <div className=\"space-y-2\">\n            <h4 className=\"leading-none font-medium\">Dimensions</h4>\n            <p className=\"text-sm text-muted-foreground\">Set the dimensions for the layer.</p>\n          </div>\n          <div className=\"grid gap-2\">\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <Label htmlFor=\"width\">Width</Label>\n              <Input id=\"width\" defaultValue=\"100%\" className=\"col-span-2 h-8\" />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <Label htmlFor=\"maxWidth\">Max. width</Label>\n              <Input id=\"maxWidth\" defaultValue=\"300px\" className=\"col-span-2 h-8\" />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <Label htmlFor=\"height\">Height</Label>\n              <Input id=\"height\" defaultValue=\"25px\" className=\"col-span-2 h-8\" />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <Label htmlFor=\"maxHeight\">Max. height</Label>\n              <Input id=\"maxHeight\" defaultValue=\"none\" className=\"col-span-2 h-8\" />\n            </div>\n          </div>\n        </div>\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/popover-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

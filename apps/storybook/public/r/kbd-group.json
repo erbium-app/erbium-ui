@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd-group",
+  "title": "Kbd Group",
+  "description": "Erbium kbd group example.",
+  "registryDependencies": ["@erbium/kbd"],
+  "files": [
+    {
+      "path": "registry/examples/kbd-group.tsx",
+      "content": "// @ts-nocheck\nimport { Kbd, KbdGroup } from \"../components/kbd\";\n\nexport default function KbdGroupExample() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <p className=\"text-sm text-muted-foreground\">\n        Use{\" \"}\n        <KbdGroup>\n          <Kbd>Ctrl + B</Kbd>\n          <Kbd>Ctrl + K</Kbd>\n        </KbdGroup>{\" \"}\n        to open the command palette\n      </p>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/kbd-group.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
