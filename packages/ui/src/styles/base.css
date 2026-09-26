@@ -5,6 +5,12 @@
     @apply border-border outline-ring/50;
   }
 
+  @supports (corner-shape: squircle) {
+    * {
+      corner-shape: squircle;
+    }
+  }
+
   body {
     @apply bg-background text-foreground;
   }
