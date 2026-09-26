@@ -1,3 +1,4 @@
+import AccordionCard from "../examples/upstream/accordion-card";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@erbium/ui/components/accordion";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Accordion } from "@erbium/ui/components/accordion";
@@ -12,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A vertically stacked set of interactive headings that each reveal a section of content.\n\n**Import:** `@erbium/ui/components/accordion`  \n\n**shadcn/ui page:** [Accordion](https://ui.shadcn.com/docs/components/base/accordion)\n\n### Usage\n\n```tsx\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from "@erbium/ui/components/accordion"\n```\n\n```tsx\n<Accordion defaultValue={["item-1"]}>\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>\n      Yes. It adheres to the WAI-ARIA design pattern.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>\n```\n\n### Composition\n\nUse the following composition to build an `Accordion`:\n\n```text\nAccordion\n├── AccordionItem\n│   ├── AccordionTrigger\n│   └── AccordionContent\n└── AccordionItem\n    ├── AccordionTrigger\n    └── AccordionContent\n```\n\n### Basic\n\nA basic accordion that shows one item at a time. The first item is open by default.\n\nstyleName="base-nova"\n\nname="accordion-basic"\n\nalign="start"\n\npreviewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"\n\n/>\n\n### Multiple\n\nUse the `multiple` prop to allow multiple items to be open at the same time.\n\nstyleName="base-nova"\n\nname="accordion-multiple"\n\nalign="start"\n\npreviewClassName="*:data-[slot=accordion]:max-w-sm h-[450px]"\n\n/>\n\n### Disabled\n\nUse the `disabled` prop on `AccordionItem` to disable individual items.\n\nstyleName="base-nova"\n\nname="accordion-disabled"\n\nalign="start"\n\npreviewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"\n\n/>\n\n### Borders\n\nAdd `border` to the `Accordion` and `border-b last:border-b-0` to the `AccordionItem` to add borders to the items.\n\nstyleName="base-nova"\n\nname="accordion-borders"\n\nalign="start"\n\npreviewClassName="*:data-[slot=accordion]:max-w-sm h-[300px]"\n\n/>\n\n### Card\n\nWrap the `Accordion` in a `Card` component.\n\nstyleName="base-nova"\n\nname="accordion-card"\n\nalign="start"\n\npreviewClassName="*:data-[slot=accordion]:max-w-sm h-[435px]"\n\n/>',
+          'A vertically stacked set of interactive headings that each reveal a section of content.\n\n**Import:** `@erbium/ui/components/accordion`  \n\n**shadcn/ui page:** [Accordion](https://ui.shadcn.com/docs/components/base/accordion)\n\n### Usage\n\n```tsx\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from "@erbium/ui/components/accordion"\n```\n\n```tsx\n<Accordion defaultValue={["item-1"]}>\n  <AccordionItem value="item-1">\n    <AccordionTrigger>Is it accessible?</AccordionTrigger>\n    <AccordionContent>\n      Yes. It adheres to the WAI-ARIA design pattern.\n    </AccordionContent>\n  </AccordionItem>\n</Accordion>\n```\n\n### Composition\n\nUse the following composition to build an `Accordion`:\n\n```text\nAccordion\n├── AccordionItem\n│   ├── AccordionTrigger\n│   └── AccordionContent\n└── AccordionItem\n    ├── AccordionTrigger\n    └── AccordionContent\n```',
       },
     },
   },
@@ -36,7 +37,63 @@ export const Overview: Story = {
   ),
 };
 
-export const DisabledItem: Story = {
+const accordionItems = [
+  {
+    value: "item-1",
+    question: "Is it accessible?",
+    answer: "Yes. It follows the WAI-ARIA accordion pattern.",
+  },
+  {
+    value: "item-2",
+    question: "Can I customize it?",
+    answer: "Yes. You can style each part of the accordion.",
+  },
+  {
+    value: "item-3",
+    question: "Can I open multiple items?",
+    answer: "Yes. Enable the multiple prop to open several items.",
+  },
+];
+
+function AccordionExample({
+  multiple = false,
+  bordered = false,
+}: {
+  multiple?: boolean;
+  bordered?: boolean;
+}) {
+  return (
+    <Accordion
+      className={bordered ? "w-80 rounded-lg border px-4" : "w-80"}
+      defaultValue={["item-1"]}
+      multiple={multiple}
+    >
+      {accordionItems.map((item) => (
+        <AccordionItem
+          className={bordered ? "border-b last:border-b-0" : undefined}
+          key={item.value}
+          value={item.value}
+        >
+          <AccordionTrigger>{item.question}</AccordionTrigger>
+          <AccordionContent>{item.answer}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+}
+
+export const Basic: Story = {
+  parameters: {
+    docs: { description: { story: "One item opens at a time; the first is open by default." } },
+  },
+  render: () => <AccordionExample />,
+};
+export const Multiple: Story = {
+  parameters: { docs: { description: { story: "Allow several items to remain open at once." } } },
+  render: () => <AccordionExample multiple />,
+};
+export const Disabled: Story = {
+  parameters: { docs: { description: { story: "Disable an individual accordion item." } } },
   render: () => (
     <Accordion className="w-80">
       <AccordionItem value="one">
@@ -49,4 +106,14 @@ export const DisabledItem: Story = {
       </AccordionItem>
     </Accordion>
   ),
+};
+export const Borders: Story = {
+  parameters: {
+    docs: { description: { story: "Add an outer border and dividers between items." } },
+  },
+  render: () => <AccordionExample bordered />,
+};
+export const Card: Story = {
+  parameters: { docs: { description: { story: "Place an accordion inside a card." } } },
+  render: () => <AccordionCard />,
 };

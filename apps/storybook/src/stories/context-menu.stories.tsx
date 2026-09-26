@@ -1,3 +1,12 @@
+import { ContextMenuBasic } from "../examples/upstream/context-menu-basic";
+import { ContextMenuSubmenu } from "../examples/upstream/context-menu-submenu";
+import { ContextMenuShortcuts } from "../examples/upstream/context-menu-shortcuts";
+import { ContextMenuGroups } from "../examples/upstream/context-menu-groups";
+import { ContextMenuIcons } from "../examples/upstream/context-menu-icons";
+import { ContextMenuCheckboxes } from "../examples/upstream/context-menu-checkboxes";
+import { ContextMenuRadio } from "../examples/upstream/context-menu-radio";
+import { ContextMenuDestructive } from "../examples/upstream/context-menu-destructive";
+import { ContextMenuSides } from "../examples/upstream/context-menu-sides";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ContextMenu } from "@erbium/ui/components/context-menu";
 import Demo from "../examples/context-menu-demo";
@@ -11,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays a menu of actions triggered by a right click.\n\n**Import:** `@erbium/ui/components/context-menu`  \n\n**shadcn/ui page:** [Context Menu](https://ui.shadcn.com/docs/components/base/context-menu)\n\n### Usage\n\n```tsx\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu"\n```\n\n```tsx\n<ContextMenu>\n  <ContextMenuTrigger>Right click here</ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem>Profile</ContextMenuItem>\n    <ContextMenuItem>Billing</ContextMenuItem>\n    <ContextMenuItem>Team</ContextMenuItem>\n    <ContextMenuItem>Subscription</ContextMenuItem>\n  </ContextMenuContent>\n</ContextMenu>\n```\n\n### Composition\n\nUse the following composition to build a `ContextMenu`:\n\n```text\nContextMenu\n├── ContextMenuTrigger\n└── ContextMenuContent\n    ├── ContextMenuGroup\n    │   ├── ContextMenuLabel\n    │   ├── ContextMenuItem\n    │   └── ContextMenuItem\n    ├── ContextMenuSeparator\n    ├── ContextMenuGroup\n    │   ├── ContextMenuLabel\n    │   ├── ContextMenuCheckboxItem\n    │   └── ContextMenuCheckboxItem\n    ├── ContextMenuSeparator\n    ├── ContextMenuGroup\n    │   ├── ContextMenuLabel\n    │   └── ContextMenuRadioGroup\n    │       ├── ContextMenuRadioItem\n    │       └── ContextMenuRadioItem\n    └── ContextMenuSub\n        ├── ContextMenuSubTrigger\n        └── ContextMenuSubContent\n            └── ContextMenuGroup\n                ├── ContextMenuItem\n                └── ContextMenuItem\n```\n\n### Basic\n\nA simple context menu with a few actions.\n\n### Submenu\n\nUse `ContextMenuSub` to nest secondary actions.\n\n### Shortcuts\n\nAdd `ContextMenuShortcut` to show keyboard hints.\n\n### Groups\n\nGroup related actions and separate them with dividers.\n\n### Icons\n\nCombine icons with labels for quick scanning.\n\n### Checkboxes\n\nUse `ContextMenuCheckboxItem` for toggles.\n\n### Radio\n\nUse `ContextMenuRadioItem` for exclusive choices.\n\n### Destructive\n\nUse `variant="destructive"` to style the menu item as destructive.\n\n### Sides\n\nControl submenu placement with side and align props.',
+          'Displays a menu of actions triggered by a right click.\n\n**Import:** `@erbium/ui/components/context-menu`  \n\n**shadcn/ui page:** [Context Menu](https://ui.shadcn.com/docs/components/base/context-menu)\n\n### Usage\n\n```tsx\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuItem,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu"\n```\n\n```tsx\n<ContextMenu>\n  <ContextMenuTrigger>Right click here</ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem>Profile</ContextMenuItem>\n    <ContextMenuItem>Billing</ContextMenuItem>\n    <ContextMenuItem>Team</ContextMenuItem>\n    <ContextMenuItem>Subscription</ContextMenuItem>\n  </ContextMenuContent>\n</ContextMenu>\n```\n\n### Composition\n\nUse the following composition to build a `ContextMenu`:\n\n```text\nContextMenu\n├── ContextMenuTrigger\n└── ContextMenuContent\n    ├── ContextMenuGroup\n    │   ├── ContextMenuLabel\n    │   ├── ContextMenuItem\n    │   └── ContextMenuItem\n    ├── ContextMenuSeparator\n    ├── ContextMenuGroup\n    │   ├── ContextMenuLabel\n    │   ├── ContextMenuCheckboxItem\n    │   └── ContextMenuCheckboxItem\n    ├── ContextMenuSeparator\n    ├── ContextMenuGroup\n    │   ├── ContextMenuLabel\n    │   └── ContextMenuRadioGroup\n    │       ├── ContextMenuRadioItem\n    │       └── ContextMenuRadioItem\n    └── ContextMenuSub\n        ├── ContextMenuSubTrigger\n        └── ContextMenuSubContent\n            └── ContextMenuGroup\n                ├── ContextMenuItem\n                └── ContextMenuItem\n```',
       },
     },
   },
@@ -33,4 +42,104 @@ export const Overview: Story = {
       <Demo />
     </div>
   ),
+};
+
+export const Basic: Story = {
+  parameters: {
+    docs: {
+      description: { story: "A simple context menu with a few actions." },
+      source: {
+        code: 'import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuBasic() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>Back</ContextMenuItem>\n          <ContextMenuItem disabled>Forward</ContextMenuItem>\n          <ContextMenuItem>Reload</ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuBasic />,
+};
+export const Submenu: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use `ContextMenuSub` to nest secondary actions." },
+      source: {
+        code: 'import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuSub,\n  ContextMenuSubContent,\n  ContextMenuSubTrigger,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuSubmenu() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            Copy\n            <ContextMenuShortcut>⌘C</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Cut\n            <ContextMenuShortcut>⌘X</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSub>\n          <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>\n          <ContextMenuSubContent>\n            <ContextMenuGroup>\n              <ContextMenuItem>Save Page...</ContextMenuItem>\n              <ContextMenuItem>Create Shortcut...</ContextMenuItem>\n              <ContextMenuItem>Name Window...</ContextMenuItem>\n            </ContextMenuGroup>\n            <ContextMenuSeparator />\n            <ContextMenuGroup>\n              <ContextMenuItem>Developer Tools</ContextMenuItem>\n            </ContextMenuGroup>\n            <ContextMenuSeparator />\n            <ContextMenuGroup>\n              <ContextMenuItem variant="destructive">Delete</ContextMenuItem>\n            </ContextMenuGroup>\n          </ContextMenuSubContent>\n        </ContextMenuSub>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuSubmenu />,
+};
+export const Shortcuts: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Add `ContextMenuShortcut` to show keyboard hints." },
+      source: {
+        code: 'import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuShortcuts() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            Back\n            <ContextMenuShortcut>⌘[</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem disabled>\n            Forward\n            <ContextMenuShortcut>⌘]</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Reload\n            <ContextMenuShortcut>⌘R</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            Save\n            <ContextMenuShortcut>⌘S</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Save As...\n            <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuShortcuts />,
+};
+export const Groups: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Group related actions and separate them with dividers." },
+      source: {
+        code: 'import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuLabel,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuGroups() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuLabel>File</ContextMenuLabel>\n          <ContextMenuItem>\n            New File\n            <ContextMenuShortcut>⌘N</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Open File\n            <ContextMenuShortcut>⌘O</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Save\n            <ContextMenuShortcut>⌘S</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuLabel>Edit</ContextMenuLabel>\n          <ContextMenuItem>\n            Undo\n            <ContextMenuShortcut>⌘Z</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Redo\n            <ContextMenuShortcut>⇧⌘Z</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            Cut\n            <ContextMenuShortcut>⌘X</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Copy\n            <ContextMenuShortcut>⌘C</ContextMenuShortcut>\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Paste\n            <ContextMenuShortcut>⌘V</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem variant="destructive">\n            Delete\n            <ContextMenuShortcut>⌫</ContextMenuShortcut>\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuGroups />,
+};
+export const Icons: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Combine icons with labels for quick scanning." },
+      source: {
+        code: 'import { ClipboardPasteIcon, CopyIcon, ScissorsIcon, TrashIcon } from "lucide-react";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuIcons() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            <CopyIcon />\n            Copy\n          </ContextMenuItem>\n          <ContextMenuItem>\n            <ScissorsIcon />\n            Cut\n          </ContextMenuItem>\n          <ContextMenuItem>\n            <ClipboardPasteIcon />\n            Paste\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem variant="destructive">\n            <TrashIcon />\n            Delete\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuIcons />,
+};
+export const Checkboxes: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use `ContextMenuCheckboxItem` for toggles." },
+      source: {
+        code: 'import {\n  ContextMenu,\n  ContextMenuCheckboxItem,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuCheckboxes() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuCheckboxItem defaultChecked>Show Bookmarks Bar</ContextMenuCheckboxItem>\n          <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>\n          <ContextMenuCheckboxItem defaultChecked>Show Developer Tools</ContextMenuCheckboxItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuCheckboxes />,
+};
+export const Radio: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use `ContextMenuRadioItem` for exclusive choices." },
+      source: {
+        code: 'import * as React from "react";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuLabel,\n  ContextMenuRadioGroup,\n  ContextMenuRadioItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuRadio() {\n  const [user, setUser] = React.useState("pedro");\n  const [theme, setTheme] = React.useState("light");\n\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuLabel>People</ContextMenuLabel>\n          <ContextMenuRadioGroup value={user} onValueChange={setUser}>\n            <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>\n            <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>\n          </ContextMenuRadioGroup>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuLabel>Theme</ContextMenuLabel>\n          <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>\n            <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>\n            <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>\n            <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>\n          </ContextMenuRadioGroup>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuRadio />,
+};
+export const Destructive: Story = {
+  parameters: {
+    docs: {
+      description: { story: 'Use `variant="destructive"` to style the menu item as destructive.' },
+      source: {
+        code: 'import { PencilIcon, ShareIcon, TrashIcon } from "lucide-react";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuDestructive() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n        <span className="hidden pointer-fine:inline-block">Right click here</span>\n        <span className="hidden pointer-coarse:inline-block">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            <PencilIcon />\n            Edit\n          </ContextMenuItem>\n          <ContextMenuItem>\n            <ShareIcon />\n            Share\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem variant="destructive">\n            <TrashIcon />\n            Delete\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuDestructive />,
+};
+export const Sides: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Control submenu placement with side and align props." },
+      source: {
+        code: 'import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuTrigger,\n} from "@erbium/ui/components/context-menu";\n\nexport function ContextMenuSides() {\n  return (\n    <div className="grid w-full max-w-sm grid-cols-2 gap-4">\n      <ContextMenu>\n        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n          <span className="hidden pointer-fine:inline-block">Right click (top)</span>\n          <span className="hidden pointer-coarse:inline-block">Long press (top)</span>\n        </ContextMenuTrigger>\n        <ContextMenuContent side="top">\n          <ContextMenuGroup>\n            <ContextMenuItem>Back</ContextMenuItem>\n            <ContextMenuItem>Forward</ContextMenuItem>\n            <ContextMenuItem>Reload</ContextMenuItem>\n          </ContextMenuGroup>\n        </ContextMenuContent>\n      </ContextMenu>\n      <ContextMenu>\n        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n          <span className="hidden pointer-fine:inline-block">Right click (right)</span>\n          <span className="hidden pointer-coarse:inline-block">Long press (right)</span>\n        </ContextMenuTrigger>\n        <ContextMenuContent side="right">\n          <ContextMenuGroup>\n            <ContextMenuItem>Back</ContextMenuItem>\n            <ContextMenuItem>Forward</ContextMenuItem>\n            <ContextMenuItem>Reload</ContextMenuItem>\n          </ContextMenuGroup>\n        </ContextMenuContent>\n      </ContextMenu>\n      <ContextMenu>\n        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n          <span className="hidden pointer-fine:inline-block">Right click (bottom)</span>\n          <span className="hidden pointer-coarse:inline-block">Long press (bottom)</span>\n        </ContextMenuTrigger>\n        <ContextMenuContent side="bottom">\n          <ContextMenuGroup>\n            <ContextMenuItem>Back</ContextMenuItem>\n            <ContextMenuItem>Forward</ContextMenuItem>\n            <ContextMenuItem>Reload</ContextMenuItem>\n          </ContextMenuGroup>\n        </ContextMenuContent>\n      </ContextMenu>\n      <ContextMenu>\n        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed text-sm">\n          <span className="hidden pointer-fine:inline-block">Right click (left)</span>\n          <span className="hidden pointer-coarse:inline-block">Long press (left)</span>\n        </ContextMenuTrigger>\n        <ContextMenuContent side="left">\n          <ContextMenuGroup>\n            <ContextMenuItem>Back</ContextMenuItem>\n            <ContextMenuItem>Forward</ContextMenuItem>\n            <ContextMenuItem>Reload</ContextMenuItem>\n          </ContextMenuGroup>\n        </ContextMenuContent>\n      </ContextMenu>\n    </div>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ContextMenuSides />,
 };

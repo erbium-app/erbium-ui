@@ -1,3 +1,6 @@
+import { TooltipDisabled } from "../examples/upstream/tooltip-disabled";
+import { TooltipKeyboard } from "../examples/upstream/tooltip-keyboard";
+import { TooltipSides } from "../examples/upstream/tooltip-sides";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Tooltip } from "@erbium/ui/components/tooltip";
 import Demo from "../examples/tooltip-demo";
@@ -11,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.\n\n**Import:** `@erbium/ui/components/tooltip`  \n\n**shadcn/ui page:** [Tooltip](https://ui.shadcn.com/docs/components/base/tooltip)\n\n### Usage\n\n```tsx\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from "@erbium/ui/components/tooltip"\n```\n\n```tsx\n<Tooltip>\n  <TooltipTrigger>Hover</TooltipTrigger>\n  <TooltipContent>\n    <p>Add to library</p>\n  </TooltipContent>\n</Tooltip>\n```\n\n### Composition\n\nUse the following composition to build a `Tooltip`:\n\n```text\nTooltip\n├── TooltipTrigger\n└── TooltipContent\n```\n\n### Side\n\nUse the `side` prop to change the position of the tooltip.\n\n### With Keyboard Shortcut\n\n### Disabled Button\n\nShow a tooltip on a disabled button by wrapping it with a span.',
+          'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.\n\n**Import:** `@erbium/ui/components/tooltip`  \n\n**shadcn/ui page:** [Tooltip](https://ui.shadcn.com/docs/components/base/tooltip)\n\n### Usage\n\n```tsx\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from "@erbium/ui/components/tooltip"\n```\n\n```tsx\n<Tooltip>\n  <TooltipTrigger>Hover</TooltipTrigger>\n  <TooltipContent>\n    <p>Add to library</p>\n  </TooltipContent>\n</Tooltip>\n```\n\n### Composition\n\nUse the following composition to build a `Tooltip`:\n\n```text\nTooltip\n├── TooltipTrigger\n└── TooltipContent\n```',
       },
     },
   },
@@ -33,4 +36,41 @@ export const Overview: Story = {
       <Demo />
     </div>
   ),
+};
+
+export const Side: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use the `side` prop to change the position of the tooltip." },
+      source: {
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";\n\nexport function TooltipSides() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      {(["left", "top", "bottom", "right"] as const).map((side) => (\n        <Tooltip key={side}>\n          <TooltipTrigger render={<Button variant="outline" className="w-fit capitalize" />}>\n            {side}\n          </TooltipTrigger>\n          <TooltipContent side={side}>\n            <p>Add to library</p>\n          </TooltipContent>\n        </Tooltip>\n      ))}\n    </div>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TooltipSides />,
+};
+
+export const WithKeyboardShortcut: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Show a keyboard shortcut in tooltip content." },
+
+      source: {
+        code: 'import { SaveIcon } from "lucide-react";\n\nimport { Button } from "@erbium/ui/components/button";\nimport { Kbd } from "@erbium/ui/components/kbd";\nimport { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";\n\nexport function TooltipKeyboard() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant="outline" size="icon-sm" />}>\n        <SaveIcon />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd>S</Kbd>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TooltipKeyboard />,
+};
+
+export const DisabledButton: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Show a tooltip on a disabled button by wrapping it with a span." },
+      source: {
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";\n\nexport function TooltipDisabled() {\n  return (\n    <>\n      <Tooltip>\n        <TooltipTrigger render={<span className="inline-block w-fit" />}>\n          <Button variant="outline" disabled>\n            Disabled\n          </Button>\n        </TooltipTrigger>\n        <TooltipContent>\n          <p>This feature is currently unavailable</p>\n        </TooltipContent>\n      </Tooltip>\n    </>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TooltipDisabled />,
 };

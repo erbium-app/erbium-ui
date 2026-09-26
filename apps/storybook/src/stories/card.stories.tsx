@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Card } from "@erbium/ui/components/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@erbium/ui/components/card";
 import Demo from "../examples/card-demo";
 
 const meta = {
@@ -11,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays a card with header, content, and footer.\n\n**Import:** `@erbium/ui/components/card`  \n\n**shadcn/ui page:** [Card](https://ui.shadcn.com/docs/components/base/card)\n\n### Usage\n\n```tsx\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@erbium/ui/components/card"\n```\n\n```tsx\n<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n    <CardAction>Card Action</CardAction>\n  </CardHeader>\n  <CardContent>\n    <p>Card Content</p>\n  </CardContent>\n  <CardFooter>\n    <p>Card Footer</p>\n  </CardFooter>\n</Card>\n```\n\n### Composition\n\nUse the following composition to build a `Card`:\n\n```text\nCard\n├── CardHeader\n│   ├── CardTitle\n│   ├── CardDescription\n│   └── CardAction\n├── CardContent\n└── CardFooter\n```\n\n### Size\n\nUse the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.\n\nstyleName="base-nova"\n\nname="card-small"\n\npreviewClassName="h-96"\n\n/>\n\n### Spacing\n\nIn addition to the `size` prop, you can use the `--card-spacing` CSS variable to control the spacing between sections and the inset of card parts.\n\nstyleName="base-nova"\n\nname="card-spacing"\n\npreviewClassName="h-[34rem]"\n\n/>\n\nUse negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `CardContent` to remove the section gap.\n\nstyleName="base-nova"\n\nname="card-edge-to-edge"\n\npreviewClassName="h-[24rem]"\n\n/>\n\n### Image\n\nAdd an image before the card header to create a card with an image.\n\nstyleName="base-nova"\n\nname="card-image"\n\npreviewClassName="h-[32rem]"\n\n/>\n\n### Changelog\n\nIf you\'re upgrading from a previous version of the `Card` component, you\'ll need to apply the following updates to use the `--card-spacing` variable:\n\nReplace the hard-coded gap and vertical padding with `--card-spacing`, and set the default and small size values on the root:\n\nReplace the horizontal padding and border spacing with the shared variable:\n\nUse `--card-spacing` for the content inset and footer padding:\n\nAfter applying these changes, you can customize card spacing by setting `--card-spacing` on the `Card` with an arbitrary property class:\n\n```tsx\nfunction Example() {\n  return <Card className="[--card-spacing:--spacing(6)]">...</Card>\n}\n```',
+          'Displays a card with header, content, and footer.\n\n**Import:** `@erbium/ui/components/card`  \n\n**shadcn/ui page:** [Card](https://ui.shadcn.com/docs/components/base/card)\n\n### Usage\n\n```tsx\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@erbium/ui/components/card"\n```\n\n```tsx\n<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n    <CardAction>Card Action</CardAction>\n  </CardHeader>\n  <CardContent>\n    <p>Card Content</p>\n  </CardContent>\n  <CardFooter>\n    <p>Card Footer</p>\n  </CardFooter>\n</Card>\n```\n\n### Composition\n\nUse the following composition to build a `Card`:\n\n```text\nCard\n├── CardHeader\n│   ├── CardTitle\n│   ├── CardDescription\n│   └── CardAction\n├── CardContent\n└── CardFooter\n```\n\n### Changelog\n\nIf you\'re upgrading from a previous version of the `Card` component, you\'ll need to apply the following updates to use the `--card-spacing` variable:\n\nReplace the hard-coded gap and vertical padding with `--card-spacing`, and set the default and small size values on the root:\n\nReplace the horizontal padding and border spacing with the shared variable:\n\nUse `--card-spacing` for the content inset and footer padding:\n\nAfter applying these changes, you can customize card spacing by setting `--card-spacing` on the `Card` with an arbitrary property class:\n\n```tsx\nfunction Example() {\n  return <Card className="[--card-spacing:--spacing(6)]">...</Card>\n}\n```',
       },
     },
   },
@@ -32,5 +39,81 @@ export const Overview: Story = {
     <div className="w-full min-w-72 max-w-2xl p-4">
       <Demo />
     </div>
+  ),
+};
+
+function SampleCard({ size, className }: { size?: "sm"; className?: string }) {
+  return (
+    <Card className={`w-80 ${className ?? ""}`} size={size}>
+      <CardHeader>
+        <CardTitle>Project update</CardTitle>
+        <CardDescription>Everything you need to know at a glance.</CardDescription>
+      </CardHeader>
+      <CardContent>Review the latest changes and share your feedback.</CardContent>
+      <CardFooter>Updated today</CardFooter>
+    </Card>
+  );
+}
+
+export const Small: Story = {
+  name: "Size",
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the `size="sm"` prop to set the size of the card to small. The small size variant uses smaller spacing.',
+      },
+    },
+  },
+  render: () => <SampleCard size="sm" />,
+};
+export const Spacing: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "In addition to the `size` prop, you can use the `--card-spacing` CSS variable to control the spacing between sections and the inset of card parts.\n\nUse negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `CardContent` to remove the section gap.",
+      },
+    },
+  },
+
+  render: () => <SampleCard className="[--card-spacing:--spacing(8)]" />,
+};
+export const EdgeToEdge: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Place media flush with the card edges." },
+    },
+  },
+
+  render: () => (
+    <Card className="w-80">
+      <CardHeader>
+        <CardTitle>Recent activity</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="-mx-(--card-spacing) border-y bg-muted p-4">
+          Content runs to the card edges.
+        </div>
+      </CardContent>
+      <CardFooter>View all activity</CardFooter>
+    </Card>
+  ),
+};
+export const Image: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Add an image before the card header to create a card with an image." },
+    },
+  },
+
+  render: () => (
+    <Card className="w-80">
+      <div className="flex h-40 items-center justify-center bg-muted">Image area</div>
+      <CardHeader>
+        <CardTitle>Featured project</CardTitle>
+        <CardDescription>A card with media above its header.</CardDescription>
+      </CardHeader>
+    </Card>
   ),
 };

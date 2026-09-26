@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays content within a desired ratio.\n\n**Import:** `@erbium/ui/components/aspect-ratio`  \n\n**shadcn/ui page:** [Aspect Ratio](https://ui.shadcn.com/docs/components/base/aspect-ratio)\n\n### Usage\n\n```tsx\nimport { AspectRatio } from "@erbium/ui/components/aspect-ratio"\n```\n\n```tsx\n<AspectRatio ratio={16 / 9}>\n  <Image src="..." alt="Image" className="rounded-md object-cover" />\n</AspectRatio>\n```\n\n### Square\n\nA square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.\n\n### Portrait\n\nA portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.\n\nstyleName="base-nova"\n\nname="aspect-ratio-portrait"\n\npreviewClassName="h-96"\n\n/>',
+          'Displays content within a desired ratio.\n\n**Import:** `@erbium/ui/components/aspect-ratio`  \n\n**shadcn/ui page:** [Aspect Ratio](https://ui.shadcn.com/docs/components/base/aspect-ratio)\n\n### Usage\n\n```tsx\nimport { AspectRatio } from "@erbium/ui/components/aspect-ratio"\n```\n\n```tsx\n<AspectRatio ratio={16 / 9}>\n  <Image src="..." alt="Image" className="rounded-md object-cover" />\n</AspectRatio>\n```',
       },
     },
   },
@@ -31,6 +31,48 @@ export const Overview: Story = {
   render: () => (
     <div className="w-full min-w-72 max-w-2xl p-4">
       <Demo />
+    </div>
+  ),
+};
+
+export const Square: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.",
+      },
+    },
+  },
+
+  render: () => (
+    <div className="w-60">
+      <AspectRatio ratio={1}>
+        <div className="flex size-full items-center justify-center rounded-lg bg-muted">
+          Square 1:1
+        </div>
+      </AspectRatio>
+    </div>
+  ),
+};
+
+export const Portrait: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.",
+      },
+    },
+  },
+
+  render: () => (
+    <div className="w-40">
+      <AspectRatio ratio={9 / 16}>
+        <div className="flex size-full items-center justify-center rounded-lg bg-muted">
+          Portrait 9:16
+        </div>
+      </AspectRatio>
     </div>
   ),
 };

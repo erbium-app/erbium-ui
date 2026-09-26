@@ -1,3 +1,7 @@
+import { ToastTypes } from "../examples/upstream/toast-types";
+import { ToastPromise } from "../examples/upstream/toast-promise";
+import { Button } from "@erbium/ui/components/button";
+import { toast as sonnerToast } from "sonner";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Toast } from "@erbium/ui/components/toast";
 import Demo from "../examples/toast-demo";
@@ -11,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```\n\n### Types\n\nSet the `type` option to render a status icon. The built-in renderer recognizes\n\n`success`, `info`, `warning`, `error`, and `loading`.\n\n### Action\n\nPass button props with `actionProps` to render an action.\n\n```tsx\nconst id = toast.add({\n  title: "Event created",\n  actionProps: {\n    children: "Undo",\n    onClick() {\n      toast.close(id)\n    },\n  },\n})\n```\n\n### Promise\n\nUse `toast.promise` to update one toast as an asynchronous task moves through\n\nloading, success, and error states.',
+          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```',
       },
     },
   },
@@ -32,5 +36,56 @@ export const Overview: Story = {
     <div className="w-full min-w-72 max-w-2xl p-4">
       <Demo />
     </div>
+  ),
+};
+
+export const Types: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Set the `type` option to render a status icon. The built-in renderer recognizes\n\n`success`, `info`, `warning`, `error`, and `loading`.",
+      },
+      source: {
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastTypes() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Button\n        variant="outline"\n        onClick={() => toast.add({ description: "Event has been created." })}\n      >\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "success",\n            description: "Event has been created.",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "info",\n            description: "Arrive 10 minutes before the event.",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "warning",\n            description: "The event cannot start before 8:00 AM.",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "error",\n            description: "The event could not be created.",\n            priority: "high",\n          })\n        }\n      >\n        Error\n      </Button>\n    </div>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ToastTypes />,
+};
+export const Promise: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use `toast.promise` to update one toast as an asynchronous task moves through\n\nloading, success, and error states.",
+      },
+      source: {
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastPromise() {\n  function showToast() {\n    void toast.promise(\n      new Promise<{ name: string }>((resolve) => {\n        window.setTimeout(() => resolve({ name: "Event" }), 2000);\n      }),\n      {\n        loading: "Creating event…",\n        success: (data) => `${data.name} created.`,\n        error: "Could not create event.",\n      },\n    );\n  }\n\n  return (\n    <Button variant="outline" onClick={showToast}>\n      Create Event\n    </Button>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ToastPromise />,
+};
+export const Action: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Pass button props with `actionProps` to render an action.\n\n```tsx\nconst id = toast.add({\n  title: "Event created",\n  actionProps: {\n    children: "Undo",\n    onClick() {\n      toast.close(id)\n    },\n  },\n})\n```',
+      },
+    },
+  },
+
+  render: () => (
+    <Button
+      onClick={() =>
+        sonnerToast("Draft saved", {
+          action: { label: "Undo", onClick: () => sonnerToast("Draft restored") },
+        })
+      }
+    >
+      Show action toast
+    </Button>
   ),
 };

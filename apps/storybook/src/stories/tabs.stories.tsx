@@ -1,3 +1,7 @@
+import { TabsLine } from "../examples/upstream/tabs-line";
+import { TabsVertical } from "../examples/upstream/tabs-vertical";
+import { TabsDisabled } from "../examples/upstream/tabs-disabled";
+import { TabsIcons } from "../examples/upstream/tabs-icons";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Tabs } from "@erbium/ui/components/tabs";
 import Demo from "../examples/tabs-demo";
@@ -11,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A set of layered sections of content—known as tab panels—that are displayed one at a time.\n\n**Import:** `@erbium/ui/components/tabs`  \n\n**shadcn/ui page:** [Tabs](https://ui.shadcn.com/docs/components/base/tabs)\n\n### Usage\n\n```tsx\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from "@erbium/ui/components/tabs"\n```\n\n```tsx\n<Tabs defaultValue="account" className="w-[400px]">\n  <TabsList>\n    <TabsTrigger value="account">Account</TabsTrigger>\n    <TabsTrigger value="password">Password</TabsTrigger>\n  </TabsList>\n  <TabsContent value="account">Make changes to your account here.</TabsContent>\n  <TabsContent value="password">Change your password here.</TabsContent>\n</Tabs>\n```\n\n### Composition\n\nUse the following composition to build `Tabs`:\n\n```text\nTabs\n├── TabsList\n│   ├── TabsTrigger\n│   └── TabsTrigger\n├── TabsContent\n└── TabsContent\n```\n\n### Line\n\nUse the `variant="line"` prop on `TabsList` for a line style.\n\n### Vertical\n\nUse `orientation="vertical"` for vertical tabs.\n\n### Disabled\n\n### Icons',
+          'A set of layered sections of content—known as tab panels—that are displayed one at a time.\n\n**Import:** `@erbium/ui/components/tabs`  \n\n**shadcn/ui page:** [Tabs](https://ui.shadcn.com/docs/components/base/tabs)\n\n### Usage\n\n```tsx\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from "@erbium/ui/components/tabs"\n```\n\n```tsx\n<Tabs defaultValue="account" className="w-[400px]">\n  <TabsList>\n    <TabsTrigger value="account">Account</TabsTrigger>\n    <TabsTrigger value="password">Password</TabsTrigger>\n  </TabsList>\n  <TabsContent value="account">Make changes to your account here.</TabsContent>\n  <TabsContent value="password">Change your password here.</TabsContent>\n</Tabs>\n```\n\n### Composition\n\nUse the following composition to build `Tabs`:\n\n```text\nTabs\n├── TabsList\n│   ├── TabsTrigger\n│   └── TabsTrigger\n├── TabsContent\n└── TabsContent\n```',
       },
     },
   },
@@ -33,4 +37,51 @@ export const Overview: Story = {
       <Demo />
     </div>
   ),
+};
+
+export const Line: Story = {
+  parameters: {
+    docs: {
+      description: { story: 'Use the `variant="line"` prop on `TabsList` for a line style.' },
+      source: {
+        code: 'import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsLine() {\n  return (\n    <Tabs defaultValue="overview">\n      <TabsList variant="line">\n        <TabsTrigger value="overview">Overview</TabsTrigger>\n        <TabsTrigger value="analytics">Analytics</TabsTrigger>\n        <TabsTrigger value="reports">Reports</TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TabsLine />,
+};
+export const Vertical: Story = {
+  parameters: {
+    docs: {
+      description: { story: 'Use `orientation="vertical"` for vertical tabs.' },
+      source: {
+        code: 'import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsVertical() {\n  return (\n    <Tabs defaultValue="account" orientation="vertical">\n      <TabsList>\n        <TabsTrigger value="account">Account</TabsTrigger>\n        <TabsTrigger value="password">Password</TabsTrigger>\n        <TabsTrigger value="notifications">Notifications</TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TabsVertical />,
+};
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Disable a tab that is not available." },
+
+      source: {
+        code: 'import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsDisabled() {\n  return (\n    <Tabs defaultValue="home">\n      <TabsList>\n        <TabsTrigger value="home">Home</TabsTrigger>\n        <TabsTrigger value="settings" disabled>\n          Disabled\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TabsDisabled />,
+};
+export const Icons: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Add icons to tab triggers." },
+
+      source: {
+        code: 'import { AppWindowIcon, CodeIcon } from "lucide-react";\n\nimport { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsIcons() {\n  return (\n    <Tabs defaultValue="preview">\n      <TabsList>\n        <TabsTrigger value="preview">\n          <AppWindowIcon />\n          Preview\n        </TabsTrigger>\n        <TabsTrigger value="code">\n          <CodeIcon />\n          Code\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <TabsIcons />,
 };

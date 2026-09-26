@@ -1,3 +1,5 @@
+import { ToggleSizes } from "../examples/upstream/toggle-sizes";
+import { ToggleText } from "../examples/upstream/toggle-text";
 import ExampleToggleOutline from "../examples/toggle-outline";
 import ExampleToggleDisabled from "../examples/toggle-disabled";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -13,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A two-state button that can be either on or off.\n\n**Import:** `@erbium/ui/components/toggle`  \n\n**shadcn/ui page:** [Toggle](https://ui.shadcn.com/docs/components/base/toggle)\n\n### Usage\n\n```tsx\nimport { Toggle } from "@erbium/ui/components/toggle"\n```\n\n```tsx\n<Toggle>Toggle</Toggle>\n```\n\n### Outline\n\nUse `variant="outline"` for an outline style.\n\n### With Text\n\n### Size\n\nUse the `size` prop to change the size of the toggle.\n\n### Disabled',
+          'A two-state button that can be either on or off.\n\n**Import:** `@erbium/ui/components/toggle`  \n\n**shadcn/ui page:** [Toggle](https://ui.shadcn.com/docs/components/base/toggle)\n\n### Usage\n\n```tsx\nimport { Toggle } from "@erbium/ui/components/toggle"\n```\n\n```tsx\n<Toggle>Toggle</Toggle>\n```',
       },
     },
   },
@@ -38,6 +40,12 @@ export const Overview: Story = {
 };
 
 export const Pressed: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Start a toggle in the pressed state." },
+    },
+  },
+
   render: () => (
     <Toggle defaultPressed aria-label="Bold">
       Bold
@@ -45,6 +53,12 @@ export const Pressed: Story = {
   ),
 };
 export const DisabledControl: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Disable a toggle to prevent interaction." },
+    },
+  },
+
   render: () => (
     <Toggle disabled aria-label="Unavailable">
       Disabled
@@ -55,6 +69,8 @@ export const DisabledControl: Story = {
 export const Outline: Story = {
   parameters: {
     docs: {
+      description: { story: 'Use `variant="outline"` for an outline style.' },
+
       source: {
         code: 'import { Italic } from "lucide-react"\n\nimport { Toggle } from "@erbium/ui/components/toggle"\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant="outline" aria-label="Toggle italic">\n      <Italic />\n    </Toggle>\n  )\n}\n',
       },
@@ -69,6 +85,8 @@ export const Outline: Story = {
 export const Disabled: Story = {
   parameters: {
     docs: {
+      description: { story: "Show a disabled toggle." },
+
       source: {
         code: 'import { Underline } from "lucide-react"\n\nimport { Toggle } from "@erbium/ui/components/toggle"\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label="Toggle italic" disabled>\n      <Underline className="h-4 w-4" />\n    </Toggle>\n  )\n}\n',
       },
@@ -79,4 +97,29 @@ export const Disabled: Story = {
       <ExampleToggleDisabled />
     </div>
   ),
+};
+
+export const WithText: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Pair a toggle icon with a text label." },
+
+      source: {
+        code: 'import { ItalicIcon } from "lucide-react";\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label="Toggle italic">\n      <ItalicIcon />\n      Italic\n    </Toggle>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ToggleText />,
+};
+
+export const Size: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use the `size` prop to change the size of the toggle." },
+      source: {
+        code: 'import { Toggle } from "@erbium/ui/components/toggle";\n\nexport function ToggleSizes() {\n  return (\n    <div className="flex flex-wrap items-center gap-2">\n      <Toggle variant="outline" aria-label="Toggle small" size="sm">\n        Small\n      </Toggle>\n      <Toggle variant="outline" aria-label="Toggle default" size="default">\n        Default\n      </Toggle>\n      <Toggle variant="outline" aria-label="Toggle large" size="lg">\n        Large\n      </Toggle>\n    </div>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <ToggleSizes />,
 };

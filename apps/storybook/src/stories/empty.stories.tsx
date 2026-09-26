@@ -1,3 +1,6 @@
+import { EmptyMuted } from "../examples/upstream/empty-background";
+import EmptyOutline from "../examples/upstream/empty-outline";
+import EmptyInputGroup from "../examples/upstream/empty-input-group";
 import ExampleEmptyAvatar from "../examples/empty-avatar";
 import ExampleEmptyAvatarGroup from "../examples/empty-avatar-group";
 import ExampleEmptyInputGroup from "../examples/empty-input-group";
@@ -14,7 +17,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Use the Empty component to display an empty state.\n\n**Import:** `@erbium/ui/components/empty`  \n\n**shadcn/ui page:** [Empty](https://ui.shadcn.com/docs/components/base/empty)\n\n### Usage\n\n```tsx\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\n```\n\n```tsx\n<Empty>\n  <EmptyHeader>\n    <EmptyMedia variant="icon">\n      <Icon />\n    </EmptyMedia>\n    <EmptyTitle>No data</EmptyTitle>\n    <EmptyDescription>No data found</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent>\n    <Button>Add data</Button>\n  </EmptyContent>\n</Empty>\n```\n\n### Composition\n\nUse the following composition to build an `Empty` state:\n\n```text\nEmpty\n├── EmptyHeader\n│   ├── EmptyMedia\n│   ├── EmptyTitle\n│   └── EmptyDescription\n└── EmptyContent\n```\n\n### Outline\n\nUse the `border` utility class to create an outline empty state.\n\nstyleName="base-nova"\n\nname="empty-outline"\n\npreviewClassName="h-96 p-6 md:p-10"\n\n/>\n\n### Background\n\nUse the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.\n\nstyleName="base-nova"\n\nname="empty-background"\n\npreviewClassName="h-96 p-0"\n\n/>\n\n### Avatar\n\nUse the `EmptyMedia` component to display an avatar in the empty state.\n\nstyleName="base-nova"\n\nname="empty-avatar"\n\npreviewClassName="h-96 p-0"\n\n/>\n\n### Avatar Group\n\nUse the `EmptyMedia` component to display an avatar group in the empty state.\n\nstyleName="base-nova"\n\nname="empty-avatar-group"\n\npreviewClassName="h-96 p-0"\n\n/>\n\n### InputGroup\n\nYou can add an `InputGroup` component to the `EmptyContent` component.\n\nstyleName="base-nova"\n\nname="empty-input-group"\n\npreviewClassName="h-96 p-0"\n\n/>',
+          'Use the Empty component to display an empty state.\n\n**Import:** `@erbium/ui/components/empty`  \n\n**shadcn/ui page:** [Empty](https://ui.shadcn.com/docs/components/base/empty)\n\n### Usage\n\n```tsx\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\n```\n\n```tsx\n<Empty>\n  <EmptyHeader>\n    <EmptyMedia variant="icon">\n      <Icon />\n    </EmptyMedia>\n    <EmptyTitle>No data</EmptyTitle>\n    <EmptyDescription>No data found</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent>\n    <Button>Add data</Button>\n  </EmptyContent>\n</Empty>\n```\n\n### Composition\n\nUse the following composition to build an `Empty` state:\n\n```text\nEmpty\n├── EmptyHeader\n│   ├── EmptyMedia\n│   ├── EmptyTitle\n│   └── EmptyDescription\n└── EmptyContent\n```',
       },
     },
   },
@@ -41,6 +44,10 @@ export const Overview: Story = {
 export const Avatar: Story = {
   parameters: {
     docs: {
+      description: {
+        story: "Use the `EmptyMedia` component to display an avatar in the empty state.",
+      },
+
       source: {
         code: 'import {\n  Avatar,\n  AvatarFallback,\n  AvatarImage,\n} from "@erbium/ui/components/avatar"\nimport { Button } from "@erbium/ui/components/button"\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\n\nexport default function EmptyAvatar() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant="default">\n          <Avatar className="size-12">\n            <AvatarImage\n              src="https://github.com/shadcn.png"\n              className="grayscale"\n            />\n            <AvatarFallback>LR</AvatarFallback>\n          </Avatar>\n        </EmptyMedia>\n        <EmptyTitle>User Offline</EmptyTitle>\n        <EmptyDescription>\n          This user is currently offline. You can leave a message to notify them\n          or try again later.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button size="sm">Leave Message</Button>\n      </EmptyContent>\n    </Empty>\n  )\n}\n',
       },
@@ -55,6 +62,10 @@ export const Avatar: Story = {
 export const AvatarGroup: Story = {
   parameters: {
     docs: {
+      description: {
+        story: "Use the `EmptyMedia` component to display an avatar group in the empty state.",
+      },
+
       source: {
         code: 'import { PlusIcon } from "lucide-react"\n\nimport {\n  Avatar,\n  AvatarFallback,\n  AvatarImage,\n} from "@erbium/ui/components/avatar"\nimport { Button } from "@erbium/ui/components/button"\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\n\nexport default function EmptyAvatarGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia>\n          <div className="flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">\n            <Avatar>\n              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n              <AvatarFallback>CN</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage\n                src="https://github.com/maxleiter.png"\n                alt="@maxleiter"\n              />\n              <AvatarFallback>LR</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage\n                src="https://github.com/evilrabbit.png"\n                alt="@evilrabbit"\n              />\n              <AvatarFallback>ER</AvatarFallback>\n            </Avatar>\n          </div>\n        </EmptyMedia>\n        <EmptyTitle>No Team Members</EmptyTitle>\n        <EmptyDescription>\n          Invite your team to collaborate on this project.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button size="sm">\n          <PlusIcon />\n          Invite Members\n        </Button>\n      </EmptyContent>\n    </Empty>\n  )\n}\n',
       },
@@ -69,6 +80,10 @@ export const AvatarGroup: Story = {
 export const Inputgroup: Story = {
   parameters: {
     docs: {
+      description: {
+        story: "You can add an `InputGroup` component to the `EmptyContent` component.",
+      },
+
       source: {
         code: 'import { SearchIcon } from "lucide-react"\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from "@erbium/ui/components/input-group"\nimport { Kbd } from "@erbium/ui/components/kbd"\n\nexport default function EmptyInputGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for\n          what you need below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className="sm:w-3/4">\n          <InputGroupInput placeholder="Try searching for pages..." />\n          <InputGroupAddon>\n            <SearchIcon />\n          </InputGroupAddon>\n          <InputGroupAddon align="inline-end">\n            <Kbd>/</Kbd>\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href="#">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  )\n}\n',
       },
@@ -79,4 +94,43 @@ export const Inputgroup: Story = {
       <ExampleEmptyInputGroup />
     </div>
   ),
+};
+
+export const InputGroup: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use an input group as the action in an empty state." },
+      source: {
+        code: 'import { SearchIcon } from "lucide-react";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from "@erbium/ui/components/empty";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";\nimport { Kbd } from "@erbium/ui/components/kbd";\n\nexport default function EmptyInputGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need\n          below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className="sm:w-3/4">\n          <InputGroupInput placeholder="Try searching for pages..." />\n          <InputGroupAddon>\n            <SearchIcon />\n          </InputGroupAddon>\n          <InputGroupAddon align="inline-end">\n            <Kbd>/</Kbd>\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href="#">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <EmptyInputGroup />,
+};
+
+export const Outline: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use the `border` utility class to create an outline empty state." },
+      source: {
+        code: 'import { CloudIcon } from "lucide-react";\n\nimport { Button } from "@erbium/ui/components/button";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty className="border border-dashed">\n      <EmptyHeader>\n        <EmptyMedia variant="icon">\n          <CloudIcon />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant="outline" size="sm">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <EmptyOutline />,
+};
+
+export const Background: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.",
+      },
+      source: {
+        code: 'import { BellIcon } from "lucide-react";\nimport { RefreshCcwIcon } from "lucide-react";\n\nimport { Button } from "@erbium/ui/components/button";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty";\n\nexport function EmptyMuted() {\n  return (\n    <Empty className="h-full bg-muted/30">\n      <EmptyHeader>\n        <EmptyMedia variant="icon">\n          <BellIcon />\n        </EmptyMedia>\n        <EmptyTitle>No Notifications</EmptyTitle>\n        <EmptyDescription className="max-w-xs text-pretty">\n          You&apos;re all caught up. New notifications will appear here.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant="outline">\n          <RefreshCcwIcon data-icon="inline-start" />\n          Refresh\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <EmptyMuted />,
 };

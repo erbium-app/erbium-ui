@@ -1,6 +1,9 @@
+import AlertColors from "../examples/upstream/alert-colors";
 import ExampleAlertDestructive from "../examples/alert-destructive";
+import { CircleCheckIcon, InfoIcon, TriangleAlertIcon } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Alert } from "@erbium/ui/components/alert";
+import { Alert, AlertAction, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";
+import { Button } from "@erbium/ui/components/button";
 import Demo from "../examples/alert-demo";
 
 const meta = {
@@ -12,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays a callout for user attention.\n\n**Import:** `@erbium/ui/components/alert`  \n\n**shadcn/ui page:** [Alert](https://ui.shadcn.com/docs/components/base/alert)\n\n### Usage\n\n```tsx\nimport {\n  Alert,\n  AlertAction,\n  AlertDescription,\n  AlertTitle,\n} from "@erbium/ui/components/alert"\n```\n\n```tsx\n<Alert>\n  <InfoIcon />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>\n    You can add components and dependencies to your app using the cli.\n  </AlertDescription>\n  <AlertAction>\n    <Button variant="outline">Enable</Button>\n  </AlertAction>\n</Alert>\n```\n\n### Composition\n\nUse the following composition to build an `Alert`:\n\n```text\nAlert\n├── Icon\n├── AlertTitle\n├── AlertDescription\n└── AlertAction\n```\n\n### Basic\n\nA basic alert with an icon, title and description.\n\nstyleName="base-nova"\n\nname="alert-basic"\n\npreviewClassName="h-auto sm:h-72 p-6"\n\n/>\n\n### Destructive\n\nUse `variant="destructive"` to create a destructive alert.\n\nstyleName="base-nova"\n\nname="alert-destructive"\n\npreviewClassName="h-auto sm:h-72 p-6"\n\n/>\n\n### Action\n\nUse `AlertAction` to add a button or other action element to the alert.\n\nstyleName="base-nova"\n\nname="alert-action"\n\npreviewClassName="h-auto sm:h-72 p-6"\n\n/>\n\n### Custom Colors\n\nYou can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert` component.\n\nstyleName="base-nova"\n\nname="alert-colors"\n\npreviewClassName="h-auto sm:h-72 p-6"\n\n/>',
+          'Displays a callout for user attention.\n\n**Import:** `@erbium/ui/components/alert`  \n\n**shadcn/ui page:** [Alert](https://ui.shadcn.com/docs/components/base/alert)\n\n### Usage\n\n```tsx\nimport {\n  Alert,\n  AlertAction,\n  AlertDescription,\n  AlertTitle,\n} from "@erbium/ui/components/alert"\n```\n\n```tsx\n<Alert>\n  <InfoIcon />\n  <AlertTitle>Heads up!</AlertTitle>\n  <AlertDescription>\n    You can add components and dependencies to your app using the cli.\n  </AlertDescription>\n  <AlertAction>\n    <Button variant="outline">Enable</Button>\n  </AlertAction>\n</Alert>\n```\n\n### Composition\n\nUse the following composition to build an `Alert`:\n\n```text\nAlert\n├── Icon\n├── AlertTitle\n├── AlertDescription\n└── AlertAction\n```',
       },
     },
   },
@@ -39,6 +42,8 @@ export const Overview: Story = {
 export const Destructive: Story = {
   parameters: {
     docs: {
+      description: { story: 'Use `variant="destructive"` to create a destructive alert.' },
+
       source: {
         code: 'import { AlertCircleIcon } from "lucide-react"\n\nimport {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@erbium/ui/components/alert"\n\nexport default function AlertDestructive() {\n  return (\n    <Alert variant="destructive">\n      <AlertCircleIcon />\n      <AlertTitle>Error</AlertTitle>\n      <AlertDescription>\n        Your session has expired. Please log in again.\n      </AlertDescription>\n    </Alert>\n  )\n}\n',
       },
@@ -49,4 +54,76 @@ export const Destructive: Story = {
       <ExampleAlertDestructive />
     </div>
   ),
+};
+
+export const Basic: Story = {
+  parameters: {
+    docs: {
+      description: { story: "A basic alert with an icon, title and description." },
+    },
+  },
+
+  render: () => (
+    <Alert className="w-80">
+      <InfoIcon />
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>You can add components and dependencies using the CLI.</AlertDescription>
+    </Alert>
+  ),
+};
+
+export const Action: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "Use `AlertAction` to add a button or other action element to the alert.",
+      },
+    },
+  },
+
+  render: () => (
+    <Alert className="w-96">
+      <CircleCheckIcon />
+      <AlertTitle>Update available</AlertTitle>
+      <AlertDescription>A new version is ready to install.</AlertDescription>
+      <AlertAction>
+        <Button size="sm" variant="outline">
+          Update
+        </Button>
+      </AlertAction>
+    </Alert>
+  ),
+};
+
+export const CustomColors: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert` component.",
+      },
+    },
+  },
+
+  render: () => (
+    <Alert className="w-80 border-amber-300 bg-amber-50 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
+      <TriangleAlertIcon />
+      <AlertTitle>Scheduled maintenance</AlertTitle>
+      <AlertDescription className="text-inherit">
+        The service will be briefly unavailable tonight.
+      </AlertDescription>
+    </Alert>
+  ),
+};
+
+export const Colors: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Compare alerts with different semantic color treatments." },
+      source: {
+        code: 'import { AlertTriangleIcon } from "lucide-react";\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert className="max-w-md border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50">\n      <AlertTriangleIcon />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
+      },
+    },
+  },
+  render: () => <AlertColors />,
 };
