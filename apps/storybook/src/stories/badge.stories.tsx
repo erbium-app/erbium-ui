@@ -1,4 +1,3 @@
-import { BadgeCustomColors } from "../examples/upstream/badge-colors";
 import { BadgeWithSpinner } from "../examples/upstream/badge-spinner";
 import { BadgeWithIconLeft } from "../examples/upstream/badge-icon";
 import { BadgeAsLink } from "../examples/upstream/badge-link";
@@ -9,17 +8,16 @@ import Demo from "../examples/badge-demo";
 const meta = {
   title: "UI/Badge",
   component: Badge,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     docs: {
       description: {
         component:
-          'Displays a badge or a component that looks like a badge.\n\n**Import:** `@erbium/ui/components/badge`  \n\n**shadcn/ui page:** [Badge](https://ui.shadcn.com/docs/components/base/badge)\n\n### Usage\n\n```tsx\nimport { Badge } from "@erbium/ui/components/badge"\n```\n\n```tsx\n<Badge variant="default | outline | secondary | destructive">Badge</Badge>\n```',
+          'Displays a badge or a component that looks like a badge.\n\n**Import:** `@erbium/ui/components/badge`  \n\n**shadcn/ui page:** [Badge](https://ui.shadcn.com/docs/components/base/badge)\n\n### Usage\n\n```tsx\nimport { Badge } from "@erbium/ui/components/badge"\n```\n\n```tsx\n<Badge variant="default | outline | secondary | info | success | warning | destructive | ghost-destructive | ghost-info | ghost-success | ghost-warning | tag-gray | tag-red | tag-orange | tag-yellow | tag-green | tag-cyan | tag-blue | tag-purple | tag-magenta">Badge</Badge>\n```',
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Badge>;
 
 export default meta;
 type Story = StoryObj;
@@ -29,7 +27,30 @@ export const Playground: StoryObj<typeof Badge> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "secondary", "destructive", "outline", "ghost", "link"],
+      options: [
+        "default",
+        "secondary",
+        "info",
+        "success",
+        "warning",
+        "destructive",
+        "ghost-destructive",
+        "ghost-success",
+        "ghost-warning",
+        "ghost-info",
+        "tag-gray",
+        "tag-red",
+        "tag-orange",
+        "tag-yellow",
+        "tag-green",
+        "tag-cyan",
+        "tag-blue",
+        "tag-purple",
+        "tag-magenta",
+        "outline",
+        "ghost",
+        "link",
+      ],
     },
   },
   render: (args) => <Badge {...args} />,
@@ -39,7 +60,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { BadgeCheckIcon } from "lucide-react";\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport default function BadgeDemo() {\n  return (\n    <div className="flex flex-col items-center gap-2">\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge>Badge</Badge>\n        <Badge variant="secondary">Secondary</Badge>\n        <Badge variant="destructive">Destructive</Badge>\n        <Badge variant="outline">Outline</Badge>\n      </div>\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge variant="secondary" className="bg-blue-500 text-white dark:bg-blue-600">\n          <BadgeCheckIcon />\n          Verified\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>\n        <Badge\n          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"\n          variant="destructive"\n        >\n          99\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n',
+        code: 'import { BadgeCheckIcon } from "lucide-react";\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport default function BadgeDemo() {\n  return (\n    <div className="flex flex-col items-center gap-2">\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge>Badge</Badge>\n        <Badge variant="secondary">Secondary</Badge>\n        <Badge variant="destructive">Destructive</Badge>\n        <Badge variant="outline">Outline</Badge>\n      </div>\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge variant="success">\n          <BadgeCheckIcon />\n          Verified\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>\n        <Badge\n          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"\n          variant="destructive"\n        >\n          99\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -59,7 +80,30 @@ export const Variants: Story = {
 
   render: () => (
     <div className="flex gap-2">
-      {(["default", "secondary", "outline", "destructive"] as const).map((variant) => (
+      {(
+        [
+          "default",
+          "secondary",
+          "info",
+          "success",
+          "warning",
+          "destructive",
+          "ghost-destructive",
+          "ghost-success",
+          "ghost-warning",
+          "ghost-info",
+          "tag-gray",
+          "tag-red",
+          "tag-orange",
+          "tag-yellow",
+          "tag-green",
+          "tag-cyan",
+          "tag-blue",
+          "tag-purple",
+          "tag-magenta",
+          "outline",
+        ] as const
+      ).map((variant) => (
         <Badge key={variant} variant={variant}>
           {variant}
         </Badge>
@@ -108,19 +152,4 @@ export const WithSpinner: Story = {
     },
   },
   render: () => <BadgeWithSpinner />,
-};
-
-export const CustomColors: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "You can customize the colors of a badge by adding custom classes such as `bg-green-50 dark:bg-green-800` to the `Badge` component.",
-      },
-      source: {
-        code: 'import { Badge } from "@erbium/ui/components/badge";\n\nexport function BadgeCustomColors() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">Blue</Badge>\n      <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">\n        Green\n      </Badge>\n      <Badge className="bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300">Sky</Badge>\n      <Badge className="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">\n        Purple\n      </Badge>\n      <Badge className="bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300">Red</Badge>\n    </div>\n  );\n}\n',
-      },
-    },
-  },
-  render: () => <BadgeCustomColors />,
 };

@@ -14,7 +14,6 @@ import Demo from "../examples/avatar-demo";
 const meta = {
   title: "UI/Avatar",
   component: Avatar,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     docs: {
@@ -24,7 +23,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Avatar>;
 
 export default meta;
 type Story = StoryObj;
@@ -111,10 +110,10 @@ export const Badge: Story = {
     docs: {
       description: {
         story:
-          'Use the `AvatarBadge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.\n\nUse the `className` prop to add custom styles to the badge such as custom colors, sizes, etc.\n\n```tsx\n<Avatar>\n  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n  <AvatarFallback>CN</AvatarFallback>\n  <AvatarBadge className="bg-green-600 dark:bg-green-800" />\n</Avatar>\n```',
+          'Use the `AvatarBadge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.\n\nUse a theme token such as `bg-success` to set the badge color.\n\n```tsx\n<Avatar>\n  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n  <AvatarFallback>CN</AvatarFallback>\n  <AvatarBadge className="bg-success" />\n</Avatar>\n```',
       },
       source: {
-        code: 'import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";\n\nexport function AvatarWithBadge() {\n  return (\n    <Avatar>\n      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n      <AvatarFallback>CN</AvatarFallback>\n      <AvatarBadge className="bg-green-600 dark:bg-green-800" />\n    </Avatar>\n  );\n}\n',
+        code: 'import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";\n\nexport function AvatarWithBadge() {\n  return (\n    <Avatar>\n      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n      <AvatarFallback>CN</AvatarFallback>\n      <AvatarBadge className="bg-success" />\n    </Avatar>\n  );\n}\n',
       },
     },
   },

@@ -5,7 +5,7 @@ export function AvatarWithBadge() {
     <Avatar>
       <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
       <AvatarFallback>CN</AvatarFallback>
-      <AvatarBadge className="bg-green-600 dark:bg-green-800" />
+      <AvatarBadge className="bg-success" />
     </Avatar>
   );
 }

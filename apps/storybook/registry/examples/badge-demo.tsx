@@ -13,7 +13,7 @@ export default function BadgeDemo() {
         <Badge variant="outline">Outline</Badge>
       </div>
       <div className="flex w-full flex-wrap gap-2">
-        <Badge variant="secondary" className="bg-blue-500 text-white dark:bg-blue-600">
+        <Badge variant="success">
           <BadgeCheckIcon />
           Verified
         </Badge>

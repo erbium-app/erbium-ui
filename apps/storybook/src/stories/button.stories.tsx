@@ -19,7 +19,6 @@ import Demo from "../examples/button-demo";
 const meta = {
   title: "UI/Button",
   component: Button,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     docs: {
@@ -29,7 +28,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj;
@@ -42,7 +41,18 @@ export const Playground: StoryObj<typeof Button> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "outline", "ghost", "destructive", "secondary", "link"],
+      options: [
+        "default",
+        "outline",
+        "ghost",
+        "destructive",
+        "ghost-destructive",
+        "ghost-success",
+        "ghost-warning",
+        "ghost-info",
+        "secondary",
+        "link",
+      ],
       description: "Visual style of the button.",
       table: { defaultValue: { summary: "default" } },
     },
@@ -96,13 +106,24 @@ export const Variants: Story = {
 
   render: () => (
     <div className="flex flex-wrap gap-2">
-      {(["default", "secondary", "outline", "ghost", "destructive", "link"] as const).map(
-        (variant) => (
-          <Button key={variant} variant={variant}>
-            {variant}
-          </Button>
-        ),
-      )}
+      {(
+        [
+          "default",
+          "secondary",
+          "outline",
+          "ghost",
+          "destructive",
+          "ghost-destructive",
+          "ghost-success",
+          "ghost-warning",
+          "ghost-info",
+          "link",
+        ] as const
+      ).map((variant) => (
+        <Button key={variant} variant={variant}>
+          {variant}
+        </Button>
+      ))}
     </div>
   ),
 };

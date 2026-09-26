@@ -9,7 +9,6 @@ import Demo from "../examples/alert-demo";
 const meta = {
   title: "UI/Alert",
   component: Alert,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
     docs: {
@@ -19,14 +18,19 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+} satisfies Meta<typeof Alert>;
 
 export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Alert> = {
   args: { variant: "default", className: "" },
-  argTypes: { variant: { control: "select", options: ["default", "destructive"] } },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["default", "destructive", "info", "success", "warning"],
+    },
+  },
   render: (args) => (
     <Alert {...args} className={`w-96 ${args.className ?? ""}`}>
       <InfoIcon />

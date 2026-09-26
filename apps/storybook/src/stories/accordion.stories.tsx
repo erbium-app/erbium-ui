@@ -21,7 +21,7 @@ const meta = {
 } satisfies Meta<typeof Accordion>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Accordion> = {
   args: { defaultValue: ["one"], multiple: false },
