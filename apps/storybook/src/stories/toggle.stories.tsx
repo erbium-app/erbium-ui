@@ -24,6 +24,16 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Toggle> = {
+  args: { variant: "default", size: "default", defaultPressed: false, className: "" },
+  argTypes: {
+    variant: { control: "select", options: ["default", "outline"] },
+    size: { control: "select", options: ["default", "sm", "lg"] },
+    defaultPressed: { control: "boolean" },
+  },
+  render: (args) => <Toggle {...args}>Toggle</Toggle>,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

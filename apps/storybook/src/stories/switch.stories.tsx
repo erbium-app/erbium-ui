@@ -24,6 +24,12 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Switch> = {
+  args: { defaultChecked: false, disabled: false, className: "" },
+  argTypes: { defaultChecked: { control: "boolean" }, disabled: { control: "boolean" } },
+  render: (args) => <Switch key={String(args.defaultChecked)} {...args} />,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

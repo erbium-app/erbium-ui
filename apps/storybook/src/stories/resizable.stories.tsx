@@ -1,3 +1,8 @@
+import {
+  ResizablePanel,
+  ResizableHandle,
+  ResizablePanelGroup,
+} from "@erbium/ui/components/resizable";
 import ExampleResizableVertical from "../examples/resizable-vertical";
 import ExampleResizableHandle from "../examples/resizable-handle";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -19,6 +24,22 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof ResizablePanelGroup> = {
+  args: { orientation: "horizontal" },
+  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+  render: (args) => (
+    <ResizablePanelGroup {...args} className="h-48 w-80 rounded border">
+      <ResizablePanel defaultSize="50%" className="flex items-center justify-center">
+        First
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel defaultSize="50%" className="flex items-center justify-center">
+        Second
+      </ResizablePanel>
+    </ResizablePanelGroup>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

@@ -23,6 +23,15 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Textarea> = {
+  args: { placeholder: "Type here", disabled: false, rows: 3, className: "" },
+  argTypes: {
+    disabled: { control: "boolean" },
+    rows: { control: { type: "number", min: 1, max: 12 } },
+  },
+  render: (args) => <Textarea {...args} className={`w-72 ${args.className ?? ""}`} />,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

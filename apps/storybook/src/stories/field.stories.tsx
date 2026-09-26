@@ -1,3 +1,4 @@
+import { FieldDescription } from "@erbium/ui/components/field";
 import FieldGroupExample from "../examples/upstream/field-group";
 import { FieldResponsive } from "../examples/upstream/field-responsive";
 import ExampleFieldInput from "../examples/field-input";
@@ -33,6 +34,20 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Field> = {
+  args: { orientation: "vertical" },
+  argTypes: {
+    orientation: { control: "select", options: ["vertical", "horizontal", "responsive"] },
+  },
+  render: (args) => (
+    <Field {...args} className="w-80">
+      <FieldLabel htmlFor="playground-field">Email</FieldLabel>
+      <input id="playground-field" className="rounded border p-2" placeholder="name@example.com" />
+      <FieldDescription>We will use this to contact you.</FieldDescription>
+    </Field>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

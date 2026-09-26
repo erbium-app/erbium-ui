@@ -27,6 +27,21 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Card> = {
+  args: { size: "default", className: "" },
+  argTypes: { size: { control: "select", options: ["default", "sm"] } },
+  render: (args) => (
+    <Card {...args} className={`w-80 ${args.className ?? ""}`}>
+      <CardHeader>
+        <CardTitle>Card title</CardTitle>
+        <CardDescription>Card description</CardDescription>
+      </CardHeader>
+      <CardContent>Card content</CardContent>
+      <CardFooter>Card footer</CardFooter>
+    </Card>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

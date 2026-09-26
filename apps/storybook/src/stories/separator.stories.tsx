@@ -23,6 +23,23 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Separator> = {
+  args: { orientation: "horizontal", className: "" },
+  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+  render: (args) => (
+    <div className="flex h-28 w-72 items-center justify-center">
+      <Separator
+        {...args}
+        className={
+          args.orientation === "vertical"
+            ? `h-full ${typeof args.className === "string" ? args.className : ""}`
+            : `w-full ${typeof args.className === "string" ? args.className : ""}`
+        }
+      />
+    </div>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

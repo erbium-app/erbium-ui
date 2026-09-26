@@ -1,3 +1,4 @@
+import { ItemContent, ItemTitle, ItemDescription } from "@erbium/ui/components/item";
 import { ItemImage } from "../examples/upstream/item-image";
 import { ItemHeaderDemo } from "../examples/upstream/item-header";
 import ExampleItemVariant from "../examples/item-variant";
@@ -28,6 +29,22 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Item> = {
+  args: { variant: "default", size: "default", className: "" },
+  argTypes: {
+    variant: { control: "select", options: ["default", "outline", "muted"] },
+    size: { control: "select", options: ["default", "sm", "xs"] },
+  },
+  render: (args) => (
+    <Item {...args} className={`w-80 ${args.className ?? ""}`}>
+      <ItemContent>
+        <ItemTitle>Item title</ItemTitle>
+        <ItemDescription>Item description</ItemDescription>
+      </ItemContent>
+    </Item>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

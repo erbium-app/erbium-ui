@@ -25,6 +25,12 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Spinner> = {
+  args: { className: "size-6" },
+  argTypes: {},
+  render: (args) => <Spinner {...args} />,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

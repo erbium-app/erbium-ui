@@ -20,6 +20,19 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof AspectRatio> = {
+  args: { ratio: 16 / 9, className: "" },
+  argTypes: { ratio: { control: { type: "number", min: 0.25, max: 4, step: 0.25 } } },
+  render: (args) => (
+    <AspectRatio
+      {...args}
+      className={`w-80 overflow-hidden rounded-md bg-muted ${args.className ?? ""}`}
+    >
+      <div className="flex size-full items-center justify-center">Content at {args.ratio}:1</div>
+    </AspectRatio>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

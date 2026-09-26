@@ -26,6 +26,17 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Checkbox> = {
+  args: { defaultChecked: false, disabled: false },
+  argTypes: { defaultChecked: { control: "boolean" }, disabled: { control: "boolean" } },
+  render: (args) => (
+    <div className="flex items-center gap-2">
+      <Checkbox key={String(args.defaultChecked)} {...args} id="playground-checkbox" />
+      <label htmlFor="playground-checkbox">Accept terms</label>
+    </div>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

@@ -3,14 +3,8 @@ import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import { cn } from "../lib/utils";
 
 import { Button } from "./button";
-import {
-  XIcon,
-  CircleCheckIcon,
-  InfoIcon,
-  TriangleAlertIcon,
-  OctagonXIcon,
-  Loader2Icon,
-} from "lucide-react";
+import { Spinner } from "./spinner";
+import { XIcon, CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon } from "lucide-react";
 
 // cspell:ignore frontmost
 
@@ -154,7 +148,7 @@ function ToastIcon({ type }: { type: string | undefined }) {
   }
 
   if (type === "loading") {
-    icon = <Loader2Icon className="animate-spin" aria-hidden="true" />;
+    icon = <Spinner aria-hidden="true" />;
   }
 
   if (!icon) {

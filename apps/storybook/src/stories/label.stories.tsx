@@ -1,3 +1,4 @@
+import { Input } from "@erbium/ui/components/input";
 import FieldDemo from "../examples/upstream/field-demo";
 import ExampleFieldDemo from "../examples/field-demo";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -21,6 +22,17 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Label> = {
+  args: { children: "Email address", htmlFor: "playground-email", className: "" },
+  argTypes: {},
+  render: (args) => (
+    <div className="grid gap-2">
+      <Label {...args} />
+      <Input id="playground-email" placeholder="name@example.com" />
+    </div>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

@@ -24,6 +24,12 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Kbd> = {
+  args: { children: "⌘ K", className: "" },
+  argTypes: {},
+  render: (args) => <Kbd {...args} />,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

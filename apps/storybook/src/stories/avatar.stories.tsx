@@ -29,6 +29,16 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Avatar> = {
+  args: { size: "default", className: "" },
+  argTypes: { size: { control: "select", options: ["default", "sm", "lg"] } },
+  render: (args) => (
+    <Avatar {...args}>
+      <AvatarFallback>AN</AvatarFallback>
+    </Avatar>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

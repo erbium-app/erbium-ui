@@ -4,7 +4,7 @@ import { MessageHeaderFooterDemo } from "../examples/upstream/message-header-foo
 import { MessageActionsDemo } from "../examples/upstream/message-actions";
 import { MessageAttachmentDemo } from "../examples/upstream/message-attachment";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Message } from "@erbium/ui/components/message";
+import { Message, MessageContent } from "@erbium/ui/components/message";
 import Demo from "../examples/message-demo";
 
 const meta = {
@@ -24,6 +24,16 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Message> = {
+  args: { align: "start", className: "" },
+  argTypes: { align: { control: "select", options: ["start", "end"] } },
+  render: (args) => (
+    <Message {...args} className={`w-80 ${args.className ?? ""}`}>
+      <MessageContent>Message content</MessageContent>
+    </Message>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

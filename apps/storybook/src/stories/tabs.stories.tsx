@@ -3,7 +3,7 @@ import { TabsVertical } from "../examples/upstream/tabs-vertical";
 import { TabsDisabled } from "../examples/upstream/tabs-disabled";
 import { TabsIcons } from "../examples/upstream/tabs-icons";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Tabs } from "@erbium/ui/components/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@erbium/ui/components/tabs";
 import Demo from "../examples/tabs-demo";
 
 const meta = {
@@ -23,6 +23,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Tabs> = {
+  args: { defaultValue: "one", orientation: "horizontal" },
+  argTypes: {
+    defaultValue: { control: "select", options: ["one", "two"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+  },
+  render: (args) => (
+    <Tabs key={args.defaultValue} {...args} className="w-72">
+      <TabsList>
+        <TabsTrigger value="one">First</TabsTrigger>
+        <TabsTrigger value="two">Second</TabsTrigger>
+      </TabsList>
+      <TabsContent value="one">First panel</TabsContent>
+      <TabsContent value="two">Second panel</TabsContent>
+    </Tabs>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

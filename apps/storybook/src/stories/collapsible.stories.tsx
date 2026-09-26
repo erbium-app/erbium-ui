@@ -1,3 +1,4 @@
+import { CollapsibleTrigger, CollapsibleContent } from "@erbium/ui/components/collapsible";
 import { CollapsibleSettings } from "../examples/upstream/collapsible-settings";
 import { CollapsibleBasic } from "../examples/upstream/collapsible-basic";
 import { CollapsibleFileTree } from "../examples/upstream/collapsible-file-tree";
@@ -22,6 +23,17 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Collapsible> = {
+  args: { defaultOpen: true, disabled: false },
+  argTypes: { defaultOpen: { control: "boolean" }, disabled: { control: "boolean" } },
+  render: (args) => (
+    <Collapsible key={String(args.defaultOpen)} {...args} className="w-72">
+      <CollapsibleTrigger className="rounded border p-2">Show details</CollapsibleTrigger>
+      <CollapsibleContent className="p-2">More information is available here.</CollapsibleContent>
+    </Collapsible>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

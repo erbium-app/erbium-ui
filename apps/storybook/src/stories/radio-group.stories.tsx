@@ -4,7 +4,7 @@ import { RadioGroupFieldset } from "../examples/upstream/radio-group-fieldset";
 import { RadioGroupDisabled } from "../examples/upstream/radio-group-disabled";
 import { RadioGroupInvalid } from "../examples/upstream/radio-group-invalid";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { RadioGroup } from "@erbium/ui/components/radio-group";
+import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import Demo from "../examples/radio-group-demo";
 
 const meta = {
@@ -24,6 +24,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof RadioGroup> = {
+  args: { defaultValue: "one", disabled: false },
+  argTypes: {
+    defaultValue: { control: "select", options: ["one", "two", "three"] },
+    disabled: { control: "boolean" },
+  },
+  render: (args) => (
+    <RadioGroup key={args.defaultValue} {...args} className="grid gap-2">
+      {["one", "two", "three"].map((value) => (
+        <label key={value} className="flex items-center gap-2">
+          <RadioGroupItem value={value} />
+          {value}
+        </label>
+      ))}
+    </RadioGroup>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

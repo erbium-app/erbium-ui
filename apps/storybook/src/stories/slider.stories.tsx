@@ -24,6 +24,20 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Slider> = {
+  args: { defaultValue: [50], min: 0, max: 100, step: 1, disabled: false },
+  argTypes: {
+    min: { control: "number" },
+    max: { control: "number" },
+    step: { control: "number" },
+    disabled: { control: "boolean" },
+    defaultValue: { control: "object" },
+  },
+  render: (args) => (
+    <Slider key={JSON.stringify(args.defaultValue)} {...args} className="w-64" aria-label="Value" />
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

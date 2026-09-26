@@ -1,3 +1,8 @@
+import {
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+} from "@erbium/ui/components/pagination";
 import { PaginationSimple } from "../examples/upstream/pagination-simple";
 import { PaginationIconsOnly } from "../examples/upstream/pagination-icons-only";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -21,6 +26,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Pagination> = {
+  args: { className: "" },
+  argTypes: { className: { control: "text" } },
+  render: (args) => (
+    <Pagination {...args}>
+      <PaginationContent>
+        {[1, 2, 3].map((page) => (
+          <PaginationItem key={page}>
+            <PaginationLink href="#" isActive={page === 2}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+      </PaginationContent>
+    </Pagination>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

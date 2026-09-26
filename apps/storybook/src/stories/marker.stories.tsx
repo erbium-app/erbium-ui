@@ -27,6 +27,17 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Marker> = {
+  args: { variant: "default", className: "" },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["default", "separator", "border"],
+    },
+  },
+  render: (args) => <Marker {...args}>Marker</Marker>,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

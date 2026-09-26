@@ -32,6 +32,18 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Input> = {
+  args: { type: "text", placeholder: "Type here", disabled: false, className: "" },
+  argTypes: {
+    type: {
+      control: "select",
+      options: ["text", "email", "password", "number", "search", "date", "file"],
+    },
+    disabled: { control: "boolean" },
+  },
+  render: (args) => <Input {...args} className={`w-72 ${args.className ?? ""}`} />,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

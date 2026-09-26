@@ -24,6 +24,18 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Alert> = {
+  args: { variant: "default", className: "" },
+  argTypes: { variant: { control: "select", options: ["default", "destructive"] } },
+  render: (args) => (
+    <Alert {...args} className={`w-96 ${args.className ?? ""}`}>
+      <InfoIcon />
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>You can add components with the CLI.</AlertDescription>
+    </Alert>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

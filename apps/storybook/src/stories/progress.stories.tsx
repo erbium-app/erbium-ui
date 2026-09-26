@@ -1,3 +1,4 @@
+import { ProgressTrack, ProgressIndicator } from "@erbium/ui/components/progress";
 import { ProgressWithLabel } from "../examples/upstream/progress-label";
 import { ProgressControlled } from "../examples/upstream/progress-controlled";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -21,6 +22,21 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Progress> = {
+  args: { value: 45, className: "" },
+  argTypes: { value: { control: { type: "range", min: 0, max: 100, step: 1 } } },
+  render: (args) => (
+    <Progress
+      {...args}
+      className={`w-72 ${typeof args.className === "string" ? args.className : ""}`}
+    >
+      <ProgressTrack>
+        <ProgressIndicator />
+      </ProgressTrack>
+    </Progress>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

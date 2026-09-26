@@ -21,6 +21,24 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof ScrollArea> = {
+  args: { fade: "vertical", scrollbar: "thin", scrollbarVisibility: "always" },
+  argTypes: {
+    fade: { control: "select", options: ["vertical", "horizontal", false] },
+    scrollbar: { control: "select", options: ["thin", "default", "none"] },
+    scrollbarVisibility: { control: "select", options: ["always", "hover", "scroll"] },
+  },
+  render: (args) => (
+    <ScrollArea {...args} className="h-40 w-72 rounded border">
+      <div className="space-y-2 p-4">
+        {Array.from({ length: 12 }, (_, index) => (
+          <p key={index}>Scrollable row {index + 1}</p>
+        ))}
+      </div>
+    </ScrollArea>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

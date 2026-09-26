@@ -5,7 +5,7 @@ import ExampleToggleGroupOutline from "../examples/toggle-group-outline";
 import ExampleToggleGroupSpacing from "../examples/toggle-group-spacing";
 import ExampleToggleGroupDisabled from "../examples/toggle-group-disabled";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { ToggleGroup } from "@erbium/ui/components/toggle-group";
+import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
 import Demo from "../examples/toggle-group-demo";
 
 const meta = {
@@ -25,6 +25,30 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof ToggleGroup> = {
+  args: {
+    variant: "default",
+    size: "default",
+    spacing: 2,
+    orientation: "horizontal",
+    multiple: false,
+  },
+  argTypes: {
+    variant: { control: "select", options: ["default", "outline"] },
+    size: { control: "select", options: ["default", "sm", "lg"] },
+    spacing: { control: { type: "range", min: 0, max: 8, step: 1 } },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    multiple: { control: "boolean" },
+  },
+  render: (args) => (
+    <ToggleGroup {...args}>
+      <ToggleGroupItem value="one">One</ToggleGroupItem>
+      <ToggleGroupItem value="two">Two</ToggleGroupItem>
+      <ToggleGroupItem value="three">Three</ToggleGroupItem>
+    </ToggleGroup>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

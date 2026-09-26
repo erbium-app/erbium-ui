@@ -30,6 +30,17 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof ButtonGroup> = {
+  args: { orientation: "horizontal" },
+  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+  render: (args) => (
+    <ButtonGroup {...args}>
+      <button className="rounded border px-3 py-2">First</button>
+      <button className="rounded border px-3 py-2">Second</button>
+    </ButtonGroup>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

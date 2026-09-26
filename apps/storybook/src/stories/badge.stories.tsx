@@ -24,6 +24,17 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Badge> = {
+  args: { variant: "default", children: "Badge", className: "" },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["default", "secondary", "destructive", "outline", "ghost", "link"],
+    },
+  },
+  render: (args) => <Badge {...args} />,
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

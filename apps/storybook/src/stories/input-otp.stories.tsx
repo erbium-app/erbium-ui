@@ -7,7 +7,7 @@ import { InputOTPForm } from "../examples/upstream/input-otp-form";
 import ExampleInputOtpSeparator from "../examples/input-otp-separator";
 import ExampleInputOtpControlled from "../examples/input-otp-controlled";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { InputOTP } from "@erbium/ui/components/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@erbium/ui/components/input-otp";
 import Demo from "../examples/input-otp-demo";
 
 const meta = {
@@ -27,6 +27,23 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof InputOTP> = {
+  args: { maxLength: 6, disabled: false },
+  argTypes: {
+    maxLength: { control: { type: "number", min: 1, max: 8 } },
+    disabled: { control: "boolean" },
+  },
+  render: (args) => (
+    <InputOTP maxLength={args.maxLength} disabled={args.disabled}>
+      <InputOTPGroup>
+        {Array.from({ length: args.maxLength ?? 6 }, (_, index) => (
+          <InputOTPSlot key={index} index={index} />
+        ))}
+      </InputOTPGroup>
+    </InputOTP>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

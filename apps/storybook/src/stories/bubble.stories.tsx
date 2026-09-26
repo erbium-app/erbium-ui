@@ -1,3 +1,4 @@
+import { BubbleContent } from "@erbium/ui/components/bubble";
 import { BubbleVariantsDemo } from "../examples/upstream/bubble-variants";
 import { BubbleLinkButtonDemo } from "../examples/upstream/bubble-link-button";
 import { BubbleReactionsDemo } from "../examples/upstream/bubble-reactions";
@@ -27,6 +28,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Bubble> = {
+  args: { variant: "default", align: "start", className: "" },
+  argTypes: {
+    variant: {
+      control: "select",
+      options: ["default", "secondary", "muted", "tinted", "outline", "ghost", "destructive"],
+    },
+    align: { control: "select", options: ["start", "end"] },
+  },
+  render: (args) => (
+    <div className="flex w-80 flex-col">
+      <Bubble {...args}>
+        <BubbleContent>How can I help you?</BubbleContent>
+      </Bubble>
+    </div>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

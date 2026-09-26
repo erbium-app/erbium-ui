@@ -1,3 +1,9 @@
+import {
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@erbium/ui/components/carousel";
 import CarouselDApiDemo from "../examples/upstream/carousel-api";
 import CarouselPlugin from "../examples/upstream/carousel-plugin";
 import ExampleCarouselSize from "../examples/carousel-size";
@@ -25,6 +31,24 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Carousel> = {
+  args: { orientation: "horizontal" },
+  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+  render: (args) => (
+    <Carousel {...args} className="w-72">
+      <CarouselContent>
+        {[1, 2, 3].map((item) => (
+          <CarouselItem key={item}>
+            <div className="flex h-32 items-center justify-center rounded border">Slide {item}</div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

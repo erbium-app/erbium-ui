@@ -1,3 +1,4 @@
+import { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from "@erbium/ui/components/empty";
 import { EmptyMuted } from "../examples/upstream/empty-background";
 import EmptyOutline from "../examples/upstream/empty-outline";
 import EmptyInputGroup from "../examples/upstream/empty-input-group";
@@ -25,6 +26,20 @@ const meta = {
 
 export default meta;
 type Story = StoryObj;
+
+export const Playground: StoryObj<typeof Empty> = {
+  args: { className: "" },
+  argTypes: { className: { control: "text" } },
+  render: (args) => (
+    <Empty {...args} className={`w-80 ${args.className ?? ""}`}>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">☆</EmptyMedia>
+        <EmptyTitle>No results</EmptyTitle>
+        <EmptyDescription>Try another search.</EmptyDescription>
+      </EmptyHeader>
+    </Empty>
+  ),
+};
 
 export const Overview: Story = {
   parameters: {

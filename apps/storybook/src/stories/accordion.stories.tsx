@@ -22,6 +22,23 @@ const meta = {
 export default meta;
 type Story = StoryObj;
 
+export const Playground: StoryObj<typeof Accordion> = {
+  args: { defaultValue: ["one"], multiple: false },
+  argTypes: { multiple: { control: "boolean" } },
+  render: (args) => (
+    <Accordion {...args} className="w-80">
+      <AccordionItem value="one">
+        <AccordionTrigger>First question</AccordionTrigger>
+        <AccordionContent>First answer</AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="two">
+        <AccordionTrigger>Second question</AccordionTrigger>
+        <AccordionContent>Second answer</AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
+};
+
 export const Overview: Story = {
   parameters: {
     docs: {

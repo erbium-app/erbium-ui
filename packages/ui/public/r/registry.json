@@ -792,7 +792,6 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "Erbium spinner component.",
-      "dependencies": ["lucide-react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -923,7 +922,7 @@
       "title": "Toast",
       "description": "Erbium toast component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/spinner", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/toast.tsx",
