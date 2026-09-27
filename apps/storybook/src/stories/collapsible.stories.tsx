@@ -1,4 +1,5 @@
 import { CollapsibleTrigger, CollapsibleContent } from "@erbium/ui/components/collapsible";
+import { Button } from "@erbium/ui/components/button";
 import { CollapsibleSettings } from "../examples/upstream/collapsible-settings";
 import { CollapsibleBasic } from "../examples/upstream/collapsible-basic";
 import { CollapsibleFileTree } from "../examples/upstream/collapsible-file-tree";
@@ -14,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'An interactive component which expands/collapses a panel.\n\n**Import:** `@erbium/ui/components/collapsible`  \n\n**shadcn/ui page:** [Collapsible](https://ui.shadcn.com/docs/components/base/collapsible)\n\n### Usage\n\n```tsx\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from "@erbium/ui/components/collapsible"\n```\n\n```tsx\n<Collapsible>\n  <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>\n  <CollapsibleContent>\n    Yes. Free to use for personal and commercial projects. No attribution\n    required.\n  </CollapsibleContent>\n</Collapsible>\n```\n\n### Composition\n\nUse the following composition to build a `Collapsible`:\n\n```text\nCollapsible\n├── CollapsibleTrigger\n└── CollapsibleContent\n```',
+          'An interactive component which expands/collapses a panel.\n\n**Import:** `@erbium/ui/components/collapsible`  \n\n**shadcn/ui page:** [Collapsible](https://ui.shadcn.com/docs/components/base/collapsible)\n\n### Usage\n\n```tsx\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from "@erbium/ui/components/collapsible"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<Collapsible>\n  <CollapsibleTrigger render={<Button variant="outline">Can I use this in my project?</Button>} />\n  <CollapsibleContent>\n    Yes. Free to use for personal and commercial projects. No attribution\n    required.\n  </CollapsibleContent>\n</Collapsible>\n```\n\n### Composition\n\nUse the following composition to build a `Collapsible`:\n\n```text\nCollapsible\n├── CollapsibleTrigger\n└── CollapsibleContent\n```',
       },
     },
   },
@@ -28,7 +29,7 @@ export const Playground: StoryObj<typeof Collapsible> = {
   argTypes: { defaultOpen: { control: "boolean" }, disabled: { control: "boolean" } },
   render: (args) => (
     <Collapsible key={String(args.defaultOpen)} {...args} className="w-72">
-      <CollapsibleTrigger className="rounded border p-2">Show details</CollapsibleTrigger>
+      <CollapsibleTrigger render={<Button variant="outline">Show details</Button>} />
       <CollapsibleContent className="p-2">More information is available here.</CollapsibleContent>
     </Collapsible>
   ),
@@ -90,7 +91,7 @@ export const ControlledState: Story = {
     docs: {
       description: {
         story:
-          'Use the `open` and `onOpenChange` props to control the state.\n\n```tsx\nimport * as React from "react"\n\nexport function Example() {\n  const [open, setOpen] = React.useState(false)\n\n  return (\n    <Collapsible open={open} onOpenChange={setOpen}>\n      <CollapsibleTrigger>Toggle</CollapsibleTrigger>\n      <CollapsibleContent>Content</CollapsibleContent>\n    </Collapsible>\n  )\n}\n```',
+          'Use the `open` and `onOpenChange` props to control the state.\n\n```tsx\nimport * as React from "react"\n\nexport function Example() {\n  const [open, setOpen] = React.useState(false)\n\n  return (\n    <Collapsible open={open} onOpenChange={setOpen}>\n      <CollapsibleTrigger render={<Button variant="outline">Toggle</Button>} />\n      <CollapsibleContent>Content</CollapsibleContent>\n    </Collapsible>\n  )\n}\n```',
       },
       source: {
         code: 'import * as React from "react";\nimport { ChevronsUpDown } from "lucide-react";\n\nimport { Button } from "@erbium/ui/components/button";\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from "@erbium/ui/components/collapsible";\n\nexport default function CollapsibleDemo() {\n  const [isOpen, setIsOpen] = React.useState(false);\n\n  return (\n    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex w-[350px] flex-col gap-2">\n      <div className="flex items-center justify-between gap-4 px-4">\n        <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>\n        <CollapsibleTrigger\n          render={\n            <Button variant="ghost" size="icon" className="size-8">\n              <ChevronsUpDown />\n              <span className="sr-only">Toggle</span>\n            </Button>\n          }\n        />\n      </div>\n      <div className="rounded-md border px-4 py-2 font-mono text-sm">@radix-ui/primitives</div>\n      <CollapsibleContent className="flex flex-col gap-2">\n        <div className="rounded-md border px-4 py-2 font-mono text-sm">@radix-ui/colors</div>\n        <div className="rounded-md border px-4 py-2 font-mono text-sm">@stitches/react</div>\n      </CollapsibleContent>\n    </Collapsible>\n  );\n}\n',

@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'For sighted users to preview content available behind a link.\n\n**Import:** `@erbium/ui/components/hover-card`  \n\n**shadcn/ui page:** [Hover Card](https://ui.shadcn.com/docs/components/base/hover-card)\n\n### Usage\n\n```tsx\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from "@erbium/ui/components/hover-card"\n```\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger>Hover</HoverCardTrigger>\n  <HoverCardContent>\n    The React Framework – created and maintained by @vercel.\n  </HoverCardContent>\n</HoverCard>\n```\n\n### Composition\n\nUse the following composition to build a `HoverCard`:\n\n```text\nHoverCard\n├── HoverCardTrigger\n└── HoverCardContent\n```',
+          'For sighted users to preview content available behind a link.\n\n**Import:** `@erbium/ui/components/hover-card`  \n\n**shadcn/ui page:** [Hover Card](https://ui.shadcn.com/docs/components/base/hover-card)\n\n### Usage\n\n```tsx\nimport {\n  HoverCard,\n  HoverCardContent,\n  HoverCardTrigger,\n} from "@erbium/ui/components/hover-card"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger render={<Button variant="link">Hover</Button>} />\n  <HoverCardContent>\n    The React Framework – created and maintained by @vercel.\n  </HoverCardContent>\n</HoverCard>\n```\n\n### Composition\n\nUse the following composition to build a `HoverCard`:\n\n```text\nHoverCard\n├── HoverCardTrigger\n└── HoverCardContent\n```',
       },
     },
   },
@@ -38,7 +38,7 @@ export const Playground: StoryObj<{
   },
   render: (args) => (
     <HoverCard key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
-      <HoverCardTrigger>Hover for card</HoverCardTrigger>
+      <HoverCardTrigger render={<Button variant="link">Hover for card</Button>} />
       <HoverCardContent side={args.side} align={args.align} sideOffset={args.sideOffset}>
         Preview content
       </HoverCardContent>
@@ -90,7 +90,7 @@ export const TriggerDelays: Story = {
     docs: {
       description: {
         story:
-          "Use `delay` and `closeDelay` on the trigger to control when the card opens and\n\ncloses.\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger delay={100} closeDelay={200}>\n    Hover\n  </HoverCardTrigger>\n  <HoverCardContent>Content</HoverCardContent>\n</HoverCard>\n```",
+          'Use `delay` and `closeDelay` on the trigger to control when the card opens and\n\ncloses.\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger delay={100} closeDelay={200} render={<Button variant="link">Hover</Button>} />\n  <HoverCardContent>Content</HoverCardContent>\n</HoverCard>\n```',
       },
     },
   },
@@ -109,7 +109,7 @@ export const Positioning: Story = {
     docs: {
       description: {
         story:
-          'Use the `side` and `align` props on `HoverCardContent` to control placement.\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger>Hover</HoverCardTrigger>\n  <HoverCardContent side="top" align="start">\n    Content\n  </HoverCardContent>\n</HoverCard>\n```',
+          'Use the `side` and `align` props on `HoverCardContent` to control placement.\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger render={<Button variant="link">Hover</Button>} />\n  <HoverCardContent side="top" align="start">\n    Content\n  </HoverCardContent>\n</HoverCard>\n```',
       },
     },
   },

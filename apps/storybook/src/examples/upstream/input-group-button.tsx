@@ -35,17 +35,25 @@ export default function InputGroupButtonExample() {
         </InputGroupAddon>
       </InputGroup>
       <InputGroup className="[--radius:9999px]">
-        <Popover>
-          <PopoverTrigger render={<InputGroupAddon />}>
-            <InputGroupButton variant="secondary" size="icon-xs">
-              <InfoIcon />
-            </InputGroupButton>
-          </PopoverTrigger>
-          <PopoverContent align="start" className="flex flex-col gap-1 rounded-xl text-sm">
-            <p className="font-medium">Your connection is not secure.</p>
-            <p>You should not enter any sensitive information on this site.</p>
-          </PopoverContent>
-        </Popover>
+        <InputGroupAddon>
+          <Popover>
+            <PopoverTrigger
+              render={
+                <InputGroupButton
+                  aria-label="Connection information"
+                  variant="secondary"
+                  size="icon-xs"
+                >
+                  <InfoIcon />
+                </InputGroupButton>
+              }
+            />
+            <PopoverContent align="start" className="flex flex-col gap-1 rounded-xl text-sm">
+              <p className="font-medium">Your connection is not secure.</p>
+              <p>You should not enter any sensitive information on this site.</p>
+            </PopoverContent>
+          </Popover>
+        </InputGroupAddon>
         <InputGroupAddon className="pl-1.5 text-muted-foreground">https://</InputGroupAddon>
         <InputGroupInput id="input-secure-19" />
         <InputGroupAddon align="inline-end">

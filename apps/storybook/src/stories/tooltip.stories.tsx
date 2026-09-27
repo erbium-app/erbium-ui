@@ -1,4 +1,5 @@
 import { Tooltip, TooltipTrigger, TooltipContent } from "@erbium/ui/components/tooltip";
+import { Button } from "@erbium/ui/components/button";
 import { TooltipDisabled } from "../examples/upstream/tooltip-disabled";
 import { TooltipKeyboard } from "../examples/upstream/tooltip-keyboard";
 import { TooltipSides } from "../examples/upstream/tooltip-sides";
@@ -14,7 +15,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.\n\n**Import:** `@erbium/ui/components/tooltip`  \n\n**shadcn/ui page:** [Tooltip](https://ui.shadcn.com/docs/components/base/tooltip)\n\n### Usage\n\n```tsx\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from "@erbium/ui/components/tooltip"\n```\n\n```tsx\n<Tooltip>\n  <TooltipTrigger>Hover</TooltipTrigger>\n  <TooltipContent>\n    <p>Add to library</p>\n  </TooltipContent>\n</Tooltip>\n```\n\n### Composition\n\nUse the following composition to build a `Tooltip`:\n\n```text\nTooltip\n├── TooltipTrigger\n└── TooltipContent\n```',
+          'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.\n\n**Import:** `@erbium/ui/components/tooltip`  \n\n**shadcn/ui page:** [Tooltip](https://ui.shadcn.com/docs/components/base/tooltip)\n\n### Usage\n\n```tsx\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipTrigger,\n} from "@erbium/ui/components/tooltip"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<Tooltip>\n  <TooltipTrigger render={<Button variant="outline">Hover</Button>} />\n  <TooltipContent>\n    <p>Add to library</p>\n  </TooltipContent>\n</Tooltip>\n```\n\n### Composition\n\nUse the following composition to build a `Tooltip`:\n\n```text\nTooltip\n├── TooltipTrigger\n└── TooltipContent\n```',
       },
     },
   },
@@ -38,7 +39,7 @@ export const Playground: StoryObj<{
   },
   render: (args) => (
     <Tooltip key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
-      <TooltipTrigger>Hover for tooltip</TooltipTrigger>
+      <TooltipTrigger render={<Button variant="outline">Hover for tooltip</Button>} />
       <TooltipContent side={args.side} align={args.align} sideOffset={args.sideOffset}>
         Helpful information
       </TooltipContent>

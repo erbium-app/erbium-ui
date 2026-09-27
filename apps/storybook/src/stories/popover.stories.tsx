@@ -6,6 +6,7 @@ import {
   PopoverTitle,
   PopoverDescription,
 } from "@erbium/ui/components/popover";
+import { Button } from "@erbium/ui/components/button";
 import { PopoverForm } from "../examples/upstream/popover-form";
 import { PopoverAlignments } from "../examples/upstream/popover-alignments";
 import { PopoverBasic } from "../examples/upstream/popover-basic";
@@ -21,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays rich content in a portal, triggered by a button.\n\n**Import:** `@erbium/ui/components/popover`  \n\n**shadcn/ui page:** [Popover](https://ui.shadcn.com/docs/components/base/popover)\n\n### Usage\n\n```tsx\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from "@erbium/ui/components/popover"\n```\n\n```tsx\n<Popover>\n  <PopoverTrigger render={<Button variant="outline" />}>\n    Open Popover\n  </PopoverTrigger>\n  <PopoverContent>\n    <PopoverHeader>\n      <PopoverTitle>Title</PopoverTitle>\n      <PopoverDescription>Description text here.</PopoverDescription>\n    </PopoverHeader>\n  </PopoverContent>\n</Popover>\n```\n\n### Composition\n\nUse the following composition to build a `Popover`:\n\n```text\nPopover\n├── PopoverTrigger\n└── PopoverContent\n```',
+          'Displays rich content in a portal, triggered by a button.\n\n**Import:** `@erbium/ui/components/popover`  \n\n**shadcn/ui page:** [Popover](https://ui.shadcn.com/docs/components/base/popover)\n\n### Usage\n\n```tsx\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from "@erbium/ui/components/popover"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<Popover>\n  <PopoverTrigger render={<Button variant="outline" />}>\n    Open Popover\n  </PopoverTrigger>\n  <PopoverContent>\n    <PopoverHeader>\n      <PopoverTitle>Title</PopoverTitle>\n      <PopoverDescription>Description text here.</PopoverDescription>\n    </PopoverHeader>\n  </PopoverContent>\n</Popover>\n```\n\n### Composition\n\nUse the following composition to build a `Popover`:\n\n```text\nPopover\n├── PopoverTrigger\n└── PopoverContent\n```',
       },
     },
   },
@@ -43,7 +44,7 @@ export const Playground: StoryObj<{
   },
   render: (args) => (
     <Popover key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
-      <PopoverTrigger>Open popover</PopoverTrigger>
+      <PopoverTrigger render={<Button variant="outline">Open popover</Button>} />
       <PopoverContent side={args.side} align={args.align}>
         <PopoverHeader>
           <PopoverTitle>Popover title</PopoverTitle>

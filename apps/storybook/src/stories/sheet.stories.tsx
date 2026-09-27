@@ -6,6 +6,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@erbium/ui/components/sheet";
+import { Button } from "@erbium/ui/components/button";
 import SheetNoCloseButton from "../examples/upstream/sheet-no-close-button";
 import ExampleSheetSide from "../examples/sheet-side";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
@@ -20,7 +21,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Extends the Dialog component to display content that complements the main content of the screen.\n\n**Import:** `@erbium/ui/components/sheet`  \n\n**shadcn/ui page:** [Sheet](https://ui.shadcn.com/docs/components/base/sheet)\n\n### Usage\n\n```tsx\nimport {\n  Sheet,\n  SheetClose,\n  SheetContent,\n  SheetDescription,\n  SheetFooter,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from "@erbium/ui/components/sheet"\n```\n\n```tsx\n<Sheet>\n  <SheetTrigger>Open</SheetTrigger>\n  <SheetContent>\n    <SheetHeader>\n      <SheetTitle>Are you absolutely sure?</SheetTitle>\n      <SheetDescription>This action cannot be undone.</SheetDescription>\n    </SheetHeader>\n  </SheetContent>\n</Sheet>\n```\n\n### Composition\n\nUse the following composition to build a `Sheet`:\n\n```text\nSheet\n├── SheetTrigger\n└── SheetContent\n    ├── SheetHeader\n    │   ├── SheetTitle\n    │   └── SheetDescription\n    └── SheetFooter\n```',
+          'Extends the Dialog component to display content that complements the main content of the screen.\n\n**Import:** `@erbium/ui/components/sheet`  \n\n**shadcn/ui page:** [Sheet](https://ui.shadcn.com/docs/components/base/sheet)\n\n### Usage\n\n```tsx\nimport {\n  Sheet,\n  SheetClose,\n  SheetContent,\n  SheetDescription,\n  SheetFooter,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from "@erbium/ui/components/sheet"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<Sheet>\n  <SheetTrigger render={<Button variant="outline">Open</Button>} />\n  <SheetContent>\n    <SheetHeader>\n      <SheetTitle>Are you absolutely sure?</SheetTitle>\n      <SheetDescription>This action cannot be undone.</SheetDescription>\n    </SheetHeader>\n  </SheetContent>\n</Sheet>\n```\n\n### Composition\n\nUse the following composition to build a `Sheet`:\n\n```text\nSheet\n├── SheetTrigger\n└── SheetContent\n    ├── SheetHeader\n    │   ├── SheetTitle\n    │   └── SheetDescription\n    └── SheetFooter\n```',
       },
     },
   },
@@ -42,7 +43,7 @@ export const Playground: StoryObj<{
   },
   render: (args) => (
     <Sheet key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
-      <SheetTrigger>Open sheet</SheetTrigger>
+      <SheetTrigger render={<Button variant="outline">Open sheet</Button>} />
       <SheetContent side={args.side} showCloseButton={args.showCloseButton}>
         <SheetHeader>
           <SheetTitle>Sheet title</SheetTitle>

@@ -4,6 +4,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@erbium/ui/components/dropdown-menu";
+import { Button } from "@erbium/ui/components/button";
 import { DropdownMenuBasic } from "../examples/upstream/dropdown-menu-basic";
 import { DropdownMenuSubmenu } from "../examples/upstream/dropdown-menu-submenu";
 import { DropdownMenuShortcuts } from "../examples/upstream/dropdown-menu-shortcuts";
@@ -27,7 +28,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays a menu to the user — such as a set of actions or functions — triggered by a button.\n\n**Import:** `@erbium/ui/components/dropdown-menu`  \n\n**shadcn/ui page:** [Dropdown Menu](https://ui.shadcn.com/docs/components/base/dropdown-menu)\n\n### Usage\n\n```tsx\nimport { Button } from "@erbium/ui/components/button"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from "@erbium/ui/components/dropdown-menu"\n```\n\n```tsx\n<DropdownMenu>\n  <DropdownMenuTrigger render={<Button variant="outline" />}>\n    Open\n  </DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuGroup>\n      <DropdownMenuLabel>My Account</DropdownMenuLabel>\n      <DropdownMenuItem>Profile</DropdownMenuItem>\n      <DropdownMenuItem>Billing</DropdownMenuItem>\n    </DropdownMenuGroup>\n    <DropdownMenuSeparator />\n    <DropdownMenuGroup>\n      <DropdownMenuItem>Team</DropdownMenuItem>\n      <DropdownMenuItem>Subscription</DropdownMenuItem>\n    </DropdownMenuGroup>\n  </DropdownMenuContent>\n</DropdownMenu>\n```\n\n### Composition\n\nUse the following composition to build a `DropdownMenu`:\n\n```text\nDropdownMenu\n├── DropdownMenuTrigger\n└── DropdownMenuContent\n    ├── DropdownMenuGroup\n    │   ├── DropdownMenuLabel\n    │   ├── DropdownMenuItem\n    │   └── DropdownMenuItem\n    ├── DropdownMenuSeparator\n    ├── DropdownMenuGroup\n    │   ├── DropdownMenuLabel\n    │   ├── DropdownMenuCheckboxItem\n    │   └── DropdownMenuCheckboxItem\n    ├── DropdownMenuSeparator\n    ├── DropdownMenuGroup\n    │   ├── DropdownMenuLabel\n    │   └── DropdownMenuRadioGroup\n    │       ├── DropdownMenuRadioItem\n    │       └── DropdownMenuRadioItem\n    └── DropdownMenuSub\n        ├── DropdownMenuSubTrigger\n        └── DropdownMenuSubContent\n            └── DropdownMenuGroup\n                ├── DropdownMenuLabel\n                ├── DropdownMenuItem\n                └── DropdownMenuItem\n```',
+          'Displays a menu to the user — such as a set of actions or functions — triggered by a button.\n\n**Import:** `@erbium/ui/components/dropdown-menu`  \n\n**shadcn/ui page:** [Dropdown Menu](https://ui.shadcn.com/docs/components/base/dropdown-menu)\n\n### Usage\n\n```tsx\nimport { Button } from "@erbium/ui/components/button"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from "@erbium/ui/components/dropdown-menu"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<DropdownMenu>\n  <DropdownMenuTrigger render={<Button variant="outline" />}>\n    Open\n  </DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuGroup>\n      <DropdownMenuLabel>My Account</DropdownMenuLabel>\n      <DropdownMenuItem>Profile</DropdownMenuItem>\n      <DropdownMenuItem>Billing</DropdownMenuItem>\n    </DropdownMenuGroup>\n    <DropdownMenuSeparator />\n    <DropdownMenuGroup>\n      <DropdownMenuItem>Team</DropdownMenuItem>\n      <DropdownMenuItem>Subscription</DropdownMenuItem>\n    </DropdownMenuGroup>\n  </DropdownMenuContent>\n</DropdownMenu>\n```\n\n### Composition\n\nUse the following composition to build a `DropdownMenu`:\n\n```text\nDropdownMenu\n├── DropdownMenuTrigger\n└── DropdownMenuContent\n    ├── DropdownMenuGroup\n    │   ├── DropdownMenuLabel\n    │   ├── DropdownMenuItem\n    │   └── DropdownMenuItem\n    ├── DropdownMenuSeparator\n    ├── DropdownMenuGroup\n    │   ├── DropdownMenuLabel\n    │   ├── DropdownMenuCheckboxItem\n    │   └── DropdownMenuCheckboxItem\n    ├── DropdownMenuSeparator\n    ├── DropdownMenuGroup\n    │   ├── DropdownMenuLabel\n    │   └── DropdownMenuRadioGroup\n    │       ├── DropdownMenuRadioItem\n    │       └── DropdownMenuRadioItem\n    └── DropdownMenuSub\n        ├── DropdownMenuSubTrigger\n        └── DropdownMenuSubContent\n            └── DropdownMenuGroup\n                ├── DropdownMenuLabel\n                ├── DropdownMenuItem\n                └── DropdownMenuItem\n```',
       },
     },
   },
@@ -49,7 +50,7 @@ export const Playground: StoryObj<{
   },
   render: (args) => (
     <DropdownMenu key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
-      <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={<Button variant="outline">Open menu</Button>} />
       <DropdownMenuContent side={args.side} align={args.align}>
         <DropdownMenuItem>Profile</DropdownMenuItem>
         <DropdownMenuItem>Settings</DropdownMenuItem>

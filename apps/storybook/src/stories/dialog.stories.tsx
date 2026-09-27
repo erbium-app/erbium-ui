@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@erbium/ui/components/dialog";
+import { Button } from "@erbium/ui/components/button";
 import { DialogNoCloseButton } from "../examples/upstream/dialog-no-close-button";
 import { DialogStickyFooter } from "../examples/upstream/dialog-sticky-footer";
 import { DialogScrollableContent } from "../examples/upstream/dialog-scrollable-content";
@@ -22,7 +23,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.\n\n**Import:** `@erbium/ui/components/dialog`  \n\n**shadcn/ui page:** [Dialog](https://ui.shadcn.com/docs/components/base/dialog)\n\n### Usage\n\n```tsx\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from "@erbium/ui/components/dialog"\n```\n\n```tsx\n<Dialog>\n  <DialogTrigger>Open</DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you absolutely sure?</DialogTitle>\n      <DialogDescription>\n        This action cannot be undone. This will permanently delete your account\n        and remove your data from our servers.\n      </DialogDescription>\n    </DialogHeader>\n  </DialogContent>\n</Dialog>\n```\n\n### Composition\n\nUse the following composition to build a `Dialog`:\n\n```text\nDialog\n├── DialogTrigger\n└── DialogContent\n    ├── DialogHeader\n    │   ├── DialogTitle\n    │   └── DialogDescription\n    └── DialogFooter\n```',
+          'A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.\n\n**Import:** `@erbium/ui/components/dialog`  \n\n**shadcn/ui page:** [Dialog](https://ui.shadcn.com/docs/components/base/dialog)\n\n### Usage\n\n```tsx\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from "@erbium/ui/components/dialog"\nimport {{ Button }} from "@erbium/ui/components/button"\n```\n\n```tsx\n<Dialog>\n  <DialogTrigger render={<Button variant="outline">Open</Button>} />\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Are you absolutely sure?</DialogTitle>\n      <DialogDescription>\n        This action cannot be undone. This will permanently delete your account\n        and remove your data from our servers.\n      </DialogDescription>\n    </DialogHeader>\n  </DialogContent>\n</Dialog>\n```\n\n### Composition\n\nUse the following composition to build a `Dialog`:\n\n```text\nDialog\n├── DialogTrigger\n└── DialogContent\n    ├── DialogHeader\n    │   ├── DialogTitle\n    │   └── DialogDescription\n    └── DialogFooter\n```',
       },
     },
   },
@@ -36,7 +37,7 @@ export const Playground: StoryObj<{ defaultOpen: boolean; showCloseButton: boole
   argTypes: { defaultOpen: { control: "boolean" }, showCloseButton: { control: "boolean" } },
   render: (args) => (
     <Dialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
-      <DialogTrigger>Open dialog</DialogTrigger>
+      <DialogTrigger render={<Button variant="outline">Open dialog</Button>} />
       <DialogContent showCloseButton={args.showCloseButton}>
         <DialogHeader>
           <DialogTitle>Dialog title</DialogTitle>
