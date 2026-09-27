@@ -24,6 +24,8 @@ const { title = "Erbium UI", description = "Composable React primitives for thou
           <p class="nav-label">Explore</p>
           <a class:list={{ "nav-link": true, active: Astro.url.pathname === "/docs" }} href="/docs">Introduction</a>
           <a class="nav-link" href="/docs/installation">Installation</a>
+          <p class="nav-label">Utilities</p>
+          <a class:list={{ "nav-link": true, active: Astro.url.pathname === "/docs/utilities/scroll-fade" }} href="/docs/utilities/scroll-fade">Scroll Fade</a>
           <p class="nav-label">Components</p>
           {componentGroups.map((group) => <div class="nav-group"><p class="group-label">{group.label}</p>{group.names.map((name) => { const component = components.find((item) => item.name === name); return component && <a class:list={{ "nav-link": true, active: Astro.url.pathname === `/docs/components/${name}` }} href={`/docs/components/${name}`}>{component.title}</a>; })}</div>)}
           <p class="nav-label">All components</p>
