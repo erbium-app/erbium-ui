@@ -3,7 +3,7 @@ import type { StorybookConfig } from "@storybook/tanstack-react";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
-  addons: ["@storybook/addon-docs"],
+  addons: ["@storybook/addon-docs", "@storybook/addon-themes"],
   framework: { name: "@storybook/tanstack-react", options: {} },
   viteFinal: (config) => {
     config.plugins = [
