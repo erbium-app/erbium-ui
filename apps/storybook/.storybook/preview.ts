@@ -4,6 +4,7 @@ import { createElement, Fragment } from "react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 import { Toaster } from "@erbium/ui/components/toast";
 import type { Preview } from "@storybook/tanstack-react";
+import { ThemeAwareDocsContainer } from "./docs-container";
 
 const preview: Preview = {
   tags: ["autodocs"],
@@ -19,6 +20,7 @@ const preview: Preview = {
   ],
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
+    docs: { container: ThemeAwareDocsContainer },
   },
 };
 export default preview;
