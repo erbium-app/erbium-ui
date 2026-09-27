@@ -1,0 +1,52 @@
+---
+import DocsLayout from "../../../layouts/DocsLayout.astro";
+import ScrollFadePreview from "../../../components/ScrollFadePreview";
+---
+
+<DocsLayout title="Scroll Fade" description="Scroll-aware fade utilities for scroll containers.">
+  <div class="component-header">
+    <p class="eyebrow">Utility</p>
+    <h1>Scroll Fade</h1>
+    <p class="lede">CSS utilities that fade the edges of overflowing content and follow the scroll position.</p>
+  </div>
+
+  <section class="demo-section">
+    <div class="section-label">Vertical scrolling</div>
+    <div class="demo"><ScrollFadePreview client:load /></div>
+  </section>
+
+  <section class="copy">
+    <h2>Install</h2>
+    <p>The utilities are included in Erbium's global stylesheet. Import it once in your app:</p>
+    <pre><code>@import "@erbium/ui/globals.css";</code></pre>
+
+    <h2>Use</h2>
+    <p>Apply <code>scroll-fade</code> to the element that owns vertical overflow, or <code>scroll-fade-x</code> to a horizontal scroller.</p>
+    <pre><code>{`<div className="scroll-fade h-48 overflow-y-auto">
+  {/* scrollable content */}
+</div>`}</code></pre>
+
+    <p>The fade dissolves the content through a CSS mask, so it works over any background. It tracks the scroll position with CSS scroll-driven animations and falls back to a static fade in browsers without support.</p>
+
+    <h2>Utilities</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Class</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><code>scroll-fade</code>, <code>scroll-fade-y</code></td><td>Top and bottom edges of a vertical scroller</td></tr>
+          <tr><td><code>scroll-fade-x</code></td><td>Start and end edges of a horizontal scroller, mirrored in RTL</td></tr>
+          <tr><td><code>scroll-fade-t/b/l/r</code></td><td>One physical edge</td></tr>
+          <tr><td><code>scroll-fade-s/e</code></td><td>One logical inline edge, mirrored in RTL</td></tr>
+          <tr><td><code>scroll-fade-6</code>, <code>scroll-fade-[15%]</code></td><td>Set the fade depth</td></tr>
+          <tr><td><code>scroll-fade-b-8</code>, <code>scroll-fade-t-[2rem]</code></td><td>Set an individual edge depth</td></tr>
+          <tr><td><code>scroll-fade-none</code></td><td>Remove the mask, including at responsive breakpoints</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Fade depth defaults to 12% of the container, capped at 40px. Set <code>[--scroll-fade-reveal:64px]</code> to change how far the scroller travels while a fade appears or disappears. Put card backgrounds and borders on a wrapper, with the fade class on the inner scroller.</p>
+  </section>
+</DocsLayout>
+
+<style>
+  .component-header{max-width:42rem}.eyebrow,.section-label{color:#c2410c;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.component-header h1{margin:.8rem 0;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.07em}.lede{color:#737373;font-size:1.05rem;line-height:1.7}.demo-section{margin-top:3rem}.section-label{color:#a8a29e;font-size:.68rem}.demo{margin-top:.8rem;padding:2rem;border:1px solid #e7e5e4;border-radius:1rem;background:#f5f5f4}.copy{max-width:48rem;margin-top:3rem;color:#525252;line-height:1.75}.copy h2{margin:2rem 0 .5rem;color:#171717;font-size:1.3rem;letter-spacing:-.03em}.copy pre{overflow:auto;padding:1rem;border-radius:.7rem;background:#1c1917;color:#e7e5e4;font:.8rem/1.7 var(--font-mono)}.copy code{font-family:var(--font-mono);font-size:.88em}.table-wrap{overflow-x:auto}.copy table{width:100%;border-collapse:collapse;font-size:.83rem}.copy th,.copy td{padding:.65rem .5rem;border-bottom:1px solid #e7e5e4;text-align:left;vertical-align:top}.copy th{color:#171717}
+</style>

@@ -1,0 +1,48 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+<DocsLayout title="Shimmer" description="CSS utilities for adding a shimmer effect to text.">
+  <div class="docs-intro">
+    <p class="eyebrow">Utilities</p>
+    <h1>Shimmer</h1>
+    <p class="lede">Add a soft animated highlight to text, useful for live status and streaming content.</p>
+  </div>
+
+  <div class="shimmer-demo" aria-label="Shimmer text preview">
+    <p class="shimmer text-muted-foreground">Generating response…</p>
+  </div>
+
+  <h2>Installation</h2>
+  <p class="body-copy">Import the Erbium UI global stylesheet once in your app. The shimmer utilities are included in it; no additional package is needed.</p>
+  <pre><code>import "@erbium/ui/globals.css";</code></pre>
+
+  <h2>Usage</h2>
+  <p class="body-copy">Add <code>shimmer</code> to any text element. It follows the element’s text color and adjusts automatically for dark mode.</p>
+  <pre><code>&lt;p className="shimmer text-muted-foreground"&gt;
+  Generating response…
+&lt;/p&gt;</code></pre>
+
+  <h2>Customize the effect</h2>
+  <p class="body-copy">Set the highlight color, sweep duration, band width, or angle with utility classes.</p>
+  <pre><code>&lt;p className="shimmer shimmer-color-blue-500/60 shimmer-duration-1000 shimmer-spread-24 shimmer-angle-45"&gt;
+  Generating response…
+&lt;/p&gt;</code></pre>
+  <ul class="utility-list">
+    <li><code>shimmer-once</code> plays one sweep.</li>
+    <li><code>shimmer-reverse</code> reverses the sweep direction.</li>
+    <li><code>shimmer-none</code> displays normal text, useful with responsive variants such as <code>md:shimmer-none</code>.</li>
+    <li>In RTL layouts, the sweep follows the reading direction automatically.</li>
+  </ul>
+  <p class="body-copy">The animation respects the user’s reduced-motion preference and renders as normal text when motion is reduced.</p>
+</DocsLayout>
+<style>
+  .docs-intro h1 { margin:.8rem 0; font-size:clamp(2.6rem,5vw,4.4rem); line-height:1; letter-spacing:-.065em; }
+  .eyebrow { color:#c2410c; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .lede,.body-copy { color:#737373; font-size:1.05rem; line-height:1.7; max-width:40rem; }
+  .main-content h2 { margin:2.7rem 0 1rem; font-size:1.2rem; }
+  .shimmer-demo { display:grid; min-height:8rem; place-items:center; margin:2rem 0; border:1px solid #e7e5e4; border-radius:.8rem; background:#fff; }
+  .shimmer-demo p { font-size:1.25rem; font-weight:600; }
+  pre { overflow:auto; margin:1rem 0; padding:1rem 1.2rem; border-radius:.7rem; background:#1c1917; color:#e7e5e4; font:.85rem/1.7 var(--font-mono); }
+  code { font-family:var(--font-mono); }
+  .utility-list { display:grid; gap:.65rem; padding-left:1.25rem; color:#737373; line-height:1.6; }
+</style>

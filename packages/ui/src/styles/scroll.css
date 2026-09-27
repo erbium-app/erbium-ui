@@ -166,6 +166,13 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   --scroll-fade-t: var(--_scroll-fade-size-t);
+
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-fade-reveal-t 1ms ease-in-out;
+    animation-timeline: scroll(self y);
+    animation-range: 0 var(--scroll-fade-reveal, calc(var(--spacing) * 24));
+    animation-fill-mode: both;
+  }
 }
 
 @utility scroll-fade-b {
@@ -184,6 +191,13 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   --scroll-fade-b: var(--_scroll-fade-size-b);
+
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-fade-reveal-b 1ms ease-in-out;
+    animation-timeline: scroll(self y);
+    animation-range: calc(100% - var(--scroll-fade-reveal, calc(var(--spacing) * 24))) 100%;
+    animation-fill-mode: both;
+  }
 }
 
 @utility scroll-fade-x {
@@ -217,6 +231,17 @@
   mask-repeat: no-repeat;
   --scroll-fade-s: var(--_scroll-fade-size-s);
   --scroll-fade-e: var(--_scroll-fade-size-e);
+
+  @supports (animation-timeline: scroll()) {
+    animation:
+      scroll-fade-reveal-s 1ms ease-in-out,
+      scroll-fade-reveal-e 1ms ease-in-out;
+    animation-timeline: scroll(self inline), scroll(self inline);
+    animation-range:
+      0 var(--scroll-fade-reveal, calc(var(--spacing) * 24)),
+      calc(100% - var(--scroll-fade-reveal, calc(var(--spacing) * 24))) 100%;
+    animation-fill-mode: both;
+  }
 }
 
 @utility scroll-fade-s {
@@ -241,6 +266,13 @@
   -webkit-mask-image: var(--scroll-fade-mask);
   mask-image: var(--scroll-fade-mask);
   --scroll-fade-s: var(--_scroll-fade-size-s);
+
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-fade-reveal-s 1ms ease-in-out;
+    animation-timeline: scroll(self inline);
+    animation-range: 0 var(--scroll-fade-reveal, calc(var(--spacing) * 24));
+    animation-fill-mode: both;
+  }
 }
 
 @utility scroll-fade-e {
@@ -265,6 +297,13 @@
   -webkit-mask-image: var(--scroll-fade-mask);
   mask-image: var(--scroll-fade-mask);
   --scroll-fade-e: var(--_scroll-fade-size-e);
+
+  @supports (animation-timeline: scroll()) {
+    animation: scroll-fade-reveal-e 1ms ease-in-out;
+    animation-timeline: scroll(self inline);
+    animation-range: calc(100% - var(--scroll-fade-reveal, calc(var(--spacing) * 24))) 100%;
+    animation-fill-mode: both;
+  }
 }
 
 @utility scroll-fade-none {
