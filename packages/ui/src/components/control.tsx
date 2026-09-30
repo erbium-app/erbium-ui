@@ -6,7 +6,14 @@ import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
-import { animate, motion, useMotionValue, useTransform } from "motion/react";
+import {
+  animate,
+  LayoutGroup,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useTransform,
+} from "motion/react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { cn } from "../lib/utils";
 
@@ -517,6 +524,69 @@ type BooleanProps = CommonProps & {
   name?: string;
 };
 
+type Option = { value: string; label: string };
+
+function SegmentedTrack({
+  id,
+  options,
+  value,
+  onValueChange,
+  disabled,
+  name,
+  className,
+}: {
+  id: string;
+  options: readonly Option[];
+  value?: string;
+  onValueChange?: (value: string) => void;
+  disabled?: boolean;
+  name?: string;
+  className?: string;
+}) {
+  const layoutId = React.useId();
+  const shouldReduceMotion = useReducedMotion();
+
+  return (
+    <LayoutGroup id={layoutId}>
+      <RadioGroupPrimitive
+        aria-labelledby={id}
+        value={value}
+        onValueChange={onValueChange}
+        disabled={disabled}
+        name={name}
+        className={cn(
+          "relative isolate ms-auto flex min-w-0 rounded-lg bg-surface-well p-[3px] shadow-well",
+          className,
+        )}
+      >
+        {options.map((option) => (
+          <RadioPrimitive.Root
+            key={option.value}
+            value={option.value}
+            className="relative min-h-6 min-w-0 rounded-md px-2 py-0.5 text-xs text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none"
+          >
+            {value === option.value && (
+              <motion.span
+                data-slot="control-segment-indicator"
+                aria-hidden="true"
+                layoutId="selection"
+                initial={false}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { type: "spring", stiffness: 400, damping: 35 }
+                }
+                className="pointer-events-none absolute inset-0 z-0 rounded-md border border-surface-rim bg-surface-control shadow-control"
+              />
+            )}
+            <span className="relative z-10 block truncate">{option.label}</span>
+          </RadioPrimitive.Root>
+        ))}
+      </RadioGroupPrimitive>
+    </LayoutGroup>
+  );
+}
+
 function Boolean({
   label,
   checked,
@@ -540,24 +610,18 @@ function Boolean({
         {label}
       </span>
       {presentation === "segments" ? (
-        <RadioGroupPrimitive
-          aria-labelledby={id}
+        <SegmentedTrack
+          id={id}
+          options={[
+            { value: "off", label: "Off" },
+            { value: "on", label: "On" },
+          ]}
           value={current ? "on" : "off"}
           onValueChange={(next) => change(next === "on")}
           disabled={disabled}
           name={name}
-          className="ms-auto flex shrink-0 rounded-md bg-surface-well p-0.5 shadow-well"
-        >
-          {(["off", "on"] as const).map((option) => (
-            <RadioPrimitive.Root
-              key={option}
-              value={option}
-              className="min-w-9 rounded-sm px-2 py-0.5 text-xs text-muted-foreground outline-none transition-[color,background-color,box-shadow] data-checked:bg-surface-control data-checked:text-foreground data-checked:shadow-control focus-visible:ring-2 focus-visible:ring-ring/60"
-            >
-              {option === "on" ? "On" : "Off"}
-            </RadioPrimitive.Root>
-          ))}
-        </RadioGroupPrimitive>
+          className="shrink-0 [&_[role=radio]]:min-w-9"
+        />
       ) : (
         <SwitchPrimitive.Root
           aria-labelledby={id}
@@ -574,7 +638,6 @@ function Boolean({
   );
 }
 
-type Option = { value: string; label: string };
 type ChoiceProps = CommonProps & {
   options: readonly Option[];
   value?: string;
@@ -594,30 +657,26 @@ function Segmented({
   name,
 }: ChoiceProps) {
   const id = React.useId();
+  const [local, setLocal] = React.useState(defaultValue);
+  const current = value ?? local;
+  const change = (next: string) => {
+    setLocal(next);
+    onValueChange?.(next);
+  };
   return (
     <div data-slot="control-segmented" className={cn(rowClass, className)}>
       <span id={id} className={labelClass}>
         {label}
       </span>
-      <RadioGroupPrimitive
-        aria-labelledby={id}
-        value={value}
-        defaultValue={defaultValue}
-        onValueChange={onValueChange}
+      <SegmentedTrack
+        id={id}
+        options={options}
+        value={current}
+        onValueChange={change}
         disabled={disabled}
         name={name}
-        className="ms-auto flex max-w-[65%] min-w-0 rounded-md bg-surface-well p-0.5 shadow-well"
-      >
-        {options.map((option) => (
-          <RadioPrimitive.Root
-            key={option.value}
-            value={option.value}
-            className="min-w-0 truncate rounded-sm px-2 py-0.5 text-xs text-muted-foreground outline-none transition-[color,background-color,box-shadow] data-checked:bg-surface-control data-checked:text-foreground data-checked:shadow-control focus-visible:ring-2 focus-visible:ring-ring/60"
-          >
-            {option.label}
-          </RadioPrimitive.Root>
-        ))}
-      </RadioGroupPrimitive>
+        className="max-w-[65%]"
+      />
     </div>
   );
 }
