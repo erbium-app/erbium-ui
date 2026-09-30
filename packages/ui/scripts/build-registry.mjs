@@ -102,7 +102,7 @@ const items = [];
 for (const [sourceFile, name] of itemBySource) {
   const directory = relative(sourceRoot, dirname(sourceFile)).split(sep)[0];
   const type =
-    directory === "components" && name !== "form"
+    directory === "components"
       ? "registry:ui"
       : directory === "hooks"
         ? "registry:hook"

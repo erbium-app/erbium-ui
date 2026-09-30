@@ -1144,13 +1144,8 @@
       "type": "registry:component",
       "title": "Form Demo",
       "description": "Erbium form demo example.",
-      "dependencies": ["@tanstack/react-pacer"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/form",
-        "@erbium/input",
-        "@erbium/stateful-button"
-      ],
+      "dependencies": ["@tanstack/react-form", "@tanstack/react-pacer"],
+      "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/stateful-button"],
       "files": [
         {
           "path": "registry/examples/form-demo.tsx",
@@ -2041,13 +2036,8 @@
       "type": "registry:component",
       "title": "Stateful Button Form",
       "description": "Erbium stateful button form example.",
-      "dependencies": ["@tanstack/react-pacer"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/form",
-        "@erbium/input",
-        "@erbium/stateful-button"
-      ],
+      "dependencies": ["@tanstack/react-form", "@tanstack/react-pacer"],
+      "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/stateful-button"],
       "files": [
         {
           "path": "registry/examples/stateful-button-form.tsx",

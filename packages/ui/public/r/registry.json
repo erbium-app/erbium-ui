@@ -476,20 +476,6 @@
       ]
     },
     {
-      "name": "form",
-      "type": "registry:lib",
-      "title": "Form",
-      "description": "Erbium form lib.",
-      "dependencies": ["@tanstack/react-form"],
-      "files": [
-        {
-          "path": "src/components/form.ts",
-          "type": "registry:lib",
-          "target": "~/src/components/form.ts"
-        }
-      ]
-    },
-    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
