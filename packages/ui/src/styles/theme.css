@@ -37,7 +37,7 @@
   --border: rgb(57 58 52 / 0.08);
   --input: rgb(57 58 52 / 0.12);
   --ring: #1c6b48;
-  --overlay-backdrop: rgb(0 0 0 / 0.1);
+  --overlay-backdrop: rgb(0 0 0 / 0.2);
   --chart-1: #1e754f;
   --chart-2: #296aa3;
   --chart-3: #2993a3;
@@ -189,7 +189,7 @@
   --border: rgb(222 220 213 / 0.08);
   --input: rgb(222 220 213 / 0.12);
   --ring: #4d9375;
-  --overlay-backdrop: rgb(0 0 0 / 0.1);
+  --overlay-backdrop: rgb(0 0 0 / 0.2);
   --chart-1: #4d9375;
   --chart-2: #6394bf;
   --chart-3: #5eaab5;
