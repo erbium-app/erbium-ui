@@ -67,12 +67,12 @@
   --surface-top: #2b2b2b;
   --surface-well: rgb(0 0 0 / 0.25);
 
-  --surface-edge: rgb(0 0 0 / 0.35);
-  --surface-rim: rgb(222 220 213 / 0.02);
-  --surface-highlight: rgb(222 220 213 / 0.06);
-  --surface-highlight-strong: rgb(222 220 213 / 0.09);
-  --surface-drop: rgb(0 0 0 / 0.22);
-  --surface-drop-strong: rgb(0 0 0 / 0.34);
+  --surface-edge: rgb(0 0 0 / 0.12);
+  --surface-rim: transparent;
+  --surface-highlight: rgb(222 220 213 / 0.1);
+  --surface-highlight-strong: rgb(222 220 213 / 0.13);
+  --surface-drop: rgb(0 0 0 / 0.3);
+  --surface-drop-strong: rgb(0 0 0 / 0.5);
   --surface-shade: rgb(0 0 0 / 0.35);
   --surface-well-edge: rgb(222 220 213 / 0.04);
 
@@ -98,7 +98,7 @@
     0 1px 2px -1px var(--surface-drop), 0 2px 6px -2px var(--surface-drop);
   --shadow-control:
     inset 0 1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
-    0 1px 1px -0.5px var(--surface-drop-strong), 0 2px 3px -1.5px var(--surface-drop);
+    0 1px 1px -0.5px var(--surface-drop-strong), 0 2px 4px -1px var(--surface-drop);
   --shadow-overlay:
     inset 0 1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 2px 4px -1px var(--surface-drop), 0 8px 16px -4px var(--surface-drop),
