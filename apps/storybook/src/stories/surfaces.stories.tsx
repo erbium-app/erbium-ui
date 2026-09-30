@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
+import { Button } from "@erbium/ui/components/button";
+import { ButtonGroup } from "@erbium/ui/components/button-group";
+import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
 import { Kbd } from "@erbium/ui/components/kbd";
 import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
 import BotIcon from "@hugeicons/core-free-icons/BotIcon";
@@ -30,11 +33,11 @@ function Canvas({ children }: { children: React.ReactNode }) {
 
 const ladder = [
   ["canvas", "bg-surface-canvas", "page"],
-  ["panel", "border border-surface-rim bg-surface-panel shadow-panel", "card, frame"],
-  ["control", "border border-surface-rim bg-surface-control shadow-control", "button, input"],
-  ["overlay", "border border-surface-rim bg-surface-overlay shadow-overlay", "popover, menu"],
-  ["modal", "border border-surface-rim bg-surface-modal shadow-modal", "dialog, sheet"],
-  ["top", "border border-surface-rim bg-surface-top shadow-overlay", "menu in a dialog"],
+  ["panel", "border border-surface-border bg-surface-panel shadow-panel", "card, frame"],
+  ["control", "border border-surface-border bg-surface-control shadow-control", "button, input"],
+  ["overlay", "border border-surface-border bg-surface-overlay shadow-overlay", "popover, menu"],
+  ["modal", "border border-surface-border bg-surface-modal shadow-modal", "dialog, sheet"],
+  ["top", "border border-surface-border bg-surface-top shadow-overlay", "menu in a dialog"],
 ] as const;
 
 export const Ladder: Story = {
@@ -63,13 +66,13 @@ export const Roles: Story = {
     <Canvas>
       <div className="grid max-w-3xl gap-6">
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex h-8 w-72 items-center gap-2 rounded-lg border border-surface-rim bg-surface-control px-2.5 shadow-control">
+          <div className="flex h-8 w-72 items-center gap-2 rounded-lg border border-surface-border bg-surface-control px-2.5 shadow-control">
             <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
             <span className="text-muted-foreground">Search repositories and people…</span>
           </div>
           <button
             type="button"
-            className={`${control} border border-surface-rim bg-surface-control text-foreground shadow-control`}
+            className={`${control} border border-surface-border bg-surface-control text-foreground shadow-control`}
           >
             <HugeiconsIcon icon={SparklesIcon} className="size-3.5" />
             Selected
@@ -82,13 +85,13 @@ export const Roles: Story = {
           </button>
           <button
             type="button"
-            className={`${control} border border-surface-rim bg-surface-control text-muted-foreground shadow-control hover:tint-hover hover:text-foreground active:tint-press active:shadow-pressed`}
+            className={`${control} border border-surface-border bg-surface-control text-muted-foreground shadow-control hover:tint-hover hover:text-foreground active:tint-press active:shadow-pressed`}
           >
             Outline
           </button>
           <button
             type="button"
-            className={`${control} bg-primary text-primary-foreground shadow-fill hover:tint-hover active:tint-press active:shadow-pressed`}
+            className={`${control} bg-primary text-primary-foreground shadow-fill hover:tint-hover active:tint-press active:shadow-fill-pressed`}
           >
             Primary
           </button>
@@ -102,7 +105,7 @@ export const Roles: Story = {
             return (
               <div
                 key={label as string}
-                className="rounded-xl border border-surface-rim bg-surface-panel p-5 shadow-panel"
+                className="rounded-xl border border-surface-border bg-surface-panel p-5 shadow-panel"
               >
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2">
@@ -124,11 +127,11 @@ export const Roles: Story = {
             return (
               <div
                 key={label as string}
-                className="flex h-56 flex-col rounded-xl border border-surface-rim bg-surface-panel p-5 shadow-panel"
+                className="flex h-56 flex-col rounded-xl border border-surface-border bg-surface-panel p-5 shadow-panel"
               >
                 <span className="font-medium">{label as string}</span>
                 <div className="grid flex-1 place-content-center justify-items-center gap-3">
-                  <span className="grid size-8 place-content-center rounded-lg border border-surface-rim bg-surface-control shadow-control">
+                  <span className="grid size-8 place-content-center rounded-lg border border-surface-border bg-surface-control shadow-control">
                     <HugeiconsIcon
                       icon={Icon as IconSvgElement}
                       className="size-3.5 text-muted-foreground"
@@ -141,10 +144,10 @@ export const Roles: Story = {
           })}
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 rounded-xl border border-surface-rim bg-surface-panel p-5 shadow-panel">
+        <div className="flex flex-wrap items-center gap-4 rounded-xl border border-surface-border bg-surface-panel p-5 shadow-panel">
           <div className="inline-flex rounded-lg bg-surface-well p-0.5 shadow-well">
             <span
-              className={`${control} h-7 border border-surface-rim bg-surface-control shadow-control`}
+              className={`${control} h-7 border border-surface-border bg-surface-control shadow-control`}
             >
               Overview
             </span>
@@ -152,7 +155,7 @@ export const Roles: Story = {
             <span className={`${control} h-7 text-muted-foreground`}>Costs</span>
           </div>
           <span className="flex h-[18px] w-8 items-center rounded-full bg-surface-well px-0.5 shadow-well">
-            <span className="size-3.5 rounded-full border border-surface-rim bg-surface-control shadow-knob" />
+            <span className="size-3.5 rounded-full border border-surface-border bg-surface-control shadow-knob" />
           </span>
           <span className="flex h-[18px] w-8 items-center justify-end rounded-full bg-primary px-0.5 shadow-well">
             <span className="size-3.5 rounded-full bg-primary-foreground shadow-knob" />
@@ -176,11 +179,11 @@ export const Nesting: Story = {
       <div className="grid max-w-3xl grid-cols-2 items-start gap-8">
         <div className="grid gap-2">
           <span
-            className={`${control} w-fit border border-surface-rim bg-surface-control shadow-pressed`}
+            className={`${control} w-fit border border-surface-border bg-surface-control shadow-engaged tint-press`}
           >
             Workspace <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
           </span>
-          <div className="w-56 rounded-xl border border-surface-rim bg-surface-overlay p-1 shadow-overlay">
+          <div className="w-56 rounded-xl border border-surface-border bg-surface-overlay p-1 shadow-overlay">
             {["Profile", "Settings", "Sign out"].map((item, index) => (
               <div
                 key={item}
@@ -191,17 +194,17 @@ export const Nesting: Story = {
             ))}
           </div>
         </div>
-        <div className="grid gap-4 rounded-2xl border border-surface-rim bg-surface-modal p-6 shadow-modal">
+        <div className="grid gap-4 rounded-2xl border border-surface-border bg-surface-modal p-6 shadow-modal">
           <div>
             <div className="text-base font-medium">Invite people</div>
             <div className="text-muted-foreground">A menu opened in a dialog climbs above it.</div>
           </div>
           <span
-            className={`${control} w-fit border border-surface-rim bg-surface-control shadow-pressed`}
+            className={`${control} w-fit border border-surface-border bg-surface-control shadow-engaged tint-press`}
           >
             Member <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
           </span>
-          <div className="w-48 rounded-xl border border-surface-rim bg-surface-top p-1 shadow-overlay">
+          <div className="w-48 rounded-xl border border-surface-border bg-surface-top p-1 shadow-overlay">
             {["Owner", "Member", "Restricted"].map((item, index) => (
               <div
                 key={item}
@@ -220,6 +223,7 @@ export const Nesting: Story = {
 const states = [
   ["rest", "shadow-control"],
   ["hover", "shadow-control tint-hover"],
+  ["selected / open", "shadow-engaged tint-press"],
   ["pressed", "shadow-pressed tint-press"],
   ["focus", "shadow-control ring-3 ring-ring/50"],
   ["invalid", "shadow-control [--surface-edge:var(--destructive)]"],
@@ -229,14 +233,72 @@ const states = [
 export const States: Story = {
   render: () => (
     <Canvas>
-      <div className="flex flex-wrap gap-4 rounded-xl border border-surface-rim bg-surface-panel p-6 shadow-panel">
+      <div className="flex flex-wrap gap-4 rounded-xl border border-surface-border bg-surface-panel p-6 shadow-panel">
         {states.map(([name, classes]) => (
           <span
             key={name}
-            className={`${control} border border-surface-rim bg-surface-control ${classes}`}
+            className={`${control} border border-surface-border bg-surface-control ${classes}`}
           >
             {name}
           </span>
+        ))}
+      </div>
+    </Canvas>
+  ),
+};
+
+/* Real primitives alongside the token swatches: review seams, focus, and
+   persistent selection at each size, orientation, and reading direction. */
+export const ControlStates: Story = {
+  render: () => (
+    <Canvas>
+      <div className="grid gap-8">
+        {(["ltr", "rtl"] as const).map((direction) => (
+          <section key={direction} dir={direction} className="grid justify-items-start gap-4">
+            <h2 className="font-medium">{direction.toUpperCase()}</h2>
+            {(["xs", "sm", "default", "lg"] as const).map((size) => (
+              <ButtonGroup key={size} aria-label={`${direction} ${size} states`}>
+                <Button variant="outline" size={size}>
+                  Rest
+                </Button>
+                <Button variant="outline" size={size} aria-pressed>
+                  Selected
+                </Button>
+                <Button variant="outline" size={size} aria-expanded>
+                  Open
+                </Button>
+                <Button variant="outline" size={size} aria-pressed disabled>
+                  Disabled
+                </Button>
+              </ButtonGroup>
+            ))}
+            <div className="flex flex-wrap items-start gap-6">
+              <ButtonGroup orientation="vertical" aria-label={`${direction} vertical states`}>
+                <Button variant="outline">Rest</Button>
+                <Button variant="outline" aria-pressed>
+                  Selected
+                </Button>
+                <Button variant="outline" aria-expanded>
+                  Open
+                </Button>
+              </ButtonGroup>
+              <ToggleGroup
+                variant="outline"
+                spacing={0}
+                defaultValue={["center"]}
+                aria-label={`${direction} alignment`}
+              >
+                <ToggleGroupItem value="start">Start</ToggleGroupItem>
+                <ToggleGroupItem value="center">Center</ToggleGroupItem>
+                <ToggleGroupItem value="end">End</ToggleGroupItem>
+              </ToggleGroup>
+              <ButtonGroup aria-label={`${direction} filled states`}>
+                <Button>Rest</Button>
+                <Button aria-pressed>Selected</Button>
+                <Button aria-expanded>Open</Button>
+              </ButtonGroup>
+            </div>
+          </section>
         ))}
       </div>
     </Canvas>

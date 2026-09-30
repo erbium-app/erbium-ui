@@ -23,7 +23,7 @@ import { Separator } from "./separator";
 import { cn } from "../lib/utils";
 
 const rowClass =
-  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border border-surface-rim bg-surface-control px-2.5 text-sm text-foreground shadow-control transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40 has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border border-surface-border bg-surface-control px-2.5 text-sm text-foreground shadow-control transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40 has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
 const labelClass = "min-w-0 shrink-0 truncate text-sm font-medium text-muted-foreground";
 const valueClass =
   "ms-auto min-w-0 flex-1 text-end text-sm text-foreground outline-none placeholder:text-muted-foreground";
@@ -318,7 +318,7 @@ function ControlNumber({
         ref={surfaceRef}
         aria-hidden="true"
         data-slot="control-number-surface"
-        className="pointer-events-none absolute inset-0 rounded-lg border border-surface-rim bg-surface-control shadow-control"
+        className="pointer-events-none absolute inset-0 rounded-lg border border-surface-border bg-surface-control shadow-control"
       >
         <div className="absolute inset-0 overflow-hidden rounded-[calc(var(--radius-lg)-1px)]">
           <motion.div
@@ -581,7 +581,7 @@ function SegmentedTrack({
                     ? { duration: 0 }
                     : { type: "spring", stiffness: 400, damping: 35 }
                 }
-                className="pointer-events-none absolute inset-0 z-0 rounded-md border border-surface-rim bg-surface-control shadow-control"
+                className="pointer-events-none absolute inset-0 z-0 rounded-md border border-surface-border bg-surface-control shadow-control"
               />
             )}
             <span className="relative z-10 min-w-0 truncate">{option.label}</span>
@@ -712,7 +712,7 @@ function Select({
         aria-label={label}
         className={cn(
           rowClass,
-          "justify-between outline-none hover:tint-hover data-popup-open:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
+          "justify-between outline-none hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:shadow-pressed engaged:active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
           className,
         )}
       >
@@ -726,7 +726,7 @@ function Select({
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-          <SelectPrimitive.Popup className="min-w-(--anchor-width) origin-(--transform-origin) rounded-lg border border-surface-rim bg-surface-overlay p-1 text-sm shadow-overlay outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+          <SelectPrimitive.Popup className="min-w-(--anchor-width) origin-(--transform-origin) rounded-lg border border-surface-border bg-surface-overlay p-1 text-sm shadow-overlay outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
             <SelectPrimitive.List className="max-h-(--available-height) overflow-auto">
               {options.map((option) => (
                 <SelectPrimitive.Item
@@ -791,7 +791,7 @@ function Color({
         className={cn(valueClass, monoClass, "w-20 bg-transparent")}
       />
       <span
-        className="relative size-5 shrink-0 overflow-hidden rounded-md border border-surface-rim shadow-knob focus-within:ring-2 focus-within:ring-ring/50"
+        className="relative size-5 shrink-0 overflow-hidden rounded-md border border-surface-border shadow-knob focus-within:ring-2 focus-within:ring-ring/50"
         style={{ backgroundColor: /^#[\da-fA-F]{6}$/.test(current) ? current : "transparent" }}
       >
         <input
@@ -866,7 +866,7 @@ function Image({
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
             <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-              <SelectPrimitive.Popup className="min-w-(--anchor-width) rounded-lg border border-surface-rim bg-surface-overlay p-1 shadow-overlay outline-none">
+              <SelectPrimitive.Popup className="min-w-(--anchor-width) rounded-lg border border-surface-border bg-surface-overlay p-1 shadow-overlay outline-none">
                 <SelectPrimitive.List className="max-h-(--available-height) overflow-auto">
                   {options.map((option) => (
                     <SelectPrimitive.Item
@@ -964,7 +964,7 @@ function Pad({
     <div
       data-slot="control-pad"
       className={cn(
-        "rounded-lg border border-surface-rim bg-surface-control p-3 shadow-control",
+        "rounded-lg border border-surface-border bg-surface-control p-3 shadow-control",
         className,
       )}
     >
@@ -983,7 +983,7 @@ function Pad({
         }}
       >
         <span
-          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-surface-rim bg-primary shadow-knob"
+          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-surface-border bg-primary shadow-knob"
           style={{
             left: `${((current.x - min) / span) * 100}%`,
             top: `${100 - ((current.y - min) / span) * 100}%`,
@@ -1069,7 +1069,7 @@ function CurveFrame({ path }: { path: string }) {
   return (
     <div
       aria-hidden="true"
-      className="h-24 overflow-hidden rounded-lg border border-surface-rim bg-surface-control shadow-control"
+      className="h-24 overflow-hidden rounded-lg border border-surface-border bg-surface-control shadow-control"
     >
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-primary">
         <path

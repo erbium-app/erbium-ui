@@ -21,7 +21,7 @@ References:
   - Buttons, inputs, textareas, select and combobox triggers, and selected toggles all share the `control` role.
 - **Recessed wells are rare.** They are reserved for tracks that something moves inside: the switch track, the slider and progress tracks, and a segmented-control (tabs) list.
 - **Borders are removed from surfaces.** The edge is a hairline inside the shadow recipe.
-  - `border` survives only for dividers (separator, table rows, card header and footer rules).
+  - Internal dividers use the shared carved shadow/highlight rule.
   - It also survives as a transparent forced-colors fallback.
 - **The palette is faded Vitesse** (see Phase 1): warm ink `#393a34` on `#f7f7f7`/white in light, warm light `#dbd7ca` on `#121212` in dark.
   - The green primary: `#1c6b48` light, `#4d9375` dark.
@@ -64,9 +64,9 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
    - Catchlights sit on top edges; drops fall below.
 2. Raised bodies are lighter and cast downward.
    - **Light:** everything above the canvas is white, so the drops carry the elevation.
-   - **Dark:** the surface colour climbs and the catchlight strengthens with elevation.
+   - **Dark:** the surface colour climbs; catchlights share one lighting colour at every elevation.
 3. **Light and dark share every recipe's geometry; only the colours change.**
-   - Light: the catchlight is transparent, and the edge and drops are Vitesse ink.
+   - Light: the catchlight is translucent white, and the edge and drops are Vitesse ink.
    - Dark: the catchlight and faint perimeter are Vitesse light, while the drops are black.
 4. **The top catchlight sits on the outer perimeter.**
    - A shadow offset 1px upward paints over the perimeter shadow, making the top edge brighter without a dark border above it.
@@ -88,30 +88,49 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
 | `surface-top`     | `#ffffff` | `#2b2b2b` | an overlay opened inside a modal         |
 | `surface-well`    | ink 5%    | black 25% | tracks only                              |
 
+### Token naming and dependency direction
+
+General surface lighting feeds treatments, never the reverse. All catchlights
+use `--surface-highlight` directly, including carved dividers and filled controls.
+There is no separate “strong” highlight with the same value.
+
+| Token family                                                   | Meaning                                                |
+| -------------------------------------------------------------- | ------------------------------------------------------ |
+| `--surface-{role}`                                             | Background colours such as panel, input, and overlay   |
+| `--surface-highlight`                                          | Shared lighting colour                                 |
+| `--surface-shadow`, `--surface-shadow-strong`                  | Cast-shadow colours                                    |
+| `--surface-shadow-inset`, `--surface-shadow-divider`           | Recess and divider shadow colours                      |
+| `--surface-edge`, `--surface-edge-fill`, `--surface-edge-well` | Perimeter colours by material                          |
+| `--surface-border`                                             | Transparent CSS border used for forced-colors fallback |
+| `--surface-tint-hover`, `--surface-tint-pressed`               | Interaction tint colours                               |
+| `--shadow-*`                                                   | Complete Tailwind shadow recipes, not colours          |
+| `--control-shadow-{state}`                                     | Local recipe overrides for joined segments             |
+| `--separator-direction`, `--separator-fade-direction`          | Local separator geometry                               |
+
 ### Recipes (`shadow-*`)
 
-| Utility          | Layers                                              | Pair with                      |
-| ---------------- | --------------------------------------------------- | ------------------------------ |
-| `shadow-panel`   | top catchlight, perimeter, two soft drops           | `bg-surface-panel`             |
-| `shadow-control` | top catchlight, perimeter, tight and soft drops     | `bg-surface-control`           |
-| `shadow-overlay` | strong top catchlight, perimeter, `2/8/16px` drops  | `bg-surface-overlay` / `-top`  |
-| `shadow-modal`   | strong top catchlight, perimeter, `4/16/32px` drops | `bg-surface-modal`             |
-| `shadow-fill`    | top gloss, perimeter, tight drop                    | `bg-primary`, status fills     |
-| `shadow-knob`    | strong top catchlight, perimeter, two drops         | switch and slider thumbs       |
-| `shadow-pressed` | inset top shade, edge                               | pressed and open controls      |
-| `shadow-edge`    | edge only                                           | disabled and flat framed parts |
-| `shadow-well`    | inset top shade, inset rim                          | `bg-surface-well`              |
-| `shadow-tint`    | `currentColor` at 18%                               | soft badges and alerts         |
+| Utility          | Layers                                          | Pair with                      |
+| ---------------- | ----------------------------------------------- | ------------------------------ |
+| `shadow-panel`   | top catchlight, perimeter, two soft drops       | `bg-surface-panel`             |
+| `shadow-control` | top catchlight, perimeter, tight and soft drops | `bg-surface-control`           |
+| `shadow-overlay` | top catchlight, perimeter, `2/8/16px` drops     | `bg-surface-overlay` / `-top`  |
+| `shadow-modal`   | top catchlight, perimeter, `4/16/32px` drops    | `bg-surface-modal`             |
+| `shadow-fill`    | top gloss, perimeter, tight drop                | `bg-primary`, status fills     |
+| `shadow-knob`    | top catchlight, perimeter, two drops            | switch and slider thumbs       |
+| `shadow-pressed` | inset top shade, edge                           | pressed and open controls      |
+| `shadow-edge`    | edge only                                       | disabled and flat framed parts |
+| `shadow-well`    | inset top shade, inset rim                      | `bg-surface-well`              |
+| `shadow-tint`    | `currentColor` at 18%                           | soft badges and alerts         |
 
 State layers:
 
-- `tint-hover` and `tint-press` paint a Vitesse-ink (light) or Vitesse-light (dark) tint over the element's own background, so one class works on every surface and fill.
+- `tint-hover` uses `--surface-tint-hover`; `tint-press` uses `--surface-tint-pressed`. Hover adds a subtle tint; pressing darkens the face in both themes.
 - They replace the per-variant `hover:bg-*/80` values.
 
 ### Why it is built this way
 
 - **Recolourable per element.**
-  - Only primitive colours live on `:root`/`.dark`; the recipes are `@theme inline` shadows, so every `var()` resolves on the element that uses it.
+  - Colours and semantic colour aliases live on `:root`/`.dark`; the recipes are `@theme inline` shadows, so every `var()` resolves on the element that uses it.
   - One override recolours any surface: `aria-invalid:[--surface-edge:var(--destructive)]` is the whole invalid state, and `shadow-tint` follows the text colour.
   - Foglamp's 14 copied shadows become one rule.
 - **Focus rings compose.**
@@ -263,6 +282,7 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
 
 Record every value a component overrides locally, with the reason, as the migration goes.
 
-- `input-otp` slots and `button-group` items are attached edge to edge, so neighbouring hairlines overlap at the seams; they read as a single divider, so no override is needed.
+- Joined outline button and toggle groups own one outer frame. Segments override `--control-shadow-{state}` to retain only inset shading; internal seams use the shared carved divider recipe. Popup focus guards must not interrupt seam selectors.
+- `input-otp` slots retain their individual control surfaces.
 - The `command` search field and the search field inside the `combobox` popup stay flat (translucent, no shadow): a raised field inside an overlay competes with the overlay itself.
 - `kbd` inside a tooltip drops its shadow, because the tooltip is an inverse surface.

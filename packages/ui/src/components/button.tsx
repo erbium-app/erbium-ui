@@ -3,38 +3,37 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 
-/* Solid colour buttons: a glossy top edge, and pushed in while pressed or
-   while their popup is open. */
+/* Filled controls keep their own coloured rim at every elevation. */
 const fillSurface =
-  "shadow-fill hover:tint-hover active:tint-press active:shadow-pressed aria-expanded:tint-press aria-expanded:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge";
+  "shadow-fill hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-fill-engaged active:tint-press active:shadow-fill-pressed engaged:active:shadow-fill-pressed disabled:shadow-edge data-disabled:shadow-edge engaged:disabled:shadow-edge engaged:data-disabled:shadow-edge";
 
 /* Outline buttons sit one step above their surface, like inputs. */
 const controlSurface =
-  "border-surface-rim bg-surface-control text-foreground shadow-control hover:tint-hover active:tint-press active:shadow-pressed aria-expanded:tint-press aria-expanded:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge";
+  "border-surface-border bg-surface-control text-foreground shadow-control hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:tint-press active:shadow-pressed engaged:active:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge engaged:disabled:shadow-edge engaged:data-disabled:shadow-edge";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow,translate] duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",
   {
     variants: {
       variant: {
         default: `bg-primary text-primary-foreground ${fillSurface}`,
         outline: controlSurface,
         secondary:
-          "bg-secondary text-secondary-foreground hover:tint-hover active:tint-press aria-expanded:tint-press",
+          "bg-secondary text-secondary-foreground hover:tint-hover active:tint-press engaged:tint-press engaged:hover:tint-press",
         ghost:
-          "hover:tint-hover hover:text-foreground active:tint-press aria-expanded:tint-press aria-expanded:text-foreground",
+          "hover:tint-hover hover:text-foreground active:tint-press engaged:tint-press engaged:hover:tint-press engaged:text-foreground",
         destructive: `bg-destructive text-destructive-foreground focus-visible:border-destructive/40 ${fillSurface}`,
         success: `bg-success text-success-foreground focus-visible:border-success/40 ${fillSurface}`,
         warning: `bg-warning text-warning-foreground focus-visible:border-warning/40 ${fillSurface}`,
         info: `bg-info text-info-foreground focus-visible:border-info/40 ${fillSurface}`,
         "ghost-destructive":
-          "text-destructive-soft-foreground hover:bg-destructive-soft active:bg-destructive-soft-hover aria-expanded:bg-destructive-soft focus-visible:border-destructive/40 ",
+          "text-destructive-soft-foreground hover:bg-destructive-soft active:bg-destructive-soft-hover engaged:bg-destructive-soft focus-visible:border-destructive/40 ",
         "ghost-success":
-          "text-success-soft-foreground hover:bg-success-soft active:bg-success-soft-hover aria-expanded:bg-success-soft focus-visible:border-success/40 ",
+          "text-success-soft-foreground hover:bg-success-soft active:bg-success-soft-hover engaged:bg-success-soft focus-visible:border-success/40 ",
         "ghost-warning":
-          "text-warning-soft-foreground hover:bg-warning-soft active:bg-warning-soft-hover aria-expanded:bg-warning-soft focus-visible:border-warning/40 ",
+          "text-warning-soft-foreground hover:bg-warning-soft active:bg-warning-soft-hover engaged:bg-warning-soft focus-visible:border-warning/40 ",
         "ghost-info":
-          "text-info-soft-foreground hover:bg-info-soft active:bg-info-soft-hover aria-expanded:bg-info-soft focus-visible:border-info/40 ",
+          "text-info-soft-foreground hover:bg-info-soft active:bg-info-soft-hover engaged:bg-info-soft focus-visible:border-info/40 ",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -68,6 +67,7 @@ function Button({
     <ButtonPrimitive
       data-slot="button"
       data-size={size}
+      data-variant={variant}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />

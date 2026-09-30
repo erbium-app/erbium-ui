@@ -13,10 +13,25 @@
  *   shadow-knob                        switch and slider thumbs
  *   bg-surface-well shadow-well        tracks only; use sparingly
  *   shadow-tint                        soft coloured badges and alerts
- *   shadow-pressed                     pressed and popup-open controls
+ *   shadow-engaged                     selected and popup-open controls
+ *   shadow-pressed                     momentary pointer/key press
  *   shadow-edge                        hairline only: disabled and flat framed parts
  *
- * Only primitive colours live on :root and .dark. The recipes are inlined into
+ * Token naming:
+ *   --surface-{role}             background colours (panel, control, overlay)
+ *   --surface-highlight          shared lighting source for every catchlight
+ *   --surface-shadow[-{role}]    shadow colours (strong, inset, divider)
+ *   --surface-edge[-{role}]      perimeter colours (fill, well)
+ *   --surface-border             transparent CSS border / forced-colors fallback
+ *   --surface-tint-{state}       interaction overlays (hover, pressed)
+ *   --control-shadow-{state}     local composed-shadow overrides for joined segments
+ *   --separator-{property}       local rule geometry (direction, fade-direction)
+ *
+ * General lighting tokens feed surface recipes and separator treatments.
+ * Distinct shadow/edge values keep semantic names; identical highlights use
+ * --surface-highlight directly rather than pretending to be stronger variants.
+ *
+ * Colours and semantic colour aliases live on :root and .dark. Recipes are inlined into
  * the shadow utilities, so their var() references resolve on each element and
  * one override recolours any surface, for example:
  *   aria-invalid:[--surface-edge:var(--destructive)]
@@ -28,7 +43,7 @@
  * Surface borders stay transparent as a forced-colors fallback.
  *
  * Light and dark share every recipe's geometry; only the colours change.
- * Light mode leans on cast shadows (the catchlight is transparent on white);
+ * Light mode leans on cast shadows (the white catchlight is subtle on white);
  * dark mode leans on lighter surfaces and a warm top-edge catchlight.
  * The ink (#393a34) and light (#dedcd5) tints come from Vitesse.
  */
@@ -44,21 +59,19 @@
   --surface-well: rgb(57 58 52 / 0.05);
 
   --surface-edge: rgb(57 58 52 / 0.1);
-  --surface-rim: transparent;
-  --surface-highlight: transparent;
-  --surface-highlight-strong: transparent;
-  --surface-drop: rgb(57 58 52 / 0.06);
-  --surface-drop-strong: rgb(57 58 52 / 0.1);
-  --surface-shade: rgb(57 58 52 / 0.1);
-  --surface-well-edge: rgb(57 58 52 / 0.08);
-  --surface-carve-shadow: color-mix(in srgb, var(--foreground) 16%, transparent);
-  --surface-carve-highlight: color-mix(in srgb, var(--surface-panel) 20%, transparent);
+  --surface-border: transparent;
+  /* Shared lighting source; component-specific highlights derive from it. */
+  --surface-highlight: color-mix(in srgb, var(--surface-panel) 20%, transparent);
+  --surface-shadow: rgb(57 58 52 / 0.06);
+  --surface-shadow-strong: rgb(57 58 52 / 0.1);
+  --surface-shadow-inset: rgb(57 58 52 / 0.1);
+  --surface-edge-well: rgb(57 58 52 / 0.08);
+  --surface-shadow-divider: color-mix(in srgb, var(--foreground) 16%, transparent);
 
-  --fill-highlight: rgb(255 255 255 / 0.18);
-  --fill-edge: rgb(0 0 0 / 0.14);
+  --surface-edge-fill: rgb(0 0 0 / 0.14);
 
-  --state-hover: rgb(57 58 52 / 0.04);
-  --state-press: rgb(57 58 52 / 0.07);
+  --surface-tint-hover: rgb(57 58 52 / 0.04);
+  --surface-tint-pressed: rgb(57 58 52 / 0.07);
 }
 
 .dark {
@@ -72,21 +85,19 @@
   --surface-well: rgb(0 0 0 / 0.25);
 
   --surface-edge: rgb(222 220 213 / 0.03);
-  --surface-rim: transparent;
-  --surface-highlight: rgb(222 220 213 / 0.06);
-  --surface-highlight-strong: rgb(222 220 213 / 0.09);
-  --surface-drop: rgb(0 0 0 / 0.3);
-  --surface-drop-strong: rgb(0 0 0 / 0.5);
-  --surface-shade: rgb(0 0 0 / 0.35);
-  --surface-well-edge: rgb(222 220 213 / 0.04);
-  --surface-carve-shadow: var(--surface-drop-strong);
-  --surface-carve-highlight: color-mix(in srgb, var(--foreground) 16%, transparent);
+  --surface-border: transparent;
+  /* Shared lighting source; component-specific highlights derive from it. */
+  --surface-highlight: color-mix(in srgb, var(--foreground) 16%, transparent);
+  --surface-shadow: rgb(0 0 0 / 0.3);
+  --surface-shadow-strong: rgb(0 0 0 / 0.5);
+  --surface-shadow-inset: rgb(0 0 0 / 0.35);
+  --surface-edge-well: rgb(222 220 213 / 0.04);
+  --surface-shadow-divider: var(--surface-shadow-strong);
 
-  --fill-highlight: rgb(255 255 255 / 0.2);
-  --fill-edge: rgb(222 220 213 / 0.02);
+  --surface-edge-fill: rgb(222 220 213 / 0.02);
 
-  --state-hover: rgb(222 220 213 / 0.05);
-  --state-press: rgb(222 220 213 / 0.08);
+  --surface-tint-hover: rgb(222 220 213 / 0.025);
+  --surface-tint-pressed: rgb(0 0 0 / 0.12);
 }
 
 @theme inline {
@@ -98,57 +109,126 @@
   --color-surface-modal: var(--surface-modal);
   --color-surface-top: var(--surface-top);
   --color-surface-well: var(--surface-well);
-  --color-surface-rim: var(--surface-rim);
+  --color-surface-border: var(--surface-border);
 
   --shadow-panel:
     0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-panel), 0 1px 2px -1px var(--surface-drop),
-    0 2px 6px -2px var(--surface-drop);
-  --shadow-control:
-    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-control), 0 1px 1px -0.5px var(--surface-drop-strong),
-    0 2px 4px -1px var(--surface-drop);
+    0 0 0 1px var(--surface-panel), 0 1px 2px -1px var(--surface-shadow),
+    0 2px 6px -2px var(--surface-shadow);
+  --shadow-control: var(
+    --control-shadow-rest,
+    0 -1px 0 0 var(--surface-highlight),
+    0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-control),
+    0 1px 1px -0.5px var(--surface-shadow-strong),
+    0 2px 4px -1px var(--surface-shadow),
+    inset 0 0 0 0 transparent
+  );
   --shadow-overlay:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-drop),
-    0 8px 16px -4px var(--surface-drop), 0 16px 32px -8px var(--surface-drop-strong);
+    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
+    0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
   --shadow-modal:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-modal), 0 4px 8px -2px var(--surface-drop),
-    0 16px 32px -8px var(--surface-drop), 0 32px 64px -16px var(--surface-drop-strong);
+    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-modal), 0 4px 8px -2px var(--surface-shadow),
+    0 16px 32px -8px var(--surface-shadow), 0 32px 64px -16px var(--surface-shadow-strong);
   --shadow-knob:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 1px 2px 0 var(--surface-drop-strong), 0 2px 4px -1px var(--surface-drop);
+    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow);
   --shadow-fill:
-    0 -1px 0 0 var(--fill-highlight), 0 0 0 1px var(--fill-edge),
-    0 1px 2px -0.5px var(--surface-drop-strong);
-  --shadow-edge: 0 0 0 1px var(--surface-edge);
-  --shadow-pressed: inset 0 1px 2px 0 var(--surface-shade), 0 0 0 1px var(--surface-edge);
-  --shadow-well: inset 0 1px 2px 0 var(--surface-shade), inset 0 0 0 1px var(--surface-well-edge);
+    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge-fill),
+    0 1px 2px -0.5px var(--surface-shadow-strong), inset 0 0 0 0 transparent;
+  --shadow-edge: var(--control-shadow-edge, 0 0 0 1px var(--surface-edge));
+  /* A recess has one face, one perimeter, and a soft top inset. No
+     catchlight or opaque backing ring: those add contrasting bands around
+     the tinted face. Transparent slots preserve shadow interpolation. */
+  --shadow-engaged: var(
+    --control-shadow-engaged,
+    0 0 0 0 transparent,
+    0 0 0 1px var(--surface-edge),
+    0 0 0 0 transparent,
+    0 0 0 0 transparent,
+    0 0 0 0 transparent,
+    inset 0 1px 2px 0 var(--surface-shadow-inset)
+  );
+  --shadow-pressed: var(
+    --control-shadow-pressed,
+    0 0 0 0 transparent,
+    0 0 0 1px var(--surface-edge),
+    0 0 0 0 transparent,
+    0 0 0 0 transparent,
+    0 0 0 0 transparent,
+    inset 0 2px 3px -1px var(--surface-shadow-inset)
+  );
+  --shadow-fill-engaged:
+    0 0 0 0 transparent, 0 0 0 1px var(--surface-edge-fill), 0 0 0 0 transparent,
+    inset 0 1px 2px 0 var(--surface-shadow-inset);
+  --shadow-fill-pressed:
+    0 0 0 0 transparent, 0 0 0 1px var(--surface-edge-fill), 0 0 0 0 transparent,
+    inset 0 2px 3px -1px var(--surface-shadow-inset);
+  --shadow-well:
+    inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
   --shadow-tint: 0 0 0 1px color-mix(in oklab, currentColor 18%, transparent);
 }
 
 /* State layers paint a tint over the element's own background colour, so one
    hover and press treatment works on every surface and every fill. */
 @utility tint-hover {
-  background-image: linear-gradient(var(--state-hover), var(--state-hover));
+  background-origin: border-box;
+  background-image: linear-gradient(var(--surface-tint-hover), var(--surface-tint-hover));
 }
 
 @utility tint-press {
-  background-image: linear-gradient(var(--state-press), var(--state-press));
+  background-origin: border-box;
+  background-image: linear-gradient(var(--surface-tint-pressed), var(--surface-tint-pressed));
+}
+
+/* One carved rule recipe for standalone separators and embedded dividers. */
+@utility carve-rule {
+  background-image: linear-gradient(
+    var(--separator-direction, to bottom),
+    var(--surface-shadow-divider) 0 1px,
+    var(--surface-highlight) 1px 2px
+  );
+}
+
+@utility carve-top {
+  @apply carve-rule;
+  background-size: 100% 2px;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+@utility carve-bottom {
+  @apply carve-rule;
+  background-size: 100% 2px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+@utility carve-start {
+  --separator-direction: to right;
+  @apply carve-rule;
+  background-size: 2px 100%;
+  background-position: left;
+  background-repeat: no-repeat;
+
+  &:dir(rtl) {
+    background-position: right;
+  }
 }
 
 /* A translucent shadow and catchlight follow the colour of their containing surface. */
 [data-separator],
 [data-slot="marker"][data-variant="separator"] {
-  --carve-rule-direction: to bottom;
-  --carve-fade-direction: to right;
+  --separator-direction: to bottom;
+  --separator-fade-direction: to right;
 }
 
 [data-separator][data-fade],
 [data-slot="marker"][data-variant="separator"] {
   mask-image: linear-gradient(
-    var(--carve-fade-direction),
+    var(--separator-fade-direction),
     transparent,
     black 8%,
     black 92%,
@@ -156,9 +236,10 @@
   );
 }
 
-[data-separator][data-orientation="vertical"] {
-  --carve-rule-direction: to right;
-  --carve-fade-direction: to bottom;
+[data-separator][data-orientation="vertical"],
+[data-slot="resizable-handle"][aria-orientation="vertical"] {
+  --separator-direction: to right;
+  --separator-fade-direction: to bottom;
 }
 
 [data-separator],
@@ -166,11 +247,7 @@
 [data-separator][data-labeled]::after,
 [data-slot="marker"][data-variant="separator"]::before,
 [data-slot="marker"][data-variant="separator"]::after {
-  background-image: linear-gradient(
-    var(--carve-rule-direction),
-    var(--surface-carve-shadow) 0 1px,
-    var(--surface-carve-highlight) 1px 2px
-  );
+  @apply carve-rule;
 }
 
 [data-separator][data-labeled] {
@@ -192,4 +269,65 @@
   min-height: 0;
   width: 2px;
   height: auto;
+}
+
+/* Joined outline buttons are segments of one surface. The group owns the
+   frame; each segment owns only its fill and inset depth. Mixed groups keep
+   their existing individual surfaces (inputs, text, nested groups, etc.). */
+@layer utilities {
+  :is(
+      [data-slot="button-group"],
+      [data-slot="toggle-group"][data-variant="outline"][data-spacing="0"]
+    ):has(> [data-variant="outline"]):not(
+      :has(> [data-slot]:not([data-variant="outline"], [data-slot="button-group-separator"]))
+    ) {
+    @apply rounded-lg bg-surface-control shadow-control;
+
+    > [data-variant="outline"] {
+      --control-shadow-rest: inset 0 0 0 0 transparent;
+      --control-shadow-engaged: inset 0 1px 2px 0 var(--surface-shadow-inset);
+      --control-shadow-pressed: inset 0 2px 3px -1px var(--surface-shadow-inset);
+      --control-shadow-edge: inset 0 0 0 0 transparent;
+      position: relative;
+      border-width: 0;
+      margin-inline-start: 0;
+      margin-block-start: 0;
+
+      &:focus-visible {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+      }
+
+      &[aria-invalid="true"] {
+        outline: 1px solid var(--destructive);
+      }
+    }
+
+    /* Popup focus guards can appear between segments while open. Match
+       logical siblings, not adjacent DOM nodes. Explicit separators own
+       their group's seams, so do not add automatic dividers there. */
+    &:not(:has(> [data-slot="button-group-separator"]))
+      > [data-variant="outline"]
+      ~ [data-variant="outline"]::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      inset-block: 0;
+      inset-inline-start: 0;
+      width: 2px;
+      z-index: 1;
+      --separator-direction: to right;
+      @apply carve-rule;
+    }
+
+    &[data-orientation="vertical"]:not(:has(> [data-slot="button-group-separator"]))
+      > [data-variant="outline"]
+      ~ [data-variant="outline"]::before {
+      inset-block-start: 0;
+      inset-inline: 0;
+      width: auto;
+      height: 2px;
+      --separator-direction: to bottom;
+    }
+  }
 }

@@ -147,7 +147,7 @@ export const OnSurfaces: Story = {
       {surfaceSamples.map(([name, surface]) => (
         <div
           key={name}
-          className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-surface-rim p-3 ${surface}`}
+          className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-surface-border p-3 ${surface}`}
         >
           <span className="text-xs font-medium">{name}</span>
           <Separator />
@@ -181,4 +181,51 @@ export const List: Story = {
     },
   },
   render: () => <SeparatorList />,
+};
+
+/** Browser regression: margins must move both edges, including in RTL. */
+export const MarginSizing: Story = {
+  render: () => (
+    <div className="grid gap-6">
+      {(["ltr", "rtl"] as const).map((direction) => (
+        <div key={direction} dir={direction} className="grid gap-3">
+          {(["block", "flex flex-col items-center", "grid justify-items-center"] as const).map(
+            (layout) => (
+              <div
+                key={layout}
+                data-separator-case
+                className={`w-72 gap-2 bg-surface-panel p-4 ${layout}`}
+              >
+                <span className="text-sm">
+                  {direction}: {layout}
+                </span>
+                <Separator data-inset="0" className="-mx-4" />
+                <Separator data-inset="24" className="mx-2" />
+                <Separator data-inset="0" className="-mx-4">
+                  Labeled
+                </Separator>
+              </div>
+            ),
+          )}
+        </div>
+      ))}
+    </div>
+  ),
+  play: ({ canvasElement }) => {
+    for (const container of canvasElement.querySelectorAll("[data-separator-case]")) {
+      const parent = container.getBoundingClientRect();
+      for (const separator of container.querySelectorAll<HTMLElement>("[data-inset]")) {
+        const inset = Number(separator.dataset.inset);
+        const rect = separator.getBoundingClientRect();
+        if (
+          Math.abs(rect.left - parent.left - inset) > 0.5 ||
+          Math.abs(parent.right - rect.right - inset) > 0.5
+        ) {
+          throw new Error(
+            `Separator edges are asymmetric in ${container.className} (${container.parentElement?.dir})`,
+          );
+        }
+      }
+    }
+  },
 };

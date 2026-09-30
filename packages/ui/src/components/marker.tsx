@@ -11,7 +11,7 @@ const markerVariants = cva(
       variant: {
         default: "",
         separator: "before:me-1 after:ms-1",
-        border: "border-b border-border pb-2",
+        border: "carve-bottom pb-2",
       },
     },
   },

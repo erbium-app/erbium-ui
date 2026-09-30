@@ -36,7 +36,7 @@ const badgeVariants = cva(
         "tag-purple": "bg-tag-purple/10 text-tag-purple shadow-tint dark:bg-tag-purple/15",
         "tag-magenta": "bg-tag-magenta/10 text-tag-magenta shadow-tint dark:bg-tag-magenta/15",
         outline:
-          "border-surface-rim bg-surface-control text-foreground shadow-control [a]:hover:tint-hover",
+          "border-surface-border bg-surface-control text-foreground shadow-control [a]:hover:tint-hover",
         ghost: "hover:tint-hover hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },

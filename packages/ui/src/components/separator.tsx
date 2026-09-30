@@ -22,10 +22,12 @@ function Separator({
       orientation={orientation}
       role={labeled ? "none" : "separator"}
       className={cn(
-        "shrink-0",
+        // Auto width includes both inline margins; 100% leaves an end gap
+        // when popup wrappers bleed a separator through their padding.
+        "shrink-0 data-horizontal:w-auto data-horizontal:self-stretch data-horizontal:justify-self-stretch",
         labeled
-          ? "flex items-center gap-2 data-horizontal:w-full data-vertical:h-full data-vertical:flex-col"
-          : "data-horizontal:h-0.5 data-horizontal:w-full data-vertical:w-0.5 data-vertical:self-stretch",
+          ? "flex items-center gap-2 data-vertical:h-full data-vertical:flex-col"
+          : "data-horizontal:h-0.5 data-vertical:w-0.5 data-vertical:self-stretch",
         className,
       )}
       {...props}

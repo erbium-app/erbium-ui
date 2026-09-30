@@ -87,3 +87,15 @@
     @slot;
   }
 }
+
+/* Persistent control engagement, independent of the primitive's state API. */
+@custom-variant engaged {
+  &:where(
+    [aria-expanded="true"],
+    [aria-pressed="true"],
+    [data-state="on"],
+    [data-popup-open]:not([data-popup-open="false"])
+  ) {
+    @slot;
+  }
+}

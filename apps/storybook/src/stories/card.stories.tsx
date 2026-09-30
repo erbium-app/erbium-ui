@@ -87,12 +87,12 @@ export const Spacing: Story = {
     docs: {
       description: {
         story:
-          "In addition to the `size` prop, you can use the `--card-spacing` CSS variable to control the spacing between sections and the inset of card parts.\n\nUse negative margins with `-mx-(--card-spacing)` to make content go edge to edge while keeping it aligned with the card inset. When the edge-to-edge content sits above a footer, use `-mb-(--card-spacing)` on `CardContent` to remove the section gap.",
+          "Use the `--card-spacing` CSS variable to adjust the spacing between sections and the inset of card parts. This example uses a 24px inset. For full-width content, remove the `CardContent` horizontal padding and its gap before the footer.",
       },
     },
   },
 
-  render: () => <SampleCard className="[--card-spacing:--spacing(8)]" />,
+  render: () => <SampleCard className="[--card-spacing:--spacing(6)]" />,
 };
 export const EdgeToEdge: Story = {
   parameters: {
@@ -106,10 +106,8 @@ export const EdgeToEdge: Story = {
       <CardHeader>
         <CardTitle>Recent activity</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="-mx-(--card-spacing) border-y bg-muted p-4">
-          Content runs to the card edges.
-        </div>
+      <CardContent className="-mb-(--card-spacing) px-0">
+        <div className="border-t bg-muted p-(--card-spacing)">Content runs to the card edges.</div>
       </CardContent>
       <CardFooter>View all activity</CardFooter>
     </Card>
@@ -124,7 +122,11 @@ export const Image: Story = {
 
   render: () => (
     <Card className="w-80">
-      <div className="flex h-40 items-center justify-center bg-muted">Image area</div>
+      <img
+        src="/card-project.svg"
+        alt="Abstract illustration of a project dashboard"
+        className="h-40 w-full object-cover"
+      />
       <CardHeader>
         <CardTitle>Featured project</CardTitle>
         <CardDescription>A card with media above its header.</CardDescription>

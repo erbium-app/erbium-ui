@@ -10,7 +10,6 @@ import ExampleButtonGroupSelect from "../examples/button-group-select";
 import ExampleButtonGroupPopover from "../examples/button-group-popover";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
-import { ButtonGroupText } from "@erbium/ui/components/button-group";
 import { Button } from "@erbium/ui/components/button";
 import Demo from "../examples/button-group-demo";
 
@@ -23,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A container that groups related buttons together with consistent styling.\n\n**Import:** `@erbium/ui/components/button-group`  \n\n**shadcn/ui page:** [Button Group](https://ui.shadcn.com/docs/components/base/button-group)\n\n### Usage\n\n```tsx\nimport {\n  ButtonGroup,\n  ButtonGroupSeparator,\n  ButtonGroupText,\n} from "@erbium/ui/components/button-group"\n```\n\n```tsx\n<ButtonGroup>\n  <Button>Button 1</Button>\n  <Button>Button 2</Button>\n</ButtonGroup>\n```\n\n### Composition\n\nUse the following composition to build a `ButtonGroup`:\n\n```text\nButtonGroup\n├── Button or Input\n├── ButtonGroupSeparator\n└── ButtonGroupText\n```\n\n### Accessibility\n\n- The `ButtonGroup` component has the `role` attribute set to `group`.\n\n- Use <Kbd>Tab</Kbd> to navigate between the buttons in the group.\n\n- Use `aria-label` or `aria-labelledby` to label the button group.\n\n```tsx\n<ButtonGroup aria-label="Button group">\n  <Button>Button 1</Button>\n  <Button>Button 2</Button>\n</ButtonGroup>\n```\n\n### ButtonGroup vs ToggleGroup\n\n- Use the `ButtonGroup` component when you want to group buttons that perform an action.\n\n- Use the `ToggleGroup` component when you want to group buttons that toggle a state.',
+          'A container that groups related buttons together with consistent styling.\n\n**Import:** `@erbium/ui/components/button-group`  \n\n**shadcn/ui page:** [Button Group](https://ui.shadcn.com/docs/components/base/button-group)\n\n### Usage\n\n```tsx\nimport {\n  ButtonGroup,\n  ButtonGroupSeparator,\n  ButtonGroupText,\n} from "@erbium/ui/components/button-group"\n```\n\n```tsx\n<ButtonGroup>\n  <Button>Button 1</Button>\n  <Button>Button 2</Button>\n</ButtonGroup>\n```\n\n### Composition\n\nUse the following composition to build a `ButtonGroup`:\n\n```text\nButtonGroup\n├── Button or Input\n├── ButtonGroupSeparator\n└── ButtonGroupText\n```\n\n### Accessibility\n\n- The `ButtonGroup` component has the `role` attribute set to `group`.\n\n- Use <Kbd hotkey="Tab" /> to navigate between the buttons in the group.\n\n- Use `aria-label` or `aria-labelledby` to label the button group.\n\n```tsx\n<ButtonGroup aria-label="Button group">\n  <Button>Button 1</Button>\n  <Button>Button 2</Button>\n</ButtonGroup>\n```\n\n### ButtonGroup vs ToggleGroup\n\n- Use the `ButtonGroup` component when you want to group buttons that perform an action.\n\n- Use the `ToggleGroup` component when you want to group buttons that toggle a state.',
       },
     },
   },
@@ -35,23 +34,23 @@ type Story = StoryObj;
 export const Playground: StoryObj<{
   orientation: "horizontal" | "vertical";
   size: "default" | "xs" | "sm" | "lg";
-  textAsSpan: boolean;
 }> = {
-  args: { orientation: "horizontal", size: "default", textAsSpan: false },
+  args: { orientation: "horizontal", size: "default" },
   argTypes: {
     orientation: { control: "select", options: ["horizontal", "vertical"] },
     size: { control: "select", options: ["default", "xs", "sm", "lg"] },
-    textAsSpan: { control: "boolean" },
   },
   render: (args) => (
-    <ButtonGroup orientation={args.orientation}>
+    <ButtonGroup aria-label="Example actions" orientation={args.orientation}>
       <Button variant="outline" size={args.size}>
         First
       </Button>
       <Button variant="outline" size={args.size}>
         Second
       </Button>
-      <ButtonGroupText render={args.textAsSpan ? <span /> : undefined}>Group</ButtonGroupText>
+      <Button variant="outline" size={args.size}>
+        Third
+      </Button>
     </ButtonGroup>
   ),
 };

@@ -29,7 +29,7 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
       {children}
       <TabsPrimitive.Indicator
         data-slot="tabs-indicator"
-        className="pointer-events-none absolute top-0 left-0 z-0 rounded-md border border-surface-rim bg-surface-control shadow-control"
+        className="pointer-events-none absolute top-0 left-0 z-0 rounded-md border border-surface-border bg-surface-control shadow-control"
         render={(indicatorProps, state) => {
           const position = state.activeTabPosition;
           const size = state.activeTabSize;
