@@ -8,7 +8,7 @@ export default function ToggleGroupSpacing() {
       <ToggleGroupItem
         value="star"
         aria-label="Toggle star"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
+        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning"
       >
         <StarIcon />
         Star
@@ -16,7 +16,7 @@ export default function ToggleGroupSpacing() {
       <ToggleGroupItem
         value="heart"
         aria-label="Toggle heart"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500"
+        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-destructive data-[state=on]:*:[svg]:stroke-destructive"
       >
         <HeartIcon />
         Heart
@@ -24,7 +24,7 @@ export default function ToggleGroupSpacing() {
       <ToggleGroupItem
         value="bookmark"
         aria-label="Toggle bookmark"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
+        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"
       >
         <BookmarkIcon />
         Bookmark

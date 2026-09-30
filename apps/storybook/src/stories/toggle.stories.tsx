@@ -38,7 +38,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { BookmarkIcon } from "lucide-react";\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label="Toggle bookmark"\n      size="sm"\n      variant="outline"\n      className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"\n    >\n      <BookmarkIcon />\n      Bookmark\n    </Toggle>\n  );\n}\n',
+        code: 'import { BookmarkIcon } from "lucide-react";\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label="Toggle bookmark"\n      size="sm"\n      variant="outline"\n      className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"\n    >\n      <BookmarkIcon />\n      Bookmark\n    </Toggle>\n  );\n}\n',
       },
     },
   },

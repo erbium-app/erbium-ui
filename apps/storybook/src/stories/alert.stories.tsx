@@ -116,13 +116,13 @@ export const CustomColors: Story = {
     docs: {
       description: {
         story:
-          "You can customize the alert colors by adding custom classes such as `bg-amber-50 dark:bg-amber-950` to the `Alert` component.",
+          "You can customize the alert colors by adding custom classes such as `bg-warning-soft` to the `Alert` component.",
       },
     },
   },
 
   render: () => (
-    <Alert className="w-80 border-amber-300 bg-amber-50 text-amber-950 dark:border-amber-700 dark:bg-amber-950 dark:text-amber-100">
+    <Alert className="w-80 border-warning bg-warning-soft text-warning-soft-foreground">
       <TriangleAlertIcon />
       <AlertTitle>Scheduled maintenance</AlertTitle>
       <AlertDescription className="text-inherit">
@@ -137,7 +137,7 @@ export const Colors: Story = {
     docs: {
       description: { story: "Compare alerts with different semantic color treatments." },
       source: {
-        code: 'import { AlertTriangleIcon } from "lucide-react";\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert className="max-w-md border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50">\n      <AlertTriangleIcon />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
+        code: 'import { AlertTriangleIcon } from "lucide-react";\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert className="max-w-md border-warning bg-warning-soft text-warning-soft-foreground">\n      <AlertTriangleIcon />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
       },
     },
   },

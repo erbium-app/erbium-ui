@@ -44,7 +44,7 @@ export function visitorChart(
       y: { scale: scaleLinear, nice: true, grid: options.grid },
     },
     color: {
-      scale: scaleOrdinal(["Desktop", "Mobile"], ["#2563eb", "#60a5fa"]),
+      scale: scaleOrdinal(["Desktop", "Mobile"], ["var(--chart-1)", "var(--chart-2)"]),
       ...(options.legend ? { legend: colorLegend({ label: "Device" }) } : {}),
     },
     ...(options.tooltip ? { focus: "group-x" as const, tooltip: { use: tooltip } } : {}),
