@@ -14,8 +14,7 @@ export default function KbdInputGroup() {
           <HugeiconsIcon icon={Search01Icon} />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <Kbd>⌘</Kbd>
-          <Kbd>K</Kbd>
+          <Kbd hotkey="Mod+K" />
         </InputGroupAddon>
       </InputGroup>
     </div>

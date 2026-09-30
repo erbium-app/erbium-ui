@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
+import { ButtonShortcut } from "@erbium/ui/components/button";
 import { DirectionProvider } from "@erbium/ui/components/direction";
 import { StatusButton } from "@erbium/ui/components/status-button";
 import StatusButtonDemo, { AsyncStatusButton } from "../examples/status-button-demo";
@@ -42,11 +43,17 @@ export const Directions: Story = {
               <p className="mb-3 text-sm font-medium uppercase">{direction}</p>
               <div className="flex flex-wrap gap-3">
                 <AsyncStatusButton successLabel={successLabel}>{label}</AsyncStatusButton>
+                <StatusButton successLabel={successLabel} variant="outline">
+                  {label}
+                  <ButtonShortcut hotkey="Mod+S" />
+                </StatusButton>
                 <StatusButton status="loading" successLabel={successLabel}>
                   {label}
+                  <ButtonShortcut hotkey="Mod+S" />
                 </StatusButton>
                 <StatusButton status="success" successLabel={successLabel}>
                   {label}
+                  <ButtonShortcut hotkey="Mod+S" />
                 </StatusButton>
                 <StatusButton status="success" successLabel={successLabel} variant="outline">
                   {label}

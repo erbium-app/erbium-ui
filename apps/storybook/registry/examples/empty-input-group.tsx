@@ -29,7 +29,7 @@ export default function EmptyInputGroup() {
             <HugeiconsIcon icon={Search01Icon} />
           </InputGroupAddon>
           <InputGroupAddon align="inline-end">
-            <Kbd>/</Kbd>
+            <Kbd hotkey="/" />
           </InputGroupAddon>
         </InputGroup>
         <EmptyDescription>

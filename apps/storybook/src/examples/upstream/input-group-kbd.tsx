@@ -12,7 +12,7 @@ export function InputGroupKbd() {
         <HugeiconsIcon icon={Search01Icon} className="text-muted-foreground" />
       </InputGroupAddon>
       <InputGroupAddon align="inline-end">
-        <Kbd>⌘K</Kbd>
+        <Kbd hotkey="Mod+K" />
       </InputGroupAddon>
     </InputGroup>
   );

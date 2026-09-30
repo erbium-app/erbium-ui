@@ -62,12 +62,12 @@ export function DropdownMenuComplex() {
           <DropdownMenuItem>
             <HugeiconsIcon icon={File01Icon} />
             New File
-            <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Mod+N" />
           </DropdownMenuItem>
           <DropdownMenuItem>
             <HugeiconsIcon icon={Folder01Icon} />
             New Folder
-            <DropdownMenuShortcut>⇧⌘N</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Shift+Mod+N" />
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
@@ -119,12 +119,12 @@ export function DropdownMenuComplex() {
           <DropdownMenuItem>
             <HugeiconsIcon icon={SaveIcon} />
             Save
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Mod+S" />
           </DropdownMenuItem>
           <DropdownMenuItem>
             <HugeiconsIcon icon={Download01Icon} />
             Export
-            <DropdownMenuShortcut>⇧⌘E</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Shift+Mod+E" />
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -182,7 +182,7 @@ export function DropdownMenuComplex() {
           <DropdownMenuItem>
             <HugeiconsIcon icon={UserIcon} />
             Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Shift+Mod+P" />
           </DropdownMenuItem>
           <DropdownMenuItem>
             <HugeiconsIcon icon={CreditCardIcon} />
@@ -270,7 +270,7 @@ export function DropdownMenuComplex() {
           <DropdownMenuItem variant="destructive">
             <HugeiconsIcon icon={LogOutIcon} />
             Sign Out
-            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

@@ -163,7 +163,7 @@
       "title": "Button",
       "description": "Erbium button component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/button.tsx",
@@ -553,6 +553,7 @@
       "type": "registry:ui",
       "title": "Kbd",
       "description": "Erbium kbd component.",
+      "dependencies": ["@tanstack/hotkeys"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

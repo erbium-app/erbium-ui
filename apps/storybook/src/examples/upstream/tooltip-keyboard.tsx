@@ -12,7 +12,7 @@ export function TooltipKeyboard() {
         <HugeiconsIcon icon={SaveIcon} />
       </TooltipTrigger>
       <TooltipContent>
-        Save Changes <Kbd>S</Kbd>
+        Save Changes <Kbd hotkey="S" />
       </TooltipContent>
     </Tooltip>
   );

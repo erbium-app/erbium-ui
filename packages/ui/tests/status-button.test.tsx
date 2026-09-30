@@ -1,5 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { StatusButton } from "@erbium/ui/components/status-button";
+import { ButtonShortcut } from "@erbium/ui/components/button";
 
 test("keeps focus and blocks repeat activation while an action runs", async () => {
   let resolveAction: () => void = () => {};
@@ -73,4 +74,33 @@ test("resets after a rejected action and reports the error", async () => {
 
   expect(button.getAttribute("data-status")).toBe("idle");
   expect(onError).toHaveBeenCalledWith(error);
+});
+
+test("keeps the shortcut with the idle label during status changes", async () => {
+  let resolveAction: () => void = () => {};
+  const { container } = render(
+    <StatusButton
+      onClick={() =>
+        new Promise<void>((resolve) => {
+          resolveAction = resolve;
+        })
+      }
+      successLabel="Saved"
+    >
+      Save
+      <ButtonShortcut hotkey="Mod+S" />
+    </StatusButton>,
+  );
+
+  const button = screen.getByRole("button", { name: "Save" });
+  const shortcut = container.querySelector('[data-slot="button-shortcut"]');
+  expect(shortcut?.closest('[aria-hidden="false"]')).toBeTruthy();
+
+  fireEvent.click(button);
+  expect(button.getAttribute("data-status")).toBe("loading");
+  expect(shortcut?.closest('[aria-hidden="true"]')).toBeTruthy();
+
+  await act(async () => resolveAction());
+  expect(button.getAttribute("data-status")).toBe("success");
+  expect(shortcut?.closest('[aria-hidden="true"]')).toBeTruthy();
 });

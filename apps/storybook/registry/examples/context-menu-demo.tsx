@@ -24,15 +24,15 @@ export default function ContextMenuDemo() {
       <ContextMenuContent className="w-52">
         <ContextMenuItem inset>
           Back
-          <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+          <ContextMenuShortcut hotkey="Mod+[" />
         </ContextMenuItem>
         <ContextMenuItem inset disabled>
           Forward
-          <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+          <ContextMenuShortcut hotkey="Mod+]" />
         </ContextMenuItem>
         <ContextMenuItem inset>
           Reload
-          <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+          <ContextMenuShortcut hotkey="Mod+R" />
         </ContextMenuItem>
         <ContextMenuSub>
           <ContextMenuSubTrigger inset>More Tools</ContextMenuSubTrigger>

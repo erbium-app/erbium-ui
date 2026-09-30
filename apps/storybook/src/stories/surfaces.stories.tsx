@@ -163,7 +163,7 @@ export const Roles: Story = {
           <span className="rounded-full bg-tag-orange/10 px-2.5 py-0.5 text-xs font-medium text-tag-orange shadow-tint">
             Degraded
           </span>
-          <Kbd>⌘K</Kbd>
+          <Kbd hotkey="Mod+K" />
         </div>
       </div>
     </Canvas>

@@ -1448,7 +1448,7 @@
       "type": "registry:component",
       "title": "Kbd Button",
       "description": "Erbium kbd button example.",
-      "registryDependencies": ["@erbium/button", "@erbium/kbd"],
+      "registryDependencies": ["@erbium/button", "@erbium/direction"],
       "files": [
         {
           "path": "registry/examples/kbd-button.tsx",
@@ -1468,20 +1468,6 @@
           "path": "registry/examples/kbd-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/kbd-demo.tsx"
-        }
-      ]
-    },
-    {
-      "name": "kbd-group",
-      "type": "registry:component",
-      "title": "Kbd Group",
-      "description": "Erbium kbd group example.",
-      "registryDependencies": ["@erbium/kbd"],
-      "files": [
-        {
-          "path": "registry/examples/kbd-group.tsx",
-          "type": "registry:component",
-          "target": "~/src/examples/kbd-group.tsx"
         }
       ]
     },

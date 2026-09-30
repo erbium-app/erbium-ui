@@ -3,11 +3,11 @@
   "name": "kbd-button",
   "title": "Kbd Button",
   "description": "Erbium kbd button example.",
-  "registryDependencies": ["@erbium/button", "@erbium/kbd"],
+  "registryDependencies": ["@erbium/button", "@erbium/direction"],
   "files": [
     {
       "path": "registry/examples/kbd-button.tsx",
-      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport { Kbd } from \"../components/kbd\";\n\nexport default function KbdButton() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Button variant=\"outline\" size=\"sm\" className=\"pr-2\">\n        Accept <Kbd>⏎</Kbd>\n      </Button>\n      <Button variant=\"outline\" size=\"sm\" className=\"pr-2\">\n        Cancel <Kbd>Esc</Kbd>\n      </Button>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Button, ButtonShortcut } from \"../components/button\";\nimport { DirectionProvider } from \"../components/direction\";\n\nexport default function KbdButton() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Button variant=\"outline\" size=\"sm\">\n        Accept\n        <ButtonShortcut hotkey=\"Enter\" />\n      </Button>\n      <Button variant=\"outline\" size=\"sm\">\n        Cancel\n        <ButtonShortcut hotkey=\"Escape\" />\n      </Button>\n      <DirectionProvider direction=\"rtl\">\n        <div dir=\"rtl\">\n          <Button variant=\"outline\" size=\"sm\">\n            قبول\n            <ButtonShortcut hotkey=\"Enter\" />\n          </Button>\n        </div>\n      </DirectionProvider>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/kbd-button.tsx"
     }

@@ -10,6 +10,7 @@ import ExampleButtonLink from "../examples/button-link";
 import ExampleButtonIcon from "../examples/button-icon";
 import ExampleButtonRounded from "../examples/button-rounded";
 import ExampleButtonGroupDemo from "../examples/button-group-demo";
+import ButtonShortcutDemo from "../examples/kbd-button";
 import { Spinner } from "@erbium/ui/components/spinner";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
@@ -145,6 +146,17 @@ export const Sizes: Story = {
       ))}
     </div>
   ),
+};
+export const Shortcuts: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Place `ButtonShortcut` after the label. Button owns its spacing in both LTR and RTL layouts; the binding determines the platform label.",
+      },
+    },
+  },
+  render: () => <ButtonShortcutDemo />,
 };
 export const Disabled: Story = {
   parameters: {

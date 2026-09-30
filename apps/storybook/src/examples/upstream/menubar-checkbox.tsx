@@ -19,10 +19,10 @@ export function MenubarCheckbox() {
           <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarItem inset>
-            Reload <MenubarShortcut>⌘R</MenubarShortcut>
+            Reload <MenubarShortcut hotkey="Mod+R" />
           </MenubarItem>
           <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
+            Force Reload <MenubarShortcut hotkey="Shift+Mod+R" />
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>

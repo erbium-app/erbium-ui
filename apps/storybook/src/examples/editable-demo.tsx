@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Editable, EditableInput, EditablePreview } from "@erbium/ui/components/editable";
-import { Kbd, KbdGroup } from "@erbium/ui/components/kbd";
+import { Kbd } from "@erbium/ui/components/kbd";
 
 export default function EditableDemo() {
   const [name, setName] = useState("Overview");
@@ -12,10 +12,10 @@ export default function EditableDemo() {
         <EditablePreview aria-label="Rename tab" />
         <EditableInput aria-label="Tab name" maxLength={48} />
       </Editable>
-      <KbdGroup className="shrink-0">
-        <Kbd>Enter</Kbd>
-        <Kbd>Esc</Kbd>
-      </KbdGroup>
+      <span className="inline-flex shrink-0 items-center gap-1">
+        <Kbd hotkey="Enter" />
+        <Kbd hotkey="Escape" />
+      </span>
     </div>
   );
 }

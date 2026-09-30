@@ -44,7 +44,7 @@ export function DropdownMenuSubmenu() {
           </DropdownMenuSub>
           <DropdownMenuItem>
             New Team
-            <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+            <DropdownMenuShortcut hotkey="Mod+PlusT" />
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

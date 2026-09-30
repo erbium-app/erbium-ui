@@ -80,7 +80,7 @@ export const WithKeyboardShortcut: Story = {
       description: { story: "Show a keyboard shortcut in tooltip content." },
 
       source: {
-        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport SaveIcon from "@hugeicons/core-free-icons/SaveIcon";\n\n\nimport { Button } from "@erbium/ui/components/button";\nimport { Kbd } from "@erbium/ui/components/kbd";\nimport { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";\n\nexport function TooltipKeyboard() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant="outline" size="icon-sm" />}>\n        <HugeiconsIcon icon={SaveIcon} />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd>S</Kbd>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport SaveIcon from "@hugeicons/core-free-icons/SaveIcon";\n\n\nimport { Button } from "@erbium/ui/components/button";\nimport { Kbd } from "@erbium/ui/components/kbd";\nimport { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";\n\nexport function TooltipKeyboard() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant="outline" size="icon-sm" />}>\n        <HugeiconsIcon icon={SaveIcon} />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd hotkey="S" />\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n',
       },
     },
   },

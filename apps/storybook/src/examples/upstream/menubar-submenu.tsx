@@ -27,7 +27,7 @@ export function MenubarSubmenu() {
           </MenubarSub>
           <MenubarSeparator />
           <MenubarItem>
-            Print... <MenubarShortcut>⌘P</MenubarShortcut>
+            Print... <MenubarShortcut hotkey="Mod+P" />
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
@@ -35,10 +35,10 @@ export function MenubarSubmenu() {
         <MenubarTrigger>Edit</MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-            Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+            Undo <MenubarShortcut hotkey="Mod+Z" />
           </MenubarItem>
           <MenubarItem>
-            Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+            Redo <MenubarShortcut hotkey="Shift+Mod+Z" />
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>

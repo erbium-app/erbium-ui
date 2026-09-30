@@ -22,11 +22,11 @@ export function ContextMenuSubmenu() {
         <ContextMenuGroup>
           <ContextMenuItem>
             Copy
-            <ContextMenuShortcut>⌘C</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+C" />
           </ContextMenuItem>
           <ContextMenuItem>
             Cut
-            <ContextMenuShortcut>⌘X</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+X" />
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSub>

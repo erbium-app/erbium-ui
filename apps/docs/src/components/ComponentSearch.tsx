@@ -22,7 +22,7 @@ export default function ComponentSearch({ components }: { components: Component[
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <Kbd>⌘ K</Kbd>
+        <Kbd hotkey="Mod+K" />
       </label>
       {query && (
         <div className="search-results">

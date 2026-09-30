@@ -1,6 +1,7 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { Kbd } from "./kbd";
 
 /* Solid colour buttons: a glossy top edge, and pushed in while pressed or
    while their popup is open. */
@@ -12,7 +13,7 @@ const controlSurface =
   "border-surface-rim bg-surface-control text-foreground shadow-control hover:tint-hover active:tint-press active:shadow-pressed aria-expanded:tint-press aria-expanded:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow,translate] duration-150 outline-none select-none motion-reduce:transition-none focus-visible:border-ring active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow,translate] duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -66,10 +67,29 @@ function Button({
   return (
     <ButtonPrimitive
       data-slot="button"
+      data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
   );
 }
 
-export { Button, buttonVariants };
+function ButtonShortcut({ className, ...props }: React.ComponentProps<typeof Kbd>) {
+  return (
+    <span
+      data-slot="button-shortcut"
+      className="ms-1.5 me-[calc(-1*var(--button-shortcut-inset))] inline-flex shrink-0"
+    >
+      <Kbd
+        aria-hidden
+        className={cn(
+          "group-data-[size=xs]/button:h-4 group-data-[size=xs]/button:min-w-4 group-data-[size=xs]/button:text-[10px]",
+          className,
+        )}
+        {...props}
+      />
+    </span>
+  );
+}
+
+export { Button, ButtonShortcut, buttonVariants };

@@ -1,20 +1,12 @@
 // @ts-nocheck
-import { Kbd, KbdGroup } from "../components/kbd";
+import { Kbd } from "../components/kbd";
 
 export default function KbdDemo() {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <KbdGroup>
-        <Kbd>⌘</Kbd>
-        <Kbd>⇧</Kbd>
-        <Kbd>⌥</Kbd>
-        <Kbd>⌃</Kbd>
-      </KbdGroup>
-      <KbdGroup>
-        <Kbd>Ctrl</Kbd>
-        <span>+</span>
-        <Kbd>B</Kbd>
-      </KbdGroup>
+    <div className="flex flex-wrap items-center justify-center gap-2">
+      <Kbd hotkey="Mod+Shift+K" />
+      <Kbd hotkey="Mod+B" />
+      <Kbd hotkey="Escape" />
     </div>
   );
 }

@@ -22,10 +22,10 @@ export default function MenubarDemo() {
         <MenubarTrigger>File</MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-            New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+            New Tab <MenubarShortcut hotkey="Mod+T" />
           </MenubarItem>
           <MenubarItem>
-            New Window <MenubarShortcut>⌘N</MenubarShortcut>
+            New Window <MenubarShortcut hotkey="Mod+N" />
           </MenubarItem>
           <MenubarItem disabled>New Incognito Window</MenubarItem>
           <MenubarSeparator />
@@ -39,7 +39,7 @@ export default function MenubarDemo() {
           </MenubarSub>
           <MenubarSeparator />
           <MenubarItem>
-            Print... <MenubarShortcut>⌘P</MenubarShortcut>
+            Print... <MenubarShortcut hotkey="Mod+P" />
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
@@ -47,10 +47,10 @@ export default function MenubarDemo() {
         <MenubarTrigger>Edit</MenubarTrigger>
         <MenubarContent>
           <MenubarItem>
-            Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+            Undo <MenubarShortcut hotkey="Mod+Z" />
           </MenubarItem>
           <MenubarItem>
-            Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+            Redo <MenubarShortcut hotkey="Shift+Mod+Z" />
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
@@ -76,10 +76,10 @@ export default function MenubarDemo() {
           <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarItem inset>
-            Reload <MenubarShortcut>⌘R</MenubarShortcut>
+            Reload <MenubarShortcut hotkey="Mod+R" />
           </MenubarItem>
           <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
+            Force Reload <MenubarShortcut hotkey="Shift+Mod+R" />
           </MenubarItem>
           <MenubarSeparator />
           <MenubarItem inset>Toggle Fullscreen</MenubarItem>

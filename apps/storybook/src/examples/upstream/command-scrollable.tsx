@@ -54,22 +54,22 @@ export function CommandManyItems() {
               <CommandItem>
                 <HugeiconsIcon icon={Home01Icon} />
                 <span>Home</span>
-                <CommandShortcut>⌘H</CommandShortcut>
+                <CommandShortcut hotkey="Mod+H" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={InboxIcon} />
                 <span>Inbox</span>
-                <CommandShortcut>⌘I</CommandShortcut>
+                <CommandShortcut hotkey="Mod+I" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={FileTextIcon} />
                 <span>Documents</span>
-                <CommandShortcut>⌘D</CommandShortcut>
+                <CommandShortcut hotkey="Mod+D" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={Folder01Icon} />
                 <span>Folders</span>
-                <CommandShortcut>⌘F</CommandShortcut>
+                <CommandShortcut hotkey="Mod+F" />
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
@@ -77,32 +77,32 @@ export function CommandManyItems() {
               <CommandItem>
                 <HugeiconsIcon icon={PlusIcon} />
                 <span>New File</span>
-                <CommandShortcut>⌘N</CommandShortcut>
+                <CommandShortcut hotkey="Mod+N" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={FolderPlusIcon} />
                 <span>New Folder</span>
-                <CommandShortcut>⇧⌘N</CommandShortcut>
+                <CommandShortcut hotkey="Shift+Mod+N" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={CopyIcon} />
                 <span>Copy</span>
-                <CommandShortcut>⌘C</CommandShortcut>
+                <CommandShortcut hotkey="Mod+C" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={ScissorsIcon} />
                 <span>Cut</span>
-                <CommandShortcut>⌘X</CommandShortcut>
+                <CommandShortcut hotkey="Mod+X" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={ClipboardPasteIcon} />
                 <span>Paste</span>
-                <CommandShortcut>⌘V</CommandShortcut>
+                <CommandShortcut hotkey="Mod+V" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={TrashIcon} />
                 <span>Delete</span>
-                <CommandShortcut>⌫</CommandShortcut>
+                <CommandShortcut hotkey="Backspace" />
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
@@ -118,12 +118,12 @@ export function CommandManyItems() {
               <CommandItem>
                 <HugeiconsIcon icon={ZoomInIcon} />
                 <span>Zoom In</span>
-                <CommandShortcut>⌘+</CommandShortcut>
+                <CommandShortcut hotkey="Mod+Plus" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={ZoomOutIcon} />
                 <span>Zoom Out</span>
-                <CommandShortcut>⌘-</CommandShortcut>
+                <CommandShortcut hotkey="Mod+-" />
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
@@ -131,17 +131,17 @@ export function CommandManyItems() {
               <CommandItem>
                 <HugeiconsIcon icon={UserIcon} />
                 <span>Profile</span>
-                <CommandShortcut>⌘P</CommandShortcut>
+                <CommandShortcut hotkey="Mod+P" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={CreditCardIcon} />
                 <span>Billing</span>
-                <CommandShortcut>⌘B</CommandShortcut>
+                <CommandShortcut hotkey="Mod+B" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={Settings01Icon} />
                 <span>Settings</span>
-                <CommandShortcut>⌘S</CommandShortcut>
+                <CommandShortcut hotkey="Mod+S" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={BellIcon} />

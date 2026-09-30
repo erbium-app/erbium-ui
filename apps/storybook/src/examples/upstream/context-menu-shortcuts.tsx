@@ -19,26 +19,26 @@ export function ContextMenuShortcuts() {
         <ContextMenuGroup>
           <ContextMenuItem>
             Back
-            <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+[" />
           </ContextMenuItem>
           <ContextMenuItem disabled>
             Forward
-            <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+]" />
           </ContextMenuItem>
           <ContextMenuItem>
             Reload
-            <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+R" />
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuItem>
             Save
-            <ContextMenuShortcut>⌘S</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+S" />
           </ContextMenuItem>
           <ContextMenuItem>
             Save As...
-            <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Shift+Mod+S" />
           </ContextMenuItem>
         </ContextMenuGroup>
       </ContextMenuContent>

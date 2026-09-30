@@ -216,7 +216,7 @@ export const Kbd: Story = {
       description: { story: "Show a keyboard shortcut inside an input group." },
 
       source: {
-        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Search01Icon from "@hugeicons/core-free-icons/Search01Icon";\n\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";\nimport { Kbd } from "@erbium/ui/components/kbd";\n\nexport function InputGroupKbd() {\n  return (\n    <InputGroup className="max-w-sm">\n      <InputGroupInput placeholder="Search..." />\n      <InputGroupAddon>\n        <HugeiconsIcon icon={Search01Icon} className="text-muted-foreground" />\n      </InputGroupAddon>\n      <InputGroupAddon align="inline-end">\n        <Kbd>⌘K</Kbd>\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Search01Icon from "@hugeicons/core-free-icons/Search01Icon";\n\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";\nimport { Kbd } from "@erbium/ui/components/kbd";\n\nexport function InputGroupKbd() {\n  return (\n    <InputGroup className="max-w-sm">\n      <InputGroupInput placeholder="Search..." />\n      <InputGroupAddon>\n        <HugeiconsIcon icon={Search01Icon} className="text-muted-foreground" />\n      </InputGroupAddon>\n      <InputGroupAddon align="inline-end">\n        <Kbd hotkey="Mod+K" />\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n',
       },
     },
   },

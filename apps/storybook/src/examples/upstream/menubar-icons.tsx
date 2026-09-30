@@ -25,7 +25,7 @@ export function MenubarIcons() {
         <MenubarContent>
           <MenubarItem>
             <HugeiconsIcon icon={File01Icon} />
-            New File <MenubarShortcut>⌘N</MenubarShortcut>
+            New File <MenubarShortcut hotkey="Mod+N" />
           </MenubarItem>
           <MenubarItem>
             <HugeiconsIcon icon={Folder01Icon} />
@@ -34,7 +34,7 @@ export function MenubarIcons() {
           <MenubarSeparator />
           <MenubarItem>
             <HugeiconsIcon icon={SaveIcon} />
-            Save <MenubarShortcut>⌘S</MenubarShortcut>
+            Save <MenubarShortcut hotkey="Mod+S" />
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>

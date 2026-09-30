@@ -42,17 +42,17 @@ export default function CommandDemo() {
           <CommandItem>
             <HugeiconsIcon icon={UserIcon} />
             <span>Profile</span>
-            <CommandShortcut>⌘P</CommandShortcut>
+            <CommandShortcut hotkey="Mod+P" />
           </CommandItem>
           <CommandItem>
             <HugeiconsIcon icon={CreditCardIcon} />
             <span>Billing</span>
-            <CommandShortcut>⌘B</CommandShortcut>
+            <CommandShortcut hotkey="Mod+B" />
           </CommandItem>
           <CommandItem>
             <HugeiconsIcon icon={Settings01Icon} />
             <span>Settings</span>
-            <CommandShortcut>⌘S</CommandShortcut>
+            <CommandShortcut hotkey="Mod+S" />
           </CommandItem>
         </CommandGroup>
       </CommandList>

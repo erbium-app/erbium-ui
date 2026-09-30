@@ -21,15 +21,15 @@ export function ContextMenuGroups() {
           <ContextMenuLabel>File</ContextMenuLabel>
           <ContextMenuItem>
             New File
-            <ContextMenuShortcut>⌘N</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+N" />
           </ContextMenuItem>
           <ContextMenuItem>
             Open File
-            <ContextMenuShortcut>⌘O</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+O" />
           </ContextMenuItem>
           <ContextMenuItem>
             Save
-            <ContextMenuShortcut>⌘S</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+S" />
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
@@ -37,33 +37,33 @@ export function ContextMenuGroups() {
           <ContextMenuLabel>Edit</ContextMenuLabel>
           <ContextMenuItem>
             Undo
-            <ContextMenuShortcut>⌘Z</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+Z" />
           </ContextMenuItem>
           <ContextMenuItem>
             Redo
-            <ContextMenuShortcut>⇧⌘Z</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Shift+Mod+Z" />
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuItem>
             Cut
-            <ContextMenuShortcut>⌘X</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+X" />
           </ContextMenuItem>
           <ContextMenuItem>
             Copy
-            <ContextMenuShortcut>⌘C</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+C" />
           </ContextMenuItem>
           <ContextMenuItem>
             Paste
-            <ContextMenuShortcut>⌘V</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Mod+V" />
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuItem variant="destructive">
             Delete
-            <ContextMenuShortcut>⌫</ContextMenuShortcut>
+            <ContextMenuShortcut hotkey="Backspace" />
           </ContextMenuItem>
         </ContextMenuGroup>
       </ContextMenuContent>

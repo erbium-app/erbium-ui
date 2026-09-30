@@ -1,6 +1,6 @@
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
-import { Kbd, KbdGroup } from "@erbium/ui/components/kbd";
+import { Kbd } from "@erbium/ui/components/kbd";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";
 
 export default function KbdTooltip() {
@@ -16,7 +16,7 @@ export default function KbdTooltip() {
             }
           />
           <TooltipContent>
-            Save Changes <Kbd>S</Kbd>
+            Save Changes <Kbd hotkey="S" />
           </TooltipContent>
         </Tooltip>
         <Tooltip>
@@ -28,11 +28,7 @@ export default function KbdTooltip() {
             }
           />
           <TooltipContent>
-            Print Document{" "}
-            <KbdGroup>
-              <Kbd>Ctrl</Kbd>
-              <Kbd>P</Kbd>
-            </KbdGroup>
+            Print Document <Kbd hotkey="Mod+P" />
           </TooltipContent>
         </Tooltip>
       </ButtonGroup>
