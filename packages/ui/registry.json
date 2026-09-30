@@ -914,7 +914,7 @@
       "type": "registry:ui",
       "title": "Stateful Icon",
       "description": "Erbium stateful icon component.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "motion"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
