@@ -36,7 +36,7 @@ const ladder = [
   ["panel", "border border-surface-border bg-surface-panel shadow-panel", "card, frame"],
   ["control", "border border-surface-border bg-surface-control shadow-control", "button, input"],
   ["overlay", "border border-surface-border bg-surface-overlay shadow-overlay", "popover, menu"],
-  ["modal", "border border-surface-border bg-surface-modal shadow-modal", "dialog, sheet"],
+  ["modal", "border border-surface-border bg-surface-modal shadow-modal", "dialog, sheet, drawer"],
   ["top", "border border-surface-border bg-surface-top shadow-overlay", "menu in a dialog"],
 ] as const;
 

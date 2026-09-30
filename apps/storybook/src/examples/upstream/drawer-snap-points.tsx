@@ -6,6 +6,7 @@ import {
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
+  DrawerPanel,
   DrawerTitle,
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
@@ -23,9 +24,9 @@ export function DrawerSnapPoints() {
             Drag the drawer to snap between a compact peek and a near full-height view.
           </DrawerDescription>
         </DrawerHeader>
-        <div className="flex-1 p-4">
+        <DrawerPanel>
           <div className="rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full" />
-        </div>
+        </DrawerPanel>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Close</DrawerClose>
         </DrawerFooter>

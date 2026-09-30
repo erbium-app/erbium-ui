@@ -6,6 +6,7 @@ import {
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
+  DrawerPanel,
   DrawerTitle,
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
@@ -19,9 +20,9 @@ export function DrawerWithSides() {
           <DrawerTitle>Move Goal</DrawerTitle>
           <DrawerDescription>Set your daily activity goal.</DrawerDescription>
         </DrawerHeader>
-        <div className="flex-1 p-4">
+        <DrawerPanel>
           <div className="size-full rounded-2xl bg-muted" />
-        </div>
+        </DrawerPanel>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Close</DrawerClose>
         </DrawerFooter>

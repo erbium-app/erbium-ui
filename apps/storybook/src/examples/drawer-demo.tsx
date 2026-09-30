@@ -11,7 +11,7 @@ import {
 } from "@erbium/ui/components/drawer";
 export default function DrawerDemo() {
   return (
-    <Drawer>
+    <Drawer showSwipeHandle>
       <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
       <DrawerContent>
         <DrawerHeader>

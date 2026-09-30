@@ -7,6 +7,7 @@ import {
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
+  DrawerPanel,
   DrawerTitle,
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
@@ -21,16 +22,14 @@ import {
 
 function DrawerExample({ className, label }: { className?: string; label: string }) {
   return (
-    <Drawer>
+    <Drawer showSwipeHandle>
       <DrawerTrigger render={<Button variant="outline" />}>{label}</DrawerTrigger>
       <DrawerContent className={className}>
         <DrawerHeader>
           <DrawerTitle>{label}</DrawerTitle>
           <DrawerDescription>Adjust the drawer layout for your content.</DrawerDescription>
         </DrawerHeader>
-        <div className="min-h-20 flex-1 overflow-y-auto p-4">
-          This region scrolls when the content grows.
-        </div>
+        <DrawerPanel>This region scrolls when the content grows.</DrawerPanel>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Done</DrawerClose>
         </DrawerFooter>
@@ -46,7 +45,7 @@ export function CustomSizes() {
 export function Styling() {
   return (
     <DrawerExample
-      className="[--drawer-inset:--spacing(4)] [--drawer-bleed-background:var(--color-muted)]"
+      className="[--drawer-inset:--spacing(4)] [--drawer-bleed-background:transparent] rounded-2xl"
       label="Open inset drawer"
     />
   );
