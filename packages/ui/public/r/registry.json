@@ -724,7 +724,7 @@
       "title": "Select",
       "description": "Erbium select component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/select.tsx",

@@ -14,6 +14,8 @@ type ScrollAreaProps = ScrollAreaPrimitive.Root.Props & {
   /** Controls when the custom scrollbar is visible. */
   scrollbarVisibility?: ScrollBarVisibility;
   viewportClassName?: string;
+  viewportRole?: React.AriaRole;
+  viewportRender?: ScrollAreaPrimitive.Viewport.Props["render"];
   contentClassName?: string;
   scrollbarClassName?: string;
   thumbClassName?: string;
@@ -26,6 +28,8 @@ function ScrollArea({
   scrollbar = "thin",
   scrollbarVisibility = "always",
   viewportClassName,
+  viewportRole,
+  viewportRender,
   contentClassName,
   scrollbarClassName,
   thumbClassName,
@@ -43,6 +47,8 @@ function ScrollArea({
     >
       <ScrollAreaViewport
         data-slot="scroll-area-viewport"
+        role={viewportRole}
+        render={viewportRender}
         className={cn(
           "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:outline-1",
           fade === "vertical" && "data-has-overflow-y:scroll-fade-y",
