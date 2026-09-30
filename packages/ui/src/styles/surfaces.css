@@ -27,7 +27,9 @@
  * reads as a double outline (Medusa and opencode avoid it the same way).
  * In light mode the edge is ink and the catchlight is invisible on white, so
  * the drop carries the depth; in dark mode the edge is light, the catchlight
- * brightens the top, and the drop is black.
+ * brightens the top, and the drop is black. Drops are listed first so they
+ * paint over the edge along the bottom: the lower edge darkens instead of
+ * showing a light line under the control.
  * The ink (#393a34) and light (#dedcd5) tints come from Vitesse.
  */
 
@@ -89,23 +91,23 @@
   --color-surface-well: var(--surface-well);
 
   --shadow-panel:
-    0 -0.5px 0 0 var(--surface-highlight), 0 0 0 0.5px var(--surface-edge),
-    0 1px 2px 0 var(--surface-drop), 0 2px 6px -2px var(--surface-drop);
+    0 1px 2px 0 var(--surface-drop), 0 2px 6px -2px var(--surface-drop),
+    0 0 0 0.5px var(--surface-edge), 0 -0.5px 0 0 var(--surface-highlight);
   --shadow-control:
-    0 -0.5px 0 0 var(--surface-highlight), 0 0 0 0.5px var(--surface-edge),
-    0 1px 1.5px 0 var(--surface-drop-strong);
+    0 1px 1.5px 0 var(--surface-drop-strong), 0 0 0 0.5px var(--surface-edge),
+    0 -0.5px 0 0 var(--surface-highlight);
   --shadow-overlay:
-    0 -0.5px 0 0 var(--surface-highlight-strong), 0 0 0 0.5px var(--surface-edge),
-    0 4px 8px 0 var(--surface-drop), 0 8px 16px 0 var(--surface-drop);
+    0 4px 8px 0 var(--surface-drop), 0 8px 16px 0 var(--surface-drop),
+    0 0 0 0.5px var(--surface-edge), 0 -0.5px 0 0 var(--surface-highlight-strong);
   --shadow-modal:
-    0 -0.5px 0 0 var(--surface-highlight-strong), 0 0 0 0.5px var(--surface-edge),
-    0 8px 16px 0 var(--surface-drop), 0 16px 32px 0 var(--surface-drop);
+    0 8px 16px 0 var(--surface-drop), 0 16px 32px 0 var(--surface-drop),
+    0 0 0 0.5px var(--surface-edge), 0 -0.5px 0 0 var(--surface-highlight-strong);
   --shadow-knob:
-    0 -0.5px 0 0 var(--surface-highlight-strong), 0 0 0 0.5px var(--surface-edge),
-    0 1px 2px 0 var(--surface-drop-strong), 0 2px 4px 0 var(--surface-drop);
+    0 1px 2px 0 var(--surface-drop-strong), 0 2px 4px 0 var(--surface-drop),
+    0 0 0 0.5px var(--surface-edge), 0 -0.5px 0 0 var(--surface-highlight-strong);
   --shadow-fill:
-    inset 0 1px 1px 0 var(--fill-highlight), 0 -0.5px 0 0 var(--surface-highlight-strong),
-    0 0 0 0.5px var(--fill-edge), 0 1px 1.5px 0 var(--surface-drop-strong);
+    inset 0 1px 1px 0 var(--fill-highlight), 0 1px 1.5px 0 var(--surface-drop-strong),
+    0 0 0 0.5px var(--fill-edge), 0 -0.5px 0 0 var(--surface-highlight-strong);
   --shadow-edge: 0 0 0 0.5px var(--surface-edge);
   --shadow-pressed: inset 0 1px 2px 0 var(--surface-shade), 0 0 0 0.5px var(--surface-edge);
   --shadow-well: inset 0 1px 2px 0 var(--surface-shade), inset 0 0 0 0.5px var(--surface-well-edge);
