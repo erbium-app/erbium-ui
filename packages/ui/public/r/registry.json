@@ -831,6 +831,21 @@
       ]
     },
     {
+      "name": "status-button",
+      "type": "registry:ui",
+      "title": "Status Button",
+      "description": "Erbium status button component.",
+      "dependencies": ["@tanstack/react-pacer", "lucide-react"],
+      "registryDependencies": ["@erbium/button", "@erbium/spinner", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/status-button.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/status-button.tsx"
+        }
+      ]
+    },
+    {
       "name": "styles",
       "type": "registry:item",
       "title": "Erbium styles",

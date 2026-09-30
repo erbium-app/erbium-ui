@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-button-form",
+  "title": "Status Button Form",
+  "description": "Erbium status button form example.",
+  "dependencies": ["@tanstack/react-pacer"],
+  "registryDependencies": [
+    "@erbium/field",
+    "@erbium/form",
+    "@erbium/input",
+    "@erbium/status-button"
+  ],
+  "files": [
+    {
+      "path": "registry/examples/status-button-form.tsx",
+      "content": "// @ts-nocheck\nimport { useAsyncDebouncer } from \"@tanstack/react-pacer/async-debouncer\";\nimport { useState } from \"react\";\nimport { Field, FieldError, FieldLabel } from \"../components/field\";\nimport { useForm } from \"../components/form\";\nimport { Input } from \"../components/input\";\nimport { StatusButton } from \"../components/status-button\";\nimport type { ButtonStatus } from \"../components/status-button\";\n\nfunction SubmitStatusButton({\n  canSubmit,\n  isSubmitting,\n  isSubmitSuccessful,\n  submissionAttempts,\n}: {\n  canSubmit: boolean;\n  isSubmitting: boolean;\n  isSubmitSuccessful: boolean;\n  submissionAttempts: number;\n}) {\n  const [dismissedAttempt, setDismissedAttempt] = useState(0);\n  let status: ButtonStatus = \"idle\";\n  if (isSubmitting) {\n    status = \"loading\";\n  } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {\n    status = \"success\";\n  }\n\n  return (\n    <StatusButton\n      type=\"submit\"\n      disabled={!canSubmit}\n      status={status}\n      onStatusChange={(nextStatus) => {\n        if (nextStatus === \"idle\") {\n          setDismissedAttempt(submissionAttempts);\n        }\n      }}\n      successLabel=\"Subscribed\"\n    >\n      Subscribe\n    </StatusButton>\n  );\n}\n\nexport default function StatusButtonForm() {\n  const request = useAsyncDebouncer(async () => {}, { wait: 1200 });\n  const form = useForm({\n    defaultValues: { email: \"\" },\n    onSubmit: async () => {\n      await request.maybeExecute();\n    },\n  });\n\n  return (\n    <form\n      className=\"w-80 space-y-4\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        void form.handleSubmit();\n      }}\n    >\n      <form.Field\n        name=\"email\"\n        validators={{\n          onBlur: ({ value }) => (value.includes(\"@\") ? undefined : \"Enter a valid email address.\"),\n        }}\n      >\n        {(field) => (\n          <Field>\n            <FieldLabel htmlFor=\"status-email\">Email</FieldLabel>\n            <Input\n              id=\"status-email\"\n              type=\"email\"\n              value={field.state.value}\n              onBlur={field.handleBlur}\n              onChange={(event) => field.handleChange(event.target.value)}\n            />\n            {field.state.meta.errors.map((error) => (\n              <FieldError key={String(error)}>{error}</FieldError>\n            ))}\n          </Field>\n        )}\n      </form.Field>\n      <form.Subscribe\n        selector={(state) =>\n          [\n            state.canSubmit,\n            state.isSubmitting,\n            state.isSubmitSuccessful,\n            state.submissionAttempts,\n          ] as const\n        }\n      >\n        {([canSubmit, isSubmitting, isSubmitSuccessful, submissionAttempts]) => (\n          <SubmitStatusButton\n            canSubmit={canSubmit}\n            isSubmitting={isSubmitting}\n            isSubmitSuccessful={isSubmitSuccessful}\n            submissionAttempts={submissionAttempts}\n          />\n        )}\n      </form.Subscribe>\n    </form>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/status-button-form.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

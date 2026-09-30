@@ -1987,6 +1987,41 @@
       ]
     },
     {
+      "name": "status-button-demo",
+      "type": "registry:component",
+      "title": "Status Button Demo",
+      "description": "Erbium status button demo example.",
+      "dependencies": ["@tanstack/react-pacer"],
+      "registryDependencies": ["@erbium/status-button"],
+      "files": [
+        {
+          "path": "registry/examples/status-button-demo.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/status-button-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "status-button-form",
+      "type": "registry:component",
+      "title": "Status Button Form",
+      "description": "Erbium status button form example.",
+      "dependencies": ["@tanstack/react-pacer"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/input",
+        "@erbium/status-button"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/status-button-form.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/status-button-form.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch-controlled",
       "type": "registry:component",
       "title": "Switch Controlled",
