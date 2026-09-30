@@ -3,7 +3,6 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
-
 import { useMediaQuery } from "../hooks/use-media-query";
 import { Button } from "./button";
 import { Input } from "./input";

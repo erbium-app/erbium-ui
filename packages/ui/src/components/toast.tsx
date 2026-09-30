@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import { cn } from "../lib/utils";
-
 import { Button } from "./button";
 import { Spinner } from "./spinner";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -10,8 +9,6 @@ import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
 import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
 import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
-
-// cspell:ignore frontmost
 
 const toast = ToastPrimitive.createToastManager();
 
@@ -29,7 +26,7 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
       data-slot="toast-viewport"
       className={cn(
         "group/toast-viewport pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto w-auto max-w-sm outline-none sm:inset-e-4 sm:inset-s-auto sm:mx-0 sm:w-full",
-        "data-expanded:inset-x-0 data-expanded:bottom-0 data-expanded:flex data-expanded:max-h-[100dvh] data-expanded:max-w-[26rem] data-expanded:flex-col-reverse data-expanded:scroll-fade-y data-expanded:overflow-y-auto data-expanded:p-4 sm:data-expanded:inset-e-0 sm:data-expanded:inset-s-auto",
+        "data-expanded:inset-x-0 data-expanded:bottom-0 data-expanded:flex data-expanded:max-h-dvh data-expanded:max-w-104 data-expanded:flex-col-reverse data-expanded:scroll-fade-y data-expanded:overflow-y-auto data-expanded:p-4 sm:data-expanded:inset-e-0 sm:data-expanded:inset-s-auto",
         className,
       )}
       {...props}

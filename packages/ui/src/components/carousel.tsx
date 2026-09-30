@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
-
 import { Button } from "./button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ChevronLeftIcon from "@hugeicons/core-free-icons/ChevronLeftIcon";

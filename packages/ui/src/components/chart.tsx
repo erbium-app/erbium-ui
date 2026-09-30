@@ -3,7 +3,6 @@ import type { ChartProps as TanStackChartProps } from "@tanstack/charts/react";
 import type { ChartValue } from "@tanstack/charts";
 import { cn } from "../lib/utils";
 
-/** Render a TanStack Charts definition. Create marks with `@tanstack/charts`. */
 export function Chart<
   TDatum,
   TXValue extends ChartValue = ChartValue,

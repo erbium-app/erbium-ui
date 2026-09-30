@@ -1,7 +1,6 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { DayPicker, getDefaultClassNames, type DayButton, type Locale } from "react-day-picker";
-
 import { Button, buttonVariants } from "./button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";

@@ -1,7 +1,6 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { cn } from "../lib/utils";
 import { StatefulChevron } from "./stateful-icon";
-
 import { Separator } from "./separator";
 
 function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {

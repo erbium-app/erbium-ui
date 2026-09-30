@@ -6,7 +6,6 @@ import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { StatefulChevron } from "./stateful-icon";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
-
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 

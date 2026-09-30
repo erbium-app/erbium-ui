@@ -27,10 +27,7 @@ function StatefulIcon<State extends string>({
     <span
       aria-hidden={label ? undefined : true}
       aria-label={label}
-      className={cn(
-        "inline-grid shrink-0 align-middle [&>*]:col-start-1 [&>*]:row-start-1",
-        className,
-      )}
+      className={cn("inline-grid shrink-0 align-middle *:col-start-1 *:row-start-1", className)}
       data-slot="stateful-icon"
       data-state={state}
       role={label ? "img" : undefined}

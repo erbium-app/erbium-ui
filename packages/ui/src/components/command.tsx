@@ -2,7 +2,6 @@ import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
-
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";

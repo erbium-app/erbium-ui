@@ -37,7 +37,7 @@ function Switch({
           data-slot="switch-start-icon"
           className={cn(
             switchIconClassName,
-            "start-0 scale-0 text-primary-foreground opacity-0 group-data-checked/switch:scale-100 group-data-checked/switch:opacity-100",
+            "inset-s-0 scale-0 text-primary-foreground opacity-0 group-data-checked/switch:scale-100 group-data-checked/switch:opacity-100",
           )}
         >
           {startIcon}
@@ -49,7 +49,7 @@ function Switch({
           data-slot="switch-end-icon"
           className={cn(
             switchIconClassName,
-            "end-0 scale-0 text-muted-foreground opacity-0 group-data-unchecked/switch:scale-100 group-data-unchecked/switch:opacity-100",
+            "inset-e-0 scale-0 text-muted-foreground opacity-0 group-data-unchecked/switch:scale-100 group-data-unchecked/switch:opacity-100",
           )}
         >
           {endIcon}
