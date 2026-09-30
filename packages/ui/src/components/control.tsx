@@ -563,7 +563,7 @@ function SegmentedTrack({
           <RadioPrimitive.Root
             key={option.value}
             value={option.value}
-            className="relative min-h-6 min-w-0 rounded-md px-2 py-0.5 text-xs text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none"
+            className="relative flex min-h-6 min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-xs text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none"
           >
             {value === option.value && (
               <motion.span
@@ -579,7 +579,7 @@ function SegmentedTrack({
                 className="pointer-events-none absolute inset-0 z-0 rounded-md border border-surface-rim bg-surface-control shadow-control"
               />
             )}
-            <span className="relative z-10 block truncate">{option.label}</span>
+            <span className="relative z-10 min-w-0 truncate">{option.label}</span>
           </RadioPrimitive.Root>
         ))}
       </RadioGroupPrimitive>
