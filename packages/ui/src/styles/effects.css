@@ -96,3 +96,42 @@
     -webkit-text-fill-color: currentColor;
   }
 }
+
+/*
+ * Skeleton sweep. The gradient is attached to the viewport (`fixed`), so every
+ * skeleton on screen shares one band that travels across the page at the same
+ * speed regardless of element size. The Skeleton component pins each animation
+ * to the document timeline so late-mounting skeletons stay in phase.
+ */
+@theme inline {
+  --animate-skeleton: skeleton var(--shimmer-duration, 2s) -1s infinite linear;
+  @keyframes skeleton {
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+@utility skeleton {
+  background-color: var(--color-skeleton);
+  background-image: linear-gradient(
+    120deg,
+    transparent 40%,
+    var(--color-skeleton-highlight),
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  background-position: 0 0;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  animation: var(--animate-skeleton);
+
+  &:where([dir="rtl"], [dir="rtl"] *) {
+    animation-direction: reverse;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    background-image: none;
+  }
+}

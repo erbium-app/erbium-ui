@@ -63,6 +63,8 @@
   --code: #f7f7f7;
   --code-foreground: #586069;
   --code-highlight: #e6cc7744;
+  --skeleton: oklch(0 0 0 / 5%);
+  --skeleton-highlight: oklch(1 0 0 / 70%);
   --radius: 0.625rem;
 }
 
@@ -125,6 +127,8 @@
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
+  --color-skeleton: var(--skeleton);
+  --color-skeleton-highlight: var(--skeleton-highlight);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
@@ -209,4 +213,6 @@
   --code: #181818;
   --code-foreground: #dbd7ca;
   --code-highlight: #e6cc7722;
+  --skeleton: oklch(1 0 0 / 6%);
+  --skeleton-highlight: oklch(1 0 0 / 6%);
 }

@@ -6,6 +6,7 @@ import ExampleSkeletonCard from "../examples/skeleton-card";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Skeleton } from "@erbium/ui/components/skeleton";
 import Demo from "../examples/skeleton-demo";
+import SkeletonStaggered from "../examples/skeleton-staggered";
 
 const meta = {
   title: "UI/Skeleton",
@@ -79,6 +80,18 @@ export const Card: Story = {
       <ExampleSkeletonCard />
     </div>
   ),
+};
+
+export const Staggered: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Skeletons that mount at different times share one sweep. The highlight is attached to the viewport and synced to the document timeline, so every placeholder on the page moves as a single band.",
+      },
+    },
+  },
+  render: () => <SkeletonStaggered />,
 };
 
 export const Avatar: Story = {

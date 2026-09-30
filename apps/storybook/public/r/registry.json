@@ -1762,6 +1762,20 @@
       ]
     },
     {
+      "name": "skeleton-staggered",
+      "type": "registry:component",
+      "title": "Skeleton Staggered",
+      "description": "Erbium skeleton staggered example.",
+      "registryDependencies": ["@erbium/skeleton"],
+      "files": [
+        {
+          "path": "registry/examples/skeleton-staggered.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/skeleton-staggered.tsx"
+        }
+      ]
+    },
+    {
       "name": "slider-demo",
       "type": "registry:component",
       "title": "Slider Demo",
