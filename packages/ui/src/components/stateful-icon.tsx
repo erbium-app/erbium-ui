@@ -1,8 +1,9 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
 import type { ReactNode } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { cn } from "../lib/utils";
 
 type StatefulIconProps<State extends string> = {
@@ -81,5 +82,107 @@ function RotatingChevron({ direction = "down", className, ...props }: RotatingCh
   );
 }
 
-export { RotatingChevron, StatefulIcon };
-export type { RotatingChevronProps, StatefulIconProps };
+type ExpandableChevronProps = {
+  isOpen: boolean;
+  className?: string;
+};
+
+/** Two chevrons exchange positions to indicate an open or closed state. */
+function ExpandableChevron({ isOpen, className }: ExpandableChevronProps) {
+  const reduceMotion = useReducedMotion();
+  const transition = reduceMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" as const };
+
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "pointer-events-none relative inline-block size-4 shrink-0 align-middle text-muted-foreground/60",
+        className,
+      )}
+      data-slot="expandable-chevron"
+      data-state={isOpen ? "open" : "closed"}
+    >
+      <motion.span
+        animate={{ y: isOpen ? "12.5%" : "-25%" }}
+        className="absolute inset-0"
+        initial={false}
+        transition={transition}
+      >
+        <HugeiconsIcon icon={ChevronUpIcon} className="size-full" strokeWidth={2} />
+      </motion.span>
+      <motion.span
+        animate={{ y: isOpen ? "-12.5%" : "25%" }}
+        className="absolute inset-0"
+        initial={false}
+        transition={transition}
+      >
+        <HugeiconsIcon icon={ChevronDownIcon} className="size-full" strokeWidth={2} />
+      </motion.span>
+    </span>
+  );
+}
+
+type SidebarToggleIconProps = Omit<React.ComponentPropsWithoutRef<"svg">, "children"> & {
+  isOpen: boolean;
+  side?: "left" | "right";
+  duration?: number;
+};
+
+/** Sidebar frame whose inner panel grows when the sidebar opens. */
+function SidebarToggleIcon({
+  isOpen,
+  side = "left",
+  duration = 0.3,
+  className,
+  ...props
+}: SidebarToggleIconProps) {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <svg
+      {...props}
+      aria-hidden="true"
+      className={cn(
+        "size-[15px] text-muted-foreground",
+        side === "right" && "-scale-x-100",
+        className,
+      )}
+      data-slot="sidebar-toggle-icon"
+      data-state={isOpen ? "open" : "closed"}
+      fill="none"
+      focusable="false"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        height="18"
+        rx="4"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        width="20"
+        x="2"
+        y="3"
+      />
+      <motion.rect
+        animate={{ width: isOpen ? 6 : 2 }}
+        fill="currentColor"
+        height="12"
+        initial={false}
+        rx="1"
+        transition={{ duration: reduceMotion ? 0 : duration }}
+        x="5"
+        y="6"
+      />
+    </svg>
+  );
+}
+
+export { ExpandableChevron, RotatingChevron, SidebarToggleIcon, StatefulIcon };
+export type {
+  ExpandableChevronProps,
+  RotatingChevronProps,
+  SidebarToggleIconProps,
+  StatefulIconProps,
+};
