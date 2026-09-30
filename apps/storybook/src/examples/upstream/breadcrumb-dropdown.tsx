@@ -30,9 +30,15 @@ export function BreadcrumbDropdown() {
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <DropdownMenu>
-            <DropdownMenuTrigger render={<button className="flex items-center gap-1" />}>
+            <DropdownMenuTrigger
+              render={<button className="group/breadcrumb-menu-trigger flex items-center gap-1" />}
+            >
               Components
-              <HugeiconsIcon icon={ChevronDownIcon} data-icon="inline-end" className="size-3.5" />
+              <HugeiconsIcon
+                icon={ChevronDownIcon}
+                data-icon="inline-end"
+                className="size-3.5 transition-transform duration-200 ease-in-out group-data-popup-open/breadcrumb-menu-trigger:rotate-180 group-data-open/breadcrumb-menu-trigger:rotate-180 motion-reduce:transition-none"
+              />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuGroup>

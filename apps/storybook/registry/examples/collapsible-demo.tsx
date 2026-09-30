@@ -30,7 +30,7 @@ export default function CollapsibleDemo() {
           <HugeiconsIcon
             icon={ChevronRightIcon}
             aria-hidden="true"
-            className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-panel-open/files:rotate-90 motion-reduce:transition-none"
+            className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 ease-in-out group-data-panel-open/files:rotate-90 motion-reduce:transition-none"
           />
         </CollapsibleTrigger>
         <CollapsibleContent>

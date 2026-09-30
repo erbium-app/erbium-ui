@@ -39,7 +39,7 @@ export function BubbleCollapsible() {
                 <HugeiconsIcon
                   icon={ChevronDownIcon}
                   data-icon="inline-end"
-                  className="group-data-panel-open/button:rotate-180"
+                  className="transition-transform duration-200 ease-in-out group-data-panel-open/button:rotate-180 motion-reduce:transition-none"
                 />
               </CollapsibleTrigger>
             ) : null}

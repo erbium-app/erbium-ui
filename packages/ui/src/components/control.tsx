@@ -712,7 +712,7 @@ function Select({
         aria-label={label}
         className={cn(
           rowClass,
-          "justify-between outline-none hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:shadow-pressed engaged:active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
+          "group/control-select justify-between outline-none hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:shadow-pressed engaged:active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
           className,
         )}
       >
@@ -720,7 +720,10 @@ function Select({
         <span className="ms-auto flex min-w-0 items-center gap-2 text-muted-foreground">
           <SelectPrimitive.Value className="truncate text-end text-foreground" />
           <SelectPrimitive.Icon>
-            <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5 shrink-0" />
+            <HugeiconsIcon
+              icon={ChevronDownIcon}
+              className="size-3.5 shrink-0 transition-transform duration-200 ease-in-out group-data-popup-open/control-select:rotate-180 group-data-open/control-select:rotate-180 motion-reduce:transition-none"
+            />
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
@@ -854,14 +857,17 @@ function Image({
         >
           <SelectPrimitive.Trigger
             aria-label={label}
-            className="ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
+            className="group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
           >
             {preview ? (
               <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
             ) : null}
             <SelectPrimitive.Value className="max-w-24 truncate" />
             <SelectPrimitive.Icon>
-              <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
+              <HugeiconsIcon
+                icon={ChevronDownIcon}
+                className="size-3.5 transition-transform duration-200 ease-in-out group-data-popup-open/control-select:rotate-180 group-data-open/control-select:rotate-180 motion-reduce:transition-none"
+              />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
@@ -1358,7 +1364,7 @@ function Section({
         <HugeiconsIcon
           icon={ChevronDownIcon}
           aria-hidden="true"
-          className="size-4 -rotate-90 transition-transform duration-200 group-data-panel-open/section:rotate-0 motion-reduce:transition-none"
+          className="size-4 -rotate-90 transition-transform duration-200 ease-in-out group-data-panel-open/section:rotate-0 motion-reduce:transition-none"
         />
       </CollapsibleTrigger>
       <CollapsibleContent className="data-open:overflow-visible">

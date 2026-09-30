@@ -47,7 +47,7 @@ function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.
         <HugeiconsIcon
           icon={ChevronDownIcon}
           data-slot="accordion-trigger-icon"
-          className="pointer-events-none shrink-0 transition-transform duration-200 ease-in-out group-data-panel-open/accordion-trigger:rotate-180"
+          className="pointer-events-none shrink-0 transition-transform duration-200 ease-in-out group-data-panel-open/accordion-trigger:rotate-180 motion-reduce:transition-none"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

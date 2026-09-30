@@ -44,8 +44,15 @@ export default function InputGroupDropdown() {
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
-                <InputGroupButton variant="ghost" className="pr-1.5! text-xs">
-                  Search In... <HugeiconsIcon icon={ChevronDownIcon} className="size-3" />
+                <InputGroupButton
+                  variant="ghost"
+                  className="group/search-menu-trigger pr-1.5! text-xs"
+                >
+                  Search In...{" "}
+                  <HugeiconsIcon
+                    icon={ChevronDownIcon}
+                    className="size-3 transition-transform duration-200 ease-in-out group-data-popup-open/search-menu-trigger:rotate-180 group-data-open/search-menu-trigger:rotate-180 motion-reduce:transition-none"
+                  />
                 </InputGroupButton>
               }
             />

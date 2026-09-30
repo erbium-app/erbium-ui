@@ -26,8 +26,11 @@ export default function ButtonGroupDropdown() {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="outline" className="pl-2!">
-              <HugeiconsIcon icon={ChevronDownIcon} />
+            <Button variant="outline" className="group/menu-trigger pl-2!">
+              <HugeiconsIcon
+                icon={ChevronDownIcon}
+                className="transition-transform duration-200 ease-in-out group-data-popup-open/menu-trigger:rotate-180 group-data-open/menu-trigger:rotate-180 motion-reduce:transition-none"
+              />
             </Button>
           }
         />

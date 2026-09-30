@@ -31,7 +31,7 @@ export default function Demo() {
                   <HugeiconsIcon
                     icon={ChevronDownIcon}
                     aria-hidden="true"
-                    className="ms-auto transition-transform duration-200 group-data-open/workspace:rotate-180 motion-reduce:transition-none"
+                    className="ms-auto transition-transform duration-200 ease-in-out group-data-open/workspace:rotate-180 motion-reduce:transition-none"
                   />
                 </SidebarGroupLabel>
                 <CollapsibleContent>

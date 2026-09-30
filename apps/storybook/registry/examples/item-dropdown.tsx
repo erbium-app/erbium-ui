@@ -36,8 +36,12 @@ export default function ItemDropdown() {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="outline" size="sm" className="w-fit">
-              Select <HugeiconsIcon icon={ChevronDownIcon} />
+            <Button variant="outline" size="sm" className="group/item-menu-trigger w-fit">
+              Select{" "}
+              <HugeiconsIcon
+                icon={ChevronDownIcon}
+                className="transition-transform duration-200 ease-in-out group-data-popup-open/item-menu-trigger:rotate-180 group-data-open/item-menu-trigger:rotate-180 motion-reduce:transition-none"
+              />
             </Button>
           }
         />
