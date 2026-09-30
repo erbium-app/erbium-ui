@@ -17,7 +17,7 @@
     "date-fns": "^4.4.0",
     "embla-carousel-autoplay": "^8.6.0",
     "input-otp": "^1.5.0",
-    "lucide-react": "^1.48.0",
+    "lucide-react": "^1.49.0",
     "react": "^19.3.0",
     "react-day-picker": "^10.0.1",
     "react-dom": "^19.3.0",
@@ -25,9 +25,9 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "10.6.0",
-    "@storybook/addon-themes": "^10.6.0",
-    "@storybook/tanstack-react": "10.6.0",
+    "@storybook/addon-docs": "10.6.1",
+    "@storybook/addon-themes": "^10.6.1",
+    "@storybook/tanstack-react": "10.6.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-router": "1.170.35",
     "@tanstack/router-core": "1.171.29",
