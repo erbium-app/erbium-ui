@@ -1973,6 +1973,20 @@
       ]
     },
     {
+      "name": "switch-controlled",
+      "type": "registry:component",
+      "title": "Switch Controlled",
+      "description": "Erbium switch controlled example.",
+      "registryDependencies": ["@erbium/label", "@erbium/switch"],
+      "files": [
+        {
+          "path": "registry/examples/switch-controlled.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/switch-controlled.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch-demo",
       "type": "registry:component",
       "title": "Switch Demo",
@@ -1983,6 +1997,49 @@
           "path": "registry/examples/switch-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/switch-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch-form",
+      "type": "registry:component",
+      "title": "Switch Form",
+      "description": "Erbium switch form example.",
+      "registryDependencies": ["@erbium/button", "@erbium/label", "@erbium/switch"],
+      "files": [
+        {
+          "path": "registry/examples/switch-form.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/switch-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch-icons",
+      "type": "registry:component",
+      "title": "Switch Icons",
+      "description": "Erbium switch icons example.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@erbium/label", "@erbium/switch"],
+      "files": [
+        {
+          "path": "registry/examples/switch-icons.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/switch-icons.tsx"
+        }
+      ]
+    },
+    {
+      "name": "switch-read-only",
+      "type": "registry:component",
+      "title": "Switch Read Only",
+      "description": "Erbium switch read only example.",
+      "registryDependencies": ["@erbium/label", "@erbium/switch"],
+      "files": [
+        {
+          "path": "registry/examples/switch-read-only.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/switch-read-only.tsx"
         }
       ]
     },

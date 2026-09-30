@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-form",
+  "title": "Switch Form",
+  "description": "Erbium switch form example.",
+  "registryDependencies": ["@erbium/button", "@erbium/label", "@erbium/switch"],
+  "files": [
+    {
+      "path": "registry/examples/switch-form.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport { Label } from \"../components/label\";\nimport { Switch } from \"../components/switch\";\nimport { useState } from \"react\";\n\nexport default function SwitchForm() {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className=\"flex w-72 flex-col gap-4\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <div className=\"flex items-center gap-3\">\n        <Switch id=\"form-newsletter\" name=\"newsletter\" value=\"yes\" uncheckedValue=\"no\" />\n        <Label htmlFor=\"form-newsletter\">Subscribe to the newsletter</Label>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <Switch id=\"form-terms\" name=\"terms\" required />\n        <Label htmlFor=\"form-terms\">Accept the terms (required)</Label>\n      </div>\n      <Button className=\"self-start\" type=\"submit\">\n        Submit\n      </Button>\n      {submitted ? <pre className=\"rounded-md bg-muted p-3 text-xs\">{submitted}</pre> : null}\n    </form>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/switch-form.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
