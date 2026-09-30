@@ -37,6 +37,7 @@
   --surface-canvas: #f7f7f7;
   --surface-panel: #ffffff;
   --surface-control: #ffffff;
+  --surface-input: #ffffff;
   --surface-overlay: #ffffff;
   --surface-modal: #ffffff;
   --surface-top: #ffffff;
@@ -62,6 +63,7 @@
   --surface-canvas: #121212;
   --surface-panel: #181818;
   --surface-control: #1e1e1e;
+  --surface-input: color-mix(in srgb, var(--surface-control) 97.5%, white);
   --surface-overlay: #222222;
   --surface-modal: #262626;
   --surface-top: #2b2b2b;
@@ -87,6 +89,7 @@
   --color-surface-canvas: var(--surface-canvas);
   --color-surface-panel: var(--surface-panel);
   --color-surface-control: var(--surface-control);
+  --color-surface-input: var(--surface-input);
   --color-surface-overlay: var(--surface-overlay);
   --color-surface-modal: var(--surface-modal);
   --color-surface-top: var(--surface-top);
