@@ -128,7 +128,7 @@ export const Roles: Story = {
           </button>
           <button
             type="button"
-            className={`${control} surface-fill-primary text-primary-foreground hover:tint-hover active:tint-press active:shadow-fill-pressed`}
+            className={`${control} surface-fill-primary text-primary-foreground hover:tint-hover active:tint-press active:shadow-pressed`}
           >
             Primary
           </button>

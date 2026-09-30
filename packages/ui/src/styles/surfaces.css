@@ -139,9 +139,9 @@
     0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow);
   --shadow-fill:
-    0 -1px 0 0 color-mix(in srgb, var(--surface-face, var(--primary)) 80%, white),
-    0 0 0 1px color-mix(in srgb, var(--surface-face, var(--primary)) 88%, black),
-    0 1px 2px -0.5px var(--surface-shadow-strong), inset 0 0 0 0 transparent;
+    0 -1px 0 0 color-mix(in srgb, var(--surface-face) 80%, white), 0 0 0 1px var(--surface-edge),
+    0 0 0 0 transparent, 0 1px 2px -0.5px var(--surface-shadow-strong), 0 0 0 0 transparent,
+    inset 0 0 0 0 transparent;
   --shadow-edge: var(--control-shadow-edge, 0 0 0 1px var(--surface-edge));
   /* A recess has one face, one perimeter, and a soft top inset. No
      catchlight or opaque backing ring: those add contrasting bands around
@@ -164,27 +164,19 @@
     0 0 0 0 transparent,
     inset 0 2px 3px -1px var(--surface-shadow-inset)
   );
-  --shadow-fill-engaged:
-    0 0 0 0 transparent,
-    0 0 0 1px color-mix(in srgb, var(--surface-face, var(--primary)) 88%, black),
-    0 0 0 0 transparent, inset 0 1px 2px 0 var(--surface-shadow-inset);
-  --shadow-fill-pressed:
-    0 0 0 0 transparent,
-    0 0 0 1px color-mix(in srgb, var(--surface-face, var(--primary)) 88%, black),
-    0 0 0 0 transparent, inset 0 2px 3px -1px var(--surface-shadow-inset);
   --shadow-well:
     inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
   --shadow-tint:
-    0 -1px 0 0 color-mix(in srgb, var(--surface-face, transparent) 80%, white),
-    0 0 0 1px color-mix(in oklab, currentColor 10%, transparent),
-    0 0 0 1px var(--surface-face, transparent), 0 1px 2px -1px var(--surface-shadow),
-    0 2px 6px -2px var(--surface-shadow);
+    0 -1px 0 0 color-mix(in srgb, var(--surface-face) 80%, white),
+    0 0 0 1px color-mix(in oklab, currentColor 10%, transparent), 0 0 0 1px var(--surface-face),
+    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow);
 }
 
 /* A surface's face and elevation share one colour input. Named utilities
    select a theme colour for both the background and its edge. */
 @utility surface-fill-* {
   --surface-face: --value(--color, [color]);
+  --surface-edge: color-mix(in srgb, var(--surface-face) 88%, black);
   background-color: var(--surface-face);
   @apply border border-surface-border shadow-fill;
 }
