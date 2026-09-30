@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useState } from "react";
 import { Editable, EditableInput, EditablePreview } from "../components/editable";
+import { Kbd, KbdGroup } from "../components/kbd";
 
 export default function EditableDemo() {
   const [name, setName] = useState("Overview");
@@ -12,7 +13,10 @@ export default function EditableDemo() {
         <EditablePreview aria-label="Rename tab" />
         <EditableInput aria-label="Tab name" maxLength={48} />
       </Editable>
-      <span className="shrink-0 text-xs text-muted-foreground">Enter · Esc</span>
+      <KbdGroup className="shrink-0">
+        <Kbd>Enter</Kbd>
+        <Kbd>Esc</Kbd>
+      </KbdGroup>
     </div>
   );
 }

@@ -291,7 +291,12 @@
       "title": "Command",
       "description": "Erbium command component.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "cmdk"],
-      "registryDependencies": ["@erbium/dialog", "@erbium/input-group", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/dialog",
+        "@erbium/input-group",
+        "@erbium/kbd",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/command.tsx",
@@ -306,7 +311,7 @@
       "title": "Context Menu",
       "description": "Erbium context menu component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/context-menu.tsx",
@@ -385,7 +390,7 @@
       "title": "Dropdown Menu",
       "description": "Erbium dropdown menu component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/dropdown-menu.tsx",
@@ -690,7 +695,7 @@
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@shadcn/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/kbd", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/questionnaire.tsx",

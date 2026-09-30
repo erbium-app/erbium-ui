@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Kbd } from "@erbium/ui/components/kbd";
 type Component = { name: string; title: string; description: string };
 export default function ComponentSearch({ components }: { components: Component[] }) {
   const [query, setQuery] = useState("");
@@ -21,7 +22,7 @@ export default function ComponentSearch({ components }: { components: Component[
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <kbd>⌘ K</kbd>
+        <Kbd>⌘ K</Kbd>
       </label>
       {query && (
         <div className="search-results">

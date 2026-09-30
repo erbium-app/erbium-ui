@@ -879,7 +879,7 @@
       "type": "registry:component",
       "title": "Editable Demo",
       "description": "Erbium editable demo example.",
-      "registryDependencies": ["@erbium/editable"],
+      "registryDependencies": ["@erbium/editable", "@erbium/kbd"],
       "files": [
         {
           "path": "registry/examples/editable-demo.tsx",
