@@ -40,5 +40,6 @@ The complete comparison and implementation checklist is in [Component parity](./
 5. [Validation and release gates](./04-validation.md)
 6. [Paper design-system parity](./05-paper-design-system.md)
 7. [Surfaces and depth](./06-surfaces-and-depth.md)
+8. [Searchable menus](./07-searchable-menus.md)
 
 The first three documents should be completed before adding a large number of blocks. Paper coverage should be added alongside each component family, not postponed until the end, so the design system remains live and reviewable as the library evolves.
