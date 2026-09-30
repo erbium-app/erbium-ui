@@ -183,8 +183,8 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
   - [x] `surfaces.css`: colours, recipes, `tint-hover`, `tint-press`.
   - [x] `cn` recipe registration.
   - [x] `Foundations/Surfaces` story (Ladder, Roles, Nesting, States) in both themes.
-  - [ ] Review the Roles story in both themes and settle the base values (the edge alpha, the dark catchlight, the ladder steps) before any component moves.
-- [ ] **Phase 1: palette.** (applied; awaiting visual review) Remap `theme.css` onto faded Vitesse and the surface ladder, then review every existing story at once. Colours only; no component classes change.
+  - [x] Review the Roles story in both themes and settle the base values (the edge alpha, the dark catchlight, the ladder steps) before any component moves.
+- [x] **Phase 1: palette.** Remap `theme.css` onto faded Vitesse and the surface ladder, then review every existing story at once. Colours only; no component classes change.
   - [x] `--background: var(--surface-canvas)`, `--card: var(--surface-panel)`, `--popover: var(--surface-overlay)`.
   - [x] Light:
     - `--foreground #393a34`;
@@ -201,17 +201,17 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
     - `--primary #4d9375` kept.
   - [x] `--border` becomes an alpha divider (ink 8% / light 8%), and Vitesse `#2f363d` stops outlining surfaces.
   - [x] `--accent` and `--sidebar-accent` became translucent (they always sit on a surface); `--muted` and `--secondary` stay solid (`#f0f0f0` / `#232323`) because the calendar range and floating bubble badges overlap them and would show through.
-- [ ] **Phase 2: controls.** One commit each, in this order, because each teaches the next:
-  - [ ] `button` (fill, control, flat and tint variants)
-  - [ ] `input`
-  - [ ] `textarea`
-  - [ ] `input-group`
-  - [ ] `select` trigger
-  - [ ] `combobox` / `autocomplete` input
-  - [ ] `toggle` and `toggle-group`
-  - [ ] `kbd`
-  - [ ] `badge`
-  - [ ] `pagination`
+- [x] **Phase 2: controls.** One commit each, in this order, because each teaches the next:
+  - [x] `button` (fill, control, flat and tint variants)
+  - [x] `input`
+  - [x] `textarea`
+  - [x] `input-group`
+  - [x] `select` trigger
+  - [x] `combobox` / `autocomplete` input
+  - [x] `toggle` and `toggle-group`
+  - [x] `kbd`
+  - [x] `badge`
+  - [x] `pagination`
 - [ ] **Phase 3: panels and overlays.**
   - [ ] `card`
   - [ ] `alert`
@@ -257,3 +257,7 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
 ## Component-specific exceptions
 
 Record every value a component overrides locally, with the reason, as the migration goes.
+
+- `input-otp` slots and `button-group` items are attached edge to edge, so neighbouring hairlines overlap at the seams; they read as a single divider, so no override is needed.
+- The `command` search field and the search field inside the `combobox` popup stay flat (translucent, no shadow): a raised field inside an overlay competes with the overlay itself.
+- `kbd` inside a tooltip drops its shadow, because the tooltip is an inverse surface.
