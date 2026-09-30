@@ -941,7 +941,7 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Erbium tabs component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "dependencies": ["@base-ui/react", "motion"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

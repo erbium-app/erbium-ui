@@ -1,4 +1,3 @@
-import { TabsLine } from "../examples/upstream/tabs-line";
 import { TabsVertical } from "../examples/upstream/tabs-vertical";
 import { TabsDisabled } from "../examples/upstream/tabs-disabled";
 import { TabsIcons } from "../examples/upstream/tabs-icons";
@@ -57,16 +56,24 @@ export const Overview: Story = {
   ),
 };
 
-export const Line: Story = {
+export const Selection: Story = {
   parameters: {
     docs: {
-      description: { story: 'Use the `variant="line"` prop on `TabsList` for a line style.' },
+      description: { story: "The raised selection moves across the recessed tab list." },
       source: {
-        code: 'import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsLine() {\n  return (\n    <Tabs defaultValue="overview">\n      <TabsList variant="line">\n        <TabsTrigger value="overview">Overview</TabsTrigger>\n        <TabsTrigger value="analytics">Analytics</TabsTrigger>\n        <TabsTrigger value="reports">Reports</TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
+        code: 'import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsSelection() {\n  return (\n    <Tabs defaultValue="overview">\n      <TabsList>\n        <TabsTrigger value="overview">Overview</TabsTrigger>\n        <TabsTrigger value="analytics">Analytics</TabsTrigger>\n        <TabsTrigger value="reports">Reports</TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
       },
     },
   },
-  render: () => <TabsLine />,
+  render: () => (
+    <Tabs defaultValue="overview">
+      <TabsList>
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        <TabsTrigger value="reports">Reports</TabsTrigger>
+      </TabsList>
+    </Tabs>
+  ),
 };
 export const Vertical: Story = {
   parameters: {
