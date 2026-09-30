@@ -2,6 +2,7 @@ import * as React from "react";
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import { cn } from "../lib/utils";
 import { assertOverlaySections } from "../lib/overlay-sections";
+import { ScrollArea } from "./scroll-area";
 
 type DrawerContextProps = {
   hasSnapPoints: boolean;
@@ -100,7 +101,6 @@ function DrawerPanel({ className, children, ...props }: DrawerPrimitive.Popup.Pr
     { name: "DrawerContent", type: DrawerContent },
     { name: "DrawerFooter", type: DrawerFooter },
   );
-
   return (
     <DrawerPanelContext.Provider value={true}>
       <DrawerPortal data-slot="drawer-portal">
@@ -175,7 +175,7 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function DrawerContent({ className, ...props }: React.ComponentProps<"div">) {
+function DrawerContent({ className, children, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(DrawerPanelContext)) {
     throw new Error("DrawerContent must be used inside DrawerPanel.");
   }
@@ -183,12 +183,22 @@ function DrawerContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <DrawerPrimitive.Content
       data-slot="drawer-content"
-      className={cn(
-        "min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1",
-        className,
-      )}
+      className="flex min-h-0 flex-1 flex-col overflow-hidden"
       {...props}
-    />
+    >
+      <ScrollArea
+        className="flex min-h-0 flex-1 flex-col overflow-hidden"
+        fade="vertical"
+        scrollbar="thin"
+        viewportClassName="min-h-0 flex-1 overscroll-contain"
+        contentClassName={cn(
+          "p-6 group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1",
+          className,
+        )}
+      >
+        {children}
+      </ScrollArea>
+    </DrawerPrimitive.Content>
   );
 }
 

@@ -74,7 +74,10 @@ test("dialog panel renders the popup and its body as separate sections", () => {
 
   const panel = screen.getByRole("dialog");
   expect(panel.getAttribute("data-slot")).toBe("dialog-panel");
-  expect(panel.querySelector('[data-slot="dialog-content"]')?.textContent).toBe("Profile fields");
+  const viewport = panel.querySelector('[data-slot="dialog-content"]');
+  expect(viewport?.textContent).toBe("Profile fields");
+  expect(viewport?.className).toContain("data-has-overflow-y:scroll-fade-y");
+  expect(panel.querySelector('[data-slot="scroll-area"]')?.className).toContain("overflow-hidden");
 });
 
 test("sheet and drawer bodies render inside their panels", () => {
@@ -88,6 +91,9 @@ test("sheet and drawer bodies render inside their panels", () => {
   const sheetPanel = screen.getByRole("dialog");
   expect(sheetPanel.getAttribute("data-slot")).toBe("sheet-panel");
   expect(sheetPanel.querySelector('[data-slot="sheet-content"]')?.textContent).toBe("Sheet body");
+  expect(sheetPanel.querySelector('[data-slot="sheet-content"]')?.className).toContain(
+    "data-has-overflow-y:scroll-fade-y",
+  );
 
   render(
     <Drawer defaultOpen>
@@ -100,6 +106,10 @@ test("sheet and drawer bodies render inside their panels", () => {
   expect(drawerPanel?.querySelector('[data-slot="drawer-content"]')?.textContent).toBe(
     "Drawer body",
   );
+  expect(
+    drawerPanel?.querySelector('[data-slot="drawer-content"] [data-slot="scroll-area-viewport"]')
+      ?.className,
+  ).toContain("data-has-overflow-y:scroll-fade-y");
 });
 
 test("command dialog keeps its command inside the required dialog body", () => {

@@ -5,10 +5,10 @@ export default function ResizableDemo() {
   return (
     <ResizablePanelGroup
       orientation="horizontal"
-      className="max-w-md rounded-xl border border-surface-border bg-surface-panel shadow-panel md:min-w-[450px]"
+      className="max-w-md rounded-xl border border-surface-border bg-surface-panel shadow-panel md:min-w-112.5"
     >
       <ResizablePanel defaultSize="50%">
-        <div className="flex h-[200px] items-center justify-center p-6">
+        <div className="flex h-50 items-center justify-center p-6">
           <span className="font-semibold">One</span>
         </div>
       </ResizablePanel>

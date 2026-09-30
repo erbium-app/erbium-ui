@@ -3,6 +3,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { cn } from "../lib/utils";
 import { assertOverlaySections } from "../lib/overlay-sections";
 import { Button } from "./button";
+import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
@@ -61,7 +62,7 @@ function DialogPanel({
         <DialogPrimitive.Popup
           data-slot="dialog-panel"
           className={cn(
-            "group/dialog-panel fixed top-1/2 inset-s-1/2 z-50 flex max-h-[calc(100dvh-2rem)] min-h-0 w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col rounded-xl border border-surface-border bg-surface-modal text-sm text-popover-foreground shadow-modal duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            "group/dialog-panel fixed top-1/2 inset-s-1/2 z-50 flex max-h-[calc(100dvh-2rem)] min-h-0 w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl border border-surface-border bg-surface-modal text-sm text-popover-foreground shadow-modal duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className,
           )}
           {...props}
@@ -100,20 +101,25 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function DialogContent({ className, ...props }: React.ComponentProps<"div">) {
+function DialogContent({ className, children, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(DialogPanelContext)) {
     throw new Error("DialogContent must be used inside DialogPanel.");
   }
 
   return (
-    <div
-      data-slot="dialog-content"
-      className={cn(
-        "min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
+    <ScrollArea
+      className="flex min-h-0 flex-1 flex-col overflow-hidden"
+      fade="vertical"
+      scrollbar="thin"
+      viewportClassName="min-h-0 flex-1 overscroll-contain"
+      viewportRender={<div data-slot="dialog-content" {...props} />}
+      contentClassName={cn(
+        "p-4 group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
         className,
       )}
-      {...props}
-    />
+    >
+      {children}
+    </ScrollArea>
   );
 }
 

@@ -390,6 +390,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/overlay-sections",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/utils"
       ],
@@ -421,7 +422,7 @@
       "title": "Drawer",
       "description": "Erbium drawer component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/overlay-sections", "@erbium/utils"],
+      "registryDependencies": ["@erbium/overlay-sections", "@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/drawer.tsx",
@@ -837,7 +838,12 @@
       "title": "Sheet",
       "description": "Erbium sheet component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/overlay-sections", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/overlay-sections",
+        "@erbium/scroll-area",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/sheet.tsx",

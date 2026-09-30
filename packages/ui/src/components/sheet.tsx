@@ -3,6 +3,7 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "../lib/utils";
 import { assertOverlaySections } from "../lib/overlay-sections";
 import { Button } from "./button";
+import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
 
@@ -63,7 +64,7 @@ function SheetPanel({
           data-slot="sheet-panel"
           data-side={side}
           className={cn(
-            "group/sheet-panel fixed z-50 flex max-h-dvh min-h-0 flex-col border border-surface-border bg-surface-modal text-sm text-popover-foreground shadow-modal transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:data-ending-style:translate-y-10 data-[side=bottom]:data-starting-style:translate-y-10 data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:data-ending-style:-translate-x-10 rtl:data-[side=left]:data-ending-style:translate-x-10 data-[side=left]:data-starting-style:-translate-x-10 rtl:data-[side=left]:data-starting-style:translate-x-10 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:data-ending-style:translate-x-10 rtl:data-[side=right]:data-ending-style:-translate-x-10 data-[side=right]:data-starting-style:translate-x-10 rtl:data-[side=right]:data-starting-style:-translate-x-10 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:data-ending-style:-translate-y-10 data-[side=top]:data-starting-style:-translate-y-10 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
+            "group/sheet-panel fixed z-50 flex max-h-dvh min-h-0 flex-col overflow-hidden border border-surface-border bg-surface-modal text-sm text-popover-foreground shadow-modal transition duration-200 ease-in-out data-ending-style:opacity-0 data-starting-style:opacity-0 data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:data-ending-style:translate-y-10 data-[side=bottom]:data-starting-style:translate-y-10 data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:data-ending-style:-translate-x-10 rtl:data-[side=left]:data-ending-style:translate-x-10 data-[side=left]:data-starting-style:-translate-x-10 rtl:data-[side=left]:data-starting-style:translate-x-10 data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:data-ending-style:translate-x-10 rtl:data-[side=right]:data-ending-style:-translate-x-10 data-[side=right]:data-starting-style:translate-x-10 rtl:data-[side=right]:data-starting-style:-translate-x-10 data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:data-ending-style:-translate-y-10 data-[side=top]:data-starting-style:-translate-y-10 data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm",
             className,
           )}
           {...props}
@@ -115,20 +116,22 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function SheetContent({ className, ...props }: React.ComponentProps<"div">) {
+function SheetContent({ className, children, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(SheetPanelContext)) {
     throw new Error("SheetContent must be used inside SheetPanel.");
   }
 
   return (
-    <div
-      data-slot="sheet-content"
-      className={cn(
-        "min-h-0 flex-1 overflow-y-auto overscroll-contain p-6 group-has-[[data-slot=sheet-header]]/sheet-panel:pt-1",
-        className,
-      )}
-      {...props}
-    />
+    <ScrollArea
+      className="flex min-h-0 flex-1 flex-col overflow-hidden"
+      fade="vertical"
+      scrollbar="thin"
+      viewportClassName="min-h-0 flex-1 overscroll-contain"
+      viewportRender={<div data-slot="sheet-content" {...props} />}
+      contentClassName={cn("p-6 group-has-[[data-slot=sheet-header]]/sheet-panel:pt-1", className)}
+    >
+      {children}
+    </ScrollArea>
   );
 }
 
