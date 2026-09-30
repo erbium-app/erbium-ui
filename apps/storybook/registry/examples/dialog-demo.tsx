@@ -12,11 +12,12 @@ import {
 } from "../components/dialog";
 import { Input } from "../components/input";
 import { Label } from "../components/label";
+import { StatusButton } from "../components/status-button";
 
 export default function DialogDemo() {
   return (
     <Dialog>
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <DialogTrigger render={<Button variant="outline">Open Dialog</Button>} />
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -37,7 +38,7 @@ export default function DialogDemo() {
           </div>
           <DialogFooter>
             <DialogClose render={<Button variant="outline">Cancel</Button>} />
-            <Button type="submit">Save changes</Button>
+            <StatusButton type="submit">Save changes</StatusButton>
           </DialogFooter>
         </DialogContent>
       </form>

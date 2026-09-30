@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { Button } from "../components/button";
 import { Checkbox } from "../components/checkbox";
 import { Label } from "../components/label";
+import { StatusButton } from "../components/status-button";
 import { useState } from "react";
 
 export default function CheckboxForm() {
@@ -24,9 +24,9 @@ export default function CheckboxForm() {
         <Checkbox id="form-newsletter" name="newsletter" value="weekly" uncheckedValue="none" />
         <Label htmlFor="form-newsletter">Weekly newsletter</Label>
       </div>
-      <Button className="self-start" type="submit">
+      <StatusButton className="self-start" type="submit">
         Submit
-      </Button>
+      </StatusButton>
       {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
     </form>
   );

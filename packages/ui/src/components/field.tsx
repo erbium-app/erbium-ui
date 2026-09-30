@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
@@ -166,44 +166,78 @@ function FieldError({
   className,
   children,
   errors,
+  onTransitionEnd,
   ...props
 }: React.ComponentProps<"div"> & {
-  errors?: Array<{ message?: string } | undefined>;
+  errors?: Array<string | { message?: string } | undefined>;
 }) {
   const content = useMemo(() => {
     if (children) {
       return children;
     }
 
-    if (!errors?.length) {
+    const messages = [
+      ...new Set(
+        errors?.map((error) => (typeof error === "string" ? error : error?.message)) ?? [],
+      ),
+    ].filter((message): message is string => Boolean(message));
+
+    if (!messages.length) {
       return null;
     }
 
-    const uniqueErrors = [...new Map(errors.map((error) => [error?.message, error])).values()];
-
-    if (uniqueErrors?.length == 1) {
-      return uniqueErrors[0]?.message;
+    if (messages.length === 1) {
+      return messages[0];
     }
 
     return (
       <ul className="ms-4 flex list-disc flex-col gap-1">
-        {uniqueErrors.map((error, index) => error?.message && <li key={index}>{error.message}</li>)}
+        {messages.map((message) => (
+          <li key={message}>{message}</li>
+        ))}
       </ul>
     );
   }, [children, errors]);
 
-  if (!content) {
-    return null;
-  }
+  const visible = Boolean(content);
+  const [exitingContent, setExitingContent] = useState<React.ReactNode>(null);
+
+  useEffect(() => {
+    if (visible) {
+      setExitingContent(content);
+    } else if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+      setExitingContent(null);
+    }
+  }, [content, visible]);
 
   return (
     <div
-      role="alert"
+      role={visible ? "alert" : undefined}
+      aria-hidden={!visible}
       data-slot="field-error"
-      className={cn("text-sm font-normal text-destructive", className)}
+      data-visible={visible}
+      onTransitionEnd={(event) => {
+        if (
+          !visible &&
+          event.target === event.currentTarget &&
+          event.propertyName === "grid-template-rows"
+        ) {
+          setExitingContent(null);
+        }
+        onTransitionEnd?.(event);
+      }}
+      className={cn(
+        "grid min-h-0 text-sm font-normal text-destructive transition-[grid-template-rows,margin] duration-200 ease-out data-[visible=false]:-mt-2 data-[visible=false]:grid-rows-[0fr] data-[visible=true]:grid-rows-[1fr] motion-reduce:transition-none",
+        className,
+      )}
       {...props}
     >
-      {content}
+      <div
+        className="min-h-0 overflow-hidden opacity-0 transition-opacity duration-100 data-[visible=true]:opacity-100 data-[visible=true]:delay-75 motion-reduce:transition-none"
+        data-visible={visible}
+      >
+        {content ?? exitingContent}
+      </div>
     </div>
   );
 }

@@ -18,11 +18,12 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 import { Textarea } from "@erbium/ui/components/textarea";
+import { StatusButton } from "@erbium/ui/components/status-button";
 
 export default function FieldDemo() {
   return (
     <div className="w-full max-w-md">
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <FieldGroup>
           <FieldSet>
             <FieldLegend>Payment Method</FieldLegend>
@@ -115,7 +116,7 @@ export default function FieldDemo() {
             </FieldGroup>
           </FieldSet>
           <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
+            <StatusButton type="submit">Submit</StatusButton>
             <Button variant="outline" type="button">
               Cancel
             </Button>

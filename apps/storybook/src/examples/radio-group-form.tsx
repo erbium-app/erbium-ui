@@ -1,6 +1,6 @@
-import { Button } from "@erbium/ui/components/button";
 import { Label } from "@erbium/ui/components/label";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
+import { StatusButton } from "@erbium/ui/components/status-button";
 import { useState } from "react";
 
 export default function RadioGroupForm() {
@@ -25,9 +25,9 @@ export default function RadioGroupForm() {
           <Label htmlFor="form-express">Express (1–2 days)</Label>
         </div>
       </RadioGroup>
-      <Button className="self-start" type="submit">
+      <StatusButton className="self-start" type="submit">
         Submit
-      </Button>
+      </StatusButton>
       {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
     </form>
   );

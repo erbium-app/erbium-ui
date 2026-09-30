@@ -67,18 +67,19 @@ export default function StatusButtonForm() {
         }}
       >
         {(field) => (
-          <Field>
+          <Field data-invalid={field.state.meta.errors.length > 0}>
             <FieldLabel htmlFor="status-email">Email</FieldLabel>
             <Input
               id="status-email"
               type="email"
+              aria-invalid={field.state.meta.errors.length > 0}
+              aria-describedby="status-email-error"
               value={field.state.value}
+              onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}
               onBlur={field.handleBlur}
               onChange={(event) => field.handleChange(event.target.value)}
             />
-            {field.state.meta.errors.map((error) => (
-              <FieldError key={String(error)}>{error}</FieldError>
-            ))}
+            <FieldError id="status-email-error" errors={field.state.meta.errors} />
           </Field>
         )}
       </form.Field>

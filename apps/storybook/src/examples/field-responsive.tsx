@@ -11,11 +11,12 @@ import {
 } from "@erbium/ui/components/field";
 import { Input } from "@erbium/ui/components/input";
 import { Textarea } from "@erbium/ui/components/textarea";
+import { StatusButton } from "@erbium/ui/components/status-button";
 
 export default function FieldResponsive() {
   return (
     <div className="w-full max-w-4xl">
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <FieldSet>
           <FieldLegend>Profile</FieldLegend>
           <FieldDescription>Fill in your profile information.</FieldDescription>
@@ -45,7 +46,7 @@ export default function FieldResponsive() {
             </Field>
             <FieldSeparator />
             <Field orientation="responsive">
-              <Button type="submit">Submit</Button>
+              <StatusButton type="submit">Submit</StatusButton>
               <Button type="button" variant="outline">
                 Cancel
               </Button>

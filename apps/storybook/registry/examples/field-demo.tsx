@@ -19,11 +19,12 @@ import {
   SelectValue,
 } from "../components/select";
 import { Textarea } from "../components/textarea";
+import { StatusButton } from "../components/status-button";
 
 export default function FieldDemo() {
   return (
     <div className="w-full max-w-md">
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <FieldGroup>
           <FieldSet>
             <FieldLegend>Payment Method</FieldLegend>
@@ -116,7 +117,7 @@ export default function FieldDemo() {
             </FieldGroup>
           </FieldSet>
           <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
+            <StatusButton type="submit">Submit</StatusButton>
             <Button variant="outline" type="button">
               Cancel
             </Button>

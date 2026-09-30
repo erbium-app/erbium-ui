@@ -10,6 +10,7 @@ import {
 } from "@erbium/ui/components/card";
 import { Input } from "@erbium/ui/components/input";
 import { Label } from "@erbium/ui/components/label";
+import { StatusButton } from "@erbium/ui/components/status-button";
 
 export default function CardDemo() {
   return (
@@ -22,7 +23,7 @@ export default function CardDemo() {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form>
+        <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-6">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
@@ -44,9 +45,9 @@ export default function CardDemo() {
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <Button type="submit" className="w-full">
+        <StatusButton type="submit" form="card-login-form" className="w-full">
           Login
-        </Button>
+        </StatusButton>
         <Button variant="outline" className="w-full">
           Login with Google
         </Button>

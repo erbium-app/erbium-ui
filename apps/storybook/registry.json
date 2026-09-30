@@ -503,7 +503,13 @@
       "type": "registry:component",
       "title": "Card Demo",
       "description": "Erbium card demo example.",
-      "registryDependencies": ["@erbium/button", "@erbium/card", "@erbium/input", "@erbium/label"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/input",
+        "@erbium/label",
+        "@erbium/status-button"
+      ],
       "files": [
         {
           "path": "registry/examples/card-demo.tsx",
@@ -644,7 +650,7 @@
       "type": "registry:component",
       "title": "Checkbox Form",
       "description": "Erbium checkbox form example.",
-      "registryDependencies": ["@erbium/button", "@erbium/checkbox", "@erbium/label"],
+      "registryDependencies": ["@erbium/checkbox", "@erbium/label", "@erbium/status-button"],
       "files": [
         {
           "path": "registry/examples/checkbox-form.tsx",
@@ -773,7 +779,8 @@
         "@erbium/button",
         "@erbium/dialog",
         "@erbium/input",
-        "@erbium/label"
+        "@erbium/label",
+        "@erbium/status-button"
       ],
       "files": [
         {
@@ -964,6 +971,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/select",
+        "@erbium/status-button",
         "@erbium/textarea"
       ],
       "files": [
@@ -1039,6 +1047,7 @@
         "@erbium/button",
         "@erbium/field",
         "@erbium/input",
+        "@erbium/status-button",
         "@erbium/textarea"
       ],
       "files": [
@@ -1110,7 +1119,13 @@
       "type": "registry:component",
       "title": "Form Demo",
       "description": "Erbium form demo example.",
-      "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/form", "@erbium/input"],
+      "dependencies": ["@tanstack/react-pacer"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/input",
+        "@erbium/status-button"
+      ],
       "files": [
         {
           "path": "registry/examples/form-demo.tsx",
@@ -1682,7 +1697,7 @@
       "type": "registry:component",
       "title": "Radio Group Form",
       "description": "Erbium radio group form example.",
-      "registryDependencies": ["@erbium/button", "@erbium/label", "@erbium/radio-group"],
+      "registryDependencies": ["@erbium/label", "@erbium/radio-group", "@erbium/status-button"],
       "files": [
         {
           "path": "registry/examples/radio-group-form.tsx",
@@ -2054,7 +2069,7 @@
       "type": "registry:component",
       "title": "Switch Form",
       "description": "Erbium switch form example.",
-      "registryDependencies": ["@erbium/button", "@erbium/label", "@erbium/switch"],
+      "registryDependencies": ["@erbium/label", "@erbium/status-button", "@erbium/switch"],
       "files": [
         {
           "path": "registry/examples/switch-form.tsx",
