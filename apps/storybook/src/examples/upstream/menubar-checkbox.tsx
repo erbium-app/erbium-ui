@@ -2,6 +2,7 @@ import {
   Menubar,
   MenubarCheckboxItem,
   MenubarContent,
+  MenubarGroup,
   MenubarItem,
   MenubarMenu,
   MenubarSeparator,
@@ -15,8 +16,10 @@ export function MenubarCheckbox() {
       <MenubarMenu>
         <MenubarTrigger>View</MenubarTrigger>
         <MenubarContent className="w-64">
-          <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
-          <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
+          <MenubarGroup>
+            <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
+            <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
+          </MenubarGroup>
           <MenubarSeparator />
           <MenubarItem inset>
             Reload <MenubarShortcut hotkey="Mod+R" />
@@ -29,9 +32,11 @@ export function MenubarCheckbox() {
       <MenubarMenu>
         <MenubarTrigger>Format</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem checked>Strikethrough</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Code</MenubarCheckboxItem>
-          <MenubarCheckboxItem>Superscript</MenubarCheckboxItem>
+          <MenubarGroup>
+            <MenubarCheckboxItem checked>Strikethrough</MenubarCheckboxItem>
+            <MenubarCheckboxItem>Code</MenubarCheckboxItem>
+            <MenubarCheckboxItem>Superscript</MenubarCheckboxItem>
+          </MenubarGroup>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

@@ -68,7 +68,7 @@
       "title": "Attachment",
       "description": "Erbium attachment component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/attachment.tsx",
@@ -285,6 +285,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input-group",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -305,8 +306,8 @@
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "cmdk"],
       "registryDependencies": [
         "@erbium/dialog",
-        "@erbium/input-group",
         "@erbium/kbd",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/utils"
       ],
@@ -326,6 +327,7 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/kbd",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -351,6 +353,7 @@
       ],
       "registryDependencies": [
         "@erbium/collapsible",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -415,6 +418,7 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/kbd",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -837,6 +841,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input",
+        "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/sheet",
         "@erbium/skeleton",

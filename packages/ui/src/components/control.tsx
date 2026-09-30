@@ -20,6 +20,7 @@ import {
 } from "motion/react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { Separator } from "./separator";
+import { ScrollArea } from "./scroll-area";
 import { cn } from "../lib/utils";
 
 const rowClass =
@@ -726,8 +727,15 @@ function Select({
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-          <SelectPrimitive.Popup className="min-w-(--anchor-width) origin-(--transform-origin) rounded-lg border border-surface-border bg-surface-overlay p-1 text-sm shadow-overlay outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
-            <SelectPrimitive.List className="max-h-(--available-height) overflow-auto">
+          <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border border-surface-border bg-surface-overlay text-sm shadow-overlay outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+            <ScrollArea
+              className="min-h-0 overscroll-contain"
+              fade="vertical"
+              scrollbar="thin"
+              viewportRole="listbox"
+              viewportRender={<SelectPrimitive.List />}
+              contentClassName="p-1 in-data-has-overflow-y:pe-3"
+            >
               {options.map((option) => (
                 <SelectPrimitive.Item
                   key={option.value}
@@ -740,7 +748,7 @@ function Select({
                   </SelectPrimitive.ItemIndicator>
                 </SelectPrimitive.Item>
               ))}
-            </SelectPrimitive.List>
+            </ScrollArea>
           </SelectPrimitive.Popup>
         </SelectPrimitive.Positioner>
       </SelectPrimitive.Portal>
@@ -866,8 +874,15 @@ function Image({
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
             <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-              <SelectPrimitive.Popup className="min-w-(--anchor-width) rounded-lg border border-surface-border bg-surface-overlay p-1 shadow-overlay outline-none">
-                <SelectPrimitive.List className="max-h-(--available-height) overflow-auto">
+              <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg border border-surface-border bg-surface-overlay shadow-overlay outline-none">
+                <ScrollArea
+                  className="min-h-0 overscroll-contain"
+                  fade="vertical"
+                  scrollbar="thin"
+                  viewportRole="listbox"
+                  viewportRender={<SelectPrimitive.List />}
+                  contentClassName="p-1 in-data-has-overflow-y:pe-3"
+                >
                   {options.map((option) => (
                     <SelectPrimitive.Item
                       key={option.value}
@@ -881,7 +896,7 @@ function Image({
                       </SelectPrimitive.ItemIndicator>
                     </SelectPrimitive.Item>
                   ))}
-                </SelectPrimitive.List>
+                </ScrollArea>
               </SelectPrimitive.Popup>
             </SelectPrimitive.Positioner>
           </SelectPrimitive.Portal>

@@ -4,6 +4,7 @@ import { Button } from "@erbium/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
@@ -18,7 +19,9 @@ export default function DropdownMenuRadioGroupDemo() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
           <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>

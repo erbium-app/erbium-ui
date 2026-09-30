@@ -4,8 +4,8 @@ import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog";
-import { InputGroup, InputGroupAddon } from "./input-group";
 import { Separator } from "./separator";
+import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
@@ -15,7 +15,7 @@ function Command({ className, ...props }: React.ComponentProps<typeof CommandPri
     <CommandPrimitive
       data-slot="command"
       className={cn(
-        "flex size-full flex-col overflow-hidden rounded-xl border border-surface-border bg-surface-panel p-1 text-popover-foreground shadow-panel in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:bg-transparent in-data-[slot=dialog-content]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
+        "flex size-full flex-col overflow-hidden rounded-xl border border-surface-border bg-surface-overlay text-popover-foreground shadow-overlay in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:bg-transparent in-data-[slot=dialog-content]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
         className,
       )}
       {...props}
@@ -58,34 +58,49 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div data-slot="command-input-wrapper" className="p-1 pb-0">
-      <InputGroup className="h-8! rounded-lg! border-input/30 bg-input/30 shadow-none! *:data-[slot=input-group-addon]:ps-2!">
+    <div data-slot="command-input-wrapper">
+      <div className="flex h-10 items-center gap-2 px-3">
+        <HugeiconsIcon
+          icon={Search01Icon}
+          aria-hidden="true"
+          className="size-4 shrink-0 text-muted-foreground"
+        />
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "w-full text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+            "h-full min-w-0 flex-1 bg-transparent text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}
         />
-        <InputGroupAddon>
-          <HugeiconsIcon icon={Search01Icon} className="size-4 shrink-0 opacity-50" />
-        </InputGroupAddon>
-      </InputGroup>
+      </div>
+      <Separator />
     </div>
   );
 }
 
-function CommandList({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.List>) {
+function CommandList({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof CommandPrimitive.List>) {
   return (
-    <CommandPrimitive.List
-      data-slot="command-list"
-      className={cn(
-        "no-scrollbar max-h-72 scroll-py-1 overflow-x-hidden overflow-y-auto outline-none",
-        className,
-      )}
-      {...props}
-    />
+    <ScrollArea
+      className="min-h-0 max-h-72 overscroll-contain"
+      fade="vertical"
+      scrollbar="thin"
+      viewportClassName="max-h-72 overflow-x-hidden! scroll-py-1"
+      viewportRender={
+        <CommandPrimitive.List
+          data-slot="command-list"
+          className={cn("outline-none", className)}
+          {...props}
+        />
+      }
+      contentClassName="p-1"
+    >
+      {children}
+    </ScrollArea>
   );
 }
 
@@ -110,7 +125,7 @@ function CommandGroup({
     <CommandPrimitive.Group
       data-slot="command-group"
       className={cn(
-        "overflow-hidden p-1 text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground",
+        "overflow-hidden text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground",
         className,
       )}
       {...props}
@@ -124,7 +139,7 @@ function CommandSeparator({
 }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
   return (
     <CommandPrimitive.Separator asChild {...props}>
-      <Separator data-slot="command-separator" className={cn("-mx-1", className)} />
+      <Separator data-slot="command-separator" className={cn("-mx-1 my-1", className)} />
     </CommandPrimitive.Separator>
   );
 }
@@ -138,7 +153,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-muted data-selected:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-selected:*:[svg]:text-foreground",
+        "group/command-item relative flex cursor-default items-center gap-2 rounded-md px-1.5 py-1 text-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-accent data-selected:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:*:[svg]:text-accent-foreground data-selected:*:[svg]:text-accent-foreground",
         className,
       )}
       {...props}
@@ -156,7 +171,10 @@ function CommandShortcut({ className, ...props }: React.ComponentProps<typeof Kb
   return (
     <Kbd
       data-slot="command-shortcut"
-      className={cn("ms-auto group-data-selected/command-item:text-foreground", className)}
+      className={cn(
+        "ms-auto group-hover/command-item:text-accent-foreground group-data-selected/command-item:text-accent-foreground",
+        className,
+      )}
       {...props}
     />
   );

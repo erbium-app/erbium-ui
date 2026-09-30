@@ -7,6 +7,7 @@ import { cn } from "../lib/utils";
 import { useMediaQuery } from "../hooks/use-media-query";
 import { Button } from "./button";
 import { Input } from "./input";
+import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
 import { Skeleton } from "./skeleton";
@@ -341,17 +342,25 @@ function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof S
   );
 }
 
-function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
+function SidebarContent({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
-      data-slot="sidebar-content"
-      data-sidebar="content"
-      className={cn(
-        "no-scrollbar flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
-        className,
-      )}
-      {...props}
-    />
+    <ScrollArea
+      className="min-h-0 flex-1"
+      viewportClassName="overflow-x-hidden!"
+      viewportRender={
+        <div
+          data-slot="sidebar-content"
+          data-sidebar="content"
+          className={cn("min-h-0 flex-1 group-data-[collapsible=icon]:overflow-hidden!", className)}
+          {...props}
+        />
+      }
+      contentClassName="flex flex-col gap-0"
+      fade="vertical"
+      scrollbar="none"
+    >
+      {children}
+    </ScrollArea>
   );
 }
 

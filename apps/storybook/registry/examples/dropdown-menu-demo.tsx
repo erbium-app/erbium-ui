@@ -20,8 +20,8 @@ export default function DropdownMenuDemo() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
       <DropdownMenuContent className="w-56" align="start">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuGroup>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
             Profile
             <DropdownMenuShortcut hotkey="Shift+Mod+P" />

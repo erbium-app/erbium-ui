@@ -5,6 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 import { Button } from "./button";
+import { ScrollArea } from "./scroll-area";
 
 const attachmentVariants = cva(
   "group/attachment relative flex w-fit max-w-full min-w-0 shrink-0 flex-wrap rounded-xl border bg-card text-card-foreground transition-colors focus-within:border-ring has-[>a,>button]:hover:bg-muted/50 data-[state=error]:border-destructive/30 data-[state=idle]:border-dashed",
@@ -169,16 +170,24 @@ function AttachmentTrigger({
   });
 }
 
-function AttachmentGroup({ className, ...props }: React.ComponentProps<"div">) {
+function AttachmentGroup({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
-      data-slot="attachment-group"
-      className={cn(
-        "flex min-w-0 scroll-fade-x snap-x snap-mandatory scroll-px-1 scrollbar-none gap-3 overflow-x-auto overscroll-x-contain py-1 *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start",
-        className,
-      )}
-      {...props}
-    />
+    <ScrollArea
+      className="min-w-0"
+      fade="horizontal"
+      scrollbar="none"
+      viewportClassName="overflow-y-hidden!"
+      viewportRender={
+        <div
+          data-slot="attachment-group"
+          className={cn("snap-x snap-mandatory scroll-px-1 overscroll-x-contain", className)}
+          {...props}
+        />
+      }
+      contentClassName="flex min-w-full gap-3 py-1 *:data-[slot=attachment]:flex-none *:data-[slot=attachment]:snap-start"
+    >
+      {children}
+    </ScrollArea>
   );
 }
 

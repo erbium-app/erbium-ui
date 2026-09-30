@@ -3,6 +3,7 @@ import {
   Menubar,
   MenubarCheckboxItem,
   MenubarContent,
+  MenubarGroup,
   MenubarItem,
   MenubarMenu,
   MenubarRadioGroup,
@@ -72,8 +73,10 @@ export default function MenubarDemo() {
       <MenubarMenu>
         <MenubarTrigger>View</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
-          <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
+          <MenubarGroup>
+            <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
+            <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
+          </MenubarGroup>
           <MenubarSeparator />
           <MenubarItem inset>
             Reload <MenubarShortcut hotkey="Mod+R" />

@@ -149,7 +149,7 @@ export function AutocompleteItem({
   return (
     <AutocompletePrimitive.Item
       className={cn(
-        "flex min-h-8 cursor-default select-none items-center rounded-sm px-2 py-1 text-base outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64 sm:min-h-7 sm:text-sm",
+        "flex min-h-7 cursor-default select-none items-center gap-2 rounded-md px-1.5 py-1 text-sm outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64",
         className,
       )}
       data-slot="autocomplete-item"
@@ -166,7 +166,7 @@ export function AutocompleteSeparator({
 }: AutocompletePrimitive.Separator.Props): React.ReactElement {
   return (
     <AutocompletePrimitive.Separator
-      className={cn("mx-2 my-1 last:hidden", className)}
+      className={cn("-mx-1 my-1 last:hidden", className)}
       data-slot="autocomplete-separator"
       render={<Separator />}
       {...props}

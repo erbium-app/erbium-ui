@@ -5,6 +5,7 @@ import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "./input-group";
 import { Separator } from "./separator";
+import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { StatefulChevron } from "./stateful-icon";
@@ -111,16 +112,22 @@ function ComboboxContent({
   );
 }
 
-function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
+function ComboboxList({ className, children, ...props }: ComboboxPrimitive.List.Props) {
   return (
-    <ComboboxPrimitive.List
-      data-slot="combobox-list"
-      className={cn(
-        "no-scrollbar max-h-[min(calc(--spacing(72)-(--spacing(9))),calc(var(--available-height)-(--spacing(9))))] scroll-py-1 overflow-y-auto overscroll-contain p-1 data-empty:p-0",
-        className,
-      )}
-      {...props}
-    />
+    <ScrollArea
+      className="min-h-0 max-h-[min(calc(--spacing(72)-(--spacing(9))),calc(var(--available-height)-(--spacing(9))))] overscroll-contain"
+      fade="vertical"
+      scrollbar="thin"
+      viewportClassName="max-h-[min(calc(--spacing(72)-(--spacing(9))),calc(var(--available-height)-(--spacing(9))))] scroll-py-1"
+    >
+      <ComboboxPrimitive.List
+        data-slot="combobox-list"
+        className={cn("p-1 outline-none data-empty:p-0 in-data-has-overflow-y:pe-3", className)}
+        {...props}
+      >
+        {children}
+      </ComboboxPrimitive.List>
+    </ScrollArea>
   );
 }
 
