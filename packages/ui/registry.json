@@ -762,7 +762,7 @@
         "@erbium/sheet",
         "@erbium/skeleton",
         "@erbium/tooltip",
-        "@erbium/use-mobile",
+        "@erbium/use-media-query",
         "@erbium/utils"
       ],
       "files": [
@@ -997,15 +997,28 @@
       ]
     },
     {
-      "name": "use-mobile",
+      "name": "use-copy-to-clipboard",
       "type": "registry:hook",
-      "title": "Use Mobile",
-      "description": "Erbium use mobile hook.",
+      "title": "Use Copy To Clipboard",
+      "description": "Erbium use copy to clipboard hook.",
       "files": [
         {
-          "path": "src/hooks/use-mobile.ts",
+          "path": "src/hooks/use-copy-to-clipboard.ts",
           "type": "registry:hook",
-          "target": "~/src/hooks/use-mobile.ts"
+          "target": "~/src/hooks/use-copy-to-clipboard.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-media-query",
+      "type": "registry:hook",
+      "title": "Use Media Query",
+      "description": "Erbium use media query hook.",
+      "files": [
+        {
+          "path": "src/hooks/use-media-query.ts",
+          "type": "registry:hook",
+          "target": "~/src/hooks/use-media-query.ts"
         }
       ]
     },
