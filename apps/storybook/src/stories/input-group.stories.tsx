@@ -184,6 +184,9 @@ export const InlineEnd: Story = {
 };
 export const BlockStart: Story = {
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: { story: "Position an addon above the input." },
       source: {
@@ -195,6 +198,9 @@ export const BlockStart: Story = {
 };
 export const BlockEnd: Story = {
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: { story: "Position an addon below the input." },
       source: {

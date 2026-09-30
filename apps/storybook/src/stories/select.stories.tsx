@@ -139,6 +139,9 @@ export const Invalid: Story = {
 
 export const AlignItemWithTrigger: Story = {
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: {
         story:

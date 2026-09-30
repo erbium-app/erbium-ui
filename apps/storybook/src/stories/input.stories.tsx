@@ -153,6 +153,9 @@ export const Field: Story = {
 export const Fieldgroup: Story = {
   name: "Field Group",
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: {
         story: "Use `FieldGroup` to show multiple `Field` blocks and to build forms.",
@@ -180,6 +183,9 @@ export const Inline: Story = {
 };
 export const Grid: Story = {
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: { story: "Use a grid layout to place multiple inputs side by side." },
       source: {
@@ -241,6 +247,9 @@ export const ButtonGroup: Story = {
 };
 export const Form: Story = {
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: { story: "A full form example with multiple inputs, a select, and a button." },
       source: {

@@ -71,6 +71,9 @@ export const LabelInField: Story = {
 
 export const FieldExample: Story = {
   parameters: {
+    // FieldGroup is a size container with no intrinsic width, so it needs a
+    // full-width parent rather than the shrink-to-fit centered layout.
+    layout: "padded",
     docs: {
       description: { story: "Pair a label with a form field." },
       source: {
