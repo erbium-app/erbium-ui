@@ -374,6 +374,20 @@
       ]
     },
     {
+      "name": "editable",
+      "type": "registry:ui",
+      "title": "Editable",
+      "description": "Erbium editable component.",
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/editable.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/editable.tsx"
+        }
+      ]
+    },
+    {
       "name": "empty",
       "type": "registry:ui",
       "title": "Empty",

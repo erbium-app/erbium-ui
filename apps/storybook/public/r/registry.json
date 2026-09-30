@@ -854,6 +854,20 @@
       ]
     },
     {
+      "name": "editable-demo",
+      "type": "registry:component",
+      "title": "Editable Demo",
+      "description": "Erbium editable demo example.",
+      "registryDependencies": ["@erbium/editable"],
+      "files": [
+        {
+          "path": "registry/examples/editable-demo.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/editable-demo.tsx"
+        }
+      ]
+    },
+    {
       "name": "empty-avatar-group",
       "type": "registry:component",
       "title": "Empty Avatar Group",

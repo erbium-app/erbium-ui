@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "editable-demo",
+  "title": "Editable Demo",
+  "description": "Erbium editable demo example.",
+  "registryDependencies": ["@erbium/editable"],
+  "files": [
+    {
+      "path": "registry/examples/editable-demo.tsx",
+      "content": "// @ts-nocheck\nimport { useState } from \"react\";\nimport { Editable, EditableInput, EditablePreview } from \"../components/editable\";\n\nexport default function EditableDemo() {\n  const [name, setName] = useState(\"Overview\");\n\n  return (\n    <div className=\"flex w-96 items-center gap-2 rounded-lg border border-surface-rim p-2 text-sm\">\n      <span className=\"shrink-0 text-muted-foreground\">Tab</span>\n      <Editable value={name} onValueChange={setName} className=\"min-w-0 flex-1 font-medium\">\n        <EditablePreview aria-label=\"Rename tab\" />\n        <EditableInput aria-label=\"Tab name\" maxLength={48} />\n      </Editable>\n      <span className=\"shrink-0 text-xs text-muted-foreground\">Enter · Esc</span>\n    </div>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/editable-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
