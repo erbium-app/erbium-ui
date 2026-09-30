@@ -9,7 +9,7 @@ const fillSurface =
 
 /* Outline buttons sit one step above their surface, like inputs. */
 const controlSurface =
-  "bg-surface-control text-foreground shadow-control hover:tint-hover active:tint-press active:shadow-pressed aria-expanded:tint-press aria-expanded:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge";
+  "border-surface-rim bg-surface-control text-foreground shadow-control hover:tint-hover active:tint-press active:shadow-pressed aria-expanded:tint-press aria-expanded:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge";
 
 const buttonVariants = cva(
   "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow,translate] duration-150 outline-none select-none motion-reduce:transition-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",

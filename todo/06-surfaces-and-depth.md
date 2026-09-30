@@ -65,14 +65,14 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
 2. Raised bodies are lighter and cast downward.
    - **Light:** everything above the canvas is white, so the drops carry the elevation.
    - **Dark:** the surface colour climbs and the catchlight strengthens with elevation.
-3. **Raised recipes draw only outside the element**, as in Medusa and opencode v2:
-   - a 0.5px edge;
-   - a 0.5px catchlight just above the top edge;
-   - drops below.
-     An inset rim sits inside the transparent border, so the fill showing between the rim and the outer edge reads as a double outline; the first version of this system had exactly that gap.
-4. **Light and dark share every recipe's geometry; only the colours change.**
-   - Light: the edge is Vitesse ink at 16%, the catchlight is transparent, and the drops are ink at 6–10%.
-   - Dark: the edge is Vitesse light at 12% (a light rim, not a black one), the catchlight is Vitesse light at 8–12%, and the drops are black at 30–40%.
+3. **Light and dark share every recipe's geometry; only the colours change.**
+   - Light: the catchlight and rim are transparent, and the drops are Vitesse ink at 6–10%.
+   - Dark: the catchlight is Vitesse light at 6–9%, the edge is black at 55%, and the drops are black at 22–34%.
+4. **The inner rim is the element's 1px border** (`border border-surface-rim`), not an inset shadow.
+   - An inset rim is drawn inside the border, so the fill shows between it and the outer edge as a double outline; the first version had exactly that gap.
+   - As the border, the rim touches the outer edge, and the top catchlight sits directly below it.
+   - Every surfaced element therefore carries `border border-surface-rim`, which also keeps it outlined in forced-colors mode.
+   - Solid fills keep a transparent border: their fill colour fills the border, so no gap shows.
 5. Pressed and popup-open controls lose their drop and gain an inset top shade.
 6. Lists stay flat. Only the selected item is raised.
 
@@ -90,18 +90,18 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
 
 ### Recipes (`shadow-*`)
 
-| Utility          | Layers                                  | Pair with                      |
-| ---------------- | --------------------------------------- | ------------------------------ |
-| `shadow-panel`   | catchlight, edge, two soft drops        | `bg-surface-panel`             |
-| `shadow-control` | catchlight, edge, tight drop            | `bg-surface-control`           |
-| `shadow-overlay` | strong catchlight, edge, `4/8px` drops  | `bg-surface-overlay` / `-top`  |
-| `shadow-modal`   | strong catchlight, edge, `8/16px` drops | `bg-surface-modal`             |
-| `shadow-fill`    | white gloss, dark fill edge, tight drop | `bg-primary`, status fills     |
-| `shadow-knob`    | strong catchlight, edge, two drops      | switch and slider thumbs       |
-| `shadow-pressed` | inset top shade, edge                   | pressed and open controls      |
-| `shadow-edge`    | edge only                               | disabled and flat framed parts |
-| `shadow-well`    | inset top shade, inset edge             | `bg-surface-well`              |
-| `shadow-tint`    | `currentColor` at 18%                   | soft badges and alerts         |
+| Utility          | Layers                                          | Pair with                      |
+| ---------------- | ----------------------------------------------- | ------------------------------ |
+| `shadow-panel`   | catchlight, rim, edge, two soft drops           | `bg-surface-panel`             |
+| `shadow-control` | catchlight, rim, edge, tight drop, soft drop    | `bg-surface-control`           |
+| `shadow-overlay` | strong catchlight, rim, edge, `2/8/16px` drops  | `bg-surface-overlay` / `-top`  |
+| `shadow-modal`   | strong catchlight, rim, edge, `4/16/32px` drops | `bg-surface-modal`             |
+| `shadow-fill`    | white gloss, dark fill edge, tight drop         | `bg-primary`, status fills     |
+| `shadow-knob`    | strong catchlight, edge, two drops              | switch and slider thumbs       |
+| `shadow-pressed` | inset top shade, edge                           | pressed and open controls      |
+| `shadow-edge`    | edge only                                       | disabled and flat framed parts |
+| `shadow-well`    | inset top shade, inset rim                      | `bg-surface-well`              |
+| `shadow-tint`    | `currentColor` at 18%                           | soft badges and alerts         |
 
 State layers:
 
