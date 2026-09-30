@@ -8,6 +8,7 @@ import {
   SheetDescription,
   SheetFooter,
   SheetHeader,
+  SheetPanel,
   SheetTitle,
   SheetTrigger,
 } from "@erbium/ui/components/sheet";
@@ -29,22 +30,22 @@ export default function SheetSide() {
                 Make changes to your profile here. Click save when you&apos;re done.
               </SheetDescription>
             </SheetHeader>
-            <div className="grid gap-4 py-4">
+            <SheetPanel className="grid content-start gap-4">
               <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
+                <Label htmlFor={`name-${side}`} className="text-end">
                   Name
                 </Label>
-                <Input id="name" value="Pedro Duarte" className="col-span-3" />
+                <Input id={`name-${side}`} defaultValue="Pedro Duarte" className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="username" className="text-right">
+                <Label htmlFor={`username-${side}`} className="text-end">
                   Username
                 </Label>
-                <Input id="username" value="@peduarte" className="col-span-3" />
+                <Input id={`username-${side}`} defaultValue="@peduarte" className="col-span-3" />
               </div>
-            </div>
+            </SheetPanel>
             <SheetFooter>
-              <SheetClose render={<Button type="submit">Save changes</Button>} />
+              <SheetClose render={<Button>Save changes</Button>} />
             </SheetFooter>
           </SheetContent>
         </Sheet>

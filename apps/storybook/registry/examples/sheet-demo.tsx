@@ -9,6 +9,7 @@ import {
   SheetDescription,
   SheetFooter,
   SheetHeader,
+  SheetPanel,
   SheetTitle,
   SheetTrigger,
 } from "../components/sheet";
@@ -24,7 +25,7 @@ export default function SheetDemo() {
             Make changes to your profile here. Click save when you&apos;re done.
           </SheetDescription>
         </SheetHeader>
-        <div className="grid flex-1 auto-rows-min gap-6 px-4">
+        <SheetPanel className="grid content-start gap-6">
           <div className="grid gap-3">
             <Label htmlFor="sheet-demo-name">Name</Label>
             <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
@@ -33,10 +34,10 @@ export default function SheetDemo() {
             <Label htmlFor="sheet-demo-username">Username</Label>
             <Input id="sheet-demo-username" defaultValue="@peduarte" />
           </div>
-        </div>
+        </SheetPanel>
         <SheetFooter>
-          <Button type="submit">Save changes</Button>
           <SheetClose render={<Button variant="outline">Close</Button>} />
+          <SheetClose render={<Button>Save changes</Button>} />
         </SheetFooter>
       </SheetContent>
     </Sheet>
