@@ -3,12 +3,11 @@
   "name": "alert-destructive",
   "title": "Alert Destructive",
   "description": "Erbium alert destructive example.",
-  "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
   "registryDependencies": ["@erbium/alert"],
   "files": [
     {
       "path": "registry/examples/alert-destructive.tsx",
-      "content": "// @ts-nocheck\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport AlertCircleIcon from \"@hugeicons/core-free-icons/AlertCircleIcon\";\n\nimport { Alert, AlertDescription, AlertTitle } from \"../components/alert\";\n\nexport default function AlertDestructive() {\n  return (\n    <Alert variant=\"destructive\">\n      <HugeiconsIcon icon={AlertCircleIcon} />\n      <AlertTitle>Error</AlertTitle>\n      <AlertDescription>Your session has expired. Please log in again.</AlertDescription>\n    </Alert>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Alert, AlertDescription, AlertTitle } from \"../components/alert\";\n\nexport default function AlertDestructive() {\n  return (\n    <Alert variant=\"destructive\">\n      <AlertTitle>Tool call failed</AlertTitle>\n      <AlertDescription>\n        The agent could not run the test suite. The workspace process exited before returning\n        results.\n      </AlertDescription>\n    </Alert>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/alert-destructive.tsx"
     }

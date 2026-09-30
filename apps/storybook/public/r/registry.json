@@ -22,7 +22,6 @@
       "type": "registry:component",
       "title": "Alert Demo",
       "description": "Erbium alert demo example.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/alert"],
       "files": [
         {
@@ -37,7 +36,6 @@
       "type": "registry:component",
       "title": "Alert Destructive",
       "description": "Erbium alert destructive example.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/alert"],
       "files": [
         {
@@ -108,7 +106,6 @@
       "type": "registry:component",
       "title": "Badge Demo",
       "description": "Erbium badge demo example.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/badge"],
       "files": [
         {

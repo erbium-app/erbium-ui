@@ -23,7 +23,11 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Erbium alert component.",
-      "dependencies": ["class-variance-authority"],
+      "dependencies": [
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority"
+      ],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -122,7 +126,12 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Erbium badge component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority"
+      ],
       "registryDependencies": ["@erbium/spinner", "@erbium/utils"],
       "files": [
         {

@@ -1,35 +1,46 @@
 // @ts-nocheck
-import { HugeiconsIcon } from "@hugeicons/react";
-import AlertCircleIcon from "@hugeicons/core-free-icons/AlertCircleIcon";
-import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
-import PopcornIcon from "@hugeicons/core-free-icons/PopcornIcon";
-
 import { Alert, AlertDescription, AlertTitle } from "../components/alert";
 
 export default function AlertDemo() {
   return (
-    <div className="grid w-full max-w-xl items-start gap-4">
-      <Alert>
-        <HugeiconsIcon icon={CircleCheckIcon} />
-        <AlertTitle>Success! Your changes have been saved</AlertTitle>
-        <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
-      </Alert>
-      <Alert>
-        <HugeiconsIcon icon={PopcornIcon} />
-        <AlertTitle>This Alert has a title and an icon. No description.</AlertTitle>
-      </Alert>
-      <Alert variant="destructive">
-        <HugeiconsIcon icon={AlertCircleIcon} />
-        <AlertTitle>Unable to process your payment.</AlertTitle>
-        <AlertDescription>
-          <p>Please verify your billing information and try again.</p>
-          <ul className="list-inside list-disc text-sm">
-            <li>Check your card details</li>
-            <li>Ensure sufficient funds</li>
-            <li>Verify billing address</li>
-          </ul>
-        </AlertDescription>
-      </Alert>
-    </div>
+    <section className="w-full max-w-2xl overflow-hidden rounded-xl border border-surface-border bg-surface-panel shadow-panel">
+      <header className="border-b border-surface-border px-5 py-4">
+        <p className="text-xs font-medium text-muted-foreground">NOVA / AGENT WORKSPACE</p>
+        <h2 className="mt-1 font-heading text-lg font-semibold">Refactor the billing flow</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Agent activity across planning, tools, and verification
+        </p>
+      </header>
+      <div className="grid gap-3 p-5">
+        <Alert>
+          <AlertTitle>Workspace connected</AlertTitle>
+          <AlertDescription>
+            The agent can read the app and package files for this task.
+          </AlertDescription>
+        </Alert>
+        <Alert variant="info">
+          <AlertTitle>Plan ready</AlertTitle>
+          <AlertDescription>
+            The agent identified three files to update before writing code.
+          </AlertDescription>
+        </Alert>
+        <Alert variant="success">
+          <AlertTitle>Verification passed</AlertTitle>
+          <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>
+        </Alert>
+        <Alert variant="warning">
+          <AlertTitle>Approval required</AlertTitle>
+          <AlertDescription>
+            The agent needs permission to install a new dependency.
+          </AlertDescription>
+        </Alert>
+        <Alert variant="destructive">
+          <AlertTitle>Browser preview failed</AlertTitle>
+          <AlertDescription>
+            The preview server did not start. Check the build log and retry.
+          </AlertDescription>
+        </Alert>
+      </div>
+    </section>
   );
 }

@@ -7,7 +7,7 @@ export default function AvatarDemo() {
         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <Avatar className="rounded-lg">
+      <Avatar>
         <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
         <AvatarFallback>ER</AvatarFallback>
       </Avatar>

@@ -36,7 +36,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Skeleton } from "@erbium/ui/components/skeleton";\n\nexport default function SkeletonDemo() {\n  return (\n    <div className="flex items-center space-x-4">\n      <Skeleton className="h-12 w-12 rounded-full" />\n      <div className="space-y-2">\n        <Skeleton className="h-4 w-[250px]" />\n        <Skeleton className="h-4 w-[200px]" />\n      </div>\n    </div>\n  );\n}\n',
+        code: 'import { Skeleton } from "@erbium/ui/components/skeleton";\n\nexport default function SkeletonDemo() {\n  return (\n    <div className="flex items-center space-x-4">\n      <Skeleton className="size-12 rounded-[35%]" />\n      <div className="space-y-2">\n        <Skeleton className="h-4 w-[250px]" />\n        <Skeleton className="h-4 w-[200px]" />\n      </div>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -56,7 +56,7 @@ export const LoadingCard: Story = {
 
   render: () => (
     <div className="flex w-64 gap-3">
-      <Skeleton className="size-10 rounded-full" />
+      <Skeleton className="size-10 rounded-[35%]" />
       <div className="flex-1 space-y-2">
         <Skeleton className="h-4 w-3/4" />
         <Skeleton className="h-4 w-1/2" />
@@ -100,7 +100,7 @@ export const Avatar: Story = {
       description: { story: "Use a skeleton as an avatar placeholder." },
 
       source: {
-        code: 'import { Skeleton } from "@erbium/ui/components/skeleton";\n\nexport function SkeletonAvatar() {\n  return (\n    <div className="flex w-fit items-center gap-4">\n      <Skeleton className="size-10 shrink-0 rounded-full" />\n      <div className="grid gap-2">\n        <Skeleton className="h-4 w-[150px]" />\n        <Skeleton className="h-4 w-[100px]" />\n      </div>\n    </div>\n  );\n}\n',
+        code: 'import { Skeleton } from "@erbium/ui/components/skeleton";\n\nexport function SkeletonAvatar() {\n  return (\n    <div className="flex w-fit items-center gap-4">\n      <Skeleton className="size-10 shrink-0 rounded-[35%]" />\n      <div className="grid gap-2">\n        <Skeleton className="h-4 w-[150px]" />\n        <Skeleton className="h-4 w-[100px]" />\n      </div>\n    </div>\n  );\n}\n',
       },
     },
   },

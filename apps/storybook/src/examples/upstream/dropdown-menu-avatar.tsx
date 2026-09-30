@@ -18,7 +18,9 @@ import {
 export function DropdownMenuAvatar() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="rounded-full" />}>
+      <DropdownMenuTrigger
+        render={<Button variant="ghost" size="icon" className="rounded-[35%]" />}
+      >
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" alt="shadcn" />
           <AvatarFallback>LR</AvatarFallback>

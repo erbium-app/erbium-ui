@@ -1,5 +1,10 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
+import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
+import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
+import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { LoadingIndicator } from "./spinner";
@@ -48,15 +53,34 @@ const badgeVariants = cva(
   },
 );
 
+const badgeStatusIcons = {
+  destructive: OctagonXIcon,
+  info: InfoIcon,
+  success: CircleCheckIcon,
+  warning: TriangleAlertIcon,
+  "ghost-destructive": OctagonXIcon,
+  "ghost-info": InfoIcon,
+  "ghost-success": CircleCheckIcon,
+  "ghost-warning": TriangleAlertIcon,
+};
+
+type BadgeProps = useRender.ComponentProps<"span"> & { loading?: boolean } & (
+    | { variant: keyof typeof badgeStatusIcons; statusIcon: true }
+    | (VariantProps<typeof badgeVariants> & { statusIcon?: false })
+  );
+
 function Badge({
   children,
   className,
   loading = false,
   variant = "default",
+  statusIcon = false,
   render,
   "aria-busy": ariaBusy,
   ...props
-}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants> & { loading?: boolean }) {
+}: BadgeProps) {
+  const icon = statusIcon ? badgeStatusIcons[variant as keyof typeof badgeStatusIcons] : null;
+
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
@@ -66,6 +90,9 @@ function Badge({
         children: (
           <>
             {loading && <LoadingIndicator inlineStart />}
+            {!loading && icon && (
+              <HugeiconsIcon icon={icon} data-icon="inline-start" aria-hidden="true" />
+            )}
             {children}
           </>
         ),

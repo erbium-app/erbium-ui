@@ -1,6 +1,3 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";
-
 import { Badge } from "@erbium/ui/components/badge";
 
 export default function BadgeDemo() {
@@ -13,8 +10,7 @@ export default function BadgeDemo() {
         <Badge variant="outline">Outline</Badge>
       </div>
       <div className="flex w-full flex-wrap gap-2">
-        <Badge variant="success">
-          <HugeiconsIcon icon={BadgeCheckIcon} />
+        <Badge variant="success" statusIcon>
           Verified
         </Badge>
         <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>
