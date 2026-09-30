@@ -20,7 +20,7 @@ export default function DialogDemo() {
     <Dialog>
       <DialogTrigger render={<Button variant="outline">Open Dialog</Button>} />
       <DialogPanel
-        className="sm:max-w-106"
+        className="sm:max-w-[425px]"
         render={<form onSubmit={(event) => event.preventDefault()} />}
       >
         <DialogHeader>
