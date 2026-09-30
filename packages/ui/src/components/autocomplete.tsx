@@ -3,6 +3,7 @@ import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { cn } from "../lib/utils";
+import { cva } from "class-variance-authority";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ArrowUpDownIcon from "@hugeicons/core-free-icons/ArrowUpDownIcon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
@@ -10,6 +11,44 @@ import XIcon from "@hugeicons/core-free-icons/XIcon";
 import type React from "react";
 
 export const Autocomplete: typeof AutocompletePrimitive.Root = AutocompletePrimitive.Root;
+
+const autocompleteInputVariants = cva("", {
+  variants: {
+    size: {
+      sm: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-6.5",
+      default:
+        "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
+      lg: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
+    },
+    startAddon: {
+      true: "data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7.5)-1px)] *:data-[slot=autocomplete-input]:ps-[calc(--spacing(8.5)-1px)] sm:data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7)-1px)] sm:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(8)-1px)]",
+      false: "",
+    },
+  },
+});
+
+const autocompleteFieldVariants = cva("", {
+  variants: {
+    size: {
+      sm: "h-7 px-2 text-xs",
+      default: "",
+      lg: "h-9 px-3 text-base",
+    },
+  },
+});
+
+const autocompleteActionVariants = cva(
+  "absolute top-1/2 inline-flex size-8 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-colors pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden sm:size-7 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  {
+    variants: {
+      size: {
+        sm: "inset-e-0",
+        default: "inset-e-0.5",
+        lg: "inset-e-0.5",
+      },
+    },
+  },
+);
 
 export function AutocompleteInput({
   className,
@@ -30,6 +69,7 @@ export function AutocompleteInput({
   clearProps?: AutocompletePrimitive.Clear.Props;
 }): React.ReactElement {
   const sizeValue = (size ?? "default") as "sm" | "default" | "lg" | number;
+  const visualSize = typeof sizeValue === "number" ? "default" : sizeValue;
 
   return (
     <AutocompletePrimitive.InputGroup
@@ -47,30 +87,15 @@ export function AutocompleteInput({
       )}
       <AutocompletePrimitive.Input
         className={cn(
-          startAddon &&
-            "data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7.5)-1px)] *:data-[slot=autocomplete-input]:ps-[calc(--spacing(8.5)-1px)] sm:data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7)-1px)] sm:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(8)-1px)]",
-          sizeValue === "sm"
-            ? "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-6.5"
-            : "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
-          className,
+          autocompleteInputVariants({ size: visualSize, startAddon: !!startAddon, className }),
         )}
         data-slot="autocomplete-input"
-        render={
-          <Input
-            className={cn(
-              sizeValue === "sm" && "h-7 px-2 text-xs",
-              sizeValue === "lg" && "h-9 px-3 text-base",
-            )}
-          />
-        }
+        render={<Input className={cn(autocompleteFieldVariants({ size: visualSize }))} />}
         {...props}
       />
       {showTrigger && (
         <AutocompleteTrigger
-          className={cn(
-            "absolute top-1/2 inline-flex size-8 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-colors pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden sm:size-7 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
-            sizeValue === "sm" ? "inset-e-0" : "inset-e-0.5",
-          )}
+          className={cn(autocompleteActionVariants({ size: visualSize }))}
           {...triggerProps}
         >
           <AutocompletePrimitive.Icon data-slot="autocomplete-icon">
@@ -80,10 +105,7 @@ export function AutocompleteInput({
       )}
       {showClear && (
         <AutocompleteClear
-          className={cn(
-            "absolute top-1/2 inline-flex size-8 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-colors pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden sm:size-7 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
-            sizeValue === "sm" ? "inset-e-0" : "inset-e-0.5",
-          )}
+          className={cn(autocompleteActionVariants({ size: visualSize }))}
           {...clearProps}
         >
           <HugeiconsIcon icon={XIcon} />

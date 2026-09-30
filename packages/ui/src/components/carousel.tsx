@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { cva } from "class-variance-authority";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { Button } from "./button";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -28,6 +29,43 @@ type CarouselContextProps = {
 } & CarouselProps;
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null);
+
+const carouselContentVariants = cva("flex", {
+  variants: {
+    orientation: {
+      horizontal: "-ms-4",
+      vertical: "-mt-4 flex-col",
+    },
+  },
+});
+
+const carouselItemVariants = cva("min-w-0 shrink-0 grow-0 basis-full", {
+  variants: {
+    orientation: {
+      horizontal: "ps-4",
+      vertical: "pt-4",
+    },
+  },
+});
+
+const carouselControlVariants = cva("absolute touch-manipulation rounded-full", {
+  variants: {
+    orientation: {
+      horizontal: "inset-y-0 my-auto",
+      vertical: "inset-s-1/2 -translate-x-1/2 rotate-90 rtl:translate-x-1/2",
+    },
+    direction: {
+      previous: "",
+      next: "",
+    },
+  },
+  compoundVariants: [
+    { orientation: "horizontal", direction: "previous", className: "-inset-s-12" },
+    { orientation: "horizontal", direction: "next", className: "-inset-e-12" },
+    { orientation: "vertical", direction: "previous", className: "-top-12" },
+    { orientation: "vertical", direction: "next", className: "-bottom-12" },
+  ],
+});
 
 function useCarousel() {
   const context = React.useContext(CarouselContext);
@@ -133,10 +171,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
 
   return (
     <div ref={carouselRef} className="overflow-hidden" data-slot="carousel-content">
-      <div
-        className={cn("flex", orientation === "horizontal" ? "-ms-4" : "-mt-4 flex-col", className)}
-        {...props}
-      />
+      <div className={cn(carouselContentVariants({ orientation, className }))} {...props} />
     </div>
   );
 }
@@ -149,11 +184,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       role="group"
       aria-roledescription="slide"
       data-slot="carousel-item"
-      className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "ps-4" : "pt-4",
-        className,
-      )}
+      className={cn(carouselItemVariants({ orientation, className }))}
       {...props}
     />
   );
@@ -172,13 +203,7 @@ function CarouselPrevious({
       data-slot="carousel-previous"
       variant={variant}
       size={size}
-      className={cn(
-        "absolute touch-manipulation rounded-full",
-        orientation === "horizontal"
-          ? "inset-y-0 -inset-s-12 my-auto"
-          : "-top-12 inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
-        className,
-      )}
+      className={cn(carouselControlVariants({ orientation, direction: "previous", className }))}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
@@ -202,13 +227,7 @@ function CarouselNext({
       data-slot="carousel-next"
       variant={variant}
       size={size}
-      className={cn(
-        "absolute touch-manipulation rounded-full",
-        orientation === "horizontal"
-          ? "inset-y-0 -inset-e-12 my-auto"
-          : "-bottom-12 inset-s-1/2 -translate-x-1/2 rtl:translate-x-1/2 rotate-90",
-        className,
-      )}
+      className={cn(carouselControlVariants({ orientation, direction: "next", className }))}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}

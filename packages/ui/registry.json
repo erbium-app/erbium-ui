@@ -82,7 +82,12 @@
       "type": "registry:ui",
       "title": "Autocomplete",
       "description": "Erbium autocomplete component.",
-      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "@erbium/input",
         "@erbium/scroll-area",
@@ -192,7 +197,12 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "Erbium calendar component.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "react-day-picker"],
+      "dependencies": [
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority",
+        "react-day-picker"
+      ],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -221,7 +231,12 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Erbium carousel component.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "embla-carousel-react"],
+      "dependencies": [
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority",
+        "embla-carousel-react"
+      ],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -753,7 +768,7 @@
       "type": "registry:ui",
       "title": "Scroll Area",
       "description": "Erbium scroll area component.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -788,7 +803,7 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Erbium separator component.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

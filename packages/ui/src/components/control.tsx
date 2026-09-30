@@ -907,9 +907,9 @@ function Image({
           disabled={disabled}
           aria-label={`Upload ${label}`}
           onClick={() => ref.current?.click()}
+          data-no-options={!options?.length ? "" : undefined}
           className={cn(
-            "flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring",
-            !options?.length && "ms-auto",
+            "flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring data-no-options:ms-auto",
           )}
         >
           {!options?.length && preview ? (

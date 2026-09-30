@@ -1,4 +1,5 @@
 import * as React from "react";
+import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { DayPicker, getDefaultClassNames, type DayButton, type Locale } from "react-day-picker";
 import { Button, buttonVariants } from "./button";
@@ -6,6 +7,27 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronLeftIcon from "@hugeicons/core-free-icons/ChevronLeftIcon";
 import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+
+const calendarCaptionVariants = cva("font-medium select-none text-sm", {
+  variants: {
+    dropdown: {
+      true: "flex items-center gap-1 rounded-(--cell-radius) [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
+      false: "",
+    },
+  },
+});
+
+const calendarDayVariants = cva(
+  "group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
+  {
+    variants: {
+      showWeekNumber: {
+        true: "[&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)",
+        false: "[&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)",
+      },
+    },
+  },
+);
 
 function Calendar({
   className,
@@ -66,10 +88,7 @@ function Calendar({
         dropdown_root: cn("relative rounded-(--cell-radius)", defaultClassNames.dropdown_root),
         dropdown: cn("absolute inset-0 bg-popover opacity-0", defaultClassNames.dropdown),
         caption_label: cn(
-          "font-medium select-none",
-          captionLayout === "label"
-            ? "text-sm"
-            : "flex items-center gap-1 rounded-(--cell-radius) text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
+          calendarCaptionVariants({ dropdown: captionLayout !== "label" }),
           defaultClassNames.caption_label,
         ),
         month_grid: cn("w-full border-collapse", defaultClassNames.month_grid),
@@ -85,10 +104,7 @@ function Calendar({
           defaultClassNames.week_number,
         ),
         day: cn(
-          "group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)",
-          props.showWeekNumber
-            ? "[&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)"
-            : "[&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)",
+          calendarDayVariants({ showWeekNumber: !!props.showWeekNumber }),
           defaultClassNames.day,
         ),
         range_start: cn(

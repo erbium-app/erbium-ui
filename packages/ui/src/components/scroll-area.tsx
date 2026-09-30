@@ -1,10 +1,49 @@
 import * as React from "react";
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
+import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 type ScrollAreaFade = "vertical" | "horizontal" | false;
 type ScrollBarSize = "thin" | "default";
 type ScrollBarVisibility = "always" | "hover" | "scroll";
+
+const scrollAreaViewportVariants = cva(
+  "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:outline-1",
+  {
+    variants: {
+      fade: {
+        vertical: "data-has-overflow-y:scroll-fade-y",
+        horizontal: "data-has-overflow-x:scroll-fade-x",
+        none: "",
+      },
+      scrollbar: {
+        thin: "",
+        default: "",
+        none: "scrollbar-none",
+      },
+    },
+  },
+);
+
+const scrollBarThumbVariants = cva(
+  "relative flex-1 rounded-full bg-muted-foreground/35 transition-[background-color,transform] duration-200 hover:bg-muted-foreground/55 active:bg-muted-foreground/70 data-scrolling:bg-muted-foreground/60",
+  {
+    variants: {
+      orientation: {
+        vertical: "mx-auto w-1.5",
+        horizontal: "my-auto h-1.5",
+      },
+      size: {
+        thin: "",
+        default: "",
+      },
+    },
+    compoundVariants: [
+      { orientation: "vertical", size: "default", className: "w-2" },
+      { orientation: "horizontal", size: "default", className: "h-2" },
+    ],
+  },
+);
 
 type ScrollAreaProps = ScrollAreaPrimitive.Root.Props & {
   /** Adds a scroll-aware fade at the edges of the selected axis. */
@@ -50,11 +89,11 @@ function ScrollArea({
         role={viewportRole}
         render={viewportRender}
         className={cn(
-          "size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:outline-1",
-          fade === "vertical" && "data-has-overflow-y:scroll-fade-y",
-          fade === "horizontal" && "data-has-overflow-x:scroll-fade-x",
-          scrollbar === "none" && "scrollbar-none",
-          viewportClassName,
+          scrollAreaViewportVariants({
+            fade: fade || "none",
+            scrollbar,
+            className: viewportClassName,
+          }),
         )}
       >
         <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>
@@ -121,14 +160,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.Thumb
         data-slot="scroll-area-thumb"
-        className={cn(
-          "relative flex-1 rounded-full bg-muted-foreground/35 transition-[background-color,transform] duration-200 hover:bg-muted-foreground/55 active:bg-muted-foreground/70 data-scrolling:bg-muted-foreground/60",
-          orientation === "vertical" && "mx-auto w-1.5",
-          orientation === "horizontal" && "my-auto h-1.5",
-          size === "default" && orientation === "vertical" && "w-2",
-          size === "default" && orientation === "horizontal" && "h-2",
-          thumbClassName,
-        )}
+        className={cn(scrollBarThumbVariants({ orientation, size, className: thumbClassName }))}
       />
     </ScrollAreaPrimitive.Scrollbar>
   );

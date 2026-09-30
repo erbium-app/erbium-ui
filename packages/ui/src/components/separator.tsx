@@ -1,5 +1,18 @@
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
+import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
+
+const separatorVariants = cva(
+  "shrink-0 data-horizontal:w-auto data-horizontal:self-stretch data-horizontal:justify-self-stretch",
+  {
+    variants: {
+      labeled: {
+        true: "flex items-center gap-2 data-vertical:h-full data-vertical:flex-col",
+        false: "data-horizontal:h-0.5 data-vertical:w-0.5 data-vertical:self-stretch",
+      },
+    },
+  },
+);
 
 type SeparatorProps = SeparatorPrimitive.Props & {
   fade?: boolean;
@@ -21,15 +34,7 @@ function Separator({
       data-fade={fade ? "" : undefined}
       orientation={orientation}
       role={labeled ? "none" : "separator"}
-      className={cn(
-        // Auto width includes both inline margins; 100% leaves an end gap
-        // when popup wrappers bleed a separator through their padding.
-        "shrink-0 data-horizontal:w-auto data-horizontal:self-stretch data-horizontal:justify-self-stretch",
-        labeled
-          ? "flex items-center gap-2 data-vertical:h-full data-vertical:flex-col"
-          : "data-horizontal:h-0.5 data-vertical:w-0.5 data-vertical:self-stretch",
-        className,
-      )}
+      className={cn(separatorVariants({ labeled, className }))}
       {...props}
       data-separator=""
     >
