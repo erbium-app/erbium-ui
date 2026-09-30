@@ -3,7 +3,7 @@ import { scaleBand } from "@tanstack/charts/scales/band";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { scaleOrdinal } from "@tanstack/charts/scales/ordinal";
 import { tooltip } from "@tanstack/charts/tooltip";
-import { colorLegend } from "@tanstack/charts/legend";
+import { colorLegend, colorLegendItems } from "@tanstack/charts/legend";
 import { Chart } from "@erbium/ui/components/chart";
 
 const monthlyVisitors = [
@@ -24,6 +24,11 @@ export function visitorChart(
   options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},
 ) {
   return defineChart({
+    theme: {
+      foreground: "var(--foreground)",
+      muted: "var(--muted-foreground)",
+      grid: "var(--border)",
+    },
     marks: [
       barY(visitors, {
         x: "month",
@@ -44,9 +49,27 @@ export function visitorChart(
     },
     color: {
       scale: scaleOrdinal(["Desktop", "Mobile"], ["var(--chart-1)", "var(--chart-2)"]),
-      ...(options.legend ? { legend: colorLegend({ label: "Device" }) } : {}),
+      ...(options.legend
+        ? {
+            legend: colorLegend({
+              label: "Device",
+              items: colorLegendItems<"Desktop" | "Mobile">({
+                justify: "start",
+                gap: 16,
+                rowGap: 8,
+                indicator: { shape: "dot", width: 8, height: 8, gap: 7 },
+                label: { fontSize: 13, fontWeight: 500, fill: "var(--muted-foreground)" },
+              }),
+            }),
+          }
+        : {}),
     },
-    ...(options.tooltip ? { focus: "group-x" as const, tooltip: { use: tooltip } } : {}),
+    ...(options.tooltip
+      ? {
+          focus: "group-x" as const,
+          tooltip: { use: tooltip, className: "erbium-chart-tooltip" },
+        }
+      : {}),
   });
 }
 
