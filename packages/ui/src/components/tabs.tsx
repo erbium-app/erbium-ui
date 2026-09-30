@@ -30,21 +30,32 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
       <TabsPrimitive.Indicator
         data-slot="tabs-indicator"
         className="pointer-events-none absolute top-0 left-0 z-0 rounded-md border border-surface-rim bg-surface-control shadow-control"
-        render={(indicatorProps, state) => (
-          <motion.span
-            {...(indicatorProps as HTMLMotionProps<"span">)}
-            initial={false}
-            animate={{
-              x: state.activeTabPosition?.left ?? 0,
-              y: state.activeTabPosition?.top ?? 0,
-              width: state.activeTabSize?.width ?? 0,
-              height: state.activeTabSize?.height ?? 0,
-            }}
-            transition={
-              shouldReduceMotion ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 35 }
-            }
-          />
-        )}
+        render={(indicatorProps, state) => {
+          const position = state.activeTabPosition;
+          const size = state.activeTabSize;
+
+          if (!position || !size || size.width === 0 || size.height === 0) {
+            return <span {...indicatorProps} />;
+          }
+
+          return (
+            <motion.span
+              {...(indicatorProps as HTMLMotionProps<"span">)}
+              initial={false}
+              animate={{
+                x: position.left,
+                y: position.top,
+                width: size.width,
+                height: size.height,
+              }}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { type: "spring", stiffness: 400, damping: 35 }
+              }
+            />
+          );
+        }}
       />
     </TabsPrimitive.List>
   );
