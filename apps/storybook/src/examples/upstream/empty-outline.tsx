@@ -12,7 +12,7 @@ import {
 
 export default function EmptyOutline() {
   return (
-    <Empty className="border border-dashed">
+    <Empty>
       <EmptyHeader>
         <EmptyMedia variant="icon">
           <CloudIcon />

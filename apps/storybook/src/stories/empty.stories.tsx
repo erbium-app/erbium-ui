@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Use the Empty component to display an empty state.\n\n**Import:** `@erbium/ui/components/empty`  \n\n**shadcn/ui page:** [Empty](https://ui.shadcn.com/docs/components/base/empty)\n\n### Usage\n\n```tsx\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\n```\n\n```tsx\n<Empty>\n  <EmptyHeader>\n    <EmptyMedia variant="icon">\n      <Icon />\n    </EmptyMedia>\n    <EmptyTitle>No data</EmptyTitle>\n    <EmptyDescription>No data found</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent>\n    <Button>Add data</Button>\n  </EmptyContent>\n</Empty>\n```\n\n### Composition\n\nUse the following composition to build an `Empty` state:\n\n```text\nEmpty\n├── EmptyHeader\n│   ├── EmptyMedia\n│   ├── EmptyTitle\n│   └── EmptyDescription\n└── EmptyContent\n```',
+          'Use `Empty` for an absent item or an initial state. It includes a subtle dashed boundary and generous spacing by default. Place the icon, title, and description in `EmptyHeader`; place actions or inputs in `EmptyContent` as a sibling. Use `EmptyMedia` without a variant for larger artwork or avatars.\n\n**Import:** `@erbium/ui/components/empty`  \n\n### Usage\n\n```tsx\nimport { FolderIcon } from "lucide-react"\nimport { Button } from "@erbium/ui/components/button"\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty"\n\n<Empty>\n  <EmptyHeader>\n    <EmptyMedia variant="icon"><FolderIcon /></EmptyMedia>\n    <EmptyTitle>No projects yet</EmptyTitle>\n    <EmptyDescription>Create a project to get started.</EmptyDescription>\n  </EmptyHeader>\n  <EmptyContent>\n    <Button>Create project</Button>\n  </EmptyContent>\n</Empty>\n```',
       },
     },
   },
@@ -141,9 +141,9 @@ export const InputGroup: Story = {
 export const Outline: Story = {
   parameters: {
     docs: {
-      description: { story: "Use the `border` utility class to create an outline empty state." },
+      description: { story: "The default empty state includes a dashed border." },
       source: {
-        code: 'import { CloudIcon } from "lucide-react";\n\nimport { Button } from "@erbium/ui/components/button";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty className="border border-dashed">\n      <EmptyHeader>\n        <EmptyMedia variant="icon">\n          <CloudIcon />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant="outline" size="sm">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n',
+        code: 'import { CloudIcon } from "lucide-react";\n\nimport { Button } from "@erbium/ui/components/button";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from "@erbium/ui/components/empty";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant="icon">\n          <CloudIcon />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant="outline" size="sm">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n',
       },
     },
   },
