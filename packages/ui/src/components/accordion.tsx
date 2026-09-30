@@ -23,7 +23,6 @@ function AccordionItem({ className, children, ...props }: AccordionPrimitive.Ite
       {children}
       <Separator
         data-slot="accordion-item-separator"
-
         className="group-last/accordion-item:hidden"
       />
     </AccordionPrimitive.Item>
