@@ -1425,6 +1425,25 @@
       ]
     },
     {
+      "name": "item-settings-panel",
+      "type": "registry:component",
+      "title": "Item Settings Panel",
+      "description": "Erbium item settings panel example.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/item",
+        "@erbium/select",
+        "@erbium/switch"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/item-settings-panel.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/item-settings-panel.tsx"
+        }
+      ]
+    },
+    {
       "name": "item-size",
       "type": "registry:component",
       "title": "Item Size",

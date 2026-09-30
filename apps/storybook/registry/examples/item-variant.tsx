@@ -8,7 +8,7 @@ export default function ItemVariant() {
       <Item>
         <ItemContent>
           <ItemTitle>Default Variant</ItemTitle>
-          <ItemDescription>Standard styling with subtle background and borders.</ItemDescription>
+          <ItemDescription>Flat styling that inherits its surrounding surface.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">
@@ -19,9 +19,7 @@ export default function ItemVariant() {
       <Item variant="outline">
         <ItemContent>
           <ItemTitle>Outline Variant</ItemTitle>
-          <ItemDescription>
-            Outlined style with clear borders and transparent background.
-          </ItemDescription>
+          <ItemDescription>Raised panel styling with a subtle edge and shadow.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">
@@ -32,9 +30,7 @@ export default function ItemVariant() {
       <Item variant="muted">
         <ItemContent>
           <ItemTitle>Muted Variant</ItemTitle>
-          <ItemDescription>
-            Subdued appearance with muted colors for secondary content.
-          </ItemDescription>
+          <ItemDescription>A softer panel surface for secondary content.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">

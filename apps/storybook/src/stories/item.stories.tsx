@@ -8,6 +8,7 @@ import ExampleItemAvatar from "../examples/item-avatar";
 import ExampleItemGroup from "../examples/item-group";
 import ExampleItemLink from "../examples/item-link";
 import ExampleItemDropdown from "../examples/item-dropdown";
+import ExampleItemSettingsPanel from "../examples/item-settings-panel";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Item } from "@erbium/ui/components/item";
 import Demo from "../examples/item-demo";
@@ -21,7 +22,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A versatile component for displaying content with media, title, description, and actions.\n\n**Import:** `@erbium/ui/components/item`  \n\n**shadcn/ui page:** [Item](https://ui.shadcn.com/docs/components/base/item)\n\n### Usage\n\n```tsx\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from "@erbium/ui/components/item"\n```\n\n```tsx\n<Item>\n  <ItemMedia variant="icon">\n    <Icon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Title</ItemTitle>\n    <ItemDescription>Description</ItemDescription>\n  </ItemContent>\n  <ItemActions>\n    <Button>Action</Button>\n  </ItemActions>\n</Item>\n```\n\n### Composition\n\nUse the following composition to build an `Item`:\n\n```text\nItemGroup\n└── Item\n    ├── ItemHeader\n    ├── ItemMedia\n    ├── ItemContent\n    │   ├── ItemTitle\n    │   └── ItemDescription\n    ├── ItemActions\n    └── ItemFooter\n```\n\n### Item vs Field\n\nUse `Field` if you need to display a form input such as a checkbox, input, radio, or select.\n\nIf you only need to display content such as a title, description, and actions, use `Item`.',
+          'A versatile component for displaying content with media, title, description, and actions.\n\n**Import:** `@erbium/ui/components/item`  \n\n**shadcn/ui page:** [Item](https://ui.shadcn.com/docs/components/base/item)\n\n### Usage\n\n```tsx\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from "@erbium/ui/components/item"\n```\n\n```tsx\n<Item>\n  <ItemMedia variant="icon">\n    <Icon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Title</ItemTitle>\n    <ItemDescription>Description</ItemDescription>\n  </ItemContent>\n  <ItemActions>\n    <Button>Action</Button>\n  </ItemActions>\n</Item>\n```\n\n### Composition\n\nUse the following composition to build an `Item`:\n\n```text\nItemGroup\n└── Item\n    ├── ItemHeader\n    ├── ItemMedia\n    ├── ItemContent\n    │   ├── ItemTitle\n    │   └── ItemDescription\n    ├── ItemActions\n    └── ItemFooter\n```\n\n### Item vs Field\n\nUse `Field` when you need form layout and validation semantics. `Item` can also lay out a settings row when its control is separately labeled. Use `ItemGroup variant="panel"` for a shared panel surface with inset dividers.',
       },
     },
   },
@@ -88,7 +89,7 @@ export const Variant: Story = {
       description: { story: "Use the `variant` prop to change the visual style of the item." },
 
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button"\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from "@erbium/ui/components/item"\n\nexport default function ItemVariant() {\n  return (\n    <div className="flex flex-col gap-6">\n      <Item>\n        <ItemContent>\n          <ItemTitle>Default Variant</ItemTitle>\n          <ItemDescription>\n            Standard styling with subtle background and borders.\n          </ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant="outline" size="sm">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant="outline">\n        <ItemContent>\n          <ItemTitle>Outline Variant</ItemTitle>\n          <ItemDescription>\n            Outlined style with clear borders and transparent background.\n          </ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant="outline" size="sm">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant="muted">\n        <ItemContent>\n          <ItemTitle>Muted Variant</ItemTitle>\n          <ItemDescription>\n            Subdued appearance with muted colors for secondary content.\n          </ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant="outline" size="sm">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  )\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button"\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from "@erbium/ui/components/item"\n\nexport default function ItemVariant() {\n  return (\n    <div className="flex flex-col gap-6">\n      <Item>\n        <ItemContent>\n          <ItemTitle>Default Variant</ItemTitle>\n          <ItemDescription>\n            Flat styling that inherits its surrounding surface.\n          </ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant="outline" size="sm">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant="outline">\n        <ItemContent>\n          <ItemTitle>Outline Variant</ItemTitle>\n          <ItemDescription>\n            Raised panel styling with a subtle edge and shadow.\n          </ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant="outline" size="sm">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant="muted">\n        <ItemContent>\n          <ItemTitle>Muted Variant</ItemTitle>\n          <ItemDescription>\n            A softer panel surface for secondary content.\n          </ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant="outline" size="sm">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  )\n}\n',
       },
     },
   },
@@ -164,6 +165,22 @@ export const Group: Story = {
   render: () => (
     <div className="w-full min-w-72 max-w-2xl p-4">
       <ExampleItemGroup />
+    </div>
+  ),
+};
+export const SettingsPanel: Story = {
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      description: {
+        story:
+          'Use `ItemGroup variant="panel"` for a shared panel surface. Each `Item` supplies the row layout, while `ItemSeparator` provides inset dividers. Controls belong in `ItemActions` and need accessible labels.',
+      },
+    },
+  },
+  render: () => (
+    <div className="dark flex min-h-screen justify-center bg-surface-canvas p-6">
+      <ExampleItemSettingsPanel />
     </div>
   ),
 };
