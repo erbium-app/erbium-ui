@@ -58,7 +58,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.5.0",
     "motion": "^13.4.6",
-    "react-day-picker": "^10.0.1",
+    "react-day-picker": "^10.0.2",
     "react-resizable-panels": "^4.14.1",
     "shadow-plugin": "^2.1.1",
     "tailwindcss": "latest",

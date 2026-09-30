@@ -75,7 +75,7 @@
     "@shadcn/lint": "^0.2.0",
     "@types/node": "^26.6.3",
     "anti-slop": "file:../../Packages/anti-slop",
-    "knip": "^6.38.0",
+    "knip": "^6.39.0",
     "oxfmt": "^0.71.0",
     "oxlint": "^1.86.0",
     "skills": "^1.7.0",
