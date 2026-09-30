@@ -9,6 +9,12 @@
     * {
       corner-shape: squircle;
     }
+
+    .rounded-full,
+    .rounded-full::before,
+    .rounded-full::after {
+      corner-shape: round;
+    }
   }
 
   body {
