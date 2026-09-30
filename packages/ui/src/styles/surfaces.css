@@ -19,7 +19,7 @@
  *
  * Token naming:
  *   --surface-{role}             background colours (panel, control, overlay)
- *   --surface-highlight          shared lighting source for every catchlight
+ *   --surface-highlight[-{role}] lighting colours (strong, fill, divider)
  *   --surface-shadow[-{role}]    shadow colours (strong, inset, divider)
  *   --surface-edge[-{role}]      perimeter colours (fill, well)
  *   --surface-border             transparent CSS border / forced-colors fallback
@@ -28,8 +28,8 @@
  *   --separator-{property}       local rule geometry (direction, fade-direction)
  *
  * General lighting tokens feed surface recipes and separator treatments.
- * Distinct shadow/edge values keep semantic names; identical highlights use
- * --surface-highlight directly rather than pretending to be stronger variants.
+ * Raised controls use a subtle catchlight; overlays use the stronger variant.
+ * Divider lighting derives from the surface family, never the reverse.
  *
  * Colours and semantic colour aliases live on :root and .dark. Recipes are inlined into
  * the shadow utilities, so their var() references resolve on each element and
@@ -43,7 +43,7 @@
  * Surface borders stay transparent as a forced-colors fallback.
  *
  * Light and dark share every recipe's geometry; only the colours change.
- * Light mode leans on cast shadows (the white catchlight is subtle on white);
+ * Light mode leans on cast shadows (the neutral catchlight is transparent on white);
  * dark mode leans on lighter surfaces and a warm top-edge catchlight.
  * The ink (#393a34) and light (#dedcd5) tints come from Vitesse.
  */
@@ -61,12 +61,15 @@
   --surface-edge: rgb(57 58 52 / 0.1);
   --surface-border: transparent;
   /* Shared lighting source; component-specific highlights derive from it. */
-  --surface-highlight: color-mix(in srgb, var(--surface-panel) 20%, transparent);
+  --surface-highlight: transparent;
+  --surface-highlight-strong: transparent;
+  --surface-highlight-fill: rgb(255 255 255 / 0.18);
+  --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
   --surface-shadow: rgb(57 58 52 / 0.06);
   --surface-shadow-strong: rgb(57 58 52 / 0.1);
   --surface-shadow-inset: rgb(57 58 52 / 0.1);
   --surface-edge-well: rgb(57 58 52 / 0.08);
-  --surface-shadow-divider: color-mix(in srgb, var(--foreground) 16%, transparent);
+  --surface-shadow-divider: color-mix(in srgb, var(--foreground) 8%, transparent);
 
   --surface-edge-fill: rgb(0 0 0 / 0.14);
 
@@ -87,12 +90,15 @@
   --surface-edge: rgb(222 220 213 / 0.03);
   --surface-border: transparent;
   /* Shared lighting source; component-specific highlights derive from it. */
-  --surface-highlight: color-mix(in srgb, var(--foreground) 16%, transparent);
+  --surface-highlight: rgb(222 220 213 / 0.06);
+  --surface-highlight-strong: rgb(222 220 213 / 0.09);
+  --surface-highlight-fill: rgb(255 255 255 / 0.2);
+  --surface-highlight-divider: var(--surface-highlight);
   --surface-shadow: rgb(0 0 0 / 0.3);
   --surface-shadow-strong: rgb(0 0 0 / 0.5);
   --surface-shadow-inset: rgb(0 0 0 / 0.35);
   --surface-edge-well: rgb(222 220 213 / 0.04);
-  --surface-shadow-divider: var(--surface-shadow-strong);
+  --surface-shadow-divider: var(--surface-shadow);
 
   --surface-edge-fill: rgb(222 220 213 / 0.02);
 
@@ -125,18 +131,18 @@
     inset 0 0 0 0 transparent
   );
   --shadow-overlay:
-    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
     0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
   --shadow-modal:
-    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 0 0 1px var(--surface-modal), 0 4px 8px -2px var(--surface-shadow),
     0 16px 32px -8px var(--surface-shadow), 0 32px 64px -16px var(--surface-shadow-strong);
   --shadow-knob:
-    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow);
   --shadow-fill:
-    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge-fill),
+    0 -1px 0 0 var(--surface-highlight-fill), 0 0 0 1px var(--surface-edge-fill),
     0 1px 2px -0.5px var(--surface-shadow-strong), inset 0 0 0 0 transparent;
   --shadow-edge: var(--control-shadow-edge, 0 0 0 1px var(--surface-edge));
   /* A recess has one face, one perimeter, and a soft top inset. No
@@ -188,7 +194,7 @@
   background-image: linear-gradient(
     var(--separator-direction, to bottom),
     var(--surface-shadow-divider) 0 1px,
-    var(--surface-highlight) 1px 2px
+    var(--surface-highlight-divider) 1px 2px
   );
 }
 

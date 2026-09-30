@@ -64,9 +64,9 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
    - Catchlights sit on top edges; drops fall below.
 2. Raised bodies are lighter and cast downward.
    - **Light:** everything above the canvas is white, so the drops carry the elevation.
-   - **Dark:** the surface colour climbs; catchlights share one lighting colour at every elevation.
+   - **Dark:** the surface colour climbs; controls use a subtle catchlight and overlays use a slightly stronger one.
 3. **Light and dark share every recipe's geometry; only the colours change.**
-   - Light: the catchlight is translucent white, and the edge and drops are Vitesse ink.
+   - Light: the neutral catchlight is transparent, and the edge and drops are Vitesse ink.
    - Dark: the catchlight and faint perimeter are Vitesse light, while the drops are black.
 4. **The top catchlight sits on the outer perimeter.**
    - A shadow offset 1px upward paints over the perimeter shadow, making the top edge brighter without a dark border above it.
@@ -90,22 +90,24 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
 
 ### Token naming and dependency direction
 
-General surface lighting feeds treatments, never the reverse. All catchlights
-use `--surface-highlight` directly, including carved dividers and filled controls.
-There is no separate “strong” highlight with the same value.
+General surface lighting feeds treatments, never the reverse. `--surface-highlight`
+is the subtle control catchlight; `--surface-highlight-strong` restores the slightly
+brighter overlay/knob catchlight. Filled controls use `--surface-highlight-fill`.
+Dividers use `--surface-highlight-divider`, derived from the subtle highlight in
+dark mode, and a reduced `--surface-shadow-divider` for a quieter carved rule.
 
-| Token family                                                   | Meaning                                                |
-| -------------------------------------------------------------- | ------------------------------------------------------ |
-| `--surface-{role}`                                             | Background colours such as panel, input, and overlay   |
-| `--surface-highlight`                                          | Shared lighting colour                                 |
-| `--surface-shadow`, `--surface-shadow-strong`                  | Cast-shadow colours                                    |
-| `--surface-shadow-inset`, `--surface-shadow-divider`           | Recess and divider shadow colours                      |
-| `--surface-edge`, `--surface-edge-fill`, `--surface-edge-well` | Perimeter colours by material                          |
-| `--surface-border`                                             | Transparent CSS border used for forced-colors fallback |
-| `--surface-tint-hover`, `--surface-tint-pressed`               | Interaction tint colours                               |
-| `--shadow-*`                                                   | Complete Tailwind shadow recipes, not colours          |
-| `--control-shadow-{state}`                                     | Local recipe overrides for joined segments             |
-| `--separator-direction`, `--separator-fade-direction`          | Local separator geometry                               |
+| Token family                                                                                                   | Meaning                                                |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `--surface-{role}`                                                                                             | Background colours such as panel, input, and overlay   |
+| `--surface-highlight`, `--surface-highlight-strong`, `--surface-highlight-fill`, `--surface-highlight-divider` | Shared lighting colour                                 |
+| `--surface-shadow`, `--surface-shadow-strong`                                                                  | Cast-shadow colours                                    |
+| `--surface-shadow-inset`, `--surface-shadow-divider`                                                           | Recess and divider shadow colours                      |
+| `--surface-edge`, `--surface-edge-fill`, `--surface-edge-well`                                                 | Perimeter colours by material                          |
+| `--surface-border`                                                                                             | Transparent CSS border used for forced-colors fallback |
+| `--surface-tint-hover`, `--surface-tint-pressed`                                                               | Interaction tint colours                               |
+| `--shadow-*`                                                                                                   | Complete Tailwind shadow recipes, not colours          |
+| `--control-shadow-{state}`                                                                                     | Local recipe overrides for joined segments             |
+| `--separator-direction`, `--separator-fade-direction`                                                          | Local separator geometry                               |
 
 ### Recipes (`shadow-*`)
 
