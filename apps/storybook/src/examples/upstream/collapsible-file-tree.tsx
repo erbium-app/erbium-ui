@@ -73,12 +73,15 @@ export function CollapsibleFileTree() {
               />
             }
           >
-            <ChevronRightIcon className="transition-transform duration-200 ease-in-out group-data-open:rotate-90" />
+            <ChevronRightIcon
+              aria-hidden="true"
+              className="transition-transform duration-200 ease-in-out group-data-panel-open:rotate-90 motion-reduce:transition-none"
+            />
             <FolderIcon />
             {fileItem.name}
           </CollapsibleTrigger>
-          <CollapsibleContent className="mt-1 ml-5 style-lyra:ml-4">
-            <div className="flex flex-col gap-1">
+          <CollapsibleContent>
+            <div className="mt-1 ms-5 flex flex-col gap-1 style-lyra:ms-4">
               {fileItem.items.map((child) => renderItem(child))}
             </div>
           </CollapsibleContent>

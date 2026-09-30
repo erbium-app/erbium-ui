@@ -1,14 +1,7 @@
 import * as React from "react";
-import { MaximizeIcon, MinimizeIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 
-import { Button } from "@erbium/ui/components/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@erbium/ui/components/card";
+import { Card } from "@erbium/ui/components/card";
 import {
   Collapsible,
   CollapsibleContent,
@@ -16,51 +9,46 @@ import {
 } from "@erbium/ui/components/collapsible";
 import { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";
 import { Input } from "@erbium/ui/components/input";
+import { Separator } from "@erbium/ui/components/separator";
 
 export function CollapsibleSettings() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <Card className="mx-auto w-full max-w-xs" size="sm">
-      <CardHeader>
-        <CardTitle>Radius</CardTitle>
-        <CardDescription>Set the corner radius of the element.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Collapsible open={isOpen} onOpenChange={setIsOpen} className="flex items-start gap-2">
-          <FieldGroup className="grid w-full grid-cols-2 gap-2">
-            <Field>
-              <FieldLabel htmlFor="radius-x" className="sr-only">
-                Radius X
-              </FieldLabel>
-              <Input id="radius" placeholder="0" defaultValue={0} />
-            </Field>
-            <Field>
-              <FieldLabel htmlFor="radius-y" className="sr-only">
-                Radius Y
-              </FieldLabel>
-              <Input id="radius" placeholder="0" defaultValue={0} />
-            </Field>
-            <CollapsibleContent className="col-span-full grid grid-cols-subgrid gap-2">
+    <Card className="mx-auto w-full max-w-xs gap-0 p-0" size="sm">
+      <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+        <CollapsibleTrigger className="group/settings flex w-full items-center gap-2 rounded-xl px-3 py-2 text-start outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-ring/40">
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-medium">Radius</span>
+            <span className="block text-xs text-muted-foreground">
+              Set the corner radius of the element.
+            </span>
+          </span>
+          <ChevronRightIcon
+            aria-hidden="true"
+            className="size-4 text-muted-foreground transition-transform duration-200 group-data-panel-open/settings:rotate-90 motion-reduce:transition-none"
+          />
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <Separator />
+          <div className="px-3 pt-2 pb-3">
+            <FieldGroup className="grid w-full grid-cols-2 gap-2">
               <Field>
                 <FieldLabel htmlFor="radius-x" className="sr-only">
                   Radius X
                 </FieldLabel>
-                <Input id="radius" placeholder="0" defaultValue={0} />
+                <Input id="radius-x" placeholder="0" defaultValue={0} />
               </Field>
               <Field>
                 <FieldLabel htmlFor="radius-y" className="sr-only">
                   Radius Y
                 </FieldLabel>
-                <Input id="radius" placeholder="0" defaultValue={0} />
+                <Input id="radius-y" placeholder="0" defaultValue={0} />
               </Field>
-            </CollapsibleContent>
-          </FieldGroup>
-          <CollapsibleTrigger render={<Button variant="outline" size="icon" />}>
-            {isOpen ? <MinimizeIcon /> : <MaximizeIcon />}
-          </CollapsibleTrigger>
-        </Collapsible>
-      </CardContent>
+            </FieldGroup>
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
     </Card>
   );
 }

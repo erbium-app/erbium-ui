@@ -9,7 +9,7 @@
       "title": "Accordion",
       "description": "Erbium accordion component.",
       "dependencies": ["@base-ui/react", "lucide-react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/accordion.tsx",
@@ -261,6 +261,7 @@
       "title": "Collapsible",
       "description": "Erbium collapsible component.",
       "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/collapsible.tsx",
@@ -320,7 +321,7 @@
       "title": "Control",
       "description": "Erbium control component.",
       "dependencies": ["@base-ui/react", "lucide-react", "motion"],
-      "registryDependencies": ["@erbium/collapsible", "@erbium/utils"],
+      "registryDependencies": ["@erbium/collapsible", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/control.tsx",

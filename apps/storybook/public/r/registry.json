@@ -693,7 +693,7 @@
       "title": "Collapsible Demo",
       "description": "Erbium collapsible demo example.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["@erbium/button", "@erbium/collapsible"],
+      "registryDependencies": ["@erbium/card", "@erbium/collapsible", "@erbium/separator"],
       "files": [
         {
           "path": "registry/examples/collapsible-demo.tsx",
@@ -1865,7 +1865,8 @@
       "type": "registry:component",
       "title": "Sidebar Demo",
       "description": "Erbium sidebar demo example.",
-      "registryDependencies": ["@erbium/sidebar"],
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["@erbium/collapsible", "@erbium/separator", "@erbium/sidebar"],
       "files": [
         {
           "path": "registry/examples/sidebar-demo.tsx",

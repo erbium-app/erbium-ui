@@ -15,6 +15,7 @@ import {
   useTransform,
 } from "motion/react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
+import { Separator } from "./separator";
 import { cn } from "../lib/utils";
 
 const rowClass =
@@ -1355,6 +1356,7 @@ function Section({
         />
       </CollapsibleTrigger>
       <CollapsibleContent className="data-open:overflow-visible">
+        <Separator className="mt-2" />
         <Group className="py-2">{children}</Group>
       </CollapsibleContent>
     </Collapsible>
