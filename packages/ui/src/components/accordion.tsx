@@ -56,7 +56,6 @@ function AccordionContent({ className, children, ...props }: AccordionPrimitive.
       className="h-(--accordion-panel-height) overflow-hidden text-sm transition-[height] duration-200 ease-in-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none"
       {...props}
     >
-      <Separator />
       <div
         className={cn(
           "pt-2.5 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
