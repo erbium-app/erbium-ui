@@ -4,27 +4,27 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const badgeVariants = cva(
-  "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,background-color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,background-color,box-shadow] focus-visible:border-ring has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground shadow-fill [a]:hover:tint-hover",
         secondary: "bg-secondary text-secondary-foreground [a]:hover:tint-hover",
         destructive:
-          "bg-destructive-soft text-destructive-soft-foreground shadow-tint focus-visible:ring-destructive/20 [a]:hover:bg-destructive-soft-hover",
-        info: "bg-info-soft text-info-soft-foreground shadow-tint focus-visible:ring-info/20 [a]:hover:bg-info-soft-hover",
+          "bg-destructive-soft text-destructive-soft-foreground shadow-tint [a]:hover:bg-destructive-soft-hover",
+        info: "bg-info-soft text-info-soft-foreground shadow-tint [a]:hover:bg-info-soft-hover",
         success:
-          "bg-success-soft text-success-soft-foreground shadow-tint focus-visible:ring-success/20 [a]:hover:bg-success-soft-hover",
+          "bg-success-soft text-success-soft-foreground shadow-tint [a]:hover:bg-success-soft-hover",
         warning:
-          "bg-warning-soft text-warning-soft-foreground shadow-tint focus-visible:ring-warning/20 [a]:hover:bg-warning-soft-hover",
+          "bg-warning-soft text-warning-soft-foreground shadow-tint [a]:hover:bg-warning-soft-hover",
         "ghost-destructive":
-          "bg-transparent text-destructive-soft-foreground focus-visible:ring-destructive/20 hover:bg-destructive-soft [a]:hover:bg-destructive-soft",
+          "bg-transparent text-destructive-soft-foreground hover:bg-destructive-soft [a]:hover:bg-destructive-soft",
         "ghost-info":
-          "bg-transparent text-info-soft-foreground focus-visible:ring-info/20 hover:bg-info-soft [a]:hover:bg-info-soft",
+          "bg-transparent text-info-soft-foreground hover:bg-info-soft [a]:hover:bg-info-soft",
         "ghost-success":
-          "bg-transparent text-success-soft-foreground focus-visible:ring-success/20 hover:bg-success-soft [a]:hover:bg-success-soft",
+          "bg-transparent text-success-soft-foreground hover:bg-success-soft [a]:hover:bg-success-soft",
         "ghost-warning":
-          "bg-transparent text-warning-soft-foreground focus-visible:ring-warning/20 hover:bg-warning-soft [a]:hover:bg-warning-soft",
+          "bg-transparent text-warning-soft-foreground hover:bg-warning-soft [a]:hover:bg-warning-soft",
         "tag-gray": "bg-tag-gray/10 text-tag-gray shadow-tint dark:bg-tag-gray/15",
         "tag-red": "bg-tag-red/10 text-tag-red shadow-tint dark:bg-tag-red/15",
         "tag-orange": "bg-tag-orange/10 text-tag-orange shadow-tint dark:bg-tag-orange/15",

@@ -21,11 +21,11 @@
  * one override recolours any surface, for example:
  *   aria-invalid:[--surface-edge:var(--destructive)]
  *
- * The inner rim is the element's own 1px border (border-surface-rim), not an
- * inset shadow. An inset rim would be drawn inside the border, leaving a band
- * of fill between it and the outer edge that reads as a double outline; as the
- * border, the rim touches the edge and the catchlight directly below it. The
- * border also keeps surfaces outlined in forced-colors mode.
+ * The perimeter and top catchlight are both outer shadows. The top shadow is
+ * painted first, over the perimeter shadow, so its bright line is on the same
+ * edge rather than inside a border. Neutral surfaces back the translucent
+ * perimeter with their own fill so the drop cannot darken its bottom edge.
+ * Surface borders stay transparent as a forced-colors fallback.
  *
  * Light and dark share every recipe's geometry; only the colours change.
  * Light mode leans on cast shadows (the catchlight is transparent on white);
@@ -67,17 +67,17 @@
   --surface-top: #2b2b2b;
   --surface-well: rgb(0 0 0 / 0.25);
 
-  --surface-edge: rgb(0 0 0 / 0.12);
+  --surface-edge: rgb(222 220 213 / 0.03);
   --surface-rim: transparent;
-  --surface-highlight: rgb(222 220 213 / 0.1);
-  --surface-highlight-strong: rgb(222 220 213 / 0.13);
+  --surface-highlight: rgb(222 220 213 / 0.06);
+  --surface-highlight-strong: rgb(222 220 213 / 0.09);
   --surface-drop: rgb(0 0 0 / 0.3);
   --surface-drop-strong: rgb(0 0 0 / 0.5);
   --surface-shade: rgb(0 0 0 / 0.35);
   --surface-well-edge: rgb(222 220 213 / 0.04);
 
   --fill-highlight: rgb(255 255 255 / 0.2);
-  --fill-edge: rgb(0 0 0 / 0.45);
+  --fill-edge: rgb(222 220 213 / 0.02);
 
   --state-hover: rgb(222 220 213 / 0.05);
   --state-press: rgb(222 220 213 / 0.08);
@@ -94,24 +94,26 @@
   --color-surface-rim: var(--surface-rim);
 
   --shadow-panel:
-    inset 0 1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
-    0 1px 2px -1px var(--surface-drop), 0 2px 6px -2px var(--surface-drop);
+    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-panel), 0 1px 2px -1px var(--surface-drop),
+    0 2px 6px -2px var(--surface-drop);
   --shadow-control:
-    inset 0 1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
-    0 1px 1px -0.5px var(--surface-drop-strong), 0 2px 4px -1px var(--surface-drop);
+    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-control), 0 1px 1px -0.5px var(--surface-drop-strong),
+    0 2px 4px -1px var(--surface-drop);
   --shadow-overlay:
-    inset 0 1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 2px 4px -1px var(--surface-drop), 0 8px 16px -4px var(--surface-drop),
-    0 16px 32px -8px var(--surface-drop-strong);
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-drop),
+    0 8px 16px -4px var(--surface-drop), 0 16px 32px -8px var(--surface-drop-strong);
   --shadow-modal:
-    inset 0 1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 4px 8px -2px var(--surface-drop), 0 16px 32px -8px var(--surface-drop),
-    0 32px 64px -16px var(--surface-drop-strong);
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-modal), 0 4px 8px -2px var(--surface-drop),
+    0 16px 32px -8px var(--surface-drop), 0 32px 64px -16px var(--surface-drop-strong);
   --shadow-knob:
-    inset 0 1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 1px 2px 0 var(--surface-drop-strong), 0 2px 4px -1px var(--surface-drop);
   --shadow-fill:
-    inset 0 1px 0 0 var(--fill-highlight), 0 0 0 1px var(--fill-edge),
+    0 -1px 0 0 var(--fill-highlight), 0 0 0 1px var(--fill-edge),
     0 1px 2px -0.5px var(--surface-drop-strong);
   --shadow-edge: 0 0 0 1px var(--surface-edge);
   --shadow-pressed: inset 0 1px 2px 0 var(--surface-shade), 0 0 0 1px var(--surface-edge);

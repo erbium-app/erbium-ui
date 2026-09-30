@@ -66,13 +66,13 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
    - **Light:** everything above the canvas is white, so the drops carry the elevation.
    - **Dark:** the surface colour climbs and the catchlight strengthens with elevation.
 3. **Light and dark share every recipe's geometry; only the colours change.**
-   - Light: the catchlight and rim are transparent, and the drops are Vitesse ink at 6–10%.
-   - Dark: the catchlight is Vitesse light at 6–9%, the edge is black at 55%, and the drops are black at 22–34%.
-4. **The inner rim is the element's 1px border** (`border border-surface-rim`), not an inset shadow.
-   - An inset rim is drawn inside the border, so the fill shows between it and the outer edge as a double outline; the first version had exactly that gap.
-   - As the border, the rim touches the outer edge, and the top catchlight sits directly below it.
-   - Every surfaced element therefore carries `border border-surface-rim`, which also keeps it outlined in forced-colors mode.
-   - Solid fills keep a transparent border: their fill colour fills the border, so no gap shows.
+   - Light: the catchlight is transparent, and the edge and drops are Vitesse ink.
+   - Dark: the catchlight and faint perimeter are Vitesse light, while the drops are black.
+4. **The top catchlight sits on the outer perimeter.**
+   - A shadow offset 1px upward paints over the perimeter shadow, making the top edge brighter without a dark border above it.
+   - Neutral surfaces back the translucent perimeter with their surface colour, so the drop cannot fade the bottom edge.
+   - Surface borders are transparent and provide a forced-colors fallback.
+   - Both the rim and catchlight follow the same rounded shape.
 5. Pressed and popup-open controls lose their drop and gain an inset top shade.
 6. Lists stay flat. Only the selected item is raised.
 
@@ -90,18 +90,18 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
 
 ### Recipes (`shadow-*`)
 
-| Utility          | Layers                                          | Pair with                      |
-| ---------------- | ----------------------------------------------- | ------------------------------ |
-| `shadow-panel`   | catchlight, rim, edge, two soft drops           | `bg-surface-panel`             |
-| `shadow-control` | catchlight, rim, edge, tight drop, soft drop    | `bg-surface-control`           |
-| `shadow-overlay` | strong catchlight, rim, edge, `2/8/16px` drops  | `bg-surface-overlay` / `-top`  |
-| `shadow-modal`   | strong catchlight, rim, edge, `4/16/32px` drops | `bg-surface-modal`             |
-| `shadow-fill`    | white gloss, dark fill edge, tight drop         | `bg-primary`, status fills     |
-| `shadow-knob`    | strong catchlight, edge, two drops              | switch and slider thumbs       |
-| `shadow-pressed` | inset top shade, edge                           | pressed and open controls      |
-| `shadow-edge`    | edge only                                       | disabled and flat framed parts |
-| `shadow-well`    | inset top shade, inset rim                      | `bg-surface-well`              |
-| `shadow-tint`    | `currentColor` at 18%                           | soft badges and alerts         |
+| Utility          | Layers                                              | Pair with                      |
+| ---------------- | --------------------------------------------------- | ------------------------------ |
+| `shadow-panel`   | top catchlight, perimeter, two soft drops           | `bg-surface-panel`             |
+| `shadow-control` | top catchlight, perimeter, tight and soft drops     | `bg-surface-control`           |
+| `shadow-overlay` | strong top catchlight, perimeter, `2/8/16px` drops  | `bg-surface-overlay` / `-top`  |
+| `shadow-modal`   | strong top catchlight, perimeter, `4/16/32px` drops | `bg-surface-modal`             |
+| `shadow-fill`    | top gloss, perimeter, tight drop                    | `bg-primary`, status fills     |
+| `shadow-knob`    | strong top catchlight, perimeter, two drops         | switch and slider thumbs       |
+| `shadow-pressed` | inset top shade, edge                               | pressed and open controls      |
+| `shadow-edge`    | edge only                                           | disabled and flat framed parts |
+| `shadow-well`    | inset top shade, inset rim                          | `bg-surface-well`              |
+| `shadow-tint`    | `currentColor` at 18%                               | soft badges and alerts         |
 
 State layers:
 
@@ -158,7 +158,7 @@ Base UI portals popups to `body`, so CSS cannot see that a menu lives inside a d
 | pressed (`active`, `data-pressed` on buttons)   | `active:tint-press active:shadow-pressed` + existing `translate-y-px`; not when `data-disabled` / `data-readonly` |
 | open (`aria-expanded`, `data-popup-open`)       | `shadow-pressed`                                                                                                  |
 | selected (`data-pressed` toggle, `data-active`) | flat → `bg-surface-control shadow-control`                                                                        |
-| focus-visible                                   | unchanged `ring-3 ring-ring/50`                                                                                   |
+| focus-visible                                   | surface border colour (`border-ring`), without an outer ring                                                      |
 | invalid                                         | `aria-invalid:[--surface-edge:var(--destructive)]`                                                                |
 | disabled                                        | `shadow-edge` + existing `opacity-50`; a disabled control must not look pressable                                 |
 
@@ -247,7 +247,7 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
 
 ## Constraints
 
-- **Children covering the catchlight.** An inset highlight paints under child backgrounds, so card media or a filled header at the very top hides it. Those surfaces use Coss's `before:` pseudo-element for the catchlight instead; decide per component during migration.
+- **Children covering the catchlight.** The raised catchlight sits outside the surface, so child backgrounds cannot cover it. Components that clip outer shadows need a local treatment during migration.
 - **Forced colors.** Shadows are removed in forced-colors mode.
   - Surfaced interactive components keep `border border-transparent`, which the browser forces to a visible colour.
   - Background clipping stays on the border box, so the transparent border does not open a gap between the fill and the hairline.
