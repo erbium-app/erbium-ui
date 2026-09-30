@@ -540,8 +540,8 @@
       "type": "registry:ui",
       "title": "Input Otp",
       "description": "Erbium input otp component.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "input-otp"],
-      "registryDependencies": ["@erbium/utils"],
+      "dependencies": ["input-otp"],
+      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/input-otp.tsx",

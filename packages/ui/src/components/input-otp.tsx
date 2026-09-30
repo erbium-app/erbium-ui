@@ -1,8 +1,7 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { OTPInput, OTPInputContext } from "input-otp";
-import { HugeiconsIcon } from "@hugeicons/react";
-import MinusIcon from "@hugeicons/core-free-icons/MinusIcon";
+import { Separator } from "./separator";
 
 function InputOTP({
   className,
@@ -14,7 +13,7 @@ function InputOTP({
   return (
     <OTPInput
       data-slot="input-otp"
-      containerClassName={cn("flex items-center has-disabled:opacity-50", containerClassName)}
+      containerClassName={cn("flex items-center gap-2 has-disabled:opacity-50", containerClassName)}
       spellCheck={false}
       className={cn("disabled:cursor-not-allowed", className)}
       {...props}
@@ -26,10 +25,7 @@ function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-otp-group"
-      className={cn(
-        "flex items-center rounded-lg has-aria-invalid:border-destructive has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40",
-        className,
-      )}
+      className={cn("flex items-center gap-2", className)}
       {...props}
     />
   );
@@ -50,7 +46,7 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive}
       className={cn(
-        "relative flex size-8 items-center justify-center border-y border-e border-surface-border bg-surface-control text-sm shadow-control transition-all outline-none first:rounded-s-lg first:border-s last:rounded-e-lg aria-invalid:border-destructive aria-invalid:[--surface-edge:var(--destructive)] data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[1.5px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-0 dark:aria-invalid:border-destructive/50",
+        "relative flex size-8 items-center justify-center rounded-lg border border-surface-border bg-surface-input text-sm shadow-control transition-all outline-none aria-invalid:border-destructive aria-invalid:[--surface-edge:var(--destructive)] data-[active=true]:z-10 data-[active=true]:border-ring data-[active=true]:ring-[1.5px] data-[active=true]:ring-ring/50 data-[active=true]:aria-invalid:border-destructive data-[active=true]:aria-invalid:ring-0 dark:aria-invalid:border-destructive/50",
         className,
       )}
       {...props}
@@ -65,16 +61,14 @@ function InputOTPSlot({
   );
 }
 
-function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
+function InputOTPSeparator({ className, ...props }: React.ComponentProps<typeof Separator>) {
   return (
-    <div
+    <Separator
       data-slot="input-otp-separator"
-      className="flex items-center [&_svg:not([class*='size-'])]:size-4"
-      role="separator"
+      orientation="horizontal"
+      className={cn("rounded-full data-horizontal:w-3 data-horizontal:self-auto", className)}
       {...props}
-    >
-      <HugeiconsIcon icon={MinusIcon} />
-    </div>
+    />
   );
 }
 
