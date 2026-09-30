@@ -40,7 +40,7 @@ export const Playground: StoryObj<{
     <ResizablePanelGroup
       key={`${args.orientation}-${args.firstPanelSize}`}
       orientation={args.orientation}
-      className="h-48 w-80 rounded border"
+      className="h-48 w-80 rounded-xl border border-surface-border bg-surface-panel shadow-panel"
     >
       <ResizablePanel
         defaultSize={`${args.firstPanelSize}%`}
@@ -63,7 +63,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from "@erbium/ui/components/resizable";\n\nexport default function ResizableDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation="horizontal"\n      className="max-w-md rounded-lg border md:min-w-[450px]"\n    >\n      <ResizablePanel defaultSize="50%">\n        <div className="flex h-[200px] items-center justify-center p-6">\n          <span className="font-semibold">One</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle />\n      <ResizablePanel defaultSize="50%">\n        <ResizablePanelGroup orientation="vertical">\n          <ResizablePanel defaultSize="25%">\n            <div className="flex h-full items-center justify-center p-6">\n              <span className="font-semibold">Two</span>\n            </div>\n          </ResizablePanel>\n          <ResizableHandle />\n          <ResizablePanel defaultSize="75%">\n            <div className="flex h-full items-center justify-center p-6">\n              <span className="font-semibold">Three</span>\n            </div>\n          </ResizablePanel>\n        </ResizablePanelGroup>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  );\n}\n',
+        code: 'import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from "@erbium/ui/components/resizable";\n\nexport default function ResizableDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation="horizontal"\n      className="max-w-md rounded-xl border border-surface-border bg-surface-panel shadow-panel md:min-w-[450px]"\n    >\n      <ResizablePanel defaultSize="50%">\n        <div className="flex h-[200px] items-center justify-center p-6">\n          <span className="font-semibold">One</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle />\n      <ResizablePanel defaultSize="50%">\n        <ResizablePanelGroup orientation="vertical">\n          <ResizablePanel defaultSize="25%">\n            <div className="flex h-full items-center justify-center p-6">\n              <span className="font-semibold">Two</span>\n            </div>\n          </ResizablePanel>\n          <ResizableHandle />\n          <ResizablePanel defaultSize="75%">\n            <div className="flex h-full items-center justify-center p-6">\n              <span className="font-semibold">Three</span>\n            </div>\n          </ResizablePanel>\n        </ResizablePanelGroup>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  );\n}\n',
       },
     },
   },
@@ -80,7 +80,7 @@ export const Vertical: Story = {
       description: { story: 'Use `orientation="vertical"` for vertical resizing.' },
 
       source: {
-        code: 'import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from "@erbium/ui/components/resizable"\n\nexport default function ResizableDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation="vertical"\n      className="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]"\n    >\n      <ResizablePanel defaultSize="25%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Header</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle />\n      <ResizablePanel defaultSize="75%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Content</span>\n        </div>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  )\n}\n',
+        code: 'import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from "@erbium/ui/components/resizable"\n\nexport default function ResizableDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation="vertical"\n      className="min-h-[200px] max-w-md rounded-xl border border-surface-border bg-surface-panel shadow-panel md:min-w-[450px]"\n    >\n      <ResizablePanel defaultSize="25%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Header</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle />\n      <ResizablePanel defaultSize="75%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Content</span>\n        </div>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  )\n}\n',
       },
     },
   },
@@ -98,7 +98,7 @@ export const Handle: Story = {
       },
 
       source: {
-        code: 'import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from "@erbium/ui/components/resizable"\n\nexport default function ResizableHandleDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation="horizontal"\n      className="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]"\n    >\n      <ResizablePanel defaultSize="25%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Sidebar</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle withHandle />\n      <ResizablePanel defaultSize="75%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Content</span>\n        </div>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  )\n}\n',
+        code: 'import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from "@erbium/ui/components/resizable"\n\nexport default function ResizableHandleDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation="horizontal"\n      className="min-h-[200px] max-w-md rounded-xl border border-surface-border bg-surface-panel shadow-panel md:min-w-[450px]"\n    >\n      <ResizablePanel defaultSize="25%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Sidebar</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle withHandle />\n      <ResizablePanel defaultSize="75%">\n        <div className="flex h-full items-center justify-center p-6">\n          <span className="font-semibold">Content</span>\n        </div>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  )\n}\n',
       },
     },
   },
