@@ -2,10 +2,11 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Dialog,
   DialogClose,
-  DialogContent,
+  DialogPanel,
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@erbium/ui/components/dialog";
@@ -14,14 +15,14 @@ export function DialogStickyFooter() {
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>Sticky Footer</DialogTrigger>
-      <DialogContent>
+      <DialogPanel>
         <DialogHeader>
           <DialogTitle>Sticky Footer</DialogTitle>
           <DialogDescription>
             This dialog has a sticky footer that stays visible while the content scrolls.
           </DialogDescription>
         </DialogHeader>
-        <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
+        <DialogContent>
           {Array.from({ length: 10 }).map((_, index) => (
             <p key={index} className="mb-4 leading-normal">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
@@ -32,11 +33,11 @@ export function DialogStickyFooter() {
               mollit anim id est laborum.
             </p>
           ))}
-        </div>
+        </DialogContent>
         <DialogFooter>
           <DialogClose render={<Button variant="outline" />}>Close</DialogClose>
         </DialogFooter>
-      </DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }

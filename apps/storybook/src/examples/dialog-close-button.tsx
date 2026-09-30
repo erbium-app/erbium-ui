@@ -2,10 +2,11 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Dialog,
   DialogClose,
-  DialogContent,
+  DialogPanel,
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@erbium/ui/components/dialog";
@@ -16,19 +17,19 @@ export default function DialogCloseButton() {
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline">Share</Button>} />
-      <DialogContent className="sm:max-w-md">
+      <DialogPanel className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share link</DialogTitle>
           <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
         </DialogHeader>
-        <div className="flex items-center gap-2">
+        <DialogContent className="flex items-center gap-2">
           <div className="grid flex-1 gap-2">
             <Label htmlFor="link" className="sr-only">
               Link
             </Label>
             <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
           </div>
-        </div>
+        </DialogContent>
         <DialogFooter className="sm:justify-start">
           <DialogClose
             render={
@@ -38,7 +39,7 @@ export default function DialogCloseButton() {
             }
           />
         </DialogFooter>
-      </DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }

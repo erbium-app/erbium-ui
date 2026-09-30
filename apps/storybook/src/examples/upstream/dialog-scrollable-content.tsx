@@ -1,9 +1,10 @@
 import { Button } from "@erbium/ui/components/button";
 import {
   Dialog,
-  DialogContent,
+  DialogPanel,
   DialogDescription,
   DialogHeader,
+  DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@erbium/ui/components/dialog";
@@ -12,12 +13,12 @@ export function DialogScrollableContent() {
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>Scrollable Content</DialogTrigger>
-      <DialogContent>
+      <DialogPanel>
         <DialogHeader>
           <DialogTitle>Scrollable Content</DialogTitle>
           <DialogDescription>This is a dialog with scrollable content.</DialogDescription>
         </DialogHeader>
-        <div className="-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4">
+        <DialogContent>
           {Array.from({ length: 10 }).map((_, index) => (
             <p key={index} className="mb-4 leading-normal">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
@@ -28,8 +29,8 @@ export function DialogScrollableContent() {
               mollit anim id est laborum.
             </p>
           ))}
-        </div>
-      </DialogContent>
+        </DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }

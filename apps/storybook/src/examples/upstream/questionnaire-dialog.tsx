@@ -6,10 +6,9 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Dialog,
   DialogClose,
+  DialogPanel,
   DialogContent,
   DialogDescription,
-  DialogFooter,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@erbium/ui/components/dialog";
@@ -51,56 +50,65 @@ export function QuestionnaireDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger render={<Button variant="outline" />}>Open clarification</DialogTrigger>
-      <DialogContent>
-        <Questionnaire defaultItem="scope" items={items} onSubmit={handleSubmit}>
-          <QuestionnaireItem name="scope" required>
-            <DialogHeader>
-              <QuestionnaireProgress />
-              <QuestionnaireTitle render={<DialogTitle />}>
-                Which files are in scope?
-              </QuestionnaireTitle>
-              <QuestionnaireDescription render={<DialogDescription />}>
-                Choose how broadly the agent can update the workspace.
-              </QuestionnaireDescription>
-            </DialogHeader>
-            <QuestionnaireChoices>
-              <QuestionnaireChoice value="component">Component only</QuestionnaireChoice>
-              <QuestionnaireChoice value="feature">Complete feature directory</QuestionnaireChoice>
-              <QuestionnaireChoice value="workspace">
-                Any related workspace file
-              </QuestionnaireChoice>
-            </QuestionnaireChoices>
-            <QuestionnaireError />
-          </QuestionnaireItem>
+      <DialogPanel>
+        <DialogContent className="p-0">
+          <Questionnaire
+            defaultItem="scope"
+            items={items}
+            onSubmit={handleSubmit}
+            className="gap-0"
+          >
+            <QuestionnaireItem name="scope" required>
+              <div className="flex flex-col gap-1 border-b px-4 pt-4 pb-2">
+                <QuestionnaireProgress />
+                <QuestionnaireTitle render={<DialogTitle />}>
+                  Which files are in scope?
+                </QuestionnaireTitle>
+                <QuestionnaireDescription render={<DialogDescription />}>
+                  Choose how broadly the agent can update the workspace.
+                </QuestionnaireDescription>
+              </div>
+              <QuestionnaireChoices className="px-4 pb-4">
+                <QuestionnaireChoice value="component">Component only</QuestionnaireChoice>
+                <QuestionnaireChoice value="feature">
+                  Complete feature directory
+                </QuestionnaireChoice>
+                <QuestionnaireChoice value="workspace">
+                  Any related workspace file
+                </QuestionnaireChoice>
+              </QuestionnaireChoices>
+              <QuestionnaireError className="px-4" />
+            </QuestionnaireItem>
 
-          <QuestionnaireItem name="tests" required>
-            <DialogHeader>
-              <QuestionnaireProgress />
-              <QuestionnaireTitle render={<DialogTitle />}>
-                How much verification is needed?
-              </QuestionnaireTitle>
-              <QuestionnaireDescription render={<DialogDescription />}>
-                Choose the checks the agent should run before handoff.
-              </QuestionnaireDescription>
-            </DialogHeader>
-            <QuestionnaireChoices>
-              <QuestionnaireChoice value="targeted">Targeted tests</QuestionnaireChoice>
-              <QuestionnaireChoice value="package">Package tests</QuestionnaireChoice>
-              <QuestionnaireChoice value="full">Full workspace verification</QuestionnaireChoice>
-            </QuestionnaireChoices>
-            <QuestionnaireError />
-          </QuestionnaireItem>
+            <QuestionnaireItem name="tests" required>
+              <div className="flex flex-col gap-1 border-b px-4 pt-4 pb-2">
+                <QuestionnaireProgress />
+                <QuestionnaireTitle render={<DialogTitle />}>
+                  How much verification is needed?
+                </QuestionnaireTitle>
+                <QuestionnaireDescription render={<DialogDescription />}>
+                  Choose the checks the agent should run before handoff.
+                </QuestionnaireDescription>
+              </div>
+              <QuestionnaireChoices className="px-4 pb-4">
+                <QuestionnaireChoice value="targeted">Targeted tests</QuestionnaireChoice>
+                <QuestionnaireChoice value="package">Package tests</QuestionnaireChoice>
+                <QuestionnaireChoice value="full">Full workspace verification</QuestionnaireChoice>
+              </QuestionnaireChoices>
+              <QuestionnaireError className="px-4" />
+            </QuestionnaireItem>
 
-          <DialogFooter>
-            <DialogClose render={<Button type="button" variant="outline" />}>Cancel</DialogClose>
-            <QuestionnaireActions>
-              <QuestionnairePrevious />
-              <QuestionnaireNext>Next</QuestionnaireNext>
-              <QuestionnaireSubmit>Send answer</QuestionnaireSubmit>
-            </QuestionnaireActions>
-          </DialogFooter>
-        </Questionnaire>
-      </DialogContent>
+            <div className="flex flex-col-reverse gap-2 border-t bg-muted/50 px-4 py-3 sm:flex-row sm:justify-end">
+              <DialogClose render={<Button type="button" variant="outline" />}>Cancel</DialogClose>
+              <QuestionnaireActions>
+                <QuestionnairePrevious />
+                <QuestionnaireNext>Next</QuestionnaireNext>
+                <QuestionnaireSubmit>Send answer</QuestionnaireSubmit>
+              </QuestionnaireActions>
+            </div>
+          </Questionnaire>
+        </DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }

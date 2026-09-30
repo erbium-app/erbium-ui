@@ -1,6 +1,7 @@
 import { Button } from "@erbium/ui/components/button";
 import {
   Sheet,
+  SheetPanel,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -12,7 +13,7 @@ export default function SheetNoCloseButton() {
   return (
     <Sheet>
       <SheetTrigger render={<Button variant="outline" />}>Open Sheet</SheetTrigger>
-      <SheetContent showCloseButton={false}>
+      <SheetPanel showCloseButton={false}>
         <SheetHeader>
           <SheetTitle>No Close Button</SheetTitle>
           <SheetDescription>
@@ -20,7 +21,8 @@ export default function SheetNoCloseButton() {
             close.
           </SheetDescription>
         </SheetHeader>
-      </SheetContent>
+        <SheetContent>Review your changes here.</SheetContent>
+      </SheetPanel>
     </Sheet>
   );
 }

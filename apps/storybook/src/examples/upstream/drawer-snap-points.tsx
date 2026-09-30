@@ -2,11 +2,11 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Drawer,
   DrawerClose,
-  DrawerContent,
+  DrawerPanel,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
-  DrawerPanel,
+  DrawerContent,
   DrawerTitle,
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
@@ -17,20 +17,20 @@ export function DrawerSnapPoints() {
   return (
     <Drawer snapPoints={SNAP_POINTS} showSwipeHandle>
       <DrawerTrigger render={<Button variant="outline" />}>Open Snap Drawer</DrawerTrigger>
-      <DrawerContent>
+      <DrawerPanel>
         <DrawerHeader>
           <DrawerTitle>Snap points</DrawerTitle>
           <DrawerDescription>
             Drag the drawer to snap between a compact peek and a near full-height view.
           </DrawerDescription>
         </DrawerHeader>
-        <DrawerPanel>
+        <DrawerContent>
           <div className="rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full" />
-        </DrawerPanel>
+        </DrawerContent>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Close</DrawerClose>
         </DrawerFooter>
-      </DrawerContent>
+      </DrawerPanel>
     </Drawer>
   );
 }

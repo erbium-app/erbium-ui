@@ -2,7 +2,7 @@ import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog";
+import { Dialog, DialogPanel, DialogContent, DialogDescription, DialogTitle } from "./dialog";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -38,16 +38,16 @@ function CommandDialog({
 }) {
   return (
     <Dialog {...props}>
-      <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
-        <DialogDescription>{description}</DialogDescription>
-      </DialogHeader>
-      <DialogContent
+      <DialogPanel
         className={cn("top-1/3 translate-y-0 overflow-hidden p-0", className)}
         showCloseButton={showCloseButton}
       >
-        {children}
-      </DialogContent>
+        <DialogContent className="overflow-hidden p-0">
+          <DialogTitle className="sr-only">{title}</DialogTitle>
+          <DialogDescription className="sr-only">{description}</DialogDescription>
+          {children}
+        </DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }

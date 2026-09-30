@@ -5,11 +5,11 @@ import { Label } from "../components/label";
 import {
   Sheet,
   SheetClose,
-  SheetContent,
+  SheetPanel,
   SheetDescription,
   SheetFooter,
   SheetHeader,
-  SheetPanel,
+  SheetContent,
   SheetTitle,
   SheetTrigger,
 } from "../components/sheet";
@@ -24,14 +24,14 @@ export default function SheetSide() {
       {SHEET_SIDES.map((side) => (
         <Sheet key={side}>
           <SheetTrigger render={<Button variant="outline">{side}</Button>} />
-          <SheetContent side={side}>
+          <SheetPanel side={side}>
             <SheetHeader>
               <SheetTitle>Edit profile</SheetTitle>
               <SheetDescription>
                 Make changes to your profile here. Click save when you&apos;re done.
               </SheetDescription>
             </SheetHeader>
-            <SheetPanel className="grid content-start gap-4">
+            <SheetContent className="grid content-start gap-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor={`name-${side}`} className="text-end">
                   Name
@@ -44,11 +44,11 @@ export default function SheetSide() {
                 </Label>
                 <Input id={`username-${side}`} defaultValue="@peduarte" className="col-span-3" />
               </div>
-            </SheetPanel>
+            </SheetContent>
             <SheetFooter>
               <SheetClose render={<Button>Save changes</Button>} />
             </SheetFooter>
-          </SheetContent>
+          </SheetPanel>
         </Sheet>
       ))}
     </div>

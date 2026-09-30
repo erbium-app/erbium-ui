@@ -8,7 +8,14 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
+import {
+  Sheet,
+  SheetPanel,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "./sheet";
 import { Skeleton } from "./skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -198,7 +205,7 @@ function Sidebar({
   if (isMobile) {
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-        <SheetContent
+        <SheetPanel
           dir={dir}
           data-sidebar="sidebar"
           data-slot="sidebar"
@@ -215,8 +222,8 @@ function Sidebar({
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
-          <div className="flex h-full w-full flex-col">{children}</div>
-        </SheetContent>
+          <SheetContent className="flex h-full w-full flex-col p-0">{children}</SheetContent>
+        </SheetPanel>
       </Sheet>
     );
   }

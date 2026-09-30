@@ -1,6 +1,7 @@
 import { Button } from "@erbium/ui/components/button";
 import {
   Dialog,
+  DialogPanel,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -12,14 +13,15 @@ export function DialogNoCloseButton() {
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>No Close Button</DialogTrigger>
-      <DialogContent showCloseButton={false}>
+      <DialogPanel showCloseButton={false}>
         <DialogHeader>
           <DialogTitle>No Close Button</DialogTitle>
           <DialogDescription>
             This dialog doesn&apos;t have a close button in the top-right corner.
           </DialogDescription>
         </DialogHeader>
-      </DialogContent>
+        <DialogContent>Use the escape key or click outside to close.</DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }

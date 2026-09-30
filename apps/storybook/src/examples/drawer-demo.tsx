@@ -2,6 +2,7 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Drawer,
   DrawerClose,
+  DrawerPanel,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
@@ -13,15 +14,16 @@ export default function DrawerDemo() {
   return (
     <Drawer showSwipeHandle>
       <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
-      <DrawerContent>
+      <DrawerPanel>
         <DrawerHeader>
           <DrawerTitle>Edit profile</DrawerTitle>
           <DrawerDescription>Make changes and close when finished.</DrawerDescription>
         </DrawerHeader>
+        <DrawerContent>Review your profile details here.</DrawerContent>
         <DrawerFooter>
           <DrawerClose render={<Button>Done</Button>} />
         </DrawerFooter>
-      </DrawerContent>
+      </DrawerPanel>
     </Drawer>
   );
 }

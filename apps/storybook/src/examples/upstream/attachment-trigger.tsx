@@ -15,6 +15,7 @@ import {
 } from "@erbium/ui/components/attachment";
 import {
   Dialog,
+  DialogPanel,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -44,7 +45,7 @@ export function AttachmentTriggerDemo() {
           </AttachmentActions>
           <DialogTrigger render={<AttachmentTrigger aria-label="Preview research-summary.pdf" />} />
         </Attachment>
-        <DialogContent className="sm:max-w-md">
+        <DialogPanel className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>research-summary.pdf</DialogTitle>
             <DialogDescription>
@@ -52,7 +53,8 @@ export function AttachmentTriggerDemo() {
               independently clickable above it.
             </DialogDescription>
           </DialogHeader>
-        </DialogContent>
+          <DialogContent>Preview the attachment before opening it.</DialogContent>
+        </DialogPanel>
       </Dialog>
     </div>
   );

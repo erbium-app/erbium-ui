@@ -4,11 +4,11 @@ import { Label } from "@erbium/ui/components/label";
 import {
   Sheet,
   SheetClose,
-  SheetContent,
+  SheetPanel,
   SheetDescription,
   SheetFooter,
   SheetHeader,
-  SheetPanel,
+  SheetContent,
   SheetTitle,
   SheetTrigger,
 } from "@erbium/ui/components/sheet";
@@ -17,14 +17,14 @@ export default function SheetDemo() {
   return (
     <Sheet>
       <SheetTrigger render={<Button variant="outline">Open</Button>} />
-      <SheetContent>
+      <SheetPanel>
         <SheetHeader>
           <SheetTitle>Edit profile</SheetTitle>
           <SheetDescription>
             Make changes to your profile here. Click save when you&apos;re done.
           </SheetDescription>
         </SheetHeader>
-        <SheetPanel className="grid content-start gap-6">
+        <SheetContent className="grid content-start gap-6">
           <div className="grid gap-3">
             <Label htmlFor="sheet-demo-name">Name</Label>
             <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
@@ -33,12 +33,12 @@ export default function SheetDemo() {
             <Label htmlFor="sheet-demo-username">Username</Label>
             <Input id="sheet-demo-username" defaultValue="@peduarte" />
           </div>
-        </SheetPanel>
+        </SheetContent>
         <SheetFooter>
           <SheetClose render={<Button variant="outline">Close</Button>} />
           <SheetClose render={<Button>Save changes</Button>} />
         </SheetFooter>
-      </SheetContent>
+      </SheetPanel>
     </Sheet>
   );
 }

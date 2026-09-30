@@ -2,10 +2,11 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Dialog,
   DialogClose,
-  DialogContent,
+  DialogPanel,
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@erbium/ui/components/dialog";
@@ -16,31 +17,32 @@ import { StatefulButton } from "@erbium/ui/components/stateful-button";
 export default function DialogDemo() {
   return (
     <Dialog>
-      <form onSubmit={(event) => event.preventDefault()}>
-        <DialogTrigger render={<Button variant="outline">Open Dialog</Button>} />
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4">
-            <div className="grid gap-3">
-              <Label htmlFor="name-1">Name</Label>
-              <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="username-1">Username</Label>
-              <Input id="username-1" name="username" defaultValue="@peduarte" />
-            </div>
+      <DialogTrigger render={<Button variant="outline">Open Dialog</Button>} />
+      <DialogPanel
+        className="sm:max-w-[425px]"
+        render={<form onSubmit={(event) => event.preventDefault()} />}
+      >
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you&apos;re done.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogContent className="grid content-start gap-4">
+          <div className="grid gap-3">
+            <Label htmlFor="name-1">Name</Label>
+            <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
           </div>
-          <DialogFooter>
-            <DialogClose render={<Button variant="outline">Cancel</Button>} />
-            <StatefulButton type="submit">Save changes</StatefulButton>
-          </DialogFooter>
+          <div className="grid gap-3">
+            <Label htmlFor="username-1">Username</Label>
+            <Input id="username-1" name="username" defaultValue="@peduarte" />
+          </div>
         </DialogContent>
-      </form>
+        <DialogFooter>
+          <DialogClose render={<Button variant="outline">Cancel</Button>} />
+          <StatefulButton type="submit">Save changes</StatefulButton>
+        </DialogFooter>
+      </DialogPanel>
     </Dialog>
   );
 }

@@ -3,16 +3,17 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Drawer,
   DrawerClose,
-  DrawerContent,
+  DrawerPanel,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
-  DrawerPanel,
+  DrawerContent,
   DrawerTitle,
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
 import {
   Dialog,
+  DialogPanel,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -24,16 +25,16 @@ function DrawerExample({ className, label }: { className?: string; label: string
   return (
     <Drawer showSwipeHandle>
       <DrawerTrigger render={<Button variant="outline" />}>{label}</DrawerTrigger>
-      <DrawerContent className={className}>
+      <DrawerPanel className={className}>
         <DrawerHeader>
           <DrawerTitle>{label}</DrawerTitle>
           <DrawerDescription>Adjust the drawer layout for your content.</DrawerDescription>
         </DrawerHeader>
-        <DrawerPanel>This region scrolls when the content grows.</DrawerPanel>
+        <DrawerContent>This region scrolls when the content grows.</DrawerContent>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Done</DrawerClose>
         </DrawerFooter>
-      </DrawerContent>
+      </DrawerPanel>
     </Drawer>
   );
 }
@@ -69,14 +70,15 @@ export function Responsive() {
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>Edit profile</DialogTrigger>
-      <DialogContent>
+      <DialogPanel>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
             The dialog is used above 640px; resize to see a drawer.
           </DialogDescription>
         </DialogHeader>
-      </DialogContent>
+        <DialogContent>Update your profile details here.</DialogContent>
+      </DialogPanel>
     </Dialog>
   );
 }
