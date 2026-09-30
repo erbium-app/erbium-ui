@@ -16,78 +16,83 @@ import {
   TableHeader,
   TableRow,
 } from "@erbium/ui/components/table";
+import { createColumnHelper, metaHelper, tableFeatures, useTable } from "@tanstack/react-table";
+
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+};
+
+const products: Product[] = [
+  { id: "mouse", name: "Wireless Mouse", price: 29.99 },
+  { id: "keyboard", name: "Mechanical Keyboard", price: 129.99 },
+  { id: "hub", name: "USB-C Hub", price: 49.99 },
+];
+
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+
+const features = tableFeatures({ columnMeta: metaHelper<{ className?: string }>() });
+
+const columnHelper = createColumnHelper<typeof features, Product>();
+
+const columns = columnHelper.columns([
+  columnHelper.accessor("name", {
+    header: "Product",
+    cell: (info) => <span className="font-medium">{info.getValue()}</span>,
+  }),
+  columnHelper.accessor("price", {
+    header: "Price",
+    cell: (info) => currency.format(info.getValue()),
+  }),
+  // Display columns have no accessor; they render UI for each row.
+  columnHelper.display({
+    id: "actions",
+    header: "Actions",
+    cell: ({ row }) => (
+      <DropdownMenu>
+        <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="size-8" />}>
+          <MoreHorizontalIcon />
+          <span className="sr-only">Open menu for {row.original.name}</span>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem>Edit</DropdownMenuItem>
+          <DropdownMenuItem>Duplicate</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
+    meta: { className: "text-end" },
+  }),
+]);
 
 export function TableActions() {
+  const table = useTable({ features, columns, data: products, getRowId: (row) => row.id });
+
   return (
     <Table>
       <TableHeader>
-        <TableRow>
-          <TableHead>Product</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead className="text-right">Actions</TableHead>
-        </TableRow>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>
+                {header.isPlaceholder ? null : <table.FlexRender header={header} />}
+              </TableHead>
+            ))}
+          </TableRow>
+        ))}
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">Wireless Mouse</TableCell>
-          <TableCell>$29.99</TableCell>
-          <TableCell className="text-right">
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={<Button variant="ghost" size="icon" className="size-8" />}
-              >
-                <MoreHorizontalIcon />
-                <span className="sr-only">Open menu</span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">Mechanical Keyboard</TableCell>
-          <TableCell>$129.99</TableCell>
-          <TableCell className="text-right">
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={<Button variant="ghost" size="icon" className="size-8" />}
-              >
-                <MoreHorizontalIcon />
-                <span className="sr-only">Open menu</span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">USB-C Hub</TableCell>
-          <TableCell>$49.99</TableCell>
-          <TableCell className="text-right">
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={<Button variant="ghost" size="icon" className="size-8" />}
-              >
-                <MoreHorizontalIcon />
-                <span className="sr-only">Open menu</span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </TableCell>
-        </TableRow>
+        {table.getRowModel().rows.map((row) => (
+          <TableRow key={row.id}>
+            {row.getAllCells().map((cell) => (
+              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>
+                <table.FlexRender cell={cell} />
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );

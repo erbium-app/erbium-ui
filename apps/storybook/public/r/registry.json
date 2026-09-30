@@ -1949,12 +1949,28 @@
       "type": "registry:component",
       "title": "Table Demo",
       "description": "Erbium table demo example.",
+      "dependencies": ["@tanstack/react-table"],
       "registryDependencies": ["@erbium/table"],
       "files": [
         {
           "path": "registry/examples/table-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/table-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table-rtl",
+      "type": "registry:component",
+      "title": "Table Rtl",
+      "description": "Erbium table rtl example.",
+      "dependencies": ["@tanstack/react-table"],
+      "registryDependencies": ["@erbium/table"],
+      "files": [
+        {
+          "path": "registry/examples/table-rtl.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/table-rtl.tsx"
         }
       ]
     },

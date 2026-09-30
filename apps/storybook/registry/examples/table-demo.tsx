@@ -9,79 +9,90 @@ import {
   TableHeader,
   TableRow,
 } from "../components/table";
+import { createColumnHelper, metaHelper, tableFeatures, useTable } from "@tanstack/react-table";
 
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
+type Invoice = {
+  invoice: string;
+  paymentStatus: string;
+  paymentMethod: string;
+  totalAmount: number;
+};
+
+const invoices: Invoice[] = [
+  { invoice: "INV001", paymentStatus: "Paid", paymentMethod: "Credit Card", totalAmount: 250 },
+  { invoice: "INV002", paymentStatus: "Pending", paymentMethod: "PayPal", totalAmount: 150 },
+  { invoice: "INV003", paymentStatus: "Unpaid", paymentMethod: "Bank Transfer", totalAmount: 350 },
+  { invoice: "INV004", paymentStatus: "Paid", paymentMethod: "Credit Card", totalAmount: 450 },
+  { invoice: "INV005", paymentStatus: "Paid", paymentMethod: "PayPal", totalAmount: 550 },
+  { invoice: "INV006", paymentStatus: "Pending", paymentMethod: "Bank Transfer", totalAmount: 200 },
+  { invoice: "INV007", paymentStatus: "Unpaid", paymentMethod: "Credit Card", totalAmount: 300 },
 ];
 
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+
+// Column meta carries the classes shared by a column's head, cells and footer.
+const features = tableFeatures({ columnMeta: metaHelper<{ className?: string }>() });
+
+const columnHelper = createColumnHelper<typeof features, Invoice>();
+
+const columns = columnHelper.columns([
+  columnHelper.accessor("invoice", {
+    header: "Invoice",
+    cell: (info) => <span className="font-medium">{info.getValue()}</span>,
+    footer: "Total",
+    meta: { className: "w-[100px]" },
+  }),
+  columnHelper.accessor("paymentStatus", { header: "Status" }),
+  columnHelper.accessor("paymentMethod", { header: "Method" }),
+  columnHelper.accessor("totalAmount", {
+    header: "Amount",
+    cell: (info) => currency.format(info.getValue()),
+    footer: ({ table }) =>
+      currency.format(
+        table.getRowModel().rows.reduce((sum, row) => sum + row.original.totalAmount, 0),
+      ),
+    meta: { className: "text-end" },
+  }),
+]);
+
 export default function TableDemo() {
+  const table = useTable({ features, columns, data: invoices });
+
   return (
     <Table>
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>
+                {header.isPlaceholder ? null : <table.FlexRender header={header} />}
+              </TableHead>
+            ))}
+          </TableRow>
+        ))}
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+        {table.getRowModel().rows.map((row) => (
+          <TableRow key={row.id}>
+            {row.getAllCells().map((cell) => (
+              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>
+                <table.FlexRender cell={cell} />
+              </TableCell>
+            ))}
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
+        {table.getFooterGroups().map((footerGroup) => (
+          <TableRow key={footerGroup.id}>
+            {footerGroup.headers.map((footer) => (
+              <TableCell className={footer.column.columnDef.meta?.className} key={footer.id}>
+                <table.FlexRender footer={footer} />
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
       </TableFooter>
     </Table>
   );
