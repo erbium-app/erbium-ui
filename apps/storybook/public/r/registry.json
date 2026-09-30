@@ -598,6 +598,20 @@
       ]
     },
     {
+      "name": "checkbox-controlled",
+      "type": "registry:component",
+      "title": "Checkbox Controlled",
+      "description": "Erbium checkbox controlled example.",
+      "registryDependencies": ["@erbium/checkbox", "@erbium/label"],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-controlled.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/checkbox-controlled.tsx"
+        }
+      ]
+    },
+    {
       "name": "checkbox-demo",
       "type": "registry:component",
       "title": "Checkbox Demo",
@@ -616,12 +630,54 @@
       "type": "registry:component",
       "title": "Checkbox Disabled",
       "description": "Erbium checkbox disabled example.",
-      "registryDependencies": ["@erbium/checkbox"],
+      "registryDependencies": ["@erbium/checkbox", "@erbium/label"],
       "files": [
         {
           "path": "registry/examples/checkbox-disabled.tsx",
           "type": "registry:component",
           "target": "~/src/examples/checkbox-disabled.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-form",
+      "type": "registry:component",
+      "title": "Checkbox Form",
+      "description": "Erbium checkbox form example.",
+      "registryDependencies": ["@erbium/button", "@erbium/checkbox", "@erbium/label"],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-form.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/checkbox-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-indeterminate",
+      "type": "registry:component",
+      "title": "Checkbox Indeterminate",
+      "description": "Erbium checkbox indeterminate example.",
+      "registryDependencies": ["@erbium/checkbox", "@erbium/label"],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-indeterminate.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/checkbox-indeterminate.tsx"
+        }
+      ]
+    },
+    {
+      "name": "checkbox-read-only",
+      "type": "registry:component",
+      "title": "Checkbox Read Only",
+      "description": "Erbium checkbox read only example.",
+      "registryDependencies": ["@erbium/checkbox", "@erbium/label"],
+      "files": [
+        {
+          "path": "registry/examples/checkbox-read-only.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/checkbox-read-only.tsx"
         }
       ]
     },
