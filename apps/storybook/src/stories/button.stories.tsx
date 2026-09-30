@@ -11,12 +11,12 @@ import ExampleButtonIcon from "../examples/button-icon";
 import ExampleButtonRounded from "../examples/button-rounded";
 import ExampleButtonGroupDemo from "../examples/button-group-demo";
 import ButtonShortcutDemo from "../examples/kbd-button";
-import { Spinner } from "@erbium/ui/components/spinner";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
 
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Button, buttonVariants } from "@erbium/ui/components/button";
+import { DirectionProvider } from "@erbium/ui/components/direction";
 import Demo from "../examples/button-demo";
 
 const meta = {
@@ -40,6 +40,7 @@ export const Playground: StoryObj<typeof Button> = {
   args: {
     variant: "default",
     size: "default",
+    loading: false,
   },
   argTypes: {
     variant: {
@@ -64,6 +65,10 @@ export const Playground: StoryObj<typeof Button> = {
       options: ["default", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
       description: "Button size, including icon-only sizes.",
       table: { defaultValue: { summary: "default" } },
+    },
+    loading: {
+      control: "boolean",
+      description: "Show a spinner and block activation while an action runs.",
     },
   },
   parameters: {
@@ -169,15 +174,40 @@ export const Disabled: Story = {
 export const Loading: Story = {
   parameters: {
     docs: {
-      description: { story: "Show a spinner while an action is in progress." },
+      description: {
+        story:
+          "Set `loading` to show a spinner and block activation while keeping the button label.",
+      },
     },
   },
 
+  render: () => <Button loading>Saving</Button>,
+};
+
+export const LoadingDirections: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "The loading spinner stays at the inline start in both LTR and RTL layouts.",
+      },
+    },
+  },
   render: () => (
-    <Button disabled>
-      <Spinner data-icon="inline-start" />
-      Saving
-    </Button>
+    <div className="flex gap-6">
+      {(["ltr", "rtl"] as const).map((direction) => (
+        <DirectionProvider direction={direction} key={direction}>
+          <div dir={direction} className="flex flex-col items-start gap-2">
+            <Button loading>{direction === "rtl" ? "در حال ذخیره" : "Saving"}</Button>
+            <Button loading size="sm" variant="outline">
+              {direction === "rtl" ? "لطفاً صبر کنید" : "Please wait"}
+            </Button>
+            <Button aria-label={direction === "rtl" ? "تازه‌سازی" : "Refresh"} loading size="icon">
+              <HugeiconsIcon icon={ArrowUp01Icon} />
+            </Button>
+          </div>
+        </DirectionProvider>
+      ))}
+    </div>
   ),
 };
 
@@ -312,11 +342,10 @@ export const WithSpinner: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Render a `<Spinner />` component inside the button to show a loading state. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` attribute to the spinner for the correct spacing.',
+        story: "Set `loading` to show the spinner in a consistent position and block activation.",
       },
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button";\nimport { Spinner } from "@erbium/ui/components/spinner";\n\nexport default function ButtonLoading() {\n  return (\n    <div className="flex gap-2">\n      <Button variant="outline" disabled>\n        <Spinner data-icon="inline-start" />\n        Generating\n      </Button>\n      <Button variant="secondary" disabled>\n        Downloading\n        <Spinner data-icon="inline-start" />\n      </Button>\n    </div>\n  );\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button";\n\nexport default function ButtonLoading() {\n  return (\n    <div className="flex gap-2">\n      <Button variant="outline" loading>\n        Generating\n      </Button>\n      <Button variant="secondary" loading>\n        Downloading\n      </Button>\n    </div>\n  );\n}\n',
       },
     },
   },

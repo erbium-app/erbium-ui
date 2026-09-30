@@ -1955,7 +1955,7 @@
       "type": "registry:component",
       "title": "Spinner Badge",
       "description": "Erbium spinner badge example.",
-      "registryDependencies": ["@erbium/badge", "@erbium/spinner"],
+      "registryDependencies": ["@erbium/badge"],
       "files": [
         {
           "path": "registry/examples/spinner-badge.tsx",
@@ -1969,7 +1969,7 @@
       "type": "registry:component",
       "title": "Spinner Button",
       "description": "Erbium spinner button example.",
-      "registryDependencies": ["@erbium/button", "@erbium/spinner"],
+      "registryDependencies": ["@erbium/button"],
       "files": [
         {
           "path": "registry/examples/spinner-button.tsx",

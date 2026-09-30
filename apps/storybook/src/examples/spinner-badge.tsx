@@ -1,19 +1,13 @@
 import { Badge } from "@erbium/ui/components/badge";
-import { Spinner } from "@erbium/ui/components/spinner";
 
 export default function SpinnerBadge() {
   return (
     <div className="flex items-center gap-4 [--radius:1.2rem]">
-      <Badge>
-        <Spinner />
-        Syncing
-      </Badge>
-      <Badge variant="secondary">
-        <Spinner />
+      <Badge loading>Syncing</Badge>
+      <Badge variant="secondary" loading>
         Updating
       </Badge>
-      <Badge variant="outline">
-        <Spinner />
+      <Badge variant="outline" loading>
         Processing
       </Badge>
     </div>

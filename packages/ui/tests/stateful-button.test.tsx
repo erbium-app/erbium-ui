@@ -24,6 +24,7 @@ test("keeps focus and blocks repeat activation while an action runs", async () =
   expect(button.getAttribute("aria-busy")).toBe("true");
   expect(button.getAttribute("aria-disabled")).toBe("true");
   expect(button.getAttribute("data-state")).toBe("loading");
+  expect(button.querySelector('[data-slot="spinner"]')?.hasAttribute("data-icon")).toBe(false);
 
   fireEvent.click(button);
   expect(onClick).toHaveBeenCalledTimes(1);

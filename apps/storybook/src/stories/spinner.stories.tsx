@@ -66,12 +66,11 @@ export const Button: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Add a spinner to a button to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.',
+        story: "Use `Button loading` to show a spinner and block activation.",
       },
 
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button"\nimport { Spinner } from "@erbium/ui/components/spinner"\n\nexport default function SpinnerButton() {\n  return (\n    <div className="flex flex-col items-center gap-4">\n      <Button disabled size="sm">\n        <Spinner />\n        Loading...\n      </Button>\n      <Button variant="outline" disabled size="sm">\n        <Spinner />\n        Please wait\n      </Button>\n      <Button variant="secondary" disabled size="sm">\n        <Spinner />\n        Processing\n      </Button>\n    </div>\n  )\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button";\n\nexport default function SpinnerButton() {\n  return (\n    <div className="flex flex-col items-center gap-4">\n      <Button loading size="sm">\n        Loading...\n      </Button>\n      <Button variant="outline" loading size="sm">\n        Please wait\n      </Button>\n      <Button variant="secondary" loading size="sm">\n        Processing\n      </Button>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -85,12 +84,11 @@ export const Badge: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Add a spinner to a badge to indicate a loading state. Place the `<Spinner />` before the label with `data-icon="inline-start"` for a start position, or after the label with `data-icon="inline-end"` for an end position.',
+        story: "Use `Badge loading` to show a spinner before the label.",
       },
 
       source: {
-        code: 'import { Badge } from "@erbium/ui/components/badge"\nimport { Spinner } from "@erbium/ui/components/spinner"\n\nexport default function SpinnerBadge() {\n  return (\n    <div className="flex items-center gap-4 [--radius:1.2rem]">\n      <Badge>\n        <Spinner />\n        Syncing\n      </Badge>\n      <Badge variant="secondary">\n        <Spinner />\n        Updating\n      </Badge>\n      <Badge variant="outline">\n        <Spinner />\n        Processing\n      </Badge>\n    </div>\n  )\n}\n',
+        code: 'import { Badge } from "@erbium/ui/components/badge";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className="flex items-center gap-4 [--radius:1.2rem]">\n      <Badge loading>\n        Syncing\n      </Badge>\n      <Badge variant="secondary" loading>\n        Updating\n      </Badge>\n      <Badge variant="outline" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n',
       },
     },
   },

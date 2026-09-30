@@ -56,4 +56,8 @@ function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   );
 }
 
-export { Spinner };
+function LoadingIndicator({ inlineStart = false }: { inlineStart?: boolean }) {
+  return <Spinner aria-hidden data-icon={inlineStart ? "inline-start" : undefined} />;
+}
+
+export { Spinner, LoadingIndicator };

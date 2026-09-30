@@ -2,6 +2,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
+import { LoadingIndicator } from "./spinner";
 
 /* Filled controls keep their own coloured rim at every elevation. */
 const fillSurface =
@@ -12,7 +13,7 @@ const controlSurface =
   "border-surface-border bg-surface-control text-foreground shadow-control hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:tint-press active:shadow-pressed engaged:active:shadow-pressed disabled:shadow-edge data-disabled:shadow-edge engaged:disabled:shadow-edge engaged:data-disabled:shadow-edge";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:[--surface-edge:var(--destructive)] dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
   {
     variants: {
       variant: {
@@ -58,19 +59,33 @@ const buttonVariants = cva(
 );
 
 function Button({
+  children,
   className,
+  disabled,
+  focusableWhenDisabled,
+  loading = false,
   variant = "default",
   size = "default",
+  "aria-busy": ariaBusy,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean }) {
+  const iconOnly = typeof size === "string" && size.startsWith("icon");
+
   return (
     <ButtonPrimitive
       data-slot="button"
       data-size={size}
       data-variant={variant}
+      data-loading={loading ? "" : undefined}
+      aria-busy={loading || ariaBusy}
+      disabled={disabled || loading}
+      focusableWhenDisabled={loading || focusableWhenDisabled}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {loading && <LoadingIndicator inlineStart={!iconOnly} />}
+      {loading && iconOnly ? null : children}
+    </ButtonPrimitive>
   );
 }
 

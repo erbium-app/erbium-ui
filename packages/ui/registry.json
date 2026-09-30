@@ -123,7 +123,7 @@
       "title": "Badge",
       "description": "Erbium badge component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/spinner", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/badge.tsx",
@@ -168,7 +168,7 @@
       "title": "Button",
       "description": "Erbium button component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/spinner", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/button.tsx",

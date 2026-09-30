@@ -6,13 +6,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
-import { Spinner } from "./spinner";
+import { LoadingIndicator } from "./spinner";
 
 type StatefulButtonState = "idle" | "loading" | "success";
 
 type StatefulButtonProps = Omit<
   React.ComponentProps<typeof Button>,
-  "children" | "nativeButton" | "onClick" | "render"
+  "children" | "loading" | "nativeButton" | "onClick" | "render"
 > & {
   children: ReactNode;
   /** An async click handler drives the state when `state` is uncontrolled. */
@@ -122,7 +122,7 @@ function StatefulButton({
           className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[state=loading]/stateful-button:translate-y-0 group-data-[state=loading]/stateful-button:opacity-100 motion-reduce:transition-none"
           role="status"
         >
-          <Spinner aria-hidden />
+          <LoadingIndicator />
           <span className="sr-only">Loading</span>
         </span>
         <span

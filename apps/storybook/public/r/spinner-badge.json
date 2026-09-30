@@ -3,11 +3,11 @@
   "name": "spinner-badge",
   "title": "Spinner Badge",
   "description": "Erbium spinner badge example.",
-  "registryDependencies": ["@erbium/badge", "@erbium/spinner"],
+  "registryDependencies": ["@erbium/badge"],
   "files": [
     {
       "path": "registry/examples/spinner-badge.tsx",
-      "content": "// @ts-nocheck\nimport { Badge } from \"../components/badge\";\nimport { Spinner } from \"../components/spinner\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-4 [--radius:1.2rem]\">\n      <Badge>\n        <Spinner />\n        Syncing\n      </Badge>\n      <Badge variant=\"secondary\">\n        <Spinner />\n        Updating\n      </Badge>\n      <Badge variant=\"outline\">\n        <Spinner />\n        Processing\n      </Badge>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Badge } from \"../components/badge\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-4 [--radius:1.2rem]\">\n      <Badge loading>Syncing</Badge>\n      <Badge variant=\"secondary\" loading>\n        Updating\n      </Badge>\n      <Badge variant=\"outline\" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/spinner-badge.tsx"
     }

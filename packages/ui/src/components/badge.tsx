@@ -2,6 +2,7 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { LoadingIndicator } from "./spinner";
 
 const badgeVariants = cva(
   "group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,background-color,box-shadow] focus-visible:border-ring has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-destructive aria-invalid:ring-[1.5px] aria-invalid:ring-destructive/20 aria-invalid:focus-visible:border-destructive dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 dark:aria-invalid:focus-visible:border-destructive/50 [&>svg]:pointer-events-none [&>svg]:size-3!",
@@ -48,16 +49,26 @@ const badgeVariants = cva(
 );
 
 function Badge({
+  children,
   className,
+  loading = false,
   variant = "default",
   render,
+  "aria-busy": ariaBusy,
   ...props
-}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants>) {
+}: useRender.ComponentProps<"span"> & VariantProps<typeof badgeVariants> & { loading?: boolean }) {
   return useRender({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
         className: cn(badgeVariants({ variant }), className),
+        "aria-busy": loading || ariaBusy,
+        children: (
+          <>
+            {loading && <LoadingIndicator inlineStart />}
+            {children}
+          </>
+        ),
       },
       props,
     ),

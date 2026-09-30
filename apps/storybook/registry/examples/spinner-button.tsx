@@ -1,20 +1,16 @@
 // @ts-nocheck
 import { Button } from "../components/button";
-import { Spinner } from "../components/spinner";
 
 export default function SpinnerButton() {
   return (
     <div className="flex flex-col items-center gap-4">
-      <Button disabled size="sm">
-        <Spinner />
+      <Button loading size="sm">
         Loading...
       </Button>
-      <Button variant="outline" disabled size="sm">
-        <Spinner />
+      <Button variant="outline" loading size="sm">
         Please wait
       </Button>
-      <Button variant="secondary" disabled size="sm">
-        <Spinner />
+      <Button variant="secondary" loading size="sm">
         Processing
       </Button>
     </div>

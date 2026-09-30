@@ -3,11 +3,11 @@
   "name": "spinner-button",
   "title": "Spinner Button",
   "description": "Erbium spinner button example.",
-  "registryDependencies": ["@erbium/button", "@erbium/spinner"],
+  "registryDependencies": ["@erbium/button"],
   "files": [
     {
       "path": "registry/examples/spinner-button.tsx",
-      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\nimport { Spinner } from \"../components/spinner\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Button disabled size=\"sm\">\n        <Spinner />\n        Loading...\n      </Button>\n      <Button variant=\"outline\" disabled size=\"sm\">\n        <Spinner />\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" disabled size=\"sm\">\n        <Spinner />\n        Processing\n      </Button>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Button loading size=\"sm\">\n        Loading...\n      </Button>\n      <Button variant=\"outline\" loading size=\"sm\">\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" loading size=\"sm\">\n        Processing\n      </Button>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/spinner-button.tsx"
     }
