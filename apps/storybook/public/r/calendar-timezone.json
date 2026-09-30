@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/calendar-timezone.tsx",
-      "content": "// @ts-nocheck\nimport * as React from \"react\";\nimport { Calendar } from \"../components/calendar\";\n\nexport default function CalendarTimezone() {\n  const [date, setDate] = React.useState<Date>();\n  const [timeZone, setTimeZone] = React.useState<string>();\n\n  React.useEffect(() => {\n    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);\n  }, []);\n\n  return (\n    <Calendar\n      className=\"rounded-lg border\"\n      mode=\"single\"\n      onSelect={setDate}\n      selected={date}\n      timeZone={timeZone}\n    />\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport * as React from \"react\";\nimport { Calendar } from \"../components/calendar\";\n\nexport default function CalendarTimezone() {\n  const [date, setDate] = React.useState<Date>();\n  const [timeZone, setTimeZone] = React.useState<string>();\n\n  React.useEffect(() => {\n    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);\n  }, []);\n\n  return <Calendar mode=\"single\" onSelect={setDate} selected={date} timeZone={timeZone} />;\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/calendar-timezone.tsx"
     }
