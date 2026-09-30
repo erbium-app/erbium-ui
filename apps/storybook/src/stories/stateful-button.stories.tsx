@@ -1,32 +1,32 @@
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { ButtonShortcut } from "@erbium/ui/components/button";
 import { DirectionProvider } from "@erbium/ui/components/direction";
-import { StatusButton } from "@erbium/ui/components/status-button";
-import StatusButtonDemo, { AsyncStatusButton } from "../examples/status-button-demo";
-import StatusButtonForm from "../examples/status-button-form";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
+import StatefulButtonDemo, { AsyncStatefulButton } from "../examples/stateful-button-demo";
+import StatefulButtonForm from "../examples/stateful-button-form";
 
 const meta = {
-  title: "UI/Status Button",
-  component: StatusButton,
+  title: "UI/Stateful Button",
+  component: StatefulButton,
   parameters: {
     docs: {
       description: {
         component:
-          "Shows loading and success feedback for an async action. Use `status` with TanStack Form's `form.Subscribe` when the form owns submission. Import from `@erbium/ui/components/status-button`.",
+          "Shows loading and success feedback for an async action. Use `state` with TanStack Form's `form.Subscribe` when the form owns submission. Import from `@erbium/ui/components/stateful-button`.",
       },
     },
   },
-} satisfies Meta<typeof StatusButton>;
+} satisfies Meta<typeof StatefulButton>;
 
 export default meta;
 type Story = StoryObj;
 
 export const AsyncAction: Story = {
-  render: () => <StatusButtonDemo />,
+  render: () => <StatefulButtonDemo />,
 };
 
 export const TanStackForm: Story = {
-  render: () => <StatusButtonForm />,
+  render: () => <StatefulButtonForm />,
 };
 
 export const Directions: Story = {
@@ -42,22 +42,22 @@ export const Directions: Story = {
             <div dir={direction} className="rounded-lg border p-4">
               <p className="mb-3 text-sm font-medium uppercase">{direction}</p>
               <div className="flex flex-wrap gap-3">
-                <AsyncStatusButton successLabel={successLabel}>{label}</AsyncStatusButton>
-                <StatusButton successLabel={successLabel} variant="outline">
+                <AsyncStatefulButton successLabel={successLabel}>{label}</AsyncStatefulButton>
+                <StatefulButton successLabel={successLabel} variant="outline">
                   {label}
                   <ButtonShortcut hotkey="Mod+S" />
-                </StatusButton>
-                <StatusButton status="loading" successLabel={successLabel}>
+                </StatefulButton>
+                <StatefulButton state="loading" successLabel={successLabel}>
                   {label}
                   <ButtonShortcut hotkey="Mod+S" />
-                </StatusButton>
-                <StatusButton status="success" successLabel={successLabel}>
+                </StatefulButton>
+                <StatefulButton state="success" successLabel={successLabel}>
                   {label}
                   <ButtonShortcut hotkey="Mod+S" />
-                </StatusButton>
-                <StatusButton status="success" successLabel={successLabel} variant="outline">
+                </StatefulButton>
+                <StatefulButton state="success" successLabel={successLabel} variant="outline">
                   {label}
-                </StatusButton>
+                </StatefulButton>
               </div>
             </div>
           </DirectionProvider>

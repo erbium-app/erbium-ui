@@ -224,7 +224,12 @@
       "title": "Button Group Dropdown",
       "description": "Erbium button group dropdown example.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/dropdown-menu"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/dropdown-menu",
+        "@erbium/stateful-icon"
+      ],
       "files": [
         {
           "path": "registry/examples/button-group-dropdown.tsx",
@@ -309,6 +314,7 @@
         "@erbium/button-group",
         "@erbium/popover",
         "@erbium/separator",
+        "@erbium/stateful-icon",
         "@erbium/textarea"
       ],
       "files": [
@@ -508,7 +514,7 @@
         "@erbium/card",
         "@erbium/input",
         "@erbium/label",
-        "@erbium/status-button"
+        "@erbium/stateful-button"
       ],
       "files": [
         {
@@ -650,7 +656,7 @@
       "type": "registry:component",
       "title": "Checkbox Form",
       "description": "Erbium checkbox form example.",
-      "registryDependencies": ["@erbium/checkbox", "@erbium/label", "@erbium/status-button"],
+      "registryDependencies": ["@erbium/checkbox", "@erbium/label", "@erbium/stateful-button"],
       "files": [
         {
           "path": "registry/examples/checkbox-form.tsx",
@@ -693,7 +699,12 @@
       "title": "Collapsible Demo",
       "description": "Erbium collapsible demo example.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/card", "@erbium/collapsible", "@erbium/separator"],
+      "registryDependencies": [
+        "@erbium/card",
+        "@erbium/collapsible",
+        "@erbium/separator",
+        "@erbium/stateful-icon"
+      ],
       "files": [
         {
           "path": "registry/examples/collapsible-demo.tsx",
@@ -794,7 +805,7 @@
         "@erbium/dialog",
         "@erbium/input",
         "@erbium/label",
-        "@erbium/status-button"
+        "@erbium/stateful-button"
       ],
       "files": [
         {
@@ -985,7 +996,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/select",
-        "@erbium/status-button",
+        "@erbium/stateful-button",
         "@erbium/textarea"
       ],
       "files": [
@@ -1061,7 +1072,7 @@
         "@erbium/button",
         "@erbium/field",
         "@erbium/input",
-        "@erbium/status-button",
+        "@erbium/stateful-button",
         "@erbium/textarea"
       ],
       "files": [
@@ -1138,7 +1149,7 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/input",
-        "@erbium/status-button"
+        "@erbium/stateful-button"
       ],
       "files": [
         {
@@ -1224,7 +1235,11 @@
       "title": "Input Group Dropdown",
       "description": "Erbium input group dropdown example.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/dropdown-menu", "@erbium/input-group"],
+      "registryDependencies": [
+        "@erbium/dropdown-menu",
+        "@erbium/input-group",
+        "@erbium/stateful-icon"
+      ],
       "files": [
         {
           "path": "registry/examples/input-group-dropdown.tsx",
@@ -1354,12 +1369,12 @@
       "type": "registry:component",
       "title": "Item Dropdown",
       "description": "Erbium item dropdown example.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
         "@erbium/dropdown-menu",
-        "@erbium/item"
+        "@erbium/item",
+        "@erbium/stateful-icon"
       ],
       "files": [
         {
@@ -1697,7 +1712,7 @@
       "type": "registry:component",
       "title": "Radio Group Form",
       "description": "Erbium radio group form example.",
-      "registryDependencies": ["@erbium/label", "@erbium/radio-group", "@erbium/status-button"],
+      "registryDependencies": ["@erbium/label", "@erbium/radio-group", "@erbium/stateful-button"],
       "files": [
         {
           "path": "registry/examples/radio-group-form.tsx",
@@ -1851,8 +1866,12 @@
       "type": "registry:component",
       "title": "Sidebar Demo",
       "description": "Erbium sidebar demo example.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/collapsible", "@erbium/separator", "@erbium/sidebar"],
+      "registryDependencies": [
+        "@erbium/collapsible",
+        "@erbium/separator",
+        "@erbium/sidebar",
+        "@erbium/stateful-icon"
+      ],
       "files": [
         {
           "path": "registry/examples/sidebar-demo.tsx",
@@ -2003,37 +2022,56 @@
       ]
     },
     {
-      "name": "status-button-demo",
+      "name": "stateful-button-demo",
       "type": "registry:component",
-      "title": "Status Button Demo",
-      "description": "Erbium status button demo example.",
+      "title": "Stateful Button Demo",
+      "description": "Erbium stateful button demo example.",
       "dependencies": ["@tanstack/react-pacer"],
-      "registryDependencies": ["@erbium/status-button"],
+      "registryDependencies": ["@erbium/stateful-button"],
       "files": [
         {
-          "path": "registry/examples/status-button-demo.tsx",
+          "path": "registry/examples/stateful-button-demo.tsx",
           "type": "registry:component",
-          "target": "~/src/examples/status-button-demo.tsx"
+          "target": "~/src/examples/stateful-button-demo.tsx"
         }
       ]
     },
     {
-      "name": "status-button-form",
+      "name": "stateful-button-form",
       "type": "registry:component",
-      "title": "Status Button Form",
-      "description": "Erbium status button form example.",
+      "title": "Stateful Button Form",
+      "description": "Erbium stateful button form example.",
       "dependencies": ["@tanstack/react-pacer"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/form",
         "@erbium/input",
-        "@erbium/status-button"
+        "@erbium/stateful-button"
       ],
       "files": [
         {
-          "path": "registry/examples/status-button-form.tsx",
+          "path": "registry/examples/stateful-button-form.tsx",
           "type": "registry:component",
-          "target": "~/src/examples/status-button-form.tsx"
+          "target": "~/src/examples/stateful-button-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stateful-icon-demo",
+      "type": "registry:component",
+      "title": "Stateful Icon Demo",
+      "description": "Erbium stateful icon demo example.",
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/stateful-icon",
+        "@erbium/use-copy-to-clipboard"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/stateful-icon-demo.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/stateful-icon-demo.tsx"
         }
       ]
     },
@@ -2070,7 +2108,7 @@
       "type": "registry:component",
       "title": "Switch Form",
       "description": "Erbium switch form example.",
-      "registryDependencies": ["@erbium/label", "@erbium/status-button", "@erbium/switch"],
+      "registryDependencies": ["@erbium/label", "@erbium/stateful-button", "@erbium/switch"],
       "files": [
         {
           "path": "registry/examples/switch-form.tsx",

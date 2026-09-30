@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Field, FieldDescription, FieldError, FieldLabel } from "../components/field";
 import { useForm } from "../components/form";
 import { Input } from "../components/input";
-import { StatusButton } from "../components/status-button";
-import type { ButtonStatus } from "../components/status-button";
+import { StatefulButton } from "../components/stateful-button";
+import type { StatefulButtonState } from "../components/stateful-button";
 
 function SubmitButton({
   canSubmit,
@@ -21,27 +21,27 @@ function SubmitButton({
   label: string;
 }) {
   const [dismissedAttempt, setDismissedAttempt] = useState(0);
-  let status: ButtonStatus = "idle";
+  let state: StatefulButtonState = "idle";
   if (isSubmitting) {
-    status = "loading";
+    state = "loading";
   } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {
-    status = "success";
+    state = "success";
   }
 
   return (
-    <StatusButton
+    <StatefulButton
       type="submit"
       disabled={!canSubmit}
-      status={status}
-      onStatusChange={(nextStatus) => {
-        if (nextStatus === "idle") {
+      state={state}
+      onStateChange={(nextState) => {
+        if (nextState === "idle") {
           setDismissedAttempt(submissionAttempts);
         }
       }}
       successLabel="Submitted"
     >
       {label}
-    </StatusButton>
+    </StatefulButton>
   );
 }
 

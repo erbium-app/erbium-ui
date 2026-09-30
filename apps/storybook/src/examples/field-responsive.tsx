@@ -11,7 +11,7 @@ import {
 } from "@erbium/ui/components/field";
 import { Input } from "@erbium/ui/components/input";
 import { Textarea } from "@erbium/ui/components/textarea";
-import { StatusButton } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
 
 export default function FieldResponsive() {
   return (
@@ -46,7 +46,7 @@ export default function FieldResponsive() {
             </Field>
             <FieldSeparator />
             <Field orientation="responsive">
-              <StatusButton type="submit">Submit</StatusButton>
+              <StatefulButton type="submit">Submit</StatefulButton>
               <Button type="button" variant="outline">
                 Cancel
               </Button>

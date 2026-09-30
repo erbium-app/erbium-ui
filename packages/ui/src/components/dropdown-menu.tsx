@@ -5,7 +5,7 @@ import { Kbd } from "./kbd";
 import { Separator } from "./separator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import { StatefulChevron } from "./stateful-icon";
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
@@ -114,16 +114,13 @@ function DropdownMenuSubTrigger({
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "group/dropdown-menu-sub-trigger flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:ps-7 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "group group/dropdown-menu-sub-trigger flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-inset:ps-7 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
     >
       {children}
-      <HugeiconsIcon
-        icon={ChevronRightIcon}
-        className="ms-auto transition-transform duration-200 ease-in-out rtl:rotate-180 group-data-popup-open/dropdown-menu-sub-trigger:rotate-90 group-data-open/dropdown-menu-sub-trigger:rotate-90 rtl:group-data-popup-open/dropdown-menu-sub-trigger:rotate-[270deg] rtl:group-data-open/dropdown-menu-sub-trigger:rotate-[270deg] motion-reduce:transition-none"
-      />
+      <StatefulChevron direction="right" className="ms-auto" />
     </MenuPrimitive.SubmenuTrigger>
   );
 }

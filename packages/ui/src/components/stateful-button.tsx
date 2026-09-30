@@ -8,63 +8,64 @@ import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Spinner } from "./spinner";
 
-type ButtonStatus = "idle" | "loading" | "success";
+type StatefulButtonState = "idle" | "loading" | "success";
 
-type StatusButtonProps = Omit<
+type StatefulButtonProps = Omit<
   React.ComponentProps<typeof Button>,
   "children" | "nativeButton" | "onClick" | "render"
 > & {
   children: ReactNode;
-  /** An async click handler drives the status when `status` is uncontrolled. */
+  /** An async click handler drives the state when `state` is uncontrolled. */
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void | Promise<void>;
   onError?: (error: unknown) => void;
-  onStatusChange?: (status: ButtonStatus) => void;
-  status?: ButtonStatus;
+  onStateChange?: (state: StatefulButtonState) => void;
+  state?: StatefulButtonState;
   successDuration?: number;
   successLabel?: ReactNode;
 };
 
-function StatusButton({
+function StatefulButton({
   children,
   className,
   disabled,
   focusableWhenDisabled,
   onClick,
   onError,
-  onStatusChange,
-  status: controlledStatus,
+  onStateChange,
+  state: stateProp,
   successDuration = 1500,
   successLabel,
   ...props
-}: StatusButtonProps) {
-  const [internalStatus, setInternalStatus] = useState<ButtonStatus>("idle");
-  const status = controlledStatus ?? internalStatus;
+}: StatefulButtonProps) {
+  const [internalState, setInternalState] = useState<StatefulButtonState>("idle");
+  const controlledState = stateProp;
+  const state = controlledState ?? internalState;
   const inFlight = useRef(false);
 
-  const changeStatus = useCallback(
-    (nextStatus: ButtonStatus) => {
-      if (controlledStatus === undefined) {
-        setInternalStatus(nextStatus);
+  const changeState = useCallback(
+    (nextState: StatefulButtonState) => {
+      if (controlledState === undefined) {
+        setInternalState(nextState);
       }
-      onStatusChange?.(nextStatus);
+      onStateChange?.(nextState);
     },
-    [controlledStatus, onStatusChange],
+    [controlledState, onStateChange],
   );
 
-  const successReset = useDebouncer(() => changeStatus("idle"), { wait: successDuration });
+  const successReset = useDebouncer(() => changeState("idle"), { wait: successDuration });
 
   useEffect(() => {
-    if (status === "success") {
+    if (state === "success") {
       successReset.maybeExecute();
     } else {
       successReset.cancel();
     }
 
     return () => successReset.cancel();
-  }, [status, successReset]);
+  }, [state, successReset]);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (status !== "idle" || inFlight.current) {
+    if (state !== "idle" || inFlight.current) {
       event.preventDefault();
       return;
     }
@@ -74,60 +75,60 @@ function StatusButton({
     }
 
     const result = onClick(event);
-    if (controlledStatus !== undefined || !result || typeof result.then !== "function") {
+    if (controlledState !== undefined || !result || typeof result.then !== "function") {
       return;
     }
 
     inFlight.current = true;
-    changeStatus("loading");
+    changeState("loading");
     void result.then(
       () => {
         inFlight.current = false;
-        changeStatus("success");
+        changeState("success");
       },
       (error: unknown) => {
         inFlight.current = false;
-        changeStatus("idle");
+        changeState("idle");
         onError?.(error);
       },
     );
   };
 
-  const busy = status !== "idle";
+  const busy = state !== "idle";
 
   return (
     <Button
       {...props}
-      data-status={status}
-      aria-busy={status === "loading"}
+      data-state={state}
+      aria-busy={state === "loading"}
       disabled={disabled || busy}
       focusableWhenDisabled={busy || focusableWhenDisabled}
       onClick={handleClick}
       className={cn(
-        "group/status-button data-[status=loading]:data-disabled:opacity-100 data-[status=success]:data-disabled:opacity-100",
+        "group/stateful-button data-[state=loading]:data-disabled:opacity-100 data-[state=success]:data-disabled:opacity-100",
         className,
       )}
     >
       <span className="grid gap-[inherit] items-center justify-items-center *:col-start-1 *:row-start-1 *:flex *:items-center *:justify-center *:gap-[inherit]">
         <span
-          aria-hidden={status !== "idle"}
-          className="pointer-events-none opacity-0 transition-[opacity,translate] duration-150 -translate-y-1 group-data-[status=idle]/status-button:translate-y-0 group-data-[status=idle]/status-button:opacity-100 motion-reduce:transition-none"
+          aria-hidden={state !== "idle"}
+          className="pointer-events-none opacity-0 transition-[opacity,translate] duration-150 -translate-y-1 group-data-[state=idle]/stateful-button:translate-y-0 group-data-[state=idle]/stateful-button:opacity-100 motion-reduce:transition-none"
         >
           {children}
         </span>
         <span
-          aria-hidden={status !== "loading"}
+          aria-hidden={state !== "loading"}
           aria-label="Loading"
-          className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[status=loading]/status-button:translate-y-0 group-data-[status=loading]/status-button:opacity-100 motion-reduce:transition-none"
+          className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[state=loading]/stateful-button:translate-y-0 group-data-[state=loading]/stateful-button:opacity-100 motion-reduce:transition-none"
           role="status"
         >
           <Spinner aria-hidden />
           <span className="sr-only">Loading</span>
         </span>
         <span
-          aria-hidden={status !== "success"}
+          aria-hidden={state !== "success"}
           aria-label={typeof successLabel === "string" ? successLabel : "Success"}
-          className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[status=success]/status-button:translate-y-0 group-data-[status=success]/status-button:opacity-100 motion-reduce:transition-none"
+          className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[state=success]/stateful-button:translate-y-0 group-data-[state=success]/stateful-button:opacity-100 motion-reduce:transition-none"
           role="status"
         >
           <HugeiconsIcon icon={CheckIcon} aria-hidden />
@@ -138,5 +139,5 @@ function StatusButton({
   );
 }
 
-export { StatusButton };
-export type { ButtonStatus, StatusButtonProps };
+export { StatefulButton };
+export type { StatefulButtonProps, StatefulButtonState };

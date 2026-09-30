@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
 
+import { StatefulChevron } from "../components/stateful-icon";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,13 +46,9 @@ export default function InputGroupDropdown() {
               render={
                 <InputGroupButton
                   variant="ghost"
-                  className="group/search-menu-trigger pr-1.5! text-xs"
+                  className="group group/search-menu-trigger pr-1.5! text-xs"
                 >
-                  Search In...{" "}
-                  <HugeiconsIcon
-                    icon={ChevronDownIcon}
-                    className="size-3 transition-transform duration-200 ease-in-out group-data-popup-open/search-menu-trigger:rotate-180 group-data-open/search-menu-trigger:rotate-180 motion-reduce:transition-none"
-                  />
+                  Search In... <StatefulChevron className="size-3" />
                 </InputGroupButton>
               }
             />

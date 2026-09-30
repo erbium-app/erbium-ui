@@ -12,7 +12,7 @@ import {
 } from "../components/field";
 import { Input } from "../components/input";
 import { Textarea } from "../components/textarea";
-import { StatusButton } from "../components/status-button";
+import { StatefulButton } from "../components/stateful-button";
 
 export default function FieldResponsive() {
   return (
@@ -47,7 +47,7 @@ export default function FieldResponsive() {
             </Field>
             <FieldSeparator />
             <Field orientation="responsive">
-              <StatusButton type="submit">Submit</StatusButton>
+              <StatefulButton type="submit">Submit</StatefulButton>
               <Button type="button" variant="outline">
                 Cancel
               </Button>

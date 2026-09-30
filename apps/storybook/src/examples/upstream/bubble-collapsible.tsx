@@ -1,7 +1,6 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 
+import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
 import { Collapsible, CollapsibleTrigger } from "@erbium/ui/components/collapsible";
@@ -33,14 +32,10 @@ export function BubbleCollapsible() {
             <div>{open || !isLong ? text : preview}</div>
             {isLong ? (
               <CollapsibleTrigger
-                render={<Button variant="link" className="gap-1 p-0 text-muted-foreground" />}
+                render={<Button variant="link" className="group gap-1 p-0 text-muted-foreground" />}
               >
                 {open ? "Show less" : "Show more"}
-                <HugeiconsIcon
-                  icon={ChevronDownIcon}
-                  data-icon="inline-end"
-                  className="transition-transform duration-200 ease-in-out group-data-panel-open/button:rotate-180 motion-reduce:transition-none"
-                />
+                <StatefulChevron />
               </CollapsibleTrigger>
             ) : null}
           </Collapsible>

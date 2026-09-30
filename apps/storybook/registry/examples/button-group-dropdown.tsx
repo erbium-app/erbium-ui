@@ -2,13 +2,13 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import Alert01Icon from "@hugeicons/core-free-icons/Alert01Icon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
 import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 import UserRoundXIcon from "@hugeicons/core-free-icons/UserRoundXIcon";
 import VolumeOffIcon from "@hugeicons/core-free-icons/VolumeOffIcon";
 
+import { StatefulChevron } from "../components/stateful-icon";
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
 import {
@@ -27,11 +27,8 @@ export default function ButtonGroupDropdown() {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="outline" className="group/menu-trigger pl-2!">
-              <HugeiconsIcon
-                icon={ChevronDownIcon}
-                className="transition-transform duration-200 ease-in-out group-data-popup-open/menu-trigger:rotate-180 group-data-open/menu-trigger:rotate-180 motion-reduce:transition-none"
-              />
+            <Button variant="outline" className="group group/menu-trigger pl-2!">
+              <StatefulChevron />
             </Button>
           }
         />

@@ -1,21 +1,21 @@
 // @ts-nocheck
 import { useAsyncDebouncer } from "@tanstack/react-pacer/async-debouncer";
 import type { ComponentProps } from "react";
-import { StatusButton } from "../components/status-button";
+import { StatefulButton } from "../components/stateful-button";
 
-export function AsyncStatusButton({
+export function AsyncStatefulButton({
   children,
   successLabel,
   variant,
 }: {
   children: string;
   successLabel: string;
-  variant?: ComponentProps<typeof StatusButton>["variant"];
+  variant?: ComponentProps<typeof StatefulButton>["variant"];
 }) {
   const request = useAsyncDebouncer(async () => {}, { wait: 1200 });
 
   return (
-    <StatusButton
+    <StatefulButton
       variant={variant}
       onClick={async () => {
         await request.maybeExecute();
@@ -23,17 +23,17 @@ export function AsyncStatusButton({
       successLabel={successLabel}
     >
       {children}
-    </StatusButton>
+    </StatefulButton>
   );
 }
 
-export default function StatusButtonDemo() {
+export default function StatefulButtonDemo() {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <AsyncStatusButton successLabel="Saved">Save</AsyncStatusButton>
-      <AsyncStatusButton successLabel="Updated" variant="outline">
+      <AsyncStatefulButton successLabel="Saved">Save</AsyncStatefulButton>
+      <AsyncStatefulButton successLabel="Updated" variant="outline">
         Update
-      </AsyncStatusButton>
+      </AsyncStatefulButton>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Label } from "@erbium/ui/components/label";
-import { StatusButton } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { Switch } from "@erbium/ui/components/switch";
 import { useState } from "react";
 
@@ -23,9 +23,9 @@ export default function SwitchForm() {
         <Switch id="form-terms" name="terms" required />
         <Label htmlFor="form-terms">Accept the terms (required)</Label>
       </div>
-      <StatusButton className="self-start" type="submit">
+      <StatefulButton className="self-start" type="submit">
         Submit
-      </StatusButton>
+      </StatefulButton>
       {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
     </form>
   );

@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 import { Textarea } from "@erbium/ui/components/textarea";
-import { StatusButton } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
 
 export default function FieldDemo() {
   return (
@@ -116,7 +116,7 @@ export default function FieldDemo() {
             </FieldGroup>
           </FieldSet>
           <Field orientation="horizontal">
-            <StatusButton type="submit">Submit</StatusButton>
+            <StatefulButton type="submit">Submit</StatefulButton>
             <Button variant="outline" type="button">
               Cancel
             </Button>

@@ -1,7 +1,6 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { cn } from "../lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import { StatefulChevron } from "./stateful-icon";
 
 import { Separator } from "./separator";
 
@@ -38,17 +37,13 @@ function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-start text-sm font-medium transition-colors outline-none hover:underline data-panel-open:rounded-b-none group-has-[[data-slot=accordion-content]:not([hidden])]/accordion-item:rounded-b-none focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
+          "group group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-2.5 text-start text-sm font-medium transition-colors outline-none hover:underline data-panel-open:rounded-b-none group-has-[[data-slot=accordion-content]:not([hidden])]/accordion-item:rounded-b-none focus-visible:border-ring focus-visible:after:border-ring **:data-[slot=accordion-trigger-icon]:ms-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
           className,
         )}
         {...props}
       >
         {children}
-        <HugeiconsIcon
-          icon={ChevronDownIcon}
-          data-slot="accordion-trigger-icon"
-          className="pointer-events-none shrink-0 transition-transform duration-200 ease-in-out group-data-panel-open/accordion-trigger:rotate-180 motion-reduce:transition-none"
-        />
+        <StatefulChevron data-slot="accordion-trigger-icon" className="pointer-events-none" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );

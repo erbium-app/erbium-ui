@@ -35,11 +35,27 @@ const filesIn = async (directory) =>
   (await readdir(directory, { withFileTypes: true })).flatMap((entry) =>
     entry.isDirectory() ? [] : [entry.name],
   );
+const filesInRecursive = async (directory) => {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(
+    entries.map((entry) => {
+      const entryPath = join(directory, entry.name);
+      return entry.isDirectory() ? filesInRecursive(entryPath) : [entryPath];
+    }),
+  );
+  return nested.flat();
+};
 
 const itemBySource = new Map();
-for (const file of await filesIn(join(sourceRoot, "components"))) {
-  if ([".ts", ".tsx"].includes(extname(file))) {
-    itemBySource.set(join(sourceRoot, "components", file), file.slice(0, -extname(file).length));
+const componentRoot = join(sourceRoot, "components");
+for (const filePath of await filesInRecursive(componentRoot)) {
+  if ([".ts", ".tsx"].includes(extname(filePath))) {
+    const relativePath = relative(componentRoot, filePath).slice(0, -extname(filePath).length);
+    const name = relativePath
+      .replace(/^stateful\/stateful-/, "stateful/")
+      .split(sep)
+      .join("-");
+    itemBySource.set(filePath, name);
   }
 }
 for (const file of await filesIn(join(sourceRoot, "hooks"))) {

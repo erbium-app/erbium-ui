@@ -12,7 +12,7 @@ import {
 } from "../components/dialog";
 import { Input } from "../components/input";
 import { Label } from "../components/label";
-import { StatusButton } from "../components/status-button";
+import { StatefulButton } from "../components/stateful-button";
 
 export default function DialogDemo() {
   return (
@@ -38,7 +38,7 @@ export default function DialogDemo() {
           </div>
           <DialogFooter>
             <DialogClose render={<Button variant="outline">Cancel</Button>} />
-            <StatusButton type="submit">Save changes</StatusButton>
+            <StatefulButton type="submit">Save changes</StatefulButton>
           </DialogFooter>
         </DialogContent>
       </form>

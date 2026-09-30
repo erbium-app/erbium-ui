@@ -1,7 +1,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import BotIcon from "@hugeicons/core-free-icons/BotIcon";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 
+import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
 import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/popover";
@@ -21,12 +21,9 @@ export default function ButtonGroupPopover() {
               variant="outline"
               size="icon"
               aria-label="Open Popover"
-              className="group/popover-trigger"
+              className="group group/popover-trigger"
             >
-              <HugeiconsIcon
-                icon={ChevronDownIcon}
-                className="transition-transform duration-200 ease-in-out group-data-popup-open/popover-trigger:rotate-180 group-data-open/popover-trigger:rotate-180 motion-reduce:transition-none"
-              />
+              <StatefulChevron />
             </Button>
           }
         />

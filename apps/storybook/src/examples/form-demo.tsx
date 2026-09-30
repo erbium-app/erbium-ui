@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
 import { useForm } from "@erbium/ui/components/form";
 import { Input } from "@erbium/ui/components/input";
-import { StatusButton } from "@erbium/ui/components/status-button";
-import type { ButtonStatus } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
+import type { StatefulButtonState } from "@erbium/ui/components/stateful-button";
 
 function SubmitButton({
   canSubmit,
@@ -20,27 +20,27 @@ function SubmitButton({
   label: string;
 }) {
   const [dismissedAttempt, setDismissedAttempt] = useState(0);
-  let status: ButtonStatus = "idle";
+  let state: StatefulButtonState = "idle";
   if (isSubmitting) {
-    status = "loading";
+    state = "loading";
   } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {
-    status = "success";
+    state = "success";
   }
 
   return (
-    <StatusButton
+    <StatefulButton
       type="submit"
       disabled={!canSubmit}
-      status={status}
-      onStatusChange={(nextStatus) => {
-        if (nextStatus === "idle") {
+      state={state}
+      onStateChange={(nextState) => {
+        if (nextState === "idle") {
           setDismissedAttempt(submissionAttempts);
         }
       }}
       successLabel="Submitted"
     >
       {label}
-    </StatusButton>
+    </StatefulButton>
   );
 }
 

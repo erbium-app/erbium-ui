@@ -1,8 +1,7 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import { StatefulChevron } from "./stateful-icon";
 
 function NavigationMenu({
   align = "start",
@@ -66,12 +65,7 @@ function NavigationMenuTrigger({
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
-      {children}{" "}
-      <HugeiconsIcon
-        icon={ChevronDownIcon}
-        className="relative top-px ms-1 size-3 transition-transform duration-200 ease-in-out group-data-popup-open/navigation-menu-trigger:rotate-180 group-data-open/navigation-menu-trigger:rotate-180 motion-reduce:transition-none"
-        aria-hidden="true"
-      />
+      {children} <StatefulChevron className="relative top-px ms-1 size-3" />
     </NavigationMenuPrimitive.Trigger>
   );
 }

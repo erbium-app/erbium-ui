@@ -1,6 +1,6 @@
 import { Checkbox } from "@erbium/ui/components/checkbox";
 import { Label } from "@erbium/ui/components/label";
-import { StatusButton } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { useState } from "react";
 
 export default function CheckboxForm() {
@@ -23,9 +23,9 @@ export default function CheckboxForm() {
         <Checkbox id="form-newsletter" name="newsletter" value="weekly" uncheckedValue="none" />
         <Label htmlFor="form-newsletter">Weekly newsletter</Label>
       </div>
-      <StatusButton className="self-start" type="submit">
+      <StatefulButton className="self-start" type="submit">
         Submit
-      </StatusButton>
+      </StatefulButton>
       {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
     </form>
   );

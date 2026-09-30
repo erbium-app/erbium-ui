@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Label } from "../components/label";
-import { StatusButton } from "../components/status-button";
+import { StatefulButton } from "../components/stateful-button";
 import { Switch } from "../components/switch";
 import { useState } from "react";
 
@@ -24,9 +24,9 @@ export default function SwitchForm() {
         <Switch id="form-terms" name="terms" required />
         <Label htmlFor="form-terms">Accept the terms (required)</Label>
       </div>
-      <StatusButton className="self-start" type="submit">
+      <StatefulButton className="self-start" type="submit">
         Submit
-      </StatusButton>
+      </StatefulButton>
       {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
     </form>
   );

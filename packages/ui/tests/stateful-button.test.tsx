@@ -1,5 +1,5 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
-import { StatusButton } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { ButtonShortcut } from "@erbium/ui/components/button";
 
 test("keeps focus and blocks repeat activation while an action runs", async () => {
@@ -12,9 +12,9 @@ test("keeps focus and blocks repeat activation while an action runs", async () =
   );
 
   render(
-    <StatusButton onClick={onClick} successDuration={500} successLabel="Saved">
+    <StatefulButton onClick={onClick} successDuration={500} successLabel="Saved">
       Save
-    </StatusButton>,
+    </StatefulButton>,
   );
   const button = screen.getByRole("button", { name: "Save" });
   button.focus();
@@ -23,13 +23,13 @@ test("keeps focus and blocks repeat activation while an action runs", async () =
   expect(button).toBe(document.activeElement);
   expect(button.getAttribute("aria-busy")).toBe("true");
   expect(button.getAttribute("aria-disabled")).toBe("true");
-  expect(button.getAttribute("data-status")).toBe("loading");
+  expect(button.getAttribute("data-state")).toBe("loading");
 
   fireEvent.click(button);
   expect(onClick).toHaveBeenCalledTimes(1);
 
   await act(async () => resolveAction());
-  expect(button.getAttribute("data-status")).toBe("success");
+  expect(button.getAttribute("data-state")).toBe("success");
   expect(button).toBe(document.activeElement);
   expect(screen.getByRole("status", { name: "Saved" })).toBeTruthy();
 });
@@ -38,18 +38,18 @@ test("returns to idle after the Pacer success duration", async () => {
   vi.useFakeTimers();
   try {
     render(
-      <StatusButton onClick={async () => {}} successDuration={500}>
+      <StatefulButton onClick={async () => {}} successDuration={500}>
         Save
-      </StatusButton>,
+      </StatefulButton>,
     );
     const button = screen.getByRole("button");
     await act(async () => fireEvent.click(button));
-    expect(button.getAttribute("data-status")).toBe("success");
+    expect(button.getAttribute("data-state")).toBe("success");
 
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(button.getAttribute("data-status")).toBe("idle");
+    expect(button.getAttribute("data-state")).toBe("idle");
   } finally {
     vi.useRealTimers();
   }
@@ -59,27 +59,27 @@ test("resets after a rejected action and reports the error", async () => {
   const error = new Error("Save failed");
   const onError = vi.fn();
   render(
-    <StatusButton
+    <StatefulButton
       onClick={async () => {
         throw error;
       }}
       onError={onError}
     >
       Save
-    </StatusButton>,
+    </StatefulButton>,
   );
   const button = screen.getByRole("button");
 
   await act(async () => fireEvent.click(button));
 
-  expect(button.getAttribute("data-status")).toBe("idle");
+  expect(button.getAttribute("data-state")).toBe("idle");
   expect(onError).toHaveBeenCalledWith(error);
 });
 
-test("keeps the shortcut with the idle label during status changes", async () => {
+test("keeps the shortcut with the idle label during state changes", async () => {
   let resolveAction: () => void = () => {};
   const { container } = render(
-    <StatusButton
+    <StatefulButton
       onClick={() =>
         new Promise<void>((resolve) => {
           resolveAction = resolve;
@@ -89,7 +89,7 @@ test("keeps the shortcut with the idle label during status changes", async () =>
     >
       Save
       <ButtonShortcut hotkey="Mod+S" />
-    </StatusButton>,
+    </StatefulButton>,
   );
 
   const button = screen.getByRole("button", { name: "Save" });
@@ -97,10 +97,10 @@ test("keeps the shortcut with the idle label during status changes", async () =>
   expect(shortcut?.closest('[aria-hidden="false"]')).toBeTruthy();
 
   fireEvent.click(button);
-  expect(button.getAttribute("data-status")).toBe("loading");
+  expect(button.getAttribute("data-state")).toBe("loading");
   expect(shortcut?.closest('[aria-hidden="true"]')).toBeTruthy();
 
   await act(async () => resolveAction());
-  expect(button.getAttribute("data-status")).toBe("success");
+  expect(button.getAttribute("data-state")).toBe("success");
   expect(shortcut?.closest('[aria-hidden="true"]')).toBeTruthy();
 });

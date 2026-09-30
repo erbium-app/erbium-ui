@@ -8,8 +8,8 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Erbium accordion component.",
-      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/separator", "@erbium/stateful-icon", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/accordion.tsx",
@@ -285,6 +285,7 @@
         "@erbium/button",
         "@erbium/input-group",
         "@erbium/separator",
+        "@erbium/stateful-icon",
         "@erbium/utils"
       ],
       "files": [
@@ -322,7 +323,12 @@
       "title": "Context Menu",
       "description": "Erbium context menu component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/separator", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/kbd",
+        "@erbium/separator",
+        "@erbium/stateful-icon",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/context-menu.tsx",
@@ -342,7 +348,12 @@
         "@hugeicons/react",
         "motion"
       ],
-      "registryDependencies": ["@erbium/collapsible", "@erbium/separator", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/collapsible",
+        "@erbium/separator",
+        "@erbium/stateful-icon",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/control.tsx",
@@ -401,7 +412,12 @@
       "title": "Dropdown Menu",
       "description": "Erbium dropdown menu component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/separator", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/kbd",
+        "@erbium/separator",
+        "@erbium/stateful-icon",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/dropdown-menu.tsx",
@@ -641,13 +657,8 @@
       "type": "registry:ui",
       "title": "Navigation Menu",
       "description": "Erbium navigation menu component.",
-      "dependencies": [
-        "@base-ui/react",
-        "@hugeicons/core-free-icons",
-        "@hugeicons/react",
-        "class-variance-authority"
-      ],
-      "registryDependencies": ["@erbium/utils"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["@erbium/stateful-icon", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/navigation-menu.tsx",
@@ -767,7 +778,12 @@
       "title": "Select",
       "description": "Erbium select component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/scroll-area", "@erbium/separator", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/scroll-area",
+        "@erbium/separator",
+        "@erbium/stateful-icon",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/select.tsx",
@@ -879,17 +895,32 @@
       ]
     },
     {
-      "name": "status-button",
+      "name": "stateful-button",
       "type": "registry:ui",
-      "title": "Status Button",
-      "description": "Erbium status button component.",
+      "title": "Stateful Button",
+      "description": "Erbium stateful button component.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@tanstack/react-pacer"],
       "registryDependencies": ["@erbium/button", "@erbium/spinner", "@erbium/utils"],
       "files": [
         {
-          "path": "src/components/status-button.tsx",
+          "path": "src/components/stateful-button.tsx",
           "type": "registry:ui",
-          "target": "~/src/components/status-button.tsx"
+          "target": "~/src/components/stateful-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "stateful-icon",
+      "type": "registry:ui",
+      "title": "Stateful Icon",
+      "description": "Erbium stateful icon component.",
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/stateful-icon.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/stateful-icon.tsx"
         }
       ]
     },

@@ -5,7 +5,7 @@ import { Kbd } from "./kbd";
 import { Separator } from "./separator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import { StatefulChevron } from "./stateful-icon";
 
 function ContextMenu({ ...props }: ContextMenuPrimitive.Root.Props) {
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
@@ -120,16 +120,13 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "group/context-menu-sub-trigger flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-inset:ps-7 data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "group group/context-menu-sub-trigger flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground data-inset:ps-7 data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
     >
       {children}
-      <HugeiconsIcon
-        icon={ChevronRightIcon}
-        className="ms-auto transition-transform duration-200 ease-in-out rtl:rotate-180 group-data-popup-open/context-menu-sub-trigger:rotate-90 group-data-open/context-menu-sub-trigger:rotate-90 rtl:group-data-popup-open/context-menu-sub-trigger:rotate-[270deg] rtl:group-data-open/context-menu-sub-trigger:rotate-[270deg] motion-reduce:transition-none"
-      />
+      <StatefulChevron direction="right" className="ms-auto" />
     </ContextMenuPrimitive.SubmenuTrigger>
   );
 }

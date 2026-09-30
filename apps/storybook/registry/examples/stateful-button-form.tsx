@@ -1,12 +1,13 @@
+// @ts-nocheck
 import { useAsyncDebouncer } from "@tanstack/react-pacer/async-debouncer";
 import { useState } from "react";
-import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
-import { useForm } from "@erbium/ui/components/form";
-import { Input } from "@erbium/ui/components/input";
-import { StatusButton } from "@erbium/ui/components/status-button";
-import type { ButtonStatus } from "@erbium/ui/components/status-button";
+import { Field, FieldError, FieldLabel } from "../components/field";
+import { useForm } from "../components/form";
+import { Input } from "../components/input";
+import { StatefulButton } from "../components/stateful-button";
+import type { StatefulButtonState } from "../components/stateful-button";
 
-function SubmitStatusButton({
+function SubmitStatefulButton({
   canSubmit,
   isSubmitting,
   isSubmitSuccessful,
@@ -18,31 +19,31 @@ function SubmitStatusButton({
   submissionAttempts: number;
 }) {
   const [dismissedAttempt, setDismissedAttempt] = useState(0);
-  let status: ButtonStatus = "idle";
+  let state: StatefulButtonState = "idle";
   if (isSubmitting) {
-    status = "loading";
+    state = "loading";
   } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {
-    status = "success";
+    state = "success";
   }
 
   return (
-    <StatusButton
+    <StatefulButton
       type="submit"
       disabled={!canSubmit}
-      status={status}
-      onStatusChange={(nextStatus) => {
-        if (nextStatus === "idle") {
+      state={state}
+      onStateChange={(nextState) => {
+        if (nextState === "idle") {
           setDismissedAttempt(submissionAttempts);
         }
       }}
       successLabel="Subscribed"
     >
       Subscribe
-    </StatusButton>
+    </StatefulButton>
   );
 }
 
-export default function StatusButtonForm() {
+export default function StatefulButtonForm() {
   const request = useAsyncDebouncer(async () => {}, { wait: 1200 });
   const form = useForm({
     defaultValues: { email: "" },
@@ -67,18 +68,18 @@ export default function StatusButtonForm() {
       >
         {(field) => (
           <Field data-invalid={field.state.meta.errors.length > 0}>
-            <FieldLabel htmlFor="status-email">Email</FieldLabel>
+            <FieldLabel htmlFor="stateful-email">Email</FieldLabel>
             <Input
-              id="status-email"
+              id="stateful-email"
               type="email"
               aria-invalid={field.state.meta.errors.length > 0}
-              aria-describedby="status-email-error"
+              aria-describedby="stateful-email-error"
               value={field.state.value}
               onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}
               onBlur={field.handleBlur}
               onChange={(event) => field.handleChange(event.target.value)}
             />
-            <FieldError id="status-email-error" errors={field.state.meta.errors} />
+            <FieldError id="stateful-email-error" errors={field.state.meta.errors} />
           </Field>
         )}
       </form.Field>
@@ -93,7 +94,7 @@ export default function StatusButtonForm() {
         }
       >
         {([canSubmit, isSubmitting, isSubmitSuccessful, submissionAttempts]) => (
-          <SubmitStatusButton
+          <SubmitStatefulButton
             canSubmit={canSubmit}
             isSubmitting={isSubmitting}
             isSubmitSuccessful={isSubmitSuccessful}

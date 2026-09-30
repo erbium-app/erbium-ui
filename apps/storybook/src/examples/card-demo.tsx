@@ -10,7 +10,7 @@ import {
 } from "@erbium/ui/components/card";
 import { Input } from "@erbium/ui/components/input";
 import { Label } from "@erbium/ui/components/label";
-import { StatusButton } from "@erbium/ui/components/status-button";
+import { StatefulButton } from "@erbium/ui/components/stateful-button";
 
 export default function CardDemo() {
   return (
@@ -45,9 +45,9 @@ export default function CardDemo() {
         </form>
       </CardContent>
       <CardFooter className="flex-col gap-2">
-        <StatusButton type="submit" form="card-login-form" className="w-full">
+        <StatefulButton type="submit" form="card-login-form" className="w-full">
           Login
-        </StatusButton>
+        </StatefulButton>
         <Button variant="outline" className="w-full">
           Login with Google
         </Button>

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Label } from "../components/label";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
-import { StatusButton } from "../components/status-button";
+import { StatefulButton } from "../components/stateful-button";
 import { useState } from "react";
 
 export default function RadioGroupForm() {
@@ -26,9 +26,9 @@ export default function RadioGroupForm() {
           <Label htmlFor="form-express">Express (1–2 days)</Label>
         </div>
       </RadioGroup>
-      <StatusButton className="self-start" type="submit">
+      <StatefulButton className="self-start" type="submit">
         Submit
-      </StatusButton>
+      </StatefulButton>
       {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
     </form>
   );

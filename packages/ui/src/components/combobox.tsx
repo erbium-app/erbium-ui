@@ -7,7 +7,7 @@ import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "
 import { Separator } from "./separator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import { StatefulChevron } from "./stateful-icon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 const Combobox = ComboboxPrimitive.Root;
@@ -20,14 +20,11 @@ function ComboboxTrigger({ className, children, ...props }: ComboboxPrimitive.Tr
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
-      className={cn("group/combobox-trigger [&_svg:not([class*='size-'])]:size-4", className)}
+      className={cn("group group/combobox-trigger [&_svg:not([class*='size-'])]:size-4", className)}
       {...props}
     >
       {children}
-      <HugeiconsIcon
-        icon={ChevronDownIcon}
-        className="pointer-events-none size-4 text-muted-foreground transition-transform duration-200 ease-in-out group-data-popup-open/combobox-trigger:rotate-180 group-data-open/combobox-trigger:rotate-180 motion-reduce:transition-none"
-      />
+      <StatefulChevron className="pointer-events-none size-4 text-muted-foreground" />
     </ComboboxPrimitive.Trigger>
   );
 }

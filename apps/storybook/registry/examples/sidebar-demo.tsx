@@ -1,8 +1,6 @@
 // @ts-nocheck
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
-
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../components/collapsible";
+import { StatefulChevron } from "../components/stateful-icon";
 import { Separator } from "../components/separator";
 import {
   Sidebar,
@@ -21,18 +19,14 @@ export default function Demo() {
       <div className="relative h-64 w-80 overflow-hidden border">
         <Sidebar collapsible="none">
           <SidebarContent>
-            <Collapsible defaultOpen className="group/workspace">
+            <Collapsible defaultOpen className="group group/workspace">
               <SidebarGroup>
                 <SidebarGroupLabel
                   className="hover:bg-sidebar-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none"
                   render={<CollapsibleTrigger />}
                 >
                   Workspace
-                  <HugeiconsIcon
-                    icon={ChevronDownIcon}
-                    aria-hidden="true"
-                    className="ms-auto transition-transform duration-200 ease-in-out group-data-open/workspace:rotate-180 motion-reduce:transition-none"
-                  />
+                  <StatefulChevron className="ms-auto" />
                 </SidebarGroupLabel>
                 <CollapsibleContent>
                   <Separator />

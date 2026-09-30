@@ -1,7 +1,7 @@
 import * as React from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import { StatefulChevron } from "./stateful-icon";
 import ImagePlusIcon from "@hugeicons/core-free-icons/ImagePlusIcon";
 
 import { Input as InputPrimitive } from "@base-ui/react/input";
@@ -712,7 +712,7 @@ function Select({
         aria-label={label}
         className={cn(
           rowClass,
-          "group/control-select justify-between outline-none hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:shadow-pressed engaged:active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
+          "group group/control-select justify-between outline-none hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:shadow-pressed engaged:active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
           className,
         )}
       >
@@ -720,10 +720,7 @@ function Select({
         <span className="ms-auto flex min-w-0 items-center gap-2 text-muted-foreground">
           <SelectPrimitive.Value className="truncate text-end text-foreground" />
           <SelectPrimitive.Icon>
-            <HugeiconsIcon
-              icon={ChevronDownIcon}
-              className="size-3.5 shrink-0 transition-transform duration-200 ease-in-out group-data-popup-open/control-select:rotate-180 group-data-open/control-select:rotate-180 motion-reduce:transition-none"
-            />
+            <StatefulChevron className="size-3.5" />
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
@@ -857,17 +854,14 @@ function Image({
         >
           <SelectPrimitive.Trigger
             aria-label={label}
-            className="group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
+            className="group group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
           >
             {preview ? (
               <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
             ) : null}
             <SelectPrimitive.Value className="max-w-24 truncate" />
             <SelectPrimitive.Icon>
-              <HugeiconsIcon
-                icon={ChevronDownIcon}
-                className="size-3.5 transition-transform duration-200 ease-in-out group-data-popup-open/control-select:rotate-180 group-data-open/control-select:rotate-180 motion-reduce:transition-none"
-              />
+              <StatefulChevron className="size-3.5" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
@@ -1359,13 +1353,9 @@ function Section({
       className={cn("w-full min-w-0", className)}
     >
       <Separator className="mb-2" />
-      <CollapsibleTrigger className="group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
+      <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
         {title}
-        <HugeiconsIcon
-          icon={ChevronDownIcon}
-          aria-hidden="true"
-          className="size-4 -rotate-90 transition-transform duration-200 ease-in-out group-data-panel-open/section:rotate-0 motion-reduce:transition-none"
-        />
+        <StatefulChevron direction="left" className="size-4" />
       </CollapsibleTrigger>
       <CollapsibleContent className="data-open:overflow-visible">
         <Separator className="mt-2" />

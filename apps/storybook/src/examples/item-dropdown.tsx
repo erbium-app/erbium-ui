@@ -1,6 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
-
+import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -41,12 +39,8 @@ export default function ItemDropdown() {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="outline" size="sm" className="group/item-menu-trigger w-fit">
-              Select{" "}
-              <HugeiconsIcon
-                icon={ChevronDownIcon}
-                className="transition-transform duration-200 ease-in-out group-data-popup-open/item-menu-trigger:rotate-180 group-data-open/item-menu-trigger:rotate-180 motion-reduce:transition-none"
-              />
+            <Button variant="outline" size="sm" className="group group/item-menu-trigger w-fit">
+              Select <StatefulChevron />
             </Button>
           }
         />
