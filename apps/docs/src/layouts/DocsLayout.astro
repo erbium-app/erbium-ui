@@ -1,6 +1,8 @@
 ---
 import { components, componentGroups } from "../data/components";
 import ComponentSearch from "../components/ComponentSearch.tsx";
+import "@erbium/ui/globals.css";
+import "../styles/docs.css";
 interface Props { title?: string; description?: string; }
 const { title = "Erbium UI", description = "Composable React primitives for thoughtful interfaces." } = Astro.props;
 ---
@@ -37,8 +39,6 @@ const { title = "Erbium UI", description = "Composable React primitives for thou
   </body>
 </html>
 <style is:global>
-  @import "@erbium/ui/globals.css";
-  @import "../styles/docs.css";
   :root { --docs-ink: #171717; --docs-muted: #737373; --docs-line: #e7e5e4; --docs-accent: #c2410c; }
   * { box-sizing: border-box; }
   body { margin: 0; color: var(--docs-ink); background: #fafaf9; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
