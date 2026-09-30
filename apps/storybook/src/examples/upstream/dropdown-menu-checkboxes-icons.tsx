@@ -1,5 +1,8 @@
 import * as React from "react";
-import { BellIcon, MailIcon, MessageSquareIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BellIcon from "@hugeicons/core-free-icons/BellIcon";
+import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
+import MessageSquareIcon from "@hugeicons/core-free-icons/MessageSquareIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -30,7 +33,7 @@ export function DropdownMenuCheckboxesIcons() {
               setNotifications({ ...notifications, email: checked === true })
             }
           >
-            <MailIcon />
+            <HugeiconsIcon icon={Mail01Icon} />
             Email notifications
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
@@ -39,7 +42,7 @@ export function DropdownMenuCheckboxesIcons() {
               setNotifications({ ...notifications, sms: checked === true })
             }
           >
-            <MessageSquareIcon />
+            <HugeiconsIcon icon={MessageSquareIcon} />
             SMS notifications
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
@@ -48,7 +51,7 @@ export function DropdownMenuCheckboxesIcons() {
               setNotifications({ ...notifications, push: checked === true })
             }
           >
-            <BellIcon />
+            <HugeiconsIcon icon={BellIcon} />
             Push notifications
           </DropdownMenuCheckboxItem>
         </DropdownMenuGroup>

@@ -1,12 +1,11 @@
 import * as React from "react";
-import {
-  CalculatorIcon,
-  CalendarIcon,
-  CreditCardIcon,
-  SettingsIcon,
-  SmileIcon,
-  UserIcon,
-} from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CalculatorIcon from "@hugeicons/core-free-icons/CalculatorIcon";
+import Calendar01Icon from "@hugeicons/core-free-icons/Calendar01Icon";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
+import SmileIcon from "@hugeicons/core-free-icons/SmileIcon";
+import UserIcon from "@hugeicons/core-free-icons/UserIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -36,32 +35,32 @@ export function CommandWithGroups() {
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Suggestions">
               <CommandItem>
-                <CalendarIcon />
+                <HugeiconsIcon icon={Calendar01Icon} />
                 <span>Calendar</span>
               </CommandItem>
               <CommandItem>
-                <SmileIcon />
+                <HugeiconsIcon icon={SmileIcon} />
                 <span>Search Emoji</span>
               </CommandItem>
               <CommandItem>
-                <CalculatorIcon />
+                <HugeiconsIcon icon={CalculatorIcon} />
                 <span>Calculator</span>
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Settings">
               <CommandItem>
-                <UserIcon />
+                <HugeiconsIcon icon={UserIcon} />
                 <span>Profile</span>
                 <CommandShortcut>⌘P</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <CreditCardIcon />
+                <HugeiconsIcon icon={CreditCardIcon} />
                 <span>Billing</span>
                 <CommandShortcut>⌘B</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <SettingsIcon />
+                <HugeiconsIcon icon={Settings01Icon} />
                 <span>Settings</span>
                 <CommandShortcut>⌘S</CommandShortcut>
               </CommandItem>

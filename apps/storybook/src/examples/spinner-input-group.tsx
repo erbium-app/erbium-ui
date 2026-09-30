@@ -1,4 +1,5 @@
-import { ArrowUpIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
 
 import {
   InputGroup,
@@ -23,7 +24,7 @@ export default function SpinnerInputGroup() {
         <InputGroupAddon align="block-end">
           <Spinner /> Validating...
           <InputGroupButton className="ml-auto" variant="default">
-            <ArrowUpIcon />
+            <HugeiconsIcon icon={ArrowUp01Icon} />
             <span className="sr-only">Send</span>
           </InputGroupButton>
         </InputGroupAddon>

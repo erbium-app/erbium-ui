@@ -1,4 +1,5 @@
-import { Trash2Icon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";
 
 import {
   AlertDialog,
@@ -21,7 +22,7 @@ export function AlertDialogDestructive() {
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
           <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
-            <Trash2Icon />
+            <HugeiconsIcon icon={Delete02Icon} />
           </AlertDialogMedia>
           <AlertDialogTitle>Delete chat?</AlertDialogTitle>
           <AlertDialogDescription>

@@ -1,10 +1,13 @@
 import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { cn } from "../lib/utils";
+import { Kbd } from "./kbd";
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog";
 import { InputGroup, InputGroupAddon } from "./input-group";
-import { SearchIcon, CheckIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 
 function Command({ className, ...props }: React.ComponentProps<typeof CommandPrimitive>) {
   return (
@@ -65,7 +68,7 @@ function CommandInput({
           {...props}
         />
         <InputGroupAddon>
-          <SearchIcon className="size-4 shrink-0 opacity-50" />
+          <HugeiconsIcon icon={Search01Icon} className="size-4 shrink-0 opacity-50" />
         </InputGroupAddon>
       </InputGroup>
     </div>
@@ -142,19 +145,19 @@ function CommandItem({
       {...props}
     >
       {children}
-      <CheckIcon className="ms-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100" />
+      <HugeiconsIcon
+        icon={CheckIcon}
+        className="ms-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100"
+      />
     </CommandPrimitive.Item>
   );
 }
 
-function CommandShortcut({ className, ...props }: React.ComponentProps<"span">) {
+function CommandShortcut({ className, ...props }: React.ComponentProps<typeof Kbd>) {
   return (
-    <span
+    <Kbd
       data-slot="command-shortcut"
-      className={cn(
-        "ms-auto text-xs tracking-widest text-muted-foreground group-data-selected/command-item:text-foreground",
-        className,
-      )}
+      className={cn("ms-auto group-data-selected/command-item:text-foreground", className)}
       {...props}
     />
   );

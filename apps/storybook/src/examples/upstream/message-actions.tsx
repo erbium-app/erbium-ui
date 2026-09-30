@@ -1,4 +1,8 @@
-import { CopyIcon, RefreshCcwIcon, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
+import ThumbsDownIcon from "@hugeicons/core-free-icons/ThumbsDownIcon";
+import ThumbsUpIcon from "@hugeicons/core-free-icons/ThumbsUpIcon";
 
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -14,13 +18,13 @@ export function MessageActionsDemo() {
           </Bubble>
           <MessageFooter>
             <Button variant="ghost" size="icon" aria-label="Copy" title="Copy">
-              <CopyIcon />
+              <HugeiconsIcon icon={CopyIcon} />
             </Button>
             <Button variant="ghost" size="icon" aria-label="Like" title="Like">
-              <ThumbsUpIcon />
+              <HugeiconsIcon icon={ThumbsUpIcon} />
             </Button>
             <Button variant="ghost" size="icon" aria-label="Dislike" title="Dislike">
-              <ThumbsDownIcon />
+              <HugeiconsIcon icon={ThumbsDownIcon} />
             </Button>
           </MessageFooter>
         </MessageContent>
@@ -33,7 +37,7 @@ export function MessageActionsDemo() {
           <MessageFooter className="gap-2">
             <span className="font-normal text-destructive">Failed to send</span>
             <Button variant="ghost" size="icon-xs" title="Retry" aria-label="Retry">
-              <RefreshCcwIcon />
+              <HugeiconsIcon icon={RefreshCcwIcon} />
             </Button>
           </MessageFooter>
         </MessageContent>

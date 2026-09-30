@@ -104,7 +104,7 @@ export const Icons: Story = {
       description: { story: "Add icons to tab triggers." },
 
       source: {
-        code: 'import { AppWindowIcon, CodeIcon } from "lucide-react";\n\nimport { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsIcons() {\n  return (\n    <Tabs defaultValue="preview">\n      <TabsList>\n        <TabsTrigger value="preview">\n          <AppWindowIcon />\n          Preview\n        </TabsTrigger>\n        <TabsTrigger value="code">\n          <CodeIcon />\n          Code\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport AppWindowIcon from "@hugeicons/core-free-icons/AppWindowIcon";\nimport CodeIcon from "@hugeicons/core-free-icons/CodeIcon";\n\n\nimport { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";\n\nexport function TabsIcons() {\n  return (\n    <Tabs defaultValue="preview">\n      <TabsList>\n        <TabsTrigger value="preview">\n          <HugeiconsIcon icon={AppWindowIcon} />\n          Preview\n        </TabsTrigger>\n        <TabsTrigger value="code">\n          <HugeiconsIcon icon={CodeIcon} />\n          Code\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n',
       },
     },
   },

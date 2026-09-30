@@ -1,31 +1,30 @@
 import * as React from "react";
-import {
-  BellIcon,
-  CreditCardIcon,
-  DownloadIcon,
-  EyeIcon,
-  FileCodeIcon,
-  FileIcon,
-  FileTextIcon,
-  FolderIcon,
-  FolderOpenIcon,
-  FolderSearchIcon,
-  HelpCircleIcon,
-  KeyboardIcon,
-  LanguagesIcon,
-  LayoutIcon,
-  LogOutIcon,
-  MailIcon,
-  MonitorIcon,
-  MoonIcon,
-  MoreHorizontalIcon,
-  PaletteIcon,
-  SaveIcon,
-  SettingsIcon,
-  ShieldIcon,
-  SunIcon,
-  UserIcon,
-} from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BellIcon from "@hugeicons/core-free-icons/BellIcon";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import Download01Icon from "@hugeicons/core-free-icons/Download01Icon";
+import EyeIcon from "@hugeicons/core-free-icons/EyeIcon";
+import File01Icon from "@hugeicons/core-free-icons/File01Icon";
+import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
+import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
+import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
+import FolderOpenIcon from "@hugeicons/core-free-icons/FolderOpenIcon";
+import FolderSearchIcon from "@hugeicons/core-free-icons/FolderSearchIcon";
+import HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";
+import KeyboardIcon from "@hugeicons/core-free-icons/KeyboardIcon";
+import LanguagesIcon from "@hugeicons/core-free-icons/LanguagesIcon";
+import Layout01Icon from "@hugeicons/core-free-icons/Layout01Icon";
+import LogOutIcon from "@hugeicons/core-free-icons/LogOutIcon";
+import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
+import MonitorIcon from "@hugeicons/core-free-icons/MonitorIcon";
+import MoonIcon from "@hugeicons/core-free-icons/MoonIcon";
+import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
+import PaletteIcon from "@hugeicons/core-free-icons/PaletteIcon";
+import SaveIcon from "@hugeicons/core-free-icons/SaveIcon";
+import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
+import Shield01Icon from "@hugeicons/core-free-icons/Shield01Icon";
+import Sun01Icon from "@hugeicons/core-free-icons/Sun01Icon";
+import UserIcon from "@hugeicons/core-free-icons/UserIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -61,18 +60,18 @@ export function DropdownMenuComplex() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>File</DropdownMenuLabel>
           <DropdownMenuItem>
-            <FileIcon />
+            <HugeiconsIcon icon={File01Icon} />
             New File
             <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <FolderIcon />
+            <HugeiconsIcon icon={Folder01Icon} />
             New Folder
             <DropdownMenuShortcut>⇧⌘N</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <FolderOpenIcon />
+              <HugeiconsIcon icon={FolderOpenIcon} />
               Open Recent
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -80,26 +79,26 @@ export function DropdownMenuComplex() {
                 <DropdownMenuGroup>
                   <DropdownMenuLabel>Recent Projects</DropdownMenuLabel>
                   <DropdownMenuItem>
-                    <FileCodeIcon />
+                    <HugeiconsIcon icon={FileCodeIcon} />
                     Project Alpha
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <FileCodeIcon />
+                    <HugeiconsIcon icon={FileCodeIcon} />
                     Project Beta
                   </DropdownMenuItem>
                   <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
-                      <MoreHorizontalIcon />
+                      <HugeiconsIcon icon={MoreHorizontalIcon} />
                       More Projects
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                       <DropdownMenuSubContent>
                         <DropdownMenuItem>
-                          <FileCodeIcon />
+                          <HugeiconsIcon icon={FileCodeIcon} />
                           Project Gamma
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          <FileCodeIcon />
+                          <HugeiconsIcon icon={FileCodeIcon} />
                           Project Delta
                         </DropdownMenuItem>
                       </DropdownMenuSubContent>
@@ -109,7 +108,7 @@ export function DropdownMenuComplex() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    <FolderSearchIcon />
+                    <HugeiconsIcon icon={FolderSearchIcon} />
                     Browse...
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -118,12 +117,12 @@ export function DropdownMenuComplex() {
           </DropdownMenuSub>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <SaveIcon />
+            <HugeiconsIcon icon={SaveIcon} />
             Save
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <DownloadIcon />
+            <HugeiconsIcon icon={Download01Icon} />
             Export
             <DropdownMenuShortcut>⇧⌘E</DropdownMenuShortcut>
           </DropdownMenuItem>
@@ -137,7 +136,7 @@ export function DropdownMenuComplex() {
               setNotifications({ ...notifications, email: checked === true })
             }
           >
-            <EyeIcon />
+            <HugeiconsIcon icon={EyeIcon} />
             Show Sidebar
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
@@ -146,12 +145,12 @@ export function DropdownMenuComplex() {
               setNotifications({ ...notifications, sms: checked === true })
             }
           >
-            <LayoutIcon />
+            <HugeiconsIcon icon={Layout01Icon} />
             Show Status Bar
           </DropdownMenuCheckboxItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <PaletteIcon />
+              <HugeiconsIcon icon={PaletteIcon} />
               Theme
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -160,15 +159,15 @@ export function DropdownMenuComplex() {
                   <DropdownMenuLabel>Appearance</DropdownMenuLabel>
                   <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                     <DropdownMenuRadioItem value="light">
-                      <SunIcon />
+                      <HugeiconsIcon icon={Sun01Icon} />
                       Light
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="dark">
-                      <MoonIcon />
+                      <HugeiconsIcon icon={MoonIcon} />
                       Dark
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value="system">
-                      <MonitorIcon />
+                      <HugeiconsIcon icon={MonitorIcon} />
                       System
                     </DropdownMenuRadioItem>
                   </DropdownMenuRadioGroup>
@@ -181,17 +180,17 @@ export function DropdownMenuComplex() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Account</DropdownMenuLabel>
           <DropdownMenuItem>
-            <UserIcon />
+            <HugeiconsIcon icon={UserIcon} />
             Profile
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCardIcon />
+            <HugeiconsIcon icon={CreditCardIcon} />
             Billing
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <SettingsIcon />
+              <HugeiconsIcon icon={Settings01Icon} />
               Settings
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -199,16 +198,16 @@ export function DropdownMenuComplex() {
                 <DropdownMenuGroup>
                   <DropdownMenuLabel>Preferences</DropdownMenuLabel>
                   <DropdownMenuItem>
-                    <KeyboardIcon />
+                    <HugeiconsIcon icon={KeyboardIcon} />
                     Keyboard Shortcuts
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <LanguagesIcon />
+                    <HugeiconsIcon icon={LanguagesIcon} />
                     Language
                   </DropdownMenuItem>
                   <DropdownMenuSub>
                     <DropdownMenuSubTrigger>
-                      <BellIcon />
+                      <HugeiconsIcon icon={BellIcon} />
                       Notifications
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
@@ -224,7 +223,7 @@ export function DropdownMenuComplex() {
                               })
                             }
                           >
-                            <BellIcon />
+                            <HugeiconsIcon icon={BellIcon} />
                             Push Notifications
                           </DropdownMenuCheckboxItem>
                           <DropdownMenuCheckboxItem
@@ -236,7 +235,7 @@ export function DropdownMenuComplex() {
                               })
                             }
                           >
-                            <MailIcon />
+                            <HugeiconsIcon icon={Mail01Icon} />
                             Email Notifications
                           </DropdownMenuCheckboxItem>
                         </DropdownMenuGroup>
@@ -247,7 +246,7 @@ export function DropdownMenuComplex() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
-                    <ShieldIcon />
+                    <HugeiconsIcon icon={Shield01Icon} />
                     Privacy & Security
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -258,18 +257,18 @@ export function DropdownMenuComplex() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <HelpCircleIcon />
+            <HugeiconsIcon icon={HelpCircleIcon} />
             Help & Support
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <FileTextIcon />
+            <HugeiconsIcon icon={FileTextIcon} />
             Documentation
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem variant="destructive">
-            <LogOutIcon />
+            <HugeiconsIcon icon={LogOutIcon} />
             Sign Out
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>

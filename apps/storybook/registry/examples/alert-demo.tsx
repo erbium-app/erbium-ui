@@ -1,5 +1,8 @@
 // @ts-nocheck
-import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import AlertCircleIcon from "@hugeicons/core-free-icons/AlertCircleIcon";
+import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
+import PopcornIcon from "@hugeicons/core-free-icons/PopcornIcon";
 
 import { Alert, AlertDescription, AlertTitle } from "../components/alert";
 
@@ -7,16 +10,16 @@ export default function AlertDemo() {
   return (
     <div className="grid w-full max-w-xl items-start gap-4">
       <Alert>
-        <CheckCircle2Icon />
+        <HugeiconsIcon icon={CircleCheckIcon} />
         <AlertTitle>Success! Your changes have been saved</AlertTitle>
         <AlertDescription>This is an alert with icon, title and description.</AlertDescription>
       </Alert>
       <Alert>
-        <PopcornIcon />
+        <HugeiconsIcon icon={PopcornIcon} />
         <AlertTitle>This Alert has a title and an icon. No description.</AlertTitle>
       </Alert>
       <Alert variant="destructive">
-        <AlertCircleIcon />
+        <HugeiconsIcon icon={AlertCircleIcon} />
         <AlertTitle>Unable to process your payment.</AlertTitle>
         <AlertDescription>
           <p>Please verify your billing information and try again.</p>

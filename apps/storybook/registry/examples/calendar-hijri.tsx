@@ -1,6 +1,9 @@
 // @ts-nocheck
 import * as React from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronLeftIcon from "@hugeicons/core-free-icons/ChevronLeftIcon";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+
 import { Button } from "../components/button";
 
 const monthFormatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
@@ -47,7 +50,7 @@ export default function CalendarHijri() {
           variant="ghost"
           onClick={() => first && setAnchor(moveDay(first, -10))}
         >
-          <ChevronRightIcon />
+          <HugeiconsIcon icon={ChevronRightIcon} />
         </Button>
         <span className="text-sm font-medium">{monthFormatter.format(anchor)}</span>
         <Button
@@ -56,7 +59,7 @@ export default function CalendarHijri() {
           variant="ghost"
           onClick={() => first && setAnchor(moveDay(first, 35))}
         >
-          <ChevronLeftIcon />
+          <HugeiconsIcon icon={ChevronLeftIcon} />
         </Button>
       </div>
       <div className="grid grid-cols-7 text-center text-sm">

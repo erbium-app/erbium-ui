@@ -1,4 +1,5 @@
-import { XIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 import {
   Attachment,
@@ -48,7 +49,7 @@ export function AttachmentImage() {
             </AttachmentContent>
             <AttachmentActions>
               <AttachmentAction aria-label={`Remove ${image.name}`}>
-                <XIcon />
+                <HugeiconsIcon icon={XIcon} />
               </AttachmentAction>
             </AttachmentActions>
             <AttachmentTrigger

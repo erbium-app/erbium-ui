@@ -1,4 +1,6 @@
-import { ChevronRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+
 import { Button } from "@erbium/ui/components/button";
 import { Card } from "@erbium/ui/components/card";
 import {
@@ -14,7 +16,8 @@ export function CollapsibleBasic() {
       <Collapsible>
         <CollapsibleTrigger className="group/details flex w-full items-center rounded-xl px-3 py-2 text-start text-sm font-medium outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-ring/40">
           Product details
-          <ChevronRightIcon
+          <HugeiconsIcon
+            icon={ChevronRightIcon}
             aria-hidden="true"
             className="ms-auto size-4 text-muted-foreground transition-transform duration-200 group-data-panel-open/details:rotate-90 motion-reduce:transition-none"
           />

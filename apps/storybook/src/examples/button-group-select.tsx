@@ -1,5 +1,6 @@
 import * as React from "react";
-import { ArrowRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
@@ -41,7 +42,7 @@ export default function ButtonGroupSelect() {
       </ButtonGroup>
       <ButtonGroup>
         <Button aria-label="Send" size="icon" variant="outline">
-          <ArrowRightIcon />
+          <HugeiconsIcon icon={ArrowRight01Icon} />
         </Button>
       </ButtonGroup>
     </ButtonGroup>

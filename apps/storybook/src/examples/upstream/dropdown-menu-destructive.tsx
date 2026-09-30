@@ -1,4 +1,7 @@
-import { PencilIcon, ShareIcon, TrashIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import PencilIcon from "@hugeicons/core-free-icons/PencilIcon";
+import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
+import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -17,18 +20,18 @@ export function DropdownMenuDestructive() {
       <DropdownMenuContent>
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <PencilIcon />
+            <HugeiconsIcon icon={PencilIcon} />
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <ShareIcon />
+            <HugeiconsIcon icon={Share01Icon} />
             Share
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem variant="destructive">
-            <TrashIcon />
+            <HugeiconsIcon icon={TrashIcon} />
             Delete
           </DropdownMenuItem>
         </DropdownMenuGroup>

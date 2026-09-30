@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { LoaderIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import LoaderIcon from "@hugeicons/core-free-icons/LoaderIcon";
 
 import {
   InputGroup,
@@ -34,7 +35,7 @@ export default function InputGroupSpinner() {
       <InputGroup data-disabled>
         <InputGroupInput placeholder="Refreshing data..." disabled />
         <InputGroupAddon>
-          <LoaderIcon className="animate-spin" />
+          <HugeiconsIcon icon={LoaderIcon} className="animate-spin" />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
           <InputGroupText className="text-muted-foreground">Please wait...</InputGroupText>

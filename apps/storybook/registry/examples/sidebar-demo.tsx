@@ -1,5 +1,7 @@
 // @ts-nocheck
-import { ChevronDownIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../components/collapsible";
 import { Separator } from "../components/separator";
 import {
@@ -26,7 +28,8 @@ export default function Demo() {
                   render={<CollapsibleTrigger />}
                 >
                   Workspace
-                  <ChevronDownIcon
+                  <HugeiconsIcon
+                    icon={ChevronDownIcon}
                     aria-hidden="true"
                     className="ms-auto transition-transform duration-200 group-data-open/workspace:rotate-180 motion-reduce:transition-none"
                   />

@@ -1,4 +1,6 @@
-import { BadgeCheckIcon, ChevronRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -30,13 +32,13 @@ export default function ItemSizeDemo() {
         render={
           <a href="#">
             <ItemMedia>
-              <BadgeCheckIcon className="size-5" />
+              <HugeiconsIcon icon={BadgeCheckIcon} className="size-5" />
             </ItemMedia>
             <ItemContent>
               <ItemTitle>Your profile has been verified.</ItemTitle>
             </ItemContent>
             <ItemActions>
-              <ChevronRightIcon className="size-4" />
+              <HugeiconsIcon icon={ChevronRightIcon} className="size-4" />
             </ItemActions>
           </a>
         }

@@ -1,4 +1,6 @@
-import { AppWindowIcon, CodeIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import AppWindowIcon from "@hugeicons/core-free-icons/AppWindowIcon";
+import CodeIcon from "@hugeicons/core-free-icons/CodeIcon";
 
 import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";
 
@@ -7,11 +9,11 @@ export function TabsIcons() {
     <Tabs defaultValue="preview">
       <TabsList>
         <TabsTrigger value="preview">
-          <AppWindowIcon />
+          <HugeiconsIcon icon={AppWindowIcon} />
           Preview
         </TabsTrigger>
         <TabsTrigger value="code">
-          <CodeIcon />
+          <HugeiconsIcon icon={CodeIcon} />
           Code
         </TabsTrigger>
       </TabsList>

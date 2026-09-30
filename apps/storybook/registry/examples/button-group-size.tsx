@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { PlusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
 
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
@@ -18,7 +19,7 @@ export default function ButtonGroupSize() {
           Group
         </Button>
         <Button variant="outline" size="icon-sm">
-          <PlusIcon />
+          <HugeiconsIcon icon={PlusIcon} />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -26,7 +27,7 @@ export default function ButtonGroupSize() {
         <Button variant="outline">Button</Button>
         <Button variant="outline">Group</Button>
         <Button variant="outline" size="icon">
-          <PlusIcon />
+          <HugeiconsIcon icon={PlusIcon} />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -40,7 +41,7 @@ export default function ButtonGroupSize() {
           Group
         </Button>
         <Button variant="outline" size="icon-lg">
-          <PlusIcon />
+          <HugeiconsIcon icon={PlusIcon} />
         </Button>
       </ButtonGroup>
     </div>

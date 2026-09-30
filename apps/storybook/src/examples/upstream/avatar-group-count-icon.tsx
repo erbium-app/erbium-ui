@@ -1,4 +1,5 @@
-import { PlusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
 
 import {
   Avatar,
@@ -24,7 +25,7 @@ export function AvatarGroupCountIconExample() {
         <AvatarFallback>ER</AvatarFallback>
       </Avatar>
       <AvatarGroupCount>
-        <PlusIcon />
+        <HugeiconsIcon icon={PlusIcon} />
       </AvatarGroupCount>
     </AvatarGroup>
   );

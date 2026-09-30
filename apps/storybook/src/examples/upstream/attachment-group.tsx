@@ -1,4 +1,8 @@
-import { FileCodeIcon, FileTextIcon, TableIcon, XIcon, type LucideIcon } from "lucide-react";
+import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
+import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
+import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
+import TableIcon from "@hugeicons/core-free-icons/TableIcon";
+import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 import {
   Attachment,
@@ -14,7 +18,7 @@ import {
 type Item = {
   name: string;
   meta: string;
-  icon?: LucideIcon;
+  icon?: IconSvgElement;
   src?: string;
 };
 
@@ -44,7 +48,7 @@ export function AttachmentGroupDemo() {
                 </AttachmentMedia>
               ) : Icon ? (
                 <AttachmentMedia>
-                  <Icon />
+                  <HugeiconsIcon icon={Icon} />
                 </AttachmentMedia>
               ) : null}
               <AttachmentContent>
@@ -53,7 +57,7 @@ export function AttachmentGroupDemo() {
               </AttachmentContent>
               <AttachmentActions>
                 <AttachmentAction aria-label={`Remove ${item.name}`}>
-                  <XIcon />
+                  <HugeiconsIcon icon={XIcon} />
                 </AttachmentAction>
               </AttachmentActions>
             </Attachment>

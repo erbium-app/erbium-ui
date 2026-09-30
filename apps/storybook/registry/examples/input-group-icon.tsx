@@ -1,5 +1,11 @@
 // @ts-nocheck
-import { CheckIcon, CreditCardIcon, InfoIcon, MailIcon, SearchIcon, StarIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
+import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import StarIcon from "@hugeicons/core-free-icons/StarIcon";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "../components/input-group";
 
@@ -9,29 +15,29 @@ export default function InputGroupIcon() {
       <InputGroup>
         <InputGroupInput placeholder="Search..." />
         <InputGroupAddon>
-          <SearchIcon />
+          <HugeiconsIcon icon={Search01Icon} />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
         <InputGroupInput type="email" placeholder="Enter your email" />
         <InputGroupAddon>
-          <MailIcon />
+          <HugeiconsIcon icon={Mail01Icon} />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
         <InputGroupInput placeholder="Card number" />
         <InputGroupAddon>
-          <CreditCardIcon />
+          <HugeiconsIcon icon={CreditCardIcon} />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
         <InputGroupInput placeholder="Card number" />
         <InputGroupAddon align="inline-end">
-          <StarIcon />
-          <InfoIcon />
+          <HugeiconsIcon icon={StarIcon} />
+          <HugeiconsIcon icon={InfoIcon} />
         </InputGroupAddon>
       </InputGroup>
     </div>

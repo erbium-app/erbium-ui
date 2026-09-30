@@ -1,12 +1,13 @@
 // @ts-nocheck
-import { Underline } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import UnderlineIcon from "@hugeicons/core-free-icons/UnderlineIcon";
 
 import { Toggle } from "../components/toggle";
 
 export default function ToggleDisabled() {
   return (
     <Toggle aria-label="Toggle italic" disabled>
-      <Underline className="h-4 w-4" />
+      <HugeiconsIcon icon={UnderlineIcon} className="h-4 w-4" />
     </Toggle>
   );
 }

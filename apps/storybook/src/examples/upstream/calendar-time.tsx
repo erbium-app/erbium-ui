@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Clock2Icon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Clock02Icon from "@hugeicons/core-free-icons/Clock02Icon";
 
 import { Calendar } from "@erbium/ui/components/calendar";
 import { Card, CardContent, CardFooter } from "@erbium/ui/components/card";
@@ -29,7 +30,7 @@ export function CalendarWithTime() {
                 className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
               />
               <InputGroupAddon>
-                <Clock2Icon className="text-muted-foreground" />
+                <HugeiconsIcon icon={Clock02Icon} className="text-muted-foreground" />
               </InputGroupAddon>
             </InputGroup>
           </Field>
@@ -44,7 +45,7 @@ export function CalendarWithTime() {
                 className="appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
               />
               <InputGroupAddon>
-                <Clock2Icon className="text-muted-foreground" />
+                <HugeiconsIcon icon={Clock02Icon} className="text-muted-foreground" />
               </InputGroupAddon>
             </InputGroup>
           </Field>

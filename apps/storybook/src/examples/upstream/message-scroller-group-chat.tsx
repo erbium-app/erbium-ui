@@ -1,5 +1,6 @@
 import * as React from "react";
-import { RotateCwIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import RotateCwIcon from "@hugeicons/core-free-icons/RotateCwIcon";
 
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -121,7 +122,7 @@ export function MessageScrollerGroupChat() {
                     />
                   }
                 >
-                  <RotateCwIcon />
+                  <HugeiconsIcon icon={RotateCwIcon} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Reset</p>

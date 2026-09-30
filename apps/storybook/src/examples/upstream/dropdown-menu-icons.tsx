@@ -1,4 +1,8 @@
-import { CreditCardIcon, LogOutIcon, SettingsIcon, UserIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import LogOutIcon from "@hugeicons/core-free-icons/LogOutIcon";
+import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
+import UserIcon from "@hugeicons/core-free-icons/UserIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -15,20 +19,20 @@ export function DropdownMenuIcons() {
       <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
-          <UserIcon />
+          <HugeiconsIcon icon={UserIcon} />
           Profile
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <CreditCardIcon />
+          <HugeiconsIcon icon={CreditCardIcon} />
           Billing
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <SettingsIcon />
+          <HugeiconsIcon icon={Settings01Icon} />
           Settings
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive">
-          <LogOutIcon />
+          <HugeiconsIcon icon={LogOutIcon} />
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>

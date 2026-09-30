@@ -1,5 +1,7 @@
 import { useEffect, useId, useState, type ReactNode } from "react";
-import { SearchIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -309,7 +311,7 @@ export const WithTriggerAndClear: Story = {
   render: () => <FruitAutocomplete showTrigger showClear />,
 };
 export const WithStartAddon: Story = {
-  render: () => <FruitAutocomplete startAddon={<SearchIcon />} />,
+  render: () => <FruitAutocomplete startAddon={<HugeiconsIcon icon={Search01Icon} />} />,
 };
 export const WithGroups: Story = { render: () => <GroupedAutocomplete /> };
 export const WithLimitResults: Story = { render: () => <LimitedAutocomplete /> };

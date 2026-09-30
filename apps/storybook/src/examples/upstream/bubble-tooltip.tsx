@@ -1,4 +1,5 @@
-import { CheckIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 
 import { Bubble, BubbleContent, BubbleReactions } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -15,7 +16,7 @@ export function BubbleTooltipDemo() {
         <BubbleReactions>
           <Tooltip>
             <TooltipTrigger render={<Button variant="ghost" size="icon-xs" />}>
-              <CheckIcon />
+              <HugeiconsIcon icon={CheckIcon} />
             </TooltipTrigger>
             <TooltipContent>Read on Jan 5, 2026 at 4:32 PM</TooltipContent>
           </Tooltip>

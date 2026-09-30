@@ -1,5 +1,8 @@
 // @ts-nocheck
-import { Bold, Italic, Underline } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BoldIcon from "@hugeicons/core-free-icons/BoldIcon";
+import ItalicIcon from "@hugeicons/core-free-icons/ItalicIcon";
+import UnderlineIcon from "@hugeicons/core-free-icons/UnderlineIcon";
 
 import { ToggleGroup, ToggleGroupItem } from "../components/toggle-group";
 
@@ -7,13 +10,13 @@ export default function ToggleGroupDemo() {
   return (
     <ToggleGroup disabled>
       <ToggleGroupItem value="bold" aria-label="Toggle bold">
-        <Bold className="h-4 w-4" />
+        <HugeiconsIcon icon={BoldIcon} className="h-4 w-4" />
       </ToggleGroupItem>
       <ToggleGroupItem value="italic" aria-label="Toggle italic">
-        <Italic className="h-4 w-4" />
+        <HugeiconsIcon icon={ItalicIcon} className="h-4 w-4" />
       </ToggleGroupItem>
       <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough">
-        <Underline className="h-4 w-4" />
+        <HugeiconsIcon icon={UnderlineIcon} className="h-4 w-4" />
       </ToggleGroupItem>
     </ToggleGroup>
   );

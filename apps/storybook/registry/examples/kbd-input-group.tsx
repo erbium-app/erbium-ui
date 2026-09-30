@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { SearchIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "../components/input-group";
 import { Kbd } from "../components/kbd";
@@ -10,7 +11,7 @@ export default function KbdInputGroup() {
       <InputGroup>
         <InputGroupInput placeholder="Search..." />
         <InputGroupAddon>
-          <SearchIcon />
+          <HugeiconsIcon icon={Search01Icon} />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
           <Kbd>⌘</Kbd>

@@ -1,4 +1,8 @@
-import { ClipboardPasteIcon, CopyIcon, ScissorsIcon, TrashIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ClipboardPasteIcon from "@hugeicons/core-free-icons/ClipboardPasteIcon";
+import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import ScissorsIcon from "@hugeicons/core-free-icons/ScissorsIcon";
+import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 
 import {
   ContextMenu,
@@ -19,22 +23,22 @@ export function ContextMenuIcons() {
       <ContextMenuContent>
         <ContextMenuGroup>
           <ContextMenuItem>
-            <CopyIcon />
+            <HugeiconsIcon icon={CopyIcon} />
             Copy
           </ContextMenuItem>
           <ContextMenuItem>
-            <ScissorsIcon />
+            <HugeiconsIcon icon={ScissorsIcon} />
             Cut
           </ContextMenuItem>
           <ContextMenuItem>
-            <ClipboardPasteIcon />
+            <HugeiconsIcon icon={ClipboardPasteIcon} />
             Paste
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuItem variant="destructive">
-            <TrashIcon />
+            <HugeiconsIcon icon={TrashIcon} />
             Delete
           </ContextMenuItem>
         </ContextMenuGroup>

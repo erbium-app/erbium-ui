@@ -3,12 +3,12 @@
   "name": "toggle-disabled",
   "title": "Toggle Disabled",
   "description": "Erbium toggle disabled example.",
-  "dependencies": ["lucide-react"],
+  "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
   "registryDependencies": ["@erbium/toggle"],
   "files": [
     {
       "path": "registry/examples/toggle-disabled.tsx",
-      "content": "// @ts-nocheck\nimport { Underline } from \"lucide-react\";\n\nimport { Toggle } from \"../components/toggle\";\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label=\"Toggle italic\" disabled>\n      <Underline className=\"h-4 w-4\" />\n    </Toggle>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport UnderlineIcon from \"@hugeicons/core-free-icons/UnderlineIcon\";\n\nimport { Toggle } from \"../components/toggle\";\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label=\"Toggle italic\" disabled>\n      <HugeiconsIcon icon={UnderlineIcon} className=\"h-4 w-4\" />\n    </Toggle>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/toggle-disabled.tsx"
     }

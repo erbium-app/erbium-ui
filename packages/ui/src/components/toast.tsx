@@ -4,7 +4,12 @@ import { cn } from "../lib/utils";
 
 import { Button } from "./button";
 import { Spinner } from "./spinner";
-import { XIcon, CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
+import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
+import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
+import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
+import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 // cspell:ignore frontmost
 
@@ -123,7 +128,7 @@ function ToastClose({
       )}
       {...props}
     >
-      {children ?? <XIcon aria-hidden="true" />}
+      {children ?? <HugeiconsIcon icon={XIcon} aria-hidden="true" />}
     </ToastPrimitive.Close>
   );
 }
@@ -132,19 +137,19 @@ function ToastIcon({ type }: { type: string | undefined }) {
   let icon: React.ReactNode = null;
 
   if (type === "success") {
-    icon = <CircleCheckIcon className="text-success" aria-hidden="true" />;
+    icon = <HugeiconsIcon icon={CircleCheckIcon} className="text-success" aria-hidden="true" />;
   }
 
   if (type === "info") {
-    icon = <InfoIcon className="text-info" aria-hidden="true" />;
+    icon = <HugeiconsIcon icon={InfoIcon} className="text-info" aria-hidden="true" />;
   }
 
   if (type === "warning") {
-    icon = <TriangleAlertIcon className="text-warning" aria-hidden="true" />;
+    icon = <HugeiconsIcon icon={TriangleAlertIcon} className="text-warning" aria-hidden="true" />;
   }
 
   if (type === "error") {
-    icon = <OctagonXIcon className="text-destructive" aria-hidden="true" />;
+    icon = <HugeiconsIcon icon={OctagonXIcon} className="text-destructive" aria-hidden="true" />;
   }
 
   if (type === "loading") {

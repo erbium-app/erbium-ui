@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { ArrowUpIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
 
 import { Button } from "../components/button";
 
@@ -8,7 +9,7 @@ export default function ButtonDemo() {
     <div className="flex flex-wrap items-center gap-2 md:flex-row">
       <Button variant="outline">Button</Button>
       <Button variant="outline" size="icon" aria-label="Submit">
-        <ArrowUpIcon />
+        <HugeiconsIcon icon={ArrowUp01Icon} />
       </Button>
     </div>
   );

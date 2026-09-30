@@ -1,4 +1,6 @@
-import { ChevronDownIcon, DotIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import DotIcon from "@hugeicons/core-free-icons/DotIcon";
 
 import {
   Breadcrumb,
@@ -24,13 +26,13 @@ export function BreadcrumbDropdown() {
           <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <DotIcon />
+          <HugeiconsIcon icon={DotIcon} />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger render={<button className="flex items-center gap-1" />}>
               Components
-              <ChevronDownIcon data-icon="inline-end" className="size-3.5" />
+              <HugeiconsIcon icon={ChevronDownIcon} data-icon="inline-end" className="size-3.5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
               <DropdownMenuGroup>
@@ -42,7 +44,7 @@ export function BreadcrumbDropdown() {
           </DropdownMenu>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <DotIcon />
+          <HugeiconsIcon icon={DotIcon} />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>

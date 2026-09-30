@@ -1,4 +1,5 @@
-import { InfoIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
 
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 import {
@@ -18,7 +19,7 @@ export function InputInputGroup() {
           <InputGroupText>https://</InputGroupText>
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <InfoIcon />
+          <HugeiconsIcon icon={InfoIcon} />
         </InputGroupAddon>
       </InputGroup>
     </Field>

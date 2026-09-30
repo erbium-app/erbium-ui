@@ -1,4 +1,6 @@
-import { ChevronDownIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+
 import {
   Collapsible,
   CollapsibleContent,
@@ -29,7 +31,8 @@ export default function Demo() {
                   render={<CollapsibleTrigger />}
                 >
                   Workspace
-                  <ChevronDownIcon
+                  <HugeiconsIcon
+                    icon={ChevronDownIcon}
                     aria-hidden="true"
                     className="ms-auto transition-transform duration-200 group-data-open/workspace:rotate-180 motion-reduce:transition-none"
                   />

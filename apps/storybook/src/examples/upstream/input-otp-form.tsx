@@ -1,4 +1,5 @@
-import { RefreshCwIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import RefreshCwIcon from "@hugeicons/core-free-icons/RefreshCwIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -32,7 +33,7 @@ export function InputOTPForm() {
           <div className="flex items-center justify-between">
             <FieldLabel htmlFor="otp-verification">Verification code</FieldLabel>
             <Button variant="outline" size="xs">
-              <RefreshCwIcon />
+              <HugeiconsIcon icon={RefreshCwIcon} />
               Resend Code
             </Button>
           </div>

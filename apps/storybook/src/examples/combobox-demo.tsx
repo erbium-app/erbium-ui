@@ -1,6 +1,8 @@
 import * as React from "react";
 import { cn } from "@erbium/ui/lib/utils";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ArrowUpDownIcon from "@hugeicons/core-free-icons/ArrowUpDownIcon";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -53,7 +55,7 @@ export default function ComboboxDemo() {
             {value
               ? frameworks.find((framework) => framework.value === value)?.label
               : "Select framework..."}
-            <ChevronsUpDown className="opacity-50" />
+            <HugeiconsIcon icon={ArrowUpDownIcon} className="opacity-50" />
           </Button>
         }
       />
@@ -73,7 +75,8 @@ export default function ComboboxDemo() {
                   }}
                 >
                   {framework.label}
-                  <Check
+                  <HugeiconsIcon
+                    icon={CheckIcon}
                     className={cn(
                       "ml-auto",
                       value === framework.value ? "opacity-100" : "opacity-0",

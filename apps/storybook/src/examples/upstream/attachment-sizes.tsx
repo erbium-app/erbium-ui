@@ -1,4 +1,5 @@
-import { FileTextIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
 
 import {
   Attachment,
@@ -13,7 +14,7 @@ export function AttachmentSizes() {
     <div className="mx-auto flex w-full max-w-sm flex-col gap-3 py-12">
       <Attachment size="default" className="w-full">
         <AttachmentMedia>
-          <FileTextIcon />
+          <HugeiconsIcon icon={FileTextIcon} />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>Default attachment</AttachmentTitle>
@@ -22,7 +23,7 @@ export function AttachmentSizes() {
       </Attachment>
       <Attachment size="sm" className="w-full">
         <AttachmentMedia>
-          <FileTextIcon />
+          <HugeiconsIcon icon={FileTextIcon} />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>Small attachment</AttachmentTitle>
@@ -31,7 +32,7 @@ export function AttachmentSizes() {
       </Attachment>
       <Attachment size="xs" className="w-full">
         <AttachmentMedia>
-          <FileTextIcon />
+          <HugeiconsIcon icon={FileTextIcon} />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>Extra small attachment</AttachmentTitle>

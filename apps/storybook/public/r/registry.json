@@ -22,7 +22,7 @@
       "type": "registry:component",
       "title": "Alert Demo",
       "description": "Erbium alert demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/alert"],
       "files": [
         {
@@ -37,7 +37,7 @@
       "type": "registry:component",
       "title": "Alert Destructive",
       "description": "Erbium alert destructive example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/alert"],
       "files": [
         {
@@ -108,7 +108,7 @@
       "type": "registry:component",
       "title": "Badge Demo",
       "description": "Erbium badge demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/badge"],
       "files": [
         {
@@ -165,7 +165,7 @@
       "type": "registry:component",
       "title": "Button Demo",
       "description": "Erbium button demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button"],
       "files": [
         {
@@ -208,7 +208,7 @@
       "type": "registry:component",
       "title": "Button Group Demo",
       "description": "Erbium button group demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/dropdown-menu"],
       "files": [
         {
@@ -223,7 +223,7 @@
       "type": "registry:component",
       "title": "Button Group Dropdown",
       "description": "Erbium button group dropdown example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/dropdown-menu"],
       "files": [
         {
@@ -238,7 +238,7 @@
       "type": "registry:component",
       "title": "Button Group Input Group",
       "description": "Erbium button group input group example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
@@ -258,7 +258,7 @@
       "type": "registry:component",
       "title": "Button Group Input",
       "description": "Erbium button group input example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/input"],
       "files": [
         {
@@ -273,7 +273,7 @@
       "type": "registry:component",
       "title": "Button Group Nested",
       "description": "Erbium button group nested example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/button-group"],
       "files": [
         {
@@ -288,7 +288,7 @@
       "type": "registry:component",
       "title": "Button Group Orientation",
       "description": "Erbium button group orientation example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/button-group"],
       "files": [
         {
@@ -303,7 +303,7 @@
       "type": "registry:component",
       "title": "Button Group Popover",
       "description": "Erbium button group popover example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
@@ -324,7 +324,7 @@
       "type": "registry:component",
       "title": "Button Group Select",
       "description": "Erbium button group select example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
@@ -358,7 +358,7 @@
       "type": "registry:component",
       "title": "Button Group Size",
       "description": "Erbium button group size example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/button-group"],
       "files": [
         {
@@ -373,7 +373,7 @@
       "type": "registry:component",
       "title": "Button Icon",
       "description": "Erbium button icon example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button"],
       "files": [
         {
@@ -416,7 +416,7 @@
       "type": "registry:component",
       "title": "Button Rounded",
       "description": "Erbium button rounded example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button"],
       "files": [
         {
@@ -445,7 +445,7 @@
       "type": "registry:component",
       "title": "Button Size",
       "description": "Erbium button size example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button"],
       "files": [
         {
@@ -474,7 +474,7 @@
       "type": "registry:component",
       "title": "Calendar Hijri",
       "description": "Erbium calendar hijri example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button"],
       "files": [
         {
@@ -692,7 +692,7 @@
       "type": "registry:component",
       "title": "Collapsible Demo",
       "description": "Erbium collapsible demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/card", "@erbium/collapsible", "@erbium/separator"],
       "files": [
         {
@@ -707,7 +707,7 @@
       "type": "registry:component",
       "title": "Combobox Demo",
       "description": "Erbium combobox demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/command",
@@ -727,7 +727,7 @@
       "type": "registry:component",
       "title": "Command Demo",
       "description": "Erbium command demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/command"],
       "files": [
         {
@@ -893,7 +893,7 @@
       "type": "registry:component",
       "title": "Empty Avatar Group",
       "description": "Erbium empty avatar group example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/empty"],
       "files": [
         {
@@ -936,7 +936,7 @@
       "type": "registry:component",
       "title": "Empty Input Group",
       "description": "Erbium empty input group example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/empty", "@erbium/input-group", "@erbium/kbd"],
       "files": [
         {
@@ -1223,7 +1223,7 @@
       "type": "registry:component",
       "title": "Input Group Dropdown",
       "description": "Erbium input group dropdown example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/dropdown-menu", "@erbium/input-group"],
       "files": [
         {
@@ -1238,7 +1238,7 @@
       "type": "registry:component",
       "title": "Input Group Icon",
       "description": "Erbium input group icon example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/input-group"],
       "files": [
         {
@@ -1253,7 +1253,7 @@
       "type": "registry:component",
       "title": "Input Group Spinner",
       "description": "Erbium input group spinner example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/input-group", "@erbium/spinner"],
       "files": [
         {
@@ -1324,7 +1324,7 @@
       "type": "registry:component",
       "title": "Item Avatar",
       "description": "Erbium item avatar example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/item"],
       "files": [
         {
@@ -1339,7 +1339,7 @@
       "type": "registry:component",
       "title": "Item Demo",
       "description": "Erbium item demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/item"],
       "files": [
         {
@@ -1354,7 +1354,7 @@
       "type": "registry:component",
       "title": "Item Dropdown",
       "description": "Erbium item dropdown example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
@@ -1374,7 +1374,7 @@
       "type": "registry:component",
       "title": "Item Group",
       "description": "Erbium item group example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/item"],
       "files": [
         {
@@ -1389,7 +1389,7 @@
       "type": "registry:component",
       "title": "Item Icon",
       "description": "Erbium item icon example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/item"],
       "files": [
         {
@@ -1404,7 +1404,7 @@
       "type": "registry:component",
       "title": "Item Link",
       "description": "Erbium item link example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/item"],
       "files": [
         {
@@ -1419,7 +1419,7 @@
       "type": "registry:component",
       "title": "Item Size",
       "description": "Erbium item size example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/item"],
       "files": [
         {
@@ -1490,7 +1490,7 @@
       "type": "registry:component",
       "title": "Kbd Input Group",
       "description": "Erbium kbd input group example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/input-group", "@erbium/kbd"],
       "files": [
         {
@@ -1865,7 +1865,7 @@
       "type": "registry:component",
       "title": "Sidebar Demo",
       "description": "Erbium sidebar demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/collapsible", "@erbium/separator", "@erbium/sidebar"],
       "files": [
         {
@@ -1992,7 +1992,7 @@
       "type": "registry:component",
       "title": "Spinner Input Group",
       "description": "Erbium spinner input group example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/input-group", "@erbium/spinner"],
       "files": [
         {
@@ -2098,7 +2098,7 @@
       "type": "registry:component",
       "title": "Switch Icons",
       "description": "Erbium switch icons example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/label", "@erbium/switch"],
       "files": [
         {
@@ -2219,7 +2219,7 @@
       "type": "registry:component",
       "title": "Toggle Demo",
       "description": "Erbium toggle demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle"],
       "files": [
         {
@@ -2234,7 +2234,7 @@
       "type": "registry:component",
       "title": "Toggle Disabled",
       "description": "Erbium toggle disabled example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle"],
       "files": [
         {
@@ -2249,7 +2249,7 @@
       "type": "registry:component",
       "title": "Toggle Group Demo",
       "description": "Erbium toggle group demo example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle-group"],
       "files": [
         {
@@ -2264,7 +2264,7 @@
       "type": "registry:component",
       "title": "Toggle Group Disabled",
       "description": "Erbium toggle group disabled example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle-group"],
       "files": [
         {
@@ -2279,7 +2279,7 @@
       "type": "registry:component",
       "title": "Toggle Group Outline",
       "description": "Erbium toggle group outline example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle-group"],
       "files": [
         {
@@ -2294,7 +2294,7 @@
       "type": "registry:component",
       "title": "Toggle Group Spacing",
       "description": "Erbium toggle group spacing example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle-group"],
       "files": [
         {
@@ -2309,7 +2309,7 @@
       "type": "registry:component",
       "title": "Toggle Outline",
       "description": "Erbium toggle outline example.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/toggle"],
       "files": [
         {

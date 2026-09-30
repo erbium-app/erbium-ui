@@ -1,5 +1,7 @@
 // @ts-nocheck
-import { ChevronRightIcon, ExternalLinkIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import ExternalLinkIcon from "@hugeicons/core-free-icons/ExternalLinkIcon";
 
 import { Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from "../components/item";
 
@@ -14,7 +16,7 @@ export default function ItemLink() {
               <ItemDescription>Learn how to get started with our components.</ItemDescription>
             </ItemContent>
             <ItemActions>
-              <ChevronRightIcon className="size-4" />
+              <HugeiconsIcon icon={ChevronRightIcon} className="size-4" />
             </ItemActions>
           </a>
         }
@@ -28,7 +30,7 @@ export default function ItemLink() {
               <ItemDescription>Opens in a new tab with security attributes.</ItemDescription>
             </ItemContent>
             <ItemActions>
-              <ExternalLinkIcon className="size-4" />
+              <HugeiconsIcon icon={ExternalLinkIcon} className="size-4" />
             </ItemActions>
           </a>
         }

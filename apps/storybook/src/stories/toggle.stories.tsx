@@ -38,7 +38,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { BookmarkIcon } from "lucide-react";\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label="Toggle bookmark"\n      size="sm"\n      variant="outline"\n      className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"\n    >\n      <BookmarkIcon />\n      Bookmark\n    </Toggle>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Bookmark01Icon from "@hugeicons/core-free-icons/Bookmark01Icon";\n\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label="Toggle bookmark"\n      size="sm"\n      variant="outline"\n      className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"\n    >\n      <HugeiconsIcon icon={Bookmark01Icon} />\n      Bookmark\n    </Toggle>\n  );\n}\n',
       },
     },
   },
@@ -82,7 +82,7 @@ export const Outline: Story = {
       description: { story: 'Use `variant="outline"` for an outline style.' },
 
       source: {
-        code: 'import { Italic } from "lucide-react"\n\nimport { Toggle } from "@erbium/ui/components/toggle"\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant="outline" aria-label="Toggle italic">\n      <Italic />\n    </Toggle>\n  )\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport ItalicIcon from "@hugeicons/core-free-icons/ItalicIcon";\n\n\nimport { Toggle } from "@erbium/ui/components/toggle"\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant="outline" aria-label="Toggle italic">\n      <HugeiconsIcon icon={ItalicIcon} />\n    </Toggle>\n  )\n}\n',
       },
     },
   },
@@ -98,7 +98,7 @@ export const Disabled: Story = {
       description: { story: "Show a disabled toggle." },
 
       source: {
-        code: 'import { Underline } from "lucide-react"\n\nimport { Toggle } from "@erbium/ui/components/toggle"\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label="Toggle italic" disabled>\n      <Underline className="h-4 w-4" />\n    </Toggle>\n  )\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport UnderlineIcon from "@hugeicons/core-free-icons/UnderlineIcon";\n\n\nimport { Toggle } from "@erbium/ui/components/toggle"\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label="Toggle italic" disabled>\n      <HugeiconsIcon icon={UnderlineIcon} className="h-4 w-4" />\n    </Toggle>\n  )\n}\n',
       },
     },
   },
@@ -115,7 +115,7 @@ export const WithText: Story = {
       description: { story: "Pair a toggle icon with a text label." },
 
       source: {
-        code: 'import { ItalicIcon } from "lucide-react";\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label="Toggle italic">\n      <ItalicIcon />\n      Italic\n    </Toggle>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport ItalicIcon from "@hugeicons/core-free-icons/ItalicIcon";\n\n\nimport { Toggle } from "@erbium/ui/components/toggle";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label="Toggle italic">\n      <HugeiconsIcon icon={ItalicIcon} />\n      Italic\n    </Toggle>\n  );\n}\n',
       },
     },
   },

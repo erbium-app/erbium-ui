@@ -1,7 +1,10 @@
 import * as React from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { cn } from "../lib/utils";
-import { ChevronRightIcon, CheckIcon } from "lucide-react";
+import { Kbd } from "./kbd";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
@@ -116,7 +119,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="rtl:rotate-180 ms-auto" />
+      <HugeiconsIcon icon={ChevronRightIcon} className="rtl:rotate-180 ms-auto" />
     </MenuPrimitive.SubmenuTrigger>
   );
 }
@@ -170,7 +173,7 @@ function DropdownMenuCheckboxItem({
         data-slot="dropdown-menu-checkbox-item-indicator"
       >
         <MenuPrimitive.CheckboxItemIndicator>
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </MenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}
@@ -205,7 +208,7 @@ function DropdownMenuRadioItem({
         data-slot="dropdown-menu-radio-item-indicator"
       >
         <MenuPrimitive.RadioItemIndicator>
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </MenuPrimitive.RadioItemIndicator>
       </span>
       {children}
@@ -223,14 +226,11 @@ function DropdownMenuSeparator({ className, ...props }: MenuPrimitive.Separator.
   );
 }
 
-function DropdownMenuShortcut({ className, ...props }: React.ComponentProps<"span">) {
+function DropdownMenuShortcut({ className, ...props }: React.ComponentProps<typeof Kbd>) {
   return (
-    <span
+    <Kbd
       data-slot="dropdown-menu-shortcut"
-      className={cn(
-        "ms-auto text-xs tracking-widest text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground",
-        className,
-      )}
+      className={cn("ms-auto group-focus/dropdown-menu-item:text-accent-foreground", className)}
       {...props}
     />
   );

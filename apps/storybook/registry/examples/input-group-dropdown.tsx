@@ -1,5 +1,7 @@
 // @ts-nocheck
-import { ChevronDownIcon, MoreHorizontal } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
 
 import {
   DropdownMenu,
@@ -24,7 +26,7 @@ export default function InputGroupDropdown() {
             <DropdownMenuTrigger
               render={
                 <InputGroupButton variant="ghost" aria-label="More" size="icon-xs">
-                  <MoreHorizontal />
+                  <HugeiconsIcon icon={MoreHorizontalIcon} />
                 </InputGroupButton>
               }
             />
@@ -43,7 +45,7 @@ export default function InputGroupDropdown() {
             <DropdownMenuTrigger
               render={
                 <InputGroupButton variant="ghost" className="pr-1.5! text-xs">
-                  Search In... <ChevronDownIcon className="size-3" />
+                  Search In... <HugeiconsIcon icon={ChevronDownIcon} className="size-3" />
                 </InputGroupButton>
               }
             />

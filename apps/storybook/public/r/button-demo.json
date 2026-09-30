@@ -3,12 +3,12 @@
   "name": "button-demo",
   "title": "Button Demo",
   "description": "Erbium button demo example.",
-  "dependencies": ["lucide-react"],
+  "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
   "registryDependencies": ["@erbium/button"],
   "files": [
     {
       "path": "registry/examples/button-demo.tsx",
-      "content": "// @ts-nocheck\nimport { ArrowUpIcon } from \"lucide-react\";\n\nimport { Button } from \"../components/button\";\n\nexport default function ButtonDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2 md:flex-row\">\n      <Button variant=\"outline\">Button</Button>\n      <Button variant=\"outline\" size=\"icon\" aria-label=\"Submit\">\n        <ArrowUpIcon />\n      </Button>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\n\nimport { Button } from \"../components/button\";\n\nexport default function ButtonDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2 md:flex-row\">\n      <Button variant=\"outline\">Button</Button>\n      <Button variant=\"outline\" size=\"icon\" aria-label=\"Submit\">\n        <HugeiconsIcon icon={ArrowUp01Icon} />\n      </Button>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/button-demo.tsx"
     }

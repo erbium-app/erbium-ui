@@ -1,11 +1,12 @@
-import { Italic } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ItalicIcon from "@hugeicons/core-free-icons/ItalicIcon";
 
 import { Toggle } from "@erbium/ui/components/toggle";
 
 export default function ToggleOutline() {
   return (
     <Toggle variant="outline" aria-label="Toggle italic">
-      <Italic />
+      <HugeiconsIcon icon={ItalicIcon} />
     </Toggle>
   );
 }

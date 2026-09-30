@@ -1,5 +1,6 @@
 import * as React from "react";
-import { ChevronDownIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -35,7 +36,8 @@ export function BubbleCollapsible() {
                 render={<Button variant="link" className="gap-1 p-0 text-muted-foreground" />}
               >
                 {open ? "Show less" : "Show more"}
-                <ChevronDownIcon
+                <HugeiconsIcon
+                  icon={ChevronDownIcon}
                   data-icon="inline-end"
                   className="group-data-panel-open/button:rotate-180"
                 />

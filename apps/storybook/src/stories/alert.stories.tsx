@@ -1,6 +1,10 @@
 import AlertColors from "../examples/upstream/alert-colors";
 import ExampleAlertDestructive from "../examples/alert-destructive";
-import { CircleCheckIcon, InfoIcon, TriangleAlertIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
+import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
+import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
+
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";
 import { Button } from "@erbium/ui/components/button";
@@ -33,7 +37,7 @@ export const Playground: StoryObj<typeof Alert> = {
   },
   render: (args) => (
     <Alert {...args} className={`w-96 ${args.className ?? ""}`}>
-      <InfoIcon />
+      <HugeiconsIcon icon={InfoIcon} />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>You can add components with the CLI.</AlertDescription>
     </Alert>
@@ -44,7 +48,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react";\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertDemo() {\n  return (\n    <div className="grid w-full max-w-xl items-start gap-4">\n      <Alert>\n        <CheckCircle2Icon />\n        <AlertTitle>Success! Your changes have been saved</AlertTitle>\n        <AlertDescription>This is an alert with icon, title and description.</AlertDescription>\n      </Alert>\n      <Alert>\n        <PopcornIcon />\n        <AlertTitle>This Alert has a title and an icon. No description.</AlertTitle>\n      </Alert>\n      <Alert variant="destructive">\n        <AlertCircleIcon />\n        <AlertTitle>Unable to process your payment.</AlertTitle>\n        <AlertDescription>\n          <p>Please verify your billing information and try again.</p>\n          <ul className="list-inside list-disc text-sm">\n            <li>Check your card details</li>\n            <li>Ensure sufficient funds</li>\n            <li>Verify billing address</li>\n          </ul>\n        </AlertDescription>\n      </Alert>\n    </div>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport AlertCircleIcon from "@hugeicons/core-free-icons/AlertCircleIcon";\nimport CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";\nimport PopcornIcon from "@hugeicons/core-free-icons/PopcornIcon";\n\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertDemo() {\n  return (\n    <div className="grid w-full max-w-xl items-start gap-4">\n      <Alert>\n        <HugeiconsIcon icon={CircleCheckIcon} />\n        <AlertTitle>Success! Your changes have been saved</AlertTitle>\n        <AlertDescription>This is an alert with icon, title and description.</AlertDescription>\n      </Alert>\n      <Alert>\n        <HugeiconsIcon icon={PopcornIcon} />\n        <AlertTitle>This Alert has a title and an icon. No description.</AlertTitle>\n      </Alert>\n      <Alert variant="destructive">\n        <HugeiconsIcon icon={AlertCircleIcon} />\n        <AlertTitle>Unable to process your payment.</AlertTitle>\n        <AlertDescription>\n          <p>Please verify your billing information and try again.</p>\n          <ul className="list-inside list-disc text-sm">\n            <li>Check your card details</li>\n            <li>Ensure sufficient funds</li>\n            <li>Verify billing address</li>\n          </ul>\n        </AlertDescription>\n      </Alert>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -61,7 +65,7 @@ export const Destructive: Story = {
       description: { story: 'Use `variant="destructive"` to create a destructive alert.' },
 
       source: {
-        code: 'import { AlertCircleIcon } from "lucide-react"\n\nimport {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@erbium/ui/components/alert"\n\nexport default function AlertDestructive() {\n  return (\n    <Alert variant="destructive">\n      <AlertCircleIcon />\n      <AlertTitle>Error</AlertTitle>\n      <AlertDescription>\n        Your session has expired. Please log in again.\n      </AlertDescription>\n    </Alert>\n  )\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport AlertCircleIcon from "@hugeicons/core-free-icons/AlertCircleIcon";\n\n\nimport {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@erbium/ui/components/alert"\n\nexport default function AlertDestructive() {\n  return (\n    <Alert variant="destructive">\n      <HugeiconsIcon icon={AlertCircleIcon} />\n      <AlertTitle>Error</AlertTitle>\n      <AlertDescription>\n        Your session has expired. Please log in again.\n      </AlertDescription>\n    </Alert>\n  )\n}\n',
       },
     },
   },
@@ -81,7 +85,7 @@ export const Basic: Story = {
 
   render: () => (
     <Alert className="w-80">
-      <InfoIcon />
+      <HugeiconsIcon icon={InfoIcon} />
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>You can add components and dependencies using the CLI.</AlertDescription>
     </Alert>
@@ -99,7 +103,7 @@ export const Action: Story = {
 
   render: () => (
     <Alert className="w-96">
-      <CircleCheckIcon />
+      <HugeiconsIcon icon={CircleCheckIcon} />
       <AlertTitle>Update available</AlertTitle>
       <AlertDescription>A new version is ready to install.</AlertDescription>
       <AlertAction>
@@ -123,7 +127,7 @@ export const CustomColors: Story = {
 
   render: () => (
     <Alert className="w-80 border-warning bg-warning-soft text-warning-soft-foreground">
-      <TriangleAlertIcon />
+      <HugeiconsIcon icon={TriangleAlertIcon} />
       <AlertTitle>Scheduled maintenance</AlertTitle>
       <AlertDescription className="text-inherit">
         The service will be briefly unavailable tonight.
@@ -137,7 +141,7 @@ export const Colors: Story = {
     docs: {
       description: { story: "Compare alerts with different semantic color treatments." },
       source: {
-        code: 'import { AlertTriangleIcon } from "lucide-react";\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert className="max-w-md border-warning bg-warning-soft text-warning-soft-foreground">\n      <AlertTriangleIcon />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Alert01Icon from "@hugeicons/core-free-icons/Alert01Icon";\n\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert className="max-w-md border-warning bg-warning-soft text-warning-soft-foreground">\n      <HugeiconsIcon icon={Alert01Icon} />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
       },
     },
   },

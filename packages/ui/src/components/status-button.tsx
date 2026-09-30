@@ -1,5 +1,7 @@
 import { useDebouncer } from "@tanstack/react-pacer/debouncer";
-import { CheckIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
 import { cn } from "../lib/utils";
@@ -128,7 +130,7 @@ function StatusButton({
           className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[status=success]/status-button:translate-y-0 group-data-[status=success]/status-button:opacity-100 motion-reduce:transition-none"
           role="status"
         >
-          <CheckIcon aria-hidden />
+          <HugeiconsIcon icon={CheckIcon} aria-hidden />
           {successLabel ?? <span className="sr-only">Success</span>}
         </span>
       </span>

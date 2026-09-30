@@ -108,7 +108,7 @@ export const InputGroup: Story = {
       },
 
       source: {
-        code: 'import { SearchIcon } from "lucide-react"\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from "@erbium/ui/components/input-group"\nimport { Kbd } from "@erbium/ui/components/kbd"\n\nexport default function KbdInputGroup() {\n  return (\n    <div className="flex w-full max-w-xs flex-col gap-6">\n      <InputGroup>\n        <InputGroupInput placeholder="Search..." />\n        <InputGroupAddon>\n          <SearchIcon />\n        </InputGroupAddon>\n        <InputGroupAddon align="inline-end">\n          <Kbd>⌘</Kbd>\n          <Kbd>K</Kbd>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  )\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Search01Icon from "@hugeicons/core-free-icons/Search01Icon";\n\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n} from "@erbium/ui/components/input-group"\nimport { Kbd } from "@erbium/ui/components/kbd"\n\nexport default function KbdInputGroup() {\n  return (\n    <div className="flex w-full max-w-xs flex-col gap-6">\n      <InputGroup>\n        <InputGroupInput placeholder="Search..." />\n        <InputGroupAddon>\n          <HugeiconsIcon icon={Search01Icon} />\n        </InputGroupAddon>\n        <InputGroupAddon align="inline-end">\n          <Kbd>⌘</Kbd>\n          <Kbd>K</Kbd>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  )\n}\n',
       },
     },
   },

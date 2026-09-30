@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import { Bot, ChevronDown, Coins, Cpu, Search, Sparkles } from "lucide-react";
+import { Kbd } from "@erbium/ui/components/kbd";
+import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
+import BotIcon from "@hugeicons/core-free-icons/BotIcon";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import Coins01Icon from "@hugeicons/core-free-icons/Coins01Icon";
+import CpuIcon from "@hugeicons/core-free-icons/CpuIcon";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import SparklesIcon from "@hugeicons/core-free-icons/SparklesIcon";
 
 /*
  * The surface primitives on raw elements, before any component adopts them.
@@ -57,14 +64,14 @@ export const Roles: Story = {
       <div className="grid max-w-3xl gap-6">
         <div className="flex flex-wrap items-center gap-2">
           <div className="flex h-8 w-72 items-center gap-2 rounded-lg border border-surface-rim bg-surface-control px-2.5 shadow-control">
-            <Search className="size-3.5 text-muted-foreground" />
+            <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
             <span className="text-muted-foreground">Search repositories and people…</span>
           </div>
           <button
             type="button"
             className={`${control} border border-surface-rim bg-surface-control text-foreground shadow-control`}
           >
-            <Sparkles className="size-3.5" />
+            <HugeiconsIcon icon={SparklesIcon} className="size-3.5" />
             Selected
           </button>
           <button
@@ -89,10 +96,9 @@ export const Roles: Story = {
 
         <div className="grid grid-cols-2 gap-4">
           {[
-            ["Tokens", "0", Coins],
-            ["Total cost", "$0.00", Sparkles],
+            ["Tokens", "0", Coins01Icon],
+            ["Total cost", "$0.00", SparklesIcon],
           ].map(([label, value, Icon]) => {
-            const I = Icon as typeof Coins;
             return (
               <div
                 key={label as string}
@@ -100,7 +106,10 @@ export const Roles: Story = {
               >
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2">
-                    <I className="size-3.5 text-muted-foreground" />
+                    <HugeiconsIcon
+                      icon={Icon as IconSvgElement}
+                      className="size-3.5 text-muted-foreground"
+                    />
                     {label as string}
                   </span>
                   <span className="tabular-nums">{value as string}</span>
@@ -109,10 +118,9 @@ export const Roles: Story = {
             );
           })}
           {[
-            ["Models", "No model yet", Cpu],
-            ["Agents", "No agent yet", Bot],
+            ["Models", "No model yet", CpuIcon],
+            ["Agents", "No agent yet", BotIcon],
           ].map(([label, empty, Icon]) => {
-            const I = Icon as typeof Cpu;
             return (
               <div
                 key={label as string}
@@ -121,7 +129,10 @@ export const Roles: Story = {
                 <span className="font-medium">{label as string}</span>
                 <div className="grid flex-1 place-content-center justify-items-center gap-3">
                   <span className="grid size-8 place-content-center rounded-lg border border-surface-rim bg-surface-control shadow-control">
-                    <I className="size-3.5 text-muted-foreground" />
+                    <HugeiconsIcon
+                      icon={Icon as IconSvgElement}
+                      className="size-3.5 text-muted-foreground"
+                    />
                   </span>
                   <span>{empty as string}</span>
                 </div>
@@ -152,9 +163,7 @@ export const Roles: Story = {
           <span className="rounded-full bg-tag-orange/10 px-2.5 py-0.5 text-xs font-medium text-tag-orange shadow-tint">
             Degraded
           </span>
-          <kbd className="rounded-md border border-surface-rim bg-surface-control px-1.5 font-mono text-xs text-muted-foreground shadow-control">
-            ⌘K
-          </kbd>
+          <Kbd>⌘K</Kbd>
         </div>
       </div>
     </Canvas>
@@ -169,7 +178,7 @@ export const Nesting: Story = {
           <span
             className={`${control} w-fit border border-surface-rim bg-surface-control shadow-pressed`}
           >
-            Workspace <ChevronDown className="size-3.5" />
+            Workspace <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
           </span>
           <div className="w-56 rounded-xl border border-surface-rim bg-surface-overlay p-1 shadow-overlay">
             {["Profile", "Settings", "Sign out"].map((item, index) => (
@@ -190,7 +199,7 @@ export const Nesting: Story = {
           <span
             className={`${control} w-fit border border-surface-rim bg-surface-control shadow-pressed`}
           >
-            Member <ChevronDown className="size-3.5" />
+            Member <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
           </span>
           <div className="w-48 rounded-xl border border-surface-rim bg-surface-top p-1 shadow-overlay">
             {["Owner", "Member", "Restricted"].map((item, index) => (

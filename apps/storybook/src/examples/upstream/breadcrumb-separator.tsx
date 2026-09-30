@@ -1,4 +1,5 @@
-import { DotIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import DotIcon from "@hugeicons/core-free-icons/DotIcon";
 
 import {
   Breadcrumb,
@@ -17,13 +18,13 @@ export function BreadcrumbSeparatorDemo() {
           <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <DotIcon />
+          <HugeiconsIcon icon={DotIcon} />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink render={<a href="/components" />}>Components</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <DotIcon />
+          <HugeiconsIcon icon={DotIcon} />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>

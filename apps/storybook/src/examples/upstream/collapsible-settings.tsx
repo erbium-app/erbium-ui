@@ -1,5 +1,6 @@
 import * as React from "react";
-import { ChevronRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
 
 import { Card } from "@erbium/ui/components/card";
 import {
@@ -24,7 +25,8 @@ export function CollapsibleSettings() {
               Set the corner radius of the element.
             </span>
           </span>
-          <ChevronRightIcon
+          <HugeiconsIcon
+            icon={ChevronRightIcon}
             aria-hidden="true"
             className="size-4 text-muted-foreground transition-transform duration-200 group-data-panel-open/settings:rotate-90 motion-reduce:transition-none"
           />

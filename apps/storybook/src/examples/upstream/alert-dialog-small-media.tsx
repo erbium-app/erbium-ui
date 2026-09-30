@@ -1,4 +1,5 @@
-import { BluetoothIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BluetoothIcon from "@hugeicons/core-free-icons/BluetoothIcon";
 
 import {
   AlertDialog,
@@ -22,7 +23,7 @@ export function AlertDialogSmallWithMedia() {
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
           <AlertDialogMedia>
-            <BluetoothIcon />
+            <HugeiconsIcon icon={BluetoothIcon} />
           </AlertDialogMedia>
           <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
           <AlertDialogDescription>

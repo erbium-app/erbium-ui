@@ -1,4 +1,5 @@
-import { SearchIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 
 import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
@@ -10,7 +11,7 @@ export function InputGroupInlineStart() {
       <InputGroup>
         <InputGroupInput id="inline-start-input" placeholder="Search..." />
         <InputGroupAddon align="inline-start">
-          <SearchIcon className="text-muted-foreground" />
+          <HugeiconsIcon icon={Search01Icon} className="text-muted-foreground" />
         </InputGroupAddon>
       </InputGroup>
       <FieldDescription>Icon positioned at the start.</FieldDescription>

@@ -1,4 +1,8 @@
-import { BadgeCheckIcon, BellIcon, CreditCardIcon, LogOutIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";
+import BellIcon from "@hugeicons/core-free-icons/BellIcon";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import LogOutIcon from "@hugeicons/core-free-icons/LogOutIcon";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 import { Button } from "@erbium/ui/components/button";
@@ -23,21 +27,21 @@ export function DropdownMenuAvatar() {
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <BadgeCheckIcon />
+            <HugeiconsIcon icon={BadgeCheckIcon} />
             Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCardIcon />
+            <HugeiconsIcon icon={CreditCardIcon} />
             Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <BellIcon />
+            <HugeiconsIcon icon={BellIcon} />
             Notifications
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOutIcon />
+          <HugeiconsIcon icon={LogOutIcon} />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>

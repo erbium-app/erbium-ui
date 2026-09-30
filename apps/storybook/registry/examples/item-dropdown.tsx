@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { ChevronDownIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 
 import { Avatar, AvatarFallback, AvatarImage } from "../components/avatar";
 import { Button } from "../components/button";
@@ -36,7 +37,7 @@ export default function ItemDropdown() {
         <DropdownMenuTrigger
           render={
             <Button variant="outline" size="sm" className="w-fit">
-              Select <ChevronDownIcon />
+              Select <HugeiconsIcon icon={ChevronDownIcon} />
             </Button>
           }
         />

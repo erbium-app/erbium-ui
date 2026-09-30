@@ -1,29 +1,28 @@
 import * as React from "react";
-import {
-  BellIcon,
-  CalculatorIcon,
-  CalendarIcon,
-  ClipboardPasteIcon,
-  CodeIcon,
-  CopyIcon,
-  CreditCardIcon,
-  FileTextIcon,
-  FolderIcon,
-  FolderPlusIcon,
-  HelpCircleIcon,
-  HomeIcon,
-  ImageIcon,
-  InboxIcon,
-  LayoutGridIcon,
-  ListIcon,
-  PlusIcon,
-  ScissorsIcon,
-  SettingsIcon,
-  TrashIcon,
-  UserIcon,
-  ZoomInIcon,
-  ZoomOutIcon,
-} from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BellIcon from "@hugeicons/core-free-icons/BellIcon";
+import CalculatorIcon from "@hugeicons/core-free-icons/CalculatorIcon";
+import Calendar01Icon from "@hugeicons/core-free-icons/Calendar01Icon";
+import ClipboardPasteIcon from "@hugeicons/core-free-icons/ClipboardPasteIcon";
+import CodeIcon from "@hugeicons/core-free-icons/CodeIcon";
+import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
+import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
+import FolderPlusIcon from "@hugeicons/core-free-icons/FolderPlusIcon";
+import HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";
+import Home01Icon from "@hugeicons/core-free-icons/Home01Icon";
+import Image01Icon from "@hugeicons/core-free-icons/Image01Icon";
+import InboxIcon from "@hugeicons/core-free-icons/InboxIcon";
+import LayoutGridIcon from "@hugeicons/core-free-icons/LayoutGridIcon";
+import ListIcon from "@hugeicons/core-free-icons/ListIcon";
+import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import ScissorsIcon from "@hugeicons/core-free-icons/ScissorsIcon";
+import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
+import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
+import UserIcon from "@hugeicons/core-free-icons/UserIcon";
+import ZoomInIcon from "@hugeicons/core-free-icons/ZoomInIcon";
+import ZoomOutIcon from "@hugeicons/core-free-icons/ZoomOutIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -53,22 +52,22 @@ export function CommandManyItems() {
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Navigation">
               <CommandItem>
-                <HomeIcon />
+                <HugeiconsIcon icon={Home01Icon} />
                 <span>Home</span>
                 <CommandShortcut>⌘H</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <InboxIcon />
+                <HugeiconsIcon icon={InboxIcon} />
                 <span>Inbox</span>
                 <CommandShortcut>⌘I</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <FileTextIcon />
+                <HugeiconsIcon icon={FileTextIcon} />
                 <span>Documents</span>
                 <CommandShortcut>⌘D</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <FolderIcon />
+                <HugeiconsIcon icon={Folder01Icon} />
                 <span>Folders</span>
                 <CommandShortcut>⌘F</CommandShortcut>
               </CommandItem>
@@ -76,32 +75,32 @@ export function CommandManyItems() {
             <CommandSeparator />
             <CommandGroup heading="Actions">
               <CommandItem>
-                <PlusIcon />
+                <HugeiconsIcon icon={PlusIcon} />
                 <span>New File</span>
                 <CommandShortcut>⌘N</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <FolderPlusIcon />
+                <HugeiconsIcon icon={FolderPlusIcon} />
                 <span>New Folder</span>
                 <CommandShortcut>⇧⌘N</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <CopyIcon />
+                <HugeiconsIcon icon={CopyIcon} />
                 <span>Copy</span>
                 <CommandShortcut>⌘C</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <ScissorsIcon />
+                <HugeiconsIcon icon={ScissorsIcon} />
                 <span>Cut</span>
                 <CommandShortcut>⌘X</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <ClipboardPasteIcon />
+                <HugeiconsIcon icon={ClipboardPasteIcon} />
                 <span>Paste</span>
                 <CommandShortcut>⌘V</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <TrashIcon />
+                <HugeiconsIcon icon={TrashIcon} />
                 <span>Delete</span>
                 <CommandShortcut>⌫</CommandShortcut>
               </CommandItem>
@@ -109,20 +108,20 @@ export function CommandManyItems() {
             <CommandSeparator />
             <CommandGroup heading="View">
               <CommandItem>
-                <LayoutGridIcon />
+                <HugeiconsIcon icon={LayoutGridIcon} />
                 <span>Grid View</span>
               </CommandItem>
               <CommandItem>
-                <ListIcon />
+                <HugeiconsIcon icon={ListIcon} />
                 <span>List View</span>
               </CommandItem>
               <CommandItem>
-                <ZoomInIcon />
+                <HugeiconsIcon icon={ZoomInIcon} />
                 <span>Zoom In</span>
                 <CommandShortcut>⌘+</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <ZoomOutIcon />
+                <HugeiconsIcon icon={ZoomOutIcon} />
                 <span>Zoom Out</span>
                 <CommandShortcut>⌘-</CommandShortcut>
               </CommandItem>
@@ -130,45 +129,45 @@ export function CommandManyItems() {
             <CommandSeparator />
             <CommandGroup heading="Account">
               <CommandItem>
-                <UserIcon />
+                <HugeiconsIcon icon={UserIcon} />
                 <span>Profile</span>
                 <CommandShortcut>⌘P</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <CreditCardIcon />
+                <HugeiconsIcon icon={CreditCardIcon} />
                 <span>Billing</span>
                 <CommandShortcut>⌘B</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <SettingsIcon />
+                <HugeiconsIcon icon={Settings01Icon} />
                 <span>Settings</span>
                 <CommandShortcut>⌘S</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <BellIcon />
+                <HugeiconsIcon icon={BellIcon} />
                 <span>Notifications</span>
               </CommandItem>
               <CommandItem>
-                <HelpCircleIcon />
+                <HugeiconsIcon icon={HelpCircleIcon} />
                 <span>Help & Support</span>
               </CommandItem>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup heading="Tools">
               <CommandItem>
-                <CalculatorIcon />
+                <HugeiconsIcon icon={CalculatorIcon} />
                 <span>Calculator</span>
               </CommandItem>
               <CommandItem>
-                <CalendarIcon />
+                <HugeiconsIcon icon={Calendar01Icon} />
                 <span>Calendar</span>
               </CommandItem>
               <CommandItem>
-                <ImageIcon />
+                <HugeiconsIcon icon={Image01Icon} />
                 <span>Image Editor</span>
               </CommandItem>
               <CommandItem>
-                <CodeIcon />
+                <HugeiconsIcon icon={CodeIcon} />
                 <span>Code Editor</span>
               </CommandItem>
             </CommandGroup>

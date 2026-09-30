@@ -1,4 +1,6 @@
-import { DownloadIcon, FileTextIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Download01Icon from "@hugeicons/core-free-icons/Download01Icon";
+import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
 
 import {
   Attachment,
@@ -41,7 +43,7 @@ export function MessageAttachmentDemo() {
           </Bubble>
           <Attachment>
             <AttachmentMedia>
-              <FileTextIcon />
+              <HugeiconsIcon icon={FileTextIcon} />
             </AttachmentMedia>
             <AttachmentContent>
               <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
@@ -55,7 +57,7 @@ export function MessageAttachmentDemo() {
                 size="icon-sm"
                 variant="secondary"
               >
-                <DownloadIcon />
+                <HugeiconsIcon icon={Download01Icon} />
               </AttachmentAction>
             </AttachmentActions>
           </Attachment>

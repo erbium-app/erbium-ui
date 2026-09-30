@@ -1,5 +1,7 @@
 // @ts-nocheck
-import { BotIcon, ChevronDownIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import BotIcon from "@hugeicons/core-free-icons/BotIcon";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
@@ -11,13 +13,13 @@ export default function ButtonGroupPopover() {
   return (
     <ButtonGroup>
       <Button variant="outline">
-        <BotIcon /> Copilot
+        <HugeiconsIcon icon={BotIcon} /> Copilot
       </Button>
       <Popover>
         <PopoverTrigger
           render={
             <Button variant="outline" size="icon" aria-label="Open Popover">
-              <ChevronDownIcon />
+              <HugeiconsIcon icon={ChevronDownIcon} />
             </Button>
           }
         />

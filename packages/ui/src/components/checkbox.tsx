@@ -1,5 +1,7 @@
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
-import { CheckIcon, MinusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import MinusIcon from "@hugeicons/core-free-icons/MinusIcon";
 
 import { cn } from "../lib/utils";
 
@@ -19,8 +21,8 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         data-slot="checkbox-indicator"
         className="grid place-content-center text-current transition-opacity duration-150 ease-out data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none [&_path]:[stroke-dasharray:24] [&_path]:transition-[stroke-dashoffset] [&_path]:duration-150 [&_path]:ease-out motion-reduce:[&_path]:transition-none data-ending-style:[&_path]:[stroke-dashoffset:-24] data-starting-style:[&_path]:[stroke-dashoffset:-24] [&>svg]:size-3.5"
       >
-        <CheckIcon className="in-data-indeterminate:hidden" />
-        <MinusIcon className="not-in-data-indeterminate:hidden" />
+        <HugeiconsIcon icon={CheckIcon} className="in-data-indeterminate:hidden" />
+        <HugeiconsIcon icon={MinusIcon} className="not-in-data-indeterminate:hidden" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

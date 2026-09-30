@@ -1,4 +1,5 @@
-import { GlobeIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import GlobeIcon from "@hugeicons/core-free-icons/GlobeIcon";
 
 import {
   Combobox,
@@ -54,7 +55,7 @@ export function ComboxboxInputGroup() {
     <Combobox items={timezones}>
       <ComboboxInput placeholder="Select a timezone">
         <InputGroupAddon>
-          <GlobeIcon />
+          <HugeiconsIcon icon={GlobeIcon} />
         </InputGroupAddon>
       </ComboboxInput>
       <ComboboxContent alignOffset={-28} className="w-60">

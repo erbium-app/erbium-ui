@@ -1,7 +1,10 @@
 import * as React from "react";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { cn } from "../lib/utils";
-import { ChevronRightIcon, CheckIcon } from "lucide-react";
+import { Kbd } from "./kbd";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
 
 function ContextMenu({ ...props }: ContextMenuPrimitive.Root.Props) {
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
@@ -122,7 +125,7 @@ function ContextMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="rtl:rotate-180 ms-auto" />
+      <HugeiconsIcon icon={ChevronRightIcon} className="rtl:rotate-180 ms-auto" />
     </ContextMenuPrimitive.SubmenuTrigger>
   );
 }
@@ -160,7 +163,7 @@ function ContextMenuCheckboxItem({
     >
       <span className="pointer-events-none absolute inset-e-2">
         <ContextMenuPrimitive.CheckboxItemIndicator>
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </ContextMenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}
@@ -192,7 +195,7 @@ function ContextMenuRadioItem({
     >
       <span className="pointer-events-none absolute inset-e-2">
         <ContextMenuPrimitive.RadioItemIndicator>
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </ContextMenuPrimitive.RadioItemIndicator>
       </span>
       {children}
@@ -210,14 +213,11 @@ function ContextMenuSeparator({ className, ...props }: ContextMenuPrimitive.Sepa
   );
 }
 
-function ContextMenuShortcut({ className, ...props }: React.ComponentProps<"span">) {
+function ContextMenuShortcut({ className, ...props }: React.ComponentProps<typeof Kbd>) {
   return (
-    <span
+    <Kbd
       data-slot="context-menu-shortcut"
-      className={cn(
-        "ms-auto text-xs tracking-widest text-muted-foreground group-focus/context-menu-item:text-accent-foreground",
-        className,
-      )}
+      className={cn("ms-auto group-focus/context-menu-item:text-accent-foreground", className)}
       {...props}
     />
   );

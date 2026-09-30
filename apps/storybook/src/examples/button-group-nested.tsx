@@ -1,4 +1,6 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
@@ -25,10 +27,10 @@ export default function ButtonGroupNested() {
       </ButtonGroup>
       <ButtonGroup>
         <Button variant="outline" size="icon-sm" aria-label="Previous">
-          <ArrowLeftIcon />
+          <HugeiconsIcon icon={ArrowLeft01Icon} />
         </Button>
         <Button variant="outline" size="icon-sm" aria-label="Next">
-          <ArrowRightIcon />
+          <HugeiconsIcon icon={ArrowRight01Icon} />
         </Button>
       </ButtonGroup>
     </ButtonGroup>

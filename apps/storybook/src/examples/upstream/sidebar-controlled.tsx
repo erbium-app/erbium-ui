@@ -1,13 +1,12 @@
 import * as React from "react";
-import {
-  FrameIcon,
-  LifeBuoyIcon,
-  MapIcon,
-  PanelLeftCloseIcon,
-  PanelLeftOpenIcon,
-  PieChartIcon,
-  SendIcon,
-} from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import FrameIcon from "@hugeicons/core-free-icons/FrameIcon";
+import LifebuoyIcon from "@hugeicons/core-free-icons/LifebuoyIcon";
+import MapIcon from "@hugeicons/core-free-icons/MapIcon";
+import PanelLeftCloseIcon from "@hugeicons/core-free-icons/PanelLeftCloseIcon";
+import PanelLeftOpenIcon from "@hugeicons/core-free-icons/PanelLeftOpenIcon";
+import PieChartIcon from "@hugeicons/core-free-icons/PieChartIcon";
+import SendIcon from "@hugeicons/core-free-icons/SendIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -42,7 +41,7 @@ const projects = [
   {
     name: "Support",
     url: "#",
-    icon: LifeBuoyIcon,
+    icon: LifebuoyIcon,
   },
   {
     name: "Feedback",
@@ -65,7 +64,7 @@ export default function AppSidebar() {
                 {projects.map((project) => (
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton render={<a href={project.url} />}>
-                      <project.icon />
+                      <HugeiconsIcon icon={project.icon} />
                       <span>{project.name}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -78,7 +77,11 @@ export default function AppSidebar() {
       <SidebarInset>
         <header className="flex h-12 items-center justify-between px-4">
           <Button onClick={() => setOpen((open) => !open)} size="sm" variant="ghost">
-            {open ? <PanelLeftCloseIcon /> : <PanelLeftOpenIcon />}
+            {open ? (
+              <HugeiconsIcon icon={PanelLeftCloseIcon} />
+            ) : (
+              <HugeiconsIcon icon={PanelLeftOpenIcon} />
+            )}
             <span>{open ? "Close" : "Open"} Sidebar</span>
           </Button>
         </header>

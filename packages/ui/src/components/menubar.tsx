@@ -18,7 +18,8 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { CheckIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 
 function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   return (
@@ -119,7 +120,7 @@ function MenubarCheckboxItem({
     >
       <span className="pointer-events-none absolute inset-s-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
         <MenuPrimitive.CheckboxItemIndicator>
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </MenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}
@@ -151,7 +152,7 @@ function MenubarRadioItem({
     >
       <span className="pointer-events-none absolute inset-s-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
         <MenuPrimitive.RadioItemIndicator>
-          <CheckIcon />
+          <HugeiconsIcon icon={CheckIcon} />
         </MenuPrimitive.RadioItemIndicator>
       </span>
       {children}
@@ -196,10 +197,7 @@ function MenubarShortcut({
   return (
     <DropdownMenuShortcut
       data-slot="menubar-shortcut"
-      className={cn(
-        "ms-auto text-xs tracking-widest text-muted-foreground group-focus/menubar-item:text-accent-foreground",
-        className,
-      )}
+      className={cn("group-focus/menubar-item:text-accent-foreground", className)}
       {...props}
     />
   );

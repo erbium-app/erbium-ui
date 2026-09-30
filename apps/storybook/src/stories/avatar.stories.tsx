@@ -138,7 +138,7 @@ export const BadgeWithIcon: Story = {
     docs: {
       description: { story: "You can also use an icon inside `<AvatarBadge>`." },
       source: {
-        code: 'import { PlusIcon } from "lucide-react";\n\nimport { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";\n\nexport function AvatarBadgeIconExample() {\n  return (\n    <Avatar className="grayscale">\n      <AvatarImage src="https://github.com/pranathip.png" alt="@pranathip" />\n      <AvatarFallback>PP</AvatarFallback>\n      <AvatarBadge>\n        <PlusIcon />\n      </AvatarBadge>\n    </Avatar>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport PlusIcon from "@hugeicons/core-free-icons/PlusIcon";\n\n\nimport { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";\n\nexport function AvatarBadgeIconExample() {\n  return (\n    <Avatar className="grayscale">\n      <AvatarImage src="https://github.com/pranathip.png" alt="@pranathip" />\n      <AvatarFallback>PP</AvatarFallback>\n      <AvatarBadge>\n        <HugeiconsIcon icon={PlusIcon} />\n      </AvatarBadge>\n    </Avatar>\n  );\n}\n',
       },
     },
   },
@@ -174,7 +174,7 @@ export const AvatarGroupWithIcon: Story = {
     docs: {
       description: { story: "You can also use an icon inside `<AvatarGroupCount>`." },
       source: {
-        code: 'import { PlusIcon } from "lucide-react";\n\nimport {\n  Avatar,\n  AvatarFallback,\n  AvatarGroup,\n  AvatarGroupCount,\n  AvatarImage,\n} from "@erbium/ui/components/avatar";\n\nexport function AvatarGroupCountIconExample() {\n  return (\n    <AvatarGroup className="grayscale">\n      <Avatar>\n        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />\n        <AvatarFallback>LR</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />\n        <AvatarFallback>ER</AvatarFallback>\n      </Avatar>\n      <AvatarGroupCount>\n        <PlusIcon />\n      </AvatarGroupCount>\n    </AvatarGroup>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport PlusIcon from "@hugeicons/core-free-icons/PlusIcon";\n\n\nimport {\n  Avatar,\n  AvatarFallback,\n  AvatarGroup,\n  AvatarGroupCount,\n  AvatarImage,\n} from "@erbium/ui/components/avatar";\n\nexport function AvatarGroupCountIconExample() {\n  return (\n    <AvatarGroup className="grayscale">\n      <Avatar>\n        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />\n        <AvatarFallback>LR</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />\n        <AvatarFallback>ER</AvatarFallback>\n      </Avatar>\n      <AvatarGroupCount>\n        <HugeiconsIcon icon={PlusIcon} />\n      </AvatarGroupCount>\n    </AvatarGroup>\n  );\n}\n',
       },
     },
   },

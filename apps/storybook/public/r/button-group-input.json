@@ -3,12 +3,12 @@
   "name": "button-group-input",
   "title": "Button Group Input",
   "description": "Erbium button group input example.",
-  "dependencies": ["lucide-react"],
+  "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
   "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/input"],
   "files": [
     {
       "path": "registry/examples/button-group-input.tsx",
-      "content": "// @ts-nocheck\nimport { SearchIcon } from \"lucide-react\";\n\nimport { Button } from \"../components/button\";\nimport { ButtonGroup } from \"../components/button-group\";\nimport { Input } from \"../components/input\";\n\nexport default function ButtonGroupInput() {\n  return (\n    <ButtonGroup>\n      <Input placeholder=\"Search...\" />\n      <Button variant=\"outline\" aria-label=\"Search\">\n        <SearchIcon />\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Button } from \"../components/button\";\nimport { ButtonGroup } from \"../components/button-group\";\nimport { Input } from \"../components/input\";\n\nexport default function ButtonGroupInput() {\n  return (\n    <ButtonGroup>\n      <Input placeholder=\"Search...\" />\n      <Button variant=\"outline\" aria-label=\"Search\">\n        <HugeiconsIcon icon={Search01Icon} />\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/button-group-input.tsx"
     }

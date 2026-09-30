@@ -1,4 +1,5 @@
-import { CircleFadingPlusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CircleFadingPlusIcon from "@hugeicons/core-free-icons/CircleFadingPlusIcon";
 
 import {
   AlertDialog,
@@ -21,7 +22,7 @@ export function AlertDialogWithMedia() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogMedia>
-            <CircleFadingPlusIcon />
+            <HugeiconsIcon icon={CircleFadingPlusIcon} />
           </AlertDialogMedia>
           <AlertDialogTitle>Share this project?</AlertDialogTitle>
           <AlertDialogDescription>

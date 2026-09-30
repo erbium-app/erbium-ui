@@ -1,4 +1,7 @@
-import { ChevronRightIcon, FileIcon, FolderIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import File01Icon from "@hugeicons/core-free-icons/File01Icon";
+import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
 
 import { Button } from "@erbium/ui/components/button";
 import { Card, CardContent, CardHeader } from "@erbium/ui/components/card";
@@ -73,11 +76,12 @@ export function CollapsibleFileTree() {
               />
             }
           >
-            <ChevronRightIcon
+            <HugeiconsIcon
+              icon={ChevronRightIcon}
               aria-hidden="true"
               className="transition-transform duration-200 ease-in-out group-data-panel-open:rotate-90 motion-reduce:transition-none"
             />
-            <FolderIcon />
+            <HugeiconsIcon icon={Folder01Icon} />
             {fileItem.name}
           </CollapsibleTrigger>
           <CollapsibleContent>
@@ -95,7 +99,7 @@ export function CollapsibleFileTree() {
         size="sm"
         className="w-full justify-start gap-2 text-foreground"
       >
-        <FileIcon />
+        <HugeiconsIcon icon={File01Icon} />
         <span>{fileItem.name}</span>
       </Button>
     );

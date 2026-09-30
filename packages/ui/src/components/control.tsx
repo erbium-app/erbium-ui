@@ -1,5 +1,9 @@
 import * as React from "react";
-import { ChevronDownIcon, CheckIcon, ImagePlusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import ImagePlusIcon from "@hugeicons/core-free-icons/ImagePlusIcon";
+
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
@@ -716,7 +720,7 @@ function Select({
         <span className="ms-auto flex min-w-0 items-center gap-2 text-muted-foreground">
           <SelectPrimitive.Value className="truncate text-end text-foreground" />
           <SelectPrimitive.Icon>
-            <ChevronDownIcon className="size-3.5 shrink-0" />
+            <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5 shrink-0" />
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
@@ -732,7 +736,7 @@ function Select({
                 >
                   <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                   <SelectPrimitive.ItemIndicator>
-                    <CheckIcon className="size-3.5" />
+                    <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
                   </SelectPrimitive.ItemIndicator>
                 </SelectPrimitive.Item>
               ))}
@@ -857,7 +861,7 @@ function Image({
             ) : null}
             <SelectPrimitive.Value className="max-w-24 truncate" />
             <SelectPrimitive.Icon>
-              <ChevronDownIcon className="size-3.5" />
+              <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
@@ -873,7 +877,7 @@ function Image({
                       <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
                       <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                       <SelectPrimitive.ItemIndicator className="ms-auto">
-                        <CheckIcon className="size-3.5" />
+                        <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
                       </SelectPrimitive.ItemIndicator>
                     </SelectPrimitive.Item>
                   ))}
@@ -897,7 +901,7 @@ function Image({
           {!options?.length && preview ? (
             <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
           ) : (
-            <ImagePlusIcon className="size-4" />
+            <HugeiconsIcon icon={ImagePlusIcon} className="size-4" />
           )}
           {!options?.length ? <span>{preview ? "Change" : "Choose image"}</span> : null}
         </button>
@@ -1350,7 +1354,8 @@ function Section({
     >
       <CollapsibleTrigger className="group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
         {title}
-        <ChevronDownIcon
+        <HugeiconsIcon
+          icon={ChevronDownIcon}
           aria-hidden="true"
           className="size-4 -rotate-90 transition-transform duration-200 group-data-panel-open/section:rotate-0 motion-reduce:transition-none"
         />

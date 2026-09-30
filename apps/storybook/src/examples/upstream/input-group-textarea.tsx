@@ -1,4 +1,8 @@
-import { FileCodeIcon, CopyIcon, CornerDownLeftIcon, RefreshCcwIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import CornerDownLeftIcon from "@hugeicons/core-free-icons/CornerDownLeftIcon";
+import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
+import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
 
 import {
   InputGroup,
@@ -20,19 +24,19 @@ export default function InputGroupTextareaExample() {
         <InputGroupAddon align="block-end" className="border-t">
           <InputGroupText>Line 1, Column 1</InputGroupText>
           <InputGroupButton size="sm" className="ml-auto" variant="default">
-            Run <CornerDownLeftIcon />
+            Run <HugeiconsIcon icon={CornerDownLeftIcon} />
           </InputGroupButton>
         </InputGroupAddon>
         <InputGroupAddon align="block-start" className="border-b">
           <InputGroupText className="font-mono font-medium">
-            <FileCodeIcon />
+            <HugeiconsIcon icon={FileCodeIcon} />
             script.js
           </InputGroupText>
           <InputGroupButton className="ml-auto" size="icon-xs">
-            <RefreshCcwIcon />
+            <HugeiconsIcon icon={RefreshCcwIcon} />
           </InputGroupButton>
           <InputGroupButton variant="ghost" size="icon-xs">
-            <CopyIcon />
+            <HugeiconsIcon icon={CopyIcon} />
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>

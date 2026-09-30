@@ -1,5 +1,11 @@
 // @ts-nocheck
-import { Calculator, Calendar, CreditCard, Settings, Smile, User } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CalculatorIcon from "@hugeicons/core-free-icons/CalculatorIcon";
+import Calendar01Icon from "@hugeicons/core-free-icons/Calendar01Icon";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
+import SmileIcon from "@hugeicons/core-free-icons/SmileIcon";
+import UserIcon from "@hugeicons/core-free-icons/UserIcon";
 
 import {
   Command,
@@ -20,32 +26,32 @@ export default function CommandDemo() {
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
           <CommandItem>
-            <Calendar />
+            <HugeiconsIcon icon={Calendar01Icon} />
             <span>Calendar</span>
           </CommandItem>
           <CommandItem>
-            <Smile />
+            <HugeiconsIcon icon={SmileIcon} />
             <span>Search Emoji</span>
           </CommandItem>
           <CommandItem disabled>
-            <Calculator />
+            <HugeiconsIcon icon={CalculatorIcon} />
             <span>Calculator</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Settings">
           <CommandItem>
-            <User />
+            <HugeiconsIcon icon={UserIcon} />
             <span>Profile</span>
             <CommandShortcut>⌘P</CommandShortcut>
           </CommandItem>
           <CommandItem>
-            <CreditCard />
+            <HugeiconsIcon icon={CreditCardIcon} />
             <span>Billing</span>
             <CommandShortcut>⌘B</CommandShortcut>
           </CommandItem>
           <CommandItem>
-            <Settings />
+            <HugeiconsIcon icon={Settings01Icon} />
             <span>Settings</span>
             <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>

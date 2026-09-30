@@ -1,4 +1,5 @@
-import { ArrowUpRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
 
 import { Button } from "@erbium/ui/components/button";
 
@@ -10,13 +11,13 @@ export default function ButtonSize() {
           Small
         </Button>
         <Button size="icon-sm" aria-label="Submit" variant="outline">
-          <ArrowUpRightIcon />
+          <HugeiconsIcon icon={ArrowUpRight01Icon} />
         </Button>
       </div>
       <div className="flex items-start gap-2">
         <Button variant="outline">Default</Button>
         <Button size="icon" aria-label="Submit" variant="outline">
-          <ArrowUpRightIcon />
+          <HugeiconsIcon icon={ArrowUpRight01Icon} />
         </Button>
       </div>
       <div className="flex items-start gap-2">
@@ -24,7 +25,7 @@ export default function ButtonSize() {
           Large
         </Button>
         <Button size="icon-lg" aria-label="Submit" variant="outline">
-          <ArrowUpRightIcon />
+          <HugeiconsIcon icon={ArrowUpRight01Icon} />
         </Button>
       </div>
     </div>

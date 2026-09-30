@@ -3,7 +3,8 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "../lib/utils";
 
 import { Button } from "./button";
-import { XIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -62,7 +63,7 @@ function SheetContent({
             data-slot="sheet-close"
             render={<Button variant="ghost" className="absolute top-3 inset-e-3" size="icon-sm" />}
           >
-            <XIcon />
+            <HugeiconsIcon icon={XIcon} />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}

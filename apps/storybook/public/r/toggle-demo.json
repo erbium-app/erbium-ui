@@ -3,12 +3,12 @@
   "name": "toggle-demo",
   "title": "Toggle Demo",
   "description": "Erbium toggle demo example.",
-  "dependencies": ["lucide-react"],
+  "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
   "registryDependencies": ["@erbium/toggle"],
   "files": [
     {
       "path": "registry/examples/toggle-demo.tsx",
-      "content": "// @ts-nocheck\nimport { BookmarkIcon } from \"lucide-react\";\n\nimport { Toggle } from \"../components/toggle\";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <BookmarkIcon />\n      Bookmark\n    </Toggle>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport Bookmark01Icon from \"@hugeicons/core-free-icons/Bookmark01Icon\";\n\nimport { Toggle } from \"../components/toggle\";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <HugeiconsIcon icon={Bookmark01Icon} />\n      Bookmark\n    </Toggle>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/toggle-demo.tsx"
     }

@@ -1,4 +1,7 @@
-import { PencilIcon, ShareIcon, TrashIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import PencilIcon from "@hugeicons/core-free-icons/PencilIcon";
+import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
+import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 
 import {
   ContextMenu,
@@ -19,18 +22,18 @@ export function ContextMenuDestructive() {
       <ContextMenuContent>
         <ContextMenuGroup>
           <ContextMenuItem>
-            <PencilIcon />
+            <HugeiconsIcon icon={PencilIcon} />
             Edit
           </ContextMenuItem>
           <ContextMenuItem>
-            <ShareIcon />
+            <HugeiconsIcon icon={Share01Icon} />
             Share
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuItem variant="destructive">
-            <TrashIcon />
+            <HugeiconsIcon icon={TrashIcon} />
             Delete
           </ContextMenuItem>
         </ContextMenuGroup>

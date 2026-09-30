@@ -1,5 +1,7 @@
 // @ts-nocheck
-import { MinusIcon, PlusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import MinusIcon from "@hugeicons/core-free-icons/MinusIcon";
+import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
 
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
@@ -8,10 +10,10 @@ export default function ButtonGroupOrientation() {
   return (
     <ButtonGroup orientation="vertical" aria-label="Media controls" className="h-fit">
       <Button variant="outline" size="icon">
-        <PlusIcon />
+        <HugeiconsIcon icon={PlusIcon} />
       </Button>
       <Button variant="outline" size="icon">
-        <MinusIcon />
+        <HugeiconsIcon icon={MinusIcon} />
       </Button>
     </ButtonGroup>
   );

@@ -60,7 +60,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { BadgeCheckIcon } from "lucide-react";\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport default function BadgeDemo() {\n  return (\n    <div className="flex flex-col items-center gap-2">\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge>Badge</Badge>\n        <Badge variant="secondary">Secondary</Badge>\n        <Badge variant="destructive">Destructive</Badge>\n        <Badge variant="outline">Outline</Badge>\n      </div>\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge variant="success">\n          <BadgeCheckIcon />\n          Verified\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>\n        <Badge\n          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"\n          variant="destructive"\n        >\n          99\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";\n\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport default function BadgeDemo() {\n  return (\n    <div className="flex flex-col items-center gap-2">\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge>Badge</Badge>\n        <Badge variant="secondary">Secondary</Badge>\n        <Badge variant="destructive">Destructive</Badge>\n        <Badge variant="outline">Outline</Badge>\n      </div>\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge variant="success">\n          <HugeiconsIcon icon={BadgeCheckIcon} />\n          Verified\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>\n        <Badge\n          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"\n          variant="destructive"\n        >\n          99\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -117,7 +117,7 @@ export const Link: Story = {
     docs: {
       description: { story: "Use the `render` prop to render a link as a badge." },
       source: {
-        code: 'import { ArrowUpRightIcon } from "lucide-react";\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport function BadgeAsLink() {\n  return (\n    <Badge render={<a href="#link" />}>\n      Open Link <ArrowUpRightIcon data-icon="inline-end" />\n    </Badge>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";\n\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport function BadgeAsLink() {\n  return (\n    <Badge render={<a href="#link" />}>\n      Open Link <HugeiconsIcon icon={ArrowUpRight01Icon} data-icon="inline-end" />\n    </Badge>\n  );\n}\n',
       },
     },
   },
@@ -132,7 +132,7 @@ export const WithIcon: Story = {
           'You can render an icon inside the badge. Use `data-icon="inline-start"` to render the icon on the left and `data-icon="inline-end"` to render the icon on the right.',
       },
       source: {
-        code: 'import { BadgeCheck, BookmarkIcon } from "lucide-react";\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport function BadgeWithIconLeft() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Badge variant="secondary">\n        <BadgeCheck data-icon="inline-start" />\n        Verified\n      </Badge>\n      <Badge variant="outline">\n        Bookmark\n        <BookmarkIcon data-icon="inline-end" />\n      </Badge>\n    </div>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";\nimport Bookmark01Icon from "@hugeicons/core-free-icons/Bookmark01Icon";\n\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport function BadgeWithIconLeft() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Badge variant="secondary">\n        <HugeiconsIcon icon={BadgeCheckIcon} data-icon="inline-start" />\n        Verified\n      </Badge>\n      <Badge variant="outline">\n        Bookmark\n        <HugeiconsIcon icon={Bookmark01Icon} data-icon="inline-end" />\n      </Badge>\n    </div>\n  );\n}\n',
       },
     },
   },

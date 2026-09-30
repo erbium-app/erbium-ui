@@ -1,5 +1,7 @@
 import * as React from "react";
-import { AudioLinesIcon, PlusIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import AudioLinesIcon from "@hugeicons/core-free-icons/AudioLinesIcon";
+import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
@@ -18,7 +20,7 @@ export default function ButtonGroupInputGroup() {
     <ButtonGroup className="[--radius:9999rem]">
       <ButtonGroup>
         <Button variant="outline" size="icon">
-          <PlusIcon />
+          <HugeiconsIcon icon={PlusIcon} />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -38,7 +40,7 @@ export default function ButtonGroupInputGroup() {
                     className="data-[active=true]:bg-warning-soft data-[active=true]:text-warning-soft-foreground"
                     aria-pressed={voiceEnabled}
                   >
-                    <AudioLinesIcon />
+                    <HugeiconsIcon icon={AudioLinesIcon} />
                   </InputGroupButton>
                 }
               />

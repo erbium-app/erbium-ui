@@ -1,4 +1,7 @@
-import { GitBranchIcon, RotateCcwIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import GitBranchIcon from "@hugeicons/core-free-icons/GitBranchIcon";
+import RotateCcwIcon from "@hugeicons/core-free-icons/RotateCcwIcon";
+
 import { toast } from "@erbium/ui/components/toast";
 
 import { Marker, MarkerContent, MarkerIcon } from "@erbium/ui/components/marker";
@@ -8,7 +11,7 @@ export function MarkerLinkButtonDemo() {
     <div className="flex w-full max-w-sm flex-col gap-8 py-12">
       <Marker render={<a href="#links-and-buttons" />}>
         <MarkerIcon>
-          <GitBranchIcon />
+          <HugeiconsIcon icon={GitBranchIcon} />
         </MarkerIcon>
         <MarkerContent>View the pull request</MarkerContent>
       </Marker>
@@ -22,7 +25,7 @@ export function MarkerLinkButtonDemo() {
         }
       >
         <MarkerIcon>
-          <RotateCcwIcon />
+          <HugeiconsIcon icon={RotateCcwIcon} />
         </MarkerIcon>
         <MarkerContent>Revert this change</MarkerContent>
       </Marker>

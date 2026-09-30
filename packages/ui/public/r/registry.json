@@ -8,7 +8,7 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Erbium accordion component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/separator", "@erbium/utils"],
       "files": [
         {
@@ -82,7 +82,7 @@
       "type": "registry:ui",
       "title": "Autocomplete",
       "description": "Erbium autocomplete component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/input", "@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
@@ -127,7 +127,7 @@
       "type": "registry:ui",
       "title": "Breadcrumb",
       "description": "Erbium breadcrumb component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -187,7 +187,7 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "Erbium calendar component.",
-      "dependencies": ["lucide-react", "react-day-picker"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "react-day-picker"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -216,7 +216,7 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Erbium carousel component.",
-      "dependencies": ["embla-carousel-react", "lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "embla-carousel-react"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -245,7 +245,7 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Erbium checkbox component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -275,7 +275,7 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Erbium combobox component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/input-group", "@erbium/utils"],
       "files": [
         {
@@ -290,7 +290,7 @@
       "type": "registry:ui",
       "title": "Command",
       "description": "Erbium command component.",
-      "dependencies": ["cmdk", "lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "cmdk"],
       "registryDependencies": ["@erbium/dialog", "@erbium/input-group", "@erbium/utils"],
       "files": [
         {
@@ -305,7 +305,7 @@
       "type": "registry:ui",
       "title": "Context Menu",
       "description": "Erbium context menu component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -320,7 +320,12 @@
       "type": "registry:ui",
       "title": "Control",
       "description": "Erbium control component.",
-      "dependencies": ["@base-ui/react", "lucide-react", "motion"],
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "motion"
+      ],
       "registryDependencies": ["@erbium/collapsible", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
@@ -335,7 +340,7 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Erbium dialog component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -379,7 +384,7 @@
       "type": "registry:ui",
       "title": "Dropdown Menu",
       "description": "Erbium dropdown menu component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -502,7 +507,7 @@
       "type": "registry:ui",
       "title": "Input Otp",
       "description": "Erbium input otp component.",
-      "dependencies": ["input-otp", "lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "input-otp"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -575,7 +580,7 @@
       "type": "registry:ui",
       "title": "Menubar",
       "description": "Erbium menubar component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/dropdown-menu", "@erbium/utils"],
       "files": [
         {
@@ -604,7 +609,7 @@
       "type": "registry:ui",
       "title": "Message Scroller",
       "description": "Erbium message scroller component.",
-      "dependencies": ["@shadcn/react", "lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@shadcn/react"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -619,7 +624,12 @@
       "type": "registry:ui",
       "title": "Navigation Menu",
       "description": "Erbium navigation menu component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority"
+      ],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -634,7 +644,7 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Erbium pagination component.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -679,7 +689,7 @@
       "type": "registry:ui",
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
-      "dependencies": ["@shadcn/react", "lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@shadcn/react"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -739,7 +749,7 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Erbium select component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
@@ -769,7 +779,7 @@
       "type": "registry:ui",
       "title": "Sheet",
       "description": "Erbium sheet component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/utils"],
       "files": [
         {
@@ -784,7 +794,12 @@
       "type": "registry:ui",
       "title": "Sidebar",
       "description": "Erbium sidebar component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority", "lucide-react"],
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input",
@@ -851,7 +866,7 @@
       "type": "registry:ui",
       "title": "Status Button",
       "description": "Erbium status button component.",
-      "dependencies": ["@tanstack/react-pacer", "lucide-react"],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@tanstack/react-pacer"],
       "registryDependencies": ["@erbium/button", "@erbium/spinner", "@erbium/utils"],
       "files": [
         {
@@ -986,7 +1001,7 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Erbium toast component.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/button", "@erbium/spinner", "@erbium/utils"],
       "files": [
         {

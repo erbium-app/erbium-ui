@@ -1,4 +1,7 @@
-import { CopyIcon, FileSearchIcon, XIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import FileSearchIcon from "@hugeicons/core-free-icons/FileSearchIcon";
+import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 import {
   Attachment,
@@ -25,7 +28,7 @@ export function AttachmentTriggerDemo() {
       <Dialog>
         <Attachment className="w-full">
           <AttachmentMedia>
-            <FileSearchIcon />
+            <HugeiconsIcon icon={FileSearchIcon} />
           </AttachmentMedia>
           <AttachmentContent>
             <AttachmentTitle>research-summary.pdf</AttachmentTitle>
@@ -33,10 +36,10 @@ export function AttachmentTriggerDemo() {
           </AttachmentContent>
           <AttachmentActions>
             <AttachmentAction aria-label="Copy link">
-              <CopyIcon />
+              <HugeiconsIcon icon={CopyIcon} />
             </AttachmentAction>
             <AttachmentAction aria-label="Remove research-summary.pdf">
-              <XIcon />
+              <HugeiconsIcon icon={XIcon} />
             </AttachmentAction>
           </AttachmentActions>
           <DialogTrigger render={<AttachmentTrigger aria-label="Preview research-summary.pdf" />} />

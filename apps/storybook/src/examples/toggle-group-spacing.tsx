@@ -1,4 +1,7 @@
-import { BookmarkIcon, HeartIcon, StarIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Bookmark01Icon from "@hugeicons/core-free-icons/Bookmark01Icon";
+import HeartIcon from "@hugeicons/core-free-icons/HeartIcon";
+import StarIcon from "@hugeicons/core-free-icons/StarIcon";
 
 import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
 
@@ -10,7 +13,7 @@ export default function ToggleGroupSpacing() {
         aria-label="Toggle star"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning"
       >
-        <StarIcon />
+        <HugeiconsIcon icon={StarIcon} />
         Star
       </ToggleGroupItem>
       <ToggleGroupItem
@@ -18,7 +21,7 @@ export default function ToggleGroupSpacing() {
         aria-label="Toggle heart"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-destructive data-[state=on]:*:[svg]:stroke-destructive"
       >
-        <HeartIcon />
+        <HugeiconsIcon icon={HeartIcon} />
         Heart
       </ToggleGroupItem>
       <ToggleGroupItem
@@ -26,7 +29,7 @@ export default function ToggleGroupSpacing() {
         aria-label="Toggle bookmark"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"
       >
-        <BookmarkIcon />
+        <HugeiconsIcon icon={Bookmark01Icon} />
         Bookmark
       </ToggleGroupItem>
     </ToggleGroup>

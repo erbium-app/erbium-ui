@@ -1,5 +1,8 @@
 import * as React from "react";
-import { CreditCardIcon, SettingsIcon, UserIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
+import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
+import UserIcon from "@hugeicons/core-free-icons/UserIcon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -28,17 +31,17 @@ export function CommandWithShortcuts() {
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Settings">
               <CommandItem>
-                <UserIcon />
+                <HugeiconsIcon icon={UserIcon} />
                 <span>Profile</span>
                 <CommandShortcut>⌘P</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <CreditCardIcon />
+                <HugeiconsIcon icon={CreditCardIcon} />
                 <span>Billing</span>
                 <CommandShortcut>⌘B</CommandShortcut>
               </CommandItem>
               <CommandItem>
-                <SettingsIcon />
+                <HugeiconsIcon icon={Settings01Icon} />
                 <span>Settings</span>
                 <CommandShortcut>⌘S</CommandShortcut>
               </CommandItem>

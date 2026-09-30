@@ -1,4 +1,5 @@
-import { BookmarkIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Bookmark01Icon from "@hugeicons/core-free-icons/Bookmark01Icon";
 
 import { Toggle } from "@erbium/ui/components/toggle";
 
@@ -10,7 +11,7 @@ export default function ToggleDemo() {
       variant="outline"
       className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"
     >
-      <BookmarkIcon />
+      <HugeiconsIcon icon={Bookmark01Icon} />
       Bookmark
     </Toggle>
   );
