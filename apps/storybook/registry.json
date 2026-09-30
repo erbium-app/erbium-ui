@@ -1636,6 +1636,20 @@
       ]
     },
     {
+      "name": "radio-group-controlled",
+      "type": "registry:component",
+      "title": "Radio Group Controlled",
+      "description": "Erbium radio group controlled example.",
+      "registryDependencies": ["@erbium/label", "@erbium/radio-group"],
+      "files": [
+        {
+          "path": "registry/examples/radio-group-controlled.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/radio-group-controlled.tsx"
+        }
+      ]
+    },
+    {
       "name": "radio-group-demo",
       "type": "registry:component",
       "title": "Radio Group Demo",
@@ -1646,6 +1660,34 @@
           "path": "registry/examples/radio-group-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/radio-group-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-form",
+      "type": "registry:component",
+      "title": "Radio Group Form",
+      "description": "Erbium radio group form example.",
+      "registryDependencies": ["@erbium/button", "@erbium/label", "@erbium/radio-group"],
+      "files": [
+        {
+          "path": "registry/examples/radio-group-form.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/radio-group-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "radio-group-read-only",
+      "type": "registry:component",
+      "title": "Radio Group Read Only",
+      "description": "Erbium radio group read only example.",
+      "registryDependencies": ["@erbium/label", "@erbium/radio-group"],
+      "files": [
+        {
+          "path": "registry/examples/radio-group-read-only.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/radio-group-read-only.tsx"
         }
       ]
     },
