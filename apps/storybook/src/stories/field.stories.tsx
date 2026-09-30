@@ -65,11 +65,7 @@ export const Playground: StoryObj<{
         className={`w-80 ${args.className}`}
       >
         <FieldLabel htmlFor="playground-field">Email</FieldLabel>
-        <input
-          id="playground-field"
-          className="rounded border p-2"
-          placeholder="name@example.com"
-        />
+        <UIInput id="playground-field" placeholder="name@example.com" />
         <FieldDescription>We will use this to contact you.</FieldDescription>
         {args.invalid && <FieldError errors={[{ message: args.error }]} />}
       </Field>
