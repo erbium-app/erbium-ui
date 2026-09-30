@@ -72,7 +72,7 @@ export const Variants: Story = {
     docs: {
       description: {
         story:
-          "Use `variant` to switch between an inline marker, bordered row, and labeled separator.\n\n| Variant     | Description                                          |\n\n| ----------- | ---------------------------------------------------- |\n\n| `default`   | An inline marker for status, notes, and actions.     |\n\n| `border`    | A default marker with a bottom border under the row. |\n\n| `separator` | A centered label with divider lines on each side.    |",
+          "Use `variant` to switch between an inline marker, bordered row, and labeled separator.\n\n| Variant     | Description                                          |\n| ----------- | ---------------------------------------------------- |\n| `default`   | An inline marker for status, notes, and actions.     |\n| `border`    | A default marker with a bottom border under the row. |\n| `separator` | A centered label with divider lines on each side.    |",
       },
       source: {
         code: 'import { Marker, MarkerContent } from "@erbium/ui/components/marker";\n\nexport function MarkerVariantsDemo() {\n  return (\n    <div className="flex w-full max-w-sm flex-col gap-8 py-12">\n      <Marker>\n        <MarkerContent>A default marker for inline notes.</MarkerContent>\n      </Marker>\n      <Marker variant="separator">\n        <MarkerContent>A separator marker</MarkerContent>\n      </Marker>\n      <Marker variant="border">\n        <MarkerContent>A border marker for row boundaries.</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n',
