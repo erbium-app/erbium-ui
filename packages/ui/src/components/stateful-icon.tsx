@@ -2,6 +2,8 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
 import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
+import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { cn } from "../lib/utils";
@@ -179,10 +181,49 @@ function SidebarToggleIcon({
   );
 }
 
-export { ExpandableChevron, RotatingChevron, SidebarToggleIcon, StatefulIcon };
+type ThemeToggleIconProps = {
+  theme: "light" | "dark";
+  className?: string;
+};
+
+/** Sun and moon icons rotate and scale as the active theme changes. */
+function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
+  const reduceMotion = useReducedMotion();
+  const transition = { duration: reduceMotion ? 0 : 0.2 };
+  const isDark = theme === "dark";
+
+  return (
+    <span
+      aria-hidden="true"
+      className={cn("relative inline-grid size-4 shrink-0 align-middle", className)}
+      data-slot="theme-toggle-icon"
+      data-theme={theme}
+    >
+      <motion.span
+        animate={{ rotate: isDark ? -90 : 0, scale: isDark ? 0 : 1 }}
+        className="absolute inset-0"
+        initial={false}
+        transition={transition}
+      >
+        <HugeiconsIcon icon={Sun03Icon} className="size-full" />
+      </motion.span>
+      <motion.span
+        animate={{ rotate: isDark ? 0 : 90, scale: isDark ? 1 : 0 }}
+        className="absolute inset-0"
+        initial={false}
+        transition={transition}
+      >
+        <HugeiconsIcon icon={Moon02Icon} className="size-full" />
+      </motion.span>
+    </span>
+  );
+}
+
+export { ExpandableChevron, RotatingChevron, SidebarToggleIcon, StatefulIcon, ThemeToggleIcon };
 export type {
   ExpandableChevronProps,
   RotatingChevronProps,
   SidebarToggleIconProps,
   StatefulIconProps,
+  ThemeToggleIconProps,
 };

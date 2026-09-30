@@ -8,6 +8,7 @@ import {
   ExpandableChevron as ExpandableChevronIcon,
   RotatingChevron as RotatingChevronIcon,
   SidebarToggleIcon as SidebarToggleIconGraphic,
+  ThemeToggleIcon as ThemeToggleIconGraphic,
 } from "@erbium/ui/components/stateful-icon";
 import { useState } from "react";
 import StatefulIconDemo from "../examples/stateful-icon-demo";
@@ -18,7 +19,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "StatefulIcon animates between caller-provided content states. RotatingChevron, ExpandableChevron, and SidebarToggleIcon indicate open state. Import from `@erbium/ui/components/stateful-icon`.",
+          "StatefulIcon animates between caller-provided content states. RotatingChevron, ExpandableChevron, SidebarToggleIcon, and ThemeToggleIcon show common state changes. Import from `@erbium/ui/components/stateful-icon`.",
       },
     },
   },
@@ -89,4 +90,24 @@ export const SidebarToggleIcon: Story = {
       <SidebarToggleIconExample side="right" />
     </div>
   ),
+};
+
+function ThemeToggleIconExample() {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  return (
+    <button
+      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
+      className="flex items-center gap-2 rounded-lg border px-3 py-2 text-sm"
+      onClick={() => setTheme((current) => (current === "light" ? "dark" : "light"))}
+      type="button"
+    >
+      <ThemeToggleIconGraphic theme={theme} />
+      {theme === "light" ? "Light" : "Dark"} theme
+    </button>
+  );
+}
+
+export const ThemeToggleIcon: Story = {
+  render: () => <ThemeToggleIconExample />,
 };
