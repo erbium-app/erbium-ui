@@ -315,6 +315,21 @@
       ]
     },
     {
+      "name": "control",
+      "type": "registry:ui",
+      "title": "Control",
+      "description": "Erbium control component.",
+      "dependencies": ["@base-ui/react", "lucide-react", "motion"],
+      "registryDependencies": ["@erbium/collapsible", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/control.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/control.tsx"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

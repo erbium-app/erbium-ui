@@ -752,6 +752,20 @@
       ]
     },
     {
+      "name": "control-demo",
+      "type": "registry:component",
+      "title": "Control Demo",
+      "description": "Erbium control demo example.",
+      "registryDependencies": ["@erbium/control"],
+      "files": [
+        {
+          "path": "registry/examples/control-demo.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/control-demo.tsx"
+        }
+      ]
+    },
+    {
       "name": "dialog-close-button",
       "type": "registry:component",
       "title": "Dialog Close Button",
