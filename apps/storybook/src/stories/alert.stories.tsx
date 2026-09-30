@@ -3,7 +3,6 @@ import ExampleAlertDestructive from "../examples/alert-destructive";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
 import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
-import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
 
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";
@@ -115,33 +114,12 @@ export const Action: Story = {
   ),
 };
 
-export const CustomColors: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "You can customize the alert colors by adding custom classes such as `bg-warning-soft` to the `Alert` component.",
-      },
-    },
-  },
-
-  render: () => (
-    <Alert className="w-80 border-warning bg-warning-soft text-warning-soft-foreground">
-      <HugeiconsIcon icon={TriangleAlertIcon} />
-      <AlertTitle>Scheduled maintenance</AlertTitle>
-      <AlertDescription className="text-inherit">
-        The service will be briefly unavailable tonight.
-      </AlertDescription>
-    </Alert>
-  ),
-};
-
 export const Colors: Story = {
   parameters: {
     docs: {
       description: { story: "Compare alerts with different semantic color treatments." },
       source: {
-        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Alert01Icon from "@hugeicons/core-free-icons/Alert01Icon";\n\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert className="max-w-md border-warning bg-warning-soft text-warning-soft-foreground">\n      <HugeiconsIcon icon={Alert01Icon} />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Alert01Icon from "@hugeicons/core-free-icons/Alert01Icon";\n\n\nimport { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertColors() {\n  return (\n    <Alert variant="warning" className="max-w-md">\n      <HugeiconsIcon icon={Alert01Icon} />\n      <AlertTitle>Your subscription will expire in 3 days.</AlertTitle>\n      <AlertDescription>\n        Renew now to avoid service interruption or upgrade to a paid plan to continue using the\n        service.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
       },
     },
   },

@@ -9,6 +9,9 @@ export default defineConfig({
     ignorePatterns: ["**/.astro/**", "**/.blume/**", "**/dist/**", "**/storybook-static/**"],
   },
   lint: {
+    settings: {
+      shadcn: { ui: "@erbium/ui/components" },
+    },
     jsPlugins: [
       { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
       ...(shadcn.jsPlugins ?? []),
@@ -30,7 +33,16 @@ export default defineConfig({
         },
       },
     ],
-    rules: { "vite-plus/prefer-vite-plus-imports": "error" },
+    rules: {
+      "vite-plus/prefer-vite-plus-imports": "error",
+      "shadcn/no-restyle": [
+        "error",
+        {
+          allow: ["*"],
+          deny: ["[--surface-face:*]", "*:[--surface-face:*]"],
+        },
+      ],
+    },
     options: { typeAware: true, typeCheck: true },
   },
   run: {

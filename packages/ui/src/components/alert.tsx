@@ -3,18 +3,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const alertVariants = cva(
-  "group/alert relative grid w-full gap-0.5 rounded-lg border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pe-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
+  "group/alert relative grid w-full gap-0.5 rounded-lg border border-surface-border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pe-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
+        default: "bg-surface-panel text-card-foreground shadow-panel",
         destructive:
-          "border-destructive/30 bg-destructive-soft text-destructive-soft-foreground [&>svg]:text-destructive",
-        info: "border-info/30 bg-info-soft text-info-soft-foreground [&>svg]:text-info",
-        success:
-          "border-success/30 bg-success-soft text-success-soft-foreground [&>svg]:text-success",
-        warning:
-          "border-warning/30 bg-warning-soft text-warning-soft-foreground [&>svg]:text-warning",
+          "surface-tint-destructive-soft text-destructive-soft-foreground [&>svg]:text-destructive",
+        info: "surface-tint-info-soft text-info-soft-foreground [&>svg]:text-info",
+        success: "surface-tint-success-soft text-success-soft-foreground [&>svg]:text-success",
+        warning: "surface-tint-warning-soft text-warning-soft-foreground [&>svg]:text-warning",
       },
     },
     defaultVariants: {

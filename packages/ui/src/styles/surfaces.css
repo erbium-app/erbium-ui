@@ -9,19 +9,21 @@
  *   bg-surface-control shadow-control  buttons, inputs, triggers, selected items
  *   bg-surface-overlay shadow-overlay  popovers, menus, select popups
  *   bg-surface-modal shadow-modal      dialogs, sheets, drawers
- *   bg-primary shadow-fill             solid coloured controls
+ *   surface-fill-primary               solid coloured controls
  *   shadow-knob                        switch and slider thumbs
  *   bg-surface-well shadow-well        tracks only; use sparingly
- *   shadow-tint                        soft coloured badges and alerts
+ *   surface-tint-destructive-soft      opaque soft coloured badges and alerts
+ *   surface-tag                        translucent coloured tags
  *   shadow-engaged                     selected and popup-open controls
  *   shadow-pressed                     momentary pointer/key press
  *   shadow-edge                        hairline only: disabled and flat framed parts
  *
  * Token naming:
  *   --surface-{role}             background colours (panel, control, overlay)
- *   --surface-highlight[-{role}] lighting colours (strong, fill, divider)
+ *   --surface-highlight[-{role}] lighting colours (strong, divider)
  *   --surface-shadow[-{role}]    shadow colours (strong, inset, divider)
- *   --surface-edge[-{role}]      perimeter colours (fill, well)
+ *   --surface-edge[-well]        perimeter colours
+ *   --surface-face               element colour used for its fill and elevation
  *   --surface-border             transparent CSS border / forced-colors fallback
  *   --surface-tint-{state}       interaction overlays (hover, pressed)
  *   --control-shadow-{state}     local composed-shadow overrides for joined segments
@@ -38,8 +40,8 @@
  *
  * The perimeter and top catchlight are both outer shadows. The top shadow is
  * painted first, over the perimeter shadow, so its bright line is on the same
- * edge rather than inside a border. Neutral surfaces back the translucent
- * perimeter with their own fill so the drop cannot darken its bottom edge.
+ * edge rather than inside a border. Neutral and opaque tinted surfaces back
+ * the translucent perimeter with their own fill so the drop cannot darken its bottom edge.
  * Surface borders stay transparent as a forced-colors fallback.
  *
  * Light and dark share every recipe's geometry; only the colours change.
@@ -63,7 +65,6 @@
   /* Shared lighting source; component-specific highlights derive from it. */
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
-  --surface-highlight-fill: rgb(255 255 255 / 0.18);
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
   --surface-shadow: rgb(57 58 52 / 0.06);
   --surface-shadow-strong: rgb(57 58 52 / 0.1);
@@ -74,8 +75,6 @@
     0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
     0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
-
-  --surface-edge-fill: rgb(0 0 0 / 0.14);
 
   --surface-tint-hover: rgb(57 58 52 / 0.04);
   --surface-tint-pressed: rgb(57 58 52 / 0.07);
@@ -96,15 +95,12 @@
   /* Shared lighting source; component-specific highlights derive from it. */
   --surface-highlight: rgb(222 220 213 / 0.06);
   --surface-highlight-strong: rgb(222 220 213 / 0.09);
-  --surface-highlight-fill: rgb(255 255 255 / 0.2);
   --surface-highlight-divider: var(--surface-highlight);
   --surface-shadow: rgb(0 0 0 / 0.3);
   --surface-shadow-strong: rgb(0 0 0 / 0.5);
   --surface-shadow-inset: rgb(0 0 0 / 0.35);
   --surface-edge-well: rgb(222 220 213 / 0.04);
   --surface-shadow-divider: var(--surface-shadow);
-
-  --surface-edge-fill: rgb(222 220 213 / 0.02);
 
   --surface-tint-hover: rgb(222 220 213 / 0.025);
   --surface-tint-pressed: rgb(0 0 0 / 0.12);
@@ -143,7 +139,8 @@
     0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
     0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow);
   --shadow-fill:
-    0 -1px 0 0 var(--surface-highlight-fill), 0 0 0 1px var(--surface-edge-fill),
+    0 -1px 0 0 color-mix(in srgb, var(--surface-face, var(--primary)) 80%, white),
+    0 0 0 1px color-mix(in srgb, var(--surface-face, var(--primary)) 88%, black),
     0 1px 2px -0.5px var(--surface-shadow-strong), inset 0 0 0 0 transparent;
   --shadow-edge: var(--control-shadow-edge, 0 0 0 1px var(--surface-edge));
   /* A recess has one face, one perimeter, and a soft top inset. No
@@ -168,14 +165,41 @@
     inset 0 2px 3px -1px var(--surface-shadow-inset)
   );
   --shadow-fill-engaged:
-    0 0 0 0 transparent, 0 0 0 1px var(--surface-edge-fill), 0 0 0 0 transparent,
-    inset 0 1px 2px 0 var(--surface-shadow-inset);
+    0 0 0 0 transparent,
+    0 0 0 1px color-mix(in srgb, var(--surface-face, var(--primary)) 88%, black),
+    0 0 0 0 transparent, inset 0 1px 2px 0 var(--surface-shadow-inset);
   --shadow-fill-pressed:
-    0 0 0 0 transparent, 0 0 0 1px var(--surface-edge-fill), 0 0 0 0 transparent,
-    inset 0 2px 3px -1px var(--surface-shadow-inset);
+    0 0 0 0 transparent,
+    0 0 0 1px color-mix(in srgb, var(--surface-face, var(--primary)) 88%, black),
+    0 0 0 0 transparent, inset 0 2px 3px -1px var(--surface-shadow-inset);
   --shadow-well:
     inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
-  --shadow-tint: 0 0 0 1px color-mix(in oklab, currentColor 18%, transparent);
+  --shadow-tint:
+    0 -1px 0 0 color-mix(in srgb, var(--surface-face, transparent) 80%, white),
+    0 0 0 1px color-mix(in oklab, currentColor 10%, transparent),
+    0 0 0 1px var(--surface-face, transparent), 0 1px 2px -1px var(--surface-shadow),
+    0 2px 6px -2px var(--surface-shadow);
+}
+
+/* A surface's face and elevation share one colour input. Named utilities
+   select a theme colour for both the background and its edge. */
+@utility surface-fill-* {
+  --surface-face: --value(--color, [color]);
+  background-color: var(--surface-face);
+  @apply border border-surface-border shadow-fill;
+}
+
+@utility surface-tint-* {
+  --surface-face: --value(--color, [color]);
+  background-color: var(--surface-face);
+  @apply border border-surface-border shadow-tint;
+}
+
+/* Translucent tags keep their own alpha background while the tint shadow
+   uses a transparent backing face. This also blocks an inherited face. */
+@utility surface-tag {
+  --surface-face: transparent;
+  @apply shadow-tint;
 }
 
 /* State layers paint a tint over the element's own background colour, so one

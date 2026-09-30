@@ -3,6 +3,9 @@ import shadcn from "ultracite/oxlint/shadcn";
 
 export default defineConfig({
   extends: [shadcn],
+  settings: {
+    shadcn: { ui: "@erbium/ui/components" },
+  },
   overrides: [
     {
       // Base UI owns these component styles. Some components intentionally
@@ -16,7 +19,17 @@ export default defineConfig({
     },
   ],
   plugins: ["react", "typescript", "unicorn"],
-  rules: { "no-console": "warn", "no-debugger": "error" },
+  rules: {
+    "no-console": "warn",
+    "no-debugger": "error",
+    "shadcn/no-restyle": [
+      "error",
+      {
+        allow: ["*"],
+        deny: ["[--surface-face:*]", "*:[--surface-face:*]"],
+      },
+    ],
+  },
   ignorePatterns: [
     "**/.astro/**",
     "**/.blume/**",

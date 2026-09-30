@@ -6,7 +6,7 @@ import { LoadingIndicator } from "./spinner";
 
 /* Filled controls keep their own coloured rim at every elevation. */
 const fillSurface =
-  "shadow-fill hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-fill-engaged active:tint-press active:shadow-fill-pressed engaged:active:shadow-fill-pressed disabled:shadow-edge data-disabled:shadow-edge engaged:disabled:shadow-edge engaged:data-disabled:shadow-edge";
+  "hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-fill-engaged active:tint-press active:shadow-fill-pressed engaged:active:shadow-fill-pressed disabled:shadow-edge data-disabled:shadow-edge engaged:disabled:shadow-edge engaged:data-disabled:shadow-edge";
 
 /* Outline buttons sit one step above their surface, like inputs. */
 const controlSurface =
@@ -17,16 +17,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: `bg-primary text-primary-foreground ${fillSurface}`,
+        default: `surface-fill-primary text-primary-foreground ${fillSurface}`,
         outline: controlSurface,
         secondary:
           "bg-secondary text-secondary-foreground hover:tint-hover active:tint-press engaged:tint-press engaged:hover:tint-press",
         ghost:
           "hover:tint-hover hover:text-foreground active:tint-press engaged:tint-press engaged:hover:tint-press engaged:text-foreground",
-        destructive: `bg-destructive text-destructive-foreground focus-visible:border-destructive/40 ${fillSurface}`,
-        success: `bg-success text-success-foreground focus-visible:border-success/40 ${fillSurface}`,
-        warning: `bg-warning text-warning-foreground focus-visible:border-warning/40 ${fillSurface}`,
-        info: `bg-info text-info-foreground focus-visible:border-info/40 ${fillSurface}`,
+        destructive: `surface-fill-destructive text-destructive-foreground focus-visible:border-destructive/40 ${fillSurface}`,
+        success: `surface-fill-success text-success-foreground focus-visible:border-success/40 ${fillSurface}`,
+        warning: `surface-fill-warning text-warning-foreground focus-visible:border-warning/40 ${fillSurface}`,
+        info: `surface-fill-info text-info-foreground focus-visible:border-info/40 ${fillSurface}`,
         "ghost-destructive":
           "text-destructive-soft-foreground hover:bg-destructive-soft active:bg-destructive-soft-hover engaged:bg-destructive-soft focus-visible:border-destructive/40 ",
         "ghost-success":

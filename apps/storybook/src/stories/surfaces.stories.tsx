@@ -13,8 +13,7 @@ import SparklesIcon from "@hugeicons/core-free-icons/SparklesIcon";
 
 /*
  * The surface primitives on raw elements, before any component adopts them.
- * Review these in both themes when tuning surfaces.css; the component
- * migrations then reuse exactly these class pairs.
+ * Review these in both themes when tuning surfaces.css.
  */
 
 const meta = {
@@ -58,6 +57,44 @@ export const Ladder: Story = {
   ),
 };
 
+const coloredSurfaces = [
+  [
+    "destructive",
+    "surface-fill-destructive text-destructive-foreground",
+    "surface-tint-destructive-soft text-destructive-soft-foreground",
+  ],
+  [
+    "info",
+    "surface-fill-info text-info-foreground",
+    "surface-tint-info-soft text-info-soft-foreground",
+  ],
+  [
+    "success",
+    "surface-fill-success text-success-foreground",
+    "surface-tint-success-soft text-success-soft-foreground",
+  ],
+  [
+    "warning",
+    "surface-fill-warning text-warning-foreground",
+    "surface-tint-warning-soft text-warning-soft-foreground",
+  ],
+] as const;
+
+export const Colored: Story = {
+  render: () => (
+    <Canvas>
+      <div className="grid max-w-lg gap-4">
+        {coloredSurfaces.map(([color, fill, tint]) => (
+          <div key={color} className="grid grid-cols-2 gap-4">
+            <div className={`${fill} rounded-lg p-3`}>{color} fill</div>
+            <div className={`${tint} rounded-lg p-3`}>{color} tint</div>
+          </div>
+        ))}
+      </div>
+    </Canvas>
+  ),
+};
+
 const control =
   "inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-medium transition-[background-color,box-shadow] duration-150";
 
@@ -91,7 +128,7 @@ export const Roles: Story = {
           </button>
           <button
             type="button"
-            className={`${control} bg-primary text-primary-foreground shadow-fill hover:tint-hover active:tint-press active:shadow-fill-pressed`}
+            className={`${control} surface-fill-primary text-primary-foreground hover:tint-hover active:tint-press active:shadow-fill-pressed`}
           >
             Primary
           </button>
@@ -160,10 +197,10 @@ export const Roles: Story = {
           <span className="flex h-[18px] w-8 items-center justify-end rounded-full bg-primary px-0.5 shadow-well">
             <span className="size-3.5 rounded-full bg-primary-foreground shadow-knob" />
           </span>
-          <span className="rounded-full bg-tag-green/10 px-2.5 py-0.5 text-xs font-medium text-tag-green shadow-tint">
+          <span className="surface-tag rounded-full bg-tag-green/10 px-2.5 py-0.5 text-xs font-medium text-tag-green">
             Healthy
           </span>
-          <span className="rounded-full bg-tag-orange/10 px-2.5 py-0.5 text-xs font-medium text-tag-orange shadow-tint">
+          <span className="surface-tag rounded-full bg-tag-orange/10 px-2.5 py-0.5 text-xs font-medium text-tag-orange">
             Degraded
           </span>
           <Kbd hotkey="Mod+K" />
