@@ -44,11 +44,11 @@ export default function CardDemo() {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <StatefulButton type="submit" form="card-login-form" className="w-full">
+      <CardFooter className="gap-2">
+        <StatefulButton type="submit" form="card-login-form" className="min-w-0 flex-1">
           Login
         </StatefulButton>
-        <Button variant="outline" className="w-full">
+        <Button variant="outline" className="shrink-0">
           Login with Google
         </Button>
       </CardFooter>

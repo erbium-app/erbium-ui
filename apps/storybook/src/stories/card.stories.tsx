@@ -18,7 +18,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays a card with header, content, and footer.\n\n**Import:** `@erbium/ui/components/card`  \n\n**shadcn/ui page:** [Card](https://ui.shadcn.com/docs/components/base/card)\n\n### Usage\n\n```tsx\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@erbium/ui/components/card"\n```\n\n```tsx\n<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n    <CardAction>Card Action</CardAction>\n  </CardHeader>\n  <CardContent>\n    <p>Card Content</p>\n  </CardContent>\n  <CardFooter>\n    <p>Card Footer</p>\n  </CardFooter>\n</Card>\n```\n\n### Composition\n\nUse the following composition to build a `Card`:\n\n```text\nCard\n├── CardHeader\n│   ├── CardTitle\n│   ├── CardDescription\n│   └── CardAction\n├── CardContent\n└── CardFooter\n```\n\n### Changelog\n\nIf you\'re upgrading from a previous version of the `Card` component, you\'ll need to apply the following updates to use the `--card-spacing` variable:\n\nReplace the hard-coded gap and vertical padding with `--card-spacing`, and set the default and small size values on the root:\n\nReplace the horizontal padding and border spacing with the shared variable:\n\nUse `--card-spacing` for the content inset and footer padding:\n\nAfter applying these changes, you can customize card spacing by setting `--card-spacing` on the `Card` with an arbitrary property class:\n\n```tsx\nfunction Example() {\n  return <Card className="[--card-spacing:--spacing(6)]">...</Card>\n}\n```',
+          'Displays a card with header, content, and footer. Use `size="sm"` for compact spacing.\n\n**Import:** `@erbium/ui/components/card`  \n\n**shadcn/ui page:** [Card](https://ui.shadcn.com/docs/components/base/card)\n\n### Usage\n\n```tsx\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@erbium/ui/components/card"\n```\n\n```tsx\n<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n    <CardAction>Card Action</CardAction>\n  </CardHeader>\n  <CardContent>\n    <p>Card Content</p>\n  </CardContent>\n  <CardFooter>\n    <p>Card Footer</p>\n  </CardFooter>\n</Card>\n```\n\n### Composition\n\nUse the following composition to build a `Card`:\n\n```text\nCard\n├── CardHeader\n│   ├── CardTitle\n│   ├── CardDescription\n│   └── CardAction\n├── CardContent\n└── CardFooter\n```',
       },
     },
   },
@@ -28,10 +28,13 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Card> = {
-  args: { size: "default", className: "" },
-  argTypes: { size: { control: "select", options: ["default", "sm"] } },
+  args: { size: "default" },
+  argTypes: {
+    size: { control: "select", options: ["default", "sm"] },
+    className: { table: { disable: true } },
+  },
   render: (args) => (
-    <Card {...args} className={`w-80 ${args.className ?? ""}`}>
+    <Card {...args} className="w-80">
       <CardHeader>
         <CardTitle>Card title</CardTitle>
         <CardDescription>Card description</CardDescription>
@@ -46,7 +49,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button";\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@erbium/ui/components/card";\nimport { Input } from "@erbium/ui/components/input";\nimport { Label } from "@erbium/ui/components/label";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\n\nexport default function CardDemo() {\n  return (\n    <Card className="w-full max-w-sm">\n      <CardHeader>\n        <CardTitle>Login to your account</CardTitle>\n        <CardDescription>Enter your email below to login to your account</CardDescription>\n        <CardAction>\n          <Button variant="link">Sign Up</Button>\n        </CardAction>\n      </CardHeader>\n      <CardContent>\n        <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>\n          <div className="flex flex-col gap-6">\n            <div className="grid gap-2">\n              <Label htmlFor="email">Email</Label>\n              <Input id="email" type="email" placeholder="m@example.com" required />\n            </div>\n            <div className="grid gap-2">\n              <div className="flex items-center">\n                <Label htmlFor="password">Password</Label>\n                <a\n                  href="#"\n                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"\n                >\n                  Forgot your password?\n                </a>\n              </div>\n              <Input id="password" type="password" required />\n            </div>\n          </div>\n        </form>\n      </CardContent>\n      <CardFooter className="flex-col gap-2">\n        <StatefulButton type="submit" form="card-login-form" className="w-full">\n          Login\n        </StatefulButton>\n        <Button variant="outline" className="w-full">\n          Login with Google\n        </Button>\n      </CardFooter>\n    </Card>\n  );\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@erbium/ui/components/card";\nimport { Input } from "@erbium/ui/components/input";\nimport { Label } from "@erbium/ui/components/label";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\n\nexport default function CardDemo() {\n  return (\n    <Card className="w-full max-w-sm">\n      <CardHeader>\n        <CardTitle>Login to your account</CardTitle>\n        <CardDescription>Enter your email below to login to your account</CardDescription>\n        <CardAction>\n          <Button variant="link">Sign Up</Button>\n        </CardAction>\n      </CardHeader>\n      <CardContent>\n        <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>\n          <div className="flex flex-col gap-6">\n            <div className="grid gap-2">\n              <Label htmlFor="email">Email</Label>\n              <Input id="email" type="email" placeholder="m@example.com" required />\n            </div>\n            <div className="grid gap-2">\n              <div className="flex items-center">\n                <Label htmlFor="password">Password</Label>\n                <a\n                  href="#"\n                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"\n                >\n                  Forgot your password?\n                </a>\n              </div>\n              <Input id="password" type="password" required />\n            </div>\n          </div>\n        </form>\n      </CardContent>\n      <CardFooter className="gap-2">\n        <StatefulButton type="submit" form="card-login-form" className="min-w-0 flex-1">\n          Login\n        </StatefulButton>\n        <Button variant="outline" className="shrink-0">\n          Login with Google\n        </Button>\n      </CardFooter>\n    </Card>\n  );\n}\n',
       },
     },
   },
@@ -57,9 +60,9 @@ export const Overview: Story = {
   ),
 };
 
-function SampleCard({ size, className }: { size?: "sm"; className?: string }) {
+function SampleCard({ size }: { size?: "sm" }) {
   return (
-    <Card className={`w-80 ${className ?? ""}`} size={size}>
+    <Card className="w-80" size={size}>
       <CardHeader>
         <CardTitle>Project update</CardTitle>
         <CardDescription>Everything you need to know at a glance.</CardDescription>
@@ -82,18 +85,6 @@ export const Small: Story = {
   },
   render: () => <SampleCard size="sm" />,
 };
-export const Spacing: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Use the `--card-spacing` CSS variable to adjust the spacing between sections and the inset of card parts. This example uses a 24px inset. For full-width content, remove the `CardContent` horizontal padding and its gap before the footer.",
-      },
-    },
-  },
-
-  render: () => <SampleCard className="[--card-spacing:--spacing(6)]" />,
-};
 export const EdgeToEdge: Story = {
   parameters: {
     docs: {
@@ -106,8 +97,8 @@ export const EdgeToEdge: Story = {
       <CardHeader>
         <CardTitle>Recent activity</CardTitle>
       </CardHeader>
-      <CardContent className="-mb-(--card-spacing) px-0">
-        <div className="border-t bg-muted p-(--card-spacing)">Content runs to the card edges.</div>
+      <CardContent className="px-0">
+        <div className="border-t bg-muted p-4">Content runs to the card edges.</div>
       </CardContent>
       <CardFooter>View all activity</CardFooter>
     </Card>

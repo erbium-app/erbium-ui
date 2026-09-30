@@ -137,7 +137,7 @@ function OpeningPositionScroller({
   return (
     <MessageScroller>
       <MessageScrollerViewport>
-        <MessageScrollerContent className="p-(--card-spacing)">
+        <MessageScrollerContent className="p-4">
           {messages.map((message) => {
             const isUserMessage = message.role === "user";
 

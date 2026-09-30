@@ -9,13 +9,5 @@ export default function CalendarTimezone() {
     setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
   }, []);
 
-  return (
-    <Calendar
-      className="rounded-lg border"
-      mode="single"
-      onSelect={setDate}
-      selected={date}
-      timeZone={timeZone}
-    />
-  );
+  return <Calendar mode="single" onSelect={setDate} selected={date} timeZone={timeZone} />;
 }
