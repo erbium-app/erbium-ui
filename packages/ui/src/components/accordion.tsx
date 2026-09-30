@@ -25,7 +25,7 @@ function AccordionItem({ className, children, ...props }: AccordionPrimitive.Ite
       {children}
       <Separator
         data-slot="accordion-item-separator"
-        fade={false}
+
         className="group-last/accordion-item:hidden"
       />
     </AccordionPrimitive.Item>
@@ -61,7 +61,7 @@ function AccordionContent({ className, children, ...props }: AccordionPrimitive.
       className="h-(--accordion-panel-height) overflow-hidden text-sm transition-[height] duration-200 ease-in-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none"
       {...props}
     >
-      <Separator fade={false} />
+      <Separator />
       <div
         className={cn(
           "pt-2.5 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",

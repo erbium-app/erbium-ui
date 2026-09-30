@@ -32,7 +32,7 @@ export function CollapsibleSettings() {
           />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <Separator fade={false} />
+          <Separator />
           <div className="px-3 pt-2 pb-3">
             <FieldGroup className="grid w-full grid-cols-2 gap-2">
               <Field>

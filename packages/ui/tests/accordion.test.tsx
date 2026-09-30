@@ -26,9 +26,9 @@ test("accordion animates the panel height when its trigger is clicked", () => {
   expect(panel?.className).toContain("h-(--accordion-panel-height)");
   expect(panel?.className).toContain("data-starting-style:h-0");
   expect(panel?.firstElementChild?.getAttribute("data-slot")).toBe("separator");
-  expect(panel?.firstElementChild?.getAttribute("data-fade")).toBe("none");
+  expect(panel?.firstElementChild?.hasAttribute("data-fade")).toBe(false);
   expect(panel?.lastElementChild?.textContent).toBe("More details");
   expect(
-    container.querySelector('[data-slot="accordion-item-separator"]')?.getAttribute("data-fade"),
-  ).toBe("none");
+    container.querySelector('[data-slot="accordion-item-separator"]')?.hasAttribute("data-fade"),
+  ).toBe(false);
 });

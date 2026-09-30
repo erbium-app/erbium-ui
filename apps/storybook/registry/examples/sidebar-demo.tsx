@@ -35,7 +35,7 @@ export default function Demo() {
                   />
                 </SidebarGroupLabel>
                 <CollapsibleContent>
-                  <Separator fade={false} />
+                  <Separator />
                   <SidebarGroupContent>
                     <SidebarMenu>
                       <SidebarMenuItem>

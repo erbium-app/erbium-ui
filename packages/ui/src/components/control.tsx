@@ -1352,7 +1352,7 @@ function Section({
       onOpenChange={onOpenChange}
       className={cn("w-full min-w-0", className)}
     >
-      <Separator fade={false} className="mb-2" />
+      <Separator className="mb-2" />
       <CollapsibleTrigger className="group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
         {title}
         <HugeiconsIcon
@@ -1362,7 +1362,7 @@ function Section({
         />
       </CollapsibleTrigger>
       <CollapsibleContent className="data-open:overflow-visible">
-        <Separator fade={false} className="mt-2" />
+        <Separator className="mt-2" />
         <Group className="py-2">{children}</Group>
       </CollapsibleContent>
     </Collapsible>

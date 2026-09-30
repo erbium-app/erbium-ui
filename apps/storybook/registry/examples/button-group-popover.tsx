@@ -23,15 +23,15 @@ export default function ButtonGroupPopover() {
             </Button>
           }
         />
-        <PopoverContent align="end" className="rounded-xl p-0 text-sm">
-          <div className="px-4 py-3">
+        <PopoverContent align="end" className="gap-0 overflow-hidden rounded-xl p-0 text-sm">
+          <div className="px-3 py-2">
             <div className="text-sm font-medium">Agent Tasks</div>
           </div>
           <Separator />
-          <div className="p-4 text-sm *:[p:not(:last-child)]:mb-2">
+          <div className="p-3 text-sm *:[p:not(:last-child)]:mb-2">
             <Textarea
               placeholder="Describe your task in natural language."
-              className="mb-4 resize-none"
+              className="mb-3 resize-none"
             />
             <p className="font-medium">Start a new task with Copilot</p>
             <p className="text-muted-foreground">

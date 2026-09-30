@@ -139,10 +139,14 @@
 }
 
 /* A translucent shadow and catchlight follow the colour of their containing surface. */
-[data-slot="separator"],
+[data-separator],
 [data-slot="marker"][data-variant="separator"] {
   --carve-rule-direction: to bottom;
   --carve-fade-direction: to right;
+}
+
+[data-separator][data-fade],
+[data-slot="marker"][data-variant="separator"] {
   mask-image: linear-gradient(
     var(--carve-fade-direction),
     transparent,
@@ -152,18 +156,14 @@
   );
 }
 
-[data-slot="separator"][data-orientation="vertical"] {
+[data-separator][data-orientation="vertical"] {
   --carve-rule-direction: to right;
   --carve-fade-direction: to bottom;
 }
 
-[data-slot="separator"][data-fade="none"] {
-  mask-image: none;
-}
-
-[data-slot="separator"],
-[data-slot="separator"][data-labeled]::before,
-[data-slot="separator"][data-labeled]::after,
+[data-separator],
+[data-separator][data-labeled]::before,
+[data-separator][data-labeled]::after,
 [data-slot="marker"][data-variant="separator"]::before,
 [data-slot="marker"][data-variant="separator"]::after {
   background-image: linear-gradient(
@@ -173,12 +173,12 @@
   );
 }
 
-[data-slot="separator"][data-labeled] {
+[data-separator][data-labeled] {
   background-image: none;
 }
 
-[data-slot="separator"][data-labeled]::before,
-[data-slot="separator"][data-labeled]::after,
+[data-separator][data-labeled]::before,
+[data-separator][data-labeled]::after,
 [data-slot="marker"][data-variant="separator"]::before,
 [data-slot="marker"][data-variant="separator"]::after {
   content: "";
@@ -187,8 +187,8 @@
   flex: 1;
 }
 
-[data-slot="separator"][data-labeled][data-orientation="vertical"]::before,
-[data-slot="separator"][data-labeled][data-orientation="vertical"]::after {
+[data-separator][data-labeled][data-orientation="vertical"]::before,
+[data-separator][data-labeled][data-orientation="vertical"]::after {
   min-height: 0;
   width: 2px;
   height: auto;

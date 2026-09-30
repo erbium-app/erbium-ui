@@ -8,7 +8,7 @@ type SeparatorProps = SeparatorPrimitive.Props & {
 function Separator({
   children,
   className,
-  fade = true,
+  fade = false,
   orientation = "horizontal",
   ...props
 }: SeparatorProps) {
@@ -18,7 +18,7 @@ function Separator({
     <SeparatorPrimitive
       data-slot="separator"
       data-labeled={labeled ? "" : undefined}
-      data-fade={fade ? undefined : "none"}
+      data-fade={fade ? "" : undefined}
       orientation={orientation}
       role={labeled ? "none" : "separator"}
       className={cn(
@@ -29,6 +29,7 @@ function Separator({
         className,
       )}
       {...props}
+      data-separator=""
     >
       {children}
     </SeparatorPrimitive>

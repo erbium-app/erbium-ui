@@ -75,7 +75,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <>
-      <Separator fade={false} className="-mb-(--card-spacing)" />
+      <Separator className="-mb-(--card-spacing)" />
       <div
         data-slot="card-footer"
         className={cn("flex items-center rounded-b-xl bg-muted/50 p-(--card-spacing)", className)}

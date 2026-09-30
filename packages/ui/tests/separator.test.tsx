@@ -19,10 +19,17 @@ test("labeled separators expose their text without separator semantics", () => {
   expect(container.querySelector("[data-labeled]")).toBeTruthy();
 });
 
-test("the fade can be disabled for edge-to-edge dividers", () => {
-  const { container } = render(<Separator fade={false} />);
+test("separators are full width by default and can opt into fading", () => {
+  const { container, rerender } = render(<Separator />);
+  expect(container.querySelector("[data-separator]")?.hasAttribute("data-fade")).toBe(false);
 
-  expect(container.querySelector('[data-slot="separator"]')?.getAttribute("data-fade")).toBe(
-    "none",
-  );
+  rerender(<Separator fade />);
+  expect(container.querySelector("[data-separator]")?.hasAttribute("data-fade")).toBe(true);
+});
+
+test("custom slots retain separator styling", () => {
+  const { container } = render(<Separator data-slot="command-separator" />);
+  const separator = container.querySelector('[data-slot="command-separator"]');
+
+  expect(separator?.hasAttribute("data-separator")).toBe(true);
 });

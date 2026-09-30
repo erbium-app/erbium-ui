@@ -24,7 +24,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Separator> = {
-  args: { orientation: "horizontal", fade: true, className: "" },
+  args: { orientation: "horizontal", fade: false, className: "" },
   argTypes: {
     orientation: { control: "select", options: ["horizontal", "vertical"] },
     fade: { control: "boolean" },
@@ -77,30 +77,34 @@ export const Labeled: Story = {
         story: "A centered label stays readable while the carved lines fade at the outer edges.",
       },
       source: {
-        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator>or</Separator>',
+        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator fade>or</Separator>',
       },
     },
   },
   render: () => (
     <div className="w-72 rounded-lg bg-surface-panel p-4 shadow-panel">
-      <Separator className="text-xs text-muted-foreground">or</Separator>
+      <Separator fade className="text-xs text-muted-foreground">
+        or
+      </Separator>
     </div>
   ),
 };
 
-export const WithoutFade: Story = {
+export const FullWidth: Story = {
   parameters: {
     docs: {
-      description: { story: "Use `fade={false}` when a divider should meet both edges." },
+      description: {
+        story: "Separators meet both edges by default, including below card headers.",
+      },
       source: {
-        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator fade={false} />',
+        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator />',
       },
     },
   },
   render: () => (
     <div className="w-72 overflow-hidden rounded-lg bg-surface-panel py-3 shadow-panel">
       <div className="px-3 pb-3 text-sm">Card header</div>
-      <Separator fade={false} />
+      <Separator />
       <div className="px-3 pt-3 text-sm text-muted-foreground">Card content</div>
     </div>
   ),
@@ -146,8 +150,10 @@ export const OnSurfaces: Story = {
           className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-surface-rim p-3 ${surface}`}
         >
           <span className="text-xs font-medium">{name}</span>
-          <Separator fade={false} />
-          <Separator className="text-xs">or</Separator>
+          <Separator />
+          <Separator fade className="text-xs">
+            or
+          </Separator>
         </div>
       ))}
     </div>
