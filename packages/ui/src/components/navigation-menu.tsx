@@ -1,7 +1,7 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import { StatefulChevron } from "./stateful-icon";
+import { RotatingChevron } from "./stateful-icon";
 
 function NavigationMenu({
   align = "start",
@@ -65,7 +65,7 @@ function NavigationMenuTrigger({
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
     >
-      {children} <StatefulChevron className="relative top-px ms-1 size-3" />
+      {children} <RotatingChevron className="relative top-px ms-1 size-3" />
     </NavigationMenuPrimitive.Trigger>
   );
 }

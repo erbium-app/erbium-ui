@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../components/collapsible";
-import { StatefulChevron } from "../components/stateful-icon";
+import { RotatingChevron } from "../components/stateful-icon";
 import { Separator } from "../components/separator";
 import {
   Sidebar,
@@ -26,7 +26,7 @@ export default function Demo() {
                   render={<CollapsibleTrigger />}
                 >
                   Workspace
-                  <StatefulChevron className="ms-auto" />
+                  <RotatingChevron className="ms-auto" />
                 </SidebarGroupLabel>
                 <CollapsibleContent>
                   <Separator />

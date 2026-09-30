@@ -1,7 +1,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
 
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,7 +47,7 @@ export default function InputGroupDropdown() {
                   variant="ghost"
                   className="group group/search-menu-trigger pr-1.5! text-xs"
                 >
-                  Search In... <StatefulChevron className="size-3" />
+                  Search In... <RotatingChevron className="size-3" />
                 </InputGroupButton>
               }
             />

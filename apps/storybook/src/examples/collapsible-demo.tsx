@@ -3,7 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
 import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
 
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Card } from "@erbium/ui/components/card";
 import {
   Collapsible,
@@ -30,7 +30,7 @@ export default function CollapsibleDemo() {
             <span className="block text-sm font-medium">Project files</span>
             <span className="block text-xs text-muted-foreground">3 files in this workspace</span>
           </span>
-          <StatefulChevron direction="right" className="size-4 shrink-0 text-muted-foreground" />
+          <RotatingChevron direction="right" className="size-4 shrink-0 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

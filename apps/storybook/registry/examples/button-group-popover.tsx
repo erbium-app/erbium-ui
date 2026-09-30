@@ -2,7 +2,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import BotIcon from "@hugeicons/core-free-icons/BotIcon";
 
-import { StatefulChevron } from "../components/stateful-icon";
+import { RotatingChevron } from "../components/stateful-icon";
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
 import { Popover, PopoverContent, PopoverTrigger } from "../components/popover";
@@ -24,7 +24,7 @@ export default function ButtonGroupPopover() {
               aria-label="Open Popover"
               className="group group/popover-trigger"
             >
-              <StatefulChevron />
+              <RotatingChevron />
             </Button>
           }
         />

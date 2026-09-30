@@ -7,7 +7,7 @@ import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { StatefulChevron } from "./stateful-icon";
+import { RotatingChevron } from "./stateful-icon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 const Combobox = ComboboxPrimitive.Root;
@@ -24,7 +24,7 @@ function ComboboxTrigger({ className, children, ...props }: ComboboxPrimitive.Tr
       {...props}
     >
       {children}
-      <StatefulChevron className="pointer-events-none size-4 text-muted-foreground" />
+      <RotatingChevron className="pointer-events-none size-4 text-muted-foreground" />
     </ComboboxPrimitive.Trigger>
   );
 }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Card } from "@erbium/ui/components/card";
 import {
   Collapsible,
@@ -24,7 +24,7 @@ export function CollapsibleSettings() {
               Set the corner radius of the element.
             </span>
           </span>
-          <StatefulChevron direction="right" className="size-4 text-muted-foreground" />
+          <RotatingChevron direction="right" className="size-4 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

@@ -52,12 +52,12 @@ function StatefulIcon<State extends string>({
   );
 }
 
-type StatefulChevronProps = Omit<React.ComponentProps<typeof HugeiconsIcon>, "icon"> & {
+type RotatingChevronProps = Omit<React.ComponentProps<typeof HugeiconsIcon>, "icon"> & {
   /** The closed orientation of the chevron. */
   direction?: "down" | "right" | "left";
 };
 
-function StatefulChevron({ direction = "down", className, ...props }: StatefulChevronProps) {
+function RotatingChevron({ direction = "down", className, ...props }: RotatingChevronProps) {
   const icon = direction === "down" ? ChevronDownIcon : ChevronRightIcon;
   const rotation = {
     down: "group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180",
@@ -75,11 +75,11 @@ function StatefulChevron({ direction = "down", className, ...props }: StatefulCh
         rotation,
         className,
       )}
-      data-slot="stateful-chevron"
+      data-slot="rotating-chevron"
       {...props}
     />
   );
 }
 
-export { StatefulChevron, StatefulIcon };
-export type { StatefulChevronProps, StatefulIconProps };
+export { RotatingChevron, StatefulIcon };
+export type { RotatingChevronProps, StatefulIconProps };

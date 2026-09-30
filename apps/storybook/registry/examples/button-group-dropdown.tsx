@@ -8,7 +8,7 @@ import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 import UserRoundXIcon from "@hugeicons/core-free-icons/UserRoundXIcon";
 import VolumeOffIcon from "@hugeicons/core-free-icons/VolumeOffIcon";
 
-import { StatefulChevron } from "../components/stateful-icon";
+import { RotatingChevron } from "../components/stateful-icon";
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
 import {
@@ -28,7 +28,7 @@ export default function ButtonGroupDropdown() {
         <DropdownMenuTrigger
           render={
             <Button variant="outline" className="group group/menu-trigger pl-2!">
-              <StatefulChevron />
+              <RotatingChevron />
             </Button>
           }
         />

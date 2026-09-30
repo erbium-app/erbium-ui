@@ -2,7 +2,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import File01Icon from "@hugeicons/core-free-icons/File01Icon";
 import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
 
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Button } from "@erbium/ui/components/button";
 import { Card, CardContent, CardHeader } from "@erbium/ui/components/card";
 import {
@@ -76,7 +76,7 @@ export function CollapsibleFileTree() {
               />
             }
           >
-            <StatefulChevron direction="right" />
+            <RotatingChevron direction="right" />
             <HugeiconsIcon icon={Folder01Icon} />
             {fileItem.name}
           </CollapsibleTrigger>

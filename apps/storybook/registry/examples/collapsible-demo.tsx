@@ -4,7 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
 import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
 
-import { StatefulChevron } from "../components/stateful-icon";
+import { RotatingChevron } from "../components/stateful-icon";
 import { Card } from "../components/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../components/collapsible";
 import { Separator } from "../components/separator";
@@ -27,7 +27,7 @@ export default function CollapsibleDemo() {
             <span className="block text-sm font-medium">Project files</span>
             <span className="block text-xs text-muted-foreground">3 files in this workspace</span>
           </span>
-          <StatefulChevron direction="right" className="size-4 shrink-0 text-muted-foreground" />
+          <RotatingChevron direction="right" className="size-4 shrink-0 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

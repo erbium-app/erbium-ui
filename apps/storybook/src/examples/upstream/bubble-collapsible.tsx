@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
 import { Collapsible, CollapsibleTrigger } from "@erbium/ui/components/collapsible";
@@ -35,7 +35,7 @@ export function BubbleCollapsible() {
                 render={<Button variant="link" className="group gap-1 p-0 text-muted-foreground" />}
               >
                 {open ? "Show less" : "Show more"}
-                <StatefulChevron />
+                <RotatingChevron />
               </CollapsibleTrigger>
             ) : null}
           </Collapsible>

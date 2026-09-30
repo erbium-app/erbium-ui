@@ -6,7 +6,7 @@ import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { StatefulChevron } from "./stateful-icon";
+import { RotatingChevron } from "./stateful-icon";
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
@@ -132,7 +132,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <StatefulChevron direction="right" className="ms-auto" />
+      <RotatingChevron direction="right" className="ms-auto" />
     </MenuPrimitive.SubmenuTrigger>
   );
 }

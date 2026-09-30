@@ -6,7 +6,7 @@ import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { StatefulChevron } from "./stateful-icon";
+import { RotatingChevron } from "./stateful-icon";
 
 function ContextMenu({ ...props }: ContextMenuPrimitive.Root.Props) {
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
@@ -138,7 +138,7 @@ function ContextMenuSubTrigger({
       {...props}
     >
       {children}
-      <StatefulChevron direction="right" className="ms-auto" />
+      <RotatingChevron direction="right" className="ms-auto" />
     </ContextMenuPrimitive.SubmenuTrigger>
   );
 }

@@ -3,7 +3,7 @@ import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { cn } from "../lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { StatefulChevron } from "./stateful-icon";
+import { RotatingChevron } from "./stateful-icon";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
 import { ScrollArea } from "./scroll-area";
@@ -51,7 +51,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon
-        render={<StatefulChevron className="pointer-events-none size-4 text-muted-foreground" />}
+        render={<RotatingChevron className="pointer-events-none size-4 text-muted-foreground" />}
       />
     </SelectPrimitive.Trigger>
   );

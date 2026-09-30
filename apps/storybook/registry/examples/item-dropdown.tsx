@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { StatefulChevron } from "../components/stateful-icon";
+import { RotatingChevron } from "../components/stateful-icon";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/avatar";
 import { Button } from "../components/button";
 import {
@@ -35,7 +35,7 @@ export default function ItemDropdown() {
         <DropdownMenuTrigger
           render={
             <Button variant="outline" size="sm" className="group group/item-menu-trigger w-fit">
-              Select <StatefulChevron />
+              Select <RotatingChevron />
             </Button>
           }
         />

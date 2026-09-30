@@ -1,4 +1,4 @@
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -40,7 +40,7 @@ export default function ItemDropdown() {
         <DropdownMenuTrigger
           render={
             <Button variant="outline" size="sm" className="group group/item-menu-trigger w-fit">
-              Select <StatefulChevron />
+              Select <RotatingChevron />
             </Button>
           }
         />

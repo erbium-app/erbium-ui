@@ -3,7 +3,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@erbium/ui/components/collapsible";
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Separator } from "@erbium/ui/components/separator";
 import {
   Sidebar,
@@ -29,7 +29,7 @@ export default function Demo() {
                   render={<CollapsibleTrigger />}
                 >
                   Workspace
-                  <StatefulChevron className="ms-auto" />
+                  <RotatingChevron className="ms-auto" />
                 </SidebarGroupLabel>
                 <CollapsibleContent>
                   <Separator />

@@ -1,4 +1,4 @@
-import { StatefulChevron } from "@erbium/ui/components/stateful-icon";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Button } from "@erbium/ui/components/button";
 import { Card } from "@erbium/ui/components/card";
 import {
@@ -14,7 +14,7 @@ export function CollapsibleBasic() {
       <Collapsible>
         <CollapsibleTrigger className="group group/details flex w-full items-center rounded-xl px-3 py-2 text-start text-sm font-medium outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-ring/40">
           Product details
-          <StatefulChevron direction="right" className="ms-auto size-4 text-muted-foreground" />
+          <RotatingChevron direction="right" className="ms-auto size-4 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { StatefulChevron } from "./stateful-icon";
+import { RotatingChevron } from "./stateful-icon";
 import ImagePlusIcon from "@hugeicons/core-free-icons/ImagePlusIcon";
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
@@ -720,7 +720,7 @@ function Select({
         <span className="ms-auto flex min-w-0 items-center gap-2 text-muted-foreground">
           <SelectPrimitive.Value className="truncate text-end text-foreground" />
           <SelectPrimitive.Icon>
-            <StatefulChevron className="size-3.5" />
+            <RotatingChevron className="size-3.5" />
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
@@ -868,7 +868,7 @@ function Image({
             ) : null}
             <SelectPrimitive.Value className="max-w-24 truncate" />
             <SelectPrimitive.Icon>
-              <StatefulChevron className="size-3.5" />
+              <RotatingChevron className="size-3.5" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
@@ -1369,7 +1369,7 @@ function Section({
       <Separator className="mb-2" />
       <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
         {title}
-        <StatefulChevron direction="left" className="size-4" />
+        <RotatingChevron direction="left" className="size-4" />
       </CollapsibleTrigger>
       <CollapsibleContent className="data-open:overflow-visible">
         <Separator className="mt-2" />
