@@ -2,6 +2,7 @@ import * as React from "react";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
+import { Separator } from "./separator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
@@ -207,7 +208,8 @@ function ContextMenuSeparator({ className, ...props }: ContextMenuPrimitive.Sepa
   return (
     <ContextMenuPrimitive.Separator
       data-slot="context-menu-separator"
-      className={cn("-mx-1 my-1 h-px bg-border", className)}
+      className={cn("-mx-1 my-1", className)}
+      render={<Separator />}
       {...props}
     />
   );

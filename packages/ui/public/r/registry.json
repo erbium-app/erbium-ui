@@ -83,7 +83,12 @@
       "title": "Autocomplete",
       "description": "Erbium autocomplete component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/input", "@erbium/scroll-area", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/input",
+        "@erbium/scroll-area",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/autocomplete.tsx",
@@ -202,7 +207,7 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Erbium card component.",
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/card.tsx",
@@ -276,7 +281,12 @@
       "title": "Combobox",
       "description": "Erbium combobox component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/input-group", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/input-group",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/combobox.tsx",
@@ -295,6 +305,7 @@
         "@erbium/dialog",
         "@erbium/input-group",
         "@erbium/kbd",
+        "@erbium/separator",
         "@erbium/utils"
       ],
       "files": [
@@ -311,7 +322,7 @@
       "title": "Context Menu",
       "description": "Erbium context menu component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/context-menu.tsx",
@@ -390,7 +401,7 @@
       "title": "Dropdown Menu",
       "description": "Erbium dropdown menu component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/dropdown-menu.tsx",
@@ -755,7 +766,7 @@
       "title": "Select",
       "description": "Erbium select component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/scroll-area", "@erbium/utils"],
+      "registryDependencies": ["@erbium/scroll-area", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/select.tsx",

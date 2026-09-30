@@ -51,6 +51,8 @@
   --surface-drop-strong: rgb(57 58 52 / 0.1);
   --surface-shade: rgb(57 58 52 / 0.1);
   --surface-well-edge: rgb(57 58 52 / 0.08);
+  --surface-carve-shadow: color-mix(in srgb, var(--foreground) 16%, transparent);
+  --surface-carve-highlight: color-mix(in srgb, var(--surface-panel) 20%, transparent);
 
   --fill-highlight: rgb(255 255 255 / 0.18);
   --fill-edge: rgb(0 0 0 / 0.14);
@@ -77,6 +79,8 @@
   --surface-drop-strong: rgb(0 0 0 / 0.5);
   --surface-shade: rgb(0 0 0 / 0.35);
   --surface-well-edge: rgb(222 220 213 / 0.04);
+  --surface-carve-shadow: var(--surface-drop-strong);
+  --surface-carve-highlight: color-mix(in srgb, var(--foreground) 16%, transparent);
 
   --fill-highlight: rgb(255 255 255 / 0.2);
   --fill-edge: rgb(222 220 213 / 0.02);
@@ -132,4 +136,60 @@
 
 @utility tint-press {
   background-image: linear-gradient(var(--state-press), var(--state-press));
+}
+
+/* A translucent shadow and catchlight follow the colour of their containing surface. */
+[data-slot="separator"],
+[data-slot="marker"][data-variant="separator"] {
+  --carve-rule-direction: to bottom;
+  --carve-fade-direction: to right;
+  mask-image: linear-gradient(
+    var(--carve-fade-direction),
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+[data-slot="separator"][data-orientation="vertical"] {
+  --carve-rule-direction: to right;
+  --carve-fade-direction: to bottom;
+}
+
+[data-slot="separator"][data-fade="none"] {
+  mask-image: none;
+}
+
+[data-slot="separator"],
+[data-slot="separator"][data-labeled]::before,
+[data-slot="separator"][data-labeled]::after,
+[data-slot="marker"][data-variant="separator"]::before,
+[data-slot="marker"][data-variant="separator"]::after {
+  background-image: linear-gradient(
+    var(--carve-rule-direction),
+    var(--surface-carve-shadow) 0 1px,
+    var(--surface-carve-highlight) 1px 2px
+  );
+}
+
+[data-slot="separator"][data-labeled] {
+  background-image: none;
+}
+
+[data-slot="separator"][data-labeled]::before,
+[data-slot="separator"][data-labeled]::after,
+[data-slot="marker"][data-variant="separator"]::before,
+[data-slot="marker"][data-variant="separator"]::after {
+  content: "";
+  min-width: 0;
+  height: 2px;
+  flex: 1;
+}
+
+[data-slot="separator"][data-labeled][data-orientation="vertical"]::before,
+[data-slot="separator"][data-labeled][data-orientation="vertical"]::after {
+  min-height: 0;
+  width: 2px;
+  height: auto;
 }

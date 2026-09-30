@@ -23,7 +23,7 @@ export function CollapsibleBasic() {
           />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <Separator />
+          <Separator fade={false} />
           <div className="flex flex-col items-start gap-2 px-3 pt-2 pb-3 text-sm text-muted-foreground">
             <div>This panel can be expanded or collapsed to reveal additional content.</div>
             <Button size="xs">Learn More</Button>

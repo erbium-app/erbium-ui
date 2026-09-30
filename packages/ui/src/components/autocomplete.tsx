@@ -1,6 +1,7 @@
 import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
+import { Separator } from "./separator";
 import { cn } from "../lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ArrowUpDownIcon from "@hugeicons/core-free-icons/ArrowUpDownIcon";
@@ -165,8 +166,9 @@ export function AutocompleteSeparator({
 }: AutocompletePrimitive.Separator.Props): React.ReactElement {
   return (
     <AutocompletePrimitive.Separator
-      className={cn("mx-2 my-1 h-px bg-border last:hidden", className)}
+      className={cn("mx-2 my-1 last:hidden", className)}
       data-slot="autocomplete-separator"
+      render={<Separator />}
       {...props}
     />
   );

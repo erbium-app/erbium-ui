@@ -37,7 +37,7 @@ export default function CollapsibleDemo() {
           />
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <Separator />
+          <Separator fade={false} />
           <div className="space-y-1 px-3 pt-2 pb-3">
             {files.map((file) => (
               <div key={file} className="flex items-center gap-2 py-1 text-sm">

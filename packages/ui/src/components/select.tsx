@@ -7,6 +7,7 @@ import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
 
 import { ScrollArea } from "./scroll-area";
+import { Separator } from "./separator";
 
 const Select = SelectPrimitive.Root;
 
@@ -151,7 +152,8 @@ function SelectSeparator({ className, ...props }: SelectPrimitive.Separator.Prop
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn("pointer-events-none -mx-1 my-1 h-px bg-border", className)}
+      className={cn("pointer-events-none -mx-1 my-1", className)}
+      render={<Separator />}
       {...props}
     />
   );

@@ -15,13 +15,20 @@ function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   );
 }
 
-function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
+function AccordionItem({ className, children, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("group/accordion-item not-last:border-b", className)}
+      className={cn("group/accordion-item", className)}
       {...props}
-    />
+    >
+      {children}
+      <Separator
+        data-slot="accordion-item-separator"
+        fade={false}
+        className="group-last/accordion-item:hidden"
+      />
+    </AccordionPrimitive.Item>
   );
 }
 
@@ -54,7 +61,7 @@ function AccordionContent({ className, children, ...props }: AccordionPrimitive.
       className="h-(--accordion-panel-height) overflow-hidden text-sm transition-[height] duration-200 ease-in-out data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none"
       {...props}
     >
-      <Separator />
+      <Separator fade={false} />
       <div
         className={cn(
           "pt-2.5 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",

@@ -38,7 +38,7 @@ export default function Demo() {
                   />
                 </SidebarGroupLabel>
                 <CollapsibleContent>
-                  <Separator className="bg-sidebar-border" />
+                  <Separator fade={false} />
                   <SidebarGroupContent>
                     <SidebarMenu>
                       <SidebarMenuItem>

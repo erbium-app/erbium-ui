@@ -24,8 +24,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Separator> = {
-  args: { orientation: "horizontal", className: "" },
-  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+  args: { orientation: "horizontal", fade: true, className: "" },
+  argTypes: {
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    fade: { control: "boolean" },
+  },
   render: (args) => (
     <div className="flex h-28 w-72 items-center justify-center">
       <Separator
@@ -66,6 +69,91 @@ export const Vertical: Story = {
   },
   render: () => <SeparatorVertical />,
 };
+
+export const Labeled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "A centered label stays readable while the carved lines fade at the outer edges.",
+      },
+      source: {
+        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator>or</Separator>',
+      },
+    },
+  },
+  render: () => (
+    <div className="w-72 rounded-lg bg-surface-panel p-4 shadow-panel">
+      <Separator className="text-xs text-muted-foreground">or</Separator>
+    </div>
+  ),
+};
+
+export const WithoutFade: Story = {
+  parameters: {
+    docs: {
+      description: { story: "Use `fade={false}` when a divider should meet both edges." },
+      source: {
+        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator fade={false} />',
+      },
+    },
+  },
+  render: () => (
+    <div className="w-72 overflow-hidden rounded-lg bg-surface-panel py-3 shadow-panel">
+      <div className="px-3 pb-3 text-sm">Card header</div>
+      <Separator fade={false} />
+      <div className="px-3 pt-3 text-sm text-muted-foreground">Card content</div>
+    </div>
+  ),
+};
+
+const surfaceSamples = [
+  ["Canvas", "bg-surface-canvas"],
+  ["Panel", "bg-surface-panel"],
+  ["Control", "bg-surface-control"],
+  ["Input", "bg-surface-input"],
+  ["Overlay", "bg-surface-overlay"],
+  ["Modal", "bg-surface-modal"],
+  ["Top", "bg-surface-top"],
+  ["Well", "bg-surface-well"],
+  ["Muted", "bg-muted"],
+  ["Secondary", "bg-secondary text-secondary-foreground"],
+  ["Accent", "bg-accent text-accent-foreground"],
+  ["Primary", "bg-primary text-primary-foreground"],
+  ["Destructive", "bg-destructive text-destructive-foreground"],
+  ["Success", "bg-success text-success-foreground"],
+  ["Warning", "bg-warning text-warning-foreground"],
+  ["Info", "bg-info text-info-foreground"],
+  ["Destructive soft", "bg-destructive-soft text-destructive-soft-foreground"],
+  ["Success soft", "bg-success-soft text-success-soft-foreground"],
+  ["Warning soft", "bg-warning-soft text-warning-soft-foreground"],
+  ["Info soft", "bg-info-soft text-info-soft-foreground"],
+] as const;
+
+export const OnSurfaces: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "The translucent shadow and catchlight are checked across the surface palette in both themes.",
+      },
+    },
+  },
+  render: () => (
+    <div className="grid w-160 max-w-[calc(100vw-2rem)] grid-cols-2 gap-3 p-4 sm:grid-cols-3">
+      {surfaceSamples.map(([name, surface]) => (
+        <div
+          key={name}
+          className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-surface-rim p-3 ${surface}`}
+        >
+          <span className="text-xs font-medium">{name}</span>
+          <Separator fade={false} />
+          <Separator className="text-xs">or</Separator>
+        </div>
+      ))}
+    </div>
+  ),
+};
+
 export const Menu: Story = {
   parameters: {
     docs: {

@@ -4,6 +4,7 @@ import { cn } from "../lib/utils";
 
 import { Button } from "./button";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "./input-group";
+import { Separator } from "./separator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
@@ -185,7 +186,8 @@ function ComboboxSeparator({ className, ...props }: ComboboxPrimitive.Separator.
   return (
     <ComboboxPrimitive.Separator
       data-slot="combobox-separator"
-      className={cn("-mx-1 my-1 h-px bg-border", className)}
+      className={cn("-mx-1 my-1", className)}
+      render={<Separator />}
       {...props}
     />
   );
