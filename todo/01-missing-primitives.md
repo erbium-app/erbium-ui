@@ -49,6 +49,28 @@ Implement the genuinely missing primitives before porting blocks. Each item must
   - Base UI source: `@base-ui/react/toolbar`.
   - Add roving focus, orientation, separators, grouped controls, and RTL support.
 
+## Priority 1: animate-ui motion parity for existing primitives
+
+Port the motion of the animate-ui Base UI components into the existing Erbium components with CSS only (no `motion` dependency). Each port audits the component against the full Base UI API, drives transitions from Base UI state attributes (`data-checked`, `data-starting-style`, `data-ending-style`), honors `motion-reduce`, and adds Storybook coverage for controlled, read-only, and form usage.
+
+- [x] Disabled styling audit across `packages/ui`.
+  - Base UI parts are styled with `data-disabled:`, because `:disabled` misses span roots, div thumbs, focusable-when-disabled parts, and `render` with `nativeButton={false}`.
+  - Shared cva helpers (`buttonVariants`, `toggleVariants`, `navigationMenuTriggerStyle`) keep both `disabled:` and `data-disabled:`; plain native elements keep `disabled:`.
+- [x] `checkbox`
+  - Aligned with Base UI checked/indeterminate state; the indicator animates in and out through `data-starting-style`/`data-ending-style`.
+  - Storybook covers controlled, indeterminate, read-only, form, and table selection.
+- [x] `radio-group`
+  - The indicator dot grows from the center with a slight overshoot and shrinks out before Base UI unmounts it; the checked item keeps a clear background with a primary dot.
+  - Press feedback (`active:scale-90`) is skipped while disabled or read-only.
+  - Storybook covers controlled, read-only, form (`name`, `required`), and group-level `disabled`.
+- [x] `switch`
+  - The thumb springs across the track and stretches toward the center while pressed (off while disabled or read-only); travel uses container units, so sizes, RTL, and custom widths need no per-size offsets.
+  - Added `startIcon`, `endIcon`, and `thumbIcon`; track icons scale in on the exposed side.
+  - The thumb is inset 1px from the track (14px default, 10px `sm`).
+  - Storybook covers icons, controlled, read-only, and form (`value`, `uncheckedValue`, `required`).
+- [ ] Remaining animate-ui Base UI components to compare: `accordion`, `alert-dialog`, `dialog`, `menu`, `popover`, `preview-card`, `progress`, `tabs`, `toggle`, `toggle-group`, and `tooltip`.
+- [ ] Add focused interaction tests for the ported components; they are currently verified with Playwright against the Storybook build only.
+
 ## Priority 1: missing Base UI infrastructure
 
 - [ ] `csp-provider`
@@ -72,6 +94,7 @@ Implement the genuinely missing primitives before porting blocks. Each item must
   - Compare the current `input-otp` dependency with Base UI `OTPField` before changing the public API.
 - [ ] Decide whether to expose `preview-card` as an alias to `hover-card` or add a Coss-compatible export surface.
 - [ ] Add a standalone `radio` wrapper or explicitly document that `radio-group` is the only public radio API.
+  - `RadioGroupItem` already wraps Base UI `Radio.Root` with the full prop surface (`value`, `disabled`, `readOnly`, `required`, `inputRef`, `render`); only the naming/documentation decision remains.
 - [ ] Add a `form` integration decision.
   - Document the boundary between Base UI Form, TanStack Form, and visual Field components.
   - Avoid exporting two competing form state models without clear guidance.
