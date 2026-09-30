@@ -21,9 +21,13 @@
  * one override recolours any surface, for example:
  *   aria-invalid:[--surface-edge:var(--destructive)]
  *
- * Light and dark share every recipe's geometry; only the colours change.
- * Light mode leans on cast shadows (the catchlight is transparent on white);
- * dark mode leans on lighter surfaces and a warm top-edge catchlight.
+ * Raised recipes draw only outside the element: a 0.5px edge, a 0.5px
+ * catchlight just above the top edge, and drops below. An inset rim would sit
+ * inside the transparent border, and the fill showing between it and the edge
+ * reads as a double outline (Medusa and opencode avoid it the same way).
+ * In light mode the edge is ink and the catchlight is invisible on white, so
+ * the drop carries the depth; in dark mode the edge is light, the catchlight
+ * brightens the top, and the drop is black.
  * The ink (#393a34) and light (#dedcd5) tints come from Vitesse.
  */
 
@@ -36,17 +40,16 @@
   --surface-top: #ffffff;
   --surface-well: rgb(57 58 52 / 0.05);
 
-  --surface-edge: rgb(57 58 52 / 0.1);
-  --surface-rim: transparent;
+  --surface-edge: rgb(57 58 52 / 0.16);
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-drop: rgb(57 58 52 / 0.06);
   --surface-drop-strong: rgb(57 58 52 / 0.1);
   --surface-shade: rgb(57 58 52 / 0.1);
-  --surface-well-edge: rgb(57 58 52 / 0.08);
+  --surface-well-edge: rgb(57 58 52 / 0.1);
 
-  --fill-highlight: rgb(255 255 255 / 0.18);
-  --fill-edge: rgb(0 0 0 / 0.14);
+  --fill-highlight: rgb(255 255 255 / 0.16);
+  --fill-edge: rgb(0 0 0 / 0.16);
 
   --state-hover: rgb(57 58 52 / 0.04);
   --state-press: rgb(57 58 52 / 0.07);
@@ -61,17 +64,16 @@
   --surface-top: #2b2b2b;
   --surface-well: rgb(0 0 0 / 0.25);
 
-  --surface-edge: rgb(0 0 0 / 0.55);
-  --surface-rim: rgb(222 220 213 / 0.04);
-  --surface-highlight: rgb(222 220 213 / 0.06);
-  --surface-highlight-strong: rgb(222 220 213 / 0.09);
-  --surface-drop: rgb(0 0 0 / 0.22);
-  --surface-drop-strong: rgb(0 0 0 / 0.34);
+  --surface-edge: rgb(222 220 213 / 0.12);
+  --surface-highlight: rgb(222 220 213 / 0.08);
+  --surface-highlight-strong: rgb(222 220 213 / 0.12);
+  --surface-drop: rgb(0 0 0 / 0.3);
+  --surface-drop-strong: rgb(0 0 0 / 0.4);
   --surface-shade: rgb(0 0 0 / 0.35);
-  --surface-well-edge: rgb(222 220 213 / 0.04);
+  --surface-well-edge: rgb(222 220 213 / 0.1);
 
-  --fill-highlight: rgb(255 255 255 / 0.2);
-  --fill-edge: rgb(0 0 0 / 0.45);
+  --fill-highlight: rgb(255 255 255 / 0.16);
+  --fill-edge: rgb(0 0 0 / 0.35);
 
   --state-hover: rgb(222 220 213 / 0.05);
   --state-press: rgb(222 220 213 / 0.08);
@@ -87,31 +89,27 @@
   --color-surface-well: var(--surface-well);
 
   --shadow-panel:
-    inset 0 1px 0 0 var(--surface-highlight), inset 0 0 0 1px var(--surface-rim),
-    0 0 0 1px var(--surface-edge), 0 1px 2px -1px var(--surface-drop),
-    0 2px 6px -2px var(--surface-drop);
+    0 -0.5px 0 0 var(--surface-highlight), 0 0 0 0.5px var(--surface-edge),
+    0 1px 2px 0 var(--surface-drop), 0 2px 6px -2px var(--surface-drop);
   --shadow-control:
-    inset 0 1px 0 0 var(--surface-highlight), inset 0 0 0 1px var(--surface-rim),
-    0 0 0 1px var(--surface-edge), 0 1px 1px -0.5px var(--surface-drop-strong),
-    0 2px 3px -1.5px var(--surface-drop);
+    0 -0.5px 0 0 var(--surface-highlight), 0 0 0 0.5px var(--surface-edge),
+    0 1px 1.5px 0 var(--surface-drop-strong);
   --shadow-overlay:
-    inset 0 1px 0 0 var(--surface-highlight-strong), inset 0 0 0 1px var(--surface-rim),
-    0 0 0 1px var(--surface-edge), 0 2px 4px -1px var(--surface-drop),
-    0 8px 16px -4px var(--surface-drop), 0 16px 32px -8px var(--surface-drop-strong);
+    0 -0.5px 0 0 var(--surface-highlight-strong), 0 0 0 0.5px var(--surface-edge),
+    0 4px 8px 0 var(--surface-drop), 0 8px 16px 0 var(--surface-drop);
   --shadow-modal:
-    inset 0 1px 0 0 var(--surface-highlight-strong), inset 0 0 0 1px var(--surface-rim),
-    0 0 0 1px var(--surface-edge), 0 4px 8px -2px var(--surface-drop),
-    0 16px 32px -8px var(--surface-drop), 0 32px 64px -16px var(--surface-drop-strong);
+    0 -0.5px 0 0 var(--surface-highlight-strong), 0 0 0 0.5px var(--surface-edge),
+    0 8px 16px 0 var(--surface-drop), 0 16px 32px 0 var(--surface-drop);
   --shadow-knob:
-    inset 0 1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 1px 2px 0 var(--surface-drop-strong), 0 2px 4px -1px var(--surface-drop);
+    0 -0.5px 0 0 var(--surface-highlight-strong), 0 0 0 0.5px var(--surface-edge),
+    0 1px 2px 0 var(--surface-drop-strong), 0 2px 4px 0 var(--surface-drop);
   --shadow-fill:
-    inset 0 1px 0 0 var(--fill-highlight), 0 0 0 1px var(--fill-edge),
-    0 1px 2px -0.5px var(--surface-drop-strong);
-  --shadow-edge: 0 0 0 1px var(--surface-edge);
-  --shadow-pressed: inset 0 1px 2px 0 var(--surface-shade), 0 0 0 1px var(--surface-edge);
-  --shadow-well: inset 0 1px 2px 0 var(--surface-shade), inset 0 0 0 1px var(--surface-well-edge);
-  --shadow-tint: 0 0 0 1px color-mix(in oklab, currentColor 18%, transparent);
+    inset 0 1px 1px 0 var(--fill-highlight), 0 -0.5px 0 0 var(--surface-highlight-strong),
+    0 0 0 0.5px var(--fill-edge), 0 1px 1.5px 0 var(--surface-drop-strong);
+  --shadow-edge: 0 0 0 0.5px var(--surface-edge);
+  --shadow-pressed: inset 0 1px 2px 0 var(--surface-shade), 0 0 0 0.5px var(--surface-edge);
+  --shadow-well: inset 0 1px 2px 0 var(--surface-shade), inset 0 0 0 0.5px var(--surface-well-edge);
+  --shadow-tint: 0 0 0 0.5px color-mix(in oklab, currentColor 30%, transparent);
 }
 
 /* State layers paint a tint over the element's own background colour, so one
