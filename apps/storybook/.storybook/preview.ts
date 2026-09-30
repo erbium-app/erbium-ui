@@ -16,7 +16,13 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
-    (Story) => createElement(Fragment, null, createElement(Story), createElement(Toaster)),
+    (Story, context) =>
+      createElement(
+        Fragment,
+        null,
+        createElement(Story),
+        context.viewMode === "docs" ? null : createElement(Toaster),
+      ),
   ],
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },

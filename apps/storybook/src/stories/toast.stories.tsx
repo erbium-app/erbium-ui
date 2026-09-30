@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```',
+          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```\n\nRepeated calls create separate notifications. Supply a stable `id` to update an existing toast in place. `Toaster` has no presentation props: it uses Erbium’s lit surface, built-in status icons and close button, a three-toast preview, and a scrollable full queue on hover or keyboard focus. Swipe right to dismiss in LTR, or left in RTL. Base UI keeps control of the timer, swipe, and focus behavior. For toast options, use Base UI’s `timeout` and `actionProps` names instead of Sonner’s `duration` and `action`. Sonner’s theme, rich-color, icon, position, and toaster-ID options are intentionally omitted. Base UI’s promise states, priority announcements, and `onClose`/`onRemove` callbacks remain available.',
       },
     },
   },
@@ -128,6 +128,29 @@ export const Progress: Story = {
       }}
     >
       Show progress toast
+    </Button>
+  ),
+};
+
+export const Queue: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Add five persistent notifications, then hover the stack to see and scroll the full queue.",
+      },
+    },
+  },
+  render: () => (
+    <Button
+      variant="outline"
+      onClick={() => {
+        for (let index = 1; index <= 5; index += 1) {
+          toast.add({ title: `Queue item ${index}`, timeout: 0 });
+        }
+      }}
+    >
+      Show five toasts
     </Button>
   ),
 };
