@@ -179,7 +179,7 @@ export const SettingsPanel: Story = {
     },
   },
   render: () => (
-    <div className="flex min-h-screen justify-center bg-surface-canvas p-6 text-foreground">
+    <div className="flex min-h-dvh justify-center bg-surface-canvas p-6 text-foreground">
       <ExampleItemSettingsPanel />
     </div>
   ),

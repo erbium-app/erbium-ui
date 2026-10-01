@@ -26,9 +26,7 @@ export default meta;
 type Story = StoryObj;
 
 function Canvas({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-surface-canvas p-8 text-sm text-foreground">{children}</div>
-  );
+  return <div className="min-h-dvh bg-surface-canvas p-8 text-sm text-foreground">{children}</div>;
 }
 
 const ladder = [
