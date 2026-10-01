@@ -76,7 +76,7 @@ export function CollapsibleFileTree() {
               />
             }
           >
-            <RotatingChevron direction="right" />
+            <RotatingChevron scope="collapsible" />
             <HugeiconsIcon icon={Folder01Icon} />
             {fileItem.name}
           </CollapsibleTrigger>

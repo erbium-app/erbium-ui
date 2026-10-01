@@ -20,7 +20,7 @@ function ContextMenuTrigger({ className, ...props }: ContextMenuPrimitive.Trigge
   return (
     <ContextMenuPrimitive.Trigger
       data-slot="context-menu-trigger"
-      className={cn("select-none", className)}
+      className={cn("group select-none", className)}
       {...props}
     />
   );
@@ -138,7 +138,7 @@ function ContextMenuSubTrigger({
       {...props}
     >
       {children}
-      <RotatingChevron direction="right" className="ms-auto" />
+      <RotatingChevron direction="inline-end" className="ms-auto" />
     </ContextMenuPrimitive.SubmenuTrigger>
   );
 }

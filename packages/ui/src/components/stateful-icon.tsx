@@ -56,18 +56,22 @@ function StatefulIcon<State extends string>({
 }
 
 type RotatingChevronProps = Omit<React.ComponentProps<typeof HugeiconsIcon>, "icon"> & {
-  /** The closed orientation of the chevron. */
-  direction?: "down" | "right" | "left";
+  /** Closed direction: down for vertical content, inline-end for submenus. */
+  direction?: "down" | "inline-end" | "inline-start" | "right" | "left";
+  /** Use the nearest collapsible trigger's state in nested disclosures. */
+  scope?: "collapsible";
 };
 
-function RotatingChevron({ direction = "down", className, ...props }: RotatingChevronProps) {
+function RotatingChevron({ direction = "down", scope, className, ...props }: RotatingChevronProps) {
   const icon = direction === "down" ? ChevronDownIcon : ChevronRightIcon;
-  const rotation = {
-    down: "group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180",
-    right:
-      "rtl:rotate-180 group-data-open:rotate-90 group-data-popup-open:rotate-90 group-data-panel-open:rotate-90 rtl:group-data-open:rotate-[270deg] rtl:group-data-popup-open:rotate-[270deg] rtl:group-data-panel-open:rotate-[270deg]",
-    left: "-rotate-90 group-data-open:rotate-0 group-data-popup-open:rotate-0 group-data-panel-open:rotate-0",
-  }[direction];
+  const rotation =
+    direction === "down"
+      ? scope === "collapsible"
+        ? "group-data-open/collapsible-trigger:rotate-180 group-data-panel-open/collapsible-trigger:rotate-180"
+        : "group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180"
+      : direction === "inline-end" || direction === "right"
+        ? "rtl:rotate-180 group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180 rtl:group-data-open:rotate-0 rtl:group-data-popup-open:rotate-0 rtl:group-data-panel-open:rotate-0"
+        : "rotate-180 rtl:rotate-0 group-data-open:rotate-0 group-data-popup-open:rotate-0 group-data-panel-open:rotate-0 rtl:group-data-open:rotate-180 rtl:group-data-popup-open:rotate-180 rtl:group-data-panel-open:rotate-180";
 
   return (
     <HugeiconsIcon

@@ -30,7 +30,7 @@ export default function CollapsibleDemo() {
             <span className="block text-sm font-medium">Project files</span>
             <span className="block text-xs text-muted-foreground">3 files in this workspace</span>
           </span>
-          <RotatingChevron direction="right" className="size-4 shrink-0 text-muted-foreground" />
+          <RotatingChevron scope="collapsible" className="size-4 shrink-0 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

@@ -24,7 +24,7 @@ export function CollapsibleSettings() {
               Set the corner radius of the element.
             </span>
           </span>
-          <RotatingChevron direction="right" className="size-4 text-muted-foreground" />
+          <RotatingChevron scope="collapsible" className="size-4 text-muted-foreground" />
         </CollapsibleTrigger>
         <CollapsibleContent>
           <Separator />

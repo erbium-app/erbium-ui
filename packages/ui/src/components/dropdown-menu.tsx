@@ -16,8 +16,14 @@ function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props) {
   return <MenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />;
 }
 
-function DropdownMenuTrigger({ ...props }: MenuPrimitive.Trigger.Props) {
-  return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />;
+function DropdownMenuTrigger({ className, ...props }: MenuPrimitive.Trigger.Props) {
+  return (
+    <MenuPrimitive.Trigger
+      data-slot="dropdown-menu-trigger"
+      className={cn("group", className)}
+      {...props}
+    />
+  );
 }
 
 function DropdownMenuContent({
@@ -132,7 +138,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <RotatingChevron direction="right" className="ms-auto" />
+      <RotatingChevron direction="inline-end" className="ms-auto" />
     </MenuPrimitive.SubmenuTrigger>
   );
 }

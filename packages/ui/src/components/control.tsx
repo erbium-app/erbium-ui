@@ -320,7 +320,7 @@ function ControlNumber({
         data-slot="control-number-surface"
         className="pointer-events-none absolute inset-0 rounded-lg border surface-control"
       >
-        <div className="absolute inset-0 overflow-hidden rounded-[calc(var(--radius-lg)-1px)]">
+        <div className="absolute -inset-px overflow-hidden rounded-lg">
           <motion.div
             className="absolute inset-y-0 start-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
             style={{ width: fillWidth }}
@@ -1360,10 +1360,9 @@ function Section({
       <Separator className="mb-2" />
       <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
         {title}
-        <RotatingChevron direction="left" className="size-4" />
+        <RotatingChevron scope="collapsible" className="size-4" />
       </CollapsibleTrigger>
       <CollapsibleContent className="data-open:overflow-visible">
-        <Separator className="mt-2" />
         <Group className="py-2">{children}</Group>
       </CollapsibleContent>
     </Collapsible>
