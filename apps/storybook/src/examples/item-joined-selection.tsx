@@ -71,7 +71,7 @@ export default function ItemJoinedSelection() {
         <span>Name</span>
         <span>Issues</span>
       </div>
-      <ItemGroup selection="joined">
+      <ItemGroup>
         {projects.map((project) => {
           const checkboxId = `${idPrefix}-${project.id}`;
 

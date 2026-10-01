@@ -84,7 +84,7 @@ export default function ItemBookLibrary() {
         <Label htmlFor={`${idPrefix}-all`}>Select all books</Label>
       </div>
 
-      <ItemGroup variant="panel" selection="joined">
+      <ItemGroup variant="panel">
         {books.map((book, index) => {
           const checked = selected.includes(book.id);
           const checkboxId = `${idPrefix}-${book.id}`;

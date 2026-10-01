@@ -6,7 +6,7 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     <div data-slot="table-container" className="relative w-full overflow-x-auto">
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn("w-full border-separate border-spacing-0 caption-bottom text-sm", className)}
         {...props}
       />
     </div>
@@ -23,7 +23,10 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:last-child]:bg-none", className)}
+      className={cn(
+        "[&_tr:last-child]:bg-none [&>tr[data-state=selected]>td]:carve-bottom [&>tr[data-state=selected]>td]:bg-selection [&>tr:last-child[data-state=selected]>td]:bg-none [&>tr[data-state=selected]>td:first-child]:rounded-s-lg [&>tr[data-state=selected]>td:last-child]:rounded-e-lg [&>tr[data-state=selected]:has(+tr[data-state=selected])>td]:rounded-b-none [&>tr[data-state=selected]+tr[data-state=selected]>td]:rounded-t-none",
+        className,
+      )}
       {...props}
     />
   );
@@ -44,7 +47,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
     <tr
       data-slot="table-row"
       className={cn(
-        "carve-bottom transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50 data-[state=selected]:bg-muted",
+        "carve-bottom transition-colors hover:bg-muted/50 has-aria-expanded:bg-muted/50",
         className,
       )}
       {...props}

@@ -6,27 +6,25 @@ import { cn } from "../lib/utils";
 
 import { Separator } from "./separator";
 
-const itemGroupVariants = cva("group/item-group flex w-full flex-col", {
-  variants: {
-    variant: {
-      default:
-        "gap-4 has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2 has-[>[data-slot=item-separator]]:gap-0",
-      panel: "gap-0 overflow-hidden rounded-xl border surface-panel text-card-foreground",
+const itemGroupVariants = cva(
+  "group/item-group flex w-full flex-col has-[>[data-slot=item][data-selected]]:gap-0 [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:bg-selection [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
+  {
+    variants: {
+      variant: {
+        default:
+          "gap-4 has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2 has-[>[data-slot=item-separator]]:gap-0",
+        panel: "gap-0 overflow-hidden rounded-xl border surface-panel text-card-foreground",
+      },
     },
-    selection: {
-      joined:
-        "gap-0! [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:bg-primary/10 [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
+    defaultVariants: {
+      variant: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+);
 
 function ItemGroup({
   className,
   variant = "default",
-  selection,
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof itemGroupVariants>) {
   return (
@@ -34,8 +32,7 @@ function ItemGroup({
       role="list"
       data-slot="item-group"
       data-variant={variant}
-      data-selection={selection}
-      className={cn(itemGroupVariants({ variant, selection, className }))}
+      className={cn(itemGroupVariants({ variant, className }))}
       {...props}
     />
   );

@@ -17,11 +17,9 @@ test("selection changes which adjacent item rows form a group", async () => {
       root.render(<ItemJoinedSelection />);
     });
 
-    const group = container.querySelector('[data-slot="item-group"]');
     const items = container.querySelectorAll<HTMLElement>(
       '[data-slot="item-group"] > [data-slot="item"]',
     );
-    expect(group?.getAttribute("data-selection")).toBe("joined");
     expect(items).toHaveLength(8);
     expect(Array.from(items, (item) => item.getAttribute("data-selected"))).toEqual([
       "true",

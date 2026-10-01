@@ -24,9 +24,6 @@ test("book selection and select-all stay in sync", async () => {
     const bookItems = container.querySelectorAll<HTMLElement>(
       '[data-slot="item-group"] > [data-slot="item"]',
     );
-    expect(
-      container.querySelector('[data-slot="item-group"]')?.getAttribute("data-selection"),
-    ).toBe("joined");
     expect(bookCheckboxes).toHaveLength(4);
     expect(bookItems).toHaveLength(4);
     expect(bookItems[0]?.getAttribute("data-selected")).toBe("true");
