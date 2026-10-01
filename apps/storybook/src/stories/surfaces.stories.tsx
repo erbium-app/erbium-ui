@@ -12,8 +12,9 @@ import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 import SparklesIcon from "@hugeicons/core-free-icons/SparklesIcon";
 
 /*
- * The surface primitives on raw elements, before any component adopts them.
- * Review these in both themes when tuning surfaces.css.
+ * The surface roles on raw elements, before any component adopts them.
+ * Each element takes `border` plus one surface class; interaction states come
+ * from the element itself. Review these in both themes when tuning surfaces.css.
  */
 
 const meta = {
@@ -32,11 +33,12 @@ function Canvas({ children }: { children: React.ReactNode }) {
 
 const ladder = [
   ["canvas", "bg-surface-canvas", "page"],
-  ["panel", "border border-surface-border bg-surface-panel shadow-panel", "card, frame"],
-  ["control", "border border-surface-border bg-surface-control shadow-control", "button, input"],
-  ["overlay", "border border-surface-border bg-surface-overlay shadow-overlay", "popover, menu"],
-  ["modal", "border border-surface-border bg-surface-modal shadow-modal", "dialog, sheet, drawer"],
-  ["top", "border border-surface-border bg-surface-top shadow-overlay", "menu in a dialog"],
+  ["panel", "border surface-panel", "card, frame"],
+  ["control", "border surface-control", "button, trigger"],
+  ["field", "border surface-field", "input, textarea"],
+  ["overlay", "border surface-overlay", "popover, menu"],
+  ["modal", "border surface-modal", "dialog, sheet, drawer"],
+  ["top", "border surface-overlay [--surface-face:var(--surface-top)]", "menu in a dialog"],
 ] as const;
 
 export const Ladder: Story = {
@@ -86,8 +88,8 @@ export const Colored: Story = {
       <div className="grid max-w-lg gap-4">
         {coloredSurfaces.map(([color, fill, tint]) => (
           <div key={color} className="grid grid-cols-2 gap-4">
-            <div className={`${fill} rounded-lg p-3`}>{color} fill</div>
-            <div className={`${tint} rounded-lg p-3`}>{color} tint</div>
+            <div className={`${fill} rounded-lg border p-3`}>{color} fill</div>
+            <div className={`${tint} rounded-lg border p-3`}>{color} tint</div>
           </div>
         ))}
       </div>
@@ -103,32 +105,29 @@ export const Roles: Story = {
     <Canvas>
       <div className="grid max-w-3xl gap-6">
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex h-8 w-72 items-center gap-2 rounded-lg border border-surface-border bg-surface-control px-2.5 shadow-control">
+          <div className="flex h-8 w-72 items-center gap-2 rounded-lg border surface-field px-2.5">
             <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
             <span className="text-muted-foreground">Search repositories and people…</span>
           </div>
-          <button
-            type="button"
-            className={`${control} border border-surface-border bg-surface-control text-foreground shadow-control`}
-          >
+          <button type="button" className={`${control} border surface-control text-foreground`}>
             <HugeiconsIcon icon={SparklesIcon} className="size-3.5" />
             Selected
           </button>
           <button
             type="button"
-            className={`${control} text-muted-foreground hover:tint-hover hover:text-foreground`}
+            className={`${control} border surface-flat text-muted-foreground hover:text-foreground`}
           >
             Ghost
           </button>
           <button
             type="button"
-            className={`${control} border border-surface-border bg-surface-control text-muted-foreground shadow-control hover:tint-hover hover:text-foreground active:tint-press active:shadow-pressed`}
+            className={`${control} border surface-control text-muted-foreground hover:text-foreground`}
           >
             Outline
           </button>
           <button
             type="button"
-            className={`${control} surface-fill-primary text-primary-foreground hover:tint-hover active:tint-press active:shadow-pressed`}
+            className={`${control} border surface-fill-primary text-primary-foreground`}
           >
             Primary
           </button>
@@ -140,10 +139,7 @@ export const Roles: Story = {
             ["Total cost", "$0.00", SparklesIcon],
           ].map(([label, value, Icon]) => {
             return (
-              <div
-                key={label as string}
-                className="rounded-xl border border-surface-border bg-surface-panel p-5 shadow-panel"
-              >
+              <div key={label as string} className="rounded-xl border surface-panel p-5">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2">
                     <HugeiconsIcon
@@ -164,11 +160,11 @@ export const Roles: Story = {
             return (
               <div
                 key={label as string}
-                className="flex h-56 flex-col rounded-xl border border-surface-border bg-surface-panel p-5 shadow-panel"
+                className="flex h-56 flex-col rounded-xl border surface-panel p-5"
               >
                 <span className="font-medium">{label as string}</span>
                 <div className="grid flex-1 place-content-center justify-items-center gap-3">
-                  <span className="grid size-8 place-content-center rounded-lg border border-surface-border bg-surface-control shadow-control">
+                  <span className="grid size-8 place-content-center rounded-lg border surface-control">
                     <HugeiconsIcon
                       icon={Icon as IconSvgElement}
                       className="size-3.5 text-muted-foreground"
@@ -181,26 +177,22 @@ export const Roles: Story = {
           })}
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 rounded-xl border border-surface-border bg-surface-panel p-5 shadow-panel">
-          <div className="inline-flex rounded-lg bg-surface-well p-0.5 shadow-well">
-            <span
-              className={`${control} h-7 border border-surface-border bg-surface-control shadow-control`}
-            >
-              Overview
-            </span>
+        <div className="flex flex-wrap items-center gap-4 rounded-xl border surface-panel p-5">
+          <div className="inline-flex rounded-lg surface-well p-0.5">
+            <span className={`${control} h-7 border surface-control`}>Overview</span>
             <span className={`${control} h-7 text-muted-foreground`}>Traces</span>
             <span className={`${control} h-7 text-muted-foreground`}>Costs</span>
           </div>
-          <span className="flex h-[18px] w-8 items-center rounded-full bg-surface-well px-0.5 shadow-well">
-            <span className="size-3.5 rounded-full border border-surface-border bg-surface-control shadow-knob" />
+          <span className="flex h-[18px] w-8 items-center rounded-full surface-well px-0.5">
+            <span className="size-3.5 rounded-full surface-knob" />
           </span>
-          <span className="flex h-[18px] w-8 items-center justify-end rounded-full bg-primary px-0.5 shadow-well">
-            <span className="size-3.5 rounded-full bg-primary-foreground shadow-knob" />
+          <span className="flex h-[18px] w-8 items-center justify-end rounded-full surface-well bg-primary px-0.5">
+            <span className="size-3.5 rounded-full surface-knob bg-primary-foreground" />
           </span>
-          <span className="surface-tag rounded-full bg-tag-green/10 px-2.5 py-0.5 text-xs font-medium text-tag-green">
+          <span className="rounded-full border surface-tag-green px-2.5 py-0.5 text-xs font-medium text-tag-green">
             Healthy
           </span>
-          <span className="surface-tag rounded-full bg-tag-orange/10 px-2.5 py-0.5 text-xs font-medium text-tag-orange">
+          <span className="rounded-full border surface-tag-orange px-2.5 py-0.5 text-xs font-medium text-tag-orange">
             Degraded
           </span>
           <Kbd hotkey="Mod+K" />
@@ -215,37 +207,33 @@ export const Nesting: Story = {
     <Canvas>
       <div className="grid max-w-3xl grid-cols-2 items-start gap-8">
         <div className="grid gap-2">
-          <span
-            className={`${control} w-fit border border-surface-border bg-surface-control shadow-engaged tint-press`}
-          >
+          <span aria-expanded className={`${control} w-fit border surface-control`}>
             Workspace <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
           </span>
-          <div className="w-56 rounded-xl border border-surface-border bg-surface-overlay p-1 shadow-overlay">
+          <div className="w-56 rounded-xl border surface-overlay p-1">
             {["Profile", "Settings", "Sign out"].map((item, index) => (
               <div
                 key={item}
-                className={`rounded-md px-2 py-1.5 ${index === 1 ? "tint-hover" : ""}`}
+                className={`rounded-md px-2 py-1.5 ${index === 1 ? "bg-accent" : ""}`}
               >
                 {item}
               </div>
             ))}
           </div>
         </div>
-        <div className="grid gap-4 rounded-2xl border border-surface-border bg-surface-modal p-6 shadow-modal">
+        <div className="grid gap-4 rounded-2xl border surface-modal p-6">
           <div>
             <div className="text-base font-medium">Invite people</div>
             <div className="text-muted-foreground">A menu opened in a dialog climbs above it.</div>
           </div>
-          <span
-            className={`${control} w-fit border border-surface-border bg-surface-control shadow-engaged tint-press`}
-          >
+          <span aria-expanded className={`${control} w-fit border surface-control`}>
             Member <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
           </span>
-          <div className="w-48 rounded-xl border border-surface-border bg-surface-top p-1 shadow-overlay">
+          <div className="w-48 rounded-xl border surface-overlay p-1 [--surface-face:var(--surface-top)]">
             {["Owner", "Member", "Restricted"].map((item, index) => (
               <div
                 key={item}
-                className={`rounded-md px-2 py-1.5 ${index === 1 ? "tint-hover" : ""}`}
+                className={`rounded-md px-2 py-1.5 ${index === 1 ? "bg-accent" : ""}`}
               >
                 {item}
               </div>
@@ -257,28 +245,37 @@ export const Nesting: Story = {
   ),
 };
 
+/* Hover and press are pointer states, so the static swatches set the same
+   element tokens the surface sets on :hover and :active. The other states are
+   plain attributes: the surface reads them. */
+const pressed =
+  "[--surface-tint:var(--surface-tint-pressed)] [--surface-catchlight:transparent] [--surface-backing:transparent] [--surface-drop:0_0_0_0_transparent,0_0_0_0_transparent,0_0_0_0_transparent] [--surface-recess:0_2px_3px_-1px_var(--surface-shadow-inset)]";
+
 const states = [
-  ["rest", "shadow-control"],
-  ["hover", "shadow-control tint-hover"],
-  ["selected / open", "shadow-engaged tint-press"],
-  ["pressed", "shadow-pressed tint-press"],
-  ["focus", "shadow-control ring-3 ring-ring/50"],
-  ["invalid", "shadow-control [--surface-edge:var(--destructive)]"],
-  ["disabled", "shadow-edge opacity-50"],
+  ["rest", {}, ""],
+  ["hover", {}, "[--surface-tint:var(--surface-tint-hover)]"],
+  ["selected / open", { "aria-pressed": true }, ""],
+  ["pressed", {}, pressed],
+  ["focus", {}, "ring-3 ring-ring/50"],
+  ["invalid", { "aria-invalid": true }, ""],
+  ["disabled", { "aria-disabled": true }, "opacity-50"],
 ] as const;
 
 export const States: Story = {
   render: () => (
     <Canvas>
-      <div className="flex flex-wrap gap-4 rounded-xl border border-surface-border bg-surface-panel p-6 shadow-panel">
-        {states.map(([name, classes]) => (
-          <span
-            key={name}
-            className={`${control} border border-surface-border bg-surface-control ${classes}`}
-          >
-            {name}
-          </span>
-        ))}
+      <div className="grid gap-4 rounded-xl border surface-panel p-6">
+        {(["surface-control", "surface-fill-primary text-primary-foreground"] as const).map(
+          (role) => (
+            <div key={role} className="flex flex-wrap gap-4">
+              {states.map(([name, attributes, classes]) => (
+                <span key={name} {...attributes} className={`${control} border ${role} ${classes}`}>
+                  {name}
+                </span>
+              ))}
+            </div>
+          ),
+        )}
       </div>
     </Canvas>
   ),

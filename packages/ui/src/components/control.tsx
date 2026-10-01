@@ -23,7 +23,7 @@ import { ScrollArea } from "./scroll-area";
 import { cn } from "../lib/utils";
 
 const rowClass =
-  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border border-surface-border bg-surface-control px-2.5 text-sm text-foreground shadow-control transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40 has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border surface-control px-2.5 text-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40 has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
 const labelClass = "min-w-0 shrink-0 truncate text-sm font-medium text-muted-foreground";
 const valueClass =
   "ms-auto min-w-0 flex-1 text-end text-sm text-foreground outline-none placeholder:text-muted-foreground";
@@ -318,7 +318,7 @@ function ControlNumber({
         ref={surfaceRef}
         aria-hidden="true"
         data-slot="control-number-surface"
-        className="pointer-events-none absolute inset-0 rounded-lg border border-surface-border bg-surface-control shadow-control"
+        className="pointer-events-none absolute inset-0 rounded-lg border surface-control"
       >
         <div className="absolute inset-0 overflow-hidden rounded-[calc(var(--radius-lg)-1px)]">
           <motion.div
@@ -560,7 +560,7 @@ function SegmentedTrack({
         disabled={disabled}
         name={name}
         className={cn(
-          "relative isolate ms-auto flex min-w-0 rounded-lg bg-surface-well p-[3px] shadow-well",
+          "relative isolate ms-auto flex min-w-0 rounded-lg surface-well p-[3px]",
           className,
         )}
       >
@@ -581,7 +581,7 @@ function SegmentedTrack({
                     ? { duration: 0 }
                     : { type: "spring", stiffness: 400, damping: 35 }
                 }
-                className="pointer-events-none absolute inset-0 z-0 rounded-md border border-surface-border bg-surface-control shadow-control"
+                className="pointer-events-none absolute inset-0 z-0 rounded-md border surface-control"
               />
             )}
             <span className="relative z-10 min-w-0 truncate">{option.label}</span>
@@ -634,9 +634,9 @@ function Boolean({
           onCheckedChange={change}
           disabled={disabled}
           name={name}
-          className="ms-auto inline-flex h-5 w-9 shrink-0 items-center rounded-full bg-surface-well p-0.5 shadow-well outline-none transition-colors data-checked:bg-primary focus-visible:ring-2 focus-visible:ring-ring/60"
+          className="ms-auto inline-flex h-5 w-9 shrink-0 items-center rounded-full surface-well p-0.5 outline-none transition-colors data-checked:bg-primary focus-visible:ring-2 focus-visible:ring-ring/60"
         >
-          <SwitchPrimitive.Thumb className="size-4 rounded-full bg-surface-control shadow-knob transition-transform duration-200 data-checked:translate-x-4 rtl:data-checked:-translate-x-4 motion-reduce:transition-none" />
+          <SwitchPrimitive.Thumb className="size-4 rounded-full surface-knob transition-transform duration-200 data-checked:translate-x-4 rtl:data-checked:-translate-x-4 motion-reduce:transition-none" />
         </SwitchPrimitive.Root>
       )}
     </div>
@@ -712,7 +712,7 @@ function Select({
         aria-label={label}
         className={cn(
           rowClass,
-          "group group/control-select justify-between outline-none hover:tint-hover engaged:tint-press engaged:hover:tint-press engaged:shadow-engaged active:shadow-pressed engaged:active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
+          "group group/control-select justify-between outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
           className,
         )}
       >
@@ -726,7 +726,7 @@ function Select({
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-          <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border border-surface-border bg-surface-overlay text-sm shadow-overlay outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+          <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay text-sm outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
             <ScrollArea
               className="min-h-0 overscroll-contain"
               fade="vertical"
@@ -798,7 +798,7 @@ function Color({
         className={cn(valueClass, monoClass, "w-20 bg-transparent")}
       />
       <span
-        className="relative size-5 shrink-0 overflow-hidden rounded-md border border-surface-border shadow-knob focus-within:ring-2 focus-within:ring-ring/50"
+        className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob focus-within:ring-2 focus-within:ring-ring/50"
         style={{ backgroundColor: /^#[\da-fA-F]{6}$/.test(current) ? current : "transparent" }}
       >
         <input
@@ -873,7 +873,7 @@ function Image({
           </SelectPrimitive.Trigger>
           <SelectPrimitive.Portal>
             <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-              <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg border border-surface-border bg-surface-overlay shadow-overlay outline-none">
+              <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg border surface-overlay outline-none">
                 <ScrollArea
                   className="min-h-0 overscroll-contain"
                   fade="vertical"
@@ -975,18 +975,12 @@ function Pad({
     });
   };
   return (
-    <div
-      data-slot="control-pad"
-      className={cn(
-        "rounded-lg border border-surface-border bg-surface-control p-3 shadow-control",
-        className,
-      )}
-    >
+    <div data-slot="control-pad" className={cn("rounded-lg border surface-control p-3", className)}>
       <div className={cn(labelClass, "mb-2")}>{label}</div>
       <div
         ref={ref}
         aria-hidden="true"
-        className="relative h-24 w-full touch-none rounded-md bg-surface-well shadow-well"
+        className="relative h-24 w-full touch-none rounded-md surface-well"
         onPointerDown={(event) => {
           if (disabled) return;
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -997,7 +991,7 @@ function Pad({
         }}
       >
         <span
-          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-surface-border bg-primary shadow-knob"
+          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-primary"
           style={{
             left: `${((current.x - min) / span) * 100}%`,
             top: `${100 - ((current.y - min) / span) * 100}%`,
@@ -1081,10 +1075,7 @@ function SpringCurve({ value }: { value: SpringValue }) {
 
 function CurveFrame({ path }: { path: string }) {
   return (
-    <div
-      aria-hidden="true"
-      className="h-24 overflow-hidden rounded-lg border border-surface-border bg-surface-control shadow-control"
-    >
+    <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-primary">
         <path
           d="M0 20 H100 M0 80 H100"
@@ -1332,7 +1323,7 @@ function Action({ label, disabled, className, ...props }: ActionProps) {
       disabled={disabled}
       className={cn(
         rowClass,
-        "justify-center font-medium outline-none hover:tint-hover active:shadow-pressed focus-visible:ring-2 focus-visible:ring-ring/40",
+        "justify-center font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
         className,
       )}
       {...props}

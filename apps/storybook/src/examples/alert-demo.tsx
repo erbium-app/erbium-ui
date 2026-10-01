@@ -2,8 +2,8 @@ import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert
 
 export default function AlertDemo() {
   return (
-    <section className="w-full max-w-2xl overflow-hidden rounded-xl border border-surface-border bg-surface-panel shadow-panel">
-      <header className="border-b border-surface-border px-5 py-4">
+    <section className="w-full max-w-2xl overflow-hidden rounded-xl border surface-panel">
+      <header className="border-b border-transparent px-5 py-4">
         <p className="text-xs font-medium text-muted-foreground">NOVA / AGENT WORKSPACE</p>
         <h2 className="mt-1 font-heading text-lg font-semibold">Refactor the billing flow</h2>
         <p className="mt-1 text-sm text-muted-foreground">

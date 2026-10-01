@@ -4,7 +4,12 @@
   --ts-chart-tooltip-color: var(--popover-foreground);
   --ts-chart-tooltip-border: 1px solid var(--surface-border);
   --ts-chart-tooltip-border-radius: var(--radius-lg);
-  --ts-chart-tooltip-shadow: var(--surface-shadow-overlay-recipe);
+  /* The overlay surface recipe, resolved from theme tokens because the
+     tooltip is rendered by the chart library rather than a surface class. */
+  --ts-chart-tooltip-shadow:
+    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
+    0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
+    0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
   --ts-chart-tooltip-padding: 0.375rem 0.5rem;
   --ts-chart-tooltip-font: 500 0.875rem/1.4 "Inter Variable", sans-serif;
   --ts-chart-tooltip-active-row-font-weight: 600;

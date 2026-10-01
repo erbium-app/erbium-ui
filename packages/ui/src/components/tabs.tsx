@@ -21,7 +21,7 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
     <TabsPrimitive.List
       data-slot="tabs-list"
       className={cn(
-        "relative isolate inline-flex h-8 w-fit items-center justify-center rounded-lg bg-surface-well p-0.75 text-muted-foreground shadow-well group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col",
+        "relative isolate inline-flex h-8 w-fit items-center justify-center rounded-lg surface-well p-0.75 text-muted-foreground group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col",
         className,
       )}
       {...props}
@@ -29,7 +29,7 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
       {children}
       <TabsPrimitive.Indicator
         data-slot="tabs-indicator"
-        className="pointer-events-none absolute top-0 left-0 z-0 rounded-md border border-surface-border bg-surface-control shadow-control"
+        className="pointer-events-none absolute top-0 left-0 z-0 rounded-md border surface-control"
         render={(indicatorProps, state) => {
           const position = state.activeTabPosition;
           const size = state.activeTabSize;

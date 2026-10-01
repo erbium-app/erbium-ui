@@ -2,62 +2,70 @@
  * Surfaces: a lit, layered elevation system.
  *
  * Light falls from the top. Raised surfaces catch it on their top edge and
- * cast a short shadow below; the rare recessed well is shaded at the top.
- * Components pair a surface colour with its shadow recipe:
+ * cast a short shadow below; pressed and selected controls sink into their
+ * plane. An element takes one surface class for its role, plus `border` for
+ * the transparent forced-colors frame. The class sets the face colour, the
+ * perimeter, the catchlight, the drop shadows, and every interaction state:
  *
- *   bg-surface-panel shadow-panel      cards, frames, table containers
- *   bg-surface-control shadow-control  buttons, inputs, triggers, selected items
- *   bg-surface-overlay shadow-overlay  popovers, menus, select popups
- *   bg-surface-modal shadow-modal      dialogs, sheets, drawers
- *   surface-fill-primary               solid coloured controls
- *   shadow-knob                        switch and slider thumbs
- *   bg-surface-well shadow-well        tracks only; use sparingly
- *   surface-tint-destructive-soft      opaque soft coloured badges and alerts
- *   surface-tag                        translucent coloured tags
- *   shadow-engaged                     selected and popup-open controls
- *   shadow-pressed                     momentary pointer/key press
- *   shadow-edge                        hairline only: disabled and flat framed parts
+ *   surface-panel          cards, frames, table containers, alerts
+ *   surface-control        buttons, triggers, toggles, keycaps, indicators
+ *   surface-field          inputs, textareas, OTP slots, input groups
+ *   surface-overlay        popovers, menus, select popups, toasts
+ *   surface-modal          dialogs, sheets, drawers
+ *   surface-flat           ghost and secondary controls: no elevation
+ *   surface-frame          hairline-framed flat parts
+ *   surface-well           recessed tracks; use sparingly
+ *   surface-knob           switch, slider, and pad thumbs
+ *   surface-fill-{color}   solid coloured controls (primary, destructive, ...)
+ *   surface-tint-{color}   opaque soft coloured panels (soft alerts, badges)
+ *   surface-tag-{color}    translucent coloured tags
  *
- * Token naming:
- *   --surface-{role}             background colours (panel, control, overlay)
- *   --surface-highlight[-{role}] lighting colours (strong, divider)
- *   --surface-shadow[-{role}]    shadow colours (strong, inset, divider)
- *   --surface-edge[-well]        perimeter colours
- *   --surface-face               element colour used for its fill and elevation
+ * States come from the element, never from extra classes:
+ *   hover / press        links, buttons, comboboxes, and tabs get a tint
+ *                        overlay on any surface; raised controls also sink
+ *   engaged              aria-expanded, aria-pressed, data-state="on", and an
+ *                        open popup sink a control into its plane
+ *   invalid              aria-invalid (on the element or its direct input)
+ *                        turns a control or field perimeter destructive
+ *   disabled             :disabled, data-disabled, aria-disabled, or a
+ *                        disabled direct input flatten a control to its
+ *                        hairline; a selected control keeps its tint
+ *
+ * Coloured faces derive their perimeter and catchlight from the face colour,
+ * so any colour works in both themes:
+ *   fill   solid faces are darker than either canvas; the catchlight is the
+ *          face lifted toward white, sitting on the top edge of the rim
+ *   tint   soft faces sit near the light canvas, where a whiter edge would
+ *          vanish. Light mode keeps the tinted rim at half strength on the
+ *          top edge instead. --surface-catchlight-lift picks between the two
+ *          (0% lifted rim, 100% lifted face).
+ *
+ * Theme tokens (:root and .dark) hold colours only:
+ *   --surface-{role}             face colours (canvas, panel, control, ...)
+ *   --surface-edge[-well]        neutral perimeter colours
+ *   --surface-highlight[-strong] neutral catchlights (transparent in light)
+ *   --surface-shadow[-strong]    drop shadow colours
+ *   --surface-shadow-inset       recess colour
+ *   --surface-tint-{state}       hover and pressed overlays
+ *   --surface-tag-alpha          translucent tag strength
  *   --surface-border             transparent CSS border / forced-colors fallback
- *   --surface-tint-{state}       interaction overlays (hover, pressed)
- *   --control-shadow-{state}     local composed-shadow overrides for joined segments
- *   --separator-{property}       local rule geometry (direction, fade-direction)
  *
- * General lighting tokens feed surface recipes and separator treatments.
- * Raised controls use a subtle catchlight; overlays use the stronger variant.
- * Divider lighting derives from the surface family, never the reverse.
+ * Element tokens are registered as non-inheriting properties, so a nested
+ * surface never picks up its parent's face or state. Override one on an
+ * element to restyle a single surface, for example [--surface-face:...].
+ *   --surface-face         fill colour, also painted as an opaque backing ring
+ *   --surface-rim          1px perimeter
+ *   --surface-catchlight   1px top-edge highlight above the perimeter
+ *   --surface-backing      ring under the perimeter, so translucent rims are
+ *                          not darkened by the drop shadow
+ *   --surface-drop         three drop shadows (pad with transparent)
+ *   --surface-recess       inset shadow for pressed and engaged states
+ *   --surface-tint         state overlay painted over the face
  *
- * Colours and semantic colour aliases live on :root and .dark. Recipes are inlined into
- * the shadow utilities, so their var() references resolve on each element and
- * one override recolours any surface, for example:
- *   aria-invalid:[--surface-edge:var(--destructive)]
- *
- * The perimeter and top catchlight are both outer shadows. The top shadow is
- * painted first, over the perimeter shadow, so its bright line is on the same
- * edge rather than inside a border. Neutral and opaque tinted surfaces back
- * the translucent perimeter with their own fill so the drop cannot darken its bottom edge.
- * Surface borders stay transparent as a forced-colors fallback.
- *
- * Light and dark share every recipe's geometry; only the colours change.
- * Light mode leans on cast shadows (the neutral catchlight is transparent on white);
- * dark mode leans on lighter surfaces and a warm top-edge catchlight.
- *
- * Coloured faces light their top edge from their own colour: an outer
- * catchlight, the face lifted toward white, painted over the perimeter's top
- * row. A lifted face only reads against a darker ground:
- *   fill   solid faces are darker than either canvas, so the catchlight
- *          always sits on the top edge
- *   tint   soft faces are near the light canvas, where a whiter edge would
- *          vanish. Light mode instead lifts the perimeter itself: the top
- *          row keeps the tinted rim at half strength, lighter than the
- *          sides and bottom but still visible. --surface-catchlight-lift
- *          picks between the two (0% lifted rim, 100% lifted face).
+ * Every surface paints the same seven shadow layers in the same order, so
+ * box-shadow transitions between states interpolate. The catchlight is
+ * painted over the perimeter's top row, never as an inset line inside the
+ * border. The recess starts inside the element's 1px transparent border.
  * The ink (#393a34) and light (#dedcd5) tints come from Vitesse.
  */
 
@@ -72,8 +80,8 @@
   --surface-well: rgb(57 58 52 / 0.05);
 
   --surface-edge: rgb(57 58 52 / 0.1);
+  --surface-edge-well: rgb(57 58 52 / 0.08);
   --surface-border: transparent;
-  /* Shared lighting source; component-specific highlights derive from it. */
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
@@ -81,15 +89,11 @@
   --surface-shadow: rgb(57 58 52 / 0.06);
   --surface-shadow-strong: rgb(57 58 52 / 0.1);
   --surface-shadow-inset: rgb(57 58 52 / 0.1);
-  --surface-edge-well: rgb(57 58 52 / 0.08);
   --surface-shadow-divider: color-mix(in srgb, var(--foreground) 8%, transparent);
-  --surface-shadow-overlay-recipe:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
-    0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
 
   --surface-tint-hover: rgb(57 58 52 / 0.04);
   --surface-tint-pressed: rgb(57 58 52 / 0.07);
+  --surface-tag-alpha: 10%;
 }
 
 .dark {
@@ -103,8 +107,8 @@
   --surface-well: rgb(0 0 0 / 0.25);
 
   --surface-edge: rgb(222 220 213 / 0.03);
+  --surface-edge-well: rgb(222 220 213 / 0.04);
   --surface-border: transparent;
-  /* Shared lighting source; component-specific highlights derive from it. */
   --surface-highlight: rgb(222 220 213 / 0.06);
   --surface-highlight-strong: rgb(222 220 213 / 0.09);
   --surface-highlight-divider: var(--surface-highlight);
@@ -112,11 +116,11 @@
   --surface-shadow: rgb(0 0 0 / 0.3);
   --surface-shadow-strong: rgb(0 0 0 / 0.5);
   --surface-shadow-inset: rgb(0 0 0 / 0.35);
-  --surface-edge-well: rgb(222 220 213 / 0.04);
   --surface-shadow-divider: var(--surface-shadow);
 
   --surface-tint-hover: rgb(222 220 213 / 0.025);
   --surface-tint-pressed: rgb(0 0 0 / 0.12);
+  --surface-tag-alpha: 15%;
 }
 
 @theme inline {
@@ -128,100 +132,282 @@
   --color-surface-modal: var(--surface-modal);
   --color-surface-top: var(--surface-top);
   --color-surface-well: var(--surface-well);
-  --color-surface-border: var(--surface-border);
-
-  --shadow-panel:
-    0 -1px 0 0 var(--surface-highlight), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-panel), 0 1px 2px -1px var(--surface-shadow),
-    0 2px 6px -2px var(--surface-shadow);
-  --shadow-control: var(
-    --control-shadow-rest,
-    0 -1px 0 0 var(--surface-highlight),
-    0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-control),
-    0 1px 1px -0.5px var(--surface-shadow-strong),
-    0 2px 4px -1px var(--surface-shadow),
-    inset 0 0 0 0 transparent
-  );
-  --shadow-overlay: var(--surface-shadow-overlay-recipe);
-  --shadow-modal:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-modal), 0 4px 8px -2px var(--surface-shadow),
-    0 16px 32px -8px var(--surface-shadow), 0 32px 64px -16px var(--surface-shadow-strong);
-  --shadow-knob:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow);
-  --shadow-fill:
-    0 -1px 0 0 color-mix(in srgb, var(--surface-face) 80%, white), 0 0 0 1px var(--surface-edge),
-    0 0 0 0 transparent, 0 1px 2px -0.5px var(--surface-shadow-strong), 0 0 0 0 transparent,
-    inset 0 0 0 0 transparent;
-  --shadow-edge: var(--control-shadow-edge, 0 0 0 1px var(--surface-edge));
-  /* A recess has one face, one perimeter, and a soft top inset. No
-     catchlight or opaque backing ring: those add contrasting bands around
-     the tinted face. Transparent slots preserve shadow interpolation. */
-  --shadow-engaged: var(
-    --control-shadow-engaged,
-    0 0 0 0 transparent,
-    0 0 0 1px var(--surface-edge),
-    0 0 0 0 transparent,
-    0 0 0 0 transparent,
-    0 0 0 0 transparent,
-    inset 0 1px 2px 0 var(--surface-shadow-inset)
-  );
-  --shadow-pressed: var(
-    --control-shadow-pressed,
-    0 0 0 0 transparent,
-    0 0 0 1px var(--surface-edge),
-    0 0 0 0 transparent,
-    0 0 0 0 transparent,
-    0 0 0 0 transparent,
-    inset 0 2px 3px -1px var(--surface-shadow-inset)
-  );
-  --shadow-well:
-    inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
-  --shadow-tint:
-    0 -1px 0 0
-      color-mix(
-        in srgb,
-        color-mix(in srgb, var(--surface-face) 80%, white) var(--surface-catchlight-lift),
-        color-mix(in oklab, currentColor 5%, var(--surface-face))
-      ),
-    0 0 0 1px color-mix(in oklab, currentColor 10%, transparent), 0 0 0 1px var(--surface-face),
-    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow);
 }
 
-/* A surface's face and elevation share one colour input. Named utilities
-   select a theme colour for both the background and its edge. */
+/* Element tokens: non-inheriting, so their initial values are the defaults
+   of every surface and nested surfaces start clean. */
+@property --surface-face {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --surface-rim {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --surface-catchlight {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --surface-backing {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --surface-drop {
+  syntax: "*";
+  inherits: false;
+  initial-value:
+    0 0 0 0 transparent,
+    0 0 0 0 transparent,
+    0 0 0 0 transparent;
+}
+
+@property --surface-recess {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 0 0 transparent;
+}
+
+@property --surface-tint {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+/*
+ * The base of every surface: one face, one seven-layer shadow, and the tint
+ * overlay for hover and press. Without a role it is a flat interactive
+ * surface (ghost and secondary controls); pair it with a bg-* colour.
+ * State selectors use :where() so they win by order over the role's tokens
+ * and lose to any utility a component adds.
+ */
+@utility surface-flat {
+  --surface-elevation:
+    0 -1px 0 0 var(--surface-catchlight), 0 0 0 1px var(--surface-rim),
+    0 0 0 1px var(--surface-backing), var(--surface-drop), inset var(--surface-recess);
+  border-color: var(--surface-border);
+  background-color: var(--surface-face);
+  background-image: linear-gradient(var(--surface-tint), var(--surface-tint));
+  background-origin: border-box;
+  @apply shadow-(--surface-elevation);
+
+  @media (hover: hover) {
+    &:where(
+        :any-link,
+        button,
+        summary,
+        [role="button"],
+        [role="combobox"],
+        [role="tab"],
+        input:is([type="button"], [type="submit"], [type="reset"])
+      ):where(:hover):where(
+        :not(:disabled, [data-disabled]:not([data-disabled="false"]), [aria-disabled="true"])
+      ) {
+      --surface-tint: var(--surface-tint-hover);
+    }
+  }
+
+  &:where(
+      [aria-expanded="true"],
+      [aria-pressed="true"],
+      [data-state="on"],
+      [data-popup-open]:not([data-popup-open="false"])
+    ):where(:not(input, textarea)),
+  &:where(
+      :any-link,
+      button,
+      summary,
+      [role="button"],
+      [role="combobox"],
+      [role="tab"],
+      input:is([type="button"], [type="submit"], [type="reset"])
+    ):where(:active) {
+    --surface-tint: var(--surface-tint-pressed);
+  }
+}
+
+/* Raised controls and fields: depth, validity, and disabled states. Applied
+   after surface-flat so pressed beats engaged and disabled beats both. */
+@utility surface-press {
+  &:where(
+      [aria-expanded="true"],
+      [aria-pressed="true"],
+      [data-state="on"],
+      [data-popup-open]:not([data-popup-open="false"])
+    ):where(:not(input, textarea)) {
+    --surface-catchlight: transparent;
+    --surface-backing: transparent;
+    --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+    --surface-recess: 0 1px 2px 0 var(--surface-shadow-inset);
+  }
+
+  &:where(
+      :any-link,
+      button,
+      summary,
+      [role="button"],
+      [role="combobox"],
+      [role="tab"],
+      input:is([type="button"], [type="submit"], [type="reset"])
+    ):where(:active) {
+    --surface-catchlight: transparent;
+    --surface-backing: transparent;
+    --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+    --surface-recess: 0 2px 3px -1px var(--surface-shadow-inset);
+  }
+
+  &:where([aria-invalid="true"], :has(> :is(input, textarea)[aria-invalid="true"])) {
+    --surface-rim: var(--destructive);
+  }
+
+  &:where(
+    :disabled,
+    [data-disabled]:not([data-disabled="false"]),
+    [aria-disabled="true"],
+    :has(> :is(input, textarea):disabled)
+  ) {
+    --surface-catchlight: transparent;
+    --surface-backing: transparent;
+    --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+    --surface-recess: 0 0 0 0 transparent;
+  }
+}
+
+/* Neutral roles. Each one sets its face and elevation tokens only. */
+@utility surface-panel {
+  --surface-face: var(--surface-panel);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+  @apply surface-flat;
+}
+
+@utility surface-control {
+  --surface-face: var(--surface-control);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
+    0 0 0 0 transparent;
+  @apply surface-flat;
+  @apply surface-press;
+}
+
+@utility surface-field {
+  --surface-face: var(--surface-input);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
+    0 0 0 0 transparent;
+  @apply surface-flat;
+  @apply surface-press;
+}
+
+@utility surface-overlay {
+  --surface-face: var(--surface-overlay);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight-strong);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 2px 4px -1px var(--surface-shadow), 0 8px 16px -4px var(--surface-shadow),
+    0 16px 32px -8px var(--surface-shadow-strong);
+  @apply surface-flat;
+}
+
+@utility surface-modal {
+  --surface-face: var(--surface-modal);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight-strong);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 4px 8px -2px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow),
+    0 32px 64px -16px var(--surface-shadow-strong);
+  @apply surface-flat;
+}
+
+/* A hairline frame with no elevation, over a half-strength panel face. */
+@utility surface-frame {
+  --surface-face: color-mix(in srgb, var(--surface-panel) 50%, transparent);
+  --surface-rim: var(--surface-edge);
+  @apply surface-flat;
+}
+
+/* Thumbs carry no backing ring, so any bg-* colour can replace the face. */
+@utility surface-knob {
+  --surface-face: var(--surface-control);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight-strong);
+  --surface-drop:
+    0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
+    0 0 0 0 transparent;
+  @apply surface-flat;
+}
+
+/* A recessed track: shaded from the top, no catchlight, no states. */
+@utility surface-well {
+  --surface-elevation:
+    inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
+  background-color: var(--surface-well);
+  @apply shadow-(--surface-elevation);
+}
+
+/* Coloured roles. One colour input drives the face, rim, and catchlight. */
 @utility surface-fill-* {
   --surface-face: --value(--color, [color]);
-  --surface-edge: color-mix(in srgb, var(--surface-face) 88%, black);
-  background-color: var(--surface-face);
-  @apply border border-surface-border shadow-fill;
+  --surface-rim: color-mix(in srgb, var(--surface-face) 88%, black);
+  --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, white);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
+    0 0 0 0 transparent;
+  @apply surface-flat;
+  @apply surface-press;
 }
 
 @utility surface-tint-* {
   --surface-face: --value(--color, [color]);
-  background-color: var(--surface-face);
-  @apply border border-surface-border shadow-tint;
+  --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
+  --surface-catchlight: color-mix(
+    in srgb,
+    color-mix(in srgb, var(--surface-face) 80%, white) var(--surface-catchlight-lift),
+    color-mix(in oklab, currentColor 5%, var(--surface-face))
+  );
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+  @apply surface-flat;
 }
 
-/* Translucent tags keep their own alpha background while the tint shadow
-   uses a transparent backing face. This also blocks an inherited face. */
-@utility surface-tag {
-  --surface-face: transparent;
-  @apply shadow-tint;
-}
-
-/* State layers paint a tint over the element's own background colour, so one
-   hover and press treatment works on every surface and every fill. */
-@utility tint-hover {
-  background-origin: border-box;
-  background-image: linear-gradient(var(--surface-tint-hover), var(--surface-tint-hover));
-}
-
-@utility tint-press {
-  background-origin: border-box;
-  background-image: linear-gradient(var(--surface-tint-pressed), var(--surface-tint-pressed));
+/* Translucent tags: the face keeps its alpha and casts no backing ring.
+   Names resolve against the tag palette first: surface-tag-red uses --tag-red. */
+@utility surface-tag-* {
+  --surface-tag-color: --value(--color-tag-*, --color-*, [color]);
+  --surface-face: color-mix(
+    in oklab,
+    var(--surface-tag-color) var(--surface-tag-alpha),
+    transparent
+  );
+  --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
+  --surface-catchlight: color-mix(
+    in srgb,
+    color-mix(in srgb, transparent 80%, white) var(--surface-catchlight-lift),
+    color-mix(in oklab, currentColor 5%, transparent)
+  );
+  --surface-drop:
+    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+  @apply surface-flat;
 }
 
 /* One carved rule recipe for standalone separators and embedded dividers. */
@@ -313,7 +499,7 @@
 }
 
 /* Joined outline buttons are segments of one surface. The group owns the
-   frame; each segment owns only its fill and inset depth. Mixed groups keep
+   frame; each segment keeps only its face, tint, and recess. Mixed groups keep
    their existing individual surfaces (inputs, text, nested groups, etc.). */
 @layer utilities {
   :is(
@@ -322,13 +508,13 @@
     ):has(> [data-variant="outline"]):not(
       :has(> [data-slot]:not([data-variant="outline"], [data-slot="button-group-separator"]))
     ) {
-    @apply rounded-lg bg-surface-control shadow-control;
+    @apply rounded-lg surface-control;
 
     > [data-variant="outline"] {
-      --control-shadow-rest: inset 0 0 0 0 transparent;
-      --control-shadow-engaged: inset 0 1px 2px 0 var(--surface-shadow-inset);
-      --control-shadow-pressed: inset 0 2px 3px -1px var(--surface-shadow-inset);
-      --control-shadow-edge: inset 0 0 0 0 transparent;
+      --surface-rim: transparent;
+      --surface-catchlight: transparent;
+      --surface-backing: transparent;
+      --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
       position: relative;
       border-width: 0;
       margin-inline-start: 0;

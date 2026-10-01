@@ -17,7 +17,7 @@ export default function ControlDemo() {
   const [color, setColor] = useState("#393a34");
 
   return (
-    <div className="w-72 rounded-xl border border-surface-border bg-surface-panel p-3 shadow-panel">
+    <div className="w-72 rounded-xl border surface-panel p-3">
       <h3 className="mb-3 text-sm font-semibold">Photo Stack</h3>
       <Control.Group>
         <Control.Text label="Title" value={title} onValueChange={setTitle} />

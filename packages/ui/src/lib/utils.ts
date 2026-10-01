@@ -1,23 +1,29 @@
 import { createCn } from "cn/config";
 
+const anySurfaceColor = () => true;
+
 /**
- * Surface shadows are registered so `cn` merges them with the built-in shadow
- * scale; without this, `cn("shadow-control", "shadow-none")` keeps both.
+ * Surface roles are registered as one class group so `cn` keeps only the last
+ * role: `cn("surface-control", "surface-fill-primary")` yields the fill.
  */
 export const cn = createCn({
   extend: {
-    theme: {
-      shadow: [
-        "panel",
-        "control",
-        "overlay",
-        "modal",
-        "knob",
-        "fill",
-        "pressed",
-        "edge",
-        "well",
-        "tint",
+    classGroups: {
+      surface: [
+        {
+          surface: [
+            "panel",
+            "control",
+            "field",
+            "overlay",
+            "modal",
+            "flat",
+            "frame",
+            "well",
+            "knob",
+            { fill: [anySurfaceColor], tint: [anySurfaceColor], tag: [anySurfaceColor] },
+          ],
+        },
       ],
     },
   },

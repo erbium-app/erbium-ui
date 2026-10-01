@@ -15,10 +15,8 @@ test("uses one recessed list and one raised indicator as selection changes", () 
 
   const list = screen.getByRole("tablist");
   const indicator = container.querySelector('[data-slot="tabs-indicator"]');
-  expect(list.className).toContain("bg-surface-well");
-  expect(list.className).toContain("shadow-well");
-  expect(indicator?.className).toContain("bg-surface-control");
-  expect(indicator?.className).toContain("shadow-control");
+  expect(list.className).toContain("surface-well");
+  expect(indicator?.className).toContain("surface-control");
   expect(container.querySelectorAll('[data-slot="tabs-indicator"]')).toHaveLength(1);
 
   fireEvent.click(screen.getByRole("tab", { name: "Second" }));

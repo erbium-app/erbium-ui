@@ -8,11 +8,11 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const alertVariants = cva(
-  "group/alert relative grid w-full grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 rounded-lg border border-surface-border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:pe-18 [&>svg]:row-span-2 [&>svg]:translate-y-0.5 [&>svg]:size-4",
+  "group/alert relative grid w-full grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 rounded-lg border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:pe-18 [&>svg]:row-span-2 [&>svg]:translate-y-0.5 [&>svg]:size-4",
   {
     variants: {
       variant: {
-        default: "bg-surface-panel text-card-foreground shadow-panel",
+        default: "surface-panel text-card-foreground",
         destructive:
           "surface-tint-destructive-soft text-destructive-soft-foreground [&>svg]:text-destructive",
         info: "surface-tint-info-soft text-info-soft-foreground [&>svg]:text-info",

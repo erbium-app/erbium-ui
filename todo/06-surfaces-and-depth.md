@@ -90,58 +90,71 @@ Implemented in `packages/ui/src/styles/surfaces.css`, imported from `globals.css
 
 ### Token naming and dependency direction
 
-General surface lighting feeds treatments, never the reverse. `--surface-highlight`
-is the subtle control catchlight; `--surface-highlight-strong` restores the slightly
-brighter overlay/knob catchlight. Filled controls use `--surface-highlight-fill`.
-Dividers use `--surface-highlight-divider`, derived from the subtle highlight in
-dark mode, and a reduced `--surface-shadow-divider` for a quieter carved rule.
+Theme tokens (`:root` / `.dark`) hold colours only. Surface classes turn them into
+per-element tokens, and the per-element tokens drive one shadow recipe. General
+lighting feeds treatments, never the reverse.
 
-| Token family                                                                                                   | Meaning                                                |
-| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `--surface-{role}`                                                                                             | Background colours such as panel, input, and overlay   |
-| `--surface-highlight`, `--surface-highlight-strong`, `--surface-highlight-fill`, `--surface-highlight-divider` | Shared lighting colour                                 |
-| `--surface-shadow`, `--surface-shadow-strong`                                                                  | Cast-shadow colours                                    |
-| `--surface-shadow-inset`, `--surface-shadow-divider`                                                           | Recess and divider shadow colours                      |
-| `--surface-edge`, `--surface-edge-fill`, `--surface-edge-well`                                                 | Perimeter colours by material                          |
-| `--surface-border`                                                                                             | Transparent CSS border used for forced-colors fallback |
-| `--surface-tint-hover`, `--surface-tint-pressed`                                                               | Interaction tint colours                               |
-| `--shadow-*`                                                                                                   | Complete Tailwind shadow recipes, not colours          |
-| `--control-shadow-{state}`                                                                                     | Local recipe overrides for joined segments             |
-| `--separator-direction`, `--separator-fade-direction`                                                          | Local separator geometry                               |
+| Theme token                                                                        | Meaning                                                |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `--surface-{role}`                                                                 | Face colours such as panel, input, and overlay         |
+| `--surface-highlight`, `--surface-highlight-strong`, `--surface-highlight-divider` | Neutral catchlights (transparent in light mode)        |
+| `--surface-catchlight-lift`                                                        | Soft-tint catchlight switch: 0% light, 100% dark       |
+| `--surface-shadow`, `--surface-shadow-strong`                                      | Cast-shadow colours                                    |
+| `--surface-shadow-inset`, `--surface-shadow-divider`                               | Recess and divider shadow colours                      |
+| `--surface-edge`, `--surface-edge-well`                                            | Neutral perimeter colours                              |
+| `--surface-border`                                                                 | Transparent CSS border used for forced-colors fallback |
+| `--surface-tint-hover`, `--surface-tint-pressed`                                   | Interaction tint colours                               |
+| `--surface-tag-alpha`                                                              | Translucent tag strength (10% light, 15% dark)         |
+| `--separator-direction`, `--separator-fade-direction`                              | Local separator geometry                               |
 
-### Recipes (`shadow-*`)
+Element tokens are registered with `@property { inherits: false }`, so a nested
+surface never inherits its parent's face or state, and their initial values are
+the defaults of every surface:
 
-| Utility          | Layers                                          | Pair with                      |
-| ---------------- | ----------------------------------------------- | ------------------------------ |
-| `shadow-panel`   | top catchlight, perimeter, two soft drops       | `bg-surface-panel`             |
-| `shadow-control` | top catchlight, perimeter, tight and soft drops | `bg-surface-control`           |
-| `shadow-overlay` | top catchlight, perimeter, `2/8/16px` drops     | `bg-surface-overlay` / `-top`  |
-| `shadow-modal`   | top catchlight, perimeter, `4/16/32px` drops    | `bg-surface-modal`             |
-| `shadow-fill`    | top gloss, perimeter, tight drop                | `bg-primary`, status fills     |
-| `shadow-knob`    | top catchlight, perimeter, two drops            | switch and slider thumbs       |
-| `shadow-pressed` | inset top shade, edge                           | pressed and open controls      |
-| `shadow-edge`    | edge only                                       | disabled and flat framed parts |
-| `shadow-well`    | inset top shade, inset rim                      | `bg-surface-well`              |
-| `shadow-tint`    | `currentColor` at 18%                           | soft badges and alerts         |
+| Element token          | Meaning                                               |
+| ---------------------- | ----------------------------------------------------- |
+| `--surface-face`       | Fill colour, also the opaque backing ring             |
+| `--surface-rim`        | 1px perimeter                                         |
+| `--surface-catchlight` | 1px top line painted over the perimeter's top row     |
+| `--surface-backing`    | Ring under the perimeter so the drop cannot darken it |
+| `--surface-drop`       | Three drop shadows                                    |
+| `--surface-recess`     | Inset shade for pressed and engaged states            |
+| `--surface-tint`       | State overlay painted over the face                   |
 
-State layers:
+### Roles (one class per element, plus `border`)
 
-- `tint-hover` uses `--surface-tint-hover`; `tint-press` uses `--surface-tint-pressed`. Hover adds a subtle tint; pressing darkens the face in both themes.
-- They replace the per-variant `hover:bg-*/80` values.
+| Class                  | Face                    | Elevation                                                 | States                        |
+| ---------------------- | ----------------------- | --------------------------------------------------------- | ----------------------------- |
+| `surface-panel`        | `--surface-panel`       | catchlight, rim, two soft drops                           | tint on links                 |
+| `surface-control`      | `--surface-control`     | catchlight, rim, tight and soft drops                     | tint, sink, invalid, disabled |
+| `surface-field`        | `--surface-input`       | as control                                                | invalid, disabled (no sink)   |
+| `surface-overlay`      | `--surface-overlay`     | strong catchlight, rim, `2/8/16px` drops                  | none                          |
+| `surface-modal`        | `--surface-modal`       | strong catchlight, rim, `4/16/32px` drops                 | none                          |
+| `surface-flat`         | transparent or `bg-*`   | none                                                      | tint                          |
+| `surface-frame`        | panel at 50%            | rim only                                                  | tint on links                 |
+| `surface-knob`         | `--surface-control`     | strong catchlight, rim, two drops, no backing             | none                          |
+| `surface-well`         | `--surface-well`        | inset top shade, inset rim                                | none                          |
+| `surface-fill-{color}` | the colour              | lifted-face catchlight, darkened rim, control drops       | as control                    |
+| `surface-tint-{color}` | the colour              | lift-switched catchlight, `currentColor` rim, panel drops | tint on links                 |
+| `surface-tag-{color}`  | the colour at tag alpha | as tint, no backing                                       | tint on links                 |
+
+Every role paints the same seven shadow layers (catchlight, rim, backing, three
+drops, recess) so state transitions interpolate. The shadow is written through
+`--tw-shadow`, so `ring-*` focus rings still compose with it.
 
 ### Why it is built this way
 
-- **Recolourable per element.**
-  - Colours and semantic colour aliases live on `:root`/`.dark`; the recipes are `@theme inline` shadows, so every `var()` resolves on the element that uses it.
-  - One override recolours any surface: `aria-invalid:[--surface-edge:var(--destructive)]` is the whole invalid state, and `shadow-tint` follows the text colour.
-  - Foglamp's 14 copied shadows become one rule.
-- **Focus rings compose.**
-  - The recipes write `--tw-shadow` and focus uses `ring-*`, so the two stack without either erasing the other.
-  - The hairline must never use `ring-*`. Today's `ring-1 ring-foreground/10` on cards and popups is erased by a focus ring.
-- **Merge-safe.**
-  - `lib/utils.ts` builds `cn` with `createCn` and registers the recipe names as shadows.
-  - `cn("shadow-control", "shadow-pressed")` and `cn("shadow-control", "shadow-none")` resolve to the last class; without registration, `cn` treated them as shadow colours and kept both.
-- **Paired classes, not one magic class.** `bg-surface-control shadow-control` stays two ordinary utilities, so either half can be overridden with normal Tailwind and `cn` semantics.
+- **One class, states from the element.** The role reads hover, `:active`,
+  `aria-expanded`, `aria-pressed`, `data-state="on"`, `data-popup-open`,
+  `aria-invalid`, and disabled attributes itself. Components no longer list state
+  classes, and a new coloured element is `border surface-fill-{color}`.
+- **Any colour, both themes.** Fills derive their rim (`face 88% + black`) and
+  catchlight (`face 80% + white`) from the face; tints and tags derive theirs
+  from `currentColor`.
+- **Overridable.** State selectors use `:where()`, so any utility on the element
+  (`bg-*`, `shadow-none`, `[--surface-face:…]`) wins over the role.
+- **Merge-safe.** `lib/utils.ts` registers the roles as one `cn` class group, so
+  `cn("surface-control", "surface-fill-primary")` keeps only the fill.
 - **Don't combine a role with `shadow-<color>`.** Tailwind's shadow-colour utility repaints every layer, flattening the recipe.
 
 ### Nesting across portals (added in Phase 3)
@@ -169,19 +182,21 @@ Base UI portals popups to `body`, so CSS cannot see that a menu lives inside a d
 | well (rare)             | `switch` track, `slider` and `progress` tracks, `tabs` list (segmented)                                                                                                                                                                                                                                                    |
 | tint                    | soft and tag `badge`, soft `button`, status `alert`                                                                                                                                                                                                                                                                        |
 | inverse                 | `tooltip`: `bg-foreground`, overlay drops without a catchlight                                                                                                                                                                                                                                                             |
-| flat                    | menu, select, command and sidebar items, table rows, ghost and link `button`, `breadcrumb`; hover uses `tint-hover` only                                                                                                                                                                                                   |
+| flat                    | menu, select, command and sidebar items, table rows, ghost and link `button`, `breadcrumb`; `surface-flat` adds the hover tint                                                                                                                                                                                             |
 
 ### States
 
-| State                                           | Classes                                                                                                           |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| hover                                           | `hover:tint-hover`                                                                                                |
-| pressed (`active`, `data-pressed` on buttons)   | `active:tint-press active:shadow-pressed` + existing `translate-y-px`; not when `data-disabled` / `data-readonly` |
-| open (`aria-expanded`, `data-popup-open`)       | `shadow-pressed`                                                                                                  |
-| selected (`data-pressed` toggle, `data-active`) | flat → `bg-surface-control shadow-control`                                                                        |
-| focus-visible                                   | surface border colour (`border-ring`), without an outer ring                                                      |
-| invalid                                         | `aria-invalid:[--surface-edge:var(--destructive)]`                                                                |
-| disabled                                        | `shadow-edge` + existing `opacity-50`; a disabled control must not look pressable                                 |
+States are built into the roles; components add no state classes.
+
+| State                                                                           | Source                                                                 | Effect                                 |
+| ------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------- |
+| hover                                                                           | `:hover` on links, buttons, comboboxes, tabs (hover-capable pointers)  | `--surface-tint-hover` overlay         |
+| pressed                                                                         | `:active` on the same elements                                         | pressed tint; controls sink            |
+| engaged (`aria-expanded`, `aria-pressed`, `data-state="on"`, `data-popup-open`) | attribute                                                              | pressed tint; controls sink            |
+| selected flat toggle                                                            | `surface-flat engaged:surface-control`                                 | becomes a sunk control                 |
+| focus-visible                                                                   | component `focus-visible:border-ring`                                  | border colour, no outer ring           |
+| invalid                                                                         | `aria-invalid` on the element or its direct input                      | destructive rim                        |
+| disabled                                                                        | `:disabled`, `data-disabled`, `aria-disabled`, a disabled direct input | hairline only; selected keeps its tint |
 
 Transitions: `transition-[background-color,box-shadow,translate] duration-150 motion-reduce:transition-none`.
 
@@ -206,8 +221,8 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
 ## Phases
 
 - [x] **Phase 0: primitives.**
-  - [x] `surfaces.css`: colours, recipes, `tint-hover`, `tint-press`.
-  - [x] `cn` recipe registration.
+  - [x] `surfaces.css`: colours, element tokens, and one-class surface roles with built-in states.
+  - [x] `cn` surface-role class group.
   - [x] `Foundations/Surfaces` story (Ladder, Roles, Nesting, States) in both themes.
   - [x] Review the Roles story in both themes and settle the base values (the edge alpha, the dark catchlight, the ladder steps) before any component moves.
 - [x] **Phase 1: palette.** Remap `theme.css` onto faded Vitesse and the surface ladder, then review every existing story at once. Colours only; no component classes change.
@@ -284,7 +299,7 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
 
 Record every value a component overrides locally, with the reason, as the migration goes.
 
-- Joined outline button and toggle groups own one outer frame. Segments override `--control-shadow-{state}` to retain only inset shading; internal seams use the shared carved divider recipe. Popup focus guards must not interrupt seam selectors.
+- Joined outline button and toggle groups own one outer frame. Segments clear their rim, catchlight, backing, and drops to retain only face, tint, and recess; internal seams use the shared carved divider recipe. Popup focus guards must not interrupt seam selectors.
 - `input-otp` slots retain their individual control surfaces.
 - The `command` search field and the search field inside the `combobox` popup stay flat (translucent, no shadow): a raised field inside an overlay competes with the overlay itself.
 - `kbd` inside a tooltip drops its shadow, because the tooltip is an inverse surface.

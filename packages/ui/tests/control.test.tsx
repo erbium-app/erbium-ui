@@ -155,10 +155,8 @@ test("segmented controls mount with one raised selection and move it on change",
   const indicators = container.querySelectorAll('[data-slot="control-segment-indicator"]');
   expect(indicators).toHaveLength(2);
   for (const indicator of indicators) {
-    expect(indicator.className).toContain("bg-surface-control");
-    expect(indicator.className).toContain("shadow-control");
-    expect(indicator.closest('[role="radiogroup"]')?.className).toContain("bg-surface-well");
-    expect(indicator.closest('[role="radiogroup"]')?.className).toContain("shadow-well");
+    expect(indicator.className).toContain("surface-control");
+    expect(indicator.closest('[role="radiogroup"]')?.className).toContain("surface-well");
   }
   expect(screen.getByRole("radio", { name: "On" }).contains(indicators[0])).toBe(true);
   expect(screen.getByRole("radio", { name: "Photo" }).contains(indicators[1])).toBe(true);

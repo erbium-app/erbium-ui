@@ -11,8 +11,7 @@ const itemGroupVariants = cva("group/item-group flex w-full flex-col", {
     variant: {
       default:
         "gap-4 has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2 has-[>[data-slot=item-separator]]:gap-0",
-      panel:
-        "gap-0 overflow-hidden rounded-xl border border-surface-border bg-surface-panel text-card-foreground shadow-panel",
+      panel: "gap-0 overflow-hidden rounded-xl border surface-panel text-card-foreground",
     },
   },
   defaultVariants: {
@@ -51,13 +50,13 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
 }
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-sm transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:hover:tint-hover [a]:active:tint-press [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-ring/40 group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-4 group-data-[variant=panel]/item-group:py-4 group-data-[variant=panel]/item-group:shadow-none",
+  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-sm transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-ring/40 group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-4 group-data-[variant=panel]/item-group:py-4 group-data-[variant=panel]/item-group:shadow-none",
   {
     variants: {
       variant: {
-        default: "",
-        outline: "border-surface-border bg-surface-panel text-card-foreground shadow-panel",
-        muted: "border-surface-border bg-surface-panel/50 shadow-edge",
+        default: "surface-flat",
+        outline: "surface-panel text-card-foreground",
+        muted: "surface-frame",
       },
       size: {
         default: "gap-2.5 px-3 py-2.5",

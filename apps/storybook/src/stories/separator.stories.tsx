@@ -82,7 +82,7 @@ export const Labeled: Story = {
     },
   },
   render: () => (
-    <div className="w-72 rounded-lg bg-surface-panel p-4 shadow-panel">
+    <div className="w-72 rounded-lg surface-panel p-4">
       <Separator fade className="text-xs text-muted-foreground">
         or
       </Separator>
@@ -102,7 +102,7 @@ export const FullWidth: Story = {
     },
   },
   render: () => (
-    <div className="w-72 overflow-hidden rounded-lg bg-surface-panel py-3 shadow-panel">
+    <div className="w-72 overflow-hidden rounded-lg surface-panel py-3">
       <div className="px-3 pb-3 text-sm">Card header</div>
       <Separator />
       <div className="px-3 pt-3 text-sm text-muted-foreground">Card content</div>
@@ -147,7 +147,7 @@ export const OnSurfaces: Story = {
       {surfaceSamples.map(([name, surface]) => (
         <div
           key={name}
-          className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-surface-border p-3 ${surface}`}
+          className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-transparent p-3 ${surface}`}
         >
           <span className="text-xs font-medium">{name}</span>
           <Separator />

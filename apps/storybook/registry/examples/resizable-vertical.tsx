@@ -5,7 +5,7 @@ export default function ResizableDemo() {
   return (
     <ResizablePanelGroup
       orientation="vertical"
-      className="min-h-[200px] max-w-md rounded-xl border border-surface-border bg-surface-panel shadow-panel md:min-w-[450px]"
+      className="min-h-[200px] max-w-md rounded-xl border surface-panel md:min-w-[450px]"
     >
       <ResizablePanel defaultSize="25%">
         <div className="flex h-full items-center justify-center p-6">

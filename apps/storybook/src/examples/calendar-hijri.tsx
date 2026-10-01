@@ -41,10 +41,7 @@ export default function CalendarHijri() {
   const offset = first ? (first.getDay() + 1) % 7 : 0;
 
   return (
-    <div
-      dir="rtl"
-      className="w-72 rounded-xl border border-surface-border bg-surface-panel p-3 font-sans shadow-panel"
-    >
+    <div dir="rtl" className="w-72 rounded-xl border surface-panel p-3 font-sans">
       <div className="mb-3 flex items-center justify-between">
         <Button
           aria-label="ماه قبل"

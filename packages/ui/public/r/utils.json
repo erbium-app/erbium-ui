@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "src/lib/utils.ts",
-      "content": "import { createCn } from \"cn/config\";\n\n/**\n * Surface shadows are registered so `cn` merges them with the built-in shadow\n * scale; without this, `cn(\"shadow-control\", \"shadow-none\")` keeps both.\n */\nexport const cn = createCn({\n  extend: {\n    theme: {\n      shadow: [\n        \"panel\",\n        \"control\",\n        \"overlay\",\n        \"modal\",\n        \"knob\",\n        \"fill\",\n        \"pressed\",\n        \"edge\",\n        \"well\",\n        \"tint\",\n      ],\n    },\n  },\n});\n",
+      "content": "import { createCn } from \"cn/config\";\n\nconst anySurfaceColor = () => true;\n\n/**\n * Surface roles are registered as one class group so `cn` keeps only the last\n * role: `cn(\"surface-control\", \"surface-fill-primary\")` yields the fill.\n */\nexport const cn = createCn({\n  extend: {\n    classGroups: {\n      surface: [\n        {\n          surface: [\n            \"panel\",\n            \"control\",\n            \"field\",\n            \"overlay\",\n            \"modal\",\n            \"flat\",\n            \"frame\",\n            \"well\",\n            \"knob\",\n            { fill: [anySurfaceColor], tint: [anySurfaceColor], tag: [anySurfaceColor] },\n          ],\n        },\n      ],\n    },\n  },\n});\n",
       "type": "registry:lib",
       "target": "~/src/lib/utils.ts"
     }
