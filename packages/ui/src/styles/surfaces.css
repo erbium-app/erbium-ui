@@ -47,6 +47,17 @@
  * Light and dark share every recipe's geometry; only the colours change.
  * Light mode leans on cast shadows (the neutral catchlight is transparent on white);
  * dark mode leans on lighter surfaces and a warm top-edge catchlight.
+ *
+ * Coloured faces light their top edge from their own colour: an outer
+ * catchlight, the face lifted toward white, painted over the perimeter's top
+ * row. A lifted face only reads against a darker ground:
+ *   fill   solid faces are darker than either canvas, so the catchlight
+ *          always sits on the top edge
+ *   tint   soft faces are near the light canvas, where a whiter edge would
+ *          vanish. Light mode instead lifts the perimeter itself: the top
+ *          row keeps the tinted rim at half strength, lighter than the
+ *          sides and bottom but still visible. --surface-catchlight-lift
+ *          picks between the two (0% lifted rim, 100% lifted face).
  * The ink (#393a34) and light (#dedcd5) tints come from Vitesse.
  */
 
@@ -66,6 +77,7 @@
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
+  --surface-catchlight-lift: 0%;
   --surface-shadow: rgb(57 58 52 / 0.06);
   --surface-shadow-strong: rgb(57 58 52 / 0.1);
   --surface-shadow-inset: rgb(57 58 52 / 0.1);
@@ -96,6 +108,7 @@
   --surface-highlight: rgb(222 220 213 / 0.06);
   --surface-highlight-strong: rgb(222 220 213 / 0.09);
   --surface-highlight-divider: var(--surface-highlight);
+  --surface-catchlight-lift: 100%;
   --surface-shadow: rgb(0 0 0 / 0.3);
   --surface-shadow-strong: rgb(0 0 0 / 0.5);
   --surface-shadow-inset: rgb(0 0 0 / 0.35);
@@ -167,7 +180,12 @@
   --shadow-well:
     inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
   --shadow-tint:
-    0 -1px 0 0 color-mix(in srgb, var(--surface-face) 80%, white),
+    0 -1px 0 0
+      color-mix(
+        in srgb,
+        color-mix(in srgb, var(--surface-face) 80%, white) var(--surface-catchlight-lift),
+        color-mix(in oklab, currentColor 5%, var(--surface-face))
+      ),
     0 0 0 1px color-mix(in oklab, currentColor 10%, transparent), 0 0 0 1px var(--surface-face),
     0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow);
 }
