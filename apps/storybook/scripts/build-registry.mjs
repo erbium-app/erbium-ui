@@ -10,7 +10,9 @@ await rm(registryExamples, { recursive: true, force: true });
 await rm(join(root, "public/r"), { recursive: true, force: true });
 await mkdir(registryExamples, { recursive: true });
 
-for (const file of (await readdir(examples)).filter((name) => name.endsWith(".tsx")).sort()) {
+for (const file of (await readdir(examples))
+  .filter((name) => name.endsWith(".tsx") && !name.endsWith(".test.tsx"))
+  .sort()) {
   const name = file.slice(0, -4);
   const source = await readFile(join(examples, file), "utf8");
   const registryDependencies = new Set();
