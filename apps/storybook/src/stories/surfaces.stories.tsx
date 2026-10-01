@@ -82,6 +82,20 @@ const coloredSurfaces = [
   ],
 ] as const;
 
+/* Tags take their strength from --surface-tag-alpha, or from a per-colour
+   token such as --tag-yellow-alpha. */
+const tagColors = [
+  ["gray", "surface-tag-gray text-tag-gray"],
+  ["red", "surface-tag-red text-tag-red"],
+  ["orange", "surface-tag-orange text-tag-orange"],
+  ["yellow", "surface-tag-yellow text-tag-yellow-foreground"],
+  ["green", "surface-tag-green text-tag-green"],
+  ["cyan", "surface-tag-cyan text-tag-cyan"],
+  ["blue", "surface-tag-blue text-tag-blue"],
+  ["purple", "surface-tag-purple text-tag-purple"],
+  ["magenta", "surface-tag-magenta text-tag-magenta"],
+] as const;
+
 export const Colored: Story = {
   render: () => (
     <Canvas>
@@ -92,6 +106,16 @@ export const Colored: Story = {
             <div className={`${tint} rounded-lg border p-3`}>{color} tint</div>
           </div>
         ))}
+        <div className="flex flex-wrap gap-2">
+          {tagColors.map(([color, classes]) => (
+            <span
+              key={color}
+              className={`${classes} rounded-full border px-2.5 py-0.5 text-xs font-medium`}
+            >
+              {color}
+            </span>
+          ))}
+        </div>
       </div>
     </Canvas>
   ),
@@ -246,16 +270,24 @@ export const Nesting: Story = {
 };
 
 /* Hover and press are pointer states, so the static swatches set the same
-   element tokens the surface sets on :hover and :active. The other states are
-   plain attributes: the surface reads them. */
-const pressed =
-  "[--surface-tint:var(--surface-tint-pressed)] [--surface-catchlight:transparent] [--surface-backing:transparent] [--surface-drop:0_0_0_0_transparent,0_0_0_0_transparent,0_0_0_0_transparent] [--surface-recess:0_2px_3px_-1px_var(--surface-shadow-inset)]";
+   element tokens the surface sets on :hover and :active. Flat roles only
+   tint; raised roles also sink. The other states are plain attributes: the
+   surface reads them. */
+const sunk =
+  "[--surface-catchlight:transparent] [--surface-backing:transparent] [--surface-drop:0_0_0_0_transparent,0_0_0_0_transparent,0_0_0_0_transparent] [--surface-recess:0_2px_3px_-1px_var(--surface-shadow-inset)]";
+
+const stateRoles = [
+  ["surface-control", true],
+  ["surface-fill-primary text-primary-foreground", true],
+  ["surface-flat text-muted-foreground", false],
+  ["surface-ghost-destructive-soft text-destructive-soft-foreground", false],
+] as const;
 
 const states = [
   ["rest", {}, ""],
-  ["hover", {}, "[--surface-tint:var(--surface-tint-hover)]"],
+  ["hover", {}, "[--surface-tint:var(--surface-hover-tint)]"],
   ["selected / open", { "aria-pressed": true }, ""],
-  ["pressed", {}, pressed],
+  ["pressed", {}, "[--surface-tint:var(--surface-press-tint)]"],
   ["focus", {}, "ring-3 ring-ring/50"],
   ["invalid", { "aria-invalid": true }, ""],
   ["disabled", { "aria-disabled": true }, "opacity-50"],
@@ -265,17 +297,19 @@ export const States: Story = {
   render: () => (
     <Canvas>
       <div className="grid gap-4 rounded-xl border surface-panel p-6">
-        {(["surface-control", "surface-fill-primary text-primary-foreground"] as const).map(
-          (role) => (
-            <div key={role} className="flex flex-wrap gap-4">
-              {states.map(([name, attributes, classes]) => (
-                <span key={name} {...attributes} className={`${control} border ${role} ${classes}`}>
-                  {name}
-                </span>
-              ))}
-            </div>
-          ),
-        )}
+        {stateRoles.map(([role, raised]) => (
+          <div key={role} className="flex flex-wrap gap-4">
+            {states.map(([name, attributes, classes]) => (
+              <span
+                key={name}
+                {...attributes}
+                className={`${control} border ${role} ${classes} ${name === "pressed" && raised ? sunk : ""}`}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        ))}
       </div>
     </Canvas>
   ),

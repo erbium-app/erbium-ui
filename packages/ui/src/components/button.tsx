@@ -21,13 +21,13 @@ const buttonVariants = cva(
         warning: "surface-fill-warning text-warning-foreground focus-visible:border-warning/40",
         info: "surface-fill-info text-info-foreground focus-visible:border-info/40",
         "ghost-destructive":
-          "text-destructive-soft-foreground hover:bg-destructive-soft active:bg-destructive-soft-hover engaged:bg-destructive-soft focus-visible:border-destructive/40 ",
+          "surface-ghost-destructive-soft text-destructive-soft-foreground focus-visible:border-destructive/40",
         "ghost-success":
-          "text-success-soft-foreground hover:bg-success-soft active:bg-success-soft-hover engaged:bg-success-soft focus-visible:border-success/40 ",
+          "surface-ghost-success-soft text-success-soft-foreground focus-visible:border-success/40",
         "ghost-warning":
-          "text-warning-soft-foreground hover:bg-warning-soft active:bg-warning-soft-hover engaged:bg-warning-soft focus-visible:border-warning/40 ",
+          "surface-ghost-warning-soft text-warning-soft-foreground focus-visible:border-warning/40",
         "ghost-info":
-          "text-info-soft-foreground hover:bg-info-soft active:bg-info-soft-hover engaged:bg-info-soft focus-visible:border-info/40 ",
+          "surface-ghost-info-soft text-info-soft-foreground focus-visible:border-info/40",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

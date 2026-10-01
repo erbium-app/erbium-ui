@@ -21,7 +21,12 @@ export const cn = createCn({
             "frame",
             "well",
             "knob",
-            { fill: [anySurfaceColor], tint: [anySurfaceColor], tag: [anySurfaceColor] },
+            {
+              fill: [anySurfaceColor],
+              ghost: [anySurfaceColor],
+              tint: [anySurfaceColor],
+              tag: [anySurfaceColor],
+            },
           ],
         },
       ],

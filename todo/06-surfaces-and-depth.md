@@ -103,8 +103,9 @@ lighting feeds treatments, never the reverse.
 | `--surface-shadow-inset`, `--surface-shadow-divider`                               | Recess and divider shadow colours                      |
 | `--surface-edge`, `--surface-edge-well`                                            | Neutral perimeter colours                              |
 | `--surface-border`                                                                 | Transparent CSS border used for forced-colors fallback |
-| `--surface-tint-hover`, `--surface-tint-pressed`                                   | Interaction tint colours                               |
+| `--surface-tint-hover`, `--surface-tint-pressed`                                   | Neutral interaction tint colours                       |
 | `--surface-tag-alpha`                                                              | Translucent tag strength (10% light, 15% dark)         |
+| `--tag-{color}-alpha`                                                              | Per-colour tag strength (`--tag-yellow-alpha`: 15%)    |
 | `--separator-direction`, `--separator-fade-direction`                              | Local separator geometry                               |
 
 Element tokens are registered with `@property { inherits: false }`, so a nested
@@ -120,23 +121,32 @@ the defaults of every surface:
 | `--surface-drop`       | Three drop shadows                                    |
 | `--surface-recess`     | Inset shade for pressed and engaged states            |
 | `--surface-tint`       | State overlay painted over the face                   |
+| `--surface-hover-tint` | Tint that hover paints (default neutral hover tint)   |
+| `--surface-press-tint` | Tint that press and engaged paint                     |
+
+Roles that build on another (`surface-field` and `surface-fill-*` on
+`surface-control`; every role on `surface-flat`) set their tokens first and
+then `@apply` the base. The base writes its own defaults inside `:where(&)`,
+with no specificity, so the derived role's tokens win and the base's state
+rules, which come later, still win over both.
 
 ### Roles (one class per element, plus `border`)
 
-| Class                  | Face                    | Elevation                                                 | States                        |
-| ---------------------- | ----------------------- | --------------------------------------------------------- | ----------------------------- |
-| `surface-panel`        | `--surface-panel`       | catchlight, rim, two soft drops                           | tint on links                 |
-| `surface-control`      | `--surface-control`     | catchlight, rim, tight and soft drops                     | tint, sink, invalid, disabled |
-| `surface-field`        | `--surface-input`       | as control                                                | invalid, disabled (no sink)   |
-| `surface-overlay`      | `--surface-overlay`     | strong catchlight, rim, `2/8/16px` drops                  | none                          |
-| `surface-modal`        | `--surface-modal`       | strong catchlight, rim, `4/16/32px` drops                 | none                          |
-| `surface-flat`         | transparent or `bg-*`   | none                                                      | tint                          |
-| `surface-frame`        | panel at 50%            | rim only                                                  | tint on links                 |
-| `surface-knob`         | `--surface-control`     | strong catchlight, rim, two drops, no backing             | none                          |
-| `surface-well`         | `--surface-well`        | inset top shade, inset rim                                | none                          |
-| `surface-fill-{color}` | the colour              | lifted-face catchlight, darkened rim, control drops       | as control                    |
-| `surface-tint-{color}` | the colour              | lift-switched catchlight, `currentColor` rim, panel drops | tint on links                 |
-| `surface-tag-{color}`  | the colour at tag alpha | as tint, no backing                                       | tint on links                 |
+| Class                   | Face                    | Elevation                                                 | States                                         |
+| ----------------------- | ----------------------- | --------------------------------------------------------- | ---------------------------------------------- |
+| `surface-panel`         | `--surface-panel`       | catchlight, rim, two soft drops                           | tint on links                                  |
+| `surface-control`       | `--surface-control`     | catchlight, rim, tight and soft drops                     | tint, sink, invalid, disabled                  |
+| `surface-field`         | `--surface-input`       | as control (builds on it)                                 | as control                                     |
+| `surface-overlay`       | `--surface-overlay`     | strong catchlight, rim, `2/8/16px` drops                  | none                                           |
+| `surface-modal`         | `--surface-modal`       | strong catchlight, rim, `4/16/32px` drops                 | none                                           |
+| `surface-flat`          | transparent or `bg-*`   | none                                                      | tint                                           |
+| `surface-frame`         | panel at 50%            | rim only                                                  | tint on links                                  |
+| `surface-knob`          | `--surface-control`     | strong catchlight, rim, two drops, no backing             | none                                           |
+| `surface-well`          | `--surface-well`        | inset top shade, inset rim                                | none                                           |
+| `surface-fill-{color}`  | the colour              | lifted-face catchlight, darkened rim, control drops       | as control (builds on it)                      |
+| `surface-tint-{color}`  | the colour              | lift-switched catchlight, `currentColor` rim, panel drops | tint on links                                  |
+| `surface-tag-{color}`   | the colour at tag alpha | as tint, no backing                                       | tint on links                                  |
+| `surface-ghost-{color}` | transparent             | none                                                      | colour on hover; deepened on press and engaged |
 
 Every role paints the same seven shadow layers (catchlight, rim, backing, three
 drops, recess) so state transitions interpolate. The shadow is written through
@@ -150,7 +160,13 @@ drops, recess) so state transitions interpolate. The shadow is written through
   classes, and a new coloured element is `border surface-fill-{color}`.
 - **Any colour, both themes.** Fills derive their rim (`face 88% + black`) and
   catchlight (`face 80% + white`) from the face; tints and tags derive theirs
-  from `currentColor`.
+  from `currentColor`. Ghost colours paint the colour on hover and mix 10% of
+  `currentColor` into it for press and engaged, which deepens it in light mode
+  and lifts it in dark mode, so no `*-soft-hover` token is needed.
+- **No public building blocks.** The sink, invalid, and disabled states live in
+  `surface-control`, which fields and fills build on; there is no separate
+  `surface-press` class. Interactive elements are named once, in the
+  `surface-interactive` variant.
 - **Overridable.** State selectors use `:where()`, so any utility on the element
   (`bg-*`, `shadow-none`, `[--surface-face:…]`) wins over the role.
 - **Merge-safe.** `lib/utils.ts` registers the roles as one `cn` class group, so
@@ -190,9 +206,9 @@ States are built into the roles; components add no state classes.
 
 | State                                                                           | Source                                                                 | Effect                                 |
 | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------- |
-| hover                                                                           | `:hover` on links, buttons, comboboxes, tabs (hover-capable pointers)  | `--surface-tint-hover` overlay         |
-| pressed                                                                         | `:active` on the same elements                                         | pressed tint; controls sink            |
-| engaged (`aria-expanded`, `aria-pressed`, `data-state="on"`, `data-popup-open`) | attribute                                                              | pressed tint; controls sink            |
+| hover                                                                           | `:hover` on links, buttons, comboboxes, tabs (hover-capable pointers)  | `--surface-hover-tint` overlay         |
+| pressed                                                                         | `:active` on the same elements                                         | `--surface-press-tint`; controls sink  |
+| engaged (`aria-expanded`, `aria-pressed`, `data-state="on"`, `data-popup-open`) | attribute                                                              | `--surface-press-tint`; controls sink  |
 | selected flat toggle                                                            | `surface-flat engaged:surface-control`                                 | becomes a sunk control                 |
 | focus-visible                                                                   | component `focus-visible:border-ring`                                  | border colour, no outer ring           |
 | invalid                                                                         | `aria-invalid` on the element or its direct input                      | destructive rim                        |
@@ -303,3 +319,7 @@ Record every value a component overrides locally, with the reason, as the migrat
 - `input-otp` slots retain their individual control surfaces.
 - The `command` search field and the search field inside the `combobox` popup stay flat (translucent, no shadow): a raised field inside an overlay competes with the overlay itself.
 - `kbd` inside a tooltip drops its shadow, because the tooltip is an inverse surface.
+- `calendar` and `command` drop their own surface (`bg-transparent shadow-none border-0`) when embedded in a card, popover, or dialog that already provides one.
+- `input-group` controls and buttons drop their own shadow, because the group owns the field surface.
+- Menu, select, command, menubar, and navigation-menu items keep their `bg-accent` / `bg-muted` highlight. They follow the widget's keyboard highlight (`data-highlighted`, `data-selected`, focus), which a hover tint cannot, so the interactive selector list leaves out `menuitem*`, `option`, and `treeitem`. Switches, checkboxes, and radios are also left out: their state is `checked`, and their tracks and indicators do not carry a hover tint.
+- `bubble` content is not a surface; its variants derive hover colours with `color-mix` toward the text colour.

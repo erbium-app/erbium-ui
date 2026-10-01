@@ -32,7 +32,7 @@ const bubbleVariants = cva(
         ghost:
           "border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted/50",
         destructive:
-          "*:data-[slot=bubble-content]:bg-destructive-soft *:data-[slot=bubble-content]:text-destructive-soft-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive-soft-hover",
+          "*:data-[slot=bubble-content]:bg-destructive-soft *:data-[slot=bubble-content]:text-destructive-soft-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-[color-mix(in_oklab,var(--destructive-soft),var(--destructive-soft-foreground)_10%)]",
       },
     },
     defaultVariants: {

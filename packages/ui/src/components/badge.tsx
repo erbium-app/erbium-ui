@@ -20,18 +20,14 @@ const badgeVariants = cva(
         info: "surface-tint-info-soft text-info-soft-foreground",
         success: "surface-tint-success-soft text-success-soft-foreground",
         warning: "surface-tint-warning-soft text-warning-soft-foreground",
-        "ghost-destructive":
-          "bg-transparent text-destructive-soft-foreground hover:bg-destructive-soft [a]:hover:bg-destructive-soft",
-        "ghost-info":
-          "bg-transparent text-info-soft-foreground hover:bg-info-soft [a]:hover:bg-info-soft",
-        "ghost-success":
-          "bg-transparent text-success-soft-foreground hover:bg-success-soft [a]:hover:bg-success-soft",
-        "ghost-warning":
-          "bg-transparent text-warning-soft-foreground hover:bg-warning-soft [a]:hover:bg-warning-soft",
+        "ghost-destructive": "surface-ghost-destructive-soft text-destructive-soft-foreground",
+        "ghost-info": "surface-ghost-info-soft text-info-soft-foreground",
+        "ghost-success": "surface-ghost-success-soft text-success-soft-foreground",
+        "ghost-warning": "surface-ghost-warning-soft text-warning-soft-foreground",
         "tag-gray": "surface-tag-gray text-tag-gray",
         "tag-red": "surface-tag-red text-tag-red",
         "tag-orange": "surface-tag-orange text-tag-orange",
-        "tag-yellow": "surface-tag-yellow text-tag-yellow-foreground [--surface-tag-alpha:15%]",
+        "tag-yellow": "surface-tag-yellow text-tag-yellow-foreground",
         "tag-green": "surface-tag-green text-tag-green",
         "tag-cyan": "surface-tag-cyan text-tag-cyan",
         "tag-blue": "surface-tag-blue text-tag-blue",

@@ -19,17 +19,24 @@
  *   surface-fill-{color}   solid coloured controls (primary, destructive, ...)
  *   surface-tint-{color}   opaque soft coloured panels (soft alerts, badges)
  *   surface-tag-{color}    translucent coloured tags
+ *   surface-ghost-{color}  flat controls whose states paint a colour
+ *                          (ghost-destructive buttons and badges)
  *
  * States come from the element, never from extra classes:
- *   hover / press        links, buttons, comboboxes, and tabs get a tint
- *                        overlay on any surface; raised controls also sink
+ *   hover / press        links, buttons, comboboxes, and tabs (the
+ *                        surface-interactive variant) get a tint overlay on
+ *                        any surface; raised controls also sink
  *   engaged              aria-expanded, aria-pressed, data-state="on", and an
- *                        open popup sink a control into its plane
+ *                        open popup tint a surface and sink a raised control
+ *                        into its plane
  *   invalid              aria-invalid (on the element or its direct input)
  *                        turns a control or field perimeter destructive
  *   disabled             :disabled, data-disabled, aria-disabled, or a
  *                        disabled direct input flatten a control to its
  *                        hairline; a selected control keeps its tint
+ * surface-flat owns the tint states. surface-control owns the sink, invalid,
+ * and disabled states, and surface-field and surface-fill-* build on it, so
+ * pressed beats engaged and disabled beats both in every raised role.
  *
  * Coloured faces derive their perimeter and catchlight from the face colour,
  * so any colour works in both themes:
@@ -39,6 +46,10 @@
  *          vanish. Light mode keeps the tinted rim at half strength on the
  *          top edge instead. --surface-catchlight-lift picks between the two
  *          (0% lifted rim, 100% lifted face).
+ *   ghost  hover paints the colour; press and engaged mix 10% of the text
+ *          colour into it, which deepens it in light mode and lifts it in dark
+ *   tag    the face is the colour at --surface-tag-alpha, unless the palette
+ *          sets a per-colour strength (--tag-yellow-alpha)
  *
  * Theme tokens (:root and .dark) hold colours only:
  *   --surface-{role}             face colours (canvas, panel, control, ...)
@@ -46,7 +57,7 @@
  *   --surface-highlight[-strong] neutral catchlights (transparent in light)
  *   --surface-shadow[-strong]    drop shadow colours
  *   --surface-shadow-inset       recess colour
- *   --surface-tint-{state}       hover and pressed overlays
+ *   --surface-tint-{state}       neutral hover and pressed overlays
  *   --surface-tag-alpha          translucent tag strength
  *   --surface-border             transparent CSS border / forced-colors fallback
  *
@@ -61,6 +72,8 @@
  *   --surface-drop         three drop shadows (pad with transparent)
  *   --surface-recess       inset shadow for pressed and engaged states
  *   --surface-tint         state overlay painted over the face
+ *   --surface-hover-tint   the tint hover paints (default --surface-tint-hover)
+ *   --surface-press-tint   the tint press and engaged paint
  *
  * Every surface paints the same seven shadow layers in the same order, so
  * box-shadow transitions between states interpolate. The catchlight is
@@ -181,12 +194,42 @@
   initial-value: transparent;
 }
 
+@property --surface-hover-tint {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --surface-press-tint {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+/* Elements that react to pointer hover and press. Composite-widget items
+   (menuitem, option, treeitem) are highlighted by their widget and checked
+   inputs (switch, checkbox, radio) by their checked state, so neither is here. */
+@custom-variant surface-interactive {
+  &:where(
+    :any-link,
+    button,
+    summary,
+    [role="button"],
+    [role="combobox"],
+    [role="tab"],
+    input:is([type="button"], [type="submit"], [type="reset"])
+  ) {
+    @slot;
+  }
+}
+
 /*
  * The base of every surface: one face, one seven-layer shadow, and the tint
  * overlay for hover and press. Without a role it is a flat interactive
  * surface (ghost and secondary controls); pair it with a bg-* colour.
  * State selectors use :where() so they win by order over the role's tokens
- * and lose to any utility a component adds.
+ * and lose to any utility a component adds. Defaults sit in :where(&), with
+ * no specificity, so a role that builds on this one can replace them.
  */
 @utility surface-flat {
   --surface-elevation:
@@ -198,69 +241,87 @@
   background-origin: border-box;
   @apply shadow-(--surface-elevation);
 
+  :where(&) {
+    --surface-hover-tint: var(--surface-tint-hover);
+    --surface-press-tint: var(--surface-tint-pressed);
+  }
+
   @media (hover: hover) {
-    &:where(
-        :any-link,
-        button,
-        summary,
-        [role="button"],
-        [role="combobox"],
-        [role="tab"],
-        input:is([type="button"], [type="submit"], [type="reset"])
-      ):where(:hover):where(
-        :not(:disabled, [data-disabled]:not([data-disabled="false"]), [aria-disabled="true"])
-      ) {
-      --surface-tint: var(--surface-tint-hover);
+    @variant surface-interactive {
+      &:where(:hover):where(
+          :not(:disabled, [data-disabled]:not([data-disabled="false"]), [aria-disabled="true"])
+        ) {
+        --surface-tint: var(--surface-hover-tint);
+      }
     }
   }
 
-  &:where(
-      [aria-expanded="true"],
-      [aria-pressed="true"],
-      [data-state="on"],
-      [data-popup-open]:not([data-popup-open="false"])
-    ):where(:not(input, textarea)),
-  &:where(
-      :any-link,
-      button,
-      summary,
-      [role="button"],
-      [role="combobox"],
-      [role="tab"],
-      input:is([type="button"], [type="submit"], [type="reset"])
-    ):where(:active) {
-    --surface-tint: var(--surface-tint-pressed);
+  @variant engaged {
+    &:where(:not(input, textarea)) {
+      --surface-tint: var(--surface-press-tint);
+    }
+  }
+
+  @variant surface-interactive {
+    &:where(:active) {
+      --surface-tint: var(--surface-press-tint);
+    }
   }
 }
 
-/* Raised controls and fields: depth, validity, and disabled states. Applied
-   after surface-flat so pressed beats engaged and disabled beats both. */
-@utility surface-press {
-  &:where(
-      [aria-expanded="true"],
-      [aria-pressed="true"],
-      [data-state="on"],
-      [data-popup-open]:not([data-popup-open="false"])
-    ):where(:not(input, textarea)) {
-    --surface-catchlight: transparent;
-    --surface-backing: transparent;
-    --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
-    --surface-recess: 0 1px 2px 0 var(--surface-shadow-inset);
+/* A flat surface whose hover, press, and engaged states paint one colour:
+   surface-ghost-destructive-soft. Press deepens the colour toward the text. */
+@utility surface-ghost-* {
+  --surface-hover-tint: --value(--color, [color]);
+  --surface-press-tint: color-mix(in oklab, var(--surface-hover-tint), currentColor 10%);
+  @apply surface-flat;
+}
+
+/* Neutral roles. Each one sets its face and elevation tokens only. */
+@utility surface-panel {
+  --surface-face: var(--surface-panel);
+  --surface-rim: var(--surface-edge);
+  --surface-catchlight: var(--surface-highlight);
+  --surface-backing: var(--surface-face);
+  --surface-drop:
+    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+  @apply surface-flat;
+}
+
+/*
+ * The raised, pressable surface. Fields and solid fills build on it, so its
+ * depth, validity, and disabled states are written once. They come after the
+ * flat states: pressed beats engaged and disabled beats both.
+ */
+@utility surface-control {
+  @apply surface-flat;
+
+  :where(&) {
+    --surface-face: var(--surface-control);
+    --surface-rim: var(--surface-edge);
+    --surface-catchlight: var(--surface-highlight);
+    --surface-backing: var(--surface-face);
+    --surface-drop:
+      0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
+      0 0 0 0 transparent;
   }
 
-  &:where(
-      :any-link,
-      button,
-      summary,
-      [role="button"],
-      [role="combobox"],
-      [role="tab"],
-      input:is([type="button"], [type="submit"], [type="reset"])
-    ):where(:active) {
-    --surface-catchlight: transparent;
-    --surface-backing: transparent;
-    --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
-    --surface-recess: 0 2px 3px -1px var(--surface-shadow-inset);
+  @variant engaged {
+    &:where(:not(input, textarea)) {
+      --surface-catchlight: transparent;
+      --surface-backing: transparent;
+      --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+      --surface-recess: 0 1px 2px 0 var(--surface-shadow-inset);
+    }
+  }
+
+  @variant surface-interactive {
+    &:where(:active) {
+      --surface-catchlight: transparent;
+      --surface-backing: transparent;
+      --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+      --surface-recess: 0 2px 3px -1px var(--surface-shadow-inset);
+    }
   }
 
   &:where([aria-invalid="true"], :has(> :is(input, textarea)[aria-invalid="true"])) {
@@ -280,39 +341,9 @@
   }
 }
 
-/* Neutral roles. Each one sets its face and elevation tokens only. */
-@utility surface-panel {
-  --surface-face: var(--surface-panel);
-  --surface-rim: var(--surface-edge);
-  --surface-catchlight: var(--surface-highlight);
-  --surface-backing: var(--surface-face);
-  --surface-drop:
-    0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
-  @apply surface-flat;
-}
-
-@utility surface-control {
-  --surface-face: var(--surface-control);
-  --surface-rim: var(--surface-edge);
-  --surface-catchlight: var(--surface-highlight);
-  --surface-backing: var(--surface-face);
-  --surface-drop:
-    0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
-    0 0 0 0 transparent;
-  @apply surface-flat;
-  @apply surface-press;
-}
-
 @utility surface-field {
   --surface-face: var(--surface-input);
-  --surface-rim: var(--surface-edge);
-  --surface-catchlight: var(--surface-highlight);
-  --surface-backing: var(--surface-face);
-  --surface-drop:
-    0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
-    0 0 0 0 transparent;
-  @apply surface-flat;
-  @apply surface-press;
+  @apply surface-control;
 }
 
 @utility surface-overlay {
@@ -368,12 +399,7 @@
   --surface-face: --value(--color, [color]);
   --surface-rim: color-mix(in srgb, var(--surface-face) 88%, black);
   --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, white);
-  --surface-backing: var(--surface-face);
-  --surface-drop:
-    0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
-    0 0 0 0 transparent;
-  @apply surface-flat;
-  @apply surface-press;
+  @apply surface-control;
 }
 
 @utility surface-tint-* {
@@ -391,12 +417,15 @@
 }
 
 /* Translucent tags: the face keeps its alpha and casts no backing ring.
-   Names resolve against the tag palette first: surface-tag-red uses --tag-red. */
+   Names resolve against the tag palette first: surface-tag-red uses --tag-red.
+   A palette colour can set its own strength: --tag-yellow-alpha. */
 @utility surface-tag-* {
   --surface-tag-color: --value(--color-tag-*, --color-*, [color]);
+  --surface-tag-strength: var(--surface-tag-alpha);
+  --surface-tag-strength: --value(--tag-alpha-*);
   --surface-face: color-mix(
     in oklab,
-    var(--surface-tag-color) var(--surface-tag-alpha),
+    var(--surface-tag-color) var(--surface-tag-strength),
     transparent
   );
   --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
