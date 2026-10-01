@@ -3,7 +3,7 @@ import {
   Combobox,
   ComboboxContent,
   ComboboxEmpty,
-  ComboboxInput,
+  ComboboxSearchInput,
   ComboboxItem,
   ComboboxList,
   ComboboxTrigger,
@@ -73,7 +73,7 @@ export function ComboboxPopup() {
           <ComboboxValue />
         </ComboboxTrigger>
         <ComboboxContent>
-          <ComboboxInput showTrigger={false} placeholder="Search" />
+          <ComboboxSearchInput placeholder="Search" aria-label="Search countries" />
           <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>
             {(item) => (

@@ -7,6 +7,7 @@ import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 import { RotatingChevron } from "./stateful-icon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
 
@@ -71,6 +72,29 @@ function ComboboxInput({
       </InputGroupAddon>
       {children}
     </InputGroup>
+  );
+}
+
+function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Props) {
+  return (
+    <div data-slot="combobox-search-input-wrapper">
+      <div className="flex h-10 items-center gap-2 px-3">
+        <HugeiconsIcon
+          icon={Search01Icon}
+          aria-hidden="true"
+          className="size-4 shrink-0 text-muted-foreground"
+        />
+        <ComboboxPrimitive.Input
+          data-slot="combobox-search-input"
+          className={cn(
+            "h-full min-w-0 flex-1 bg-transparent text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            className,
+          )}
+          {...props}
+        />
+      </div>
+      <Separator />
+    </div>
   );
 }
 
@@ -260,6 +284,7 @@ function useComboboxAnchor() {
 export {
   Combobox,
   ComboboxInput,
+  ComboboxSearchInput,
   ComboboxContent,
   ComboboxList,
   ComboboxItem,
