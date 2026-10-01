@@ -1,47 +1,16 @@
 # 00 — Naming and boundaries
 
-Before adding components, agree on the public names and avoid having two names for the same primitive.
+Erbium is an opinionated composition of Base UI behavior, shadcn UI conventions, and useful Coss UI concepts. It should have one clear public name for each concept.
 
-## Naming rules
+## Naming decisions
 
-- Prefer the established shadcn name when a concept is shared with shadcn.
-- Use Coss names when Coss introduces a genuinely distinct primitive.
-- Keep compatibility aliases only when migration cost justifies them; document every alias.
-- Use kebab-case filenames and PascalCase exports.
-- Keep primitive behavior generic. Do not put product workflows, data fetching, or domain state in `packages/ui`.
+- Keep familiar shadcn names for shared concepts: `input-otp`, `hover-card`, `navigation-menu`, `radio-group`, and the existing menu variants.
+- Use a Coss name only when it represents a distinct reusable primitive. Do not add aliases solely for parity with another library's inventory.
+- Keep `FieldSet` with the `field` components unless independent installation or behavior gives a separate registry item a clear purpose.
+- Keep form state in the application. `Field` provides layout and accessible control association; it is not a second form state system.
+- Treat a date picker as a composition of `calendar` and input or popup primitives. Keep calendar behavior in one place.
+- Use kebab-case filenames, PascalCase exports, and stable `data-slot` names.
 
-## Existing names to reconcile
+## Package boundary
 
-| Coss concept     | Current Erbium name           | Decision to make                                                                                                                                         |
-| ---------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fieldset`       | `FieldSet` inside `field.tsx` | Expose a first-class `fieldset.tsx`; preserve the existing exports temporarily if needed.                                                                |
-| `otp-field`      | `input-otp`                   | Keep `input-otp` as the shadcn-compatible public name; decide whether `otp-field` is an alias.                                                           |
-| `preview-card`   | `hover-card`                  | Keep `hover-card` for shadcn compatibility; document it as the preview-card primitive.                                                                   |
-| `menu`           | `dropdown-menu`, `menubar`    | Define whether these remain specialized wrappers over a shared menu foundation.                                                                          |
-| `navigation`     | `navigation-menu`             | Keep `navigation-menu` for the shadcn name; map Coss navigation particles to it or add a separate generic navigation primitive only if semantics differ. |
-| `date-picker`    | `calendar`                    | Treat date picker as a composition of calendar plus a popup/input, not as a replacement for calendar.                                                    |
-| `checkbox-group` | field composition only        | Add a real group primitive with group-level value, validation, and orientation behavior.                                                                 |
-
-## Erbium-only components
-
-Review these deliberately rather than removing them because Coss does not list them: `aspect-ratio`, `attachment`, `bubble`, `button-group`, `carousel`, `chart`, `direction`, `item`, `marker`, `message`, `message-scroller`, `questionnaire`, and `resizable`.
-
-`native-select` was removed from the component inventory; use the public `select` component for select menus and native HTML `<select>` where native platform behavior is desired.
-
-For each one:
-
-- confirm it is generic enough for the foundation;
-- confirm its name and API do not conflict with a shadcn or Base UI concept;
-- mark it as core, optional, or candidate for a dedicated package;
-- add a registry example and accessibility test if it remains core.
-
-## Package boundaries
-
-Keep these out of the foundation unless they are reduced to generic primitives:
-
-- rich text and code editors;
-- full command-palette products;
-- data-grid implementations with server state;
-- chat or messaging workflows;
-- upload managers and media browsers;
-- domain-specific settings, billing, auth, and dashboard blocks.
+`packages/ui` owns reusable controls and presentation. Product workflows, fetching, persistence, and domain state belong in apps, blocks, or dedicated packages. Review feature-heavy components against this boundary when changing them; do not rename or relocate them for inventory parity alone.

@@ -20,16 +20,9 @@ The goal is not to copy every package blindly. Each component should have one ca
 
 ## Current baseline
 
-The package already wraps most Base UI overlay, selection, navigation, and feedback primitives. The most important gaps are:
+The package already covers most Base UI overlay, selection, navigation, and feedback primitives. The remaining primitive candidates are `meter` and, if it adds distinct composition, generic `menu`. `frame` and `group` need a concrete use case before becoming public APIs. Existing `Field`, `input-otp`, provider, overlay, and toast APIs have targeted follow-up work.
 
-- missing Base UI wrappers: `checkbox-group`, `meter`, `number-field`, and `toolbar`;
-- missing or indirect wrappers: `form`, `fieldset`, generic `menu`, standalone `radio`, and `otp-field`;
-- custom hand-rolled behavior in `field.tsx` that should be reconciled with Base UI Field;
-- incomplete shared conventions for `useRender`, `mergeProps`, portals, direction, CSP, and state attributes;
-- toast is present and Base UI-backed, but needs a complete notification API and behavior/test audit;
-- blocks, stories, focused tests, and registry coverage are still sparse.
-
-The complete comparison and implementation checklist is in [Component parity](./01-missing-primitives.md) and [Base UI conventions](./02-base-ui-api.md).
+Remaining primitive candidates and API work are in [Missing primitives](./01-missing-primitives.md) and [Base UI conventions](./02-base-ui-api.md).
 
 ## Work sequence
 
@@ -42,4 +35,4 @@ The complete comparison and implementation checklist is in [Component parity](./
 7. [Surfaces and depth](./06-surfaces-and-depth.md)
 8. [Searchable menus](./07-searchable-menus.md)
 
-The first three documents should be completed before adding a large number of blocks. Paper coverage should be added alongside each component family, not postponed until the end, so the design system remains live and reviewable as the library evolves.
+Use the naming, primitive, and Base UI decisions while building blocks. Add Paper coverage alongside each component family so the design system remains reviewable as the library evolves.
