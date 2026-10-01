@@ -23,11 +23,7 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Erbium alert component.",
-      "dependencies": [
-        "@hugeicons/core-free-icons",
-        "@hugeicons/react",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

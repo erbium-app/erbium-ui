@@ -4,50 +4,51 @@ import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
 import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
 import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
 import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
-import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
-const alertVariants = cva(
-  "group/alert relative grid w-full grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 rounded-lg border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:pe-18 [&>svg]:row-span-2 [&>svg]:translate-y-0.5 [&>svg]:size-4",
-  {
-    variants: {
-      variant: {
-        default: "surface-panel text-card-foreground",
-        error: "surface-tint-error-soft text-error-soft-foreground [&>svg]:text-error",
-        info: "surface-tint-info-soft text-info-soft-foreground [&>svg]:text-info",
-        success: "surface-tint-success-soft text-success-soft-foreground [&>svg]:text-success",
-        warning: "surface-tint-warning-soft text-warning-soft-foreground [&>svg]:text-warning",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
+type AlertVariant = "default" | "info" | "success" | "warning" | "error";
+
+const alertVariants: Record<AlertVariant, { className: string; icon: React.ReactNode }> = {
+  default: {
+    className: "surface-panel text-card-foreground",
+    icon: <HugeiconsIcon icon={InfoIcon} aria-hidden="true" />,
   },
-);
-
-const alertIconByVariant = {
-  default: InfoIcon,
-  error: OctagonXIcon,
-  info: InfoIcon,
-  success: CircleCheckIcon,
-  warning: TriangleAlertIcon,
+  info: {
+    className: "surface-tint-info-soft text-info-soft-foreground",
+    icon: <HugeiconsIcon icon={InfoIcon} className="text-info" aria-hidden="true" />,
+  },
+  success: {
+    className: "surface-tint-success-soft text-success-soft-foreground",
+    icon: <HugeiconsIcon icon={CircleCheckIcon} className="text-success" aria-hidden="true" />,
+  },
+  warning: {
+    className: "surface-tint-warning-soft text-warning-soft-foreground",
+    icon: <HugeiconsIcon icon={TriangleAlertIcon} className="text-warning" aria-hidden="true" />,
+  },
+  error: {
+    className: "surface-tint-error-soft text-error-soft-foreground",
+    icon: <HugeiconsIcon icon={OctagonXIcon} className="text-error" aria-hidden="true" />,
+  },
 };
 
-type AlertVariant = keyof typeof alertIconByVariant;
-
-type AlertProps = React.ComponentProps<"div"> & {
-  variant?: AlertVariant;
-};
-
-function Alert({ className, variant, children, ...props }: AlertProps) {
+function Alert({
+  className,
+  variant = "default",
+  children,
+  ...props
+}: React.ComponentProps<"div"> & { variant?: AlertVariant }) {
   return (
     <div
       data-slot="alert"
       role="alert"
-      className={cn(alertVariants({ variant }), className)}
+      className={cn(
+        "group/alert relative grid w-full grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 rounded-lg border px-2.5 py-2 text-start text-sm has-data-[slot=alert-action]:pe-18 [&>svg]:row-span-2 [&>svg]:size-4 [&>svg]:translate-y-0.5",
+        alertVariants[variant].className,
+        className,
+      )}
       {...props}
     >
-      <HugeiconsIcon icon={alertIconByVariant[variant ?? "default"]} aria-hidden="true" />
+      {alertVariants[variant].icon}
       {children}
     </div>
   );
@@ -90,4 +91,4 @@ function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertAction };
-export type { AlertProps, AlertVariant };
+export type { AlertVariant };
