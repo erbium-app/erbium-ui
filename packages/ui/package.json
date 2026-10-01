@@ -34,7 +34,8 @@
   },
   "scripts": {
     "registry:build": "node scripts/build-registry.mjs && shadcn build registry.json --output public/r && vp fmt registry.json public/r --write",
-    "test": "vp test",
+    "test": "vp test run",
+    "test:watch": "vp test watch",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
