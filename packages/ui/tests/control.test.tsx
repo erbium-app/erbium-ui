@@ -1,3 +1,4 @@
+import "./browser-animation-stubs";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Control } from "@erbium/ui/components/control";
 

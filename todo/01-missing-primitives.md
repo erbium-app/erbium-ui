@@ -20,7 +20,7 @@ Implement the genuinely missing primitives before porting blocks. Each item must
   - Provide input, trigger, list, item, group, separator, empty, status, portal, positioner, and popup wrappers.
   - Add examples for local filtering, async results, and no results in Storybook.
   - [ ] Add focused interaction tests for keyboard use, controlled/uncontrolled values, and RTL.
-- [ ] `checkbox-group`
+- [x] `checkbox-group`
   - Base UI source: `@base-ui/react/checkbox-group`.
   - Support controlled/uncontrolled values, orientation, disabled state, validation, and group labeling.
   - Integrate with `Field` and `Fieldset`.
@@ -80,7 +80,7 @@ Port the motion of the animate-ui Base UI components into the existing Erbium co
   - Define the recommended root provider order for direction, CSP, tooltip, and toast.
   - Provide a small optional provider composition if it improves adoption without hiding individual providers.
 - [ ] Generic hooks
-  - Add `use-media-query` as a generic hook, using the Base UI utility where stable and appropriate.
+  - Use Base UI's `useMediaQuery` directly for responsive UI; a separate Erbium hook is unnecessary.
   - Add `use-copy-to-clipboard` as a generic hook with success/error state and cleanup.
   - Keep feature-specific hooks out of `packages/ui`.
 

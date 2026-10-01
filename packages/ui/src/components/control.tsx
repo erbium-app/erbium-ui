@@ -20,6 +20,7 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
+import { TextMorph } from "./text-morph";
 import { cn } from "../lib/utils";
 
 const rowClass =
@@ -419,23 +420,25 @@ function ControlNumber({
             }
           }}
         />
-      ) : (
-        <button
-          type="button"
-          disabled={disabled}
-          aria-label={`Edit ${label} value`}
-          className={cn(
-            "absolute inset-e-2.5 top-1/2 z-20 -translate-y-1/2 rounded-sm px-0.5 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring",
-            monoClass,
-          )}
-          onClick={() => {
-            setDraft(String(current));
-            setEditing(true);
-          }}
-        >
-          {shown}
-        </button>
-      )}
+      ) : null}
+      {/* Stays mounted under the editor, so a committed value morphs from the old one. */}
+      <button
+        type="button"
+        disabled={disabled}
+        aria-label={`Edit ${label} value`}
+        className={cn(
+          "absolute inset-e-2.5 top-1/2 z-20 -translate-y-1/2 rounded-sm px-0.5 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring",
+          monoClass,
+          editing && "invisible",
+        )}
+        onClick={() => {
+          setDraft(String(current));
+          setEditing(true);
+        }}
+      >
+        {/* A drag changes the value every frame, so it tracks the hand; jumps morph. */}
+        <TextMorph disabled={dragging}>{shown}</TextMorph>
+      </button>
     </SliderPrimitive.Root>
   );
 }

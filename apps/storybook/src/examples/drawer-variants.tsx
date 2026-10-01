@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
 import { Button } from "@erbium/ui/components/button";
 import {
   Drawer,
@@ -52,20 +52,8 @@ export function Styling() {
   );
 }
 
-function useIsNarrow() {
-  const [narrow, setNarrow] = React.useState(false);
-  React.useEffect(() => {
-    const query = window.matchMedia("(max-width: 640px)");
-    const update = () => setNarrow(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-  return narrow;
-}
-
 export function Responsive() {
-  const narrow = useIsNarrow();
+  const narrow = useMediaQuery("(max-width: 640px)", {});
   if (narrow) return <DrawerExample label="Edit profile" />;
   return (
     <Dialog>

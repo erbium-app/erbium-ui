@@ -850,6 +850,7 @@
       "type": "registry:component",
       "title": "Drawer Variants",
       "description": "Erbium drawer variants example.",
+      "dependencies": ["@base-ui/react"],
       "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/drawer"],
       "files": [
         {

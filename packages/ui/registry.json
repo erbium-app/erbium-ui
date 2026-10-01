@@ -376,6 +376,7 @@
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/stateful-icon",
+        "@erbium/text-morph",
         "@erbium/utils"
       ],
       "files": [
@@ -684,6 +685,26 @@
       ]
     },
     {
+      "name": "number-field",
+      "type": "registry:ui",
+      "title": "Number Field",
+      "description": "Erbium number field component.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "motion"
+      ],
+      "registryDependencies": ["@erbium/label", "@erbium/text-morph", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/number-field.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/number-field.tsx"
+        }
+      ]
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
@@ -870,7 +891,6 @@
         "@erbium/sheet",
         "@erbium/skeleton",
         "@erbium/tooltip",
-        "@erbium/use-media-query",
         "@erbium/utils"
       ],
       "files": [
@@ -1066,6 +1086,21 @@
       ]
     },
     {
+      "name": "text-morph",
+      "type": "registry:ui",
+      "title": "Text Morph",
+      "description": "Erbium text morph component.",
+      "dependencies": ["torph"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/text-morph.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/text-morph.tsx"
+        }
+      ]
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
@@ -1182,19 +1217,6 @@
           "path": "src/hooks/use-drag-select.ts",
           "type": "registry:hook",
           "target": "~/src/hooks/use-drag-select.ts"
-        }
-      ]
-    },
-    {
-      "name": "use-media-query",
-      "type": "registry:hook",
-      "title": "Use Media Query",
-      "description": "Erbium use media query hook.",
-      "files": [
-        {
-          "path": "src/hooks/use-media-query.ts",
-          "type": "registry:hook",
-          "target": "~/src/hooks/use-media-query.ts"
         }
       ]
     },
