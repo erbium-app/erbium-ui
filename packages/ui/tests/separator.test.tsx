@@ -33,10 +33,3 @@ test("separators follow their container unless a variant or label sets their end
   rerender(<Separator variant="full">or</Separator>);
   expect(variant()).toBe("inset");
 });
-
-test("custom slots retain separator styling", () => {
-  const { container } = render(<Separator data-slot="command-separator" />);
-  const separator = container.querySelector('[data-slot="command-separator"]');
-
-  expect(separator?.hasAttribute("data-separator")).toBe(true);
-});

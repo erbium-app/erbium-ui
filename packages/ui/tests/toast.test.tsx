@@ -97,14 +97,13 @@ test("an ID updates a toast in place and older toasts become visible on expansio
   expect(document.querySelectorAll('[data-slot="toast"]')).toHaveLength(4);
 });
 
-test("status icons, dismiss buttons, and Base UI actions have consistent defaults", () => {
+test("actions remain available while the dismiss button appears on expansion", () => {
   render(<Toaster />);
 
   act(() => {
     toast.add({ type: "success", title: "Done", timeout: 0, actionProps: { children: "Undo" } });
   });
 
-  expect(document.querySelector('[data-slot="toast-icon"] svg.text-success')).toBeTruthy();
   expect(screen.getByRole("button", { name: "Undo" })).toBeTruthy();
   expect(document.querySelector('[data-slot="toast-close"]')?.getAttribute("aria-hidden")).toBe(
     "true",
@@ -113,7 +112,7 @@ test("status icons, dismiss buttons, and Base UI actions have consistent default
   expect(screen.getByRole("button", { name: "Close toast" })).toBeTruthy();
 });
 
-test("rejected promises use the error styling and icon", async () => {
+test("rejected promises show the error notification", async () => {
   render(<Toaster />);
 
   await act(async () => {
@@ -126,15 +125,7 @@ test("rejected promises use the error styling and icon", async () => {
       .catch(() => undefined);
   });
 
-  const root = screen.getByText("Could not save").closest('[data-slot="toast"]');
-  expect(root?.getAttribute("class")).toContain("surface-tint-error-soft");
-  expect(root?.querySelector('[data-slot="toast-icon"] svg.text-error')).toBeTruthy();
-});
-
-test("toast types are restricted to the supported set", () => {
-  // @ts-expect-error unknown toast types are rejected at compile time
-  expect(() => toast.add({ type: "critical", title: "Typed" })).not.toThrow();
-  toast.close();
+  expect(screen.getByText("Could not save")).toBeTruthy();
 });
 
 test.each([

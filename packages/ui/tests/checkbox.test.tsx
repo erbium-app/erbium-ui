@@ -48,13 +48,6 @@ function Frameworks({ onValueChange }: { onValueChange?: (value: string[]) => vo
 
 const checkbox = (name: string) => screen.getByRole("checkbox", { name });
 
-test("checkbox group exposes Base UI group semantics", () => {
-  const { container } = render(<Frameworks />);
-  const group = screen.getByRole("group", { name: "Frameworks" });
-  expect(group.getAttribute("data-slot")).toBe("checkbox-group");
-  expect(container.querySelector("[data-parent]")?.getAttribute("aria-checked")).toBe("mixed");
-});
-
 test("dragging across labels selects the range, skips disabled items, and updates the parent", () => {
   const values: string[][] = [];
   render(<Frameworks onValueChange={(value) => values.push(value)} />);

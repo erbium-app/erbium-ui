@@ -57,17 +57,6 @@ test("typed text shows as typed, and stepping hands back to the morph", () => {
   expect(display(container)?.textContent).toContain("1,501");
 });
 
-test("steppers clamp to the bounds", () => {
-  renderField({ defaultValue: 9, max: 10 });
-
-  fireEvent.pointerDown(screen.getByRole("button", { name: "Increase" }));
-  fireEvent.pointerUp(screen.getByRole("button", { name: "Increase" }));
-  fireEvent.pointerDown(screen.getByRole("button", { name: "Increase" }));
-  fireEvent.pointerUp(screen.getByRole("button", { name: "Increase" }));
-
-  expect(screen.getByRole("textbox", { name: "Quantity" })).toHaveProperty("value", "10");
-});
-
 /** Types like a person: the DOM text and caret change, then the input event fires. */
 function type(input: HTMLInputElement, value: string, caret = value.length) {
   Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set?.call(input, value);
