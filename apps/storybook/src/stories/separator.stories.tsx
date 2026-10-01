@@ -30,7 +30,7 @@ export const Playground: StoryObj<typeof Separator> = {
     variant: { control: "select", options: [undefined, "full", "inset"] },
   },
   render: (args) => (
-    <div className="flex h-28 w-72 items-center justify-center">
+    <div className="flex h-28 w-72 flex-col items-center justify-center">
       <Separator
         {...args}
         className={
@@ -188,7 +188,11 @@ export const List: Story = {
       },
     },
   },
-  render: () => <SeparatorList />,
+  render: () => (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <SeparatorList />
+    </div>
+  ),
 };
 
 /** Browser regression: margins must move both edges, including in RTL. */

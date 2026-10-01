@@ -42,13 +42,15 @@ export const Playground: StoryObj<{
     className: { control: "text" },
   },
   render: (args) => (
-    <Marker
-      variant={args.variant}
-      render={args.asSpan ? <span /> : undefined}
-      className={args.className}
-    >
-      Marker
-    </Marker>
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <Marker
+        variant={args.variant}
+        render={args.asSpan ? <span /> : undefined}
+        className={args.className}
+      >
+        Marker
+      </Marker>
+    </div>
   ),
 };
 
@@ -79,7 +81,11 @@ export const Variants: Story = {
       },
     },
   },
-  render: () => <MarkerVariantsDemo />,
+  render: () => (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <MarkerVariantsDemo />
+    </div>
+  ),
 };
 export const Status: Story = {
   parameters: {
@@ -93,7 +99,11 @@ export const Status: Story = {
       },
     },
   },
-  render: () => <MarkerStatusDemo />,
+  render: () => (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <MarkerStatusDemo />
+    </div>
+  ),
 };
 export const Shimmer: Story = {
   parameters: {
@@ -107,7 +117,11 @@ export const Shimmer: Story = {
       },
     },
   },
-  render: () => <MarkerShimmerDemo />,
+  render: () => (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <MarkerShimmerDemo />
+    </div>
+  ),
 };
 export const Separator: Story = {
   parameters: {
@@ -121,7 +135,11 @@ export const Separator: Story = {
       },
     },
   },
-  render: () => <MarkerSeparatorDemo />,
+  render: () => (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <MarkerSeparatorDemo />
+    </div>
+  ),
 };
 export const Border: Story = {
   parameters: {
@@ -150,7 +168,11 @@ export const Icon: Story = {
       },
     },
   },
-  render: () => <MarkerIconDemo />,
+  render: () => (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <MarkerIconDemo />
+    </div>
+  ),
 };
 
 export const LinkButton: Story = {

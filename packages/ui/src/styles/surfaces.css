@@ -528,6 +528,13 @@
 [data-slot="marker"][data-variant="separator"] {
   --separator-direction: to bottom;
   --separator-fade-direction: to right;
+}
+
+[data-separator]:not([data-labeled]),
+[data-separator][data-labeled]::before,
+[data-separator][data-labeled]::after,
+[data-slot="marker"][data-variant="separator"]::before,
+[data-slot="marker"][data-variant="separator"]::after {
   mask-image: linear-gradient(
     var(--separator-fade-direction),
     transparent,
