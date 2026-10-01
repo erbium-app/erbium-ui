@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import { cn } from "../lib/utils";
-import { assertOverlaySections } from "../lib/overlay-sections";
 import { ScrollArea } from "./scroll-area";
 
 type DrawerContextProps = {
@@ -94,13 +93,6 @@ function DrawerSwipeHandle({ className, ...props }: React.ComponentProps<"div">)
 function DrawerPanel({ className, children, ...props }: DrawerPrimitive.Popup.Props) {
   const { hasSnapPoints, modal, showSwipeHandle, swipeDirection } = useDrawer();
   const swipeAxis = swipeDirection === "down" || swipeDirection === "up" ? "y" : "x";
-  assertOverlaySections(
-    children,
-    "DrawerPanel",
-    { name: "DrawerHeader", type: DrawerHeader },
-    { name: "DrawerContent", type: DrawerContent },
-    { name: "DrawerFooter", type: DrawerFooter },
-  );
   return (
     <DrawerPanelContext.Provider value={true}>
       <DrawerPortal data-slot="drawer-portal">

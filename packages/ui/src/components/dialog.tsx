@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { cn } from "../lib/utils";
-import { assertOverlaySections } from "../lib/overlay-sections";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
@@ -47,14 +46,6 @@ function DialogPanel({
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean;
 }) {
-  assertOverlaySections(
-    children,
-    "DialogPanel",
-    { name: "DialogHeader", type: DialogHeader },
-    { name: "DialogContent", type: DialogContent },
-    { name: "DialogFooter", type: DialogFooter },
-  );
-
   return (
     <DialogPanelContext.Provider value={true}>
       <DialogPortal>

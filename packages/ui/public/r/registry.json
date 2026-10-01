@@ -394,7 +394,6 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/overlay-sections",
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/utils"
@@ -427,7 +426,7 @@
       "title": "Drawer",
       "description": "Erbium drawer component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/overlay-sections", "@erbium/scroll-area", "@erbium/utils"],
+      "registryDependencies": ["@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/drawer.tsx",
@@ -685,19 +684,6 @@
       ]
     },
     {
-      "name": "overlay-sections",
-      "type": "registry:lib",
-      "title": "Overlay Sections",
-      "description": "Erbium overlay sections lib.",
-      "files": [
-        {
-          "path": "src/lib/overlay-sections.ts",
-          "type": "registry:lib",
-          "target": "~/src/lib/overlay-sections.ts"
-        }
-      ]
-    },
-    {
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
@@ -856,12 +842,7 @@
       "title": "Sheet",
       "description": "Erbium sheet component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/overlay-sections",
-        "@erbium/scroll-area",
-        "@erbium/utils"
-      ],
+      "registryDependencies": ["@erbium/button", "@erbium/scroll-area", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/sheet.tsx",

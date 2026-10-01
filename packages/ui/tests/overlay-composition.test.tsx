@@ -11,47 +11,17 @@ import { Drawer, DrawerContent, DrawerPanel } from "@erbium/ui/components/drawer
 import { Sheet, SheetContent, SheetPanel } from "@erbium/ui/components/sheet";
 import { Command, CommandDialog } from "@erbium/ui/components/command";
 
-test("dialog panels require a direct content section", () => {
-  expect(() =>
-    render(
-      <Dialog>
-        <DialogPanel>
-          <DialogHeader>
-            <DialogTitle>Details</DialogTitle>
-          </DialogHeader>
-        </DialogPanel>
-      </Dialog>,
-    ),
-  ).toThrow("DialogPanel requires a direct <DialogContent> child.");
-
-  expect(() =>
-    render(
-      <Dialog>
-        <DialogPanel>
-          <form>
-            <DialogContent>Details</DialogContent>
-          </form>
-        </DialogPanel>
-      </Dialog>,
-    ),
-  ).toThrow("DialogPanel accepts only direct");
-});
-
-test("sheet and drawer panels require their own content section", () => {
-  expect(() =>
-    render(
-      <Sheet>
-        <SheetPanel />
-      </Sheet>,
-    ),
-  ).toThrow("SheetPanel requires a direct <SheetContent> child.");
-  expect(() =>
-    render(
-      <Drawer>
-        <DrawerPanel />
-      </Drawer>,
-    ),
-  ).toThrow("DrawerPanel requires a direct <DrawerContent> child.");
+test("panel sections can be wrapped in app-level components", () => {
+  render(
+    <Dialog defaultOpen>
+      <DialogPanel showCloseButton={false}>
+        <form>
+          <DialogContent>Details</DialogContent>
+        </form>
+      </DialogPanel>
+    </Dialog>,
+  );
+  expect(screen.getByRole("dialog").querySelector("form [data-slot=dialog-content]")).toBeTruthy();
 });
 
 test("content sections cannot be used outside their panel", () => {

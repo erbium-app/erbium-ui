@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "../lib/utils";
-import { assertOverlaySections } from "../lib/overlay-sections";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -48,14 +47,6 @@ function SheetPanel({
   side?: "top" | "right" | "bottom" | "left";
   showCloseButton?: boolean;
 }) {
-  assertOverlaySections(
-    children,
-    "SheetPanel",
-    { name: "SheetHeader", type: SheetHeader },
-    { name: "SheetContent", type: SheetContent },
-    { name: "SheetFooter", type: SheetFooter },
-  );
-
   return (
     <SheetPanelContext.Provider value={true}>
       <SheetPortal>
