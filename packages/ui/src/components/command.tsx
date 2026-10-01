@@ -73,7 +73,7 @@ function CommandInput({
           {...props}
         />
       </div>
-      <Separator />
+      <Separator variant="full" />
     </div>
   );
 }

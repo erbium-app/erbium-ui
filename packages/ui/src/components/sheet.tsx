@@ -128,7 +128,10 @@ function SheetContent({ className, children, ...props }: React.ComponentProps<"d
       scrollbar="thin"
       viewportClassName="min-h-0 flex-1 overscroll-contain"
       viewportRender={<div data-slot="sheet-content" {...props} />}
-      contentClassName={cn("p-6 group-has-[[data-slot=sheet-header]]/sheet-panel:pt-1", className)}
+      contentClassName={cn(
+        "separator-inset p-6 group-has-[[data-slot=sheet-header]]/sheet-panel:pt-1",
+        className,
+      )}
     >
       {children}
     </ScrollArea>

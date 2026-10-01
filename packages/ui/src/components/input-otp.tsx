@@ -66,6 +66,7 @@ function InputOTPSeparator({ className, ...props }: React.ComponentProps<typeof 
     <Separator
       data-slot="input-otp-separator"
       orientation="horizontal"
+      variant="full"
       className={cn("rounded-full data-horizontal:w-3 data-horizontal:self-auto", className)}
       {...props}
     />

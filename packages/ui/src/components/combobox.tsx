@@ -93,7 +93,7 @@ function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Pr
           {...props}
         />
       </div>
-      <Separator />
+      <Separator variant="full" />
     </div>
   );
 }

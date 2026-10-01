@@ -24,10 +24,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Separator> = {
-  args: { orientation: "horizontal", fade: false, className: "" },
+  args: { orientation: "horizontal", className: "" },
   argTypes: {
     orientation: { control: "select", options: ["horizontal", "vertical"] },
-    fade: { control: "boolean" },
+    variant: { control: "select", options: [undefined, "full", "inset"] },
   },
   render: (args) => (
     <div className="flex h-28 w-72 items-center justify-center">
@@ -77,15 +77,13 @@ export const Labeled: Story = {
         story: "A centered label stays readable while the carved lines fade at the outer edges.",
       },
       source: {
-        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator fade>or</Separator>',
+        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator>or</Separator>',
       },
     },
   },
   render: () => (
     <div className="w-72 rounded-lg surface-panel p-4">
-      <Separator fade className="text-xs text-muted-foreground">
-        or
-      </Separator>
+      <Separator className="text-xs text-muted-foreground">or</Separator>
     </div>
   ),
 };
@@ -94,18 +92,30 @@ export const FullWidth: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Separators meet both edges by default, including below card headers.",
+        story:
+          'Without a `variant`, a separator follows its container. On a surface it runs solid to both edges; in padded content (`separator-inset`) and on the canvas it fades. Pass `variant="full"` or `variant="inset"` to choose.',
       },
       source: {
-        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<Separator />',
+        code: 'import { Separator } from "@erbium/ui/components/separator";\n\n<div className="surface-panel">\n  <Separator />\n  <div className="separator-inset p-3">\n    <Separator />\n  </div>\n</div>',
       },
     },
   },
   render: () => (
-    <div className="w-72 overflow-hidden rounded-lg surface-panel py-3">
-      <div className="px-3 pb-3 text-sm">Card header</div>
-      <Separator />
-      <div className="px-3 pt-3 text-sm text-muted-foreground">Card content</div>
+    <div className="grid w-72 gap-6">
+      <div className="overflow-hidden rounded-lg surface-panel py-3">
+        <div className="px-3 pb-3 text-sm">Card header</div>
+        <Separator />
+        <div className="separator-inset grid gap-3 p-3 text-sm text-muted-foreground">
+          Card content
+          <Separator />
+          Inset content divider
+        </div>
+      </div>
+      <div className="grid gap-3 text-sm text-muted-foreground">
+        Canvas
+        <Separator />
+        <Separator variant="full" />
+      </div>
     </div>
   ),
 };
@@ -151,9 +161,7 @@ export const OnSurfaces: Story = {
         >
           <span className="text-xs font-medium">{name}</span>
           <Separator />
-          <Separator fade className="text-xs">
-            or
-          </Separator>
+          <Separator className="text-xs">or</Separator>
         </div>
       ))}
     </div>

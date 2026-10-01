@@ -355,6 +355,7 @@ function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof S
     <Separator
       data-slot="sidebar-separator"
       data-sidebar="separator"
+      variant="inset"
       className={cn("mx-2 w-auto", className)}
       {...props}
     />

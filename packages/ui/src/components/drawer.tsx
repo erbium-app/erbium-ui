@@ -192,7 +192,7 @@ function DrawerContent({ className, children, ...props }: React.ComponentProps<"
         scrollbar="thin"
         viewportClassName="min-h-0 flex-1 overscroll-contain"
         contentClassName={cn(
-          "p-6 group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1",
+          "separator-inset p-6 group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1",
           className,
         )}
       >

@@ -96,7 +96,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
         className={cn("flex shrink-0 flex-col gap-1 px-4 pt-4 pb-2", className)}
         {...props}
       />
-      <Separator />
+      <Separator variant="full" />
     </>
   );
 }
@@ -114,7 +114,7 @@ function DialogContent({ className, children, ...props }: React.ComponentProps<"
       viewportClassName="min-h-0 flex-1 overscroll-contain"
       viewportRender={<div data-slot="dialog-content" {...props} />}
       contentClassName={cn(
-        "p-4 group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
+        "separator-inset p-4 group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
         className,
       )}
     >
@@ -136,7 +136,7 @@ function DialogFooter({
   }
   return (
     <>
-      <Separator />
+      <Separator variant="full" />
       <div
         data-slot="dialog-footer"
         className={cn(

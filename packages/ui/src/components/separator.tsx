@@ -15,14 +15,20 @@ const separatorVariants = cva(
 );
 
 type SeparatorProps = SeparatorPrimitive.Props & {
-  fade?: boolean;
+  /**
+   * How the rule meets its ends: `full` runs solid to the edges of the surface
+   * it divides, `inset` fades out before them. Omit it to follow the container:
+   * full on a surface, inset on the canvas and in padded content. Labeled
+   * separators are always inset.
+   */
+  variant?: "full" | "inset";
 };
 
 function Separator({
   children,
   className,
-  fade = false,
   orientation = "horizontal",
+  variant,
   ...props
 }: SeparatorProps) {
   const labeled = children != null && children !== false && children !== "";
@@ -30,8 +36,8 @@ function Separator({
   return (
     <SeparatorPrimitive
       data-slot="separator"
+      data-variant={labeled ? "inset" : variant}
       data-labeled={labeled ? "" : undefined}
-      data-fade={fade ? "" : undefined}
       orientation={orientation}
       role={labeled ? "none" : "separator"}
       className={cn(separatorVariants({ labeled, className }))}

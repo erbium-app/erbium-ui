@@ -148,7 +148,7 @@ function FieldSeparator({
       )}
       {...props}
     >
-      <Separator fade={Boolean(children)} className="text-muted-foreground">
+      <Separator className="text-muted-foreground">
         {children && <span data-slot="field-separator-content">{children}</span>}
       </Separator>
     </div>

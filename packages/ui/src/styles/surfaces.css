@@ -109,6 +109,10 @@
   --surface-tint-pressed: rgb(57 58 52 / 0.07);
   --surface-tint-selected: color-mix(in srgb, var(--primary) 10%, transparent);
   --surface-tag-alpha: 10%;
+
+  /* Fixed on long rules so wide separators do not lose their ends. */
+  --separator-inset: min(8%, 1.5rem);
+  --separator-fade: var(--separator-inset);
 }
 
 .dark {
@@ -280,7 +284,8 @@
   @apply surface-flat;
 }
 
-/* Neutral roles. Each one sets its face and elevation tokens only. */
+/* Neutral roles. Each one sets its face and elevation tokens, and runs the
+   separators that divide it solid to its edges. */
 @utility surface-panel {
   --surface-face: var(--surface-panel);
   --surface-rim: var(--surface-edge);
@@ -289,6 +294,10 @@
   --surface-drop:
     0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
   @apply surface-flat;
+
+  :where(&) {
+    --separator-fade: 0%;
+  }
 }
 
 /*
@@ -300,6 +309,7 @@
   @apply surface-flat;
 
   :where(&) {
+    --separator-fade: 0%;
     --surface-face: var(--surface-control);
     --surface-rim: var(--surface-edge);
     --surface-catchlight: var(--surface-highlight);
@@ -358,6 +368,10 @@
     0 2px 4px -1px var(--surface-shadow), 0 8px 16px -4px var(--surface-shadow),
     0 16px 32px -8px var(--surface-shadow-strong);
   @apply surface-flat;
+
+  :where(&) {
+    --separator-fade: 0%;
+  }
 }
 
 @utility surface-modal {
@@ -369,6 +383,10 @@
     0 4px 8px -2px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow),
     0 32px 64px -16px var(--surface-shadow-strong);
   @apply surface-flat;
+
+  :where(&) {
+    --separator-fade: 0%;
+  }
 }
 
 /* A hairline frame with no elevation, over a half-strength panel face. */
@@ -376,6 +394,10 @@
   --surface-face: color-mix(in srgb, var(--surface-panel) 50%, transparent);
   --surface-rim: var(--surface-edge);
   @apply surface-flat;
+
+  :where(&) {
+    --separator-fade: 0%;
+  }
 }
 
 /* Thumbs carry no backing ring, so any bg-* colour can replace the face. */
@@ -395,6 +417,10 @@
     inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
   background-color: var(--surface-well);
   @apply shadow-(--surface-elevation);
+
+  :where(&) {
+    --separator-fade: 0%;
+  }
 }
 
 /* Coloured roles. One colour input drives the face, rim, and catchlight. */
@@ -477,22 +503,47 @@
   }
 }
 
+/*
+ * Separator ends. A rule either runs solid into the edges of the surface it
+ * divides (full) or fades out before them (inset). --separator-fade is the
+ * fade length at each end and inherits, so the nearest container decides:
+ *   canvas                      inset: the page has no edge to meet
+ *   surface-panel, -control,    full: structural dividers meet the rim
+ *   -overlay, -modal, -frame,
+ *   -well (and their @apply)
+ *   separator-inset             inset again, for padded content in a surface
+ * A separator's own variant, or a label, overrides its container. The two
+ * utilities work on a separator or on any container of separators.
+ */
+@utility separator-full {
+  --separator-fade: 0%;
+}
+
+@utility separator-inset {
+  --separator-fade: var(--separator-inset);
+}
+
 /* A translucent shadow and catchlight follow the colour of their containing surface. */
 [data-separator],
 [data-slot="marker"][data-variant="separator"] {
   --separator-direction: to bottom;
   --separator-fade-direction: to right;
-}
-
-[data-separator][data-fade],
-[data-slot="marker"][data-variant="separator"] {
   mask-image: linear-gradient(
     var(--separator-fade-direction),
     transparent,
-    black 8%,
-    black 92%,
+    black var(--separator-fade),
+    black calc(100% - var(--separator-fade)),
     transparent
   );
+}
+
+[data-separator][data-variant="inset"],
+[data-slot="marker"][data-variant="separator"] {
+  --separator-fade: var(--separator-inset);
+}
+
+[data-separator][data-variant="full"] {
+  --separator-fade: 0%;
 }
 
 [data-separator][data-orientation="vertical"],

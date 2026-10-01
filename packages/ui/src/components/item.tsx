@@ -43,8 +43,9 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
     <Separator
       data-slot="item-separator"
       orientation="horizontal"
+      variant="inset"
       className={cn(
-        "my-2 group-data-[variant=panel]/item-group:mx-4 group-data-[variant=panel]/item-group:my-0",
+        "my-2 group-data-[variant=panel]/item-group:mx-1 group-data-[variant=panel]/item-group:my-0",
         className,
       )}
       {...props}

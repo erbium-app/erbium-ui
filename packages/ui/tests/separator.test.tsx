@@ -19,12 +19,19 @@ test("labeled separators expose their text without separator semantics", () => {
   expect(container.querySelector("[data-labeled]")).toBeTruthy();
 });
 
-test("separators are full width by default and can opt into fading", () => {
+test("separators follow their container unless a variant or label sets their ends", () => {
   const { container, rerender } = render(<Separator />);
-  expect(container.querySelector("[data-separator]")?.hasAttribute("data-fade")).toBe(false);
+  const variant = () => container.querySelector("[data-separator]")?.getAttribute("data-variant");
+  expect(variant()).toBeNull();
 
-  rerender(<Separator fade />);
-  expect(container.querySelector("[data-separator]")?.hasAttribute("data-fade")).toBe(true);
+  rerender(<Separator variant="full" />);
+  expect(variant()).toBe("full");
+
+  rerender(<Separator variant="inset" />);
+  expect(variant()).toBe("inset");
+
+  rerender(<Separator variant="full">or</Separator>);
+  expect(variant()).toBe("inset");
 });
 
 test("custom slots retain separator styling", () => {
