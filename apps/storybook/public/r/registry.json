@@ -1429,6 +1429,8 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/item",
+        "@erbium/kbd",
+        "@erbium/label",
         "@erbium/select",
         "@erbium/switch"
       ],

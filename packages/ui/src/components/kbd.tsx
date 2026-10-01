@@ -2,12 +2,15 @@ import { detectPlatform, formatForDisplay, type DisplayHotkey } from "@tanstack/
 import { useSyncExternalStore } from "react";
 import { cn } from "../lib/utils";
 
-type KbdProps = React.ComponentProps<"kbd"> & { hotkey?: DisplayHotkey };
+type KbdProps = React.ComponentProps<"kbd"> & {
+  hotkey?: DisplayHotkey;
+  useSymbols?: boolean;
+};
 
 const subscribeToPlatform = () => () => {};
 const getServerPlatform = () => "linux" as const;
 
-function Kbd({ className, hotkey, children, ...props }: KbdProps) {
+function Kbd({ className, hotkey, useSymbols = true, children, ...props }: KbdProps) {
   const platform = useSyncExternalStore(subscribeToPlatform, detectPlatform, getServerPlatform);
   const binding = hotkey ?? (typeof children === "string" ? children : undefined);
 
@@ -21,7 +24,7 @@ function Kbd({ className, hotkey, children, ...props }: KbdProps) {
       )}
       {...props}
     >
-      {binding === undefined ? children : formatForDisplay(binding, { platform })}
+      {binding === undefined ? children : formatForDisplay(binding, { platform, useSymbols })}
     </kbd>
   );
 }

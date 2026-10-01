@@ -10,6 +10,8 @@ import {
   ItemSeparator,
   ItemTitle,
 } from "../components/item";
+import { Kbd } from "../components/kbd";
+import { Label } from "../components/label";
 import {
   Select,
   SelectContent,
@@ -58,7 +60,7 @@ const interfaceSwitches = [
 
 export default function ItemSettingsPanel() {
   return (
-    <div className="dark w-full max-w-2xl space-y-12 bg-surface-canvas p-6 text-foreground">
+    <div className="w-full max-w-2xl space-y-12">
       <ItemGroup variant="panel">
         {preferenceSelects.map((preference, index) => (
           <Fragment key={preference.title}>
@@ -89,7 +91,7 @@ export default function ItemSettingsPanel() {
         <Item role="listitem">
           <ItemContent>
             <ItemTitle>
-              <label htmlFor="convert-emoticons">Convert text emoticons into emojis</label>
+              <Label htmlFor="convert-emoticons">Convert text emoticons into emojis</Label>
             </ItemTitle>
             <ItemDescription>Strings like :) will be converted to 🙂</ItemDescription>
           </ItemContent>
@@ -104,13 +106,21 @@ export default function ItemSettingsPanel() {
             <ItemDescription>Choose which key press is used to submit comments</ItemDescription>
           </ItemContent>
           <ItemActions>
-            <Select defaultValue="⌘ + Enter">
+            <Select defaultValue="Mod+Enter">
               <SelectTrigger size="sm" aria-label="Send comments on">
-                <SelectValue />
+                <SelectValue>
+                  {(value) => (
+                    <Kbd hotkey={value === "Enter" ? "Enter" : "Mod+Enter"} useSymbols={false} />
+                  )}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="⌘ + Enter">⌘ + Enter</SelectItem>
-                <SelectItem value="Enter">Enter</SelectItem>
+                <SelectItem value="Mod+Enter">
+                  <Kbd hotkey="Mod+Enter" useSymbols={false} />
+                </SelectItem>
+                <SelectItem value="Enter">
+                  <Kbd hotkey="Enter" useSymbols={false} />
+                </SelectItem>
               </SelectContent>
             </Select>
           </ItemActions>
@@ -170,7 +180,7 @@ function ItemGroupSection({ id, title, description }: (typeof interfaceSwitches)
       <Item role="listitem">
         <ItemContent>
           <ItemTitle>
-            <label htmlFor={id}>{title}</label>
+            <Label htmlFor={id}>{title}</Label>
           </ItemTitle>
           <ItemDescription>{description}</ItemDescription>
         </ItemContent>
