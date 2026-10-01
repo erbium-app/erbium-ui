@@ -891,6 +891,7 @@
         "@erbium/sheet",
         "@erbium/skeleton",
         "@erbium/tooltip",
+        "@erbium/use-media-query",
         "@erbium/utils"
       ],
       "files": [
@@ -1217,6 +1218,20 @@
           "path": "src/hooks/use-drag-select.ts",
           "type": "registry:hook",
           "target": "~/src/hooks/use-drag-select.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-media-query",
+      "type": "registry:hook",
+      "title": "Use Media Query",
+      "description": "Erbium use media query hook.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "src/hooks/use-media-query.ts",
+          "type": "registry:hook",
+          "target": "~/src/hooks/use-media-query.ts"
         }
       ]
     },

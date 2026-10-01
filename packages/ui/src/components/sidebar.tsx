@@ -1,9 +1,9 @@
 import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
-import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { useMediaQuery } from "../hooks/use-media-query";
 import { Button } from "./button";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";

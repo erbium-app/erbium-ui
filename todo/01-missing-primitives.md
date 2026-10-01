@@ -80,7 +80,7 @@ Port the motion of the animate-ui Base UI components into the existing Erbium co
   - Define the recommended root provider order for direction, CSP, tooltip, and toast.
   - Provide a small optional provider composition if it improves adoption without hiding individual providers.
 - [ ] Generic hooks
-  - Use Base UI's `useMediaQuery` directly for responsive UI; a separate Erbium hook is unnecessary.
+  - Re-export Base UI's `useMediaQuery` from `@erbium/ui/hooks/use-media-query` for downstream use.
   - Add `use-copy-to-clipboard` as a generic hook with success/error state and cleanup.
   - Keep feature-specific hooks out of `packages/ui`.
 

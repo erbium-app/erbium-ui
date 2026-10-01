@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
+import { useMediaQuery } from "@erbium/ui/hooks/use-media-query";
 import { Button } from "@erbium/ui/components/button";
 import {
   Drawer,

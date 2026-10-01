@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
+import { useMediaQuery } from "../hooks/use-media-query";
 import { Button } from "../components/button";
 import {
   Drawer,

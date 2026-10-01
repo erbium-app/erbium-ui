@@ -47,7 +47,6 @@
     "apps/storybook": {
       "name": "storybook",
       "dependencies": {
-        "@base-ui/react": "^1.8.0",
         "@erbium/ui": "workspace:*",
         "@hugeicons/core-free-icons": "^4.3.5",
         "@hugeicons/react": "^1.1.10",
