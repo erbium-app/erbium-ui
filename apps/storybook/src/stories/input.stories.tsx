@@ -200,7 +200,7 @@ export const Required: Story = {
     docs: {
       description: { story: "Use the `required` attribute to indicate required inputs." },
       source: {
-        code: 'import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Input } from "@erbium/ui/components/input";\n\nexport function InputRequired() {\n  return (\n    <Field>\n      <FieldLabel htmlFor="input-required">\n        Required Field <span className="text-destructive">*</span>\n      </FieldLabel>\n      <Input id="input-required" placeholder="This field is required" required />\n      <FieldDescription>This field must be filled out.</FieldDescription>\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Input } from "@erbium/ui/components/input";\n\nexport function InputRequired() {\n  return (\n    <Field>\n      <FieldLabel htmlFor="input-required">\n        Required Field <span className="text-error">*</span>\n      </FieldLabel>\n      <Input id="input-required" placeholder="This field is required" required />\n      <FieldDescription>This field must be filled out.</FieldDescription>\n    </Field>\n  );\n}\n',
       },
     },
   },

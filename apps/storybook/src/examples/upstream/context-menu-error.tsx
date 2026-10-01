@@ -12,7 +12,7 @@ import {
   ContextMenuTrigger,
 } from "@erbium/ui/components/context-menu";
 
-export function ContextMenuDestructive() {
+export function ContextMenuError() {
   return (
     <ContextMenu>
       <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm">
@@ -32,7 +32,7 @@ export function ContextMenuDestructive() {
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
-          <ContextMenuItem variant="destructive">
+          <ContextMenuItem variant="error">
             <HugeiconsIcon icon={TrashIcon} />
             Delete
           </ContextMenuItem>

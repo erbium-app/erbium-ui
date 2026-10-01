@@ -5,7 +5,7 @@ import ExampleButtonDefault from "../examples/button-default";
 import ExampleButtonOutline from "../examples/button-outline";
 import ExampleButtonSecondary from "../examples/button-secondary";
 import ExampleButtonGhost from "../examples/button-ghost";
-import ExampleButtonDestructive from "../examples/button-destructive";
+import ExampleButtonError from "../examples/button-error";
 import ExampleButtonLink from "../examples/button-link";
 import ExampleButtonIcon from "../examples/button-icon";
 import ExampleButtonRounded from "../examples/button-rounded";
@@ -49,8 +49,8 @@ export const Playground: StoryObj<typeof Button> = {
         "default",
         "outline",
         "ghost",
-        "destructive",
-        "ghost-destructive",
+        "error",
+        "ghost-error",
         "ghost-success",
         "ghost-warning",
         "ghost-info",
@@ -120,8 +120,8 @@ export const Variants: Story = {
           "secondary",
           "outline",
           "ghost",
-          "destructive",
-          "ghost-destructive",
+          "error",
+          "ghost-error",
           "ghost-success",
           "ghost-warning",
           "ghost-info",
@@ -271,17 +271,18 @@ export const Ghost: Story = {
   },
   render: () => <ExampleButtonGhost />,
 };
-export const Destructive: Story = {
+export const ErrorVariant: Story = {
+  name: "Error",
   parameters: {
     docs: {
-      description: { story: "Use the destructive variant for an irreversible action." },
+      description: { story: "Use the error variant for an irreversible action." },
 
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button"\n\nexport default function ButtonDestructive() {\n  return <Button variant="destructive">Destructive</Button>\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button"\n\nexport default function ButtonError() {\n  return <Button variant="error">Error</Button>\n}\n',
       },
     },
   },
-  render: () => <ExampleButtonDestructive />,
+  render: () => <ExampleButtonError />,
 };
 export const Link: Story = {
   parameters: {
@@ -330,7 +331,7 @@ export const ButtonGroup: Story = {
       },
 
       source: {
-        code: '\nimport * as React from "react"\nimport { HugeiconsIcon } from "@hugeicons/react";\nimport ArchiveIcon from "@hugeicons/core-free-icons/ArchiveIcon";\nimport ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";\nimport CalendarPlusIcon from "@hugeicons/core-free-icons/CalendarPlusIcon";\nimport Clock01Icon from "@hugeicons/core-free-icons/Clock01Icon";\nimport Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";\nimport ListFilterIcon from "@hugeicons/core-free-icons/ListFilterIcon";\nimport MailCheckIcon from "@hugeicons/core-free-icons/MailCheckIcon";\nimport MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";\nimport Tag01Icon from "@hugeicons/core-free-icons/Tag01Icon";\n\n\nimport { Button } from "@erbium/ui/components/button"\nimport { ButtonGroup } from "@erbium/ui/components/button-group"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuRadioGroup,\n  DropdownMenuRadioItem,\n  DropdownMenuSeparator,\n  DropdownMenuSub,\n  DropdownMenuSubContent,\n  DropdownMenuSubTrigger,\n  DropdownMenuTrigger,\n} from "@erbium/ui/components/dropdown-menu"\n\nexport default function ButtonGroupDemo() {\n  const [label, setLabel] = React.useState("personal")\n\n  return (\n    <ButtonGroup>\n      <ButtonGroup className="hidden sm:flex">\n        <Button variant="outline" size="icon" aria-label="Go Back">\n          <HugeiconsIcon icon={ArrowLeft01Icon} />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant="outline">Archive</Button>\n        <Button variant="outline">Report</Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant="outline">Snooze</Button>\n        <DropdownMenu>\n          <DropdownMenuTrigger render={<Button variant="outline" size="icon" aria-label="More Options">\n              <HugeiconsIcon icon={MoreHorizontalIcon} />\n            </Button>} />\n          <DropdownMenuContent align="end" className="w-52">\n            <DropdownMenuGroup>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={MailCheckIcon} />\n                Mark as Read\n              </DropdownMenuItem>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={ArchiveIcon} />\n                Archive\n              </DropdownMenuItem>\n            </DropdownMenuGroup>\n            <DropdownMenuSeparator />\n            <DropdownMenuGroup>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={Clock01Icon} />\n                Snooze\n              </DropdownMenuItem>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={CalendarPlusIcon} />\n                Add to Calendar\n              </DropdownMenuItem>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={ListFilterIcon} />\n                Add to List\n              </DropdownMenuItem>\n              <DropdownMenuSub>\n                <DropdownMenuSubTrigger>\n                  <HugeiconsIcon icon={Tag01Icon} />\n                  Label As...\n                </DropdownMenuSubTrigger>\n                <DropdownMenuSubContent>\n                  <DropdownMenuRadioGroup\n                    value={label}\n                    onValueChange={setLabel}\n                  >\n                    <DropdownMenuRadioItem value="personal">\n                      Personal\n                    </DropdownMenuRadioItem>\n                    <DropdownMenuRadioItem value="work">\n                      Work\n                    </DropdownMenuRadioItem>\n                    <DropdownMenuRadioItem value="other">\n                      Other\n                    </DropdownMenuRadioItem>\n                  </DropdownMenuRadioGroup>\n                </DropdownMenuSubContent>\n              </DropdownMenuSub>\n            </DropdownMenuGroup>\n            <DropdownMenuSeparator />\n            <DropdownMenuGroup>\n              <DropdownMenuItem variant="destructive">\n                <HugeiconsIcon icon={Delete02Icon} />\n                Trash\n              </DropdownMenuItem>\n            </DropdownMenuGroup>\n          </DropdownMenuContent>\n        </DropdownMenu>\n      </ButtonGroup>\n    </ButtonGroup>\n  )\n}\n',
+        code: '\nimport * as React from "react"\nimport { HugeiconsIcon } from "@hugeicons/react";\nimport ArchiveIcon from "@hugeicons/core-free-icons/ArchiveIcon";\nimport ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";\nimport CalendarPlusIcon from "@hugeicons/core-free-icons/CalendarPlusIcon";\nimport Clock01Icon from "@hugeicons/core-free-icons/Clock01Icon";\nimport Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";\nimport ListFilterIcon from "@hugeicons/core-free-icons/ListFilterIcon";\nimport MailCheckIcon from "@hugeicons/core-free-icons/MailCheckIcon";\nimport MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";\nimport Tag01Icon from "@hugeicons/core-free-icons/Tag01Icon";\n\n\nimport { Button } from "@erbium/ui/components/button"\nimport { ButtonGroup } from "@erbium/ui/components/button-group"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuRadioGroup,\n  DropdownMenuRadioItem,\n  DropdownMenuSeparator,\n  DropdownMenuSub,\n  DropdownMenuSubContent,\n  DropdownMenuSubTrigger,\n  DropdownMenuTrigger,\n} from "@erbium/ui/components/dropdown-menu"\n\nexport default function ButtonGroupDemo() {\n  const [label, setLabel] = React.useState("personal")\n\n  return (\n    <ButtonGroup>\n      <ButtonGroup className="hidden sm:flex">\n        <Button variant="outline" size="icon" aria-label="Go Back">\n          <HugeiconsIcon icon={ArrowLeft01Icon} />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant="outline">Archive</Button>\n        <Button variant="outline">Report</Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant="outline">Snooze</Button>\n        <DropdownMenu>\n          <DropdownMenuTrigger render={<Button variant="outline" size="icon" aria-label="More Options">\n              <HugeiconsIcon icon={MoreHorizontalIcon} />\n            </Button>} />\n          <DropdownMenuContent align="end" className="w-52">\n            <DropdownMenuGroup>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={MailCheckIcon} />\n                Mark as Read\n              </DropdownMenuItem>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={ArchiveIcon} />\n                Archive\n              </DropdownMenuItem>\n            </DropdownMenuGroup>\n            <DropdownMenuSeparator />\n            <DropdownMenuGroup>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={Clock01Icon} />\n                Snooze\n              </DropdownMenuItem>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={CalendarPlusIcon} />\n                Add to Calendar\n              </DropdownMenuItem>\n              <DropdownMenuItem>\n                <HugeiconsIcon icon={ListFilterIcon} />\n                Add to List\n              </DropdownMenuItem>\n              <DropdownMenuSub>\n                <DropdownMenuSubTrigger>\n                  <HugeiconsIcon icon={Tag01Icon} />\n                  Label As...\n                </DropdownMenuSubTrigger>\n                <DropdownMenuSubContent>\n                  <DropdownMenuRadioGroup\n                    value={label}\n                    onValueChange={setLabel}\n                  >\n                    <DropdownMenuRadioItem value="personal">\n                      Personal\n                    </DropdownMenuRadioItem>\n                    <DropdownMenuRadioItem value="work">\n                      Work\n                    </DropdownMenuRadioItem>\n                    <DropdownMenuRadioItem value="other">\n                      Other\n                    </DropdownMenuRadioItem>\n                  </DropdownMenuRadioGroup>\n                </DropdownMenuSubContent>\n              </DropdownMenuSub>\n            </DropdownMenuGroup>\n            <DropdownMenuSeparator />\n            <DropdownMenuGroup>\n              <DropdownMenuItem variant="error">\n                <HugeiconsIcon icon={Delete02Icon} />\n                Trash\n              </DropdownMenuItem>\n            </DropdownMenuGroup>\n          </DropdownMenuContent>\n        </DropdownMenu>\n      </ButtonGroup>\n    </ButtonGroup>\n  )\n}\n',
       },
     },
   },

@@ -22,7 +22,7 @@ const toastIconByType = {
   success: { icon: CircleCheckIcon, className: "text-success" },
   info: { icon: InfoIcon, className: "text-info" },
   warning: { icon: TriangleAlertIcon, className: "text-warning" },
-  destructive: { icon: OctagonXIcon, className: "text-destructive" },
+  error: { icon: OctagonXIcon, className: "text-error" },
 } as const;
 
 const toastVariants = cva(
@@ -32,7 +32,7 @@ const toastVariants = cva(
       type: {
         default: "surface-overlay text-popover-foreground",
         loading: "surface-overlay text-popover-foreground",
-        destructive: "surface-tint-destructive-soft text-destructive-soft-foreground",
+        error: "surface-tint-error-soft text-error-soft-foreground",
         info: "surface-tint-info-soft text-info-soft-foreground",
         success: "surface-tint-success-soft text-success-soft-foreground",
         warning: "surface-tint-warning-soft text-warning-soft-foreground",

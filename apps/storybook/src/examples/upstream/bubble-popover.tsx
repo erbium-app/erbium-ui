@@ -18,7 +18,7 @@ export function BubblePopoverDemo() {
       <Bubble align="end">
         <BubbleContent>Run the build script.</BubbleContent>
       </Bubble>
-      <Bubble variant="destructive">
+      <Bubble variant="error">
         <BubbleContent>Failed to run the command.</BubbleContent>
         <BubbleReactions>
           <Popover>
@@ -28,7 +28,7 @@ export function BubblePopoverDemo() {
                   variant="ghost"
                   size="icon-xs"
                   aria-label="Show error details"
-                  className="aria-expanded:text-destructive"
+                  className="aria-expanded:text-error"
                 />
               }
             >

@@ -15,13 +15,13 @@ import {
 } from "@erbium/ui/components/alert-dialog";
 import { Button } from "@erbium/ui/components/button";
 
-export function AlertDialogDestructive() {
+export function AlertDialogError() {
   return (
     <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="destructive">Delete Chat</Button>} />
+      <AlertDialogTrigger render={<Button variant="error">Delete Chat</Button>} />
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
-          <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+          <AlertDialogMedia className="bg-error/10 text-error dark:bg-error/20 dark:text-error">
             <HugeiconsIcon icon={Delete02Icon} />
           </AlertDialogMedia>
           <AlertDialogTitle>Delete chat?</AlertDialogTitle>
@@ -32,7 +32,7 @@ export function AlertDialogDestructive() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
+          <AlertDialogAction variant="error">Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -32,20 +32,6 @@
       ]
     },
     {
-      "name": "alert-destructive",
-      "type": "registry:component",
-      "title": "Alert Destructive",
-      "description": "Erbium alert destructive example.",
-      "registryDependencies": ["@erbium/alert"],
-      "files": [
-        {
-          "path": "registry/examples/alert-destructive.tsx",
-          "type": "registry:component",
-          "target": "~/src/examples/alert-destructive.tsx"
-        }
-      ]
-    },
-    {
       "name": "alert-dialog-demo",
       "type": "registry:component",
       "title": "Alert Dialog Demo",
@@ -56,6 +42,20 @@
           "path": "registry/examples/alert-dialog-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/alert-dialog-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "alert-error",
+      "type": "registry:component",
+      "title": "Alert Error",
+      "description": "Erbium alert error example.",
+      "registryDependencies": ["@erbium/alert"],
+      "files": [
+        {
+          "path": "registry/examples/alert-error.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/alert-error.tsx"
         }
       ]
     },
@@ -173,16 +173,16 @@
       ]
     },
     {
-      "name": "button-destructive",
+      "name": "button-error",
       "type": "registry:component",
-      "title": "Button Destructive",
-      "description": "Erbium button destructive example.",
+      "title": "Button Error",
+      "description": "Erbium button error example.",
       "registryDependencies": ["@erbium/button"],
       "files": [
         {
-          "path": "registry/examples/button-destructive.tsx",
+          "path": "registry/examples/button-error.tsx",
           "type": "registry:component",
-          "target": "~/src/examples/button-destructive.tsx"
+          "target": "~/src/examples/button-error.tsx"
         }
       ]
     },

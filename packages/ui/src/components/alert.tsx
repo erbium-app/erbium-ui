@@ -13,8 +13,7 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "surface-panel text-card-foreground",
-        destructive:
-          "surface-tint-destructive-soft text-destructive-soft-foreground [&>svg]:text-destructive",
+        error: "surface-tint-error-soft text-error-soft-foreground [&>svg]:text-error",
         info: "surface-tint-info-soft text-info-soft-foreground [&>svg]:text-info",
         success: "surface-tint-success-soft text-success-soft-foreground [&>svg]:text-success",
         warning: "surface-tint-warning-soft text-warning-soft-foreground [&>svg]:text-warning",
@@ -28,7 +27,7 @@ const alertVariants = cva(
 
 const alertIconByVariant = {
   default: InfoIcon,
-  destructive: OctagonXIcon,
+  error: OctagonXIcon,
   info: InfoIcon,
   success: CircleCheckIcon,
   warning: TriangleAlertIcon,

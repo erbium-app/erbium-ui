@@ -211,7 +211,7 @@ States are built into the roles; components add no state classes.
 | engaged (`aria-expanded`, `aria-pressed`, `data-state="on"`, `data-popup-open`) | attribute                                                              | `--surface-press-tint`; controls sink  |
 | selected flat toggle                                                            | `surface-flat engaged:surface-control`                                 | becomes a sunk control                 |
 | focus-visible                                                                   | component `focus-visible:border-ring`                                  | border colour, no outer ring           |
-| invalid                                                                         | `aria-invalid` on the element or its direct input                      | destructive rim                        |
+| invalid                                                                         | `aria-invalid` on the element or its direct input                      | error rim                              |
 | disabled                                                                        | `:disabled`, `data-disabled`, `aria-disabled`, a disabled direct input | hairline only; selected keeps its tint |
 
 Transitions: `transition-[background-color,box-shadow,translate] duration-150 motion-reduce:transition-none`.
@@ -247,13 +247,13 @@ Transitions: `transition-[background-color,box-shadow,translate] duration-150 mo
     - `--foreground #393a34`;
     - `--muted-foreground #6a737d`;
     - `--primary #1c6b48` / `#ffffff`;
-    - `--destructive #ab5959`;
+    - `--error #ab5959`;
     - `--success #1e754f`;
     - `--warning #a65e2b`;
     - `--info #296aa3`;
     - `--ring` from the primary.
   - [x] Dark:
-    - `--destructive #cb7676` (Vitesse error, replacing `#f97583`);
+    - `--error #cb7676` (Vitesse error, replacing `#f97583`);
     - status colours from Vitesse terminal colours;
     - `--primary #4d9375` kept.
   - [x] `--border` becomes an alpha divider (ink 8% / light 8%), and Vitesse `#2f363d` stops outlining surfaces.

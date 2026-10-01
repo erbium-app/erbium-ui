@@ -92,7 +92,7 @@ export default function ButtonGroupDemo() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem variant="destructive">
+              <DropdownMenuItem variant="error">
                 <HugeiconsIcon icon={Delete02Icon} />
                 Trash
               </DropdownMenuItem>

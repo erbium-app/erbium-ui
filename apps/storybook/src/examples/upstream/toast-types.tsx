@@ -52,14 +52,14 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
-            id: "toast-type-destructive",
-            type: "destructive",
+            id: "toast-type-error",
+            type: "error",
             description: "The event could not be created.",
             priority: "high",
           })
         }
       >
-        Destructive
+        Error
       </Button>
     </div>
   );

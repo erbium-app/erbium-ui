@@ -59,9 +59,9 @@ export const Ladder: Story = {
 
 const coloredSurfaces = [
   [
-    "destructive",
-    "surface-fill-destructive text-destructive-foreground",
-    "surface-tint-destructive-soft text-destructive-soft-foreground",
+    "error",
+    "surface-fill-error text-error-foreground",
+    "surface-tint-error-soft text-error-soft-foreground",
   ],
   [
     "info",
@@ -278,7 +278,7 @@ const stateRoles = [
   ["surface-control", true],
   ["surface-fill-primary text-primary-foreground", true],
   ["surface-flat text-muted-foreground", false],
-  ["surface-ghost-destructive-soft text-destructive-soft-foreground", false],
+  ["surface-ghost-error-soft text-error-soft-foreground", false],
 ] as const;
 
 const states = [

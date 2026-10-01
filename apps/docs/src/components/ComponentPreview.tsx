@@ -71,7 +71,7 @@ export default function ComponentPreview({ name }: { name: string }) {
         <Badge>New</Badge>
         <Badge variant="secondary">Stable</Badge>
         <Badge variant="outline">Outline</Badge>
-        <Badge variant="destructive">Deprecated</Badge>
+        <Badge variant="error">Deprecated</Badge>
       </div>
     );
   if (name === "input")

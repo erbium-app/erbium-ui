@@ -35,7 +35,7 @@ export function BubbleReactionsDemo() {
           <span>👏</span>
         </BubbleReactions>
       </Bubble>
-      <Bubble variant="destructive">
+      <Bubble variant="error">
         <BubbleContent>Are you sure I can run this command?</BubbleContent>
         <BubbleReactions>
           <Button

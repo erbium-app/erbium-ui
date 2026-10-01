@@ -43,7 +43,7 @@ export default function ContextMenuDemo() {
             <ContextMenuSeparator />
             <ContextMenuItem>Developer Tools</ContextMenuItem>
             <ContextMenuSeparator />
-            <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+            <ContextMenuItem variant="error">Delete</ContextMenuItem>
           </ContextMenuSubContent>
         </ContextMenuSub>
         <ContextMenuSeparator />

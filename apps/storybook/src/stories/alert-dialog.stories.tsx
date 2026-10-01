@@ -14,7 +14,7 @@ import { AlertDialogBasic } from "../examples/upstream/alert-dialog-basic";
 import { AlertDialogSmall } from "../examples/upstream/alert-dialog-small";
 import { AlertDialogWithMedia } from "../examples/upstream/alert-dialog-media";
 import { AlertDialogSmallWithMedia } from "../examples/upstream/alert-dialog-small-media";
-import { AlertDialogDestructive } from "../examples/upstream/alert-dialog-destructive";
+import { AlertDialogError } from "../examples/upstream/alert-dialog-error";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import Demo from "../examples/alert-dialog-demo";
 
@@ -127,17 +127,18 @@ export const SmallMedia: Story = {
   },
   render: () => <AlertDialogSmallWithMedia />,
 };
-export const Destructive: Story = {
+export const ErrorVariant: Story = {
+  name: "Error",
   parameters: {
     docs: {
       description: {
         story:
-          "Use the `AlertDialogAction` component to add a destructive action button to the alert dialog.",
+          "Use the `AlertDialogAction` component to add a error action button to the alert dialog.",
       },
       source: {
-        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";\n\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from "@erbium/ui/components/alert-dialog";\nimport { Button } from "@erbium/ui/components/button";\n\nexport function AlertDialogDestructive() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant="destructive">Delete Chat</Button>} />\n      <AlertDialogContent size="sm">\n        <AlertDialogHeader>\n          <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">\n            <HugeiconsIcon icon={Delete02Icon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Delete chat?</AlertDialogTitle>\n          <AlertDialogDescription>\n            This will permanently delete this chat conversation. View <a href="#">Settings</a>{" "}\n            delete any memories saved during this chat.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>\n          <AlertDialogAction variant="destructive">Delete</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";\n\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from "@erbium/ui/components/alert-dialog";\nimport { Button } from "@erbium/ui/components/button";\n\nexport function AlertDialogError() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant="error">Delete Chat</Button>} />\n      <AlertDialogContent size="sm">\n        <AlertDialogHeader>\n          <AlertDialogMedia className="bg-error/10 text-error dark:bg-error/20 dark:text-error">\n            <HugeiconsIcon icon={Delete02Icon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Delete chat?</AlertDialogTitle>\n          <AlertDialogDescription>\n            This will permanently delete this chat conversation. View <a href="#">Settings</a>{" "}\n            delete any memories saved during this chat.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>\n          <AlertDialogAction variant="error">Delete</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n',
       },
     },
   },
-  render: () => <AlertDialogDestructive />,
+  render: () => <AlertDialogError />,
 };

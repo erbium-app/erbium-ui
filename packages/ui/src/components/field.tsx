@@ -48,7 +48,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-const fieldVariants = cva("group/field flex w-full gap-2 data-[invalid=true]:text-destructive", {
+const fieldVariants = cva("group/field flex w-full gap-2 data-[invalid=true]:text-error", {
   variants: {
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
@@ -220,7 +220,7 @@ function FieldError({
         onTransitionEnd?.(event);
       }}
       className={cn(
-        "grid min-h-0 text-sm font-normal text-destructive transition-[grid-template-rows,margin] duration-200 ease-out data-[visible=false]:-mt-2 data-[visible=false]:grid-rows-[0fr] data-[visible=true]:grid-rows-[1fr] motion-reduce:transition-none",
+        "grid min-h-0 text-sm font-normal text-error transition-[grid-template-rows,margin] duration-200 ease-out data-[visible=false]:-mt-2 data-[visible=false]:grid-rows-[0fr] data-[visible=true]:grid-rows-[1fr] motion-reduce:transition-none",
         className,
       )}
       {...props}

@@ -61,7 +61,7 @@ export function ContextMenuGroups() {
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
-          <ContextMenuItem variant="destructive">
+          <ContextMenuItem variant="error">
             Delete
             <ContextMenuShortcut hotkey="Backspace" />
           </ContextMenuItem>

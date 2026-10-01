@@ -19,7 +19,7 @@ export default function ToggleGroupSpacing() {
       <ToggleGroupItem
         value="heart"
         aria-label="Toggle heart"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-destructive data-[state=on]:*:[svg]:stroke-destructive"
+        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-error data-[state=on]:*:[svg]:stroke-error"
       >
         <HugeiconsIcon icon={HeartIcon} />
         Heart

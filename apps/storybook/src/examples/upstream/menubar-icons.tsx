@@ -51,7 +51,7 @@ export function MenubarIcons() {
               Help
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem variant="destructive">
+            <MenubarItem variant="error">
               <HugeiconsIcon icon={TrashIcon} />
               Delete
             </MenubarItem>

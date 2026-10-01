@@ -37,7 +37,7 @@ export function ContextMenuIcons() {
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
-          <ContextMenuItem variant="destructive">
+          <ContextMenuItem variant="error">
             <HugeiconsIcon icon={TrashIcon} />
             Delete
           </ContextMenuItem>

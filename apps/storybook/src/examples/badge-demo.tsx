@@ -6,7 +6,7 @@ export default function BadgeDemo() {
       <div className="flex w-full flex-wrap gap-2">
         <Badge>Badge</Badge>
         <Badge variant="secondary">Secondary</Badge>
-        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="error">Error</Badge>
         <Badge variant="outline">Outline</Badge>
       </div>
       <div className="flex w-full flex-wrap gap-2">
@@ -14,10 +14,7 @@ export default function BadgeDemo() {
           Verified
         </Badge>
         <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>
-        <Badge
-          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
-          variant="destructive"
-        >
+        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="error">
           99
         </Badge>
         <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">

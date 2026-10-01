@@ -61,7 +61,7 @@ export default function ButtonGroupDropdown() {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem variant="destructive">
+            <DropdownMenuItem variant="error">
               <HugeiconsIcon icon={TrashIcon} />
               Delete Conversation
             </DropdownMenuItem>

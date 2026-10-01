@@ -35,7 +35,7 @@ export const Playground: StoryObj<{
   numberOfMonths: number;
   weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   captionLayout: "label" | "dropdown" | "dropdown-months" | "dropdown-years";
-  buttonVariant: "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
+  buttonVariant: "default" | "outline" | "secondary" | "ghost" | "error" | "link";
 }> = {
   args: {
     showOutsideDays: true,
@@ -56,7 +56,7 @@ export const Playground: StoryObj<{
     },
     buttonVariant: {
       control: "select",
-      options: ["default", "outline", "secondary", "ghost", "destructive", "link"],
+      options: ["default", "outline", "secondary", "ghost", "error", "link"],
     },
   },
   render: (args) => (

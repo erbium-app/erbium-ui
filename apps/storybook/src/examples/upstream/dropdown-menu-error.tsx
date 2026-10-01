@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@erbium/ui/components/dropdown-menu";
 
-export function DropdownMenuDestructive() {
+export function DropdownMenuError() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>Actions</DropdownMenuTrigger>
@@ -30,7 +30,7 @@ export function DropdownMenuDestructive() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem variant="destructive">
+          <DropdownMenuItem variant="error">
             <HugeiconsIcon icon={TrashIcon} />
             Delete
           </DropdownMenuItem>

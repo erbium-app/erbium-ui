@@ -60,7 +60,7 @@ const columns = columnHelper.columns([
           <DropdownMenuItem>Edit</DropdownMenuItem>
           <DropdownMenuItem>Duplicate</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+          <DropdownMenuItem variant="error">Delete</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     ),

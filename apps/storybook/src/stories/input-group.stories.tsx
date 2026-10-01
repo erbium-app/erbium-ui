@@ -42,7 +42,7 @@ export const Playground: StoryObj<{
   align: "inline-start" | "inline-end" | "block-start" | "block-end";
   placeholder: string;
   buttonSize: "xs" | "sm" | "icon-xs" | "icon-sm";
-  buttonVariant: "default" | "secondary" | "outline" | "ghost" | "destructive" | "link";
+  buttonVariant: "default" | "secondary" | "outline" | "ghost" | "error" | "link";
   className: string;
 }> = {
   args: {
@@ -61,7 +61,7 @@ export const Playground: StoryObj<{
     buttonSize: { control: "select", options: ["xs", "sm", "icon-xs", "icon-sm"] },
     buttonVariant: {
       control: "select",
-      options: ["default", "secondary", "outline", "ghost", "destructive", "link"],
+      options: ["default", "secondary", "outline", "ghost", "error", "link"],
     },
     className: { control: "text" },
   },

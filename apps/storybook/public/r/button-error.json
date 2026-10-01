@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-error",
+  "title": "Button Error",
+  "description": "Erbium button error example.",
+  "registryDependencies": ["@erbium/button"],
+  "files": [
+    {
+      "path": "registry/examples/button-error.tsx",
+      "content": "// @ts-nocheck\nimport { Button } from \"../components/button\";\n\nexport default function ButtonError() {\n  return <Button variant=\"error\">Error</Button>;\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/button-error.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

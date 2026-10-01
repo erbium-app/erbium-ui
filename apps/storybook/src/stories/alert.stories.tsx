@@ -1,5 +1,5 @@
 import AlertColors from "../examples/upstream/alert-colors";
-import ExampleAlertDestructive from "../examples/alert-destructive";
+import ExampleAlertError from "../examples/alert-error";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Alert, AlertAction, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";
 import { Button } from "@erbium/ui/components/button";
@@ -10,7 +10,7 @@ const alertContent = {
     title: "Workspace connected",
     description: "The agent can read the app and package files for this task.",
   },
-  destructive: {
+  error: {
     title: "Tool call failed",
     description: "The agent could not run the test suite. Check the workspace process.",
   },
@@ -50,7 +50,7 @@ export const Playground: StoryObj<typeof Alert> = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "destructive", "info", "success", "warning"],
+      options: ["default", "error", "info", "success", "warning"],
     },
   },
   render: (args) => {
@@ -69,7 +69,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertDemo() {\n  return (\n    <section className="w-full max-w-2xl overflow-hidden rounded-xl border surface-panel">\n      <header className="border-b border-transparent px-5 py-4">\n        <p className="text-xs font-medium text-muted-foreground">NOVA / AGENT WORKSPACE</p>\n        <h2 className="mt-1 font-heading text-lg font-semibold">Refactor the billing flow</h2>\n        <p className="mt-1 text-sm text-muted-foreground">\n          Agent activity across planning, tools, and verification\n        </p>\n      </header>\n      <div className="grid gap-3 p-5">\n        <Alert>\n          <AlertTitle>Workspace connected</AlertTitle>\n          <AlertDescription>\n            The agent can read the app and package files for this task.\n          </AlertDescription>\n        </Alert>\n        <Alert variant="info">\n          <AlertTitle>Plan ready</AlertTitle>\n          <AlertDescription>\n            The agent identified three files to update before writing code.\n          </AlertDescription>\n        </Alert>\n        <Alert variant="success">\n          <AlertTitle>Verification passed</AlertTitle>\n          <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n        </Alert>\n        <Alert variant="warning">\n          <AlertTitle>Approval required</AlertTitle>\n          <AlertDescription>\n            The agent needs permission to install a new dependency.\n          </AlertDescription>\n        </Alert>\n        <Alert variant="destructive">\n          <AlertTitle>Browser preview failed</AlertTitle>\n          <AlertDescription>\n            The preview server did not start. Check the build log and retry.\n          </AlertDescription>\n        </Alert>\n      </div>\n    </section>\n  );\n}\n',
+        code: 'import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertDemo() {\n  return (\n    <section className="w-full max-w-2xl overflow-hidden rounded-xl border surface-panel">\n      <header className="border-b border-transparent px-5 py-4">\n        <p className="text-xs font-medium text-muted-foreground">NOVA / AGENT WORKSPACE</p>\n        <h2 className="mt-1 font-heading text-lg font-semibold">Refactor the billing flow</h2>\n        <p className="mt-1 text-sm text-muted-foreground">\n          Agent activity across planning, tools, and verification\n        </p>\n      </header>\n      <div className="grid gap-3 p-5">\n        <Alert>\n          <AlertTitle>Workspace connected</AlertTitle>\n          <AlertDescription>\n            The agent can read the app and package files for this task.\n          </AlertDescription>\n        </Alert>\n        <Alert variant="info">\n          <AlertTitle>Plan ready</AlertTitle>\n          <AlertDescription>\n            The agent identified three files to update before writing code.\n          </AlertDescription>\n        </Alert>\n        <Alert variant="success">\n          <AlertTitle>Verification passed</AlertTitle>\n          <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n        </Alert>\n        <Alert variant="warning">\n          <AlertTitle>Approval required</AlertTitle>\n          <AlertDescription>\n            The agent needs permission to install a new dependency.\n          </AlertDescription>\n        </Alert>\n        <Alert variant="error">\n          <AlertTitle>Browser preview failed</AlertTitle>\n          <AlertDescription>\n            The preview server did not start. Check the build log and retry.\n          </AlertDescription>\n        </Alert>\n      </div>\n    </section>\n  );\n}\n',
       },
     },
   },
@@ -80,19 +80,20 @@ export const Overview: Story = {
   ),
 };
 
-export const Destructive: Story = {
+export const ErrorVariant: Story = {
+  name: "Error",
   parameters: {
     docs: {
-      description: { story: 'Use `variant="destructive"` when an agent action fails.' },
+      description: { story: 'Use `variant="error"` when an agent action fails.' },
 
       source: {
-        code: 'import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertDestructive() {\n  return (\n    <Alert variant="destructive">\n      <AlertTitle>Tool call failed</AlertTitle>\n      <AlertDescription>\n        The agent could not run the test suite. The workspace process exited before returning\n        results.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
+        code: 'import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";\n\nexport default function AlertError() {\n  return (\n    <Alert variant="error">\n      <AlertTitle>Tool call failed</AlertTitle>\n      <AlertDescription>\n        The agent could not run the test suite. The workspace process exited before returning\n        results.\n      </AlertDescription>\n    </Alert>\n  );\n}\n',
       },
     },
   },
   render: () => (
     <div className="w-full min-w-72 max-w-2xl p-4">
-      <ExampleAlertDestructive />
+      <ExampleAlertError />
     </div>
   ),
 };

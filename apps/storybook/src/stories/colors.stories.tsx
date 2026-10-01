@@ -9,7 +9,7 @@ export default meta;
 type Story = StoryObj;
 
 const semanticColors = [
-  ["Destructive", "bg-destructive text-destructive-foreground"],
+  ["Error", "bg-error text-error-foreground"],
   ["Success", "bg-success text-success-foreground"],
   ["Warning", "bg-warning text-warning-foreground"],
   ["Info", "bg-info text-info-foreground"],
@@ -28,7 +28,7 @@ const tagColors = [
 ] as const;
 
 const softColors = [
-  ["Destructive", "bg-destructive-soft text-destructive-soft-foreground"],
+  ["Error", "bg-error-soft text-error-soft-foreground"],
   ["Success", "bg-success-soft text-success-soft-foreground"],
   ["Warning", "bg-warning-soft text-warning-soft-foreground"],
   ["Info", "bg-info-soft text-info-soft-foreground"],

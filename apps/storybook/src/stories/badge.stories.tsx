@@ -13,7 +13,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Displays a badge or a component that looks like a badge.\n\n**Import:** `@erbium/ui/components/badge`  \n\n**shadcn/ui page:** [Badge](https://ui.shadcn.com/docs/components/base/badge)\n\n### Usage\n\n```tsx\nimport { Badge } from "@erbium/ui/components/badge"\n```\n\n```tsx\n<Badge variant="default | outline | secondary | info | success | warning | destructive | ghost-destructive | ghost-info | ghost-success | ghost-warning | tag-gray | tag-red | tag-orange | tag-yellow | tag-green | tag-cyan | tag-blue | tag-purple | tag-magenta">Badge</Badge>\n```',
+          'Displays a badge or a component that looks like a badge.\n\n**Import:** `@erbium/ui/components/badge`  \n\n**shadcn/ui page:** [Badge](https://ui.shadcn.com/docs/components/base/badge)\n\n### Usage\n\n```tsx\nimport { Badge } from "@erbium/ui/components/badge"\n```\n\n```tsx\n<Badge variant="default | outline | secondary | info | success | warning | error | ghost-error | ghost-info | ghost-success | ghost-warning | tag-gray | tag-red | tag-orange | tag-yellow | tag-green | tag-cyan | tag-blue | tag-purple | tag-magenta">Badge</Badge>\n```',
       },
     },
   },
@@ -33,8 +33,8 @@ export const Playground: StoryObj<typeof Badge> = {
         "info",
         "success",
         "warning",
-        "destructive",
-        "ghost-destructive",
+        "error",
+        "ghost-error",
         "ghost-success",
         "ghost-warning",
         "ghost-info",
@@ -60,7 +60,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";\n\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport default function BadgeDemo() {\n  return (\n    <div className="flex flex-col items-center gap-2">\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge>Badge</Badge>\n        <Badge variant="secondary">Secondary</Badge>\n        <Badge variant="destructive">Destructive</Badge>\n        <Badge variant="outline">Outline</Badge>\n      </div>\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge variant="success">\n          <HugeiconsIcon icon={BadgeCheckIcon} />\n          Verified\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>\n        <Badge\n          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"\n          variant="destructive"\n        >\n          99\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";\n\n\nimport { Badge } from "@erbium/ui/components/badge";\n\nexport default function BadgeDemo() {\n  return (\n    <div className="flex flex-col items-center gap-2">\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge>Badge</Badge>\n        <Badge variant="secondary">Secondary</Badge>\n        <Badge variant="error">Error</Badge>\n        <Badge variant="outline">Outline</Badge>\n      </div>\n      <div className="flex w-full flex-wrap gap-2">\n        <Badge variant="success">\n          <HugeiconsIcon icon={BadgeCheckIcon} />\n          Verified\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>\n        <Badge\n          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"\n          variant="error"\n        >\n          99\n        </Badge>\n        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -87,8 +87,8 @@ export const Variants: Story = {
           "info",
           "success",
           "warning",
-          "destructive",
-          "ghost-destructive",
+          "error",
+          "ghost-error",
           "ghost-success",
           "ghost-warning",
           "ghost-info",
@@ -147,7 +147,7 @@ export const WithSpinner: Story = {
           'You can render a spinner inside the badge. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` prop to the spinner.',
       },
       source: {
-        code: 'import { Badge } from "@erbium/ui/components/badge";\nimport { Spinner } from "@erbium/ui/components/spinner";\n\nexport function BadgeWithSpinner() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Badge variant="destructive">\n        <Spinner data-icon="inline-start" />\n        Deleting\n      </Badge>\n      <Badge variant="secondary">\n        Generating\n        <Spinner data-icon="inline-end" />\n      </Badge>\n    </div>\n  );\n}\n',
+        code: 'import { Badge } from "@erbium/ui/components/badge";\nimport { Spinner } from "@erbium/ui/components/spinner";\n\nexport function BadgeWithSpinner() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Badge variant="error">\n        <Spinner data-icon="inline-start" />\n        Deleting\n      </Badge>\n      <Badge variant="secondary">\n        Generating\n        <Spinner data-icon="inline-end" />\n      </Badge>\n    </div>\n  );\n}\n',
       },
     },
   },

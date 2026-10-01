@@ -24,12 +24,12 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{
-  type: "success" | "info" | "warning" | "destructive";
+  type: "success" | "info" | "warning" | "error";
   description: string;
 }> = {
   args: { type: "success", description: "Saved successfully" },
   argTypes: {
-    type: { control: "select", options: ["success", "info", "warning", "destructive"] },
+    type: { control: "select", options: ["success", "info", "warning", "error"] },
     description: { control: "text" },
   },
   render: (args) => (
@@ -66,11 +66,10 @@ export const Types: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          "Set `type` to success, info, warning, destructive, or loading to show a status icon.",
+        story: "Set `type` to success, info, warning, error, or loading to show a status icon.",
       },
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastTypes() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({ id: "toast-type-default", description: "Event has been created." })\n        }\n      >\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-success",\n            type: "success",\n            description: "Event has been created.",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-info",\n            type: "info",\n            description: "Arrive 10 minutes before the event.",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-warning",\n            type: "warning",\n            description: "The event cannot start before 8:00 AM.",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-destructive",\n            type: "destructive",\n            description: "The event could not be created.",\n            priority: "high",\n          })\n        }\n      >\n        Destructive\n      </Button>\n    </div>\n  );\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastTypes() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({ id: "toast-type-default", description: "Event has been created." })\n        }\n      >\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-success",\n            type: "success",\n            description: "Event has been created.",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-info",\n            type: "info",\n            description: "Arrive 10 minutes before the event.",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-warning",\n            type: "warning",\n            description: "The event cannot start before 8:00 AM.",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-error",\n            type: "error",\n            description: "The event could not be created.",\n            priority: "high",\n          })\n        }\n      >\n        Error\n      </Button>\n    </div>\n  );\n}\n',
       },
     },
   },

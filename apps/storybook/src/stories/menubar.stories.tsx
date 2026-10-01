@@ -33,14 +33,14 @@ type Story = StoryObj;
 export const Playground: StoryObj<{
   className: string;
   align: "start" | "center" | "end";
-  itemVariant: "default" | "destructive";
+  itemVariant: "default" | "error";
   disabled: boolean;
 }> = {
   args: { className: "", align: "start", itemVariant: "default", disabled: false },
   argTypes: {
     className: { control: "text" },
     align: { control: "select", options: ["start", "center", "end"] },
-    itemVariant: { control: "select", options: ["default", "destructive"] },
+    itemVariant: { control: "select", options: ["default", "error"] },
     disabled: { control: "boolean" },
   },
   render: (args) => (
@@ -115,7 +115,7 @@ export const WithIcons: Story = {
       description: { story: "Add icons to menu items to make actions easier to scan." },
 
       source: {
-        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport File01Icon from "@hugeicons/core-free-icons/File01Icon";\nimport Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";\nimport HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";\nimport SaveIcon from "@hugeicons/core-free-icons/SaveIcon";\nimport Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";\nimport TrashIcon from "@hugeicons/core-free-icons/TrashIcon";\n\n\nimport {\n  Menubar,\n  MenubarContent,\n  MenubarGroup,\n  MenubarItem,\n  MenubarMenu,\n  MenubarSeparator,\n  MenubarShortcut,\n  MenubarTrigger,\n} from "@erbium/ui/components/menubar";\n\nexport function MenubarIcons() {\n  return (\n    <Menubar className="w-72">\n      <MenubarMenu>\n        <MenubarTrigger>File</MenubarTrigger>\n        <MenubarContent>\n          <MenubarItem>\n            <HugeiconsIcon icon={File01Icon} />\n            New File <MenubarShortcut hotkey="Mod+N" />\n          </MenubarItem>\n          <MenubarItem>\n            <HugeiconsIcon icon={Folder01Icon} />\n            Open Folder\n          </MenubarItem>\n          <MenubarSeparator />\n          <MenubarItem>\n            <HugeiconsIcon icon={SaveIcon} />\n            Save <MenubarShortcut hotkey="Mod+S" />\n          </MenubarItem>\n        </MenubarContent>\n      </MenubarMenu>\n      <MenubarMenu>\n        <MenubarTrigger>More</MenubarTrigger>\n        <MenubarContent>\n          <MenubarGroup>\n            <MenubarItem>\n              <HugeiconsIcon icon={Settings01Icon} />\n              Settings\n            </MenubarItem>\n            <MenubarItem>\n              <HugeiconsIcon icon={HelpCircleIcon} />\n              Help\n            </MenubarItem>\n            <MenubarSeparator />\n            <MenubarItem variant="destructive">\n              <HugeiconsIcon icon={TrashIcon} />\n              Delete\n            </MenubarItem>\n          </MenubarGroup>\n        </MenubarContent>\n      </MenubarMenu>\n    </Menubar>\n  );\n}\n',
+        code: 'import { HugeiconsIcon } from "@hugeicons/react";\nimport File01Icon from "@hugeicons/core-free-icons/File01Icon";\nimport Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";\nimport HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";\nimport SaveIcon from "@hugeicons/core-free-icons/SaveIcon";\nimport Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";\nimport TrashIcon from "@hugeicons/core-free-icons/TrashIcon";\n\n\nimport {\n  Menubar,\n  MenubarContent,\n  MenubarGroup,\n  MenubarItem,\n  MenubarMenu,\n  MenubarSeparator,\n  MenubarShortcut,\n  MenubarTrigger,\n} from "@erbium/ui/components/menubar";\n\nexport function MenubarIcons() {\n  return (\n    <Menubar className="w-72">\n      <MenubarMenu>\n        <MenubarTrigger>File</MenubarTrigger>\n        <MenubarContent>\n          <MenubarItem>\n            <HugeiconsIcon icon={File01Icon} />\n            New File <MenubarShortcut hotkey="Mod+N" />\n          </MenubarItem>\n          <MenubarItem>\n            <HugeiconsIcon icon={Folder01Icon} />\n            Open Folder\n          </MenubarItem>\n          <MenubarSeparator />\n          <MenubarItem>\n            <HugeiconsIcon icon={SaveIcon} />\n            Save <MenubarShortcut hotkey="Mod+S" />\n          </MenubarItem>\n        </MenubarContent>\n      </MenubarMenu>\n      <MenubarMenu>\n        <MenubarTrigger>More</MenubarTrigger>\n        <MenubarContent>\n          <MenubarGroup>\n            <MenubarItem>\n              <HugeiconsIcon icon={Settings01Icon} />\n              Settings\n            </MenubarItem>\n            <MenubarItem>\n              <HugeiconsIcon icon={HelpCircleIcon} />\n              Help\n            </MenubarItem>\n            <MenubarSeparator />\n            <MenubarItem variant="error">\n              <HugeiconsIcon icon={TrashIcon} />\n              Delete\n            </MenubarItem>\n          </MenubarGroup>\n        </MenubarContent>\n      </MenubarMenu>\n    </Menubar>\n  );\n}\n',
       },
     },
   },

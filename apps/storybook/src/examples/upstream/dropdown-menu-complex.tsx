@@ -267,7 +267,7 @@ export function DropdownMenuComplex() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem variant="destructive">
+          <DropdownMenuItem variant="error">
             <HugeiconsIcon icon={LogOutIcon} />
             Sign Out
             <DropdownMenuShortcut hotkey="Shift+Mod+Q" />

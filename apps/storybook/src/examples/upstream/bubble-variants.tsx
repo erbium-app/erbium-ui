@@ -25,8 +25,8 @@ export function BubbleVariantsDemo() {
       <Bubble variant="outline">
         <BubbleContent>We can also use an outlined variant.</BubbleContent>
       </Bubble>
-      <Bubble variant="destructive" align="end">
-        <BubbleContent>Or a destructive variant with a reaction.</BubbleContent>
+      <Bubble variant="error" align="end">
+        <BubbleContent>Or a error variant with a reaction.</BubbleContent>
         <BubbleReactions role="img" aria-label="Reaction: fire">
           <span>🔥</span>
         </BubbleReactions>

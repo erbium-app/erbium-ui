@@ -43,7 +43,7 @@ export function ContextMenuSubmenu() {
             </ContextMenuGroup>
             <ContextMenuSeparator />
             <ContextMenuGroup>
-              <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
+              <ContextMenuItem variant="error">Delete</ContextMenuItem>
             </ContextMenuGroup>
           </ContextMenuSubContent>
         </ContextMenuSub>

@@ -33,7 +33,7 @@ export default function AlertDemo() {
             The agent needs permission to install a new dependency.
           </AlertDescription>
         </Alert>
-        <Alert variant="destructive">
+        <Alert variant="error">
           <AlertTitle>Browser preview failed</AlertTitle>
           <AlertDescription>
             The preview server did not start. Check the build log and retry.
