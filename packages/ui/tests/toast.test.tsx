@@ -113,6 +113,30 @@ test("status icons, dismiss buttons, and Base UI actions have consistent default
   expect(screen.getByRole("button", { name: "Close toast" })).toBeTruthy();
 });
 
+test("rejected promises use the error styling and icon", async () => {
+  render(<Toaster />);
+
+  await act(async () => {
+    await toast
+      .promise(Promise.reject(new Error("nope")), {
+        loading: "Saving",
+        success: "Saved",
+        error: "Could not save",
+      })
+      .catch(() => undefined);
+  });
+
+  const root = screen.getByText("Could not save").closest('[data-slot="toast"]');
+  expect(root?.getAttribute("class")).toContain("surface-tint-error-soft");
+  expect(root?.querySelector('[data-slot="toast-icon"] svg.text-error')).toBeTruthy();
+});
+
+test("toast types are restricted to the supported set", () => {
+  // @ts-expect-error unknown toast types are rejected at compile time
+  expect(() => toast.add({ type: "critical", title: "Typed" })).not.toThrow();
+  toast.close();
+});
+
 test.each([
   ["ltr", 100],
   ["rtl", -100],

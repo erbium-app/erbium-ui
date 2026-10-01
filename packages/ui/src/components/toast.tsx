@@ -4,7 +4,6 @@ import type {
   ToastManager as BaseToastManager,
   ToastManagerAddOptions,
   ToastManagerUpdateOptions,
-  ToastObject as BaseToastObject,
 } from "@base-ui/react/toast";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
@@ -16,65 +15,66 @@ import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
 import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
 import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
-import { cva } from "class-variance-authority";
 
-const toastIconByType = {
-  success: { icon: CircleCheckIcon, className: "text-success" },
-  info: { icon: InfoIcon, className: "text-info" },
-  warning: { icon: TriangleAlertIcon, className: "text-warning" },
-  error: { icon: OctagonXIcon, className: "text-error" },
-} as const;
+// `loading`, `success`, and `error` match the types Base UI assigns in `toast.promise`.
+type ToastType = "default" | "loading" | "success" | "info" | "warning" | "error";
 
-const toastVariants = cva(
-  "group/toast pointer-events-auto absolute inset-e-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border will-change-transform outline-none select-none focus-visible:border-ring",
-  {
-    variants: {
-      type: {
-        default: "surface-overlay text-popover-foreground",
-        loading: "surface-overlay text-popover-foreground",
-        error: "surface-tint-error-soft text-error-soft-foreground",
-        info: "surface-tint-info-soft text-info-soft-foreground",
-        success: "surface-tint-success-soft text-success-soft-foreground",
-        warning: "surface-tint-warning-soft text-warning-soft-foreground",
-      },
-    },
-    defaultVariants: {
-      type: "default",
-    },
-  },
-);
+type WithToastType<T> = Omit<T, "type"> & { type?: ToastType | undefined };
+type ToastItem = WithToastType<ToastPrimitive.Root.ToastObject<object>>;
+type ToastAddOptions = WithToastType<ToastManagerAddOptions<object>>;
+type ToastUpdateOptions = WithToastType<ToastManagerUpdateOptions<object>>;
 
-type ToastType = keyof typeof toastIconByType | "loading";
-type ToastItem = Omit<BaseToastObject<object>, "type"> & { type?: ToastType };
-type ToastAddOptions = Omit<ToastManagerAddOptions<object>, "type"> & { type?: ToastType };
-type ToastUpdateOptions = Omit<ToastManagerUpdateOptions<object>, "type"> & { type?: ToastType };
-type ToastManagerApi = Omit<BaseToastManager, "add" | "update"> & {
-  add: (options: ToastAddOptions) => string;
-  update: (
+interface ToastManager extends Omit<BaseToastManager, "add" | "update"> {
+  add(options: ToastAddOptions): string;
+  update(
     id: string,
     updates: ToastUpdateOptions | ((previous: ToastItem) => ToastUpdateOptions),
-  ) => void;
+  ): void;
+}
+
+const toastTypes: Record<ToastType, { className: string; icon?: React.ReactNode }> = {
+  default: { className: "surface-overlay text-popover-foreground" },
+  loading: {
+    className: "surface-overlay text-popover-foreground",
+    icon: <Spinner aria-hidden="true" />,
+  },
+  success: {
+    className: "surface-tint-success-soft text-success-soft-foreground",
+    icon: <HugeiconsIcon icon={CircleCheckIcon} className="text-success" aria-hidden="true" />,
+  },
+  info: {
+    className: "surface-tint-info-soft text-info-soft-foreground",
+    icon: <HugeiconsIcon icon={InfoIcon} className="text-info" aria-hidden="true" />,
+  },
+  warning: {
+    className: "surface-tint-warning-soft text-warning-soft-foreground",
+    icon: <HugeiconsIcon icon={TriangleAlertIcon} className="text-warning" aria-hidden="true" />,
+  },
+  error: {
+    className: "surface-tint-error-soft text-error-soft-foreground",
+    icon: <HugeiconsIcon icon={OctagonXIcon} className="text-error" aria-hidden="true" />,
+  },
 };
 
-function createToastManager(): ToastManagerApi {
-  return ToastPrimitive.createToastManager() as unknown as ToastManagerApi;
+// Older toasts stay mounted so the expanded viewport can show them.
+const VISIBLE_STACK_SIZE = 3;
+
+const toastManager = ToastPrimitive.createToastManager();
+
+// Base UI types `type` as `string`; this is the one place it is narrowed to `ToastType`.
+const toast = toastManager as ToastManager;
+
+function useToastManager() {
+  return ToastPrimitive.useToastManager() as Omit<ToastManager, " subscribe"> & {
+    toasts: ToastItem[];
+  };
 }
 
-const toast = createToastManager();
-
-function ToastProvider({
-  toastManager,
-  ...props
-}: Omit<ToastPrimitive.Provider.Props, "toastManager"> & { toastManager?: ToastManagerApi }) {
-  return (
-    <ToastPrimitive.Provider
-      {...props}
-      toastManager={toastManager as BaseToastManager | undefined}
-    />
-  );
+function ToastProvider(props: ToastPrimitive.Provider.Props) {
+  return <ToastPrimitive.Provider {...props} />;
 }
 
-function ToastPortal({ ...props }: ToastPrimitive.Portal.Props) {
+function ToastPortal(props: ToastPrimitive.Portal.Props) {
   return <ToastPrimitive.Portal data-slot="toast-portal" {...props} />;
 }
 
@@ -106,7 +106,8 @@ function Toast({
       toast={toast}
       swipeDirection={swipeDirection}
       className={cn(
-        toastVariants({ type: toast.type ?? "default" }),
+        "group/toast pointer-events-auto absolute inset-e-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border will-change-transform outline-none select-none focus-visible:border-ring",
+        toastTypes[toast.type ?? "default"].className,
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--position-y:calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height)))]",
         "h-(--height) transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--position-y))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]",
         "after:absolute after:top-full after:inset-s-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
@@ -128,7 +129,7 @@ function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
     <ToastPrimitive.Content
       data-slot="toast-content"
       className={cn(
-        "flex h-full items-center gap-3 overflow-hidden p-4 transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
+        "flex items-center gap-3 overflow-hidden p-4 transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
         className,
       )}
       {...props}
@@ -193,67 +194,41 @@ function ToastClose({
   );
 }
 
-function ToastIcon({ type }: { type: ToastType | undefined }) {
-  const statusIcon = isToastIconType(type) ? toastIconByType[type] : undefined;
-  const icon =
-    type === "loading" ? (
-      <Spinner aria-hidden="true" />
-    ) : statusIcon ? (
-      <HugeiconsIcon icon={statusIcon.icon} className={statusIcon.className} aria-hidden="true" />
-    ) : null;
-
-  if (!icon) {
-    return null;
-  }
-
-  return (
-    <span
-      data-slot="toast-icon"
-      className="shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
-    >
-      {icon}
-    </span>
-  );
-}
-
-function isToastIconType(type: string | undefined): type is keyof typeof toastIconByType {
-  return type !== undefined && Object.hasOwn(toastIconByType, type);
-}
-
-function ToastListItem({ toastItem, index }: { toastItem: ToastItem; index: number }) {
+function ToasterItem({ item, index }: { item: ToastItem; index: number }) {
   const rootRef = React.useRef<HTMLDivElement>(null);
-  const previous = React.useRef<{
-    updateKey: number | undefined;
-    title: React.ReactNode;
-    description: React.ReactNode;
-    type: string | undefined;
-  } | null>(null);
+  const previous = React.useRef(item);
+  const { icon } = toastTypes[item.type ?? "default"];
 
+  // Base UI bumps `updateKey` on every upsert; shake only when nothing visible changed.
   React.useEffect(() => {
     const last = previous.current;
+    previous.current = item;
 
     if (
-      last &&
-      last.updateKey !== toastItem.updateKey &&
-      last.title === toastItem.title &&
-      last.description === toastItem.description &&
-      last.type === toastItem.type
+      last.updateKey !== item.updateKey &&
+      last.title === item.title &&
+      last.description === item.description &&
+      last.type === item.type
     ) {
       shake(rootRef.current);
     }
-
-    previous.current = {
-      updateKey: toastItem.updateKey,
-      title: toastItem.title,
-      description: toastItem.description,
-      type: toastItem.type,
-    };
-  }, [toastItem.updateKey, toastItem.title, toastItem.description, toastItem.type]);
+  }, [item]);
 
   return (
-    <Toast ref={rootRef} toast={toastItem} data-stack-hidden={index >= 3 ? "" : undefined}>
+    <Toast
+      ref={rootRef}
+      toast={item}
+      data-stack-hidden={index >= VISIBLE_STACK_SIZE ? "" : undefined}
+    >
       <ToastContent>
-        <ToastIcon type={toastItem.type} />
+        {icon ? (
+          <span
+            data-slot="toast-icon"
+            className="shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
+          >
+            {icon}
+          </span>
+        ) : null}
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <ToastTitle />
           <ToastDescription />
@@ -265,10 +240,9 @@ function ToastListItem({ toastItem, index }: { toastItem: ToastItem; index: numb
   );
 }
 
-function ToastList() {
+function ToasterStack() {
   const { toasts } = useToastManager();
-
-  const stackHeight = toasts.reduce((height, toastItem) => height + (toastItem.height ?? 0), 0);
+  const stackHeight = toasts.reduce((height, item) => height + (item.height ?? 0), 0);
 
   return (
     <div
@@ -280,8 +254,8 @@ function ToastList() {
         } as React.CSSProperties
       }
     >
-      {toasts.map((toastItem, index) => (
-        <ToastListItem key={toastItem.id} toastItem={toastItem} index={index} />
+      {toasts.map((item, index) => (
+        <ToasterItem key={item.id} item={item} index={index} />
       ))}
     </div>
   );
@@ -289,26 +263,14 @@ function ToastList() {
 
 function Toaster() {
   return (
-    // Keep older entries available to Base UI when its viewport expands.
-    <ToastProvider toastManager={toast} limit={Number.POSITIVE_INFINITY}>
+    <ToastProvider toastManager={toastManager} limit={Number.POSITIVE_INFINITY}>
       <ToastPortal>
         <ToastViewport>
-          <ToastList />
+          <ToasterStack />
         </ToastViewport>
       </ToastPortal>
     </ToastProvider>
   );
-}
-
-function useToastManager() {
-  return ToastPrimitive.useToastManager() as Omit<
-    ReturnType<typeof ToastPrimitive.useToastManager>,
-    "add" | "update" | "toasts"
-  > & {
-    add: ToastManagerApi["add"];
-    update: ToastManagerApi["update"];
-    toasts: ToastItem[];
-  };
 }
 
 export {
@@ -322,8 +284,7 @@ export {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-  createToastManager,
   toast,
   useToastManager,
 };
-export type { ToastItem, ToastType };
+export type { ToastItem, ToastManager, ToastType };
