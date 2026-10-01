@@ -1130,6 +1130,21 @@
       ]
     },
     {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Erbium toolbar component.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["@erbium/button", "@erbium/separator", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/toolbar.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/toolbar.tsx"
+        }
+      ]
+    },
+    {
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
