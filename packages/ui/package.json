@@ -55,7 +55,7 @@
     "easing-gradients": "^0.0.3",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.5.0",
-    "motion": "^13.4.6",
+    "motion": "^13.5.0",
     "react-day-picker": "^10.0.2",
     "react-resizable-panels": "^4.14.1",
     "shadow-plugin": "^2.1.1",
@@ -69,7 +69,7 @@
     "jsdom": "latest",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "shadcn": "^4.21.0",
+    "shadcn": "^4.21.1",
     "typescript": "next",
     "vite-plus": "catalog:",
     "vitest": "latest"
