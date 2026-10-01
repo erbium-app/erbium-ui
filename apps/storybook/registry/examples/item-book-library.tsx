@@ -1,0 +1,137 @@
+// @ts-nocheck
+import { useId, useState } from "react";
+import { Badge } from "../components/badge";
+import { Checkbox } from "../components/checkbox";
+import {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemSeparator,
+  ItemTitle,
+} from "../components/item";
+import { Label } from "../components/label";
+
+const books = [
+  {
+    id: "left-hand-of-darkness",
+    title: "The Left Hand of Darkness",
+    author: "Ursula K. Le Guin",
+    year: 1969,
+    status: "Reading",
+    badgeVariant: "info",
+    cover: "bg-sky-900 text-sky-100",
+    monogram: "LH",
+  },
+  {
+    id: "a-room-of-ones-own",
+    title: "A Room of One’s Own",
+    author: "Virginia Woolf",
+    year: 1929,
+    status: "Finished",
+    badgeVariant: "success",
+    cover: "bg-amber-800 text-amber-100",
+    monogram: "AR",
+  },
+  {
+    id: "the-dispossessed",
+    title: "The Dispossessed",
+    author: "Ursula K. Le Guin",
+    year: 1974,
+    status: "To read",
+    badgeVariant: "secondary",
+    cover: "bg-rose-900 text-rose-100",
+    monogram: "TD",
+  },
+  {
+    id: "braiding-sweetgrass",
+    title: "Braiding Sweetgrass",
+    author: "Robin Wall Kimmerer",
+    year: 2013,
+    status: "To read",
+    badgeVariant: "secondary",
+    cover: "bg-emerald-900 text-emerald-100",
+    monogram: "BS",
+  },
+] as const;
+
+export default function ItemBookLibrary() {
+  const [selected, setSelected] = useState<string[]>([books[0].id, books[1].id]);
+  const idPrefix = useId();
+  const allSelected = selected.length === books.length;
+  const someSelected = selected.length > 0 && !allSelected;
+
+  return (
+    <section className="w-[min(42rem,90vw)] space-y-4" aria-label="Book library">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="text-base font-semibold">My library</h2>
+          <p className="text-sm text-muted-foreground">Books on your shelf</p>
+        </div>
+        <p className="text-sm text-muted-foreground" role="status">
+          {selected.length} of {books.length} selected
+        </p>
+      </div>
+
+      <div className="flex items-center gap-2 px-4">
+        <Checkbox
+          id={`${idPrefix}-all`}
+          checked={allSelected}
+          indeterminate={someSelected}
+          onCheckedChange={(checked) => setSelected(checked ? books.map((book) => book.id) : [])}
+        />
+        <Label htmlFor={`${idPrefix}-all`}>Select all books</Label>
+      </div>
+
+      <ItemGroup variant="panel" selection="joined">
+        {books.map((book, index) => {
+          const checked = selected.includes(book.id);
+          const checkboxId = `${idPrefix}-${book.id}`;
+
+          return (
+            <Item key={book.id} role="listitem" data-selected={checked} className="relative">
+              {index > 0 && (
+                <ItemSeparator className="absolute inset-x-4 top-0 mx-0! my-0! w-auto" />
+              )}
+              <Checkbox
+                id={checkboxId}
+                checked={checked}
+                aria-label={`Select ${book.title}`}
+                onCheckedChange={(nextChecked) =>
+                  setSelected((current) =>
+                    nextChecked
+                      ? [...current, book.id]
+                      : current.filter((selectedId) => selectedId !== book.id),
+                  )
+                }
+              />
+              <ItemMedia variant="image" className="h-14 w-10 rounded-sm shadow-sm">
+                <span
+                  aria-hidden="true"
+                  className={`flex size-full items-end border-s-4 border-black/20 p-1 text-[10px] font-semibold tracking-wider ${book.cover}`}
+                >
+                  {book.monogram}
+                </span>
+              </ItemMedia>
+              <ItemContent>
+                <ItemTitle>
+                  <Label htmlFor={checkboxId} className="cursor-pointer">
+                    {book.title}
+                  </Label>
+                </ItemTitle>
+                <ItemDescription>
+                  {book.author} · {book.year}
+                </ItemDescription>
+              </ItemContent>
+              <ItemActions>
+                <Badge variant={book.badgeVariant}>{book.status}</Badge>
+              </ItemActions>
+            </Item>
+          );
+        })}
+      </ItemGroup>
+    </section>
+  );
+}

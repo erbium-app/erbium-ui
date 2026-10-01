@@ -653,7 +653,12 @@
       "type": "registry:component",
       "title": "Checkbox Form",
       "description": "Erbium checkbox form example.",
-      "registryDependencies": ["@erbium/checkbox", "@erbium/label", "@erbium/stateful-button"],
+      "registryDependencies": [
+        "@erbium/checkbox",
+        "@erbium/field",
+        "@erbium/shake",
+        "@erbium/stateful-button"
+      ],
       "files": [
         {
           "path": "registry/examples/checkbox-form.tsx",
@@ -1347,6 +1352,25 @@
       ]
     },
     {
+      "name": "item-book-library",
+      "type": "registry:component",
+      "title": "Item Book Library",
+      "description": "Erbium item book library example.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/checkbox",
+        "@erbium/item",
+        "@erbium/label"
+      ],
+      "files": [
+        {
+          "path": "registry/examples/item-book-library.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/item-book-library.tsx"
+        }
+      ]
+    },
+    {
       "name": "item-demo",
       "type": "registry:component",
       "title": "Item Demo",
@@ -1408,6 +1432,21 @@
           "path": "registry/examples/item-icon.tsx",
           "type": "registry:component",
           "target": "~/src/examples/item-icon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "item-joined-selection",
+      "type": "registry:component",
+      "title": "Item Joined Selection",
+      "description": "Erbium item joined selection example.",
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react"],
+      "registryDependencies": ["@erbium/checkbox", "@erbium/item", "@erbium/label"],
+      "files": [
+        {
+          "path": "registry/examples/item-joined-selection.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/item-joined-selection.tsx"
         }
       ]
     },

@@ -13,6 +13,10 @@ const itemGroupVariants = cva("group/item-group flex w-full flex-col", {
         "gap-4 has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-2 has-[>[data-slot=item-separator]]:gap-0",
       panel: "gap-0 overflow-hidden rounded-xl border surface-panel text-card-foreground",
     },
+    selection: {
+      joined:
+        "gap-0! [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:bg-primary/10 [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
+    },
   },
   defaultVariants: {
     variant: "default",
@@ -22,6 +26,7 @@ const itemGroupVariants = cva("group/item-group flex w-full flex-col", {
 function ItemGroup({
   className,
   variant = "default",
+  selection,
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof itemGroupVariants>) {
   return (
@@ -29,7 +34,8 @@ function ItemGroup({
       role="list"
       data-slot="item-group"
       data-variant={variant}
-      className={cn(itemGroupVariants({ variant, className }))}
+      data-selection={selection}
+      className={cn(itemGroupVariants({ variant, selection, className }))}
       {...props}
     />
   );
