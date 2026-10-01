@@ -272,7 +272,7 @@
       "title": "Checkbox",
       "description": "Erbium checkbox component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/use-drag-select", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/checkbox.tsx",
@@ -1173,6 +1173,19 @@
           "path": "src/hooks/use-copy-to-clipboard.ts",
           "type": "registry:hook",
           "target": "~/src/hooks/use-copy-to-clipboard.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-drag-select",
+      "type": "registry:hook",
+      "title": "Use Drag Select",
+      "description": "Erbium use drag select hook.",
+      "files": [
+        {
+          "path": "src/hooks/use-drag-select.ts",
+          "type": "registry:hook",
+          "target": "~/src/hooks/use-drag-select.ts"
         }
       ]
     },

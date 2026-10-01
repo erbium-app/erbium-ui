@@ -1,4 +1,5 @@
 import { Checkbox } from "@erbium/ui/components/checkbox";
+import { useDragSelect } from "@erbium/ui/hooks/use-drag-select";
 import {
   Table,
   TableBody,
@@ -74,6 +75,21 @@ export function CheckboxInTable() {
     getRowId: (row) => row.id,
     initialState: { rowSelection: { "1": true } },
   });
+  const rows = table.getRowModel().rows;
+  const dragSelect = useDragSelect({
+    resolve(target) {
+      const index = target.closest("tr")?.sectionRowIndex ?? -1;
+      const row = rows[index];
+      return row?.getCanSelect() ? { index, selected: row.getIsSelected() } : null;
+    },
+    selectRange(start, end, selected) {
+      for (const row of rows.slice(start, end + 1)) {
+        if (row.getCanSelect()) {
+          row.toggleSelected(selected);
+        }
+      }
+    },
+  });
 
   return (
     <Table>
@@ -88,8 +104,8 @@ export function CheckboxInTable() {
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody>
-        {table.getRowModel().rows.map((row) => (
+      <TableBody {...dragSelect}>
+        {rows.map((row) => (
           <TableRow data-state={row.getIsSelected() ? "selected" : undefined} key={row.id}>
             {row.getAllCells().map((cell) => (
               <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>

@@ -1,24 +1,23 @@
-import { Checkbox } from "@erbium/ui/components/checkbox";
+import { Checkbox, CheckboxGroup } from "@erbium/ui/components/checkbox";
 import {
   Field,
   FieldDescription,
-  FieldGroup,
   FieldLabel,
   FieldLegend,
   FieldSet,
 } from "@erbium/ui/components/field";
 
-export function CheckboxGroup() {
+export function CheckboxGroupFieldset() {
   return (
     <FieldSet>
       <FieldLegend variant="label">Show these items on the desktop:</FieldLegend>
       <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>
-      <FieldGroup className="gap-3">
+      <CheckboxGroup defaultValue={["hard-disks", "external-disks"]}>
         <Field orientation="horizontal">
           <Checkbox
             id="finder-pref-9k2-hard-disks-ljj-checkbox"
-            name="finder-pref-9k2-hard-disks-ljj-checkbox"
-            defaultChecked
+            name="desktop-items"
+            value="hard-disks"
           />
           <FieldLabel htmlFor="finder-pref-9k2-hard-disks-ljj-checkbox" className="font-normal">
             Hard disks
@@ -27,8 +26,8 @@ export function CheckboxGroup() {
         <Field orientation="horizontal">
           <Checkbox
             id="finder-pref-9k2-external-disks-1yg-checkbox"
-            name="finder-pref-9k2-external-disks-1yg-checkbox"
-            defaultChecked
+            name="desktop-items"
+            value="external-disks"
           />
           <FieldLabel htmlFor="finder-pref-9k2-external-disks-1yg-checkbox" className="font-normal">
             External disks
@@ -37,7 +36,8 @@ export function CheckboxGroup() {
         <Field orientation="horizontal">
           <Checkbox
             id="finder-pref-9k2-cds-dvds-fzt-checkbox"
-            name="finder-pref-9k2-cds-dvds-fzt-checkbox"
+            name="desktop-items"
+            value="cds-dvds"
           />
           <FieldLabel htmlFor="finder-pref-9k2-cds-dvds-fzt-checkbox" className="font-normal">
             CDs, DVDs, and iPods
@@ -46,7 +46,8 @@ export function CheckboxGroup() {
         <Field orientation="horizontal">
           <Checkbox
             id="finder-pref-9k2-connected-servers-6l2-checkbox"
-            name="finder-pref-9k2-connected-servers-6l2-checkbox"
+            name="desktop-items"
+            value="connected-servers"
           />
           <FieldLabel
             htmlFor="finder-pref-9k2-connected-servers-6l2-checkbox"
@@ -55,7 +56,7 @@ export function CheckboxGroup() {
             Connected servers
           </FieldLabel>
         </Field>
-      </FieldGroup>
+      </CheckboxGroup>
     </FieldSet>
   );
 }

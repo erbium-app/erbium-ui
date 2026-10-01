@@ -1,8 +1,12 @@
+import checkboxFormSource from "../examples/checkbox-form.tsx?raw";
+import checkboxIndeterminateSource from "../examples/checkbox-indeterminate.tsx?raw";
+import checkboxGroupSource from "../examples/upstream/checkbox-group.tsx?raw";
 import { CheckboxInvalid } from "../examples/upstream/checkbox-invalid";
 import { CheckboxBasic } from "../examples/upstream/checkbox-basic";
 import { CheckboxDescription } from "../examples/upstream/checkbox-description";
-import { CheckboxGroup } from "../examples/upstream/checkbox-group";
+import { CheckboxGroupFieldset } from "../examples/upstream/checkbox-group";
 import { CheckboxInTable } from "../examples/upstream/checkbox-table";
+import checkboxTableSource from "../examples/upstream/checkbox-table.tsx?raw";
 import ExampleCheckboxControlled from "../examples/checkbox-controlled";
 import ExampleCheckboxDisabled from "../examples/checkbox-disabled";
 import ExampleCheckboxForm from "../examples/checkbox-form";
@@ -102,10 +106,10 @@ export const Indeterminate: Story = {
     docs: {
       description: {
         story:
-          'Set `indeterminate` for a mixed state, such as a parent that controls a list. It renders a minus icon, sets `aria-checked="mixed"`, and exposes `data-indeterminate` for styling.',
+          "Inside a `CheckboxGroup`, pass `allValues` and mark one checkbox `parent`: it turns indeterminate while only some children are checked and toggles them all. Drag across the children to select or clear several at once.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Label } from "@erbium/ui/components/label";\nimport { useState } from "react";\n\nconst permissions = [\n  { id: "read", label: "Read" },\n  { id: "write", label: "Write" },\n  { id: "delete", label: "Delete" },\n];\n\nexport default function CheckboxIndeterminate() {\n  const [selected, setSelected] = useState<string[]>(["read"]);\n\n  const allSelected = selected.length === permissions.length;\n  const someSelected = selected.length > 0 && !allSelected;\n\n  return (\n    <div className="flex flex-col gap-3">\n      <div className="flex items-center gap-2">\n        <Checkbox\n          id="permissions-all"\n          checked={allSelected}\n          indeterminate={someSelected}\n          onCheckedChange={(checked) =>\n            setSelected(checked ? permissions.map((permission) => permission.id) : [])\n          }\n        />\n        <Label htmlFor="permissions-all">All permissions</Label>\n      </div>\n      <div className="flex flex-col gap-3 ps-6">\n        {permissions.map((permission) => (\n          <div className="flex items-center gap-2" key={permission.id}>\n            <Checkbox\n              id={`permissions-${permission.id}`}\n              checked={selected.includes(permission.id)}\n              onCheckedChange={(checked) =>\n                setSelected((current) =>\n                  checked\n                    ? [...current, permission.id]\n                    : current.filter((id) => id !== permission.id),\n                )\n              }\n            />\n            <Label className="font-normal" htmlFor={`permissions-${permission.id}`}>\n              {permission.label}\n            </Label>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n',
+        code: checkboxIndeterminateSource,
       },
     },
   },
@@ -132,10 +136,10 @@ export const Form: Story = {
     docs: {
       description: {
         story:
-          'A hidden input submits with the form. `name` sets the key, `value` the checked value (defaults to `"on"`), and `uncheckedValue` what an unticked box submits. `required` blocks submission until checked. An invalid submit shakes the visible terms row; selecting it clears the invalid state. Use `form` to associate a checkbox rendered outside its form.',
+          'A hidden input submits with the form. `name` sets the key, `value` the checked value (defaults to `"on"`), and `uncheckedValue` what an unticked box submits. `required` blocks submission until checked. An invalid submit shakes the visible terms row; selecting it clears the invalid state. Drag across both choices to change them together. Use `form` to associate a checkbox rendered outside its form.',
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { shake } from "@erbium/ui/lib/shake";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\nimport { useId, useRef, useState } from "react";\n\nexport default function CheckboxForm() {\n  const [submitted, setSubmitted] = useState<string>();\n  const [termsInvalid, setTermsInvalid] = useState(false);\n  const termsInputRef = useRef<HTMLInputElement>(null);\n  const termsRowRef = useRef<HTMLDivElement>(null);\n  const termsId = useId();\n  const newsletterId = useId();\n\n  return (\n    <form\n      className="flex w-72 flex-col gap-4"\n      onInvalid={(event) => {\n        if (event.target === termsInputRef.current) {\n          setTermsInvalid(true);\n          shake(termsRowRef.current);\n        }\n      }}\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <Field ref={termsRowRef} orientation="horizontal" data-invalid={termsInvalid}>\n        <Checkbox\n          id={termsId}\n          name="terms"\n          required\n          inputRef={termsInputRef}\n          aria-invalid={termsInvalid}\n          onCheckedChange={(checked) => {\n            if (checked) {\n              setTermsInvalid(false);\n            }\n          }}\n        />\n        <FieldLabel htmlFor={termsId}>Accept terms and conditions</FieldLabel>\n      </Field>\n      <div className="flex items-center gap-2">\n        <Checkbox id={newsletterId} name="newsletter" value="weekly" uncheckedValue="none" />\n        <FieldLabel htmlFor={newsletterId}>Weekly newsletter</FieldLabel>\n      </div>\n      <StatefulButton className="self-start" type="submit">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}\n    </form>\n  );\n}\n',
+        code: checkboxFormSource,
       },
     },
   },
@@ -167,11 +171,11 @@ export const Table: Story = {
     docs: {
       description: {
         story:
-          "Use checkboxes to select rows in a table. The header checkbox is `indeterminate` while only some rows are selected; clicking it then selects every row.",
+          "Click a checkbox to toggle one row, or drag across rows to select or clear a range. The header checkbox reflects partial selection and selects all rows.",
       },
 
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from "@erbium/ui/components/table";\nimport {\n  createColumnHelper,\n  metaHelper,\n  rowSelectionFeature,\n  tableFeatures,\n  useTable,\n} from "@tanstack/react-table";\n\ntype User = {\n  id: string;\n  name: string;\n  email: string;\n  role: string;\n};\n\nconst tableData: User[] = [\n  { id: "1", name: "Sarah Chen", email: "sarah.chen@example.com", role: "Admin" },\n  { id: "2", name: "Marcus Rodriguez", email: "marcus.rodriguez@example.com", role: "User" },\n  { id: "3", name: "Priya Patel", email: "priya.patel@example.com", role: "User" },\n  { id: "4", name: "David Kim", email: "david.kim@example.com", role: "Editor" },\n];\n\nconst features = tableFeatures({\n  rowSelectionFeature,\n  columnMeta: metaHelper<{ className?: string }>(),\n});\n\nconst columnHelper = createColumnHelper<typeof features, User>();\n\nconst columns = columnHelper.columns([\n  columnHelper.display({\n    id: "select",\n    header: ({ table }) => (\n      <Checkbox\n        aria-label="Select all rows"\n        checked={table.getIsAllRowsSelected()}\n        // v9\'s getIsSomeRowsSelected() is also true when every row is selected.\n        indeterminate={table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()}\n        onCheckedChange={(checked) => table.toggleAllRowsSelected(checked)}\n      />\n    ),\n    cell: ({ row }) => (\n      <Checkbox\n        aria-label={`Select ${row.original.name}`}\n        checked={row.getIsSelected()}\n        disabled={!row.getCanSelect()}\n        onCheckedChange={(checked) => row.toggleSelected(checked)}\n      />\n    ),\n    meta: { className: "w-8" },\n  }),\n  columnHelper.accessor("name", {\n    header: "Name",\n    cell: (info) => <span className="font-medium">{info.getValue()}</span>,\n  }),\n  columnHelper.accessor("email", { header: "Email" }),\n  columnHelper.accessor("role", { header: "Role" }),\n]);\n\nexport function CheckboxInTable() {\n  const table = useTable({\n    features,\n    columns,\n    data: tableData,\n    getRowId: (row) => row.id,\n    initialState: { rowSelection: { "1": true } },\n  });\n\n  return (\n    <Table>\n      <TableHeader>\n        {table.getHeaderGroups().map((headerGroup) => (\n          <TableRow key={headerGroup.id}>\n            {headerGroup.headers.map((header) => (\n              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>\n                {header.isPlaceholder ? null : <table.FlexRender header={header} />}\n              </TableHead>\n            ))}\n          </TableRow>\n        ))}\n      </TableHeader>\n      <TableBody>\n        {table.getRowModel().rows.map((row) => (\n          <TableRow data-state={row.getIsSelected() ? "selected" : undefined} key={row.id}>\n            {row.getAllCells().map((cell) => (\n              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>\n                <table.FlexRender cell={cell} />\n              </TableCell>\n            ))}\n          </TableRow>\n        ))}\n      </TableBody>\n    </Table>\n  );\n}\n',
+        code: checkboxTableSource,
       },
     },
   },
@@ -205,13 +209,16 @@ export const Description: Story = {
 export const Group: Story = {
   parameters: {
     docs: {
-      description: { story: "Use multiple fields to create a checkbox list." },
+      description: {
+        story:
+          '`CheckboxGroup` wraps Base UI\'s checkbox group: it renders `role="group"` and holds the checked `value`s as one array. Press a checkbox or its label and drag across the others to select or clear them in one gesture.',
+      },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from "@erbium/ui/components/field";\n\nexport function CheckboxGroup() {\n  return (\n    <FieldSet>\n      <FieldLegend variant="label">Show these items on the desktop:</FieldLegend>\n      <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>\n      <FieldGroup className="gap-3">\n        <Field orientation="horizontal">\n          <Checkbox\n            id="finder-pref-9k2-hard-disks-ljj-checkbox"\n            name="finder-pref-9k2-hard-disks-ljj-checkbox"\n            defaultChecked\n          />\n          <FieldLabel htmlFor="finder-pref-9k2-hard-disks-ljj-checkbox" className="font-normal">\n            Hard disks\n          </FieldLabel>\n        </Field>\n        <Field orientation="horizontal">\n          <Checkbox\n            id="finder-pref-9k2-external-disks-1yg-checkbox"\n            name="finder-pref-9k2-external-disks-1yg-checkbox"\n            defaultChecked\n          />\n          <FieldLabel htmlFor="finder-pref-9k2-external-disks-1yg-checkbox" className="font-normal">\n            External disks\n          </FieldLabel>\n        </Field>\n        <Field orientation="horizontal">\n          <Checkbox\n            id="finder-pref-9k2-cds-dvds-fzt-checkbox"\n            name="finder-pref-9k2-cds-dvds-fzt-checkbox"\n          />\n          <FieldLabel htmlFor="finder-pref-9k2-cds-dvds-fzt-checkbox" className="font-normal">\n            CDs, DVDs, and iPods\n          </FieldLabel>\n        </Field>\n        <Field orientation="horizontal">\n          <Checkbox\n            id="finder-pref-9k2-connected-servers-6l2-checkbox"\n            name="finder-pref-9k2-connected-servers-6l2-checkbox"\n          />\n          <FieldLabel\n            htmlFor="finder-pref-9k2-connected-servers-6l2-checkbox"\n            className="font-normal"\n          >\n            Connected servers\n          </FieldLabel>\n        </Field>\n      </FieldGroup>\n    </FieldSet>\n  );\n}\n',
+        code: checkboxGroupSource,
       },
     },
   },
-  render: () => <CheckboxGroup />,
+  render: () => <CheckboxGroupFieldset />,
 };
 
 export const InvalidState: Story = {
