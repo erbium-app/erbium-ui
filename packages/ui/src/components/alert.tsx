@@ -4,7 +4,7 @@ import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
 import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
 import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
 import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const alertVariants = cva(
@@ -26,7 +26,7 @@ const alertVariants = cva(
   },
 );
 
-const alertIcons = {
+const alertIconByVariant = {
   default: InfoIcon,
   destructive: OctagonXIcon,
   info: InfoIcon,
@@ -34,12 +34,13 @@ const alertIcons = {
   warning: TriangleAlertIcon,
 };
 
-function Alert({
-  className,
-  variant,
-  children,
-  ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
+type AlertVariant = keyof typeof alertIconByVariant;
+
+type AlertProps = React.ComponentProps<"div"> & {
+  variant?: AlertVariant;
+};
+
+function Alert({ className, variant, children, ...props }: AlertProps) {
   return (
     <div
       data-slot="alert"
@@ -47,7 +48,7 @@ function Alert({
       className={cn(alertVariants({ variant }), className)}
       {...props}
     >
-      <HugeiconsIcon icon={alertIcons[variant ?? "default"]} aria-hidden="true" />
+      <HugeiconsIcon icon={alertIconByVariant[variant ?? "default"]} aria-hidden="true" />
       {children}
     </div>
   );
@@ -90,3 +91,4 @@ function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertAction };
+export type { AlertProps, AlertVariant };

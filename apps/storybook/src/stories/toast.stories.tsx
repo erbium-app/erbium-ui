@@ -14,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```\n\nRepeated calls create separate notifications. Supply a stable `id` to update an existing toast in place. `Toaster` has no presentation props: it uses Erbium’s lit surface, built-in status icons and close button, a three-toast preview, and a scrollable full queue on hover or keyboard focus. Swipe right to dismiss in LTR, or left in RTL. Base UI keeps control of the timer, swipe, and focus behavior. For toast options, use Base UI’s `timeout` and `actionProps` names instead of Sonner’s `duration` and `action`. Sonner’s theme, rich-color, icon, position, and toaster-ID options are intentionally omitted. Base UI’s promise states, priority announcements, and `onClose`/`onRemove` callbacks remain available.',
+          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  id: "event-created",\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```\n\nRepeated calls without an ID create separate notifications. Supply a stable `id` to update an existing toast in place; repeating unchanged content replays its shake and refreshes its timer. `Toaster` has no presentation props: it uses Erbium’s lit surface, built-in status icons and close button, a three-toast preview, and a scrollable full queue on hover or keyboard focus. Swipe right to dismiss in LTR, or left in RTL. Base UI keeps control of the timer, swipe, and focus behavior. For toast options, use Base UI’s `timeout` and `actionProps` names instead of Sonner’s `duration` and `action`. Sonner’s theme, rich-color, icon, position, and toaster-ID options are intentionally omitted. Base UI’s promise states, priority announcements, and `onClose`/`onRemove` callbacks remain available.',
       },
     },
   },
@@ -24,16 +24,24 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{
-  type: "success" | "info" | "warning" | "error";
+  type: "success" | "info" | "warning" | "destructive";
   description: string;
 }> = {
   args: { type: "success", description: "Saved successfully" },
   argTypes: {
-    type: { control: "select", options: ["success", "info", "warning", "error"] },
+    type: { control: "select", options: ["success", "info", "warning", "destructive"] },
     description: { control: "text" },
   },
   render: (args) => (
-    <Button onClick={() => toast.add({ type: args.type, description: args.description })}>
+    <Button
+      onClick={() =>
+        toast.add({
+          id: `toast-playground-${args.type}`,
+          type: args.type,
+          description: args.description,
+        })
+      }
+    >
       Show toast
     </Button>
   ),
@@ -43,7 +51,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button";\nimport { Toaster, toast } from "@erbium/ui/components/toast";\nexport default function Demo() {\n  return (\n    <>\n      <Button\n        onClick={() => toast.add({ title: "Saved", description: "Your changes have been saved." })}\n      >\n        Show toast\n      </Button>\n      <Toaster />\n    </>\n  );\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\nexport default function Demo() {\n  return (\n    <>\n      <Button\n        onClick={() =>\n          toast.add({\n            id: "toast-demo-saved",\n            title: "Saved",\n            description: "Your changes have been saved.",\n          })\n        }\n      >\n        Show toast\n      </Button>\n    </>\n  );\n}\n',
       },
     },
   },
@@ -58,10 +66,11 @@ export const Types: Story = {
   parameters: {
     docs: {
       description: {
-        story: "Set `type` to success, info, warning, error, or loading to show a status icon.",
+        story:
+          "Set `type` to success, info, warning, destructive, or loading to show a status icon.",
       },
       source: {
-        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastTypes() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Button\n        variant="outline"\n        onClick={() => toast.add({ description: "Event has been created." })}\n      >\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "success",\n            description: "Event has been created.",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "info",\n            description: "Arrive 10 minutes before the event.",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "warning",\n            description: "The event cannot start before 8:00 AM.",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            type: "error",\n            description: "The event could not be created.",\n            priority: "high",\n          })\n        }\n      >\n        Error\n      </Button>\n    </div>\n  );\n}\n',
+        code: 'import { Button } from "@erbium/ui/components/button";\nimport { toast } from "@erbium/ui/components/toast";\n\nexport function ToastTypes() {\n  return (\n    <div className="flex flex-wrap gap-2">\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({ id: "toast-type-default", description: "Event has been created." })\n        }\n      >\n        Default\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-success",\n            type: "success",\n            description: "Event has been created.",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-info",\n            type: "info",\n            description: "Arrive 10 minutes before the event.",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-warning",\n            type: "warning",\n            description: "The event cannot start before 8:00 AM.",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant="outline"\n        onClick={() =>\n          toast.add({\n            id: "toast-type-destructive",\n            type: "destructive",\n            description: "The event could not be created.",\n            priority: "high",\n          })\n        }\n      >\n        Destructive\n      </Button>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -86,7 +95,7 @@ export const Action: Story = {
     docs: {
       description: {
         story:
-          'Pass button props with `actionProps` to render an action.\n\n```tsx\nconst id = toast.add({\n  title: "Event created",\n  actionProps: {\n    children: "Undo",\n    onClick() {\n      toast.close(id)\n    },\n  },\n})\n```',
+          'Pass button props with `actionProps` to render an action.\n\n```tsx\nconst id = toast.add({\n  id: "event-created",\n  title: "Event created",\n  actionProps: {\n    children: "Undo",\n    onClick() {\n      toast.close(id)\n    },\n  },\n})\n```',
       },
     },
   },

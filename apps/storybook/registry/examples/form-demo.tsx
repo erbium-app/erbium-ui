@@ -1,20 +1,19 @@
 // @ts-nocheck
 import { useAsyncDebouncer } from "@tanstack/react-pacer/async-debouncer";
 import { useForm } from "@tanstack/react-form";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Field, FieldDescription, FieldError, FieldLabel } from "../components/field";
 import { Input } from "../components/input";
+import { shake } from "../lib/shake";
 import { StatefulButton } from "../components/stateful-button";
 import type { StatefulButtonState } from "../components/stateful-button";
 
 function SubmitButton({
-  canSubmit,
   isSubmitting,
   isSubmitSuccessful,
   submissionAttempts,
   label,
 }: {
-  canSubmit: boolean;
   isSubmitting: boolean;
   isSubmitSuccessful: boolean;
   submissionAttempts: number;
@@ -31,7 +30,6 @@ function SubmitButton({
   return (
     <StatefulButton
       type="submit"
-      disabled={!canSubmit}
       state={state}
       onStateChange={(nextState) => {
         if (nextState === "idle") {
@@ -55,6 +53,7 @@ export default function FormDemo({
   submitLabel?: string;
 }) {
   const [submitted, setSubmitted] = useState("");
+  const emailRef = useRef<HTMLInputElement>(null);
   const request = useAsyncDebouncer(async () => {}, { wait: 450 });
   const form = useForm({
     defaultValues: { email: defaultEmail },
@@ -62,9 +61,15 @@ export default function FormDemo({
       await request.maybeExecute();
       setSubmitted(value.email);
     },
+    onSubmitInvalid: ({ formApi }) => {
+      if (formApi.state.fieldMeta.email?.errors.length) {
+        shake(emailRef.current);
+      }
+    },
   });
   return (
     <form
+      noValidate
       onSubmit={(event) => {
         event.preventDefault();
         void form.handleSubmit();
@@ -82,6 +87,7 @@ export default function FormDemo({
           <Field data-invalid={field.state.meta.errors.length > 0}>
             <FieldLabel htmlFor="form-email">Email</FieldLabel>
             <Input
+              ref={emailRef}
               id="form-email"
               type="email"
               aria-invalid={field.state.meta.errors.length > 0}
@@ -100,17 +106,11 @@ export default function FormDemo({
       </form.Field>
       <form.Subscribe
         selector={(state) =>
-          [
-            state.canSubmit,
-            state.isSubmitting,
-            state.isSubmitSuccessful,
-            state.submissionAttempts,
-          ] as const
+          [state.isSubmitting, state.isSubmitSuccessful, state.submissionAttempts] as const
         }
       >
-        {([canSubmit, isSubmitting, isSubmitSuccessful, submissionAttempts]) => (
+        {([isSubmitting, isSubmitSuccessful, submissionAttempts]) => (
           <SubmitButton
-            canSubmit={canSubmit}
             isSubmitting={isSubmitting}
             isSubmitSuccessful={isSubmitSuccessful}
             submissionAttempts={submissionAttempts}

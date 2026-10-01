@@ -1,12 +1,13 @@
 // @vitest-environment jsdom
 
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { afterEach, expect, test } from "vite-plus/test";
+import { afterEach, expect, test, vi } from "vite-plus/test";
 import { Toaster, toast } from "@erbium/ui/components/toast";
 
 afterEach(() => {
   cleanup();
   document.documentElement.removeAttribute("dir");
+  Reflect.deleteProperty(Element.prototype, "animate");
 });
 
 function swipe(element: Element, distance: number) {
@@ -32,6 +33,41 @@ test("one viewport renders one toast while repeated notifications remain separat
     toast.add({ title: "Saved" });
   });
   expect(document.querySelectorAll('[data-slot="toast"]')).toHaveLength(2);
+});
+
+test("adding the same content with a stable ID replays the shake on the existing toast", () => {
+  const cancel = vi.fn();
+  const animate = vi.fn(
+    (_keyframes: Keyframe[], _options: KeyframeAnimationOptions) =>
+      ({ cancel }) as unknown as Animation,
+  );
+  Object.defineProperty(Element.prototype, "animate", { configurable: true, value: animate });
+  render(<Toaster />);
+
+  act(() => {
+    toast.add({ id: "repeat-save", title: "Saved", timeout: 0 });
+  });
+  const root = document.querySelector('[data-slot="toast"]');
+  expect(animate).not.toHaveBeenCalled();
+
+  act(() => {
+    toast.add({ id: "repeat-save", title: "Saved", timeout: 0 });
+  });
+  expect(document.querySelectorAll('[data-slot="toast"]')).toHaveLength(1);
+  expect(animate).toHaveBeenCalledTimes(1);
+  expect(animate.mock.contexts[0]).toBe(root);
+  expect(animate.mock.calls[0]?.[0]?.[1]).toMatchObject({ translate: "6px 0" });
+
+  act(() => {
+    toast.add({ id: "repeat-save", title: "Saved", timeout: 0 });
+  });
+  expect(animate).toHaveBeenCalledTimes(2);
+  expect(cancel).toHaveBeenCalledTimes(1);
+
+  act(() => {
+    toast.add({ id: "repeat-save", title: "Done", timeout: 0 });
+  });
+  expect(animate).toHaveBeenCalledTimes(2);
 });
 
 test("an ID updates a toast in place and older toasts become visible on expansion", () => {

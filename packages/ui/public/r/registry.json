@@ -842,6 +842,19 @@
       ]
     },
     {
+      "name": "shake",
+      "type": "registry:lib",
+      "title": "Shake",
+      "description": "Erbium shake lib.",
+      "files": [
+        {
+          "path": "src/lib/shake.ts",
+          "type": "registry:lib",
+          "target": "~/src/lib/shake.ts"
+        }
+      ]
+    },
+    {
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
@@ -1095,7 +1108,12 @@
       "title": "Toast",
       "description": "Erbium toast component.",
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/spinner", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/shake",
+        "@erbium/spinner",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/toast.tsx",

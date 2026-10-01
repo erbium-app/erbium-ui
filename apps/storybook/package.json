@@ -6,7 +6,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "preview": "storybook dev -p 6006",
-    "test": "vitest run",
+    "test": "vp test run",
     "typecheck": "tsc --noEmit",
     "registry:build": "node scripts/build-registry.mjs && ../../packages/ui/node_modules/.bin/shadcn build registry.json --output public/r && vp fmt registry.json registry public/r --write"
   },

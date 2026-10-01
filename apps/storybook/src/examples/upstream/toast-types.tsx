@@ -6,7 +6,9 @@ export function ToastTypes() {
     <div className="flex flex-wrap gap-2">
       <Button
         variant="outline"
-        onClick={() => toast.add({ description: "Event has been created." })}
+        onClick={() =>
+          toast.add({ id: "toast-type-default", description: "Event has been created." })
+        }
       >
         Default
       </Button>
@@ -14,6 +16,7 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
+            id: "toast-type-success",
             type: "success",
             description: "Event has been created.",
           })
@@ -25,6 +28,7 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
+            id: "toast-type-info",
             type: "info",
             description: "Arrive 10 minutes before the event.",
           })
@@ -36,6 +40,7 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
+            id: "toast-type-warning",
             type: "warning",
             description: "The event cannot start before 8:00 AM.",
           })
@@ -47,13 +52,14 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
-            type: "error",
+            id: "toast-type-destructive",
+            type: "destructive",
             description: "The event could not be created.",
             priority: "high",
           })
         }
       >
-        Error
+        Destructive
       </Button>
     </div>
   );

@@ -4,7 +4,13 @@ export default function Demo() {
   return (
     <>
       <Button
-        onClick={() => toast.add({ title: "Saved", description: "Your changes have been saved." })}
+        onClick={() =>
+          toast.add({
+            id: "toast-demo-saved",
+            title: "Saved",
+            description: "Your changes have been saved.",
+          })
+        }
       >
         Show toast
       </Button>
