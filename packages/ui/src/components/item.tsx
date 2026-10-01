@@ -7,7 +7,7 @@ import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
 const itemGroupVariants = cva(
-  "group/item-group flex w-full flex-col has-[>[data-slot=item][data-selected]]:gap-0 [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:bg-selection [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
+  "group/item-group flex w-full flex-col has-[>[data-slot=item][data-selected]]:gap-0 [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:[--surface-tint:var(--surface-tint-selected)] [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
   {
     variants: {
       variant: {

@@ -58,6 +58,7 @@
  *   --surface-shadow[-strong]    drop shadow colours
  *   --surface-shadow-inset       recess colour
  *   --surface-tint-{state}       neutral hover and pressed overlays
+ *   --surface-tint-selected      primary overlay for selected rows
  *   --surface-tag-alpha          translucent tag strength
  *   --surface-border             transparent CSS border / forced-colors fallback
  *
@@ -106,6 +107,7 @@
 
   --surface-tint-hover: rgb(57 58 52 / 0.04);
   --surface-tint-pressed: rgb(57 58 52 / 0.07);
+  --surface-tint-selected: color-mix(in srgb, var(--primary) 10%, transparent);
   --surface-tag-alpha: 10%;
 }
 
@@ -133,6 +135,7 @@
 
   --surface-tint-hover: rgb(222 220 213 / 0.025);
   --surface-tint-pressed: rgb(0 0 0 / 0.12);
+  --surface-tint-selected: color-mix(in srgb, var(--primary) 10%, transparent);
   --surface-tag-alpha: 15%;
 }
 

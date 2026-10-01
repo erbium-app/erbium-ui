@@ -24,7 +24,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
     <tbody
       data-slot="table-body"
       className={cn(
-        "[&_tr:last-child]:bg-none [&>tr[data-state=selected]>td]:carve-bottom [&>tr[data-state=selected]>td]:bg-selection [&>tr:last-child[data-state=selected]>td]:bg-none [&>tr[data-state=selected]>td:first-child]:rounded-s-lg [&>tr[data-state=selected]>td:last-child]:rounded-e-lg [&>tr[data-state=selected]:has(+tr[data-state=selected])>td]:rounded-b-none [&>tr[data-state=selected]+tr[data-state=selected]>td]:rounded-t-none",
+        "[&_tr:last-child]:bg-none [&>tr[data-state=selected]>td]:carve-bottom [&>tr[data-state=selected]>td]:bg-(--surface-tint-selected) [&>tr:last-child[data-state=selected]>td]:bg-none [&>tr[data-state=selected]>td:first-child]:rounded-s-lg [&>tr[data-state=selected]>td:last-child]:rounded-e-lg [&>tr[data-state=selected]:has(+tr[data-state=selected])>td]:rounded-b-none [&>tr[data-state=selected]+tr[data-state=selected]>td]:rounded-t-none",
         className,
       )}
       {...props}
