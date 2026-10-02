@@ -1,4 +1,4 @@
-import { useMediaQuery } from "./use-media-query";
+import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
 
 /** Below Tailwind's `md:`, the shadcn mobile breakpoint, so a viewport is never both mobile and `md`. */
 const MOBILE_QUERY = "(width < 48rem)";
