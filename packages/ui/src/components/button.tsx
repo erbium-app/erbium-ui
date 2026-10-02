@@ -1,5 +1,7 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { cva, type VariantProps } from "class-variance-authority";
+import { rippleProps } from "../lib/ripple";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { LoadingIndicator } from "./spinner";
@@ -73,7 +75,7 @@ function Button({
       disabled={disabled || loading}
       focusableWhenDisabled={loading || focusableWhenDisabled}
       className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
+      {...mergeProps<typeof ButtonPrimitive>(rippleProps, props)}
     >
       {loading && <LoadingIndicator inlineStart={!iconOnly} />}
       {loading && iconOnly ? null : children}

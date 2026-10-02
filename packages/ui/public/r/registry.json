@@ -173,7 +173,7 @@
       "title": "Button",
       "description": "Erbium button component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/spinner", "@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd", "@erbium/ripple", "@erbium/spinner", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/button.tsx",
@@ -809,6 +809,19 @@
       ]
     },
     {
+      "name": "ripple",
+      "type": "registry:lib",
+      "title": "Ripple",
+      "description": "Erbium ripple lib.",
+      "files": [
+        {
+          "path": "src/lib/ripple.ts",
+          "type": "registry:lib",
+          "target": "~/src/lib/ripple.ts"
+        }
+      ]
+    },
+    {
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll Area",
@@ -1030,6 +1043,11 @@
           "target": "~/src/styles/globals.css"
         },
         {
+          "path": "src/styles/ripple.css",
+          "type": "registry:file",
+          "target": "~/src/styles/ripple.css"
+        },
+        {
           "path": "src/styles/surfaces.css",
           "type": "registry:file",
           "target": "~/src/styles/surfaces.css"
@@ -1151,7 +1169,7 @@
       "title": "Toggle",
       "description": "Erbium toggle component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/ripple", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/toggle.tsx",

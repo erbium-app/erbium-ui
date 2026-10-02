@@ -1,0 +1,113 @@
+/*
+ * Press ripple. lib/ripple.ts writes the pointer position and animates
+ * --ripple-r and --ripple-a on the pressed element while data-rippling is set.
+ * The wave is a radial gradient painted as a background layer above the
+ * surface tint (--ripple-paint, read by surface-flat and the `ripple` utility),
+ * so the element's own border radius clips it and nothing else is touched.
+ *
+ * Two numbers are meant to be tweaked, on :root or on any element:
+ *   --ripple-radius    how far the wave travels, the same px on every element
+ *   --ripple-opacity   multiplies the ink of every surface; 1 is the default
+ *
+ * Ink by surface family. Neutral surfaces ripple in their own text colour. A
+ * coloured surface ripples in a more vivid shade of its own hue, so every
+ * role (primary, error, success, warning, info) gets its own wave:
+ *   fill   the face, lifted in lightness and boosted in chroma
+ *   soft   the foreground hue (ghost, tint, and tag faces are pale or dark, so
+ *          the saturated text colour is the part that carries the hue), boosted
+ *
+ * The strength tokens are calibration, not knobs. They were measured so every
+ * family peaks near 18 luminance levels in both themes, 150ms into the wave;
+ * change --ripple-opacity instead. Radius and ink share one ease-out clock, so
+ * the ink is already fading as it spreads.
+ */
+
+:root {
+  --ripple-radius: 140px;
+  --ripple-opacity: 1;
+
+  --ripple: currentColor;
+  --ripple-strength: 20%;
+  --ripple-strength-fill: 85%;
+  --ripple-strength-soft: 28%;
+  --ripple-fill-lift: 0.14;
+  --ripple-fill-chroma: 1.25;
+  --ripple-soft-chroma: 1.3;
+}
+
+.dark {
+  --ripple-strength: 19%;
+  --ripple-strength-fill: 70%;
+  --ripple-strength-soft: 32%;
+}
+
+/* Element tokens: non-inheriting, so a nested element never rides its
+   parent's ripple. */
+@property --ripple-r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --ripple-a {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ripple-ink {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
+}
+
+@property --ripple-paint {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(transparent, transparent);
+}
+
+/* Paints the wave on an element that carries no surface of its own. */
+@utility ripple {
+  background-image: var(--ripple-paint);
+}
+
+/* Coloured inks. Browsers without relative colour keep the neutral ink. */
+@utility ripple-fill {
+  --ripple-strength: var(--ripple-strength-fill);
+
+  @supports (color: oklch(from red l c h)) {
+    --ripple: oklch(
+      from var(--surface-face) calc(l + var(--ripple-fill-lift)) calc(c * var(--ripple-fill-chroma))
+        h
+    );
+  }
+}
+
+@utility ripple-soft {
+  --ripple-strength: var(--ripple-strength-soft);
+
+  @supports (color: oklch(from red l c h)) {
+    --ripple: oklch(from currentColor l calc(c * var(--ripple-soft-chroma)) h);
+  }
+}
+
+/* The wave. Stops fade from the ink to transparent along the ease-in-out
+   curve used by the skeleton band, so the rim has no hard edge. */
+[data-rippling] {
+  --ripple-ink: color-mix(
+    in oklab,
+    var(--ripple) min(100%, calc(var(--ripple-strength) * var(--ripple-a) * var(--ripple-opacity))),
+    transparent
+  );
+  --ripple-paint: radial-gradient(
+    circle var(--ripple-r) at var(--ripple-x) var(--ripple-y),
+    var(--ripple-ink) 40%,
+    color-mix(in oklab, var(--ripple-ink) 92.6%, transparent) 51.4%,
+    color-mix(in oklab, var(--ripple-ink) 74.1%, transparent) 61%,
+    color-mix(in oklab, var(--ripple-ink) 50%, transparent) 70%,
+    color-mix(in oklab, var(--ripple-ink) 25.9%, transparent) 79%,
+    color-mix(in oklab, var(--ripple-ink) 7.4%, transparent) 88.6%,
+    transparent 100%
+  );
+}

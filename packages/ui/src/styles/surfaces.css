@@ -253,7 +253,7 @@
     var(--surface-seam);
   border-color: var(--surface-border);
   background-color: var(--surface-face);
-  background-image: linear-gradient(var(--surface-tint), var(--surface-tint));
+  background-image: var(--ripple-paint), linear-gradient(var(--surface-tint), var(--surface-tint));
   background-origin: border-box;
   @apply shadow-(--surface-elevation);
 
@@ -288,6 +288,7 @@
 /* A flat surface whose hover, press, and engaged states paint one colour:
    surface-ghost-error-soft. Press deepens the colour toward the text. */
 @utility surface-ghost-* {
+  @apply ripple-soft;
   --surface-hover-tint: --value(--color, [color]);
   --surface-press-tint: color-mix(in oklab, var(--surface-hover-tint), currentColor 10%);
   @apply surface-flat;
@@ -434,6 +435,7 @@
 
 /* Coloured roles. One colour input drives the face, rim, and catchlight. */
 @utility surface-fill-* {
+  @apply ripple-fill;
   --surface-face: --value(--color, [color]);
   --surface-rim: color-mix(in srgb, var(--surface-face) 88%, black);
   --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, white);
@@ -441,6 +443,7 @@
 }
 
 @utility surface-tint-* {
+  @apply ripple-soft;
   --surface-face: --value(--color, [color]);
   --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
   --surface-catchlight: color-mix(
@@ -458,6 +461,7 @@
    Names resolve against the tag palette first: surface-tag-red uses --tag-red.
    A palette colour can set its own strength: --tag-yellow-alpha. */
 @utility surface-tag-* {
+  @apply ripple-soft;
   --surface-tag-color: --value(--color-tag-*, --color-*, [color]);
   --surface-tag-strength: var(--surface-tag-alpha);
   --surface-tag-strength: --value(--tag-alpha-*);

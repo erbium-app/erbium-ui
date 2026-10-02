@@ -1,5 +1,7 @@
+import { mergeProps } from "@base-ui/react/merge-props";
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { cva, type VariantProps } from "class-variance-authority";
+import { rippleProps } from "../lib/ripple";
 import { cn } from "../lib/utils";
 
 const toggleVariants = cva(
@@ -36,7 +38,7 @@ function Toggle({
     <TogglePrimitive
       data-slot="toggle"
       className={cn(toggleVariants({ variant, size, className }))}
-      {...props}
+      {...mergeProps<typeof TogglePrimitive>(rippleProps, props)}
     />
   );
 }
