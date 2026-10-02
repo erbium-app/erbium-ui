@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useDebouncer } from "@tanstack/react-pacer/debouncer";
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import type {
   ToastManager as BaseToastManager,
@@ -198,10 +199,50 @@ function ToastClose({
   );
 }
 
-function ToasterItem({ item, index }: { item: ToastItem; index: number }) {
+// Base UI only exposes the expanded state through hover and focus on the viewport, so the stack
+// is revealed by replaying the pointer events it already listens for. Timers pause while it is open.
+const REVEAL_SETTLE = 320;
+const REVEAL_HOLD = 1400;
+
+// Closes a stack that was fanned out for a repeat, unless a real pointer is over it.
+// Base UI collapses it itself when that pointer leaves.
+function collapseStack(viewport: HTMLElement) {
+  if (!viewport.matches(":hover")) {
+    viewport.dispatchEvent(new MouseEvent("mouseout", { bubbles: true }));
+  }
+}
+
+function revealStack(viewport: HTMLElement) {
+  const opened = !viewport.hasAttribute("data-expanded");
+  if (opened) {
+    viewport.dispatchEvent(new MouseEvent("mousemove", { bubbles: true }));
+  }
+
+  return opened;
+}
+
+interface StackCollapse {
+  maybeExecute: (viewport: HTMLElement) => void;
+  cancel: () => void;
+}
+
+function ToasterItem({
+  item,
+  index,
+  buried,
+  collapse,
+}: {
+  item: ToastItem;
+  index: number;
+  buried: boolean;
+  collapse: StackCollapse;
+}) {
   const rootRef = React.useRef<HTMLDivElement>(null);
   const previous = React.useRef(item);
+  const shakeTimer = React.useRef<number | undefined>(undefined);
   const { icon } = toastTypes[item.type ?? "default"];
+
+  React.useEffect(() => () => window.clearTimeout(shakeTimer.current), []);
 
   // Base UI bumps `updateKey` on every upsert; shake only when nothing visible changed.
   React.useEffect(() => {
@@ -209,14 +250,35 @@ function ToasterItem({ item, index }: { item: ToastItem; index: number }) {
     previous.current = item;
 
     if (
-      last.updateKey !== item.updateKey &&
-      last.title === item.title &&
-      last.description === item.description &&
-      last.type === item.type
+      last.updateKey === item.updateKey ||
+      last.title !== item.title ||
+      last.description !== item.description ||
+      last.type !== item.type
     ) {
-      shake(rootRef.current);
+      return;
     }
-  }, [item]);
+
+    const root = rootRef.current;
+    const viewport = root?.closest<HTMLElement>('[data-slot="toast-viewport"]');
+    window.clearTimeout(shakeTimer.current);
+
+    // A toast tucked behind a newer one would shake out of sight, so fan the stack out first.
+    if (!root || !viewport || !buried) {
+      shake(root ?? null);
+      return;
+    }
+
+    collapse.cancel();
+    const opened = revealStack(viewport);
+    shakeTimer.current = window.setTimeout(
+      () => {
+        root.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+        shake(root);
+        collapse.maybeExecute(viewport);
+      },
+      opened ? REVEAL_SETTLE : 0,
+    );
+  }, [item, buried, collapse]);
 
   return (
     <Toast
@@ -246,7 +308,11 @@ function ToasterItem({ item, index }: { item: ToastItem; index: number }) {
 
 function ToasterStack() {
   const { toasts } = useToastManager();
+  // Each repeat restarts the hold, so the stack closes once the last shake has had its moment.
+  const collapse = useDebouncer(collapseStack, { wait: REVEAL_HOLD });
   const stackHeight = toasts.reduce((height, item) => height + (item.height ?? 0), 0);
+  // Toasts are newest first; anything after the first one that is not leaving sits behind it.
+  const frontIndex = toasts.findIndex((item) => item.transitionStatus !== "ending");
 
   return (
     <div
@@ -259,7 +325,13 @@ function ToasterStack() {
       }
     >
       {toasts.map((item, index) => (
-        <ToasterItem key={item.id} item={item} index={index} />
+        <ToasterItem
+          key={item.id}
+          item={item}
+          index={index}
+          buried={index > frontIndex}
+          collapse={collapse}
+        />
       ))}
     </div>
   );

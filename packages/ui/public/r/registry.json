@@ -1152,7 +1152,12 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Erbium toast component.",
-      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/core-free-icons",
+        "@hugeicons/react",
+        "@tanstack/react-pacer"
+      ],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/direction",

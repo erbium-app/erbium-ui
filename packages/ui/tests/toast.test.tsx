@@ -70,6 +70,41 @@ test("adding the same content with a stable ID replays the shake on the existing
   expect(animate).toHaveBeenCalledTimes(2);
 });
 
+test("repeating a buried toast fans the stack out, shakes it, then collapses", () => {
+  vi.useFakeTimers();
+  try {
+    const animate = vi.fn(() => ({ cancel: vi.fn() }) as unknown as Animation);
+    Object.defineProperty(Element.prototype, "animate", { configurable: true, value: animate });
+    render(<Toaster />);
+    const viewport = screen.getByRole("region", { name: "Notifications" });
+
+    act(() => {
+      toast.add({ id: "buried", title: "Saved", timeout: 0 });
+      toast.add({ title: "Newer", timeout: 0 });
+    });
+    expect(viewport.hasAttribute("data-expanded")).toBe(false);
+
+    act(() => {
+      toast.add({ id: "buried", title: "Saved", timeout: 0 });
+    });
+    expect(viewport.hasAttribute("data-expanded")).toBe(true);
+    expect(animate).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(400);
+    });
+    expect(animate).toHaveBeenCalledTimes(1);
+    expect(viewport.hasAttribute("data-expanded")).toBe(true);
+
+    act(() => {
+      vi.advanceTimersByTime(2000);
+    });
+    expect(viewport.hasAttribute("data-expanded")).toBe(false);
+  } finally {
+    vi.useRealTimers();
+  }
+});
+
 test("an ID updates a toast in place and older toasts become visible on expansion", () => {
   render(<Toaster />);
 
