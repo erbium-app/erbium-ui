@@ -17,6 +17,15 @@
     }
   }
 
+  /* External replacement for Base UI styles when CSPProvider disables style elements. */
+  .base-ui-disable-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .base-ui-disable-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     @apply bg-background text-foreground;
   }

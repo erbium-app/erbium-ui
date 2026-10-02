@@ -388,6 +388,20 @@
       ]
     },
     {
+      "name": "csp-provider",
+      "type": "registry:ui",
+      "title": "Csp Provider",
+      "description": "Erbium csp provider component.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "src/components/csp-provider.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/csp-provider.tsx"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

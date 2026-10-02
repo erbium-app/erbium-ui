@@ -15,7 +15,7 @@
   "files": [
     {
       "path": "src/styles/base.css",
-      "content": "@custom-variant dark (&:is(.dark *));\n\n@layer base {\n  * {\n    @apply border-border outline-ring/50;\n  }\n\n  @supports (corner-shape: squircle) {\n    * {\n      corner-shape: squircle;\n    }\n\n    .rounded-full,\n    .rounded-full::before,\n    .rounded-full::after {\n      corner-shape: round;\n    }\n  }\n\n  body {\n    @apply bg-background text-foreground;\n  }\n\n  button:not(:disabled),\n  [role=\"button\"]:not(:disabled) {\n    cursor: pointer;\n  }\n\n  html {\n    @apply font-sans;\n  }\n}\n",
+      "content": "@custom-variant dark (&:is(.dark *));\n\n@layer base {\n  * {\n    @apply border-border outline-ring/50;\n  }\n\n  @supports (corner-shape: squircle) {\n    * {\n      corner-shape: squircle;\n    }\n\n    .rounded-full,\n    .rounded-full::before,\n    .rounded-full::after {\n      corner-shape: round;\n    }\n  }\n\n  /* External replacement for Base UI styles when CSPProvider disables style elements. */\n  .base-ui-disable-scrollbar {\n    scrollbar-width: none;\n  }\n\n  .base-ui-disable-scrollbar::-webkit-scrollbar {\n    display: none;\n  }\n\n  body {\n    @apply bg-background text-foreground;\n  }\n\n  button:not(:disabled),\n  [role=\"button\"]:not(:disabled) {\n    cursor: pointer;\n  }\n\n  html {\n    @apply font-sans;\n  }\n}\n",
       "type": "registry:file",
       "target": "~/src/styles/base.css"
     },

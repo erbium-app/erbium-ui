@@ -1,7 +1,8 @@
 // @ts-expect-error Vite resolves CSS asset imports at runtime.
 import "@erbium/ui/globals.css";
-import { createElement, Fragment } from "react";
+import { createElement } from "react";
 import { withThemeByClassName } from "@storybook/addon-themes";
+import { CSPProvider } from "@erbium/ui/components/csp-provider";
 import { Toaster } from "@erbium/ui/components/toast";
 import type { Preview } from "@storybook/tanstack-react";
 import { ThemeAwareDocsContainer } from "./docs-container";
@@ -18,8 +19,8 @@ const preview: Preview = {
     }),
     (Story, context) =>
       createElement(
-        Fragment,
-        null,
+        CSPProvider,
+        { disableStyleElements: true },
         createElement(Story),
         context.viewMode === "docs" ? null : createElement(Toaster),
       ),

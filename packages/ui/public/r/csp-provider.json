@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "csp-provider",
+  "title": "Csp Provider",
+  "description": "Erbium csp provider component.",
+  "dependencies": ["@base-ui/react"],
+  "files": [
+    {
+      "path": "src/components/csp-provider.tsx",
+      "content": "export { CSPProvider } from \"@base-ui/react/csp-provider\";\n",
+      "type": "registry:ui",
+      "target": "~/src/components/csp-provider.tsx"
+    }
+  ],
+  "type": "registry:ui"
+}
