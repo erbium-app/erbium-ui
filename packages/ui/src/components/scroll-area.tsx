@@ -90,14 +90,17 @@ function ScrollArea({
       >
         <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>
       </ScrollAreaViewport>
-      {showScrollbar && (
-        <ScrollBar
-          size={scrollbar}
-          visibility={scrollbarVisibility}
-          className={scrollbarClassName}
-          thumbClassName={thumbClassName}
-        />
-      )}
+      {showScrollbar &&
+        (["vertical", "horizontal"] as const).map((orientation) => (
+          <ScrollBar
+            key={orientation}
+            orientation={orientation}
+            size={scrollbar}
+            visibility={scrollbarVisibility}
+            className={scrollbarClassName}
+            thumbClassName={thumbClassName}
+          />
+        ))}
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   );

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { ScrollArea, ScrollBar } from "@erbium/ui/components/scroll-area";
+import { ScrollArea } from "@erbium/ui/components/scroll-area";
 
 export interface Artwork {
   artist: string;
@@ -24,7 +24,10 @@ export const works: Artwork[] = [
 
 export function ScrollAreaHorizontalDemo() {
   return (
-    <ScrollArea className="w-96 rounded-xl border surface-panel whitespace-nowrap">
+    <ScrollArea
+      fade="horizontal"
+      className="w-96 rounded-xl border surface-panel whitespace-nowrap"
+    >
       <div className="flex w-max space-x-4 p-4">
         {works.map((artwork) => (
           <figure key={artwork.artist} className="shrink-0">
@@ -43,7 +46,6 @@ export function ScrollAreaHorizontalDemo() {
           </figure>
         ))}
       </div>
-      <ScrollBar orientation="horizontal" />
     </ScrollArea>
   );
 }
