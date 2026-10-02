@@ -27,7 +27,7 @@ import { TextMorph } from "./text-morph";
 import { cn } from "../lib/utils";
 
 const rowClass =
-  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border surface-control px-2.5 text-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40 has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border surface-control px-2.5 text-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
 const labelClass = "min-w-0 shrink-0 truncate text-sm font-medium text-muted-foreground";
 const valueClass =
   "ms-auto min-w-0 flex-1 text-end text-sm text-foreground outline-none placeholder:text-muted-foreground";
@@ -386,7 +386,7 @@ function ControlNumber({
           <SliderPrimitive.Thumb
             aria-label={label}
             aria-valuetext={shown}
-            className="absolute top-1/2 size-5 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring/70"
+            className="absolute top-1/2 size-5 rounded-full outline-none"
           />
         </SliderPrimitive.Track>
       </SliderPrimitive.Control>
@@ -429,7 +429,7 @@ function ControlNumber({
         disabled={disabled}
         aria-label={`Edit ${label} value`}
         className={cn(
-          "absolute inset-e-2.5 top-1/2 z-20 -translate-y-1/2 rounded-sm px-0.5 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring",
+          "absolute inset-e-2.5 top-1/2 z-20 -translate-y-1/2 rounded-sm px-0.5 text-sm text-muted-foreground hover:text-foreground",
           monoClass,
           editing && "invisible",
         )}
@@ -582,7 +582,7 @@ function SegmentedTrack({
           <RadioPrimitive.Root
             key={option.value}
             value={option.value}
-            className="relative flex min-h-6 min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-xs text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/60 motion-reduce:transition-none"
+            className="relative flex min-h-6 min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-xs text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
           >
             {value === option.value && (
               <motion.span
@@ -648,7 +648,7 @@ function Boolean({
           onCheckedChange={change}
           disabled={disabled}
           name={name}
-          className="ms-auto inline-flex h-5 w-9 shrink-0 items-center rounded-full surface-well p-0.5 outline-none transition-colors data-checked:bg-primary focus-visible:ring-2 focus-visible:ring-ring/60"
+          className="ms-auto inline-flex h-5 w-9 shrink-0 items-center rounded-full surface-well p-0.5 outline-none transition-colors data-checked:bg-primary"
         >
           <SwitchPrimitive.Thumb className="size-4 rounded-full surface-knob transition-transform duration-200 data-checked:translate-x-4 rtl:data-checked:-translate-x-4 motion-reduce:transition-none" />
         </SwitchPrimitive.Root>
@@ -748,7 +748,7 @@ function Select({
         aria-label={label}
         className={cn(
           rowClass,
-          "group group/control-select justify-between outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
+          "group group/control-select justify-between outline-none",
           className,
         )}
       >
@@ -826,7 +826,7 @@ function Color({
         className={cn(valueClass, monoClass, "w-20 bg-transparent")}
       />
       <span
-        className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob focus-within:ring-2 focus-within:ring-ring/50"
+        className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob"
         style={{ backgroundColor: valid ? current : "transparent" }}
       >
         <input
@@ -889,7 +889,7 @@ function Image({
         >
           <SelectPrimitive.Trigger
             aria-label={label}
-            className="group group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
+            className="group group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground"
           >
             {preview ? (
               <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
@@ -923,7 +923,7 @@ function Image({
           onClick={() => ref.current?.click()}
           data-no-options={!options?.length ? "" : undefined}
           className={cn(
-            "flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring data-no-options:ms-auto",
+            "flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground hover:text-foreground data-no-options:ms-auto",
           )}
         >
           {!options?.length && preview ? (
@@ -1334,11 +1334,7 @@ function Action({ label, disabled, className, ...props }: ActionProps) {
     <ButtonPrimitive
       data-slot="control-action"
       disabled={disabled}
-      className={cn(
-        rowClass,
-        "justify-center font-medium outline-none focus-visible:ring-2 focus-visible:ring-ring/40",
-        className,
-      )}
+      className={cn(rowClass, "justify-center font-medium outline-none", className)}
       {...props}
     >
       {label}
@@ -1371,7 +1367,7 @@ function Section({
       className={cn("w-full min-w-0", className)}
     >
       <Separator className="mb-2" />
-      <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40">
+      <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground">
         {title}
         <RotatingChevron scope="collapsible" className="size-4" />
       </CollapsibleTrigger>

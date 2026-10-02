@@ -145,7 +145,7 @@ function EditablePreview({
       aria-hidden={context.editing || undefined}
       tabIndex={context.editing ? -1 : props.tabIndex}
       className={cn(
-        "block w-full min-w-0 truncate border-0 bg-transparent p-0 text-start text-inherit leading-[inherit] tracking-[inherit] font-[inherit] text-[length:inherit] outline-none placeholder:text-muted-foreground focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-default data-empty:text-muted-foreground data-interactive:cursor-text",
+        "block w-full min-w-0 truncate border-0 bg-transparent p-0 text-start text-inherit leading-[inherit] tracking-[inherit] font-[inherit] text-[length:inherit] outline-none placeholder:text-muted-foreground disabled:cursor-default data-empty:text-muted-foreground data-interactive:cursor-text",
         "opacity-0",
         className,
       )}
@@ -195,7 +195,7 @@ function EditableInput({
       placeholder={context.placeholder}
       value={context.editing ? context.draft : context.value}
       className={cn(
-        "absolute inset-0 block size-full min-w-0 rounded-none border-0 bg-transparent p-0 text-start text-inherit leading-[inherit] tracking-[inherit] font-[inherit] text-[length:inherit] outline-none placeholder:text-muted-foreground focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring not-data-editing:pointer-events-none",
+        "absolute inset-0 block size-full min-w-0 rounded-none border-0 bg-transparent p-0 text-start text-inherit leading-[inherit] tracking-[inherit] font-[inherit] text-[length:inherit] outline-none placeholder:text-muted-foreground not-data-editing:pointer-events-none",
         className,
       )}
       onChange={(event) => {

@@ -618,12 +618,6 @@
       margin-inline-start: 0;
       margin-block-start: 0;
 
-      &:focus-visible,
-      &:has(:focus-visible) {
-        outline: 2px solid var(--ring);
-        outline-offset: 2px;
-      }
-
       &[aria-invalid="true"],
       &:has([aria-invalid="true"]) {
         outline: 1px solid var(--error);

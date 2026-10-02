@@ -158,7 +158,7 @@ function NumberFieldGroup({ className, ...props }: NumberFieldPrimitive.Group.Pr
     <NumberFieldPrimitive.Group
       data-slot="number-field-group"
       className={cn(
-        "relative flex h-8 w-full min-w-0 items-stretch rounded-lg border surface-field text-base text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:h-9 group-data-[size=sm]/number-field:h-7 motion-reduce:transition-none has-focus-visible:border-ring has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-error/20 data-disabled:pointer-events-none data-disabled:opacity-50 md:text-sm dark:has-aria-invalid:border-error/50 dark:has-aria-invalid:ring-error/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex h-8 w-full min-w-0 items-stretch rounded-lg border surface-field text-base text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:h-9 group-data-[size=sm]/number-field:h-7 motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-error/20 data-disabled:pointer-events-none data-disabled:opacity-50 md:text-sm dark:has-aria-invalid:border-error/50 dark:has-aria-invalid:ring-error/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
