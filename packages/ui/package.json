@@ -55,7 +55,7 @@
     "date-fns": "^4.4.0",
     "easing-gradients": "^0.0.3",
     "embla-carousel-react": "^8.6.0",
-    "motion": "^13.5.0",
+    "motion": "^13.5.1",
     "react-day-picker": "^10.0.2",
     "react-resizable-panels": "^4.14.1",
     "shadcn": "^4.21.1",

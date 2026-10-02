@@ -326,7 +326,7 @@ function ControlNumber({
       >
         <div className="absolute -inset-px overflow-hidden rounded-lg">
           <motion.div
-            className="absolute inset-y-0 start-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
+            className="absolute inset-y-0 inset-s-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
             style={{ width: fillWidth }}
           />
           {markValues.map((mark) => (
@@ -334,7 +334,7 @@ function ControlNumber({
               key={mark}
               data-slot="control-number-step"
               data-active={Math.abs(mark - current) < 0.000001 || undefined}
-              className="absolute top-1/2 size-[5px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/35 transition-[background-color,transform] duration-150 data-active:scale-125 data-active:bg-foreground/80 rtl:translate-x-1/2 motion-reduce:transition-none"
+              className="absolute top-1/2 size-1.25 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/35 transition-[background-color,transform] duration-150 data-active:scale-125 data-active:bg-foreground/80 rtl:translate-x-1/2 motion-reduce:transition-none"
               style={{
                 insetInlineStart: `clamp(4px, ${((mark - lower) / (upper - lower)) * 100}%, calc(100% - 4px))`,
               }}
@@ -574,7 +574,7 @@ function SegmentedTrack({
         disabled={disabled}
         name={name}
         className={cn(
-          "relative isolate ms-auto flex min-w-0 rounded-lg surface-well p-[3px]",
+          "relative isolate ms-auto flex min-w-0 rounded-lg surface-well p-0.75",
           className,
         )}
       >
@@ -639,7 +639,7 @@ function Boolean({
           onValueChange={(next) => change(next === "on")}
           disabled={disabled}
           name={name}
-          className="shrink-0 [&_[role=radio]]:min-w-9"
+          className="shrink-0 **:[[role=radio]]:min-w-9"
         />
       ) : (
         <SwitchPrimitive.Root

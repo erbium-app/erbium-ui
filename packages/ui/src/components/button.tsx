@@ -85,7 +85,7 @@ function ButtonShortcut({ className, ...props }: React.ComponentProps<typeof Kbd
   return (
     <span
       data-slot="button-shortcut"
-      className="ms-1.5 me-[calc(-1*var(--button-shortcut-inset))] inline-flex shrink-0"
+      className="ms-1.5 -me-(--button-shortcut-inset) inline-flex shrink-0"
     >
       <Kbd
         aria-hidden

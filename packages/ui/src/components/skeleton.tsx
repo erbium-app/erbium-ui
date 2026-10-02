@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { cn } from "../lib/utils";
 
 // Aligns the sweep with the document timeline so skeletons that mount at

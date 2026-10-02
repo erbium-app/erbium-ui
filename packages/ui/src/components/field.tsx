@@ -60,7 +60,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
  * The card variant is a selectable surface-frame: flat, hairline-framed and
  * translucent, so it reads on the canvas, a panel, a popover or a dialog. The
  * rim and tint come from state: hover and a checked control (switch, checkbox,
- * radio) tint it, focus and validity colour the rim. The label stretches over
+ * radio) tint it, focus and validity color the rim. The label stretches over
  * the card, so the whole card toggles its control.
  */
 const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error", {

@@ -149,7 +149,7 @@ function SidebarToggleIcon({
       {...props}
       aria-hidden="true"
       className={cn(
-        "size-[15px] text-muted-foreground",
+        "size-3.75 text-muted-foreground",
         side === "right" && "-scale-x-100",
         className,
       )}
