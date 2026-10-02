@@ -11,7 +11,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="input-group"
       role="group"
       className={cn(
-        "group/input-group relative flex h-8 w-full min-w-0 items-center rounded-lg border surface-field transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-disabled:opacity-50 has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot][aria-invalid=true]]:border-error has-[[data-slot][aria-invalid=true]]:ring-[1.5px] has-[[data-slot][aria-invalid=true]]:ring-error/20 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto dark:has-[[data-slot][aria-invalid=true]]:ring-error/40 has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5",
+        "group/input-group relative flex h-8 w-full min-w-0 items-center rounded-lg border surface-field transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-[>[data-slot=input-group-control][data-disabled]]:opacity-50 has-[[data-slot=input-group-control]:focus-visible]:border-ring has-[[data-slot][aria-invalid=true]]:border-error has-[[data-slot][aria-invalid=true]]:ring-[1.5px] has-[[data-slot][aria-invalid=true]]:ring-error/20 has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto dark:has-[[data-slot][aria-invalid=true]]:ring-error/40 has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5",
         className,
       )}
       {...props}
@@ -20,7 +20,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const inputGroupAddonVariants = cva(
-  "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none group-data-[disabled=true]/input-group:opacity-50 [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
+  "flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium text-muted-foreground select-none [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
   {
     variants: {
       align: {
@@ -38,9 +38,14 @@ const inputGroupAddonVariants = cva(
   },
 );
 
+// Elements in an addon that handle their own pointer input.
+const interactiveSelector =
+  "a, button, input, label, select, textarea, [contenteditable], [role='button'], [role='combobox'], [role='listbox']";
+
 function InputGroupAddon({
   className,
   align = "inline-start",
+  onMouseDown,
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>) {
   return (
@@ -49,11 +54,18 @@ function InputGroupAddon({
       data-slot="input-group-addon"
       data-align={align}
       className={cn(inputGroupAddonVariants({ align }), className)}
-      onClick={(e) => {
-        if ((e.target as HTMLElement).closest("button")) {
+      onMouseDown={(event) => {
+        onMouseDown?.(event);
+        const interactive = (event.target as Element).closest(interactiveSelector);
+        if (event.defaultPrevented || (interactive && event.currentTarget.contains(interactive))) {
           return;
         }
-        e.currentTarget.parentElement?.querySelector("input")?.focus();
+        // Keep focus in the control: focusing on mousedown, not click, avoids a
+        // blur that would flash the ring and mark a Field as touched.
+        event.preventDefault();
+        event.currentTarget.parentElement
+          ?.querySelector<HTMLElement>(":scope > :is(input, textarea)")
+          ?.focus();
       }}
       {...props}
     />
@@ -112,7 +124,7 @@ function InputGroupInput({ className, ...props }: React.ComponentProps<"input">)
     <Input
       data-slot="input-group-control"
       className={cn(
-        "flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
+        "flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent disabled:opacity-100 aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
         className,
       )}
       {...props}
@@ -125,7 +137,7 @@ function InputGroupTextarea({ className, ...props }: React.ComponentProps<"texta
     <Textarea
       data-slot="input-group-control"
       className={cn(
-        "flex-1 resize-none rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
+        "flex-1 resize-none rounded-none border-0 bg-transparent py-2 shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent disabled:opacity-100 aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
         className,
       )}
       {...props}
