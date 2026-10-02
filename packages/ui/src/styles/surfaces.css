@@ -195,6 +195,14 @@
   initial-value: 0 0 0 0 transparent;
 }
 
+@property --surface-seam {
+  syntax: "*";
+  inherits: false;
+  initial-value:
+    0 0 0 0 transparent,
+    0 0 0 0 transparent;
+}
+
 @property --surface-tint {
   syntax: "*";
   inherits: false;
@@ -241,7 +249,8 @@
 @utility surface-flat {
   --surface-elevation:
     0 -1px 0 0 var(--surface-catchlight), 0 0 0 1px var(--surface-rim),
-    0 0 0 1px var(--surface-backing), var(--surface-drop), inset var(--surface-recess);
+    0 0 0 1px var(--surface-backing), var(--surface-drop), inset var(--surface-recess),
+    var(--surface-seam);
   border-color: var(--surface-border);
   background-color: var(--surface-face);
   background-image: linear-gradient(var(--surface-tint), var(--surface-tint));
@@ -588,63 +597,64 @@
   height: auto;
 }
 
-/* Joined outline buttons are segments of one surface. The group owns the
-   frame; each segment keeps only its face, tint, and recess. Mixed groups keep
-   their existing individual surfaces (inputs, text, nested groups, etc.). */
+/* Every control in a group is a segment of one surface: the group owns the
+   frame, and each segment keeps only its face, tint, and recess. Nested
+   groups frame their own segments. Each segment after the first carries its
+   seam as an inset --surface-seam shadow, so it works on <input> too. Explicit
+   separators own their group's seams. */
 @layer utilities {
   :is(
-      [data-slot="button-group"],
-      [data-slot="toggle-group"][data-variant="outline"][data-spacing="0"]
-    ):has(> [data-variant="outline"]):not(
-      :has(> [data-slot]:not([data-variant="outline"], [data-slot="button-group-separator"]))
-    ) {
+    [data-slot="button-group"],
+    [data-slot="toggle-group"][data-variant="outline"][data-spacing="0"]
+  ):has(> [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"])) {
     @apply rounded-lg surface-control;
 
-    > [data-variant="outline"] {
+    > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
       --surface-rim: transparent;
       --surface-catchlight: transparent;
       --surface-backing: transparent;
       --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
-      position: relative;
       border-width: 0;
       margin-inline-start: 0;
       margin-block-start: 0;
 
-      &:focus-visible {
+      &:focus-visible,
+      &:has(:focus-visible) {
         outline: 2px solid var(--ring);
         outline-offset: 2px;
       }
 
-      &[aria-invalid="true"] {
+      &[aria-invalid="true"],
+      &:has([aria-invalid="true"]) {
         outline: 1px solid var(--error);
+      }
+
+      /* Text carries no surface of its own, so it paints the seam directly. */
+      &[data-slot="button-group-text"] {
+        box-shadow: var(--surface-seam);
       }
     }
 
-    /* Popup focus guards can appear between segments while open. Match
-       logical siblings, not adjacent DOM nodes. Explicit separators own
-       their group's seams, so do not add automatic dividers there. */
     &:not(:has(> [data-slot="button-group-separator"]))
-      > [data-variant="outline"]
-      ~ [data-variant="outline"]::before {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-      inset-block: 0;
-      inset-inline-start: 0;
-      width: 2px;
-      z-index: 1;
-      --separator-direction: to right;
-      @apply carve-rule;
+      > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"])
+      ~ [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
+      --surface-seam:
+        inset 1px 0 0 0 var(--surface-shadow-divider),
+        inset 2px 0 0 0 var(--surface-highlight-divider);
+
+      &:dir(rtl) {
+        --surface-seam:
+          inset -1px 0 0 0 var(--surface-shadow-divider),
+          inset -2px 0 0 0 var(--surface-highlight-divider);
+      }
     }
 
     &[data-orientation="vertical"]:not(:has(> [data-slot="button-group-separator"]))
-      > [data-variant="outline"]
-      ~ [data-variant="outline"]::before {
-      inset-block-start: 0;
-      inset-inline: 0;
-      width: auto;
-      height: 2px;
-      --separator-direction: to bottom;
+      > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"])
+      ~ [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
+      --surface-seam:
+        inset 0 1px 0 0 var(--surface-shadow-divider),
+        inset 0 2px 0 0 var(--surface-highlight-divider);
     }
   }
 }
