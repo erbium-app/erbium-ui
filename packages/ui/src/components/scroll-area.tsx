@@ -16,11 +16,6 @@ const scrollAreaViewportVariants = cva(
         horizontal: "data-has-overflow-x:scroll-fade-x",
         none: "",
       },
-      scrollbar: {
-        thin: "",
-        default: "",
-        none: "scrollbar-none",
-      },
     },
   },
 );
@@ -88,13 +83,10 @@ function ScrollArea({
         data-slot="scroll-area-viewport"
         role={viewportRole}
         render={viewportRender}
-        className={cn(
-          scrollAreaViewportVariants({
-            fade: fade || "none",
-            scrollbar,
-            className: viewportClassName,
-          }),
-        )}
+        className={scrollAreaViewportVariants({
+          fade: fade || "none",
+          className: viewportClassName,
+        })}
       >
         <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>
       </ScrollAreaViewport>
