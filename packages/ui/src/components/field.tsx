@@ -129,19 +129,6 @@ function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
   );
 }
 
-function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="field-label"
-      className={cn(
-        "flex w-fit items-center gap-2 text-sm font-medium group-data-disabled/field:opacity-50",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
-
 function FieldDescription({ className, ...props }: FieldPrimitive.Description.Props) {
   return (
     <FieldPrimitive.Description
@@ -273,7 +260,6 @@ export {
   FieldSeparator,
   FieldSet,
   FieldContent,
-  FieldTitle,
   FieldItem,
   FieldControl,
   FieldValidity,
