@@ -600,6 +600,7 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Erbium label component.",
+      "dependencies": ["@base-ui/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

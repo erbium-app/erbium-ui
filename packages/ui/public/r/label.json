@@ -3,11 +3,12 @@
   "name": "label",
   "title": "Label",
   "description": "Erbium label component.",
+  "dependencies": ["@base-ui/react"],
   "registryDependencies": ["@erbium/utils"],
   "files": [
     {
       "path": "src/components/label.tsx",
-      "content": "import * as React from \"react\";\nimport { cn } from \"../lib/utils\";\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return (\n    <label\n      data-slot=\"label\"\n      className={cn(\n        \"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 peer-data-disabled:cursor-not-allowed peer-data-disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n",
+      "content": "import { mergeProps } from \"@base-ui/react/merge-props\";\nimport { useRender } from \"@base-ui/react/use-render\";\nimport { cn } from \"../lib/utils\";\n\n/**\n * A standalone `<label>` that takes `htmlFor`. Base UI's `Field.Label` throws\n * outside a `Field.Root`, so inside a `Field` use `FieldLabel`, which links to\n * the control and mirrors its disabled and invalid state.\n */\nfunction Label({ className, render, ...props }: useRender.ComponentProps<\"label\">) {\n  const defaultProps = {\n    \"data-slot\": \"label\",\n    className: cn(\n      \"flex items-center gap-2 text-sm leading-none font-medium select-none data-disabled:pointer-events-none data-disabled:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 peer-data-disabled:cursor-not-allowed peer-data-disabled:opacity-50\",\n      className,\n    ),\n  };\n\n  return useRender({\n    defaultTagName: \"label\",\n    render,\n    props: mergeProps<\"label\">(defaultProps, props),\n  });\n}\n\nexport { Label };\n",
       "type": "registry:ui",
       "target": "~/src/components/label.tsx"
     }
