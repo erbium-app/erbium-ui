@@ -63,3 +63,27 @@ test("textarea picks up the field's invalid state", () => {
 
   expect(screen.getByLabelText("Bio").getAttribute("aria-invalid")).toBe("true");
 });
+
+test("a label outside a field still links to its control by id", () => {
+  render(
+    <>
+      <FieldLabel htmlFor="plan">Plan</FieldLabel>
+      <Input id="plan" />
+    </>,
+  );
+
+  expect(screen.getByLabelText("Plan")).toBeTruthy();
+});
+
+test("a label wrapping a field works as a choice card", () => {
+  render(
+    <FieldLabel htmlFor="choice">
+      <Field orientation="horizontal">
+        <Input id="choice" />
+        Pick me
+      </Field>
+    </FieldLabel>,
+  );
+
+  expect(screen.getByLabelText("Pick me")).toBeTruthy();
+});

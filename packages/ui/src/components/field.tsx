@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -64,6 +64,8 @@ const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error
   },
 });
 
+const FieldScopeContext = createContext(false);
+
 /**
  * Base UI `Field.Root`: wires the label, description, error and control, and
  * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Controlled form
@@ -76,12 +78,14 @@ function Field({
   ...props
 }: FieldPrimitive.Root.Props & VariantProps<typeof fieldVariants>) {
   return (
-    <FieldPrimitive.Root
-      data-slot="field"
-      data-orientation={orientation}
-      className={cn(fieldVariants({ orientation }), className)}
-      {...props}
-    />
+    <FieldScopeContext value>
+      <FieldPrimitive.Root
+        data-slot="field"
+        data-orientation={orientation}
+        className={cn(fieldVariants({ orientation }), className)}
+        {...props}
+      />
+    </FieldScopeContext>
   );
 }
 
@@ -96,7 +100,8 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
-  return (
+  const inField = useContext(FieldScopeContext);
+  const label = (
     <FieldPrimitive.Label
       data-slot="field-label"
       className={cn(
@@ -106,6 +111,16 @@ function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
       )}
       {...props}
     />
+  );
+
+  // Base UI's label throws outside a `Field.Root`, which a choice card (a label
+  // wrapping a `Field`) or a label next to an `id`-linked control has no room for.
+  return inField ? (
+    label
+  ) : (
+    <FieldPrimitive.Root data-slot="field-scope" className="contents">
+      {label}
+    </FieldPrimitive.Root>
   );
 }
 
