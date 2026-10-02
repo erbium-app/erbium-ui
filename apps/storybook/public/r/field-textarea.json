@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/field-textarea.tsx",
-      "content": "// @ts-nocheck\nimport {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSet,\n} from \"../components/field\";\nimport { Textarea } from \"../components/textarea\";\n\nexport default function FieldTextarea() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldSet>\n        <FieldGroup>\n          <Field>\n            <FieldLabel htmlFor=\"feedback\">Feedback</FieldLabel>\n            <Textarea id=\"feedback\" placeholder=\"Your feedback helps us improve...\" rows={4} />\n            <FieldDescription>Share your thoughts about our service.</FieldDescription>\n          </Field>\n        </FieldGroup>\n      </FieldSet>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSet,\n} from \"../components/field\";\nimport { Textarea } from \"../components/textarea\";\n\nexport default function FieldTextarea() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldSet>\n        <FieldGroup>\n          <Field>\n            <FieldLabel>Feedback</FieldLabel>\n            <Textarea placeholder=\"Your feedback helps us improve...\" rows={4} />\n            <FieldDescription>Share your thoughts about our service.</FieldDescription>\n          </Field>\n        </FieldGroup>\n      </FieldSet>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/field-textarea.tsx"
     }

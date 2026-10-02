@@ -5,13 +5,13 @@ import { Input } from "@erbium/ui/components/input";
 export function InputBadge() {
   return (
     <Field>
-      <FieldLabel htmlFor="input-badge">
+      <FieldLabel>
         Webhook URL{" "}
         <Badge variant="secondary" className="ml-auto">
           Beta
         </Badge>
       </FieldLabel>
-      <Input id="input-badge" type="url" placeholder="https://api.example.com/webhook" />
+      <Input type="url" placeholder="https://api.example.com/webhook" />
     </Field>
   );
 }

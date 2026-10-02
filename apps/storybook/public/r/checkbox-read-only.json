@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/checkbox-read-only.tsx",
-      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Field, FieldLabel } from \"../components/field\";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Checkbox id=\"read-only-plan\" readOnly defaultChecked />\n      <FieldLabel htmlFor=\"read-only-plan\">Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Field, FieldLabel } from \"../components/field\";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Checkbox readOnly defaultChecked />\n      <FieldLabel>Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/checkbox-read-only.tsx"
     }

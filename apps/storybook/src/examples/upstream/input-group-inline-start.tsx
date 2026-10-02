@@ -7,9 +7,9 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/compone
 export function InputGroupInlineStart() {
   return (
     <Field className="max-w-sm">
-      <FieldLabel htmlFor="inline-start-input">Input</FieldLabel>
+      <FieldLabel>Input</FieldLabel>
       <InputGroup>
-        <InputGroupInput id="inline-start-input" placeholder="Search..." />
+        <InputGroupInput placeholder="Search..." />
         <InputGroupAddon align="inline-start">
           <HugeiconsIcon icon={Search01Icon} className="text-muted-foreground" />
         </InputGroupAddon>

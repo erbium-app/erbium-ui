@@ -63,7 +63,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxDemo() {\n  return (\n    <div className="flex flex-col gap-6">\n      <Field orientation="horizontal">\n        <Checkbox id="terms" />\n        <FieldLabel htmlFor="terms">Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation="horizontal" className="items-start">\n        <Checkbox id="terms-2" defaultChecked />\n        <FieldContent>\n          <FieldLabel htmlFor="terms-2">Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n      <Field orientation="horizontal" disabled>\n        <Checkbox id="toggle" />\n        <FieldLabel htmlFor="toggle">Enable notifications</FieldLabel>\n      </Field>\n      <Field variant="card" orientation="horizontal">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Enable notifications</FieldLabel>\n          <FieldDescription>You can enable or disable notifications at any time.</FieldDescription>\n        </FieldContent>\n      </Field>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxDemo() {\n  return (\n    <div className="flex flex-col gap-6">\n      <Field orientation="horizontal">\n        <Checkbox />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation="horizontal" className="items-start">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n      <Field orientation="horizontal" disabled>\n        <Checkbox />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field variant="card" orientation="horizontal">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Enable notifications</FieldLabel>\n          <FieldDescription>You can enable or disable notifications at any time.</FieldDescription>\n        </FieldContent>\n      </Field>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -94,7 +94,7 @@ export const Controlled: Story = {
           "Pass `checked` and `onCheckedChange` to own the state. The handler receives `(checked, eventDetails)`; call `eventDetails.cancel()` to reject a change in uncontrolled mode.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { useState } from "react";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Checkbox id="controlled-marketing" checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel htmlFor="controlled-marketing">Receive marketing emails</FieldLabel>\n      </Field>\n      <p className="text-sm text-muted-foreground">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { useState } from "react";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Receive marketing emails</FieldLabel>\n      </Field>\n      <p className="text-sm text-muted-foreground">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -124,7 +124,7 @@ export const ReadOnly: Story = {
           "Use `readOnly` to show a value the user cannot change. It stays focusable and announced, unlike `disabled`, and exposes `data-readonly`.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation="horizontal">\n      <Checkbox id="read-only-plan" readOnly defaultChecked />\n      <FieldLabel htmlFor="read-only-plan">Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation="horizontal">\n      <Checkbox readOnly defaultChecked />\n      <FieldLabel>Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n',
       },
     },
   },
@@ -155,7 +155,7 @@ export const Disabled: Story = {
       },
 
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Checkbox id="disabled-unchecked" disabled />\n        <FieldLabel htmlFor="disabled-unchecked">Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Checkbox id="disabled-checked" disabled defaultChecked />\n        <FieldLabel htmlFor="disabled-checked">Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Checkbox id="disabled-indeterminate" disabled indeterminate />\n        <FieldLabel htmlFor="disabled-indeterminate">Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Checkbox disabled />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Checkbox disabled defaultChecked />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Checkbox disabled indeterminate />\n        <FieldLabel>Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -189,7 +189,7 @@ export const Basic: Story = {
         story: "Pair the checkbox with `Field` and `FieldLabel` for proper layout and labeling.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\n\nexport function CheckboxBasic() {\n  return (\n    <FieldGroup className="mx-auto w-56">\n      <Field orientation="horizontal">\n        <Checkbox id="terms-checkbox-basic" name="terms-checkbox-basic" />\n        <FieldLabel htmlFor="terms-checkbox-basic">Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\n\nexport function CheckboxBasic() {\n  return (\n    <FieldGroup className="mx-auto w-56">\n      <Field orientation="horizontal">\n        <Checkbox name="terms-checkbox-basic" />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
       },
     },
   },
@@ -200,7 +200,7 @@ export const Description: Story = {
     docs: {
       description: { story: "Use `FieldContent` and `FieldDescription` for helper text." },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from "@erbium/ui/components/field";\n\nexport function CheckboxDescription() {\n  return (\n    <FieldGroup className="mx-auto w-72">\n      <Field orientation="horizontal">\n        <Checkbox id="terms-checkbox-desc" name="terms-checkbox-desc" defaultChecked />\n        <FieldContent>\n          <FieldLabel htmlFor="terms-checkbox-desc">Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from "@erbium/ui/components/field";\n\nexport function CheckboxDescription() {\n  return (\n    <FieldGroup className="mx-auto w-72">\n      <Field orientation="horizontal">\n        <Checkbox name="terms-checkbox-desc" defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
       },
     },
   },
@@ -229,7 +229,7 @@ export const InvalidState: Story = {
           "Set `invalid` on the `Field` wrapper; the checkbox picks up `aria-invalid` automatically.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\n\nexport function CheckboxInvalid() {\n  return (\n    <FieldGroup className="mx-auto w-56">\n      <Field orientation="horizontal" invalid>\n        <Checkbox id="terms-checkbox-invalid" name="terms-checkbox-invalid" />\n        <FieldLabel htmlFor="terms-checkbox-invalid">Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\n\nexport function CheckboxInvalid() {\n  return (\n    <FieldGroup className="mx-auto w-56">\n      <Field orientation="horizontal" invalid>\n        <Checkbox name="terms-checkbox-invalid" />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
       },
     },
   },

@@ -21,10 +21,8 @@ export default function FieldGroupExample() {
           </FieldDescription>
           <FieldGroup data-slot="checkbox-group">
             <Field orientation="horizontal">
-              <Checkbox id="push" defaultChecked disabled />
-              <FieldLabel htmlFor="push" className="font-normal">
-                Push notifications
-              </FieldLabel>
+              <Checkbox defaultChecked disabled />
+              <FieldLabel className="font-normal">Push notifications</FieldLabel>
             </Field>
           </FieldGroup>
         </FieldSet>
@@ -36,16 +34,12 @@ export default function FieldGroupExample() {
           </FieldDescription>
           <FieldGroup data-slot="checkbox-group">
             <Field orientation="horizontal">
-              <Checkbox id="push-tasks" />
-              <FieldLabel htmlFor="push-tasks" className="font-normal">
-                Push notifications
-              </FieldLabel>
+              <Checkbox />
+              <FieldLabel className="font-normal">Push notifications</FieldLabel>
             </Field>
             <Field orientation="horizontal">
-              <Checkbox id="email-tasks" />
-              <FieldLabel htmlFor="email-tasks" className="font-normal">
-                Email notifications
-              </FieldLabel>
+              <Checkbox />
+              <FieldLabel className="font-normal">Email notifications</FieldLabel>
             </Field>
           </FieldGroup>
         </FieldSet>

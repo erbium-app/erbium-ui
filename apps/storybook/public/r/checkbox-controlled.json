@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/checkbox-controlled.tsx",
-      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Field, FieldLabel } from \"../components/field\";\nimport { useState } from \"react\";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"controlled-marketing\" checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel htmlFor=\"controlled-marketing\">Receive marketing emails</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Field, FieldLabel } from \"../components/field\";\nimport { useState } from \"react\";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Receive marketing emails</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/checkbox-controlled.tsx"
     }

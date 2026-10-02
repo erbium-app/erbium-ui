@@ -12,9 +12,9 @@ import {
 export function InputInputGroup() {
   return (
     <Field>
-      <FieldLabel htmlFor="input-group-url">Website URL</FieldLabel>
+      <FieldLabel>Website URL</FieldLabel>
       <InputGroup>
-        <InputGroupInput id="input-group-url" placeholder="example.com" />
+        <InputGroupInput placeholder="example.com" />
         <InputGroupAddon>
           <InputGroupText>https://</InputGroupText>
         </InputGroupAddon>

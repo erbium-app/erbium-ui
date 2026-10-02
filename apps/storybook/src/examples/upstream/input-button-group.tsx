@@ -6,9 +6,9 @@ import { Input } from "@erbium/ui/components/input";
 export function InputButtonGroup() {
   return (
     <Field>
-      <FieldLabel htmlFor="input-button-group">Search</FieldLabel>
+      <FieldLabel>Search</FieldLabel>
       <ButtonGroup>
-        <Input id="input-button-group" placeholder="Type to search..." />
+        <Input placeholder="Type to search..." />
         <Button variant="outline">Search</Button>
       </ButtonGroup>
     </Field>

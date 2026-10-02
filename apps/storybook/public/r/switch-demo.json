@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/switch-demo.tsx",
-      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { Switch } from \"../components/switch\";\n\nexport default function SwitchDemo() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch id=\"airplane-mode\" />\n      <FieldLabel htmlFor=\"airplane-mode\">Airplane Mode</FieldLabel>\n    </Field>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { Switch } from \"../components/switch\";\n\nexport default function SwitchDemo() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch />\n      <FieldLabel>Airplane Mode</FieldLabel>\n    </Field>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/switch-demo.tsx"
     }

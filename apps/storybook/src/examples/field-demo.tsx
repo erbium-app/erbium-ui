@@ -30,16 +30,12 @@ export default function FieldDemo() {
             <FieldDescription>All transactions are secure and encrypted</FieldDescription>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="checkout-7j9-card-name-43j">Name on Card</FieldLabel>
-                <Input id="checkout-7j9-card-name-43j" placeholder="Evil Rabbit" required />
+                <FieldLabel>Name on Card</FieldLabel>
+                <Input placeholder="Evil Rabbit" required />
               </Field>
               <Field>
-                <FieldLabel htmlFor="checkout-7j9-card-number-uw1">Card Number</FieldLabel>
-                <Input
-                  id="checkout-7j9-card-number-uw1"
-                  placeholder="1234 5678 9012 3456"
-                  required
-                />
+                <FieldLabel>Card Number</FieldLabel>
+                <Input placeholder="1234 5678 9012 3456" required />
                 <FieldDescription>Enter your 16-digit card number</FieldDescription>
               </Field>
               <div className="grid grid-cols-3 gap-4">
@@ -82,8 +78,8 @@ export default function FieldDemo() {
                   </Select>
                 </Field>
                 <Field>
-                  <FieldLabel htmlFor="checkout-7j9-cvv">CVV</FieldLabel>
-                  <Input id="checkout-7j9-cvv" placeholder="123" required />
+                  <FieldLabel>CVV</FieldLabel>
+                  <Input placeholder="123" required />
                 </Field>
               </div>
             </FieldGroup>
@@ -96,22 +92,16 @@ export default function FieldDemo() {
             </FieldDescription>
             <FieldGroup>
               <Field orientation="horizontal">
-                <Checkbox id="checkout-7j9-same-as-shipping-wgm" defaultChecked />
-                <FieldLabel htmlFor="checkout-7j9-same-as-shipping-wgm" className="font-normal">
-                  Same as shipping address
-                </FieldLabel>
+                <Checkbox defaultChecked />
+                <FieldLabel className="font-normal">Same as shipping address</FieldLabel>
               </Field>
             </FieldGroup>
           </FieldSet>
           <FieldSet>
             <FieldGroup>
               <Field>
-                <FieldLabel htmlFor="checkout-7j9-optional-comments">Comments</FieldLabel>
-                <Textarea
-                  id="checkout-7j9-optional-comments"
-                  placeholder="Add any additional comments"
-                  className="resize-none"
-                />
+                <FieldLabel>Comments</FieldLabel>
+                <Textarea placeholder="Add any additional comments" className="resize-none" />
               </Field>
             </FieldGroup>
           </FieldSet>

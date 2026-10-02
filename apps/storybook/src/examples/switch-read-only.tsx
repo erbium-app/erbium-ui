@@ -4,8 +4,8 @@ import { Switch } from "@erbium/ui/components/switch";
 export default function SwitchReadOnly() {
   return (
     <Field orientation="horizontal">
-      <Switch id="read-only-sync" readOnly defaultChecked />
-      <FieldLabel htmlFor="read-only-sync">Managed by your organization</FieldLabel>
+      <Switch readOnly defaultChecked />
+      <FieldLabel>Managed by your organization</FieldLabel>
     </Field>
   );
 }

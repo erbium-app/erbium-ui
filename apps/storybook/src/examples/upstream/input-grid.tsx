@@ -5,12 +5,12 @@ export function InputGrid() {
   return (
     <FieldGroup className="grid max-w-sm grid-cols-2">
       <Field>
-        <FieldLabel htmlFor="first-name">First Name</FieldLabel>
-        <Input id="first-name" placeholder="Jordan" />
+        <FieldLabel>First Name</FieldLabel>
+        <Input placeholder="Jordan" />
       </Field>
       <Field>
-        <FieldLabel htmlFor="last-name">Last Name</FieldLabel>
-        <Input id="last-name" placeholder="Lee" />
+        <FieldLabel>Last Name</FieldLabel>
+        <Input placeholder="Lee" />
       </Field>
     </FieldGroup>
   );
