@@ -656,6 +656,21 @@
       ]
     },
     {
+      "name": "meter",
+      "type": "registry:ui",
+      "title": "Meter",
+      "description": "Erbium meter component.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/meter.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/meter.tsx"
+        }
+      ]
+    },
+    {
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
