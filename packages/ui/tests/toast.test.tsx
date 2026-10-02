@@ -2,11 +2,11 @@
 
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, expect, test, vi } from "vite-plus/test";
+import { DirectionProvider } from "@erbium/ui/components/direction";
 import { Toaster, toast } from "@erbium/ui/components/toast";
 
 afterEach(() => {
   cleanup();
-  document.documentElement.removeAttribute("dir");
   Reflect.deleteProperty(Element.prototype, "animate");
 });
 
@@ -132,8 +132,11 @@ test.each([
   ["ltr", 100],
   ["rtl", -100],
 ] as const)("%s pages dismiss toward the inline end", (direction, distance) => {
-  document.documentElement.dir = direction;
-  render(<Toaster />);
+  render(
+    <DirectionProvider direction={direction}>
+      <Toaster />
+    </DirectionProvider>,
+  );
 
   act(() => {
     toast.add({ title: `Swipe ${direction}`, timeout: 0 });

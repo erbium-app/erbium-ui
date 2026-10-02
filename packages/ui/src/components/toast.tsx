@@ -7,6 +7,7 @@ import type {
 } from "@base-ui/react/toast";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
+import { useDirection } from "./direction";
 import { Spinner } from "./spinner";
 import { shake } from "../lib/shake";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -97,8 +98,8 @@ function Toast({
   toast,
   ...props
 }: Omit<ToastPrimitive.Root.Props, "swipeDirection" | "toast"> & { toast: ToastItem }) {
-  const swipeDirection =
-    typeof document !== "undefined" && document.documentElement.dir === "rtl" ? "left" : "right";
+  // Toasts sit at the inline end of the page, so that is the side they swipe away to.
+  const swipeDirection = useDirection() === "rtl" ? "left" : "right";
 
   return (
     <ToastPrimitive.Root
@@ -109,12 +110,15 @@ function Toast({
         "group/toast pointer-events-auto absolute inset-e-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border will-change-transform outline-none select-none focus-visible:border-ring",
         toastTypes[toast.type ?? "default"].className,
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--position-y:calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height)))]",
-        "h-(--height) transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--position-y))_scale(var(--scale))] [transition:transform_500ms_cubic-bezier(0.22,1,0.36,1),opacity_500ms,height_150ms]",
+        // Layout moves use `--move`, exits are quicker (200ms), and reduced motion keeps only the fades.
+        "[--fade:300ms] [--move:500ms] data-ending-style:[--fade:200ms] data-ending-style:[--move:200ms] motion-reduce:[--move:0ms] motion-reduce:data-ending-style:[--move:0ms]",
+        "h-(--height) touch-pan-y transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--position-y))_scale(var(--scale))] [transition:transform_var(--move)_cubic-bezier(0.22,1,0.36,1),opacity_var(--fade)_ease-out,height_var(--move)_cubic-bezier(0.22,1,0.36,1),visibility_var(--move)] data-swiping:transition-none",
         "after:absolute after:top-full after:inset-s-0 after:h-[calc(var(--gap)+1px)] after:w-full after:content-['']",
         "data-expanded:h-(--toast-height) data-expanded:[--position-y:var(--offset-y)] data-expanded:[--scale:1]",
-        "data-limited:invisible [&[data-stack-hidden]:not([data-expanded])]:invisible data-starting-style:transform-[translateY(150%)]",
-        "data-ending-style:opacity-0",
-        "[&[data-ending-style]:not([data-swipe-direction])]:transform-[translateX(calc(var(--toast-swipe-movement-x)+150%))_translateY(var(--position-y))_scale(var(--scale))]",
+        "data-limited:invisible data-limited:opacity-0 [&[data-stack-hidden]:not([data-expanded])]:pointer-events-none [&[data-stack-hidden]:not([data-expanded])]:invisible [&[data-stack-hidden]:not([data-expanded])]:opacity-0",
+        "data-starting-style:transform-[translateY(150%)] data-starting-style:opacity-0",
+        // Auto-dismissed toasts sink back down; swiped toasts keep going toward the inline end.
+        "data-ending-style:transform-[translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--position-y)+100%))_scale(var(--scale))] data-ending-style:opacity-0",
         "data-ending-style:data-[swipe-direction=left]:transform-[translateX(calc(var(--toast-swipe-movement-x)-150%))_translateY(var(--position-y))_scale(var(--scale))]",
         "data-ending-style:data-[swipe-direction=right]:transform-[translateX(calc(var(--toast-swipe-movement-x)+150%))_translateY(var(--position-y))_scale(var(--scale))]",
         className,
