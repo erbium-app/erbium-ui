@@ -26,6 +26,7 @@ export function ScrollAreaHorizontalDemo() {
   return (
     <ScrollArea
       fade="horizontal"
+      orientation="horizontal"
       className="w-96 rounded-xl border surface-panel whitespace-nowrap"
     >
       <div className="flex w-max space-x-4 p-4">

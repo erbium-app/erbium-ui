@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 type ScrollAreaFade = "vertical" | "horizontal" | false;
+type ScrollAreaOrientation = "vertical" | "horizontal" | "both";
 type ScrollBarSize = "thin" | "default";
 type ScrollBarVisibility = "always" | "hover" | "scroll";
 
@@ -43,6 +44,12 @@ const scrollBarThumbVariants = cva(
 type ScrollAreaProps = ScrollAreaPrimitive.Root.Props & {
   /** Adds a scroll-aware fade at the edges of the selected axis. */
   fade?: ScrollAreaFade;
+  /**
+   * Which axes get a custom scrollbar. Defaults to vertical so popups that clip
+   * horizontal overflow (`overflow-x-hidden!`) don't show a dead horizontal bar;
+   * opt into `horizontal` or `both` for content that genuinely scrolls sideways.
+   */
+  orientation?: ScrollAreaOrientation;
   /** Controls the visual size of the custom scrollbar. */
   scrollbar?: ScrollBarSize | "none";
   /** Controls when the custom scrollbar is visible. */
@@ -59,6 +66,7 @@ function ScrollArea({
   className,
   children,
   fade = "vertical",
+  orientation = "vertical",
   scrollbar = "thin",
   scrollbarVisibility = "always",
   viewportClassName,
@@ -91,16 +99,18 @@ function ScrollArea({
         <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>
       </ScrollAreaViewport>
       {showScrollbar &&
-        (["vertical", "horizontal"] as const).map((orientation) => (
-          <ScrollBar
-            key={orientation}
-            orientation={orientation}
-            size={scrollbar}
-            visibility={scrollbarVisibility}
-            className={scrollbarClassName}
-            thumbClassName={thumbClassName}
-          />
-        ))}
+        (orientation === "both" ? (["vertical", "horizontal"] as const) : [orientation]).map(
+          (axis) => (
+            <ScrollBar
+              key={axis}
+              orientation={axis}
+              size={scrollbar}
+              visibility={scrollbarVisibility}
+              className={scrollbarClassName}
+              thumbClassName={thumbClassName}
+            />
+          ),
+        )}
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   );
@@ -163,4 +173,4 @@ function ScrollBar({
 
 export { ScrollArea, ScrollAreaContent, ScrollAreaViewport, ScrollBar };
 
-export type { ScrollAreaFade, ScrollBarSize, ScrollBarVisibility };
+export type { ScrollAreaFade, ScrollAreaOrientation, ScrollBarSize, ScrollBarVisibility };
