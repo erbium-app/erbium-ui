@@ -214,3 +214,21 @@ test("color submits through the picker and commits only valid hex text", () => {
   );
   expect(document.querySelector('[data-slot="control-color"] label')?.textContent).toBe("Fill");
 });
+
+test("actions and the number editor use Base UI parts and respect disabled", () => {
+  const clicks: string[] = [];
+  render(
+    <Control.Group>
+      <Control.Action label="Reset" onClick={() => clicks.push("reset")} />
+      <Control.Action label="Locked" disabled onClick={() => clicks.push("locked")} />
+      <Control.Number label="Blur" defaultValue={5} disabled />
+    </Control.Group>,
+  );
+  fireEvent.click(screen.getByRole("button", { name: "Reset" }));
+  fireEvent.click(screen.getByRole("button", { name: "Locked" }));
+  expect(clicks).toEqual(["reset"]);
+  expect(screen.getByRole("button", { name: "Reset" }).getAttribute("type")).toBe("button");
+  expect(
+    (screen.getByRole("button", { name: "Edit Blur value" }) as HTMLButtonElement).disabled,
+  ).toBe(true);
+});

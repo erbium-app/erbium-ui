@@ -3,6 +3,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { RotatingChevron } from "./stateful-icon";
 import ImagePlusIcon from "@hugeicons/core-free-icons/ImagePlusIcon";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import { mergeProps } from "@base-ui/react/merge-props";
@@ -400,7 +401,7 @@ function ControlNumber({
         {label}
       </span>
       {editing ? (
-        <input
+        <InputPrimitive
           ref={inputRef}
           aria-label={`${label} value`}
           className={cn(
@@ -409,7 +410,7 @@ function ControlNumber({
           )}
           inputMode="decimal"
           value={draft}
-          onChange={(event) => setDraft(event.target.value)}
+          onValueChange={setDraft}
           onBlur={commit}
           onKeyDown={(event) => {
             if (event.key === "Enter") {
@@ -424,8 +425,7 @@ function ControlNumber({
         />
       ) : null}
       {/* Stays mounted under the editor, so a committed value morphs from the old one. */}
-      <button
-        type="button"
+      <ButtonPrimitive
         disabled={disabled}
         aria-label={`Edit ${label} value`}
         className={cn(
@@ -440,7 +440,7 @@ function ControlNumber({
       >
         {/* A drag changes the value every frame, so it tracks the hand; jumps morph. */}
         <TextMorph disabled={dragging}>{shown}</TextMorph>
-      </button>
+      </ButtonPrimitive>
     </SliderPrimitive.Root>
   );
 }
@@ -700,6 +700,28 @@ function Segmented({
   );
 }
 
+/** The shared popup for Select and Image: portal, positioner, and scrollable list. */
+function OptionsPopup({ className, children }: { className: string; children: React.ReactNode }) {
+  return (
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
+        <SelectPrimitive.Popup className={className}>
+          <ScrollArea
+            className="min-h-0 overscroll-contain"
+            fade="vertical"
+            scrollbar="thin"
+            viewportRole="listbox"
+            viewportRender={<SelectPrimitive.List />}
+            contentClassName="p-1 in-data-has-overflow-y:pe-3"
+          >
+            {children}
+          </ScrollArea>
+        </SelectPrimitive.Popup>
+      </SelectPrimitive.Positioner>
+    </SelectPrimitive.Portal>
+  );
+}
+
 function Select({
   label,
   options,
@@ -738,33 +760,20 @@ function Select({
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
-      <SelectPrimitive.Portal>
-        <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-          <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay text-sm outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
-            <ScrollArea
-              className="min-h-0 overscroll-contain"
-              fade="vertical"
-              scrollbar="thin"
-              viewportRole="listbox"
-              viewportRender={<SelectPrimitive.List />}
-              contentClassName="p-1 in-data-has-overflow-y:pe-3"
-            >
-              {options.map((option) => (
-                <SelectPrimitive.Item
-                  key={option.value}
-                  value={option.value}
-                  className="flex cursor-default items-center justify-between gap-3 rounded-md px-2.5 py-1.5 outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
-                >
-                  <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
-                  <SelectPrimitive.ItemIndicator>
-                    <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
-                  </SelectPrimitive.ItemIndicator>
-                </SelectPrimitive.Item>
-              ))}
-            </ScrollArea>
-          </SelectPrimitive.Popup>
-        </SelectPrimitive.Positioner>
-      </SelectPrimitive.Portal>
+      <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay text-sm outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+        {options.map((option) => (
+          <SelectPrimitive.Item
+            key={option.value}
+            value={option.value}
+            className="flex cursor-default items-center justify-between gap-3 rounded-md px-2.5 py-1.5 outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+          >
+            <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+            <SelectPrimitive.ItemIndicator>
+              <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
+            </SelectPrimitive.ItemIndicator>
+          </SelectPrimitive.Item>
+        ))}
+      </OptionsPopup>
     </SelectPrimitive.Root>
   );
 }
@@ -890,39 +899,25 @@ function Image({
               <RotatingChevron className="size-3.5" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
-          <SelectPrimitive.Portal>
-            <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-              <SelectPrimitive.Popup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg border surface-overlay outline-none">
-                <ScrollArea
-                  className="min-h-0 overscroll-contain"
-                  fade="vertical"
-                  scrollbar="thin"
-                  viewportRole="listbox"
-                  viewportRender={<SelectPrimitive.List />}
-                  contentClassName="p-1 in-data-has-overflow-y:pe-3"
-                >
-                  {options.map((option) => (
-                    <SelectPrimitive.Item
-                      key={option.value}
-                      value={option.value}
-                      className="flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
-                    >
-                      <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
-                      <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
-                      <SelectPrimitive.ItemIndicator className="ms-auto">
-                        <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
-                      </SelectPrimitive.ItemIndicator>
-                    </SelectPrimitive.Item>
-                  ))}
-                </ScrollArea>
-              </SelectPrimitive.Popup>
-            </SelectPrimitive.Positioner>
-          </SelectPrimitive.Portal>
+          <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg border surface-overlay outline-none">
+            {options.map((option) => (
+              <SelectPrimitive.Item
+                key={option.value}
+                value={option.value}
+                className="flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+              >
+                <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
+                <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+                <SelectPrimitive.ItemIndicator className="ms-auto">
+                  <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
+                </SelectPrimitive.ItemIndicator>
+              </SelectPrimitive.Item>
+            ))}
+          </OptionsPopup>
         </SelectPrimitive.Root>
       ) : null}
       {onFileChange || !options?.length ? (
-        <button
-          type="button"
+        <ButtonPrimitive
           disabled={disabled}
           aria-label={`Upload ${label}`}
           onClick={() => ref.current?.click()}
@@ -937,7 +932,7 @@ function Image({
             <HugeiconsIcon icon={ImagePlusIcon} className="size-4" />
           )}
           {!options?.length ? <span>{preview ? "Change" : "Choose image"}</span> : null}
-        </button>
+        </ButtonPrimitive>
       ) : null}
       <input
         ref={ref}
@@ -1336,8 +1331,7 @@ function Transition({
 type ActionProps = CommonProps & Omit<React.ComponentProps<"button">, "children" | "disabled">;
 function Action({ label, disabled, className, ...props }: ActionProps) {
   return (
-    <button
-      type="button"
+    <ButtonPrimitive
       data-slot="control-action"
       disabled={disabled}
       className={cn(
@@ -1348,7 +1342,7 @@ function Action({ label, disabled, className, ...props }: ActionProps) {
       {...props}
     >
       {label}
-    </button>
+    </ButtonPrimitive>
   );
 }
 
