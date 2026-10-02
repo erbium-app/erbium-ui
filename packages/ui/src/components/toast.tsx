@@ -1,5 +1,4 @@
 import * as React from "react";
-import { getHotkeyManager } from "@tanstack/hotkeys";
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import type {
   ToastManager as BaseToastManager,
@@ -266,24 +265,7 @@ function ToasterStack() {
   );
 }
 
-// Base UI focuses the stack on a global F6, which browsers also use for the address bar.
-// Alt+T is the same action on a key that is easier to reach and to discover. The event is
-// replayed rather than focusing the viewport directly so Base UI still records the previously
-// focused element and returns focus to it when the stack is dismissed.
-function useFocusStackHotkey() {
-  React.useEffect(() => {
-    const handle = getHotkeyManager().register("Alt+T", () => {
-      document.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "F6", bubbles: true, cancelable: true }),
-      );
-    });
-    return () => handle.unregister();
-  }, []);
-}
-
 function Toaster() {
-  useFocusStackHotkey();
-
   return (
     <ToastProvider toastManager={toastManager} limit={Number.POSITIVE_INFINITY}>
       <ToastPortal>

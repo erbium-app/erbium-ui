@@ -1,7 +1,6 @@
 import { ToastTypes } from "../examples/upstream/toast-types";
 import { ToastPromise } from "../examples/upstream/toast-promise";
 import { Button } from "@erbium/ui/components/button";
-import { Kbd } from "@erbium/ui/components/kbd";
 import { Toast, toast } from "@erbium/ui/components/toast";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import Demo from "../examples/toast-demo";
@@ -15,7 +14,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  id: "event-created",\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```\n\nRepeated calls without an ID create separate notifications. Supply a stable `id` to update an existing toast in place; repeating unchanged content replays its shake and refreshes its timer. `Toaster` has no presentation props: it uses Erbium’s lit surface, built-in status icons and close button, a three-toast preview, and a scrollable full queue on hover or keyboard focus. Swipe toward the inline end to dismiss (right in LTR, left in RTL; the direction comes from `DirectionProvider`). Press Alt+T, or F6, to move focus into the stack; Escape dismisses the focused toast and Shift+Tab returns focus to where you were. Base UI keeps control of the timer, swipe, and focus behavior. For toast options, use Base UI’s `timeout` and `actionProps` names instead of Sonner’s `duration` and `action`. Sonner’s theme, rich-color, icon, position, and toaster-ID options are intentionally omitted. Base UI’s promise states, priority announcements, and `onClose`/`onRemove` callbacks remain available.',
+          'A succinct message that is displayed temporarily.\n\n**Import:** `@erbium/ui/components/toast`  \n\n**shadcn/ui page:** [Toast](https://ui.shadcn.com/docs/components/base/toast)\n\n### Usage\n\n```tsx\nimport { toast } from "@erbium/ui/components/toast"\n```\n\n```tsx\ntoast.add({\n  id: "event-created",\n  title: "Event created",\n  description: "Sunday, December 3 at 9:00 AM",\n})\n```\n\nRepeated calls without an ID create separate notifications. Supply a stable `id` to update an existing toast in place; repeating unchanged content replays its shake and refreshes its timer. `Toaster` has no presentation props: it uses Erbium’s lit surface, built-in status icons and close button, a three-toast preview, and a scrollable full queue on hover or keyboard focus. Swipe toward the inline end to dismiss (right in LTR, left in RTL; the direction comes from `DirectionProvider`). Press F6 to move focus into the stack; Escape dismisses the focused toast. Base UI keeps control of the timer, swipe, and focus behavior. For toast options, use Base UI’s `timeout` and `actionProps` names instead of Sonner’s `duration` and `action`. Sonner’s theme, rich-color, icon, position, and toaster-ID options are intentionally omitted. Base UI’s promise states, priority announcements, and `onClose`/`onRemove` callbacks remain available.',
       },
     },
   },
@@ -161,33 +160,5 @@ export const Queue: Story = {
     >
       Show five toasts
     </Button>
-  ),
-};
-
-export const Keyboard: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Press Alt+T (⌥T on Mac) while toasts are visible to focus the stack. Timers pause and the full queue expands. Tab moves between toasts, Escape dismisses the focused one, and Shift+Tab returns focus to where you were. F6 does the same through Base UI.",
-      },
-    },
-  },
-  render: () => (
-    <div className="flex flex-col items-start gap-3">
-      <Button
-        variant="outline"
-        onClick={() => {
-          for (let index = 1; index <= 3; index += 1) {
-            toast.add({ title: `Notification ${index}`, timeout: 0 });
-          }
-        }}
-      >
-        Show three toasts
-      </Button>
-      <p className="flex items-center gap-2 text-sm text-muted-foreground">
-        Then press <Kbd hotkey="Alt+T" /> to focus them.
-      </p>
-    </div>
   ),
 };

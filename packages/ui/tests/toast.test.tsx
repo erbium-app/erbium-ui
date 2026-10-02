@@ -151,30 +151,3 @@ test.each([
   act(() => swipe(element!, distance));
   expect(screen.queryByText(`Swipe ${direction}`)).toBeNull();
 });
-
-test("Alt+T focuses the toast stack and Shift+Tab hands focus back", async () => {
-  render(
-    <>
-      <button type="button">Before</button>
-      <Toaster />
-    </>,
-  );
-  const before = screen.getByText("Before");
-  before.focus();
-
-  act(() => {
-    toast.add({ title: "Saved", timeout: 0 });
-  });
-  // Base UI attaches its F6 listener once the portal has mounted.
-  await act(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  });
-
-  fireEvent.keyDown(document, { key: "t", code: "KeyT", altKey: true });
-
-  const viewport = document.querySelector('[data-slot="toast-viewport"]');
-  expect(document.activeElement).toBe(viewport);
-
-  fireEvent.keyDown(viewport!, { key: "Tab", shiftKey: true });
-  expect(document.activeElement).toBe(before);
-});
