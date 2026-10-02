@@ -16,9 +16,9 @@ export function InputGroupBlockStart() {
   return (
     <FieldGroup className="max-w-sm">
       <Field>
-        <FieldLabel htmlFor="block-start-input">Input</FieldLabel>
+        <FieldLabel>Input</FieldLabel>
         <InputGroup className="h-auto">
-          <InputGroupInput id="block-start-input" placeholder="Enter your name" />
+          <InputGroupInput placeholder="Enter your name" />
           <InputGroupAddon align="block-start">
             <InputGroupText>Full Name</InputGroupText>
           </InputGroupAddon>
@@ -26,10 +26,9 @@ export function InputGroupBlockStart() {
         <FieldDescription>Header positioned above the input.</FieldDescription>
       </Field>
       <Field>
-        <FieldLabel htmlFor="block-start-textarea">Textarea</FieldLabel>
+        <FieldLabel>Textarea</FieldLabel>
         <InputGroup>
           <InputGroupTextarea
-            id="block-start-textarea"
             placeholder="console.log('Hello, world!');"
             className="font-mono text-sm"
           />

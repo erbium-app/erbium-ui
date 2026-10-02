@@ -33,14 +33,10 @@ export function SelectAlignItem() {
     <FieldGroup className="w-full max-w-xs">
       <Field orientation="horizontal">
         <FieldContent>
-          <FieldLabel htmlFor="align-item">Align Item</FieldLabel>
+          <FieldLabel>Align Item</FieldLabel>
           <FieldDescription>Toggle to align the item with the trigger.</FieldDescription>
         </FieldContent>
-        <Switch
-          id="align-item"
-          checked={alignItemWithTrigger}
-          onCheckedChange={setAlignItemWithTrigger}
-        />
+        <Switch checked={alignItemWithTrigger} onCheckedChange={setAlignItemWithTrigger} />
       </Field>
       <Field>
         <Select items={items} defaultValue="banana">

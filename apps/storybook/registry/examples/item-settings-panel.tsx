@@ -91,14 +91,12 @@ export default function ItemSettingsPanel() {
         <Item render={<Field orientation="horizontal" />} role="listitem">
           <ItemContent>
             <ItemTitle>
-              <FieldLabel htmlFor="convert-emoticons">
-                Convert text emoticons into emojis
-              </FieldLabel>
+              <FieldLabel>Convert text emoticons into emojis</FieldLabel>
             </ItemTitle>
             <ItemDescription>Strings like :) will be converted to 🙂</ItemDescription>
           </ItemContent>
           <ItemActions>
-            <Switch id="convert-emoticons" defaultChecked />
+            <Switch defaultChecked />
           </ItemActions>
         </Item>
         <ItemSeparator />
@@ -175,19 +173,19 @@ export default function ItemSettingsPanel() {
   );
 }
 
-function ItemGroupSection({ id, title, description }: (typeof interfaceSwitches)[number]) {
+function ItemGroupSection({ title, description }: (typeof interfaceSwitches)[number]) {
   return (
     <>
       <ItemSeparator />
       <Item render={<Field orientation="horizontal" />} role="listitem">
         <ItemContent>
           <ItemTitle>
-            <FieldLabel htmlFor={id}>{title}</FieldLabel>
+            <FieldLabel>{title}</FieldLabel>
           </ItemTitle>
           <ItemDescription>{description}</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Switch id={id} />
+          <Switch />
         </ItemActions>
       </Item>
     </>

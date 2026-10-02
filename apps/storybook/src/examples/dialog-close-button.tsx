@@ -24,10 +24,8 @@ export default function DialogCloseButton() {
         </DialogHeader>
         <DialogContent className="flex items-center gap-2">
           <Field className="flex-1">
-            <FieldLabel htmlFor="link" className="sr-only">
-              Link
-            </FieldLabel>
-            <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
+            <FieldLabel className="sr-only">Link</FieldLabel>
+            <Input defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
           </Field>
         </DialogContent>
         <DialogFooter className="sm:justify-start">

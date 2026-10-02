@@ -15,20 +15,20 @@ export default function PopoverDemo() {
           </div>
           <div className="grid gap-2">
             <Field className="grid grid-cols-3 items-center gap-4">
-              <FieldLabel htmlFor="width">Width</FieldLabel>
-              <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
+              <FieldLabel>Width</FieldLabel>
+              <Input defaultValue="100%" className="col-span-2 h-8" />
             </Field>
             <Field className="grid grid-cols-3 items-center gap-4">
-              <FieldLabel htmlFor="maxWidth">Max. width</FieldLabel>
-              <Input id="maxWidth" defaultValue="300px" className="col-span-2 h-8" />
+              <FieldLabel>Max. width</FieldLabel>
+              <Input defaultValue="300px" className="col-span-2 h-8" />
             </Field>
             <Field className="grid grid-cols-3 items-center gap-4">
-              <FieldLabel htmlFor="height">Height</FieldLabel>
-              <Input id="height" defaultValue="25px" className="col-span-2 h-8" />
+              <FieldLabel>Height</FieldLabel>
+              <Input defaultValue="25px" className="col-span-2 h-8" />
             </Field>
             <Field className="grid grid-cols-3 items-center gap-4">
-              <FieldLabel htmlFor="maxHeight">Max. height</FieldLabel>
-              <Input id="maxHeight" defaultValue="none" className="col-span-2 h-8" />
+              <FieldLabel>Max. height</FieldLabel>
+              <Input defaultValue="none" className="col-span-2 h-8" />
             </Field>
           </div>
         </div>

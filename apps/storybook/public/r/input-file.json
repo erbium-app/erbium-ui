@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/input-file.tsx",
-      "content": "// @ts-nocheck\nimport { Input } from \"../components/input\";\nimport { Field, FieldLabel } from \"../components/field\";\n\nexport default function InputFile() {\n  return (\n    <Field className=\"grid w-full max-w-sm items-center gap-3\">\n      <FieldLabel htmlFor=\"picture\">Picture</FieldLabel>\n      <Input id=\"picture\" type=\"file\" />\n    </Field>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Input } from \"../components/input\";\nimport { Field, FieldLabel } from \"../components/field\";\n\nexport default function InputFile() {\n  return (\n    <Field className=\"grid w-full max-w-sm items-center gap-3\">\n      <FieldLabel>Picture</FieldLabel>\n      <Input type=\"file\" />\n    </Field>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/input-file.tsx"
     }

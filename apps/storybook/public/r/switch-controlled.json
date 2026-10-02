@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/switch-controlled.tsx",
-      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { Switch } from \"../components/switch\";\nimport { useState } from \"react\";\n\nexport default function SwitchControlled() {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Switch id=\"controlled-wifi\" checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel htmlFor=\"controlled-wifi\">Wi-Fi</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { Switch } from \"../components/switch\";\nimport { useState } from \"react\";\n\nexport default function SwitchControlled() {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Switch checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Wi-Fi</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/switch-controlled.tsx"
     }

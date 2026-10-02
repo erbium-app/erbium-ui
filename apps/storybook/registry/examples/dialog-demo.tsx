@@ -31,12 +31,12 @@ export default function DialogDemo() {
         </DialogHeader>
         <DialogContent className="grid content-start gap-4">
           <Field>
-            <FieldLabel htmlFor="name-1">Name</FieldLabel>
-            <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+            <FieldLabel>Name</FieldLabel>
+            <Input name="name" defaultValue="Pedro Duarte" />
           </Field>
           <Field>
-            <FieldLabel htmlFor="username-1">Username</FieldLabel>
-            <Input id="username-1" name="username" defaultValue="@peduarte" />
+            <FieldLabel>Username</FieldLabel>
+            <Input name="username" defaultValue="@peduarte" />
           </Field>
         </DialogContent>
         <DialogFooter>

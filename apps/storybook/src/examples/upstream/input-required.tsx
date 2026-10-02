@@ -4,10 +4,10 @@ import { Input } from "@erbium/ui/components/input";
 export function InputRequired() {
   return (
     <Field>
-      <FieldLabel htmlFor="input-required">
+      <FieldLabel>
         Required Field <span className="text-error">*</span>
       </FieldLabel>
-      <Input id="input-required" placeholder="This field is required" required />
+      <Input placeholder="This field is required" required />
       <FieldDescription>This field must be filled out.</FieldDescription>
     </Field>
   );

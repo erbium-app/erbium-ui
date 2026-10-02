@@ -27,12 +27,12 @@ export default function SheetDemo() {
         </SheetHeader>
         <SheetContent className="grid content-start gap-6">
           <Field>
-            <FieldLabel htmlFor="sheet-demo-name">Name</FieldLabel>
-            <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+            <FieldLabel>Name</FieldLabel>
+            <Input defaultValue="Pedro Duarte" />
           </Field>
           <Field>
-            <FieldLabel htmlFor="sheet-demo-username">Username</FieldLabel>
-            <Input id="sheet-demo-username" defaultValue="@peduarte" />
+            <FieldLabel>Username</FieldLabel>
+            <Input defaultValue="@peduarte" />
           </Field>
         </SheetContent>
         <SheetFooter>

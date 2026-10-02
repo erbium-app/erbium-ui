@@ -17,17 +17,17 @@ export default function FieldFieldset() {
         <FieldDescription>We need your address to deliver your order.</FieldDescription>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="street">Street Address</FieldLabel>
-            <Input id="street" type="text" placeholder="123 Main St" />
+            <FieldLabel>Street Address</FieldLabel>
+            <Input type="text" placeholder="123 Main St" />
           </Field>
           <div className="grid grid-cols-2 gap-4">
             <Field>
-              <FieldLabel htmlFor="city">City</FieldLabel>
-              <Input id="city" type="text" placeholder="New York" />
+              <FieldLabel>City</FieldLabel>
+              <Input type="text" placeholder="New York" />
             </Field>
             <Field>
-              <FieldLabel htmlFor="zip">Postal Code</FieldLabel>
-              <Input id="zip" type="text" placeholder="90502" />
+              <FieldLabel>Postal Code</FieldLabel>
+              <Input type="text" placeholder="90502" />
             </Field>
           </div>
         </FieldGroup>

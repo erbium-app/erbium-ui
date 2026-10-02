@@ -20,38 +20,28 @@ export default function FieldCheckbox() {
           <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>
           <FieldGroup className="gap-3">
             <Field orientation="horizontal">
-              <Checkbox id="finder-pref-9k2-hard-disks-ljj" defaultChecked />
-              <FieldLabel htmlFor="finder-pref-9k2-hard-disks-ljj" className="font-normal">
-                Hard disks
-              </FieldLabel>
+              <Checkbox defaultChecked />
+              <FieldLabel className="font-normal">Hard disks</FieldLabel>
             </Field>
             <Field orientation="horizontal">
-              <Checkbox id="finder-pref-9k2-external-disks-1yg" />
-              <FieldLabel htmlFor="finder-pref-9k2-external-disks-1yg" className="font-normal">
-                External disks
-              </FieldLabel>
+              <Checkbox />
+              <FieldLabel className="font-normal">External disks</FieldLabel>
             </Field>
             <Field orientation="horizontal">
-              <Checkbox id="finder-pref-9k2-cds-dvds-fzt" />
-              <FieldLabel htmlFor="finder-pref-9k2-cds-dvds-fzt" className="font-normal">
-                CDs, DVDs, and iPods
-              </FieldLabel>
+              <Checkbox />
+              <FieldLabel className="font-normal">CDs, DVDs, and iPods</FieldLabel>
             </Field>
             <Field orientation="horizontal">
-              <Checkbox id="finder-pref-9k2-connected-servers-6l2" />
-              <FieldLabel htmlFor="finder-pref-9k2-connected-servers-6l2" className="font-normal">
-                Connected servers
-              </FieldLabel>
+              <Checkbox />
+              <FieldLabel className="font-normal">Connected servers</FieldLabel>
             </Field>
           </FieldGroup>
         </FieldSet>
         <FieldSeparator />
         <Field orientation="horizontal">
-          <Checkbox id="finder-pref-9k2-sync-folders-nep" defaultChecked />
+          <Checkbox defaultChecked />
           <FieldContent>
-            <FieldLabel htmlFor="finder-pref-9k2-sync-folders-nep">
-              Sync Desktop & Documents folders
-            </FieldLabel>
+            <FieldLabel>Sync Desktop & Documents folders</FieldLabel>
             <FieldDescription>
               Your Desktop & Documents folders are being synced with iCloud Drive. You can access
               them from other devices.

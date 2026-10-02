@@ -30,12 +30,12 @@ export default function TabsDemo() {
             </CardHeader>
             <CardContent className="grid gap-6">
               <Field>
-                <FieldLabel htmlFor="tabs-demo-name">Name</FieldLabel>
-                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
+                <FieldLabel>Name</FieldLabel>
+                <Input defaultValue="Pedro Duarte" />
               </Field>
               <Field>
-                <FieldLabel htmlFor="tabs-demo-username">Username</FieldLabel>
-                <Input id="tabs-demo-username" defaultValue="@peduarte" />
+                <FieldLabel>Username</FieldLabel>
+                <Input defaultValue="@peduarte" />
               </Field>
             </CardContent>
             <CardFooter>
@@ -53,12 +53,12 @@ export default function TabsDemo() {
             </CardHeader>
             <CardContent className="grid gap-6">
               <Field>
-                <FieldLabel htmlFor="tabs-demo-current">Current password</FieldLabel>
-                <Input id="tabs-demo-current" type="password" />
+                <FieldLabel>Current password</FieldLabel>
+                <Input type="password" />
               </Field>
               <Field>
-                <FieldLabel htmlFor="tabs-demo-new">New password</FieldLabel>
-                <Input id="tabs-demo-new" type="password" />
+                <FieldLabel>New password</FieldLabel>
+                <Input type="password" />
               </Field>
             </CardContent>
             <CardFooter>

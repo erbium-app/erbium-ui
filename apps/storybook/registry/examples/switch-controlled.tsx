@@ -9,8 +9,8 @@ export default function SwitchControlled() {
   return (
     <div className="flex flex-col gap-4">
       <Field orientation="horizontal">
-        <Switch id="controlled-wifi" checked={checked} onCheckedChange={setChecked} />
-        <FieldLabel htmlFor="controlled-wifi">Wi-Fi</FieldLabel>
+        <Switch checked={checked} onCheckedChange={setChecked} />
+        <FieldLabel>Wi-Fi</FieldLabel>
       </Field>
       <p className="text-sm text-muted-foreground">
         checked: <code>{String(checked)}</code>

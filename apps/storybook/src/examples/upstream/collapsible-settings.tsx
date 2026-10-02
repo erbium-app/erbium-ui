@@ -31,16 +31,12 @@ export function CollapsibleSettings() {
           <div className="px-3 pt-2 pb-3">
             <FieldGroup className="grid w-full grid-cols-2 gap-2">
               <Field>
-                <FieldLabel htmlFor="radius-x" className="sr-only">
-                  Radius X
-                </FieldLabel>
-                <Input id="radius-x" placeholder="0" defaultValue={0} />
+                <FieldLabel className="sr-only">Radius X</FieldLabel>
+                <Input placeholder="0" defaultValue={0} />
               </Field>
               <Field>
-                <FieldLabel htmlFor="radius-y" className="sr-only">
-                  Radius Y
-                </FieldLabel>
-                <Input id="radius-y" placeholder="0" defaultValue={0} />
+                <FieldLabel className="sr-only">Radius Y</FieldLabel>
+                <Input placeholder="0" defaultValue={0} />
               </Field>
             </FieldGroup>
           </div>

@@ -20,10 +20,9 @@ export function CalendarWithTime() {
       <CardFooter className="border-t">
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="time-from">Start Time</FieldLabel>
+            <FieldLabel>Start Time</FieldLabel>
             <InputGroup>
               <InputGroupInput
-                id="time-from"
                 type="time"
                 step="1"
                 defaultValue="10:30:00"
@@ -35,10 +34,9 @@ export function CalendarWithTime() {
             </InputGroup>
           </Field>
           <Field>
-            <FieldLabel htmlFor="time-to">End Time</FieldLabel>
+            <FieldLabel>End Time</FieldLabel>
             <InputGroup>
               <InputGroupInput
-                id="time-to"
                 type="time"
                 step="1"
                 defaultValue="12:30:00"

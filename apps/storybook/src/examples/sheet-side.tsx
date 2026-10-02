@@ -32,16 +32,12 @@ export default function SheetSide() {
             </SheetHeader>
             <SheetContent className="grid content-start gap-4">
               <Field className="grid grid-cols-4 items-center gap-4">
-                <FieldLabel htmlFor={`name-${side}`} className="text-end">
-                  Name
-                </FieldLabel>
-                <Input id={`name-${side}`} defaultValue="Pedro Duarte" className="col-span-3" />
+                <FieldLabel className="text-end">Name</FieldLabel>
+                <Input defaultValue="Pedro Duarte" className="col-span-3" />
               </Field>
               <Field className="grid grid-cols-4 items-center gap-4">
-                <FieldLabel htmlFor={`username-${side}`} className="text-end">
-                  Username
-                </FieldLabel>
-                <Input id={`username-${side}`} defaultValue="@peduarte" className="col-span-3" />
+                <FieldLabel className="text-end">Username</FieldLabel>
+                <Input defaultValue="@peduarte" className="col-span-3" />
               </Field>
             </SheetContent>
             <SheetFooter>

@@ -3,15 +3,13 @@ import { Checkbox } from "../components/checkbox";
 import { Field, FieldLabel } from "../components/field";
 import { shake } from "../lib/shake";
 import { StatefulButton } from "../components/stateful-button";
-import { useId, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function CheckboxForm() {
   const [submitted, setSubmitted] = useState<string>();
   const [termsInvalid, setTermsInvalid] = useState(false);
   const termsInputRef = useRef<HTMLInputElement>(null);
   const termsRowRef = useRef<HTMLDivElement>(null);
-  const termsId = useId();
-  const newsletterId = useId();
 
   return (
     <form
@@ -30,7 +28,6 @@ export default function CheckboxForm() {
     >
       <Field ref={termsRowRef} orientation="horizontal" invalid={termsInvalid}>
         <Checkbox
-          id={termsId}
           name="terms"
           required
           inputRef={termsInputRef}
@@ -40,11 +37,11 @@ export default function CheckboxForm() {
             }
           }}
         />
-        <FieldLabel htmlFor={termsId}>Accept terms and conditions</FieldLabel>
+        <FieldLabel>Accept terms and conditions</FieldLabel>
       </Field>
       <Field orientation="horizontal">
-        <Checkbox id={newsletterId} name="newsletter" value="weekly" uncheckedValue="none" />
-        <FieldLabel htmlFor={newsletterId}>Weekly newsletter</FieldLabel>
+        <Checkbox name="newsletter" value="weekly" uncheckedValue="none" />
+        <FieldLabel>Weekly newsletter</FieldLabel>
       </Field>
       <StatefulButton className="self-start" type="submit">
         Submit

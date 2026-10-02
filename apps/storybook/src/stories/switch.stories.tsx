@@ -57,7 +57,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport default function SwitchDemo() {\n  return (\n    <Field orientation="horizontal">\n      <Switch id="airplane-mode" />\n      <FieldLabel htmlFor="airplane-mode">Airplane Mode</FieldLabel>\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport default function SwitchDemo() {\n  return (\n    <Field orientation="horizontal">\n      <Switch />\n      <FieldLabel>Airplane Mode</FieldLabel>\n    </Field>\n  );\n}\n',
       },
     },
   },
@@ -94,7 +94,7 @@ export const Description: Story = {
       description: { story: "Pair a switch with a label and explanatory text." },
 
       source: {
-        code: 'import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchDescription() {\n  return (\n    <Field orientation="horizontal" className="max-w-sm">\n      <FieldContent>\n        <FieldLabel htmlFor="switch-focus-mode">Share across devices</FieldLabel>\n        <FieldDescription>\n          Focus is shared across devices, and turns off when you leave the app.\n        </FieldDescription>\n      </FieldContent>\n      <Switch id="switch-focus-mode" />\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchDescription() {\n  return (\n    <Field orientation="horizontal" className="max-w-sm">\n      <FieldContent>\n        <FieldLabel>Share across devices</FieldLabel>\n        <FieldDescription>\n          Focus is shared across devices, and turns off when you leave the app.\n        </FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  );\n}\n',
       },
     },
   },
@@ -125,7 +125,7 @@ export const Invalid: Story = {
           "Add the `invalid` prop to the `Field` component; the `Switch` picks up `aria-invalid` automatically.",
       },
       source: {
-        code: 'import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchInvalid() {\n  return (\n    <Field orientation="horizontal" className="max-w-sm" invalid>\n      <FieldContent>\n        <FieldLabel htmlFor="switch-terms">Accept terms and conditions</FieldLabel>\n        <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n      </FieldContent>\n      <Switch id="switch-terms" />\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchInvalid() {\n  return (\n    <Field orientation="horizontal" className="max-w-sm" invalid>\n      <FieldContent>\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n        <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  );\n}\n',
       },
     },
   },
@@ -140,7 +140,7 @@ export const Size: Story = {
     docs: {
       description: { story: "Use the `size` prop to change the size of the switch." },
       source: {
-        code: 'import { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchSizes() {\n  return (\n    <FieldGroup className="w-full max-w-[10rem]">\n      <Field orientation="horizontal">\n        <Switch id="switch-size-sm" size="sm" />\n        <FieldLabel htmlFor="switch-size-sm">Small</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch id="switch-size-default" size="default" />\n        <FieldLabel htmlFor="switch-size-default">Default</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
+        code: 'import { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchSizes() {\n  return (\n    <FieldGroup className="w-full max-w-[10rem]">\n      <Field orientation="horizontal">\n        <Switch size="sm" />\n        <FieldLabel>Small</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch size="default" />\n        <FieldLabel>Default</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
       },
     },
   },
@@ -155,7 +155,7 @@ export const Icons: Story = {
           "Pass `startIcon` (shown while on), `endIcon` (shown while off) or `thumbIcon` (always shown). Icons scale in on the exposed side of the track.",
       },
       source: {
-        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\nimport { HugeiconsIcon } from "@hugeicons/react";\nimport CheckIcon from "@hugeicons/core-free-icons/CheckIcon";\nimport MoonIcon from "@hugeicons/core-free-icons/MoonIcon";\nimport Sun01Icon from "@hugeicons/core-free-icons/Sun01Icon";\nimport XIcon from "@hugeicons/core-free-icons/XIcon";\n\nexport default function SwitchIcons() {\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Switch\n          id="icons-track"\n          startIcon={<HugeiconsIcon icon={CheckIcon} />}\n          endIcon={<HugeiconsIcon icon={XIcon} />}\n          defaultChecked\n        />\n        <FieldLabel htmlFor="icons-track">Track icons</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch id="icons-thumb" thumbIcon={<HugeiconsIcon icon={Sun01Icon} />} />\n        <FieldLabel htmlFor="icons-thumb">Thumb icon</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch\n          id="icons-theme"\n          startIcon={<HugeiconsIcon icon={MoonIcon} />}\n          endIcon={<HugeiconsIcon icon={Sun01Icon} />}\n        />\n        <FieldLabel htmlFor="icons-theme">Dark mode</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\nimport { HugeiconsIcon } from "@hugeicons/react";\nimport CheckIcon from "@hugeicons/core-free-icons/CheckIcon";\nimport MoonIcon from "@hugeicons/core-free-icons/MoonIcon";\nimport Sun01Icon from "@hugeicons/core-free-icons/Sun01Icon";\nimport XIcon from "@hugeicons/core-free-icons/XIcon";\n\nexport default function SwitchIcons() {\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Switch\n          startIcon={<HugeiconsIcon icon={CheckIcon} />}\n          endIcon={<HugeiconsIcon icon={XIcon} />}\n          defaultChecked\n        />\n        <FieldLabel>Track icons</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch thumbIcon={<HugeiconsIcon icon={Sun01Icon} />} />\n        <FieldLabel>Thumb icon</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch\n          startIcon={<HugeiconsIcon icon={MoonIcon} />}\n          endIcon={<HugeiconsIcon icon={Sun01Icon} />}\n        />\n        <FieldLabel>Dark mode</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -167,7 +167,7 @@ export const Controlled: Story = {
     docs: {
       description: { story: "Drive the state with `checked` and `onCheckedChange`." },
       source: {
-        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\nimport { useState } from "react";\n\nexport default function SwitchControlled() {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Switch id="controlled-wifi" checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel htmlFor="controlled-wifi">Wi-Fi</FieldLabel>\n      </Field>\n      <p className="text-sm text-muted-foreground">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\nimport { useState } from "react";\n\nexport default function SwitchControlled() {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Switch checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Wi-Fi</FieldLabel>\n      </Field>\n      <p className="text-sm text-muted-foreground">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -181,7 +181,7 @@ export const ReadOnly: Story = {
         story: "`readOnly` keeps the switch focusable but prevents the state from changing.",
       },
       source: {
-        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport default function SwitchReadOnly() {\n  return (\n    <Field orientation="horizontal">\n      <Switch id="read-only-sync" readOnly defaultChecked />\n      <FieldLabel htmlFor="read-only-sync">Managed by your organization</FieldLabel>\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport default function SwitchReadOnly() {\n  return (\n    <Field orientation="horizontal">\n      <Switch readOnly defaultChecked />\n      <FieldLabel>Managed by your organization</FieldLabel>\n    </Field>\n  );\n}\n',
       },
     },
   },
@@ -196,7 +196,7 @@ export const Form: Story = {
           "Set `name` to submit the switch with a form. `value` and `uncheckedValue` choose what is sent for each state, and `required` blocks submission until the switch is on.",
       },
       source: {
-        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\nimport { Switch } from "@erbium/ui/components/switch";\nimport { useState } from "react";\n\nexport default function SwitchForm() {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className="flex w-72 flex-col gap-4"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <Field orientation="horizontal">\n        <Switch id="form-newsletter" name="newsletter" value="yes" uncheckedValue="no" />\n        <FieldLabel htmlFor="form-newsletter">Subscribe to the newsletter</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch id="form-terms" name="terms" required />\n        <FieldLabel htmlFor="form-terms">Accept the terms (required)</FieldLabel>\n      </Field>\n      <StatefulButton className="self-start" type="submit">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}\n    </form>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\nimport { Switch } from "@erbium/ui/components/switch";\nimport { useState } from "react";\n\nexport default function SwitchForm() {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className="flex w-72 flex-col gap-4"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <Field orientation="horizontal">\n        <Switch name="newsletter" value="yes" uncheckedValue="no" />\n        <FieldLabel>Subscribe to the newsletter</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Switch name="terms" required />\n        <FieldLabel>Accept the terms (required)</FieldLabel>\n      </Field>\n      <StatefulButton className="self-start" type="submit">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}\n    </form>\n  );\n}\n',
       },
     },
   },

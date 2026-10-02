@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/switch-read-only.tsx",
-      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { Switch } from \"../components/switch\";\n\nexport default function SwitchReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch id=\"read-only-sync\" readOnly defaultChecked />\n      <FieldLabel htmlFor=\"read-only-sync\">Managed by your organization</FieldLabel>\n    </Field>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { Switch } from \"../components/switch\";\n\nexport default function SwitchReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch readOnly defaultChecked />\n      <FieldLabel>Managed by your organization</FieldLabel>\n    </Field>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/switch-read-only.tsx"
     }

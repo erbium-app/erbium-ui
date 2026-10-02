@@ -97,7 +97,7 @@ export const Field: Story = {
           "Use `Field`, `FieldLabel`, and `FieldDescription` to create a textarea with a label and description.",
       },
       source: {
-        code: 'import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Textarea } from "@erbium/ui/components/textarea";\n\nexport function TextareaField() {\n  return (\n    <Field>\n      <FieldLabel htmlFor="textarea-message">Message</FieldLabel>\n      <FieldDescription>Enter your message below.</FieldDescription>\n      <Textarea id="textarea-message" placeholder="Type your message here." />\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Textarea } from "@erbium/ui/components/textarea";\n\nexport function TextareaField() {\n  return (\n    <Field>\n      <FieldLabel>Message</FieldLabel>\n      <FieldDescription>Enter your message below.</FieldDescription>\n      <Textarea placeholder="Type your message here." />\n    </Field>\n  );\n}\n',
       },
     },
   },

@@ -17,12 +17,12 @@ export default function SwitchForm() {
       }}
     >
       <Field orientation="horizontal">
-        <Switch id="form-newsletter" name="newsletter" value="yes" uncheckedValue="no" />
-        <FieldLabel htmlFor="form-newsletter">Subscribe to the newsletter</FieldLabel>
+        <Switch name="newsletter" value="yes" uncheckedValue="no" />
+        <FieldLabel>Subscribe to the newsletter</FieldLabel>
       </Field>
       <Field orientation="horizontal">
-        <Switch id="form-terms" name="terms" required />
-        <FieldLabel htmlFor="form-terms">Accept the terms (required)</FieldLabel>
+        <Switch name="terms" required />
+        <FieldLabel>Accept the terms (required)</FieldLabel>
       </Field>
       <StatefulButton className="self-start" type="submit">
         Submit

@@ -26,12 +26,12 @@ export default function CardDemo() {
         <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-6">
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" type="email" placeholder="m@example.com" required />
+              <FieldLabel>Email</FieldLabel>
+              <Input type="email" placeholder="m@example.com" required />
             </Field>
             <Field>
               <div className="flex items-center">
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldLabel>Password</FieldLabel>
                 <a
                   href="#"
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -39,7 +39,7 @@ export default function CardDemo() {
                   Forgot your password?
                 </a>
               </div>
-              <Input id="password" type="password" required />
+              <Input type="password" required />
             </Field>
           </div>
         </form>

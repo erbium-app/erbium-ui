@@ -7,9 +7,9 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/compone
 export function InputGroupInlineEnd() {
   return (
     <Field className="max-w-sm">
-      <FieldLabel htmlFor="inline-end-input">Input</FieldLabel>
+      <FieldLabel>Input</FieldLabel>
       <InputGroup>
-        <InputGroupInput id="inline-end-input" type="password" placeholder="Enter password" />
+        <InputGroupInput type="password" placeholder="Enter password" />
         <InputGroupAddon align="inline-end">
           <HugeiconsIcon icon={EyeOffIcon} />
         </InputGroupAddon>

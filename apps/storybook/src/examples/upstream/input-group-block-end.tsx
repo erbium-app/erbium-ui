@@ -12,9 +12,9 @@ export function InputGroupBlockEnd() {
   return (
     <FieldGroup className="max-w-sm">
       <Field>
-        <FieldLabel htmlFor="block-end-input">Input</FieldLabel>
+        <FieldLabel>Input</FieldLabel>
         <InputGroup className="h-auto">
-          <InputGroupInput id="block-end-input" placeholder="Enter amount" />
+          <InputGroupInput placeholder="Enter amount" />
           <InputGroupAddon align="block-end">
             <InputGroupText>USD</InputGroupText>
           </InputGroupAddon>
@@ -22,9 +22,9 @@ export function InputGroupBlockEnd() {
         <FieldDescription>Footer positioned below the input.</FieldDescription>
       </Field>
       <Field>
-        <FieldLabel htmlFor="block-end-textarea">Textarea</FieldLabel>
+        <FieldLabel>Textarea</FieldLabel>
         <InputGroup>
-          <InputGroupTextarea id="block-end-textarea" placeholder="Write a comment..." />
+          <InputGroupTextarea placeholder="Write a comment..." />
           <InputGroupAddon align="block-end">
             <InputGroupText>0/280</InputGroupText>
             <InputGroupButton variant="default" size="sm" className="ml-auto">
