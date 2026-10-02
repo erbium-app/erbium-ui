@@ -984,6 +984,7 @@
         "@fontsource-variable/geist",
         "@fontsource-variable/inter",
         "easing-gradients",
+        "shadcn",
         "shadow-plugin",
         "tailwindcss",
         "tw-animate-css"
@@ -1013,11 +1014,6 @@
           "path": "src/styles/globals.css",
           "type": "registry:file",
           "target": "~/src/styles/globals.css"
-        },
-        {
-          "path": "src/styles/scroll.css",
-          "type": "registry:file",
-          "target": "~/src/styles/scroll.css"
         },
         {
           "path": "src/styles/surfaces.css",

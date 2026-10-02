@@ -124,6 +124,7 @@ items.push({
     "@fontsource-variable/geist",
     "@fontsource-variable/inter",
     "easing-gradients",
+    "shadcn",
     "shadow-plugin",
     "tailwindcss",
     "tw-animate-css",

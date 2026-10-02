@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "shadcn/tailwind.css";
 @source "../";
 @import "shadow-plugin";
 @import "tw-animate-css";
@@ -7,7 +8,6 @@
 @import "./surfaces.css";
 @import "./chart.css";
 @import "./variants.css";
-@import "./scroll.css";
 @import "./effects.css";
 @import "./typeset.css";
 @import "./base.css";
