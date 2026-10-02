@@ -13,26 +13,26 @@ import { Spinner } from "../components/spinner";
 export default function InputGroupSpinner() {
   return (
     <div className="grid w-full max-w-sm gap-4">
-      <InputGroup data-disabled>
+      <InputGroup>
         <InputGroupInput placeholder="Searching..." disabled />
         <InputGroupAddon align="inline-end">
           <Spinner />
         </InputGroupAddon>
       </InputGroup>
-      <InputGroup data-disabled>
+      <InputGroup>
         <InputGroupInput placeholder="Processing..." disabled />
         <InputGroupAddon>
           <Spinner />
         </InputGroupAddon>
       </InputGroup>
-      <InputGroup data-disabled>
+      <InputGroup>
         <InputGroupInput placeholder="Saving changes..." disabled />
         <InputGroupAddon align="inline-end">
           <InputGroupText>Saving...</InputGroupText>
           <Spinner />
         </InputGroupAddon>
       </InputGroup>
-      <InputGroup data-disabled>
+      <InputGroup>
         <InputGroupInput placeholder="Refreshing data..." disabled />
         <InputGroupAddon>
           <HugeiconsIcon icon={LoaderIcon} className="animate-spin" />
