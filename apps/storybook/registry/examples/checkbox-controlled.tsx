@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Checkbox } from "../components/checkbox";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { useState } from "react";
 
 export default function CheckboxControlled() {
@@ -8,10 +8,10 @@ export default function CheckboxControlled() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2">
+      <Field orientation="horizontal">
         <Checkbox id="controlled-marketing" checked={checked} onCheckedChange={setChecked} />
-        <Label htmlFor="controlled-marketing">Receive marketing emails</Label>
-      </div>
+        <FieldLabel htmlFor="controlled-marketing">Receive marketing emails</FieldLabel>
+      </Field>
       <p className="text-sm text-muted-foreground">
         checked: <code>{String(checked)}</code>
       </p>

@@ -17,7 +17,7 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@erbium/ui/components/item";
-import { Label } from "@erbium/ui/components/label";
+import { FieldLabel } from "@erbium/ui/components/field";
 
 const projects = [
   { id: "gateway", name: "Cloud gateway", icon: CloudIcon, color: "text-orange-500", issues: 30 },
@@ -104,9 +104,9 @@ export default function ItemJoinedSelection() {
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>
-                  <Label htmlFor={checkboxId} className="cursor-pointer">
+                  <FieldLabel htmlFor={checkboxId} className="cursor-pointer">
                     {project.name}
-                  </Label>
+                  </FieldLabel>
                 </ItemTitle>
               </ItemContent>
               <ItemActions>

@@ -10,7 +10,7 @@ import {
   ItemTitle,
 } from "@erbium/ui/components/item";
 import { Kbd } from "@erbium/ui/components/kbd";
-import { Label } from "@erbium/ui/components/label";
+import { FieldLabel } from "@erbium/ui/components/field";
 import {
   Select,
   SelectContent,
@@ -90,7 +90,9 @@ export default function ItemSettingsPanel() {
         <Item role="listitem">
           <ItemContent>
             <ItemTitle>
-              <Label htmlFor="convert-emoticons">Convert text emoticons into emojis</Label>
+              <FieldLabel htmlFor="convert-emoticons">
+                Convert text emoticons into emojis
+              </FieldLabel>
             </ItemTitle>
             <ItemDescription>Strings like :) will be converted to 🙂</ItemDescription>
           </ItemContent>
@@ -179,7 +181,7 @@ function ItemGroupSection({ id, title, description }: (typeof interfaceSwitches)
       <Item role="listitem">
         <ItemContent>
           <ItemTitle>
-            <Label htmlFor={id}>{title}</Label>
+            <FieldLabel htmlFor={id}>{title}</FieldLabel>
           </ItemTitle>
           <ItemDescription>{description}</ItemDescription>
         </ItemContent>

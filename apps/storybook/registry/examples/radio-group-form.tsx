@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
 import { StatefulButton } from "../components/stateful-button";
 import { useState } from "react";
@@ -17,14 +17,14 @@ export default function RadioGroupForm() {
       }}
     >
       <RadioGroup name="shipping" required>
-        <div className="flex items-center gap-3">
+        <Field orientation="horizontal">
           <RadioGroupItem value="standard" id="form-standard" />
-          <Label htmlFor="form-standard">Standard (5–7 days)</Label>
-        </div>
-        <div className="flex items-center gap-3">
+          <FieldLabel htmlFor="form-standard">Standard (5–7 days)</FieldLabel>
+        </Field>
+        <Field orientation="horizontal">
           <RadioGroupItem value="express" id="form-express" />
-          <Label htmlFor="form-express">Express (1–2 days)</Label>
-        </div>
+          <FieldLabel htmlFor="form-express">Express (1–2 days)</FieldLabel>
+        </Field>
       </RadioGroup>
       <StatefulButton className="self-start" type="submit">
         Submit

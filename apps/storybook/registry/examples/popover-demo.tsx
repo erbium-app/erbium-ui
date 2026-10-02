@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Button } from "../components/button";
 import { Input } from "../components/input";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { Popover, PopoverContent, PopoverTrigger } from "../components/popover";
 
 export default function PopoverDemo() {
@@ -15,22 +15,22 @@ export default function PopoverDemo() {
             <p className="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
           </div>
           <div className="grid gap-2">
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Width</Label>
+            <Field className="grid grid-cols-3 items-center gap-4">
+              <FieldLabel htmlFor="width">Width</FieldLabel>
               <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxWidth">Max. width</Label>
+            </Field>
+            <Field className="grid grid-cols-3 items-center gap-4">
+              <FieldLabel htmlFor="maxWidth">Max. width</FieldLabel>
               <Input id="maxWidth" defaultValue="300px" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="height">Height</Label>
+            </Field>
+            <Field className="grid grid-cols-3 items-center gap-4">
+              <FieldLabel htmlFor="height">Height</FieldLabel>
               <Input id="height" defaultValue="25px" className="col-span-2 h-8" />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxHeight">Max. height</Label>
+            </Field>
+            <Field className="grid grid-cols-3 items-center gap-4">
+              <FieldLabel htmlFor="maxHeight">Max. height</FieldLabel>
               <Input id="maxHeight" defaultValue="none" className="col-span-2 h-8" />
-            </div>
+            </Field>
           </div>
         </div>
       </PopoverContent>

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Checkbox, CheckboxGroup } from "../components/checkbox";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { useState } from "react";
 
 const permissions = [
@@ -19,19 +19,19 @@ export default function CheckboxIndeterminate() {
       value={selected}
       onValueChange={setSelected}
     >
-      <div className="flex items-center gap-2">
+      <Field orientation="horizontal">
         <Checkbox id="permissions-all" parent />
-        <Label id="permissions-all-label" htmlFor="permissions-all">
+        <FieldLabel id="permissions-all-label" htmlFor="permissions-all">
           All permissions
-        </Label>
-      </div>
+        </FieldLabel>
+      </Field>
       {permissions.map((permission) => (
-        <div className="flex items-center gap-2 ps-6" key={permission.id}>
+        <Field orientation="horizontal" className="ps-6" key={permission.id}>
           <Checkbox id={`permissions-${permission.id}`} value={permission.id} />
-          <Label className="font-normal" htmlFor={`permissions-${permission.id}`}>
+          <FieldLabel className="font-normal" htmlFor={`permissions-${permission.id}`}>
             {permission.label}
-          </Label>
-        </div>
+          </FieldLabel>
+        </Field>
       ))}
     </CheckboxGroup>
   );

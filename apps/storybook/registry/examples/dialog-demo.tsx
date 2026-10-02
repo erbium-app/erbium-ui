@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "../components/dialog";
 import { Input } from "../components/input";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { StatefulButton } from "../components/stateful-button";
 
 export default function DialogDemo() {
@@ -30,14 +30,14 @@ export default function DialogDemo() {
           </DialogDescription>
         </DialogHeader>
         <DialogContent className="grid content-start gap-4">
-          <div className="grid gap-3">
-            <Label htmlFor="name-1">Name</Label>
+          <Field>
+            <FieldLabel htmlFor="name-1">Name</FieldLabel>
             <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="username-1">Username</Label>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="username-1">Username</FieldLabel>
             <Input id="username-1" name="username" defaultValue="@peduarte" />
-          </div>
+          </Field>
         </DialogContent>
         <DialogFooter>
           <DialogClose render={<Button variant="outline">Cancel</Button>} />

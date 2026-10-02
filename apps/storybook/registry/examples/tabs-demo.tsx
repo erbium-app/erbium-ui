@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "../components/card";
 import { Input } from "../components/input";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/tabs";
 
 export default function TabsDemo() {
@@ -29,14 +29,14 @@ export default function TabsDemo() {
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-name">Name</Label>
+              <Field>
+                <FieldLabel htmlFor="tabs-demo-name">Name</FieldLabel>
                 <Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-username">Username</Label>
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="tabs-demo-username">Username</FieldLabel>
                 <Input id="tabs-demo-username" defaultValue="@peduarte" />
-              </div>
+              </Field>
             </CardContent>
             <CardFooter>
               <Button>Save changes</Button>
@@ -52,14 +52,14 @@ export default function TabsDemo() {
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-current">Current password</Label>
+              <Field>
+                <FieldLabel htmlFor="tabs-demo-current">Current password</FieldLabel>
                 <Input id="tabs-demo-current" type="password" />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="tabs-demo-new">New password</Label>
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="tabs-demo-new">New password</FieldLabel>
                 <Input id="tabs-demo-new" type="password" />
-              </div>
+              </Field>
             </CardContent>
             <CardFooter>
               <Button>Save password</Button>

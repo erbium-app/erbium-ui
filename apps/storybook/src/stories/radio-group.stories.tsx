@@ -3,13 +3,13 @@ import { RadioGroupChoiceCard } from "../examples/upstream/radio-group-choice-ca
 import { RadioGroupFieldset } from "../examples/upstream/radio-group-fieldset";
 import { RadioGroupDisabled } from "../examples/upstream/radio-group-disabled";
 import { RadioGroupInvalid } from "../examples/upstream/radio-group-invalid";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import Demo from "../examples/radio-group-demo";
 import ExampleRadioGroupControlled from "../examples/radio-group-controlled";
 import ExampleRadioGroupForm from "../examples/radio-group-form";
 import ExampleRadioGroupReadOnly from "../examples/radio-group-read-only";
-import { Label } from "@erbium/ui/components/label";
 
 const meta = {
   title: "UI/Radio Group",
@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.\n\n**Import:** `@erbium/ui/components/radio-group`  \n\n**shadcn/ui page:** [Radio Group](https://ui.shadcn.com/docs/components/base/radio-group)\n\n### Usage\n\n```tsx\nimport { Label } from "@erbium/ui/components/label"\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group"\n```\n\n```tsx\n<RadioGroup defaultValue="option-one">\n  <div className="flex items-center gap-3">\n    <RadioGroupItem value="option-one" id="option-one" />\n    <Label htmlFor="option-one">Option One</Label>\n  </div>\n  <div className="flex items-center gap-3">\n    <RadioGroupItem value="option-two" id="option-two" />\n    <Label htmlFor="option-two">Option Two</Label>\n  </div>\n</RadioGroup>\n```\n\n### Composition\n\nUse the following composition to build a `RadioGroup`:\n\n```text\nRadioGroup\n├── RadioGroupItem\n└── RadioGroupItem\n```',
+          'A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.\n\n**Import:** `@erbium/ui/components/radio-group`  \n\n**shadcn/ui page:** [Radio Group](https://ui.shadcn.com/docs/components/base/radio-group)\n\n### Usage\n\n```tsx\nimport { Field, FieldLabel } from "@erbium/ui/components/field"\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group"\n```\n\n```tsx\n<RadioGroup defaultValue="option-one">\n  <Field orientation="horizontal">\n    <RadioGroupItem value="option-one" id="option-one" />\n    <FieldLabel htmlFor="option-one">Option One</FieldLabel>\n  </Field>\n  <Field orientation="horizontal">\n    <RadioGroupItem value="option-two" id="option-two" />\n    <FieldLabel htmlFor="option-two">Option Two</FieldLabel>\n  </Field>\n</RadioGroup>\n```\n\n### Composition\n\nUse the following composition to build a `RadioGroup`:\n\n```text\nRadioGroup\n├── RadioGroupItem\n└── RadioGroupItem\n```',
       },
     },
   },
@@ -45,10 +45,10 @@ export const Playground: StoryObj<typeof RadioGroup> = {
   render: (args) => (
     <RadioGroup key={String(args.defaultValue)} {...args}>
       {["one", "two", "three"].map((value) => (
-        <div className="flex items-center gap-3" key={value}>
+        <Field orientation="horizontal" key={value}>
           <RadioGroupItem value={value} id={`playground-${value}`} />
-          <Label htmlFor={`playground-${value}`}>Option {value}</Label>
-        </div>
+          <FieldLabel htmlFor={`playground-${value}`}>Option {value}</FieldLabel>
+        </Field>
       ))}
     </RadioGroup>
   ),
@@ -58,7 +58,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Label } from "@erbium/ui/components/label";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\n\nexport default function RadioGroupDemo() {\n  return (\n    <RadioGroup defaultValue="comfortable">\n      <div className="flex items-center gap-3">\n        <RadioGroupItem value="default" id="r1" />\n        <Label htmlFor="r1">Default</Label>\n      </div>\n      <div className="flex items-center gap-3">\n        <RadioGroupItem value="comfortable" id="r2" />\n        <Label htmlFor="r2">Comfortable</Label>\n      </div>\n      <div className="flex items-center gap-3">\n        <RadioGroupItem value="compact" id="r3" />\n        <Label htmlFor="r3">Compact</Label>\n      </div>\n    </RadioGroup>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\n\nexport default function RadioGroupDemo() {\n  return (\n    <RadioGroup defaultValue="comfortable">\n      <Field orientation="horizontal">\n        <RadioGroupItem value="default" id="r1" />\n        <FieldLabel htmlFor="r1">Default</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <RadioGroupItem value="comfortable" id="r2" />\n        <FieldLabel htmlFor="r2">Comfortable</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <RadioGroupItem value="compact" id="r3" />\n        <FieldLabel htmlFor="r3">Compact</FieldLabel>\n      </Field>\n    </RadioGroup>\n  );\n}\n',
       },
     },
   },
@@ -76,7 +76,7 @@ export const Controlled: Story = {
         story: "Pair `value` with `onValueChange` to own the selection in React state.",
       },
       source: {
-        code: 'import { Label } from "@erbium/ui/components/label";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\nimport { useState } from "react";\n\nconst options = [\n  { value: "light", label: "Light" },\n  { value: "dark", label: "Dark" },\n  { value: "system", label: "System" },\n];\n\nexport default function RadioGroupControlled() {\n  const [value, setValue] = useState("system");\n\n  return (\n    <div className="flex flex-col gap-4">\n      <RadioGroup value={value} onValueChange={setValue}>\n        {options.map((option) => (\n          <div className="flex items-center gap-3" key={option.value}>\n            <RadioGroupItem value={option.value} id={`controlled-${option.value}`} />\n            <Label htmlFor={`controlled-${option.value}`}>{option.label}</Label>\n          </div>\n        ))}\n      </RadioGroup>\n      <p className="text-sm text-muted-foreground">\n        value: <code>{value}</code>\n      </p>\n    </div>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\nimport { useState } from "react";\n\nconst options = [\n  { value: "light", label: "Light" },\n  { value: "dark", label: "Dark" },\n  { value: "system", label: "System" },\n];\n\nexport default function RadioGroupControlled() {\n  const [value, setValue] = useState("system");\n\n  return (\n    <div className="flex flex-col gap-4">\n      <RadioGroup value={value} onValueChange={setValue}>\n        {options.map((option) => (\n          <Field orientation="horizontal" key={option.value}>\n            <RadioGroupItem value={option.value} id={`controlled-${option.value}`} />\n            <FieldLabel htmlFor={`controlled-${option.value}`}>{option.label}</FieldLabel>\n          </Field>\n        ))}\n      </RadioGroup>\n      <p className="text-sm text-muted-foreground">\n        value: <code>{value}</code>\n      </p>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -91,7 +91,7 @@ export const ReadOnly: Story = {
           "`readOnly` keeps the group focusable and announced (`aria-readonly`) while blocking changes.",
       },
       source: {
-        code: 'import { Label } from "@erbium/ui/components/label";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <RadioGroup readOnly defaultValue="pro">\n      <div className="flex items-center gap-3">\n        <RadioGroupItem value="free" id="read-only-free" />\n        <Label htmlFor="read-only-free">Free</Label>\n      </div>\n      <div className="flex items-center gap-3">\n        <RadioGroupItem value="pro" id="read-only-pro" />\n        <Label htmlFor="read-only-pro">Pro (current plan)</Label>\n      </div>\n    </RadioGroup>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <RadioGroup readOnly defaultValue="pro">\n      <Field orientation="horizontal">\n        <RadioGroupItem value="free" id="read-only-free" />\n        <FieldLabel htmlFor="read-only-free">Free</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <RadioGroupItem value="pro" id="read-only-pro" />\n        <FieldLabel htmlFor="read-only-pro">Pro (current plan)</FieldLabel>\n      </Field>\n    </RadioGroup>\n  );\n}\n',
       },
     },
   },
@@ -106,7 +106,7 @@ export const Form: Story = {
           "`name` submits the selected `value` with the form; `required` blocks submission until an item is chosen.",
       },
       source: {
-        code: 'import { Label } from "@erbium/ui/components/label";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\nimport { useState } from "react";\n\nexport default function RadioGroupForm() {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className="flex w-72 flex-col gap-4"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <RadioGroup name="shipping" required>\n        <div className="flex items-center gap-3">\n          <RadioGroupItem value="standard" id="form-standard" />\n          <Label htmlFor="form-standard">Standard (5\u20137 days)</Label>\n        </div>\n        <div className="flex items-center gap-3">\n          <RadioGroupItem value="express" id="form-express" />\n          <Label htmlFor="form-express">Express (1\u20132 days)</Label>\n        </div>\n      </RadioGroup>\n      <StatefulButton className="self-start" type="submit">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}\n    </form>\n  );\n}\n',
+        code: 'import { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\nimport { useState } from "react";\n\nexport default function RadioGroupForm() {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className="flex w-72 flex-col gap-4"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <RadioGroup name="shipping" required>\n        <Field orientation="horizontal">\n          <RadioGroupItem value="standard" id="form-standard" />\n          <FieldLabel htmlFor="form-standard">Standard (5–7 days)</FieldLabel>\n        </Field>\n        <Field orientation="horizontal">\n          <RadioGroupItem value="express" id="form-express" />\n          <FieldLabel htmlFor="form-express">Express (1–2 days)</FieldLabel>\n        </Field>\n      </RadioGroup>\n      <StatefulButton className="self-start" type="submit">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}\n    </form>\n  );\n}\n',
       },
     },
   },

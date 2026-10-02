@@ -3,11 +3,11 @@
   "name": "radio-group-read-only",
   "title": "Radio Group Read Only",
   "description": "Erbium radio group read only example.",
-  "registryDependencies": ["@erbium/label", "@erbium/radio-group"],
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group"],
   "files": [
     {
       "path": "registry/examples/radio-group-read-only.tsx",
-      "content": "// @ts-nocheck\nimport { Label } from \"../components/label\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <RadioGroup readOnly defaultValue=\"pro\">\n      <div className=\"flex items-center gap-3\">\n        <RadioGroupItem value=\"free\" id=\"read-only-free\" />\n        <Label htmlFor=\"read-only-free\">Free</Label>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <RadioGroupItem value=\"pro\" id=\"read-only-pro\" />\n        <Label htmlFor=\"read-only-pro\">Pro (current plan)</Label>\n      </div>\n    </RadioGroup>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <RadioGroup readOnly defaultValue=\"pro\">\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"free\" id=\"read-only-free\" />\n        <FieldLabel htmlFor=\"read-only-free\">Free</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"pro\" id=\"read-only-pro\" />\n        <FieldLabel htmlFor=\"read-only-pro\">Pro (current plan)</FieldLabel>\n      </Field>\n    </RadioGroup>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/radio-group-read-only.tsx"
     }

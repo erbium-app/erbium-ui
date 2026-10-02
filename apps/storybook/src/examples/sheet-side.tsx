@@ -1,6 +1,6 @@
 import { Button } from "@erbium/ui/components/button";
 import { Input } from "@erbium/ui/components/input";
-import { Label } from "@erbium/ui/components/label";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import {
   Sheet,
   SheetClose,
@@ -31,18 +31,18 @@ export default function SheetSide() {
               </SheetDescription>
             </SheetHeader>
             <SheetContent className="grid content-start gap-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor={`name-${side}`} className="text-end">
+              <Field className="grid grid-cols-4 items-center gap-4">
+                <FieldLabel htmlFor={`name-${side}`} className="text-end">
                   Name
-                </Label>
+                </FieldLabel>
                 <Input id={`name-${side}`} defaultValue="Pedro Duarte" className="col-span-3" />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor={`username-${side}`} className="text-end">
+              </Field>
+              <Field className="grid grid-cols-4 items-center gap-4">
+                <FieldLabel htmlFor={`username-${side}`} className="text-end">
                   Username
-                </Label>
+                </FieldLabel>
                 <Input id={`username-${side}`} defaultValue="@peduarte" className="col-span-3" />
-              </div>
+              </Field>
             </SheetContent>
             <SheetFooter>
               <SheetClose render={<Button>Save changes</Button>} />

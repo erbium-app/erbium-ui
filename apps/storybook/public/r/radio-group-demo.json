@@ -3,11 +3,11 @@
   "name": "radio-group-demo",
   "title": "Radio Group Demo",
   "description": "Erbium radio group demo example.",
-  "registryDependencies": ["@erbium/label", "@erbium/radio-group"],
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group"],
   "files": [
     {
       "path": "registry/examples/radio-group-demo.tsx",
-      "content": "// @ts-nocheck\nimport { Label } from \"../components/label\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\n\nexport default function RadioGroupDemo() {\n  return (\n    <RadioGroup defaultValue=\"comfortable\">\n      <div className=\"flex items-center gap-3\">\n        <RadioGroupItem value=\"default\" id=\"r1\" />\n        <Label htmlFor=\"r1\">Default</Label>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <RadioGroupItem value=\"comfortable\" id=\"r2\" />\n        <Label htmlFor=\"r2\">Comfortable</Label>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <RadioGroupItem value=\"compact\" id=\"r3\" />\n        <Label htmlFor=\"r3\">Compact</Label>\n      </div>\n    </RadioGroup>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\n\nexport default function RadioGroupDemo() {\n  return (\n    <RadioGroup defaultValue=\"comfortable\">\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"default\" id=\"r1\" />\n        <FieldLabel htmlFor=\"r1\">Default</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"comfortable\" id=\"r2\" />\n        <FieldLabel htmlFor=\"r2\">Comfortable</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"compact\" id=\"r3\" />\n        <FieldLabel htmlFor=\"r3\">Compact</FieldLabel>\n      </Field>\n    </RadioGroup>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/radio-group-demo.tsx"
     }

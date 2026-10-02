@@ -102,7 +102,7 @@ export const Controlled: Story = {
       description: { story: "Control a slider value with React state." },
 
       source: {
-        code: 'import * as React from "react";\n\nimport { Label } from "@erbium/ui/components/label";\nimport { Slider } from "@erbium/ui/components/slider";\n\nexport function SliderControlled() {\n  const [value, setValue] = React.useState([0.3, 0.7]);\n\n  return (\n    <div className="mx-auto grid w-full max-w-xs gap-3">\n      <div className="flex items-center justify-between gap-2">\n        <Label htmlFor="slider-demo-temperature">Temperature</Label>\n        <span className="text-sm text-muted-foreground">{value.join(", ")}</span>\n      </div>\n      <Slider\n        id="slider-demo-temperature"\n        value={value}\n        onValueChange={(value) => setValue(value as number[])}\n        min={0}\n        max={1}\n        step={0.1}\n      />\n    </div>\n  );\n}\n',
+        code: 'import * as React from "react";\n\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { Slider } from "@erbium/ui/components/slider";\n\nexport function SliderControlled() {\n  const [value, setValue] = React.useState([0.3, 0.7]);\n\n  return (\n    <Field className="mx-auto max-w-xs gap-3">\n      <div className="flex items-center justify-between gap-2">\n        <FieldLabel>Temperature</FieldLabel>\n        <span className="text-sm text-muted-foreground">{value.join(", ")}</span>\n      </div>\n      <Slider\n        value={value}\n        onValueChange={(value) => setValue(value as number[])}\n        min={0}\n        max={1}\n        step={0.1}\n      />\n    </Field>\n  );\n}\n',
       },
     },
   },

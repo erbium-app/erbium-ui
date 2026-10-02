@@ -1,22 +1,22 @@
 // @ts-nocheck
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
 
 export default function RadioGroupDemo() {
   return (
     <RadioGroup defaultValue="comfortable">
-      <div className="flex items-center gap-3">
+      <Field orientation="horizontal">
         <RadioGroupItem value="default" id="r1" />
-        <Label htmlFor="r1">Default</Label>
-      </div>
-      <div className="flex items-center gap-3">
+        <FieldLabel htmlFor="r1">Default</FieldLabel>
+      </Field>
+      <Field orientation="horizontal">
         <RadioGroupItem value="comfortable" id="r2" />
-        <Label htmlFor="r2">Comfortable</Label>
-      </div>
-      <div className="flex items-center gap-3">
+        <FieldLabel htmlFor="r2">Comfortable</FieldLabel>
+      </Field>
+      <Field orientation="horizontal">
         <RadioGroupItem value="compact" id="r3" />
-        <Label htmlFor="r3">Compact</Label>
-      </div>
+        <FieldLabel htmlFor="r3">Compact</FieldLabel>
+      </Field>
     </RadioGroup>
   );
 }

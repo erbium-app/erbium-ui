@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { Switch } from "../components/switch";
 
 export default function SwitchReadOnly() {
   return (
-    <div className="flex items-center gap-3">
+    <Field orientation="horizontal">
       <Switch id="read-only-sync" readOnly defaultChecked />
-      <Label htmlFor="read-only-sync">Managed by your organization</Label>
-    </div>
+      <FieldLabel htmlFor="read-only-sync">Managed by your organization</FieldLabel>
+    </Field>
   );
 }

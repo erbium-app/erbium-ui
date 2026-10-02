@@ -1,40 +1,38 @@
 // @ts-nocheck
 import { Checkbox } from "../components/checkbox";
-import { Label } from "../components/label";
+import { Field, FieldContent, FieldDescription, FieldLabel } from "../components/field";
 
 export default function CheckboxDemo() {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center gap-3">
+      <Field orientation="horizontal">
         <Checkbox id="terms" />
-        <Label htmlFor="terms">Accept terms and conditions</Label>
-      </div>
-      <div className="flex items-start gap-3">
+        <FieldLabel htmlFor="terms">Accept terms and conditions</FieldLabel>
+      </Field>
+      <Field orientation="horizontal" className="items-start">
         <Checkbox id="terms-2" defaultChecked />
-        <div className="grid gap-2">
-          <Label htmlFor="terms-2">Accept terms and conditions</Label>
-          <p className="text-sm text-muted-foreground">
+        <FieldContent>
+          <FieldLabel htmlFor="terms-2">Accept terms and conditions</FieldLabel>
+          <FieldDescription>
             By clicking this checkbox, you agree to the terms and conditions.
-          </p>
-        </div>
-      </div>
-      <div className="flex items-start gap-3">
-        <Checkbox id="toggle" disabled />
-        <Label htmlFor="toggle">Enable notifications</Label>
-      </div>
-      <Label className="flex items-start gap-3 rounded-lg border p-3 hover:bg-accent/50 has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-accent">
-        <Checkbox
-          id="toggle-2"
-          defaultChecked
-          className="data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground"
-        />
-        <div className="grid gap-1.5 font-normal">
-          <p className="text-sm leading-none font-medium">Enable notifications</p>
-          <p className="text-sm text-muted-foreground">
-            You can enable or disable notifications at any time.
-          </p>
-        </div>
-      </Label>
+          </FieldDescription>
+        </FieldContent>
+      </Field>
+      <Field orientation="horizontal" disabled>
+        <Checkbox id="toggle" />
+        <FieldLabel htmlFor="toggle">Enable notifications</FieldLabel>
+      </Field>
+      <FieldLabel htmlFor="toggle-2">
+        <Field orientation="horizontal" className="items-start">
+          <Checkbox id="toggle-2" defaultChecked />
+          <FieldContent>
+            <span className="text-sm leading-none font-medium">Enable notifications</span>
+            <FieldDescription>
+              You can enable or disable notifications at any time.
+            </FieldDescription>
+          </FieldContent>
+        </Field>
+      </FieldLabel>
     </div>
   );
 }

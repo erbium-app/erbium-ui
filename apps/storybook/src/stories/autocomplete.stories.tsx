@@ -2,6 +2,7 @@ import { useEffect, useId, useState, type ReactNode } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -18,7 +19,6 @@ import {
   AutocompleteStatus,
   useAutocompleteFilter,
 } from "@erbium/ui/components/autocomplete";
-import { Label } from "@erbium/ui/components/label";
 import { Spinner } from "@erbium/ui/components/spinner";
 
 const items = [
@@ -79,10 +79,10 @@ function LabeledAutocomplete() {
   const id = useId();
   return (
     <Autocomplete items={items}>
-      <div className="flex w-64 flex-col items-start gap-2">
-        <Label htmlFor={id}>Fruits</Label>
+      <Field className="w-64 items-start">
+        <FieldLabel htmlFor={id}>Fruits</FieldLabel>
         <AutocompleteInput id={id} aria-label="Search fruits" placeholder="Search fruits…" />
-      </div>
+      </Field>
       <AutocompletePopup>
         <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
         <AutocompleteList>
@@ -255,9 +255,11 @@ function FormAutocomplete() {
         setSubmitted(true);
       }}
     >
-      <Label htmlFor="favorite-fruit">Favorite fruit</Label>
       <Autocomplete items={items} required>
-        <AutocompleteInput id="favorite-fruit" name="fruit" placeholder="Choose a fruit…" />
+        <Field>
+          <FieldLabel htmlFor="favorite-fruit">Favorite fruit</FieldLabel>
+          <AutocompleteInput id="favorite-fruit" name="fruit" placeholder="Choose a fruit…" />
+        </Field>
         <AutocompletePopup>
           <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
           <AutocompleteList>

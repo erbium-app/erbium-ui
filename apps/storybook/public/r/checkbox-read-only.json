@@ -3,11 +3,11 @@
   "name": "checkbox-read-only",
   "title": "Checkbox Read Only",
   "description": "Erbium checkbox read only example.",
-  "registryDependencies": ["@erbium/checkbox", "@erbium/label"],
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field"],
   "files": [
     {
       "path": "registry/examples/checkbox-read-only.tsx",
-      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Label } from \"../components/label\";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      <Checkbox id=\"read-only-plan\" readOnly defaultChecked />\n      <Label htmlFor=\"read-only-plan\">Included in your plan</Label>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Field, FieldLabel } from \"../components/field\";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Checkbox id=\"read-only-plan\" readOnly defaultChecked />\n      <FieldLabel htmlFor=\"read-only-plan\">Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/checkbox-read-only.tsx"
     }

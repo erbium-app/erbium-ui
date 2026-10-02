@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "../components/card";
 import { Input } from "../components/input";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { StatefulButton } from "../components/stateful-button";
 
 export default function CardDemo() {
@@ -26,13 +26,13 @@ export default function CardDemo() {
       <CardContent>
         <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-6">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+            <Field>
+              <FieldLabel htmlFor="email">Email</FieldLabel>
               <Input id="email" type="email" placeholder="m@example.com" required />
-            </div>
-            <div className="grid gap-2">
+            </Field>
+            <Field>
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <FieldLabel htmlFor="password">Password</FieldLabel>
                 <a
                   href="#"
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -41,7 +41,7 @@ export default function CardDemo() {
                 </a>
               </div>
               <Input id="password" type="password" required />
-            </div>
+            </Field>
           </div>
         </form>
       </CardContent>

@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@erbium/ui/components/dialog";
 import { Input } from "@erbium/ui/components/input";
-import { Label } from "@erbium/ui/components/label";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 export default function DialogCloseButton() {
   return (
@@ -23,12 +23,12 @@ export default function DialogCloseButton() {
           <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
         </DialogHeader>
         <DialogContent className="flex items-center gap-2">
-          <div className="grid flex-1 gap-2">
-            <Label htmlFor="link" className="sr-only">
+          <Field className="flex-1">
+            <FieldLabel htmlFor="link" className="sr-only">
               Link
-            </Label>
+            </FieldLabel>
             <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
-          </div>
+          </Field>
         </DialogContent>
         <DialogFooter className="sm:justify-start">
           <DialogClose

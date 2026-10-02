@@ -1,6 +1,6 @@
 import { Button } from "@erbium/ui/components/button";
 import { Input } from "@erbium/ui/components/input";
-import { Label } from "@erbium/ui/components/label";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import {
   Sheet,
   SheetClose,
@@ -25,14 +25,14 @@ export default function SheetDemo() {
           </SheetDescription>
         </SheetHeader>
         <SheetContent className="grid content-start gap-6">
-          <div className="grid gap-3">
-            <Label htmlFor="sheet-demo-name">Name</Label>
+          <Field>
+            <FieldLabel htmlFor="sheet-demo-name">Name</FieldLabel>
             <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
-          </div>
-          <div className="grid gap-3">
-            <Label htmlFor="sheet-demo-username">Username</Label>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="sheet-demo-username">Username</FieldLabel>
             <Input id="sheet-demo-username" defaultValue="@peduarte" />
-          </div>
+          </Field>
         </SheetContent>
         <SheetFooter>
           <SheetClose render={<Button variant="outline">Close</Button>} />

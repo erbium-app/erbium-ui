@@ -3,11 +3,11 @@
   "name": "checkbox-disabled",
   "title": "Checkbox Disabled",
   "description": "Erbium checkbox disabled example.",
-  "registryDependencies": ["@erbium/checkbox", "@erbium/label"],
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field"],
   "files": [
     {
       "path": "registry/examples/checkbox-disabled.tsx",
-      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Label } from \"../components/label\";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"flex items-center gap-2\">\n        <Checkbox id=\"disabled-unchecked\" disabled />\n        <Label htmlFor=\"disabled-unchecked\">Accept terms and conditions</Label>\n      </div>\n      <div className=\"flex items-center gap-2\">\n        <Checkbox id=\"disabled-checked\" disabled defaultChecked />\n        <Label htmlFor=\"disabled-checked\">Enable notifications</Label>\n      </div>\n      <div className=\"flex items-center gap-2\">\n        <Checkbox id=\"disabled-indeterminate\" disabled indeterminate />\n        <Label htmlFor=\"disabled-indeterminate\">Sync some folders</Label>\n      </div>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Checkbox } from \"../components/checkbox\";\nimport { Field, FieldLabel } from \"../components/field\";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"disabled-unchecked\" disabled />\n        <FieldLabel htmlFor=\"disabled-unchecked\">Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"disabled-checked\" disabled defaultChecked />\n        <FieldLabel htmlFor=\"disabled-checked\">Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"disabled-indeterminate\" disabled indeterminate />\n        <FieldLabel htmlFor=\"disabled-indeterminate\">Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/checkbox-disabled.tsx"
     }

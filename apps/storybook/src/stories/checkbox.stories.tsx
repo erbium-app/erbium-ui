@@ -12,9 +12,9 @@ import ExampleCheckboxDisabled from "../examples/checkbox-disabled";
 import ExampleCheckboxForm from "../examples/checkbox-form";
 import ExampleCheckboxIndeterminate from "../examples/checkbox-indeterminate";
 import ExampleCheckboxReadOnly from "../examples/checkbox-read-only";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import type { Meta, StoryObj } from "@storybook/tanstack-react";
 import { Checkbox } from "@erbium/ui/components/checkbox";
-import { Label } from "@erbium/ui/components/label";
 import Demo from "../examples/checkbox-demo";
 
 const meta = {
@@ -52,10 +52,10 @@ export const Playground: StoryObj<typeof Checkbox> = {
     onCheckedChange: { action: "onCheckedChange" },
   },
   render: (args) => (
-    <div className="flex items-center gap-2">
+    <Field orientation="horizontal">
       <Checkbox key={String(args.defaultChecked)} {...args} id="playground-checkbox" />
-      <Label htmlFor="playground-checkbox">Accept terms</Label>
-    </div>
+      <FieldLabel htmlFor="playground-checkbox">Accept terms</FieldLabel>
+    </Field>
   ),
 };
 
@@ -63,7 +63,7 @@ export const Overview: Story = {
   parameters: {
     docs: {
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Label } from "@erbium/ui/components/label";\n\nexport default function CheckboxDemo() {\n  return (\n    <div className="flex flex-col gap-6">\n      <div className="flex items-center gap-3">\n        <Checkbox id="terms" />\n        <Label htmlFor="terms">Accept terms and conditions</Label>\n      </div>\n      <div className="flex items-start gap-3">\n        <Checkbox id="terms-2" defaultChecked />\n        <div className="grid gap-2">\n          <Label htmlFor="terms-2">Accept terms and conditions</Label>\n          <p className="text-sm text-muted-foreground">\n            By clicking this checkbox, you agree to the terms and conditions.\n          </p>\n        </div>\n      </div>\n      <div className="flex items-start gap-3">\n        <Checkbox id="toggle" disabled />\n        <Label htmlFor="toggle">Enable notifications</Label>\n      </div>\n      <Label className="flex items-start gap-3 rounded-lg border p-3 hover:bg-accent/50 has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-accent">\n        <Checkbox\n          id="toggle-2"\n          defaultChecked\n          className="data-checked:border-primary data-checked:bg-primary data-checked:text-primary-foreground"\n        />\n        <div className="grid gap-1.5 font-normal">\n          <p className="text-sm leading-none font-medium">Enable notifications</p>\n          <p className="text-sm text-muted-foreground">\n            You can enable or disable notifications at any time.\n          </p>\n        </div>\n      </Label>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxDemo() {\n  return (\n    <div className="flex flex-col gap-6">\n      <Field orientation="horizontal">\n        <Checkbox id="terms" />\n        <FieldLabel htmlFor="terms">Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation="horizontal" className="items-start">\n        <Checkbox id="terms-2" defaultChecked />\n        <FieldContent>\n          <FieldLabel htmlFor="terms-2">Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n      <Field orientation="horizontal" disabled>\n        <Checkbox id="toggle" />\n        <FieldLabel htmlFor="toggle">Enable notifications</FieldLabel>\n      </Field>\n      <FieldLabel htmlFor="toggle-2">\n        <Field orientation="horizontal" className="items-start">\n          <Checkbox id="toggle-2" defaultChecked />\n          <FieldContent>\n            <span className="text-sm leading-none font-medium">Enable notifications</span>\n            <FieldDescription>\n              You can enable or disable notifications at any time.\n            </FieldDescription>\n          </FieldContent>\n        </Field>\n      </FieldLabel>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -94,7 +94,7 @@ export const Controlled: Story = {
           "Pass `checked` and `onCheckedChange` to own the state. The handler receives `(checked, eventDetails)`; call `eventDetails.cancel()` to reject a change in uncontrolled mode.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Label } from "@erbium/ui/components/label";\nimport { useState } from "react";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className="flex flex-col gap-4">\n      <div className="flex items-center gap-2">\n        <Checkbox id="controlled-marketing" checked={checked} onCheckedChange={setChecked} />\n        <Label htmlFor="controlled-marketing">Receive marketing emails</Label>\n      </div>\n      <p className="text-sm text-muted-foreground">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\nimport { useState } from "react";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Checkbox id="controlled-marketing" checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel htmlFor="controlled-marketing">Receive marketing emails</FieldLabel>\n      </Field>\n      <p className="text-sm text-muted-foreground">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -124,7 +124,7 @@ export const ReadOnly: Story = {
           "Use `readOnly` to show a value the user cannot change. It stays focusable and announced, unlike `disabled`, and exposes `data-readonly`.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Label } from "@erbium/ui/components/label";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <div className="flex items-center gap-2">\n      <Checkbox id="read-only-plan" readOnly defaultChecked />\n      <Label htmlFor="read-only-plan">Included in your plan</Label>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation="horizontal">\n      <Checkbox id="read-only-plan" readOnly defaultChecked />\n      <FieldLabel htmlFor="read-only-plan">Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n',
       },
     },
   },
@@ -151,11 +151,11 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          "Use the `disabled` prop to prevent interaction. The checkbox and a sibling `Label` dim through `data-disabled`; inside a `<Field>`, add `disabled` to the field for disabled styles.",
+          "Use the `disabled` prop to prevent interaction. Inside a `<Field>`, add `disabled` to the field and the checkbox and its `FieldLabel` dim together through `data-disabled`.",
       },
 
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Label } from "@erbium/ui/components/label";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className="flex flex-col gap-4">\n      <div className="flex items-center gap-2">\n        <Checkbox id="disabled-unchecked" disabled />\n        <Label htmlFor="disabled-unchecked">Accept terms and conditions</Label>\n      </div>\n      <div className="flex items-center gap-2">\n        <Checkbox id="disabled-checked" disabled defaultChecked />\n        <Label htmlFor="disabled-checked">Enable notifications</Label>\n      </div>\n      <div className="flex items-center gap-2">\n        <Checkbox id="disabled-indeterminate" disabled indeterminate />\n        <Label htmlFor="disabled-indeterminate">Sync some folders</Label>\n      </div>\n    </div>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className="flex flex-col gap-4">\n      <Field orientation="horizontal">\n        <Checkbox id="disabled-unchecked" disabled />\n        <FieldLabel htmlFor="disabled-unchecked">Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Checkbox id="disabled-checked" disabled defaultChecked />\n        <FieldLabel htmlFor="disabled-checked">Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation="horizontal">\n        <Checkbox id="disabled-indeterminate" disabled indeterminate />\n        <FieldLabel htmlFor="disabled-indeterminate">Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n',
       },
     },
   },

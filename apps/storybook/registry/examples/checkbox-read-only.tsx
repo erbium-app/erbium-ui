@@ -1,12 +1,12 @@
 // @ts-nocheck
 import { Checkbox } from "../components/checkbox";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 
 export default function CheckboxReadOnly() {
   return (
-    <div className="flex items-center gap-2">
+    <Field orientation="horizontal">
       <Checkbox id="read-only-plan" readOnly defaultChecked />
-      <Label htmlFor="read-only-plan">Included in your plan</Label>
-    </div>
+      <FieldLabel htmlFor="read-only-plan">Included in your plan</FieldLabel>
+    </Field>
   );
 }

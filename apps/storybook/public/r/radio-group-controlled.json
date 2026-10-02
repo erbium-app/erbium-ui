@@ -3,11 +3,11 @@
   "name": "radio-group-controlled",
   "title": "Radio Group Controlled",
   "description": "Erbium radio group controlled example.",
-  "registryDependencies": ["@erbium/label", "@erbium/radio-group"],
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group"],
   "files": [
     {
       "path": "registry/examples/radio-group-controlled.tsx",
-      "content": "// @ts-nocheck\nimport { Label } from \"../components/label\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\nimport { useState } from \"react\";\n\nconst options = [\n  { value: \"light\", label: \"Light\" },\n  { value: \"dark\", label: \"Dark\" },\n  { value: \"system\", label: \"System\" },\n];\n\nexport default function RadioGroupControlled() {\n  const [value, setValue] = useState(\"system\");\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <RadioGroup value={value} onValueChange={setValue}>\n        {options.map((option) => (\n          <div className=\"flex items-center gap-3\" key={option.value}>\n            <RadioGroupItem value={option.value} id={`controlled-${option.value}`} />\n            <Label htmlFor={`controlled-${option.value}`}>{option.label}</Label>\n          </div>\n        ))}\n      </RadioGroup>\n      <p className=\"text-sm text-muted-foreground\">\n        value: <code>{value}</code>\n      </p>\n    </div>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\nimport { useState } from \"react\";\n\nconst options = [\n  { value: \"light\", label: \"Light\" },\n  { value: \"dark\", label: \"Dark\" },\n  { value: \"system\", label: \"System\" },\n];\n\nexport default function RadioGroupControlled() {\n  const [value, setValue] = useState(\"system\");\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <RadioGroup value={value} onValueChange={setValue}>\n        {options.map((option) => (\n          <Field orientation=\"horizontal\" key={option.value}>\n            <RadioGroupItem value={option.value} id={`controlled-${option.value}`} />\n            <FieldLabel htmlFor={`controlled-${option.value}`}>{option.label}</FieldLabel>\n          </Field>\n        ))}\n      </RadioGroup>\n      <p className=\"text-sm text-muted-foreground\">\n        value: <code>{value}</code>\n      </p>\n    </div>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/radio-group-controlled.tsx"
     }

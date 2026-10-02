@@ -12,7 +12,7 @@ import {
   ItemSeparator,
   ItemTitle,
 } from "../components/item";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 
 const books = [
   {
@@ -75,15 +75,15 @@ export default function ItemBookLibrary() {
         </p>
       </div>
 
-      <div className="flex items-center gap-2 px-4">
+      <Field orientation="horizontal" className="px-4">
         <Checkbox
           id={`${idPrefix}-all`}
           checked={allSelected}
           indeterminate={someSelected}
           onCheckedChange={(checked) => setSelected(checked ? books.map((book) => book.id) : [])}
         />
-        <Label htmlFor={`${idPrefix}-all`}>Select all books</Label>
-      </div>
+        <FieldLabel htmlFor={`${idPrefix}-all`}>Select all books</FieldLabel>
+      </Field>
 
       <ItemGroup variant="panel">
         {books.map((book, index) => {
@@ -117,9 +117,9 @@ export default function ItemBookLibrary() {
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>
-                  <Label htmlFor={checkboxId} className="cursor-pointer">
+                  <FieldLabel htmlFor={checkboxId} className="cursor-pointer">
                     {book.title}
-                  </Label>
+                  </FieldLabel>
                 </ItemTitle>
                 <ItemDescription>
                   {book.author} · {book.year}

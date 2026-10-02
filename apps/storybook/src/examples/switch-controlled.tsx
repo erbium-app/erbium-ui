@@ -1,4 +1,4 @@
-import { Label } from "@erbium/ui/components/label";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { Switch } from "@erbium/ui/components/switch";
 import { useState } from "react";
 
@@ -7,10 +7,10 @@ export default function SwitchControlled() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-3">
+      <Field orientation="horizontal">
         <Switch id="controlled-wifi" checked={checked} onCheckedChange={setChecked} />
-        <Label htmlFor="controlled-wifi">Wi-Fi</Label>
-      </div>
+        <FieldLabel htmlFor="controlled-wifi">Wi-Fi</FieldLabel>
+      </Field>
       <p className="text-sm text-muted-foreground">
         checked: <code>{String(checked)}</code>
       </p>

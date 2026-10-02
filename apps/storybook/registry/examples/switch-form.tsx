@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { StatefulButton } from "../components/stateful-button";
 import { Switch } from "../components/switch";
 import { useState } from "react";
@@ -16,14 +16,14 @@ export default function SwitchForm() {
         setSubmitted(JSON.stringify(data, null, 2));
       }}
     >
-      <div className="flex items-center gap-3">
+      <Field orientation="horizontal">
         <Switch id="form-newsletter" name="newsletter" value="yes" uncheckedValue="no" />
-        <Label htmlFor="form-newsletter">Subscribe to the newsletter</Label>
-      </div>
-      <div className="flex items-center gap-3">
+        <FieldLabel htmlFor="form-newsletter">Subscribe to the newsletter</FieldLabel>
+      </Field>
+      <Field orientation="horizontal">
         <Switch id="form-terms" name="terms" required />
-        <Label htmlFor="form-terms">Accept the terms (required)</Label>
-      </div>
+        <FieldLabel htmlFor="form-terms">Accept the terms (required)</FieldLabel>
+      </Field>
       <StatefulButton className="self-start" type="submit">
         Submit
       </StatefulButton>

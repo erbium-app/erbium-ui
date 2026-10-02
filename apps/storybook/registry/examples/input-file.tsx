@@ -1,12 +1,12 @@
 // @ts-nocheck
 import { Input } from "../components/input";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 
 export default function InputFile() {
   return (
-    <div className="grid w-full max-w-sm items-center gap-3">
-      <Label htmlFor="picture">Picture</Label>
+    <Field className="grid w-full max-w-sm items-center gap-3">
+      <FieldLabel htmlFor="picture">Picture</FieldLabel>
       <Input id="picture" type="file" />
-    </div>
+    </Field>
   );
 }

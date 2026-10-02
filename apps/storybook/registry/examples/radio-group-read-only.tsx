@@ -1,18 +1,18 @@
 // @ts-nocheck
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
 
 export default function RadioGroupReadOnly() {
   return (
     <RadioGroup readOnly defaultValue="pro">
-      <div className="flex items-center gap-3">
+      <Field orientation="horizontal">
         <RadioGroupItem value="free" id="read-only-free" />
-        <Label htmlFor="read-only-free">Free</Label>
-      </div>
-      <div className="flex items-center gap-3">
+        <FieldLabel htmlFor="read-only-free">Free</FieldLabel>
+      </Field>
+      <Field orientation="horizontal">
         <RadioGroupItem value="pro" id="read-only-pro" />
-        <Label htmlFor="read-only-pro">Pro (current plan)</Label>
-      </div>
+        <FieldLabel htmlFor="read-only-pro">Pro (current plan)</FieldLabel>
+      </Field>
     </RadioGroup>
   );
 }

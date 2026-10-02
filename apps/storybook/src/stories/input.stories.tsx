@@ -113,7 +113,7 @@ export const File: Story = {
       description: { story: 'Use the `type="file"` prop to create a file input.' },
 
       source: {
-        code: 'import { Input } from "@erbium/ui/components/input"\nimport { Label } from "@erbium/ui/components/label"\n\nexport default function InputFile() {\n  return (\n    <div className="grid w-full max-w-sm items-center gap-3">\n      <Label htmlFor="picture">Picture</Label>\n      <Input id="picture" type="file" />\n    </div>\n  )\n}\n',
+        code: 'import { Input } from "@erbium/ui/components/input";\nimport { Field, FieldLabel } from "@erbium/ui/components/field";\n\nexport default function InputFile() {\n  return (\n    <Field className="grid w-full max-w-sm items-center gap-3">\n      <FieldLabel htmlFor="picture">Picture</FieldLabel>\n      <Input id="picture" type="file" />\n    </Field>\n  );\n}\n',
       },
     },
   },

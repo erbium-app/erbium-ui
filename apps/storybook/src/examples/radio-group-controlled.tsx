@@ -1,4 +1,4 @@
-import { Label } from "@erbium/ui/components/label";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import { useState } from "react";
 
@@ -15,10 +15,10 @@ export default function RadioGroupControlled() {
     <div className="flex flex-col gap-4">
       <RadioGroup value={value} onValueChange={setValue}>
         {options.map((option) => (
-          <div className="flex items-center gap-3" key={option.value}>
+          <Field orientation="horizontal" key={option.value}>
             <RadioGroupItem value={option.value} id={`controlled-${option.value}`} />
-            <Label htmlFor={`controlled-${option.value}`}>{option.label}</Label>
-          </div>
+            <FieldLabel htmlFor={`controlled-${option.value}`}>{option.label}</FieldLabel>
+          </Field>
         ))}
       </RadioGroup>
       <p className="text-sm text-muted-foreground">

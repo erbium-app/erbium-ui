@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "../components/dialog";
 import { Input } from "../components/input";
-import { Label } from "../components/label";
+import { Field, FieldLabel } from "../components/field";
 
 export default function DialogCloseButton() {
   return (
@@ -24,12 +24,12 @@ export default function DialogCloseButton() {
           <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
         </DialogHeader>
         <DialogContent className="flex items-center gap-2">
-          <div className="grid flex-1 gap-2">
-            <Label htmlFor="link" className="sr-only">
+          <Field className="flex-1">
+            <FieldLabel htmlFor="link" className="sr-only">
               Link
-            </Label>
+            </FieldLabel>
             <Input id="link" defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
-          </div>
+          </Field>
         </DialogContent>
         <DialogFooter className="sm:justify-start">
           <DialogClose
