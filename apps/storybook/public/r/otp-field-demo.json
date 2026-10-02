@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-demo",
+  "title": "Otp Field Demo",
+  "description": "Erbium otp field demo example.",
+  "registryDependencies": ["@erbium/otp-field"],
+  "files": [
+    {
+      "path": "registry/examples/otp-field-demo.tsx",
+      "content": "// @ts-nocheck\nimport { OTPField } from \"../components/otp-field\";\n\nexport default function OTPFieldDemo() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[3, 3]} />;\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/otp-field-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}

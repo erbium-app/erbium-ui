@@ -505,8 +505,8 @@
       "type": "registry:ui",
       "title": "Field",
       "description": "Erbium field component.",
-      "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["@erbium/label", "@erbium/separator", "@erbium/utils"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/field.tsx",
@@ -562,21 +562,6 @@
           "path": "src/components/input-group.tsx",
           "type": "registry:ui",
           "target": "~/src/components/input-group.tsx"
-        }
-      ]
-    },
-    {
-      "name": "input-otp",
-      "type": "registry:ui",
-      "title": "Input Otp",
-      "description": "Erbium input otp component.",
-      "dependencies": ["input-otp"],
-      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
-      "files": [
-        {
-          "path": "src/components/input-otp.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/input-otp.tsx"
         }
       ]
     },
@@ -715,6 +700,21 @@
           "path": "src/components/number-field.tsx",
           "type": "registry:ui",
           "target": "~/src/components/number-field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "otp-field",
+      "type": "registry:ui",
+      "title": "Otp Field",
+      "description": "Erbium otp field component.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/separator", "@erbium/shake", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/otp-field.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/otp-field.tsx"
         }
       ]
     },
@@ -1116,6 +1116,7 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "Erbium textarea component.",
+      "dependencies": ["@base-ui/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

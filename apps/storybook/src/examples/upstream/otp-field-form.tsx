@@ -1,6 +1,5 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import RefreshCwIcon from "@hugeicons/core-free-icons/RefreshCwIcon";
-import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -13,14 +12,9 @@ import {
   CardTitle,
 } from "@erbium/ui/components/card";
 import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@erbium/ui/components/input-otp";
+import { OTPField } from "@erbium/ui/components/otp-field";
 
-export function InputOTPForm() {
+export function OTPFieldForm() {
   return (
     <Card className="mx-auto w-full max-w-sm">
       <CardHeader>
@@ -39,20 +33,8 @@ export function InputOTPForm() {
       <CardContent>
         <form id="otp-verification-form" onSubmit={(event) => event.preventDefault()}>
           <Field>
-            <FieldLabel htmlFor="otp-verification">Verification code</FieldLabel>
-            <InputOTP id="otp-verification" maxLength={6} pattern={REGEXP_ONLY_DIGITS} required>
-              <InputOTPGroup>
-                <InputOTPSlot index={0} />
-                <InputOTPSlot index={1} />
-                <InputOTPSlot index={2} />
-              </InputOTPGroup>
-              <InputOTPSeparator />
-              <InputOTPGroup>
-                <InputOTPSlot index={3} />
-                <InputOTPSlot index={4} />
-                <InputOTPSlot index={5} />
-              </InputOTPGroup>
-            </InputOTP>
+            <FieldLabel>Verification code</FieldLabel>
+            <OTPField length={6} groups={[3, 3]} required />
             <FieldDescription>
               <a href="#">I no longer have access to this email address.</a>
             </FieldDescription>

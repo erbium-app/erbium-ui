@@ -1300,48 +1300,6 @@
       ]
     },
     {
-      "name": "input-otp-controlled",
-      "type": "registry:component",
-      "title": "Input Otp Controlled",
-      "description": "Erbium input otp controlled example.",
-      "registryDependencies": ["@erbium/input-otp"],
-      "files": [
-        {
-          "path": "registry/examples/input-otp-controlled.tsx",
-          "type": "registry:component",
-          "target": "~/src/examples/input-otp-controlled.tsx"
-        }
-      ]
-    },
-    {
-      "name": "input-otp-demo",
-      "type": "registry:component",
-      "title": "Input Otp Demo",
-      "description": "Erbium input otp demo example.",
-      "registryDependencies": ["@erbium/input-otp"],
-      "files": [
-        {
-          "path": "registry/examples/input-otp-demo.tsx",
-          "type": "registry:component",
-          "target": "~/src/examples/input-otp-demo.tsx"
-        }
-      ]
-    },
-    {
-      "name": "input-otp-separator",
-      "type": "registry:component",
-      "title": "Input Otp Separator",
-      "description": "Erbium input otp separator example.",
-      "registryDependencies": ["@erbium/input-otp"],
-      "files": [
-        {
-          "path": "registry/examples/input-otp-separator.tsx",
-          "type": "registry:component",
-          "target": "~/src/examples/input-otp-separator.tsx"
-        }
-      ]
-    },
-    {
       "name": "item-avatar",
       "type": "registry:component",
       "title": "Item Avatar",
@@ -1677,6 +1635,48 @@
           "path": "registry/examples/navigation-menu-demo.tsx",
           "type": "registry:component",
           "target": "~/src/examples/navigation-menu-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "otp-field-controlled",
+      "type": "registry:component",
+      "title": "Otp Field Controlled",
+      "description": "Erbium otp field controlled example.",
+      "registryDependencies": ["@erbium/otp-field"],
+      "files": [
+        {
+          "path": "registry/examples/otp-field-controlled.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/otp-field-controlled.tsx"
+        }
+      ]
+    },
+    {
+      "name": "otp-field-demo",
+      "type": "registry:component",
+      "title": "Otp Field Demo",
+      "description": "Erbium otp field demo example.",
+      "registryDependencies": ["@erbium/otp-field"],
+      "files": [
+        {
+          "path": "registry/examples/otp-field-demo.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/otp-field-demo.tsx"
+        }
+      ]
+    },
+    {
+      "name": "otp-field-separator",
+      "type": "registry:component",
+      "title": "Otp Field Separator",
+      "description": "Erbium otp field separator example.",
+      "registryDependencies": ["@erbium/otp-field"],
+      "files": [
+        {
+          "path": "registry/examples/otp-field-separator.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/otp-field-separator.tsx"
         }
       ]
     },

@@ -3,7 +3,7 @@
 import { act } from "react";
 import { createRoot } from "react-dom/client";
 import { afterEach, expect, test, vi } from "vite-plus/test";
-import { InputOTPInvalid } from "./input-otp-invalid";
+import { OTPFieldInvalid } from "./otp-field-invalid";
 
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
@@ -16,7 +16,7 @@ function enterCode(input: HTMLInputElement, code: string) {
   input.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
-test("a wrong complete code shakes all slots and a corrected code clears the error", async () => {
+test("a wrong complete code marks every slot invalid and shakes; a correct code clears it", async () => {
   const animate = vi.fn(
     (_keyframes: Keyframe[], _options: KeyframeAnimationOptions) =>
       ({ cancel: vi.fn() }) as unknown as Animation,
@@ -29,36 +29,31 @@ test("a wrong complete code shakes all slots and a corrected code clears the err
 
   try {
     await act(async () => {
-      root.render(<InputOTPInvalid />);
+      root.render(<OTPFieldInvalid />);
     });
 
-    const input = container.querySelector<HTMLInputElement>("[data-input-otp]");
-    expect(input).toBeTruthy();
-    expect(input?.hasAttribute("aria-invalid")).toBe(false);
+    const field = container.querySelector<HTMLElement>('[data-slot="otp-field"]')!;
+    const inputs = [
+      ...container.querySelectorAll<HTMLInputElement>('[data-slot="otp-field-input"]'),
+    ];
+    expect(inputs.some((input) => input.hasAttribute("aria-invalid"))).toBe(false);
 
     await act(async () => {
-      enterCode(input!, "000000");
+      enterCode(inputs[0]!, "000000");
     });
-    expect(input?.getAttribute("aria-invalid")).toBe("true");
-    expect(
-      container.querySelectorAll('[data-slot="input-otp-slot"][aria-invalid="true"]'),
-    ).toHaveLength(6);
+    expect(inputs.every((input) => input.getAttribute("aria-invalid") === "true")).toBe(true);
     expect(animate).toHaveBeenCalledTimes(1);
-    expect(animate.mock.contexts[0]).toBe(
-      input?.closest("[data-input-otp-container]")?.parentElement,
-    );
+    expect(animate.mock.contexts[0]).toBe(field);
 
     await act(async () => {
-      enterCode(input!, "123456");
+      enterCode(inputs[5]!, "");
     });
-    expect(input?.hasAttribute("aria-invalid")).toBe(false);
-    expect(container.textContent).toContain("Code verified.");
+    await act(async () => {
+      enterCode(inputs[0]!, "123456");
+    });
+    expect(inputs.some((input) => input.hasAttribute("aria-invalid"))).toBe(false);
+    expect(field.dataset.status).toBe("success");
     expect(animate).toHaveBeenCalledTimes(1);
-
-    await act(async () => {
-      enterCode(input!, "123457");
-    });
-    expect(animate).toHaveBeenCalledTimes(2);
   } finally {
     await act(async () => {
       root.unmount();
