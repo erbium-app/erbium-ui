@@ -1611,6 +1611,20 @@
       ]
     },
     {
+      "name": "meter-demo",
+      "type": "registry:component",
+      "title": "Meter Demo",
+      "description": "Erbium meter demo example.",
+      "registryDependencies": ["@erbium/meter"],
+      "files": [
+        {
+          "path": "registry/examples/meter-demo.tsx",
+          "type": "registry:component",
+          "target": "~/src/examples/meter-demo.tsx"
+        }
+      ]
+    },
+    {
       "name": "navigation-menu-demo",
       "type": "registry:component",
       "title": "Navigation Menu Demo",

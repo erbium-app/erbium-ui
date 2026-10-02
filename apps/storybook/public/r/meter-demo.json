@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-demo",
+  "title": "Meter Demo",
+  "description": "Erbium meter demo example.",
+  "registryDependencies": ["@erbium/meter"],
+  "files": [
+    {
+      "path": "registry/examples/meter-demo.tsx",
+      "content": "// @ts-nocheck\nimport {\n  Meter,\n  MeterIndicator,\n  MeterLabel,\n  MeterTrack,\n  MeterValue,\n} from \"../components/meter\";\n\nexport default function MeterDemo() {\n  return (\n    <Meter value={24} className=\"w-72\">\n      <MeterLabel>Storage used</MeterLabel>\n      <MeterValue />\n      <MeterTrack>\n        <MeterIndicator />\n      </MeterTrack>\n    </Meter>\n  );\n}\n",
+      "type": "registry:component",
+      "target": "~/src/examples/meter-demo.tsx"
+    }
+  ],
+  "type": "registry:component"
+}
