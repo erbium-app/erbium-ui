@@ -3,7 +3,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { RotatingChevron } from "./stateful-icon";
 import ImagePlusIcon from "@hugeicons/core-free-icons/ImagePlusIcon";
+import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Input as InputPrimitive } from "@base-ui/react/input";
+import { mergeProps } from "@base-ui/react/merge-props";
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
@@ -460,24 +462,26 @@ function Text({
   onValueChange,
   disabled,
   className,
-  id: idProp,
   ...props
 }: TextProps) {
-  const generatedId = React.useId();
-  const id = idProp ?? generatedId;
+  // The row is the label, so a click anywhere on it focuses the input; Field
+  // tracks the control's dirty, touched and invalid state.
   return (
-    <label className={cn(rowClass, className)} data-slot="control-text" htmlFor={id}>
+    <FieldPrimitive.Root
+      data-slot="control-text"
+      render={<label />}
+      disabled={disabled}
+      className={cn(rowClass, className)}
+    >
       <span className={labelClass}>{label}</span>
       <InputPrimitive
-        id={id}
-        disabled={disabled}
         value={value}
         defaultValue={defaultValue}
         onValueChange={onValueChange}
         className={cn(valueClass, "h-7 bg-transparent")}
         {...props}
       />
-    </label>
+    </FieldPrimitive.Root>
   );
 }
 
@@ -488,6 +492,11 @@ type TextareaProps = CommonProps &
     onValueChange?: (value: string) => void;
   };
 
+/**
+ * Base UI has no textarea part, so `Field.Control` renders the `<textarea>` (the
+ * same pattern as the shared `Textarea`): value, disabled, name and id go to the
+ * control so the Field tracks it, the rest merge onto the element.
+ */
 function Textarea({
   label,
   value,
@@ -495,32 +504,34 @@ function Textarea({
   onValueChange,
   disabled,
   className,
-  id: idProp,
   ...props
 }: TextareaProps) {
-  const generatedId = React.useId();
-  const id = idProp ?? generatedId;
   return (
-    <label
+    <FieldPrimitive.Root
       data-slot="control-textarea"
-      htmlFor={id}
+      render={<label />}
+      disabled={disabled}
       className={cn(rowClass, "items-start py-1.5", className)}
     >
       <span className={cn(labelClass, "pt-0.5")}>{label}</span>
-      <textarea
-        id={id}
-        disabled={disabled}
+      <FieldPrimitive.Control
         value={value}
         defaultValue={defaultValue}
-        onChange={(event) => onValueChange?.(event.target.value)}
-        rows={1}
-        className={cn(
-          valueClass,
-          "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent leading-5",
+        onValueChange={onValueChange}
+        id={props.id}
+        name={props.name}
+        render={(defaultProps: React.ComponentProps<"textarea">) => (
+          <textarea
+            rows={1}
+            className={cn(
+              valueClass,
+              "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent leading-5",
+            )}
+            {...mergeProps(defaultProps, props)}
+          />
         )}
-        {...props}
       />
-    </label>
+    </FieldPrimitive.Root>
   );
 }
 

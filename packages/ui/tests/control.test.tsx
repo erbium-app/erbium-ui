@@ -156,3 +156,33 @@ test("spring and transition editors switch modes with valid values", () => {
   expect(springValues.at(-1)).toEqual({ type: "spring", stiffness: 200, damping: 25, mass: 1 });
   expect(transitionValues.at(-1)).toEqual({ type: "spring", visualDuration: 0.3, bounce: 0.2 });
 });
+
+test("text and textarea rows delegate to Field: label click, form value, disabled, invalid", () => {
+  const { container } = render(
+    <form>
+      <Control.Text label="Title" name="title" defaultValue="Japan" />
+      <Control.Textarea label="Notes" name="notes" defaultValue="Hi" />
+      <Control.Text label="Locked" disabled defaultValue="x" />
+      <Control.Text label="Bad" defaultValue="" aria-invalid />
+    </form>,
+  );
+
+  const title = screen.getByRole("textbox", { name: "Title" }) as HTMLInputElement;
+  const notes = screen.getByRole("textbox", { name: "Notes" }) as HTMLTextAreaElement;
+  expect(title.name).toBe("title");
+  expect(notes.name).toBe("notes");
+  expect(notes.tagName).toBe("TEXTAREA");
+  const data = new FormData(container.querySelector("form") as HTMLFormElement);
+  expect(data.get("title")).toBe("Japan");
+  expect(data.get("notes")).toBe("Hi");
+
+  const row = container.querySelector('[data-slot="control-text"]') as HTMLElement;
+  expect(row.tagName).toBe("LABEL");
+  expect((screen.getByRole("textbox", { name: "Locked" }) as HTMLInputElement).disabled).toBe(true);
+  expect(screen.getByRole("textbox", { name: "Bad" }).getAttribute("aria-invalid")).toBe("true");
+
+  const changes: string[] = [];
+  render(<Control.Textarea label="Bio" onValueChange={(v) => changes.push(v)} />);
+  fireEvent.change(screen.getByRole("textbox", { name: "Bio" }), { target: { value: "Hello" } });
+  expect(changes).toEqual(["Hello"]);
+});
