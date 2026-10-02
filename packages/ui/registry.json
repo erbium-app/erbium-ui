@@ -597,21 +597,6 @@
       ]
     },
     {
-      "name": "label",
-      "type": "registry:ui",
-      "title": "Label",
-      "description": "Erbium label component.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
-      "files": [
-        {
-          "path": "src/components/label.tsx",
-          "type": "registry:ui",
-          "target": "~/src/components/label.tsx"
-        }
-      ]
-    },
-    {
       "name": "marker",
       "type": "registry:ui",
       "title": "Marker",
@@ -696,7 +681,7 @@
         "@hugeicons/react",
         "motion"
       ],
-      "registryDependencies": ["@erbium/label", "@erbium/text-morph", "@erbium/utils"],
+      "registryDependencies": ["@erbium/field", "@erbium/text-morph", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/number-field.tsx",

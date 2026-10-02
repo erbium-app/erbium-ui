@@ -4,7 +4,7 @@ import MinusSignIcon from "@hugeicons/core-free-icons/MinusSignIcon";
 import PlusSignIcon from "@hugeicons/core-free-icons/PlusSignIcon";
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field";
 import { useReducedMotion } from "motion/react";
-import { Label } from "./label";
+import { FieldLabel } from "./field";
 import { TextMorph } from "./text-morph";
 import { cn } from "../lib/utils";
 
@@ -387,9 +387,9 @@ function NumberFieldScrubArea({
       className={cn("flex cursor-ew-resize", className)}
       {...props}
     >
-      <Label htmlFor={fieldId} className="cursor-ew-resize">
+      <FieldLabel htmlFor={fieldId} className="cursor-ew-resize">
         {label}
-      </Label>
+      </FieldLabel>
       <NumberFieldPrimitive.ScrubAreaCursor className="drop-shadow-[0_1px_1px_#0008]">
         <svg
           aria-hidden="true"
