@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Field, FieldLabel } from "../components/field";
+import { Field, FieldItem, FieldLabel } from "../components/field";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
 import { useState } from "react";
 
@@ -14,14 +14,16 @@ export default function RadioGroupControlled() {
 
   return (
     <div className="flex flex-col gap-4">
-      <RadioGroup value={value} onValueChange={setValue}>
-        {options.map((option) => (
-          <Field orientation="horizontal" key={option.value}>
-            <RadioGroupItem value={option.value} id={`controlled-${option.value}`} />
-            <FieldLabel htmlFor={`controlled-${option.value}`}>{option.label}</FieldLabel>
-          </Field>
-        ))}
-      </RadioGroup>
+      <Field>
+        <RadioGroup value={value} onValueChange={setValue}>
+          {options.map((option) => (
+            <FieldItem orientation="horizontal" key={option.value}>
+              <RadioGroupItem value={option.value} />
+              <FieldLabel>{option.label}</FieldLabel>
+            </FieldItem>
+          ))}
+        </RadioGroup>
+      </Field>
       <p className="text-sm text-muted-foreground">
         value: <code>{value}</code>
       </p>

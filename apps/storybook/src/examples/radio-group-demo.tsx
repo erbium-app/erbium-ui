@@ -1,21 +1,23 @@
-import { Field, FieldLabel } from "@erbium/ui/components/field";
+import { Field, FieldItem, FieldLabel } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 
 export default function RadioGroupDemo() {
   return (
-    <RadioGroup defaultValue="comfortable">
-      <Field orientation="horizontal">
-        <RadioGroupItem value="default" id="r1" />
-        <FieldLabel htmlFor="r1">Default</FieldLabel>
-      </Field>
-      <Field orientation="horizontal">
-        <RadioGroupItem value="comfortable" id="r2" />
-        <FieldLabel htmlFor="r2">Comfortable</FieldLabel>
-      </Field>
-      <Field orientation="horizontal">
-        <RadioGroupItem value="compact" id="r3" />
-        <FieldLabel htmlFor="r3">Compact</FieldLabel>
-      </Field>
-    </RadioGroup>
+    <Field>
+      <RadioGroup defaultValue="comfortable">
+        <FieldItem orientation="horizontal">
+          <RadioGroupItem value="default" />
+          <FieldLabel>Default</FieldLabel>
+        </FieldItem>
+        <FieldItem orientation="horizontal">
+          <RadioGroupItem value="comfortable" />
+          <FieldLabel>Comfortable</FieldLabel>
+        </FieldItem>
+        <FieldItem orientation="horizontal">
+          <RadioGroupItem value="compact" />
+          <FieldLabel>Compact</FieldLabel>
+        </FieldItem>
+      </RadioGroup>
+    </Field>
   );
 }

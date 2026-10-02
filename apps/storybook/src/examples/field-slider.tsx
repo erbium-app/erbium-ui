@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Field, FieldDescription, FieldTitle } from "@erbium/ui/components/field";
+import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
 import { Slider } from "@erbium/ui/components/slider";
 
 export default function FieldSlider() {
@@ -8,7 +8,7 @@ export default function FieldSlider() {
   return (
     <div className="w-full max-w-md">
       <Field>
-        <FieldTitle>Price Range</FieldTitle>
+        <FieldLabel>Price Range</FieldLabel>
         <FieldDescription>
           Set your budget range ($
           <span className="font-medium tabular-nums">{value[0]}</span> -{" "}

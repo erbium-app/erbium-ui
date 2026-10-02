@@ -1,30 +1,38 @@
-import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldItem,
+  FieldLabel,
+} from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 
 export function RadioGroupDescription() {
   return (
-    <RadioGroup defaultValue="comfortable" className="w-fit">
-      <Field orientation="horizontal">
-        <RadioGroupItem value="default" id="desc-r1" />
-        <FieldContent>
-          <FieldLabel htmlFor="desc-r1">Default</FieldLabel>
-          <FieldDescription>Standard spacing for most use cases.</FieldDescription>
-        </FieldContent>
-      </Field>
-      <Field orientation="horizontal">
-        <RadioGroupItem value="comfortable" id="desc-r2" />
-        <FieldContent>
-          <FieldLabel htmlFor="desc-r2">Comfortable</FieldLabel>
-          <FieldDescription>More space between elements.</FieldDescription>
-        </FieldContent>
-      </Field>
-      <Field orientation="horizontal">
-        <RadioGroupItem value="compact" id="desc-r3" />
-        <FieldContent>
-          <FieldLabel htmlFor="desc-r3">Compact</FieldLabel>
-          <FieldDescription>Minimal spacing for dense layouts.</FieldDescription>
-        </FieldContent>
-      </Field>
-    </RadioGroup>
+    <Field>
+      <RadioGroup defaultValue="comfortable" className="w-fit">
+        <FieldItem orientation="horizontal">
+          <RadioGroupItem value="default" />
+          <FieldContent>
+            <FieldLabel>Default</FieldLabel>
+            <FieldDescription>Standard spacing for most use cases.</FieldDescription>
+          </FieldContent>
+        </FieldItem>
+        <FieldItem orientation="horizontal">
+          <RadioGroupItem value="comfortable" />
+          <FieldContent>
+            <FieldLabel>Comfortable</FieldLabel>
+            <FieldDescription>More space between elements.</FieldDescription>
+          </FieldContent>
+        </FieldItem>
+        <FieldItem orientation="horizontal">
+          <RadioGroupItem value="compact" />
+          <FieldContent>
+            <FieldLabel>Compact</FieldLabel>
+            <FieldDescription>Minimal spacing for dense layouts.</FieldDescription>
+          </FieldContent>
+        </FieldItem>
+      </RadioGroup>
+    </Field>
   );
 }

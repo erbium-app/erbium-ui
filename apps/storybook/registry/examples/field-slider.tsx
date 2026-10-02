@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useState } from "react";
 
-import { Field, FieldDescription, FieldTitle } from "../components/field";
+import { Field, FieldDescription, FieldLabel } from "../components/field";
 import { Slider } from "../components/slider";
 
 export default function FieldSlider() {
@@ -9,7 +9,7 @@ export default function FieldSlider() {
   return (
     <div className="w-full max-w-md">
       <Field>
-        <FieldTitle>Price Range</FieldTitle>
+        <FieldLabel>Price Range</FieldLabel>
         <FieldDescription>
           Set your budget range ($
           <span className="font-medium tabular-nums">{value[0]}</span> -{" "}

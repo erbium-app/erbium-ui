@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Field, FieldLabel } from "../components/field";
+import { Field, FieldItem, FieldLabel } from "../components/field";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
 import { StatefulButton } from "../components/stateful-button";
 import { useState } from "react";
@@ -16,16 +16,18 @@ export default function RadioGroupForm() {
         setSubmitted(JSON.stringify(data, null, 2));
       }}
     >
-      <RadioGroup name="shipping" required>
-        <Field orientation="horizontal">
-          <RadioGroupItem value="standard" id="form-standard" />
-          <FieldLabel htmlFor="form-standard">Standard (5–7 days)</FieldLabel>
-        </Field>
-        <Field orientation="horizontal">
-          <RadioGroupItem value="express" id="form-express" />
-          <FieldLabel htmlFor="form-express">Express (1–2 days)</FieldLabel>
-        </Field>
-      </RadioGroup>
+      <Field>
+        <RadioGroup name="shipping" required>
+          <FieldItem orientation="horizontal">
+            <RadioGroupItem value="standard" />
+            <FieldLabel>Standard (5–7 days)</FieldLabel>
+          </FieldItem>
+          <FieldItem orientation="horizontal">
+            <RadioGroupItem value="express" />
+            <FieldLabel>Express (1–2 days)</FieldLabel>
+          </FieldItem>
+        </RadioGroup>
+      </Field>
       <StatefulButton className="self-start" type="submit">
         Submit
       </StatefulButton>

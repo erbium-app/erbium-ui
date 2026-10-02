@@ -7,7 +7,7 @@
   "files": [
     {
       "path": "registry/examples/radio-group-read-only.tsx",
-      "content": "// @ts-nocheck\nimport { Field, FieldLabel } from \"../components/field\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <RadioGroup readOnly defaultValue=\"pro\">\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"free\" id=\"read-only-free\" />\n        <FieldLabel htmlFor=\"read-only-free\">Free</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <RadioGroupItem value=\"pro\" id=\"read-only-pro\" />\n        <FieldLabel htmlFor=\"read-only-pro\">Pro (current plan)</FieldLabel>\n      </Field>\n    </RadioGroup>\n  );\n}\n",
+      "content": "// @ts-nocheck\nimport { Field, FieldItem, FieldLabel } from \"../components/field\";\nimport { RadioGroup, RadioGroupItem } from \"../components/radio-group\";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <Field>\n      <RadioGroup readOnly defaultValue=\"pro\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"free\" />\n          <FieldLabel>Free</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"pro\" />\n          <FieldLabel>Pro (current plan)</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n",
       "type": "registry:component",
       "target": "~/src/examples/radio-group-read-only.tsx"
     }
