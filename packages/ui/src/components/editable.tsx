@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { Input as InputPrimitive } from "@base-ui/react/input";
 import { cn } from "../lib/utils";
 
 type EditableContextValue = {
@@ -129,10 +131,10 @@ function EditablePreview({
   onDoubleClick,
   children,
   ...props
-}: React.ComponentProps<"button">) {
+}: ButtonPrimitive.Props) {
   const context = useEditableContext("EditablePreview");
   return (
-    <button
+    <ButtonPrimitive
       {...props}
       type="button"
       ref={context.previewRef}
@@ -157,7 +159,7 @@ function EditablePreview({
       }}
     >
       {children ?? (context.value || context.placeholder || "\u00a0")}
-    </button>
+    </ButtonPrimitive>
   );
 }
 
@@ -167,7 +169,7 @@ function EditableInput({
   onChange,
   onKeyDown,
   ...props
-}: Omit<React.ComponentProps<"input">, "value" | "defaultValue">) {
+}: Omit<InputPrimitive.Props, "value" | "defaultValue">) {
   const context = useEditableContext("EditableInput");
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -179,7 +181,7 @@ function EditableInput({
   }, [context.editing]);
 
   return (
-    <input
+    <InputPrimitive
       {...props}
       type="text"
       id={context.inputId}

@@ -476,6 +476,7 @@
       "type": "registry:ui",
       "title": "Editable",
       "description": "Erbium editable component.",
+      "dependencies": ["@base-ui/react"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {

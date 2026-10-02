@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { Field } from "@erbium/ui/components/field";
 import { Editable, EditableInput, EditablePreview } from "@erbium/ui/components/editable";
 
 function renderEditable(props: React.ComponentProps<typeof Editable> = {}) {
@@ -56,4 +57,19 @@ test("supports controlled values and double click activation", () => {
   fireEvent.keyDown(screen.getByRole("textbox"), { key: "Enter" });
   expect(values).toEqual(["Changed"]);
   expect(screen.getByRole("button").textContent).toBe("Controlled");
+});
+
+test("the input joins a surrounding field", () => {
+  render(
+    <Field invalid>
+      <Editable defaultValue="First tab">
+        <EditablePreview aria-label="Rename tab" />
+        <EditableInput aria-label="Tab name" />
+      </Editable>
+    </Field>,
+  );
+
+  const input = document.querySelector('[data-slot="editable-input"]');
+  expect(input?.getAttribute("aria-invalid")).toBe("true");
+  expect(input?.hasAttribute("data-invalid")).toBe(true);
 });
