@@ -854,7 +854,7 @@
         "@erbium/button",
         "@erbium/dialog",
         "@erbium/drawer",
-        "@erbium/use-media-query"
+        "@erbium/use-is-mobile"
       ],
       "files": [
         {

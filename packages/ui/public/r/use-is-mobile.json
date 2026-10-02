@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-is-mobile",
+  "title": "Use Is Mobile",
+  "description": "Erbium use is mobile hook.",
+  "registryDependencies": ["@erbium/use-media-query"],
+  "files": [
+    {
+      "path": "src/hooks/use-is-mobile.ts",
+      "content": "import { useMediaQuery } from \"./use-media-query\";\n\n/** Below Tailwind's `md:`, the shadcn mobile breakpoint, so a viewport is never both mobile and `md`. */\nconst MOBILE_QUERY = \"(width < 48rem)\";\n\n/**\n * Whether the viewport is mobile-sized. Built on Base UI's media query hook, so it follows\n * viewport changes through the `matchMedia` change event and never renders an unresolved value.\n * It is `false` on the server; pass `{ defaultMatches: true }` to change that, or\n * `{ noSsr: true }` in client-only apps to resolve on the first render.\n */\nfunction useIsMobile(options: useMediaQuery.Options = {}) {\n  return useMediaQuery(MOBILE_QUERY, options);\n}\n\nexport { MOBILE_QUERY, useIsMobile };\n",
+      "type": "registry:hook",
+      "target": "~/src/hooks/use-is-mobile.ts"
+    }
+  ],
+  "type": "registry:hook"
+}

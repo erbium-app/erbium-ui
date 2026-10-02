@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@erbium/ui/hooks/use-media-query";
+import { useIsMobile } from "@erbium/ui/hooks/use-is-mobile";
 import { Button } from "@erbium/ui/components/button";
 import {
   Drawer,
@@ -11,6 +11,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
+
 import {
   Dialog,
   DialogPanel,
@@ -53,8 +54,8 @@ export function Styling() {
 }
 
 export function Responsive() {
-  const narrow = useMediaQuery("(max-width: 640px)", {});
-  if (narrow) return <DrawerExample label="Edit profile" />;
+  const isMobile = useIsMobile();
+  if (isMobile) return <DrawerExample label="Edit profile" />;
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>Edit profile</DialogTrigger>
@@ -62,7 +63,7 @@ export function Responsive() {
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
-            The dialog is used above 640px; resize to see a drawer.
+            The dialog is used from 768px up; resize to see a drawer.
           </DialogDescription>
         </DialogHeader>
         <DialogContent>Update your profile details here.</DialogContent>

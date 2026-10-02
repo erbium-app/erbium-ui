@@ -2,6 +2,7 @@ import { barY, defineChart } from "@tanstack/charts";
 import { scaleBand } from "@tanstack/charts/scales/band";
 import { scaleLinear } from "@tanstack/charts/scales/linear";
 import { CSPProvider } from "@erbium/ui/components/csp-provider";
+import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
 import { Chart } from "@erbium/ui/components/chart";
 import { Badge } from "@erbium/ui/components/badge";
 import { Button } from "@erbium/ui/components/button";
@@ -49,7 +50,9 @@ const chartDefinition = defineChart({
 export default function ComponentPreview({ name }: { name: string }) {
   return (
     <CSPProvider disableStyleElements>
-      <ComponentPreviewContent name={name} />
+      <OverlayProvider>
+        <ComponentPreviewContent name={name} />
+      </OverlayProvider>
     </CSPProvider>
   );
 }

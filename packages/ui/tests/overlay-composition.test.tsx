@@ -1,7 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { expect, test } from "vite-plus/test";
 import { Dialog, DialogContent, DialogPanel } from "@erbium/ui/components/dialog";
-import { DrawerContent } from "@erbium/ui/components/drawer";
+import { Drawer, DrawerContent, DrawerIndent, DrawerPanel } from "@erbium/ui/components/drawer";
+import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
 import { SheetContent } from "@erbium/ui/components/sheet";
 import { Command, CommandDialog } from "@erbium/ui/components/command";
 
@@ -30,4 +31,53 @@ test("dialog panel can use Base UI rendering to make the popup a form", () => {
     </Dialog>,
   );
   expect(screen.getByRole("dialog").tagName).toBe("FORM");
+});
+
+test("drawers and the indent require an OverlayProvider", () => {
+  expect(() => render(<Drawer />)).toThrow("Drawer must be used within an OverlayProvider.");
+  expect(() => render(<DrawerIndent />)).toThrow(
+    "DrawerIndent must be used within an OverlayProvider.",
+  );
+});
+
+test("the indent activates and follows the open drawer's direction", () => {
+  render(
+    <OverlayProvider>
+      <DrawerIndent data-testid="indent" />
+      <Drawer defaultOpen swipeDirection="up">
+        <DrawerPanel>
+          <DrawerContent>Body</DrawerContent>
+        </DrawerPanel>
+      </Drawer>
+    </OverlayProvider>,
+  );
+  const indent = screen.getByTestId("indent");
+  expect(indent.hasAttribute("data-active")).toBe(true);
+  expect(indent.getAttribute("data-swipe-direction")).toBe("up");
+});
+
+test("drawer panel can render a close button", () => {
+  render(
+    <OverlayProvider>
+      <Drawer defaultOpen>
+        <DrawerPanel showCloseButton>
+          <DrawerContent>Body</DrawerContent>
+        </DrawerPanel>
+      </Drawer>
+    </OverlayProvider>,
+  );
+  expect(screen.getByRole("button", { name: "Close" })).toBeTruthy();
+});
+
+test("drawer panel omits the close button by default", () => {
+  render(
+    <OverlayProvider>
+      <Drawer defaultOpen>
+        <DrawerPanel>
+          <DrawerContent>Body</DrawerContent>
+        </DrawerPanel>
+      </Drawer>
+    </OverlayProvider>,
+  );
+  expect(screen.queryByRole("button", { name: "Close" })).toBeNull();
 });

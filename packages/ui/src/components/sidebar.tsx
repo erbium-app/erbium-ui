@@ -3,8 +3,8 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
+import { useIsMobile } from "../hooks/use-is-mobile";
 import { cn } from "../lib/utils";
-import { useMediaQuery } from "../hooks/use-media-query";
 import { Button } from "./button";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
@@ -93,7 +93,7 @@ function SidebarProvider({
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }) {
-  const isMobile = useMediaQuery("(max-width: 767px)", {});
+  const isMobile = useIsMobile();
   const [openMobile, setOpenMobile] = React.useState(false);
 
   // This is the internal state of the sidebar.

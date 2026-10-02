@@ -440,8 +440,13 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Erbium drawer component.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/scroll-area", "@erbium/utils"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/overlay-provider",
+        "@erbium/scroll-area",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/drawer.tsx",
@@ -721,6 +726,20 @@
       ]
     },
     {
+      "name": "overlay-provider",
+      "type": "registry:ui",
+      "title": "Overlay Provider",
+      "description": "Erbium overlay provider component.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "src/components/overlay-provider.tsx",
+          "type": "registry:ui",
+          "target": "~/src/components/overlay-provider.tsx"
+        }
+      ]
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
@@ -907,7 +926,7 @@
         "@erbium/sheet",
         "@erbium/skeleton",
         "@erbium/tooltip",
-        "@erbium/use-media-query",
+        "@erbium/use-is-mobile",
         "@erbium/utils"
       ],
       "files": [
@@ -1232,6 +1251,20 @@
           "path": "src/hooks/use-drag-select.ts",
           "type": "registry:hook",
           "target": "~/src/hooks/use-drag-select.ts"
+        }
+      ]
+    },
+    {
+      "name": "use-is-mobile",
+      "type": "registry:hook",
+      "title": "Use Is Mobile",
+      "description": "Erbium use is mobile hook.",
+      "registryDependencies": ["@erbium/use-media-query"],
+      "files": [
+        {
+          "path": "src/hooks/use-is-mobile.ts",
+          "type": "registry:hook",
+          "target": "~/src/hooks/use-is-mobile.ts"
         }
       ]
     },

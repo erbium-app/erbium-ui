@@ -3,6 +3,8 @@ import "@erbium/ui/globals.css";
 import { createElement } from "react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 import { CSPProvider } from "@erbium/ui/components/csp-provider";
+import { DrawerIndent } from "@erbium/ui/components/drawer";
+import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
 import { Toaster } from "@erbium/ui/components/toast";
 import type { Preview } from "@storybook/tanstack-react";
 import { ThemeAwareDocsContainer } from "./docs-container";
@@ -17,13 +19,27 @@ const preview: Preview = {
       },
       defaultTheme: "light",
     }),
-    (Story, context) =>
-      createElement(
+    (Story, context) => {
+      const isDocs = context.viewMode === "docs";
+      const isCentered = context.parameters.layout === "centered";
+      return createElement(
         CSPProvider,
         { disableStyleElements: true },
-        createElement(Story),
-        context.viewMode === "docs" ? null : createElement(Toaster),
-      ),
+        createElement(
+          OverlayProvider,
+          null,
+          // Docs render many stories inline, so only the canvas gets the page inset.
+          isDocs
+            ? createElement(Story)
+            : createElement(
+                DrawerIndent,
+                { className: isCentered ? "flex items-center justify-center" : undefined },
+                createElement(Story),
+              ),
+        ),
+        isDocs ? null : createElement(Toaster),
+      );
+    },
   ],
   parameters: {
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
