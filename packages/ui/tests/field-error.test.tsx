@@ -1,6 +1,15 @@
 import { act, render, screen } from "@testing-library/react";
-import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldItem,
+  FieldLabel,
+} from "@erbium/ui/components/field";
 import { Input } from "@erbium/ui/components/input";
+import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
+import { Switch } from "@erbium/ui/components/switch";
 import { Textarea } from "@erbium/ui/components/textarea";
 
 test("shows the error only while errors exist and links it to the control", async () => {
@@ -64,26 +73,37 @@ test("textarea picks up the field's invalid state", () => {
   expect(screen.getByLabelText("Bio").getAttribute("aria-invalid")).toBe("true");
 });
 
-test("a label outside a field still links to its control by id", () => {
+test("a card field labels its control without ids", () => {
   render(
-    <>
-      <FieldLabel htmlFor="plan">Plan</FieldLabel>
-      <Input id="plan" />
-    </>,
+    <Field variant="card" orientation="horizontal">
+      <FieldContent>
+        <FieldLabel>Pick me</FieldLabel>
+        <FieldDescription>Because.</FieldDescription>
+      </FieldContent>
+      <Switch />
+    </Field>,
   );
 
-  expect(screen.getByLabelText("Plan")).toBeTruthy();
+  const control = screen.getByRole("switch", { name: "Pick me" });
+  expect(control.getAttribute("aria-describedby")).toBeTruthy();
 });
 
-test("a label wrapping a field works as a choice card", () => {
+test("a card field item labels its radio inside a group", () => {
   render(
-    <FieldLabel htmlFor="choice">
-      <Field orientation="horizontal">
-        <Input id="choice" />
-        Pick me
-      </Field>
-    </FieldLabel>,
+    <Field>
+      <RadioGroup defaultValue="a">
+        <FieldItem variant="card">
+          <FieldLabel>Plan A</FieldLabel>
+          <RadioGroupItem value="a" />
+        </FieldItem>
+        <FieldItem variant="card" disabled>
+          <FieldLabel>Plan B</FieldLabel>
+          <RadioGroupItem value="b" />
+        </FieldItem>
+      </RadioGroup>
+    </Field>,
   );
 
-  expect(screen.getByLabelText("Pick me")).toBeTruthy();
+  expect(screen.getByRole("radio", { name: "Plan A" }).getAttribute("aria-checked")).toBe("true");
+  expect(screen.getByRole("radio", { name: "Plan B" }).hasAttribute("data-disabled")).toBe(true);
 });

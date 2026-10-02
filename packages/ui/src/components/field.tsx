@@ -1,13 +1,20 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
-function FieldSet({ className, ...props }: FieldsetPrimitive.Root.Props) {
+/**
+ * Base UI's grouped-field pattern: a `Field.Root` rendered as the `<fieldset>`.
+ * The legend names the group, and a `FieldDescription`, `FieldError` or
+ * `FieldItem` directly inside it wires to the group's control, e.g. a radio or
+ * checkbox group.
+ */
+function FieldSet({ className, ...props }: FieldPrimitive.Root.Props) {
   return (
-    <FieldsetPrimitive.Root
+    <FieldPrimitive.Root
+      render={<FieldsetPrimitive.Root />}
       data-slot="field-set"
       className={cn(
         "flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
@@ -49,8 +56,19 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/*
+ * The card variant is a selectable surface-frame: flat, hairline-framed and
+ * translucent, so it reads on the canvas, a panel, a popover or a dialog. The
+ * rim and tint come from state: hover and a checked control (switch, checkbox,
+ * radio) tint it, focus and validity colour the rim. The label stretches over
+ * the card, so the whole card toggles its control.
+ */
 const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error", {
   variants: {
+    variant: {
+      default: "",
+      card: "group/field-card relative rounded-lg border surface-frame p-2.5 transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--primary)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
+    },
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
       horizontal:
@@ -61,10 +79,9 @@ const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error
   },
   defaultVariants: {
     orientation: "vertical",
+    variant: "default",
   },
 });
-
-const FieldScopeContext = createContext(false);
 
 /**
  * Base UI `Field.Root`: wires the label, description, error and control, and
@@ -75,17 +92,17 @@ const FieldScopeContext = createContext(false);
 function Field({
   className,
   orientation = "vertical",
+  variant = "default",
   ...props
 }: FieldPrimitive.Root.Props & VariantProps<typeof fieldVariants>) {
   return (
-    <FieldScopeContext value>
-      <FieldPrimitive.Root
-        data-slot="field"
-        data-orientation={orientation}
-        className={cn(fieldVariants({ orientation }), className)}
-        {...props}
-      />
-    </FieldScopeContext>
+    <FieldPrimitive.Root
+      data-slot="field"
+      data-orientation={orientation}
+      data-variant={variant}
+      className={cn(fieldVariants({ orientation, variant }), className)}
+      {...props}
+    />
   );
 }
 
@@ -100,27 +117,15 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
-  const inField = useContext(FieldScopeContext);
-  const label = (
+  return (
     <FieldPrimitive.Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 text-sm leading-snug font-medium select-none data-disabled:pointer-events-none data-disabled:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-focus-visible:border-ring *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10",
-        "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
+        "group/field-label peer/field-label flex w-fit gap-2 text-sm leading-snug font-medium select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
         className,
       )}
       {...props}
     />
-  );
-
-  // Base UI's label throws outside a `Field.Root`, which a choice card (a label
-  // wrapping a `Field`) or a label next to an `id`-linked control has no room for.
-  return inField ? (
-    label
-  ) : (
-    <FieldPrimitive.Root data-slot="field-scope" className="contents">
-      {label}
-    </FieldPrimitive.Root>
   );
 }
 
@@ -234,7 +239,27 @@ function FieldError({ className, children, errors, match, ...props }: FieldError
   );
 }
 
-const FieldItem = FieldPrimitive.Item;
+/**
+ * Base UI `Field.Item`: one checkbox or radio inside a group, with its own
+ * label, description and disabled scope. Takes the same layout props as `Field`,
+ * so `variant="card"` turns each item into a choice card.
+ */
+function FieldItem({
+  className,
+  orientation = "vertical",
+  variant = "default",
+  ...props
+}: FieldPrimitive.Item.Props & VariantProps<typeof fieldVariants>) {
+  return (
+    <FieldPrimitive.Item
+      data-slot="field-item"
+      data-orientation={orientation}
+      data-variant={variant}
+      className={cn(fieldVariants({ orientation, variant }), className)}
+      {...props}
+    />
+  );
+}
 const FieldControl = FieldPrimitive.Control;
 const FieldValidity = FieldPrimitive.Validity;
 
