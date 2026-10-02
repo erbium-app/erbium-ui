@@ -81,7 +81,7 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          "Add the `disabled` prop to the `Switch` component to disable the switch. Add the `data-disabled` prop to the `Field` component for styling.",
+          "Add the `disabled` prop to the `Switch` component to disable the switch. Add the `disabled` prop to the `Field` component to dim the label too.",
       },
     },
   },
@@ -122,10 +122,10 @@ export const Invalid: Story = {
     docs: {
       description: {
         story:
-          "Add the `aria-invalid` prop to the `Switch` component to indicate an invalid state. Add the `data-invalid` prop to the `Field` component for styling.",
+          "Add the `invalid` prop to the `Field` component; the `Switch` picks up `aria-invalid` automatically.",
       },
       source: {
-        code: 'import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchInvalid() {\n  return (\n    <Field orientation="horizontal" className="max-w-sm" data-invalid>\n      <FieldContent>\n        <FieldLabel htmlFor="switch-terms">Accept terms and conditions</FieldLabel>\n        <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n      </FieldContent>\n      <Switch id="switch-terms" aria-invalid />\n    </Field>\n  );\n}\n',
+        code: 'import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/components/field";\nimport { Switch } from "@erbium/ui/components/switch";\n\nexport function SwitchInvalid() {\n  return (\n    <Field orientation="horizontal" className="max-w-sm" invalid>\n      <FieldContent>\n        <FieldLabel htmlFor="switch-terms">Accept terms and conditions</FieldLabel>\n        <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n      </FieldContent>\n      <Switch id="switch-terms" />\n    </Field>\n  );\n}\n',
       },
     },
   },

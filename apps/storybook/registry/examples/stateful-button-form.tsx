@@ -72,20 +72,22 @@ export default function StatefulButtonForm() {
         }}
       >
         {(field) => (
-          <Field data-invalid={field.state.meta.errors.length > 0}>
-            <FieldLabel htmlFor="stateful-email">Email</FieldLabel>
+          <Field
+            name={field.name}
+            invalid={!field.state.meta.isValid}
+            touched={field.state.meta.isTouched}
+            dirty={field.state.meta.isDirty}
+          >
+            <FieldLabel>Email</FieldLabel>
             <Input
               ref={emailRef}
-              id="stateful-email"
               type="email"
-              aria-invalid={field.state.meta.errors.length > 0}
-              aria-describedby="stateful-email-error"
               value={field.state.value}
               onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}
               onBlur={field.handleBlur}
               onChange={(event) => field.handleChange(event.target.value)}
             />
-            <FieldError id="stateful-email-error" errors={field.state.meta.errors} />
+            <FieldError errors={field.state.meta.errors} />
           </Field>
         )}
       </form.Field>

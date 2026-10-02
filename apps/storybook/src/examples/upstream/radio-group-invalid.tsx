@@ -13,20 +13,20 @@ export function RadioGroupInvalid() {
       <FieldLegend variant="label">Notification Preferences</FieldLegend>
       <FieldDescription>Choose how you want to receive notifications.</FieldDescription>
       <RadioGroup defaultValue="email">
-        <Field orientation="horizontal" data-invalid>
-          <RadioGroupItem value="email" id="invalid-email" aria-invalid />
+        <Field orientation="horizontal" invalid>
+          <RadioGroupItem value="email" id="invalid-email" />
           <FieldLabel htmlFor="invalid-email" className="font-normal">
             Email only
           </FieldLabel>
         </Field>
-        <Field orientation="horizontal" data-invalid>
-          <RadioGroupItem value="sms" id="invalid-sms" aria-invalid />
+        <Field orientation="horizontal" invalid>
+          <RadioGroupItem value="sms" id="invalid-sms" />
           <FieldLabel htmlFor="invalid-sms" className="font-normal">
             SMS only
           </FieldLabel>
         </Field>
-        <Field orientation="horizontal" data-invalid>
-          <RadioGroupItem value="both" id="invalid-both" aria-invalid />
+        <Field orientation="horizontal" invalid>
+          <RadioGroupItem value="both" id="invalid-both" />
           <FieldLabel htmlFor="invalid-both" className="font-normal">
             Both Email & SMS
           </FieldLabel>

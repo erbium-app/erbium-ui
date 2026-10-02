@@ -4,8 +4,8 @@ import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 export function RadioGroupDisabled() {
   return (
     <RadioGroup defaultValue="option2" className="w-fit">
-      <Field orientation="horizontal" data-disabled>
-        <RadioGroupItem value="option1" id="disabled-1" disabled />
+      <Field orientation="horizontal" disabled>
+        <RadioGroupItem value="option1" id="disabled-1" />
         <FieldLabel htmlFor="disabled-1" className="font-normal">
           Disabled
         </FieldLabel>

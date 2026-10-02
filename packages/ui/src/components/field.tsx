@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { Field as FieldPrimitive } from "@base-ui/react/field";
+import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import { Label } from "./label";
 import { Separator } from "./separator";
 
-function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
+function FieldSet({ className, ...props }: FieldsetPrimitive.Root.Props) {
   return (
-    <fieldset
+    <FieldsetPrimitive.Root
       data-slot="field-set"
       className={cn(
         "flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
@@ -21,9 +22,9 @@ function FieldLegend({
   className,
   variant = "legend",
   ...props
-}: React.ComponentProps<"legend"> & { variant?: "legend" | "label" }) {
+}: FieldsetPrimitive.Legend.Props & { variant?: "legend" | "label" }) {
   return (
-    <legend
+    <FieldsetPrimitive.Legend
       data-slot="field-legend"
       data-variant={variant}
       className={cn(
@@ -48,7 +49,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-const fieldVariants = cva("group/field flex w-full gap-2 data-[invalid=true]:text-error", {
+const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error", {
   variants: {
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
@@ -63,14 +64,19 @@ const fieldVariants = cva("group/field flex w-full gap-2 data-[invalid=true]:tex
   },
 });
 
+/**
+ * Base UI `Field.Root`: wires the label, description, error and control, and
+ * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Controlled form
+ * libraries pass their own state, e.g. TanStack Form:
+ * `invalid={!field.state.meta.isValid}`.
+ */
 function Field({
   className,
   orientation = "vertical",
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
+}: FieldPrimitive.Root.Props & VariantProps<typeof fieldVariants>) {
   return (
-    <div
-      role="group"
+    <FieldPrimitive.Root
       data-slot="field"
       data-orientation={orientation}
       className={cn(fieldVariants({ orientation }), className)}
@@ -89,12 +95,12 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function FieldLabel({ className, ...props }: React.ComponentProps<typeof Label>) {
+function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
   return (
-    <Label
+    <FieldPrimitive.Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-focus-visible:border-ring *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10",
+        "group/field-label peer/field-label flex w-fit gap-2 text-sm leading-snug font-medium select-none data-disabled:pointer-events-none data-disabled:opacity-50 has-data-checked:border-primary/30 has-data-checked:bg-primary/5 has-[>[data-slot=field]]:rounded-lg has-[>[data-slot=field]]:border has-[>[data-slot=field]]:not-has-[:disabled,[data-disabled]]:hover:bg-muted/50 has-[>[data-slot=field]]:has-focus-visible:border-ring *:data-[slot=field]:p-2.5 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10",
         "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col",
         className,
       )}
@@ -108,7 +114,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="field-label"
       className={cn(
-        "flex w-fit items-center gap-2 text-sm font-medium group-data-[disabled=true]/field:opacity-50",
+        "flex w-fit items-center gap-2 text-sm font-medium group-data-disabled/field:opacity-50",
         className,
       )}
       {...props}
@@ -116,9 +122,9 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
+function FieldDescription({ className, ...props }: FieldPrimitive.Description.Props) {
   return (
-    <p
+    <FieldPrimitive.Description
       data-slot="field-description"
       className={cn(
         "text-start text-sm leading-normal font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
@@ -155,85 +161,67 @@ function FieldSeparator({
   );
 }
 
-function FieldError({
-  className,
-  children,
-  errors,
-  onTransitionEnd,
-  ...props
-}: React.ComponentProps<"div"> & {
+type FieldErrorProps = FieldPrimitive.Error.Props & {
+  /**
+   * Messages from a form library, e.g. TanStack Form's `field.state.meta.errors`
+   * (strings or Standard Schema issues). When set, the error shows exactly while
+   * there is at least one message; otherwise Base UI's `match` rules apply.
+   */
   errors?: Array<string | { message?: string } | undefined>;
-}) {
-  const content = useMemo(() => {
-    if (children) {
-      return children;
-    }
+};
 
-    const messages = [
+function FieldError({ className, children, errors, match, ...props }: FieldErrorProps) {
+  const messages = useMemo(
+    () => [
       ...new Set(
-        errors?.map((error) => (typeof error === "string" ? error : error?.message)) ?? [],
+        (errors ?? [])
+          .map((error) => (typeof error === "string" ? error : error?.message))
+          .filter((message): message is string => Boolean(message)),
       ),
-    ].filter((message): message is string => Boolean(message));
+    ],
+    [errors],
+  );
+  const key = messages.join("\n");
+  // Keep the last message mounted while Base UI plays the exit transition.
+  const [shownKey, setShownKey] = useState(key);
+  if (key && key !== shownKey) {
+    setShownKey(key);
+  }
+  const shown = key || shownKey ? (key || shownKey).split("\n") : [];
 
-    if (!messages.length) {
-      return null;
-    }
-
-    if (messages.length === 1) {
-      return messages[0];
-    }
-
-    return (
-      <ul className="ms-4 flex list-disc flex-col gap-1">
-        {messages.map((message) => (
-          <li key={message}>{message}</li>
-        ))}
-      </ul>
-    );
-  }, [children, errors]);
-
-  const visible = Boolean(content);
-  const [exitingContent, setExitingContent] = useState<React.ReactNode>(null);
-
-  useEffect(() => {
-    if (visible) {
-      setExitingContent(content);
-    } else if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
-      setExitingContent(null);
-    }
-  }, [content, visible]);
+  let content = children;
+  if (errors) {
+    content =
+      shown.length > 1 ? (
+        <ul className="ms-4 flex list-disc flex-col gap-1">
+          {shown.map((message) => (
+            <li key={message}>{message}</li>
+          ))}
+        </ul>
+      ) : (
+        shown[0]
+      );
+  }
 
   return (
-    <div
-      role={visible ? "alert" : undefined}
-      aria-hidden={!visible}
+    <FieldPrimitive.Error
       data-slot="field-error"
-      data-visible={visible}
-      onTransitionEnd={(event) => {
-        if (
-          !visible &&
-          event.target === event.currentTarget &&
-          event.propertyName === "grid-template-rows"
-        ) {
-          setExitingContent(null);
-        }
-        onTransitionEnd?.(event);
-      }}
+      role="alert"
+      match={errors ? messages.length > 0 : match}
       className={cn(
-        "grid min-h-0 text-sm font-normal text-error transition-[grid-template-rows,margin] duration-200 ease-out data-[visible=false]:-mt-2 data-[visible=false]:grid-rows-[0fr] data-[visible=true]:grid-rows-[1fr] motion-reduce:transition-none",
+        "grid text-sm font-normal text-error transition-[grid-template-rows,opacity] duration-200 ease-out data-ending-style:grid-rows-[0fr] data-ending-style:opacity-0 data-starting-style:grid-rows-[0fr] data-starting-style:opacity-0 motion-reduce:transition-none",
         className,
       )}
       {...props}
     >
-      <div
-        className="min-h-0 overflow-hidden opacity-0 transition-opacity duration-100 data-[visible=true]:opacity-100 data-[visible=true]:delay-75 motion-reduce:transition-none"
-        data-visible={visible}
-      >
-        {content ?? exitingContent}
-      </div>
-    </div>
+      <div className="min-h-0 overflow-hidden">{content}</div>
+    </FieldPrimitive.Error>
   );
 }
+
+const FieldItem = FieldPrimitive.Item;
+const FieldControl = FieldPrimitive.Control;
+const FieldValidity = FieldPrimitive.Validity;
 
 export {
   Field,
@@ -246,4 +234,7 @@ export {
   FieldSet,
   FieldContent,
   FieldTitle,
+  FieldItem,
+  FieldControl,
+  FieldValidity,
 };

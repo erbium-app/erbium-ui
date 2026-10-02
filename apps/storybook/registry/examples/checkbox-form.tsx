@@ -28,13 +28,12 @@ export default function CheckboxForm() {
         setSubmitted(JSON.stringify(data, null, 2));
       }}
     >
-      <Field ref={termsRowRef} orientation="horizontal" data-invalid={termsInvalid}>
+      <Field ref={termsRowRef} orientation="horizontal" invalid={termsInvalid}>
         <Checkbox
           id={termsId}
           name="terms"
           required
           inputRef={termsInputRef}
-          aria-invalid={termsInvalid}
           onCheckedChange={(checked) => {
             if (checked) {
               setTermsInvalid(false);
@@ -43,10 +42,10 @@ export default function CheckboxForm() {
         />
         <FieldLabel htmlFor={termsId}>Accept terms and conditions</FieldLabel>
       </Field>
-      <div className="flex items-center gap-2">
+      <Field orientation="horizontal">
         <Checkbox id={newsletterId} name="newsletter" value="weekly" uncheckedValue="none" />
         <FieldLabel htmlFor={newsletterId}>Weekly newsletter</FieldLabel>
-      </div>
+      </Field>
       <StatefulButton className="self-start" type="submit">
         Submit
       </StatefulButton>

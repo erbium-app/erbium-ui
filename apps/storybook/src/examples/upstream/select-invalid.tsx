@@ -17,10 +17,10 @@ const items = [
 
 export function SelectInvalid() {
   return (
-    <Field data-invalid className="w-full max-w-48">
+    <Field invalid className="w-full max-w-48">
       <FieldLabel>Fruit</FieldLabel>
       <Select items={items}>
-        <SelectTrigger aria-invalid>
+        <SelectTrigger>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -33,7 +33,7 @@ export function SelectInvalid() {
           </SelectGroup>
         </SelectContent>
       </Select>
-      <FieldError>Please select a fruit.</FieldError>
+      <FieldError match>Please select a fruit.</FieldError>
     </Field>
   );
 }

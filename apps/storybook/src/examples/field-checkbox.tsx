@@ -19,12 +19,8 @@ export default function FieldCheckbox() {
           <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>
           <FieldGroup className="gap-3">
             <Field orientation="horizontal">
-              <Checkbox id="finder-pref-9k2-hard-disks-ljj" />
-              <FieldLabel
-                htmlFor="finder-pref-9k2-hard-disks-ljj"
-                className="font-normal"
-                defaultChecked
-              >
+              <Checkbox id="finder-pref-9k2-hard-disks-ljj" defaultChecked />
+              <FieldLabel htmlFor="finder-pref-9k2-hard-disks-ljj" className="font-normal">
                 Hard disks
               </FieldLabel>
             </Field>

@@ -1,51 +1,65 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { Field, FieldError } from "@erbium/ui/components/field";
+import { act, render, screen } from "@testing-library/react";
+import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
+import { Input } from "@erbium/ui/components/input";
+import { Textarea } from "@erbium/ui/components/textarea";
 
-test("keeps the error container mounted while validation changes", () => {
+test("shows the error only while errors exist and links it to the control", async () => {
   const { rerender } = render(
-    <Field>
-      <FieldError id="email-error" errors={[]} />
+    <Field name="email" invalid={false}>
+      <FieldLabel>Email</FieldLabel>
+      <Input />
+      <FieldError errors={[]} />
     </Field>,
   );
 
-  const error = document.getElementById("email-error");
-  expect(error?.getAttribute("data-visible")).toBe("false");
   expect(screen.queryByRole("alert")).toBeNull();
+  expect(screen.getByLabelText("Email").hasAttribute("aria-invalid")).toBe(false);
 
   rerender(
-    <Field>
-      <FieldError id="email-error" errors={["Enter a valid email address."]} />
+    <Field name="email" invalid>
+      <FieldLabel>Email</FieldLabel>
+      <Input />
+      <FieldError errors={["Enter a valid email address."]} />
     </Field>,
   );
 
-  expect(document.getElementById("email-error")).toBe(error);
-  expect(error?.getAttribute("data-visible")).toBe("true");
-  expect(screen.getByRole("alert").textContent).toBe("Enter a valid email address.");
+  const input = screen.getByLabelText("Email");
+  const alert = screen.getByRole("alert");
+  expect(alert.textContent).toBe("Enter a valid email address.");
+  expect(input.getAttribute("aria-invalid")).toBe("true");
+  expect(input.getAttribute("aria-describedby")).toContain(alert.id);
 
   rerender(
-    <Field>
-      <FieldError id="email-error" errors={[]} />
+    <Field name="email" invalid={false}>
+      <FieldLabel>Email</FieldLabel>
+      <Input />
+      <FieldError errors={[]} />
     </Field>,
   );
-
-  expect(document.getElementById("email-error")).toBe(error);
-  expect(error?.getAttribute("data-visible")).toBe("false");
-  expect(error?.getAttribute("aria-hidden")).toBe("true");
-  expect(error?.textContent).toBe("Enter a valid email address.");
+  await act(async () => {});
   expect(screen.queryByRole("alert")).toBeNull();
-
-  if (error) {
-    fireEvent.transitionEnd(error, { propertyName: "grid-template-rows" });
-  }
-
-  expect(error?.textContent).toBe("");
 });
 
 test("shows each distinct error once", () => {
-  render(<FieldError errors={["Required", { message: "Required" }, { message: "Invalid" }]} />);
+  render(
+    <Field invalid>
+      <FieldError errors={["Required", { message: "Required" }, { message: "Invalid" }]} />
+    </Field>,
+  );
 
   expect(screen.getAllByRole("listitem").map((item) => item.textContent)).toEqual([
     "Required",
     "Invalid",
   ]);
+});
+
+test("textarea picks up the field's invalid state", () => {
+  render(
+    <Field invalid>
+      <FieldLabel>Bio</FieldLabel>
+      <Textarea />
+    </Field>,
+  );
+
+  expect(screen.getByLabelText("Bio").getAttribute("aria-invalid")).toBe("true");
 });

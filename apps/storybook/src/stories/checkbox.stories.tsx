@@ -151,7 +151,7 @@ export const Disabled: Story = {
     docs: {
       description: {
         story:
-          "Use the `disabled` prop to prevent interaction. The checkbox and a sibling `Label` dim through `data-disabled`; inside a `<Field>`, add `data-disabled` to the field for disabled styles.",
+          "Use the `disabled` prop to prevent interaction. The checkbox and a sibling `Label` dim through `data-disabled`; inside a `<Field>`, add `disabled` to the field for disabled styles.",
       },
 
       source: {
@@ -226,10 +226,10 @@ export const InvalidState: Story = {
     docs: {
       description: {
         story:
-          "Set `aria-invalid` on the checkbox and `data-invalid` on the field wrapper to\n\nshow the invalid styles.",
+          "Set `invalid` on the `Field` wrapper; the checkbox picks up `aria-invalid` automatically.",
       },
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\n\nexport function CheckboxInvalid() {\n  return (\n    <FieldGroup className="mx-auto w-56">\n      <Field orientation="horizontal" data-invalid>\n        <Checkbox id="terms-checkbox-invalid" name="terms-checkbox-invalid" aria-invalid />\n        <FieldLabel htmlFor="terms-checkbox-invalid">Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";\n\nexport function CheckboxInvalid() {\n  return (\n    <FieldGroup className="mx-auto w-56">\n      <Field orientation="horizontal" invalid>\n        <Checkbox id="terms-checkbox-invalid" name="terms-checkbox-invalid" />\n        <FieldLabel htmlFor="terms-checkbox-invalid">Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n',
       },
     },
   },

@@ -61,13 +61,13 @@ export const Playground: StoryObj<{
       <FieldLegend variant={args.legendVariant}>Contact details</FieldLegend>
       <Field
         orientation={args.orientation}
-        data-invalid={args.invalid}
+        invalid={args.invalid}
         className={`w-80 ${args.className}`}
       >
         <FieldLabel htmlFor="playground-field">Email</FieldLabel>
         <UIInput id="playground-field" placeholder="name@example.com" />
         <FieldDescription>We will use this to contact you.</FieldDescription>
-        {args.invalid && <FieldError errors={[{ message: args.error }]} />}
+        <FieldError errors={args.invalid ? [{ message: args.error }] : []} />
       </Field>
     </FieldSet>
   ),
@@ -174,7 +174,7 @@ export const Checkbox: Story = {
       description: { story: "Compose a field with a checkbox." },
 
       source: {
-        code: 'import { Checkbox } from "@erbium/ui/components/checkbox"\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n} from "@erbium/ui/components/field"\n\nexport default function FieldCheckbox() {\n  return (\n    <div className="w-full max-w-md">\n      <FieldGroup>\n        <FieldSet>\n          <FieldLegend variant="label">\n            Show these items on the desktop\n          </FieldLegend>\n          <FieldDescription>\n            Select the items you want to show on the desktop.\n          </FieldDescription>\n          <FieldGroup className="gap-3">\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-hard-disks-ljj" />\n              <FieldLabel\n                htmlFor="finder-pref-9k2-hard-disks-ljj"\n                className="font-normal"\n                defaultChecked\n              >\n                Hard disks\n              </FieldLabel>\n            </Field>\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-external-disks-1yg" />\n              <FieldLabel\n                htmlFor="finder-pref-9k2-external-disks-1yg"\n                className="font-normal"\n              >\n                External disks\n              </FieldLabel>\n            </Field>\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-cds-dvds-fzt" />\n              <FieldLabel\n                htmlFor="finder-pref-9k2-cds-dvds-fzt"\n                className="font-normal"\n              >\n                CDs, DVDs, and iPods\n              </FieldLabel>\n            </Field>\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-connected-servers-6l2" />\n              <FieldLabel\n                htmlFor="finder-pref-9k2-connected-servers-6l2"\n                className="font-normal"\n              >\n                Connected servers\n              </FieldLabel>\n            </Field>\n          </FieldGroup>\n        </FieldSet>\n        <FieldSeparator />\n        <Field orientation="horizontal">\n          <Checkbox id="finder-pref-9k2-sync-folders-nep" defaultChecked />\n          <FieldContent>\n            <FieldLabel htmlFor="finder-pref-9k2-sync-folders-nep">\n              Sync Desktop & Documents folders\n            </FieldLabel>\n            <FieldDescription>\n              Your Desktop & Documents folders are being synced with iCloud\n              Drive. You can access them from other devices.\n            </FieldDescription>\n          </FieldContent>\n        </Field>\n      </FieldGroup>\n    </div>\n  )\n}\n',
+        code: 'import { Checkbox } from "@erbium/ui/components/checkbox";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n} from "@erbium/ui/components/field";\n\nexport default function FieldCheckbox() {\n  return (\n    <div className="w-full max-w-md">\n      <FieldGroup>\n        <FieldSet>\n          <FieldLegend variant="label">Show these items on the desktop</FieldLegend>\n          <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>\n          <FieldGroup className="gap-3">\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-hard-disks-ljj" defaultChecked />\n              <FieldLabel htmlFor="finder-pref-9k2-hard-disks-ljj" className="font-normal">\n                Hard disks\n              </FieldLabel>\n            </Field>\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-external-disks-1yg" />\n              <FieldLabel htmlFor="finder-pref-9k2-external-disks-1yg" className="font-normal">\n                External disks\n              </FieldLabel>\n            </Field>\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-cds-dvds-fzt" />\n              <FieldLabel htmlFor="finder-pref-9k2-cds-dvds-fzt" className="font-normal">\n                CDs, DVDs, and iPods\n              </FieldLabel>\n            </Field>\n            <Field orientation="horizontal">\n              <Checkbox id="finder-pref-9k2-connected-servers-6l2" />\n              <FieldLabel htmlFor="finder-pref-9k2-connected-servers-6l2" className="font-normal">\n                Connected servers\n              </FieldLabel>\n            </Field>\n          </FieldGroup>\n        </FieldSet>\n        <FieldSeparator />\n        <Field orientation="horizontal">\n          <Checkbox id="finder-pref-9k2-sync-folders-nep" defaultChecked />\n          <FieldContent>\n            <FieldLabel htmlFor="finder-pref-9k2-sync-folders-nep">\n              Sync Desktop & Documents folders\n            </FieldLabel>\n            <FieldDescription>\n              Your Desktop & Documents folders are being synced with iCloud Drive. You can access\n              them from other devices.\n            </FieldDescription>\n          </FieldContent>\n        </Field>\n      </FieldGroup>\n    </div>\n  );\n}\n',
       },
     },
   },
@@ -303,21 +303,16 @@ export const ValidationAndErrors: Story = {
     docs: {
       description: {
         story:
-          '- Add `data-invalid` to `Field` to switch the entire block into an error state.\n\n- Add `aria-invalid` on the input itself for assistive technologies.\n\n- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.\n\n```tsx\n<Field data-invalid>\n  <FieldLabel htmlFor="email">Email</FieldLabel>\n  <Input id="email" type="email" aria-invalid />\n  <FieldError>Enter a valid email address.</FieldError>\n</Field>\n```',
+          '- Add `invalid` to `Field` (Base UI `Field.Root`) to switch the entire block into an error state. Controls inside it receive `aria-invalid` and `data-invalid` automatically.\n\n- With TanStack Form, pass `invalid={!field.state.meta.isValid}` and `errors={field.state.meta.errors}` to `FieldError`.\n\n- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.\n\n```tsx\n<Field invalid>\n  <FieldLabel>Email</FieldLabel>\n  <Input type="email" />\n  <FieldError match>Enter a valid email address.</FieldError>\n</Field>\n```',
       },
     },
   },
 
   render: () => (
-    <Field className="w-80" data-invalid>
-      <FieldLabel htmlFor="storybook-invalid-email">Email</FieldLabel>
-      <UIInput
-        aria-invalid
-        id="storybook-invalid-email"
-        placeholder="name@example.com"
-        type="email"
-      />
-      <FieldError>Enter a valid email address.</FieldError>
+    <Field className="w-80" invalid>
+      <FieldLabel>Email</FieldLabel>
+      <UIInput placeholder="name@example.com" type="email" />
+      <FieldError match>Enter a valid email address.</FieldError>
     </Field>
   ),
 };

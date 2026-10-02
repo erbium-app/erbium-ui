@@ -35,9 +35,10 @@ test("each invalid submit shakes the field while the error remains visible", asy
     });
     expect(animate).toHaveBeenCalledTimes(1);
     expect(animate.mock.contexts[0]).toBe(input);
-    expect(container.querySelector('[data-slot="field-error"]')?.getAttribute("data-visible")).toBe(
-      "true",
+    expect(container.querySelector('[data-slot="field-error"]')?.textContent).toBe(
+      "Enter a valid email address.",
     );
+    expect(input?.getAttribute("aria-invalid")).toBe("true");
 
     await act(async () => {
       form?.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));

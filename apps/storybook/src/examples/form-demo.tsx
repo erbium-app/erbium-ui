@@ -83,23 +83,23 @@ export default function FormDemo({
         }}
       >
         {(field) => (
-          <Field data-invalid={field.state.meta.errors.length > 0}>
-            <FieldLabel htmlFor="form-email">Email</FieldLabel>
+          <Field
+            name={field.name}
+            invalid={!field.state.meta.isValid}
+            touched={field.state.meta.isTouched}
+            dirty={field.state.meta.isDirty}
+          >
+            <FieldLabel>Email</FieldLabel>
             <Input
               ref={emailRef}
-              id="form-email"
               type="email"
-              aria-invalid={field.state.meta.errors.length > 0}
-              aria-describedby="form-email-description form-email-error"
               value={field.state.value}
               onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}
               onBlur={field.handleBlur}
               onChange={(event) => field.handleChange(event.target.value)}
             />
-            <FieldDescription id="form-email-description">
-              We will use this to contact you.
-            </FieldDescription>
-            <FieldError id="form-email-error" errors={field.state.meta.errors} />
+            <FieldDescription>We will use this to contact you.</FieldDescription>
+            <FieldError errors={field.state.meta.errors} />
           </Field>
         )}
       </form.Field>

@@ -51,8 +51,8 @@ test("an invalid required checkbox shakes its visible row and clears when checke
       termsCheckbox?.click();
     });
     expect(termsInput?.checked).toBe(true);
-    expect(termsCheckbox?.getAttribute("aria-invalid")).toBe("false");
-    expect(termsRow?.getAttribute("data-invalid")).toBe("false");
+    expect(termsCheckbox?.hasAttribute("aria-invalid")).toBe(false);
+    expect(termsRow?.hasAttribute("data-invalid")).toBe(false);
   } finally {
     await act(async () => {
       root.unmount();
