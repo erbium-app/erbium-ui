@@ -34,5 +34,6 @@ Remaining primitive candidates and API work are in [Missing primitives](./01-mis
 6. [Paper design-system parity](./05-paper-design-system.md)
 7. [Surfaces and depth](./06-surfaces-and-depth.md)
 8. [Searchable menus](./07-searchable-menus.md)
+9. [Responsive overlays and drawer indent](./08-responsive-overlays.md)
 
 Use the naming, primitive, and Base UI decisions while building blocks. Add Paper coverage alongside each component family so the design system remains reviewable as the library evolves.
