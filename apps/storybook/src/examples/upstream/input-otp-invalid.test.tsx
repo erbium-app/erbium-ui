@@ -34,7 +34,7 @@ test("a wrong complete code shakes all slots and a corrected code clears the err
 
     const input = container.querySelector<HTMLInputElement>("[data-input-otp]");
     expect(input).toBeTruthy();
-    expect(input?.getAttribute("aria-invalid")).toBe("false");
+    expect(input?.hasAttribute("aria-invalid")).toBe(false);
 
     await act(async () => {
       enterCode(input!, "000000");
@@ -51,7 +51,7 @@ test("a wrong complete code shakes all slots and a corrected code clears the err
     await act(async () => {
       enterCode(input!, "123456");
     });
-    expect(input?.getAttribute("aria-invalid")).toBe("false");
+    expect(input?.hasAttribute("aria-invalid")).toBe(false);
     expect(container.textContent).toContain("Code verified.");
     expect(animate).toHaveBeenCalledTimes(1);
 

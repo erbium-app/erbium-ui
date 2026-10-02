@@ -36,26 +36,26 @@ export function InputOTPInvalid() {
       <div ref={shakeRef} className="w-fit">
         <InputOTP
           aria-describedby={errorId}
-          aria-invalid={invalid}
           aria-label="Verification code"
           maxLength={6}
           onChange={handleChange}
           pattern={REGEXP_ONLY_DIGITS}
+          status={invalid ? "error" : "idle"}
           value={value}
         >
           <InputOTPGroup>
-            <InputOTPSlot index={0} aria-invalid={invalid} />
-            <InputOTPSlot index={1} aria-invalid={invalid} />
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
           </InputOTPGroup>
           <InputOTPSeparator />
           <InputOTPGroup>
-            <InputOTPSlot index={2} aria-invalid={invalid} />
-            <InputOTPSlot index={3} aria-invalid={invalid} />
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
           </InputOTPGroup>
           <InputOTPSeparator />
           <InputOTPGroup>
-            <InputOTPSlot index={4} aria-invalid={invalid} />
-            <InputOTPSlot index={5} aria-invalid={invalid} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
           </InputOTPGroup>
         </InputOTP>
       </div>
