@@ -5,7 +5,7 @@ import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
-import { Input } from "../components/input";
+import { NumberField, NumberFieldGroup, NumberFieldInput } from "../components/number-field";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../components/select";
 
 const CURRENCIES = [
@@ -39,7 +39,14 @@ export default function ButtonGroupSelect() {
             ))}
           </SelectContent>
         </Select>
-        <Input placeholder="10.00" pattern="[0-9]*" />
+        <NumberField
+          className="w-36"
+          format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+        >
+          <NumberFieldGroup className="rounded-s-none">
+            <NumberFieldInput aria-label="Amount" placeholder="10.00" />
+          </NumberFieldGroup>
+        </NumberField>
       </ButtonGroup>
       <ButtonGroup>
         <Button aria-label="Send" size="icon" variant="outline">

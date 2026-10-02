@@ -331,7 +331,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
-        "@erbium/input",
+        "@erbium/number-field",
         "@erbium/select"
       ],
       "files": [

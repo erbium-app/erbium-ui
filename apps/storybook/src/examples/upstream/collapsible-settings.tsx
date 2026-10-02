@@ -8,7 +8,11 @@ import {
   CollapsibleTrigger,
 } from "@erbium/ui/components/collapsible";
 import { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";
-import { Input } from "@erbium/ui/components/input";
+import {
+  NumberField,
+  NumberFieldGroup,
+  NumberFieldInput,
+} from "@erbium/ui/components/number-field";
 import { Separator } from "@erbium/ui/components/separator";
 
 export function CollapsibleSettings() {
@@ -32,11 +36,19 @@ export function CollapsibleSettings() {
             <FieldGroup className="grid w-full grid-cols-2 gap-2">
               <Field>
                 <FieldLabel className="sr-only">Radius X</FieldLabel>
-                <Input placeholder="0" defaultValue={0} />
+                <NumberField defaultValue={0} min={0}>
+                  <NumberFieldGroup>
+                    <NumberFieldInput aria-label="Radius X" placeholder="0" />
+                  </NumberFieldGroup>
+                </NumberField>
               </Field>
               <Field>
                 <FieldLabel className="sr-only">Radius Y</FieldLabel>
-                <Input placeholder="0" defaultValue={0} />
+                <NumberField defaultValue={0} min={0}>
+                  <NumberFieldGroup>
+                    <NumberFieldInput aria-label="Radius Y" placeholder="0" />
+                  </NumberFieldGroup>
+                </NumberField>
               </Field>
             </FieldGroup>
           </div>
