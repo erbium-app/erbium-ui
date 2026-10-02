@@ -186,3 +186,31 @@ test("text and textarea rows delegate to Field: label click, form value, disable
   fireEvent.change(screen.getByRole("textbox", { name: "Bio" }), { target: { value: "Hello" } });
   expect(changes).toEqual(["Hello"]);
 });
+
+test("color submits through the picker and commits only valid hex text", () => {
+  const changes: string[] = [];
+  const { container } = render(
+    <form>
+      <Control.Color
+        label="Fill"
+        name="fill"
+        defaultValue="#112233"
+        onValueChange={(v) => changes.push(v)}
+      />
+    </form>,
+  );
+  const hex = screen.getByRole("textbox", { name: "Fill hex value" }) as HTMLInputElement;
+  expect(container.querySelector('input[type="hidden"]')).toBeNull();
+  expect(new FormData(container.querySelector("form") as HTMLFormElement).get("fill")).toBe(
+    "#112233",
+  );
+
+  fireEvent.change(hex, { target: { value: "#12" } });
+  expect(changes).toEqual([]);
+  fireEvent.change(hex, { target: { value: "#aabbcc" } });
+  expect(changes).toEqual(["#aabbcc"]);
+  expect(new FormData(container.querySelector("form") as HTMLFormElement).get("fill")).toBe(
+    "#aabbcc",
+  );
+  expect(document.querySelector('[data-slot="control-color"] label')?.textContent).toBe("Fill");
+});

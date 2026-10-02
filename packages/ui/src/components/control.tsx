@@ -788,44 +788,49 @@ function Color({
   const [local, setLocal] = React.useState(defaultValue);
   const [draft, setDraft] = React.useState(value ?? defaultValue);
   const current = value ?? local;
-  const id = React.useId();
   React.useEffect(() => setDraft(current), [current]);
+  const valid = /^#[\da-fA-F]{6}$/.test(current);
   const change = (next: string) => {
     setLocal(next);
     setDraft(next);
     onValueChange?.(next);
   };
+  // The hex input is the Field control (the label targets it); the native color
+  // input has no Base UI part, so it carries the form name and always holds a
+  // valid hex, which replaces the old hidden input.
   return (
-    <div data-slot="control-color" className={cn(rowClass, className)}>
-      <label htmlFor={id} className={labelClass}>
-        {label}
-      </label>
-      <input
-        id={id}
+    <FieldPrimitive.Root
+      data-slot="control-color"
+      disabled={disabled}
+      className={cn(rowClass, className)}
+    >
+      <FieldPrimitive.Label className={labelClass}>{label}</FieldPrimitive.Label>
+      <InputPrimitive
         aria-label={`${label} hex value`}
-        disabled={disabled}
+        // Field.Label would name the input "Fill"; keep the hex-specific name.
+        aria-labelledby={undefined}
         value={draft}
-        onChange={(event) => {
-          setDraft(event.target.value);
-          if (/^#[\da-fA-F]{6}$/.test(event.target.value)) change(event.target.value);
+        onValueChange={(next) => {
+          setDraft(next);
+          if (/^#[\da-fA-F]{6}$/.test(next)) change(next);
         }}
         className={cn(valueClass, monoClass, "w-20 bg-transparent")}
       />
       <span
         className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob focus-within:ring-2 focus-within:ring-ring/50"
-        style={{ backgroundColor: /^#[\da-fA-F]{6}$/.test(current) ? current : "transparent" }}
+        style={{ backgroundColor: valid ? current : "transparent" }}
       >
         <input
           aria-label={`Pick ${label}`}
           type="color"
+          name={name}
           disabled={disabled}
-          value={/^#[\da-fA-F]{6}$/.test(current) ? current : "#000000"}
+          value={valid ? current : "#000000"}
           onChange={(event) => change(event.target.value)}
           className="absolute inset-0 size-full cursor-pointer opacity-0"
         />
       </span>
-      {name ? <input type="hidden" name={name} value={current} /> : null}
-    </div>
+    </FieldPrimitive.Root>
   );
 }
 
