@@ -17,10 +17,21 @@
 
 @utility skeleton {
   background-color: var(--color-skeleton);
+  /* Highlight band eased with an ease-in-out curve (cubic-bezier(.42, 0, .58, 1)). */
   background-image: linear-gradient(
     120deg,
     transparent 40%,
-    var(--color-skeleton-highlight),
+    color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 41.9%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 25.9%, transparent) 43.5%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 50%, transparent) 45%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 74.1%, transparent) 46.5%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 92.6%, transparent) 48.1%,
+    var(--color-skeleton-highlight) 50%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 92.6%, transparent) 51.9%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 74.1%, transparent) 53.5%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 50%, transparent) 55%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 25.9%, transparent) 56.5%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 58.1%,
     transparent 60%
   );
   background-size: 200% 100%;
