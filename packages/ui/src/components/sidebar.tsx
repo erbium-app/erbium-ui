@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -279,11 +280,11 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
   );
 }
 
-function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
+function SidebarRail({ className, ...props }: ButtonPrimitive.Props) {
   const { toggleSidebar } = useSidebar();
 
   return (
-    <button
+    <ButtonPrimitive
       data-sidebar="rail"
       data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
