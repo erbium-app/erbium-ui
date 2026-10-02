@@ -7,7 +7,8 @@
  * to the document timeline so late-mounting skeletons stay in phase.
  */
 @theme inline {
-  --animate-skeleton: skeleton var(--skeleton-duration, 2s) -1s infinite linear;
+  --animate-skeleton: skeleton var(--skeleton-duration, var(--shimmer-duration, 2s)) -1s infinite
+    linear;
   @keyframes skeleton {
     to {
       background-position: -200% 0;
@@ -19,20 +20,20 @@
   background-color: var(--color-skeleton);
   /* Highlight band eased with an ease-in-out curve (cubic-bezier(.42, 0, .58, 1)). */
   background-image: linear-gradient(
-    120deg,
-    transparent 40%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 41.9%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 25.9%, transparent) 43.5%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 50%, transparent) 45%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 74.1%, transparent) 46.5%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 92.6%, transparent) 48.1%,
+    calc(90deg + var(--shimmer-angle)),
+    transparent 30%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 33.8%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 25.9%, transparent) 37%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 50%, transparent) 40%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 74.1%, transparent) 43%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 92.6%, transparent) 46.2%,
     var(--color-skeleton-highlight) 50%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 92.6%, transparent) 51.9%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 74.1%, transparent) 53.5%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 50%, transparent) 55%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 25.9%, transparent) 56.5%,
-    color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 58.1%,
-    transparent 60%
+    color-mix(in oklab, var(--color-skeleton-highlight) 92.6%, transparent) 53.8%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 74.1%, transparent) 57%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 50%, transparent) 60%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 25.9%, transparent) 63%,
+    color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 66.2%,
+    transparent 70%
   );
   background-size: 200% 100%;
   background-position: 0 0;
