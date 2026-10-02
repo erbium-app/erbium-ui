@@ -10,7 +10,7 @@ import {
   ItemTitle,
 } from "@erbium/ui/components/item";
 import { Kbd } from "@erbium/ui/components/kbd";
-import { FieldLabel } from "@erbium/ui/components/field";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 import {
   Select,
   SelectContent,
@@ -87,7 +87,7 @@ export default function ItemSettingsPanel() {
           </Fragment>
         ))}
         <ItemSeparator />
-        <Item role="listitem">
+        <Item render={<Field orientation="horizontal" />} role="listitem">
           <ItemContent>
             <ItemTitle>
               <FieldLabel htmlFor="convert-emoticons">
@@ -178,7 +178,7 @@ function ItemGroupSection({ id, title, description }: (typeof interfaceSwitches)
   return (
     <>
       <ItemSeparator />
-      <Item role="listitem">
+      <Item render={<Field orientation="horizontal" />} role="listitem">
         <ItemContent>
           <ItemTitle>
             <FieldLabel htmlFor={id}>{title}</FieldLabel>

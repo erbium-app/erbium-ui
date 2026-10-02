@@ -17,7 +17,7 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@erbium/ui/components/item";
-import { FieldLabel } from "@erbium/ui/components/field";
+import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 const projects = [
   { id: "gateway", name: "Cloud gateway", icon: CloudIcon, color: "text-orange-500", issues: 30 },
@@ -77,6 +77,7 @@ export default function ItemJoinedSelection() {
 
           return (
             <Item
+              render={<Field orientation="horizontal" />}
               key={project.id}
               role="listitem"
               size="sm"

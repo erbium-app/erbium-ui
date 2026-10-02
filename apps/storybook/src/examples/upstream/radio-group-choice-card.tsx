@@ -2,41 +2,37 @@ import {
   Field,
   FieldContent,
   FieldDescription,
+  FieldItem,
   FieldLabel,
-  FieldTitle,
 } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 
 export function RadioGroupChoiceCard() {
   return (
-    <RadioGroup defaultValue="plus" className="max-w-sm">
-      <FieldLabel htmlFor="plus-plan">
-        <Field orientation="horizontal">
+    <Field className="max-w-sm">
+      <RadioGroup defaultValue="plus">
+        <FieldItem variant="card" orientation="horizontal">
           <FieldContent>
-            <FieldTitle>Plus</FieldTitle>
+            <FieldLabel>Plus</FieldLabel>
             <FieldDescription>For individuals and small teams.</FieldDescription>
           </FieldContent>
-          <RadioGroupItem value="plus" id="plus-plan" />
-        </Field>
-      </FieldLabel>
-      <FieldLabel htmlFor="pro-plan">
-        <Field orientation="horizontal">
+          <RadioGroupItem value="plus" />
+        </FieldItem>
+        <FieldItem variant="card" orientation="horizontal">
           <FieldContent>
-            <FieldTitle>Pro</FieldTitle>
+            <FieldLabel>Pro</FieldLabel>
             <FieldDescription>For growing businesses.</FieldDescription>
           </FieldContent>
-          <RadioGroupItem value="pro" id="pro-plan" />
-        </Field>
-      </FieldLabel>
-      <FieldLabel htmlFor="enterprise-plan">
-        <Field orientation="horizontal">
+          <RadioGroupItem value="pro" />
+        </FieldItem>
+        <FieldItem variant="card" orientation="horizontal">
           <FieldContent>
-            <FieldTitle>Enterprise</FieldTitle>
+            <FieldLabel>Enterprise</FieldLabel>
             <FieldDescription>For large teams and enterprises.</FieldDescription>
           </FieldContent>
-          <RadioGroupItem value="enterprise" id="enterprise-plan" />
-        </Field>
-      </FieldLabel>
-    </RadioGroup>
+          <RadioGroupItem value="enterprise" />
+        </FieldItem>
+      </RadioGroup>
+    </Field>
   );
 }

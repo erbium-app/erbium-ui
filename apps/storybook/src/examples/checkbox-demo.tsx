@@ -21,17 +21,13 @@ export default function CheckboxDemo() {
         <Checkbox id="toggle" />
         <FieldLabel htmlFor="toggle">Enable notifications</FieldLabel>
       </Field>
-      <FieldLabel htmlFor="toggle-2">
-        <Field orientation="horizontal" className="items-start">
-          <Checkbox id="toggle-2" defaultChecked />
-          <FieldContent>
-            <span className="text-sm leading-none font-medium">Enable notifications</span>
-            <FieldDescription>
-              You can enable or disable notifications at any time.
-            </FieldDescription>
-          </FieldContent>
-        </Field>
-      </FieldLabel>
+      <Field variant="card" orientation="horizontal">
+        <Checkbox defaultChecked />
+        <FieldContent>
+          <FieldLabel>Enable notifications</FieldLabel>
+          <FieldDescription>You can enable or disable notifications at any time.</FieldDescription>
+        </FieldContent>
+      </Field>
     </div>
   );
 }

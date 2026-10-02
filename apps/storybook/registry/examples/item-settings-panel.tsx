@@ -11,7 +11,7 @@ import {
   ItemTitle,
 } from "../components/item";
 import { Kbd } from "../components/kbd";
-import { FieldLabel } from "../components/field";
+import { Field, FieldLabel } from "../components/field";
 import {
   Select,
   SelectContent,
@@ -88,7 +88,7 @@ export default function ItemSettingsPanel() {
           </Fragment>
         ))}
         <ItemSeparator />
-        <Item role="listitem">
+        <Item render={<Field orientation="horizontal" />} role="listitem">
           <ItemContent>
             <ItemTitle>
               <FieldLabel htmlFor="convert-emoticons">
@@ -179,7 +179,7 @@ function ItemGroupSection({ id, title, description }: (typeof interfaceSwitches)
   return (
     <>
       <ItemSeparator />
-      <Item role="listitem">
+      <Item render={<Field orientation="horizontal" />} role="listitem">
         <ItemContent>
           <ItemTitle>
             <FieldLabel htmlFor={id}>{title}</FieldLabel>

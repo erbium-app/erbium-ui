@@ -4,9 +4,10 @@ import {
   FieldContent,
   FieldDescription,
   FieldGroup,
+  FieldItem,
   FieldLabel,
+  FieldLegend,
   FieldSet,
-  FieldTitle,
 } from "../components/field";
 import { RadioGroup, RadioGroupItem } from "../components/radio-group";
 
@@ -15,32 +16,30 @@ export default function FieldChoiceCard() {
     <div className="w-full max-w-md">
       <FieldGroup>
         <FieldSet>
-          <FieldLabel htmlFor="compute-environment-p8w">Compute Environment</FieldLabel>
+          <FieldLegend variant="label">Compute Environment</FieldLegend>
           <FieldDescription>Select the compute environment for your cluster.</FieldDescription>
-          <RadioGroup defaultValue="kubernetes">
-            <FieldLabel htmlFor="kubernetes-r2h">
-              <Field orientation="horizontal">
+          <Field>
+            <RadioGroup defaultValue="kubernetes">
+              <FieldItem variant="card" orientation="horizontal">
                 <FieldContent>
-                  <FieldTitle>Kubernetes</FieldTitle>
+                  <FieldLabel>Kubernetes</FieldLabel>
                   <FieldDescription>
                     Run GPU workloads on a K8s configured cluster.
                   </FieldDescription>
                 </FieldContent>
-                <RadioGroupItem value="kubernetes" id="kubernetes-r2h" />
-              </Field>
-            </FieldLabel>
-            <FieldLabel htmlFor="vm-z4k">
-              <Field orientation="horizontal">
+                <RadioGroupItem value="kubernetes" />
+              </FieldItem>
+              <FieldItem variant="card" orientation="horizontal">
                 <FieldContent>
-                  <FieldTitle>Virtual Machine</FieldTitle>
+                  <FieldLabel>Virtual Machine</FieldLabel>
                   <FieldDescription>
                     Access a VM configured cluster to run GPU workloads.
                   </FieldDescription>
                 </FieldContent>
-                <RadioGroupItem value="vm" id="vm-z4k" />
-              </Field>
-            </FieldLabel>
-          </RadioGroup>
+                <RadioGroupItem value="vm" />
+              </FieldItem>
+            </RadioGroup>
+          </Field>
         </FieldSet>
       </FieldGroup>
     </div>

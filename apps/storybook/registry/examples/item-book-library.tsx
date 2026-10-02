@@ -91,7 +91,13 @@ export default function ItemBookLibrary() {
           const checkboxId = `${idPrefix}-${book.id}`;
 
           return (
-            <Item key={book.id} role="listitem" data-selected={checked} className="relative">
+            <Item
+              render={<Field orientation="horizontal" />}
+              key={book.id}
+              role="listitem"
+              data-selected={checked}
+              className="relative"
+            >
               {index > 0 && (
                 <ItemSeparator className="absolute inset-x-4 top-0 mx-0! my-0! w-auto" />
               )}
