@@ -26,7 +26,6 @@
     "@types/react-dom": "^19.3.0",
     "storybook": "latest",
     "typescript": "next",
-    "vite-plus": "catalog:",
-    "vitest": "latest"
+    "vite-plus": "catalog:"
   }
 }

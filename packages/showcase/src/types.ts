@@ -16,5 +16,4 @@ export type StoryObj<T = Record<string, unknown>> = {
   argTypes?: Record<string, unknown>;
   parameters?: Record<string, unknown>;
   render: (args: StoryArgs<T>) => ReactNode;
-  play?: (context: { canvasElement: HTMLElement }) => void | Promise<void>;
 };

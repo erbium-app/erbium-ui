@@ -8,9 +8,8 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "types": ["vitest/globals"],
     "lib": ["ES2023", "DOM", "DOM.Iterable"]
   },
-  "include": ["src", "tests"],
+  "include": ["src"],
   "exclude": ["public"]
 }

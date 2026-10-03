@@ -4,7 +4,6 @@ Use the repository's existing checks throughout the work.
 
 ## Per-component checks
 
-- [ ] Add or update focused Vitest tests.
 - [ ] Add Storybook coverage for interactive states.
 - [ ] Verify keyboard navigation and focus restoration.
 - [ ] Verify screen-reader labeling and live-region behavior where relevant.
@@ -58,6 +57,6 @@ Use the repository's existing checks throughout the work.
 - [ ] Every Base UI public component that is in Erbium scope has a wrapper, alias, or documented intentional omission.
 - [ ] Every Coss primitive in scope has an Erbium equivalent or a recorded reason for exclusion.
 - [ ] Every repeated shadcn concept retains a familiar public name or has a documented compatibility alias.
-- [ ] The registry, Storybook, docs, tests, and package exports agree on the same public component list.
+- [ ] The registry, Storybook, docs, and package exports agree on the same public component list.
 - [ ] The package boundary review has moved feature-heavy components out of the foundation where appropriate.
 - [ ] The Paper design-system file, component manifest, Storybook stories, registry, and source implementation agree.

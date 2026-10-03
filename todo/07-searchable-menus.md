@@ -31,7 +31,7 @@ The current dropdown/context content wrappers always wrap `children` in `ScrollA
 - Base UI's built-in filtering hides matching item elements and empty groups; separator visibility still needs a design decision for filtered groups. The upstream demo styles separators conditionally, so check Erbium's group and separator composition rather than assuming automatic cleanup.
 - Matching uses an item's text or `label`; define when consumers should supply `label` for icons, shortcuts, aliases, or translated text. Product-specific keywords and remote search stay with the consuming app, using controlled query and `filter={null}` when it renders the results itself.
 - The source indicates checkbox and radio items retain their roles and state while filtered. Verify links (`Menu.LinkItem`), disabled items, close-on-select, selected values outside the current match, and submenu triggers in Erbium's wrapper API and examples.
-- Context Menu's filter parts are inherited through Menu internally but are not re-exported from its package entry point. Confirm the mixed composition with typechecking and interaction tests before exposing a public searchable context menu API.
+- Context Menu's filter parts are inherited through Menu internally but are not re-exported from its package entry point. Confirm the mixed composition with typechecking and manual interaction checks before exposing a public searchable context menu API.
 - Decide the public opt-in API after prototyping: explicit `DropdownMenuFilterProvider`/`DropdownMenuInput`/`DropdownMenuList` parts, or a dedicated searchable content variant. Keep the same pattern across dropdown, context menu, and menubar where the underlying behavior is proven. A `searchable` boolean alone cannot supply an accessible input name or controlled query API.
 
 ## Acceptance and implementation gate
@@ -40,6 +40,6 @@ The current dropdown/context content wrappers always wrap `children` in `ScrollA
 2. Prototype a searchable status or priority value picker with the existing Combobox popup input. Confirm selected value versus temporary query, close reset, keyboard navigation, and screen-reader output.
 3. Prototype the mixed Context Menu composition and a per-root filtered Menubar menu. Check right-click and keyboard opening, pointer positioning, long-press, sibling navigation, hover, touch, RTL, and IME.
 4. Specify the optional Erbium compound API and fixed header/list layout. Keep existing unfiltered wrappers source-compatible and visually unchanged; add only the shared styling/composition needed by the accepted prototypes.
-5. Add focused interaction tests and Storybook examples, regenerate the affected registries, and run `bun run check` when implementation is authorized.
+5. Add Storybook examples and verify their interactions manually, regenerate the affected registries, and run `bun run check` when implementation is authorized.
 
 This document records research and proposed implementation work. It does not authorize Base UI or Erbium primitive changes by itself.

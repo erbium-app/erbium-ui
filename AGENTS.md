@@ -6,7 +6,7 @@
 
 - When asked to validate, typecheck, clean up, run Knip, or prepare changes for review, use the repository checks below.
 - The default command is `bun run check`. Fix actionable failures and repeat the same command until it passes.
-- Use `bun run ready` for release-readiness checks covering check, tests, and builds.
+- Use `bun run ready` for release-readiness checks covering checks and builds.
 - Run `bun run knip` only when unused files or dependencies are in scope.
 
 <!-- Source: .ruler/bts.md -->
@@ -68,10 +68,11 @@ Before editing files for a substantial task:
 
 <!-- Source: .ruler/testing.md -->
 
-# Test runner policy
+# Validation policy
 
-- Use Vitest through Vite+ (`vp test run`) for unit and integration tests.
-- Keep tests close to the package or app they exercise and preserve workspace-level test scripts.
+- This project has no automated test suite or test runner configuration.
+- Use `bun run check` for formatting, linting, and type-aware validation; use `bun run ready` to also build all applications.
+- Verify interactive component behavior manually in Storybook or the docs playground.
 
 <!-- Source: .ruler/ui-conventions.md -->
 

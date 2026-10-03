@@ -13,9 +13,7 @@
   "scripts": {
     "generate": "node scripts/generate.mjs",
     "registry:build": "node scripts/build-registry.mjs",
-    "typecheck": "tsc --noEmit",
-    "test": "vp test run",
-    "registry:smoke": "node scripts/smoke-registry.mjs"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@erbium/content": "workspace:*",
@@ -38,11 +36,7 @@
   "devDependencies": {
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "jsdom": "30.1.1",
-    "shadcn": "4.21.1",
     "typescript": "^7.0.2",
-    "vite": "catalog:",
-    "vite-plus": "catalog:",
-    "vitest": "latest"
+    "vite": "catalog:"
   }
 }

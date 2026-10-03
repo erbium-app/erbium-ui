@@ -6,7 +6,7 @@
 packages/showcase/
   src/
     checkbox/
-      catalog.tsx          # Ordered named variants, defaults, controls and play tests
+      catalog.tsx          # Ordered named variants, defaults and controls
       variants/            # One React composition per named variant
         playground.tsx
         controlled.tsx
@@ -25,7 +25,7 @@ Catalogs preserve stable story export names. Storybook namespaces are generated 
 ## Authoring
 
 1. Add or edit a React composition in `src/<component>/variants/<variant>.tsx`. Keep reusable state, helpers and fixtures in that component's folder. Use `@erbium/ui` primitives and real event handlers.
-2. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters and browser `play` tests. Use the matching `variantDocumentation` and `?raw` source imports. Classify the component once in `packages/content/src/sections.json`; do not add a title to the catalog.
+2. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters. Use the matching `variantDocumentation` and `?raw` source imports. Classify the component once in `packages/content/src/sections.json`; do not add a title to the catalog.
 3. Add the matching Markdown file under `packages/content/components/<component>/`, with a JSON-quoted `title` and the stable `story` export name in frontmatter. An empty body is valid when the example has no additional explanation.
 4. Run `bun run showcase:generate`, then `bun run showcase:registry` from the workspace root.
 5. Run `bun run showcase:check` and review both applications with `bun run showcase`.
@@ -38,13 +38,11 @@ The `@erbium-examples` registry complements the existing `@erbium` UI registry:
 
 - `<component>-<variant>` installs an individual variant and its local dependency graph.
 - `<component>-examples` installs every variant of a component.
-- `<component>-stories` installs portable React CSF stories, including examples, controls, defaults, Markdown descriptions and interaction tests. It adds `@storybook/react` as a development dependency and uses the consumer's existing Storybook configuration.
+- `<component>-stories` installs portable React CSF stories, including examples, controls, defaults, Markdown descriptions. It adds `@storybook/react` as a development dependency and uses the consumer's existing Storybook configuration.
 - Existing standalone names such as `button-demo` remain supported.
 
 Registry generation follows relative imports recursively, includes helper files, derives npm and UI registry dependencies, and rewrites workspace imports into canonical shadcn imports. Targets use the consumer's configured `components`, `ui`, `lib` and `hooks` aliases. Erbium's class merger installs as `erbium-utils.ts` so the consumer's existing shadcn utility remains available.
 
 The documentation serves the UI registry at `/r/ui/` and the showcase registry at `/r/examples/`, in development and static builds. Storybook serves the showcase package's `public/r` at `/r/`. Generated registry JSON belongs to its source package; applications publish those artifacts during their builds.
 
-`bun run showcase:check` verifies generated artifacts, repository lint/types, variant rendering, registry schema/dependency completeness, and both builds. Tests for stateful compositions stay beside those compositions. Example attribution is retained in [ATTRIBUTION.md](./ATTRIBUTION.md), with licenses under `licenses/`. Examples are organized by component and scenario in `src/<component>/examples`; provenance does not determine their directory.
-
-For a real shadcn CLI installation into a temporary React project with custom aliases, run `bun run showcase:registry:test`. Add `--all` to install all story collections. This integration check installs consumer dependencies and leaves the fixture path in its output for inspection.
+`bun run showcase:check` verifies generated artifacts, repository lint/types, and both builds. Example attribution is retained in [ATTRIBUTION.md](./ATTRIBUTION.md), with licenses under `licenses/`. Examples are organized by component and scenario in `src/<component>/examples`; provenance does not determine their directory.

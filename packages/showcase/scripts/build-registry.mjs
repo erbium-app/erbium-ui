@@ -133,7 +133,7 @@ for (const catalog of manifest) {
       ),
     );
   }
-  // Standalone CSF uses the same examples, args, controls, copy and browser tests.
+  // Standalone CSF uses the same examples, args, controls and copy.
   let portable = await readFile(join(componentPath, "catalog.tsx"), "utf8");
   portable = portable.replace(
     /import type \{ Meta, StoryObj \} from "\.\.\/types";/,

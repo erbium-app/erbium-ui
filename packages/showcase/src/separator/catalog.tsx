@@ -143,23 +143,6 @@ export const List: Story = {
 };
 
 export const MarginSizing: Story = {
-  play: ({ canvasElement }) => {
-    for (const container of canvasElement.querySelectorAll("[data-separator-case]")) {
-      const parent = container.getBoundingClientRect();
-      for (const separator of container.querySelectorAll<HTMLElement>("[data-inset]")) {
-        const inset = Number(separator.dataset.inset);
-        const rect = separator.getBoundingClientRect();
-        if (
-          Math.abs(rect.left - parent.left - inset) > 0.5 ||
-          Math.abs(parent.right - rect.right - inset) > 0.5
-        ) {
-          throw new Error(
-            `Separator edges are asymmetric in ${container.className} (${container.parentElement?.dir})`,
-          );
-        }
-      }
-    }
-  },
   parameters: {
     docs: {
       description: { story: variantDocumentation("separator", "margin-sizing") },

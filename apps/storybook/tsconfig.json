@@ -4,7 +4,6 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "types": ["vitest/globals"],
     "skipLibCheck": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"]
   },

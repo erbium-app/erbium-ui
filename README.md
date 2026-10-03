@@ -26,16 +26,13 @@ bun run storybook            # start only Storybook
 bun run docs                 # start only the docs
 bun run check                # format, lint, and type-aware checks
 bun run fix                  # apply mechanical formatting and lint fixes
-bun run test                 # run workspace tests
-bun run test:ui              # run UI package tests with its Vite+ config
-bun run test:ui:watch        # watch UI package tests
 bun run typecheck            # run workspace TypeScript checks
 bun run build                # build the workspaces
-bun run ready                # check, test, and build
+bun run ready                # check and build
 bun run knip                 # find unused files and dependencies
 ```
 
-Run `bun run ui:registry` after changing UI source. Shared showcases live in `packages/showcase`; Markdown lives in `packages/content`. Run `bun run showcase:generate` and `bun run showcase:registry` after changing either, then `bun run showcase:check` to verify synchronization, rendering, registry dependencies, and both site builds. Commit generated output with its source changes.
+Run `bun run ui:registry` after changing UI source. Shared showcases live in `packages/showcase`; Markdown lives in `packages/content`. Run `bun run showcase:generate` and `bun run showcase:registry` after changing either, then `bun run showcase:check` to verify synchronization and both site builds. Commit generated output with its source changes.
 
 See [shared showcase authoring](packages/showcase/README.md) for the component folder layout, variant catalogs, and installable examples and stories.
 
@@ -72,6 +69,6 @@ Import `src/styles/globals.css` from the consuming app's stylesheet entry. The s
 
 ## Quality
 
-New components need clear composition, accessible interaction, RTL behavior where relevant, a registry entry, and examples. Add focused tests for Erbium-owned behavior. Use `bun run check` for routine validation and `bun run ready` before a release review.
+New components need clear composition, accessible interaction, RTL behavior where relevant, a registry entry, and examples. Use `bun run check` for routine validation and `bun run ready` before a release review.
 
 Repository conventions are in [AGENTS.md](./AGENTS.md). The remaining design and API decisions are tracked in [todo](./todo/README.md).

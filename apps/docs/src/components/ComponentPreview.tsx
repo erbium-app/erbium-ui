@@ -11,7 +11,7 @@ function optionLabel(value: unknown) {
 }
 
 const previews = new Map<string, ReturnType<typeof lazy>>();
-export class PreviewErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+class PreviewErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
 
   static getDerivedStateFromError() {

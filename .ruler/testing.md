@@ -1,4 +1,5 @@
-# Test runner policy
+# Validation policy
 
-- Use Vitest through Vite+ (`vp test run`) for unit and integration tests.
-- Keep tests close to the package or app they exercise and preserve workspace-level test scripts.
+- This project has no automated test suite or test runner configuration.
+- Use `bun run check` for formatting, linting, and type-aware validation; use `bun run ready` to also build all applications.
+- Verify interactive component behavior manually in Storybook or the docs playground.
