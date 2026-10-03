@@ -1,9 +1,11 @@
 ---
 title: "Popover"
-description: "Displays rich content in a portal, triggered by a button."
+description: "A popup for supporting content and controls."
 ---
 
-Displays rich content in a portal, triggered by a button.
+## Usage
+
+Open rich content in a portal from a button trigger.
 
 **Import:** `@erbium/ui/components/popover`
 

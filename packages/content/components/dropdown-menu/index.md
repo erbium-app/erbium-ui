@@ -1,9 +1,9 @@
 ---
 title: "Dropdown Menu"
-description: "Displays a menu to the user — such as a set of actions or functions — triggered by a button."
+description: "A button-triggered menu of actions."
 ---
 
-Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+A button-triggered menu of actions.
 
 **Import:** `@erbium/ui/components/dropdown-menu`
 

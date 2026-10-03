@@ -1,7 +1,9 @@
 ---
 title: "Text Morph"
-description: "Animates changing text and numbers while preserving their place in the layout. Click Increment to see a number transition."
+description: "Smooth transitions for changing text and numbers."
 ---
+
+## Usage
 
 Animates changing text and numbers while preserving their place in the layout. Click Increment to see a number transition.
 

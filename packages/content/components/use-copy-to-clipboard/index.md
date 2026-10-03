@@ -1,7 +1,9 @@
 ---
 title: "Use Copy To Clipboard"
-description: "Copies text to the clipboard and exposes temporary copied state for feedback. Clipboard access requires a secure context and browser permission."
+description: "Copy text and track clipboard feedback."
 ---
+
+## Usage
 
 Copies text to the clipboard and exposes temporary copied state for feedback. Clipboard access requires a secure context and browser permission.
 

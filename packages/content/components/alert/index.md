@@ -1,7 +1,9 @@
 ---
 title: "Alert"
-description: "Displays a callout for agent activity, decisions, and failures. Each variant supplies its own icon."
+description: "Callouts for activity, decisions, and failures."
 ---
+
+## Usage
 
 Displays a callout for agent activity, decisions, and failures. Each variant supplies its own icon.
 

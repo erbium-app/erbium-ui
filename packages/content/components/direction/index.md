@@ -1,9 +1,11 @@
 ---
 title: "Direction"
-description: "A provider component that sets the text direction for your application."
+description: "Sets the text direction for your application."
 ---
 
-A provider component that sets the text direction for your application.
+## Usage
+
+Wrap your application in the direction provider to set its text direction.
 
 **Import:** `@erbium/ui/components/direction`
 

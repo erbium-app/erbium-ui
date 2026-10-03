@@ -1,9 +1,11 @@
 ---
 title: "Resizable"
-description: "Accessible resizable panel groups and layouts with keyboard support."
+description: "Panels with adjustable sizes."
 ---
 
-Accessible resizable panel groups and layouts with keyboard support.
+## Usage
+
+Build accessible panel groups and layouts that can be resized with the keyboard.
 
 **Import:** `@erbium/ui/components/resizable`
 

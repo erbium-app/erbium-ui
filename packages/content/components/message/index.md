@@ -1,9 +1,11 @@
 ---
 title: "Message"
-description: "Displays a message in a conversation, with optional avatar, header, footer, and alignment."
+description: "A conversation message with supporting details."
 ---
 
-Displays a message in a conversation, with optional avatar, header, footer, and alignment.
+## Usage
+
+Add an optional avatar, header, footer, and alignment to a conversation message.
 
 **Import:** `@erbium/ui/components/message`
 

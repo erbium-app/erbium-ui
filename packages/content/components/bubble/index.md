@@ -1,7 +1,9 @@
 ---
 title: "Bubble"
-description: "Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content."
+description: "A message bubble for conversational content."
 ---
+
+## Usage
 
 Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content.
 

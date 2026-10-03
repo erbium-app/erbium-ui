@@ -1,9 +1,11 @@
 ---
 title: "Toggle Group"
-description: "A set of two-state buttons that can be toggled on or off."
+description: "A group of buttons with selectable states."
 ---
 
-A set of two-state buttons that can be toggled on or off.
+## Usage
+
+Group two-state buttons that can each be toggled on or off.
 
 **Import:** `@erbium/ui/components/toggle-group`
 

@@ -1,9 +1,11 @@
 ---
 title: "Textarea"
-description: "Displays a form textarea or a component that looks like a textarea."
+description: "A multi-line field for text entry."
 ---
 
-Displays a form textarea or a component that looks like a textarea.
+## Usage
+
+Render a form textarea or give another element the appearance of a textarea.
 
 **Import:** `@erbium/ui/components/textarea`
 

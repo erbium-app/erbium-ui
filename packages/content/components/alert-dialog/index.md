@@ -1,9 +1,11 @@
 ---
 title: "Alert Dialog"
-description: "A modal dialog that interrupts the user with important content and expects a response."
+description: "A confirmation dialog for important decisions."
 ---
 
-A modal dialog that interrupts the user with important content and expects a response.
+## Usage
+
+Use a modal dialog to interrupt the current task with important content that requires a response.
 
 **Import:** `@erbium/ui/components/alert-dialog`
 

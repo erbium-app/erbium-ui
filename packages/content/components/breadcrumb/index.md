@@ -1,9 +1,11 @@
 ---
 title: "Breadcrumb"
-description: "Displays the path to the current resource using a hierarchy of links."
+description: "Links that show the current page’s location."
 ---
 
-Displays the path to the current resource using a hierarchy of links.
+## Usage
+
+Use a hierarchy of links to show the path to the current resource.
 
 **Import:** `@erbium/ui/components/breadcrumb`
 

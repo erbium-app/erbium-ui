@@ -1,9 +1,11 @@
 ---
 title: "Accordion"
-description: "A vertically stacked set of interactive headings that each reveal a section of content."
+description: "Expandable sections for related content."
 ---
 
-A vertically stacked set of interactive headings that each reveal a section of content.
+## Usage
+
+Arrange interactive headings vertically; each heading reveals its own section of content.
 
 **Import:** `@erbium/ui/components/accordion`
 

@@ -1,9 +1,11 @@
 ---
 title: "Radio Group"
-description: "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time."
+description: "Choose one option from a group."
 ---
 
-A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.
+## Usage
+
+Use checkable radio buttons when at most one option can be selected.
 
 **Import:** `@erbium/ui/components/radio-group`
 

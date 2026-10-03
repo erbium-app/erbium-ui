@@ -1,9 +1,9 @@
 ---
 title: "Drawer"
-description: "A drawer component for React."
+description: "A sliding panel for supporting content."
 ---
 
-A drawer component for React.
+A sliding panel for supporting content.
 
 **Import:** `@erbium/ui/components/drawer`
 

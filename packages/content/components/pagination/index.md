@@ -1,9 +1,11 @@
 ---
 title: "Pagination"
-description: "Pagination with page navigation, next and previous links."
+description: "Navigate between pages of content."
 ---
 
-Pagination with page navigation, next and previous links.
+## Usage
+
+Provide page links alongside next and previous navigation.
 
 **Import:** `@erbium/ui/components/pagination`
 

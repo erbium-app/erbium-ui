@@ -1,9 +1,9 @@
 ---
 title: "Calendar"
-description: "A calendar component that allows users to select a date or a range of dates."
+description: "Select a date or date range."
 ---
 
-A calendar component that allows users to select a date or a range of dates.
+Select a date or date range.
 
 **Import:** `@erbium/ui/components/calendar`
 

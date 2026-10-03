@@ -1,9 +1,11 @@
 ---
 title: "Button Group"
-description: "A container that groups related buttons together with consistent styling."
+description: "Groups related buttons in a single row."
 ---
 
-A container that groups related buttons together with consistent styling.
+## Usage
+
+Group related buttons with consistent styling.
 
 **Import:** `@erbium/ui/components/button-group`
 

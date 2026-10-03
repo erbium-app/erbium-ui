@@ -1,9 +1,11 @@
 ---
 title: "Toast"
-description: "A succinct message that is displayed temporarily."
+description: "Brief notifications for events and feedback."
 ---
 
-A succinct message that is displayed temporarily.
+## Usage
+
+Display a short message temporarily to provide feedback.
 
 **Import:** `@erbium/ui/components/toast`
 

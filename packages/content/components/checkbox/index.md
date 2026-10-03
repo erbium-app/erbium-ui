@@ -1,9 +1,9 @@
 ---
 title: "Checkbox"
-description: "A control that allows the user to toggle between checked and not checked."
+description: "Select or clear an option."
 ---
 
-A control that allows the user to toggle between checked and not checked.
+Select or clear an option.
 
 **Import:** `@erbium/ui/components/checkbox`
 

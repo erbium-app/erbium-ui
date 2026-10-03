@@ -1,9 +1,9 @@
 ---
 title: "Command"
-description: "Command menu for search and quick actions."
+description: "Searchable commands and quick actions."
 ---
 
-Command menu for search and quick actions.
+Searchable commands and quick actions.
 
 **Import:** `@erbium/ui/components/command`
 

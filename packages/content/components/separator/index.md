@@ -1,9 +1,11 @@
 ---
 title: "Separator"
-description: "Visually or semantically separates content."
+description: "Divides sections of content."
 ---
 
-Visually or semantically separates content.
+## Usage
+
+Separate content visually or semantically.
 
 **Import:** `@erbium/ui/components/separator`
 

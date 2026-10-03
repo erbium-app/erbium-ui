@@ -1,7 +1,9 @@
 ---
 title: "Otp Field"
-description: "Accessible one-time password field built on Base UI's [OTP Field](https://base-ui.com/react/components/otp-field), with status for loading, success and error."
+description: "Enter and verify a one-time code."
 ---
+
+## Usage
 
 Accessible one-time password field built on Base UI's [OTP Field](https://base-ui.com/react/components/otp-field), with `status` for loading, success and error.
 

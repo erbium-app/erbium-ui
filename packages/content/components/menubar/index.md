@@ -1,9 +1,11 @@
 ---
 title: "Menubar"
-description: "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands."
+description: "A persistent bar of command menus."
 ---
 
-A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.
+## Usage
+
+Use a persistent menu bar, as in desktop applications, for quick access to a consistent set of commands.
 
 **Import:** `@erbium/ui/components/menubar`
 

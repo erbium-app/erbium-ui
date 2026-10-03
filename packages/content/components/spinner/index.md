@@ -1,9 +1,9 @@
 ---
 title: "Spinner"
-description: "An indicator that can be used to show a loading state."
+description: "A loading indicator for ongoing activity."
 ---
 
-An indicator that can be used to show a loading state.
+A loading indicator for ongoing activity.
 
 **Import:** `@erbium/ui/components/spinner`
 

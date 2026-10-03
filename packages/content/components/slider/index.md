@@ -1,9 +1,9 @@
 ---
 title: "Slider"
-description: "An input where the user selects a value from within a given range."
+description: "Adjust a value within a range."
 ---
 
-An input where the user selects a value from within a given range.
+Adjust a value within a range.
 
 **Import:** `@erbium/ui/components/slider`
 

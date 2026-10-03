@@ -1,7 +1,9 @@
 ---
 title: "Shake"
-description: "Replays error feedback on an element without changing its validation state. The animation respects the reduced motion preference and RTL direction."
+description: "Shake an element to signal an error."
 ---
+
+## Usage
 
 Replays error feedback on an element without changing its validation state. The animation respects the reduced motion preference and RTL direction.
 

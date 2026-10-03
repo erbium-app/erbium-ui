@@ -1,7 +1,9 @@
 ---
 title: "Use Media Query"
-description: "Subscribes to a CSS media query and updates when its match changes. This example tracks your system reduced motion preference."
+description: "Track whether a CSS media query matches."
 ---
+
+## Usage
 
 Subscribes to a CSS media query and updates when its match changes. This example tracks your system reduced motion preference.
 

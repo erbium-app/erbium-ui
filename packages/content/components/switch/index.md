@@ -1,9 +1,9 @@
 ---
 title: "Switch"
-description: "A control that allows the user to toggle between checked and not checked."
+description: "Turn a setting on or off."
 ---
 
-A control that allows the user to toggle between checked and not checked.
+Turn a setting on or off.
 
 **Import:** `@erbium/ui/components/switch`
 

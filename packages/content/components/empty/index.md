@@ -1,7 +1,9 @@
 ---
 title: "Empty"
-description: "Use Empty for an absent item or an initial state. It includes a subtle dashed boundary and generous spacing by default. Place the icon, title, and description in EmptyHeader; place actions or inputs in EmptyContent as a sibling. Use EmptyMedia without a variant for larger artwork or avatars."
+description: "A placeholder for empty content with next steps."
 ---
+
+## Usage
 
 Use `Empty` for an absent item or an initial state. It includes a subtle dashed boundary and generous spacing by default. Place the icon, title, and description in `EmptyHeader`; place actions or inputs in `EmptyContent` as a sibling. Use `EmptyMedia` without a variant for larger artwork or avatars.
 

@@ -1,9 +1,9 @@
 ---
 title: "Toggle"
-description: "A two-state button that can be either on or off."
+description: "A button with an on or off state."
 ---
 
-A two-state button that can be either on or off.
+A button with an on or off state.
 
 **Import:** `@erbium/ui/components/toggle`
 

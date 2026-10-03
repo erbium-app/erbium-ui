@@ -1,9 +1,11 @@
 ---
 title: "Tooltip"
-description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
+description: "Brief help shown on hover or focus."
 ---
 
-A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+## Usage
+
+Show a popup related to an element when it receives keyboard focus or pointer hover.
 
 **Import:** `@erbium/ui/components/tooltip`
 

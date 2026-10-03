@@ -1,7 +1,9 @@
 ---
 title: "Erbium styles"
-description: "The shared theme supplies component colors, typography, surfaces, and motion. Import @erbium/ui/globals.css once in your application entry point."
+description: "Shared styles for consistent interfaces."
 ---
+
+## Usage
 
 The shared theme supplies component colors, typography, surfaces, and motion. Import `@erbium/ui/globals.css` once in your application entry point.
 

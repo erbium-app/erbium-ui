@@ -1,9 +1,11 @@
 ---
 title: "Field"
-description: "Combine labels, controls, and help text to compose accessible form fields and grouped inputs."
+description: "Labels, help text, and errors for form controls."
 ---
 
-Combine labels, controls, and help text to compose accessible form fields and grouped inputs.
+## Usage
+
+Compose labels, controls, help text, and errors for individual fields or grouped inputs.
 
 **Import:** `@erbium/ui/components/field`
 

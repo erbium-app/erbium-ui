@@ -1,7 +1,9 @@
 ---
 title: "Meter"
-description: 'Shows a scalar value within a known range, such as disk usage or a score. Built on Base UI''s Meter, which exposes role="meter" with the value, min and max. For work moving toward completion use Progress.'
+description: "Shows a value within a known range."
 ---
+
+## Usage
 
 Shows a scalar value within a known range, such as disk usage or a score. Built on Base UI's `Meter`, which exposes `role="meter"` with the value, min and max. For work moving toward completion use `Progress`.
 

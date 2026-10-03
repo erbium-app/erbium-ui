@@ -1,9 +1,11 @@
 ---
 title: "Button"
-description: "Displays a button or a component that looks like a button."
+description: "Triggers an action when pressed."
 ---
 
-Displays a button or a component that looks like a button.
+## Usage
+
+Render a button or give another element the appearance of a button.
 
 **Import:** `@erbium/ui/components/button`
 

@@ -1,9 +1,9 @@
 ---
 title: "Navigation Menu"
-description: "A collection of links for navigating websites."
+description: "A menu of links for site navigation."
 ---
 
-A collection of links for navigating websites.
+A menu of links for site navigation.
 
 **Import:** `@erbium/ui/components/navigation-menu`
 

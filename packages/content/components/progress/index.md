@@ -1,9 +1,11 @@
 ---
 title: "Progress"
-description: "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
+description: "Shows how far a task has progressed."
 ---
 
-Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.
+## Usage
+
+Display task completion with a progress indicator, typically a progress bar.
 
 **Import:** `@erbium/ui/components/progress`
 

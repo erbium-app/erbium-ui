@@ -1,9 +1,9 @@
 ---
 title: "Combobox"
-description: "Autocomplete input with a list of suggestions."
+description: "Search and select from suggested options."
 ---
 
-Autocomplete input with a list of suggestions.
+Search and select from suggested options.
 
 **Import:** `@erbium/ui/components/combobox`
 

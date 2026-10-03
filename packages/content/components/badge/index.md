@@ -1,9 +1,11 @@
 ---
 title: "Badge"
-description: "Displays a badge or a component that looks like a badge."
+description: "A compact label for status or metadata."
 ---
 
-Displays a badge or a component that looks like a badge.
+## Usage
+
+Render a badge or give another element the appearance of a badge.
 
 **Import:** `@erbium/ui/components/badge`
 

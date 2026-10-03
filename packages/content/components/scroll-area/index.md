@@ -1,9 +1,11 @@
 ---
 title: "Scroll Area"
-description: "Augments native scroll functionality for custom, cross-browser styling."
+description: "A scroll container with styled scrollbars."
 ---
 
-Augments native scroll functionality for custom, cross-browser styling.
+## Usage
+
+Preserve native scrolling while applying custom styling across browsers.
 
 **Import:** `@erbium/ui/components/scroll-area`
 

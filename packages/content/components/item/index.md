@@ -1,9 +1,11 @@
 ---
 title: "Item"
-description: "A versatile component for displaying content with media, title, description, and actions."
+description: "A content row with media and actions."
 ---
 
-A versatile component for displaying content with media, title, description, and actions.
+## Usage
+
+Compose content rows with media, a title, a description, and actions.
 
 **Import:** `@erbium/ui/components/item`
 

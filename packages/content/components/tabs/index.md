@@ -1,9 +1,11 @@
 ---
 title: "Tabs"
-description: "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+description: "Switch between related panels of content."
 ---
 
-A set of layered sections of content—known as tab panels—that are displayed one at a time.
+## Usage
+
+Display one tab panel at a time, switching between related sections of content.
 
 **Import:** `@erbium/ui/components/tabs`
 

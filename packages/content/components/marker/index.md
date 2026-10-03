@@ -1,9 +1,11 @@
 ---
 title: "Marker"
-description: "Displays an inline status, system note, bordered row, or labeled separator in a conversation."
+description: "Inline notes and separators for conversations."
 ---
 
-Displays an inline status, system note, bordered row, or labeled separator in a conversation.
+## Usage
+
+Display an inline status, system note, bordered row, or labeled separator in a conversation.
 
 **Import:** `@erbium/ui/components/marker`
 

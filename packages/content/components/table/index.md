@@ -1,9 +1,11 @@
 ---
 title: "Table"
-description: "A responsive table component."
+description: "Display data in rows and columns."
 ---
 
-A responsive table component.
+## Usage
+
+Display tabular data in a responsive layout.
 
 **Import:** `@erbium/ui/components/table`
 

@@ -1,9 +1,9 @@
 ---
 title: "Context Menu"
-description: "Displays a menu of actions triggered by a right click."
+description: "A menu of actions opened by right-clicking."
 ---
 
-Displays a menu of actions triggered by a right click.
+A menu of actions opened by right-clicking.
 
 **Import:** `@erbium/ui/components/context-menu`
 

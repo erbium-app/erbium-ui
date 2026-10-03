@@ -1,9 +1,11 @@
 ---
 title: "Carousel"
-description: "A carousel with motion and swipe built using Embla."
+description: "Browse a sequence of slides."
 ---
 
-A carousel with motion and swipe built using Embla.
+## Usage
+
+Built with Embla, the carousel supports animated transitions and swipe gestures.
 
 **Import:** `@erbium/ui/components/carousel`
 

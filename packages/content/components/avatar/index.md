@@ -1,9 +1,9 @@
 ---
 title: "Avatar"
-description: "An image element with a fallback for representing the user."
+description: "A profile image with a fallback."
 ---
 
-An image element with a fallback for representing the user.
+A profile image with a fallback.
 
 **Import:** `@erbium/ui/components/avatar`
 

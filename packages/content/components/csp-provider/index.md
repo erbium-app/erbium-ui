@@ -1,7 +1,9 @@
 ---
 title: "Csp Provider"
-description: "Configures inline style and script tags rendered by Base UI components. Import from @erbium/ui/components/csp-provider."
+description: "Applies your content security policy to UI output."
 ---
+
+## Usage
 
 Configures inline style and script tags rendered by Base UI components. Import from `@erbium/ui/components/csp-provider`.
 

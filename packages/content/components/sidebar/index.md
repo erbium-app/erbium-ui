@@ -1,9 +1,11 @@
 ---
 title: "Sidebar"
-description: "A composable, themeable and customizable sidebar component."
+description: "Navigation and controls beside the main content."
 ---
 
-A composable, themeable and customizable sidebar component.
+## Usage
+
+Compose, theme, and customize a sidebar for your application.
 
 **Import:** `@erbium/ui/components/sidebar`
 

@@ -1,9 +1,9 @@
 ---
 title: "Aspect Ratio"
-description: "Displays content within a desired ratio."
+description: "Keeps content at a fixed aspect ratio."
 ---
 
-Displays content within a desired ratio.
+Keeps content at a fixed aspect ratio.
 
 **Import:** `@erbium/ui/components/aspect-ratio`
 

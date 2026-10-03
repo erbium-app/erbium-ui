@@ -1,9 +1,11 @@
 ---
 title: "Attachment"
-description: "Displays a file or image attachment with media, metadata, upload state, and actions."
+description: "File and image attachments with upload feedback."
 ---
 
-Displays a file or image attachment with media, metadata, upload state, and actions.
+## Usage
+
+Compose file or image attachments with media, metadata, upload state, and actions.
 
 **Import:** `@erbium/ui/components/attachment`
 

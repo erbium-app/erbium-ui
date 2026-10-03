@@ -1,7 +1,9 @@
 ---
 title: "Use Drag Select"
-description: "Selects or clears neighboring items with a pointer drag. The example uses joined selection items with checkbox and keyboard support."
+description: "Select neighboring items with a pointer drag."
 ---
+
+## Usage
 
 Selects or clears neighboring items with a pointer drag. The example uses joined selection items with checkbox and keyboard support.
 

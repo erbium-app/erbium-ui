@@ -1,9 +1,11 @@
 ---
 title: "Questionnaire"
-description: "A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions."
+description: "Collect answers through a series of questions."
 ---
 
-A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions.
+## Usage
+
+Compose a multi-step flow with single-choice, multiple-choice, freeform, and skippable questions.
 
 **Import:** `@erbium/ui/components/questionnaire`
 

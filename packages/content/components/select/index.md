@@ -1,9 +1,11 @@
 ---
 title: "Select"
-description: "Displays a list of options for the user to pick from—triggered by a button."
+description: "Choose an option from a dropdown list."
 ---
 
-Displays a list of options for the user to pick from—triggered by a button.
+## Usage
+
+Open a list of selectable options from a button trigger.
 
 **Import:** `@erbium/ui/components/select`
 

@@ -1,7 +1,9 @@
 ---
 title: "Card"
-description: 'Displays a card with header, content, and footer. Use size="sm" for compact spacing.'
+description: "Groups related content and actions."
 ---
+
+## Usage
 
 Displays a card with header, content, and footer. Use `size="sm"` for compact spacing.
 

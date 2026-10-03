@@ -1,9 +1,11 @@
 ---
 title: "Input Group"
-description: "Add addons, buttons, and helper content to inputs."
+description: "Combines inputs with addons and actions."
 ---
 
-Add addons, buttons, and helper content to inputs.
+## Usage
+
+Compose inputs with addons, buttons, and helper content.
 
 **Import:** `@erbium/ui/components/input-group`
 

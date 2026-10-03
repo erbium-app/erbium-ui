@@ -1,9 +1,11 @@
 ---
 title: "Hover Card"
-description: "For sighted users to preview content available behind a link."
+description: "Preview linked content on hover."
 ---
 
-For sighted users to preview content available behind a link.
+## Usage
+
+Use a visual preview to show sighted users the content behind a link.
 
 **Import:** `@erbium/ui/components/hover-card`
 

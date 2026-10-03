@@ -1,9 +1,11 @@
 ---
 title: "Input"
-description: "A text input component for forms and user data entry with built-in styling and accessibility features."
+description: "A single-line field for text entry."
 ---
 
-A text input component for forms and user data entry with built-in styling and accessibility features.
+## Usage
+
+Use the styled, accessible text input for forms and user data entry.
 
 **Import:** `@erbium/ui/components/input`
 

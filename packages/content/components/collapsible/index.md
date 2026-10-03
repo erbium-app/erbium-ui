@@ -1,9 +1,9 @@
 ---
 title: "Collapsible"
-description: "An interactive component which expands/collapses a panel."
+description: "Expand or collapse a section of content."
 ---
 
-An interactive component which expands/collapses a panel.
+Expand or collapse a section of content.
 
 **Import:** `@erbium/ui/components/collapsible`
 

@@ -1,7 +1,9 @@
 ---
 title: "Sheet"
-description: "Displays supporting content beside or above the main screen. SheetPanel owns the popup shell, while a direct SheetContent child provides the required padded, scrollable body. Optional header and footer sections go before and after the content."
+description: "A panel for content alongside the main screen."
 ---
+
+## Usage
 
 Displays supporting content beside or above the main screen. `SheetPanel` owns the popup shell, while a direct `SheetContent` child provides the required padded, scrollable body. Optional header and footer sections go before and after the content.
 

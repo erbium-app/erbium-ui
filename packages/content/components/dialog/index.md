@@ -1,7 +1,9 @@
 ---
 title: "Dialog"
-description: "A modal dialog for focused tasks. DialogPanel is the popup shell; DialogContent is its padded, scrollable body. Place DialogHeader, one required DialogContent, and optional DialogFooter directly inside DialogPanel, in that order. The panel owns the popup and keeps the header and footer visible while the content scrolls. Header and footer separators are built in."
+description: "A modal window for focused tasks."
 ---
+
+## Usage
 
 A modal dialog for focused tasks. `DialogPanel` is the popup shell; `DialogContent` is its padded, scrollable body. Place `DialogHeader`, one required `DialogContent`, and optional `DialogFooter` directly inside `DialogPanel`, in that order. The panel owns the popup and keeps the header and footer visible while the content scrolls. Header and footer separators are built in.
 

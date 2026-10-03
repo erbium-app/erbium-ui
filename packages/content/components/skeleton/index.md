@@ -1,9 +1,9 @@
 ---
 title: "Skeleton"
-description: "Use to show a placeholder while content is loading."
+description: "A placeholder for content that is loading."
 ---
 
-Use to show a placeholder while content is loading.
+A placeholder for content that is loading.
 
 **Import:** `@erbium/ui/components/skeleton`
 

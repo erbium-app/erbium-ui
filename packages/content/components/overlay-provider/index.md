@@ -1,7 +1,9 @@
 ---
 title: "Overlay Provider"
-description: "Coordinates drawers and page indentation. Wrap your React app in OverlayProvider once so drawers can share their overlay state."
+description: "Coordinates drawers and page indentation."
 ---
+
+## Usage
 
 Coordinates drawers and page indentation. Wrap your React app in `OverlayProvider` once so drawers can share their overlay state.
 

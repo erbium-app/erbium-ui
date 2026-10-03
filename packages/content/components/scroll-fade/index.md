@@ -1,6 +1,6 @@
 ---
 title: Scroll Fade
-description: Scroll-aware fade utilities for scroll containers.
+description: "Fades scroll edges to hint at more content."
 ---
 
 CSS utilities that fade the edges of overflowing content and follow the scroll position.
