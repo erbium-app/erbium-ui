@@ -28,9 +28,26 @@ bun run check                # format, lint, and type-aware checks
 bun run fix                  # apply mechanical formatting and lint fixes
 bun run typecheck            # run workspace TypeScript checks
 bun run build                # build the workspaces
+bun run build:cached         # opt into Vite Task build caching
 bun run ready                # check and build
 bun run knip                 # find unused files and dependencies
 ```
+
+Vite+ and its Vite core alias are pinned together in the root Bun catalog. Run
+`bunx --no-install vp migrate --no-interactive --no-agent --no-editor --no-hooks`
+from the workspace root to upgrade them together. Keep the direct `vite` catalog
+references and root override: Bun needs the core alias to resolve framework peers.
+Astro and Storybook keep their own CLIs; `vp run` schedules their workspace scripts.
+
+The root `vite.config.ts` imports the Ultracite policy from `oxlint.config.ts` and
+`oxfmt.config.ts`. The Oxc editor extension reads that same Vite+ config. Standalone
+Oxc config dependencies match Vite+'s bundled versions; keep them aligned when
+upgrading. `prepare` installs Vite+'s hook dispatcher, and `.vite-hooks/pre-commit`
+runs `vp staged`. Check the hook installation with `bunx --no-install vp hooks status`.
+
+Package scripts execute without caching by default. Use `build:cached` for automatic
+input tracking and output restoration across app builds. `ready` always runs fresh
+checks and builds. Infrastructure commands and generators also run fresh.
 
 Run `bun run ui:registry` after changing UI source. Shared showcases live in `packages/showcase`; Markdown lives in `packages/content`. Run `bun run showcase:generate` and `bun run showcase:registry` after changing either, then `bun run showcase:check` to verify synchronization and both site builds. Commit generated output with its source changes.
 

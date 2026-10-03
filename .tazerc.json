@@ -1,3 +1,6 @@
 {
-  "exclude": ["@tanstack/react-router", "@tanstack/router-core"]
+  "exclude": ["@tanstack/react-router", "@tanstack/router-core"],
+  "packageMode": {
+    "typescript": "minor"
+  }
 }

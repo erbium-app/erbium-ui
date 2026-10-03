@@ -1,5 +1,12 @@
 # Documentation website
 
+Astro 7.3.5 requires TypeScript 6 for `astro check`; TypeScript 7.0 is not supported
+by that checker. The docs app uses `catalog:astro` (`^6.0.3`) independently of the
+Showcase stable compiler and the workspace `next` compiler. Taze limits TypeScript
+updates to minor releases so a dependency update cannot cross that compatibility
+boundary. Revisit this catalog when Astro supports the newer compiler. The current
+`docs:typecheck` script runs `tsc` and checks TypeScript/TSX files, not `.astro` files.
+
 Every canonical HTML route has a 1200×630 JPEG social card. `src/lib/og-pages.ts`
 derives titles, descriptions, and section labels from the shared page catalog;
 `src/pages/og/[...path].jpg.ts` generates the images at build time with Satori and

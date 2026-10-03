@@ -24,30 +24,63 @@
     "url": "https://github.com/erbium-app/erbium-ui.git",
     "directory": "."
   },
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "apps/*"
+    ],
+    "catalog": {
+      "@hugeicons/core-free-icons": "^4.3.5",
+      "@hugeicons/react": "^1.1.10",
+      "@shadcn/react": "^0.3.1",
+      "@tailwindcss/vite": "^4.3.3",
+      "@tanstack/charts": "1.0.0",
+      "@tanstack/react-pacer": "0.24.0",
+      "@tanstack/react-router": "^1.170.41",
+      "@tanstack/react-table": "9.2.4",
+      "@types/react": "^19.3.0",
+      "@types/react-dom": "^19.3.0",
+      "class-variance-authority": "^0.7.1",
+      "date-fns": "^4.4.0",
+      "react": "^19.3.0",
+      "react-day-picker": "^10.0.2",
+      "react-dom": "^19.3.0",
+      "typescript": "next",
+      "vite": "npm:@voidzero-dev/vite-plus-core@1.0.0",
+      "vite-plus": "1.0.0"
+    },
+    "catalogs": {
+      "typescript-stable": {
+        "typescript": "^7.0.2"
+      },
+      "storybook": {
+        "@tanstack/react-router": "1.170.35"
+      },
+      "astro": {
+        "typescript": "^6.0.3"
+      }
+    }
+  },
   "type": "module",
   "scripts": {
-    "infra:profile": "bun run --cwd packages/infra profile",
-    "infra:plan": "bun run --cwd packages/infra plan",
-    "deploy": "bun run --cwd packages/infra deploy",
-    "infra:destroy": "bun run --cwd packages/infra destroy",
-    "infra:typecheck": "bun run --cwd packages/infra typecheck",
+    "infra:profile": "vp run --filter ./packages/infra --fail-if-no-match profile",
+    "infra:plan": "vp run --filter ./packages/infra --fail-if-no-match plan",
+    "deploy": "vp run --filter ./packages/infra --fail-if-no-match deploy",
+    "infra:destroy": "vp run --filter ./packages/infra --fail-if-no-match destroy",
+    "infra:typecheck": "vp run --filter ./packages/infra --fail-if-no-match typecheck",
     "dev": "vp run --parallel --filter './apps/*' dev",
-    "docs": "bun run --cwd apps/docs dev",
-    "docs:build": "bun run --cwd apps/docs build",
-    "docs:preview": "bun run --cwd apps/docs preview",
-    "docs:typecheck": "bun run --cwd apps/docs typecheck",
-    "website": "bun run --cwd apps/website dev",
-    "website:build": "bun run --cwd apps/website build",
-    "website:preview": "bun run --cwd apps/website preview",
-    "website:typecheck": "bun run --cwd apps/website typecheck",
-    "storybook": "bun run --cwd apps/storybook dev",
-    "storybook:build": "bun run --cwd apps/storybook build",
-    "storybook:preview": "bun run --cwd apps/storybook preview",
-    "storybook:typecheck": "bun run --cwd apps/storybook typecheck",
+    "docs": "vp run --filter ./apps/docs --fail-if-no-match dev",
+    "docs:build": "vp run --filter ./apps/docs --fail-if-no-match build",
+    "docs:preview": "vp run --filter ./apps/docs --fail-if-no-match preview",
+    "docs:typecheck": "vp run --filter ./apps/docs --fail-if-no-match typecheck",
+    "website": "vp run --filter ./apps/website --fail-if-no-match dev",
+    "website:build": "vp run --filter ./apps/website --fail-if-no-match build",
+    "website:preview": "vp run --filter ./apps/website --fail-if-no-match preview",
+    "website:typecheck": "vp run --filter ./apps/website --fail-if-no-match typecheck",
+    "storybook": "vp run --filter ./apps/storybook --fail-if-no-match dev",
+    "storybook:build": "vp run --filter ./apps/storybook --fail-if-no-match build",
+    "storybook:preview": "vp run --filter ./apps/storybook --fail-if-no-match preview",
+    "storybook:typecheck": "vp run --filter ./apps/storybook --fail-if-no-match typecheck",
     "build": "vp run -r build",
     "typecheck": "vp run -r typecheck",
     "lint": "vp lint",
@@ -65,29 +98,29 @@
     "taze": "taze -r",
     "update": "taze -r -I -w -u -l",
     "ui:add": "bunx --bun shadcn@latest add",
-    "ui:registry": "bun run --cwd packages/ui registry:build",
-    "ready": "bun run check && bun run build",
+    "ui:registry": "vp run --filter ./packages/ui --fail-if-no-match registry:build",
+    "ready": "vp run check && vp run build",
     "prepare": "vp config",
-    "storybook:registry": "bun run --cwd apps/storybook registry:build",
+    "storybook:registry": "vp run --filter ./apps/storybook --fail-if-no-match registry:build",
     "showcase": "vp run --parallel --filter docs --filter @erbium/storybook dev",
-    "showcase:check": "bun run showcase:generate --check && bun run showcase:registry --check && bun run check && bun run docs:build && bun run storybook:build",
-    "showcase:generate": "bun run --cwd packages/showcase generate",
-    "showcase:registry": "bun run --cwd packages/showcase registry:build",
-    "intent:list": "intent list"
+    "showcase:check": "vp run showcase:generate --check && vp run showcase:registry --check && vp run check && vp run docs:build && vp run storybook:build",
+    "showcase:generate": "vp run --filter ./packages/showcase --fail-if-no-match generate",
+    "showcase:registry": "vp run --filter ./packages/showcase --fail-if-no-match registry:build",
+    "intent:list": "intent list",
+    "build:cached": "vp run -r --cache build"
   },
   "devDependencies": {
     "@intellectronica/ruler": "0.3.44",
-    "@oxlint/plugins": "^1.86.0",
     "@shadcn/lint": "^0.2.0",
-    "@tanstack/intent": "^0.5.2",
+    "@tanstack/intent": "^0.5.3",
     "@types/node": "^26.6.4",
     "anti-slop": "file:../../Packages/anti-slop",
     "knip": "^6.39.0",
-    "oxfmt": "^0.71.0",
-    "oxlint": "^1.86.0",
+    "oxfmt": "0.70.0",
+    "oxlint": "1.85.0",
     "skills": "^1.7.0",
     "taze": "^21.3.0",
-    "typescript": "next",
+    "typescript": "catalog:",
     "ultracite": "^7.12.2",
     "vite": "catalog:",
     "vite-plus": "catalog:"
@@ -104,10 +137,6 @@
   },
   "engines": {
     "node": ">=22.18.0"
-  },
-  "catalog": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.8",
-    "vite-plus": "0.2.8"
   },
   "intent": {
     "skills": [

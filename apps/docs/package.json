@@ -14,20 +14,20 @@
     "@erbium/content": "workspace:*",
     "@erbium/showcase": "workspace:*",
     "@erbium/ui": "workspace:*",
-    "@hugeicons/core-free-icons": "^4.3.5",
-    "@hugeicons/react": "^1.1.10",
-    "@tailwindcss/vite": "^4.3.3",
+    "@hugeicons/core-free-icons": "catalog:",
+    "@hugeicons/react": "catalog:",
+    "@tailwindcss/vite": "catalog:",
     "@tanstack/highlight": "1.0.0",
-    "class-variance-authority": "^0.7.1",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "class-variance-authority": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@alchemy.run/frontend-frameworks": "2.0.0-beta.80",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "astro": "^7.3.5",
-    "typescript": "^7.0.2"
+    "typescript": "catalog:astro"
   }
 }

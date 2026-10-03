@@ -5,27 +5,28 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
-    "preview": "storybook dev -p 6006",
+    "preview": "vp preview --outDir storybook-static --port 6006",
     "typecheck": "tsc --noEmit",
     "registry:build": "bun run --cwd ../../packages/showcase registry:build"
   },
   "dependencies": {
     "@erbium/showcase": "workspace:*",
     "@erbium/ui": "workspace:*",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@storybook/addon-docs": "10.6.1",
     "@storybook/addon-themes": "^10.6.1",
     "@storybook/tanstack-react": "10.6.1",
-    "@tailwindcss/vite": "^4.3.3",
-    "@tanstack/react-router": "1.170.35",
+    "@tailwindcss/vite": "catalog:",
+    "@tanstack/react-router": "catalog:storybook",
     "@tanstack/router-core": "1.171.29",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "storybook": "latest",
-    "typescript": "next",
+    "typescript": "catalog:",
+    "vite": "catalog:",
     "vite-plus": "catalog:"
   }
 }

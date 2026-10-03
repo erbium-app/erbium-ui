@@ -1,51 +1,19 @@
 import { defineConfig } from "vite-plus";
-import shadcn from "ultracite/oxlint/shadcn";
+import lint from "./oxlint.config.ts";
+import fmt from "./oxfmt.config.ts";
 
 export default defineConfig({
   staged: {
     "*": "vp check --fix",
   },
-  fmt: {
-    ignorePatterns: ["**/.astro/**", "**/.blume/**", "**/dist/**", "**/storybook-static/**"],
-  },
+  fmt,
   lint: {
-    settings: {
-      shadcn: { ui: "@erbium/ui/components" },
-    },
-    jsPlugins: [
-      { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
-      ...(shadcn.jsPlugins ?? []),
-    ],
-    ignorePatterns: [
-      "**/.astro/**",
-      "**/.blume/**",
-      "**/dist/**",
-      "**/storybook-static/**",
-      "**/routeTree.gen.ts",
-    ],
-    overrides: [
-      {
-        files: ["packages/ui/src/components/**/*.{ts,tsx}"],
-        rules: {
-          "shadcn/no-arbitrary-values": "off",
-          "shadcn/no-restyle": "off",
-          "shadcn/require-static-classes": "off",
-        },
-      },
-    ],
-    rules: {
-      "vite-plus/prefer-vite-plus-imports": "error",
-      "shadcn/no-restyle": [
-        "error",
-        {
-          allow: ["*"],
-          deny: ["[--surface-face:*]", "*:[--surface-face:*]"],
-        },
-      ],
-    },
+    ...lint,
     options: { typeAware: true, typeCheck: true },
   },
   run: {
-    cache: true,
+    // Checks, generators, dev servers, and infrastructure commands must execute.
+    // Opt into build caching with bun run build:cached.
+    cache: { scripts: false, tasks: true },
   },
 });

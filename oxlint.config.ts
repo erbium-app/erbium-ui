@@ -3,6 +3,7 @@ import shadcn from "ultracite/oxlint/shadcn";
 
 export default defineConfig({
   extends: [shadcn],
+  jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
   settings: {
     shadcn: { ui: "@erbium/ui/components" },
   },
@@ -20,6 +21,7 @@ export default defineConfig({
   ],
   plugins: ["react", "typescript", "unicorn"],
   rules: {
+    "vite-plus/prefer-vite-plus-imports": "error",
     "no-console": "warn",
     "no-debugger": "error",
     "shadcn/no-restyle": [
