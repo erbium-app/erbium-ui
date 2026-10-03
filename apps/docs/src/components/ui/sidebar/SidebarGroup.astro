@@ -1,0 +1,8 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@erbium/ui/lib/utils";
+import { sidebarStyles } from "@erbium/ui/lib/sidebar-styles";
+type Props = HTMLAttributes<"div">;
+const { class: className, ...props } = Astro.props;
+---
+<div data-slot="sidebar-group" data-sidebar="group" class={cn(sidebarStyles.group, className)} {...props}><slot /></div>

@@ -14,7 +14,9 @@
     "@erbium/content": "workspace:*",
     "@erbium/showcase": "workspace:*",
     "@erbium/ui": "workspace:*",
+    "@hugeicons/core-free-icons": "^4.3.5",
     "@tailwindcss/vite": "^4.3.3",
+    "class-variance-authority": "^0.7.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },

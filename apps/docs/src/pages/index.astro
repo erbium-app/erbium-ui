@@ -1,15 +1,24 @@
 ---
-import DocsLayout from "../layouts/DocsLayout.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteFooter from "../components/shell/SiteFooter.astro";
+import Button from "../components/ui/Button.astro";
 import ComponentPreview from "../components/ComponentPreview.tsx";
 import { Content, frontmatter } from "@erbium/content/overview.md";
+import { components } from "../data/components";
+const lastSpace = frontmatter.title.lastIndexOf(" ");
 ---
-<DocsLayout title={frontmatter.title} description={frontmatter.description}>
-  <article class="markdown-copy hero"><Content /></article>
-  <div class="showcase-demo"><ComponentPreview name="button" client:load /></div>
-</DocsLayout>
-<style>
-.hero { max-width: 47rem; padding: 2rem 0; }
-.hero :global(h1) { max-width:42rem; font-size:clamp(3.2rem,7vw,6.4rem); line-height:.96; letter-spacing:-.075em; font-weight:650; }
-.hero :global(p) { max-width:34rem; font-size:1.12rem; }
-.showcase-demo { display:grid; place-items:center; min-height:17rem; padding:2rem; border:1px solid var(--docs-line); border-radius:1rem; background:var(--background); }
-</style>
+<SiteLayout title="Erbium UI" description={frontmatter.description}>
+  <main id="main-content" tabindex="-1" class="landing site-container">
+    <section class="landing-hero"><p class="eyebrow"><span class="status-dot"></span> Open source · Built on Base UI</p><h1>{frontmatter.title.slice(0, lastSpace)} <em>{frontmatter.title.slice(lastSpace + 1)}</em></h1><article class="markdown-copy"><Content /></article><div class="hero-actions"><Button href="/docs/installation" size="lg">Get started <span aria-hidden="true">→</span></Button><Button href="/docs/components" size="lg" variant="outline">Explore components</Button><span class="hero-note">Copy. Compose. Make it yours.</span></div></section>
+    <section class="landing-showcase" aria-label="Interactive component collection">
+      <div class="collection-heading"><span>THE COLLECTION</span><span>{components.filter((item) => item.kind === "component").length} components, endless possibilities</span></div>
+      <div class="landing-grid">
+        <div class="landing-example landing-example-wide"><div class="example-label"><a href="/docs/components/button">Button</a><span>01</span></div><ComponentPreview name="button" variant="Variants" client:visible /></div>
+        <div class="landing-example"><div class="example-label"><a href="/docs/components/checkbox">Checkbox</a><span>02</span></div><ComponentPreview name="checkbox" variant="Overview" client:visible /></div>
+        <div class="landing-example"><div class="example-label"><a href="/docs/components/switch">Switch</a><span>03</span></div><ComponentPreview name="switch" variant="Overview" client:visible /></div>
+        <div class="landing-example"><div class="example-label"><a href="/docs/components/input">Input</a><span>04</span></div><ComponentPreview name="input" variant="Overview" client:visible /></div>
+      </div>
+    </section>
+    <SiteFooter />
+  </main>
+</SiteLayout>

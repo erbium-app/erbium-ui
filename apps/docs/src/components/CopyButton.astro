@@ -1,0 +1,33 @@
+---
+import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
+import Copy01Icon from "@hugeicons/core-free-icons/Copy01Icon";
+interface Props { target: string; label?: string; }
+const { target, label = "Copy code" } = Astro.props;
+---
+<copy-button data-copy-target={target}>
+  <Button variant="ghost" size="xs" aria-label={label}><Icon icon={Copy01Icon} size={14} /><span data-copy-label>Copy</span></Button>
+  <span class="sr-only" role="status" data-copy-status></span>
+</copy-button>
+<script>
+  class CopyButton extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector("button")!;
+      const label = this.querySelector("[data-copy-label]")!;
+      const status = this.querySelector("[data-copy-status]")!;
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(this.dataset.copyTarget!);
+        if (!target) return;
+        try {
+          await navigator.clipboard.writeText(target.textContent ?? "");
+          label.textContent = "Copied";
+          status.textContent = "Copied to clipboard.";
+        } catch {
+          status.textContent = "Unable to copy. Select the code to copy it manually.";
+        }
+        window.setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2500);
+      });
+    }
+  }
+  if (!customElements.get("copy-button")) customElements.define("copy-button", CopyButton);
+</script>

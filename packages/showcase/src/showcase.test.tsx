@@ -14,7 +14,9 @@ const entries = manifest.flatMap((component) =>
 );
 
 it("every public UI component has a shared catalog and Markdown", () => {
-  for (const item of uiRegistry.items.filter((item) => item.name !== "utils")) {
+  for (const item of uiRegistry.items.filter(
+    (item) => item.type === "registry:ui" || item.type === "registry:hook",
+  )) {
     expect(manifest.find((entry) => entry.name === item.name)).toBeDefined();
     expect(componentDocumentation(item.name).length).toBeGreaterThan(40);
   }

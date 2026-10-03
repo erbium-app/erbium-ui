@@ -22,31 +22,39 @@ export const components = manifest.map((entry) => {
   };
   const page = pages[`../components/${item.name}/index.md`];
   if (!page) throw new Error(`Missing documentation for ${item.name}`);
-  return { ...item, title: page.frontmatter.title, description: page.frontmatter.description };
+  return {
+    ...item,
+    title: page.frontmatter.title,
+    description: page.frontmatter.description,
+    href: documentationHref(item.name),
+    kind: item.name.startsWith("use-") ? "hook" : "component",
+  };
 });
 
-export const componentGroups = [
-  { label: "Foundations", names: ["button", "badge", "card", "separator", "skeleton"] },
+function documentationHref(name: string) {
+  return `/docs/${name.startsWith("use-") ? "hooks" : "components"}/${name}`;
+}
+
+export const navigationGroups = [
   {
-    label: "Forms",
-    names: [
-      "input",
-      "textarea",
-      "checkbox",
-      "radio-group",
-      "select",
-      "autocomplete",
-      "switch",
-      "slider",
+    title: "Getting started",
+    items: [
+      { title: "Introduction", href: "/docs" },
+      { title: "Installation", href: "/docs/installation" },
     ],
   },
   {
-    label: "Navigation",
-    names: ["breadcrumb", "pagination", "tabs", "menubar", "navigation-menu"],
+    title: "Components",
+    href: "/docs/components",
+    items: components
+      .filter((item) => item.kind === "component")
+      .sort((a, b) => a.title.localeCompare(b.title)),
   },
-  { label: "Overlays", names: ["dialog", "alert-dialog", "popover", "tooltip", "sheet", "drawer"] },
   {
-    label: "Data display",
-    names: ["table", "avatar", "calendar", "carousel", "chart", "progress"],
+    title: "Hooks",
+    href: "/docs/hooks",
+    items: components
+      .filter((item) => item.kind === "hook")
+      .sort((a, b) => a.title.localeCompare(b.title)),
   },
 ];

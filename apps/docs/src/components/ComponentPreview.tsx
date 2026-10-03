@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { Component, lazy, Suspense, useState, type ReactNode } from "react";
 import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 
@@ -10,6 +10,26 @@ function optionLabel(value: unknown) {
 }
 
 const previews = new Map<string, ReturnType<typeof lazy>>();
+export class PreviewErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (this.state.failed)
+      return (
+        <div role="alert">
+          <p>This preview could not load.</p>
+          <button type="button" onClick={() => window.location.reload()}>
+            Reload page
+          </button>
+        </div>
+      );
+    return this.props.children;
+  }
+}
 function ObjectControl({
   value,
   onChange,
@@ -142,9 +162,11 @@ export default function ComponentPreview({
   const Example = previews.get(key)!;
   return (
     <ShowcaseProviders>
-      <Suspense fallback={<p role="status">Loading preview…</p>}>
-        <Example />
-      </Suspense>
+      <PreviewErrorBoundary key={key}>
+        <Suspense fallback={<p role="status">Loading preview…</p>}>
+          <Example />
+        </Suspense>
+      </PreviewErrorBoundary>
     </ShowcaseProviders>
   );
 }

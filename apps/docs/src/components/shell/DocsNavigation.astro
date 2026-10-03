@@ -1,0 +1,23 @@
+---
+import SidebarContent from "../ui/sidebar/SidebarContent.astro";
+import SidebarGroup from "../ui/sidebar/SidebarGroup.astro";
+import SidebarGroupLabel from "../ui/sidebar/SidebarGroupLabel.astro";
+import SidebarGroupContent from "../ui/sidebar/SidebarGroupContent.astro";
+import SidebarMenu from "../ui/sidebar/SidebarMenu.astro";
+import SidebarMenuItem from "../ui/sidebar/SidebarMenuItem.astro";
+import SidebarMenuButton from "../ui/sidebar/SidebarMenuButton.astro";
+import { navigationGroups } from "../../data/components";
+const pathname = Astro.url.pathname.replace(/\/$/, "");
+---
+<SidebarContent class="docs-sidebar-content">
+  <nav aria-label="Documentation">
+    {navigationGroups.map((group) => <SidebarGroup class="docs-nav-group">
+      <SidebarGroupLabel class="docs-nav-label">{group.href ? <a href={group.href}>{group.title}<span>{group.items.length}</span></a> : group.title}</SidebarGroupLabel>
+      <SidebarGroupContent>
+        <SidebarMenu>
+          {group.items.map((item) => <SidebarMenuItem><SidebarMenuButton href={item.href} isActive={pathname === item.href} class="docs-nav-link">{item.title}</SidebarMenuButton></SidebarMenuItem>)}
+        </SidebarMenu>
+      </SidebarGroupContent>
+    </SidebarGroup>)}
+  </nav>
+</SidebarContent>

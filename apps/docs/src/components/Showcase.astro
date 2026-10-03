@@ -1,0 +1,50 @@
+---
+import Button from "./ui/Button.astro";
+import CopyButton from "./CopyButton.astro";
+import ComponentPreview from "./ComponentPreview.tsx";
+interface Props { name: string; variant: string; slug: string; title: string; source: string; files: { path: string; source: string }[]; }
+const { name, variant, slug, title, source, files } = Astro.props;
+const id = `${name}-${slug}`;
+const sources = files.length ? files : [{ path: `${slug}.tsx`, source }];
+const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
+---
+<section id={slug} class="demo-section">
+  <h2><a href={`#${slug}`}>{title}<span class="heading-anchor" aria-hidden="true">#</span></a></h2>
+  <div class="markdown-copy variant-description"><slot /></div>
+  <showcase-tabs class="showcase">
+    <div class="showcase-toolbar"><div role="tablist" aria-label={`${title} example`}>
+      <Button id={`${id}-preview-tab`} variant="ghost" size="sm" role="tab" aria-selected="true" aria-controls={`${id}-preview`} data-tab="preview">Preview</Button>
+      <Button id={`${id}-code-tab`} variant="ghost" size="sm" role="tab" aria-selected="false" aria-controls={`${id}-code`} tabindex="-1" data-tab="code">Code</Button>
+    </div><span class="showcase-caption">React</span></div>
+    <div id={`${id}-preview`} role="tabpanel" aria-labelledby={`${id}-preview-tab`} data-panel="preview" class="component-demo" tabindex="0"><ComponentPreview name={name} variant={variant} client:visible /></div>
+    <div id={`${id}-code`} role="tabpanel" aria-labelledby={`${id}-code-tab`} data-panel="code" class="showcase-code" tabindex="0" hidden>
+      {sources.map((file, index) => <div class="source-file"><div class="source-file-header"><span>{file.path.replace(/^src\//, "")}</span><CopyButton target={`${id}-source-${index}`} /></div><pre><code id={`${id}-source-${index}`}>{file.source}</code></pre></div>)}
+    </div>
+  </showcase-tabs>
+  <details class="install-example"><summary>Install this example <span aria-hidden="true">+</span></summary><div class="install-command"><code id={`${id}-install`}>{command}</code><CopyButton target={`${id}-install`} label="Copy installation command" /></div></details>
+</section>
+<script>
+  class ShowcaseTabs extends HTMLElement {
+    connectedCallback() {
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+      const select = (tab: HTMLButtonElement) => {
+        for (const button of tabs) { button.setAttribute("aria-selected", String(button === tab)); button.tabIndex = button === tab ? 0 : -1; }
+        for (const panel of this.querySelectorAll<HTMLElement>("[data-panel]")) panel.hidden = panel.dataset.panel !== tab.dataset.tab;
+      };
+      for (const [index, tab] of tabs.entries()) {
+        tab.addEventListener("click", () => select(tab));
+        tab.addEventListener("keydown", (event) => {
+          const rtl = getComputedStyle(this).direction === "rtl";
+          let next = index;
+          if (event.key === "ArrowRight") next = (index + (rtl ? -1 : 1) + tabs.length) % tabs.length;
+          else if (event.key === "ArrowLeft") next = (index + (rtl ? 1 : -1) + tabs.length) % tabs.length;
+          else if (event.key === "Home") next = 0;
+          else if (event.key === "End") next = tabs.length - 1;
+          else return;
+          event.preventDefault(); select(tabs[next]); tabs[next].focus();
+        });
+      }
+    }
+  }
+  if (!customElements.get("showcase-tabs")) customElements.define("showcase-tabs", ShowcaseTabs);
+</script>

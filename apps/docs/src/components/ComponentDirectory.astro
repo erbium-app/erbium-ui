@@ -1,0 +1,17 @@
+---
+import { components } from "../data/components";
+import { Content as ComponentsContent, frontmatter as componentsFrontmatter } from "@erbium/content/components.md";
+import { Content as HooksContent, frontmatter as hooksFrontmatter } from "@erbium/content/hooks.md";
+import DocsLayout from "../layouts/DocsLayout.astro";
+import PageHeader from "./PageHeader.astro";
+interface Props { kind: "component" | "hook"; }
+const { kind } = Astro.props;
+const items = components.filter((item) => item.kind === kind).sort((a, b) => a.title.localeCompare(b.title));
+const frontmatter = kind === "hook" ? hooksFrontmatter : componentsFrontmatter;
+const Content = kind === "hook" ? HooksContent : ComponentsContent;
+---
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+  <PageHeader title={frontmatter.title} description={frontmatter.description} category="Library" />
+  <article class="markdown-copy directory-intro"><Content /></article>
+  <div class="component-directory">{items.map((item) => <a href={item.href} class="directory-item"><div><h2>{item.title}</h2><span aria-hidden="true">↗</span></div><p>{item.description}</p></a>)}</div>
+</DocsLayout>

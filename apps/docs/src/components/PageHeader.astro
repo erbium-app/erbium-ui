@@ -1,0 +1,13 @@
+---
+import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
+import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
+interface Props { title: string; description?: string; category?: string; previous?: { title: string; href: string }; next?: { title: string; href: string }; }
+const { title, description, category = "Documentation", previous, next } = Astro.props;
+---
+<header class="page-header">
+  <div class="page-header-top"><p class="eyebrow">{category}</p><div class="page-neighbors">{previous && <Button href={previous.href} variant="outline" size="icon-sm" aria-label={`Previous: ${previous.title}`} title={previous.title}><Icon icon={ArrowLeft01Icon} /></Button>}{next && <Button href={next.href} variant="outline" size="icon-sm" aria-label={`Next: ${next.title}`} title={next.title}><Icon icon={ArrowRight01Icon} /></Button>}</div></div>
+  <h1>{title}</h1>{description && <p class="page-description">{description}</p>}
+  <div class="page-actions"><slot /></div>
+</header>

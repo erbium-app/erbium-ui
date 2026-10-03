@@ -1,0 +1,28 @@
+---
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
+import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+---
+<theme-toggle>
+  <Button variant="ghost" size="icon" aria-label="Use dark theme" aria-pressed="false" data-theme-toggle><Icon icon={Sun03Icon} class="theme-sun" /><Icon icon={Moon02Icon} class="theme-moon" /></Button>
+</theme-toggle>
+<script>
+  class ThemeToggle extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector("button")!;
+      const sync = () => {
+        const dark = document.documentElement.classList.contains("dark");
+        button.setAttribute("aria-label", dark ? "Use light theme" : "Use dark theme");
+        button.setAttribute("aria-pressed", String(dark));
+      };
+      sync();
+      button.addEventListener("click", () => {
+        const dark = document.documentElement.classList.toggle("dark");
+        try { localStorage.setItem("erbium-theme", dark ? "dark" : "light"); } catch { /* The toggle works even when storage is unavailable. */ }
+        sync();
+      });
+    }
+  }
+  if (!customElements.get("theme-toggle")) customElements.define("theme-toggle", ThemeToggle);
+</script>

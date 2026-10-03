@@ -1,0 +1,9 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { VariantProps } from "class-variance-authority";
+import { cn } from "@erbium/ui/lib/utils";
+import { sidebarMenuButtonVariants } from "@erbium/ui/lib/sidebar-styles";
+type Props = HTMLAttributes<"a"> & VariantProps<typeof sidebarMenuButtonVariants> & { isActive?: boolean };
+const { class: className, isActive = false, variant = "default", size = "default", ...props } = Astro.props;
+---
+<a data-slot="sidebar-menu-button" data-sidebar="menu-button" data-size={size} data-active={isActive ? "" : undefined} aria-current={isActive ? "page" : undefined} class={cn(sidebarMenuButtonVariants({ variant, size }), className)} {...props}><slot /></a>

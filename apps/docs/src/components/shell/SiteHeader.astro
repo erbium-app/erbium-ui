@@ -1,0 +1,16 @@
+---
+import Button from "../ui/Button.astro";
+import Icon from "../ui/Icon.astro";
+import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
+import Brand from "./Brand.astro";
+import MobileNavigation from "./MobileNavigation.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import ComponentSearch from "../ComponentSearch.tsx";
+import { components } from "../../data/components";
+const pathname = Astro.url.pathname;
+const links = [{ title: "Docs", href: "/docs", active: pathname === "/docs" || pathname === "/docs/installation" }, { title: "Components", href: "/docs/components", active: pathname.startsWith("/docs/components") }, { title: "Hooks", href: "/docs/hooks", active: pathname.startsWith("/docs/hooks") }];
+---
+<header class="site-header"><div class="site-header-inner site-container">
+  <div class="header-leading"><MobileNavigation /><Brand /><span class="header-divider"></span><nav aria-label="Main navigation" class="main-navigation">{links.map((link) => <a href={link.href} aria-current={link.active ? "page" : undefined}>{link.title}</a>)}</nav></div>
+  <div class="header-actions"><ComponentSearch components={components} client:load /><span class="header-divider"></span><Button href="https://github.com/erbium-app/erbium-ui" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button><ThemeToggle /></div>
+</div></header>

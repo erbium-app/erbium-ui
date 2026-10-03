@@ -173,7 +173,12 @@
       "title": "Button",
       "description": "Erbium button component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/spinner", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button-variants",
+        "@erbium/kbd",
+        "@erbium/spinner",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/button.tsx",
@@ -194,6 +199,20 @@
           "path": "src/components/button-group.tsx",
           "type": "registry:ui",
           "target": "@ui/button-group.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button-variants",
+      "type": "registry:lib",
+      "title": "Button Variants",
+      "description": "Erbium button variants lib.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "src/lib/button-variants.ts",
+          "type": "registry:lib",
+          "target": "@lib/button-variants.ts"
         }
       ]
     },
@@ -924,6 +943,7 @@
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/sheet",
+        "@erbium/sidebar-styles",
         "@erbium/skeleton",
         "@erbium/tooltip",
         "@erbium/use-is-mobile",
@@ -934,6 +954,20 @@
           "path": "src/components/sidebar.tsx",
           "type": "registry:ui",
           "target": "@ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-styles",
+      "type": "registry:lib",
+      "title": "Sidebar Styles",
+      "description": "Erbium sidebar styles lib.",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "src/lib/sidebar-styles.ts",
+          "type": "registry:lib",
+          "target": "@lib/sidebar-styles.ts"
         }
       ]
     },
