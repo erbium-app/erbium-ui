@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-validation-and-errors",
+  "type": "registry:component",
+  "title": "Field: Validation And Errors",
+  "description": "- Add `invalid` to `Field` (Base UI `Field.Root`) to switch the entire block into an error state. Controls inside it receive `aria-invalid` and `data-invalid` automatically.\n\n- With TanStack Form, pass `invalid={!field.state.meta.isValid}` and `errors={field.state.meta.errors}` to `FieldError`.\n\n- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.\n\n```tsx\n<Field invalid>\n  <FieldLabel>Email</FieldLabel>\n  <Input type=\"email\" />\n  <FieldError match>Enter a valid email address.</FieldError>\n</Field>\n```",
+  "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/variants/validation-and-errors.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/validation-and-errors.tsx",
+      "content": "import { Field, FieldError, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input as UIInput } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => (\n  <Field className=\"w-80\" invalid>\n    <FieldLabel>Email</FieldLabel>\n    <UIInput placeholder=\"name@example.com\" type=\"email\" />\n    <FieldError match>Enter a valid email address.</FieldError>\n  </Field>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

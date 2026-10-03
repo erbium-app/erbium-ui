@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-shortcuts",
+  "type": "registry:block",
+  "title": "Button: Shortcuts",
+  "description": "Place `ButtonShortcut` after the label. Button owns its spacing in both LTR and RTL layouts; the binding determines the platform label.",
+  "registryDependencies": ["@erbium/button", "@erbium/direction", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/shortcuts.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/shortcuts.tsx",
+      "content": "import ButtonShortcutDemo from \"../../kbd/examples/kbd-button\";\n\nconst Example = () => <ButtonShortcutDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/kbd/examples/kbd-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-button.tsx",
+      "content": "import { Button, ButtonShortcut } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nexport default function KbdButton() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Button variant=\"outline\" size=\"sm\">\n        Accept\n        <ButtonShortcut hotkey=\"Enter\" />\n      </Button>\n      <Button variant=\"outline\" size=\"sm\">\n        Cancel\n        <ButtonShortcut hotkey=\"Escape\" />\n      </Button>\n      <DirectionProvider direction=\"rtl\">\n        <div dir=\"rtl\">\n          <Button variant=\"outline\" size=\"sm\">\n            قبول\n            <ButtonShortcut hotkey=\"Enter\" />\n          </Button>\n        </div>\n      </DirectionProvider>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

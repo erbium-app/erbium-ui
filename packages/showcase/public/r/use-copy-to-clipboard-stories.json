@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copy-to-clipboard-stories",
+  "type": "registry:item",
+  "title": "Use Copy To Clipboard stories",
+  "description": "All use-copy-to-clipboard variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast",
+    "@erbium/use-copy-to-clipboard"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
+      "content": "import { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const { copyToClipboard, isCopied } = useCopyToClipboard();\n  return (\n    <Button onClick={() => copyToClipboard(\"Erbium UI\")}>\n      {isCopied ? \"Copied\" : \"Copy Erbium UI\"}\n    </Button>\n  );\n}\n"
+    },
+    {
+      "path": "src/use-copy-to-clipboard/use-copy-to-clipboard.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/use-copy-to-clipboard/use-copy-to-clipboard.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/use-copy-to-clipboard-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Use Copy To Clipboard\",\n  parameters: {\n    layout: \"centered\",\n    docs: { description: { component: \"Copies text to the clipboard and exposes temporary copied state for feedback. Clipboard access requires a secure context and browser permission.\\n\\nImport `useCopyToClipboard` from `@/registry/erbium/hooks/use-copy-to-clipboard`.\" } },\n  },\n} satisfies Meta;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n"
+    },
+    {
+      "path": "src/use-copy-to-clipboard/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/use-copy-to-clipboard/variants/overview.tsx",
+      "content": "import Demo from \"../examples/use-copy-to-clipboard-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

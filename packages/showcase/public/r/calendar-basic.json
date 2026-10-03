@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-basic",
+  "type": "registry:block",
+  "title": "Calendar: Basic",
+  "description": "A basic calendar component. We used `` to style the calendar.",
+  "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/calendar/examples/upstream/calendar-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-basic.tsx",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarBasic() {\n  return <Calendar mode=\"single\" />;\n}\n"
+    },
+    {
+      "path": "src/calendar/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/basic.tsx",
+      "content": "import CalendarBasic from \"../examples/upstream/calendar-basic\";\n\nconst Example = () => <CalendarBasic />;\n\nexport default Example;\n"
+    }
+  ]
+}

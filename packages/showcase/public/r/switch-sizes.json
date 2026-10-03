@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-sizes",
+  "type": "registry:component",
+  "title": "switch sizes",
+  "description": "Erbium switch sizes example.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/upstream/switch-sizes.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/upstream/switch-sizes.tsx",
+      "content": "import { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchSizes() {\n  return (\n    <FieldGroup className=\"w-full max-w-[10rem]\">\n      <Field orientation=\"horizontal\">\n        <Switch size=\"sm\" />\n        <FieldLabel>Small</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch size=\"default\" />\n        <FieldLabel>Default</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    }
+  ]
+}

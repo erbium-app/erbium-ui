@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-separator",
+  "type": "registry:block",
+  "title": "Button Group: Separator",
+  "description": "The `ButtonGroupSeparator` component visually divides buttons within a group.\n\nButtons with variant `outline` do not need a separator since they have a border. For other variants, a separator is recommended to improve the visual hierarchy.",
+  "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button-group/examples/button-group-separator.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/examples/button-group-separator.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSeparatorDemo() {\n  return (\n    <ButtonGroup>\n      <Button variant=\"secondary\" size=\"sm\">\n        Copy\n      </Button>\n      <ButtonGroupSeparator />\n      <Button variant=\"secondary\" size=\"sm\">\n        Paste\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/button-group/variants/separator.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/variants/separator.tsx",
+      "content": "import ExampleButtonGroupSeparator from \"../examples/button-group-separator\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSeparator />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

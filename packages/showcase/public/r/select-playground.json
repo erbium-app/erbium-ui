@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-playground",
+  "type": "registry:component",
+  "title": "Select: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/select", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/select/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/select/variants/playground.tsx",
+      "content": "import {\n  SelectTrigger,\n  SelectValue,\n  SelectContent,\n  SelectItem,\n} from \"@/registry/erbium/ui/select\";\nimport { Select } from \"@/registry/erbium/ui/select\";\n\nconst Example = (args: {\n  size: \"default\" | \"sm\";\n  disabled: boolean;\n  placeholder: string;\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n}) => (\n  <Select>\n    <SelectTrigger size={args.size} disabled={args.disabled} className=\"w-48\">\n      <SelectValue placeholder={args.placeholder} />\n    </SelectTrigger>\n    <SelectContent side={args.side} align={args.align}>\n      <SelectItem value=\"apple\">Apple</SelectItem>\n      <SelectItem value=\"banana\">Banana</SelectItem>\n    </SelectContent>\n  </Select>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

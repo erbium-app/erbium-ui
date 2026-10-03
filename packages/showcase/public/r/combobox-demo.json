@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-demo",
+  "type": "registry:component",
+  "title": "combobox demo",
+  "description": "Erbium combobox demo example.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/command",
+    "@erbium/popover",
+    "@erbium/styles",
+    "@erbium/utils"
+  ],
+  "files": [
+    {
+      "path": "src/combobox/examples/combobox-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/combobox/examples/combobox-demo.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUpDownIcon from \"@hugeicons/core-free-icons/ArrowUpDownIcon\";\nimport CheckIcon from \"@hugeicons/core-free-icons/CheckIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Command,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n} from \"@/registry/erbium/ui/command\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@/registry/erbium/ui/popover\";\n\nconst frameworks = [\n  {\n    value: \"next.js\",\n    label: \"Next.js\",\n  },\n  {\n    value: \"sveltekit\",\n    label: \"SvelteKit\",\n  },\n  {\n    value: \"nuxt.js\",\n    label: \"Nuxt.js\",\n  },\n  {\n    value: \"remix\",\n    label: \"Remix\",\n  },\n  {\n    value: \"astro\",\n    label: \"Astro\",\n  },\n];\n\nexport default function ComboboxDemo() {\n  const [open, setOpen] = React.useState(false);\n  const [value, setValue] = React.useState(\"\");\n\n  return (\n    <Popover open={open} onOpenChange={setOpen}>\n      <PopoverTrigger\n        render={\n          <Button\n            variant=\"outline\"\n            role=\"combobox\"\n            aria-expanded={open}\n            className=\"w-[200px] justify-between\"\n          >\n            {value\n              ? frameworks.find((framework) => framework.value === value)?.label\n              : \"Select framework...\"}\n            <HugeiconsIcon icon={ArrowUpDownIcon} className=\"opacity-50\" />\n          </Button>\n        }\n      />\n      <PopoverContent className=\"w-[200px] p-0\">\n        <Command>\n          <CommandInput placeholder=\"Search framework...\" className=\"h-9\" />\n          <CommandList>\n            <CommandEmpty>No framework found.</CommandEmpty>\n            <CommandGroup>\n              {frameworks.map((framework) => (\n                <CommandItem\n                  key={framework.value}\n                  value={framework.value}\n                  onSelect={(currentValue) => {\n                    setValue(currentValue === value ? \"\" : currentValue);\n                    setOpen(false);\n                  }}\n                >\n                  {framework.label}\n                  <HugeiconsIcon\n                    icon={CheckIcon}\n                    className={cn(\n                      \"ml-auto\",\n                      value === framework.value ? \"opacity-100\" : \"opacity-0\",\n                    )}\n                  />\n                </CommandItem>\n              ))}\n            </CommandGroup>\n          </CommandList>\n        </Command>\n      </PopoverContent>\n    </Popover>\n  );\n}\n"
+    }
+  ]
+}

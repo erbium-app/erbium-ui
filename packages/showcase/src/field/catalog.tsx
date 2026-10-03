@@ -1,0 +1,268 @@
+import type { Meta, StoryObj } from "../types";
+
+import { Field } from "@erbium/ui/components/field";
+
+import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
+
+import PlaygroundExample from "./variants/playground";
+
+import PlaygroundSource from "./variants/playground.tsx?raw";
+
+import OverviewExample from "./variants/overview";
+
+import OverviewSource from "./variants/overview.tsx?raw";
+
+import InputExample from "./variants/input";
+
+import InputSource from "./variants/input.tsx?raw";
+
+import TextareaExample from "./variants/textarea";
+
+import TextareaSource from "./variants/textarea.tsx?raw";
+
+import SelectExample from "./variants/select";
+
+import SelectSource from "./variants/select.tsx?raw";
+
+import SliderExample from "./variants/slider";
+
+import SliderSource from "./variants/slider.tsx?raw";
+
+import FieldsetExample from "./variants/fieldset";
+
+import FieldsetSource from "./variants/fieldset.tsx?raw";
+
+import CheckboxExample from "./variants/checkbox";
+
+import CheckboxSource from "./variants/checkbox.tsx?raw";
+
+import RadioExample from "./variants/radio";
+
+import RadioSource from "./variants/radio.tsx?raw";
+
+import SwitchExample from "./variants/switch";
+
+import SwitchSource from "./variants/switch.tsx?raw";
+
+import ChoiceCardExample from "./variants/choice-card";
+
+import ChoiceCardSource from "./variants/choice-card.tsx?raw";
+
+import FieldGroupExample from "./variants/field-group";
+
+import FieldGroupSource from "./variants/field-group.tsx?raw";
+
+import ResponsiveLayoutExample from "./variants/responsive-layout";
+
+import ResponsiveLayoutSource from "./variants/responsive-layout.tsx?raw";
+
+import GroupExample from "./variants/group";
+
+import GroupSource from "./variants/group.tsx?raw";
+
+import ResponsiveExample from "./variants/responsive";
+
+import ResponsiveSource from "./variants/responsive.tsx?raw";
+
+import ValidationAndErrorsExample from "./variants/validation-and-errors";
+
+import ValidationAndErrorsSource from "./variants/validation-and-errors.tsx?raw";
+
+const meta = {
+  title: "UI/Field",
+  component: Field,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: componentDocumentation("field"),
+      },
+    },
+  },
+} satisfies Meta<typeof Field>;
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  orientation: "vertical" | "horizontal" | "responsive";
+  invalid: boolean;
+  error: string;
+  className: string;
+  legendVariant: "legend" | "label";
+}> = {
+  args: {
+    orientation: "vertical",
+    invalid: false,
+    error: "Enter a valid email.",
+    className: "",
+    legendVariant: "legend",
+  },
+  argTypes: {
+    orientation: { control: "select", options: ["vertical", "horizontal", "responsive"] },
+    invalid: { control: "boolean" },
+    error: { control: "text" },
+    className: { control: "text" },
+    legendVariant: { control: "select", options: ["legend", "label"] },
+  },
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "playground") },
+      source: { code: PlaygroundSource },
+    },
+  },
+  render: PlaygroundExample,
+};
+
+export const Overview: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "overview") },
+      source: { code: OverviewSource },
+    },
+  },
+  render: OverviewExample,
+};
+
+export const Input: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "input") },
+      source: { code: InputSource },
+    },
+  },
+  render: InputExample,
+};
+
+export const Textarea: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "textarea") },
+      source: { code: TextareaSource },
+    },
+  },
+  render: TextareaExample,
+};
+
+export const Select: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "select") },
+      source: { code: SelectSource },
+    },
+  },
+  render: SelectExample,
+};
+
+export const Slider: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "slider") },
+      source: { code: SliderSource },
+    },
+  },
+  render: SliderExample,
+};
+
+export const Fieldset: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "fieldset") },
+      source: { code: FieldsetSource },
+    },
+  },
+  render: FieldsetExample,
+};
+
+export const Checkbox: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "checkbox") },
+      source: { code: CheckboxSource },
+    },
+  },
+  render: CheckboxExample,
+};
+
+export const Radio: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "radio") },
+      source: { code: RadioSource },
+    },
+  },
+  render: RadioExample,
+};
+
+export const Switch: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "switch") },
+      source: { code: SwitchSource },
+    },
+  },
+  render: SwitchExample,
+};
+
+export const ChoiceCard: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "choice-card") },
+      source: { code: ChoiceCardSource },
+    },
+  },
+  render: ChoiceCardExample,
+};
+
+export const FieldGroup: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "field-group") },
+      source: { code: FieldGroupSource },
+    },
+  },
+  render: FieldGroupExample,
+};
+
+export const ResponsiveLayout: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "responsive-layout") },
+      source: { code: ResponsiveLayoutSource },
+    },
+  },
+  render: ResponsiveLayoutExample,
+};
+
+export const Group: Story = {
+  parameters: {
+    layout: "padded",
+    docs: {
+      description: { story: variantDocumentation("field", "group") },
+      source: { code: GroupSource },
+    },
+  },
+  render: GroupExample,
+};
+
+export const Responsive: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "responsive") },
+      source: { code: ResponsiveSource },
+    },
+  },
+  render: ResponsiveExample,
+};
+
+export const ValidationAndErrors: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("field", "validation-and-errors") },
+      source: { code: ValidationAndErrorsSource },
+    },
+  },
+  render: ValidationAndErrorsExample,
+};

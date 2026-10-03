@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-fade-vertical",
+  "type": "registry:block",
+  "title": "Scroll Fade: Vertical",
+  "description": "",
+  "registryDependencies": ["@erbium/styles"],
+  "files": [
+    {
+      "path": "src/scroll-fade/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/scroll-fade/helpers.tsx",
+      "content": "export const rows = Array.from({ length: 14 }, (_, index) => index + 1);\n"
+    },
+    {
+      "path": "src/scroll-fade/variants/vertical.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/scroll-fade/variants/vertical.tsx",
+      "content": "import { rows } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"w-72 overflow-hidden rounded-lg border bg-background\">\n    <div className=\"scroll-fade h-56 overflow-y-auto px-4\">\n      {rows.map((row) => (\n        <div key={row} className=\"border-b py-4 text-sm\">\n          Scrollable row {row}\n        </div>\n      ))}\n    </div>\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

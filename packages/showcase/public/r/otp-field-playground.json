@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-playground",
+  "type": "registry:component",
+  "title": "OTP Field: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/otp-field/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/playground.tsx",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nconst Example = (args: {\n  length: number;\n  disabled: boolean;\n  validationType: \"numeric\" | \"alphanumeric\" | \"none\";\n  status: \"idle\" | \"loading\" | \"success\" | \"error\";\n}) => (\n  <OTPField\n    key={`${args.length}-${args.validationType}`}\n    aria-label=\"One-time password\"\n    length={args.length}\n    disabled={args.disabled}\n    validationType={args.validationType}\n    status={args.status}\n  />\n);\n\nexport default Example;\n"
+    }
+  ]
+}

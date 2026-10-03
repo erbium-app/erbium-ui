@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marker-icon",
+  "type": "registry:block",
+  "title": "Marker: With Icon",
+  "description": "Use `MarkerIcon` to render an icon alongside the content. Use `flex-col` to stack the icon above the content.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/marker/examples/upstream/marker-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-icon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BookOpenCheckIcon from \"@hugeicons/core-free-icons/BookOpenCheckIcon\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerIconDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-12 py-12\">\n      <Marker>\n        <MarkerIcon>\n          <HugeiconsIcon icon={GitBranchIcon} />\n        </MarkerIcon>\n        <MarkerContent>Switched to a new branch</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={Search01Icon} />\n        </MarkerIcon>\n        <MarkerContent>Explored 4 files</MarkerContent>\n      </Marker>\n      <Marker className=\"flex-col\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={BookOpenCheckIcon} />\n        </MarkerIcon>\n        <MarkerContent>Syncing completed</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/variants/icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/icon.tsx",
+      "content": "import { MarkerIconDemo } from \"../examples/upstream/marker-icon\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerIconDemo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

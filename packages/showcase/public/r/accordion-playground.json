@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-playground",
+  "type": "registry:component",
+  "title": "Accordion: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/accordion", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/accordion/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/accordion/variants/playground.tsx",
+      "content": "import { AccordionContent, AccordionItem, AccordionTrigger } from \"@/registry/erbium/ui/accordion\";\nimport { Accordion } from \"@/registry/erbium/ui/accordion\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Accordion>) => (\n  <Accordion {...args} className=\"w-80\">\n    <AccordionItem value=\"one\">\n      <AccordionTrigger>First question</AccordionTrigger>\n      <AccordionContent>First answer</AccordionContent>\n    </AccordionItem>\n    <AccordionItem value=\"two\">\n      <AccordionTrigger>Second question</AccordionTrigger>\n      <AccordionContent>Second answer</AccordionContent>\n    </AccordionItem>\n  </Accordion>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

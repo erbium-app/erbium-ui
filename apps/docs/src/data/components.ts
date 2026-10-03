@@ -1,23 +1,29 @@
+import { componentDocuments } from "@erbium/content/documents";
+import manifest from "@erbium/showcase/manifest";
 import registry from "../../../../packages/ui/registry.json";
 
-export type ComponentEntry = {
+type ComponentEntry = {
   name: string;
   title: string;
   description: string;
   files?: Array<{ path: string }>;
 };
 
-export const components = (registry.items as ComponentEntry[])
-  .filter((item) => item.name !== "utils")
-  .map((item) =>
-    item.name === "autocomplete"
-      ? {
-          ...item,
-          description:
-            "An accessible free-text input with filtered suggestions, async search states, and keyboard-highlighted options. Use Combobox when users must select a listed value.",
-        }
-      : item,
-  );
+const pages = componentDocuments as Record<
+  string,
+  import("astro").MarkdownInstance<{ title: string; description: string }>
+>;
+
+export const components = manifest.map((entry) => {
+  const item = (registry.items as ComponentEntry[]).find((item) => item.name === entry.name) ?? {
+    name: entry.name,
+    title: entry.title,
+    description: "",
+  };
+  const page = pages[`../components/${item.name}/index.md`];
+  if (!page) throw new Error(`Missing documentation for ${item.name}`);
+  return { ...item, title: page.frontmatter.title, description: page.frontmatter.description };
+});
 
 export const componentGroups = [
   { label: "Foundations", names: ["button", "badge", "card", "separator", "skeleton"] },
@@ -44,7 +50,3 @@ export const componentGroups = [
     names: ["table", "avatar", "calendar", "carousel", "chart", "progress"],
   },
 ];
-
-export function getComponent(name: string) {
-  return components.find((component) => component.name === name);
-}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination-playground",
+  "type": "registry:component",
+  "title": "Pagination: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/pagination", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/pagination/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/pagination/variants/playground.tsx",
+      "content": "import {\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n} from \"@/registry/erbium/ui/pagination\";\nimport { Pagination } from \"@/registry/erbium/ui/pagination\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Pagination>) => (\n  <Pagination {...args}>\n    <PaginationContent>\n      {[1, 2, 3].map((page) => (\n        <PaginationItem key={page}>\n          <PaginationLink href=\"#\" isActive={page === 2}>\n            {page}\n          </PaginationLink>\n        </PaginationItem>\n      ))}\n    </PaginationContent>\n  </Pagination>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

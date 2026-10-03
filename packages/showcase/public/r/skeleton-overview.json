@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-overview",
+  "type": "registry:block",
+  "title": "Skeleton: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/skeleton/examples/skeleton-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/examples/skeleton-demo.tsx",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport default function SkeletonDemo() {\n  return (\n    <div className=\"flex items-center space-x-4\">\n      <Skeleton className=\"size-12 rounded-[35%]\" />\n      <div className=\"space-y-2\">\n        <Skeleton className=\"h-4 w-[250px]\" />\n        <Skeleton className=\"h-4 w-[200px]\" />\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/skeleton/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/variants/overview.tsx",
+      "content": "import Demo from \"../examples/skeleton-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

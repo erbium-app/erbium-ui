@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu-link-component",
+  "type": "registry:component",
+  "title": "Navigation Menu: Link Component",
+  "description": "Use the `render` prop to compose a custom link component such as Next.js `Link`.\n\n```tsx\nimport Link from \"next/link\";\n\nimport {\n  NavigationMenuItem,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link href=\"/docs\" />} className={navigationMenuTriggerStyle()}>\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
+  "registryDependencies": ["@erbium/navigation-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/navigation-menu/variants/link-component.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/navigation-menu/variants/link-component.tsx",
+      "content": "import {\n  NavigationMenu,\n  NavigationMenuItem,\n  NavigationMenuLink,\n  NavigationMenuList,\n} from \"@/registry/erbium/ui/navigation-menu\";\n\nconst Example = () => (\n  <NavigationMenu>\n    <NavigationMenuList>\n      <NavigationMenuItem>\n        <NavigationMenuLink render={<a href=\"#navigation-menu-link\" />}>\n          Documentation\n        </NavigationMenuLink>\n      </NavigationMenuItem>\n    </NavigationMenuList>\n  </NavigationMenu>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

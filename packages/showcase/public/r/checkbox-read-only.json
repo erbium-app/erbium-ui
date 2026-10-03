@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-read-only",
+  "type": "registry:block",
+  "title": "Checkbox: Read Only",
+  "description": "Use `readOnly` to show a value the user cannot change. It stays focusable and announced, unlike `disabled`, and exposes `data-readonly`.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/examples/checkbox-read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-read-only.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Checkbox readOnly defaultChecked />\n      <FieldLabel>Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/read-only.tsx",
+      "content": "import ExampleCheckboxReadOnly from \"../examples/checkbox-read-only\";\n\nconst Example = () => <ExampleCheckboxReadOnly />;\n\nexport default Example;\n"
+    }
+  ]
+}

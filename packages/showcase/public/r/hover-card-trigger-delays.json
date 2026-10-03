@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card-trigger-delays",
+  "type": "registry:component",
+  "title": "Hover Card: Trigger Delays",
+  "description": "Use `delay` and `closeDelay` on the trigger to control when the card opens and\n\ncloses.\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger delay={100} closeDelay={200} render={<Button variant=\"link\">Hover</Button>} />\n  <HoverCardContent>Content</HoverCardContent>\n</HoverCard>\n```",
+  "registryDependencies": ["@erbium/button", "@erbium/hover-card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/hover-card/variants/trigger-delays.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/trigger-delays.tsx",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <HoverCard>\n    <HoverCardTrigger closeDelay={200} delay={100} render={<Button variant=\"link\" />}>\n      Hover to preview\n    </HoverCardTrigger>\n    <HoverCardContent>Opens after 100 ms and closes after 200 ms.</HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

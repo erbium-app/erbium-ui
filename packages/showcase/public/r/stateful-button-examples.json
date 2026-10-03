@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stateful-button-examples",
+  "type": "registry:item",
+  "title": "Stateful Button examples",
+  "description": "All stateful-button examples.",
+  "registryDependencies": [
+    "@erbium-examples/stateful-button-async-action",
+    "@erbium-examples/stateful-button-tan-stack-form",
+    "@erbium-examples/stateful-button-directions"
+  ]
+}

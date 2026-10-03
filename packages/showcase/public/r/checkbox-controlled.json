@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-controlled",
+  "type": "registry:block",
+  "title": "Checkbox: Controlled",
+  "description": "Pass `checked` and `onCheckedChange` to own the state. The handler receives `(checked, eventDetails)`; call `eventDetails.cancel()` to reject a change in uncontrolled mode.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/examples/checkbox-controlled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-controlled.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Receive marketing emails</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/controlled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/controlled.tsx",
+      "content": "import ExampleCheckboxControlled from \"../examples/checkbox-controlled\";\n\nconst Example = () => <ExampleCheckboxControlled />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stateful-icon-rotating-chevron",
+  "type": "registry:component",
+  "title": "Stateful Icon: Rotating Chevron",
+  "description": "",
+  "registryDependencies": ["@erbium/collapsible", "@erbium/stateful-icon", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/stateful-icon/variants/rotating-chevron.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/rotating-chevron.tsx",
+      "content": "import {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\nimport { RotatingChevron as RotatingChevronIcon } from \"@/registry/erbium/ui/stateful-icon\";\n\nconst Example = () => (\n  <Collapsible className=\"w-72\">\n    <CollapsibleTrigger className=\"group flex w-full items-center rounded-lg border px-3 py-2 text-start\">\n      Project details\n      <RotatingChevronIcon direction=\"right\" className=\"ms-auto size-4\" />\n    </CollapsibleTrigger>\n    <CollapsibleContent className=\"px-3 py-2 text-sm text-muted-foreground\">\n      The shared chevron follows the trigger’s open state.\n    </CollapsibleContent>\n  </Collapsible>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

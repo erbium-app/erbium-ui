@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "surfaces-examples",
+  "type": "registry:item",
+  "title": "Surfaces examples",
+  "description": "All surfaces examples.",
+  "registryDependencies": [
+    "@erbium-examples/surfaces-ladder",
+    "@erbium-examples/surfaces-colored",
+    "@erbium-examples/surfaces-roles",
+    "@erbium-examples/surfaces-nesting",
+    "@erbium-examples/surfaces-states",
+    "@erbium-examples/surfaces-control-states"
+  ]
+}

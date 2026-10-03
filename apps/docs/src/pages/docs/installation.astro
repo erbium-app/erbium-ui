@@ -1,5 +1,7 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { Content, frontmatter } from "@erbium/content/installation.md";
 ---
-<DocsLayout title="Installation"><div class="docs-intro"><p class="eyebrow">Getting started</p><h1>Installation</h1><p class="lede">Install the package, import the styles, and start composing.</p></div><h2>1. Add the package</h2><pre><code>bun add @erbium/ui</code></pre><h2>2. Import the theme</h2><pre><code>import "@erbium/ui/globals.css";</code></pre><p class="body-copy">The package is intentionally source-first. Components are available as individual imports, so your app only pulls in what it uses.</p><h2>3. Import a component</h2><pre><code>import &#123; Button &#125; from "@erbium/ui/components/button";</code></pre></DocsLayout>
-<style>.docs-intro h1{margin:.8rem 0;font-size:clamp(2.6rem,5vw,4.4rem);line-height:1;letter-spacing:-.065em}.eyebrow{color:#c2410c;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.lede,.body-copy{color:#737373;font-size:1.05rem;line-height:1.7;max-width:36rem}.main-content h2{margin:2.7rem 0 1rem;font-size:1.2rem}pre{overflow:auto;margin:0;padding:1rem 1.2rem;border-radius:.7rem;background:#1c1917;color:#e7e5e4;font: .85rem/1.7 var(--font-mono)}code{font-family:var(--font-mono)}</style>
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+  <article class="markdown-copy"><h1>{frontmatter.title}</h1><Content /></article>
+</DocsLayout>

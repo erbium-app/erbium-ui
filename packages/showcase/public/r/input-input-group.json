@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-input-group",
+  "type": "registry:block",
+  "title": "Input: Input Group",
+  "description": "To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](https://ui.shadcn.com/docs/components/input-group) component for more examples.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/examples/upstream/input-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport InfoIcon from \"@hugeicons/core-free-icons/InfoIcon\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport function InputInputGroup() {\n  return (\n    <Field>\n      <FieldLabel>Website URL</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"example.com\" />\n        <InputGroupAddon>\n          <InputGroupText>https://</InputGroupText>\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <HugeiconsIcon icon={InfoIcon} />\n        </InputGroupAddon>\n      </InputGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/variants/input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/input-group.tsx",
+      "content": "import { InputInputGroup } from \"../examples/upstream/input-input-group\";\n\nconst Example = () => <InputInputGroup />;\n\nexport default Example;\n"
+    }
+  ]
+}

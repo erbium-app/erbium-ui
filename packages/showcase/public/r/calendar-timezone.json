@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-timezone",
+  "type": "registry:component",
+  "title": "calendar timezone",
+  "description": "Erbium calendar timezone example.",
+  "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/calendar/examples/calendar-timezone.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/calendar-timezone.tsx",
+      "content": "import * as React from \"react\";\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarTimezone() {\n  const [date, setDate] = React.useState<Date>();\n  const [timeZone, setTimeZone] = React.useState<string>();\n\n  React.useEffect(() => {\n    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);\n  }, []);\n\n  return <Calendar mode=\"single\" onSelect={setDate} selected={date} timeZone={timeZone} />;\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-overview",
+  "type": "registry:block",
+  "title": "Checkbox: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/examples/checkbox-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-demo.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxDemo() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <Field orientation=\"horizontal\">\n        <Checkbox />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\" className=\"items-start\">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n      <Field orientation=\"horizontal\" disabled>\n        <Checkbox />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field variant=\"card\" orientation=\"horizontal\">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Enable notifications</FieldLabel>\n          <FieldDescription>You can enable or disable notifications at any time.</FieldDescription>\n        </FieldContent>\n      </Field>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/overview.tsx",
+      "content": "import Demo from \"../examples/checkbox-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

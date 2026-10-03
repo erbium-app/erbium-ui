@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-invalid",
+  "type": "registry:block",
+  "title": "Combobox: Invalid",
+  "description": "Use the `aria-invalid` prop to make the combobox invalid.",
+  "registryDependencies": ["@erbium/combobox", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/combobox/examples/upstream/combobox-invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/combobox/examples/upstream/combobox-invalid.tsx",
+      "content": "import {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/erbium/ui/combobox\";\n\nconst frameworks = [\"Next.js\", \"SvelteKit\", \"Nuxt.js\", \"Remix\", \"Astro\"] as const;\n\nexport function ComboboxInvalid() {\n  return (\n    <Combobox items={frameworks}>\n      <ComboboxInput placeholder=\"Select a framework\" aria-invalid=\"true\" />\n      <ComboboxContent>\n        <ComboboxEmpty>No items found.</ComboboxEmpty>\n        <ComboboxList>\n          {(item) => (\n            <ComboboxItem key={item} value={item}>\n              {item}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxContent>\n    </Combobox>\n  );\n}\n"
+    },
+    {
+      "path": "src/combobox/variants/invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/combobox/variants/invalid.tsx",
+      "content": "import { ComboboxInvalid } from \"../examples/upstream/combobox-invalid\";\n\nconst Example = () => <ComboboxInvalid />;\n\nexport default Example;\n"
+    }
+  ]
+}

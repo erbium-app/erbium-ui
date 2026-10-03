@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "editable-stories",
+  "type": "registry:item",
+  "title": "Editable stories",
+  "description": "All editable variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/csp-provider",
+    "@erbium/editable",
+    "@erbium/kbd",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/editable/editable.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/editable/editable.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Editable } from \"@/registry/erbium/ui/editable\";\n\nimport RenameTabExample from \"./variants/rename-tab\";\n\nconst RenameTabSource = \"import Demo from \\\"../examples/editable-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Editable\",\n  component: Editable,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A single-line inline editor. The preview stays in the layout while the input overlays it, keeping the text position and neighboring content stable during editing. Enter or blur saves; Escape cancels.\",\n      },\n    },\n  },\n} satisfies Meta<typeof Editable>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const RenameTab: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: RenameTabSource },\n    },\n  },\n  render: RenameTabExample,\n};\n"
+    },
+    {
+      "path": "src/editable/examples/editable-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/editable/examples/editable-demo.tsx",
+      "content": "import { useState } from \"react\";\nimport { Editable, EditableInput, EditablePreview } from \"@/registry/erbium/ui/editable\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function EditableDemo() {\n  const [name, setName] = useState(\"Overview\");\n\n  return (\n    <div className=\"flex w-96 items-center gap-2 rounded-lg border border-transparent p-2 text-sm\">\n      <span className=\"shrink-0 text-muted-foreground\">Tab</span>\n      <Editable value={name} onValueChange={setName} className=\"min-w-0 flex-1 font-medium\">\n        <EditablePreview aria-label=\"Rename tab\" />\n        <EditableInput aria-label=\"Tab name\" maxLength={48} />\n      </Editable>\n      <span className=\"inline-flex shrink-0 items-center gap-1\">\n        <Kbd hotkey=\"Enter\" />\n        <Kbd hotkey=\"Escape\" />\n      </span>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/editable/variants/rename-tab.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/editable/variants/rename-tab.tsx",
+      "content": "import Demo from \"../examples/editable-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

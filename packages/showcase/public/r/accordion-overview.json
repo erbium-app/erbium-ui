@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-overview",
+  "type": "registry:block",
+  "title": "Accordion: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/accordion", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/accordion/examples/accordion-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/accordion/examples/accordion-demo.tsx",
+      "content": "import {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/registry/erbium/ui/accordion\";\n\nexport default function AccordionDemo() {\n  return (\n    <Accordion className=\"w-full\" defaultValue={[\"item-1\"]}>\n      <AccordionItem value=\"item-1\">\n        <AccordionTrigger>Product Information</AccordionTrigger>\n        <AccordionContent className=\"flex flex-col gap-4 text-balance\">\n          <p>\n            Our flagship product combines cutting-edge technology with sleek design. Built with\n            premium materials, it offers unparalleled performance and reliability.\n          </p>\n          <p>\n            Key features include advanced processing capabilities, and an intuitive user interface\n            designed for both beginners and experts.\n          </p>\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-2\">\n        <AccordionTrigger>Shipping Details</AccordionTrigger>\n        <AccordionContent className=\"flex flex-col gap-4 text-balance\">\n          <p>\n            We offer worldwide shipping through trusted courier partners. Standard delivery takes\n            3-5 business days, while express shipping ensures delivery within 1-2 business days.\n          </p>\n          <p>\n            All orders are carefully packaged and fully insured. Track your shipment in real-time\n            through our dedicated tracking portal.\n          </p>\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-3\">\n        <AccordionTrigger>Return Policy</AccordionTrigger>\n        <AccordionContent className=\"flex flex-col gap-4 text-balance\">\n          <p>\n            We stand behind our products with a comprehensive 30-day return policy. If you&apos;re\n            not completely satisfied, simply return the item in its original condition.\n          </p>\n          <p>\n            Our hassle-free return process includes free return shipping and full refunds processed\n            within 48 hours of receiving the returned item.\n          </p>\n        </AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  );\n}\n"
+    },
+    {
+      "path": "src/accordion/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/accordion/variants/overview.tsx",
+      "content": "import Demo from \"../examples/accordion-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

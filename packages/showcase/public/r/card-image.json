@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-image",
+  "type": "registry:component",
+  "title": "Card: Image",
+  "description": "Add an image before the card header to create a card with an image.",
+  "registryDependencies": ["@erbium/card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/card/variants/image.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/image.tsx",
+      "content": "import { Card, CardDescription, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <img\n      src=\"/card-project.svg\"\n      alt=\"Abstract illustration of a project dashboard\"\n      className=\"h-40 w-full object-cover\"\n    />\n    <CardHeader>\n      <CardTitle>Featured project</CardTitle>\n      <CardDescription>A card with media above its header.</CardDescription>\n    </CardHeader>\n  </Card>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

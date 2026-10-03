@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-examples",
+  "type": "registry:item",
+  "title": "Control examples",
+  "description": "All control examples.",
+  "registryDependencies": [
+    "@erbium-examples/control-overview",
+    "@erbium-examples/control-number",
+    "@erbium-examples/control-continuous-number",
+    "@erbium-examples/control-discrete-number",
+    "@erbium-examples/control-text",
+    "@erbium-examples/control-textarea",
+    "@erbium-examples/control-boolean",
+    "@erbium-examples/control-segmented",
+    "@erbium-examples/control-select",
+    "@erbium-examples/control-color",
+    "@erbium-examples/control-image",
+    "@erbium-examples/control-pad",
+    "@erbium-examples/control-spring",
+    "@erbium-examples/control-transition",
+    "@erbium-examples/control-action",
+    "@erbium-examples/control-section",
+    "@erbium-examples/control-group",
+    "@erbium-examples/control-row"
+  ]
+}

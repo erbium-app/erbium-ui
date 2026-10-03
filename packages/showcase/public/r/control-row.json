@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-row",
+  "type": "registry:component",
+  "title": "Control: Row",
+  "description": "",
+  "registryDependencies": ["@erbium/control", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/control/variants/row.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/row.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Row label=\"Version\" className=\"w-72\">\n    <span className=\"ms-auto text-sm text-muted-foreground\">1.0</span>\n  </Control.Row>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

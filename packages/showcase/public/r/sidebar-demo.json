@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-demo",
+  "type": "registry:component",
+  "title": "sidebar demo",
+  "description": "Erbium sidebar demo example.",
+  "registryDependencies": [
+    "@erbium/collapsible",
+    "@erbium/separator",
+    "@erbium/sidebar",
+    "@erbium/stateful-icon",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/sidebar/examples/sidebar-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/sidebar/examples/sidebar-demo.tsx",
+      "content": "import {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\nimport { RotatingChevron } from \"@/registry/erbium/ui/stateful-icon\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\nimport {\n  Sidebar,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupContent,\n  SidebarGroupLabel,\n  SidebarMenu,\n  SidebarMenuButton,\n  SidebarMenuItem,\n  SidebarProvider,\n} from \"@/registry/erbium/ui/sidebar\";\nexport default function Demo() {\n  return (\n    <SidebarProvider defaultOpen>\n      <div className=\"relative h-64 w-80 overflow-hidden border\">\n        <Sidebar collapsible=\"none\">\n          <SidebarContent>\n            <Collapsible defaultOpen className=\"group group/workspace\">\n              <SidebarGroup>\n                <SidebarGroupLabel\n                  className=\"hover:bg-sidebar-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none\"\n                  render={<CollapsibleTrigger />}\n                >\n                  Workspace\n                  <RotatingChevron className=\"ms-auto\" />\n                </SidebarGroupLabel>\n                <CollapsibleContent>\n                  <Separator />\n                  <SidebarGroupContent>\n                    <SidebarMenu>\n                      <SidebarMenuItem>\n                        <SidebarMenuButton>Overview</SidebarMenuButton>\n                      </SidebarMenuItem>\n                      <SidebarMenuItem>\n                        <SidebarMenuButton>Settings</SidebarMenuButton>\n                      </SidebarMenuItem>\n                    </SidebarMenu>\n                  </SidebarGroupContent>\n                </CollapsibleContent>\n              </SidebarGroup>\n            </Collapsible>\n          </SidebarContent>\n        </Sidebar>\n      </div>\n    </SidebarProvider>\n  );\n}\n"
+    }
+  ]
+}

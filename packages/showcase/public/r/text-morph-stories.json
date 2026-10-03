@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-morph-stories",
+  "type": "registry:item",
+  "title": "Text Morph stories",
+  "description": "All text-morph variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/text-morph",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/text-morph/examples/text-morph-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/text-morph/examples/text-morph-demo.tsx",
+      "content": "import { useState } from \"react\";\nimport { TextMorph } from \"@/registry/erbium/ui/text-morph\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const [count, setCount] = useState(10);\n  return (\n    <div className=\"flex items-center gap-4\">\n      <TextMorph aria-live=\"polite\">{count}</TextMorph>\n      <Button onClick={() => setCount(count + 1)}>Increment</Button>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/text-morph/text-morph.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/text-morph/text-morph.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/text-morph-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Text Morph\",\n  parameters: {\n    layout: \"centered\",\n    docs: { description: { component: \"Animates changing text and numbers while preserving their place in the layout. Click Increment to see a number transition.\\n\\nImport `TextMorph` from `@/registry/erbium/ui/text-morph` and pass a string or number as its child.\" } },\n  },\n} satisfies Meta;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n"
+    },
+    {
+      "path": "src/text-morph/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/text-morph/variants/overview.tsx",
+      "content": "import Demo from \"../examples/text-morph-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

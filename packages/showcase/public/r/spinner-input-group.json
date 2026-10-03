@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-input-group",
+  "type": "registry:block",
+  "title": "Spinner: Input Group",
+  "description": "Show progress inside an input group.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/input-group", "@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/spinner/examples/spinner-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-4\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"block-end\">\n          <Spinner /> Validating...\n          <InputGroupButton className=\"ml-auto\" variant=\"default\">\n            <HugeiconsIcon icon={ArrowUp01Icon} />\n            <span className=\"sr-only\">Send</span>\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/variants/input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/input-group.tsx",
+      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

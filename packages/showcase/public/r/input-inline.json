@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-inline",
+  "type": "registry:block",
+  "title": "Input: Inline",
+  "description": "Use `Field` with `orientation=\"horizontal\"` to create an inline input.\n\nPair with `Button` to create a search input with a button.",
+  "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/examples/upstream/input-inline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-inline.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputInline() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Input type=\"search\" placeholder=\"Search...\" />\n      <Button>Search</Button>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/variants/inline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/inline.tsx",
+      "content": "import { InputInline } from \"../examples/upstream/input-inline\";\n\nconst Example = () => <InputInline />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-examples",
+  "type": "registry:item",
+  "title": "Badge examples",
+  "description": "All badge examples.",
+  "registryDependencies": [
+    "@erbium-examples/badge-playground",
+    "@erbium-examples/badge-overview",
+    "@erbium-examples/badge-variants",
+    "@erbium-examples/badge-link",
+    "@erbium-examples/badge-with-icon",
+    "@erbium-examples/badge-with-spinner"
+  ]
+}

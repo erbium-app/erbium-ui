@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marker-status",
+  "type": "registry:block",
+  "title": "Marker: Status",
+  "description": "Set `role=\"status\"` and include a [`Spinner`](https://ui.shadcn.com/docs/components/spinner) for streaming or in-progress markers so updates are announced.",
+  "registryDependencies": ["@erbium/marker", "@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/marker/examples/upstream/marker-status.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-status.tsx",
+      "content": "import { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport function MarkerStatusDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker role=\"status\">\n        <MarkerIcon>\n          <Spinner />\n        </MarkerIcon>\n        <MarkerContent>Compacting conversation</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\" role=\"status\">\n        <MarkerIcon>\n          <Spinner />\n        </MarkerIcon>\n        <MarkerContent>Running tests</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/variants/status.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/status.tsx",
+      "content": "import { MarkerStatusDemo } from \"../examples/upstream/marker-status\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerStatusDemo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

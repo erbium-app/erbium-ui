@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-playground",
+  "type": "registry:component",
+  "title": "Checkbox: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/playground.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Checkbox>) => (\n  <Field orientation=\"horizontal\">\n    <Checkbox key={String(args.defaultChecked)} {...args} id=\"playground-checkbox\" />\n    <FieldLabel htmlFor=\"playground-checkbox\">Accept terms</FieldLabel>\n  </Field>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

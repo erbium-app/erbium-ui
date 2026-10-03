@@ -1,7 +1,19 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Kbd } from "@erbium/ui/components/kbd";
 type Component = { name: string; title: string; description: string };
 export default function ComponentSearch({ components }: { components: Component[] }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    function keydown(event: KeyboardEvent) {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        inputRef.current?.focus();
+      }
+      if (event.key === "Escape") setQuery("");
+    }
+    window.addEventListener("keydown", keydown);
+    return () => window.removeEventListener("keydown", keydown);
+  }, []);
   const [query, setQuery] = useState("");
   const results = useMemo(
     () =>
@@ -17,6 +29,7 @@ export default function ComponentSearch({ components }: { components: Component[
       <label className="search-box">
         <span>⌕</span>
         <input
+          ref={inputRef}
           aria-label="Search components"
           placeholder="Search components"
           value={query}
@@ -27,7 +40,7 @@ export default function ComponentSearch({ components }: { components: Component[
       {query && (
         <div className="search-results">
           {results.map((item) => (
-            <a href={`/docs/components/${item.name}`}>
+            <a key={item.name} href={`/docs/components/${item.name}`}>
               <strong>{item.title}</strong>
               <span>{item.description}</span>
             </a>

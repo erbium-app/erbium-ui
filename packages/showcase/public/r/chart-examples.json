@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-examples",
+  "type": "registry:item",
+  "title": "Chart examples",
+  "description": "All chart examples.",
+  "registryDependencies": [
+    "@erbium-examples/chart-playground",
+    "@erbium-examples/chart-overview",
+    "@erbium-examples/chart-example",
+    "@erbium-examples/chart-example-grid",
+    "@erbium-examples/chart-example-axis",
+    "@erbium-examples/chart-example-tooltip",
+    "@erbium-examples/chart-example-legend"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-fallback",
+  "type": "registry:component",
+  "title": "Avatar: Fallback",
+  "description": "Display initials when an avatar image is unavailable.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/variants/fallback.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/fallback.tsx",
+      "content": "import { AvatarFallback } from \"@/registry/erbium/ui/avatar\";\nimport { Avatar } from \"@/registry/erbium/ui/avatar\";\n\nconst Example = () => (\n  <Avatar>\n    <AvatarFallback>AN</AvatarFallback>\n  </Avatar>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

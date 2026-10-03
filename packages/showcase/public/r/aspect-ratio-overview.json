@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-overview",
+  "type": "registry:block",
+  "title": "Aspect Ratio: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/aspect-ratio/examples/aspect-ratio-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/examples/aspect-ratio-demo.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nexport default function Demo() {\n  return (\n    <div className=\"w-80\">\n      <AspectRatio ratio={16 / 9}>\n        <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n          16:9 media area\n        </div>\n      </AspectRatio>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/aspect-ratio/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/overview.tsx",
+      "content": "import Demo from \"../examples/aspect-ratio-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

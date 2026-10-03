@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-disabled",
+  "type": "registry:component",
+  "title": "Slider: Disabled",
+  "description": "Use the `disabled` prop to disable the slider.",
+  "registryDependencies": ["@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/slider/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/slider/variants/disabled.tsx",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst Example = () => (\n  <Slider disabled defaultValue={[50]} max={100} className=\"w-64\" aria-label=\"Unavailable\" />\n);\n\nexport default Example;\n"
+    }
+  ]
+}

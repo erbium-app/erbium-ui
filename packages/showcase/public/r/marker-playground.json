@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marker-playground",
+  "type": "registry:component",
+  "title": "Marker: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/marker/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/playground.tsx",
+      "content": "import { Marker } from \"@/registry/erbium/ui/marker\";\n\nconst Example = (args: {\n  variant: \"default\" | \"separator\" | \"border\";\n  asSpan: boolean;\n  className: string;\n}) => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <Marker\n      variant={args.variant}\n      render={args.asSpan ? <span /> : undefined}\n      className={args.className}\n    >\n      Marker\n    </Marker>\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

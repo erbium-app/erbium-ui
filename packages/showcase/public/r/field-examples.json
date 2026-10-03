@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-examples",
+  "type": "registry:item",
+  "title": "Field examples",
+  "description": "All field examples.",
+  "registryDependencies": [
+    "@erbium-examples/field-playground",
+    "@erbium-examples/field-overview",
+    "@erbium-examples/field-input",
+    "@erbium-examples/field-textarea",
+    "@erbium-examples/field-select",
+    "@erbium-examples/field-slider",
+    "@erbium-examples/field-fieldset",
+    "@erbium-examples/field-checkbox",
+    "@erbium-examples/field-radio",
+    "@erbium-examples/field-switch",
+    "@erbium-examples/field-choice-card",
+    "@erbium-examples/field-field-group",
+    "@erbium-examples/field-responsive-layout",
+    "@erbium-examples/field-group",
+    "@erbium-examples/field-responsive",
+    "@erbium-examples/field-validation-and-errors"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-avatar",
+  "type": "registry:block",
+  "title": "Skeleton: Avatar",
+  "description": "Use a skeleton as an avatar placeholder.",
+  "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/skeleton/examples/upstream/skeleton-avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/examples/upstream/skeleton-avatar.tsx",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonAvatar() {\n  return (\n    <div className=\"flex w-fit items-center gap-4\">\n      <Skeleton className=\"size-10 shrink-0 rounded-[35%]\" />\n      <div className=\"grid gap-2\">\n        <Skeleton className=\"h-4 w-[150px]\" />\n        <Skeleton className=\"h-4 w-[100px]\" />\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/skeleton/variants/avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/variants/avatar.tsx",
+      "content": "import { SkeletonAvatar } from \"../examples/upstream/skeleton-avatar\";\n\nconst Example = () => <SkeletonAvatar />;\n\nexport default Example;\n"
+    }
+  ]
+}

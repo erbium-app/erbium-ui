@@ -1,0 +1,149 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-stories",
+  "type": "registry:item",
+  "title": "Control stories",
+  "description": "All control variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/control",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/control/control.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/control/control.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/control-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nimport NumberExample from \"./variants/number\";\n\nconst NumberSource = \"import { NumberExample } from \\\"../helpers\\\";\\n\\nconst Example = () => <NumberExample />;\\n\\nexport default Example;\\n\";\n\nimport ContinuousNumberExample from \"./variants/continuous-number\";\n\nconst ContinuousNumberSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Number\\n    label=\\\"Position\\\"\\n    mode=\\\"continuous\\\"\\n    defaultValue={32.418}\\n    min={-100}\\n    max={100}\\n    className=\\\"w-72\\\"\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport DiscreteNumberExample from \"./variants/discrete-number\";\n\nconst DiscreteNumberSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Number\\n    label=\\\"Quality\\\"\\n    steps={[0.1, 0.5, 0.7, 1.3]}\\n    defaultValue={0.7}\\n    className=\\\"w-72\\\"\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport TextExample from \"./variants/text\";\n\nconst TextSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => <Control.Text label=\\\"Title\\\" defaultValue=\\\"Japan\\\" className=\\\"w-72\\\" />;\\n\\nexport default Example;\\n\";\n\nimport TextareaExample from \"./variants/textarea\";\n\nconst TextareaSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Textarea\\n    label=\\\"Description\\\"\\n    defaultValue=\\\"A collection of favorite places.\\\"\\n    className=\\\"w-72\\\"\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport BooleanExample from \"./variants/boolean\";\n\nconst BooleanSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Group className=\\\"w-72\\\">\\n    <Control.Boolean label=\\\"Visible\\\" defaultChecked />\\n    <Control.Boolean label=\\\"Reduced motion\\\" presentation=\\\"switch\\\" />\\n  </Control.Group>\\n);\\n\\nexport default Example;\\n\";\n\nimport SegmentedExample from \"./variants/segmented\";\n\nconst SegmentedSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Segmented\\n    label=\\\"Mode\\\"\\n    defaultValue=\\\"photo\\\"\\n    options={[\\n      { label: \\\"Photo\\\", value: \\\"photo\\\" },\\n      { label: \\\"Video\\\", value: \\\"video\\\" },\\n    ]}\\n    className=\\\"w-72\\\"\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport SelectExample from \"./variants/select\";\n\nconst SelectSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Select\\n    label=\\\"Shape\\\"\\n    defaultValue=\\\"portrait\\\"\\n    options={[\\n      { label: \\\"Portrait\\\", value: \\\"portrait\\\" },\\n      { label: \\\"Square\\\", value: \\\"square\\\" },\\n      { label: \\\"Landscape\\\", value: \\\"landscape\\\" },\\n    ]}\\n    className=\\\"w-72\\\"\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport ColorExample from \"./variants/color\";\n\nconst ColorSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => <Control.Color label=\\\"Shadow Tint\\\" defaultValue=\\\"#393a34\\\" className=\\\"w-72\\\" />;\\n\\nexport default Example;\\n\";\n\nimport ImageExample from \"./variants/image\";\n\nconst ImageSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Group className=\\\"w-72\\\">\\n    <Control.Image\\n      label=\\\"Cover Photo\\\"\\n      options={[\\n        {\\n          value: \\\"warm\\\",\\n          label: \\\"Warm\\\",\\n          src: \\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23d4976c'/%3E%3C/svg%3E\\\",\\n        },\\n        {\\n          value: \\\"cool\\\",\\n          label: \\\"Cool\\\",\\n          src: \\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%236394bf'/%3E%3C/svg%3E\\\",\\n        },\\n      ]}\\n      onFileChange={() => undefined}\\n    />\\n  </Control.Group>\\n);\\n\\nexport default Example;\\n\";\n\nimport PadExample from \"./variants/pad\";\n\nconst PadSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Pad label=\\\"Position\\\" defaultValue={{ x: 25, y: 75 }} className=\\\"w-72\\\" />\\n);\\n\\nexport default Example;\\n\";\n\nimport SpringExample from \"./variants/spring\";\n\nconst SpringSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => <Control.Spring label=\\\"Spring\\\" className=\\\"w-72\\\" />;\\n\\nexport default Example;\\n\";\n\nimport TransitionExample from \"./variants/transition\";\n\nconst TransitionSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => <Control.Transition label=\\\"Transition\\\" className=\\\"w-72\\\" />;\\n\\nexport default Example;\\n\";\n\nimport ActionExample from \"./variants/action\";\n\nconst ActionSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Action label=\\\"Reset settings\\\" className=\\\"w-72\\\" onClick={() => undefined} />\\n);\\n\\nexport default Example;\\n\";\n\nimport SectionExample from \"./variants/section\";\n\nconst SectionSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Group className=\\\"w-72\\\">\\n    <Control.Section title=\\\"Shadow\\\">\\n      <Control.Number label=\\\"Blur\\\" defaultValue={14} min={0} max={50} />\\n      <Control.Boolean label=\\\"Enabled\\\" defaultChecked />\\n    </Control.Section>\\n  </Control.Group>\\n);\\n\\nexport default Example;\\n\";\n\nimport GroupExample from \"./variants/group\";\n\nconst GroupSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Group className=\\\"w-72\\\">\\n    <Control.Text label=\\\"Title\\\" defaultValue=\\\"Japan\\\" />\\n    <Control.Number label=\\\"Opacity\\\" defaultValue={0.6} min={0} max={1} step={0.01} />\\n  </Control.Group>\\n);\\n\\nexport default Example;\\n\";\n\nimport RowExample from \"./variants/row\";\n\nconst RowSource = \"import { Control } from \\\"@/registry/erbium/ui/control\\\";\\n\\nconst Example = () => (\\n  <Control.Row label=\\\"Version\\\" className=\\\"w-72\\\">\\n    <span className=\\\"ms-auto text-sm text-muted-foreground\\\">1.0</span>\\n  </Control.Row>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Control\",\n  component: Control.Number,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A compact family of controls for sidebars and settings pages. Every row uses the Erbium control surface. Import `Control` from `@/registry/erbium/ui/control` and compose its typed members inside `Control.Group` or `Control.Section`.\",\n      },\n    },\n  },\n} satisfies Meta<typeof Control.Number>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Number: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Drag or use arrow keys to change the value; click the number for precise entry.\" },\n      source: { code: NumberSource },\n    },\n  },\n  render: NumberExample,\n};\n\nexport const ContinuousNumber: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Continuous mode drags smoothly across the range and accepts any in-range number through the value editor.\" },\n      source: { code: ContinuousNumberSource },\n    },\n  },\n  render: ContinuousNumberExample,\n};\n\nexport const DiscreteNumber: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Discrete mode accepts uneven steps and moves one allowed value per arrow key.\" },\n      source: { code: DiscreteNumberSource },\n    },\n  },\n  render: DiscreteNumberExample,\n};\n\nexport const Text: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: TextSource },\n    },\n  },\n  render: TextExample,\n};\n\nexport const Textarea: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: TextareaSource },\n    },\n  },\n  render: TextareaExample,\n};\n\nexport const Boolean: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: BooleanSource },\n    },\n  },\n  render: BooleanExample,\n};\n\nexport const Segmented: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SegmentedSource },\n    },\n  },\n  render: SegmentedExample,\n};\n\nexport const Select: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SelectSource },\n    },\n  },\n  render: SelectExample,\n};\n\nexport const Color: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ColorSource },\n    },\n  },\n  render: ColorExample,\n};\n\nexport const Image: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ImageSource },\n    },\n  },\n  render: ImageExample,\n};\n\nexport const Pad: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PadSource },\n    },\n  },\n  render: PadExample,\n};\n\nexport const Spring: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SpringSource },\n    },\n  },\n  render: SpringExample,\n};\n\nexport const Transition: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: TransitionSource },\n    },\n  },\n  render: TransitionExample,\n};\n\nexport const Action: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ActionSource },\n    },\n  },\n  render: ActionExample,\n};\n\nexport const Section: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SectionSource },\n    },\n  },\n  render: SectionExample,\n};\n\nexport const Group: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: GroupSource },\n    },\n  },\n  render: GroupExample,\n};\n\nexport const Row: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: RowSource },\n    },\n  },\n  render: RowExample,\n};\n"
+    },
+    {
+      "path": "src/control/examples/control-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/examples/control-demo.tsx",
+      "content": "import { useState } from \"react\";\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nconst shapes = [\n  { label: \"Portrait\", value: \"portrait\" },\n  { label: \"Square\", value: \"square\" },\n  { label: \"Landscape\", value: \"landscape\" },\n];\n\nexport default function ControlDemo() {\n  const [title, setTitle] = useState(\"Japan\");\n  const [opacity, setOpacity] = useState(0.6);\n  const [scale, setScale] = useState(1.03);\n  const [visible, setVisible] = useState(true);\n  const [shape, setShape] = useState(\"portrait\");\n  const [color, setColor] = useState(\"#393a34\");\n\n  return (\n    <div className=\"w-72 rounded-xl border surface-panel p-3\">\n      <h3 className=\"mb-3 text-sm font-semibold\">Photo Stack</h3>\n      <Control.Group>\n        <Control.Text label=\"Title\" value={title} onValueChange={setTitle} />\n        <Control.Select\n          label=\"Photo Shape\"\n          options={shapes}\n          value={shape}\n          onValueChange={setShape}\n        />\n        <Control.Color label=\"Shadow Tint\" value={color} onValueChange={setColor} />\n        <Control.Boolean label=\"Visible\" checked={visible} onCheckedChange={setVisible} />\n        <Control.Section title=\"Back Photo\">\n          <Control.Number label=\"Frames\" steps={[1, 2, 3, 4]} defaultValue={3} />\n          <Control.Number\n            label=\"Scale\"\n            value={scale}\n            min={0.5}\n            max={2}\n            step={0.01}\n            onValueChange={setScale}\n          />\n          <Control.Number\n            label=\"Overlay Opacity\"\n            value={opacity}\n            min={0}\n            max={1}\n            mode=\"continuous\"\n            formatValue={(value) => value.toFixed(2)}\n            onValueChange={setOpacity}\n          />\n        </Control.Section>\n      </Control.Group>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/control/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/helpers.tsx",
+      "content": "import { useState } from \"react\";\n\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nexport function NumberExample() {\n  const [value, setValue] = useState(0.7);\n  return (\n    <Control.Number\n      label=\"Scale\"\n      value={value}\n      onValueChange={setValue}\n      min={0}\n      max={1}\n      step={0.01}\n      className=\"w-72\"\n    />\n  );\n}\n"
+    },
+    {
+      "path": "src/control/variants/action.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/action.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Action label=\"Reset settings\" className=\"w-72\" onClick={() => undefined} />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/boolean.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/boolean.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Boolean label=\"Visible\" defaultChecked />\n    <Control.Boolean label=\"Reduced motion\" presentation=\"switch\" />\n  </Control.Group>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/color.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/color.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Color label=\"Shadow Tint\" defaultValue=\"#393a34\" className=\"w-72\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/continuous-number.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/continuous-number.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Number\n    label=\"Position\"\n    mode=\"continuous\"\n    defaultValue={32.418}\n    min={-100}\n    max={100}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/discrete-number.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/discrete-number.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Number\n    label=\"Quality\"\n    steps={[0.1, 0.5, 0.7, 1.3]}\n    defaultValue={0.7}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/group.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Text label=\"Title\" defaultValue=\"Japan\" />\n    <Control.Number label=\"Opacity\" defaultValue={0.6} min={0} max={1} step={0.01} />\n  </Control.Group>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/image.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/image.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Image\n      label=\"Cover Photo\"\n      options={[\n        {\n          value: \"warm\",\n          label: \"Warm\",\n          src: \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23d4976c'/%3E%3C/svg%3E\",\n        },\n        {\n          value: \"cool\",\n          label: \"Cool\",\n          src: \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%236394bf'/%3E%3C/svg%3E\",\n        },\n      ]}\n      onFileChange={() => undefined}\n    />\n  </Control.Group>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/number.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/number.tsx",
+      "content": "import { NumberExample } from \"../helpers\";\n\nconst Example = () => <NumberExample />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/overview.tsx",
+      "content": "import Demo from \"../examples/control-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/pad.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/pad.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Pad label=\"Position\" defaultValue={{ x: 25, y: 75 }} className=\"w-72\" />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/row.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/row.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Row label=\"Version\" className=\"w-72\">\n    <span className=\"ms-auto text-sm text-muted-foreground\">1.0</span>\n  </Control.Row>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/section.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/section.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Section title=\"Shadow\">\n      <Control.Number label=\"Blur\" defaultValue={14} min={0} max={50} />\n      <Control.Boolean label=\"Enabled\" defaultChecked />\n    </Control.Section>\n  </Control.Group>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/segmented.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/segmented.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Segmented\n    label=\"Mode\"\n    defaultValue=\"photo\"\n    options={[\n      { label: \"Photo\", value: \"photo\" },\n      { label: \"Video\", value: \"video\" },\n    ]}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/select.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/select.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Select\n    label=\"Shape\"\n    defaultValue=\"portrait\"\n    options={[\n      { label: \"Portrait\", value: \"portrait\" },\n      { label: \"Square\", value: \"square\" },\n      { label: \"Landscape\", value: \"landscape\" },\n    ]}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/spring.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/spring.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Spring label=\"Spring\" className=\"w-72\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/text.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/text.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Text label=\"Title\" defaultValue=\"Japan\" className=\"w-72\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/textarea.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/textarea.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Textarea\n    label=\"Description\"\n    defaultValue=\"A collection of favorite places.\"\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/control/variants/transition.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/transition.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Transition label=\"Transition\" className=\"w-72\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

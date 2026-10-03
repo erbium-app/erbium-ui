@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group-examples",
+  "type": "registry:item",
+  "title": "Toggle Group examples",
+  "description": "All toggle-group examples.",
+  "registryDependencies": [
+    "@erbium-examples/toggle-group-playground",
+    "@erbium-examples/toggle-group-overview",
+    "@erbium-examples/toggle-group-outline",
+    "@erbium-examples/toggle-group-spacing",
+    "@erbium-examples/toggle-group-disabled",
+    "@erbium-examples/toggle-group-font-weight-selector",
+    "@erbium-examples/toggle-group-vertical",
+    "@erbium-examples/toggle-group-size"
+  ]
+}

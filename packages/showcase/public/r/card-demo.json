@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-demo",
+  "type": "registry:component",
+  "title": "card demo",
+  "description": "Erbium card demo example.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/stateful-button",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/card/examples/card-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/examples/card-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { StatefulButton } from \"@/registry/erbium/ui/stateful-button\";\n\nexport default function CardDemo() {\n  return (\n    <Card className=\"w-full max-w-sm\">\n      <CardHeader>\n        <CardTitle>Login to your account</CardTitle>\n        <CardDescription>Enter your email below to login to your account</CardDescription>\n        <CardAction>\n          <Button variant=\"link\">Sign Up</Button>\n        </CardAction>\n      </CardHeader>\n      <CardContent>\n        <form id=\"card-login-form\" onSubmit={(event) => event.preventDefault()}>\n          <div className=\"flex flex-col gap-6\">\n            <Field>\n              <FieldLabel>Email</FieldLabel>\n              <Input type=\"email\" placeholder=\"m@example.com\" required />\n            </Field>\n            <Field>\n              <div className=\"flex items-center\">\n                <FieldLabel>Password</FieldLabel>\n                <a\n                  href=\"#\"\n                  className=\"ml-auto inline-block text-sm underline-offset-4 hover:underline\"\n                >\n                  Forgot your password?\n                </a>\n              </div>\n              <Input type=\"password\" required />\n            </Field>\n          </div>\n        </form>\n      </CardContent>\n      <CardFooter className=\"gap-2\">\n        <StatefulButton type=\"submit\" form=\"card-login-form\" className=\"min-w-0 flex-1\">\n          Login\n        </StatefulButton>\n        <Button variant=\"outline\" className=\"shrink-0\">\n          Login with Google\n        </Button>\n      </CardFooter>\n    </Card>\n  );\n}\n"
+    }
+  ]
+}

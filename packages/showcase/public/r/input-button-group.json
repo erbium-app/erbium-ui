@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-button-group",
+  "type": "registry:block",
+  "title": "Input: Button Group",
+  "description": "To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](https://ui.shadcn.com/docs/components/button-group) component for more examples.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/input/examples/upstream/input-button-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-button-group.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputButtonGroup() {\n  return (\n    <Field>\n      <FieldLabel>Search</FieldLabel>\n      <ButtonGroup>\n        <Input placeholder=\"Type to search...\" />\n        <Button variant=\"outline\">Search</Button>\n      </ButtonGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/variants/button-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/button-group.tsx",
+      "content": "import { InputButtonGroup } from \"../examples/upstream/input-button-group\";\n\nconst Example = () => <InputButtonGroup />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-grid",
+  "type": "registry:block",
+  "title": "Input: Grid",
+  "description": "Use a grid layout to place multiple inputs side by side.",
+  "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/examples/upstream/input-grid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-grid.tsx",
+      "content": "import { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputGrid() {\n  return (\n    <FieldGroup className=\"grid max-w-sm grid-cols-2\">\n      <Field>\n        <FieldLabel>First Name</FieldLabel>\n        <Input placeholder=\"Jordan\" />\n      </Field>\n      <Field>\n        <FieldLabel>Last Name</FieldLabel>\n        <Input placeholder=\"Lee\" />\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/variants/grid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/grid.tsx",
+      "content": "import { InputGrid } from \"../examples/upstream/input-grid\";\n\nconst Example = () => <InputGrid />;\n\nexport default Example;\n"
+    }
+  ]
+}

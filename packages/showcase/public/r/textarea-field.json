@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-field",
+  "type": "registry:block",
+  "title": "Textarea: Field",
+  "description": "Use `Field`, `FieldLabel`, and `FieldDescription` to create a textarea with a label and description.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/textarea"],
+  "files": [
+    {
+      "path": "src/textarea/examples/upstream/textarea-field.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/examples/upstream/textarea-field.tsx",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport function TextareaField() {\n  return (\n    <Field>\n      <FieldLabel>Message</FieldLabel>\n      <FieldDescription>Enter your message below.</FieldDescription>\n      <Textarea placeholder=\"Type your message here.\" />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/textarea/variants/field.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/variants/field.tsx",
+      "content": "import { TextareaField } from \"../examples/upstream/textarea-field\";\n\nconst Example = () => <TextareaField />;\n\nexport default Example;\n"
+    }
+  ]
+}

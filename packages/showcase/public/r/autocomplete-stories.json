@@ -1,0 +1,135 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "autocomplete-stories",
+  "type": "registry:item",
+  "title": "Autocomplete stories",
+  "description": "All autocomplete variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/autocomplete",
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/field",
+    "@erbium/overlay-provider",
+    "@erbium/spinner",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/autocomplete/autocomplete.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/autocomplete/autocomplete.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Autocomplete } from \"@/registry/erbium/ui/autocomplete\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete />;\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete disabled />;\\n\\nexport default Example;\\n\";\n\nimport SmallSizeExample from \"./variants/small-size\";\n\nconst SmallSizeSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete size=\\\"sm\\\" />;\\n\\nexport default Example;\\n\";\n\nimport LargeSizeExample from \"./variants/large-size\";\n\nconst LargeSizeSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete size=\\\"lg\\\" />;\\n\\nexport default Example;\\n\";\n\nimport WithLabelExample from \"./variants/with-label\";\n\nconst WithLabelSource = \"import { LabeledAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <LabeledAutocomplete />;\\n\\nexport default Example;\\n\";\n\nimport InlineAutocompleteExample from \"./variants/inline-autocomplete\";\n\nconst InlineAutocompleteSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete mode=\\\"both\\\" />;\\n\\nexport default Example;\\n\";\n\nimport AutoHighlightExample from \"./variants/auto-highlight\";\n\nconst AutoHighlightSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete autoHighlight />;\\n\\nexport default Example;\\n\";\n\nimport WithClearButtonExample from \"./variants/with-clear-button\";\n\nconst WithClearButtonSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete showClear />;\\n\\nexport default Example;\\n\";\n\nimport WithTriggerAndClearExample from \"./variants/with-trigger-and-clear\";\n\nconst WithTriggerAndClearSource = \"import { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete showTrigger showClear />;\\n\\nexport default Example;\\n\";\n\nimport WithStartAddonExample from \"./variants/with-start-addon\";\n\nconst WithStartAddonSource = \"import { HugeiconsIcon } from \\\"@hugeicons/react\\\";\\nimport Search01Icon from \\\"@hugeicons/core-free-icons/Search01Icon\\\";\\n\\nimport { FruitAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FruitAutocomplete startAddon={<HugeiconsIcon icon={Search01Icon} />} />;\\n\\nexport default Example;\\n\";\n\nimport WithGroupsExample from \"./variants/with-groups\";\n\nconst WithGroupsSource = \"import { GroupedAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <GroupedAutocomplete />;\\n\\nexport default Example;\\n\";\n\nimport WithLimitResultsExample from \"./variants/with-limit-results\";\n\nconst WithLimitResultsSource = \"import { LimitedAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <LimitedAutocomplete />;\\n\\nexport default Example;\\n\";\n\nimport AsyncSearchExample from \"./variants/async-search\";\n\nconst AsyncSearchSource = \"import { AsyncAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <AsyncAutocomplete />;\\n\\nexport default Example;\\n\";\n\nimport FormIntegrationExample from \"./variants/form-integration\";\n\nconst FormIntegrationSource = \"import { FormAutocomplete } from \\\"../helpers\\\";\\n\\nconst Example = () => <FormAutocomplete />;\\n\\nexport default Example;\\n\";\n\nimport ShowcaseExample from \"./variants/showcase\";\n\nconst ShowcaseSource = \"import ShowcaseDemo from \\\"../examples/autocomplete-demo\\\";\\n\\nconst Example = () => <ShowcaseDemo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Autocomplete\",\n  component: Autocomplete,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"An input that suggests options as you type. Autocomplete allows free text; use Combobox when the value must come from the suggestions.\",\n      },\n    },\n  },\n} satisfies Meta<typeof Autocomplete>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const SmallSize: Story = {\n  name: \"Small Size\",\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SmallSizeSource },\n    },\n  },\n  render: SmallSizeExample,\n};\n\nexport const LargeSize: Story = {\n  name: \"Large Size\",\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: LargeSizeSource },\n    },\n  },\n  render: LargeSizeExample,\n};\n\nexport const WithLabel: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: WithLabelSource },\n    },\n  },\n  render: WithLabelExample,\n};\n\nexport const InlineAutocomplete: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: InlineAutocompleteSource },\n    },\n  },\n  render: InlineAutocompleteExample,\n};\n\nexport const AutoHighlight: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: AutoHighlightSource },\n    },\n  },\n  render: AutoHighlightExample,\n};\n\nexport const WithClearButton: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: WithClearButtonSource },\n    },\n  },\n  render: WithClearButtonExample,\n};\n\nexport const WithTriggerAndClear: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: WithTriggerAndClearSource },\n    },\n  },\n  render: WithTriggerAndClearExample,\n};\n\nexport const WithStartAddon: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: WithStartAddonSource },\n    },\n  },\n  render: WithStartAddonExample,\n};\n\nexport const WithGroups: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: WithGroupsSource },\n    },\n  },\n  render: WithGroupsExample,\n};\n\nexport const WithLimitResults: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: WithLimitResultsSource },\n    },\n  },\n  render: WithLimitResultsExample,\n};\n\nexport const AsyncSearch: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: AsyncSearchSource },\n    },\n  },\n  render: AsyncSearchExample,\n};\n\nexport const FormIntegration: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: FormIntegrationSource },\n    },\n  },\n  render: FormIntegrationExample,\n};\n\nexport const Showcase: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ShowcaseSource },\n    },\n  },\n  render: ShowcaseExample,\n};\n"
+    },
+    {
+      "path": "src/autocomplete/examples/autocomplete-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/examples/autocomplete-demo.tsx",
+      "content": "import {\n  Autocomplete,\n  AutocompleteEmpty,\n  AutocompleteInput,\n  AutocompleteItem,\n  AutocompleteList,\n  AutocompletePopup,\n} from \"@/registry/erbium/ui/autocomplete\";\nconst autocompleteItems = [\n  { label: \"Apple\", value: \"apple\" },\n  { label: \"Banana\", value: \"banana\" },\n  { label: \"Grape\", value: \"grape\" },\n  { label: \"Orange\", value: \"orange\" },\n];\n\nexport default function Demo() {\n  return (\n    <div className=\"w-full max-w-72\">\n      <Autocomplete items={autocompleteItems}>\n        <AutocompleteInput aria-label=\"Search fruits\" placeholder=\"Search fruits…\" />\n        <AutocompletePopup>\n          <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>\n          <AutocompleteList>\n            {(item) => (\n              <AutocompleteItem key={item.value} value={item}>\n                {item.label}\n              </AutocompleteItem>\n            )}\n          </AutocompleteList>\n        </AutocompletePopup>\n      </Autocomplete>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/autocomplete/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/helpers.tsx",
+      "content": "import { useEffect, useId, useState, type ReactNode } from \"react\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nimport {\n  Autocomplete,\n  AutocompleteCollection,\n  AutocompleteEmpty,\n  AutocompleteGroup,\n  AutocompleteGroupLabel,\n  AutocompleteInput,\n  AutocompleteItem,\n  AutocompleteList,\n  AutocompletePopup,\n  AutocompleteSeparator,\n  AutocompleteStatus,\n  useAutocompleteFilter,\n} from \"@/registry/erbium/ui/autocomplete\";\n\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst items = [\n  { label: \"Apple\", value: \"apple\" },\n  { label: \"Banana\", value: \"banana\" },\n  { label: \"Orange\", value: \"orange\" },\n  { label: \"Grape\", value: \"grape\" },\n  { label: \"Strawberry\", value: \"strawberry\" },\n  { label: \"Mango\", value: \"mango\" },\n  { label: \"Pineapple\", value: \"pineapple\" },\n  { label: \"Kiwi\", value: \"kiwi\" },\n  { label: \"Peach\", value: \"peach\" },\n  { label: \"Pear\", value: \"pear\" },\n];\n\nexport function FruitAutocomplete({\n  disabled,\n  size,\n  mode,\n  autoHighlight,\n  showClear,\n  showTrigger,\n  startAddon,\n}: {\n  disabled?: boolean;\n  size?: \"sm\" | \"default\" | \"lg\";\n  mode?: \"list\" | \"inline\" | \"both\";\n  autoHighlight?: boolean;\n  showClear?: boolean;\n  showTrigger?: boolean;\n  startAddon?: ReactNode;\n}) {\n  return (\n    <Autocomplete items={items} disabled={disabled} mode={mode} autoHighlight={autoHighlight}>\n      <AutocompleteInput\n        aria-label=\"Search fruits\"\n        placeholder=\"Search fruits…\"\n        size={size}\n        showClear={showClear}\n        showTrigger={showTrigger}\n        startAddon={startAddon}\n      />\n      <AutocompletePopup>\n        <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>\n        <AutocompleteList>\n          {(item) => (\n            <AutocompleteItem key={item.value} value={item}>\n              {item.label}\n            </AutocompleteItem>\n          )}\n        </AutocompleteList>\n      </AutocompletePopup>\n    </Autocomplete>\n  );\n}\n\nexport function LabeledAutocomplete() {\n  const id = useId();\n  return (\n    <Autocomplete items={items}>\n      <Field className=\"w-64 items-start\">\n        <FieldLabel htmlFor={id}>Fruits</FieldLabel>\n        <AutocompleteInput id={id} aria-label=\"Search fruits\" placeholder=\"Search fruits…\" />\n      </Field>\n      <AutocompletePopup>\n        <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>\n        <AutocompleteList>\n          {(item) => (\n            <AutocompleteItem key={item.value} value={item}>\n              {item.label}\n            </AutocompleteItem>\n          )}\n        </AutocompleteList>\n      </AutocompletePopup>\n    </Autocomplete>\n  );\n}\n\nconst tags = [\n  { label: \"Open\", group: \"Status\" },\n  { label: \"In progress\", group: \"Status\" },\n  { label: \"Blocked\", group: \"Status\" },\n  { label: \"Low\", group: \"Priority\" },\n  { label: \"High\", group: \"Priority\" },\n  { label: \"Design\", group: \"Team\" },\n  { label: \"Frontend\", group: \"Team\" },\n  { label: \"Platform\", group: \"Team\" },\n];\n\nconst tagGroups = [\"Status\", \"Priority\", \"Team\"].map((group) => ({\n  group,\n  items: tags.filter((tag) => tag.group === group),\n}));\n\nexport function GroupedAutocomplete() {\n  return (\n    <Autocomplete items={tagGroups} itemToStringValue={(group) => group.group}>\n      <AutocompleteInput aria-label=\"Search tags\" placeholder=\"Search tags…\" />\n      <AutocompletePopup>\n        <AutocompleteEmpty>No tags found.</AutocompleteEmpty>\n        <AutocompleteList>\n          {(group) => (\n            <AutocompleteGroup key={group.group} items={group.items}>\n              <AutocompleteGroupLabel>{group.group}</AutocompleteGroupLabel>\n              <AutocompleteCollection>\n                {(tag) => (\n                  <AutocompleteItem key={tag.label} value={tag}>\n                    {tag.label}\n                  </AutocompleteItem>\n                )}\n              </AutocompleteCollection>\n              {group.group !== \"Team\" && <AutocompleteSeparator />}\n            </AutocompleteGroup>\n          )}\n        </AutocompleteList>\n      </AutocompletePopup>\n    </Autocomplete>\n  );\n}\n\nconst languages = [\n  \"JavaScript\",\n  \"TypeScript\",\n  \"Python\",\n  \"Java\",\n  \"C#\",\n  \"C++\",\n  \"Go\",\n  \"Rust\",\n  \"Ruby\",\n  \"Swift\",\n];\n\nexport function LimitedAutocomplete() {\n  const [value, setValue] = useState(\"\");\n  const { contains } = useAutocompleteFilter({ sensitivity: \"base\" });\n  const matches = languages.filter((language) => !value || contains(language, value));\n  return (\n    <Autocomplete items={languages} limit={4} value={value} onValueChange={setValue}>\n      <AutocompleteInput aria-label=\"Search languages\" placeholder=\"Search languages…\" />\n      <AutocompletePopup>\n        <AutocompleteEmpty>No languages found.</AutocompleteEmpty>\n        <AutocompleteList>\n          {(language) => (\n            <AutocompleteItem key={language} value={language}>\n              {language}\n            </AutocompleteItem>\n          )}\n        </AutocompleteList>\n        {matches.length > 4 && (\n          <AutocompleteStatus>\n            +{matches.length - 4} more (keep typing to narrow down)\n          </AutocompleteStatus>\n        )}\n      </AutocompletePopup>\n    </Autocomplete>\n  );\n}\n\nexport const movies = [\n  { id: \"1\", title: \"The Shawshank Redemption\", year: 1994 },\n  { id: \"2\", title: \"The Godfather\", year: 1972 },\n  { id: \"3\", title: \"The Dark Knight\", year: 2008 },\n  { id: \"4\", title: \"Pulp Fiction\", year: 1994 },\n  { id: \"5\", title: \"Forrest Gump\", year: 1994 },\n  { id: \"6\", title: \"Inception\", year: 2010 },\n];\n\nexport function AsyncAutocomplete() {\n  const [query, setQuery] = useState(\"\");\n  const [results, setResults] = useState<typeof movies>([]);\n  const [loading, setLoading] = useState(false);\n  const { contains } = useAutocompleteFilter({ sensitivity: \"base\" });\n  useEffect(() => {\n    if (!query) {\n      setResults([]);\n      setLoading(false);\n      return;\n    }\n    setLoading(true);\n    const timer = setTimeout(() => {\n      setResults(\n        movies.filter(\n          (movie) => contains(movie.title, query) || contains(String(movie.year), query),\n        ),\n      );\n      setLoading(false);\n    }, 450);\n    return () => clearTimeout(timer);\n  }, [query, contains]);\n  return (\n    <Autocomplete\n      items={results}\n      filter={null}\n      value={query}\n      onValueChange={setQuery}\n      itemToStringValue={(movie) => movie.title}\n    >\n      <AutocompleteInput aria-label=\"Search movies\" placeholder=\"Search title or year…\" />\n      {query && (\n        <AutocompletePopup aria-busy={loading || undefined}>\n          <AutocompleteStatus>\n            {loading ? (\n              <span className=\"flex items-center gap-2\">\n                Searching…\n                <Spinner className=\"size-4\" />\n              </span>\n            ) : (\n              `${results.length} results found`\n            )}\n          </AutocompleteStatus>\n          <AutocompleteList>\n            {(movie) => (\n              <AutocompleteItem key={movie.id} value={movie}>\n                <span className=\"flex flex-col\">\n                  <span className=\"font-medium\">{movie.title}</span>\n                  <span className=\"text-xs text-muted-foreground\">{movie.year}</span>\n                </span>\n              </AutocompleteItem>\n            )}\n          </AutocompleteList>\n        </AutocompletePopup>\n      )}\n    </Autocomplete>\n  );\n}\n\nexport function FormAutocomplete() {\n  const [submitted, setSubmitted] = useState(false);\n  return (\n    <form\n      className=\"flex w-64 flex-col gap-3\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        setSubmitted(true);\n      }}\n    >\n      <Autocomplete items={items} required>\n        <Field>\n          <FieldLabel htmlFor=\"favorite-fruit\">Favorite fruit</FieldLabel>\n          <AutocompleteInput id=\"favorite-fruit\" name=\"fruit\" placeholder=\"Choose a fruit…\" />\n        </Field>\n        <AutocompletePopup>\n          <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>\n          <AutocompleteList>\n            {(item) => (\n              <AutocompleteItem key={item.value} value={item}>\n                {item.label}\n              </AutocompleteItem>\n            )}\n          </AutocompleteList>\n        </AutocompletePopup>\n      </Autocomplete>\n      <Button type=\"submit\">Submit</Button>\n      {submitted && <p className=\"text-sm text-muted-foreground\">Form submitted.</p>}\n    </form>\n  );\n}\n"
+    },
+    {
+      "path": "src/autocomplete/variants/async-search.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/async-search.tsx",
+      "content": "import { AsyncAutocomplete } from \"../helpers\";\n\nconst Example = () => <AsyncAutocomplete />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/auto-highlight.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/auto-highlight.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete autoHighlight />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/disabled.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete disabled />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/form-integration.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/form-integration.tsx",
+      "content": "import { FormAutocomplete } from \"../helpers\";\n\nconst Example = () => <FormAutocomplete />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/inline-autocomplete.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/inline-autocomplete.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete mode=\"both\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/large-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/large-size.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete size=\"lg\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/overview.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/showcase.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/showcase.tsx",
+      "content": "import ShowcaseDemo from \"../examples/autocomplete-demo\";\n\nconst Example = () => <ShowcaseDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/small-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/small-size.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete size=\"sm\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/with-clear-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/with-clear-button.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete showClear />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/with-groups.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/with-groups.tsx",
+      "content": "import { GroupedAutocomplete } from \"../helpers\";\n\nconst Example = () => <GroupedAutocomplete />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/with-label.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/with-label.tsx",
+      "content": "import { LabeledAutocomplete } from \"../helpers\";\n\nconst Example = () => <LabeledAutocomplete />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/with-limit-results.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/with-limit-results.tsx",
+      "content": "import { LimitedAutocomplete } from \"../helpers\";\n\nconst Example = () => <LimitedAutocomplete />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/with-start-addon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/with-start-addon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete startAddon={<HugeiconsIcon icon={Search01Icon} />} />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/autocomplete/variants/with-trigger-and-clear.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/autocomplete/variants/with-trigger-and-clear.tsx",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete showTrigger showClear />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

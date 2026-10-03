@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-custom-sizes",
+  "type": "registry:block",
+  "title": "Drawer: Custom Sizes",
+  "description": "A vertical drawer sizes itself to its content and is capped at `calc(100dvh - 6rem)` by default. A side drawer spans `75%` of the viewport width, or `24rem` on larger screens.\n\nTo customize the height of a vertical drawer, use the `h-*` and `max-h-*` utilities on `DrawerPanel`.\n\nTo customize the width of a side drawer, use the `w-*` and `max-w-*` utilities on `DrawerPanel`.\n\nWhen the same component renders in multiple directions, scope an override to one axis using the `data-[swipe-axis=*]` variants.\n\nTo make a region of the drawer scrollable, make the scroll container a flex item. Avoid `h-full`, which does not resolve inside a content-sized drawer.\n\n```tsx\n<DrawerPanel className=\"h-[50vh]\">\n```\n\n```tsx\n<DrawerPanel className=\"w-96\">\n```\n\n```tsx\n<DrawerPanel className=\"data-[swipe-axis=y]:max-h-[50vh] data-[swipe-axis=x]:w-96\">\n```\n\n```tsx\n<DrawerPanel>\n  <DrawerHeader>...</DrawerHeader>\n  <DrawerContent>{/* Scrollable content */}</DrawerContent>\n  <DrawerFooter>...</DrawerFooter>\n</DrawerPanel>\n```",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/dialog",
+    "@erbium/drawer",
+    "@erbium/styles",
+    "@erbium/use-is-mobile"
+  ],
+  "files": [
+    {
+      "path": "src/drawer/examples/drawer-variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/drawer/examples/drawer-variants.tsx",
+      "content": "import { useIsMobile } from \"@/registry/erbium/hooks/use-is-mobile\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerContent,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\n\nimport {\n  Dialog,\n  DialogPanel,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\n\nfunction DrawerExample({ className, label }: { className?: string; label: string }) {\n  return (\n    <Drawer showSwipeHandle>\n      <DrawerTrigger render={<Button variant=\"outline\" />}>{label}</DrawerTrigger>\n      <DrawerPanel className={className}>\n        <DrawerHeader>\n          <DrawerTitle>{label}</DrawerTitle>\n          <DrawerDescription>Adjust the drawer layout for your content.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>This region scrolls when the content grows.</DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button />}>Done</DrawerClose>\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n\nexport function CustomSizes() {\n  return <DrawerExample className=\"h-[50vh] max-h-[50vh]\" label=\"Open half-height drawer\" />;\n}\n\nexport function Styling() {\n  return (\n    <DrawerExample\n      className=\"[--drawer-inset:--spacing(4)] [--drawer-bleed-background:transparent] rounded-2xl\"\n      label=\"Open inset drawer\"\n    />\n  );\n}\n\nexport function Responsive() {\n  const isMobile = useIsMobile();\n  if (isMobile) return <DrawerExample label=\"Edit profile\" />;\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\" />}>Edit profile</DialogTrigger>\n      <DialogPanel>\n        <DialogHeader>\n          <DialogTitle>Edit profile</DialogTitle>\n          <DialogDescription>\n            The dialog is used from 768px up; resize to see a drawer.\n          </DialogDescription>\n        </DialogHeader>\n        <DialogContent>Update your profile details here.</DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/drawer/variants/custom-sizes.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/drawer/variants/custom-sizes.tsx",
+      "content": "import { CustomSizes as CustomSizesExample } from \"../examples/drawer-variants\";\n\nconst Example = () => <CustomSizesExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

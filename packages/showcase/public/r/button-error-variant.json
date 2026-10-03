@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-error-variant",
+  "type": "registry:block",
+  "title": "Button: Error",
+  "description": "Use the error variant for an irreversible action.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-error.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-error.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonError() {\n  return <Button variant=\"error\">Error</Button>;\n}\n"
+    },
+    {
+      "path": "src/button/variants/error-variant.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/error-variant.tsx",
+      "content": "import ExampleButtonError from \"../examples/button-error\";\n\nconst Example = () => <ExampleButtonError />;\n\nexport default Example;\n"
+    }
+  ]
+}

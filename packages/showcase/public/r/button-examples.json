@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-examples",
+  "type": "registry:item",
+  "title": "Button examples",
+  "description": "All button examples.",
+  "registryDependencies": [
+    "@erbium-examples/button-playground",
+    "@erbium-examples/button-overview",
+    "@erbium-examples/button-variants",
+    "@erbium-examples/button-sizes",
+    "@erbium-examples/button-shortcuts",
+    "@erbium-examples/button-disabled",
+    "@erbium-examples/button-loading",
+    "@erbium-examples/button-loading-directions",
+    "@erbium-examples/button-size",
+    "@erbium-examples/button-default",
+    "@erbium-examples/button-outline",
+    "@erbium-examples/button-secondary",
+    "@erbium-examples/button-ghost",
+    "@erbium-examples/button-error-variant",
+    "@erbium-examples/button-link",
+    "@erbium-examples/button-icon",
+    "@erbium-examples/button-rounded",
+    "@erbium-examples/button-button-group",
+    "@erbium-examples/button-with-spinner",
+    "@erbium-examples/button-with-icon",
+    "@erbium-examples/button-as-link"
+  ]
+}

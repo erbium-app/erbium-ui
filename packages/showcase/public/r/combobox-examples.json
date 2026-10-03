@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-examples",
+  "type": "registry:item",
+  "title": "Combobox examples",
+  "description": "All combobox examples.",
+  "registryDependencies": [
+    "@erbium-examples/combobox-playground",
+    "@erbium-examples/combobox-overview",
+    "@erbium-examples/combobox-basic",
+    "@erbium-examples/combobox-multiple",
+    "@erbium-examples/combobox-groups",
+    "@erbium-examples/combobox-invalid",
+    "@erbium-examples/combobox-disabled",
+    "@erbium-examples/combobox-auto-highlight",
+    "@erbium-examples/combobox-popup",
+    "@erbium-examples/combobox-input-group",
+    "@erbium-examples/combobox-custom-items",
+    "@erbium-examples/combobox-clear-button"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-complete",
+  "type": "registry:component",
+  "title": "Progress: Complete",
+  "description": "Show a completed task.",
+  "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/progress/variants/complete.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/progress/variants/complete.tsx",
+      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\n\nconst Example = () => <Progress value={100} className=\"w-64\" aria-label=\"Upload complete\" />;\n\nexport default Example;\n"
+    }
+  ]
+}

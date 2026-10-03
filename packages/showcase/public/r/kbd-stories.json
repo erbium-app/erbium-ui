@@ -1,0 +1,89 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd-stories",
+  "type": "registry:item",
+  "title": "Kbd stories",
+  "description": "All kbd variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/csp-provider",
+    "@erbium/direction",
+    "@erbium/input-group",
+    "@erbium/kbd",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast",
+    "@erbium/tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/kbd/examples/kbd-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-button.tsx",
+      "content": "import { Button, ButtonShortcut } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nexport default function KbdButton() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Button variant=\"outline\" size=\"sm\">\n        Accept\n        <ButtonShortcut hotkey=\"Enter\" />\n      </Button>\n      <Button variant=\"outline\" size=\"sm\">\n        Cancel\n        <ButtonShortcut hotkey=\"Escape\" />\n      </Button>\n      <DirectionProvider direction=\"rtl\">\n        <div dir=\"rtl\">\n          <Button variant=\"outline\" size=\"sm\">\n            قبول\n            <ButtonShortcut hotkey=\"Enter\" />\n          </Button>\n        </div>\n      </DirectionProvider>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/kbd/examples/kbd-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-demo.tsx",
+      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center justify-center gap-2\">\n      <Kbd hotkey=\"Mod+Shift+K\" />\n      <Kbd hotkey=\"Mod+B\" />\n      <Kbd hotkey=\"Escape\" />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/kbd/examples/kbd-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-6\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon>\n          <HugeiconsIcon icon={Search01Icon} />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Kbd hotkey=\"Mod+K\" />\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/kbd/examples/kbd-tooltip.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-tooltip.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function KbdTooltip() {\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      <ButtonGroup>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button size=\"sm\" variant=\"outline\">\n                Save\n              </Button>\n            }\n          />\n          <TooltipContent>\n            Save Changes <Kbd hotkey=\"S\" />\n          </TooltipContent>\n        </Tooltip>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button size=\"sm\" variant=\"outline\">\n                Print\n              </Button>\n            }\n          />\n          <TooltipContent>\n            Print Document <Kbd hotkey=\"Mod+P\" />\n          </TooltipContent>\n        </Tooltip>\n      </ButtonGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/kbd/kbd.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/kbd/kbd.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Kbd } from \\\"@/registry/erbium/ui/kbd\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Kbd>) => <Kbd {...args} />;\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/kbd-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport ButtonExample from \"./variants/button\";\n\nconst ButtonSource = \"import ExampleKbdButton from \\\"../examples/kbd-button\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleKbdButton />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport TooltipExample from \"./variants/tooltip\";\n\nconst TooltipSource = \"import ExampleKbdTooltip from \\\"../examples/kbd-tooltip\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleKbdTooltip />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport InputGroupExample from \"./variants/input-group\";\n\nconst InputGroupSource = \"import ExampleKbdInputGroup from \\\"../examples/kbd-input-group\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleKbdInputGroup />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Kbd\",\n  component: Kbd,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays a platform-aware shortcut. Pass the stored binding to `hotkey`; TanStack Hotkeys formats it for macOS, Windows, or Linux.\\n\\n**Import:** `@/registry/erbium/ui/kbd`\\n\\n```tsx\\n<Kbd hotkey=\\\"Mod+K\\\" />\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Kbd>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Kbd> = {\n  args: { hotkey: \"Mod+K\", className: \"\" },\n  argTypes: {},\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Button: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `ButtonShortcut` for a platform-aware key hint with button spacing and RTL support.\" },\n      source: { code: ButtonSource },\n    },\n  },\n  render: ButtonExample,\n};\n\nexport const Tooltip: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"You can use the `Kbd` component inside a `Tooltip` component to display a tooltip with a keyboard key.\" },\n      source: { code: TooltipSource },\n    },\n  },\n  render: TooltipExample,\n};\n\nexport const InputGroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"You can use the `Kbd` component inside a `InputGroupAddon` component to display a keyboard key inside an input group.\" },\n      source: { code: InputGroupSource },\n    },\n  },\n  render: InputGroupExample,\n};\n"
+    },
+    {
+      "path": "src/kbd/variants/button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/button.tsx",
+      "content": "import ExampleKbdButton from \"../examples/kbd-button\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdButton />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/kbd/variants/input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/input-group.tsx",
+      "content": "import ExampleKbdInputGroup from \"../examples/kbd-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdInputGroup />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/kbd/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/overview.tsx",
+      "content": "import Demo from \"../examples/kbd-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/kbd/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/playground.tsx",
+      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Kbd>) => <Kbd {...args} />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/kbd/variants/tooltip.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/tooltip.tsx",
+      "content": "import ExampleKbdTooltip from \"../examples/kbd-tooltip\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdTooltip />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

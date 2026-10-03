@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "resizable-examples",
+  "type": "registry:item",
+  "title": "Resizable examples",
+  "description": "All resizable examples.",
+  "registryDependencies": [
+    "@erbium-examples/resizable-playground",
+    "@erbium-examples/resizable-overview",
+    "@erbium-examples/resizable-vertical",
+    "@erbium-examples/resizable-handle"
+  ]
+}

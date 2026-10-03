@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "styles-overview",
+  "type": "registry:block",
+  "title": "Erbium styles: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/styles/examples/styles-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/styles/examples/styles-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3 p-6\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/styles/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/styles/variants/overview.tsx",
+      "content": "import Demo from \"../examples/styles-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

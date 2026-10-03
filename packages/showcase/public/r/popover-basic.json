@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-basic",
+  "type": "registry:block",
+  "title": "Popover: Basic",
+  "description": "A simple popover with a header, title, and description.",
+  "registryDependencies": ["@erbium/button", "@erbium/popover", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/popover/examples/upstream/popover-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/upstream/popover-basic.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function PopoverBasic() {\n  return (\n    <>\n      <Popover>\n        <PopoverTrigger render={<Button variant=\"outline\" className=\"w-fit\" />}>\n          Open Popover\n        </PopoverTrigger>\n        <PopoverContent align=\"start\">\n          <PopoverHeader>\n            <PopoverTitle>Dimensions</PopoverTitle>\n            <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>\n          </PopoverHeader>\n        </PopoverContent>\n      </Popover>\n    </>\n  );\n}\n"
+    },
+    {
+      "path": "src/popover/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/basic.tsx",
+      "content": "import { PopoverBasic } from \"../examples/upstream/popover-basic\";\n\nconst Example = () => <PopoverBasic />;\n\nexport default Example;\n"
+    }
+  ]
+}

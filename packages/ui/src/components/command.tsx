@@ -136,8 +136,11 @@ function CommandSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Separator>) {
+  // cmdk keeps its own asChild API; a spread also preserves it through
+  // shadcn's Base UI registry conversion of literal asChild attributes.
+  const separatorProps = { asChild: true, ...props };
   return (
-    <CommandPrimitive.Separator asChild {...props}>
+    <CommandPrimitive.Separator {...separatorProps}>
       <Separator data-slot="command-separator" className={cn("-mx-1 my-1", className)} />
     </CommandPrimitive.Separator>
   );

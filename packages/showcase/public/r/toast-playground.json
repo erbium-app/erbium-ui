@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-playground",
+  "type": "registry:component",
+  "title": "Toast: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
+  "files": [
+    {
+      "path": "src/toast/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toast/variants/playground.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = (args: { type: \"success\" | \"info\" | \"warning\" | \"error\"; description: string }) => (\n  <Button\n    onClick={() =>\n      toast.add({\n        id: `toast-playground-${args.type}`,\n        type: args.type,\n        description: args.description,\n      })\n    }\n  >\n    Show toast\n  </Button>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,43 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/tanstack-react";
-import Demo from "../examples/form-demo";
-
-const meta = {
-  title: "UI/Form",
-  tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "Import `useForm` from `@tanstack/react-form`. Use `form.Field` for state and validation, then compose the visible control with `Field`, `FieldLabel`, `FieldDescription`, `FieldError`, and an input component. Keep `FieldError` mounted with `errors={field.state.meta.errors}` so validation messages expand smoothly, and connect the input with `aria-describedby`. Validate on blur or change as needed, set `noValidate` on the form, and call `form.handleSubmit()` after preventing the default submit. Use `onSubmitInvalid` to shake invalid controls on every rejected attempt while TanStack Form continues to own error state. See the [shadcn/ui TanStack Form guide](https://ui.shadcn.com/docs/forms/tanstack-form) for the related upstream pattern.",
-      },
-    },
-  },
-} satisfies Meta;
-
-export default meta;
-type Story = StoryObj;
-
-export const Playground: StoryObj<{
-  defaultEmail: string;
-  required: boolean;
-  submitLabel: string;
-}> = {
-  args: { defaultEmail: "", required: true, submitLabel: "Submit" },
-  argTypes: {
-    defaultEmail: { control: "text" },
-    required: { control: "boolean" },
-    submitLabel: { control: "text" },
-  },
-  render: (args) => <Demo key={args.defaultEmail} {...args} />,
-};
-export const Validation: Story = {
-  parameters: {
-    docs: {
-      description: { story: "Validate a form field and display its error beside the control." },
-      source: {
-        code: 'import { useAsyncDebouncer } from "@tanstack/react-pacer/async-debouncer";\nimport { useForm } from "@tanstack/react-form";\nimport { useRef, useState } from "react";\nimport { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";\nimport { Input } from "@erbium/ui/components/input";\nimport { shake } from "@erbium/ui/lib/shake";\nimport { StatefulButton } from "@erbium/ui/components/stateful-button";\nimport type { StatefulButtonState } from "@erbium/ui/components/stateful-button";\n\nfunction SubmitButton({\n  isSubmitting,\n  isSubmitSuccessful,\n  submissionAttempts,\n  label,\n}: {\n  isSubmitting: boolean;\n  isSubmitSuccessful: boolean;\n  submissionAttempts: number;\n  label: string;\n}) {\n  const [dismissedAttempt, setDismissedAttempt] = useState(0);\n  let state: StatefulButtonState = "idle";\n  if (isSubmitting) {\n    state = "loading";\n  } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {\n    state = "success";\n  }\n\n  return (\n    <StatefulButton\n      type="submit"\n      state={state}\n      onStateChange={(nextState) => {\n        if (nextState === "idle") {\n          setDismissedAttempt(submissionAttempts);\n        }\n      }}\n      successLabel="Submitted"\n    >\n      {label}\n    </StatefulButton>\n  );\n}\n\nexport default function FormDemo({\n  defaultEmail = "",\n  required = true,\n  submitLabel = "Submit",\n}: {\n  defaultEmail?: string;\n  required?: boolean;\n  submitLabel?: string;\n}) {\n  const [submitted, setSubmitted] = useState("");\n  const emailRef = useRef<HTMLInputElement>(null);\n  const request = useAsyncDebouncer(async () => {}, { wait: 450 });\n  const form = useForm({\n    defaultValues: { email: defaultEmail },\n    onSubmit: async ({ value }) => {\n      await request.maybeExecute();\n      setSubmitted(value.email);\n    },\n    onSubmitInvalid: ({ formApi }) => {\n      if (formApi.state.fieldMeta.email?.errors.length) {\n        shake(emailRef.current);\n      }\n    },\n  });\n  return (\n    <form\n      noValidate\n      onSubmit={(event) => {\n        event.preventDefault();\n        void form.handleSubmit();\n      }}\n      className="w-80 space-y-4"\n    >\n      <form.Field\n        name="email"\n        validators={{\n          onBlur: ({ value }) =>\n            required && !value.includes("@") ? "Enter a valid email address." : undefined,\n        }}\n      >\n        {(field) => (\n          <Field\n            name={field.name}\n            invalid={!field.state.meta.isValid}\n            touched={field.state.meta.isTouched}\n            dirty={field.state.meta.isDirty}\n          >\n            <FieldLabel>Email</FieldLabel>\n            <Input\n              ref={emailRef}\n              type="email"\n              value={field.state.value}\n              onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}\n              onBlur={field.handleBlur}\n              onChange={(event) => field.handleChange(event.target.value)}\n            />\n            <FieldDescription>We will use this to contact you.</FieldDescription>\n            <FieldError errors={field.state.meta.errors} />\n          </Field>\n        )}\n      </form.Field>\n      <form.Subscribe\n        selector={(state) =>\n          [state.isSubmitting, state.isSubmitSuccessful, state.submissionAttempts] as const\n        }\n      >\n        {([isSubmitting, isSubmitSuccessful, submissionAttempts]) => (\n          <SubmitButton\n            isSubmitting={isSubmitting}\n            isSubmitSuccessful={isSubmitSuccessful}\n            submissionAttempts={submissionAttempts}\n            label={submitLabel}\n          />\n        )}\n      </form.Subscribe>\n      {submitted && <p role="status">Submitted: {submitted}</p>}\n    </form>\n  );\n}\n',
-      },
-    },
-  },
-  render: () => <Demo />,
-};
+// Generated by @erbium/showcase. Edit packages/showcase/src/form instead.
+import meta, * as showcases from "@erbium/showcase/form";
+export default { ...meta, title: "UI/Form" };
+export const Playground = { ...showcases.Playground, name: "Playground" };
+export const Validation = { ...showcases.Validation, name: "Validation" };

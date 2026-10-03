@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu-examples",
+  "type": "registry:item",
+  "title": "Dropdown Menu examples",
+  "description": "All dropdown-menu examples.",
+  "registryDependencies": [
+    "@erbium-examples/dropdown-menu-playground",
+    "@erbium-examples/dropdown-menu-overview",
+    "@erbium-examples/dropdown-menu-radio-group",
+    "@erbium-examples/dropdown-menu-basic",
+    "@erbium-examples/dropdown-menu-submenu",
+    "@erbium-examples/dropdown-menu-shortcuts",
+    "@erbium-examples/dropdown-menu-icons",
+    "@erbium-examples/dropdown-menu-checkboxes",
+    "@erbium-examples/dropdown-menu-checkboxes-icons",
+    "@erbium-examples/dropdown-menu-radio-icons",
+    "@erbium-examples/dropdown-menu-error-variant",
+    "@erbium-examples/dropdown-menu-avatar",
+    "@erbium-examples/dropdown-menu-complex"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-disabled",
+  "type": "registry:block",
+  "title": "Checkbox: Disabled",
+  "description": "Use the `disabled` prop to prevent interaction. Inside a `<Field>`, add `disabled` to the field and the checkbox and its `FieldLabel` dim together through `data-disabled`.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/examples/checkbox-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-disabled.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled defaultChecked />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled indeterminate />\n        <FieldLabel>Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/disabled.tsx",
+      "content": "import ExampleCheckboxDisabled from \"../examples/checkbox-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCheckboxDisabled />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

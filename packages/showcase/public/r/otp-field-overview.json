@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-overview",
+  "type": "registry:block",
+  "title": "OTP Field: Overview",
+  "description": "Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.",
+  "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/otp-field/examples/otp-field-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/examples/otp-field-demo.tsx",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldDemo() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[3, 3]} />;\n}\n"
+    },
+    {
+      "path": "src/otp-field/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/overview.tsx",
+      "content": "import Demo from \"../examples/otp-field-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

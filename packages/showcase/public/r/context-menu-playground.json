@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-playground",
+  "type": "registry:component",
+  "title": "Context Menu: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/context-menu/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/context-menu/variants/playground.tsx",
+      "content": "import {\n  ContextMenu,\n  ContextMenuTrigger,\n  ContextMenuContent,\n  ContextMenuItem,\n} from \"@/registry/erbium/ui/context-menu\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n}) => (\n  <ContextMenu>\n    <ContextMenuTrigger className=\"rounded-xl border border-dashed bg-surface-panel p-8\">\n      Right click here\n    </ContextMenuTrigger>\n    <ContextMenuContent side={args.side} align={args.align}>\n      <ContextMenuItem>Copy</ContextMenuItem>\n      <ContextMenuItem>Paste</ContextMenuItem>\n    </ContextMenuContent>\n  </ContextMenu>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

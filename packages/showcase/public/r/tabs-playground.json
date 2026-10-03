@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-playground",
+  "type": "registry:component",
+  "title": "Tabs: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
+  "files": [
+    {
+      "path": "src/tabs/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tabs/variants/playground.tsx",
+      "content": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@/registry/erbium/ui/tabs\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Tabs>) => (\n  <Tabs key={args.defaultValue} {...args} className=\"w-72\">\n    <TabsList>\n      <TabsTrigger value=\"one\">First</TabsTrigger>\n      <TabsTrigger value=\"two\">Second</TabsTrigger>\n    </TabsList>\n    <TabsContent value=\"one\">First panel</TabsContent>\n    <TabsContent value=\"two\">Second panel</TabsContent>\n  </Tabs>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

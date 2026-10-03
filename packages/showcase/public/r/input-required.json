@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-required",
+  "type": "registry:block",
+  "title": "Input: Required",
+  "description": "Use the `required` attribute to indicate required inputs.",
+  "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/examples/upstream/input-required.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-required.tsx",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputRequired() {\n  return (\n    <Field>\n      <FieldLabel>\n        Required Field <span className=\"text-error\">*</span>\n      </FieldLabel>\n      <Input placeholder=\"This field is required\" required />\n      <FieldDescription>This field must be filled out.</FieldDescription>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/variants/required.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/required.tsx",
+      "content": "import { InputRequired } from \"../examples/upstream/input-required\";\n\nconst Example = () => <InputRequired />;\n\nexport default Example;\n"
+    }
+  ]
+}

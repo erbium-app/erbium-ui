@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog-examples",
+  "type": "registry:item",
+  "title": "Dialog examples",
+  "description": "All dialog examples.",
+  "registryDependencies": [
+    "@erbium-examples/dialog-playground",
+    "@erbium-examples/dialog-overview",
+    "@erbium-examples/dialog-custom-close-button",
+    "@erbium-examples/dialog-no-close-button",
+    "@erbium-examples/dialog-sticky-footer",
+    "@erbium-examples/dialog-scrollable-content"
+  ]
+}

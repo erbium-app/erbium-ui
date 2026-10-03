@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-sizes",
+  "type": "registry:block",
+  "title": "Avatar: Sizes",
+  "description": "Use the `size` prop to change the size of the avatar.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-size.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarSizeExample() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2 grayscale\">\n      <Avatar size=\"sm\">\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar size=\"lg\">\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/avatar/variants/sizes.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/sizes.tsx",
+      "content": "import { AvatarSizeExample } from \"../examples/upstream/avatar-size\";\n\nconst Example = () => <AvatarSizeExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

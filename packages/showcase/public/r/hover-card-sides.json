@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card-sides",
+  "type": "registry:block",
+  "title": "Hover Card: Sides",
+  "description": "Position the hover card on different sides of its trigger.",
+  "registryDependencies": ["@erbium/button", "@erbium/hover-card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/hover-card/examples/upstream/hover-card-sides.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/examples/upstream/hover-card-sides.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\n\nconst HOVER_CARD_SIDES = [\"left\", \"top\", \"bottom\", \"right\"] as const;\n\nexport function HoverCardSides() {\n  return (\n    <div className=\"flex flex-wrap justify-center gap-2\">\n      {HOVER_CARD_SIDES.map((side) => (\n        <HoverCard key={side}>\n          <HoverCardTrigger\n            delay={100}\n            closeDelay={100}\n            render={<Button variant=\"outline\" className=\"capitalize\" />}\n          >\n            {side}\n          </HoverCardTrigger>\n          <HoverCardContent side={side}>\n            <div className=\"flex flex-col gap-1\">\n              <h4 className=\"font-medium\">Hover Card</h4>\n              <p>This hover card appears on the {side} side of the trigger.</p>\n            </div>\n          </HoverCardContent>\n        </HoverCard>\n      ))}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/hover-card/variants/sides.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/sides.tsx",
+      "content": "import { HoverCardSides } from \"../examples/upstream/hover-card-sides\";\n\nconst Example = () => <HoverCardSides />;\n\nexport default Example;\n"
+    }
+  ]
+}

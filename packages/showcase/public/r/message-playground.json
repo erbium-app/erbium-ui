@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-playground",
+  "type": "registry:component",
+  "title": "Message: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/message", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/message/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/message/variants/playground.tsx",
+      "content": "import { Message, MessageContent } from \"@/registry/erbium/ui/message\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Message>) => (\n  <Message {...args} className={`w-80 ${args.className ?? \"\"}`}>\n    <MessageContent>Message content</MessageContent>\n  </Message>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

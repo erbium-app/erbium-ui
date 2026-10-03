@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-labeled",
+  "type": "registry:component",
+  "title": "Separator: Labeled",
+  "description": "A centered label stays readable while the carved lines fade at the outer edges.",
+  "registryDependencies": ["@erbium/separator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/separator/variants/labeled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/variants/labeled.tsx",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"w-72 rounded-lg surface-panel p-4\">\n    <Separator className=\"text-xs text-muted-foreground\">or</Separator>\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

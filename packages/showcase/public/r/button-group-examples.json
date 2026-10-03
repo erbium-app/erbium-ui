@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-examples",
+  "type": "registry:item",
+  "title": "Button Group examples",
+  "description": "All button-group examples.",
+  "registryDependencies": [
+    "@erbium-examples/button-group-playground",
+    "@erbium-examples/button-group-overview",
+    "@erbium-examples/button-group-orientation",
+    "@erbium-examples/button-group-size",
+    "@erbium-examples/button-group-nested",
+    "@erbium-examples/button-group-separator",
+    "@erbium-examples/button-group-input",
+    "@erbium-examples/button-group-input-group",
+    "@erbium-examples/button-group-dropdown-menu",
+    "@erbium-examples/button-group-select",
+    "@erbium-examples/button-group-popover",
+    "@erbium-examples/button-group-split"
+  ]
+}

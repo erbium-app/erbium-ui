@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-default",
+  "type": "registry:block",
+  "title": "Button: Default",
+  "description": "The default button style.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-default.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-default.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonDefault() {\n  return <Button>Button</Button>;\n}\n"
+    },
+    {
+      "path": "src/button/variants/default.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/default.tsx",
+      "content": "import ExampleButtonDefault from \"../examples/button-default\";\n\nconst Example = () => <ExampleButtonDefault />;\n\nexport default Example;\n"
+    }
+  ]
+}

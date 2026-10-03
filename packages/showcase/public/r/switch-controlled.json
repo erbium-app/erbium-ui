@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-controlled",
+  "type": "registry:block",
+  "title": "Switch: Controlled",
+  "description": "Drive the state with `checked` and `onCheckedChange`.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/switch-controlled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/switch-controlled.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport { useState } from \"react\";\n\nexport default function SwitchControlled() {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Switch checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Wi-Fi</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/switch/variants/controlled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/variants/controlled.tsx",
+      "content": "import ExampleSwitchControlled from \"../examples/switch-controlled\";\n\nconst Example = () => <ExampleSwitchControlled />;\n\nexport default Example;\n"
+    }
+  ]
+}

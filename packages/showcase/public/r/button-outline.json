@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-outline",
+  "type": "registry:block",
+  "title": "Button: Outline",
+  "description": "Use the outline variant for a lower-emphasis action.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-outline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-outline.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonOutline() {\n  return <Button variant=\"outline\">Outline</Button>;\n}\n"
+    },
+    {
+      "path": "src/button/variants/outline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/outline.tsx",
+      "content": "import ExampleButtonOutline from \"../examples/button-outline\";\n\nconst Example = () => <ExampleButtonOutline />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-playground",
+  "type": "registry:component",
+  "title": "Tooltip: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
+  "files": [
+    {
+      "path": "src/tooltip/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/playground.tsx",
+      "content": "import { Tooltip, TooltipTrigger, TooltipContent } from \"@/registry/erbium/ui/tooltip\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  sideOffset: number;\n  defaultOpen: boolean;\n}) => (\n  <Tooltip key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <TooltipTrigger render={<Button variant=\"outline\">Hover for tooltip</Button>} />\n    <TooltipContent side={args.side} align={args.align} sideOffset={args.sideOffset}>\n      Helpful information\n    </TooltipContent>\n  </Tooltip>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

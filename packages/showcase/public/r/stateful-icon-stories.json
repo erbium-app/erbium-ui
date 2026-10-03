@@ -1,0 +1,75 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stateful-icon-stories",
+  "type": "registry:item",
+  "title": "Stateful Icon stories",
+  "description": "All stateful-icon variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/collapsible",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/stateful-icon",
+    "@erbium/styles",
+    "@erbium/toast",
+    "@erbium/use-copy-to-clipboard"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/stateful-icon/examples/stateful-icon-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/examples/stateful-icon-demo.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CheckIcon from \"@hugeicons/core-free-icons/CheckIcon\";\nimport CopyIcon from \"@hugeicons/core-free-icons/CopyIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\nimport { StatefulIcon } from \"@/registry/erbium/ui/stateful-icon\";\n\nexport default function StatefulIconDemo() {\n  const { copyToClipboard, isCopied } = useCopyToClipboard({ timeout: 1200 });\n\n  return (\n    <Button\n      aria-label={isCopied ? \"Copied\" : \"Copy example text\"}\n      onClick={() => copyToClipboard(\"Stateful icons animate between states.\")}\n      size=\"icon\"\n      variant=\"outline\"\n    >\n      <StatefulIcon\n        state={isCopied ? \"success\" : \"idle\"}\n        icons={{\n          idle: <HugeiconsIcon icon={CopyIcon} className=\"size-4\" />,\n          success: <HugeiconsIcon icon={CheckIcon} className=\"size-4\" />,\n        }}\n      />\n    </Button>\n  );\n}\n"
+    },
+    {
+      "path": "src/stateful-icon/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/helpers.tsx",
+      "content": "import {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\n\nimport {\n  ExpandableChevron as ExpandableChevronIcon,\n  SidebarToggleIcon as SidebarToggleIconGraphic,\n  ThemeToggleIcon as ThemeToggleIconGraphic,\n} from \"@/registry/erbium/ui/stateful-icon\";\n\nimport { useState } from \"react\";\n\nexport function ExpandableChevronExample() {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <Collapsible className=\"w-72\" open={isOpen} onOpenChange={setIsOpen}>\n      <CollapsibleTrigger className=\"flex w-full items-center rounded-lg border px-3 py-2 text-start\">\n        Project details\n        <ExpandableChevronIcon className=\"ms-auto\" isOpen={isOpen} />\n      </CollapsibleTrigger>\n      <CollapsibleContent className=\"px-3 py-2 text-sm text-muted-foreground\">\n        The two chevrons exchange positions as this section opens and closes.\n      </CollapsibleContent>\n    </Collapsible>\n  );\n}\n\nexport function SidebarToggleIconExample({ side }: { side: \"left\" | \"right\" }) {\n  const [isOpen, setIsOpen] = useState(false);\n\n  return (\n    <button\n      aria-expanded={isOpen}\n      aria-label={`${isOpen ? \"Close\" : \"Open\"} ${side} sidebar`}\n      className=\"flex items-center gap-2 rounded-lg border px-3 py-2 text-sm\"\n      onClick={() => setIsOpen((open) => !open)}\n      type=\"button\"\n    >\n      <SidebarToggleIconGraphic isOpen={isOpen} side={side} />\n      {side === \"left\" ? \"Left\" : \"Right\"} sidebar\n    </button>\n  );\n}\n\nexport function ThemeToggleIconExample() {\n  const [theme, setTheme] = useState<\"light\" | \"dark\">(\"light\");\n\n  return (\n    <button\n      aria-label={`Switch to ${theme === \"light\" ? \"dark\" : \"light\"} theme`}\n      className=\"flex items-center gap-2 rounded-lg border px-3 py-2 text-sm\"\n      onClick={() => setTheme((current) => (current === \"light\" ? \"dark\" : \"light\"))}\n      type=\"button\"\n    >\n      <ThemeToggleIconGraphic theme={theme} />\n      {theme === \"light\" ? \"Light\" : \"Dark\"} theme\n    </button>\n  );\n}\n"
+    },
+    {
+      "path": "src/stateful-icon/stateful-icon.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/stateful-icon/stateful-icon.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport CopyFeedbackExample from \"./variants/copy-feedback\";\n\nconst CopyFeedbackSource = \"import StatefulIconDemo from \\\"../examples/stateful-icon-demo\\\";\\n\\nconst Example = () => <StatefulIconDemo />;\\n\\nexport default Example;\\n\";\n\nimport RotatingChevronExample from \"./variants/rotating-chevron\";\n\nconst RotatingChevronSource = \"import {\\n  Collapsible,\\n  CollapsibleContent,\\n  CollapsibleTrigger,\\n} from \\\"@/registry/erbium/ui/collapsible\\\";\\nimport { RotatingChevron as RotatingChevronIcon } from \\\"@/registry/erbium/ui/stateful-icon\\\";\\n\\nconst Example = () => (\\n  <Collapsible className=\\\"w-72\\\">\\n    <CollapsibleTrigger className=\\\"group flex w-full items-center rounded-lg border px-3 py-2 text-start\\\">\\n      Project details\\n      <RotatingChevronIcon direction=\\\"right\\\" className=\\\"ms-auto size-4\\\" />\\n    </CollapsibleTrigger>\\n    <CollapsibleContent className=\\\"px-3 py-2 text-sm text-muted-foreground\\\">\\n      The shared chevron follows the trigger’s open state.\\n    </CollapsibleContent>\\n  </Collapsible>\\n);\\n\\nexport default Example;\\n\";\n\nimport ExpandableChevronExample from \"./variants/expandable-chevron\";\n\nconst ExpandableChevronSource = \"import { ExpandableChevronExample } from \\\"../helpers\\\";\\n\\nconst Example = () => <ExpandableChevronExample />;\\n\\nexport default Example;\\n\";\n\nimport SidebarToggleIconExample from \"./variants/sidebar-toggle-icon\";\n\nconst SidebarToggleIconSource = \"import { SidebarToggleIconExample } from \\\"../helpers\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"flex gap-3\\\">\\n    <SidebarToggleIconExample side=\\\"left\\\" />\\n    <SidebarToggleIconExample side=\\\"right\\\" />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport ThemeToggleIconExample from \"./variants/theme-toggle-icon\";\n\nconst ThemeToggleIconSource = \"import { ThemeToggleIconExample } from \\\"../helpers\\\";\\n\\nconst Example = () => <ThemeToggleIconExample />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Stateful Icon\",\n  parameters: {\n    docs: {\n      description: {\n        component: \"StatefulIcon animates between caller-provided content states. RotatingChevron, ExpandableChevron, SidebarToggleIcon, and ThemeToggleIcon show common state changes. Import from `@/registry/erbium/ui/stateful-icon`.\",\n      },\n    },\n  },\n} satisfies Meta;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const CopyFeedback: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: CopyFeedbackSource },\n    },\n  },\n  render: CopyFeedbackExample,\n};\n\nexport const RotatingChevron: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: RotatingChevronSource },\n    },\n  },\n  render: RotatingChevronExample,\n};\n\nexport const ExpandableChevron: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ExpandableChevronSource },\n    },\n  },\n  render: ExpandableChevronExample,\n};\n\nexport const SidebarToggleIcon: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SidebarToggleIconSource },\n    },\n  },\n  render: SidebarToggleIconExample,\n};\n\nexport const ThemeToggleIcon: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ThemeToggleIconSource },\n    },\n  },\n  render: ThemeToggleIconExample,\n};\n"
+    },
+    {
+      "path": "src/stateful-icon/variants/copy-feedback.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/copy-feedback.tsx",
+      "content": "import StatefulIconDemo from \"../examples/stateful-icon-demo\";\n\nconst Example = () => <StatefulIconDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/stateful-icon/variants/expandable-chevron.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/expandable-chevron.tsx",
+      "content": "import { ExpandableChevronExample } from \"../helpers\";\n\nconst Example = () => <ExpandableChevronExample />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/stateful-icon/variants/rotating-chevron.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/rotating-chevron.tsx",
+      "content": "import {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\nimport { RotatingChevron as RotatingChevronIcon } from \"@/registry/erbium/ui/stateful-icon\";\n\nconst Example = () => (\n  <Collapsible className=\"w-72\">\n    <CollapsibleTrigger className=\"group flex w-full items-center rounded-lg border px-3 py-2 text-start\">\n      Project details\n      <RotatingChevronIcon direction=\"right\" className=\"ms-auto size-4\" />\n    </CollapsibleTrigger>\n    <CollapsibleContent className=\"px-3 py-2 text-sm text-muted-foreground\">\n      The shared chevron follows the trigger’s open state.\n    </CollapsibleContent>\n  </Collapsible>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/sidebar-toggle-icon.tsx",
+      "content": "import { SidebarToggleIconExample } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"flex gap-3\">\n    <SidebarToggleIconExample side=\"left\" />\n    <SidebarToggleIconExample side=\"right\" />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/stateful-icon/variants/theme-toggle-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/theme-toggle-icon.tsx",
+      "content": "import { ThemeToggleIconExample } from \"../helpers\";\n\nconst Example = () => <ThemeToggleIconExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

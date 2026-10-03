@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-partial",
+  "type": "registry:component",
+  "title": "Progress: Partial",
+  "description": "Show a partially completed task.",
+  "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/progress/variants/partial.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/progress/variants/partial.tsx",
+      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\n\nconst Example = () => <Progress value={40} className=\"w-64\" aria-label=\"Upload progress\" />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-ellipsis",
+  "type": "registry:block",
+  "title": "Breadcrumb: Collapsed",
+  "description": "We provide a `<BreadcrumbEllipsis />` component to show a collapsed state when the breadcrumb is too long.",
+  "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/breadcrumb/examples/upstream/breadcrumb-ellipsis.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/breadcrumb/examples/upstream/breadcrumb-ellipsis.tsx",
+      "content": "import {\n  Breadcrumb,\n  BreadcrumbEllipsis,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from \"@/registry/erbium/ui/breadcrumb\";\n\nexport function BreadcrumbEllipsisDemo() {\n  return (\n    <Breadcrumb>\n      <BreadcrumbList>\n        <BreadcrumbItem>\n          <BreadcrumbLink render={<a href=\"/\" />}>Home</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbEllipsis />\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbLink render={<a href=\"/docs/components\" />}>Components</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n        </BreadcrumbItem>\n      </BreadcrumbList>\n    </Breadcrumb>\n  );\n}\n"
+    },
+    {
+      "path": "src/breadcrumb/variants/ellipsis.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/breadcrumb/variants/ellipsis.tsx",
+      "content": "import { BreadcrumbEllipsisDemo } from \"../examples/upstream/breadcrumb-ellipsis\";\n\nconst Example = () => <BreadcrumbEllipsisDemo />;\n\nexport default Example;\n"
+    }
+  ]
+}

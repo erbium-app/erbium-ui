@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-avatar",
+  "type": "registry:block",
+  "title": "Empty: Avatar",
+  "description": "Use the `EmptyMedia` component to display an avatar in the empty state.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/empty", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/empty/examples/empty-avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-avatar.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyAvatar() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant=\"default\">\n          <Avatar className=\"size-12\">\n            <AvatarImage src=\"https://github.com/shadcn.png\" className=\"grayscale\" />\n            <AvatarFallback>LR</AvatarFallback>\n          </Avatar>\n        </EmptyMedia>\n        <EmptyTitle>User Offline</EmptyTitle>\n        <EmptyDescription>\n          This user is currently offline. You can leave a message to notify them or try again later.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button size=\"sm\">Leave Message</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/variants/avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/avatar.tsx",
+      "content": "import ExampleEmptyAvatar from \"../examples/empty-avatar\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleEmptyAvatar />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

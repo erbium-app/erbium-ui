@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-demo",
+  "type": "registry:component",
+  "title": "tooltip demo",
+  "description": "Erbium tooltip demo example.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
+  "files": [
+    {
+      "path": "src/tooltip/examples/tooltip-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/tooltip-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipDemo() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\">Hover</Button>} />\n      <TooltipContent>\n        <p>Add to library</p>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-basic",
+  "type": "registry:block",
+  "title": "Avatar: Basic",
+  "description": "A basic avatar component with an image and a fallback.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-basic.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport default function AvatarDemo() {\n  return (\n    <Avatar>\n      <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" className=\"grayscale\" />\n      <AvatarFallback>CN</AvatarFallback>\n    </Avatar>\n  );\n}\n"
+    },
+    {
+      "path": "src/avatar/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/basic.tsx",
+      "content": "import AvatarDemo from \"../examples/upstream/avatar-basic\";\n\nconst Example = () => <AvatarDemo />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+---
+title: "Text"
+story: Text
+---

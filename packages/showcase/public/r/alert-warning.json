@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-warning",
+  "type": "registry:block",
+  "title": "Alert: Warning",
+  "description": "Use `variant=\"warning\"` when the agent may need attention soon.",
+  "registryDependencies": ["@erbium/alert", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/alert/examples/upstream/alert-colors.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/examples/upstream/alert-colors.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertColors() {\n  return (\n    <Alert variant=\"warning\" className=\"max-w-md\">\n      <AlertTitle>Context window nearly full</AlertTitle>\n      <AlertDescription>\n        The agent may need to summarize this conversation before continuing the task.\n      </AlertDescription>\n    </Alert>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert/variants/warning.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/warning.tsx",
+      "content": "import AlertColors from \"../examples/upstream/alert-colors\";\n\nconst Example = () => <AlertColors />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-discrete-number",
+  "type": "registry:component",
+  "title": "Control: Discrete Number",
+  "description": "Discrete mode accepts uneven steps and moves one allowed value per arrow key.",
+  "registryDependencies": ["@erbium/control", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/control/variants/discrete-number.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/discrete-number.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Number\n    label=\"Quality\"\n    steps={[0.1, 0.5, 0.7, 1.3]}\n    defaultValue={0.7}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n"
+    }
+  ]
+}

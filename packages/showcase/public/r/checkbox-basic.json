@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-basic",
+  "type": "registry:block",
+  "title": "Checkbox: Basic",
+  "description": "Pair the checkbox with `Field` and `FieldLabel` for proper layout and labeling.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-basic.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxBasic() {\n  return (\n    <FieldGroup className=\"mx-auto w-56\">\n      <Field orientation=\"horizontal\">\n        <Checkbox name=\"terms-checkbox-basic\" />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/basic.tsx",
+      "content": "import { CheckboxBasic } from \"../examples/upstream/checkbox-basic\";\n\nconst Example = () => <CheckboxBasic />;\n\nexport default Example;\n"
+    }
+  ]
+}

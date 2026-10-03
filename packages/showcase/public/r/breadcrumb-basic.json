@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-basic",
+  "type": "registry:block",
+  "title": "Breadcrumb: Basic",
+  "description": "A basic breadcrumb with a home link and a components link.",
+  "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/breadcrumb/examples/upstream/breadcrumb-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/breadcrumb/examples/upstream/breadcrumb-basic.tsx",
+      "content": "import {\n  Breadcrumb,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from \"@/registry/erbium/ui/breadcrumb\";\n\nexport function BreadcrumbBasic() {\n  return (\n    <Breadcrumb>\n      <BreadcrumbList>\n        <BreadcrumbItem>\n          <BreadcrumbLink href=\"#\">Home</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbLink href=\"#\">Components</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n        </BreadcrumbItem>\n      </BreadcrumbList>\n    </Breadcrumb>\n  );\n}\n"
+    },
+    {
+      "path": "src/breadcrumb/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/breadcrumb/variants/basic.tsx",
+      "content": "import { BreadcrumbBasic } from \"../examples/upstream/breadcrumb-basic\";\n\nconst Example = () => <BreadcrumbBasic />;\n\nexport default Example;\n"
+    }
+  ]
+}

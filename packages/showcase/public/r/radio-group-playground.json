@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-playground",
+  "type": "registry:component",
+  "title": "Radio Group: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/radio-group/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/variants/playground.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof RadioGroup>) => (\n  <RadioGroup key={String(args.defaultValue)} {...args}>\n    {[\"one\", \"two\", \"three\"].map((value) => (\n      <Field orientation=\"horizontal\" key={value}>\n        <RadioGroupItem value={value} id={`playground-${value}`} />\n        <FieldLabel htmlFor={`playground-${value}`}>Option {value}</FieldLabel>\n      </Field>\n    ))}\n  </RadioGroup>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

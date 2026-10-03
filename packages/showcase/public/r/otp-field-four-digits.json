@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-four-digits",
+  "type": "registry:block",
+  "title": "OTP Field: Four Digits",
+  "description": "Any `length` works.",
+  "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/otp-field/examples/upstream/otp-field-four-digits.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/examples/upstream/otp-field-four-digits.tsx",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldFourDigits() {\n  return <OTPField aria-label=\"PIN\" length={4} />;\n}\n"
+    },
+    {
+      "path": "src/otp-field/variants/four-digits.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/four-digits.tsx",
+      "content": "import { OTPFieldFourDigits } from \"../examples/upstream/otp-field-four-digits\";\n\nconst Example = () => <OTPFieldFourDigits />;\n\nexport default Example;\n"
+    }
+  ]
+}

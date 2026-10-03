@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-playground",
+  "type": "registry:component",
+  "title": "Separator: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/separator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/separator/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/variants/playground.tsx",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Separator>) => (\n  <div className=\"flex h-28 w-72 flex-col items-center justify-center\">\n    <Separator\n      {...args}\n      className={\n        args.orientation === \"vertical\"\n          ? `h-full ${typeof args.className === \"string\" ? args.className : \"\"}`\n          : `w-full ${typeof args.className === \"string\" ? args.className : \"\"}`\n      }\n    />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-stories",
+  "type": "registry:item",
+  "title": "Card stories",
+  "description": "All card variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/csp-provider",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/overlay-provider",
+    "@erbium/stateful-button",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/card/card.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/card/card.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Card } from \"@/registry/erbium/ui/card\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import {\\n  Card,\\n  CardContent,\\n  CardDescription,\\n  CardFooter,\\n  CardHeader,\\n  CardTitle,\\n} from \\\"@/registry/erbium/ui/card\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Card>) => (\\n  <Card {...args} className=\\\"w-80\\\">\\n    <CardHeader>\\n      <CardTitle>Card title</CardTitle>\\n      <CardDescription>Card description</CardDescription>\\n    </CardHeader>\\n    <CardContent>Card content</CardContent>\\n    <CardFooter>Card footer</CardFooter>\\n  </Card>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/card-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport SmallExample from \"./variants/small\";\n\nconst SmallSource = \"import { SampleCard } from \\\"../helpers\\\";\\n\\nconst Example = () => <SampleCard size=\\\"sm\\\" />;\\n\\nexport default Example;\\n\";\n\nimport EdgeToEdgeExample from \"./variants/edge-to-edge\";\n\nconst EdgeToEdgeSource = \"import { Card, CardContent, CardFooter, CardHeader, CardTitle } from \\\"@/registry/erbium/ui/card\\\";\\n\\nconst Example = () => (\\n  <Card className=\\\"w-80\\\">\\n    <CardHeader>\\n      <CardTitle>Recent activity</CardTitle>\\n    </CardHeader>\\n    <CardContent className=\\\"px-0\\\">\\n      <div className=\\\"border-t bg-muted p-4\\\">Content runs to the card edges.</div>\\n    </CardContent>\\n    <CardFooter>View all activity</CardFooter>\\n  </Card>\\n);\\n\\nexport default Example;\\n\";\n\nimport ImageExample from \"./variants/image\";\n\nconst ImageSource = \"import { Card, CardDescription, CardHeader, CardTitle } from \\\"@/registry/erbium/ui/card\\\";\\n\\nconst Example = () => (\\n  <Card className=\\\"w-80\\\">\\n    <img\\n      src=\\\"/card-project.svg\\\"\\n      alt=\\\"Abstract illustration of a project dashboard\\\"\\n      className=\\\"h-40 w-full object-cover\\\"\\n    />\\n    <CardHeader>\\n      <CardTitle>Featured project</CardTitle>\\n      <CardDescription>A card with media above its header.</CardDescription>\\n    </CardHeader>\\n  </Card>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Card\",\n  component: Card,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays a card with header, content, and footer. Use `size=\\\"sm\\\"` for compact spacing.\\n\\n**Import:** `@/registry/erbium/ui/card`\\n\\n## Usage\\n\\n```tsx\\nimport {\\n  Card,\\n  CardAction,\\n  CardContent,\\n  CardDescription,\\n  CardFooter,\\n  CardHeader,\\n  CardTitle,\\n} from \\\"@/registry/erbium/ui/card\\\";\\n```\\n\\n```tsx\\n<Card>\\n  <CardHeader>\\n    <CardTitle>Card Title</CardTitle>\\n    <CardDescription>Card Description</CardDescription>\\n    <CardAction>Card Action</CardAction>\\n  </CardHeader>\\n  <CardContent>\\n    <p>Card Content</p>\\n  </CardContent>\\n  <CardFooter>\\n    <p>Card Footer</p>\\n  </CardFooter>\\n</Card>\\n```\\n\\n## Composition\\n\\nUse the following composition to build a `Card`:\\n\\n```text\\nCard\\n├── CardHeader\\n│   ├── CardTitle\\n│   ├── CardDescription\\n│   └── CardAction\\n├── CardContent\\n└── CardFooter\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Card>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Card> = {\n  args: { size: \"default\" },\n  argTypes: {\n    size: { control: \"select\", options: [\"default\", \"sm\"] },\n    className: { table: { disable: true } },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Small: Story = {\n  name: \"Size\",\n  parameters: {\n    docs: {\n      description: { story: \"Use the `size=\\\"sm\\\"` prop to set the size of the card to small. The small size variant uses smaller spacing.\" },\n      source: { code: SmallSource },\n    },\n  },\n  render: SmallExample,\n};\n\nexport const EdgeToEdge: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Place media flush with the card edges.\" },\n      source: { code: EdgeToEdgeSource },\n    },\n  },\n  render: EdgeToEdgeExample,\n};\n\nexport const Image: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Add an image before the card header to create a card with an image.\" },\n      source: { code: ImageSource },\n    },\n  },\n  render: ImageExample,\n};\n"
+    },
+    {
+      "path": "src/card/examples/card-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/examples/card-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { StatefulButton } from \"@/registry/erbium/ui/stateful-button\";\n\nexport default function CardDemo() {\n  return (\n    <Card className=\"w-full max-w-sm\">\n      <CardHeader>\n        <CardTitle>Login to your account</CardTitle>\n        <CardDescription>Enter your email below to login to your account</CardDescription>\n        <CardAction>\n          <Button variant=\"link\">Sign Up</Button>\n        </CardAction>\n      </CardHeader>\n      <CardContent>\n        <form id=\"card-login-form\" onSubmit={(event) => event.preventDefault()}>\n          <div className=\"flex flex-col gap-6\">\n            <Field>\n              <FieldLabel>Email</FieldLabel>\n              <Input type=\"email\" placeholder=\"m@example.com\" required />\n            </Field>\n            <Field>\n              <div className=\"flex items-center\">\n                <FieldLabel>Password</FieldLabel>\n                <a\n                  href=\"#\"\n                  className=\"ml-auto inline-block text-sm underline-offset-4 hover:underline\"\n                >\n                  Forgot your password?\n                </a>\n              </div>\n              <Input type=\"password\" required />\n            </Field>\n          </div>\n        </form>\n      </CardContent>\n      <CardFooter className=\"gap-2\">\n        <StatefulButton type=\"submit\" form=\"card-login-form\" className=\"min-w-0 flex-1\">\n          Login\n        </StatefulButton>\n        <Button variant=\"outline\" className=\"shrink-0\">\n          Login with Google\n        </Button>\n      </CardFooter>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/card/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/helpers.tsx",
+      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\n\nexport function SampleCard({ size }: { size?: \"sm\" }) {\n  return (\n    <Card className=\"w-80\" size={size}>\n      <CardHeader>\n        <CardTitle>Project update</CardTitle>\n        <CardDescription>Everything you need to know at a glance.</CardDescription>\n      </CardHeader>\n      <CardContent>Review the latest changes and share your feedback.</CardContent>\n      <CardFooter>Updated today</CardFooter>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/card/variants/edge-to-edge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/edge-to-edge.tsx",
+      "content": "import { Card, CardContent, CardFooter, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Recent activity</CardTitle>\n    </CardHeader>\n    <CardContent className=\"px-0\">\n      <div className=\"border-t bg-muted p-4\">Content runs to the card edges.</div>\n    </CardContent>\n    <CardFooter>View all activity</CardFooter>\n  </Card>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/card/variants/image.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/image.tsx",
+      "content": "import { Card, CardDescription, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <img\n      src=\"/card-project.svg\"\n      alt=\"Abstract illustration of a project dashboard\"\n      className=\"h-40 w-full object-cover\"\n    />\n    <CardHeader>\n      <CardTitle>Featured project</CardTitle>\n      <CardDescription>A card with media above its header.</CardDescription>\n    </CardHeader>\n  </Card>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/card/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/overview.tsx",
+      "content": "import Demo from \"../examples/card-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/card/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/playground.tsx",
+      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Card>) => (\n  <Card {...args} className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Card title</CardTitle>\n      <CardDescription>Card description</CardDescription>\n    </CardHeader>\n    <CardContent>Card content</CardContent>\n    <CardFooter>Card footer</CardFooter>\n  </Card>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/card/variants/small.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/small.tsx",
+      "content": "import { SampleCard } from \"../helpers\";\n\nconst Example = () => <SampleCard size=\"sm\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

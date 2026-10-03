@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-examples",
+  "type": "registry:item",
+  "title": "Alert Dialog examples",
+  "description": "All alert-dialog examples.",
+  "registryDependencies": [
+    "@erbium-examples/alert-dialog-playground",
+    "@erbium-examples/alert-dialog-overview",
+    "@erbium-examples/alert-dialog-basic",
+    "@erbium-examples/alert-dialog-small",
+    "@erbium-examples/alert-dialog-media",
+    "@erbium-examples/alert-dialog-small-media",
+    "@erbium-examples/alert-dialog-error-variant"
+  ]
+}

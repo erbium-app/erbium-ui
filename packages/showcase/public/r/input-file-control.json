@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-file-control",
+  "type": "registry:component",
+  "title": "Input: File Control",
+  "description": "Use a file input to select a local file.",
+  "registryDependencies": ["@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/variants/file-control.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/file-control.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input type=\"file\" aria-label=\"Upload file\" />;\n\nexport default Example;\n"
+    }
+  ]
+}

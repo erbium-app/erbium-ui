@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-variants",
+  "type": "registry:component",
+  "title": "Badge: Variants",
+  "description": "Use the `variant` prop to change the variant of the badge.",
+  "registryDependencies": ["@erbium/badge", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/badge/variants/variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/variants.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nconst Example = () => (\n  <div className=\"flex gap-2\">\n    {(\n      [\n        \"default\",\n        \"secondary\",\n        \"info\",\n        \"success\",\n        \"warning\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"tag-gray\",\n        \"tag-red\",\n        \"tag-orange\",\n        \"tag-yellow\",\n        \"tag-green\",\n        \"tag-cyan\",\n        \"tag-blue\",\n        \"tag-purple\",\n        \"tag-magenta\",\n        \"outline\",\n      ] as const\n    ).map((variant) => (\n      <Badge key={variant} variant={variant}>\n        {variant}\n      </Badge>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

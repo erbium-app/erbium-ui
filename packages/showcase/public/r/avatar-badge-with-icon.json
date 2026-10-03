@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-badge-with-icon",
+  "type": "registry:block",
+  "title": "Avatar: Badge With Icon",
+  "description": "You can also use an icon inside `<AvatarBadge>`.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-badge-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-badge-icon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarBadgeIconExample() {\n  return (\n    <Avatar className=\"grayscale\">\n      <AvatarImage src=\"https://github.com/pranathip.png\" alt=\"@pranathip\" />\n      <AvatarFallback>PP</AvatarFallback>\n      <AvatarBadge>\n        <HugeiconsIcon icon={PlusIcon} />\n      </AvatarBadge>\n    </Avatar>\n  );\n}\n"
+    },
+    {
+      "path": "src/avatar/variants/badge-with-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/badge-with-icon.tsx",
+      "content": "import { AvatarBadgeIconExample } from \"../examples/upstream/avatar-badge-icon\";\n\nconst Example = () => <AvatarBadgeIconExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

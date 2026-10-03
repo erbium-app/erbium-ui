@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-group",
+  "type": "registry:component",
+  "title": "avatar group",
+  "description": "Erbium avatar group example.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-group.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarGroupExample() {\n  return (\n    <AvatarGroup className=\"grayscale\">\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n        <AvatarFallback>LR</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n        <AvatarFallback>ER</AvatarFallback>\n      </Avatar>\n    </AvatarGroup>\n  );\n}\n"
+    }
+  ]
+}

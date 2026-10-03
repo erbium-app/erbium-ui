@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-disabled",
+  "type": "registry:component",
+  "title": "Button: Disabled",
+  "description": "Disable a button to prevent interaction.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/disabled.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => <Button disabled>Unavailable</Button>;\n\nexport default Example;\n"
+    }
+  ]
+}

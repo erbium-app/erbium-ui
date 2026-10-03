@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-examples",
+  "type": "registry:item",
+  "title": "Select examples",
+  "description": "All select examples.",
+  "registryDependencies": [
+    "@erbium-examples/select-playground",
+    "@erbium-examples/select-overview",
+    "@erbium-examples/select-scrollable",
+    "@erbium-examples/select-groups",
+    "@erbium-examples/select-disabled",
+    "@erbium-examples/select-invalid",
+    "@erbium-examples/select-align-item-with-trigger"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-status",
+  "type": "registry:block",
+  "title": "OTP Field: Status",
+  "description": "`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.",
+  "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/otp-field/examples/upstream/otp-field-status.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/examples/upstream/otp-field-status.tsx",
+      "content": "import * as React from \"react\";\n\nimport { OTPField, type OTPFieldStatus } from \"@/registry/erbium/ui/otp-field\";\n\nconst VERIFY_DELAY = 900;\n\nexport function OTPFieldStatusDemo() {\n  const [value, setValue] = React.useState(\"\");\n  const [status, setStatus] = React.useState<OTPFieldStatus>(\"idle\");\n  const timer = React.useRef<ReturnType<typeof setTimeout>>(undefined);\n\n  React.useEffect(() => () => clearTimeout(timer.current), []);\n\n  function handleValueChange(nextValue: string) {\n    setValue(nextValue);\n    clearTimeout(timer.current);\n    setStatus(\"idle\");\n  }\n\n  function handleValueComplete(code: string) {\n    setStatus(\"loading\");\n    timer.current = setTimeout(() => {\n      setStatus(code === \"123456\" ? \"success\" : \"error\");\n    }, VERIFY_DELAY);\n  }\n\n  return (\n    <div className=\"flex flex-col gap-2\">\n      <p className=\"text-sm text-muted-foreground\">Demo code: 123456</p>\n      <OTPField\n        aria-label=\"Verification code\"\n        groups={[3, 3]}\n        length={6}\n        onValueChange={handleValueChange}\n        onValueComplete={handleValueComplete}\n        status={status}\n        value={value}\n      />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/otp-field/variants/status.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/status.tsx",
+      "content": "import { OTPFieldStatusDemo } from \"../examples/upstream/otp-field-status\";\n\nconst Example = () => <OTPFieldStatusDemo />;\n\nexport default Example;\n"
+    }
+  ]
+}

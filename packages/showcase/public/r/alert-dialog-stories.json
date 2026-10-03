@@ -1,0 +1,109 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-stories",
+  "type": "registry:item",
+  "title": "Alert Dialog stories",
+  "description": "All alert-dialog variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/alert-dialog",
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/alert-dialog/alert-dialog.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/alert-dialog/alert-dialog.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport { AlertDialog } from \"@/registry/erbium/ui/alert-dialog\";\n\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import {\\n  AlertDialog,\\n  AlertDialogTrigger,\\n  AlertDialogContent,\\n  AlertDialogHeader,\\n  AlertDialogTitle,\\n  AlertDialogDescription,\\n  AlertDialogFooter,\\n  AlertDialogAction,\\n  AlertDialogCancel,\\n} from \\\"@/registry/erbium/ui/alert-dialog\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = (args: { size: \\\"default\\\" | \\\"sm\\\"; defaultOpen: boolean }) => (\\n  <AlertDialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\\n    <AlertDialogTrigger render={<Button variant=\\\"outline\\\">Open alert dialog</Button>} />\\n    <AlertDialogContent size={args.size}>\\n      <AlertDialogHeader>\\n        <AlertDialogTitle>Confirm action</AlertDialogTitle>\\n        <AlertDialogDescription>This action needs confirmation.</AlertDialogDescription>\\n      </AlertDialogHeader>\\n      <AlertDialogFooter>\\n        <AlertDialogCancel>Cancel</AlertDialogCancel>\\n        <AlertDialogAction>Continue</AlertDialogAction>\\n      </AlertDialogFooter>\\n    </AlertDialogContent>\\n  </AlertDialog>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/alert-dialog-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import { AlertDialogBasic } from \\\"../examples/upstream/alert-dialog-basic\\\";\\n\\nconst Example = () => <AlertDialogBasic />;\\n\\nexport default Example;\\n\";\n\nimport SmallExample from \"./variants/small\";\n\nconst SmallSource = \"import { AlertDialogSmall } from \\\"../examples/upstream/alert-dialog-small\\\";\\n\\nconst Example = () => <AlertDialogSmall />;\\n\\nexport default Example;\\n\";\n\nimport MediaExample from \"./variants/media\";\n\nconst MediaSource = \"import { AlertDialogWithMedia } from \\\"../examples/upstream/alert-dialog-media\\\";\\n\\nconst Example = () => <AlertDialogWithMedia />;\\n\\nexport default Example;\\n\";\n\nimport SmallMediaExample from \"./variants/small-media\";\n\nconst SmallMediaSource = \"import { AlertDialogSmallWithMedia } from \\\"../examples/upstream/alert-dialog-small-media\\\";\\n\\nconst Example = () => <AlertDialogSmallWithMedia />;\\n\\nexport default Example;\\n\";\n\nimport ErrorVariantExample from \"./variants/error-variant\";\n\nconst ErrorVariantSource = \"import { AlertDialogError } from \\\"../examples/upstream/alert-dialog-error\\\";\\n\\nconst Example = () => <AlertDialogError />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Alert Dialog\",\n  component: AlertDialog,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A modal dialog that interrupts the user with important content and expects a response.\\n\\n**Import:** `@/registry/erbium/ui/alert-dialog`\\n\\n## Usage\\n\\n```tsx\\nimport {\\n  AlertDialog,\\n  AlertDialogAction,\\n  AlertDialogCancel,\\n  AlertDialogContent,\\n  AlertDialogDescription,\\n  AlertDialogFooter,\\n  AlertDialogHeader,\\n  AlertDialogTitle,\\n  AlertDialogTrigger,\\n} from \\\"@/registry/erbium/ui/alert-dialog\\\"\\nimport {{ Button }} from \\\"@/registry/erbium/ui/button\\\"\\n```\\n\\n```tsx\\n<AlertDialog>\\n  <AlertDialogTrigger render={<Button variant=\\\"outline\\\" />}>Show Dialog</AlertDialogTrigger>\\n  <AlertDialogContent>\\n    <AlertDialogHeader>\\n      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>\\n      <AlertDialogDescription>\\n        This action cannot be undone. This will permanently delete your account from our servers.\\n      </AlertDialogDescription>\\n    </AlertDialogHeader>\\n    <AlertDialogFooter>\\n      <AlertDialogCancel>Cancel</AlertDialogCancel>\\n      <AlertDialogAction>Continue</AlertDialogAction>\\n    </AlertDialogFooter>\\n  </AlertDialogContent>\\n</AlertDialog>\\n```\\n\\n## Composition\\n\\nUse the following composition to build an `AlertDialog`:\\n\\n```text\\nAlertDialog\\n├── AlertDialogTrigger\\n└── AlertDialogContent\\n    ├── AlertDialogHeader\\n    │   ├── AlertDialogMedia\\n    │   ├── AlertDialogTitle\\n    │   └── AlertDialogDescription\\n    └── AlertDialogFooter\\n        ├── AlertDialogCancel\\n        └── AlertDialogAction\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof AlertDialog>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{ size: \"default\" | \"sm\"; defaultOpen: boolean }> = {\n  args: { size: \"default\", defaultOpen: false },\n  argTypes: {\n    size: { control: \"select\", options: [\"default\", \"sm\"] },\n    defaultOpen: { control: \"boolean\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A basic alert dialog with a title, description, and cancel and continue buttons.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const Small: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `size=\\\"sm\\\"` prop to make the alert dialog smaller.\" },\n      source: { code: SmallSource },\n    },\n  },\n  render: SmallExample,\n};\n\nexport const Media: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `AlertDialogMedia` component to add a media element such as an icon or image to the alert dialog.\" },\n      source: { code: MediaSource },\n    },\n  },\n  render: MediaExample,\n};\n\nexport const SmallMedia: Story = {\n  name: \"Small with Media\",\n  parameters: {\n    docs: {\n      description: { story: \"Use the `size=\\\"sm\\\"` prop to make the alert dialog smaller and the `AlertDialogMedia` component to add a media element such as an icon or image to the alert dialog.\" },\n      source: { code: SmallMediaSource },\n    },\n  },\n  render: SmallMediaExample,\n};\n\nexport const ErrorVariant: Story = {\n  name: \"Error\",\n  parameters: {\n    docs: {\n      description: { story: \"Use the `AlertDialogAction` component to add a error action button to the alert dialog.\" },\n      source: { code: ErrorVariantSource },\n    },\n  },\n  render: ErrorVariantExample,\n};\n"
+    },
+    {
+      "path": "src/alert-dialog/examples/alert-dialog-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/alert-dialog-demo.tsx",
+      "content": "import {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function AlertDialogDemo() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Show Dialog</Button>} />\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>\n          <AlertDialogDescription>\n            This action cannot be undone. This will permanently delete your account and remove your\n            data from our servers.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Cancel</AlertDialogCancel>\n          <AlertDialogAction>Continue</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/examples/upstream/alert-dialog-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-basic.tsx",
+      "content": "import {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogBasic() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Show Dialog</Button>} />\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>\n          <AlertDialogDescription>\n            This action cannot be undone. This will permanently delete your account and remove your\n            data from our servers.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Cancel</AlertDialogCancel>\n          <AlertDialogAction>Continue</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/examples/upstream/alert-dialog-error.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-error.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Delete02Icon from \"@hugeicons/core-free-icons/Delete02Icon\";\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogError() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"error\">Delete Chat</Button>} />\n      <AlertDialogContent size=\"sm\">\n        <AlertDialogHeader>\n          <AlertDialogMedia className=\"bg-error/10 text-error dark:bg-error/20 dark:text-error\">\n            <HugeiconsIcon icon={Delete02Icon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Delete chat?</AlertDialogTitle>\n          <AlertDialogDescription>\n            This will permanently delete this chat conversation. View <a href=\"#\">Settings</a>{\" \"}\n            delete any memories saved during this chat.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel variant=\"outline\">Cancel</AlertDialogCancel>\n          <AlertDialogAction variant=\"error\">Delete</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/examples/upstream/alert-dialog-media.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-media.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CircleFadingPlusIcon from \"@hugeicons/core-free-icons/CircleFadingPlusIcon\";\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogWithMedia() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Share Project</Button>} />\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogMedia>\n            <HugeiconsIcon icon={CircleFadingPlusIcon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Share this project?</AlertDialogTitle>\n          <AlertDialogDescription>\n            Anyone with the link will be able to view and edit this project.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Cancel</AlertDialogCancel>\n          <AlertDialogAction>Share</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/examples/upstream/alert-dialog-small-media.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-small-media.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BluetoothIcon from \"@hugeicons/core-free-icons/BluetoothIcon\";\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogSmallWithMedia() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Show Dialog</Button>} />\n\n      <AlertDialogContent size=\"sm\">\n        <AlertDialogHeader>\n          <AlertDialogMedia>\n            <HugeiconsIcon icon={BluetoothIcon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>\n          <AlertDialogDescription>\n            Do you want to allow the USB accessory to connect to this device?\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Don&apos;t allow</AlertDialogCancel>\n          <AlertDialogAction>Allow</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/examples/upstream/alert-dialog-small.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-small.tsx",
+      "content": "import {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogSmall() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Show Dialog</Button>} />\n      <AlertDialogContent size=\"sm\">\n        <AlertDialogHeader>\n          <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>\n          <AlertDialogDescription>\n            Do you want to allow the USB accessory to connect to this device?\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Don&apos;t allow</AlertDialogCancel>\n          <AlertDialogAction>Allow</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/basic.tsx",
+      "content": "import { AlertDialogBasic } from \"../examples/upstream/alert-dialog-basic\";\n\nconst Example = () => <AlertDialogBasic />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/error-variant.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/error-variant.tsx",
+      "content": "import { AlertDialogError } from \"../examples/upstream/alert-dialog-error\";\n\nconst Example = () => <AlertDialogError />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/media.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/media.tsx",
+      "content": "import { AlertDialogWithMedia } from \"../examples/upstream/alert-dialog-media\";\n\nconst Example = () => <AlertDialogWithMedia />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/overview.tsx",
+      "content": "import Demo from \"../examples/alert-dialog-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/playground.tsx",
+      "content": "import {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogAction,\n  AlertDialogCancel,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: { size: \"default\" | \"sm\"; defaultOpen: boolean }) => (\n  <AlertDialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <AlertDialogTrigger render={<Button variant=\"outline\">Open alert dialog</Button>} />\n    <AlertDialogContent size={args.size}>\n      <AlertDialogHeader>\n        <AlertDialogTitle>Confirm action</AlertDialogTitle>\n        <AlertDialogDescription>This action needs confirmation.</AlertDialogDescription>\n      </AlertDialogHeader>\n      <AlertDialogFooter>\n        <AlertDialogCancel>Cancel</AlertDialogCancel>\n        <AlertDialogAction>Continue</AlertDialogAction>\n      </AlertDialogFooter>\n    </AlertDialogContent>\n  </AlertDialog>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/small-media.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/small-media.tsx",
+      "content": "import { AlertDialogSmallWithMedia } from \"../examples/upstream/alert-dialog-small-media\";\n\nconst Example = () => <AlertDialogSmallWithMedia />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/small.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/small.tsx",
+      "content": "import { AlertDialogSmall } from \"../examples/upstream/alert-dialog-small\";\n\nconst Example = () => <AlertDialogSmall />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

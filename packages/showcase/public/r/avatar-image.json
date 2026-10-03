@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-image",
+  "type": "registry:component",
+  "title": "Avatar: Image",
+  "description": "Display an image with fallback content.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/variants/image.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/image.tsx",
+      "content": "import { AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Avatar } from \"@/registry/erbium/ui/avatar\";\n\nconst Example = () => (\n  <Avatar>\n    <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"Profile\" />\n    <AvatarFallback>AN</AvatarFallback>\n  </Avatar>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

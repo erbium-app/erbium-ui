@@ -1,15 +1,15 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "use-copy-to-clipboard",
+  "type": "registry:hook",
   "title": "Use Copy To Clipboard",
   "description": "Erbium use copy to clipboard hook.",
   "files": [
     {
       "path": "src/hooks/use-copy-to-clipboard.ts",
-      "content": "import * as React from \"react\";\n\nexport function useCopyToClipboard({\n  timeout = 2000,\n  onCopy,\n}: {\n  timeout?: number;\n  onCopy?: () => void;\n} = {}): { copyToClipboard: (value: string) => void; isCopied: boolean } {\n  const [isCopied, setIsCopied] = React.useState(false);\n  const timeoutIdRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);\n\n  const copyToClipboard = (value: string): void => {\n    if (typeof navigator === \"undefined\" || !navigator.clipboard?.writeText) {\n      return;\n    }\n\n    if (!value) return;\n\n    navigator.clipboard.writeText(value).then(() => {\n      if (timeoutIdRef.current) {\n        clearTimeout(timeoutIdRef.current);\n      }\n      setIsCopied(true);\n\n      if (onCopy) {\n        onCopy();\n      }\n\n      if (timeout !== 0) {\n        timeoutIdRef.current = setTimeout(() => {\n          setIsCopied(false);\n          timeoutIdRef.current = null;\n        }, timeout);\n      }\n    }, console.error);\n  };\n\n  // Cleanup timeout on unmount\n  React.useEffect(() => {\n    return (): void => {\n      if (timeoutIdRef.current) {\n        clearTimeout(timeoutIdRef.current);\n      }\n    };\n  }, []);\n\n  return { copyToClipboard, isCopied };\n}\n",
       "type": "registry:hook",
-      "target": "~/src/hooks/use-copy-to-clipboard.ts"
+      "target": "@hooks/use-copy-to-clipboard.ts",
+      "content": "import * as React from \"react\";\n\nexport function useCopyToClipboard({\n  timeout = 2000,\n  onCopy,\n}: {\n  timeout?: number;\n  onCopy?: () => void;\n} = {}): { copyToClipboard: (value: string) => void; isCopied: boolean } {\n  const [isCopied, setIsCopied] = React.useState(false);\n  const timeoutIdRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);\n\n  const copyToClipboard = (value: string): void => {\n    if (typeof navigator === \"undefined\" || !navigator.clipboard?.writeText) {\n      return;\n    }\n\n    if (!value) return;\n\n    navigator.clipboard.writeText(value).then(() => {\n      if (timeoutIdRef.current) {\n        clearTimeout(timeoutIdRef.current);\n      }\n      setIsCopied(true);\n\n      if (onCopy) {\n        onCopy();\n      }\n\n      if (timeout !== 0) {\n        timeoutIdRef.current = setTimeout(() => {\n          setIsCopied(false);\n          timeoutIdRef.current = null;\n        }, timeout);\n      }\n    }, console.error);\n  };\n\n  // Cleanup timeout on unmount\n  React.useEffect(() => {\n    return (): void => {\n      if (timeoutIdRef.current) {\n        clearTimeout(timeoutIdRef.current);\n      }\n    };\n  }, []);\n\n  return { copyToClipboard, isCopied };\n}\n"
     }
-  ],
-  "type": "registry:hook"
+  ]
 }

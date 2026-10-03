@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-popover",
+  "type": "registry:block",
+  "title": "Button Group: Popover",
+  "description": "Use with a `Popover` component.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/popover",
+    "@erbium/separator",
+    "@erbium/stateful-icon",
+    "@erbium/styles",
+    "@erbium/textarea"
+  ],
+  "files": [
+    {
+      "path": "src/button-group/examples/button-group-popover.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/examples/button-group-popover.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BotIcon from \"@hugeicons/core-free-icons/BotIcon\";\n\nimport { RotatingChevron } from \"@/registry/erbium/ui/stateful-icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@/registry/erbium/ui/popover\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function ButtonGroupPopover() {\n  return (\n    <ButtonGroup>\n      <Button variant=\"outline\">\n        <HugeiconsIcon icon={BotIcon} /> Copilot\n      </Button>\n      <Popover>\n        <PopoverTrigger\n          render={\n            <Button\n              variant=\"outline\"\n              size=\"icon\"\n              aria-label=\"Open Popover\"\n              className=\"group group/popover-trigger\"\n            >\n              <RotatingChevron />\n            </Button>\n          }\n        />\n        <PopoverContent align=\"end\" className=\"gap-0 overflow-hidden rounded-xl p-0 text-sm\">\n          <div className=\"px-3 py-2\">\n            <div className=\"text-sm font-medium\">Agent Tasks</div>\n          </div>\n          <Separator />\n          <div className=\"p-3 text-sm *:[p:not(:last-child)]:mb-2\">\n            <Textarea\n              placeholder=\"Describe your task in natural language.\"\n              className=\"mb-3 resize-none\"\n            />\n            <p className=\"font-medium\">Start a new task with Copilot</p>\n            <p className=\"text-muted-foreground\">\n              Describe your task in natural language. Copilot will work in the background and open a\n              pull request for your review.\n            </p>\n          </div>\n        </PopoverContent>\n      </Popover>\n    </ButtonGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/button-group/variants/popover.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/variants/popover.tsx",
+      "content": "import ExampleButtonGroupPopover from \"../examples/button-group-popover\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupPopover />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

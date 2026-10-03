@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-avatar-group",
+  "type": "registry:block",
+  "title": "Empty: Avatar Group",
+  "description": "Use the `EmptyMedia` component to display an avatar group in the empty state.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/empty", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/empty/examples/empty-avatar-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-avatar-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyAvatarGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia>\n          <div className=\"flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale\">\n            <Avatar>\n              <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n              <AvatarFallback>CN</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n              <AvatarFallback>LR</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n              <AvatarFallback>ER</AvatarFallback>\n            </Avatar>\n          </div>\n        </EmptyMedia>\n        <EmptyTitle>No Team Members</EmptyTitle>\n        <EmptyDescription>Invite your team to collaborate on this project.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button size=\"sm\">\n          <HugeiconsIcon icon={PlusIcon} />\n          Invite Members\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/variants/avatar-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/avatar-group.tsx",
+      "content": "import ExampleEmptyAvatarGroup from \"../examples/empty-avatar-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleEmptyAvatarGroup />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

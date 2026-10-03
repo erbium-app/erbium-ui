@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-promise",
+  "type": "registry:block",
+  "title": "Toast: Promise",
+  "description": "Use `toast.promise` to update one toast as an asynchronous task moves through\n\nloading, success, and error states.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
+  "files": [
+    {
+      "path": "src/toast/examples/upstream/toast-promise.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toast/examples/upstream/toast-promise.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nexport function ToastPromise() {\n  function showToast() {\n    void toast.promise(\n      new Promise<{ name: string }>((resolve) => {\n        window.setTimeout(() => resolve({ name: \"Event\" }), 2000);\n      }),\n      {\n        loading: \"Creating event…\",\n        success: (data) => `${data.name} created.`,\n        error: \"Could not create event.\",\n      },\n    );\n  }\n\n  return (\n    <Button variant=\"outline\" onClick={showToast}>\n      Create Event\n    </Button>\n  );\n}\n"
+    },
+    {
+      "path": "src/toast/variants/promise.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toast/variants/promise.tsx",
+      "content": "import { ToastPromise } from \"../examples/upstream/toast-promise\";\n\nconst Example = () => <ToastPromise />;\n\nexport default Example;\n"
+    }
+  ]
+}

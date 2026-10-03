@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-checkbox",
+  "type": "registry:block",
+  "title": "Field: Checkbox",
+  "description": "Compose a field with a checkbox.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/examples/field-checkbox.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/examples/field-checkbox.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSeparator,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\n\nexport default function FieldCheckbox() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldGroup>\n        <FieldSet>\n          <FieldLegend variant=\"label\">Show these items on the desktop</FieldLegend>\n          <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>\n          <FieldGroup className=\"gap-3\">\n            <Field orientation=\"horizontal\">\n              <Checkbox defaultChecked />\n              <FieldLabel className=\"font-normal\">Hard disks</FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox />\n              <FieldLabel className=\"font-normal\">External disks</FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox />\n              <FieldLabel className=\"font-normal\">CDs, DVDs, and iPods</FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox />\n              <FieldLabel className=\"font-normal\">Connected servers</FieldLabel>\n            </Field>\n          </FieldGroup>\n        </FieldSet>\n        <FieldSeparator />\n        <Field orientation=\"horizontal\">\n          <Checkbox defaultChecked />\n          <FieldContent>\n            <FieldLabel>Sync Desktop & Documents folders</FieldLabel>\n            <FieldDescription>\n              Your Desktop & Documents folders are being synced with iCloud Drive. You can access\n              them from other devices.\n            </FieldDescription>\n          </FieldContent>\n        </Field>\n      </FieldGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/field/variants/checkbox.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/checkbox.tsx",
+      "content": "import ExampleFieldCheckbox from \"../examples/field-checkbox\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldCheckbox />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

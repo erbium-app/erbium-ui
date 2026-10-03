@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "carousel-examples",
+  "type": "registry:item",
+  "title": "Carousel examples",
+  "description": "All carousel examples.",
+  "registryDependencies": [
+    "@erbium-examples/carousel-playground",
+    "@erbium-examples/carousel-overview",
+    "@erbium-examples/carousel-sizes",
+    "@erbium-examples/carousel-spacing",
+    "@erbium-examples/carousel-orientation",
+    "@erbium-examples/carousel-api",
+    "@erbium-examples/carousel-plugin",
+    "@erbium-examples/carousel-events"
+  ]
+}

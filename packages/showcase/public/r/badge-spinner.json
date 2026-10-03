@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-spinner",
+  "type": "registry:component",
+  "title": "badge spinner",
+  "description": "Erbium badge spinner example.",
+  "registryDependencies": ["@erbium/badge", "@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/badge/examples/upstream/badge-spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/examples/upstream/badge-spinner.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport function BadgeWithSpinner() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Badge variant=\"error\">\n        <Spinner data-icon=\"inline-start\" />\n        Deleting\n      </Badge>\n      <Badge variant=\"secondary\">\n        Generating\n        <Spinner data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

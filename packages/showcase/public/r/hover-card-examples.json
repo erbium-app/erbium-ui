@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card-examples",
+  "type": "registry:item",
+  "title": "Hover Card examples",
+  "description": "All hover-card examples.",
+  "registryDependencies": [
+    "@erbium-examples/hover-card-playground",
+    "@erbium-examples/hover-card-overview",
+    "@erbium-examples/hover-card-basic",
+    "@erbium-examples/hover-card-sides",
+    "@erbium-examples/hover-card-trigger-delays",
+    "@erbium-examples/hover-card-positioning"
+  ]
+}

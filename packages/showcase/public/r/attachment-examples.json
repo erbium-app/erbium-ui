@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "attachment-examples",
+  "type": "registry:item",
+  "title": "Attachment examples",
+  "description": "All attachment examples.",
+  "registryDependencies": [
+    "@erbium-examples/attachment-playground",
+    "@erbium-examples/attachment-overview",
+    "@erbium-examples/attachment-image",
+    "@erbium-examples/attachment-states",
+    "@erbium-examples/attachment-sizes",
+    "@erbium-examples/attachment-group",
+    "@erbium-examples/attachment-trigger"
+  ]
+}

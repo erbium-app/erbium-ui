@@ -1,0 +1,59 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-stories",
+  "type": "registry:item",
+  "title": "Aspect Ratio stories",
+  "description": "All aspect-ratio variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/aspect-ratio",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/aspect-ratio/aspect-ratio.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/aspect-ratio/aspect-ratio.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { AspectRatio } from \\\"@/registry/erbium/ui/aspect-ratio\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof AspectRatio>) => (\\n  <AspectRatio\\n    {...args}\\n    className={`w-80 overflow-hidden rounded-md bg-muted ${args.className ?? \\\"\\\"}`}\\n  >\\n    <div className=\\\"flex size-full items-center justify-center\\\">Content at {args.ratio}:1</div>\\n  </AspectRatio>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/aspect-ratio-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport SquareExample from \"./variants/square\";\n\nconst SquareSource = \"import { AspectRatio } from \\\"@/registry/erbium/ui/aspect-ratio\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-60\\\">\\n    <AspectRatio ratio={1}>\\n      <div className=\\\"flex size-full items-center justify-center rounded-lg bg-muted\\\">\\n        Square 1:1\\n      </div>\\n    </AspectRatio>\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport PortraitExample from \"./variants/portrait\";\n\nconst PortraitSource = \"import { AspectRatio } from \\\"@/registry/erbium/ui/aspect-ratio\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-40\\\">\\n    <AspectRatio ratio={9 / 16}>\\n      <div className=\\\"flex size-full items-center justify-center rounded-lg bg-muted\\\">\\n        Portrait 9:16\\n      </div>\\n    </AspectRatio>\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Aspect Ratio\",\n  component: AspectRatio,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays content within a desired ratio.\\n\\n**Import:** `@/registry/erbium/ui/aspect-ratio`\\n\\n## Usage\\n\\n```tsx\\nimport { AspectRatio } from \\\"@/registry/erbium/ui/aspect-ratio\\\";\\n```\\n\\n```tsx\\n<AspectRatio ratio={16 / 9}>\\n  <Image src=\\\"...\\\" alt=\\\"Image\\\" className=\\\"rounded-md object-cover\\\" />\\n</AspectRatio>\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof AspectRatio>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof AspectRatio> = {\n  args: { ratio: 16 / 9, className: \"\" },\n  argTypes: { ratio: { control: { type: \"number\", min: 0.25, max: 4, step: 0.25 } } },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Square: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A square aspect ratio component using the `ratio={1 / 1}` prop. This is useful for displaying images in a square format.\" },\n      source: { code: SquareSource },\n    },\n  },\n  render: SquareExample,\n};\n\nexport const Portrait: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.\" },\n      source: { code: PortraitSource },\n    },\n  },\n  render: PortraitExample,\n};\n"
+    },
+    {
+      "path": "src/aspect-ratio/examples/aspect-ratio-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/examples/aspect-ratio-demo.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nexport default function Demo() {\n  return (\n    <div className=\"w-80\">\n      <AspectRatio ratio={16 / 9}>\n        <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n          16:9 media area\n        </div>\n      </AspectRatio>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/aspect-ratio/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/overview.tsx",
+      "content": "import Demo from \"../examples/aspect-ratio-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/aspect-ratio/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/playground.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof AspectRatio>) => (\n  <AspectRatio\n    {...args}\n    className={`w-80 overflow-hidden rounded-md bg-muted ${args.className ?? \"\"}`}\n  >\n    <div className=\"flex size-full items-center justify-center\">Content at {args.ratio}:1</div>\n  </AspectRatio>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/aspect-ratio/variants/portrait.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/portrait.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nconst Example = () => (\n  <div className=\"w-40\">\n    <AspectRatio ratio={9 / 16}>\n      <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n        Portrait 9:16\n      </div>\n    </AspectRatio>\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/aspect-ratio/variants/square.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/square.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nconst Example = () => (\n  <div className=\"w-60\">\n    <AspectRatio ratio={1}>\n      <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n        Square 1:1\n      </div>\n    </AspectRatio>\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

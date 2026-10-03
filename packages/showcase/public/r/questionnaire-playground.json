@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "questionnaire-playground",
+  "type": "registry:component",
+  "title": "Questionnaire: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/questionnaire", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/questionnaire/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/questionnaire/variants/playground.tsx",
+      "content": "import {\n  QuestionnaireItem,\n  QuestionnaireTitle,\n  QuestionnaireDescription,\n  QuestionnaireChoices,\n  QuestionnaireChoice,\n  QuestionnaireActions,\n  QuestionnaireNext,\n} from \"@/registry/erbium/ui/questionnaire\";\nimport { Questionnaire } from \"@/registry/erbium/ui/questionnaire\";\n\nconst Example = (args: {\n  prompt: string;\n  description: string;\n  required: boolean;\n  choices: number;\n}) => (\n  <Questionnaire className=\"w-80\">\n    <QuestionnaireItem name=\"plan\" required={args.required}>\n      <QuestionnaireTitle>{args.prompt}</QuestionnaireTitle>\n      <QuestionnaireDescription>{args.description}</QuestionnaireDescription>\n      <QuestionnaireChoices>\n        {Array.from({ length: args.choices }, (_, index) => (\n          <QuestionnaireChoice key={index} value={`option-${index}`}>\n            Option {index + 1}\n          </QuestionnaireChoice>\n        ))}\n      </QuestionnaireChoices>\n      <QuestionnaireActions>\n        <QuestionnaireNext>Continue</QuestionnaireNext>\n      </QuestionnaireActions>\n    </QuestionnaireItem>\n  </Questionnaire>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

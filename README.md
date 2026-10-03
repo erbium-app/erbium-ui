@@ -6,6 +6,7 @@ Erbium UI is developed by [erbium-app](https://github.com/erbium-app).
 
 ## Workspace
 
+- `packages/content` — shared Markdown documentation consumed by the docs site and Storybook.
 - `packages/ui` — reusable components, hooks, styles, and the UI registry.
 - `apps/website` — React and Vite playground for application composition.
 - `apps/storybook` — component stories, examples, and the example registry.
@@ -34,7 +35,9 @@ bun run ready                # check, test, and build
 bun run knip                 # find unused files and dependencies
 ```
 
-Run `bun run ui:registry` after changing `packages/ui/src`, and `bun run storybook:registry` after changing `apps/storybook/src/examples`. Commit regenerated registry output with the corresponding source changes.
+Run `bun run ui:registry` after changing UI source. Shared showcases live in `packages/showcase`; Markdown lives in `packages/content`. Run `bun run showcase:generate` and `bun run showcase:registry` after changing either, then `bun run showcase:check` to verify synchronization, rendering, registry dependencies, and both site builds. Commit generated output with its source changes.
+
+See [shared showcase authoring](packages/showcase/README.md) for the component folder layout, variant catalogs, and installable examples and stories.
 
 ## Using components
 

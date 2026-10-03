@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-custom",
+  "type": "registry:block",
+  "title": "Input Group: Custom Input",
+  "description": "Add the `data-slot=\"input-group-control\"` attribute to your custom input for automatic focus state handling.\n\nHere's an example of a custom resizable textarea from a third-party library.",
+  "dependencies": ["react-textarea-autosize@^8.5.9"],
+  "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input-group/examples/upstream/input-group-custom.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/examples/upstream/input-group-custom.tsx",
+      "content": "import TextareaAutosize from \"react-textarea-autosize\";\n\nimport { InputGroup, InputGroupAddon, InputGroupButton } from \"@/registry/erbium/ui/input-group\";\n\nexport default function InputGroupCustom() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-6\">\n      <InputGroup>\n        <TextareaAutosize\n          data-slot=\"input-group-control\"\n          className=\"flex field-sizing-content min-h-16 w-full resize-none rounded-md bg-transparent px-3 py-2.5 text-base transition-[color,box-shadow] outline-none md:text-sm\"\n          placeholder=\"Autoresize textarea...\"\n        />\n        <InputGroupAddon align=\"block-end\">\n          <InputGroupButton className=\"ml-auto\" size=\"sm\" variant=\"default\">\n            Submit\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/input-group/variants/custom.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/variants/custom.tsx",
+      "content": "import InputGroupCustom from \"../examples/upstream/input-group-custom\";\n\nconst Example = () => <InputGroupCustom />;\n\nexport default Example;\n"
+    }
+  ]
+}

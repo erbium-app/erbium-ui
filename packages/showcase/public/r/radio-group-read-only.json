@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-read-only",
+  "type": "registry:block",
+  "title": "Radio Group: Read Only",
+  "description": "`readOnly` keeps the group focusable and announced (`aria-readonly`) while blocking changes.",
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/radio-group/examples/radio-group-read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/examples/radio-group-read-only.tsx",
+      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport default function RadioGroupReadOnly() {\n  return (\n    <Field>\n      <RadioGroup readOnly defaultValue=\"pro\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"free\" />\n          <FieldLabel>Free</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"pro\" />\n          <FieldLabel>Pro (current plan)</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/radio-group/variants/read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/variants/read-only.tsx",
+      "content": "import ExampleRadioGroupReadOnly from \"../examples/radio-group-read-only\";\n\nconst Example = () => <ExampleRadioGroupReadOnly />;\n\nexport default Example;\n"
+    }
+  ]
+}

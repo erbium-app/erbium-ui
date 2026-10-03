@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-examples",
+  "type": "registry:item",
+  "title": "Item examples",
+  "description": "All item examples.",
+  "registryDependencies": [
+    "@erbium-examples/item-playground",
+    "@erbium-examples/item-overview",
+    "@erbium-examples/item-variant",
+    "@erbium-examples/item-size",
+    "@erbium-examples/item-icon",
+    "@erbium-examples/item-avatar",
+    "@erbium-examples/item-group",
+    "@erbium-examples/item-settings-panel",
+    "@erbium-examples/item-book-library",
+    "@erbium-examples/item-joined-selection",
+    "@erbium-examples/item-link",
+    "@erbium-examples/item-dropdown",
+    "@erbium-examples/item-header",
+    "@erbium-examples/item-image"
+  ]
+}

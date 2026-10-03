@@ -1,0 +1,4 @@
+---
+title: "Boolean"
+story: Boolean
+---

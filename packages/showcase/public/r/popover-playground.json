@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-playground",
+  "type": "registry:component",
+  "title": "Popover: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/popover", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/popover/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/playground.tsx",
+      "content": "import {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverDescription,\n} from \"@/registry/erbium/ui/popover\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  defaultOpen: boolean;\n}) => (\n  <Popover key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <PopoverTrigger render={<Button variant=\"outline\">Open popover</Button>} />\n    <PopoverContent side={args.side} align={args.align}>\n      <PopoverHeader>\n        <PopoverTitle>Popover title</PopoverTitle>\n        <PopoverDescription>Popover description.</PopoverDescription>\n      </PopoverHeader>\n    </PopoverContent>\n  </Popover>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

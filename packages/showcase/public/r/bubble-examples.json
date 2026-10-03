@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bubble-examples",
+  "type": "registry:item",
+  "title": "Bubble examples",
+  "description": "All bubble examples.",
+  "registryDependencies": [
+    "@erbium-examples/bubble-playground",
+    "@erbium-examples/bubble-overview",
+    "@erbium-examples/bubble-alignment",
+    "@erbium-examples/bubble-group-demo",
+    "@erbium-examples/bubble-collapsible",
+    "@erbium-examples/bubble-tooltip",
+    "@erbium-examples/bubble-popover",
+    "@erbium-examples/bubble-link-button",
+    "@erbium-examples/bubble-reactions",
+    "@erbium-examples/bubble-variants"
+  ]
+}

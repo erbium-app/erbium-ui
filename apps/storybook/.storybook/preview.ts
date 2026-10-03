@@ -1,11 +1,9 @@
 // @ts-expect-error Vite resolves CSS asset imports at runtime.
-import "@erbium/ui/globals.css";
+import "../src/styles.css";
 import { createElement } from "react";
 import { withThemeByClassName } from "@storybook/addon-themes";
-import { CSPProvider } from "@erbium/ui/components/csp-provider";
+import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { DrawerIndent } from "@erbium/ui/components/drawer";
-import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
-import { Toaster } from "@erbium/ui/components/toast";
 import type { Preview } from "@storybook/tanstack-react";
 import { ThemeAwareDocsContainer } from "./docs-container";
 
@@ -23,21 +21,15 @@ const preview: Preview = {
       const isDocs = context.viewMode === "docs";
       const isCentered = context.parameters.layout === "centered";
       return createElement(
-        CSPProvider,
-        { disableStyleElements: true },
-        createElement(
-          OverlayProvider,
-          null,
-          // Docs render many stories inline, so only the canvas gets the page inset.
-          isDocs
-            ? createElement(Story)
-            : createElement(
-                DrawerIndent,
-                { className: isCentered ? "flex items-center justify-center" : undefined },
-                createElement(Story),
-              ),
-        ),
-        isDocs ? null : createElement(Toaster),
+        ShowcaseProviders,
+        { toast: !isDocs },
+        isDocs
+          ? createElement(ShowcaseSurface, null, createElement(Story))
+          : createElement(
+              DrawerIndent,
+              { className: isCentered ? "flex items-center justify-center" : undefined },
+              createElement(ShowcaseSurface, null, createElement(Story)),
+            ),
       );
     },
   ],

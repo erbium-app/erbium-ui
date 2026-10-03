@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "direction-examples",
+  "type": "registry:item",
+  "title": "Direction examples",
+  "description": "All direction examples.",
+  "registryDependencies": [
+    "@erbium-examples/direction-playground",
+    "@erbium-examples/direction-overview"
+  ]
+}

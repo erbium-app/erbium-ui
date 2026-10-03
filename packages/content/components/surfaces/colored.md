@@ -1,0 +1,4 @@
+---
+title: "Colored"
+story: Colored
+---

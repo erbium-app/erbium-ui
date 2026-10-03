@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-examples",
+  "type": "registry:item",
+  "title": "Skeleton examples",
+  "description": "All skeleton examples.",
+  "registryDependencies": [
+    "@erbium-examples/skeleton-playground",
+    "@erbium-examples/skeleton-overview",
+    "@erbium-examples/skeleton-loading-card",
+    "@erbium-examples/skeleton-card",
+    "@erbium-examples/skeleton-staggered",
+    "@erbium-examples/skeleton-avatar",
+    "@erbium-examples/skeleton-text",
+    "@erbium-examples/skeleton-form",
+    "@erbium-examples/skeleton-table"
+  ]
+}

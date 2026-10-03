@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-small",
+  "type": "registry:block",
+  "title": "Card: Size",
+  "description": "Use the `size=\"sm\"` prop to set the size of the card to small. The small size variant uses smaller spacing.",
+  "registryDependencies": ["@erbium/card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/card/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/helpers.tsx",
+      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\n\nexport function SampleCard({ size }: { size?: \"sm\" }) {\n  return (\n    <Card className=\"w-80\" size={size}>\n      <CardHeader>\n        <CardTitle>Project update</CardTitle>\n        <CardDescription>Everything you need to know at a glance.</CardDescription>\n      </CardHeader>\n      <CardContent>Review the latest changes and share your feedback.</CardContent>\n      <CardFooter>Updated today</CardFooter>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/card/variants/small.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/small.tsx",
+      "content": "import { SampleCard } from \"../helpers\";\n\nconst Example = () => <SampleCard size=\"sm\" />;\n\nexport default Example;\n"
+    }
+  ]
+}

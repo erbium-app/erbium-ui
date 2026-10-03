@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-portrait",
+  "type": "registry:component",
+  "title": "Aspect Ratio: Portrait",
+  "description": "A portrait aspect ratio component using the `ratio={9 / 16}` prop. This is useful for displaying images in a portrait format.",
+  "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/aspect-ratio/variants/portrait.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/portrait.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nconst Example = () => (\n  <div className=\"w-40\">\n    <AspectRatio ratio={9 / 16}>\n      <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n        Portrait 9:16\n      </div>\n    </AspectRatio>\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

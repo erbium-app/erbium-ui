@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-playground",
+  "type": "registry:component",
+  "title": "Alert Dialog: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/alert-dialog/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/playground.tsx",
+      "content": "import {\n  AlertDialog,\n  AlertDialogTrigger,\n  AlertDialogContent,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogAction,\n  AlertDialogCancel,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: { size: \"default\" | \"sm\"; defaultOpen: boolean }) => (\n  <AlertDialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <AlertDialogTrigger render={<Button variant=\"outline\">Open alert dialog</Button>} />\n    <AlertDialogContent size={args.size}>\n      <AlertDialogHeader>\n        <AlertDialogTitle>Confirm action</AlertDialogTitle>\n        <AlertDialogDescription>This action needs confirmation.</AlertDialogDescription>\n      </AlertDialogHeader>\n      <AlertDialogFooter>\n        <AlertDialogCancel>Cancel</AlertDialogCancel>\n        <AlertDialogAction>Continue</AlertDialogAction>\n      </AlertDialogFooter>\n    </AlertDialogContent>\n  </AlertDialog>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-avatar-group-count",
+  "type": "registry:block",
+  "title": "Avatar: Avatar Group Count",
+  "description": "Use `<AvatarGroupCount>` to add a count to the group.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-group-count.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-group-count.tsx",
+      "content": "import {\n  Avatar,\n  AvatarFallback,\n  AvatarGroup,\n  AvatarGroupCount,\n  AvatarImage,\n} from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarGroupCountExample() {\n  return (\n    <AvatarGroup className=\"grayscale\">\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n        <AvatarFallback>LR</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n        <AvatarFallback>ER</AvatarFallback>\n      </Avatar>\n      <AvatarGroupCount>+3</AvatarGroupCount>\n    </AvatarGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/avatar/variants/avatar-group-count.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/avatar-group-count.tsx",
+      "content": "import { AvatarGroupCountExample } from \"../examples/upstream/avatar-group-count\";\n\nconst Example = () => <AvatarGroupCountExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

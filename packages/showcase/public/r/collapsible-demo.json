@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible-demo",
+  "type": "registry:component",
+  "title": "collapsible demo",
+  "description": "Erbium collapsible demo example.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": [
+    "@erbium/card",
+    "@erbium/collapsible",
+    "@erbium/separator",
+    "@erbium/stateful-icon",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/collapsible/examples/collapsible-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/collapsible/examples/collapsible-demo.tsx",
+      "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport FileTextIcon from \"@hugeicons/core-free-icons/FileTextIcon\";\nimport Folder01Icon from \"@hugeicons/core-free-icons/Folder01Icon\";\n\nimport { RotatingChevron } from \"@/registry/erbium/ui/stateful-icon\";\nimport { Card } from \"@/registry/erbium/ui/card\";\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst files = [\"README.md\", \"package.json\", \"tsconfig.json\"];\n\nexport default function CollapsibleDemo() {\n  const [isOpen, setIsOpen] = React.useState(false);\n\n  return (\n    <Card className=\"w-[350px] gap-0 p-0\" size=\"sm\">\n      <Collapsible open={isOpen} onOpenChange={setIsOpen}>\n        <CollapsibleTrigger className=\"group group/files flex w-full items-center gap-2 rounded-xl px-3 py-2 text-start outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-ring/40\">\n          <HugeiconsIcon\n            icon={Folder01Icon}\n            aria-hidden=\"true\"\n            className=\"size-4 shrink-0 text-muted-foreground\"\n          />\n          <span className=\"min-w-0 flex-1\">\n            <span className=\"block text-sm font-medium\">Project files</span>\n            <span className=\"block text-xs text-muted-foreground\">3 files in this workspace</span>\n          </span>\n          <RotatingChevron scope=\"collapsible\" className=\"size-4 shrink-0 text-muted-foreground\" />\n        </CollapsibleTrigger>\n        <CollapsibleContent>\n          <Separator />\n          <div className=\"space-y-1 px-3 pt-2 pb-3\">\n            {files.map((file) => (\n              <div key={file} className=\"flex items-center gap-2 py-1 text-sm\">\n                <HugeiconsIcon\n                  icon={FileTextIcon}\n                  aria-hidden=\"true\"\n                  className=\"size-4 text-muted-foreground\"\n                />\n                {file}\n              </div>\n            ))}\n          </div>\n        </CollapsibleContent>\n      </Collapsible>\n    </Card>\n  );\n}\n"
+    }
+  ]
+}

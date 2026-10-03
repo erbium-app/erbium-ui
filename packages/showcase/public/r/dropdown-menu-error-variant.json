@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu-error-variant",
+  "type": "registry:block",
+  "title": "Dropdown Menu: Error",
+  "description": "Use `variant=\"error\"` for irreversible actions.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/dropdown-menu/examples/upstream/dropdown-menu-error.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/dropdown-menu/examples/upstream/dropdown-menu-error.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PencilIcon from \"@hugeicons/core-free-icons/PencilIcon\";\nimport Share01Icon from \"@hugeicons/core-free-icons/Share01Icon\";\nimport TrashIcon from \"@hugeicons/core-free-icons/TrashIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuError() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Actions</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuGroup>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={PencilIcon} />\n            Edit\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={Share01Icon} />\n            Share\n          </DropdownMenuItem>\n        </DropdownMenuGroup>\n        <DropdownMenuSeparator />\n        <DropdownMenuGroup>\n          <DropdownMenuItem variant=\"error\">\n            <HugeiconsIcon icon={TrashIcon} />\n            Delete\n          </DropdownMenuItem>\n        </DropdownMenuGroup>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
+    },
+    {
+      "path": "src/dropdown-menu/variants/error-variant.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/dropdown-menu/variants/error-variant.tsx",
+      "content": "import { DropdownMenuError } from \"../examples/upstream/dropdown-menu-error\";\n\nconst Example = () => <DropdownMenuError />;\n\nexport default Example;\n"
+    }
+  ]
+}

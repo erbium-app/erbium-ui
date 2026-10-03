@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-menu",
+  "type": "registry:block",
+  "title": "Separator: Menu",
+  "description": "Vertical separators between menu items with descriptions.",
+  "registryDependencies": ["@erbium/separator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/separator/examples/upstream/separator-menu.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/examples/upstream/separator-menu.tsx",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport function SeparatorMenu() {\n  return (\n    <div className=\"flex items-center gap-2 text-sm md:gap-4\">\n      <div className=\"flex flex-col gap-1\">\n        <span className=\"font-medium\">Settings</span>\n        <span className=\"text-xs text-muted-foreground\">Manage preferences</span>\n      </div>\n      <Separator orientation=\"vertical\" />\n      <div className=\"flex flex-col gap-1\">\n        <span className=\"font-medium\">Account</span>\n        <span className=\"text-xs text-muted-foreground\">Profile & security</span>\n      </div>\n      <Separator orientation=\"vertical\" className=\"hidden md:block\" />\n      <div className=\"hidden flex-col gap-1 md:flex\">\n        <span className=\"font-medium\">Help</span>\n        <span className=\"text-xs text-muted-foreground\">Support & docs</span>\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/separator/variants/menu.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/variants/menu.tsx",
+      "content": "import { SeparatorMenu } from \"../examples/upstream/separator-menu\";\n\nconst Example = () => <SeparatorMenu />;\n\nexport default Example;\n"
+    }
+  ]
+}

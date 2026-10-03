@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-image",
+  "type": "registry:component",
+  "title": "Control: Image",
+  "description": "",
+  "registryDependencies": ["@erbium/control", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/control/variants/image.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/image.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Image\n      label=\"Cover Photo\"\n      options={[\n        {\n          value: \"warm\",\n          label: \"Warm\",\n          src: \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23d4976c'/%3E%3C/svg%3E\",\n        },\n        {\n          value: \"cool\",\n          label: \"Cool\",\n          src: \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%236394bf'/%3E%3C/svg%3E\",\n        },\n      ]}\n      onFileChange={() => undefined}\n    />\n  </Control.Group>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

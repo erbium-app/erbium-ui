@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-loading",
+  "type": "registry:component",
+  "title": "Button: Loading",
+  "description": "Set `loading` to show a spinner and block activation while keeping the button label.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/loading.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/loading.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => <Button loading>Saving</Button>;\n\nexport default Example;\n"
+    }
+  ]
+}

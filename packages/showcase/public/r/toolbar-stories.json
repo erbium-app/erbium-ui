@@ -1,0 +1,67 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toolbar-stories",
+  "type": "registry:item",
+  "title": "Toolbar stories",
+  "description": "All toolbar variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast",
+    "@erbium/toggle",
+    "@erbium/toolbar"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/toolbar/examples/toolbar-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toolbar/examples/toolbar-demo.tsx",
+      "content": "import { Toolbar, ToolbarButton, ToolbarGroup } from \"@/registry/erbium/ui/toolbar\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nexport default function Demo() {\n  return (\n    <Toolbar aria-label=\"Text formatting\">\n      <ToolbarGroup aria-label=\"Text style\">\n        <ToolbarButton render={<Toggle aria-label=\"Bold\" />}>Bold</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Italic\" />}>Italic</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Underline\" />}>Underline</ToolbarButton>\n      </ToolbarGroup>\n    </Toolbar>\n  );\n}\n"
+    },
+    {
+      "path": "src/toolbar/toolbar.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/toolbar/toolbar.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport { Toolbar } from \"@/registry/erbium/ui/toolbar\";\n\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport FormattingExample from \"./variants/formatting\";\n\nconst FormattingSource = \"import BoldIcon from \\\"@hugeicons/core-free-icons/BoldIcon\\\";\\nimport ItalicIcon from \\\"@hugeicons/core-free-icons/ItalicIcon\\\";\\nimport Link01Icon from \\\"@hugeicons/core-free-icons/Link01Icon\\\";\\nimport UnderlineIcon from \\\"@hugeicons/core-free-icons/UnderlineIcon\\\";\\nimport { HugeiconsIcon } from \\\"@hugeicons/react\\\";\\nimport { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\nimport {\\n  Toolbar,\\n  ToolbarButton,\\n  ToolbarGroup,\\n  ToolbarSeparator,\\n} from \\\"@/registry/erbium/ui/toolbar\\\";\\n\\nconst Example = () => (\\n  <Toolbar aria-label=\\\"Text formatting\\\">\\n    <ToolbarGroup aria-label=\\\"Text style\\\">\\n      <ToolbarButton render={<Toggle aria-label=\\\"Bold\\\" />} size=\\\"icon-sm\\\">\\n        <HugeiconsIcon icon={BoldIcon} />\\n      </ToolbarButton>\\n      <ToolbarButton render={<Toggle aria-label=\\\"Italic\\\" />} size=\\\"icon-sm\\\">\\n        <HugeiconsIcon icon={ItalicIcon} />\\n      </ToolbarButton>\\n      <ToolbarButton render={<Toggle aria-label=\\\"Underline\\\" />} size=\\\"icon-sm\\\">\\n        <HugeiconsIcon icon={UnderlineIcon} />\\n      </ToolbarButton>\\n    </ToolbarGroup>\\n    <ToolbarSeparator />\\n    <ToolbarButton aria-label=\\\"Insert link\\\" size=\\\"icon-sm\\\">\\n      <HugeiconsIcon icon={Link01Icon} />\\n    </ToolbarButton>\\n  </Toolbar>\\n);\\n\\nexport default Example;\\n\";\n\nimport VerticalExample from \"./variants/vertical\";\n\nconst VerticalSource = \"import BoldIcon from \\\"@hugeicons/core-free-icons/BoldIcon\\\";\\nimport ItalicIcon from \\\"@hugeicons/core-free-icons/ItalicIcon\\\";\\nimport Link01Icon from \\\"@hugeicons/core-free-icons/Link01Icon\\\";\\nimport { HugeiconsIcon } from \\\"@hugeicons/react\\\";\\nimport {\\n  Toolbar,\\n  ToolbarButton,\\n  ToolbarGroup,\\n  ToolbarSeparator,\\n} from \\\"@/registry/erbium/ui/toolbar\\\";\\n\\nconst Example = () => (\\n  <Toolbar aria-label=\\\"Text formatting\\\" orientation=\\\"vertical\\\">\\n    <ToolbarGroup aria-label=\\\"Text style\\\">\\n      <ToolbarButton aria-label=\\\"Bold\\\" size=\\\"icon-sm\\\">\\n        <HugeiconsIcon icon={BoldIcon} />\\n      </ToolbarButton>\\n      <ToolbarButton aria-label=\\\"Italic\\\" size=\\\"icon-sm\\\">\\n        <HugeiconsIcon icon={ItalicIcon} />\\n      </ToolbarButton>\\n    </ToolbarGroup>\\n    <ToolbarSeparator />\\n    <ToolbarButton aria-label=\\\"Insert link\\\" size=\\\"icon-sm\\\">\\n      <HugeiconsIcon icon={Link01Icon} />\\n    </ToolbarButton>\\n  </Toolbar>\\n);\\n\\nexport default Example;\\n\";\n\nimport SearchAndLinkExample from \"./variants/search-and-link\";\n\nconst SearchAndLinkSource = \"import {\\n  Toolbar,\\n  ToolbarButton,\\n  ToolbarGroup,\\n  ToolbarInput,\\n  ToolbarLink,\\n  ToolbarSeparator,\\n} from \\\"@/registry/erbium/ui/toolbar\\\";\\n\\nconst Example = () => (\\n  <Toolbar aria-label=\\\"Page tools\\\">\\n    <ToolbarGroup aria-label=\\\"Navigation\\\">\\n      <ToolbarButton>Refresh</ToolbarButton>\\n      <ToolbarLink href=\\\"https://base-ui.com/react/components/toolbar\\\">Details</ToolbarLink>\\n    </ToolbarGroup>\\n    <ToolbarSeparator />\\n    <ToolbarInput aria-label=\\\"Find on page\\\" className=\\\"w-36\\\" placeholder=\\\"Find on page\\\" />\\n  </Toolbar>\\n);\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import {\\n  Toolbar,\\n  ToolbarButton,\\n  ToolbarGroup,\\n  ToolbarSeparator,\\n} from \\\"@/registry/erbium/ui/toolbar\\\";\\n\\nconst Example = () => (\\n  <Toolbar aria-label=\\\"Editing commands\\\">\\n    <ToolbarButton>Undo</ToolbarButton>\\n    <ToolbarButton disabled>Redo</ToolbarButton>\\n    <ToolbarSeparator />\\n    <ToolbarGroup aria-label=\\\"Clipboard\\\" disabled>\\n      <ToolbarButton>Cut</ToolbarButton>\\n      <ToolbarButton>Paste</ToolbarButton>\\n    </ToolbarGroup>\\n  </Toolbar>\\n);\\n\\nexport default Example;\\n\";\n\nimport ShowcaseExample from \"./variants/showcase\";\n\nconst ShowcaseSource = \"import ShowcaseDemo from \\\"../examples/toolbar-demo\\\";\\n\\nconst Example = () => <ShowcaseDemo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Toolbar\",\n  component: Toolbar,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A labeled command bar with arrow-key navigation. `ToolbarButton` and `ToolbarLink` use the shared button styles; compose toggles or popup triggers with the button’s `render` prop. In a horizontal toolbar, put an input last so arrow keys still work for text editing.\\n\\n**Import:** `@/registry/erbium/ui/toolbar`\",\n      },\n    },\n  },\n} satisfies Meta<typeof Toolbar>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Formatting: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: FormattingSource },\n    },\n  },\n  render: FormattingExample,\n};\n\nexport const Vertical: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: VerticalSource },\n    },\n  },\n  render: VerticalExample,\n};\n\nexport const SearchAndLink: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: SearchAndLinkSource },\n    },\n  },\n  render: SearchAndLinkExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const Showcase: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: ShowcaseSource },\n    },\n  },\n  render: ShowcaseExample,\n};\n"
+    },
+    {
+      "path": "src/toolbar/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toolbar/variants/disabled.tsx",
+      "content": "import {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Editing commands\">\n    <ToolbarButton>Undo</ToolbarButton>\n    <ToolbarButton disabled>Redo</ToolbarButton>\n    <ToolbarSeparator />\n    <ToolbarGroup aria-label=\"Clipboard\" disabled>\n      <ToolbarButton>Cut</ToolbarButton>\n      <ToolbarButton>Paste</ToolbarButton>\n    </ToolbarGroup>\n  </Toolbar>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/toolbar/variants/formatting.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toolbar/variants/formatting.tsx",
+      "content": "import BoldIcon from \"@hugeicons/core-free-icons/BoldIcon\";\nimport ItalicIcon from \"@hugeicons/core-free-icons/ItalicIcon\";\nimport Link01Icon from \"@hugeicons/core-free-icons/Link01Icon\";\nimport UnderlineIcon from \"@hugeicons/core-free-icons/UnderlineIcon\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Text formatting\">\n    <ToolbarGroup aria-label=\"Text style\">\n      <ToolbarButton render={<Toggle aria-label=\"Bold\" />} size=\"icon-sm\">\n        <HugeiconsIcon icon={BoldIcon} />\n      </ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Italic\" />} size=\"icon-sm\">\n        <HugeiconsIcon icon={ItalicIcon} />\n      </ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Underline\" />} size=\"icon-sm\">\n        <HugeiconsIcon icon={UnderlineIcon} />\n      </ToolbarButton>\n    </ToolbarGroup>\n    <ToolbarSeparator />\n    <ToolbarButton aria-label=\"Insert link\" size=\"icon-sm\">\n      <HugeiconsIcon icon={Link01Icon} />\n    </ToolbarButton>\n  </Toolbar>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/toolbar/variants/search-and-link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toolbar/variants/search-and-link.tsx",
+      "content": "import {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarInput,\n  ToolbarLink,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Page tools\">\n    <ToolbarGroup aria-label=\"Navigation\">\n      <ToolbarButton>Refresh</ToolbarButton>\n      <ToolbarLink href=\"https://base-ui.com/react/components/toolbar\">Details</ToolbarLink>\n    </ToolbarGroup>\n    <ToolbarSeparator />\n    <ToolbarInput aria-label=\"Find on page\" className=\"w-36\" placeholder=\"Find on page\" />\n  </Toolbar>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/toolbar/variants/showcase.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toolbar/variants/showcase.tsx",
+      "content": "import ShowcaseDemo from \"../examples/toolbar-demo\";\n\nconst Example = () => <ShowcaseDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/toolbar/variants/vertical.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toolbar/variants/vertical.tsx",
+      "content": "import BoldIcon from \"@hugeicons/core-free-icons/BoldIcon\";\nimport ItalicIcon from \"@hugeicons/core-free-icons/ItalicIcon\";\nimport Link01Icon from \"@hugeicons/core-free-icons/Link01Icon\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Text formatting\" orientation=\"vertical\">\n    <ToolbarGroup aria-label=\"Text style\">\n      <ToolbarButton aria-label=\"Bold\" size=\"icon-sm\">\n        <HugeiconsIcon icon={BoldIcon} />\n      </ToolbarButton>\n      <ToolbarButton aria-label=\"Italic\" size=\"icon-sm\">\n        <HugeiconsIcon icon={ItalicIcon} />\n      </ToolbarButton>\n    </ToolbarGroup>\n    <ToolbarSeparator />\n    <ToolbarButton aria-label=\"Insert link\" size=\"icon-sm\">\n      <HugeiconsIcon icon={Link01Icon} />\n    </ToolbarButton>\n  </Toolbar>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

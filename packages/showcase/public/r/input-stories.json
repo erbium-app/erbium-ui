@@ -1,0 +1,216 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-stories",
+  "type": "registry:item",
+  "title": "Input stories",
+  "description": "All input variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/badge",
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/csp-provider",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/input-group",
+    "@erbium/overlay-provider",
+    "@erbium/select",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/input/examples/input-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/input-demo.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputDemo() {\n  return <Input type=\"email\" placeholder=\"Email\" />;\n}\n"
+    },
+    {
+      "path": "src/input/examples/input-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/input-disabled.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputDisabled() {\n  return <Input disabled type=\"email\" placeholder=\"Email\" />;\n}\n"
+    },
+    {
+      "path": "src/input/examples/input-file.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/input-file.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function InputFile() {\n  return (\n    <Field className=\"grid w-full max-w-sm items-center gap-3\">\n      <FieldLabel>Picture</FieldLabel>\n      <Input type=\"file\" />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-badge.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputBadge() {\n  return (\n    <Field>\n      <FieldLabel>\n        Webhook URL{\" \"}\n        <Badge variant=\"secondary\" className=\"ml-auto\">\n          Beta\n        </Badge>\n      </FieldLabel>\n      <Input type=\"url\" placeholder=\"https://api.example.com/webhook\" />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-basic.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputBasic() {\n  return <Input placeholder=\"Enter text\" />;\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-button-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-button-group.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputButtonGroup() {\n  return (\n    <Field>\n      <FieldLabel>Search</FieldLabel>\n      <ButtonGroup>\n        <Input placeholder=\"Type to search...\" />\n        <Button variant=\"outline\">Search</Button>\n      </ButtonGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-field.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-field.tsx",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputField() {\n  return (\n    <Field>\n      <FieldLabel>Username</FieldLabel>\n      <Input type=\"text\" placeholder=\"Enter your username\" />\n      <FieldDescription>Choose a unique username for your account.</FieldDescription>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-fieldgroup.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-fieldgroup.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field, FieldDescription, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputFieldgroup() {\n  return (\n    <FieldGroup>\n      <Field>\n        <FieldLabel>Name</FieldLabel>\n        <Input placeholder=\"Jordan Lee\" />\n      </Field>\n      <Field>\n        <FieldLabel>Email</FieldLabel>\n        <Input type=\"email\" placeholder=\"name@example.com\" />\n        <FieldDescription>We&apos;ll send updates to this address.</FieldDescription>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Button type=\"reset\" variant=\"outline\">\n          Reset\n        </Button>\n        <Button type=\"submit\">Submit</Button>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-form.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field, FieldDescription, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport function InputForm() {\n  const countries = [\n    { label: \"United States\", value: \"us\" },\n    { label: \"United Kingdom\", value: \"uk\" },\n    { label: \"Canada\", value: \"ca\" },\n  ];\n  return (\n    <form className=\"w-full max-w-sm\">\n      <FieldGroup>\n        <Field>\n          <FieldLabel>Name</FieldLabel>\n          <Input type=\"text\" placeholder=\"Evil Rabbit\" required />\n        </Field>\n        <Field>\n          <FieldLabel>Email</FieldLabel>\n          <Input type=\"email\" placeholder=\"john@example.com\" />\n          <FieldDescription>We&apos;ll never share your email with anyone.</FieldDescription>\n        </Field>\n        <div className=\"grid grid-cols-2 gap-4\">\n          <Field>\n            <FieldLabel>Phone</FieldLabel>\n            <Input type=\"tel\" placeholder=\"+1 (555) 123-4567\" />\n          </Field>\n          <Field>\n            <FieldLabel htmlFor=\"form-country\">Country</FieldLabel>\n            <Select items={countries} defaultValue=\"us\">\n              <SelectTrigger id=\"form-country\">\n                <SelectValue />\n              </SelectTrigger>\n              <SelectContent>\n                <SelectGroup>\n                  {countries.map((country) => (\n                    <SelectItem key={country.value} value={country.value}>\n                      {country.label}\n                    </SelectItem>\n                  ))}\n                </SelectGroup>\n              </SelectContent>\n            </Select>\n          </Field>\n        </div>\n        <Field>\n          <FieldLabel>Address</FieldLabel>\n          <Input type=\"text\" placeholder=\"123 Main St\" />\n        </Field>\n        <Field orientation=\"horizontal\">\n          <Button type=\"button\" variant=\"outline\">\n            Cancel\n          </Button>\n          <Button type=\"submit\">Submit</Button>\n        </Field>\n      </FieldGroup>\n    </form>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-grid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-grid.tsx",
+      "content": "import { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputGrid() {\n  return (\n    <FieldGroup className=\"grid max-w-sm grid-cols-2\">\n      <Field>\n        <FieldLabel>First Name</FieldLabel>\n        <Input placeholder=\"Jordan\" />\n      </Field>\n      <Field>\n        <FieldLabel>Last Name</FieldLabel>\n        <Input placeholder=\"Lee\" />\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-inline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-inline.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputInline() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Input type=\"search\" placeholder=\"Search...\" />\n      <Button>Search</Button>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport InfoIcon from \"@hugeicons/core-free-icons/InfoIcon\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport function InputInputGroup() {\n  return (\n    <Field>\n      <FieldLabel>Website URL</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"example.com\" />\n        <InputGroupAddon>\n          <InputGroupText>https://</InputGroupText>\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <HugeiconsIcon icon={InfoIcon} />\n        </InputGroupAddon>\n      </InputGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/examples/upstream/input-required.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-required.tsx",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputRequired() {\n  return (\n    <Field>\n      <FieldLabel>\n        Required Field <span className=\"text-error\">*</span>\n      </FieldLabel>\n      <Input placeholder=\"This field is required\" required />\n      <FieldDescription>This field must be filled out.</FieldDescription>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/input.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/input/input.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Input } from \\\"@/registry/erbium/ui/input\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Input>) => (\\n  <Input {...args} className={`w-72 ${args.className ?? \\\"\\\"}`} />\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/input-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport DisabledControlExample from \"./variants/disabled-control\";\n\nconst DisabledControlSource = \"import { Input } from \\\"@/registry/erbium/ui/input\\\";\\n\\nconst Example = () => <Input disabled placeholder=\\\"Unavailable\\\" />;\\n\\nexport default Example;\\n\";\n\nimport InvalidExample from \"./variants/invalid\";\n\nconst InvalidSource = \"import { Input } from \\\"@/registry/erbium/ui/input\\\";\\n\\nconst Example = () => <Input aria-invalid placeholder=\\\"Invalid email\\\" />;\\n\\nexport default Example;\\n\";\n\nimport FileControlExample from \"./variants/file-control\";\n\nconst FileControlSource = \"import { Input } from \\\"@/registry/erbium/ui/input\\\";\\n\\nconst Example = () => <Input type=\\\"file\\\" aria-label=\\\"Upload file\\\" />;\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import ExampleInputDisabled from \\\"../examples/input-disabled\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleInputDisabled />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport FileExample from \"./variants/file\";\n\nconst FileSource = \"import ExampleInputFile from \\\"../examples/input-file\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleInputFile />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import { InputBasic } from \\\"../examples/upstream/input-basic\\\";\\n\\nconst Example = () => <InputBasic />;\\n\\nexport default Example;\\n\";\n\nimport FieldExample from \"./variants/field\";\n\nconst FieldSource = \"import { InputField } from \\\"../examples/upstream/input-field\\\";\\n\\nconst Example = () => <InputField />;\\n\\nexport default Example;\\n\";\n\nimport FieldgroupExample from \"./variants/fieldgroup\";\n\nconst FieldgroupSource = \"import { InputFieldgroup } from \\\"../examples/upstream/input-fieldgroup\\\";\\n\\nconst Example = () => <InputFieldgroup />;\\n\\nexport default Example;\\n\";\n\nimport InlineExample from \"./variants/inline\";\n\nconst InlineSource = \"import { InputInline } from \\\"../examples/upstream/input-inline\\\";\\n\\nconst Example = () => <InputInline />;\\n\\nexport default Example;\\n\";\n\nimport GridExample from \"./variants/grid\";\n\nconst GridSource = \"import { InputGrid } from \\\"../examples/upstream/input-grid\\\";\\n\\nconst Example = () => <InputGrid />;\\n\\nexport default Example;\\n\";\n\nimport RequiredExample from \"./variants/required\";\n\nconst RequiredSource = \"import { InputRequired } from \\\"../examples/upstream/input-required\\\";\\n\\nconst Example = () => <InputRequired />;\\n\\nexport default Example;\\n\";\n\nimport BadgeExample from \"./variants/badge\";\n\nconst BadgeSource = \"import { InputBadge } from \\\"../examples/upstream/input-badge\\\";\\n\\nconst Example = () => <InputBadge />;\\n\\nexport default Example;\\n\";\n\nimport InputGroupExample from \"./variants/input-group\";\n\nconst InputGroupSource = \"import { InputInputGroup } from \\\"../examples/upstream/input-input-group\\\";\\n\\nconst Example = () => <InputInputGroup />;\\n\\nexport default Example;\\n\";\n\nimport ButtonGroupExample from \"./variants/button-group\";\n\nconst ButtonGroupSource = \"import { InputButtonGroup } from \\\"../examples/upstream/input-button-group\\\";\\n\\nconst Example = () => <InputButtonGroup />;\\n\\nexport default Example;\\n\";\n\nimport FormExample from \"./variants/form\";\n\nconst FormSource = \"import { InputForm } from \\\"../examples/upstream/input-form\\\";\\n\\nconst Example = () => <InputForm />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Input\",\n  component: Input,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A text input component for forms and user data entry with built-in styling and accessibility features.\\n\\n**Import:** `@/registry/erbium/ui/input`\\n\\n## Usage\\n\\n```tsx\\nimport { Input } from \\\"@/registry/erbium/ui/input\\\";\\n```\\n\\n```tsx\\n<Input />\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Input>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Input> = {\n  args: { type: \"text\", placeholder: \"Type here\", disabled: false, className: \"\" },\n  argTypes: {\n    type: {\n      control: \"select\",\n      options: [\"text\", \"email\", \"password\", \"number\", \"search\", \"date\", \"file\"],\n    },\n    disabled: { control: \"boolean\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const DisabledControl: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Disable an input when its value cannot be changed.\" },\n      source: { code: DisabledControlSource },\n    },\n  },\n  render: DisabledControlExample,\n};\n\nexport const Invalid: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `aria-invalid` prop to mark the input as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field` component.\" },\n      source: { code: InvalidSource },\n    },\n  },\n  render: InvalidExample,\n};\n\nexport const FileControl: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use a file input to select a local file.\" },\n      source: { code: FileControlSource },\n    },\n  },\n  render: FileControlExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `disabled` prop to disable the input. To style the disabled state, add the `data-disabled` attribute to the `Field` component.\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const File: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `type=\\\"file\\\"` prop to create a file input.\" },\n      source: { code: FileSource },\n    },\n  },\n  render: FileExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A basic text input.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const Field: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `Field`, `FieldLabel`, and `FieldDescription` to create an input with a\\n\\nlabel and description.\" },\n      source: { code: FieldSource },\n    },\n  },\n  render: FieldExample,\n};\n\nexport const Fieldgroup: Story = {\n  name: \"Field Group\",\n  parameters: {\n    layout: \"padded\",\n    docs: {\n      description: { story: \"Use `FieldGroup` to show multiple `Field` blocks and to build forms.\" },\n      source: { code: FieldgroupSource },\n    },\n  },\n  render: FieldgroupExample,\n};\n\nexport const Inline: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `Field` with `orientation=\\\"horizontal\\\"` to create an inline input.\\n\\nPair with `Button` to create a search input with a button.\" },\n      source: { code: InlineSource },\n    },\n  },\n  render: InlineExample,\n};\n\nexport const Grid: Story = {\n  parameters: {\n    layout: \"padded\",\n    docs: {\n      description: { story: \"Use a grid layout to place multiple inputs side by side.\" },\n      source: { code: GridSource },\n    },\n  },\n  render: GridExample,\n};\n\nexport const Required: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `required` attribute to indicate required inputs.\" },\n      source: { code: RequiredSource },\n    },\n  },\n  render: RequiredExample,\n};\n\nexport const Badge: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `Badge` in the label to highlight a recommended field.\" },\n      source: { code: BadgeSource },\n    },\n  },\n  render: BadgeExample,\n};\n\nexport const InputGroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](https://ui.shadcn.com/docs/components/input-group) component for more examples.\" },\n      source: { code: InputGroupSource },\n    },\n  },\n  render: InputGroupExample,\n};\n\nexport const ButtonGroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"To add buttons to an input, use the `ButtonGroup` component. See the [Button Group](https://ui.shadcn.com/docs/components/button-group) component for more examples.\" },\n      source: { code: ButtonGroupSource },\n    },\n  },\n  render: ButtonGroupExample,\n};\n\nexport const Form: Story = {\n  parameters: {\n    layout: \"padded\",\n    docs: {\n      description: { story: \"A full form example with multiple inputs, a select, and a button.\" },\n      source: { code: FormSource },\n    },\n  },\n  render: FormExample,\n};\n"
+    },
+    {
+      "path": "src/input/variants/badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/badge.tsx",
+      "content": "import { InputBadge } from \"../examples/upstream/input-badge\";\n\nconst Example = () => <InputBadge />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/basic.tsx",
+      "content": "import { InputBasic } from \"../examples/upstream/input-basic\";\n\nconst Example = () => <InputBasic />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/button-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/button-group.tsx",
+      "content": "import { InputButtonGroup } from \"../examples/upstream/input-button-group\";\n\nconst Example = () => <InputButtonGroup />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/disabled-control.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/disabled-control.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input disabled placeholder=\"Unavailable\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/disabled.tsx",
+      "content": "import ExampleInputDisabled from \"../examples/input-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputDisabled />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/field.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/field.tsx",
+      "content": "import { InputField } from \"../examples/upstream/input-field\";\n\nconst Example = () => <InputField />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/fieldgroup.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/fieldgroup.tsx",
+      "content": "import { InputFieldgroup } from \"../examples/upstream/input-fieldgroup\";\n\nconst Example = () => <InputFieldgroup />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/file-control.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/file-control.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input type=\"file\" aria-label=\"Upload file\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/file.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/file.tsx",
+      "content": "import ExampleInputFile from \"../examples/input-file\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputFile />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/form.tsx",
+      "content": "import { InputForm } from \"../examples/upstream/input-form\";\n\nconst Example = () => <InputForm />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/grid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/grid.tsx",
+      "content": "import { InputGrid } from \"../examples/upstream/input-grid\";\n\nconst Example = () => <InputGrid />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/inline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/inline.tsx",
+      "content": "import { InputInline } from \"../examples/upstream/input-inline\";\n\nconst Example = () => <InputInline />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/input-group.tsx",
+      "content": "import { InputInputGroup } from \"../examples/upstream/input-input-group\";\n\nconst Example = () => <InputInputGroup />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/invalid.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input aria-invalid placeholder=\"Invalid email\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/overview.tsx",
+      "content": "import Demo from \"../examples/input-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/playground.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Input>) => (\n  <Input {...args} className={`w-72 ${args.className ?? \"\"}`} />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/input/variants/required.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/required.tsx",
+      "content": "import { InputRequired } from \"../examples/upstream/input-required\";\n\nconst Example = () => <InputRequired />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

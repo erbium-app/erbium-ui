@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox-playground",
+  "type": "registry:component",
+  "title": "Combobox: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/combobox", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/combobox/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/combobox/variants/playground.tsx",
+      "content": "import {\n  ComboboxInput,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxList,\n  ComboboxItem,\n} from \"@/registry/erbium/ui/combobox\";\nimport { Combobox } from \"@/registry/erbium/ui/combobox\";\n\nconst Example = (args: {\n  placeholder: string;\n  disabled: boolean;\n  showTrigger: boolean;\n  showClear: boolean;\n  autoHighlight: boolean;\n}) => (\n  <Combobox items={[\"React\", \"Vue\", \"Svelte\"]} autoHighlight={args.autoHighlight}>\n    <ComboboxInput\n      placeholder={args.placeholder}\n      disabled={args.disabled}\n      showTrigger={args.showTrigger}\n      showClear={args.showClear}\n    />\n    <ComboboxContent>\n      <ComboboxEmpty>No results.</ComboboxEmpty>\n      <ComboboxList>\n        {(item: string) => (\n          <ComboboxItem key={item} value={item}>\n            {item}\n          </ComboboxItem>\n        )}\n      </ComboboxList>\n    </ComboboxContent>\n  </Combobox>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

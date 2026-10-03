@@ -1,31 +1,19 @@
 {
-  "name": "storybook",
+  "name": "@erbium/storybook",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "preview": "storybook dev -p 6006",
-    "test": "vp test run",
     "typecheck": "tsc --noEmit",
-    "registry:build": "node scripts/build-registry.mjs && ../../packages/ui/node_modules/.bin/shadcn build registry.json --output public/r && vp fmt registry.json registry public/r --write"
+    "registry:build": "bun run --cwd ../../packages/showcase registry:build"
   },
   "dependencies": {
+    "@erbium/showcase": "workspace:*",
     "@erbium/ui": "workspace:*",
-    "@hugeicons/core-free-icons": "^4.3.5",
-    "@hugeicons/react": "^1.1.10",
-    "@shadcn/react": "^0.3.1",
-    "@tanstack/charts": "0.18.0",
-    "@tanstack/react-form": "1.33.5",
-    "@tanstack/react-pacer": "0.24.0",
-    "@tanstack/react-table": "9.2.4",
-    "date-fns": "^4.4.0",
-    "embla-carousel-autoplay": "^8.6.0",
     "react": "^19.3.0",
-    "react-day-picker": "^10.0.2",
-    "react-dom": "^19.3.0",
-    "react-textarea-autosize": "^8.5.9",
-    "zod": "^4.6.5"
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@storybook/addon-docs": "10.6.1",

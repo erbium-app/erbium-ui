@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-edge-to-edge",
+  "type": "registry:component",
+  "title": "Card: Edge To Edge",
+  "description": "Place media flush with the card edges.",
+  "registryDependencies": ["@erbium/card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/card/variants/edge-to-edge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/card/variants/edge-to-edge.tsx",
+      "content": "import { Card, CardContent, CardFooter, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Recent activity</CardTitle>\n    </CardHeader>\n    <CardContent className=\"px-0\">\n      <div className=\"border-t bg-muted p-4\">Content runs to the card edges.</div>\n    </CardContent>\n    <CardFooter>View all activity</CardFooter>\n  </Card>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

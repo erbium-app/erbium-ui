@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-demo",
+  "type": "registry:component",
+  "title": "popover demo",
+  "description": "Erbium popover demo example.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/popover",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/popover/examples/popover-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/popover-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@/registry/erbium/ui/popover\";\n\nexport default function PopoverDemo() {\n  return (\n    <Popover>\n      <PopoverTrigger render={<Button variant=\"outline\">Open popover</Button>} />\n      <PopoverContent className=\"w-80\">\n        <div className=\"grid gap-4\">\n          <div className=\"space-y-2\">\n            <h4 className=\"leading-none font-medium\">Dimensions</h4>\n            <p className=\"text-sm text-muted-foreground\">Set the dimensions for the layer.</p>\n          </div>\n          <div className=\"grid gap-2\">\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Width</FieldLabel>\n              <Input defaultValue=\"100%\" className=\"col-span-2 h-8\" />\n            </Field>\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Max. width</FieldLabel>\n              <Input defaultValue=\"300px\" className=\"col-span-2 h-8\" />\n            </Field>\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Height</FieldLabel>\n              <Input defaultValue=\"25px\" className=\"col-span-2 h-8\" />\n            </Field>\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Max. height</FieldLabel>\n              <Input defaultValue=\"none\" className=\"col-span-2 h-8\" />\n            </Field>\n          </div>\n        </div>\n      </PopoverContent>\n    </Popover>\n  );\n}\n"
+    }
+  ]
+}

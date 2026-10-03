@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-examples",
+  "type": "registry:item",
+  "title": "Meter examples",
+  "description": "All meter examples.",
+  "registryDependencies": [
+    "@erbium-examples/meter-playground",
+    "@erbium-examples/meter-overview",
+    "@erbium-examples/meter-range"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-spinner",
+  "type": "registry:block",
+  "title": "Input Group: Spinner",
+  "description": "Show progress inside an input group.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/input-group", "@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input-group/examples/input-group-spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/examples/input-group-spinner.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport LoaderIcon from \"@hugeicons/core-free-icons/LoaderIcon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function InputGroupSpinner() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-4\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Searching...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Processing...\" disabled />\n        <InputGroupAddon>\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Saving changes...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <InputGroupText>Saving...</InputGroupText>\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Refreshing data...\" disabled />\n        <InputGroupAddon>\n          <HugeiconsIcon icon={LoaderIcon} className=\"animate-spin\" />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <InputGroupText className=\"text-muted-foreground\">Please wait...</InputGroupText>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/input-group/variants/spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/variants/spinner.tsx",
+      "content": "import ExampleInputGroupSpinner from \"../examples/input-group-spinner\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputGroupSpinner />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-playground",
+  "type": "registry:component",
+  "title": "Button: Playground",
+  "description": "Use the Controls panel to try every `variant` and `size` in the Button API reference.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/playground.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Button>) => {\n  const iconOnly = typeof args.size === \"string\" && args.size.startsWith(\"icon\");\n\n  return (\n    <Button {...args} aria-label={iconOnly ? \"Submit\" : undefined}>\n      {iconOnly ? <HugeiconsIcon icon={ArrowUp01Icon} /> : \"Button\"}\n    </Button>\n  );\n};\n\nexport default Example;\n"
+    }
+  ]
+}

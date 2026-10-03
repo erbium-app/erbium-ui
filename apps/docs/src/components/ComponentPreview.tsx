@@ -1,140 +1,150 @@
-import { barY, defineChart } from "@tanstack/charts";
-import { scaleBand } from "@tanstack/charts/scales/band";
-import { scaleLinear } from "@tanstack/charts/scales/linear";
-import { CSPProvider } from "@erbium/ui/components/csp-provider";
-import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
-import { Chart } from "@erbium/ui/components/chart";
-import { Badge } from "@erbium/ui/components/badge";
-import { Button } from "@erbium/ui/components/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@erbium/ui/components/card";
-import { Input } from "@erbium/ui/components/input";
-import { Switch } from "@erbium/ui/components/switch";
-import {
-  Autocomplete,
-  AutocompleteEmpty,
-  AutocompleteInput,
-  AutocompleteItem,
-  AutocompleteList,
-  AutocompletePopup,
-} from "@erbium/ui/components/autocomplete";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
+import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
+import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 
-const autocompleteItems = [
-  { label: "Apple", value: "apple" },
-  { label: "Banana", value: "banana" },
-  { label: "Grape", value: "grape" },
-  { label: "Orange", value: "orange" },
-];
+function optionLabel(value: unknown) {
+  if (value === undefined) return "Default";
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  return JSON.stringify(value) ?? "Default";
+}
 
-const chartDefinition = defineChart({
-  marks: [
-    barY(
-      [
-        { month: "Jan", visitors: 186 },
-        { month: "Feb", visitors: 305 },
-        { month: "Mar", visitors: 237 },
-        { month: "Apr", visitors: 73 },
-      ],
-      { x: "month", y: "visitors", fill: "var(--chart-1)", radius: 4 },
-    ),
-  ],
-  scales: { x: { scale: scaleBand }, y: { scale: scaleLinear, grid: true } },
-});
-
-export default function ComponentPreview({ name }: { name: string }) {
+const previews = new Map<string, ReturnType<typeof lazy>>();
+function ObjectControl({
+  value,
+  onChange,
+}: {
+  value: unknown;
+  onChange: (value: unknown) => void;
+}) {
+  const [draft, setDraft] = useState(JSON.stringify(value));
+  const [error, setError] = useState("");
+  function commit() {
+    try {
+      const parsed: unknown = JSON.parse(draft);
+      if (
+        Array.isArray(value) &&
+        (!Array.isArray(parsed) ||
+          parsed.some((item: unknown) => typeof item !== "number" || !Number.isFinite(item)))
+      )
+        throw new Error("Enter an array of numbers.");
+      onChange(parsed);
+      setError("");
+    } catch {
+      setError("Enter a valid JSON value matching this control.");
+    }
+  }
   return (
-    <CSPProvider disableStyleElements>
-      <OverlayProvider>
-        <ComponentPreviewContent name={name} />
-      </OverlayProvider>
-    </CSPProvider>
+    <>
+      <textarea
+        aria-label="JSON value"
+        value={draft}
+        aria-invalid={Boolean(error)}
+        onChange={(event) => setDraft(event.target.value)}
+        onBlur={commit}
+      />
+      <span role="status">{error}</span>
+    </>
   );
 }
 
-function ComponentPreviewContent({ name }: { name: string }) {
-  const [enabled, setEnabled] = useState(true);
-  if (name === "chart")
-    return (
-      <Chart
-        definition={chartDefinition}
-        height={240}
-        initialWidth={640}
-        ariaLabel="Monthly visitors"
-      />
-    );
-  if (name === "button")
-    return (
-      <div className="preview-row">
-        <Button>Continue</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="ghost">Ghost</Button>
-      </div>
-    );
-  if (name === "badge")
-    return (
-      <div className="preview-row">
-        <Badge>New</Badge>
-        <Badge variant="secondary">Stable</Badge>
-        <Badge variant="outline">Outline</Badge>
-        <Badge variant="error">Deprecated</Badge>
-      </div>
-    );
-  if (name === "input")
-    return (
-      <div className="preview-form">
-        <label htmlFor="preview-email">Email address</label>
-        <Input id="preview-email" placeholder="you@example.com" />
-        <small>We'll never share your email.</small>
-      </div>
-    );
-  if (name === "autocomplete")
-    return (
-      <div className="w-full max-w-72">
-        <Autocomplete items={autocompleteItems}>
-          <AutocompleteInput aria-label="Search fruits" placeholder="Search fruits…" />
-          <AutocompletePopup>
-            <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
-            <AutocompleteList>
-              {(item) => (
-                <AutocompleteItem key={item.value} value={item}>
-                  {item.label}
-                </AutocompleteItem>
-              )}
-            </AutocompleteList>
-          </AutocompletePopup>
-        </Autocomplete>
-      </div>
-    );
-  if (name === "switch")
-    return (
-      <div className="preview-row">
-        <Switch checked={enabled} onCheckedChange={setEnabled} />
-        <span>{enabled ? "Notifications enabled" : "Notifications disabled"}</span>
-      </div>
-    );
-  if (name === "card")
-    return (
-      <Card className="demo-card">
-        <CardHeader>
-          <CardTitle>Ship faster</CardTitle>
-          <CardDescription>Production-ready primitives for your next interface.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button size="sm">Get started</Button>
-        </CardContent>
-      </Card>
-    );
+function Preview({ story }: { story: ShowcaseStory }) {
+  const [args, setArgs] = useState(story.args ?? {});
+  const Example = story.render;
   return (
-    <div className="fallback-preview">
-      <span className="fallback-dot" /> Interactive preview coming soon{" "}
-      <a href="https://github.com/erbium-app/erbium-ui">View source ↗</a>
-    </div>
+    <>
+      <ShowcaseSurface>
+        <Example {...args} />
+      </ShowcaseSurface>
+      {story.argTypes && (
+        <fieldset className="preview-controls">
+          <legend>Controls</legend>
+          {Object.entries(story.argTypes).map(([name, settings]) => {
+            const type =
+              typeof settings.control === "string"
+                ? settings.control
+                : settings.control && settings.control.type;
+            if (!type) return null;
+            const value = args[name];
+            return (
+              <label key={name}>
+                {name}
+                {settings.description && <span>{settings.description}</span>}
+                {settings.options ? (
+                  <select
+                    value={String(settings.options.indexOf(value))}
+                    onChange={(event) =>
+                      setArgs({ ...args, [name]: settings.options?.[Number(event.target.value)] })
+                    }
+                  >
+                    {settings.options.map((option, index) => (
+                      <option key={index} value={index}>
+                        {optionLabel(option)}
+                      </option>
+                    ))}
+                  </select>
+                ) : type === "boolean" ? (
+                  <input
+                    type="checkbox"
+                    checked={Boolean(value)}
+                    onChange={(event) => setArgs({ ...args, [name]: event.target.checked })}
+                  />
+                ) : type === "object" ? (
+                  <ObjectControl
+                    value={value}
+                    onChange={(value) => setArgs({ ...args, [name]: value })}
+                  />
+                ) : ["text", "number", "range"].includes(type) ? (
+                  <input
+                    type={type}
+                    value={typeof value === "string" || typeof value === "number" ? value : ""}
+                    {...(typeof settings.control === "object"
+                      ? {
+                          min: settings.control.min,
+                          max: settings.control.max,
+                          step: settings.control.step,
+                        }
+                      : {})}
+                    onChange={(event) =>
+                      setArgs({
+                        ...args,
+                        [name]: type === "text" ? event.target.value : event.target.valueAsNumber,
+                      })
+                    }
+                  />
+                ) : null}
+              </label>
+            );
+          })}
+        </fieldset>
+      )}
+    </>
+  );
+}
+export default function ComponentPreview({
+  name,
+  variant = "Overview",
+}: {
+  name: string;
+  variant?: string;
+}) {
+  const key = `${name}/${variant}`;
+  if (!previews.has(key))
+    previews.set(
+      key,
+      lazy(async () => {
+        const catalog = await loadShowcase(name);
+        const story = catalog[variant] as ShowcaseStory | undefined;
+        if (!story) throw new Error(`Missing interactive showcase: ${key}`);
+        return { default: () => <Preview story={story} /> };
+      }),
+    );
+  const Example = previews.get(key)!;
+  return (
+    <ShowcaseProviders>
+      <Suspense fallback={<p role="status">Loading preview…</p>}>
+        <Example />
+      </Suspense>
+    </ShowcaseProviders>
   );
 }

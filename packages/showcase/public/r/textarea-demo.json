@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-demo",
+  "type": "registry:component",
+  "title": "textarea demo",
+  "description": "Erbium textarea demo example.",
+  "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
+  "files": [
+    {
+      "path": "src/textarea/examples/textarea-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/examples/textarea-demo.tsx",
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function TextareaDemo() {\n  return <Textarea placeholder=\"Type your message here.\" />;\n}\n"
+    }
+  ]
+}

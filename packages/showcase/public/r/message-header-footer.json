@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-header-footer",
+  "type": "registry:block",
+  "title": "Message: Header and Footer",
+  "description": "Use `MessageHeader` for a sender name and `MessageFooter` for metadata such as a delivery or read status.",
+  "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/message/examples/upstream/message-header-footer.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/message/examples/upstream/message-header-footer.tsx",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport {\n  Message,\n  MessageContent,\n  MessageFooter,\n  MessageHeader,\n} from \"@/registry/erbium/ui/message\";\n\nexport function MessageHeaderFooterDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Message>\n        <MessageContent>\n          <MessageHeader>Olivia</MessageHeader>\n          <Bubble variant=\"muted\">\n            <BubbleContent>I already checked the logs.</BubbleContent>\n          </Bubble>\n        </MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>\n          <Bubble>\n            <BubbleContent>\n              Send the report to the team. Ping @shadcn if you need help.\n            </BubbleContent>\n          </Bubble>\n          <MessageFooter>\n            <div>\n              Read <span className=\"font-normal\">Yesterday</span>\n            </div>\n          </MessageFooter>\n        </MessageContent>\n      </Message>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/message/variants/header-footer.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/message/variants/header-footer.tsx",
+      "content": "import { MessageHeaderFooterDemo } from \"../examples/upstream/message-header-footer\";\n\nconst Example = () => <MessageHeaderFooterDemo />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-playground",
+  "type": "registry:component",
+  "title": "Item: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/item", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/item/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/variants/playground.tsx",
+      "content": "import { ItemContent, ItemTitle, ItemDescription, ItemMedia } from \"@/registry/erbium/ui/item\";\nimport { Item } from \"@/registry/erbium/ui/item\";\n\nconst Example = (args: {\n  variant: \"default\" | \"outline\" | \"muted\";\n  size: \"default\" | \"sm\" | \"xs\";\n  mediaVariant: \"default\" | \"icon\" | \"image\";\n  asLink: boolean;\n  className: string;\n}) => (\n  <Item\n    variant={args.variant}\n    size={args.size}\n    render={args.asLink ? <a href=\"#\" /> : undefined}\n    className={`w-80 ${args.className}`}\n  >\n    <ItemMedia variant={args.mediaVariant}>☆</ItemMedia>\n    <ItemContent>\n      <ItemTitle>Item title</ItemTitle>\n      <ItemDescription>Item description</ItemDescription>\n    </ItemContent>\n  </Item>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-examples",
+  "type": "registry:item",
+  "title": "Separator examples",
+  "description": "All separator examples.",
+  "registryDependencies": [
+    "@erbium-examples/separator-playground",
+    "@erbium-examples/separator-overview",
+    "@erbium-examples/separator-vertical",
+    "@erbium-examples/separator-labeled",
+    "@erbium-examples/separator-full-width",
+    "@erbium-examples/separator-on-surfaces",
+    "@erbium-examples/separator-menu",
+    "@erbium-examples/separator-list",
+    "@erbium-examples/separator-margin-sizing"
+  ]
+}

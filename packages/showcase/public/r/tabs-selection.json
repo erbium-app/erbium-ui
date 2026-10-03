@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-selection",
+  "type": "registry:component",
+  "title": "Tabs: Selection",
+  "description": "The raised selection moves across the recessed tab list.",
+  "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
+  "files": [
+    {
+      "path": "src/tabs/variants/selection.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tabs/variants/selection.tsx",
+      "content": "import { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nconst Example = () => (\n  <Tabs defaultValue=\"overview\">\n    <TabsList>\n      <TabsTrigger value=\"overview\">Overview</TabsTrigger>\n      <TabsTrigger value=\"analytics\">Analytics</TabsTrigger>\n      <TabsTrigger value=\"reports\">Reports</TabsTrigger>\n    </TabsList>\n  </Tabs>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

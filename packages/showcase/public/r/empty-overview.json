@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-overview",
+  "type": "registry:block",
+  "title": "Empty: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/empty/examples/empty-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-demo.tsx",
+      "content": "import {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>No projects yet</EmptyTitle>\n        <EmptyDescription>Create a project to get started.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button>Create project</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/overview.tsx",
+      "content": "import Demo from \"../examples/empty-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

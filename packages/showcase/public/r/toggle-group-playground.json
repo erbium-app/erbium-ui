@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group-playground",
+  "type": "registry:component",
+  "title": "Toggle Group: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+  "files": [
+    {
+      "path": "src/toggle-group/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toggle-group/variants/playground.tsx",
+      "content": "import { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof ToggleGroup>) => (\n  <ToggleGroup {...args}>\n    <ToggleGroupItem value=\"one\">One</ToggleGroupItem>\n    <ToggleGroupItem value=\"two\">Two</ToggleGroupItem>\n    <ToggleGroupItem value=\"three\">Three</ToggleGroupItem>\n  </ToggleGroup>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

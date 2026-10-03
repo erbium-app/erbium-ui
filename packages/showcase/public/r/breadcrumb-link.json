@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-link",
+  "type": "registry:component",
+  "title": "breadcrumb link",
+  "description": "Erbium breadcrumb link example.",
+  "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/breadcrumb/examples/upstream/breadcrumb-link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/breadcrumb/examples/upstream/breadcrumb-link.tsx",
+      "content": "import {\n  Breadcrumb,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from \"@/registry/erbium/ui/breadcrumb\";\n\nexport function BreadcrumbLinkDemo() {\n  return (\n    <Breadcrumb>\n      <BreadcrumbList>\n        <BreadcrumbItem>\n          <BreadcrumbLink render={<a href=\"#link-component\" />}>Home</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbLink render={<a href=\"#link-component\" />}>Components</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n        </BreadcrumbItem>\n      </BreadcrumbList>\n    </Breadcrumb>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-badge",
+  "type": "registry:block",
+  "title": "Avatar: Badge",
+  "description": "Use the `AvatarBadge` component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.\n\nUse a theme token such as `bg-success` to set the badge color.\n\n```tsx\n<Avatar>\n  <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n  <AvatarFallback>CN</AvatarFallback>\n  <AvatarBadge className=\"bg-success\" />\n</Avatar>\n```",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-badge.tsx",
+      "content": "import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarWithBadge() {\n  return (\n    <Avatar>\n      <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n      <AvatarFallback>CN</AvatarFallback>\n      <AvatarBadge className=\"bg-success\" />\n    </Avatar>\n  );\n}\n"
+    },
+    {
+      "path": "src/avatar/variants/badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/badge.tsx",
+      "content": "import { AvatarWithBadge } from \"../examples/upstream/avatar-badge\";\n\nconst Example = () => <AvatarWithBadge />;\n\nexport default Example;\n"
+    }
+  ]
+}

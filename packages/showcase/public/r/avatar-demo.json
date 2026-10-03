@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-demo",
+  "type": "registry:component",
+  "title": "avatar demo",
+  "description": "Erbium avatar demo example.",
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/avatar-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/avatar-demo.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport default function AvatarDemo() {\n  return (\n    <div className=\"flex flex-row flex-wrap items-center gap-12\">\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n        <AvatarFallback>ER</AvatarFallback>\n      </Avatar>\n      <div className=\"flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale\">\n        <Avatar>\n          <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n          <AvatarFallback>CN</AvatarFallback>\n        </Avatar>\n        <Avatar>\n          <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n          <AvatarFallback>LR</AvatarFallback>\n        </Avatar>\n        <Avatar>\n          <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n          <AvatarFallback>ER</AvatarFallback>\n        </Avatar>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

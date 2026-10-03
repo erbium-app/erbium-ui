@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-demo",
+  "type": "registry:component",
+  "title": "input group demo",
+  "description": "Erbium input group demo example.",
+  "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input-group/examples/input-group-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/examples/input-group-demo.tsx",
+      "content": "import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\nexport default function Demo() {\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupAddon>\n        <InputGroupText>https://</InputGroupText>\n      </InputGroupAddon>\n      <InputGroupInput aria-label=\"Website\" placeholder=\"example.com\" />\n    </InputGroup>\n  );\n}\n"
+    }
+  ]
+}

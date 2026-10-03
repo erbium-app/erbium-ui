@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-form",
+  "type": "registry:block",
+  "title": "Radio Group: Form",
+  "description": "`name` submits the selected `value` with the form; `required` blocks submission until an item is chosen.",
+  "registryDependencies": [
+    "@erbium/field",
+    "@erbium/radio-group",
+    "@erbium/stateful-button",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/radio-group/examples/radio-group-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/examples/radio-group-form.tsx",
+      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\nimport { StatefulButton } from \"@/registry/erbium/ui/stateful-button\";\nimport { useState } from \"react\";\n\nexport default function RadioGroupForm() {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className=\"flex w-72 flex-col gap-4\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <Field>\n        <RadioGroup name=\"shipping\" required>\n          <FieldItem orientation=\"horizontal\">\n            <RadioGroupItem value=\"standard\" />\n            <FieldLabel>Standard (5–7 days)</FieldLabel>\n          </FieldItem>\n          <FieldItem orientation=\"horizontal\">\n            <RadioGroupItem value=\"express\" />\n            <FieldLabel>Express (1–2 days)</FieldLabel>\n          </FieldItem>\n        </RadioGroup>\n      </Field>\n      <StatefulButton className=\"self-start\" type=\"submit\">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className=\"rounded-md bg-muted p-3 text-xs\">{submitted}</pre> : null}\n    </form>\n  );\n}\n"
+    },
+    {
+      "path": "src/radio-group/variants/form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/variants/form.tsx",
+      "content": "import ExampleRadioGroupForm from \"../examples/radio-group-form\";\n\nconst Example = () => <ExampleRadioGroupForm />;\n\nexport default Example;\n"
+    }
+  ]
+}

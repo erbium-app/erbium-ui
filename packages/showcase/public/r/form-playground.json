@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-playground",
+  "type": "registry:block",
+  "title": "Form: Playground",
+  "description": "",
+  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+  "registryDependencies": [
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/shake",
+    "@erbium/stateful-button",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/form/examples/form-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/form/examples/form-demo.tsx",
+      "content": "import { useAsyncDebouncer } from \"@tanstack/react-pacer/async-debouncer\";\nimport { useForm } from \"@tanstack/react-form\";\nimport { useRef, useState } from \"react\";\nimport { Field, FieldDescription, FieldError, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { StatefulButton } from \"@/registry/erbium/ui/stateful-button\";\nimport type { StatefulButtonState } from \"@/registry/erbium/ui/stateful-button\";\n\nfunction SubmitButton({\n  isSubmitting,\n  isSubmitSuccessful,\n  submissionAttempts,\n  label,\n}: {\n  isSubmitting: boolean;\n  isSubmitSuccessful: boolean;\n  submissionAttempts: number;\n  label: string;\n}) {\n  const [dismissedAttempt, setDismissedAttempt] = useState(0);\n  let state: StatefulButtonState = \"idle\";\n  if (isSubmitting) {\n    state = \"loading\";\n  } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {\n    state = \"success\";\n  }\n\n  return (\n    <StatefulButton\n      type=\"submit\"\n      state={state}\n      onStateChange={(nextState) => {\n        if (nextState === \"idle\") {\n          setDismissedAttempt(submissionAttempts);\n        }\n      }}\n      successLabel=\"Submitted\"\n    >\n      {label}\n    </StatefulButton>\n  );\n}\n\nexport default function FormDemo({\n  defaultEmail = \"\",\n  required = true,\n  submitLabel = \"Submit\",\n}: {\n  defaultEmail?: string;\n  required?: boolean;\n  submitLabel?: string;\n}) {\n  const [submitted, setSubmitted] = useState(\"\");\n  const emailRef = useRef<HTMLInputElement>(null);\n  const request = useAsyncDebouncer(async () => {}, { wait: 450 });\n  const form = useForm({\n    defaultValues: { email: defaultEmail },\n    onSubmit: async ({ value }) => {\n      await request.maybeExecute();\n      setSubmitted(value.email);\n    },\n    onSubmitInvalid: ({ formApi }) => {\n      if (formApi.state.fieldMeta.email?.errors.length) {\n        shake(emailRef.current);\n      }\n    },\n  });\n  return (\n    <form\n      noValidate\n      onSubmit={(event) => {\n        event.preventDefault();\n        void form.handleSubmit();\n      }}\n      className=\"w-80 space-y-4\"\n    >\n      <form.Field\n        name=\"email\"\n        validators={{\n          onBlur: ({ value }) =>\n            required && !value.includes(\"@\") ? \"Enter a valid email address.\" : undefined,\n        }}\n      >\n        {(field) => (\n          <Field\n            name={field.name}\n            invalid={!field.state.meta.isValid}\n            touched={field.state.meta.isTouched}\n            dirty={field.state.meta.isDirty}\n          >\n            <FieldLabel>Email</FieldLabel>\n            <Input\n              ref={emailRef}\n              type=\"email\"\n              value={field.state.value}\n              onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}\n              onBlur={field.handleBlur}\n              onChange={(event) => field.handleChange(event.target.value)}\n            />\n            <FieldDescription>We will use this to contact you.</FieldDescription>\n            <FieldError errors={field.state.meta.errors} />\n          </Field>\n        )}\n      </form.Field>\n      <form.Subscribe\n        selector={(state) =>\n          [state.isSubmitting, state.isSubmitSuccessful, state.submissionAttempts] as const\n        }\n      >\n        {([isSubmitting, isSubmitSuccessful, submissionAttempts]) => (\n          <SubmitButton\n            isSubmitting={isSubmitting}\n            isSubmitSuccessful={isSubmitSuccessful}\n            submissionAttempts={submissionAttempts}\n            label={submitLabel}\n          />\n        )}\n      </form.Subscribe>\n      {submitted && <p role=\"status\">Submitted: {submitted}</p>}\n    </form>\n  );\n}\n"
+    },
+    {
+      "path": "src/form/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/form/variants/playground.tsx",
+      "content": "import Demo from \"../examples/form-demo\";\n\nconst Example = (args: { defaultEmail: string; required: boolean; submitLabel: string }) => (\n  <Demo key={args.defaultEmail} {...args} />\n);\n\nexport default Example;\n"
+    }
+  ]
+}

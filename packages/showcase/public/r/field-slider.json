@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-slider",
+  "type": "registry:block",
+  "title": "Field: Slider",
+  "description": "Compose a field with a slider.",
+  "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/examples/field-slider.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/examples/field-slider.tsx",
+      "content": "import { useState } from \"react\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport default function FieldSlider() {\n  const [value, setValue] = useState([200, 800]);\n  return (\n    <div className=\"w-full max-w-md\">\n      <Field>\n        <FieldLabel>Price Range</FieldLabel>\n        <FieldDescription>\n          Set your budget range ($\n          <span className=\"font-medium tabular-nums\">{value[0]}</span> -{\" \"}\n          <span className=\"font-medium tabular-nums\">{value[1]}</span>).\n        </FieldDescription>\n        <Slider\n          value={value}\n          onValueChange={(next) => setValue(Array.isArray(next) ? [...next] : [next])}\n          max={1000}\n          min={0}\n          step={10}\n          className=\"mt-2 w-full\"\n          aria-label=\"Price Range\"\n        />\n      </Field>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/field/variants/slider.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/slider.tsx",
+      "content": "import ExampleFieldSlider from \"../examples/field-slider\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSlider />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

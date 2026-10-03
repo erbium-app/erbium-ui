@@ -1,0 +1,86 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-stories",
+  "type": "registry:item",
+  "title": "Tooltip stories",
+  "description": "All tooltip variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/kbd",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast",
+    "@erbium/tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/tooltip/examples/tooltip-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/tooltip-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipDemo() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\">Hover</Button>} />\n      <TooltipContent>\n        <p>Add to library</p>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n"
+    },
+    {
+      "path": "src/tooltip/examples/upstream/tooltip-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/upstream/tooltip-disabled.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function TooltipDisabled() {\n  return (\n    <>\n      <Tooltip>\n        <TooltipTrigger render={<span className=\"inline-block w-fit\" />}>\n          <Button variant=\"outline\" disabled>\n            Disabled\n          </Button>\n        </TooltipTrigger>\n        <TooltipContent>\n          <p>This feature is currently unavailable</p>\n        </TooltipContent>\n      </Tooltip>\n    </>\n  );\n}\n"
+    },
+    {
+      "path": "src/tooltip/examples/upstream/tooltip-keyboard.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/upstream/tooltip-keyboard.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport SaveIcon from \"@hugeicons/core-free-icons/SaveIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function TooltipKeyboard() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\" size=\"icon-sm\" />}>\n        <HugeiconsIcon icon={SaveIcon} />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd hotkey=\"S\" />\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n"
+    },
+    {
+      "path": "src/tooltip/examples/upstream/tooltip-sides.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/upstream/tooltip-sides.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function TooltipSides() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      {([\"left\", \"top\", \"bottom\", \"right\"] as const).map((side) => (\n        <Tooltip key={side}>\n          <TooltipTrigger render={<Button variant=\"outline\" className=\"w-fit capitalize\" />}>\n            {side}\n          </TooltipTrigger>\n          <TooltipContent side={side}>\n            <p>Add to library</p>\n          </TooltipContent>\n        </Tooltip>\n      ))}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/tooltip/tooltip.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/tooltip/tooltip.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport { Tooltip } from \"@/registry/erbium/ui/tooltip\";\n\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Tooltip, TooltipTrigger, TooltipContent } from \\\"@/registry/erbium/ui/tooltip\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = (args: {\\n  side: \\\"top\\\" | \\\"right\\\" | \\\"bottom\\\" | \\\"left\\\";\\n  align: \\\"start\\\" | \\\"center\\\" | \\\"end\\\";\\n  sideOffset: number;\\n  defaultOpen: boolean;\\n}) => (\\n  <Tooltip key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\\n    <TooltipTrigger render={<Button variant=\\\"outline\\\">Hover for tooltip</Button>} />\\n    <TooltipContent side={args.side} align={args.align} sideOffset={args.sideOffset}>\\n      Helpful information\\n    </TooltipContent>\\n  </Tooltip>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/tooltip-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport SideExample from \"./variants/side\";\n\nconst SideSource = \"import { TooltipSides } from \\\"../examples/upstream/tooltip-sides\\\";\\n\\nconst Example = () => <TooltipSides />;\\n\\nexport default Example;\\n\";\n\nimport WithKeyboardShortcutExample from \"./variants/with-keyboard-shortcut\";\n\nconst WithKeyboardShortcutSource = \"import { TooltipKeyboard } from \\\"../examples/upstream/tooltip-keyboard\\\";\\n\\nconst Example = () => <TooltipKeyboard />;\\n\\nexport default Example;\\n\";\n\nimport DisabledButtonExample from \"./variants/disabled-button\";\n\nconst DisabledButtonSource = \"import { TooltipDisabled } from \\\"../examples/upstream/tooltip-disabled\\\";\\n\\nconst Example = () => <TooltipDisabled />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Tooltip\",\n  component: Tooltip,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.\\n\\n**Import:** `@/registry/erbium/ui/tooltip`\\n\\n## Usage\\n\\n```tsx\\nimport {\\n  Tooltip,\\n  TooltipContent,\\n  TooltipTrigger,\\n} from \\\"@/registry/erbium/ui/tooltip\\\"\\nimport {{ Button }} from \\\"@/registry/erbium/ui/button\\\"\\n```\\n\\n```tsx\\n<Tooltip>\\n  <TooltipTrigger render={<Button variant=\\\"outline\\\">Hover</Button>} />\\n  <TooltipContent>\\n    <p>Add to library</p>\\n  </TooltipContent>\\n</Tooltip>\\n```\\n\\n## Composition\\n\\nUse the following composition to build a `Tooltip`:\\n\\n```text\\nTooltip\\n├── TooltipTrigger\\n└── TooltipContent\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Tooltip>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  sideOffset: number;\n  defaultOpen: boolean;\n}> = {\n  args: { side: \"top\", align: \"center\", sideOffset: 4, defaultOpen: false },\n  argTypes: {\n    side: { control: \"select\", options: [\"top\", \"right\", \"bottom\", \"left\"] },\n    align: { control: \"select\", options: [\"start\", \"center\", \"end\"] },\n    sideOffset: { control: \"number\" },\n    defaultOpen: { control: \"boolean\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Side: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `side` prop to change the position of the tooltip.\" },\n      source: { code: SideSource },\n    },\n  },\n  render: SideExample,\n};\n\nexport const WithKeyboardShortcut: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show a keyboard shortcut in tooltip content.\" },\n      source: { code: WithKeyboardShortcutSource },\n    },\n  },\n  render: WithKeyboardShortcutExample,\n};\n\nexport const DisabledButton: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show a tooltip on a disabled button by wrapping it with a span.\" },\n      source: { code: DisabledButtonSource },\n    },\n  },\n  render: DisabledButtonExample,\n};\n"
+    },
+    {
+      "path": "src/tooltip/variants/disabled-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/disabled-button.tsx",
+      "content": "import { TooltipDisabled } from \"../examples/upstream/tooltip-disabled\";\n\nconst Example = () => <TooltipDisabled />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/tooltip/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/overview.tsx",
+      "content": "import Demo from \"../examples/tooltip-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/tooltip/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/playground.tsx",
+      "content": "import { Tooltip, TooltipTrigger, TooltipContent } from \"@/registry/erbium/ui/tooltip\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  sideOffset: number;\n  defaultOpen: boolean;\n}) => (\n  <Tooltip key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <TooltipTrigger render={<Button variant=\"outline\">Hover for tooltip</Button>} />\n    <TooltipContent side={args.side} align={args.align} sideOffset={args.sideOffset}>\n      Helpful information\n    </TooltipContent>\n  </Tooltip>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/tooltip/variants/side.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/side.tsx",
+      "content": "import { TooltipSides } from \"../examples/upstream/tooltip-sides\";\n\nconst Example = () => <TooltipSides />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/tooltip/variants/with-keyboard-shortcut.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/with-keyboard-shortcut.tsx",
+      "content": "import { TooltipKeyboard } from \"../examples/upstream/tooltip-keyboard\";\n\nconst Example = () => <TooltipKeyboard />;\n\nexport default Example;\n"
+    }
+  ]
+}

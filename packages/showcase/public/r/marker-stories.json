@@ -1,0 +1,133 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marker-stories",
+  "type": "registry:item",
+  "title": "Marker stories",
+  "description": "All marker variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/csp-provider",
+    "@erbium/marker",
+    "@erbium/overlay-provider",
+    "@erbium/spinner",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/marker/examples/marker-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/marker-demo.tsx",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\nexport default function Demo() {\n  return (\n    <div className=\"flex gap-3\">\n      <Marker>\n        <MarkerContent>New</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>Updated</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-border.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-border.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport FileTextIcon from \"@hugeicons/core-free-icons/FileTextIcon\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerBorderDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-3 py-12\">\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={GitBranchIcon} />\n        </MarkerIcon>\n        <MarkerContent>Switched to release-candidate</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={Search01Icon} />\n        </MarkerIcon>\n        <MarkerContent>Reviewed 8 related files</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={FileTextIcon} />\n        </MarkerIcon>\n        <MarkerContent>Opened implementation notes</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-icon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BookOpenCheckIcon from \"@hugeicons/core-free-icons/BookOpenCheckIcon\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerIconDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-12 py-12\">\n      <Marker>\n        <MarkerIcon>\n          <HugeiconsIcon icon={GitBranchIcon} />\n        </MarkerIcon>\n        <MarkerContent>Switched to a new branch</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={Search01Icon} />\n        </MarkerIcon>\n        <MarkerContent>Explored 4 files</MarkerContent>\n      </Marker>\n      <Marker className=\"flex-col\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={BookOpenCheckIcon} />\n        </MarkerIcon>\n        <MarkerContent>Syncing completed</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-link-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-link-button.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport RotateCcwIcon from \"@hugeicons/core-free-icons/RotateCcwIcon\";\n\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerLinkButtonDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker render={<a href=\"#links-and-buttons\" />}>\n        <MarkerIcon>\n          <HugeiconsIcon icon={GitBranchIcon} />\n        </MarkerIcon>\n        <MarkerContent>View the pull request</MarkerContent>\n      </Marker>\n      <Marker\n        render={\n          <button\n            type=\"button\"\n            className=\"transition-colors hover:text-foreground\"\n            onClick={() => toast.add({ title: \"You clicked the revert button\" })}\n          />\n        }\n      >\n        <MarkerIcon>\n          <HugeiconsIcon icon={RotateCcwIcon} />\n        </MarkerIcon>\n        <MarkerContent>Revert this change</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-separator.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-separator.tsx",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerSeparatorDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker variant=\"separator\">\n        <MarkerContent>Today</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>Worked for 42s</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>Conversation compacted</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-shimmer.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-shimmer.tsx",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerShimmerDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker role=\"status\">\n        <MarkerContent className=\"shimmer\">Thinking...</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\" role=\"status\">\n        <MarkerContent className=\"shimmer\">Reading 4 files</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-status.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-status.tsx",
+      "content": "import { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport function MarkerStatusDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker role=\"status\">\n        <MarkerIcon>\n          <Spinner />\n        </MarkerIcon>\n        <MarkerContent>Compacting conversation</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\" role=\"status\">\n        <MarkerIcon>\n          <Spinner />\n        </MarkerIcon>\n        <MarkerContent>Running tests</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/examples/upstream/marker-variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-variants.tsx",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerVariantsDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker>\n        <MarkerContent>A default marker for inline notes.</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>A separator marker</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>A border marker for row boundaries.</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/marker.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/marker/marker.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Marker } from \"@/registry/erbium/ui/marker\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Marker } from \\\"@/registry/erbium/ui/marker\\\";\\n\\nconst Example = (args: {\\n  variant: \\\"default\\\" | \\\"separator\\\" | \\\"border\\\";\\n  asSpan: boolean;\\n  className: string;\\n}) => (\\n  <div className=\\\"w-72 max-w-[calc(100vw-2rem)]\\\">\\n    <Marker\\n      variant={args.variant}\\n      render={args.asSpan ? <span /> : undefined}\\n      className={args.className}\\n    >\\n      Marker\\n    </Marker>\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/marker-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport VariantsExample from \"./variants/variants\";\n\nconst VariantsSource = \"import { MarkerVariantsDemo } from \\\"../examples/upstream/marker-variants\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-72 max-w-[calc(100vw-2rem)]\\\">\\n    <MarkerVariantsDemo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport StatusExample from \"./variants/status\";\n\nconst StatusSource = \"import { MarkerStatusDemo } from \\\"../examples/upstream/marker-status\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-72 max-w-[calc(100vw-2rem)]\\\">\\n    <MarkerStatusDemo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport ShimmerExample from \"./variants/shimmer\";\n\nconst ShimmerSource = \"import { MarkerShimmerDemo } from \\\"../examples/upstream/marker-shimmer\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-72 max-w-[calc(100vw-2rem)]\\\">\\n    <MarkerShimmerDemo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport SeparatorExample from \"./variants/separator\";\n\nconst SeparatorSource = \"import { MarkerSeparatorDemo } from \\\"../examples/upstream/marker-separator\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-72 max-w-[calc(100vw-2rem)]\\\">\\n    <MarkerSeparatorDemo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BorderExample from \"./variants/border\";\n\nconst BorderSource = \"import { MarkerBorderDemo } from \\\"../examples/upstream/marker-border\\\";\\n\\nconst Example = () => <MarkerBorderDemo />;\\n\\nexport default Example;\\n\";\n\nimport IconExample from \"./variants/icon\";\n\nconst IconSource = \"import { MarkerIconDemo } from \\\"../examples/upstream/marker-icon\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-72 max-w-[calc(100vw-2rem)]\\\">\\n    <MarkerIconDemo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport LinkButtonExample from \"./variants/link-button\";\n\nconst LinkButtonSource = \"import { MarkerLinkButtonDemo } from \\\"../examples/upstream/marker-link-button\\\";\\n\\nconst Example = () => <MarkerLinkButtonDemo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Marker\",\n  component: Marker,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays an inline status, system note, bordered row, or labeled separator in a conversation.\\n\\n**Import:** `@/registry/erbium/ui/marker`\\n\\n## Usage\\n\\n```tsx\\nimport { Marker, MarkerContent, MarkerIcon } from \\\"@/registry/erbium/ui/marker\\\";\\n```\\n\\n```tsx\\n<Marker>\\n  <MarkerIcon>\\n    <CheckIcon />\\n  </MarkerIcon>\\n  <MarkerContent>Explored 4 files</MarkerContent>\\n</Marker>\\n```\\n\\n## Composition\\n\\nUse the following composition to build a marker:\\n\\n```text\\nMarker\\n├── MarkerIcon\\n└── MarkerContent\\n```\\n\\n## Features\\n\\n- Inline marker, bordered row, and labeled separator variants\\n\\n- Decorative icon slot that is hidden from assistive tech\\n\\n- Polymorphic root via `render` for link and button markers\\n\\n- Pairs with the [`shimmer`](https://ui.shadcn.com/docs/utils/shimmer) utility for streaming status text\\n\\n- Customizable styling through the `className` prop on every part\\n\\n## Accessibility\\n\\n`Marker` is presentational by default. The correct semantics depend on how you use it, so choose the role based on intent rather than relying on a single default.\\n\\nFor streaming or progress markers such as \\\"Thinking...\\\" or a running tool, set `role=\\\"status\\\"` so assistive tech announces the update as it appears. `Marker` forwards `role` to the underlying element.\\n\\nA separator that carries text, such as a date or a section label, needs no role. The divider lines are decorative CSS pseudo-elements, and the text is announced as ordinary content.\\n\\n**Note:** Do not add `role=\\\"separator\\\"` to a labeled divider. A separator\\n\\ntakes its accessible name from `aria-label`, not from its text, and its\\n\\ncontents are treated as presentational, so the visible label would not be\\n\\nannounced. Reserve `role=\\\"separator\\\"` for a divider with no meaningful text.\\n\\nA bordered marker keeps the same semantics as the default marker. The bottom border is decorative, so choose `role=\\\"status\\\"`, `render`, or no role based on the marker's purpose.\\n\\n`MarkerIcon` is decorative and hidden from assistive tech with `aria-hidden`, so the adjacent `MarkerContent` carries the meaning. For an icon-only marker, provide an `aria-label` or visible text so it is not announced as empty.\\n\\nWhen a marker links or triggers an action, render it as a real `<button>` or `<a>` with the `render` prop so it is focusable and exposes the correct role. The accessible name comes from the marker text.\\n\\n```tsx\\n<Marker role=\\\"status\\\">\\n  <MarkerIcon>\\n    <Spinner />\\n  </MarkerIcon>\\n  <MarkerContent>Compacting conversation</MarkerContent>\\n</Marker>\\n```\\n\\n```tsx\\n<Marker variant=\\\"separator\\\">\\n  <MarkerContent>Today</MarkerContent>\\n</Marker>\\n```\\n\\n```tsx\\n<Marker variant=\\\"border\\\">\\n  <MarkerIcon>\\n    <FileTextIcon />\\n  </MarkerIcon>\\n  <MarkerContent>Opened implementation notes</MarkerContent>\\n</Marker>\\n```\\n\\n```tsx\\n<Marker aria-label=\\\"Synced\\\">\\n  <MarkerIcon>\\n    <CheckIcon />\\n  </MarkerIcon>\\n</Marker>\\n```\\n\\n```tsx\\n<Marker render={<a href=\\\"/files\\\" />}>\\n  <MarkerIcon>\\n    <FileTextIcon />\\n  </MarkerIcon>\\n  <MarkerContent>Explored 4 files</MarkerContent>\\n</Marker>\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Marker>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  variant: \"default\" | \"separator\" | \"border\";\n  asSpan: boolean;\n  className: string;\n}> = {\n  args: { variant: \"default\", asSpan: false, className: \"\" },\n  argTypes: {\n    variant: {\n      control: \"select\",\n      options: [\"default\", \"separator\", \"border\"],\n    },\n    asSpan: { control: \"boolean\" },\n    className: { control: \"text\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Variants: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant` to switch between an inline marker, bordered row, and labeled separator.\\n\\n| Variant     | Description                                          |\\n| ----------- | ---------------------------------------------------- |\\n| `default`   | An inline marker for status, notes, and actions.     |\\n| `border`    | A default marker with a bottom border under the row. |\\n| `separator` | A centered label with divider lines on each side.    |\" },\n      source: { code: VariantsSource },\n    },\n  },\n  render: VariantsExample,\n};\n\nexport const Status: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Set `role=\\\"status\\\"` and include a [`Spinner`](https://ui.shadcn.com/docs/components/spinner) for streaming or in-progress markers so updates are announced.\" },\n      source: { code: StatusSource },\n    },\n  },\n  render: StatusExample,\n};\n\nexport const Shimmer: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Add the [`shimmer`](https://ui.shadcn.com/docs/utils/shimmer) utility class to `MarkerContent` for an animated streaming-text effect. The utility ships with the `shadcn` package — see the shimmer docs for installation.\" },\n      source: { code: ShimmerSource },\n    },\n  },\n  render: ShimmerExample,\n};\n\nexport const Separator: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `separator` variant for labeled dividers, such as dates or section breaks, in a conversation.\" },\n      source: { code: SeparatorSource },\n    },\n  },\n  render: SeparatorExample,\n};\n\nexport const Border: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `border` variant for status rows that should keep the default marker alignment while separating the next row.\" },\n      source: { code: BorderSource },\n    },\n  },\n  render: BorderExample,\n};\n\nexport const Icon: Story = {\n  name: \"With Icon\",\n  parameters: {\n    docs: {\n      description: { story: \"Use `MarkerIcon` to render an icon alongside the content. Use `flex-col` to stack the icon above the content.\" },\n      source: { code: IconSource },\n    },\n  },\n  render: IconExample,\n};\n\nexport const LinkButton: Story = {\n  name: \"Links and Buttons\",\n  parameters: {\n    docs: {\n      description: { story: \"Turn a marker into a link or button with the `render` prop on `Marker`.\\n\\n```tsx\\nimport { Marker, MarkerContent } from \\\"@/registry/erbium/ui/marker\\\";\\n\\nexport function MarkerLinkDemo() {\\n  return (\\n    <Marker render={<a href=\\\"#\\\" />}>\\n      <MarkerContent>View the pull request</MarkerContent>\\n    </Marker>\\n  );\\n}\\n```\" },\n      source: { code: LinkButtonSource },\n    },\n  },\n  render: LinkButtonExample,\n};\n"
+    },
+    {
+      "path": "src/marker/variants/border.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/border.tsx",
+      "content": "import { MarkerBorderDemo } from \"../examples/upstream/marker-border\";\n\nconst Example = () => <MarkerBorderDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/icon.tsx",
+      "content": "import { MarkerIconDemo } from \"../examples/upstream/marker-icon\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerIconDemo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/link-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/link-button.tsx",
+      "content": "import { MarkerLinkButtonDemo } from \"../examples/upstream/marker-link-button\";\n\nconst Example = () => <MarkerLinkButtonDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/overview.tsx",
+      "content": "import Demo from \"../examples/marker-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/playground.tsx",
+      "content": "import { Marker } from \"@/registry/erbium/ui/marker\";\n\nconst Example = (args: {\n  variant: \"default\" | \"separator\" | \"border\";\n  asSpan: boolean;\n  className: string;\n}) => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <Marker\n      variant={args.variant}\n      render={args.asSpan ? <span /> : undefined}\n      className={args.className}\n    >\n      Marker\n    </Marker>\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/separator.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/separator.tsx",
+      "content": "import { MarkerSeparatorDemo } from \"../examples/upstream/marker-separator\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerSeparatorDemo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/shimmer.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/shimmer.tsx",
+      "content": "import { MarkerShimmerDemo } from \"../examples/upstream/marker-shimmer\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerShimmerDemo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/status.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/status.tsx",
+      "content": "import { MarkerStatusDemo } from \"../examples/upstream/marker-status\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerStatusDemo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/marker/variants/variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/variants.tsx",
+      "content": "import { MarkerVariantsDemo } from \"../examples/upstream/marker-variants\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerVariantsDemo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

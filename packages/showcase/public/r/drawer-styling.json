@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-styling",
+  "type": "registry:block",
+  "title": "Drawer: Styling",
+  "description": "The drawer exposes CSS variables for style-level customization. Set the sizing variables on `DrawerPanel`. Set the overlay variable on `[data-slot=drawer-overlay]` in your CSS.\n\n| Variable                       | Default                      | Description                                                             |\n| ------------------------------ | ---------------------------- | ----------------------------------------------------------------------- |\n| `--drawer-inset`               | `0px`                        | Floats the drawer from the viewport edges.                              |\n| `--drawer-bleed-background`    | `var(--color-surface-modal)` | Fills the gap behind the drawer on swipe overshoot.                     |\n| `--drawer-overlay-min-opacity` | `0`                          | Minimum overlay opacity. Defaults to `0.5` when snap points are active. |\n\nThe drawer also sets data attributes you can target with variants such as `data-[swipe-direction=down]:` on `DrawerPanel`, or `group-data-[swipe-axis=y]/drawer-popup:` on its descendants.\n\n| Attribute                 | Values                        | Set when                              |\n| ------------------------- | ----------------------------- | ------------------------------------- |\n| `data-swipe-direction`    | `up`, `right`, `down`, `left` | Always.                               |\n| `data-swipe-axis`         | `x`, `y`                      | Always.                               |\n| `data-snap-points`        | Present                       | The drawer has snap points.           |\n| `data-expanded`           | Present                       | The drawer is at the full snap point. |\n| `data-swiping`            | Present                       | A swipe is in progress.               |\n| `data-nested-drawer-open` | Present                       | A nested drawer is open on top.       |",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/dialog",
+    "@erbium/drawer",
+    "@erbium/styles",
+    "@erbium/use-is-mobile"
+  ],
+  "files": [
+    {
+      "path": "src/drawer/examples/drawer-variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/drawer/examples/drawer-variants.tsx",
+      "content": "import { useIsMobile } from \"@/registry/erbium/hooks/use-is-mobile\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerContent,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\n\nimport {\n  Dialog,\n  DialogPanel,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\n\nfunction DrawerExample({ className, label }: { className?: string; label: string }) {\n  return (\n    <Drawer showSwipeHandle>\n      <DrawerTrigger render={<Button variant=\"outline\" />}>{label}</DrawerTrigger>\n      <DrawerPanel className={className}>\n        <DrawerHeader>\n          <DrawerTitle>{label}</DrawerTitle>\n          <DrawerDescription>Adjust the drawer layout for your content.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>This region scrolls when the content grows.</DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button />}>Done</DrawerClose>\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n\nexport function CustomSizes() {\n  return <DrawerExample className=\"h-[50vh] max-h-[50vh]\" label=\"Open half-height drawer\" />;\n}\n\nexport function Styling() {\n  return (\n    <DrawerExample\n      className=\"[--drawer-inset:--spacing(4)] [--drawer-bleed-background:transparent] rounded-2xl\"\n      label=\"Open inset drawer\"\n    />\n  );\n}\n\nexport function Responsive() {\n  const isMobile = useIsMobile();\n  if (isMobile) return <DrawerExample label=\"Edit profile\" />;\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\" />}>Edit profile</DialogTrigger>\n      <DialogPanel>\n        <DialogHeader>\n          <DialogTitle>Edit profile</DialogTitle>\n          <DialogDescription>\n            The dialog is used from 768px up; resize to see a drawer.\n          </DialogDescription>\n        </DialogHeader>\n        <DialogContent>Update your profile details here.</DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/drawer/variants/styling.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/drawer/variants/styling.tsx",
+      "content": "import { Styling as StylingExample } from \"../examples/drawer-variants\";\n\nconst Example = () => <StylingExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

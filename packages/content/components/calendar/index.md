@@ -1,0 +1,40 @@
+---
+title: "Calendar"
+description: "A calendar component that allows users to select a date or a range of dates."
+---
+
+A calendar component that allows users to select a date or a range of dates.
+
+**Import:** `@erbium/ui/components/calendar`
+
+## Usage
+
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.
+
+```tsx
+import { Calendar } from "@erbium/ui/components/calendar";
+```
+
+```tsx
+const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+return <Calendar mode="single" selected={date} onSelect={setDate} />;
+```
+
+## About
+
+The `Calendar` component is built on top of [React DayPicker](https://react-day-picker.js.org).
+
+## Date Picker
+
+You can use the `<Calendar>` component to build a date picker. See the [Date Picker](https://ui.shadcn.com/docs/components/base/date-picker) page for more information.
+
+## Localization
+
+Pass the `locale` prop to provide locale-specific formatting.
+
+```tsx
+import { enUS } from "react-day-picker/locale";
+
+<Calendar mode="single" selected={date} onSelect={setDate} locale={enUS} />;
+```

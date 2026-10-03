@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-overview",
+  "type": "registry:block",
+  "title": "Textarea: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
+  "files": [
+    {
+      "path": "src/textarea/examples/textarea-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/examples/textarea-demo.tsx",
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function TextareaDemo() {\n  return <Textarea placeholder=\"Type your message here.\" />;\n}\n"
+    },
+    {
+      "path": "src/textarea/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/variants/overview.tsx",
+      "content": "import Demo from \"../examples/textarea-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

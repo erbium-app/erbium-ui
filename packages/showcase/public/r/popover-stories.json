@@ -1,0 +1,86 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-stories",
+  "type": "registry:item",
+  "title": "Popover stories",
+  "description": "All popover variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/overlay-provider",
+    "@erbium/popover",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/popover/examples/popover-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/popover-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@/registry/erbium/ui/popover\";\n\nexport default function PopoverDemo() {\n  return (\n    <Popover>\n      <PopoverTrigger render={<Button variant=\"outline\">Open popover</Button>} />\n      <PopoverContent className=\"w-80\">\n        <div className=\"grid gap-4\">\n          <div className=\"space-y-2\">\n            <h4 className=\"leading-none font-medium\">Dimensions</h4>\n            <p className=\"text-sm text-muted-foreground\">Set the dimensions for the layer.</p>\n          </div>\n          <div className=\"grid gap-2\">\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Width</FieldLabel>\n              <Input defaultValue=\"100%\" className=\"col-span-2 h-8\" />\n            </Field>\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Max. width</FieldLabel>\n              <Input defaultValue=\"300px\" className=\"col-span-2 h-8\" />\n            </Field>\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Height</FieldLabel>\n              <Input defaultValue=\"25px\" className=\"col-span-2 h-8\" />\n            </Field>\n            <Field className=\"grid grid-cols-3 items-center gap-4\">\n              <FieldLabel>Max. height</FieldLabel>\n              <Input defaultValue=\"none\" className=\"col-span-2 h-8\" />\n            </Field>\n          </div>\n        </div>\n      </PopoverContent>\n    </Popover>\n  );\n}\n"
+    },
+    {
+      "path": "src/popover/examples/upstream/popover-alignments.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/upstream/popover-alignments.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Popover, PopoverContent, PopoverTrigger } from \"@/registry/erbium/ui/popover\";\n\nexport function PopoverAlignments() {\n  return (\n    <>\n      <div className=\"flex gap-6\">\n        <Popover>\n          <PopoverTrigger render={<Button variant=\"outline\" size=\"sm\" />}>Start</PopoverTrigger>\n          <PopoverContent align=\"start\" className=\"w-40\">\n            Aligned to start\n          </PopoverContent>\n        </Popover>\n        <Popover>\n          <PopoverTrigger render={<Button variant=\"outline\" size=\"sm\" />}>Center</PopoverTrigger>\n          <PopoverContent align=\"center\" className=\"w-40\">\n            Aligned to center\n          </PopoverContent>\n        </Popover>\n        <Popover>\n          <PopoverTrigger render={<Button variant=\"outline\" size=\"sm\" />}>End</PopoverTrigger>\n          <PopoverContent align=\"end\" className=\"w-40\">\n            Aligned to end\n          </PopoverContent>\n        </Popover>\n      </div>\n    </>\n  );\n}\n"
+    },
+    {
+      "path": "src/popover/examples/upstream/popover-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/upstream/popover-basic.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function PopoverBasic() {\n  return (\n    <>\n      <Popover>\n        <PopoverTrigger render={<Button variant=\"outline\" className=\"w-fit\" />}>\n          Open Popover\n        </PopoverTrigger>\n        <PopoverContent align=\"start\">\n          <PopoverHeader>\n            <PopoverTitle>Dimensions</PopoverTitle>\n            <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>\n          </PopoverHeader>\n        </PopoverContent>\n      </Popover>\n    </>\n  );\n}\n"
+    },
+    {
+      "path": "src/popover/examples/upstream/popover-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/upstream/popover-form.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function PopoverForm() {\n  return (\n    <>\n      <Popover>\n        <PopoverTrigger render={<Button variant=\"outline\" />}>Open Popover</PopoverTrigger>\n        <PopoverContent className=\"w-64\" align=\"start\">\n          <PopoverHeader>\n            <PopoverTitle>Dimensions</PopoverTitle>\n            <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>\n          </PopoverHeader>\n          <FieldGroup className=\"gap-4\">\n            <Field orientation=\"horizontal\">\n              <FieldLabel className=\"w-1/2\">Width</FieldLabel>\n              <Input defaultValue=\"100%\" />\n            </Field>\n            <Field orientation=\"horizontal\">\n              <FieldLabel className=\"w-1/2\">Height</FieldLabel>\n              <Input defaultValue=\"25px\" />\n            </Field>\n          </FieldGroup>\n        </PopoverContent>\n      </Popover>\n    </>\n  );\n}\n"
+    },
+    {
+      "path": "src/popover/popover.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/popover/popover.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport { Popover } from \"@/registry/erbium/ui/popover\";\n\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import {\\n  Popover,\\n  PopoverTrigger,\\n  PopoverContent,\\n  PopoverHeader,\\n  PopoverTitle,\\n  PopoverDescription,\\n} from \\\"@/registry/erbium/ui/popover\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = (args: {\\n  side: \\\"top\\\" | \\\"right\\\" | \\\"bottom\\\" | \\\"left\\\";\\n  align: \\\"start\\\" | \\\"center\\\" | \\\"end\\\";\\n  defaultOpen: boolean;\\n}) => (\\n  <Popover key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\\n    <PopoverTrigger render={<Button variant=\\\"outline\\\">Open popover</Button>} />\\n    <PopoverContent side={args.side} align={args.align}>\\n      <PopoverHeader>\\n        <PopoverTitle>Popover title</PopoverTitle>\\n        <PopoverDescription>Popover description.</PopoverDescription>\\n      </PopoverHeader>\\n    </PopoverContent>\\n  </Popover>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/popover-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import { PopoverBasic } from \\\"../examples/upstream/popover-basic\\\";\\n\\nconst Example = () => <PopoverBasic />;\\n\\nexport default Example;\\n\";\n\nimport AlignExample from \"./variants/align\";\n\nconst AlignSource = \"import { PopoverAlignments } from \\\"../examples/upstream/popover-alignments\\\";\\n\\nconst Example = () => <PopoverAlignments />;\\n\\nexport default Example;\\n\";\n\nimport WithFormExample from \"./variants/with-form\";\n\nconst WithFormSource = \"import { PopoverForm } from \\\"../examples/upstream/popover-form\\\";\\n\\nconst Example = () => <PopoverForm />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Popover\",\n  component: Popover,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays rich content in a portal, triggered by a button.\\n\\n**Import:** `@/registry/erbium/ui/popover`\\n\\n## Usage\\n\\n```tsx\\nimport {\\n  Popover,\\n  PopoverContent,\\n  PopoverDescription,\\n  PopoverHeader,\\n  PopoverTitle,\\n  PopoverTrigger,\\n} from \\\"@/registry/erbium/ui/popover\\\"\\nimport {{ Button }} from \\\"@/registry/erbium/ui/button\\\"\\n```\\n\\n```tsx\\n<Popover>\\n  <PopoverTrigger render={<Button variant=\\\"outline\\\" />}>Open Popover</PopoverTrigger>\\n  <PopoverContent>\\n    <PopoverHeader>\\n      <PopoverTitle>Title</PopoverTitle>\\n      <PopoverDescription>Description text here.</PopoverDescription>\\n    </PopoverHeader>\\n  </PopoverContent>\\n</Popover>\\n```\\n\\n## Composition\\n\\nUse the following composition to build a `Popover`:\\n\\n```text\\nPopover\\n├── PopoverTrigger\\n└── PopoverContent\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Popover>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  defaultOpen: boolean;\n}> = {\n  args: { side: \"bottom\", align: \"center\", defaultOpen: false },\n  argTypes: {\n    side: { control: \"select\", options: [\"top\", \"right\", \"bottom\", \"left\"] },\n    align: { control: \"select\", options: [\"start\", \"center\", \"end\"] },\n    defaultOpen: { control: \"boolean\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A simple popover with a header, title, and description.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const Align: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `align` prop on `PopoverContent` to control the horizontal alignment.\" },\n      source: { code: AlignSource },\n    },\n  },\n  render: AlignExample,\n};\n\nexport const WithForm: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A popover with form fields inside.\" },\n      source: { code: WithFormSource },\n    },\n  },\n  render: WithFormExample,\n};\n"
+    },
+    {
+      "path": "src/popover/variants/align.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/align.tsx",
+      "content": "import { PopoverAlignments } from \"../examples/upstream/popover-alignments\";\n\nconst Example = () => <PopoverAlignments />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/popover/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/basic.tsx",
+      "content": "import { PopoverBasic } from \"../examples/upstream/popover-basic\";\n\nconst Example = () => <PopoverBasic />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/popover/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/overview.tsx",
+      "content": "import Demo from \"../examples/popover-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/popover/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/playground.tsx",
+      "content": "import {\n  Popover,\n  PopoverTrigger,\n  PopoverContent,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverDescription,\n} from \"@/registry/erbium/ui/popover\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  defaultOpen: boolean;\n}) => (\n  <Popover key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <PopoverTrigger render={<Button variant=\"outline\">Open popover</Button>} />\n    <PopoverContent side={args.side} align={args.align}>\n      <PopoverHeader>\n        <PopoverTitle>Popover title</PopoverTitle>\n        <PopoverDescription>Popover description.</PopoverDescription>\n      </PopoverHeader>\n    </PopoverContent>\n  </Popover>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/popover/variants/with-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/variants/with-form.tsx",
+      "content": "import { PopoverForm } from \"../examples/upstream/popover-form\";\n\nconst Example = () => <PopoverForm />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

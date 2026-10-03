@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-with-spinner",
+  "type": "registry:block",
+  "title": "Badge: With Spinner",
+  "description": "You can render a spinner inside the badge. Remember to add the `data-icon=\"inline-start\"` or `data-icon=\"inline-end\"` prop to the spinner.",
+  "registryDependencies": ["@erbium/badge", "@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/badge/examples/upstream/badge-spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/examples/upstream/badge-spinner.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport function BadgeWithSpinner() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Badge variant=\"error\">\n        <Spinner data-icon=\"inline-start\" />\n        Deleting\n      </Badge>\n      <Badge variant=\"secondary\">\n        Generating\n        <Spinner data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/badge/variants/with-spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/with-spinner.tsx",
+      "content": "import { BadgeWithSpinner } from \"../examples/upstream/badge-spinner\";\n\nconst Example = () => <BadgeWithSpinner />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,6 +1,18 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
-  "workspaces": { "packages/*": {}, "apps/*": {} },
+  "workspaces": {
+    "packages/*": {},
+    "packages/showcase": {
+      "entry": [
+        "src/**/examples/**/*.tsx",
+        "src/**/variants/*.tsx",
+        "src/*/catalog.tsx",
+
+        "scripts/*.mjs",
+      ],
+    },
+    "apps/*": {},
+  },
   "ignore": [
     "**/.astro/**",
     "**/.blume/**",

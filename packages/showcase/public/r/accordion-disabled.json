@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-disabled",
+  "type": "registry:component",
+  "title": "Accordion: Disabled",
+  "description": "Disable an individual accordion item.",
+  "registryDependencies": ["@erbium/accordion", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/accordion/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/accordion/variants/disabled.tsx",
+      "content": "import { AccordionContent, AccordionItem, AccordionTrigger } from \"@/registry/erbium/ui/accordion\";\nimport { Accordion } from \"@/registry/erbium/ui/accordion\";\n\nconst Example = () => (\n  <Accordion className=\"w-80\">\n    <AccordionItem value=\"one\">\n      <AccordionTrigger>Available</AccordionTrigger>\n      <AccordionContent>This panel opens.</AccordionContent>\n    </AccordionItem>\n    <AccordionItem value=\"two\" disabled>\n      <AccordionTrigger>Unavailable</AccordionTrigger>\n      <AccordionContent>This panel is disabled.</AccordionContent>\n    </AccordionItem>\n  </Accordion>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

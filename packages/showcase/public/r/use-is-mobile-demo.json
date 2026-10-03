@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-is-mobile-demo",
+  "type": "registry:component",
+  "title": "use is mobile demo",
+  "description": "Erbium use is mobile demo example.",
+  "registryDependencies": ["@erbium/styles", "@erbium/use-is-mobile"],
+  "files": [
+    {
+      "path": "src/use-is-mobile/examples/use-is-mobile-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/use-is-mobile/examples/use-is-mobile-demo.tsx",
+      "content": "import { useIsMobile } from \"@/registry/erbium/hooks/use-is-mobile\";\nexport default function Demo() {\n  const isMobile = useIsMobile();\n  return (\n    <p aria-live=\"polite\">\n      Viewport: {isMobile ? \"mobile\" : \"desktop\"}. Resize the window to update.\n    </p>\n  );\n}\n"
+    }
+  ]
+}

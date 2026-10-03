@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-as-link",
+  "type": "registry:component",
+  "title": "Button: As Link",
+  "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/as-link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/as-link.tsx",
+      "content": "import { buttonVariants } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <a className={buttonVariants({ variant: \"outline\" })} href=\"#button-as-link\">\n    Open section\n  </a>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

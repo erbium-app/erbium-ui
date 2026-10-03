@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-examples",
+  "type": "registry:item",
+  "title": "Aspect Ratio examples",
+  "description": "All aspect-ratio examples.",
+  "registryDependencies": [
+    "@erbium-examples/aspect-ratio-playground",
+    "@erbium-examples/aspect-ratio-overview",
+    "@erbium-examples/aspect-ratio-square",
+    "@erbium-examples/aspect-ratio-portrait"
+  ]
+}

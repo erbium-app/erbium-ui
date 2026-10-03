@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-overview",
+  "type": "registry:block",
+  "title": "Spinner: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/item", "@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/spinner/examples/spinner-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-demo.tsx",
+      "content": "import { Item, ItemContent, ItemMedia, ItemTitle } from \"@/registry/erbium/ui/item\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerDemo() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-4 [--radius:1rem]\">\n      <Item variant=\"muted\">\n        <ItemMedia>\n          <Spinner />\n        </ItemMedia>\n        <ItemContent>\n          <ItemTitle className=\"line-clamp-1\">Processing payment...</ItemTitle>\n        </ItemContent>\n        <ItemContent className=\"flex-none justify-end\">\n          <span className=\"text-sm tabular-nums\">$100.00</span>\n        </ItemContent>\n      </Item>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/overview.tsx",
+      "content": "import Demo from \"../examples/spinner-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

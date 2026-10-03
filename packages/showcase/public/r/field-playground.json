@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-playground",
+  "type": "registry:component",
+  "title": "Field: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/playground.tsx",
+      "content": "import { FieldDescription } from \"@/registry/erbium/ui/field\";\nimport { Field, FieldError, FieldLabel, FieldLegend, FieldSet } from \"@/registry/erbium/ui/field\";\nimport { Input as UIInput } from \"@/registry/erbium/ui/input\";\n\nconst Example = (args: {\n  orientation: \"vertical\" | \"horizontal\" | \"responsive\";\n  invalid: boolean;\n  error: string;\n  className: string;\n  legendVariant: \"legend\" | \"label\";\n}) => (\n  <FieldSet>\n    <FieldLegend variant={args.legendVariant}>Contact details</FieldLegend>\n    <Field\n      orientation={args.orientation}\n      invalid={args.invalid}\n      className={`w-80 ${args.className}`}\n    >\n      <FieldLabel htmlFor=\"playground-field\">Email</FieldLabel>\n      <UIInput id=\"playground-field\" placeholder=\"name@example.com\" />\n      <FieldDescription>We will use this to contact you.</FieldDescription>\n      <FieldError errors={args.invalid ? [{ message: args.error }] : []} />\n    </Field>\n  </FieldSet>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

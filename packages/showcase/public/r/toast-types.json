@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-types",
+  "type": "registry:block",
+  "title": "Toast: Types",
+  "description": "Set `type` to success, info, warning, error, or loading to show a status icon.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
+  "files": [
+    {
+      "path": "src/toast/examples/upstream/toast-types.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toast/examples/upstream/toast-types.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nexport function ToastTypes() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Button\n        variant=\"outline\"\n        onClick={() =>\n          toast.add({ id: \"toast-type-default\", description: \"Event has been created.\" })\n        }\n      >\n        Default\n      </Button>\n      <Button\n        variant=\"outline\"\n        onClick={() =>\n          toast.add({\n            id: \"toast-type-success\",\n            type: \"success\",\n            description: \"Event has been created.\",\n          })\n        }\n      >\n        Success\n      </Button>\n      <Button\n        variant=\"outline\"\n        onClick={() =>\n          toast.add({\n            id: \"toast-type-info\",\n            type: \"info\",\n            description: \"Arrive 10 minutes before the event.\",\n          })\n        }\n      >\n        Info\n      </Button>\n      <Button\n        variant=\"outline\"\n        onClick={() =>\n          toast.add({\n            id: \"toast-type-warning\",\n            type: \"warning\",\n            description: \"The event cannot start before 8:00 AM.\",\n          })\n        }\n      >\n        Warning\n      </Button>\n      <Button\n        variant=\"outline\"\n        onClick={() =>\n          toast.add({\n            id: \"toast-type-error\",\n            type: \"error\",\n            description: \"The event could not be created.\",\n            priority: \"high\",\n          })\n        }\n      >\n        Error\n      </Button>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/toast/variants/types.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toast/variants/types.tsx",
+      "content": "import { ToastTypes } from \"../examples/upstream/toast-types\";\n\nconst Example = () => <ToastTypes />;\n\nexport default Example;\n"
+    }
+  ]
+}

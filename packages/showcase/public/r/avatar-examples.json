@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-examples",
+  "type": "registry:item",
+  "title": "Avatar examples",
+  "description": "All avatar examples.",
+  "registryDependencies": [
+    "@erbium-examples/avatar-playground",
+    "@erbium-examples/avatar-overview",
+    "@erbium-examples/avatar-fallback",
+    "@erbium-examples/avatar-image",
+    "@erbium-examples/avatar-basic",
+    "@erbium-examples/avatar-badge",
+    "@erbium-examples/avatar-dropdown",
+    "@erbium-examples/avatar-badge-with-icon",
+    "@erbium-examples/avatar-avatar-group",
+    "@erbium-examples/avatar-avatar-group-count",
+    "@erbium-examples/avatar-avatar-group-with-icon",
+    "@erbium-examples/avatar-sizes"
+  ]
+}

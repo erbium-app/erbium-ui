@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-badge",
+  "type": "registry:block",
+  "title": "Spinner: Badge",
+  "description": "Use `Badge loading` to show a spinner before the label.",
+  "registryDependencies": ["@erbium/badge", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/spinner/examples/spinner-badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-badge.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-4 [--radius:1.2rem]\">\n      <Badge loading>Syncing</Badge>\n      <Badge variant=\"secondary\" loading>\n        Updating\n      </Badge>\n      <Badge variant=\"outline\" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/variants/badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/badge.tsx",
+      "content": "import ExampleSpinnerBadge from \"../examples/spinner-badge\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerBadge />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

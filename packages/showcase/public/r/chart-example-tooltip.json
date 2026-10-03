@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chart-example-tooltip",
+  "type": "registry:block",
+  "title": "Chart: Tooltip",
+  "description": "Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\n\n```tsx\nimport { tooltip } from \"@tanstack/charts/tooltip\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  focus: \"group-x\",\n  tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n});\n```\n\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.",
+  "dependencies": ["@tanstack/charts@0.18.0"],
+  "registryDependencies": ["@erbium/chart", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/chart/examples/upstream/chart-example-tooltip.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/chart/examples/upstream/chart-example-tooltip.tsx",
+      "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport function ChartBarDemoTooltip() {\n  return (\n    <Chart\n      definition={visitorChart({ grid: true, axis: true, tooltip: true })}\n      height={240}\n      initialWidth={640}\n      ariaLabel=\"Desktop and mobile visitors by month\"\n    />\n  );\n}\n"
+    },
+    {
+      "path": "src/chart/examples/upstream/chart-example.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/chart/examples/upstream/chart-example.tsx",
+      "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nconst monthlyVisitors = [\n  { month: \"January\", desktop: 186, mobile: 80 },\n  { month: \"February\", desktop: 305, mobile: 200 },\n  { month: \"March\", desktop: 237, mobile: 120 },\n  { month: \"April\", desktop: 73, mobile: 190 },\n  { month: \"May\", desktop: 209, mobile: 130 },\n  { month: \"June\", desktop: 214, mobile: 140 },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { month, device: \"Desktop\", visitors: desktop },\n  { month, device: \"Mobile\", visitors: mobile },\n]);\n\nexport function visitorChart(\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) {\n  return defineChart({\n    theme: {\n      foreground: \"var(--foreground)\",\n      muted: \"var(--muted-foreground)\",\n      grid: \"var(--border)\",\n    },\n    marks: [\n      barY(visitors, {\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n        color: \"device\",\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        inset: 1,\n      }),\n    ],\n    scales: {\n      x: {\n        scale: scaleBand,\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n      },\n      y: { scale: scaleLinear, nice: true, grid: options.grid },\n    },\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              label: \"Device\",\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                justify: \"start\",\n                gap: 16,\n                rowGap: 8,\n                indicator: { shape: \"dot\", width: 8, height: 8, gap: 7 },\n                label: { fontSize: 13, fontWeight: 500, fill: \"var(--muted-foreground)\" },\n              }),\n            }),\n          }\n        : {}),\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n        }\n      : {}),\n  });\n}\n\nexport function ChartExample() {\n  return (\n    <Chart\n      definition={visitorChart()}\n      height={240}\n      initialWidth={640}\n      ariaLabel=\"Desktop and mobile visitors by month\"\n    />\n  );\n}\n"
+    },
+    {
+      "path": "src/chart/variants/example-tooltip.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/chart/variants/example-tooltip.tsx",
+      "content": "import { ChartBarDemoTooltip } from \"../examples/upstream/chart-example-tooltip\";\n\nconst Example = () => <ChartBarDemoTooltip />;\n\nexport default Example;\n"
+    }
+  ]
+}

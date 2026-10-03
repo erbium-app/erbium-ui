@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-overview",
+  "type": "registry:block",
+  "title": "Meter: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/meter", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/meter/examples/meter-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/meter/examples/meter-demo.tsx",
+      "content": "import {\n  Meter,\n  MeterIndicator,\n  MeterLabel,\n  MeterTrack,\n  MeterValue,\n} from \"@/registry/erbium/ui/meter\";\n\nexport default function MeterDemo() {\n  return (\n    <Meter value={24} className=\"w-72\">\n      <MeterLabel>Storage used</MeterLabel>\n      <MeterValue />\n      <MeterTrack>\n        <MeterIndicator />\n      </MeterTrack>\n    </Meter>\n  );\n}\n"
+    },
+    {
+      "path": "src/meter/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/meter/variants/overview.tsx",
+      "content": "import Demo from \"../examples/meter-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

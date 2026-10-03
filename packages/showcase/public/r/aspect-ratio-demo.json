@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-demo",
+  "type": "registry:component",
+  "title": "aspect ratio demo",
+  "description": "Erbium aspect ratio demo example.",
+  "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/aspect-ratio/examples/aspect-ratio-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/examples/aspect-ratio-demo.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nexport default function Demo() {\n  return (\n    <div className=\"w-80\">\n      <AspectRatio ratio={16 / 9}>\n        <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n          16:9 media area\n        </div>\n      </AspectRatio>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

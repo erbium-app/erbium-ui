@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-nested",
+  "type": "registry:block",
+  "title": "Button Group: Nested",
+  "description": "Nest `<ButtonGroup>` components to create button groups with spacing.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button-group/examples/button-group-nested.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/examples/button-group-nested.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowLeft01Icon from \"@hugeicons/core-free-icons/ArrowLeft01Icon\";\nimport ArrowRight01Icon from \"@hugeicons/core-free-icons/ArrowRight01Icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupNested() {\n  return (\n    <ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          1\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          2\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          3\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          4\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          5\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Previous\">\n          <HugeiconsIcon icon={ArrowLeft01Icon} />\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Next\">\n          <HugeiconsIcon icon={ArrowRight01Icon} />\n        </Button>\n      </ButtonGroup>\n    </ButtonGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/button-group/variants/nested.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/variants/nested.tsx",
+      "content": "import ExampleButtonGroupNested from \"../examples/button-group-nested\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupNested />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

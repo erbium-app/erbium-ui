@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-disabled",
+  "type": "registry:block",
+  "title": "Tabs: Disabled",
+  "description": "Disable a tab that is not available.",
+  "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
+  "files": [
+    {
+      "path": "src/tabs/examples/upstream/tabs-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tabs/examples/upstream/tabs-disabled.tsx",
+      "content": "import { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport function TabsDisabled() {\n  return (\n    <Tabs defaultValue=\"home\">\n      <TabsList>\n        <TabsTrigger value=\"home\">Home</TabsTrigger>\n        <TabsTrigger value=\"settings\" disabled>\n          Disabled\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n"
+    },
+    {
+      "path": "src/tabs/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tabs/variants/disabled.tsx",
+      "content": "import { TabsDisabled } from \"../examples/upstream/tabs-disabled\";\n\nconst Example = () => <TabsDisabled />;\n\nexport default Example;\n"
+    }
+  ]
+}

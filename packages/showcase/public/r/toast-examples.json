@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast-examples",
+  "type": "registry:item",
+  "title": "Toast examples",
+  "description": "All toast examples.",
+  "registryDependencies": [
+    "@erbium-examples/toast-playground",
+    "@erbium-examples/toast-overview",
+    "@erbium-examples/toast-types",
+    "@erbium-examples/toast-promise",
+    "@erbium-examples/toast-action",
+    "@erbium-examples/toast-progress",
+    "@erbium-examples/toast-queue"
+  ]
+}

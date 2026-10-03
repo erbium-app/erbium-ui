@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-pad",
+  "type": "registry:component",
+  "title": "Control: Pad",
+  "description": "",
+  "registryDependencies": ["@erbium/control", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/control/variants/pad.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/pad.tsx",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Pad label=\"Position\" defaultValue={{ x: 25, y: 75 }} className=\"w-72\" />\n);\n\nexport default Example;\n"
+    }
+  ]
+}

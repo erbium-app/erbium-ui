@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marker-variants",
+  "type": "registry:block",
+  "title": "Marker: Variants",
+  "description": "Use `variant` to switch between an inline marker, bordered row, and labeled separator.\n\n| Variant     | Description                                          |\n| ----------- | ---------------------------------------------------- |\n| `default`   | An inline marker for status, notes, and actions.     |\n| `border`    | A default marker with a bottom border under the row. |\n| `separator` | A centered label with divider lines on each side.    |",
+  "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/marker/examples/upstream/marker-variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/upstream/marker-variants.tsx",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerVariantsDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker>\n        <MarkerContent>A default marker for inline notes.</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>A separator marker</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>A border marker for row boundaries.</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/variants/variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/variants.tsx",
+      "content": "import { MarkerVariantsDemo } from \"../examples/upstream/marker-variants\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerVariantsDemo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

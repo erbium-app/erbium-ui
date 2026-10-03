@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "message-scroller-playground",
+  "type": "registry:component",
+  "title": "Message Scroller: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/message-scroller", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/message-scroller/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/message-scroller/variants/playground.tsx",
+      "content": "import {\n  MessageScrollerProvider,\n  MessageScrollerViewport,\n  MessageScrollerContent,\n  MessageScrollerItem,\n  MessageScrollerButton,\n} from \"@/registry/erbium/ui/message-scroller\";\nimport { MessageScroller } from \"@/registry/erbium/ui/message-scroller\";\n\nconst Example = (args: {\n  autoScroll: boolean;\n  scrollPreviousItemPeek: number;\n  messageCount: number;\n  busy: boolean;\n}) => (\n  <MessageScrollerProvider\n    autoScroll={args.autoScroll}\n    scrollPreviousItemPeek={args.scrollPreviousItemPeek}\n  >\n    <MessageScroller className=\"h-48 w-80\">\n      <MessageScrollerViewport>\n        <MessageScrollerContent aria-busy={args.busy}>\n          {Array.from({ length: args.messageCount }, (_, index) => (\n            <MessageScrollerItem key={index} messageId={`message-${index}`}>\n              Message {index + 1}\n            </MessageScrollerItem>\n          ))}\n        </MessageScrollerContent>\n      </MessageScrollerViewport>\n      <MessageScrollerButton />\n    </MessageScroller>\n  </MessageScrollerProvider>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

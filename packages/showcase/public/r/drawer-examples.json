@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-examples",
+  "type": "registry:item",
+  "title": "Drawer examples",
+  "description": "All drawer examples.",
+  "registryDependencies": [
+    "@erbium-examples/drawer-playground",
+    "@erbium-examples/drawer-overview",
+    "@erbium-examples/drawer-swipe-handle",
+    "@erbium-examples/drawer-non-modal",
+    "@erbium-examples/drawer-snap-points",
+    "@erbium-examples/drawer-position",
+    "@erbium-examples/drawer-nested",
+    "@erbium-examples/drawer-custom-sizes",
+    "@erbium-examples/drawer-styling",
+    "@erbium-examples/drawer-responsive"
+  ]
+}

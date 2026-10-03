@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-secondary",
+  "type": "registry:block",
+  "title": "Button: Secondary",
+  "description": "Use the secondary variant for an alternative action.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-secondary.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-secondary.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonSecondary() {\n  return <Button variant=\"secondary\">Secondary</Button>;\n}\n"
+    },
+    {
+      "path": "src/button/variants/secondary.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/secondary.tsx",
+      "content": "import ExampleButtonSecondary from \"../examples/button-secondary\";\n\nconst Example = () => <ExampleButtonSecondary />;\n\nexport default Example;\n"
+    }
+  ]
+}

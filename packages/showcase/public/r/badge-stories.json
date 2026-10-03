@@ -1,0 +1,91 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-stories",
+  "type": "registry:item",
+  "title": "Badge stories",
+  "description": "All badge variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/badge",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/spinner",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/badge/badge.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/badge/badge.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Badge } from \\\"@/registry/erbium/ui/badge\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Badge>) => <Badge {...args} />;\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/badge-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport VariantsExample from \"./variants/variants\";\n\nconst VariantsSource = \"import { Badge } from \\\"@/registry/erbium/ui/badge\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"flex gap-2\\\">\\n    {(\\n      [\\n        \\\"default\\\",\\n        \\\"secondary\\\",\\n        \\\"info\\\",\\n        \\\"success\\\",\\n        \\\"warning\\\",\\n        \\\"error\\\",\\n        \\\"ghost-error\\\",\\n        \\\"ghost-success\\\",\\n        \\\"ghost-warning\\\",\\n        \\\"ghost-info\\\",\\n        \\\"tag-gray\\\",\\n        \\\"tag-red\\\",\\n        \\\"tag-orange\\\",\\n        \\\"tag-yellow\\\",\\n        \\\"tag-green\\\",\\n        \\\"tag-cyan\\\",\\n        \\\"tag-blue\\\",\\n        \\\"tag-purple\\\",\\n        \\\"tag-magenta\\\",\\n        \\\"outline\\\",\\n      ] as const\\n    ).map((variant) => (\\n      <Badge key={variant} variant={variant}>\\n        {variant}\\n      </Badge>\\n    ))}\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport LinkExample from \"./variants/link\";\n\nconst LinkSource = \"import { BadgeAsLink } from \\\"../examples/upstream/badge-link\\\";\\n\\nconst Example = () => <BadgeAsLink />;\\n\\nexport default Example;\\n\";\n\nimport WithIconExample from \"./variants/with-icon\";\n\nconst WithIconSource = \"import { BadgeWithIconLeft } from \\\"../examples/upstream/badge-icon\\\";\\n\\nconst Example = () => <BadgeWithIconLeft />;\\n\\nexport default Example;\\n\";\n\nimport WithSpinnerExample from \"./variants/with-spinner\";\n\nconst WithSpinnerSource = \"import { BadgeWithSpinner } from \\\"../examples/upstream/badge-spinner\\\";\\n\\nconst Example = () => <BadgeWithSpinner />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Badge\",\n  component: Badge,\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays a badge or a component that looks like a badge.\\n\\n**Import:** `@/registry/erbium/ui/badge`\\n\\n## Usage\\n\\n```tsx\\nimport { Badge } from \\\"@/registry/erbium/ui/badge\\\";\\n```\\n\\n```tsx\\n<Badge variant=\\\"default | outline | secondary | info | success | warning | error | ghost-error | ghost-info | ghost-success | ghost-warning | tag-gray | tag-red | tag-orange | tag-yellow | tag-green | tag-cyan | tag-blue | tag-purple | tag-magenta\\\">\\n  Badge\\n</Badge>\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Badge>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Badge> = {\n  args: { variant: \"default\", children: \"Badge\", className: \"\" },\n  argTypes: {\n    variant: {\n      control: \"select\",\n      options: [\n        \"default\",\n        \"secondary\",\n        \"info\",\n        \"success\",\n        \"warning\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"tag-gray\",\n        \"tag-red\",\n        \"tag-orange\",\n        \"tag-yellow\",\n        \"tag-green\",\n        \"tag-cyan\",\n        \"tag-blue\",\n        \"tag-purple\",\n        \"tag-magenta\",\n        \"outline\",\n        \"ghost\",\n        \"link\",\n      ],\n    },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Variants: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `variant` prop to change the variant of the badge.\" },\n      source: { code: VariantsSource },\n    },\n  },\n  render: VariantsExample,\n};\n\nexport const Link: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `render` prop to render a link as a badge.\" },\n      source: { code: LinkSource },\n    },\n  },\n  render: LinkExample,\n};\n\nexport const WithIcon: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"You can render an icon inside the badge. Use `data-icon=\\\"inline-start\\\"` to render the icon on the left and `data-icon=\\\"inline-end\\\"` to render the icon on the right.\" },\n      source: { code: WithIconSource },\n    },\n  },\n  render: WithIconExample,\n};\n\nexport const WithSpinner: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"You can render a spinner inside the badge. Remember to add the `data-icon=\\\"inline-start\\\"` or `data-icon=\\\"inline-end\\\"` prop to the spinner.\" },\n      source: { code: WithSpinnerSource },\n    },\n  },\n  render: WithSpinnerExample,\n};\n"
+    },
+    {
+      "path": "src/badge/examples/badge-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/examples/badge-demo.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function BadgeDemo() {\n  return (\n    <div className=\"flex flex-col items-center gap-2\">\n      <div className=\"flex w-full flex-wrap gap-2\">\n        <Badge>Badge</Badge>\n        <Badge variant=\"secondary\">Secondary</Badge>\n        <Badge variant=\"error\">Error</Badge>\n        <Badge variant=\"outline\">Outline</Badge>\n      </div>\n      <div className=\"flex w-full flex-wrap gap-2\">\n        <Badge variant=\"success\" statusIcon>\n          Verified\n        </Badge>\n        <Badge className=\"h-5 min-w-5 rounded-full px-1 font-mono tabular-nums\">8</Badge>\n        <Badge className=\"h-5 min-w-5 rounded-full px-1 font-mono tabular-nums\" variant=\"error\">\n          99\n        </Badge>\n        <Badge className=\"h-5 min-w-5 rounded-full px-1 font-mono tabular-nums\" variant=\"outline\">\n          20+\n        </Badge>\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/badge/examples/upstream/badge-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/examples/upstream/badge-icon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Bookmark01Icon from \"@hugeicons/core-free-icons/Bookmark01Icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport function BadgeWithIconLeft() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Badge variant=\"success\" statusIcon>\n        Verified\n      </Badge>\n      <Badge variant=\"outline\">\n        Bookmark\n        <HugeiconsIcon icon={Bookmark01Icon} data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/badge/examples/upstream/badge-link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/examples/upstream/badge-link.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUpRight01Icon from \"@hugeicons/core-free-icons/ArrowUpRight01Icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport function BadgeAsLink() {\n  return (\n    <Badge render={<a href=\"#link\" />}>\n      Open Link <HugeiconsIcon icon={ArrowUpRight01Icon} data-icon=\"inline-end\" />\n    </Badge>\n  );\n}\n"
+    },
+    {
+      "path": "src/badge/examples/upstream/badge-spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/examples/upstream/badge-spinner.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport function BadgeWithSpinner() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Badge variant=\"error\">\n        <Spinner data-icon=\"inline-start\" />\n        Deleting\n      </Badge>\n      <Badge variant=\"secondary\">\n        Generating\n        <Spinner data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/badge/variants/link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/link.tsx",
+      "content": "import { BadgeAsLink } from \"../examples/upstream/badge-link\";\n\nconst Example = () => <BadgeAsLink />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/badge/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/overview.tsx",
+      "content": "import Demo from \"../examples/badge-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/badge/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/playground.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Badge>) => <Badge {...args} />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/badge/variants/variants.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/variants.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nconst Example = () => (\n  <div className=\"flex gap-2\">\n    {(\n      [\n        \"default\",\n        \"secondary\",\n        \"info\",\n        \"success\",\n        \"warning\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"tag-gray\",\n        \"tag-red\",\n        \"tag-orange\",\n        \"tag-yellow\",\n        \"tag-green\",\n        \"tag-cyan\",\n        \"tag-blue\",\n        \"tag-purple\",\n        \"tag-magenta\",\n        \"outline\",\n      ] as const\n    ).map((variant) => (\n      <Badge key={variant} variant={variant}>\n        {variant}\n      </Badge>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/badge/variants/with-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/with-icon.tsx",
+      "content": "import { BadgeWithIconLeft } from \"../examples/upstream/badge-icon\";\n\nconst Example = () => <BadgeWithIconLeft />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/badge/variants/with-spinner.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/badge/variants/with-spinner.tsx",
+      "content": "import { BadgeWithSpinner } from \"../examples/upstream/badge-spinner\";\n\nconst Example = () => <BadgeWithSpinner />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

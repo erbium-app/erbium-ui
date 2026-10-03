@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-rounded",
+  "type": "registry:block",
+  "title": "Button: Rounded",
+  "description": "Use the `rounded-full` class to make the button rounded.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-rounded.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-rounded.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonRounded() {\n  return (\n    <div className=\"flex flex-col gap-8\">\n      <Button variant=\"outline\" size=\"icon\" className=\"rounded-full\">\n        <HugeiconsIcon icon={ArrowUp01Icon} />\n      </Button>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/button/variants/rounded.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/rounded.tsx",
+      "content": "import ExampleButtonRounded from \"../examples/button-rounded\";\n\nconst Example = () => <ExampleButtonRounded />;\n\nexport default Example;\n"
+    }
+  ]
+}

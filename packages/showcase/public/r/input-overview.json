@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-overview",
+  "type": "registry:block",
+  "title": "Input: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/examples/input-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/input-demo.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputDemo() {\n  return <Input type=\"email\" placeholder=\"Email\" />;\n}\n"
+    },
+    {
+      "path": "src/input/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/overview.tsx",
+      "content": "import Demo from \"../examples/input-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

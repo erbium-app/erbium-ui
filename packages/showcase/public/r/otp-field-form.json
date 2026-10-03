@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-form",
+  "type": "registry:block",
+  "title": "OTP Field: Form",
+  "description": "A verification card with a labelled field.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/field",
+    "@erbium/otp-field",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/otp-field/examples/upstream/otp-field-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/examples/upstream/otp-field-form.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport RefreshCwIcon from \"@hugeicons/core-free-icons/RefreshCwIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Card,\n  CardAction,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldForm() {\n  return (\n    <Card className=\"mx-auto w-full max-w-sm\">\n      <CardHeader>\n        <CardTitle>Verify your login</CardTitle>\n        <CardDescription>\n          Enter the verification code we sent to{\" \"}\n          <span className=\"font-medium text-foreground\">m@example.com</span>.\n        </CardDescription>\n        <CardAction>\n          <Button type=\"button\" variant=\"outline\" size=\"xs\">\n            <HugeiconsIcon icon={RefreshCwIcon} />\n            Resend\n          </Button>\n        </CardAction>\n      </CardHeader>\n      <CardContent>\n        <form id=\"otp-verification-form\" onSubmit={(event) => event.preventDefault()}>\n          <Field>\n            <FieldLabel>Verification code</FieldLabel>\n            <OTPField length={6} groups={[3, 3]} required />\n            <FieldDescription>\n              <a href=\"#\">I no longer have access to this email address.</a>\n            </FieldDescription>\n          </Field>\n        </form>\n      </CardContent>\n      <CardFooter className=\"flex-col items-stretch gap-3\">\n        <Button type=\"submit\" form=\"otp-verification-form\">\n          Verify\n        </Button>\n        <p className=\"text-center text-sm text-muted-foreground\">\n          Having trouble signing in?{\" \"}\n          <a\n            href=\"#\"\n            className=\"underline underline-offset-4 transition-colors hover:text-foreground\"\n          >\n            Contact support\n          </a>\n        </p>\n      </CardFooter>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/otp-field/variants/form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/form.tsx",
+      "content": "import { OTPFieldForm } from \"../examples/upstream/otp-field-form\";\n\nconst Example = () => <OTPFieldForm />;\n\nexport default Example;\n"
+    }
+  ]
+}

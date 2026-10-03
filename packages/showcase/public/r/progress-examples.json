@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-examples",
+  "type": "registry:item",
+  "title": "Progress examples",
+  "description": "All progress examples.",
+  "registryDependencies": [
+    "@erbium-examples/progress-playground",
+    "@erbium-examples/progress-overview",
+    "@erbium-examples/progress-partial",
+    "@erbium-examples/progress-complete",
+    "@erbium-examples/progress-label",
+    "@erbium-examples/progress-controlled"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-playground",
+  "type": "registry:component",
+  "title": "Progress: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/progress/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/progress/variants/playground.tsx",
+      "content": "import { ProgressTrack, ProgressIndicator } from \"@/registry/erbium/ui/progress\";\nimport { Progress } from \"@/registry/erbium/ui/progress\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Progress>) => (\n  <Progress\n    {...args}\n    className={`w-72 ${typeof args.className === \"string\" ? args.className : \"\"}`}\n  >\n    <ProgressTrack>\n      <ProgressIndicator />\n    </ProgressTrack>\n  </Progress>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

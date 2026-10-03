@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-group",
+  "type": "registry:block",
+  "title": "Checkbox: Group",
+  "description": "`CheckboxGroup` wraps Base UI's checkbox group: it renders `role=\"group\"` and holds the checked `value`s as one array. Press a checkbox or its label and drag across the others to select or clear them in one gesture.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-group.tsx",
+      "content": "import { Checkbox, CheckboxGroup } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  FieldItem,\n  FieldDescription,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxGroupFieldset() {\n  return (\n    <FieldSet>\n      <FieldLegend variant=\"label\">Show these items on the desktop:</FieldLegend>\n      <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>\n      <CheckboxGroup defaultValue={[\"hard-disks\", \"external-disks\"]}>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"hard-disks\" />\n          <FieldLabel className=\"font-normal\">Hard disks</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"external-disks\" />\n          <FieldLabel className=\"font-normal\">External disks</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"cds-dvds\" />\n          <FieldLabel className=\"font-normal\">CDs, DVDs, and iPods</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"connected-servers\" />\n          <FieldLabel className=\"font-normal\">Connected servers</FieldLabel>\n        </FieldItem>\n      </CheckboxGroup>\n    </FieldSet>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/group.tsx",
+      "content": "import { CheckboxGroupFieldset } from \"../examples/upstream/checkbox-group\";\n\nconst Example = () => <CheckboxGroupFieldset />;\n\nexport default Example;\n"
+    }
+  ]
+}

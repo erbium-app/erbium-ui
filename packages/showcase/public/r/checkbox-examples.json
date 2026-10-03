@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-examples",
+  "type": "registry:item",
+  "title": "Checkbox examples",
+  "description": "All checkbox examples.",
+  "registryDependencies": [
+    "@erbium-examples/checkbox-playground",
+    "@erbium-examples/checkbox-overview",
+    "@erbium-examples/checkbox-checked",
+    "@erbium-examples/checkbox-controlled",
+    "@erbium-examples/checkbox-indeterminate",
+    "@erbium-examples/checkbox-read-only",
+    "@erbium-examples/checkbox-form",
+    "@erbium-examples/checkbox-disabled",
+    "@erbium-examples/checkbox-table",
+    "@erbium-examples/checkbox-basic",
+    "@erbium-examples/checkbox-description",
+    "@erbium-examples/checkbox-group",
+    "@erbium-examples/checkbox-invalid-state"
+  ]
+}

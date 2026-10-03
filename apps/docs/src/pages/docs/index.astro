@@ -1,15 +1,16 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import ComponentPreview from "../../components/ComponentPreview.tsx";
-import { components } from "../../data/components";
+import { Content, frontmatter } from "@erbium/content/introduction.md";
 ---
-<DocsLayout title="Documentation">
-  <div class="docs-intro"><p class="eyebrow">Documentation</p><h1>Build with intention.</h1><p class="lede">Erbium UI gives you accessible React components that are easy to understand, customize, and own.</p></div>
-  <div class="callout"><span>✦</span><div><strong>Source-first by design</strong><p>Components live in <code>packages/ui</code>. The documentation site imports them directly as React islands, so examples stay honest.</p></div></div>
-  <h2>Start here</h2><div class="quick-links"><a href="/docs/installation"><strong>Installation</strong><span>Add Erbium UI to a project →</span></a><a href="/docs/components/button"><strong>Components</strong><span>Browse the component workbench →</span></a></div>
-  <h2>Component sampler</h2><div class="sampler"><ComponentPreview name="card" client:load /><ComponentPreview name="input" client:load /><ComponentPreview name="switch" client:load /></div>
+<DocsLayout title="Documentation" description={frontmatter.description}>
+  <article class="markdown-copy"><h1>{frontmatter.title}</h1><Content /></article>
+  <div class="sampler">
+    <ComponentPreview name="card" client:load />
+    <ComponentPreview name="input" client:load />
+    <ComponentPreview name="switch" client:load />
+  </div>
 </DocsLayout>
 <style>
-  .docs-intro { max-width: 42rem; }.eyebrow { color:#c2410c; font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }.docs-intro h1 { margin:.8rem 0; font-size:clamp(2.6rem, 5vw, 4.4rem); line-height:1; letter-spacing:-.065em; }.lede { color:#737373; font-size:1.08rem; line-height:1.65; }.callout { display:flex; gap:1rem; margin:3rem 0; padding:1.2rem 1.3rem; border:1px solid #fed7aa; border-radius:.8rem; background:#fff7ed; font-size:.88rem; }.callout > span { color:#c2410c; }.callout p { margin:.35rem 0 0; color:#737373; line-height:1.55; }.callout code { color:#9a3412; font-family:var(--font-mono); }.docs-intro ~ h2, .main-content h2 { margin:2.7rem 0 1rem; font-size:1.25rem; letter-spacing:-.03em; }.quick-links { display:grid; grid-template-columns:repeat(2, 1fr); gap:.75rem; }.quick-links a { display:flex; flex-direction:column; gap:.4rem; padding:1rem; border:1px solid #e7e5e4; border-radius:.7rem; background:white; }.quick-links a:hover { border-color:#c2410c; }.quick-links span { color:#737373; font-size:.8rem; }.sampler { display:grid; grid-template-columns:repeat(3, 1fr); gap:.75rem; }.sampler > div { min-height:10rem; display:grid; place-items:center; padding:1rem; border:1px solid #e7e5e4; border-radius:.7rem; background:#fff; }.sampler .preview-form { display:flex; align-items:stretch; }
-  @media(max-width:700px){.quick-links,.sampler{grid-template-columns:1fr}.sampler > div{min-height:8rem}}
+.sampler { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap:1rem; }
 </style>

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-full-width",
+  "type": "registry:component",
+  "title": "Separator: Full Width",
+  "description": "Without a `variant`, a separator follows its container. On a surface it runs solid to both edges; in padded content (`separator-inset`) and on the canvas it fades. Pass `variant=\"full\"` or `variant=\"inset\"` to choose.",
+  "registryDependencies": ["@erbium/separator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/separator/variants/full-width.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/variants/full-width.tsx",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"grid w-72 gap-6\">\n    <div className=\"overflow-hidden rounded-lg surface-panel py-3\">\n      <div className=\"px-3 pb-3 text-sm\">Card header</div>\n      <Separator />\n      <div className=\"separator-inset grid gap-3 p-3 text-sm text-muted-foreground\">\n        Card content\n        <Separator />\n        Inset content divider\n      </div>\n    </div>\n    <div className=\"grid gap-3 text-sm text-muted-foreground\">\n      Canvas\n      <Separator />\n      <Separator variant=\"full\" />\n    </div>\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

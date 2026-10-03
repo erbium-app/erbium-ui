@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-badge-icon",
+  "type": "registry:component",
+  "title": "avatar badge icon",
+  "description": "Erbium avatar badge icon example.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-badge-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-badge-icon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarBadgeIconExample() {\n  return (\n    <Avatar className=\"grayscale\">\n      <AvatarImage src=\"https://github.com/pranathip.png\" alt=\"@pranathip\" />\n      <AvatarFallback>PP</AvatarFallback>\n      <AvatarBadge>\n        <HugeiconsIcon icon={PlusIcon} />\n      </AvatarBadge>\n    </Avatar>\n  );\n}\n"
+    }
+  ]
+}

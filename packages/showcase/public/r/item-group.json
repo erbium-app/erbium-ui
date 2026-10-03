@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-group",
+  "type": "registry:block",
+  "title": "Item: Group",
+  "description": "Use `ItemGroup` to group related items together.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/item", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/item/examples/item-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/examples/item-group.tsx",
+      "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemGroup,\n  ItemMedia,\n  ItemSeparator,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nconst people = [\n  {\n    username: \"shadcn\",\n    avatar: \"https://github.com/shadcn.png\",\n    email: \"shadcn@vercel.com\",\n  },\n  {\n    username: \"maxleiter\",\n    avatar: \"https://github.com/maxleiter.png\",\n    email: \"maxleiter@vercel.com\",\n  },\n  {\n    username: \"evilrabbit\",\n    avatar: \"https://github.com/evilrabbit.png\",\n    email: \"evilrabbit@vercel.com\",\n  },\n];\n\nexport default function ItemGroupExample() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-6\">\n      <ItemGroup>\n        {people.map((person, index) => (\n          <React.Fragment key={person.username}>\n            <Item>\n              <ItemMedia>\n                <Avatar>\n                  <AvatarImage src={person.avatar} className=\"grayscale\" />\n                  <AvatarFallback>{person.username.charAt(0)}</AvatarFallback>\n                </Avatar>\n              </ItemMedia>\n              <ItemContent className=\"gap-1\">\n                <ItemTitle>{person.username}</ItemTitle>\n                <ItemDescription>{person.email}</ItemDescription>\n              </ItemContent>\n              <ItemActions>\n                <Button variant=\"ghost\" size=\"icon\" className=\"rounded-full\">\n                  <HugeiconsIcon icon={PlusIcon} />\n                </Button>\n              </ItemActions>\n            </Item>\n            {index !== people.length - 1 && <ItemSeparator />}\n          </React.Fragment>\n        ))}\n      </ItemGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/item/variants/group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/variants/group.tsx",
+      "content": "import ExampleItemGroup from \"../examples/item-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemGroup />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

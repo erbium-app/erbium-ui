@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-loading-directions",
+  "type": "registry:component",
+  "title": "Button: Loading Directions",
+  "description": "The loading spinner stays at the inline start in both LTR and RTL layouts.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/direction", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/loading-directions.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/loading-directions.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nconst Example = () => (\n  <div className=\"flex gap-6\">\n    {([\"ltr\", \"rtl\"] as const).map((direction) => (\n      <DirectionProvider direction={direction} key={direction}>\n        <div dir={direction} className=\"flex flex-col items-start gap-2\">\n          <Button loading>{direction === \"rtl\" ? \"در حال ذخیره\" : \"Saving\"}</Button>\n          <Button loading size=\"sm\" variant=\"outline\">\n            {direction === \"rtl\" ? \"لطفاً صبر کنید\" : \"Please wait\"}\n          </Button>\n          <Button aria-label={direction === \"rtl\" ? \"تازه‌سازی\" : \"Refresh\"} loading size=\"icon\">\n            <HugeiconsIcon icon={ArrowUp01Icon} />\n          </Button>\n        </div>\n      </DirectionProvider>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

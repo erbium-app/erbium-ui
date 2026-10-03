@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress-demo",
+  "type": "registry:component",
+  "title": "progress demo",
+  "description": "Erbium progress demo example.",
+  "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/progress/examples/progress-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/progress/examples/progress-demo.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Progress } from \"@/registry/erbium/ui/progress\";\n\nexport default function ProgressDemo() {\n  const [progress, setProgress] = React.useState(13);\n\n  React.useEffect(() => {\n    const timer = setTimeout(() => setProgress(66), 500);\n    return () => clearTimeout(timer);\n  }, []);\n\n  return <Progress value={progress} className=\"w-[60%]\" />;\n}\n"
+    }
+  ]
+}

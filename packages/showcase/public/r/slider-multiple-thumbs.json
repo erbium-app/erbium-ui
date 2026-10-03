@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-multiple-thumbs",
+  "type": "registry:block",
+  "title": "Slider: Multiple Thumbs",
+  "description": "Use an array with multiple values for multiple thumbs.",
+  "registryDependencies": ["@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/slider/examples/upstream/slider-multiple.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/slider/examples/upstream/slider-multiple.tsx",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderMultiple() {\n  return (\n    <Slider defaultValue={[10, 20, 70]} max={100} step={10} className=\"mx-auto w-full max-w-xs\" />\n  );\n}\n"
+    },
+    {
+      "path": "src/slider/variants/multiple-thumbs.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/slider/variants/multiple-thumbs.tsx",
+      "content": "import { SliderMultiple } from \"../examples/upstream/slider-multiple\";\n\nconst Example = () => <SliderMultiple />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible-examples",
+  "type": "registry:item",
+  "title": "Collapsible examples",
+  "description": "All collapsible examples.",
+  "registryDependencies": [
+    "@erbium-examples/collapsible-playground",
+    "@erbium-examples/collapsible-overview",
+    "@erbium-examples/collapsible-file-tree",
+    "@erbium-examples/collapsible-basic",
+    "@erbium-examples/collapsible-settings-panel",
+    "@erbium-examples/collapsible-controlled-state"
+  ]
+}

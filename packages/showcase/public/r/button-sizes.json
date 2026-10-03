@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-sizes",
+  "type": "registry:component",
+  "title": "Button: Sizes",
+  "description": "Compare the available button sizes.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/variants/sizes.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/sizes.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <div className=\"flex items-center gap-2\">\n    {([\"xs\", \"sm\", \"default\", \"lg\"] as const).map((size) => (\n      <Button key={size} size={size}>\n        {size}\n      </Button>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

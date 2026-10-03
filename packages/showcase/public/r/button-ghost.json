@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-ghost",
+  "type": "registry:block",
+  "title": "Button: Ghost",
+  "description": "Use the ghost variant for a subtle action.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-ghost.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-ghost.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonGhost() {\n  return <Button variant=\"ghost\">Ghost</Button>;\n}\n"
+    },
+    {
+      "path": "src/button/variants/ghost.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/ghost.tsx",
+      "content": "import ExampleButtonGhost from \"../examples/button-ghost\";\n\nconst Example = () => <ExampleButtonGhost />;\n\nexport default Example;\n"
+    }
+  ]
+}

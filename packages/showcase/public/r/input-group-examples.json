@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-examples",
+  "type": "registry:item",
+  "title": "Input Group examples",
+  "description": "All input-group examples.",
+  "registryDependencies": [
+    "@erbium-examples/input-group-playground",
+    "@erbium-examples/input-group-overview",
+    "@erbium-examples/input-group-icon",
+    "@erbium-examples/input-group-text",
+    "@erbium-examples/input-group-dropdown",
+    "@erbium-examples/input-group-spinner",
+    "@erbium-examples/input-group-inline-start",
+    "@erbium-examples/input-group-inline-end",
+    "@erbium-examples/input-group-block-start",
+    "@erbium-examples/input-group-block-end",
+    "@erbium-examples/input-group-kbd",
+    "@erbium-examples/input-group-textarea",
+    "@erbium-examples/input-group-button",
+    "@erbium-examples/input-group-custom"
+  ]
+}

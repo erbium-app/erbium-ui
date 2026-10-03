@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-error",
+  "type": "registry:component",
+  "title": "context menu error",
+  "description": "Erbium context menu error example.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/context-menu/examples/upstream/context-menu-error.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/context-menu/examples/upstream/context-menu-error.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PencilIcon from \"@hugeicons/core-free-icons/PencilIcon\";\nimport Share01Icon from \"@hugeicons/core-free-icons/Share01Icon\";\nimport TrashIcon from \"@hugeicons/core-free-icons/TrashIcon\";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuError() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            <HugeiconsIcon icon={PencilIcon} />\n            Edit\n          </ContextMenuItem>\n          <ContextMenuItem>\n            <HugeiconsIcon icon={Share01Icon} />\n            Share\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem variant=\"error\">\n            <HugeiconsIcon icon={TrashIcon} />\n            Delete\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
+    }
+  ]
+}

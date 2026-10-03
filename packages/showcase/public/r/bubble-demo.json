@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bubble-demo",
+  "type": "registry:component",
+  "title": "bubble demo",
+  "description": "Erbium bubble demo example.",
+  "registryDependencies": ["@erbium/bubble", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/bubble/examples/bubble-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/bubble/examples/bubble-demo.tsx",
+      "content": "import { Bubble, BubbleContent, BubbleGroup } from \"@/registry/erbium/ui/bubble\";\nexport default function Demo() {\n  return (\n    <BubbleGroup>\n      <Bubble>\n        <BubbleContent>Hello! How can I help?</BubbleContent>\n      </Bubble>\n      <Bubble>\n        <BubbleContent>Show me the latest update.</BubbleContent>\n      </Bubble>\n    </BubbleGroup>\n  );\n}\n"
+    }
+  ]
+}

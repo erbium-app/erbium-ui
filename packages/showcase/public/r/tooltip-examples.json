@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-examples",
+  "type": "registry:item",
+  "title": "Tooltip examples",
+  "description": "All tooltip examples.",
+  "registryDependencies": [
+    "@erbium-examples/tooltip-playground",
+    "@erbium-examples/tooltip-overview",
+    "@erbium-examples/tooltip-side",
+    "@erbium-examples/tooltip-with-keyboard-shortcut",
+    "@erbium-examples/tooltip-disabled-button"
+  ]
+}

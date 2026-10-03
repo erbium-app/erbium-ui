@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-range-calendar",
+  "type": "registry:block",
+  "title": "Calendar: Range Calendar",
+  "description": "Use the `mode=\"range\"` prop to enable range selection.",
+  "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
+  "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/calendar/examples/upstream/calendar-range.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-range.tsx",
+      "content": "import * as React from \"react\";\nimport { addDays } from \"date-fns\";\nimport { type DateRange } from \"react-day-picker\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport function CalendarRange() {\n  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({\n    from: new Date(new Date().getFullYear(), 0, 12),\n    to: addDays(new Date(new Date().getFullYear(), 0, 12), 30),\n  });\n\n  return (\n    <Calendar\n      mode=\"range\"\n      defaultMonth={dateRange?.from}\n      selected={dateRange}\n      onSelect={setDateRange}\n      numberOfMonths={2}\n    />\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/variants/range-calendar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/range-calendar.tsx",
+      "content": "import { CalendarRange } from \"../examples/upstream/calendar-range\";\n\nconst Example = () => <CalendarRange />;\n\nexport default Example;\n"
+    }
+  ]
+}

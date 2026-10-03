@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "drawer-playground",
+  "type": "registry:component",
+  "title": "Drawer: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/drawer/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/drawer/variants/playground.tsx",
+      "content": "import {\n  Drawer,\n  DrawerTrigger,\n  DrawerPanel,\n  DrawerContent,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerDescription,\n} from \"@/registry/erbium/ui/drawer\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  swipeDirection: \"up\" | \"down\" | \"left\" | \"right\";\n  modal: boolean;\n  showSwipeHandle: boolean;\n  showCloseButton: boolean;\n}) => (\n  <Drawer\n    swipeDirection={args.swipeDirection}\n    modal={args.modal}\n    showSwipeHandle={args.showSwipeHandle}\n  >\n    <DrawerTrigger render={<Button variant=\"outline\">Open drawer</Button>} />\n    <DrawerPanel showCloseButton={args.showCloseButton}>\n      <DrawerHeader>\n        <DrawerTitle>Drawer title</DrawerTitle>\n        <DrawerDescription>Drawer description.</DrawerDescription>\n      </DrawerHeader>\n      <DrawerContent>Drawer content.</DrawerContent>\n    </DrawerPanel>\n  </Drawer>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

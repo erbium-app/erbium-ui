@@ -1,3 +1,5 @@
+@import "@erbium/ui/globals.css";
+@source "../../../../packages/showcase/src";
 .search-wrap {
   position: relative;
 }
@@ -101,4 +103,104 @@
   margin-top: 0.25rem;
   border-radius: 50%;
   background: #c2410c;
+}
+
+.component-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+.markdown-copy {
+  color: var(--docs-muted);
+  line-height: 1.75;
+}
+.markdown-copy h1 {
+  color: var(--docs-ink);
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.065em;
+  margin-bottom: 1.5rem;
+}
+.markdown-copy h2,
+.markdown-copy h3 {
+  color: var(--docs-ink);
+  margin: 2rem 0 0.75rem;
+  font-weight: 600;
+}
+.markdown-copy h2 {
+  font-size: 1.4rem;
+}
+.markdown-copy h3 {
+  font-size: 1.15rem;
+}
+.markdown-copy p {
+  margin: 1rem 0;
+}
+.markdown-copy ul,
+.markdown-copy ol {
+  padding-inline-start: 1.5rem;
+  list-style: revert;
+}
+.markdown-copy a,
+.workbench-link a {
+  color: var(--docs-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.markdown-copy pre {
+  padding: 1rem;
+  margin-block: 1rem;
+  overflow: auto;
+  border-radius: 0.7rem;
+}
+.markdown-copy code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+.markdown-copy table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+.markdown-copy th,
+.markdown-copy td {
+  border-bottom: 1px solid var(--docs-line);
+  padding: 0.65rem;
+  text-align: start;
+}
+.workbench-link {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.preview-controls {
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  font-size: 0.8rem;
+}
+.preview-controls legend {
+  font-weight: 600;
+}
+.preview-controls label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+.preview-controls label span {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+.preview-controls input:not([type="checkbox"]),
+.preview-controls select {
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  background: var(--background);
+  padding: 0.375rem;
 }

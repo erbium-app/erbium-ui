@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-field-group",
+  "type": "registry:block",
+  "title": "Field: Field Group",
+  "description": "Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/examples/field-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/examples/field-group.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSeparator,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\n\nexport default function FieldGroupExample() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldGroup>\n        <FieldSet>\n          <FieldLabel>Responses</FieldLabel>\n          <FieldDescription>\n            Get notified when ChatGPT responds to requests that take time, like research or image\n            generation.\n          </FieldDescription>\n          <FieldGroup data-slot=\"checkbox-group\">\n            <Field orientation=\"horizontal\">\n              <Checkbox defaultChecked disabled />\n              <FieldLabel className=\"font-normal\">Push notifications</FieldLabel>\n            </Field>\n          </FieldGroup>\n        </FieldSet>\n        <FieldSeparator />\n        <FieldSet>\n          <FieldLabel>Tasks</FieldLabel>\n          <FieldDescription>\n            Get notified when tasks you&apos;ve created have updates. <a href=\"#\">Manage tasks</a>\n          </FieldDescription>\n          <FieldGroup data-slot=\"checkbox-group\">\n            <Field orientation=\"horizontal\">\n              <Checkbox />\n              <FieldLabel className=\"font-normal\">Push notifications</FieldLabel>\n            </Field>\n            <Field orientation=\"horizontal\">\n              <Checkbox />\n              <FieldLabel className=\"font-normal\">Email notifications</FieldLabel>\n            </Field>\n          </FieldGroup>\n        </FieldSet>\n      </FieldGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/field/variants/field-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/field-group.tsx",
+      "content": "import ExampleFieldGroup from \"../examples/field-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldGroup />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

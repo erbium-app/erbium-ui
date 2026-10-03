@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-disabled",
+  "type": "registry:block",
+  "title": "Radio Group: Disabled",
+  "description": "Set `disabled` on a `RadioGroupItem` to disable one option, or on `RadioGroup` to disable them all.",
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/radio-group/examples/upstream/radio-group-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/examples/upstream/radio-group-disabled.tsx",
+      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport function RadioGroupDisabled() {\n  return (\n    <Field>\n      <RadioGroup defaultValue=\"option2\" className=\"w-fit\">\n        <FieldItem orientation=\"horizontal\" disabled>\n          <RadioGroupItem value=\"option1\" />\n          <FieldLabel className=\"font-normal\">Disabled</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"option2\" />\n          <FieldLabel className=\"font-normal\">Option 2</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"option3\" />\n          <FieldLabel className=\"font-normal\">Option 3</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/radio-group/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/variants/disabled.tsx",
+      "content": "import { RadioGroupDisabled } from \"../examples/upstream/radio-group-disabled\";\n\nconst Example = () => <RadioGroupDisabled />;\n\nexport default Example;\n"
+    }
+  ]
+}

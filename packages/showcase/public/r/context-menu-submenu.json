@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-submenu",
+  "type": "registry:block",
+  "title": "Context Menu: Submenu",
+  "description": "Use `ContextMenuSub` to nest secondary actions.",
+  "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/context-menu/examples/upstream/context-menu-submenu.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/context-menu/examples/upstream/context-menu-submenu.tsx",
+      "content": "import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuSub,\n  ContextMenuSubContent,\n  ContextMenuSubTrigger,\n  ContextMenuTrigger,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuSubmenu() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            Copy\n            <ContextMenuShortcut hotkey=\"Mod+C\" />\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Cut\n            <ContextMenuShortcut hotkey=\"Mod+X\" />\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSub>\n          <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>\n          <ContextMenuSubContent>\n            <ContextMenuGroup>\n              <ContextMenuItem>Save Page...</ContextMenuItem>\n              <ContextMenuItem>Create Shortcut...</ContextMenuItem>\n              <ContextMenuItem>Name Window...</ContextMenuItem>\n            </ContextMenuGroup>\n            <ContextMenuSeparator />\n            <ContextMenuGroup>\n              <ContextMenuItem>Developer Tools</ContextMenuItem>\n            </ContextMenuGroup>\n            <ContextMenuSeparator />\n            <ContextMenuGroup>\n              <ContextMenuItem variant=\"error\">Delete</ContextMenuItem>\n            </ContextMenuGroup>\n          </ContextMenuSubContent>\n        </ContextMenuSub>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
+    },
+    {
+      "path": "src/context-menu/variants/submenu.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/context-menu/variants/submenu.tsx",
+      "content": "import { ContextMenuSubmenu } from \"../examples/upstream/context-menu-submenu\";\n\nconst Example = () => <ContextMenuSubmenu />;\n\nexport default Example;\n"
+    }
+  ]
+}

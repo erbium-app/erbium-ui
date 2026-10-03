@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-month-and-year-selector",
+  "type": "registry:block",
+  "title": "Calendar: Month And Year Selector",
+  "description": "Use `captionLayout=\"dropdown\"` to show month and year dropdowns.",
+  "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/calendar/examples/upstream/calendar-caption.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-caption.tsx",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport function CalendarCaption() {\n  return <Calendar mode=\"single\" captionLayout=\"dropdown\" />;\n}\n"
+    },
+    {
+      "path": "src/calendar/variants/month-and-year-selector.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/month-and-year-selector.tsx",
+      "content": "import { CalendarCaption } from \"../examples/upstream/calendar-caption\";\n\nconst Example = () => <CalendarCaption />;\n\nexport default Example;\n"
+    }
+  ]
+}

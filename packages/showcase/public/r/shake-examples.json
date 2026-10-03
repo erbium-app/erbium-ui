@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shake-examples",
+  "type": "registry:item",
+  "title": "Shake examples",
+  "description": "All shake examples.",
+  "registryDependencies": ["@erbium-examples/shake-overview"]
+}

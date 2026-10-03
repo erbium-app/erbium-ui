@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd-button",
+  "type": "registry:block",
+  "title": "Kbd: Button",
+  "description": "Use `ButtonShortcut` for a platform-aware key hint with button spacing and RTL support.",
+  "registryDependencies": ["@erbium/button", "@erbium/direction", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/kbd/examples/kbd-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-button.tsx",
+      "content": "import { Button, ButtonShortcut } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nexport default function KbdButton() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Button variant=\"outline\" size=\"sm\">\n        Accept\n        <ButtonShortcut hotkey=\"Enter\" />\n      </Button>\n      <Button variant=\"outline\" size=\"sm\">\n        Cancel\n        <ButtonShortcut hotkey=\"Escape\" />\n      </Button>\n      <DirectionProvider direction=\"rtl\">\n        <div dir=\"rtl\">\n          <Button variant=\"outline\" size=\"sm\">\n            قبول\n            <ButtonShortcut hotkey=\"Enter\" />\n          </Button>\n        </div>\n      </DirectionProvider>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/kbd/variants/button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/button.tsx",
+      "content": "import ExampleKbdButton from \"../examples/kbd-button\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdButton />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

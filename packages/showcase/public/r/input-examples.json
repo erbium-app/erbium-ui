@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-examples",
+  "type": "registry:item",
+  "title": "Input examples",
+  "description": "All input examples.",
+  "registryDependencies": [
+    "@erbium-examples/input-playground",
+    "@erbium-examples/input-overview",
+    "@erbium-examples/input-disabled-control",
+    "@erbium-examples/input-invalid",
+    "@erbium-examples/input-file-control",
+    "@erbium-examples/input-disabled",
+    "@erbium-examples/input-file",
+    "@erbium-examples/input-basic",
+    "@erbium-examples/input-field",
+    "@erbium-examples/input-fieldgroup",
+    "@erbium-examples/input-inline",
+    "@erbium-examples/input-grid",
+    "@erbium-examples/input-required",
+    "@erbium-examples/input-badge",
+    "@erbium-examples/input-input-group",
+    "@erbium-examples/input-button-group",
+    "@erbium-examples/input-form"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-invalid",
+  "type": "registry:block",
+  "title": "Switch: Invalid",
+  "description": "Add the `invalid` prop to the `Field` component; the `Switch` picks up `aria-invalid` automatically.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/upstream/switch-invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/upstream/switch-invalid.tsx",
+      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchInvalid() {\n  return (\n    <Field orientation=\"horizontal\" className=\"max-w-sm\" invalid>\n      <FieldContent>\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n        <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/switch/variants/invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/variants/invalid.tsx",
+      "content": "import { SwitchInvalid } from \"../examples/upstream/switch-invalid\";\n\nconst Example = () => <SwitchInvalid />;\n\nexport default Example;\n"
+    }
+  ]
+}

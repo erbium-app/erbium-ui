@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-invalid",
+  "type": "registry:component",
+  "title": "Input: Invalid",
+  "description": "Use the `aria-invalid` prop to mark the input as invalid. To style the invalid state, add the `data-invalid` attribute to the `Field` component.",
+  "registryDependencies": ["@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/variants/invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/invalid.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input aria-invalid placeholder=\"Invalid email\" />;\n\nexport default Example;\n"
+    }
+  ]
+}

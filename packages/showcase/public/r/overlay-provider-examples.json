@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "overlay-provider-examples",
+  "type": "registry:item",
+  "title": "Overlay Provider examples",
+  "description": "All overlay-provider examples.",
+  "registryDependencies": ["@erbium-examples/overlay-provider-overview"]
+}

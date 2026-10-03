@@ -1,4 +1,4 @@
-import { readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { dirname, extname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -94,7 +94,13 @@ async function itemFor(sourceFile, name, type) {
     ...(registryDependencies.size
       ? { registryDependencies: [...registryDependencies].sort((a, b) => a.localeCompare(b)) }
       : {}),
-    files: [{ path: sourcePath, type, target: `~/src/${sourcePath.slice("src/".length)}` }],
+    files: [
+      {
+        path: sourcePath,
+        type,
+        target: `${type === "registry:ui" ? "@ui" : type === "registry:hook" ? "@hooks" : "@lib"}/${name === "utils" ? "erbium-utils.ts" : sourcePath.split("/").slice(2).join("/")}`,
+      },
+    ],
   };
 }
 
@@ -149,4 +155,38 @@ await writeFile(
     null,
     2,
   )}\n`,
+);
+
+// Public source uses canonical shadcn aliases so custom consumer aliases work.
+await mkdir(join(packageRoot, "public/r"), { recursive: true });
+const publicItems = [];
+for (const item of items) {
+  const files = [];
+  for (const file of item.files) {
+    const sourceFile = join(packageRoot, file.path);
+    let content = await readFile(sourceFile, "utf8");
+    for (const specifier of readImports(content)) {
+      const internal = await getInternalItem(specifier, sourceFile);
+      if (!internal || !itemBySource.has(internal)) continue;
+      const local = relative(sourceRoot, internal)
+        .split(sep)
+        .join("/")
+        .replace(/\.(tsx|ts)$/, "");
+      const canonical = `@/registry/erbium/${local === "lib/utils" ? "lib/erbium-utils" : local.replace(/^components\//, "ui/")}`;
+      content = content
+        .replaceAll(`"${specifier}"`, `"${canonical}"`)
+        .replaceAll(`'${specifier}'`, `'${canonical}'`);
+    }
+    files.push({ ...file, content });
+  }
+  const entry = { ...item, files };
+  publicItems.push(entry);
+  await writeFile(
+    join(packageRoot, "public/r", `${item.name}.json`),
+    `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry-item.json", ...entry }, null, 2)}\n`,
+  );
+}
+await writeFile(
+  join(packageRoot, "public/r/registry.json"),
+  `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry.json", name: "erbium", homepage: "https://github.com/erbium-app/erbium-ui", items: publicItems }, null, 2)}\n`,
 );

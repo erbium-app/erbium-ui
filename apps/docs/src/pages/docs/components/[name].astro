@@ -1,20 +1,39 @@
 ---
-import fs from "node:fs";
-import path from "node:path";
+import { componentDocuments, variantDocuments } from "@erbium/content/documents";
+import manifest from "@erbium/showcase/manifest";
+import { showcaseSource } from "@erbium/showcase/sources";
 import DocsLayout from "../../../layouts/DocsLayout.astro";
 import ComponentPreview from "../../../components/ComponentPreview.tsx";
+import ShowcaseToaster from "../../../components/ShowcaseToaster.tsx";
+import showcaseRegistry from "@erbium/showcase/registry";
+import CopyCode from "../../../components/CopyCode.tsx";
 import { components } from "../../../data/components";
 
 export function getStaticPaths() { return components.map((component) => ({ params: { name: component.name }, props: { component } })); }
 const { component } = Astro.props;
-const sourcePath = path.resolve(process.cwd(), "packages/ui/src/components", `${component.name}.tsx`);
-const source = fs.existsSync(sourcePath) ? fs.readFileSync(sourcePath, "utf8") : "Source file is not available yet.";
+const pages = componentDocuments as Record<string, import("astro").MarkdownInstance<Record<string, string>>>;
+const descriptions = variantDocuments as typeof pages;
+const page = pages[`../components/${component.name}/index.md`];
+if (!page) throw new Error(`Missing Markdown documentation: ${component.name}`);
+const { Content, frontmatter } = page;
+const catalog = manifest.find((entry) => entry.name === component.name)!;
+const variants = catalog.variants.map((variant) => ({ ...variant, Content: descriptions[`../components/${component.name}/${variant.slug}.md`].Content, source: showcaseSource(variant.source), files: showcaseRegistry.items.find((item) => item.name === `${component.name}-${variant.slug}`)?.files?.map((file) => ({ path: file.path, source: showcaseSource(file.path) })) ?? [] }));
 ---
-<DocsLayout title={component.title} description={component.description}>
-  <div class="component-header"><p class="eyebrow">Component</p><h1>{component.title}</h1><p class="lede">{component.description} Built to be accessible, composable, and comfortable to customize.</p></div>
-  <section class="demo-section"><div class="section-label">Preview</div><div class="component-demo"><ComponentPreview name={component.name} client:load /></div></section>
-  <section class="source-section"><div class="source-heading"><div><div class="section-label">Source</div><h2>Own the details.</h2></div><a href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/src/components/${component.name}.tsx`}>Open on GitHub ↗</a></div><pre><code>{source}</code></pre></section>
+<DocsLayout title={component.title} description={frontmatter.description}>
+  <div class="component-header"><p class="eyebrow">Component</p><h1>{component.title}</h1></div>
+  <article class="markdown-copy"><Content /></article>
+  <nav aria-label="Examples" class="variant-navigation">{variants.map((variant) => <a href={`#${variant.slug}`}>{variant.title}</a>)}</nav>
+  {variants.map((variant) => <section id={variant.slug} class="demo-section">
+    <h2>{variant.title}</h2>
+    <article class="markdown-copy"><variant.Content /></article>
+    <div class="component-demo"><ComponentPreview name={component.name} variant={variant.exportName} client:visible /></div>
+    <details class="source-section"><summary>Example source</summary><CopyCode code={variant.source} client:visible />{variant.files.map((file) => <div><p><code>{file.path.replace(/^src\//, "")}</code></p><CopyCode code={file.source} client:visible /><pre><code>{file.source}</code></pre></div>)}</details>
+    <p class="install-example"><code>npx shadcn@latest add @erbium-examples/{component.name}-{variant.slug}</code></p>
+  </section>)}
+  {component.name === "toast" && <ShowcaseToaster client:load />}
+  {component.files?.[0] && <p class="workbench-link"><a href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`}>View component source on GitHub ↗</a></p>}
+  {import.meta.env.DEV && <p class="workbench-link"><a href={`http://localhost:6006/?path=/docs/${catalog.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}--docs`}>Explore in local Storybook ↗</a></p>}
 </DocsLayout>
 <style>
-  .component-header{max-width:42rem}.eyebrow,.section-label{color:#c2410c;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.component-header h1{margin:.8rem 0;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.07em}.lede{color:#737373;font-size:1.05rem;line-height:1.7}.demo-section{margin-top:3.5rem}.section-label{color:#a8a29e;font-size:.68rem}.component-demo{display:grid;place-items:center;min-height:16rem;margin-top:.8rem;padding:2rem;border:1px solid #e7e5e4;border-radius:1rem;background:#f5f5f4;background-image:radial-gradient(#d6d3d1 1px,transparent 1px);background-size:16px 16px}.source-section{margin-top:3.5rem}.source-heading{display:flex;justify-content:space-between;align-items:end}.source-heading h2{margin:.5rem 0 1rem;font-size:1.45rem;letter-spacing:-.04em}.source-heading a{color:#c2410c;font-size:.8rem;font-weight:600}.source-section pre{max-height:34rem;overflow:auto;padding:1.25rem;border-radius:.8rem;background:#1c1917;color:#e7e5e4;font: .76rem/1.7 var(--font-mono)}
+  .component-header{max-width:42rem}.eyebrow{color:#c2410c;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.component-header h1{margin:.8rem 0;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.07em}.demo-section{margin-top:3.5rem;scroll-margin-top:6rem}.demo-section h2{font-size:1.5rem;letter-spacing:-.04em}.component-demo{display:flex;flex-direction:column;align-items:center;gap:1.5rem;min-height:12rem;margin-top:.8rem;padding:2rem;border:1px solid #e7e5e4;border-radius:1rem;background:var(--background);color:var(--foreground)}.source-section{margin-top:1rem}.source-section summary{cursor:pointer;font-size:.85rem}.source-section pre{max-height:34rem;overflow:auto;padding:1.25rem;border-radius:.8rem;background:#1c1917;color:#e7e5e4;font:.76rem/1.7 var(--font-mono)}.variant-navigation{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin-top:2rem;font-size:.8rem}.variant-navigation a{color:#c2410c}.install-example{overflow:auto;font-size:.75rem}
 </style>

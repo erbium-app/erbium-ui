@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-avatar",
+  "type": "registry:block",
+  "title": "Item: Avatar",
+  "description": "You can use `ItemMedia` with `variant=\"avatar\"` to display an avatar.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/avatar", "@erbium/button", "@erbium/item", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/item/examples/item-avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/examples/item-avatar.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemAvatar() {\n  return (\n    <div className=\"flex w-full max-w-lg flex-col gap-6\">\n      <Item variant=\"outline\">\n        <ItemMedia>\n          <Avatar className=\"size-10\">\n            <AvatarImage src=\"https://github.com/evilrabbit.png\" />\n            <AvatarFallback>ER</AvatarFallback>\n          </Avatar>\n        </ItemMedia>\n        <ItemContent>\n          <ItemTitle>Evil Rabbit</ItemTitle>\n          <ItemDescription>Last seen 5 months ago</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button size=\"icon-sm\" variant=\"outline\" className=\"rounded-full\" aria-label=\"Invite\">\n            <HugeiconsIcon icon={PlusIcon} />\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant=\"outline\">\n        <ItemMedia>\n          <div className=\"flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale\">\n            <Avatar className=\"hidden sm:flex\">\n              <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n              <AvatarFallback>CN</AvatarFallback>\n            </Avatar>\n            <Avatar className=\"hidden sm:flex\">\n              <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n              <AvatarFallback>LR</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n              <AvatarFallback>ER</AvatarFallback>\n            </Avatar>\n          </div>\n        </ItemMedia>\n        <ItemContent>\n          <ItemTitle>No Team Members</ItemTitle>\n          <ItemDescription>Invite your team to collaborate on this project.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button size=\"sm\" variant=\"outline\">\n            Invite\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/item/variants/avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/variants/avatar.tsx",
+      "content": "import ExampleItemAvatar from \"../examples/item-avatar\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemAvatar />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

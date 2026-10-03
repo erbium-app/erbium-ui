@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group-choice-card",
+  "type": "registry:block",
+  "title": "Radio Group: Choice Card",
+  "description": "Use `FieldLabel` to wrap the entire `Field` for a clickable card-style selection.",
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/radio-group/examples/upstream/radio-group-choice-card.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/examples/upstream/radio-group-choice-card.tsx",
+      "content": "import {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport function RadioGroupChoiceCard() {\n  return (\n    <Field className=\"max-w-sm\">\n      <RadioGroup defaultValue=\"plus\">\n        <FieldItem variant=\"card\" orientation=\"horizontal\">\n          <FieldContent>\n            <FieldLabel>Plus</FieldLabel>\n            <FieldDescription>For individuals and small teams.</FieldDescription>\n          </FieldContent>\n          <RadioGroupItem value=\"plus\" />\n        </FieldItem>\n        <FieldItem variant=\"card\" orientation=\"horizontal\">\n          <FieldContent>\n            <FieldLabel>Pro</FieldLabel>\n            <FieldDescription>For growing businesses.</FieldDescription>\n          </FieldContent>\n          <RadioGroupItem value=\"pro\" />\n        </FieldItem>\n        <FieldItem variant=\"card\" orientation=\"horizontal\">\n          <FieldContent>\n            <FieldLabel>Enterprise</FieldLabel>\n            <FieldDescription>For large teams and enterprises.</FieldDescription>\n          </FieldContent>\n          <RadioGroupItem value=\"enterprise\" />\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/radio-group/variants/choice-card.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/radio-group/variants/choice-card.tsx",
+      "content": "import { RadioGroupChoiceCard } from \"../examples/upstream/radio-group-choice-card\";\n\nconst Example = () => <RadioGroupChoiceCard />;\n\nexport default Example;\n"
+    }
+  ]
+}

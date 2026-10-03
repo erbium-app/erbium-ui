@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-size",
+  "type": "registry:block",
+  "title": "Switch: Size",
+  "description": "Use the `size` prop to change the size of the switch.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/upstream/switch-sizes.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/upstream/switch-sizes.tsx",
+      "content": "import { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchSizes() {\n  return (\n    <FieldGroup className=\"w-full max-w-[10rem]\">\n      <Field orientation=\"horizontal\">\n        <Switch size=\"sm\" />\n        <FieldLabel>Small</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch size=\"default\" />\n        <FieldLabel>Default</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/switch/variants/size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/variants/size.tsx",
+      "content": "import { SwitchSizes } from \"../examples/upstream/switch-sizes\";\n\nconst Example = () => <SwitchSizes />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-success",
+  "type": "registry:component",
+  "title": "Alert: Success",
+  "description": "Use `variant=\"success\"` when a task or verification step completes.",
+  "registryDependencies": ["@erbium/alert", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/alert/variants/success.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/success.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert variant=\"success\" className=\"w-96\">\n    <AlertTitle>Verification passed</AlertTitle>\n    <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

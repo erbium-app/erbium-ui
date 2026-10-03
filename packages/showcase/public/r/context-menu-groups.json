@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "context-menu-groups",
+  "type": "registry:block",
+  "title": "Context Menu: Groups",
+  "description": "Group related actions and separate them with dividers.",
+  "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/context-menu/examples/upstream/context-menu-groups.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/context-menu/examples/upstream/context-menu-groups.tsx",
+      "content": "import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuLabel,\n  ContextMenuSeparator,\n  ContextMenuShortcut,\n  ContextMenuTrigger,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuGroups() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuLabel>File</ContextMenuLabel>\n          <ContextMenuItem>\n            New File\n            <ContextMenuShortcut hotkey=\"Mod+N\" />\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Open File\n            <ContextMenuShortcut hotkey=\"Mod+O\" />\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Save\n            <ContextMenuShortcut hotkey=\"Mod+S\" />\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuLabel>Edit</ContextMenuLabel>\n          <ContextMenuItem>\n            Undo\n            <ContextMenuShortcut hotkey=\"Mod+Z\" />\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Redo\n            <ContextMenuShortcut hotkey=\"Shift+Mod+Z\" />\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            Cut\n            <ContextMenuShortcut hotkey=\"Mod+X\" />\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Copy\n            <ContextMenuShortcut hotkey=\"Mod+C\" />\n          </ContextMenuItem>\n          <ContextMenuItem>\n            Paste\n            <ContextMenuShortcut hotkey=\"Mod+V\" />\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem variant=\"error\">\n            Delete\n            <ContextMenuShortcut hotkey=\"Backspace\" />\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
+    },
+    {
+      "path": "src/context-menu/variants/groups.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/context-menu/variants/groups.tsx",
+      "content": "import { ContextMenuGroups } from \"../examples/upstream/context-menu-groups\";\n\nconst Example = () => <ContextMenuGroups />;\n\nexport default Example;\n"
+    }
+  ]
+}

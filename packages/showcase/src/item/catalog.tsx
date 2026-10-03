@@ -1,0 +1,242 @@
+import type { Meta, StoryObj } from "../types";
+
+import { Item } from "@erbium/ui/components/item";
+
+import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
+
+import PlaygroundExample from "./variants/playground";
+
+import PlaygroundSource from "./variants/playground.tsx?raw";
+
+import OverviewExample from "./variants/overview";
+
+import OverviewSource from "./variants/overview.tsx?raw";
+
+import VariantExample from "./variants/variant";
+
+import VariantSource from "./variants/variant.tsx?raw";
+
+import SizeExample from "./variants/size";
+
+import SizeSource from "./variants/size.tsx?raw";
+
+import IconExample from "./variants/icon";
+
+import IconSource from "./variants/icon.tsx?raw";
+
+import AvatarExample from "./variants/avatar";
+
+import AvatarSource from "./variants/avatar.tsx?raw";
+
+import GroupExample from "./variants/group";
+
+import GroupSource from "./variants/group.tsx?raw";
+
+import SettingsPanelExample from "./variants/settings-panel";
+
+import SettingsPanelSource from "./variants/settings-panel.tsx?raw";
+
+import BookLibraryExample from "./variants/book-library";
+
+import BookLibrarySource from "./variants/book-library.tsx?raw";
+
+import JoinedSelectionExample from "./variants/joined-selection";
+
+import JoinedSelectionSource from "./variants/joined-selection.tsx?raw";
+
+import LinkExample from "./variants/link";
+
+import LinkSource from "./variants/link.tsx?raw";
+
+import DropdownExample from "./variants/dropdown";
+
+import DropdownSource from "./variants/dropdown.tsx?raw";
+
+import HeaderExample from "./variants/header";
+
+import HeaderSource from "./variants/header.tsx?raw";
+
+import ImageExample from "./variants/image";
+
+import ImageSource from "./variants/image.tsx?raw";
+
+const meta = {
+  title: "UI/Item",
+  component: Item,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component: componentDocumentation("item"),
+      },
+    },
+  },
+} satisfies Meta<typeof Item>;
+
+export default meta;
+
+type Story = StoryObj;
+
+export const Playground: StoryObj<{
+  variant: "default" | "outline" | "muted";
+  size: "default" | "sm" | "xs";
+  mediaVariant: "default" | "icon" | "image";
+  asLink: boolean;
+  className: string;
+}> = {
+  args: {
+    variant: "default",
+    size: "default",
+    mediaVariant: "icon",
+    asLink: false,
+    className: "",
+  },
+  argTypes: {
+    variant: { control: "select", options: ["default", "outline", "muted"] },
+    size: { control: "select", options: ["default", "sm", "xs"] },
+    mediaVariant: { control: "select", options: ["default", "icon", "image"] },
+    asLink: { control: "boolean" },
+    className: { control: "text" },
+  },
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "playground") },
+      source: { code: PlaygroundSource },
+    },
+  },
+  render: PlaygroundExample,
+};
+
+export const Overview: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "overview") },
+      source: { code: OverviewSource },
+    },
+  },
+  render: OverviewExample,
+};
+
+export const Variant: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "variant") },
+      source: { code: VariantSource },
+    },
+  },
+  render: VariantExample,
+};
+
+export const Size: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "size") },
+      source: { code: SizeSource },
+    },
+  },
+  render: SizeExample,
+};
+
+export const Icon: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "icon") },
+      source: { code: IconSource },
+    },
+  },
+  render: IconExample,
+};
+
+export const Avatar: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "avatar") },
+      source: { code: AvatarSource },
+    },
+  },
+  render: AvatarExample,
+};
+
+export const Group: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "group") },
+      source: { code: GroupSource },
+    },
+  },
+  render: GroupExample,
+};
+
+export const SettingsPanel: Story = {
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      description: { story: variantDocumentation("item", "settings-panel") },
+      source: { code: SettingsPanelSource },
+    },
+  },
+  render: SettingsPanelExample,
+};
+
+export const BookLibrary: Story = {
+  name: "Book Library",
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "book-library") },
+      source: { code: BookLibrarySource },
+    },
+  },
+  render: BookLibraryExample,
+};
+
+export const JoinedSelection: Story = {
+  name: "Joined Selection",
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "joined-selection") },
+      source: { code: JoinedSelectionSource },
+    },
+  },
+  render: JoinedSelectionExample,
+};
+
+export const Link: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "link") },
+      source: { code: LinkSource },
+    },
+  },
+  render: LinkExample,
+};
+
+export const Dropdown: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "dropdown") },
+      source: { code: DropdownSource },
+    },
+  },
+  render: DropdownExample,
+};
+
+export const Header: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "header") },
+      source: { code: HeaderSource },
+    },
+  },
+  render: HeaderExample,
+};
+
+export const Image: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("item", "image") },
+      source: { code: ImageSource },
+    },
+  },
+  render: ImageExample,
+};

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-fieldset",
+  "type": "registry:block",
+  "title": "Field: Fieldset",
+  "description": "Group related fields in a fieldset.",
+  "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/examples/field-fieldset.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/examples/field-fieldset.tsx",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function FieldFieldset() {\n  return (\n    <div className=\"w-full max-w-md space-y-6\">\n      <FieldSet>\n        <FieldLegend>Address Information</FieldLegend>\n        <FieldDescription>We need your address to deliver your order.</FieldDescription>\n        <FieldGroup>\n          <Field>\n            <FieldLabel>Street Address</FieldLabel>\n            <Input type=\"text\" placeholder=\"123 Main St\" />\n          </Field>\n          <div className=\"grid grid-cols-2 gap-4\">\n            <Field>\n              <FieldLabel>City</FieldLabel>\n              <Input type=\"text\" placeholder=\"New York\" />\n            </Field>\n            <Field>\n              <FieldLabel>Postal Code</FieldLabel>\n              <Input type=\"text\" placeholder=\"90502\" />\n            </Field>\n          </div>\n        </FieldGroup>\n      </FieldSet>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/field/variants/fieldset.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/fieldset.tsx",
+      "content": "import ExampleFieldFieldset from \"../examples/field-fieldset\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldFieldset />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

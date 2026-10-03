@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu-avatar",
+  "type": "registry:block",
+  "title": "Dropdown Menu: Avatar",
+  "description": "An account switcher dropdown triggered by an avatar.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": [
+    "@erbium/avatar",
+    "@erbium/button",
+    "@erbium/dropdown-menu",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/dropdown-menu/examples/upstream/dropdown-menu-avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/dropdown-menu/examples/upstream/dropdown-menu-avatar.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BadgeCheckIcon from \"@hugeicons/core-free-icons/BadgeCheckIcon\";\nimport BellIcon from \"@hugeicons/core-free-icons/BellIcon\";\nimport CreditCardIcon from \"@hugeicons/core-free-icons/CreditCardIcon\";\nimport LogOutIcon from \"@hugeicons/core-free-icons/LogOutIcon\";\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuAvatar() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger\n        render={<Button variant=\"ghost\" size=\"icon\" className=\"rounded-[35%]\" />}\n      >\n        <Avatar>\n          <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"shadcn\" />\n          <AvatarFallback>LR</AvatarFallback>\n        </Avatar>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent align=\"end\">\n        <DropdownMenuGroup>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={BadgeCheckIcon} />\n            Account\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={CreditCardIcon} />\n            Billing\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={BellIcon} />\n            Notifications\n          </DropdownMenuItem>\n        </DropdownMenuGroup>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem>\n          <HugeiconsIcon icon={LogOutIcon} />\n          Sign Out\n        </DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
+    },
+    {
+      "path": "src/dropdown-menu/variants/avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/dropdown-menu/variants/avatar.tsx",
+      "content": "import { DropdownMenuAvatar } from \"../examples/upstream/dropdown-menu-avatar\";\n\nconst Example = () => <DropdownMenuAvatar />;\n\nexport default Example;\n"
+    }
+  ]
+}

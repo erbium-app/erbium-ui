@@ -1,0 +1,35 @@
+---
+title: "Direction"
+description: "A provider component that sets the text direction for your application."
+---
+
+A provider component that sets the text direction for your application.
+
+**Import:** `@erbium/ui/components/direction`
+
+## Usage
+
+```tsx
+import { DirectionProvider } from "@erbium/ui/components/direction";
+```
+
+```tsx
+<html dir="rtl">
+  <body>
+    <DirectionProvider direction="rtl">{/* Your app content */}</DirectionProvider>
+  </body>
+</html>
+```
+
+## useDirection
+
+The `useDirection` hook is used to get the current direction of the application.
+
+```tsx
+import { useDirection } from "@erbium/ui/components/direction";
+
+function MyComponent() {
+  const direction = useDirection();
+  return <div>Current direction: {direction}</div>;
+}
+```

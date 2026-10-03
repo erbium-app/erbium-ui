@@ -1,0 +1,85 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card-stories",
+  "type": "registry:item",
+  "title": "Hover Card stories",
+  "description": "All hover-card variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/avatar",
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/hover-card",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/hover-card/examples/hover-card-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/examples/hover-card-demo.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\n\nexport default function HoverCardDemo() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger render={<Button variant=\"link\">@nextjs</Button>} />\n      <HoverCardContent className=\"w-80\">\n        <div className=\"flex justify-between gap-4\">\n          <Avatar>\n            <AvatarImage src=\"https://github.com/vercel.png\" />\n            <AvatarFallback>VC</AvatarFallback>\n          </Avatar>\n          <div className=\"space-y-1\">\n            <h4 className=\"text-sm font-semibold\">@nextjs</h4>\n            <p className=\"text-sm\">The React Framework – created and maintained by @vercel.</p>\n            <div className=\"text-xs text-muted-foreground\">Joined December 2021</div>\n          </div>\n        </div>\n      </HoverCardContent>\n    </HoverCard>\n  );\n}\n"
+    },
+    {
+      "path": "src/hover-card/examples/upstream/hover-card-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/examples/upstream/hover-card-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\n\nexport default function HoverCardDemo() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger delay={10} closeDelay={100} render={<Button variant=\"link\" />}>\n        Hover Here\n      </HoverCardTrigger>\n      <HoverCardContent className=\"flex w-64 flex-col gap-0.5\">\n        <div className=\"font-semibold\">@nextjs</div>\n        <div>The React Framework – created and maintained by @vercel.</div>\n        <div className=\"mt-1 text-xs text-muted-foreground\">Joined December 2021</div>\n      </HoverCardContent>\n    </HoverCard>\n  );\n}\n"
+    },
+    {
+      "path": "src/hover-card/examples/upstream/hover-card-sides.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/examples/upstream/hover-card-sides.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\n\nconst HOVER_CARD_SIDES = [\"left\", \"top\", \"bottom\", \"right\"] as const;\n\nexport function HoverCardSides() {\n  return (\n    <div className=\"flex flex-wrap justify-center gap-2\">\n      {HOVER_CARD_SIDES.map((side) => (\n        <HoverCard key={side}>\n          <HoverCardTrigger\n            delay={100}\n            closeDelay={100}\n            render={<Button variant=\"outline\" className=\"capitalize\" />}\n          >\n            {side}\n          </HoverCardTrigger>\n          <HoverCardContent side={side}>\n            <div className=\"flex flex-col gap-1\">\n              <h4 className=\"font-medium\">Hover Card</h4>\n              <p>This hover card appears on the {side} side of the trigger.</p>\n            </div>\n          </HoverCardContent>\n        </HoverCard>\n      ))}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/hover-card/hover-card.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/hover-card/hover-card.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { HoverCard } from \"@/registry/erbium/ui/hover-card\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { HoverCard, HoverCardContent, HoverCardTrigger } from \\\"@/registry/erbium/ui/hover-card\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = (args: {\\n  side: \\\"top\\\" | \\\"right\\\" | \\\"bottom\\\" | \\\"left\\\";\\n  align: \\\"start\\\" | \\\"center\\\" | \\\"end\\\";\\n  sideOffset: number;\\n  defaultOpen: boolean;\\n}) => (\\n  <HoverCard key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\\n    <HoverCardTrigger render={<Button variant=\\\"link\\\">Hover for card</Button>} />\\n    <HoverCardContent side={args.side} align={args.align} sideOffset={args.sideOffset}>\\n      Preview content\\n    </HoverCardContent>\\n  </HoverCard>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/hover-card-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import HoverCardDemo from \\\"../examples/upstream/hover-card-demo\\\";\\n\\nconst Example = () => <HoverCardDemo />;\\n\\nexport default Example;\\n\";\n\nimport SidesExample from \"./variants/sides\";\n\nconst SidesSource = \"import { HoverCardSides } from \\\"../examples/upstream/hover-card-sides\\\";\\n\\nconst Example = () => <HoverCardSides />;\\n\\nexport default Example;\\n\";\n\nimport TriggerDelaysExample from \"./variants/trigger-delays\";\n\nconst TriggerDelaysSource = \"import { HoverCard, HoverCardContent, HoverCardTrigger } from \\\"@/registry/erbium/ui/hover-card\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = () => (\\n  <HoverCard>\\n    <HoverCardTrigger closeDelay={200} delay={100} render={<Button variant=\\\"link\\\" />}>\\n      Hover to preview\\n    </HoverCardTrigger>\\n    <HoverCardContent>Opens after 100 ms and closes after 200 ms.</HoverCardContent>\\n  </HoverCard>\\n);\\n\\nexport default Example;\\n\";\n\nimport PositioningExample from \"./variants/positioning\";\n\nconst PositioningSource = \"import { HoverCard, HoverCardContent, HoverCardTrigger } from \\\"@/registry/erbium/ui/hover-card\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = () => (\\n  <HoverCard>\\n    <HoverCardTrigger render={<Button variant=\\\"link\\\" />}>Preview above</HoverCardTrigger>\\n    <HoverCardContent align=\\\"start\\\" side=\\\"top\\\">\\n      Aligned to the start of the trigger.\\n    </HoverCardContent>\\n  </HoverCard>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Hover Card\",\n  component: HoverCard,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"For sighted users to preview content available behind a link.\\n\\n**Import:** `@/registry/erbium/ui/hover-card`\\n\\n## Usage\\n\\n```tsx\\nimport {\\n  HoverCard,\\n  HoverCardContent,\\n  HoverCardTrigger,\\n} from \\\"@/registry/erbium/ui/hover-card\\\"\\nimport {{ Button }} from \\\"@/registry/erbium/ui/button\\\"\\n```\\n\\n```tsx\\n<HoverCard>\\n  <HoverCardTrigger render={<Button variant=\\\"link\\\">Hover</Button>} />\\n  <HoverCardContent>The React Framework – created and maintained by @vercel.</HoverCardContent>\\n</HoverCard>\\n```\\n\\n## Composition\\n\\nUse the following composition to build a `HoverCard`:\\n\\n```text\\nHoverCard\\n├── HoverCardTrigger\\n└── HoverCardContent\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof HoverCard>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  sideOffset: number;\n  defaultOpen: boolean;\n}> = {\n  args: { side: \"bottom\", align: \"center\", sideOffset: 4, defaultOpen: false },\n  argTypes: {\n    side: { control: \"select\", options: [\"top\", \"right\", \"bottom\", \"left\"] },\n    align: { control: \"select\", options: [\"start\", \"center\", \"end\"] },\n    sideOffset: { control: \"number\" },\n    defaultOpen: { control: \"boolean\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show supporting content when the trigger is hovered or focused.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const Sides: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Position the hover card on different sides of its trigger.\" },\n      source: { code: SidesSource },\n    },\n  },\n  render: SidesExample,\n};\n\nexport const TriggerDelays: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `delay` and `closeDelay` on the trigger to control when the card opens and\\n\\ncloses.\\n\\n```tsx\\n<HoverCard>\\n  <HoverCardTrigger delay={100} closeDelay={200} render={<Button variant=\\\"link\\\">Hover</Button>} />\\n  <HoverCardContent>Content</HoverCardContent>\\n</HoverCard>\\n```\" },\n      source: { code: TriggerDelaysSource },\n    },\n  },\n  render: TriggerDelaysExample,\n};\n\nexport const Positioning: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `side` and `align` props on `HoverCardContent` to control placement.\\n\\n```tsx\\n<HoverCard>\\n  <HoverCardTrigger render={<Button variant=\\\"link\\\">Hover</Button>} />\\n  <HoverCardContent side=\\\"top\\\" align=\\\"start\\\">\\n    Content\\n  </HoverCardContent>\\n</HoverCard>\\n```\" },\n      source: { code: PositioningSource },\n    },\n  },\n  render: PositioningExample,\n};\n"
+    },
+    {
+      "path": "src/hover-card/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/basic.tsx",
+      "content": "import HoverCardDemo from \"../examples/upstream/hover-card-demo\";\n\nconst Example = () => <HoverCardDemo />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/hover-card/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/overview.tsx",
+      "content": "import Demo from \"../examples/hover-card-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/hover-card/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/playground.tsx",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  align: \"start\" | \"center\" | \"end\";\n  sideOffset: number;\n  defaultOpen: boolean;\n}) => (\n  <HoverCard key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <HoverCardTrigger render={<Button variant=\"link\">Hover for card</Button>} />\n    <HoverCardContent side={args.side} align={args.align} sideOffset={args.sideOffset}>\n      Preview content\n    </HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/hover-card/variants/positioning.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/positioning.tsx",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <HoverCard>\n    <HoverCardTrigger render={<Button variant=\"link\" />}>Preview above</HoverCardTrigger>\n    <HoverCardContent align=\"start\" side=\"top\">\n      Aligned to the start of the trigger.\n    </HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/hover-card/variants/sides.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/sides.tsx",
+      "content": "import { HoverCardSides } from \"../examples/upstream/hover-card-sides\";\n\nconst Example = () => <HoverCardSides />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/hover-card/variants/trigger-delays.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/trigger-delays.tsx",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <HoverCard>\n    <HoverCardTrigger closeDelay={200} delay={100} render={<Button variant=\"link\" />}>\n      Hover to preview\n    </HoverCardTrigger>\n    <HoverCardContent>Opens after 100 ms and closes after 200 ms.</HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

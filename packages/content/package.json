@@ -1,0 +1,22 @@
+{
+  "name": "@erbium/content",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Shared Markdown documentation for Erbium UI.",
+  "files": [
+    "components",
+    "*.md",
+    "src"
+  ],
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    "./*.md": "./*.md",
+    "./documents": "./src/documents.ts",
+    "./markdown": "./src/markdown.ts",
+    "./components/*": "./components/*"
+  },
+  "devDependencies": {
+    "vite": "catalog:"
+  }
+}

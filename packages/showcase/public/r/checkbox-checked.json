@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-checked",
+  "type": "registry:component",
+  "title": "Checkbox: Checked State",
+  "description": "Use `defaultChecked` for an uncontrolled checkbox that starts ticked.",
+  "registryDependencies": ["@erbium/checkbox", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/checkbox/variants/checked.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/checked.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\n\nconst Example = () => <Checkbox defaultChecked aria-label=\"Selected\" />;\n\nexport default Example;\n"
+    }
+  ]
+}

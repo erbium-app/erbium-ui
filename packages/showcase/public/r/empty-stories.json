@@ -1,0 +1,124 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-stories",
+  "type": "registry:item",
+  "title": "Empty stories",
+  "description": "All empty variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/avatar",
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/empty",
+    "@erbium/input-group",
+    "@erbium/kbd",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/empty/empty.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/empty/empty.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Empty } from \"@/registry/erbium/ui/empty\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from \\\"@/registry/erbium/ui/empty\\\";\\nimport { Empty } from \\\"@/registry/erbium/ui/empty\\\";\\n\\nconst Example = (args: {\\n  className: string;\\n  mediaVariant: \\\"default\\\" | \\\"icon\\\";\\n  title: string;\\n  description: string;\\n}) => (\\n  <Empty className={`w-80 ${args.className}`}>\\n    <EmptyHeader>\\n      <EmptyMedia variant={args.mediaVariant}>☆</EmptyMedia>\\n      <EmptyTitle>{args.title}</EmptyTitle>\\n      <EmptyDescription>{args.description}</EmptyDescription>\\n    </EmptyHeader>\\n  </Empty>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/empty-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport AvatarExample from \"./variants/avatar\";\n\nconst AvatarSource = \"import ExampleEmptyAvatar from \\\"../examples/empty-avatar\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleEmptyAvatar />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport AvatarGroupExample from \"./variants/avatar-group\";\n\nconst AvatarGroupSource = \"import ExampleEmptyAvatarGroup from \\\"../examples/empty-avatar-group\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleEmptyAvatarGroup />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport InputgroupExample from \"./variants/inputgroup\";\n\nconst InputgroupSource = \"import ExampleEmptyInputGroup from \\\"../examples/empty-input-group\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleEmptyInputGroup />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport InputGroupExample from \"./variants/input-group\";\n\nconst InputGroupSource = \"import EmptyInputGroup from \\\"../examples/upstream/empty-input-group\\\";\\n\\nconst Example = () => <EmptyInputGroup />;\\n\\nexport default Example;\\n\";\n\nimport OutlineExample from \"./variants/outline\";\n\nconst OutlineSource = \"import EmptyOutline from \\\"../examples/upstream/empty-outline\\\";\\n\\nconst Example = () => <EmptyOutline />;\\n\\nexport default Example;\\n\";\n\nimport BackgroundExample from \"./variants/background\";\n\nconst BackgroundSource = \"import { EmptyMuted } from \\\"../examples/upstream/empty-background\\\";\\n\\nconst Example = () => <EmptyMuted />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Empty\",\n  component: Empty,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Use `Empty` for an absent item or an initial state. It includes a subtle dashed boundary and generous spacing by default. Place the icon, title, and description in `EmptyHeader`; place actions or inputs in `EmptyContent` as a sibling. Use `EmptyMedia` without a variant for larger artwork or avatars.\\n\\n**Import:** `@/registry/erbium/ui/empty`\\n\\n## Usage\\n\\n```tsx\\nimport { HugeiconsIcon } from \\\"@hugeicons/react\\\";\\nimport Folder01Icon from \\\"@hugeicons/core-free-icons/Folder01Icon\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\nimport {\\n  Empty,\\n  EmptyContent,\\n  EmptyDescription,\\n  EmptyHeader,\\n  EmptyMedia,\\n  EmptyTitle,\\n} from \\\"@/registry/erbium/ui/empty\\\";\\n\\n<Empty>\\n  <EmptyHeader>\\n    <EmptyMedia variant=\\\"icon\\\">\\n      <HugeiconsIcon icon={Folder01Icon} />\\n    </EmptyMedia>\\n    <EmptyTitle>No projects yet</EmptyTitle>\\n    <EmptyDescription>Create a project to get started.</EmptyDescription>\\n  </EmptyHeader>\\n  <EmptyContent>\\n    <Button>Create project</Button>\\n  </EmptyContent>\\n</Empty>;\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Empty>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  className: string;\n  mediaVariant: \"default\" | \"icon\";\n  title: string;\n  description: string;\n}> = {\n  args: {\n    className: \"\",\n    mediaVariant: \"icon\",\n    title: \"No results\",\n    description: \"Try another search.\",\n  },\n  argTypes: {\n    className: { control: \"text\" },\n    mediaVariant: { control: \"select\", options: [\"default\", \"icon\"] },\n    title: { control: \"text\" },\n    description: { control: \"text\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Avatar: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `EmptyMedia` component to display an avatar in the empty state.\" },\n      source: { code: AvatarSource },\n    },\n  },\n  render: AvatarExample,\n};\n\nexport const AvatarGroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `EmptyMedia` component to display an avatar group in the empty state.\" },\n      source: { code: AvatarGroupSource },\n    },\n  },\n  render: AvatarGroupExample,\n};\n\nexport const Inputgroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"You can add an `InputGroup` component to the `EmptyContent` component.\" },\n      source: { code: InputgroupSource },\n    },\n  },\n  render: InputgroupExample,\n};\n\nexport const InputGroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use an input group as the action in an empty state.\" },\n      source: { code: InputGroupSource },\n    },\n  },\n  render: InputGroupExample,\n};\n\nexport const Outline: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"The default empty state includes a dashed border.\" },\n      source: { code: OutlineSource },\n    },\n  },\n  render: OutlineExample,\n};\n\nexport const Background: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.\" },\n      source: { code: BackgroundSource },\n    },\n  },\n  render: BackgroundExample,\n};\n"
+    },
+    {
+      "path": "src/empty/examples/empty-avatar-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-avatar-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyAvatarGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia>\n          <div className=\"flex -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale\">\n            <Avatar>\n              <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n              <AvatarFallback>CN</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n              <AvatarFallback>LR</AvatarFallback>\n            </Avatar>\n            <Avatar>\n              <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n              <AvatarFallback>ER</AvatarFallback>\n            </Avatar>\n          </div>\n        </EmptyMedia>\n        <EmptyTitle>No Team Members</EmptyTitle>\n        <EmptyDescription>Invite your team to collaborate on this project.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button size=\"sm\">\n          <HugeiconsIcon icon={PlusIcon} />\n          Invite Members\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/examples/empty-avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-avatar.tsx",
+      "content": "import { Avatar, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyAvatar() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant=\"default\">\n          <Avatar className=\"size-12\">\n            <AvatarImage src=\"https://github.com/shadcn.png\" className=\"grayscale\" />\n            <AvatarFallback>LR</AvatarFallback>\n          </Avatar>\n        </EmptyMedia>\n        <EmptyTitle>User Offline</EmptyTitle>\n        <EmptyDescription>\n          This user is currently offline. You can leave a message to notify them or try again later.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button size=\"sm\">Leave Message</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/examples/empty-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-demo.tsx",
+      "content": "import {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>No projects yet</EmptyTitle>\n        <EmptyDescription>Create a project to get started.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button>Create project</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/examples/empty-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/empty-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function EmptyInputGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need\n          below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className=\"sm:w-3/4\">\n          <InputGroupInput placeholder=\"Try searching for pages...\" />\n          <InputGroupAddon>\n            <HugeiconsIcon icon={Search01Icon} />\n          </InputGroupAddon>\n          <InputGroupAddon align=\"inline-end\">\n            <Kbd hotkey=\"/\" />\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href=\"#\">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/examples/upstream/empty-background.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/upstream/empty-background.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BellIcon from \"@hugeicons/core-free-icons/BellIcon\";\nimport RefreshCcwIcon from \"@hugeicons/core-free-icons/RefreshCcwIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport function EmptyMuted() {\n  return (\n    <Empty className=\"h-full bg-muted/30\">\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <HugeiconsIcon icon={BellIcon} />\n        </EmptyMedia>\n        <EmptyTitle>No Notifications</EmptyTitle>\n        <EmptyDescription className=\"max-w-xs text-pretty\">\n          You&apos;re all caught up. New notifications will appear here.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\">\n          <HugeiconsIcon icon={RefreshCcwIcon} data-icon=\"inline-start\" />\n          Refresh\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/examples/upstream/empty-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/upstream/empty-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function EmptyInputGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need\n          below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className=\"sm:w-3/4\">\n          <InputGroupInput placeholder=\"Try searching for pages...\" />\n          <InputGroupAddon>\n            <HugeiconsIcon icon={Search01Icon} />\n          </InputGroupAddon>\n          <InputGroupAddon align=\"inline-end\">\n            <Kbd hotkey=\"/\" />\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href=\"#\">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/examples/upstream/empty-outline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/examples/upstream/empty-outline.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CloudIcon from \"@hugeicons/core-free-icons/CloudIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <HugeiconsIcon icon={CloudIcon} />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\" size=\"sm\">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/empty/variants/avatar-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/avatar-group.tsx",
+      "content": "import ExampleEmptyAvatarGroup from \"../examples/empty-avatar-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleEmptyAvatarGroup />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/avatar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/avatar.tsx",
+      "content": "import ExampleEmptyAvatar from \"../examples/empty-avatar\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleEmptyAvatar />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/background.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/background.tsx",
+      "content": "import { EmptyMuted } from \"../examples/upstream/empty-background\";\n\nconst Example = () => <EmptyMuted />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/input-group.tsx",
+      "content": "import EmptyInputGroup from \"../examples/upstream/empty-input-group\";\n\nconst Example = () => <EmptyInputGroup />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/inputgroup.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/inputgroup.tsx",
+      "content": "import ExampleEmptyInputGroup from \"../examples/empty-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleEmptyInputGroup />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/outline.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/outline.tsx",
+      "content": "import EmptyOutline from \"../examples/upstream/empty-outline\";\n\nconst Example = () => <EmptyOutline />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/overview.tsx",
+      "content": "import Demo from \"../examples/empty-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/empty/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/empty/variants/playground.tsx",
+      "content": "import { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from \"@/registry/erbium/ui/empty\";\nimport { Empty } from \"@/registry/erbium/ui/empty\";\n\nconst Example = (args: {\n  className: string;\n  mediaVariant: \"default\" | \"icon\";\n  title: string;\n  description: string;\n}) => (\n  <Empty className={`w-80 ${args.className}`}>\n    <EmptyHeader>\n      <EmptyMedia variant={args.mediaVariant}>☆</EmptyMedia>\n      <EmptyTitle>{args.title}</EmptyTitle>\n      <EmptyDescription>{args.description}</EmptyDescription>\n    </EmptyHeader>\n  </Empty>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

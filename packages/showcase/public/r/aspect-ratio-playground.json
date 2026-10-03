@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio-playground",
+  "type": "registry:component",
+  "title": "Aspect Ratio: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/aspect-ratio/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/aspect-ratio/variants/playground.tsx",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof AspectRatio>) => (\n  <AspectRatio\n    {...args}\n    className={`w-80 overflow-hidden rounded-md bg-muted ${args.className ?? \"\"}`}\n  >\n    <div className=\"flex size-full items-center justify-center\">Content at {args.ratio}:1</div>\n  </AspectRatio>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

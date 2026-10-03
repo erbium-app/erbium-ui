@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-number",
+  "type": "registry:block",
+  "title": "Control: Number",
+  "description": "Drag or use arrow keys to change the value; click the number for precise entry.",
+  "registryDependencies": ["@erbium/control", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/control/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/helpers.tsx",
+      "content": "import { useState } from \"react\";\n\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nexport function NumberExample() {\n  const [value, setValue] = useState(0.7);\n  return (\n    <Control.Number\n      label=\"Scale\"\n      value={value}\n      onValueChange={setValue}\n      min={0}\n      max={1}\n      step={0.01}\n      className=\"w-72\"\n    />\n  );\n}\n"
+    },
+    {
+      "path": "src/control/variants/number.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/control/variants/number.tsx",
+      "content": "import { NumberExample } from \"../helpers\";\n\nconst Example = () => <NumberExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

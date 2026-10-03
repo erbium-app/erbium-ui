@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-error-variant",
+  "type": "registry:block",
+  "title": "Alert Dialog: Error",
+  "description": "Use the `AlertDialogAction` component to add a error action button to the alert dialog.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/alert-dialog/examples/upstream/alert-dialog-error.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-error.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Delete02Icon from \"@hugeicons/core-free-icons/Delete02Icon\";\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogError() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"error\">Delete Chat</Button>} />\n      <AlertDialogContent size=\"sm\">\n        <AlertDialogHeader>\n          <AlertDialogMedia className=\"bg-error/10 text-error dark:bg-error/20 dark:text-error\">\n            <HugeiconsIcon icon={Delete02Icon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Delete chat?</AlertDialogTitle>\n          <AlertDialogDescription>\n            This will permanently delete this chat conversation. View <a href=\"#\">Settings</a>{\" \"}\n            delete any memories saved during this chat.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel variant=\"outline\">Cancel</AlertDialogCancel>\n          <AlertDialogAction variant=\"error\">Delete</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert-dialog/variants/error-variant.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert-dialog/variants/error-variant.tsx",
+      "content": "import { AlertDialogError } from \"../examples/upstream/alert-dialog-error\";\n\nconst Example = () => <AlertDialogError />;\n\nexport default Example;\n"
+    }
+  ]
+}

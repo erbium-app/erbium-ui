@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marker-overview",
+  "type": "registry:block",
+  "title": "Marker: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/marker/examples/marker-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/examples/marker-demo.tsx",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\nexport default function Demo() {\n  return (\n    <div className=\"flex gap-3\">\n      <Marker>\n        <MarkerContent>New</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>Updated</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/marker/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/marker/variants/overview.tsx",
+      "content": "import Demo from \"../examples/marker-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

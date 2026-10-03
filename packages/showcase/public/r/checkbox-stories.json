@@ -1,0 +1,179 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox-stories",
+  "type": "registry:item",
+  "title": "Checkbox stories",
+  "description": "All checkbox variants as portable React CSF stories.",
+  "dependencies": ["@tanstack/react-table@9.2.4"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/checkbox",
+    "@erbium/csp-provider",
+    "@erbium/field",
+    "@erbium/overlay-provider",
+    "@erbium/shake",
+    "@erbium/stateful-button",
+    "@erbium/styles",
+    "@erbium/table",
+    "@erbium/toast",
+    "@erbium/use-drag-select"
+  ],
+  "files": [
+    {
+      "path": "src/checkbox/checkbox.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/checkbox/checkbox.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Field, FieldLabel } from \\\"@/registry/erbium/ui/field\\\";\\nimport { Checkbox } from \\\"@/registry/erbium/ui/checkbox\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Checkbox>) => (\\n  <Field orientation=\\\"horizontal\\\">\\n    <Checkbox key={String(args.defaultChecked)} {...args} id=\\\"playground-checkbox\\\" />\\n    <FieldLabel htmlFor=\\\"playground-checkbox\\\">Accept terms</FieldLabel>\\n  </Field>\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/checkbox-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport CheckedExample from \"./variants/checked\";\n\nconst CheckedSource = \"import { Checkbox } from \\\"@/registry/erbium/ui/checkbox\\\";\\n\\nconst Example = () => <Checkbox defaultChecked aria-label=\\\"Selected\\\" />;\\n\\nexport default Example;\\n\";\n\nimport ControlledExample from \"./variants/controlled\";\n\nconst ControlledSource = \"import ExampleCheckboxControlled from \\\"../examples/checkbox-controlled\\\";\\n\\nconst Example = () => <ExampleCheckboxControlled />;\\n\\nexport default Example;\\n\";\n\nimport IndeterminateExample from \"./variants/indeterminate\";\n\nconst IndeterminateSource = \"import ExampleCheckboxIndeterminate from \\\"../examples/checkbox-indeterminate\\\";\\n\\nconst Example = () => <ExampleCheckboxIndeterminate />;\\n\\nexport default Example;\\n\";\n\nimport ReadOnlyExample from \"./variants/read-only\";\n\nconst ReadOnlySource = \"import ExampleCheckboxReadOnly from \\\"../examples/checkbox-read-only\\\";\\n\\nconst Example = () => <ExampleCheckboxReadOnly />;\\n\\nexport default Example;\\n\";\n\nimport FormExample from \"./variants/form\";\n\nconst FormSource = \"import ExampleCheckboxForm from \\\"../examples/checkbox-form\\\";\\n\\nconst Example = () => <ExampleCheckboxForm />;\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import ExampleCheckboxDisabled from \\\"../examples/checkbox-disabled\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleCheckboxDisabled />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport TableExample from \"./variants/table\";\n\nconst TableSource = \"import { CheckboxInTable } from \\\"../examples/upstream/checkbox-table\\\";\\n\\nconst Example = () => <CheckboxInTable />;\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import { CheckboxBasic } from \\\"../examples/upstream/checkbox-basic\\\";\\n\\nconst Example = () => <CheckboxBasic />;\\n\\nexport default Example;\\n\";\n\nimport DescriptionExample from \"./variants/description\";\n\nconst DescriptionSource = \"import { CheckboxDescription } from \\\"../examples/upstream/checkbox-description\\\";\\n\\nconst Example = () => <CheckboxDescription />;\\n\\nexport default Example;\\n\";\n\nimport GroupExample from \"./variants/group\";\n\nconst GroupSource = \"import { CheckboxGroupFieldset } from \\\"../examples/upstream/checkbox-group\\\";\\n\\nconst Example = () => <CheckboxGroupFieldset />;\\n\\nexport default Example;\\n\";\n\nimport InvalidStateExample from \"./variants/invalid-state\";\n\nconst InvalidStateSource = \"import { CheckboxInvalid } from \\\"../examples/upstream/checkbox-invalid\\\";\\n\\nconst Example = () => <CheckboxInvalid />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Checkbox\",\n  component: Checkbox,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A control that allows the user to toggle between checked and not checked.\\n\\n**Import:** `@/registry/erbium/ui/checkbox`\\n\\n## Usage\\n\\n```tsx\\nimport { Checkbox } from \\\"@/registry/erbium/ui/checkbox\\\";\\n```\\n\\n```tsx\\n<Checkbox />\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Checkbox>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Checkbox> = {\n  args: {\n    defaultChecked: false,\n    indeterminate: false,\n    disabled: false,\n    readOnly: false,\n    required: false,\n  },\n  argTypes: {\n    defaultChecked: { control: \"boolean\", description: \"Initial checked state (uncontrolled).\" },\n    indeterminate: { control: \"boolean\", description: \"Mixed state; shows a minus icon.\" },\n    disabled: { control: \"boolean\", description: \"Ignores interaction and dims the control.\" },\n    readOnly: { control: \"boolean\", description: \"Focusable, but the state cannot change.\" },\n    required: { control: \"boolean\", description: \"Must be checked before the form submits.\" },\n    onCheckedChange: { action: \"onCheckedChange\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Checked: Story = {\n  name: \"Checked State\",\n  parameters: {\n    docs: {\n      description: { story: \"Use `defaultChecked` for an uncontrolled checkbox that starts ticked.\" },\n      source: { code: CheckedSource },\n    },\n  },\n  render: CheckedExample,\n};\n\nexport const Controlled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Pass `checked` and `onCheckedChange` to own the state. The handler receives `(checked, eventDetails)`; call `eventDetails.cancel()` to reject a change in uncontrolled mode.\" },\n      source: { code: ControlledSource },\n    },\n  },\n  render: ControlledExample,\n};\n\nexport const Indeterminate: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Inside a `CheckboxGroup`, pass `allValues` and mark one checkbox `parent`: it turns indeterminate while only some children are checked and toggles them all. Drag across the children to select or clear several at once.\" },\n      source: { code: IndeterminateSource },\n    },\n  },\n  render: IndeterminateExample,\n};\n\nexport const ReadOnly: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `readOnly` to show a value the user cannot change. It stays focusable and announced, unlike `disabled`, and exposes `data-readonly`.\" },\n      source: { code: ReadOnlySource },\n    },\n  },\n  render: ReadOnlyExample,\n};\n\nexport const Form: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A hidden input submits with the form. `name` sets the key, `value` the checked value (defaults to `\\\"on\\\"`), and `uncheckedValue` what an unticked box submits. `required` blocks submission until checked. An invalid submit shakes the visible terms row; selecting it clears the invalid state. Drag across both choices to change them together. Use `form` to associate a checkbox rendered outside its form.\" },\n      source: { code: FormSource },\n    },\n  },\n  render: FormExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `disabled` prop to prevent interaction. Inside a `<Field>`, add `disabled` to the field and the checkbox and its `FieldLabel` dim together through `data-disabled`.\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const Table: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Click a checkbox to toggle one row, or drag across rows to select or clear a range. The header checkbox reflects partial selection and selects all rows.\" },\n      source: { code: TableSource },\n    },\n  },\n  render: TableExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Pair the checkbox with `Field` and `FieldLabel` for proper layout and labeling.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const Description: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `FieldContent` and `FieldDescription` for helper text.\" },\n      source: { code: DescriptionSource },\n    },\n  },\n  render: DescriptionExample,\n};\n\nexport const Group: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`CheckboxGroup` wraps Base UI's checkbox group: it renders `role=\\\"group\\\"` and holds the checked `value`s as one array. Press a checkbox or its label and drag across the others to select or clear them in one gesture.\" },\n      source: { code: GroupSource },\n    },\n  },\n  render: GroupExample,\n};\n\nexport const InvalidState: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Set `invalid` on the `Field` wrapper; the checkbox picks up `aria-invalid` automatically.\" },\n      source: { code: InvalidStateSource },\n    },\n  },\n  render: InvalidStateExample,\n};\n"
+    },
+    {
+      "path": "src/checkbox/examples/checkbox-controlled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-controlled.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Receive marketing emails</FieldLabel>\n      </Field>\n      <p className=\"text-sm text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/checkbox-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-demo.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxDemo() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <Field orientation=\"horizontal\">\n        <Checkbox />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\" className=\"items-start\">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n      <Field orientation=\"horizontal\" disabled>\n        <Checkbox />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field variant=\"card\" orientation=\"horizontal\">\n        <Checkbox defaultChecked />\n        <FieldContent>\n          <FieldLabel>Enable notifications</FieldLabel>\n          <FieldDescription>You can enable or disable notifications at any time.</FieldDescription>\n        </FieldContent>\n      </Field>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/checkbox-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-disabled.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled defaultChecked />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled indeterminate />\n        <FieldLabel>Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/checkbox-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-form.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { StatefulButton } from \"@/registry/erbium/ui/stateful-button\";\nimport { useRef, useState } from \"react\";\n\nexport default function CheckboxForm() {\n  const [submitted, setSubmitted] = useState<string>();\n  const [termsInvalid, setTermsInvalid] = useState(false);\n  const termsInputRef = useRef<HTMLInputElement>(null);\n  const termsRowRef = useRef<HTMLDivElement>(null);\n\n  return (\n    <form\n      className=\"flex w-72 flex-col gap-4\"\n      onInvalid={(event) => {\n        if (event.target === termsInputRef.current) {\n          setTermsInvalid(true);\n          shake(termsRowRef.current);\n        }\n      }}\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <Field ref={termsRowRef} orientation=\"horizontal\" invalid={termsInvalid}>\n        <Checkbox\n          name=\"terms\"\n          required\n          inputRef={termsInputRef}\n          onCheckedChange={(checked) => {\n            if (checked) {\n              setTermsInvalid(false);\n            }\n          }}\n        />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox name=\"newsletter\" value=\"weekly\" uncheckedValue=\"none\" />\n        <FieldLabel>Weekly newsletter</FieldLabel>\n      </Field>\n      <StatefulButton className=\"self-start\" type=\"submit\">\n        Submit\n      </StatefulButton>\n      {submitted ? <pre className=\"rounded-md bg-muted p-3 text-xs\">{submitted}</pre> : null}\n    </form>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/checkbox-indeterminate.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-indeterminate.tsx",
+      "content": "import { Checkbox, CheckboxGroup } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nconst permissions = [\n  { id: \"read\", label: \"Read\" },\n  { id: \"write\", label: \"Write\" },\n  { id: \"delete\", label: \"Delete\" },\n];\n\nexport default function CheckboxIndeterminate() {\n  const [selected, setSelected] = useState<string[]>([\"read\"]);\n\n  return (\n    <CheckboxGroup\n      aria-labelledby=\"permissions-all-label\"\n      allValues={permissions.map((permission) => permission.id)}\n      value={selected}\n      onValueChange={setSelected}\n    >\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"permissions-all\" parent />\n        <FieldLabel id=\"permissions-all-label\" htmlFor=\"permissions-all\">\n          All permissions\n        </FieldLabel>\n      </Field>\n      {permissions.map((permission) => (\n        <Field orientation=\"horizontal\" className=\"ps-6\" key={permission.id}>\n          <Checkbox id={`permissions-${permission.id}`} value={permission.id} />\n          <FieldLabel className=\"font-normal\" htmlFor={`permissions-${permission.id}`}>\n            {permission.label}\n          </FieldLabel>\n        </Field>\n      ))}\n    </CheckboxGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/checkbox-read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/checkbox-read-only.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Checkbox readOnly defaultChecked />\n      <FieldLabel>Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-basic.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxBasic() {\n  return (\n    <FieldGroup className=\"mx-auto w-56\">\n      <Field orientation=\"horizontal\">\n        <Checkbox name=\"terms-checkbox-basic\" />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-description.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-description.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxDescription() {\n  return (\n    <FieldGroup className=\"mx-auto w-72\">\n      <Field orientation=\"horizontal\">\n        <Checkbox name=\"terms-checkbox-desc\" defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-group.tsx",
+      "content": "import { Checkbox, CheckboxGroup } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  FieldItem,\n  FieldDescription,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxGroupFieldset() {\n  return (\n    <FieldSet>\n      <FieldLegend variant=\"label\">Show these items on the desktop:</FieldLegend>\n      <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>\n      <CheckboxGroup defaultValue={[\"hard-disks\", \"external-disks\"]}>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"hard-disks\" />\n          <FieldLabel className=\"font-normal\">Hard disks</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"external-disks\" />\n          <FieldLabel className=\"font-normal\">External disks</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"cds-dvds\" />\n          <FieldLabel className=\"font-normal\">CDs, DVDs, and iPods</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <Checkbox name=\"desktop-items\" value=\"connected-servers\" />\n          <FieldLabel className=\"font-normal\">Connected servers</FieldLabel>\n        </FieldItem>\n      </CheckboxGroup>\n    </FieldSet>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-invalid.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-invalid.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxInvalid() {\n  return (\n    <FieldGroup className=\"mx-auto w-56\">\n      <Field orientation=\"horizontal\" invalid>\n        <Checkbox name=\"terms-checkbox-invalid\" />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/examples/upstream/checkbox-table.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/examples/upstream/checkbox-table.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { useDragSelect } from \"@/registry/erbium/hooks/use-drag-select\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/registry/erbium/ui/table\";\nimport {\n  createColumnHelper,\n  metaHelper,\n  rowSelectionFeature,\n  tableFeatures,\n  useTable,\n} from \"@tanstack/react-table\";\n\ntype User = {\n  id: string;\n  name: string;\n  email: string;\n  role: string;\n};\n\nconst tableData: User[] = [\n  { id: \"1\", name: \"Sarah Chen\", email: \"sarah.chen@example.com\", role: \"Admin\" },\n  { id: \"2\", name: \"Marcus Rodriguez\", email: \"marcus.rodriguez@example.com\", role: \"User\" },\n  { id: \"3\", name: \"Priya Patel\", email: \"priya.patel@example.com\", role: \"User\" },\n  { id: \"4\", name: \"David Kim\", email: \"david.kim@example.com\", role: \"Editor\" },\n];\n\nconst features = tableFeatures({\n  rowSelectionFeature,\n  columnMeta: metaHelper<{ className?: string }>(),\n});\n\nconst columnHelper = createColumnHelper<typeof features, User>();\n\nconst columns = columnHelper.columns([\n  columnHelper.display({\n    id: \"select\",\n    header: ({ table }) => (\n      <Checkbox\n        aria-label=\"Select all rows\"\n        checked={table.getIsAllRowsSelected()}\n        // v9's getIsSomeRowsSelected() is also true when every row is selected.\n        indeterminate={table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()}\n        onCheckedChange={(checked) => table.toggleAllRowsSelected(checked)}\n      />\n    ),\n    cell: ({ row }) => (\n      <Checkbox\n        aria-label={`Select ${row.original.name}`}\n        checked={row.getIsSelected()}\n        disabled={!row.getCanSelect()}\n        onCheckedChange={(checked) => row.toggleSelected(checked)}\n      />\n    ),\n    meta: { className: \"w-8\" },\n  }),\n  columnHelper.accessor(\"name\", {\n    header: \"Name\",\n    cell: (info) => <span className=\"font-medium\">{info.getValue()}</span>,\n  }),\n  columnHelper.accessor(\"email\", { header: \"Email\" }),\n  columnHelper.accessor(\"role\", { header: \"Role\" }),\n]);\n\nexport function CheckboxInTable() {\n  const table = useTable({\n    features,\n    columns,\n    data: tableData,\n    getRowId: (row) => row.id,\n    initialState: { rowSelection: { \"1\": true } },\n  });\n  const rows = table.getRowModel().rows;\n  const dragSelect = useDragSelect({\n    resolve(target) {\n      const index = target.closest(\"tr\")?.sectionRowIndex ?? -1;\n      const row = rows[index];\n      return row?.getCanSelect() ? { index, selected: row.getIsSelected() } : null;\n    },\n    selectRange(start, end, selected) {\n      for (const row of rows.slice(start, end + 1)) {\n        if (row.getCanSelect()) {\n          row.toggleSelected(selected);\n        }\n      }\n    },\n  });\n\n  return (\n    <Table>\n      <TableHeader>\n        {table.getHeaderGroups().map((headerGroup) => (\n          <TableRow key={headerGroup.id}>\n            {headerGroup.headers.map((header) => (\n              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>\n                {header.isPlaceholder ? null : <table.FlexRender header={header} />}\n              </TableHead>\n            ))}\n          </TableRow>\n        ))}\n      </TableHeader>\n      <TableBody {...dragSelect}>\n        {rows.map((row) => (\n          <TableRow data-state={row.getIsSelected() ? \"selected\" : undefined} key={row.id}>\n            {row.getAllCells().map((cell) => (\n              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>\n                <table.FlexRender cell={cell} />\n              </TableCell>\n            ))}\n          </TableRow>\n        ))}\n      </TableBody>\n    </Table>\n  );\n}\n"
+    },
+    {
+      "path": "src/checkbox/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/basic.tsx",
+      "content": "import { CheckboxBasic } from \"../examples/upstream/checkbox-basic\";\n\nconst Example = () => <CheckboxBasic />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/checked.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/checked.tsx",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\n\nconst Example = () => <Checkbox defaultChecked aria-label=\"Selected\" />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/controlled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/controlled.tsx",
+      "content": "import ExampleCheckboxControlled from \"../examples/checkbox-controlled\";\n\nconst Example = () => <ExampleCheckboxControlled />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/description.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/description.tsx",
+      "content": "import { CheckboxDescription } from \"../examples/upstream/checkbox-description\";\n\nconst Example = () => <CheckboxDescription />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/disabled.tsx",
+      "content": "import ExampleCheckboxDisabled from \"../examples/checkbox-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleCheckboxDisabled />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/form.tsx",
+      "content": "import ExampleCheckboxForm from \"../examples/checkbox-form\";\n\nconst Example = () => <ExampleCheckboxForm />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/group.tsx",
+      "content": "import { CheckboxGroupFieldset } from \"../examples/upstream/checkbox-group\";\n\nconst Example = () => <CheckboxGroupFieldset />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/indeterminate.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/indeterminate.tsx",
+      "content": "import ExampleCheckboxIndeterminate from \"../examples/checkbox-indeterminate\";\n\nconst Example = () => <ExampleCheckboxIndeterminate />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/invalid-state.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/invalid-state.tsx",
+      "content": "import { CheckboxInvalid } from \"../examples/upstream/checkbox-invalid\";\n\nconst Example = () => <CheckboxInvalid />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/overview.tsx",
+      "content": "import Demo from \"../examples/checkbox-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/playground.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Checkbox>) => (\n  <Field orientation=\"horizontal\">\n    <Checkbox key={String(args.defaultChecked)} {...args} id=\"playground-checkbox\" />\n    <FieldLabel htmlFor=\"playground-checkbox\">Accept terms</FieldLabel>\n  </Field>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/read-only.tsx",
+      "content": "import ExampleCheckboxReadOnly from \"../examples/checkbox-read-only\";\n\nconst Example = () => <ExampleCheckboxReadOnly />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/checkbox/variants/table.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/checkbox/variants/table.tsx",
+      "content": "import { CheckboxInTable } from \"../examples/upstream/checkbox-table\";\n\nconst Example = () => <CheckboxInTable />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

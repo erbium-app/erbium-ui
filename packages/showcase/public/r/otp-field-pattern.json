@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-pattern",
+  "type": "registry:block",
+  "title": "OTP Field: Pattern",
+  "description": "`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.",
+  "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/otp-field/examples/upstream/otp-field-pattern.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/examples/upstream/otp-field-pattern.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldPattern() {\n  return (\n    <Field className=\"w-fit\">\n      <FieldLabel>Digits Only</FieldLabel>\n      <OTPField length={6} validationType=\"numeric\" />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/otp-field/variants/pattern.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/pattern.tsx",
+      "content": "import { OTPFieldPattern } from \"../examples/upstream/otp-field-pattern\";\n\nconst Example = () => <OTPFieldPattern />;\n\nexport default Example;\n"
+    }
+  ]
+}

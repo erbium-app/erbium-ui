@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "questionnaire-multiple",
+  "type": "registry:block",
+  "title": "Questionnaire: Multiple Selection",
+  "description": "Use `multiple` for an item that accepts more than one fixed answer.\n\nalign=\"end\"",
+  "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
+  "files": [
+    {
+      "path": "src/form/examples/upstream/form-value.ts",
+      "type": "registry:component",
+      "target": "@components/showcase/form/examples/upstream/form-value.ts",
+      "content": "export function getFormValue(formData: FormData, name: string, fallback = \"None\") {\n  const value = formData.get(name);\n  return typeof value === \"string\" && value.length > 0 ? value : fallback;\n}\n\nexport function getFormValues(formData: FormData, name: string) {\n  return formData.getAll(name).filter((value): value is string => typeof value === \"string\");\n}\n"
+    },
+    {
+      "path": "src/questionnaire/examples/upstream/questionnaire-multiple.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/questionnaire/examples/upstream/questionnaire-multiple.tsx",
+      "content": "import { getFormValues } from \"../../../form/examples/upstream/form-value\";\nimport * as React from \"react\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nimport {\n  Questionnaire,\n  QuestionnaireActions,\n  QuestionnaireChoice,\n  QuestionnaireChoices,\n  QuestionnaireDescription,\n  QuestionnaireError,\n  QuestionnaireItem,\n  QuestionnaireSubmit,\n  QuestionnaireTitle,\n} from \"@/registry/erbium/ui/questionnaire\";\n\nconst items = [\n  {\n    choices: [{ value: \"source\" }, { value: \"tests\" }, { value: \"docs\" }, { value: \"history\" }],\n    name: \"context\",\n    required: true,\n  },\n] as const;\n\nexport function QuestionnaireMultiple() {\n  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n\n    const context = getFormValues(new FormData(event.currentTarget), \"context\");\n\n    toast.add({\n      title: \"Context selected\",\n      description: `Context: ${context.join(\", \") || \"None\"}`,\n    });\n  }\n\n  return (\n    <Questionnaire\n      className=\"mx-auto max-w-md\"\n      items={items}\n      shortcuts=\"letters\"\n      onSubmit={handleSubmit}\n    >\n      <QuestionnaireItem name=\"context\" multiple required>\n        <QuestionnaireTitle>What context should the agent inspect?</QuestionnaireTitle>\n        <QuestionnaireDescription>\n          Select every source that may affect the implementation.\n        </QuestionnaireDescription>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"source\">Relevant source files</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"tests\">Existing tests</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"docs\">Architecture documentation</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"history\">Recent commit history</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireError />\n      </QuestionnaireItem>\n\n      <QuestionnaireActions>\n        <QuestionnaireSubmit>Share context</QuestionnaireSubmit>\n      </QuestionnaireActions>\n    </Questionnaire>\n  );\n}\n"
+    },
+    {
+      "path": "src/questionnaire/variants/multiple.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/questionnaire/variants/multiple.tsx",
+      "content": "import { QuestionnaireMultiple } from \"../examples/upstream/questionnaire-multiple\";\n\nconst Example = () => <QuestionnaireMultiple />;\n\nexport default Example;\n"
+    }
+  ]
+}

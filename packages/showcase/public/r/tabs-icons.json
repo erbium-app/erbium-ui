@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-icons",
+  "type": "registry:block",
+  "title": "Tabs: Icons",
+  "description": "Add icons to tab triggers.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
+  "files": [
+    {
+      "path": "src/tabs/examples/upstream/tabs-icons.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tabs/examples/upstream/tabs-icons.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport AppWindowIcon from \"@hugeicons/core-free-icons/AppWindowIcon\";\nimport CodeIcon from \"@hugeicons/core-free-icons/CodeIcon\";\n\nimport { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport function TabsIcons() {\n  return (\n    <Tabs defaultValue=\"preview\">\n      <TabsList>\n        <TabsTrigger value=\"preview\">\n          <HugeiconsIcon icon={AppWindowIcon} />\n          Preview\n        </TabsTrigger>\n        <TabsTrigger value=\"code\">\n          <HugeiconsIcon icon={CodeIcon} />\n          Code\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n"
+    },
+    {
+      "path": "src/tabs/variants/icons.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tabs/variants/icons.tsx",
+      "content": "import { TabsIcons } from \"../examples/upstream/tabs-icons\";\n\nconst Example = () => <TabsIcons />;\n\nexport default Example;\n"
+    }
+  ]
+}

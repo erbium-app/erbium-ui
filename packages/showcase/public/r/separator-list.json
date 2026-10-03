@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator-list",
+  "type": "registry:block",
+  "title": "Separator: List",
+  "description": "Horizontal separators between list items.",
+  "registryDependencies": ["@erbium/separator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/separator/examples/upstream/separator-list.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/examples/upstream/separator-list.tsx",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport function SeparatorList() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-2 text-sm\">\n      <dl className=\"flex items-center justify-between\">\n        <dt>Item 1</dt>\n        <dd className=\"text-muted-foreground\">Value 1</dd>\n      </dl>\n      <Separator />\n      <dl className=\"flex items-center justify-between\">\n        <dt>Item 2</dt>\n        <dd className=\"text-muted-foreground\">Value 2</dd>\n      </dl>\n      <Separator />\n      <dl className=\"flex items-center justify-between\">\n        <dt>Item 3</dt>\n        <dd className=\"text-muted-foreground\">Value 3</dd>\n      </dl>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/separator/variants/list.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/separator/variants/list.tsx",
+      "content": "import { SeparatorList } from \"../examples/upstream/separator-list\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <SeparatorList />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

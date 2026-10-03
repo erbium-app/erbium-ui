@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shake-demo",
+  "type": "registry:component",
+  "title": "shake demo",
+  "description": "Erbium shake demo example.",
+  "registryDependencies": ["@erbium/button", "@erbium/shake", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/shake/examples/shake-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/shake/examples/shake-demo.tsx",
+      "content": "import { useRef } from \"react\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const ref = useRef<HTMLButtonElement>(null);\n  return (\n    <Button ref={ref} variant=\"error\" onClick={() => shake(ref.current)}>\n      Replay error feedback\n    </Button>\n  );\n}\n"
+    }
+  ]
+}

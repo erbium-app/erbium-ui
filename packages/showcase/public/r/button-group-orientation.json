@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-orientation",
+  "type": "registry:block",
+  "title": "Button Group: Orientation",
+  "description": "Set the `orientation` prop to change the button group layout.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button-group/examples/button-group-orientation.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/examples/button-group-orientation.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport MinusIcon from \"@hugeicons/core-free-icons/MinusIcon\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupOrientation() {\n  return (\n    <ButtonGroup orientation=\"vertical\" aria-label=\"Media controls\" className=\"h-fit\">\n      <Button variant=\"outline\" size=\"icon\">\n        <HugeiconsIcon icon={PlusIcon} />\n      </Button>\n      <Button variant=\"outline\" size=\"icon\">\n        <HugeiconsIcon icon={MinusIcon} />\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/button-group/variants/orientation.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/variants/orientation.tsx",
+      "content": "import ExampleButtonGroupOrientation from \"../examples/button-group-orientation\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupOrientation />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

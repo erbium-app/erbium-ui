@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "attachment-demo",
+  "type": "registry:component",
+  "title": "attachment demo",
+  "description": "Erbium attachment demo example.",
+  "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/attachment/examples/attachment-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/attachment/examples/attachment-demo.tsx",
+      "content": "import {\n  Attachment,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentGroup,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\nexport default function Demo() {\n  return (\n    <AttachmentGroup>\n      <Attachment>\n        <AttachmentContent>\n          <AttachmentTitle>report.pdf</AttachmentTitle>\n          <AttachmentDescription>PDF document · 2.4 MB</AttachmentDescription>\n        </AttachmentContent>\n      </Attachment>\n    </AttachmentGroup>\n  );\n}\n"
+    }
+  ]
+}

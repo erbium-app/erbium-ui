@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card-positioning",
+  "type": "registry:component",
+  "title": "Hover Card: Positioning",
+  "description": "Use the `side` and `align` props on `HoverCardContent` to control placement.\n\n```tsx\n<HoverCard>\n  <HoverCardTrigger render={<Button variant=\"link\">Hover</Button>} />\n  <HoverCardContent side=\"top\" align=\"start\">\n    Content\n  </HoverCardContent>\n</HoverCard>\n```",
+  "registryDependencies": ["@erbium/button", "@erbium/hover-card", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/hover-card/variants/positioning.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/hover-card/variants/positioning.tsx",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <HoverCard>\n    <HoverCardTrigger render={<Button variant=\"link\" />}>Preview above</HoverCardTrigger>\n    <HoverCardContent align=\"start\" side=\"top\">\n      Aligned to the start of the trigger.\n    </HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

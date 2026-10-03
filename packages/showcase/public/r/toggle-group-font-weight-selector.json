@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group-font-weight-selector",
+  "type": "registry:block",
+  "title": "Toggle Group: Custom",
+  "description": "A custom toggle group example.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/toggle-group"],
+  "files": [
+    {
+      "path": "src/toggle-group/examples/upstream/toggle-group-font-weight-selector.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toggle-group/examples/upstream/toggle-group-font-weight-selector.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupFontWeightSelector() {\n  const [fontWeight, setFontWeight] = React.useState(\"normal\");\n  return (\n    <Field>\n      <FieldLabel>Font Weight</FieldLabel>\n      <ToggleGroup\n        value={[fontWeight]}\n        onValueChange={(value) => setFontWeight(value[0])}\n        variant=\"outline\"\n        spacing={2}\n        size=\"lg\"\n      >\n        <ToggleGroupItem\n          value=\"light\"\n          aria-label=\"Light\"\n          className=\"flex size-16 flex-col items-center justify-center rounded-xl\"\n        >\n          <span className=\"text-2xl leading-none font-light\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Light</span>\n        </ToggleGroupItem>\n        <ToggleGroupItem\n          value=\"normal\"\n          aria-label=\"Normal\"\n          className=\"flex size-16 flex-col items-center justify-center rounded-xl\"\n        >\n          <span className=\"text-2xl leading-none font-normal\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Normal</span>\n        </ToggleGroupItem>\n        <ToggleGroupItem\n          value=\"medium\"\n          aria-label=\"Medium\"\n          className=\"flex size-16 flex-col items-center justify-center rounded-xl\"\n        >\n          <span className=\"text-2xl leading-none font-medium\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Medium</span>\n        </ToggleGroupItem>\n        <ToggleGroupItem\n          value=\"bold\"\n          aria-label=\"Bold\"\n          className=\"flex size-16 flex-col items-center justify-center rounded-xl\"\n        >\n          <span className=\"text-2xl leading-none font-bold\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Bold</span>\n        </ToggleGroupItem>\n      </ToggleGroup>\n      <FieldDescription>\n        Use <code className=\"rounded-md bg-muted px-1 py-0.5 font-mono\">font-{fontWeight}</code> to\n        set the font weight.\n      </FieldDescription>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/toggle-group/variants/font-weight-selector.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toggle-group/variants/font-weight-selector.tsx",
+      "content": "import { ToggleGroupFontWeightSelector } from \"../examples/upstream/toggle-group-font-weight-selector\";\n\nconst Example = () => <ToggleGroupFontWeightSelector />;\n\nexport default Example;\n"
+    }
+  ]
+}

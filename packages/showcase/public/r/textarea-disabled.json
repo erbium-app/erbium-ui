@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-disabled",
+  "type": "registry:block",
+  "title": "Textarea: Disabled",
+  "description": "Use the `disabled` prop to disable the textarea. To style the disabled state, add the `data-disabled` attribute to the `Field` component.",
+  "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
+  "files": [
+    {
+      "path": "src/textarea/examples/textarea-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/examples/textarea-disabled.tsx",
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function TextareaDisabled() {\n  return <Textarea placeholder=\"Type your message here.\" disabled />;\n}\n"
+    },
+    {
+      "path": "src/textarea/variants/disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/textarea/variants/disabled.tsx",
+      "content": "import ExampleTextareaDisabled from \"../examples/textarea-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleTextareaDisabled />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

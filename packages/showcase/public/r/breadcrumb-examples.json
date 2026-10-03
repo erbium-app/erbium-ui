@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "breadcrumb-examples",
+  "type": "registry:item",
+  "title": "Breadcrumb examples",
+  "description": "All breadcrumb examples.",
+  "registryDependencies": [
+    "@erbium-examples/breadcrumb-playground",
+    "@erbium-examples/breadcrumb-overview",
+    "@erbium-examples/breadcrumb-ellipsis",
+    "@erbium-examples/breadcrumb-basic",
+    "@erbium-examples/breadcrumb-dropdown",
+    "@erbium-examples/breadcrumb-custom-separator",
+    "@erbium-examples/breadcrumb-link-component"
+  ]
+}

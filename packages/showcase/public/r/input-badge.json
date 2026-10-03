@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-badge",
+  "type": "registry:block",
+  "title": "Input: Badge",
+  "description": "Use `Badge` in the label to highlight a recommended field.",
+  "registryDependencies": ["@erbium/badge", "@erbium/field", "@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/examples/upstream/input-badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/examples/upstream/input-badge.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputBadge() {\n  return (\n    <Field>\n      <FieldLabel>\n        Webhook URL{\" \"}\n        <Badge variant=\"secondary\" className=\"ml-auto\">\n          Beta\n        </Badge>\n      </FieldLabel>\n      <Input type=\"url\" placeholder=\"https://api.example.com/webhook\" />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/input/variants/badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/badge.tsx",
+      "content": "import { InputBadge } from \"../examples/upstream/input-badge\";\n\nconst Example = () => <InputBadge />;\n\nexport default Example;\n"
+    }
+  ]
+}

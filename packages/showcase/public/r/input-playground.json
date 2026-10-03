@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-playground",
+  "type": "registry:component",
+  "title": "Input: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/input", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input/variants/playground.tsx",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Input>) => (\n  <Input {...args} className={`w-72 ${args.className ?? \"\"}`} />\n);\n\nexport default Example;\n"
+    }
+  ]
+}

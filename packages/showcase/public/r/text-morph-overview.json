@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-morph-overview",
+  "type": "registry:block",
+  "title": "Text Morph: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/text-morph"],
+  "files": [
+    {
+      "path": "src/text-morph/examples/text-morph-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/text-morph/examples/text-morph-demo.tsx",
+      "content": "import { useState } from \"react\";\nimport { TextMorph } from \"@/registry/erbium/ui/text-morph\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const [count, setCount] = useState(10);\n  return (\n    <div className=\"flex items-center gap-4\">\n      <TextMorph aria-live=\"polite\">{count}</TextMorph>\n      <Button onClick={() => setCount(count + 1)}>Increment</Button>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/text-morph/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/text-morph/variants/overview.tsx",
+      "content": "import Demo from \"../examples/text-morph-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

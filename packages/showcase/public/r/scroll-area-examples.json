@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area-examples",
+  "type": "registry:item",
+  "title": "Scroll Area examples",
+  "description": "All scroll-area examples.",
+  "registryDependencies": [
+    "@erbium-examples/scroll-area-playground",
+    "@erbium-examples/scroll-area-overview",
+    "@erbium-examples/scroll-area-horizontal"
+  ]
+}

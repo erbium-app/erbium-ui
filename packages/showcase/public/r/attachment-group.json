@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "attachment-group",
+  "type": "registry:block",
+  "title": "Attachment: Group",
+  "description": "Wrap attachments in `AttachmentGroup` to lay them out in a horizontally scrollable, snapping row with an edge fade.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/attachment/examples/upstream/attachment-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/attachment/examples/upstream/attachment-group.tsx",
+      "content": "import { HugeiconsIcon, type IconSvgElement } from \"@hugeicons/react\";\nimport FileCodeIcon from \"@hugeicons/core-free-icons/FileCodeIcon\";\nimport FileTextIcon from \"@hugeicons/core-free-icons/FileTextIcon\";\nimport TableIcon from \"@hugeicons/core-free-icons/TableIcon\";\nimport XIcon from \"@hugeicons/core-free-icons/XIcon\";\n\nimport {\n  Attachment,\n  AttachmentAction,\n  AttachmentActions,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentGroup,\n  AttachmentMedia,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\n\ntype Item = {\n  name: string;\n  meta: string;\n  icon?: IconSvgElement;\n  src?: string;\n};\n\nconst items: Item[] = [\n  { name: \"briefing-notes.pdf\", meta: \"PDF · 1.4 MB\", icon: FileTextIcon },\n  {\n    name: \"workspace.png\",\n    meta: \"PNG · 820 KB\",\n    src: \"https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop&q=80\",\n  },\n  { name: \"customers.csv\", meta: \"CSV · 18 KB\", icon: TableIcon },\n  { name: \"renderer.tsx\", meta: \"TSX · 12 KB\", icon: FileCodeIcon },\n];\n\nexport function AttachmentGroupDemo() {\n  return (\n    <div className=\"mx-auto w-full max-w-sm py-12\">\n      <AttachmentGroup className=\"w-full\">\n        {items.map((item) => {\n          const Icon = item.icon;\n\n          return (\n            <Attachment key={item.name} className=\"w-64\">\n              {item.src ? (\n                <AttachmentMedia variant=\"image\">\n                  <img src={item.src} alt={item.name} />\n                </AttachmentMedia>\n              ) : Icon ? (\n                <AttachmentMedia>\n                  <HugeiconsIcon icon={Icon} />\n                </AttachmentMedia>\n              ) : null}\n              <AttachmentContent>\n                <AttachmentTitle>{item.name}</AttachmentTitle>\n                <AttachmentDescription>{item.meta}</AttachmentDescription>\n              </AttachmentContent>\n              <AttachmentActions>\n                <AttachmentAction aria-label={`Remove ${item.name}`}>\n                  <HugeiconsIcon icon={XIcon} />\n                </AttachmentAction>\n              </AttachmentActions>\n            </Attachment>\n          );\n        })}\n      </AttachmentGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/attachment/variants/group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/attachment/variants/group.tsx",
+      "content": "import { AttachmentGroupDemo } from \"../examples/upstream/attachment-group\";\n\nconst Example = () => <AttachmentGroupDemo />;\n\nexport default Example;\n"
+    }
+  ]
+}

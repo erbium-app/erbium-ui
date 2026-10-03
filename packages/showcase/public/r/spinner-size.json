@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-size",
+  "type": "registry:block",
+  "title": "Spinner: Size",
+  "description": "Use the `size-*` utility class to change the size of the spinner.",
+  "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/spinner/examples/spinner-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-size.tsx",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerSize() {\n  return (\n    <div className=\"flex items-center gap-6\">\n      <Spinner className=\"size-3\" />\n      <Spinner className=\"size-4\" />\n      <Spinner className=\"size-6\" />\n      <Spinner className=\"size-8\" />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/variants/size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/size.tsx",
+      "content": "import ExampleSpinnerSize from \"../examples/spinner-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerSize />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "command-basic",
+  "type": "registry:block",
+  "title": "Command: Basic",
+  "description": "A simple command menu in a dialog.",
+  "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/command/examples/upstream/command-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/command/examples/upstream/command-basic.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Command,\n  CommandDialog,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n} from \"@/registry/erbium/ui/command\";\n\nexport function CommandBasic() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Button onClick={() => setOpen(true)} variant=\"outline\" className=\"w-fit\">\n        Open Menu\n      </Button>\n      <CommandDialog open={open} onOpenChange={setOpen}>\n        <Command>\n          <CommandInput placeholder=\"Type a command or search...\" />\n          <CommandList>\n            <CommandEmpty>No results found.</CommandEmpty>\n            <CommandGroup heading=\"Suggestions\">\n              <CommandItem>Calendar</CommandItem>\n              <CommandItem>Search Emoji</CommandItem>\n              <CommandItem>Calculator</CommandItem>\n            </CommandGroup>\n          </CommandList>\n        </Command>\n      </CommandDialog>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/command/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/command/variants/basic.tsx",
+      "content": "import { CommandBasic } from \"../examples/upstream/command-basic\";\n\nconst Example = () => <CommandBasic />;\n\nexport default Example;\n"
+    }
+  ]
+}

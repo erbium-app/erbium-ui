@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-examples",
+  "type": "registry:item",
+  "title": "Slider examples",
+  "description": "All slider examples.",
+  "registryDependencies": [
+    "@erbium-examples/slider-playground",
+    "@erbium-examples/slider-overview",
+    "@erbium-examples/slider-midpoint",
+    "@erbium-examples/slider-disabled",
+    "@erbium-examples/slider-range",
+    "@erbium-examples/slider-vertical",
+    "@erbium-examples/slider-controlled",
+    "@erbium-examples/slider-multiple-thumbs"
+  ]
+}

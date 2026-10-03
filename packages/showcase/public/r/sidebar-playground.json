@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-playground",
+  "type": "registry:component",
+  "title": "Sidebar: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/sidebar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/sidebar/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/sidebar/variants/playground.tsx",
+      "content": "import {\n  SidebarProvider,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupLabel,\n  SidebarGroupContent,\n  SidebarMenu,\n  SidebarMenuItem,\n  SidebarMenuButton,\n} from \"@/registry/erbium/ui/sidebar\";\nimport { Sidebar } from \"@/registry/erbium/ui/sidebar\";\n\nconst Example = (args: {\n  side: \"left\" | \"right\";\n  variant: \"sidebar\" | \"floating\" | \"inset\";\n  collapsible: \"offcanvas\" | \"icon\" | \"none\";\n  defaultOpen: boolean;\n}) => (\n  <SidebarProvider key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <div className=\"relative h-64 w-80 overflow-hidden rounded border\">\n      <Sidebar side={args.side} variant={args.variant} collapsible={args.collapsible}>\n        <SidebarContent>\n          <SidebarGroup>\n            <SidebarGroupLabel>Workspace</SidebarGroupLabel>\n            <SidebarGroupContent>\n              <SidebarMenu>\n                <SidebarMenuItem>\n                  <SidebarMenuButton>Overview</SidebarMenuButton>\n                </SidebarMenuItem>\n                <SidebarMenuItem>\n                  <SidebarMenuButton>Settings</SidebarMenuButton>\n                </SidebarMenuItem>\n              </SidebarMenu>\n            </SidebarGroupContent>\n          </SidebarGroup>\n        </SidebarContent>\n      </Sidebar>\n    </div>\n  </SidebarProvider>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

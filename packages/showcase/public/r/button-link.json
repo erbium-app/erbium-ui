@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-link",
+  "type": "registry:block",
+  "title": "Button: Link",
+  "description": "Style a button as a link.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/button/examples/button-link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/examples/button-link.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonLink() {\n  return <Button variant=\"link\">Link</Button>;\n}\n"
+    },
+    {
+      "path": "src/button/variants/link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button/variants/link.tsx",
+      "content": "import ExampleButtonLink from \"../examples/button-link\";\n\nconst Example = () => <ExampleButtonLink />;\n\nexport default Example;\n"
+    }
+  ]
+}

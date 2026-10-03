@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-pressed",
+  "type": "registry:component",
+  "title": "Toggle: Pressed",
+  "description": "Start a toggle in the pressed state.",
+  "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+  "files": [
+    {
+      "path": "src/toggle/variants/pressed.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toggle/variants/pressed.tsx",
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle defaultPressed aria-label=\"Bold\">\n    Bold\n  </Toggle>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

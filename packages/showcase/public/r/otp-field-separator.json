@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "otp-field-separator",
+  "type": "registry:block",
+  "title": "OTP Field: Separator",
+  "description": "Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.",
+  "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/otp-field/examples/otp-field-separator.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/examples/otp-field-separator.tsx",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldWithSeparator() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[2, 2, 2]} />;\n}\n"
+    },
+    {
+      "path": "src/otp-field/variants/separator.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/otp-field/variants/separator.tsx",
+      "content": "import ExampleOtpFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOtpFieldSeparator />;\n\nexport default Example;\n"
+    }
+  ]
+}

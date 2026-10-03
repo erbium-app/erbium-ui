@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "meter-playground",
+  "type": "registry:component",
+  "title": "Meter: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/meter", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/meter/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/meter/variants/playground.tsx",
+      "content": "import { Meter, MeterIndicator, MeterTrack } from \"@/registry/erbium/ui/meter\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Meter>) => (\n  <Meter {...args} className=\"w-72\" aria-label=\"Storage used\">\n    <MeterTrack>\n      <MeterIndicator />\n    </MeterTrack>\n  </Meter>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

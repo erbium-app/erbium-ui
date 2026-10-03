@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-morph-examples",
+  "type": "registry:item",
+  "title": "Text Morph examples",
+  "description": "All text-morph examples.",
+  "registryDependencies": ["@erbium-examples/text-morph-overview"]
+}

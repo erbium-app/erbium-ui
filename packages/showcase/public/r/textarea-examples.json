@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea-examples",
+  "type": "registry:item",
+  "title": "Textarea examples",
+  "description": "All textarea examples.",
+  "registryDependencies": [
+    "@erbium-examples/textarea-playground",
+    "@erbium-examples/textarea-overview",
+    "@erbium-examples/textarea-disabled-control",
+    "@erbium-examples/textarea-invalid",
+    "@erbium-examples/textarea-disabled",
+    "@erbium-examples/textarea-field",
+    "@erbium-examples/textarea-button"
+  ]
+}

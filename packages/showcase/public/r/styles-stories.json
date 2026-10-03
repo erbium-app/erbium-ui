@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "styles-stories",
+  "type": "registry:item",
+  "title": "Erbium styles stories",
+  "description": "All styles variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/styles/examples/styles-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/styles/examples/styles-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3 p-6\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/styles/styles.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/styles/styles.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/styles-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Erbium styles\",\n  parameters: {\n    layout: \"centered\",\n    docs: { description: { component: \"The shared theme supplies component colors, typography, surfaces, and motion. Import `@erbium/ui/globals.css` once in your application entry point.\\n\\nUse the same stylesheet in documentation previews and your React app to keep their appearance consistent.\" } },\n  },\n} satisfies Meta;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n"
+    },
+    {
+      "path": "src/styles/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/styles/variants/overview.tsx",
+      "content": "import Demo from \"../examples/styles-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+    }
+  ]
+}

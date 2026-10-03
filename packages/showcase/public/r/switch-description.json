@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-description",
+  "type": "registry:block",
+  "title": "Switch: Description",
+  "description": "Pair a switch with a label and explanatory text.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/upstream/switch-description.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/upstream/switch-description.tsx",
+      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchDescription() {\n  return (\n    <Field orientation=\"horizontal\" className=\"max-w-sm\">\n      <FieldContent>\n        <FieldLabel>Share across devices</FieldLabel>\n        <FieldDescription>\n          Focus is shared across devices, and turns off when you leave the app.\n        </FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/switch/variants/description.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/variants/description.tsx",
+      "content": "import { SwitchDescription } from \"../examples/upstream/switch-description\";\n\nconst Example = () => <SwitchDescription />;\n\nexport default Example;\n"
+    }
+  ]
+}

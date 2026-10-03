@@ -1,0 +1,102 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-stories",
+  "type": "registry:item",
+  "title": "Alert stories",
+  "description": "All alert variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/alert",
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/alert/alert.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/alert/alert.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Alert } from \"@/registry/erbium/ui/alert\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Alert, AlertDescription, AlertTitle } from \\\"@/registry/erbium/ui/alert\\\";\\nimport type * as React from \\\"react\\\";\\nimport { alertContent } from \\\"../helpers\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Alert>) => {\\n  const content = alertContent[args.variant ?? \\\"default\\\"];\\n\\n  return (\\n    <Alert {...args} className={`w-96 ${args.className ?? \\\"\\\"}`}>\\n      <AlertTitle>{content.title}</AlertTitle>\\n      <AlertDescription>{content.description}</AlertDescription>\\n    </Alert>\\n  );\\n};\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/alert-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport ErrorVariantExample from \"./variants/error-variant\";\n\nconst ErrorVariantSource = \"import ExampleAlertError from \\\"../examples/alert-error\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleAlertError />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import { Alert, AlertDescription, AlertTitle } from \\\"@/registry/erbium/ui/alert\\\";\\n\\nconst Example = () => (\\n  <Alert className=\\\"w-80\\\">\\n    <AlertTitle>Workspace connected</AlertTitle>\\n    <AlertDescription>The agent can read the files in this project.</AlertDescription>\\n  </Alert>\\n);\\n\\nexport default Example;\\n\";\n\nimport InfoExample from \"./variants/info\";\n\nconst InfoSource = \"import { Alert, AlertDescription, AlertTitle } from \\\"@/registry/erbium/ui/alert\\\";\\n\\nconst Example = () => (\\n  <Alert variant=\\\"info\\\" className=\\\"w-96\\\">\\n    <AlertTitle>Plan ready</AlertTitle>\\n    <AlertDescription>\\n      The agent identified three files to update before writing code.\\n    </AlertDescription>\\n  </Alert>\\n);\\n\\nexport default Example;\\n\";\n\nimport SuccessExample from \"./variants/success\";\n\nconst SuccessSource = \"import { Alert, AlertDescription, AlertTitle } from \\\"@/registry/erbium/ui/alert\\\";\\n\\nconst Example = () => (\\n  <Alert variant=\\\"success\\\" className=\\\"w-96\\\">\\n    <AlertTitle>Verification passed</AlertTitle>\\n    <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\\n  </Alert>\\n);\\n\\nexport default Example;\\n\";\n\nimport ActionExample from \"./variants/action\";\n\nconst ActionSource = \"import { Alert, AlertAction, AlertDescription, AlertTitle } from \\\"@/registry/erbium/ui/alert\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\n\\nconst Example = () => (\\n  <Alert variant=\\\"warning\\\" className=\\\"w-96\\\">\\n    <AlertTitle>Approval required</AlertTitle>\\n    <AlertDescription>The agent needs permission to install a new dependency.</AlertDescription>\\n    <AlertAction>\\n      <Button size=\\\"sm\\\" variant=\\\"outline\\\">\\n        Review\\n      </Button>\\n    </AlertAction>\\n  </Alert>\\n);\\n\\nexport default Example;\\n\";\n\nimport WarningExample from \"./variants/warning\";\n\nconst WarningSource = \"import AlertColors from \\\"../examples/upstream/alert-colors\\\";\\n\\nconst Example = () => <AlertColors />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Alert\",\n  component: Alert,\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"Displays a callout for agent activity, decisions, and failures. Each variant supplies its own icon.\\n\\n**Import:** `@/registry/erbium/ui/alert`\\n\\n## Usage\\n\\n```tsx\\nimport { Alert, AlertAction, AlertDescription, AlertTitle } from \\\"@/registry/erbium/ui/alert\\\";\\n```\\n\\n```tsx\\n<Alert variant=\\\"warning\\\">\\n  <AlertTitle>Approval required</AlertTitle>\\n  <AlertDescription>The agent needs permission to install a new dependency.</AlertDescription>\\n  <AlertAction>\\n    <Button variant=\\\"outline\\\">Review</Button>\\n  </AlertAction>\\n</Alert>\\n```\\n\\n## Composition\\n\\nUse the following composition to build an `Alert`:\\n\\n```text\\nAlert\\n├── AlertTitle\\n├── AlertDescription\\n└── AlertAction\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Alert>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Alert> = {\n  args: { variant: \"default\", className: \"\" },\n  argTypes: {\n    variant: {\n      control: \"select\",\n      options: [\"default\", \"error\", \"info\", \"success\", \"warning\"],\n    },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const ErrorVariant: Story = {\n  name: \"Error\",\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant=\\\"error\\\"` when an agent action fails.\" },\n      source: { code: ErrorVariantSource },\n    },\n  },\n  render: ErrorVariantExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"The default alert reports neutral workspace status.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const Info: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant=\\\"info\\\"` for useful agent progress updates.\" },\n      source: { code: InfoSource },\n    },\n  },\n  render: InfoExample,\n};\n\nexport const Success: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant=\\\"success\\\"` when a task or verification step completes.\" },\n      source: { code: SuccessSource },\n    },\n  },\n  render: SuccessExample,\n};\n\nexport const Action: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `AlertAction` to add a button or other action element to the alert.\" },\n      source: { code: ActionSource },\n    },\n  },\n  render: ActionExample,\n};\n\nexport const Warning: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant=\\\"warning\\\"` when the agent may need attention soon.\" },\n      source: { code: WarningSource },\n    },\n  },\n  render: WarningExample,\n};\n"
+    },
+    {
+      "path": "src/alert/examples/alert-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/examples/alert-demo.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertDemo() {\n  return (\n    <section className=\"w-full max-w-2xl overflow-hidden rounded-xl border surface-panel\">\n      <header className=\"border-b border-transparent px-5 py-4\">\n        <p className=\"text-xs font-medium text-muted-foreground\">NOVA / AGENT WORKSPACE</p>\n        <h2 className=\"mt-1 font-heading text-lg font-semibold\">Refactor the billing flow</h2>\n        <p className=\"mt-1 text-sm text-muted-foreground\">\n          Agent activity across planning, tools, and verification\n        </p>\n      </header>\n      <div className=\"grid gap-3 p-5\">\n        <Alert>\n          <AlertTitle>Workspace connected</AlertTitle>\n          <AlertDescription>\n            The agent can read the app and package files for this task.\n          </AlertDescription>\n        </Alert>\n        <Alert variant=\"info\">\n          <AlertTitle>Plan ready</AlertTitle>\n          <AlertDescription>\n            The agent identified three files to update before writing code.\n          </AlertDescription>\n        </Alert>\n        <Alert variant=\"success\">\n          <AlertTitle>Verification passed</AlertTitle>\n          <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n        </Alert>\n        <Alert variant=\"warning\">\n          <AlertTitle>Approval required</AlertTitle>\n          <AlertDescription>\n            The agent needs permission to install a new dependency.\n          </AlertDescription>\n        </Alert>\n        <Alert variant=\"error\">\n          <AlertTitle>Browser preview failed</AlertTitle>\n          <AlertDescription>\n            The preview server did not start. Check the build log and retry.\n          </AlertDescription>\n        </Alert>\n      </div>\n    </section>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert/examples/alert-error.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/examples/alert-error.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertError() {\n  return (\n    <Alert variant=\"error\">\n      <AlertTitle>Tool call failed</AlertTitle>\n      <AlertDescription>\n        The agent could not run the test suite. The workspace process exited before returning\n        results.\n      </AlertDescription>\n    </Alert>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert/examples/upstream/alert-colors.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/examples/upstream/alert-colors.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertColors() {\n  return (\n    <Alert variant=\"warning\" className=\"max-w-md\">\n      <AlertTitle>Context window nearly full</AlertTitle>\n      <AlertDescription>\n        The agent may need to summarize this conversation before continuing the task.\n      </AlertDescription>\n    </Alert>\n  );\n}\n"
+    },
+    {
+      "path": "src/alert/helpers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/helpers.tsx",
+      "content": "export const alertContent = {\n  default: {\n    title: \"Workspace connected\",\n    description: \"The agent can read the app and package files for this task.\",\n  },\n  error: {\n    title: \"Tool call failed\",\n    description: \"The agent could not run the test suite. Check the workspace process.\",\n  },\n  info: {\n    title: \"Plan ready\",\n    description: \"The agent identified three files to update before writing code.\",\n  },\n  success: {\n    title: \"Verification passed\",\n    description: \"Type checks and 42 tests passed after the changes.\",\n  },\n  warning: {\n    title: \"Approval required\",\n    description: \"The agent needs permission to install a new dependency.\",\n  },\n};\n"
+    },
+    {
+      "path": "src/alert/variants/action.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/action.tsx",
+      "content": "import { Alert, AlertAction, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <Alert variant=\"warning\" className=\"w-96\">\n    <AlertTitle>Approval required</AlertTitle>\n    <AlertDescription>The agent needs permission to install a new dependency.</AlertDescription>\n    <AlertAction>\n      <Button size=\"sm\" variant=\"outline\">\n        Review\n      </Button>\n    </AlertAction>\n  </Alert>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/basic.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert className=\"w-80\">\n    <AlertTitle>Workspace connected</AlertTitle>\n    <AlertDescription>The agent can read the files in this project.</AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/error-variant.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/error-variant.tsx",
+      "content": "import ExampleAlertError from \"../examples/alert-error\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleAlertError />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/info.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/info.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert variant=\"info\" className=\"w-96\">\n    <AlertTitle>Plan ready</AlertTitle>\n    <AlertDescription>\n      The agent identified three files to update before writing code.\n    </AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/overview.tsx",
+      "content": "import Demo from \"../examples/alert-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/playground.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\nimport type * as React from \"react\";\nimport { alertContent } from \"../helpers\";\n\nconst Example = (args: React.ComponentProps<typeof Alert>) => {\n  const content = alertContent[args.variant ?? \"default\"];\n\n  return (\n    <Alert {...args} className={`w-96 ${args.className ?? \"\"}`}>\n      <AlertTitle>{content.title}</AlertTitle>\n      <AlertDescription>{content.description}</AlertDescription>\n    </Alert>\n  );\n};\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/success.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/success.tsx",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert variant=\"success\" className=\"w-96\">\n    <AlertTitle>Verification passed</AlertTitle>\n    <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/alert/variants/warning.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/alert/variants/warning.tsx",
+      "content": "import AlertColors from \"../examples/upstream/alert-colors\";\n\nconst Example = () => <AlertColors />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

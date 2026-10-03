@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "autocomplete-examples",
+  "type": "registry:item",
+  "title": "Autocomplete examples",
+  "description": "All autocomplete examples.",
+  "registryDependencies": [
+    "@erbium-examples/autocomplete-overview",
+    "@erbium-examples/autocomplete-disabled",
+    "@erbium-examples/autocomplete-small-size",
+    "@erbium-examples/autocomplete-large-size",
+    "@erbium-examples/autocomplete-with-label",
+    "@erbium-examples/autocomplete-inline-autocomplete",
+    "@erbium-examples/autocomplete-auto-highlight",
+    "@erbium-examples/autocomplete-with-clear-button",
+    "@erbium-examples/autocomplete-with-trigger-and-clear",
+    "@erbium-examples/autocomplete-with-start-addon",
+    "@erbium-examples/autocomplete-with-groups",
+    "@erbium-examples/autocomplete-with-limit-results",
+    "@erbium-examples/autocomplete-async-search",
+    "@erbium-examples/autocomplete-form-integration",
+    "@erbium-examples/autocomplete-showcase"
+  ]
+}

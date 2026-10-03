@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-read-only",
+  "type": "registry:block",
+  "title": "Switch: Read Only",
+  "description": "`readOnly` keeps the switch focusable but prevents the state from changing.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/switch-read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/switch-read-only.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch readOnly defaultChecked />\n      <FieldLabel>Managed by your organization</FieldLabel>\n    </Field>\n  );\n}\n"
+    },
+    {
+      "path": "src/switch/variants/read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/variants/read-only.tsx",
+      "content": "import ExampleSwitchReadOnly from \"../examples/switch-read-only\";\n\nconst Example = () => <ExampleSwitchReadOnly />;\n\nexport default Example;\n"
+    }
+  ]
+}

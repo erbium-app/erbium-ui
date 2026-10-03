@@ -1,0 +1,113 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner-stories",
+  "type": "registry:item",
+  "title": "Spinner stories",
+  "description": "All spinner variants as portable React CSF stories.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/badge",
+    "@erbium/button",
+    "@erbium/csp-provider",
+    "@erbium/empty",
+    "@erbium/input-group",
+    "@erbium/item",
+    "@erbium/overlay-provider",
+    "@erbium/spinner",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/examples/spinner-badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-badge.tsx",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-4 [--radius:1.2rem]\">\n      <Badge loading>Syncing</Badge>\n      <Badge variant=\"secondary\" loading>\n        Updating\n      </Badge>\n      <Badge variant=\"outline\" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/examples/spinner-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-button.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Button loading size=\"sm\">\n        Loading...\n      </Button>\n      <Button variant=\"outline\" loading size=\"sm\">\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" loading size=\"sm\">\n        Processing\n      </Button>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/examples/spinner-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-demo.tsx",
+      "content": "import { Item, ItemContent, ItemMedia, ItemTitle } from \"@/registry/erbium/ui/item\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerDemo() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-4 [--radius:1rem]\">\n      <Item variant=\"muted\">\n        <ItemMedia>\n          <Spinner />\n        </ItemMedia>\n        <ItemContent>\n          <ItemTitle className=\"line-clamp-1\">Processing payment...</ItemTitle>\n        </ItemContent>\n        <ItemContent className=\"flex-none justify-end\">\n          <span className=\"text-sm tabular-nums\">$100.00</span>\n        </ItemContent>\n      </Item>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/examples/spinner-empty.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-empty.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerEmpty() {\n  return (\n    <Empty className=\"w-full\">\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <Spinner />\n        </EmptyMedia>\n        <EmptyTitle>Processing your request</EmptyTitle>\n        <EmptyDescription>\n          Please wait while we process your request. Do not refresh the page.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\" size=\"sm\">\n          Cancel\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/examples/spinner-input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-input-group.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-4\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"block-end\">\n          <Spinner /> Validating...\n          <InputGroupButton className=\"ml-auto\" variant=\"default\">\n            <HugeiconsIcon icon={ArrowUp01Icon} />\n            <span className=\"sr-only\">Send</span>\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/examples/spinner-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/examples/spinner-size.tsx",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerSize() {\n  return (\n    <div className=\"flex items-center gap-6\">\n      <Spinner className=\"size-3\" />\n      <Spinner className=\"size-4\" />\n      <Spinner className=\"size-6\" />\n      <Spinner className=\"size-8\" />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/spinner/spinner.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/spinner/spinner.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Spinner } from \\\"@/registry/erbium/ui/spinner\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Spinner>) => <Spinner {...args} />;\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/spinner-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport SizeExample from \"./variants/size\";\n\nconst SizeSource = \"import ExampleSpinnerSize from \\\"../examples/spinner-size\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleSpinnerSize />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport ButtonExample from \"./variants/button\";\n\nconst ButtonSource = \"import ExampleSpinnerButton from \\\"../examples/spinner-button\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleSpinnerButton />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BadgeExample from \"./variants/badge\";\n\nconst BadgeSource = \"import ExampleSpinnerBadge from \\\"../examples/spinner-badge\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleSpinnerBadge />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport InputGroupExample from \"./variants/input-group\";\n\nconst InputGroupSource = \"import ExampleSpinnerInputGroup from \\\"../examples/spinner-input-group\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleSpinnerInputGroup />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport EmptyExample from \"./variants/empty\";\n\nconst EmptySource = \"import ExampleSpinnerEmpty from \\\"../examples/spinner-empty\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleSpinnerEmpty />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Spinner\",\n  component: Spinner,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"An indicator that can be used to show a loading state.\\n\\n**Import:** `@/registry/erbium/ui/spinner`\\n\\n## Usage\\n\\n```tsx\\nimport { Spinner } from \\\"@/registry/erbium/ui/spinner\\\";\\n```\\n\\n```tsx\\n<Spinner />\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Spinner>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Spinner> = {\n  args: { className: \"size-6\" },\n  argTypes: {},\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Size: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `size-*` utility class to change the size of the spinner.\" },\n      source: { code: SizeSource },\n    },\n  },\n  render: SizeExample,\n};\n\nexport const Button: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `Button loading` to show a spinner and block activation.\" },\n      source: { code: ButtonSource },\n    },\n  },\n  render: ButtonExample,\n};\n\nexport const Badge: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `Badge loading` to show a spinner before the label.\" },\n      source: { code: BadgeSource },\n    },\n  },\n  render: BadgeExample,\n};\n\nexport const InputGroup: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show progress inside an input group.\" },\n      source: { code: InputGroupSource },\n    },\n  },\n  render: InputGroupExample,\n};\n\nexport const Empty: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show progress in an empty state.\" },\n      source: { code: EmptySource },\n    },\n  },\n  render: EmptyExample,\n};\n"
+    },
+    {
+      "path": "src/spinner/variants/badge.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/badge.tsx",
+      "content": "import ExampleSpinnerBadge from \"../examples/spinner-badge\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerBadge />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/spinner/variants/button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/button.tsx",
+      "content": "import ExampleSpinnerButton from \"../examples/spinner-button\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerButton />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/spinner/variants/empty.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/empty.tsx",
+      "content": "import ExampleSpinnerEmpty from \"../examples/spinner-empty\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerEmpty />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/spinner/variants/input-group.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/input-group.tsx",
+      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/spinner/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/overview.tsx",
+      "content": "import Demo from \"../examples/spinner-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/spinner/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/playground.tsx",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Spinner>) => <Spinner {...args} />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/spinner/variants/size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/spinner/variants/size.tsx",
+      "content": "import ExampleSpinnerSize from \"../examples/spinner-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerSize />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field-radio",
+  "type": "registry:block",
+  "title": "Field: Radio",
+  "description": "Compose a field with radio options.",
+  "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/field/examples/field-radio.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/examples/field-radio.tsx",
+      "content": "import {\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport default function FieldRadio() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldSet>\n        <FieldLegend variant=\"label\">Subscription Plan</FieldLegend>\n        <FieldDescription>Yearly and lifetime plans offer significant savings.</FieldDescription>\n        <RadioGroup defaultValue=\"monthly\">\n          <FieldItem orientation=\"horizontal\">\n            <RadioGroupItem value=\"monthly\" />\n            <FieldLabel className=\"font-normal\">Monthly ($9.99/month)</FieldLabel>\n          </FieldItem>\n          <FieldItem orientation=\"horizontal\">\n            <RadioGroupItem value=\"yearly\" />\n            <FieldLabel className=\"font-normal\">Yearly ($99.99/year)</FieldLabel>\n          </FieldItem>\n          <FieldItem orientation=\"horizontal\">\n            <RadioGroupItem value=\"lifetime\" />\n            <FieldLabel className=\"font-normal\">Lifetime ($299.99)</FieldLabel>\n          </FieldItem>\n        </RadioGroup>\n      </FieldSet>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/field/variants/radio.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/field/variants/radio.tsx",
+      "content": "import ExampleFieldRadio from \"../examples/field-radio\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldRadio />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

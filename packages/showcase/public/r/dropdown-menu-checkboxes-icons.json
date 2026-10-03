@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dropdown-menu-checkboxes-icons",
+  "type": "registry:block",
+  "title": "Dropdown Menu: Checkboxes Icons",
+  "description": "Add icons to checkbox items.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/dropdown-menu/examples/upstream/dropdown-menu-checkboxes-icons.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/dropdown-menu/examples/upstream/dropdown-menu-checkboxes-icons.tsx",
+      "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport BellIcon from \"@hugeicons/core-free-icons/BellIcon\";\nimport Mail01Icon from \"@hugeicons/core-free-icons/Mail01Icon\";\nimport MessageSquareIcon from \"@hugeicons/core-free-icons/MessageSquareIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuCheckboxItem,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuLabel,\n  DropdownMenuTrigger,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuCheckboxesIcons() {\n  const [notifications, setNotifications] = React.useState({\n    email: true,\n    sms: false,\n    push: true,\n  });\n\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Notifications</DropdownMenuTrigger>\n      <DropdownMenuContent className=\"w-48\">\n        <DropdownMenuGroup>\n          <DropdownMenuLabel>Notification Preferences</DropdownMenuLabel>\n          <DropdownMenuCheckboxItem\n            checked={notifications.email}\n            onCheckedChange={(checked) =>\n              setNotifications({ ...notifications, email: checked === true })\n            }\n          >\n            <HugeiconsIcon icon={Mail01Icon} />\n            Email notifications\n          </DropdownMenuCheckboxItem>\n          <DropdownMenuCheckboxItem\n            checked={notifications.sms}\n            onCheckedChange={(checked) =>\n              setNotifications({ ...notifications, sms: checked === true })\n            }\n          >\n            <HugeiconsIcon icon={MessageSquareIcon} />\n            SMS notifications\n          </DropdownMenuCheckboxItem>\n          <DropdownMenuCheckboxItem\n            checked={notifications.push}\n            onCheckedChange={(checked) =>\n              setNotifications({ ...notifications, push: checked === true })\n            }\n          >\n            <HugeiconsIcon icon={BellIcon} />\n            Push notifications\n          </DropdownMenuCheckboxItem>\n        </DropdownMenuGroup>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
+    },
+    {
+      "path": "src/dropdown-menu/variants/checkboxes-icons.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/dropdown-menu/variants/checkboxes-icons.tsx",
+      "content": "import { DropdownMenuCheckboxesIcons } from \"../examples/upstream/dropdown-menu-checkboxes-icons\";\n\nconst Example = () => <DropdownMenuCheckboxesIcons />;\n\nexport default Example;\n"
+    }
+  ]
+}

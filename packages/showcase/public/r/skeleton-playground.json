@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-playground",
+  "type": "registry:component",
+  "title": "Skeleton: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/skeleton/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/variants/playground.tsx",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Skeleton>) => <Skeleton {...args} />;\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-group-overview",
+  "type": "registry:block",
+  "title": "Input Group: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/input-group/examples/input-group-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/examples/input-group-demo.tsx",
+      "content": "import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\nexport default function Demo() {\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupAddon>\n        <InputGroupText>https://</InputGroupText>\n      </InputGroupAddon>\n      <InputGroupInput aria-label=\"Website\" placeholder=\"example.com\" />\n    </InputGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/input-group/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/input-group/variants/overview.tsx",
+      "content": "import Demo from \"../examples/input-group-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

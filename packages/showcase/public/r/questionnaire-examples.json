@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "questionnaire-examples",
+  "type": "registry:item",
+  "title": "Questionnaire examples",
+  "description": "All questionnaire examples.",
+  "registryDependencies": [
+    "@erbium-examples/questionnaire-playground",
+    "@erbium-examples/questionnaire-overview",
+    "@erbium-examples/questionnaire-multiple",
+    "@erbium-examples/questionnaire-freeform",
+    "@erbium-examples/questionnaire-shortcuts",
+    "@erbium-examples/questionnaire-validation",
+    "@erbium-examples/questionnaire-controlled",
+    "@erbium-examples/questionnaire-resume",
+    "@erbium-examples/questionnaire-conditional",
+    "@erbium-examples/questionnaire-progress",
+    "@erbium-examples/questionnaire-animated",
+    "@erbium-examples/questionnaire-card",
+    "@erbium-examples/questionnaire-dialog",
+    "@erbium-examples/questionnaire-skip",
+    "@erbium-examples/questionnaire-navigation-state"
+  ]
+}

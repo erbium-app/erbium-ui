@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-avatar-group-with-icon",
+  "type": "registry:block",
+  "title": "Avatar: Avatar Group With Icon",
+  "description": "You can also use an icon inside `<AvatarGroupCount>`.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/avatar/examples/upstream/avatar-group-count-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/examples/upstream/avatar-group-count-icon.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport {\n  Avatar,\n  AvatarFallback,\n  AvatarGroup,\n  AvatarGroupCount,\n  AvatarImage,\n} from \"@/registry/erbium/ui/avatar\";\n\nexport function AvatarGroupCountIconExample() {\n  return (\n    <AvatarGroup className=\"grayscale\">\n      <Avatar>\n        <AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" />\n        <AvatarFallback>CN</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/maxleiter.png\" alt=\"@maxleiter\" />\n        <AvatarFallback>LR</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage src=\"https://github.com/evilrabbit.png\" alt=\"@evilrabbit\" />\n        <AvatarFallback>ER</AvatarFallback>\n      </Avatar>\n      <AvatarGroupCount>\n        <HugeiconsIcon icon={PlusIcon} />\n      </AvatarGroupCount>\n    </AvatarGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/avatar/variants/avatar-group-with-icon.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/avatar/variants/avatar-group-with-icon.tsx",
+      "content": "import { AvatarGroupCountIconExample } from \"../examples/upstream/avatar-group-count-icon\";\n\nconst Example = () => <AvatarGroupCountIconExample />;\n\nexport default Example;\n"
+    }
+  ]
+}

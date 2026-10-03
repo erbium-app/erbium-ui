@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-demo",
+  "type": "registry:component",
+  "title": "switch demo",
+  "description": "Erbium switch demo example.",
+  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "files": [
+    {
+      "path": "src/switch/examples/switch-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/switch/examples/switch-demo.tsx",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchDemo() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch />\n      <FieldLabel>Airplane Mode</FieldLabel>\n    </Field>\n  );\n}\n"
+    }
+  ]
+}

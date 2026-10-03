@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-examples",
+  "type": "registry:item",
+  "title": "Accordion examples",
+  "description": "All accordion examples.",
+  "registryDependencies": [
+    "@erbium-examples/accordion-playground",
+    "@erbium-examples/accordion-overview",
+    "@erbium-examples/accordion-basic",
+    "@erbium-examples/accordion-multiple",
+    "@erbium-examples/accordion-controlled",
+    "@erbium-examples/accordion-disabled",
+    "@erbium-examples/accordion-borders",
+    "@erbium-examples/accordion-card"
+  ]
+}

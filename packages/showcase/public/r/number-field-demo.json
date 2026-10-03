@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-demo",
+  "type": "registry:component",
+  "title": "number field demo",
+  "description": "Erbium number field demo example.",
+  "registryDependencies": ["@erbium/field", "@erbium/number-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/number-field/examples/number-field-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/number-field/examples/number-field-demo.tsx",
+      "content": "import { Field } from \"@/registry/erbium/ui/field\";\nimport {\n  NumberField,\n  NumberFieldGroup,\n  NumberFieldInput,\n  NumberFieldIncrement,\n  NumberFieldDecrement,\n  NumberFieldScrubArea,\n} from \"@/registry/erbium/ui/number-field\";\nexport default function Demo() {\n  return (\n    <Field>\n      <NumberField defaultValue={24} min={0} max={200} className=\"w-48\">\n        <NumberFieldScrubArea label=\"Font size\" />\n        <NumberFieldGroup>\n          <NumberFieldDecrement />\n          <NumberFieldInput />\n          <NumberFieldIncrement />\n        </NumberFieldGroup>\n      </NumberField>\n    </Field>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd-tooltip",
+  "type": "registry:block",
+  "title": "Kbd: Tooltip",
+  "description": "You can use the `Kbd` component inside a `Tooltip` component to display a tooltip with a keyboard key.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/kbd",
+    "@erbium/styles",
+    "@erbium/tooltip"
+  ],
+  "files": [
+    {
+      "path": "src/kbd/examples/kbd-tooltip.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/examples/kbd-tooltip.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function KbdTooltip() {\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      <ButtonGroup>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button size=\"sm\" variant=\"outline\">\n                Save\n              </Button>\n            }\n          />\n          <TooltipContent>\n            Save Changes <Kbd hotkey=\"S\" />\n          </TooltipContent>\n        </Tooltip>\n        <Tooltip>\n          <TooltipTrigger\n            render={\n              <Button size=\"sm\" variant=\"outline\">\n                Print\n              </Button>\n            }\n          />\n          <TooltipContent>\n            Print Document <Kbd hotkey=\"Mod+P\" />\n          </TooltipContent>\n        </Tooltip>\n      </ButtonGroup>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/kbd/variants/tooltip.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/kbd/variants/tooltip.tsx",
+      "content": "import ExampleKbdTooltip from \"../examples/kbd-tooltip\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdTooltip />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

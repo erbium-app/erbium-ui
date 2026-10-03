@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-overview",
+  "type": "registry:block",
+  "title": "Tooltip: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
+  "files": [
+    {
+      "path": "src/tooltip/examples/tooltip-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/tooltip-demo.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipDemo() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\">Hover</Button>} />\n      <TooltipContent>\n        <p>Add to library</p>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n"
+    },
+    {
+      "path": "src/tooltip/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/variants/overview.tsx",
+      "content": "import Demo from \"../examples/tooltip-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

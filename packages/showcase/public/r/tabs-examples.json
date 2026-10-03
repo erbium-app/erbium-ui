@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs-examples",
+  "type": "registry:item",
+  "title": "Tabs examples",
+  "description": "All tabs examples.",
+  "registryDependencies": [
+    "@erbium-examples/tabs-playground",
+    "@erbium-examples/tabs-overview",
+    "@erbium-examples/tabs-selection",
+    "@erbium-examples/tabs-vertical",
+    "@erbium-examples/tabs-disabled",
+    "@erbium-examples/tabs-icons"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-size",
+  "type": "registry:block",
+  "title": "Item: Size",
+  "description": "Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/item/examples/item-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/examples/item-size.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BadgeCheckIcon from \"@hugeicons/core-free-icons/BadgeCheckIcon\";\nimport ChevronRightIcon from \"@hugeicons/core-free-icons/ChevronRightIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemSizeDemo() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-6\">\n      <Item variant=\"outline\">\n        <ItemContent>\n          <ItemTitle>Basic Item</ItemTitle>\n          <ItemDescription>A simple item with title and description.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Action\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item\n        variant=\"outline\"\n        size=\"sm\"\n        render={\n          <a href=\"#\">\n            <ItemMedia>\n              <HugeiconsIcon icon={BadgeCheckIcon} className=\"size-5\" />\n            </ItemMedia>\n            <ItemContent>\n              <ItemTitle>Your profile has been verified.</ItemTitle>\n            </ItemContent>\n            <ItemActions>\n              <HugeiconsIcon icon={ChevronRightIcon} className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/item/variants/size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/variants/size.tsx",
+      "content": "import ExampleItemSize from \"../examples/item-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemSize />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

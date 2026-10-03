@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton-form",
+  "type": "registry:block",
+  "title": "Skeleton: Form",
+  "description": "Use skeleton shapes to represent a form.",
+  "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/skeleton/examples/upstream/skeleton-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/examples/upstream/skeleton-form.tsx",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonForm() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-7\">\n      <div className=\"flex flex-col gap-3\">\n        <Skeleton className=\"h-4 w-20\" />\n        <Skeleton className=\"h-8 w-full\" />\n      </div>\n      <div className=\"flex flex-col gap-3\">\n        <Skeleton className=\"h-4 w-24\" />\n        <Skeleton className=\"h-8 w-full\" />\n      </div>\n      <Skeleton className=\"h-8 w-24\" />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/skeleton/variants/form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/skeleton/variants/form.tsx",
+      "content": "import { SkeletonForm } from \"../examples/upstream/skeleton-form\";\n\nconst Example = () => <SkeletonForm />;\n\nexport default Example;\n"
+    }
+  ]
+}

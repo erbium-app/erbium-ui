@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menubar-examples",
+  "type": "registry:item",
+  "title": "Menubar examples",
+  "description": "All menubar examples.",
+  "registryDependencies": [
+    "@erbium-examples/menubar-playground",
+    "@erbium-examples/menubar-overview",
+    "@erbium-examples/menubar-checkbox",
+    "@erbium-examples/menubar-radio",
+    "@erbium-examples/menubar-submenu",
+    "@erbium-examples/menubar-with-icons"
+  ]
+}

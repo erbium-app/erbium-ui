@@ -1,0 +1,171 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-stories",
+  "type": "registry:item",
+  "title": "Calendar stories",
+  "description": "All calendar variants as portable React CSF stories.",
+  "dependencies": [
+    "@hugeicons/core-free-icons@^4.3.5",
+    "@hugeicons/react@^1.1.10",
+    "date-fns@^4.4.0",
+    "react-day-picker@^10.0.2"
+  ],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/calendar",
+    "@erbium/card",
+    "@erbium/csp-provider",
+    "@erbium/field",
+    "@erbium/input-group",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/calendar/calendar.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/calendar/calendar.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Calendar } from \\\"@/registry/erbium/ui/calendar\\\";\\n\\nconst Example = (args: {\\n  showOutsideDays: boolean;\\n  fixedWeeks: boolean;\\n  numberOfMonths: number;\\n  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;\\n  captionLayout: \\\"label\\\" | \\\"dropdown\\\" | \\\"dropdown-months\\\" | \\\"dropdown-years\\\";\\n  buttonVariant: \\\"default\\\" | \\\"outline\\\" | \\\"secondary\\\" | \\\"ghost\\\" | \\\"error\\\" | \\\"link\\\";\\n}) => (\\n  <Calendar\\n    mode=\\\"single\\\"\\n    showOutsideDays={args.showOutsideDays}\\n    fixedWeeks={args.fixedWeeks}\\n    numberOfMonths={args.numberOfMonths}\\n    weekStartsOn={args.weekStartsOn}\\n    captionLayout={args.captionLayout}\\n    buttonVariant={args.buttonVariant}\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/calendar-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport BasicExample from \"./variants/basic\";\n\nconst BasicSource = \"import CalendarBasic from \\\"../examples/upstream/calendar-basic\\\";\\n\\nconst Example = () => <CalendarBasic />;\\n\\nexport default Example;\\n\";\n\nimport BookedDatesExample from \"./variants/booked-dates\";\n\nconst BookedDatesSource = \"import { CalendarBookedDates } from \\\"../examples/upstream/calendar-booked-dates\\\";\\n\\nconst Example = () => <CalendarBookedDates />;\\n\\nexport default Example;\\n\";\n\nimport WeekNumbersExample from \"./variants/week-numbers\";\n\nconst WeekNumbersSource = \"import { CalendarWeekNumbers } from \\\"../examples/upstream/calendar-week-numbers\\\";\\n\\nconst Example = () => <CalendarWeekNumbers />;\\n\\nexport default Example;\\n\";\n\nimport PresetsExample from \"./variants/presets\";\n\nconst PresetsSource = \"import { CalendarWithPresets } from \\\"../examples/upstream/calendar-presets\\\";\\n\\nconst Example = () => <CalendarWithPresets />;\\n\\nexport default Example;\\n\";\n\nimport HijriExample from \"./variants/hijri\";\n\nconst HijriSource = \"import CalendarHijri from \\\"../examples/calendar-hijri\\\";\\n\\nconst Example = () => <CalendarHijri />;\\n\\nexport default Example;\\n\";\n\nimport SelectedDateWithTimezoneExample from \"./variants/selected-date-with-timezone\";\n\nconst SelectedDateWithTimezoneSource = \"import CalendarTimezone from \\\"../examples/calendar-timezone\\\";\\n\\nconst Example = () => <CalendarTimezone />;\\n\\nexport default Example;\\n\";\n\nimport RangeCalendarExample from \"./variants/range-calendar\";\n\nconst RangeCalendarSource = \"import { CalendarRange } from \\\"../examples/upstream/calendar-range\\\";\\n\\nconst Example = () => <CalendarRange />;\\n\\nexport default Example;\\n\";\n\nimport MonthAndYearSelectorExample from \"./variants/month-and-year-selector\";\n\nconst MonthAndYearSelectorSource = \"import { CalendarCaption } from \\\"../examples/upstream/calendar-caption\\\";\\n\\nconst Example = () => <CalendarCaption />;\\n\\nexport default Example;\\n\";\n\nimport DateAndTimePickerExample from \"./variants/date-and-time-picker\";\n\nconst DateAndTimePickerSource = \"import { CalendarWithTime } from \\\"../examples/upstream/calendar-time\\\";\\n\\nconst Example = () => <CalendarWithTime />;\\n\\nexport default Example;\\n\";\n\nimport CustomCellSizeExample from \"./variants/custom-cell-size\";\n\nconst CustomCellSizeSource = \"import { Calendar } from \\\"@/registry/erbium/ui/calendar\\\";\\n\\nconst Example = () => (\\n  <Calendar mode=\\\"single\\\" className=\\\"[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]\\\" />\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  title: \"UI/Calendar\",\n  component: Calendar,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A calendar component that allows users to select a date or a range of dates.\\n\\n**Import:** `@/registry/erbium/ui/calendar`\\n\\n## Usage\\n\\nSee the [React DayPicker](https://react-day-picker.js.org) documentation for more information.\\n\\n```tsx\\nimport { Calendar } from \\\"@/registry/erbium/ui/calendar\\\";\\n```\\n\\n```tsx\\nconst [date, setDate] = React.useState<Date | undefined>(new Date());\\n\\nreturn <Calendar mode=\\\"single\\\" selected={date} onSelect={setDate} />;\\n```\\n\\n## About\\n\\nThe `Calendar` component is built on top of [React DayPicker](https://react-day-picker.js.org).\\n\\n## Date Picker\\n\\nYou can use the `<Calendar>` component to build a date picker. See the [Date Picker](https://ui.shadcn.com/docs/components/base/date-picker) page for more information.\\n\\n## Localization\\n\\nPass the `locale` prop to provide locale-specific formatting.\\n\\n```tsx\\nimport { enUS } from \\\"react-day-picker/locale\\\";\\n\\n<Calendar mode=\\\"single\\\" selected={date} onSelect={setDate} locale={enUS} />;\\n```\",\n      },\n    },\n  },\n} satisfies Meta<typeof Calendar>;\n\nexport default { ...meta,  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  showOutsideDays: boolean;\n  fixedWeeks: boolean;\n  numberOfMonths: number;\n  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;\n  captionLayout: \"label\" | \"dropdown\" | \"dropdown-months\" | \"dropdown-years\";\n  buttonVariant: \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"error\" | \"link\";\n}> = {\n  args: {\n    showOutsideDays: true,\n    fixedWeeks: false,\n    numberOfMonths: 1,\n    weekStartsOn: 0,\n    captionLayout: \"label\",\n    buttonVariant: \"ghost\",\n  },\n  argTypes: {\n    showOutsideDays: { control: \"boolean\" },\n    fixedWeeks: { control: \"boolean\" },\n    numberOfMonths: { control: { type: \"number\", min: 1, max: 3 } },\n    weekStartsOn: { control: \"select\", options: [0, 1, 2, 3, 4, 5, 6] },\n    captionLayout: {\n      control: \"select\",\n      options: [\"label\", \"dropdown\", \"dropdown-months\", \"dropdown-years\"],\n    },\n    buttonVariant: {\n      control: \"select\",\n      options: [\"default\", \"outline\", \"secondary\", \"ghost\", \"error\", \"link\"],\n    },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Basic: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A basic calendar component. We used `` to style the calendar.\" },\n      source: { code: BasicSource },\n    },\n  },\n  render: BasicExample,\n};\n\nexport const BookedDates: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Disable and mark dates that are already booked.\" },\n      source: { code: BookedDatesSource },\n    },\n  },\n  render: BookedDatesExample,\n};\n\nexport const WeekNumbers: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `showWeekNumber` to show week numbers.\" },\n      source: { code: WeekNumbersSource },\n    },\n  },\n  render: WeekNumbersExample,\n};\n\nexport const Presets: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Choose a date using preset buttons.\" },\n      source: { code: PresetsSource },\n    },\n  },\n  render: PresetsExample,\n};\n\nexport const Hijri: Story = {\n  name: \"Persian / Hijri / Jalali Calendar\",\n  parameters: {\n    docs: {\n      description: { story: \"To use the Persian calendar, edit `components/ui/calendar.tsx` and replace `react-day-picker` with `react-day-picker/persian`.\" },\n      source: { code: HijriSource },\n    },\n  },\n  render: HijriExample,\n};\n\nexport const SelectedDateWithTimezone: Story = {\n  name: \"Selected Date (With TimeZone)\",\n  parameters: {\n    docs: {\n      description: { story: \"The Calendar component accepts a `timeZone` prop to ensure dates are displayed and selected in the user's local timezone.\\n\\n**Note:** If you notice a selected date offset (for example, selecting the 20th highlights the 19th), make sure the `timeZone` prop is set to the user's local timezone.\\n\\n**Why client-side?** The timezone is detected using `Intl.DateTimeFormat().resolvedOptions().timeZone` inside a `useEffect` to ensure compatibility with server-side rendering. Detecting the timezone during render would cause hydration mismatches, as the server and client may be in different timezones.\" },\n      source: { code: SelectedDateWithTimezoneSource },\n    },\n  },\n  render: SelectedDateWithTimezoneExample,\n};\n\nexport const RangeCalendar: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `mode=\\\"range\\\"` prop to enable range selection.\" },\n      source: { code: RangeCalendarSource },\n    },\n  },\n  render: RangeCalendarExample,\n};\n\nexport const MonthAndYearSelector: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `captionLayout=\\\"dropdown\\\"` to show month and year dropdowns.\" },\n      source: { code: MonthAndYearSelectorSource },\n    },\n  },\n  render: MonthAndYearSelectorExample,\n};\n\nexport const DateAndTimePicker: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Select both a date and a time.\" },\n      source: { code: DateAndTimePickerSource },\n    },\n  },\n  render: DateAndTimePickerExample,\n};\n\nexport const CustomCellSize: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Customize calendar cell size with the `--cell-size` CSS variable, including responsive values.\" },\n      source: { code: CustomCellSizeSource },\n    },\n  },\n  render: CustomCellSizeExample,\n};\n"
+    },
+    {
+      "path": "src/calendar/examples/calendar-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/calendar-demo.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarDemo() {\n  const [date, setDate] = React.useState<Date | undefined>(new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/calendar-hijri.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/calendar-hijri.tsx",
+      "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport ChevronLeftIcon from \"@hugeicons/core-free-icons/ChevronLeftIcon\";\nimport ChevronRightIcon from \"@hugeicons/core-free-icons/ChevronRightIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst monthFormatter = new Intl.DateTimeFormat(\"fa-IR-u-ca-persian\", {\n  month: \"long\",\n  year: \"numeric\",\n});\nconst monthKeyFormatter = new Intl.DateTimeFormat(\"en-US-u-ca-persian\", {\n  month: \"numeric\",\n  year: \"numeric\",\n});\nconst dayFormatter = new Intl.DateTimeFormat(\"fa-IR-u-ca-persian\", { day: \"numeric\" });\nconst weekDays = [\"ش\", \"ی\", \"د\", \"س\", \"چ\", \"پ\", \"ج\"];\n\nfunction moveDay(date: Date, amount: number) {\n  const next = new Date(date);\n  next.setDate(next.getDate() + amount);\n  return next;\n}\n\nfunction getMonthDays(anchor: Date) {\n  const key = monthKeyFormatter.format(anchor);\n  let first = new Date(anchor);\n  while (monthKeyFormatter.format(moveDay(first, -1)) === key) first = moveDay(first, -1);\n  const days: Date[] = [];\n  for (let date = first; monthKeyFormatter.format(date) === key; date = moveDay(date, 1)) {\n    days.push(date);\n  }\n  return days;\n}\n\nexport default function CalendarHijri() {\n  const [anchor, setAnchor] = React.useState(() => new Date());\n  const [selected, setSelected] = React.useState<Date>();\n  const days = getMonthDays(anchor);\n  const first = days[0];\n  const offset = first ? (first.getDay() + 1) % 7 : 0;\n\n  return (\n    <div dir=\"rtl\" className=\"w-72 rounded-xl border surface-panel p-3 font-sans\">\n      <div className=\"mb-3 flex items-center justify-between\">\n        <Button\n          aria-label=\"ماه قبل\"\n          size=\"icon-sm\"\n          variant=\"ghost\"\n          onClick={() => first && setAnchor(moveDay(first, -10))}\n        >\n          <HugeiconsIcon icon={ChevronRightIcon} />\n        </Button>\n        <span className=\"text-sm font-medium\">{monthFormatter.format(anchor)}</span>\n        <Button\n          aria-label=\"ماه بعد\"\n          size=\"icon-sm\"\n          variant=\"ghost\"\n          onClick={() => first && setAnchor(moveDay(first, 35))}\n        >\n          <HugeiconsIcon icon={ChevronLeftIcon} />\n        </Button>\n      </div>\n      <div className=\"grid grid-cols-7 text-center text-sm\">\n        {weekDays.map((day, index) => (\n          <span className=\"py-2 text-muted-foreground\" key={index}>\n            {day}\n          </span>\n        ))}\n        {Array.from({ length: offset }, (_, index) => (\n          <span key={`empty-${index}`} />\n        ))}\n        {days.map((date) => {\n          const active = selected?.toDateString() === date.toDateString();\n          return (\n            <Button\n              aria-label={new Intl.DateTimeFormat(\"fa-IR-u-ca-persian\", {\n                dateStyle: \"full\",\n              }).format(date)}\n              aria-pressed={active}\n              className=\"size-9 rounded-md\"\n              key={date.toISOString()}\n              size=\"icon-sm\"\n              variant={active ? \"default\" : \"ghost\"}\n              onClick={() => setSelected(date)}\n            >\n              {dayFormatter.format(date)}\n            </Button>\n          );\n        })}\n      </div>\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/calendar-timezone.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/calendar-timezone.tsx",
+      "content": "import * as React from \"react\";\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarTimezone() {\n  const [date, setDate] = React.useState<Date>();\n  const [timeZone, setTimeZone] = React.useState<string>();\n\n  React.useEffect(() => {\n    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);\n  }, []);\n\n  return <Calendar mode=\"single\" onSelect={setDate} selected={date} timeZone={timeZone} />;\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-basic.tsx",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarBasic() {\n  return <Calendar mode=\"single\" />;\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-booked-dates.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-booked-dates.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\n\nexport function CalendarBookedDates() {\n  const [date, setDate] = React.useState<Date | undefined>(\n    new Date(new Date().getFullYear(), 0, 6),\n  );\n  const bookedDates = Array.from(\n    { length: 15 },\n    (_, i) => new Date(new Date().getFullYear(), 0, 12 + i),\n  );\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <CardContent className=\"p-0\">\n        <Calendar\n          mode=\"single\"\n          defaultMonth={date}\n          selected={date}\n          onSelect={setDate}\n          disabled={bookedDates}\n          modifiers={{\n            booked: bookedDates,\n          }}\n          modifiersClassNames={{\n            booked: \"[&>button]:line-through opacity-100\",\n          }}\n        />\n      </CardContent>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-caption.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-caption.tsx",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport function CalendarCaption() {\n  return <Calendar mode=\"single\" captionLayout=\"dropdown\" />;\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-presets.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-presets.tsx",
+      "content": "import * as React from \"react\";\nimport { addDays } from \"date-fns\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card, CardContent, CardFooter } from \"@/registry/erbium/ui/card\";\n\nexport function CalendarWithPresets() {\n  const [date, setDate] = React.useState<Date | undefined>(\n    new Date(new Date().getFullYear(), 1, 12),\n  );\n  const [currentMonth, setCurrentMonth] = React.useState<Date>(\n    new Date(new Date().getFullYear(), new Date().getMonth(), 1),\n  );\n\n  return (\n    <Card className=\"mx-auto w-fit max-w-[300px]\" size=\"sm\">\n      <CardContent>\n        <Calendar\n          mode=\"single\"\n          selected={date}\n          onSelect={setDate}\n          month={currentMonth}\n          onMonthChange={setCurrentMonth}\n          fixedWeeks\n          className=\"p-0 [--cell-size:--spacing(9.5)]\"\n        />\n      </CardContent>\n      <CardFooter className=\"flex flex-wrap gap-2 border-t\">\n        {[\n          { label: \"Today\", value: 0 },\n          { label: \"Tomorrow\", value: 1 },\n          { label: \"In 3 days\", value: 3 },\n          { label: \"In a week\", value: 7 },\n          { label: \"In 2 weeks\", value: 14 },\n        ].map((preset) => (\n          <Button\n            key={preset.value}\n            variant=\"outline\"\n            size=\"sm\"\n            className=\"flex-1\"\n            onClick={() => {\n              const newDate = addDays(new Date(), preset.value);\n              setDate(newDate);\n              setCurrentMonth(new Date(newDate.getFullYear(), newDate.getMonth(), 1));\n            }}\n          >\n            {preset.label}\n          </Button>\n        ))}\n      </CardFooter>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-range.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-range.tsx",
+      "content": "import * as React from \"react\";\nimport { addDays } from \"date-fns\";\nimport { type DateRange } from \"react-day-picker\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport function CalendarRange() {\n  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({\n    from: new Date(new Date().getFullYear(), 0, 12),\n    to: addDays(new Date(new Date().getFullYear(), 0, 12), 30),\n  });\n\n  return (\n    <Calendar\n      mode=\"range\"\n      defaultMonth={dateRange?.from}\n      selected={dateRange}\n      onSelect={setDateRange}\n      numberOfMonths={2}\n    />\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-time.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-time.tsx",
+      "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport Clock02Icon from \"@hugeicons/core-free-icons/Clock02Icon\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card, CardContent, CardFooter } from \"@/registry/erbium/ui/card\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport function CalendarWithTime() {\n  const [date, setDate] = React.useState<Date | undefined>(\n    new Date(new Date().getFullYear(), new Date().getMonth(), 12),\n  );\n\n  return (\n    <Card size=\"sm\" className=\"mx-auto w-fit\">\n      <CardContent>\n        <Calendar mode=\"single\" selected={date} onSelect={setDate} className=\"p-0\" />\n      </CardContent>\n      <CardFooter className=\"border-t\">\n        <FieldGroup>\n          <Field>\n            <FieldLabel>Start Time</FieldLabel>\n            <InputGroup>\n              <InputGroupInput\n                type=\"time\"\n                step=\"1\"\n                defaultValue=\"10:30:00\"\n                className=\"appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n              />\n              <InputGroupAddon>\n                <HugeiconsIcon icon={Clock02Icon} className=\"text-muted-foreground\" />\n              </InputGroupAddon>\n            </InputGroup>\n          </Field>\n          <Field>\n            <FieldLabel>End Time</FieldLabel>\n            <InputGroup>\n              <InputGroupInput\n                type=\"time\"\n                step=\"1\"\n                defaultValue=\"12:30:00\"\n                className=\"appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none\"\n              />\n              <InputGroupAddon>\n                <HugeiconsIcon icon={Clock02Icon} className=\"text-muted-foreground\" />\n              </InputGroupAddon>\n            </InputGroup>\n          </Field>\n        </FieldGroup>\n      </CardFooter>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/examples/upstream/calendar-week-numbers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/examples/upstream/calendar-week-numbers.tsx",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\n\nexport function CalendarWeekNumbers() {\n  const [date, setDate] = React.useState<Date | undefined>(\n    new Date(new Date().getFullYear(), 0, 12),\n  );\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <CardContent className=\"p-0\">\n        <Calendar\n          mode=\"single\"\n          defaultMonth={date}\n          selected={date}\n          onSelect={setDate}\n          showWeekNumber\n        />\n      </CardContent>\n    </Card>\n  );\n}\n"
+    },
+    {
+      "path": "src/calendar/variants/basic.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/basic.tsx",
+      "content": "import CalendarBasic from \"../examples/upstream/calendar-basic\";\n\nconst Example = () => <CalendarBasic />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/booked-dates.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/booked-dates.tsx",
+      "content": "import { CalendarBookedDates } from \"../examples/upstream/calendar-booked-dates\";\n\nconst Example = () => <CalendarBookedDates />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/custom-cell-size.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/custom-cell-size.tsx",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst Example = () => (\n  <Calendar mode=\"single\" className=\"[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]\" />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/date-and-time-picker.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/date-and-time-picker.tsx",
+      "content": "import { CalendarWithTime } from \"../examples/upstream/calendar-time\";\n\nconst Example = () => <CalendarWithTime />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/hijri.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/hijri.tsx",
+      "content": "import CalendarHijri from \"../examples/calendar-hijri\";\n\nconst Example = () => <CalendarHijri />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/month-and-year-selector.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/month-and-year-selector.tsx",
+      "content": "import { CalendarCaption } from \"../examples/upstream/calendar-caption\";\n\nconst Example = () => <CalendarCaption />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/overview.tsx",
+      "content": "import Demo from \"../examples/calendar-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/playground.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/playground.tsx",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst Example = (args: {\n  showOutsideDays: boolean;\n  fixedWeeks: boolean;\n  numberOfMonths: number;\n  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;\n  captionLayout: \"label\" | \"dropdown\" | \"dropdown-months\" | \"dropdown-years\";\n  buttonVariant: \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"error\" | \"link\";\n}) => (\n  <Calendar\n    mode=\"single\"\n    showOutsideDays={args.showOutsideDays}\n    fixedWeeks={args.fixedWeeks}\n    numberOfMonths={args.numberOfMonths}\n    weekStartsOn={args.weekStartsOn}\n    captionLayout={args.captionLayout}\n    buttonVariant={args.buttonVariant}\n  />\n);\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/presets.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/presets.tsx",
+      "content": "import { CalendarWithPresets } from \"../examples/upstream/calendar-presets\";\n\nconst Example = () => <CalendarWithPresets />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/range-calendar.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/range-calendar.tsx",
+      "content": "import { CalendarRange } from \"../examples/upstream/calendar-range\";\n\nconst Example = () => <CalendarRange />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/selected-date-with-timezone.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/selected-date-with-timezone.tsx",
+      "content": "import CalendarTimezone from \"../examples/calendar-timezone\";\n\nconst Example = () => <CalendarTimezone />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/calendar/variants/week-numbers.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/calendar/variants/week-numbers.tsx",
+      "content": "import { CalendarWeekNumbers } from \"../examples/upstream/calendar-week-numbers\";\n\nconst Example = () => <CalendarWeekNumbers />;\n\nexport default Example;\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div className=\"component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout\">\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-overview",
+  "type": "registry:block",
+  "title": "Toggle: Overview",
+  "description": "",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+  "files": [
+    {
+      "path": "src/toggle/examples/toggle-demo.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toggle/examples/toggle-demo.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Bookmark01Icon from \"@hugeicons/core-free-icons/Bookmark01Icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <HugeiconsIcon icon={Bookmark01Icon} />\n      Bookmark\n    </Toggle>\n  );\n}\n"
+    },
+    {
+      "path": "src/toggle/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/toggle/variants/overview.tsx",
+      "content": "import Demo from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

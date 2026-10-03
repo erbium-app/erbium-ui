@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover-form",
+  "type": "registry:component",
+  "title": "popover form",
+  "description": "Erbium popover form example.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/popover",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/popover/examples/upstream/popover-form.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/popover/examples/upstream/popover-form.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function PopoverForm() {\n  return (\n    <>\n      <Popover>\n        <PopoverTrigger render={<Button variant=\"outline\" />}>Open Popover</PopoverTrigger>\n        <PopoverContent className=\"w-64\" align=\"start\">\n          <PopoverHeader>\n            <PopoverTitle>Dimensions</PopoverTitle>\n            <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>\n          </PopoverHeader>\n          <FieldGroup className=\"gap-4\">\n            <Field orientation=\"horizontal\">\n              <FieldLabel className=\"w-1/2\">Width</FieldLabel>\n              <Input defaultValue=\"100%\" />\n            </Field>\n            <Field orientation=\"horizontal\">\n              <FieldLabel className=\"w-1/2\">Height</FieldLabel>\n              <Input defaultValue=\"25px\" />\n            </Field>\n          </FieldGroup>\n        </PopoverContent>\n      </Popover>\n    </>\n  );\n}\n"
+    }
+  ]
+}

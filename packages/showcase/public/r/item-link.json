@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "item-link",
+  "type": "registry:block",
+  "title": "Item: Link",
+  "description": "Use the `render` prop to render the item as a link. The hover and focus states will be applied to the anchor element.\n\n```tsx\n<Item render={<a href=\"/dashboard\" />}>\n  <ItemMedia variant=\"icon\">\n    <HomeIcon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Dashboard</ItemTitle>\n    <ItemDescription>Overview of your account and activity.</ItemDescription>\n  </ItemContent>\n</Item>\n```",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": ["@erbium/item", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/item/examples/item-link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/examples/item-link.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ChevronRightIcon from \"@hugeicons/core-free-icons/ChevronRightIcon\";\nimport ExternalLinkIcon from \"@hugeicons/core-free-icons/ExternalLinkIcon\";\n\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemLink() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-4\">\n      <Item\n        render={\n          <a href=\"#\">\n            <ItemContent>\n              <ItemTitle>Visit our documentation</ItemTitle>\n              <ItemDescription>Learn how to get started with our components.</ItemDescription>\n            </ItemContent>\n            <ItemActions>\n              <HugeiconsIcon icon={ChevronRightIcon} className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n      <Item\n        variant=\"outline\"\n        render={\n          <a href=\"#\" target=\"_blank\" rel=\"noopener noreferrer\">\n            <ItemContent>\n              <ItemTitle>External resource</ItemTitle>\n              <ItemDescription>Opens in a new tab with security attributes.</ItemDescription>\n            </ItemContent>\n            <ItemActions>\n              <HugeiconsIcon icon={ExternalLinkIcon} className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/item/variants/link.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/item/variants/link.tsx",
+      "content": "import ExampleItemLink from \"../examples/item-link\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemLink />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table-examples",
+  "type": "registry:item",
+  "title": "Table examples",
+  "description": "All table examples.",
+  "registryDependencies": [
+    "@erbium-examples/table-playground",
+    "@erbium-examples/table-overview",
+    "@erbium-examples/table-footer",
+    "@erbium-examples/table-actions",
+    "@erbium-examples/table-row-selection",
+    "@erbium-examples/table-rtl"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-fade-examples",
+  "type": "registry:item",
+  "title": "Scroll Fade examples",
+  "description": "All scroll-fade examples.",
+  "registryDependencies": [
+    "@erbium-examples/scroll-fade-vertical",
+    "@erbium-examples/scroll-fade-horizontal-rtl",
+    "@erbium-examples/scroll-fade-single-edge-and-custom-depth"
+  ]
+}

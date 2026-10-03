@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip-disabled",
+  "type": "registry:component",
+  "title": "tooltip disabled",
+  "description": "Erbium tooltip disabled example.",
+  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
+  "files": [
+    {
+      "path": "src/tooltip/examples/upstream/tooltip-disabled.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/tooltip/examples/upstream/tooltip-disabled.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function TooltipDisabled() {\n  return (\n    <>\n      <Tooltip>\n        <TooltipTrigger render={<span className=\"inline-block w-fit\" />}>\n          <Button variant=\"outline\" disabled>\n            Disabled\n          </Button>\n        </TooltipTrigger>\n        <TooltipContent>\n          <p>This feature is currently unavailable</p>\n        </TooltipContent>\n      </Tooltip>\n    </>\n  );\n}\n"
+    }
+  ]
+}

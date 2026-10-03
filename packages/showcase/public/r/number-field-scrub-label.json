@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-field-scrub-label",
+  "type": "registry:component",
+  "title": "Number Field: Scrub Label",
+  "description": "",
+  "registryDependencies": ["@erbium/field", "@erbium/number-field", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/number-field/variants/scrub-label.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/number-field/variants/scrub-label.tsx",
+      "content": "import { Field } from \"@/registry/erbium/ui/field\";\nimport {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n  NumberFieldScrubArea,\n} from \"@/registry/erbium/ui/number-field\";\n\nconst Example = () => (\n  <Field>\n    <NumberField defaultValue={24} min={0} max={200} className=\"w-48\">\n      <NumberFieldScrubArea label=\"Font size\" />\n      <NumberFieldGroup>\n        <NumberFieldDecrement />\n        <NumberFieldInput />\n        <NumberFieldIncrement />\n      </NumberFieldGroup>\n    </NumberField>\n  </Field>\n);\n\nexport default Example;\n"
+    }
+  ]
+}

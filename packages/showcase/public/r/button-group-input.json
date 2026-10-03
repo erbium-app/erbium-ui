@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-input",
+  "type": "registry:block",
+  "title": "Button Group: Input",
+  "description": "Wrap an `Input` component with buttons.",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/input",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/button-group/examples/button-group-input.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/examples/button-group-input.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function ButtonGroupInput() {\n  return (\n    <ButtonGroup>\n      <Input placeholder=\"Search...\" />\n      <Button variant=\"outline\" aria-label=\"Search\">\n        <HugeiconsIcon icon={Search01Icon} />\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/button-group/variants/input.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/button-group/variants/input.tsx",
+      "content": "import ExampleButtonGroupInput from \"../examples/button-group-input\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupInput />\n  </div>\n);\n\nexport default Example;\n"
+    }
+  ]
+}
