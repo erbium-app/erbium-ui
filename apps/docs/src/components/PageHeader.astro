@@ -1,4 +1,5 @@
 ---
+import Separator from "./ui/Separator.astro";
 import CopyButton from "./CopyButton.astro";
 import { markdownPath } from "../lib/agent-pages";
 import Button from "./ui/Button.astro";
@@ -55,4 +56,5 @@ const { title, description, previous, next } = Astro.props;
       variant="outline"
     />
   </div>
+  <Separator class="page-header-separator" variant="full" decorative />
 </header>

@@ -8,11 +8,29 @@ import { showcaseVitePlugin, showcaseIntegration } from "./showcase-vite-plugin.
 import { documentationSections, kindPaths } from "./src/data/documentation-sections.ts";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
   site: "https://ui.erbium.app",
   output: "static",
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Cal Sans",
+      cssVariable: "--font-docs-sans",
+      fallbacks: ["Arial", "sans-serif"],
+      options: {
+        variants: [
+          { src: ["./src/assets/fonts/CalSansVF.woff2"], weight: "400 700", style: "normal" },
+          {
+            src: ["./src/assets/fonts/CalSansVF-Italic.woff2"],
+            weight: "400 700",
+            style: "italic",
+          },
+        ],
+      },
+    },
+  ],
   markdown: {
     syntaxHighlight: false,
     processor: unified({

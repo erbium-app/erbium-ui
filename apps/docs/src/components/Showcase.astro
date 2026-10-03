@@ -15,6 +15,7 @@ interface Props {
   variant: string;
   slug: string;
   anchorId?: string;
+  separator?: boolean;
   title: string;
   source: string;
   files: { path: string; source: string }[];
@@ -29,7 +30,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
 ---
 
 <section id={anchorId} class="demo-section">
-  <Separator class="showcase-header-separator" variant="full" decorative />
+  {Astro.props.separator !== false && <Separator class="showcase-header-separator" variant="full" decorative />}
   <h2>
     <a href={`#${anchorId}`}
       >{title}<span class="heading-anchor" aria-hidden="true"
