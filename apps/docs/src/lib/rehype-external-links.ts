@@ -1,5 +1,3 @@
-import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
-
 interface HtmlNode {
   type: string;
   tagName?: string;
@@ -9,33 +7,7 @@ interface HtmlNode {
 
 const site = "https://ui.erbium.app";
 
-function externalIcon(): HtmlNode {
-  return {
-    type: "element",
-    tagName: "svg",
-    properties: {
-      xmlns: "http://www.w3.org/2000/svg",
-      width: 14,
-      height: 14,
-      viewBox: "0 0 24 24",
-      fill: "none",
-      ariaHidden: "true",
-      className: ["external-link-icon"],
-    },
-    children: ArrowUpRight01Icon.map(([tagName, attributes]) => ({
-      type: "element",
-      tagName,
-      properties: Object.fromEntries(
-        Object.entries(attributes)
-          .filter(([key]) => key !== "key")
-          .map(([key, value]) => [key, key === "strokeWidth" ? 1.5 : value]),
-      ),
-      children: [],
-    })),
-  };
-}
-
-// Emit complete external links while compiling Markdown, before HTML reaches the browser.
+// Set external-link attributes while compiling Markdown without changing link content.
 export function rehypeExternalLinks() {
   return (tree: HtmlNode) => {
     function renderLinks(node: HtmlNode) {
@@ -51,8 +23,6 @@ export function rehypeExternalLinks() {
               "noreferrer",
             ]),
           ];
-          node.children ??= [];
-          node.children.push(externalIcon());
         }
       }
       for (const child of node.children ?? []) renderLinks(child);
