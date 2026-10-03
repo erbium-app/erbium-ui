@@ -24,7 +24,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-docs-sans);
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 /* Theme palettes switch together; interaction transitions resume after paint. */
 html[data-theme-changing],
@@ -33,18 +34,15 @@ html[data-theme-changing] *::before,
 html[data-theme-changing] *::after {
   transition: none !important;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  text-wrap: balance;
+/* Improve docs typography without changing live component examples. Using
+   the style longhand preserves intentional nowrap and preformatted text. */
+:is(h1, h2, h3, h4, h5, h6):not(.showcase-content *) {
+  text-wrap-style: balance;
 }
 .page-description,
 .demo-description,
 .variant-description {
-  text-wrap: pretty;
+  text-wrap-style: pretty;
 }
 @layer base {
   /* Native scrollers mirror the shared ScrollArea's thin, muted thumb. */
@@ -391,7 +389,6 @@ theme-toggle {
   font-size: 1.125rem;
   line-height: 1.5556;
   color: var(--muted-foreground);
-  text-wrap: pretty;
 }
 .page-actions {
   display: flex;
@@ -406,6 +403,13 @@ theme-toggle {
   color: var(--muted-foreground);
   font-size: 1rem;
   line-height: 1.625;
+  min-inline-size: 0;
+}
+.markdown-copy :is(p, li, blockquote, td, th) {
+  text-wrap-style: auto;
+}
+.markdown-copy.variant-description :is(p, li) {
+  text-wrap-style: pretty;
 }
 .markdown-copy > p,
 .markdown-copy > ul,
@@ -414,6 +418,20 @@ theme-toggle {
 }
 .markdown-copy p {
   margin: 1.5rem 0 0;
+}
+.markdown-copy blockquote {
+  margin: 1.5rem 0;
+  padding-inline-start: 1.25rem;
+  border-inline-start: 3px solid var(--border);
+  color: var(--foreground);
+}
+.markdown-copy blockquote > :first-child {
+  margin-block-start: 0;
+}
+.markdown-copy blockquote p + p {
+  margin-block-start: 0.75rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
 }
 .markdown-copy > :first-child {
   margin-block-start: 0;
