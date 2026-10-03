@@ -20,38 +20,38 @@ import {
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 const projects = [
-  { id: "gateway", name: "Cloud gateway", icon: CloudIcon, color: "text-orange-500", issues: 30 },
-  { id: "reader", name: "Read platform", icon: CubeIcon, color: "text-blue-500", issues: 13 },
+  { id: "gateway", name: "Cloud gateway", icon: CloudIcon, color: "text-tag-orange", issues: 30 },
+  { id: "reader", name: "Read platform", icon: CubeIcon, color: "text-tag-blue", issues: 13 },
   {
     id: "knowledge",
     name: "Knowledge hub",
     icon: BookOpen01Icon,
-    color: "text-red-500",
+    color: "text-tag-red",
     issues: 9,
   },
   {
     id: "integrations",
     name: "Integrations",
     icon: Link01Icon,
-    color: "text-purple-500",
+    color: "text-tag-purple",
     issues: 27,
   },
   {
     id: "admin",
     name: "Admin panel",
     icon: DashboardSquare01Icon,
-    color: "text-rose-500",
+    color: "text-tag-magenta",
     issues: 27,
   },
-  { id: "data", name: "Data layer", icon: Database01Icon, color: "text-cyan-500", issues: 29 },
+  { id: "data", name: "Data layer", icon: Database01Icon, color: "text-tag-cyan", issues: 29 },
   {
     id: "generate",
     name: "Generate",
     icon: MagicWand01Icon,
-    color: "text-emerald-500",
+    color: "text-tag-green",
     issues: 15,
   },
-  { id: "website", name: "Website", icon: Globe02Icon, color: "text-sky-500", issues: 15 },
+  { id: "website", name: "Website", icon: Globe02Icon, color: "text-tag-blue", issues: 15 },
 ] as const;
 
 export default function ItemJoinedSelection() {

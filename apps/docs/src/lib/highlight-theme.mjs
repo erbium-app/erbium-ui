@@ -1,66 +1,48 @@
 import { createThemeCss } from "@tanstack/highlight/theme";
+import lightReference from "../../../../.reference/vitesse-light.json";
+import darkReference from "../../../../.reference/vitesse-dark.json";
 
-// Vitesse palettes adapted from .reference/vitesse-{light,dark}.json.
-/** @type {import("@tanstack/highlight/theme").HighlightTheme} */
-const light = {
-  name: "vitesse-light",
-  type: "light",
-  background: "#ffffff",
-  foreground: "#393a34",
-  tokens: {
-    token: "#393a34",
-    attr: "#b07d48",
-    "code-inline": "#1c6b48",
-    command: "#59873a",
-    comment: "#a0ada0",
-    deleted: "#b31d28",
-    function: "#59873a",
-    heading: "#1c6b48",
-    inserted: "#22863a",
-    keyword: "#1e754f",
-    link: "#1c6b48",
-    literal: "#1e754f",
-    meta: "#999999",
-    number: "#2f798a",
-    operator: "#ab5959",
-    property: "#998418",
-    selector: "#1e754f",
-    string: "#b56959",
-    tag: "#1e754f",
-    type: "#2e8f82",
-    variable: "#b07d48",
-  },
-};
+// Syntax roles come from the reference theme, not a copied docs palette.
+function syntaxTheme(reference, type) {
+  function token(scope) {
+    const rule = reference.tokenColors.find((entry) =>
+      Array.isArray(entry.scope) ? entry.scope.includes(scope) : entry.scope === scope,
+    );
+    if (!rule?.settings.foreground) throw new Error(`Missing Vitesse syntax role: ${scope}`);
+    return rule.settings.foreground;
+  }
+  return {
+    name: reference.name,
+    type,
+    background: "var(--code)",
+    foreground: "var(--code-foreground)",
+    tokens: {
+      token: "var(--code-foreground)",
+      attr: token("entity.other.attribute-name"),
+      "code-inline": token("markup.raw"),
+      command: token("entity.name.function"),
+      comment: token("comment"),
+      deleted: token("markup.deleted"),
+      function: token("entity.name.function"),
+      heading: token("markup.heading"),
+      inserted: token("markup.inserted"),
+      keyword: token("keyword"),
+      link: reference.colors["textLink.foreground"],
+      literal: token("constant.language.boolean"),
+      meta: token("punctuation"),
+      number: token("constant.numeric"),
+      operator: token("keyword.operator"),
+      property: token("property"),
+      selector: token("entity.name.tag"),
+      string: token("string"),
+      tag: token("entity.name.tag"),
+      type: token("support.type.primitive"),
+      variable: token("variable"),
+    },
+  };
+}
 
-/** @type {import("@tanstack/highlight/theme").HighlightTheme} */
-const dark = {
-  name: "vitesse-dark",
-  type: "dark",
-  background: "#121212",
-  foreground: "#dbd7caee",
-  tokens: {
-    token: "#dbd7caee",
-    attr: "#bd976a",
-    "code-inline": "#4d9375",
-    command: "#80a665",
-    comment: "#758575dd",
-    deleted: "#fdaeb7",
-    function: "#80a665",
-    heading: "#4d9375",
-    inserted: "#85e89d",
-    keyword: "#4d9375",
-    link: "#4d9375",
-    literal: "#4d9375",
-    meta: "#666666",
-    number: "#4C9A91",
-    operator: "#cb7676",
-    property: "#b8a965",
-    selector: "#4d9375",
-    string: "#c98a7d",
-    tag: "#4d9375",
-    type: "#5DA994",
-    variable: "#bd976a",
-  },
-};
-
-export const syntaxThemeCss = createThemeCss({ light, dark });
+export const syntaxThemeCss = createThemeCss({
+  light: syntaxTheme(lightReference, "light"),
+  dark: syntaxTheme(darkReference, "dark"),
+});

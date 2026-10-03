@@ -1,4 +1,7 @@
 export const semanticColors = [
+  ["Primary", "bg-primary text-primary-foreground"],
+  ["Selection", "bg-selection text-selection-foreground"],
+  ["Link", "bg-background text-link"],
   ["Error", "bg-error text-error-foreground"],
   ["Success", "bg-success text-success-foreground"],
   ["Warning", "bg-warning text-warning-foreground"],

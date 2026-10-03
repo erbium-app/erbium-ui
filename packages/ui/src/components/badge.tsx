@@ -35,7 +35,7 @@ const badgeVariants = cva(
         "tag-magenta": "surface-tag-magenta text-tag-magenta",
         outline: "surface-control text-foreground",
         ghost: "surface-flat hover:text-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-link underline-offset-4 hover:underline",
       },
     },
     defaultVariants: {

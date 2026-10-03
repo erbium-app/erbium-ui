@@ -23,7 +23,7 @@ const buttonVariants = cva(
           "surface-ghost-warning-soft text-warning-soft-foreground focus-visible:border-warning/40",
         "ghost-info":
           "surface-ghost-info-soft text-info-soft-foreground focus-visible:border-info/40",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-link underline-offset-4 hover:underline",
       },
       size: {
         default:

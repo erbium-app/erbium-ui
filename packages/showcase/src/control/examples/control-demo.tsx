@@ -13,7 +13,7 @@ export default function ControlDemo() {
   const [scale, setScale] = useState(1.03);
   const [visible, setVisible] = useState(true);
   const [shape, setShape] = useState("portrait");
-  const [color, setColor] = useState("#393a34");
+  const [color, setColor] = useState("");
 
   return (
     <div className="w-72 rounded-xl border surface-panel p-3">

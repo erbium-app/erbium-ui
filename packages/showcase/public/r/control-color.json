@@ -10,7 +10,7 @@
       "path": "src/control/variants/color.tsx",
       "type": "registry:component",
       "target": "@components/showcase/control/variants/color.tsx",
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Color label=\"Shadow Tint\" defaultValue=\"#393a34\" className=\"w-72\" />;\n\nexport default Example;\n"
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Color label=\"Shadow Tint\" className=\"w-72\" />;\n\nexport default Example;\n"
     }
   ]
 }

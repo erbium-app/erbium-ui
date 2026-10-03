@@ -26,7 +26,7 @@ function Switch({
       data-slot="switch"
       data-size={size}
       className={cn(
-        "peer group/switch @container relative inline-flex shrink-0 items-center rounded-full border px-px border-transparent transition-all outline-none group-has-focus-visible/field-card:not-aria-invalid:border-transparent group-has-focus-visible/field-card:not-aria-invalid:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring not-data-disabled:not-data-readonly:active:[--switch-thumb-stretch:1.2] aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-error/20 aria-invalid:focus-visible:border-error data-[size=default]:h-[18.4px] data-[size=default]:w-8 data-[size=default]:[--switch-thumb:--spacing(3.5)] data-[size=sm]:h-3.5 data-[size=sm]:w-6 data-[size=sm]:[--switch-thumb:--spacing(2.5)] motion-reduce:transition-none dark:aria-invalid:border-error/50 dark:aria-invalid:ring-error/40 dark:aria-invalid:focus-visible:border-error/50 data-checked:bg-primary data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        "peer group/switch @container relative inline-flex shrink-0 items-center rounded-full border px-px border-transparent transition-all outline-none group-has-focus-visible/field-card:not-aria-invalid:border-transparent group-has-focus-visible/field-card:not-aria-invalid:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring not-data-disabled:not-data-readonly:active:[--switch-thumb-stretch:1.2] aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-error/20 aria-invalid:focus-visible:border-error data-[size=default]:h-[18.4px] data-[size=default]:w-8 data-[size=default]:[--switch-thumb:--spacing(3.5)] data-[size=sm]:h-3.5 data-[size=sm]:w-6 data-[size=sm]:[--switch-thumb:--spacing(2.5)] motion-reduce:transition-none dark:aria-invalid:border-error/50 dark:aria-invalid:ring-error/40 dark:aria-invalid:focus-visible:border-error/50 data-checked:bg-selection data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
       {...props}
@@ -37,7 +37,7 @@ function Switch({
           data-slot="switch-start-icon"
           className={cn(
             switchIconClassName,
-            "inset-s-0 scale-0 text-primary-foreground opacity-0 group-data-checked/switch:scale-100 group-data-checked/switch:opacity-100",
+            "inset-s-0 scale-0 text-selection-foreground opacity-0 group-data-checked/switch:scale-100 group-data-checked/switch:opacity-100",
           )}
         >
           {startIcon}
@@ -59,7 +59,7 @@ function Switch({
           center while pressed; 100cqw is the track's inner width. */}
       <SwitchPrimitive.Thumb
         data-slot="switch-thumb"
-        className="pointer-events-none relative z-10 block h-(--switch-thumb) w-[calc(var(--switch-thumb)*var(--switch-thumb-stretch,1))] rounded-full bg-background ring-0 transition-[translate,width,background-color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none data-checked:translate-x-[calc(100cqw-100%)] rtl:data-checked:-translate-x-[calc(100cqw-100%)] dark:data-checked:bg-primary-foreground dark:data-unchecked:bg-foreground"
+        className="pointer-events-none relative z-10 block h-(--switch-thumb) w-[calc(var(--switch-thumb)*var(--switch-thumb-stretch,1))] rounded-full bg-background ring-0 transition-[translate,width,background-color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none data-checked:translate-x-[calc(100cqw-100%)] rtl:data-checked:-translate-x-[calc(100cqw-100%)] dark:data-checked:bg-selection-foreground dark:data-unchecked:bg-foreground"
       >
         {thumbIcon ? (
           <span

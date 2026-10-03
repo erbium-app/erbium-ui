@@ -390,7 +390,7 @@ function NumberFieldScrubArea({
       <FieldLabel htmlFor={fieldId} className="cursor-ew-resize">
         {label}
       </FieldLabel>
-      <NumberFieldPrimitive.ScrubAreaCursor className="drop-shadow-[0_1px_1px_#0008]">
+      <NumberFieldPrimitive.ScrubAreaCursor className="drop-shadow-[0_1px_1px_var(--cursor-shadow)]">
         <svg
           aria-hidden="true"
           width="26"

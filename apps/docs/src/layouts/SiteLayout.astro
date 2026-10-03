@@ -1,6 +1,7 @@
 ---
 import { markdownPath } from "../lib/agent-pages";
 import { ogPageForRoute, ogSize, plainText } from "../lib/og-pages";
+import { lightColors } from "../lib/semantic-colors";
 import { syntaxThemeCss } from "../lib/highlight-theme.mjs";
 import SiteHeader from "../components/shell/SiteHeader.astro";
 import "../styles/docs.css";
@@ -27,7 +28,7 @@ const imageAlt = `${socialPage.title} — Erbium UI ${socialPage.section}`;
     <style is:inline set:html={syntaxThemeCss}></style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={socialDescription} />
-    <meta name="theme-color" content="#1c6b48" />
+    <meta name="theme-color" content={lightColors.background} />
     <title>{pageTitle}</title>
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Erbium UI" />
@@ -81,6 +82,10 @@ const imageAlt = `${socialPage.title} — Erbium UI ${socialPage.section}`;
         document.documentElement.classList.contains("dark")
           ? "/brand/erbium-logo-dark.svg"
           : "/brand/erbium-logo-light.svg",
+      );
+      document.querySelector('meta[name="theme-color"]').setAttribute(
+        "content",
+        getComputedStyle(document.documentElement).getPropertyValue("--background").trim(),
       );
     </script>
   </head>

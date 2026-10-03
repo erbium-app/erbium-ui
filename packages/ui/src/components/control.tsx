@@ -648,7 +648,7 @@ function Boolean({
           onCheckedChange={change}
           disabled={disabled}
           name={name}
-          className="ms-auto inline-flex h-5 w-9 shrink-0 items-center rounded-full surface-well p-0.5 outline-none transition-colors data-checked:bg-primary"
+          className="ms-auto inline-flex h-5 w-9 shrink-0 items-center rounded-full surface-well p-0.5 outline-none transition-colors data-checked:bg-selection"
         >
           <SwitchPrimitive.Thumb className="size-4 rounded-full surface-knob transition-transform duration-200 data-checked:translate-x-4 rtl:data-checked:-translate-x-4 motion-reduce:transition-none" />
         </SwitchPrimitive.Root>
@@ -788,7 +788,7 @@ type ColorProps = CommonProps & {
 function Color({
   label,
   value,
-  defaultValue = "#000000",
+  defaultValue = "",
   onValueChange,
   disabled,
   className,
@@ -834,7 +834,7 @@ function Color({
           type="color"
           name={name}
           disabled={disabled}
-          value={valid ? current : "#000000"}
+          value={valid ? current : ""}
           onChange={(event) => change(event.target.value)}
           className="absolute inset-0 size-full cursor-pointer opacity-0"
         />
@@ -1005,7 +1005,7 @@ function Pad({
         }}
       >
         <span
-          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-primary"
+          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-selection"
           style={{
             left: `${((current.x - min) / span) * 100}%`,
             top: `${100 - ((current.y - min) / span) * 100}%`,
@@ -1090,7 +1090,7 @@ function SpringCurve({ value }: { value: SpringValue }) {
 function CurveFrame({ path }: { path: string }) {
   return (
     <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-primary">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-foreground">
         <path
           d="M0 20 H100 M0 80 H100"
           stroke="currentColor"

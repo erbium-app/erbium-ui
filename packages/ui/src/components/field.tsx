@@ -67,7 +67,7 @@ const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error
   variants: {
     variant: {
       default: "",
-      card: "group/field-card relative rounded-lg border surface-frame p-2.5 transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--primary)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
+      card: "group/field-card relative rounded-lg border surface-frame p-2.5 transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--selection)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
     },
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
@@ -136,7 +136,7 @@ function FieldDescription({ className, ...props }: FieldPrimitive.Description.Pr
       className={cn(
         "text-start text-sm leading-normal font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
         "last:mt-0 nth-last-2:-mt-1",
-        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
         className,
       )}
       {...props}

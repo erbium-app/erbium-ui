@@ -24,6 +24,10 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
       const button = this.querySelector("button")!;
       const sync = () => {
         const dark = document.documentElement.classList.contains("dark");
+        document.querySelector('meta[name="theme-color"]')?.setAttribute(
+          "content",
+          getComputedStyle(document.documentElement).getPropertyValue("--background").trim(),
+        );
         button.setAttribute(
           "aria-label",
           dark ? "Use light theme" : "Use dark theme",

@@ -21,7 +21,7 @@ const books = [
     year: 1969,
     status: "Reading",
     badgeVariant: "info",
-    cover: "bg-sky-900 text-sky-100",
+    cover: "bg-info text-info-foreground",
     monogram: "LH",
   },
   {
@@ -31,7 +31,7 @@ const books = [
     year: 1929,
     status: "Finished",
     badgeVariant: "success",
-    cover: "bg-amber-800 text-amber-100",
+    cover: "bg-warning text-warning-foreground",
     monogram: "AR",
   },
   {
@@ -41,7 +41,7 @@ const books = [
     year: 1974,
     status: "To read",
     badgeVariant: "secondary",
-    cover: "bg-rose-900 text-rose-100",
+    cover: "bg-error text-error-foreground",
     monogram: "TD",
   },
   {
@@ -51,7 +51,7 @@ const books = [
     year: 2013,
     status: "To read",
     badgeVariant: "secondary",
-    cover: "bg-emerald-900 text-emerald-100",
+    cover: "bg-success text-success-foreground",
     monogram: "BS",
   },
 ] as const;
@@ -115,7 +115,7 @@ export default function ItemBookLibrary() {
               <ItemMedia variant="image" className="h-14 w-10 rounded-sm shadow-sm">
                 <span
                   aria-hidden="true"
-                  className={`flex size-full items-end border-s-4 border-black/20 p-1 text-[10px] font-semibold tracking-wider ${book.cover}`}
+                  className={`flex size-full items-end border-s-4 border-border p-1 text-[10px] font-semibold tracking-wider ${book.cover}`}
                 >
                   {book.monogram}
                 </span>

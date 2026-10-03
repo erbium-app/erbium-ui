@@ -3,6 +3,7 @@ import sharp from "sharp";
 import regularFont from "../assets/og/Geist-Regular.ttf?inline";
 import semiboldFont from "../assets/og/Geist-SemiBold.ttf?inline";
 import logo from "../../public/brand/erbium-logo-dark.svg?raw";
+import { darkColors } from "./semantic-colors";
 import { ogSize, type OgPage } from "./og-pages";
 
 const fonts = [
@@ -27,15 +28,17 @@ export async function createOgImage(page: OgPage) {
         flexDirection: "column",
         width: "100%",
         height: "100%",
-        backgroundColor: "#111210",
-        color: "#e3e2d8",
+        backgroundColor: darkColors.background,
+        color: darkColors.foreground,
         fontFamily: "Geist",
         padding: "64px 72px",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <img src={logoSource} alt="" width={64} height={64} />
-        <div style={{ display: "flex", fontSize: 20, color: "#94b5a2" }}>{page.section}</div>
+        <div style={{ display: "flex", fontSize: 20, color: darkColors.mutedForeground }}>
+          {page.section}
+        </div>
       </div>
       <div
         style={{
@@ -63,7 +66,7 @@ export async function createOgImage(page: OgPage) {
             display: "flex",
             fontSize: 28,
             lineHeight: 1.4,
-            color: "#a2aaa3",
+            color: darkColors.mutedForeground,
             maxWidth: 960,
           }}
         >
@@ -74,10 +77,10 @@ export async function createOgImage(page: OgPage) {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          borderTop: "2px solid #2b302b",
+          borderTop: `2px solid ${darkColors.border}`,
           paddingTop: 24,
           fontSize: 18,
-          color: "#89958b",
+          color: darkColors.mutedForeground,
         }}
       >
         <div style={{ display: "flex" }}>ui.erbium.app</div>

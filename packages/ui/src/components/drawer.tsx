@@ -39,7 +39,7 @@ function DrawerIndent({ className, ...props }: DrawerPrimitive.Indent.Props) {
     <>
       <DrawerPrimitive.IndentBackground
         data-slot="drawer-indent-background"
-        className="fixed inset-0 bg-black"
+        className="fixed inset-0 bg-overlay-base"
       />
       <DrawerPrimitive.Indent
         data-slot="drawer-indent"

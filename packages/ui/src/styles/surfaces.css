@@ -58,7 +58,7 @@
  *   --surface-shadow[-strong]    drop shadow colours
  *   --surface-shadow-inset       recess colour
  *   --surface-tint-{state}       neutral hover and pressed overlays
- *   --surface-tint-selected      primary overlay for selected rows
+ *   --surface-tint-selected      selection overlay for selected rows
  *   --surface-tag-alpha          translucent tag strength
  *   --surface-border             transparent CSS border / forced-colors fallback
  *
@@ -84,6 +84,8 @@
  */
 
 :root {
+  --surface-light-source: #ffffff;
+  --surface-dark-source: #000000;
   --surface-canvas: #f7f7f7;
   --surface-panel: #ffffff;
   --surface-control: #ffffff;
@@ -107,7 +109,7 @@
 
   --surface-tint-hover: rgb(57 58 52 / 0.04);
   --surface-tint-pressed: rgb(57 58 52 / 0.07);
-  --surface-tint-selected: color-mix(in srgb, var(--primary) 10%, transparent);
+  --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 10%;
 
   /* Fixed on long rules so wide separators do not lose their ends. */
@@ -119,7 +121,7 @@
   --surface-canvas: #121212;
   --surface-panel: #181818;
   --surface-control: #1e1e1e;
-  --surface-input: color-mix(in srgb, var(--surface-control) 97.5%, white);
+  --surface-input: color-mix(in srgb, var(--surface-control) 97.5%, var(--surface-light-source));
   --surface-overlay: #222222;
   --surface-modal: #262626;
   --surface-top: #2b2b2b;
@@ -139,7 +141,7 @@
 
   --surface-tint-hover: rgb(222 220 213 / 0.025);
   --surface-tint-pressed: rgb(0 0 0 / 0.12);
-  --surface-tint-selected: color-mix(in srgb, var(--primary) 10%, transparent);
+  --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 15%;
 }
 
@@ -435,8 +437,8 @@
 /* Coloured roles. One colour input drives the face, rim, and catchlight. */
 @utility surface-fill-* {
   --surface-face: --value(--color, [color]);
-  --surface-rim: color-mix(in srgb, var(--surface-face) 88%, black);
-  --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, white);
+  --surface-rim: color-mix(in srgb, var(--surface-face) 88%, var(--surface-dark-source));
+  --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, var(--surface-light-source));
   @apply surface-control;
 }
 
@@ -445,7 +447,8 @@
   --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
   --surface-catchlight: color-mix(
     in srgb,
-    color-mix(in srgb, var(--surface-face) 80%, white) var(--surface-catchlight-lift),
+    color-mix(in srgb, var(--surface-face) 80%, var(--surface-light-source))
+      var(--surface-catchlight-lift),
     color-mix(in oklab, currentColor 5%, var(--surface-face))
   );
   --surface-backing: var(--surface-face);
@@ -469,7 +472,7 @@
   --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
   --surface-catchlight: color-mix(
     in srgb,
-    color-mix(in srgb, transparent 80%, white) var(--surface-catchlight-lift),
+    color-mix(in srgb, transparent 80%, var(--surface-light-source)) var(--surface-catchlight-lift),
     color-mix(in oklab, currentColor 5%, transparent)
   );
   --surface-drop:
@@ -547,8 +550,8 @@
   mask-image: linear-gradient(
     var(--separator-fade-direction),
     transparent,
-    black var(--separator-fade),
-    black calc(100% - var(--separator-fade)),
+    var(--foreground) var(--separator-fade),
+    var(--foreground) calc(100% - var(--separator-fade)),
     transparent
   );
 }

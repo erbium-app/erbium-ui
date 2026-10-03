@@ -6,8 +6,12 @@
   --card-foreground: #393a34;
   --popover: var(--surface-overlay);
   --popover-foreground: #393a34;
-  --primary: #1c6b48;
+  --primary: #393a34;
   --primary-foreground: #ffffff;
+  /* Green remains the link and selected-control color, separate from neutral actions. */
+  --link: #1c6b48;
+  --selection: #1c6b48;
+  --selection-foreground: #ffffff;
   --secondary: #f0f0f0;
   --secondary-foreground: #393a34;
   --muted: #f0f0f0;
@@ -33,6 +37,8 @@
   --border: rgb(57 58 52 / 0.08);
   --input: rgb(57 58 52 / 0.12);
   --ring: #1c6b48;
+  --overlay-base: #000000;
+  --cursor-shadow: rgb(0 0 0 / 0.53);
   --overlay-backdrop: rgb(0 0 0 / 0.2);
   --chart-1: #1e754f;
   --chart-2: #296aa3;
@@ -52,7 +58,7 @@
   --tag-magenta: #a13865;
   --sidebar: var(--surface-canvas);
   --sidebar-foreground: #4e4f47;
-  --sidebar-primary: #1c6b48;
+  --sidebar-primary: #393a34;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: rgb(57 58 52 / 0.06);
   --sidebar-accent-foreground: #393a34;
@@ -89,6 +95,7 @@
   --color-code-foreground: var(--code-foreground);
   --color-code: var(--code);
   --color-ring: var(--ring);
+  --color-overlay-base: var(--overlay-base);
   --color-overlay-backdrop: var(--overlay-backdrop);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -129,6 +136,9 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-link: var(--link);
+  --color-selection: var(--selection);
+  --color-selection-foreground: var(--selection-foreground);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -152,8 +162,11 @@
   --card-foreground: #dbd7ca;
   --popover: var(--surface-overlay);
   --popover-foreground: #dbd7ca;
-  --primary: #4d9375;
+  --primary: #dbd7ca;
   --primary-foreground: #121212;
+  --link: #4d9375;
+  --selection: #4d9375;
+  --selection-foreground: #121212;
   --secondary: #232323;
   --secondary-foreground: #dbd7ca;
   --muted: #232323;
@@ -179,6 +192,8 @@
   --border: rgb(222 220 213 / 0.08);
   --input: rgb(222 220 213 / 0.12);
   --ring: #4d9375;
+  --overlay-base: #000000;
+  --cursor-shadow: rgb(0 0 0 / 0.53);
   --overlay-backdrop: rgb(0 0 0 / 0.2);
   --chart-1: #4d9375;
   --chart-2: #6394bf;
@@ -198,7 +213,7 @@
   --tag-magenta: #d9739f;
   --sidebar: var(--surface-canvas);
   --sidebar-foreground: #bfbaaa;
-  --sidebar-primary: #4d9375;
+  --sidebar-primary: #dbd7ca;
   --sidebar-primary-foreground: #121212;
   --sidebar-accent: rgb(222 220 213 / 0.07);
   --sidebar-accent-foreground: #dbd7ca;
