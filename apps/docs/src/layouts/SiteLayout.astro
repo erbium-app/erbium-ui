@@ -15,7 +15,7 @@ const {
   title = "Erbium UI",
   description = "Accessible React components that you can customize and own.",
 } = Astro.props;
-const pageTitle = title === "Erbium UI" ? title : `${title} · Erbium UI`;
+const pageTitle = title === "Erbium UI" ? title : `Erbium UI · ${title}`;
 const socialPage = ogPageForRoute(Astro.url.pathname);
 const canonicalUrl = new URL(socialPage.route, Astro.site);
 const imageUrl = new URL(socialPage.imagePath, Astro.site);
