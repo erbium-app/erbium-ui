@@ -33,7 +33,6 @@
     "infra:profile": "bun run --cwd packages/infra profile",
     "infra:plan": "bun run --cwd packages/infra plan",
     "deploy": "bun run --cwd packages/infra deploy",
-    "deploy:prod": "bun run deploy --stage prod",
     "infra:destroy": "bun run --cwd packages/infra destroy",
     "infra:typecheck": "bun run --cwd packages/infra typecheck",
     "dev": "vp run --parallel --filter './apps/*' dev",

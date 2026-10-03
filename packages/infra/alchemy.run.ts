@@ -11,6 +11,11 @@ export default Alchemy.Stack(
   },
   Effect.gen(function* () {
     const { stage } = yield* Alchemy.Stack;
+    if (stage !== "prod") {
+      return yield* Effect.die(
+        new Error("This stack deploys only to prod. Run bun run deploy from the repository root."),
+      );
+    }
     const path = yield* Path;
     const analytics = yield* Cloudflare.Rum.Site("DocsAnalytics", {
       host: "ui.erbium.app",
@@ -21,7 +26,7 @@ export default Alchemy.Stack(
       astro: { output: "static" },
       prerenderEnvironment: "node",
       assets: { htmlHandling: "drop-trailing-slash" },
-      domain: stage === "prod" ? "ui.erbium.app" : undefined,
+      domain: "ui.erbium.app",
       env: { PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },
       observability: {
         enabled: true,

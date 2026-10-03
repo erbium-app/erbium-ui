@@ -19,33 +19,28 @@ Run commands from the repository root:
 ```sh
 bun install
 bun run infra:profile --add Cloudflare
-bun run infra:plan --stage prod
-bun run deploy:prod
+bun run infra:plan
+bun run deploy
 ```
 
-The profile command supports OAuth or an API token. Select the Cloudflare account
-that owns the `erbium.app` zone. Production attaches `ui.erbium.app` as a custom
-domain; other stages use their isolated Workers URLs:
-
-```sh
-bun run infra:plan --stage staging
-bun run deploy --stage staging
-```
+The stack has one deployment: `prod` at `ui.erbium.app`. The root commands
+explicitly select the `default` Alchemy profile. Configure that profile with the
+Cloudflare account that owns the deployment domain.
+The profile command supports OAuth or an API token. There is no separate preview
+stage; use the local docs playground for development. Direct Alchemy commands
+must also pass `--stage prod --profile default`.
 
 For CI, provide `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` through the
-runner's secret environment and run `bun run deploy:prod`. The token needs Workers
-Scripts and the permissions needed for Alchemy's Cloudflare state backend and
-custom domains (Workers KV Storage, Workers Custom Domains, Secrets Store Write,
-Zone Read and DNS Edit). See [Cloudflare setup](https://alchemy.run/cloudflare/setup/) and
+runner's secret environment and run `bun run deploy`. Use your deployment
+account's ID and a token with Workers Scripts and the
+permissions needed for Alchemy's Cloudflare state backend and custom domains
+(Workers KV Storage, Workers Custom Domains, Secrets Store Write, Zone Read and
+DNS Edit). See [Cloudflare setup](https://alchemy.run/cloudflare/setup/) and
 [CI configuration](https://alchemy.run/environments/ci/).
 
 State is stored in Cloudflare through `Cloudflare.state()` so local and CI runs
-share the same stack state. Always use the same stage and account when updating
-an existing deployment. To remove a stage and its managed resources explicitly:
-
-```sh
-bun run infra:destroy --stage staging
-```
+share the same production stack state. To remove the production deployment and
+its managed resources explicitly, run `bun run infra:destroy`.
 
 ## Astro assets
 

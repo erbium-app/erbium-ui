@@ -3,10 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "profile": "alchemy profile edit",
-    "plan": "alchemy plan",
-    "deploy": "alchemy deploy",
-    "destroy": "alchemy destroy",
+    "profile": "alchemy profile edit --profile default",
+    "plan": "alchemy plan --stage prod --profile default",
+    "deploy": "alchemy deploy --stage prod --profile default",
+    "destroy": "alchemy destroy --stage prod --profile default",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
