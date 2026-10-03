@@ -4,12 +4,11 @@
 @custom-variant dark (&:is(.dark *):not(.showcase-content.light *));
 
 :root {
-  --header-height: 3.75rem;
   --sidebar-width: 15rem;
 }
 
 html {
-  scroll-padding-top: calc(var(--header-height) + 2rem);
+  scroll-padding-top: 2rem;
 }
 body {
   margin: 0;
@@ -64,32 +63,6 @@ body {
 .skip-link:focus {
   transform: translateY(0);
 }
-.site-header {
-  position: sticky;
-  inset-block-start: 0;
-  z-index: 40;
-  height: var(--header-height);
-  @apply carve-bottom;
-  background-color: color-mix(in srgb, var(--background) 94%, transparent);
-  backdrop-filter: blur(16px);
-}
-.site-header-inner,
-.header-leading,
-.header-actions {
-  display: flex;
-  align-items: center;
-}
-.site-header-inner {
-  height: 100%;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-.header-leading {
-  gap: 1.5rem;
-}
-.header-actions {
-  gap: 0.5rem;
-}
 /* Match the React Separator API and use the library's carved rule tokens. */
 .docs-separator {
   flex-shrink: 0;
@@ -116,15 +89,13 @@ body {
   border: 0;
   margin-block: 2rem;
 }
-.header-divider {
-  align-self: center;
-  width: 2px;
-  height: 1.25rem;
-  flex-shrink: 0;
-}
 .site-brand {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 .site-brand img {
   display: block;
@@ -136,18 +107,6 @@ body {
 }
 .dark .site-brand .brand-dark {
   display: block;
-}
-.main-navigation {
-  display: flex;
-  gap: 1.35rem;
-  align-items: center;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--muted-foreground);
-}
-.main-navigation a:hover,
-.main-navigation a[aria-current] {
-  color: var(--foreground);
 }
 .docs-search-trigger {
   width: 15rem;
@@ -209,12 +168,12 @@ theme-toggle {
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   align-items: start;
   gap: 1.5rem;
-  min-height: calc(100svh - var(--header-height));
+  min-height: 100svh;
 }
 .docs-sidebar {
   position: sticky;
-  inset-block-start: var(--header-height);
-  height: calc(100svh - var(--header-height));
+  inset-block-start: 0;
+  height: 100svh;
   padding-block-start: 1rem;
   width: 100%;
 }
@@ -283,14 +242,12 @@ theme-toggle {
 }
 .docs-page-body {
   min-width: 0;
-}
-.docs-page-with-toc {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 11rem;
   align-items: start;
   gap: 3rem;
 }
-.docs-page-with-toc > .docs-page-inner {
+.docs-page-body > .docs-page-inner {
   grid-column: 1;
   grid-row: 1;
 }
@@ -299,8 +256,8 @@ theme-toggle {
   grid-column: 2;
   grid-row: 1;
   position: sticky;
-  inset-block-start: calc(var(--header-height) + 2rem);
-  max-height: calc(100svh - var(--header-height) - 4rem);
+  inset-block-start: 2rem;
+  max-height: calc(100svh - 4rem);
   overflow-y: auto;
   scrollbar-width: thin;
   font-size: 0.8125rem;
@@ -329,12 +286,13 @@ theme-toggle {
   padding-inline-start: 0.75rem;
 }
 @media (max-width: 1200px) {
-  .docs-page-with-toc {
+  .docs-page-body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
   .page-toc {
+    order: 1;
     position: static;
     max-height: none;
     width: 100%;
@@ -410,7 +368,7 @@ theme-toggle {
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.025em;
-  scroll-margin-block-start: calc(var(--header-height) + 2rem);
+  scroll-margin-block-start: 2rem;
 }
 .markdown-copy h2 {
   font-size: 1.3rem;
@@ -478,7 +436,7 @@ theme-toggle {
 }
 .demo-section {
   margin-block: 2.5rem;
-  scroll-margin-block-start: calc(var(--header-height) + 2rem);
+  scroll-margin-block-start: 2rem;
 }
 .demo-section > h2 {
   margin: 0 0 0.5rem;
@@ -1079,7 +1037,7 @@ copy-button {
   font: 0.625rem var(--font-mono);
 }
 
-.site-header a:focus-visible,
+.site-brand:focus-visible,
 .docs-sidebar a:focus-visible,
 .directory-item:focus-visible,
 .page-pagination a:focus-visible,
@@ -1089,12 +1047,6 @@ copy-button {
   outline-offset: 3px;
 }
 @media (max-width: 1100px) {
-  .header-leading {
-    gap: 1rem;
-  }
-  .main-navigation {
-    gap: 1rem;
-  }
   .docs-search-trigger {
     width: 12rem;
   }
@@ -1112,21 +1064,17 @@ copy-button {
   }
 }
 @media (max-width: 959px) {
+  .docs-sidebar {
+    display: none;
+  }
   .site-container {
     width: calc(100% - 2rem);
   }
   .mobile-navigation {
     display: inline-flex;
   }
-  .main-navigation,
-  .header-leading > .header-divider,
-  .docs-sidebar {
-    display: none;
-  }
-  .header-leading {
-    gap: 0.6rem;
-  }
   .docs-frame {
+    width: calc(100% - 2rem);
     margin-inline: auto;
     display: block;
   }
@@ -1185,15 +1133,6 @@ copy-button {
   }
 }
 @media (max-width: 560px) {
-  .site-header-inner {
-    gap: 0.5rem;
-  }
-  .header-actions {
-    gap: 0.2rem;
-  }
-  .header-actions > .header-divider {
-    display: none;
-  }
   .docs-search-trigger {
     width: 2rem;
     height: 2rem;
@@ -1264,7 +1203,7 @@ copy-button {
 
 .directory-section {
   margin-block-end: 2rem;
-  scroll-margin-block-start: calc(var(--header-height) + 2rem);
+  scroll-margin-block-start: 2rem;
 }
 .directory-section > h2 {
   margin-block-end: 0.75rem;
@@ -1287,4 +1226,70 @@ copy-button {
 
 .docs-code-block pre code {
   font: inherit;
+}
+
+.site-page-content {
+  min-width: 0;
+}
+.mobile-sidebar-trigger {
+  display: none;
+}
+
+.sidebar-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex-shrink: 0;
+  padding: 0.5rem 0.7rem 1rem 0;
+}
+.sidebar-search .docs-search-trigger {
+  width: 100%;
+  height: 2rem;
+  padding: 0.5rem;
+}
+.sidebar-search .docs-search-trigger > span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-search .docs-search-trigger kbd {
+  display: inline-flex;
+}
+.sidebar-controls {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.7rem 0.75rem 0;
+  @apply carve-top;
+}
+
+.landing {
+  width: 100%;
+  padding-block-start: 2rem;
+}
+@media (max-width: 959px) {
+  .mobile-sidebar-trigger {
+    display: flex;
+    position: fixed;
+    inset-block-end: 1rem;
+    inset-inline-start: 1rem;
+    z-index: 40;
+    border-radius: 0.5rem;
+    @apply surface-modal;
+  }
+  .mobile-sidebar-trigger > mobile-navigation > button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .mobile-sidebar-search {
+    padding: 0.75rem 1rem;
+  }
+  .mobile-sidebar-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    flex-shrink: 0;
+  }
 }

@@ -8,7 +8,7 @@ import SidebarMenu from "../ui/sidebar/SidebarMenu.astro";
 import SidebarMenuItem from "../ui/sidebar/SidebarMenuItem.astro";
 import SidebarMenuButton from "../ui/sidebar/SidebarMenuButton.astro";
 import { navigationGroups } from "../../data/components";
-const pathname = Astro.url.pathname.replace(/\/$/, "");
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <SidebarContent class="docs-sidebar-content">

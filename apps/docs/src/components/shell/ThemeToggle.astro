@@ -39,6 +39,10 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
         );
       };
       sync();
+      new MutationObserver(sync).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
       button.addEventListener("click", () => {
         const dark = document.documentElement.classList.toggle("dark");
         try {

@@ -1,10 +1,22 @@
 ---
+import ComponentSearch from "../ComponentSearch.tsx";
+import { components } from "../../data/components";
+import ThemeToggle from "./ThemeToggle.astro";
+import Icon from "../ui/Icon.astro";
+import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
+import Button from "../ui/Button.astro";
+import Brand from "./Brand.astro";
 import Sidebar from "../ui/sidebar/Sidebar.astro";
 import DocsNavigation from "./DocsNavigation.astro";
 ---
 
 <Sidebar class="docs-sidebar" collapsible="none">
+  <div class="sidebar-heading"><Brand /><div class="sidebar-search"><ComponentSearch components={components} client:load /></div></div>
   <DocsNavigation />
+  <div class="sidebar-controls">
+    <Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button>
+    <ThemeToggle />
+  </div>
 </Sidebar>
 <script>
   const sidebar = document.querySelector<HTMLElement>(

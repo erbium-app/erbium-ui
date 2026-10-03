@@ -3,6 +3,8 @@ import Button from "../ui/Button.astro";
 import Icon from "../ui/Icon.astro";
 import Menu01Icon from "@hugeicons/core-free-icons/Menu01Icon";
 import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
+import ThemeToggle from "./ThemeToggle.astro";
+import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
 import Brand from "./Brand.astro";
 import DocsNavigation from "./DocsNavigation.astro";
 ---
@@ -30,7 +32,9 @@ import DocsNavigation from "./DocsNavigation.astro";
         data-navigation-close><Icon icon={Cancel01Icon} /></Button
       >
     </div>
+    <div class="mobile-sidebar-search"><Button variant="outline" class="w-full" data-navigation-search>Search documentation… <kbd>⌘ K</kbd></Button></div>
     <DocsNavigation />
+    <div class="mobile-sidebar-footer"><Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button><ThemeToggle /></div>
   </dialog>
 </mobile-navigation>
 <script>
@@ -40,6 +44,10 @@ import DocsNavigation from "./DocsNavigation.astro";
       const trigger = this.querySelector<HTMLButtonElement>(
         "[data-navigation-open]",
       )!;
+      this.querySelector("[data-navigation-search]")?.addEventListener("click", () => {
+        dialog.close();
+        window.dispatchEvent(new Event("erbium-search-open"));
+      });
       trigger.addEventListener("click", () => {
         dialog.showModal();
         trigger.setAttribute("aria-expanded", "true");

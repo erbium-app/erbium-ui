@@ -50,11 +50,10 @@ const { headings } = Astro.props;
     };
 
     #update() {
-      const headerBottom = document.querySelector(".site-header")?.getBoundingClientRect().bottom ?? 0;
       let active = this.#entries[0];
       for (const entry of this.#entries) {
         const anchorOffset = Number.parseFloat(getComputedStyle(entry.target).scrollMarginBlockStart) || 0;
-        const threshold = Math.max(headerBottom, anchorOffset) + 2;
+        const threshold = anchorOffset + 2;
         if (entry.target.getBoundingClientRect().top <= threshold) active = entry;
       }
       if (window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
@@ -65,7 +64,7 @@ const { headings } = Astro.props;
         const top = destination.target.getBoundingClientRect().top;
         const anchorOffset = Number.parseFloat(getComputedStyle(destination.target).scrollMarginBlockStart) || 0;
         const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-        if (Math.abs(top - anchorOffset) <= 2 || (atBottom && top >= headerBottom && top < window.innerHeight)) {
+        if (Math.abs(top - anchorOffset) <= 2 || (atBottom && top >= 0 && top < window.innerHeight)) {
           active = destination;
         }
       }

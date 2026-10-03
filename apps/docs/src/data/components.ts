@@ -41,7 +41,7 @@ export const navigationGroups = [
     title: "Getting started",
     href: undefined,
     items: [
-      { title: "Introduction", href: "/docs" },
+      { title: "Introduction", href: "/" },
       { title: "Installation", href: "/docs/installation" },
     ],
   },

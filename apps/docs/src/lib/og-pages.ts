@@ -20,8 +20,7 @@ export function plainText(value: string) {
 }
 
 export const ogPages: OgPage[] = pageIndex.map((entry) => {
-  const title =
-    entry.route === "/" ? "Erbium UI" : entry.route === "/docs" ? "Introduction" : entry.title;
+  const title = entry.route === "/" ? "Introduction" : entry.title;
   const description = plainText(entry.description);
   // Version the design as well as the content so shared cards refresh after changes.
   const hash = createHash("sha256")

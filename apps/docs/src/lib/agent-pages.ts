@@ -69,8 +69,7 @@ function page(
   };
 }
 const guides = [
-  ["/", "overview.md", "Getting started"],
-  ["/docs", "introduction.md", "Getting started"],
+  ["/", "introduction.md", "Getting started"],
   ["/docs/installation", "installation.md", "Getting started"],
   ["/docs/shimmer", "shimmer.md", "Utilities"],
 ];
@@ -141,10 +140,7 @@ for (const component of components) {
   );
 }
 // Landing pages also expose the source of the examples they render.
-for (const [route, names] of [
-  ["/", ["button", "checkbox", "switch", "input"]],
-  ["/docs", ["card", "input", "switch"]],
-] as const) {
+for (const [route, names] of [["/", ["card", "input", "switch"]]] as const) {
   const landing = agentPages.find((entry) => entry.route === route)!;
   landing.markdown += `\n## Showcased components\n\n${names.map((name) => agentPages.find((entry) => entry.route === components.find((item) => item.name === name)!.href)!.markdown).join("\n\n---\n\n")}`;
 }

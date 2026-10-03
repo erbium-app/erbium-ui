@@ -31,12 +31,21 @@ export default function ComponentSearch({ components }: { components: Component[
   useEffect(() => {
     function keydown(event: KeyboardEvent) {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        document.querySelector<HTMLDialogElement>(".mobile-navigation-panel[open]")?.close();
         event.preventDefault();
         setOpen((current) => !current);
       }
     }
+    const openSearch = () => {
+      document.querySelector<HTMLDialogElement>(".mobile-navigation-panel[open]")?.close();
+      setOpen(true);
+    };
+    window.addEventListener("erbium-search-open", openSearch);
     window.addEventListener("keydown", keydown);
-    return () => window.removeEventListener("keydown", keydown);
+    return () => {
+      window.removeEventListener("keydown", keydown);
+      window.removeEventListener("erbium-search-open", openSearch);
+    };
   }, []);
   const navigate = (href: string) => window.location.assign(href);
   return (
@@ -66,7 +75,7 @@ export default function ComponentSearch({ components }: { components: Component[
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Getting started">
-              <CommandItem onSelect={() => navigate("/docs")}>Introduction</CommandItem>
+              <CommandItem onSelect={() => navigate("/")}>Introduction</CommandItem>
               <CommandItem onSelect={() => navigate("/docs/installation")}>
                 Installation
               </CommandItem>

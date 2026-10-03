@@ -1,25 +1,14 @@
 ---
-import CopyButton from "../components/CopyButton.astro";
 import Icon from "../components/ui/Icon.astro";
 import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
-import SiteLayout from "../layouts/SiteLayout.astro";
+import DocsLayout from "../layouts/DocsLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Button from "../components/ui/Button.astro";
 import ComponentPreview from "../components/ComponentPreview.tsx";
-import { Content, frontmatter } from "@erbium/content/overview.md";
-import { components } from "../data/components";
-const lastSpace = frontmatter.title.lastIndexOf(" ");
+import { Content, frontmatter } from "@erbium/content/introduction.md";
 ---
-<SiteLayout title="Erbium UI" description={frontmatter.description}>
-  <main id="main-content" tabindex="-1" class="landing site-container">
-    <section class="landing-hero"><p class="eyebrow"><span class="status-dot"></span> Open source · Built on Base UI</p><h1>{frontmatter.title.slice(0, lastSpace)} <em>{frontmatter.title.slice(lastSpace + 1)}</em></h1><article class="markdown-copy"><Content /></article><div class="hero-actions"><Button href="/docs/installation" size="lg">Get started <Icon icon={ArrowRight01Icon} class="rtl:rotate-180" /></Button><CopyButton url="/index.md" text="Copy Markdown" label="Copy page as Markdown" variant="outline" /><span class="hero-note">Copy. Compose. Make it yours.</span></div></section>
-    <section class="landing-showcase" aria-label="Interactive component collection">
-      <div class="collection-heading"><span>THE COLLECTION</span><span>{components.filter((item) => item.kind === "component").length} components, endless possibilities</span></div>
-      <div class="landing-grid">
-        <div class="landing-example landing-example-wide"><div class="example-label"><a href="/docs/components/button">Button</a><span>01</span></div><ComponentPreview name="button" variant="Variants" client:visible /></div>
-        <div class="landing-example"><div class="example-label"><a href="/docs/components/checkbox">Checkbox</a><span>02</span></div><ComponentPreview name="checkbox" variant="Overview" client:visible /></div>
-        <div class="landing-example"><div class="example-label"><a href="/docs/components/switch">Switch</a><span>03</span></div><ComponentPreview name="switch" variant="Overview" client:visible /></div>
-        <div class="landing-example"><div class="example-label"><a href="/docs/components/input">Input</a><span>04</span></div><ComponentPreview name="input" variant="Overview" client:visible /></div>
-      </div>
-    </section>
-  </main>
-</SiteLayout>
+<DocsLayout title="Introduction" description={frontmatter.description}>
+  <PageHeader title={frontmatter.title} description={frontmatter.description}><Button href="/docs/installation" size="sm">Get started <Icon icon={ArrowRight01Icon} class="rtl:rotate-180" /></Button></PageHeader>
+  <article class="markdown-copy"><Content /></article>
+  <div class="sampler"><div class="sampler-example"><ComponentPreview name="card" client:visible /></div><div class="sampler-example"><ComponentPreview name="input" client:visible /></div><div class="sampler-example"><ComponentPreview name="switch" client:visible /></div></div>
+</DocsLayout>

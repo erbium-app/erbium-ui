@@ -16,9 +16,11 @@ Run `bun run showcase` at the workspace root to start both sites. Authoring inst
 
 The registry integration serves `/r/ui/{name}.json` and `/r/examples/{name}.json` locally and copies the canonical package artifacts into the static build. No app-specific copies of examples or Markdown are maintained.
 
-The site shell takes its layout cues from coss ui: a compact header, independently scrolling sidebar, and a framed documentation page. Erbium's own tokens, forest-green accent, and surface styles drive the appearance. There is no table of contents.
+The site shell uses an independently scrolling sidebar with the brand and search above navigation and GitHub and theme controls below it. Documentation pages share a consistent content column, reserving space for an optional table of contents on wide screens. Erbium's own tokens, forest-green accent, and surface styles drive the appearance.
 
 Astro shell primitives live in `src/components/ui/`, compositions in `src/components/shell/`, and page layouts in `src/layouts/`. The adapters share styling definitions with the React library; see [their API notes](src/components/ui/README.md).
+
+Introduction is the homepage at `/`, rendered directly by `src/pages/index.astro` from `@erbium/content/introduction.md`. There is no `/docs` index route or homepage redirect. Navigation, search, social metadata, and agent resources use `/` as its canonical route.
 
 UI components use `/docs/components/{name}`, design tokens use `/docs/foundations/{name}`, providers use `/docs/providers/{name}`, helpers use `/docs/utilities/{name}`, and hooks use `/docs/hooks/{name}`. Legacy component URLs redirect to their canonical section. `src/data/documentation-sections.ts` assigns each showcase exactly once and defines the usage order. Navigation, search, directory pages, and adjacent-page links derive from this classification and `src/data/components.ts`; adjacent-page links stay within the same semantic group.
 

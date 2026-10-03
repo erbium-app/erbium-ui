@@ -1,8 +1,6 @@
 ---
-import SidebarProvider from "../components/ui/sidebar/SidebarProvider.astro";
 import SiteLayout from "./SiteLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
-import DocsSidebar from "../components/shell/DocsSidebar.astro";
 interface Props {
   title?: string;
   description?: string;
@@ -12,15 +10,12 @@ const { headings = [], ...siteProps } = Astro.props;
 ---
 
 <SiteLayout {...siteProps}>
-  <SidebarProvider class="docs-frame site-container">
-    <DocsSidebar />
     <div class="docs-page-frame">
       <main id="main-content" tabindex="-1" class="docs-page surface-panel">
-        <div class:list={["docs-page-body", { "docs-page-with-toc": headings.length > 0 }]} >
+        <div class="docs-page-body">
           {headings.length > 0 && <TableOfContents headings={headings} />}
           <div class="docs-page-inner"><slot /></div>
         </div>
       </main>
     </div>
-  </SidebarProvider>
 </SiteLayout>
