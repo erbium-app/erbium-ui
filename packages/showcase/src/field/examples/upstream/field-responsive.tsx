@@ -23,7 +23,7 @@ export function FieldResponsive() {
                 <FieldLabel>Name</FieldLabel>
                 <FieldDescription>Provide your full name for identification</FieldDescription>
               </FieldContent>
-              <Input placeholder="Evil Rabbit" required />
+              <Input placeholder="Alex Smith" required />
             </Field>
             <Field orientation="responsive">
               <Button type="submit">Submit</Button>

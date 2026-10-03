@@ -25,7 +25,7 @@ export default function DialogCloseButton() {
         <DialogContent className="flex items-center gap-2">
           <Field className="flex-1">
             <FieldLabel className="sr-only">Link</FieldLabel>
-            <Input defaultValue="https://ui.shadcn.com/docs/installation" readOnly />
+            <Input defaultValue="https://ui.erbium.app/docs/installation" readOnly />
           </Field>
         </DialogContent>
         <DialogFooter className="sm:justify-start">

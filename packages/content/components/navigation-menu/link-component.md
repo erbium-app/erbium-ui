@@ -3,10 +3,10 @@ title: "Link Component"
 story: LinkComponent
 ---
 
-Use the `render` prop to compose a custom link component such as Next.js `Link`.
+Use the `render` prop to compose a custom link component such as TanStack Router `Link`.
 
 ```tsx
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 import {
   NavigationMenuItem,
@@ -17,7 +17,7 @@ import {
 export function NavigationMenuDemo() {
   return (
     <NavigationMenuItem>
-      <NavigationMenuLink render={<Link href="/docs" />} className={navigationMenuTriggerStyle()}>
+      <NavigationMenuLink render={<Link to="/docs" />} className={navigationMenuTriggerStyle()}>
         Documentation
       </NavigationMenuLink>
     </NavigationMenuItem>

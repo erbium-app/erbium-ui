@@ -13,7 +13,7 @@ import {
   useComboboxAnchor,
 } from "@erbium/ui/components/combobox";
 
-const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
+const frameworks = ["TanStack Start", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
 export function ComboboxMultiple() {
   const anchor = useComboboxAnchor();

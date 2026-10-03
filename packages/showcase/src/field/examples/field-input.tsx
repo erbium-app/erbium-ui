@@ -14,7 +14,7 @@ export default function FieldInput() {
         <FieldGroup>
           <Field>
             <FieldLabel>Username</FieldLabel>
-            <Input type="text" placeholder="Max Leiter" />
+            <Input type="text" placeholder="Jane Doe" />
             <FieldDescription>Choose a unique username for your account.</FieldDescription>
           </Field>
           <Field>

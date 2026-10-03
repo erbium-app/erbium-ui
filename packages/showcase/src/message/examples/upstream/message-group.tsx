@@ -23,7 +23,7 @@ export function MessageGroupDemo() {
           <MessageAvatar>
             <Avatar>
               <AvatarImage src="/avatars/02.png" alt="@avatar" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>JD</AvatarFallback>
             </Avatar>
           </MessageAvatar>
           <MessageContent>

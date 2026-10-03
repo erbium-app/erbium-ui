@@ -21,7 +21,7 @@ import {{ Button }} from "@erbium/ui/components/button"
 ```tsx
 <HoverCard>
   <HoverCardTrigger render={<Button variant="link">Hover</Button>} />
-  <HoverCardContent>The React Framework – created and maintained by @vercel.</HoverCardContent>
+  <HoverCardContent>Accessible components for building your next interface.</HoverCardContent>
 </HoverCard>
 ```
 

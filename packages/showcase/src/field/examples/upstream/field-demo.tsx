@@ -57,7 +57,7 @@ export default function FieldDemo() {
             <FieldGroup>
               <Field>
                 <FieldLabel>Name on Card</FieldLabel>
-                <Input placeholder="Evil Rabbit" required />
+                <Input placeholder="Alex Smith" required />
               </Field>
               <Field>
                 <FieldLabel>Card Number</FieldLabel>

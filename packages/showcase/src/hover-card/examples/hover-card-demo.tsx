@@ -5,16 +5,19 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@erbium/ui/compon
 export default function HoverCardDemo() {
   return (
     <HoverCard>
-      <HoverCardTrigger render={<Button variant="link">@nextjs</Button>} />
+      <HoverCardTrigger render={<Button variant="link">@erbium</Button>} />
       <HoverCardContent className="w-80">
         <div className="flex justify-between gap-4">
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" />
-            <AvatarFallback>VC</AvatarFallback>
+            <AvatarImage
+              src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2232%22%20fill%3D%22%2352525b%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2233%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%20font-family%3D%22sans-serif%22%20font-size%3D%2222%22%20fill%3D%22white%22%3EEU%3C%2Ftext%3E%3C%2Fsvg%3E"
+              alt="Erbium UI"
+            />
+            <AvatarFallback>EU</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">@nextjs</h4>
-            <p className="text-sm">The React Framework – created and maintained by @vercel.</p>
+            <h4 className="text-sm font-semibold">@erbium</h4>
+            <p className="text-sm">Accessible components for building your next interface.</p>
             <div className="text-xs text-muted-foreground">Joined December 2021</div>
           </div>
         </div>

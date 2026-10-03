@@ -21,7 +21,7 @@ export function InputForm() {
       <FieldGroup>
         <Field>
           <FieldLabel>Name</FieldLabel>
-          <Input type="text" placeholder="Evil Rabbit" required />
+          <Input type="text" placeholder="Alex Smith" required />
         </Field>
         <Field>
           <FieldLabel>Email</FieldLabel>

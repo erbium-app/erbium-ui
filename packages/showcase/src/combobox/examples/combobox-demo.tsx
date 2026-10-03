@@ -17,8 +17,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/p
 
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "tanstack-start",
+    label: "TanStack Start",
   },
   {
     value: "sveltekit",

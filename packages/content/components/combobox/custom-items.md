@@ -23,7 +23,7 @@ type Framework = {
 };
 
 const frameworks: Framework[] = [
-  { label: "Next.js", value: "next" },
+  { label: "TanStack Start", value: "tanstack-start" },
   { label: "SvelteKit", value: "sveltekit" },
   { label: "Nuxt", value: "nuxt" },
 ];

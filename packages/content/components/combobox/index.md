@@ -21,7 +21,7 @@ import {
 ```
 
 ```tsx
-const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+const frameworks = ["TanStack Start", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
 export function ExampleCombobox() {
   return (

@@ -21,7 +21,7 @@ import {
   ComboboxValue,
 } from "@erbium/ui/components/combobox";
 
-const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
+const frameworks = ["TanStack Start", "SvelteKit", "Nuxt.js", "Remix", "Astro"];
 
 export function ExampleComboboxMultiple() {
   const [value, setValue] = React.useState<string[]>([]);

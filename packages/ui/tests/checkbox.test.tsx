@@ -28,7 +28,7 @@ function Frameworks({ onValueChange }: { onValueChange?: (value: string[]) => vo
       </label>
       <label>
         <Checkbox value="next" />
-        Next.js
+        TanStack Start
       </label>
       <label>
         <Checkbox value="vite" />
@@ -58,21 +58,21 @@ test("dragging across labels selects the range, skips disabled items, and update
   expect(checkbox("Remix").getAttribute("aria-checked")).toBe("true");
   expect(values.at(-1)).toEqual(["next", "vite", "remix"]);
 
-  drag(checkbox("Remix"), checkbox("Next.js"));
+  drag(checkbox("Remix"), checkbox("TanStack Start"));
   expect(values.at(-1)).toEqual([]);
   expect(checkbox("All").getAttribute("aria-checked")).toBe("false");
 });
 
 test("the click released at the end of a drag does not toggle the item again", async () => {
   render(<Frameworks />);
-  drag(checkbox("Vite"), checkbox("Next.js"));
-  expect(checkbox("Next.js").getAttribute("aria-checked")).toBe("true");
+  drag(checkbox("Vite"), checkbox("TanStack Start"));
+  expect(checkbox("TanStack Start").getAttribute("aria-checked")).toBe("true");
   expect(checkbox("Vite").getAttribute("aria-checked")).toBe("true");
 
-  fireEvent.click(checkbox("Next.js"));
-  expect(checkbox("Next.js").getAttribute("aria-checked")).toBe("true");
+  fireEvent.click(checkbox("TanStack Start"));
+  expect(checkbox("TanStack Start").getAttribute("aria-checked")).toBe("true");
 
   await act(() => new Promise((resolve) => setTimeout(resolve)));
-  fireEvent.click(checkbox("Next.js"));
-  expect(checkbox("Next.js").getAttribute("aria-checked")).toBe("false");
+  fireEvent.click(checkbox("TanStack Start"));
+  expect(checkbox("TanStack Start").getAttribute("aria-checked")).toBe("false");
 });

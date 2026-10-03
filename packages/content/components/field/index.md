@@ -30,7 +30,7 @@ import {
   <FieldGroup>
     <Field>
       <FieldLabel htmlFor="name">Full name</FieldLabel>
-      <Input id="name" autoComplete="off" placeholder="Evil Rabbit" />
+      <Input id="name" autoComplete="off" placeholder="Alex Smith" />
       <FieldDescription>This appears on invoices and emails.</FieldDescription>
     </Field>
     <Field>

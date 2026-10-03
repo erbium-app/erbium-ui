@@ -3,7 +3,7 @@
   "name": "navigation-menu-link-component",
   "type": "registry:component",
   "title": "Navigation Menu: Link Component",
-  "description": "Use the `render` prop to compose a custom link component such as Next.js `Link`.\n\n```tsx\nimport Link from \"next/link\";\n\nimport {\n  NavigationMenuItem,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link href=\"/docs\" />} className={navigationMenuTriggerStyle()}>\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
+  "description": "Use the `render` prop to compose a custom link component such as TanStack Router `Link`.\n\n```tsx\nimport { Link } from \"@tanstack/react-router\";\n\nimport {\n  NavigationMenuItem,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link to=\"/docs\" />} className={navigationMenuTriggerStyle()}>\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
   "registryDependencies": ["@erbium/navigation-menu", "@erbium/styles"],
   "files": [
     {
