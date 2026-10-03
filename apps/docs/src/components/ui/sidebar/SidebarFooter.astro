@@ -5,4 +5,12 @@ import { sidebarStyles } from "@erbium/ui/lib/sidebar-styles";
 type Props = HTMLAttributes<"div">;
 const { class: className, ...props } = Astro.props;
 ---
-<div data-slot="sidebar-footer" data-sidebar="footer" class={cn(sidebarStyles.header, className)} {...props}><slot /></div>
+
+<div
+  data-slot="sidebar-footer"
+  data-sidebar="footer"
+  class={cn(sidebarStyles.header, className)}
+  {...props}
+>
+  <slot />
+</div>

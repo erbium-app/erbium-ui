@@ -11,7 +11,7 @@
     0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
     0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
   --ts-chart-tooltip-padding: 0.375rem 0.5rem;
-  --ts-chart-tooltip-font: 500 0.875rem/1.4 "Inter Variable", sans-serif;
+  --ts-chart-tooltip-font: 500 0.875rem/1.4 var(--font-sans);
   --ts-chart-tooltip-active-row-font-weight: 600;
   --ts-chart-tooltip-active-row-background: var(--accent);
   --ts-chart-tooltip-active-row-border-radius: var(--radius-md);

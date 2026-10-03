@@ -10,8 +10,10 @@ The site shell takes its layout cues from coss ui: a compact header, independent
 
 Astro shell primitives live in `src/components/ui/`, compositions in `src/components/shell/`, and page layouts in `src/layouts/`. The adapters share styling definitions with the React library; see [their API notes](src/components/ui/README.md).
 
-Component pages use `/docs/components/{name}` and hooks use `/docs/hooks/{name}`. Legacy hook URLs redirect. Navigation, search, directory pages, and adjacent-page links all derive from `src/data/components.ts` and the shared showcase manifest.
+UI components use `/docs/components/{name}`, design tokens use `/docs/foundations/{name}`, providers use `/docs/providers/{name}`, helpers use `/docs/utilities/{name}`, and hooks use `/docs/hooks/{name}`. Legacy component URLs redirect to their canonical section. `src/data/documentation-sections.ts` assigns each showcase exactly once and defines the usage order. Navigation, search, directory pages, and adjacent-page links derive from this classification and `src/data/components.ts`; adjacent-page links stay within the same semantic group.
 
 Preview/code tabs preserve the mounted React island when switching panels. Theme choice persists locally, search supports Cmd/Ctrl+K, and mobile navigation uses a native dialog with focus trapping and Escape dismissal.
 
 `showcase-vite-plugin.mjs` preoptimizes the runtime dependencies of the docs, UI, and showcase workspaces in Astro's browser environment. Nested dependency IDs resolve from their owning package. Dev and build caches are separate, and the dev optimizer does not discover new dependencies while navigating lazy catalogs. Restart the dev server after adding a new npm import to a showcase.
+
+Code highlighting uses `@tanstack/highlight` at build time for both Markdown fences and showcase source panels. Astro's built-in syntax highlighting is disabled. `src/lib/highlight.ts` registers the supported languages; unknown languages render as escaped plaintext. `src/lib/highlight-theme.mjs` maps the Vitesse Light and Dark palettes from `.reference` into semantic token colors. One class-based markup tree supports both themes, and source panel copying preserves the original whitespace.

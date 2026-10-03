@@ -2,11 +2,18 @@
 import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
 import Copy01Icon from "@hugeicons/core-free-icons/Copy01Icon";
-interface Props { target: string; label?: string; }
+interface Props {
+  target: string;
+  label?: string;
+}
 const { target, label = "Copy code" } = Astro.props;
 ---
+
 <copy-button data-copy-target={target}>
-  <Button variant="ghost" size="xs" aria-label={label}><Icon icon={Copy01Icon} size={14} /><span data-copy-label>Copy</span></Button>
+  <Button variant="ghost" size="xs" aria-label={label}
+    ><Icon icon={Copy01Icon} size={14} /><span data-copy-label>Copy</span
+    ></Button
+  >
   <span class="sr-only" role="status" data-copy-status></span>
 </copy-button>
 <script>
@@ -23,11 +30,16 @@ const { target, label = "Copy code" } = Astro.props;
           label.textContent = "Copied";
           status.textContent = "Copied to clipboard.";
         } catch {
-          status.textContent = "Unable to copy. Select the code to copy it manually.";
+          status.textContent =
+            "Unable to copy. Select the code to copy it manually.";
         }
-        window.setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2500);
+        window.setTimeout(() => {
+          label.textContent = "Copy";
+          status.textContent = "";
+        }, 2500);
       });
     }
   }
-  if (!customElements.get("copy-button")) customElements.define("copy-button", CopyButton);
+  if (!customElements.get("copy-button"))
+    customElements.define("copy-button", CopyButton);
 </script>

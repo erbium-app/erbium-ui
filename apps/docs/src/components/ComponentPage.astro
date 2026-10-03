@@ -1,41 +1,133 @@
 ---
-import { componentDocuments, variantDocuments } from "@erbium/content/documents";
+import Icon from "./ui/Icon.astro";
+import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
+import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
+import {
+  componentDocuments,
+  variantDocuments,
+} from "@erbium/content/documents";
 import manifest from "@erbium/showcase/manifest";
 import { showcaseSource } from "@erbium/showcase/sources";
 import showcaseRegistry from "@erbium/showcase/registry";
+import { documentationSections } from "../data/documentation-sections";
 import { components } from "../data/components";
 import DocsLayout from "../layouts/DocsLayout.astro";
 import PageHeader from "./PageHeader.astro";
 import Showcase from "./Showcase.astro";
 import ShowcaseToaster from "./ShowcaseToaster.tsx";
 import Button from "./ui/Button.astro";
-interface Props { name: string; }
+interface Props {
+  name: string;
+}
 const { name } = Astro.props;
 const component = components.find((item) => item.name === name)!;
-const pages = componentDocuments as Record<string, import("astro").MarkdownInstance<Record<string, string>>>;
+const pages = componentDocuments as Record<
+  string,
+  import("astro").MarkdownInstance<Record<string, string>>
+>;
 const descriptions = variantDocuments as typeof pages;
 const page = pages[`../components/${name}/index.md`];
 if (!page) throw new Error(`Missing Markdown documentation: ${name}`);
 const { Content, frontmatter } = page;
-const repeatedSummary = page.rawContent().replace(/^---[\s\S]*?---/, "").trim().split(/\n\s*\n/)[0] === frontmatter.description;
+const repeatedSummary =
+  page
+    .rawContent()
+    .replace(/^---[\s\S]*?---/, "")
+    .trim()
+    .split(/\n\s*\n/)[0] === frontmatter.description;
 const catalog = manifest.find((entry) => entry.name === name)!;
-const variants = catalog.variants.map((variant) => ({ ...variant, Content: descriptions[`../components/${name}/${variant.slug}.md`].Content, source: showcaseSource(variant.source), files: showcaseRegistry.items.find((item) => item.name === `${name}-${variant.slug}`)?.files?.map((file) => ({ path: file.path, source: showcaseSource(file.path) })) ?? [] }));
-const lead = variants.find((item) => item.exportName === "Overview") ?? variants[0];
+const variants = catalog.variants.map((variant) => ({
+  ...variant,
+  Content: descriptions[`../components/${name}/${variant.slug}.md`].Content,
+  source: showcaseSource(variant.source),
+  files:
+    showcaseRegistry.items
+      .find((item) => item.name === `${name}-${variant.slug}`)
+      ?.files?.map((file) => ({
+        path: file.path,
+        source: showcaseSource(file.path),
+      })) ?? [],
+}));
+const lead =
+  variants.find((item) => item.exportName === "Overview") ?? variants[0];
 const remaining = variants.filter((item) => item !== lead);
-const neighbors = components.filter((item) => item.kind === component.kind).sort((a, b) => a.title.localeCompare(b.title));
+const section = documentationSections.find((section) => section.slug === component.sectionSlug)!;
+const neighbors = section.names.map((name) => components.find((item) => item.name === name)!);
 const index = neighbors.findIndex((item) => item.name === name);
 ---
+
 <DocsLayout title={component.title} description={frontmatter.description}>
-  <PageHeader title={component.title} description={frontmatter.description} category={component.kind === "hook" ? "Hooks" : "Components"} previous={neighbors[index - 1]} next={neighbors[index + 1]}>
-    {component.files?.[0] && <Button href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`} variant="outline" size="xs">View source <span aria-hidden="true">↗</span></Button>}
-    {import.meta.env.DEV && <Button href={`http://localhost:6006/?path=/docs/${catalog.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}--docs`} variant="ghost" size="xs">Open in Storybook <span aria-hidden="true">↗</span></Button>}
+  <PageHeader
+    title={component.title}
+    description={frontmatter.description}
+    category={component.section}
+    previous={neighbors[index - 1]}
+    next={neighbors[index + 1]}
+  >
+    {
+      component.files?.[0] && (
+        <Button
+          href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`}
+          variant="outline"
+          size="xs"
+        >
+          View source <Icon icon={ArrowUpRight01Icon} size={14} />
+        </Button>
+      )
+    }
   </PageHeader>
-  <Showcase name={name} variant={lead.exportName} slug={lead.slug} title={lead.title} source={lead.source} files={lead.files}><lead.Content /></Showcase>
-  <article class="markdown-copy component-documentation" data-repeated-summary={repeatedSummary ? "" : undefined}><Content /></article>
-  {remaining.map((variant) => <Showcase name={name} variant={variant.exportName} slug={variant.slug} title={variant.title} source={variant.source} files={variant.files}><variant.Content /></Showcase>)}
+  <Showcase
+    name={name}
+    variant={lead.exportName}
+    slug={lead.slug}
+    title={lead.title}
+    source={lead.source}
+    files={lead.files}><lead.Content /></Showcase
+  >
+  <article
+    class="markdown-copy component-documentation"
+    data-repeated-summary={repeatedSummary ? "" : undefined}
+  >
+    <Content />
+  </article>
+  {
+    remaining.map((variant) => (
+      <Showcase
+        name={name}
+        variant={variant.exportName}
+        slug={variant.slug}
+        title={variant.title}
+        source={variant.source}
+        files={variant.files}
+      >
+        <variant.Content />
+      </Showcase>
+    ))
+  }
   {name === "toast" && <ShowcaseToaster client:load />}
   <nav aria-label="Adjacent documentation pages" class="page-pagination">
-    {neighbors[index - 1] ? <a href={neighbors[index - 1].href}><span>← Previous</span><strong>{neighbors[index - 1].title}</strong></a> : <span />}
-    {neighbors[index + 1] && <a href={neighbors[index + 1].href}><span>Next →</span><strong>{neighbors[index + 1].title}</strong></a>}
+    {
+      neighbors[index - 1] ? (
+        <Button href={neighbors[index - 1].href} variant="outline" class="pagination-button" aria-label={`Previous: ${neighbors[index - 1].title}`}>
+          <>
+            <span class="pagination-label"><Icon icon={ArrowLeft01Icon} size={14} class="rtl:rotate-180" /> Previous</span>
+            <strong>{neighbors[index - 1].title}</strong>
+          </>
+        </Button>
+      ) : (
+        <span />
+      )
+    }
+    {
+      neighbors[index + 1] && (
+        <Button href={neighbors[index + 1].href} variant="outline" class="pagination-button" aria-label={`Next: ${neighbors[index + 1].title}`}>
+          <>
+            <span class="pagination-label">Next <Icon icon={ArrowRight01Icon} size={14} class="rtl:rotate-180" /></span>
+            <strong>{neighbors[index + 1].title}</strong>
+          </>
+        </Button>
+      )
+    }
   </nav>
 </DocsLayout>

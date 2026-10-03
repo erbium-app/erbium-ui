@@ -1,3 +1,8 @@
+import { kindTitles } from "../data/documentation-sections";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
+import ArrowDown01Icon from "@hugeicons/core-free-icons/ArrowDown01Icon";
 import { useEffect, useState } from "react";
 import { Button } from "@erbium/ui/components/button";
 import { Kbd } from "@erbium/ui/components/kbd";
@@ -42,16 +47,7 @@ export default function ComponentSearch({ components }: { components: Component[
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
       >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          aria-hidden="true"
-        >
-          <circle cx="10.5" cy="10.5" r="7" />
-          <path d="m16 16 4.5 4.5" />
-        </svg>
+        <HugeiconsIcon icon={Search01Icon} size={20} strokeWidth={1.5} aria-hidden="true" />
         <span>Search documentation…</span>
         <Kbd hotkey="Mod+K" />
       </Button>
@@ -73,8 +69,8 @@ export default function ComponentSearch({ components }: { components: Component[
                 Installation
               </CommandItem>
             </CommandGroup>
-            {["component", "hook"].map((kind) => (
-              <CommandGroup key={kind} heading={kind === "hook" ? "Hooks" : "Components"}>
+            {(["foundation", "component", "provider", "utility", "hook"] as const).map((kind) => (
+              <CommandGroup key={kind} heading={kindTitles[kind]}>
                 {components
                   .filter((item) => item.kind === kind)
                   .map((item) => (
@@ -93,8 +89,13 @@ export default function ComponentSearch({ components }: { components: Component[
           </CommandList>
           <div className="search-footer">
             <span>
-              <Kbd>↑</Kbd>
-              <Kbd>↓</Kbd> Navigate
+              <Kbd aria-label="Up arrow">
+                <HugeiconsIcon icon={ArrowUp01Icon} size={12} aria-hidden="true" />
+              </Kbd>
+              <Kbd aria-label="Down arrow">
+                <HugeiconsIcon icon={ArrowDown01Icon} size={12} aria-hidden="true" />
+              </Kbd>{" "}
+              Navigate
             </span>
             <span>
               <Kbd>Enter</Kbd> Open

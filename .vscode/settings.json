@@ -45,5 +45,8 @@
     "torph",
     "trackpad",
     "ultracite"
-  ]
+  ],
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  }
 }

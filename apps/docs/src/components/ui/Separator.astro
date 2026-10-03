@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@erbium/ui/lib/utils";
+interface Props extends HTMLAttributes<"div"> {
+  orientation?: "horizontal" | "vertical";
+  variant?: "full" | "inset";
+  decorative?: boolean;
+}
+const {
+  orientation = "horizontal",
+  variant,
+  decorative = false,
+  class: className,
+  ...props
+} = Astro.props;
+const labeled = Astro.slots.has("default");
+---
+
+<div
+  {...props}
+  class={cn("docs-separator", className)}
+  data-slot="separator"
+  data-separator=""
+  data-orientation={orientation}
+  data-horizontal={orientation === "horizontal" ? "" : undefined}
+  data-vertical={orientation === "vertical" ? "" : undefined}
+  data-variant={labeled ? "inset" : variant}
+  data-labeled={labeled ? "" : undefined}
+  role={decorative || labeled ? "none" : "separator"}
+  aria-orientation={!decorative && !labeled ? orientation : undefined}
+>
+  <slot />
+</div>

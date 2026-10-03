@@ -1,3 +1,4 @@
+import { documentationSections, kindPaths } from "./documentation-sections";
 import { componentDocuments } from "@erbium/content/documents";
 import manifest from "@erbium/showcase/manifest";
 import registry from "../../../../packages/ui/registry.json";
@@ -20,41 +21,37 @@ export const components = manifest.map((entry) => {
     title: entry.title,
     description: "",
   };
+  const section = documentationSections.find((section) => section.names.includes(item.name));
+  if (!section) throw new Error(`Missing navigation classification for ${item.name}`);
   const page = pages[`../components/${item.name}/index.md`];
   if (!page) throw new Error(`Missing documentation for ${item.name}`);
   return {
     ...item,
     title: page.frontmatter.title,
     description: page.frontmatter.description,
-    href: documentationHref(item.name),
-    kind: item.name.startsWith("use-") ? "hook" : "component",
+    href: `/docs/${kindPaths[section.kind]}/${item.name}`,
+    kind: section.kind,
+    section: section.title,
+    sectionSlug: section.slug,
   };
 });
-
-function documentationHref(name: string) {
-  return `/docs/${name.startsWith("use-") ? "hooks" : "components"}/${name}`;
-}
 
 export const navigationGroups = [
   {
     title: "Getting started",
+    href: undefined,
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "Installation", href: "/docs/installation" },
+      { title: "All components", href: "/docs/components" },
     ],
   },
-  {
-    title: "Components",
-    href: "/docs/components",
-    items: components
-      .filter((item) => item.kind === "component")
-      .sort((a, b) => a.title.localeCompare(b.title)),
-  },
-  {
-    title: "Hooks",
-    href: "/docs/hooks",
-    items: components
-      .filter((item) => item.kind === "hook")
-      .sort((a, b) => a.title.localeCompare(b.title)),
-  },
+  ...documentationSections.map((section) => ({
+    title: section.title,
+    href: `/docs/${kindPaths[section.kind]}${section.kind === "component" ? `#${section.slug}` : ""}`,
+    items: [
+      ...section.names.map((name) => components.find((item) => item.name === name)!),
+      ...(section.kind === "utility" ? [{ title: "Shimmer", href: "/docs/shimmer" }] : []),
+    ],
+  })),
 ];

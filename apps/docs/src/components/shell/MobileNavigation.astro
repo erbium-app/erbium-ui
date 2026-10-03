@@ -6,10 +6,30 @@ import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
 import Brand from "./Brand.astro";
 import DocsNavigation from "./DocsNavigation.astro";
 ---
+
 <mobile-navigation class="mobile-navigation">
-  <Button variant="ghost" size="icon" aria-label="Open navigation" aria-haspopup="dialog" aria-controls="mobile-navigation" aria-expanded="false" data-navigation-open><Icon icon={Menu01Icon} /></Button>
-  <dialog id="mobile-navigation" class="mobile-navigation-panel" aria-label="Documentation navigation">
-    <div class="mobile-navigation-header"><Brand /><Button variant="ghost" size="icon" aria-label="Close navigation" data-navigation-close><Icon icon={Cancel01Icon} /></Button></div>
+  <Button
+    variant="ghost"
+    size="icon"
+    aria-label="Open navigation"
+    aria-haspopup="dialog"
+    aria-controls="mobile-navigation"
+    aria-expanded="false"
+    data-navigation-open><Icon icon={Menu01Icon} /></Button
+  >
+  <dialog
+    id="mobile-navigation"
+    class="mobile-navigation-panel"
+    aria-label="Documentation navigation"
+  >
+    <div class="mobile-navigation-header">
+      <Brand /><Button
+        variant="ghost"
+        size="icon"
+        aria-label="Close navigation"
+        data-navigation-close><Icon icon={Cancel01Icon} /></Button
+      >
+    </div>
     <DocsNavigation />
   </dialog>
 </mobile-navigation>
@@ -17,17 +37,40 @@ import DocsNavigation from "./DocsNavigation.astro";
   class MobileNavigation extends HTMLElement {
     connectedCallback() {
       const dialog = this.querySelector<HTMLDialogElement>("dialog")!;
-      const trigger = this.querySelector<HTMLButtonElement>("[data-navigation-open]")!;
-      trigger.addEventListener("click", () => { dialog.showModal(); trigger.setAttribute("aria-expanded", "true"); });
-      this.querySelector("[data-navigation-close]")?.addEventListener("click", () => dialog.close());
-      dialog.addEventListener("close", () => trigger.setAttribute("aria-expanded", "false"));
+      const trigger = this.querySelector<HTMLButtonElement>(
+        "[data-navigation-open]",
+      )!;
+      trigger.addEventListener("click", () => {
+        dialog.showModal();
+        trigger.setAttribute("aria-expanded", "true");
+      });
+      this.querySelector("[data-navigation-close]")?.addEventListener(
+        "click",
+        () => dialog.close(),
+      );
+      dialog.addEventListener("close", () =>
+        trigger.setAttribute("aria-expanded", "false"),
+      );
       dialog.addEventListener("click", (event) => {
         const bounds = dialog.getBoundingClientRect();
-        if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
-        if (event.target instanceof Element && event.target.closest("a")) dialog.close();
+        if (
+          event.target === dialog &&
+          (event.clientX < bounds.left ||
+            event.clientX > bounds.right ||
+            event.clientY < bounds.top ||
+            event.clientY > bounds.bottom)
+        )
+          dialog.close();
+        if (event.target instanceof Element && event.target.closest("a"))
+          dialog.close();
       });
-      window.matchMedia("(min-width: 960px)").addEventListener("change", (event) => { if (event.matches) dialog.close(); });
+      window
+        .matchMedia("(min-width: 960px)")
+        .addEventListener("change", (event) => {
+          if (event.matches) dialog.close();
+        });
     }
   }
-  if (!customElements.get("mobile-navigation")) customElements.define("mobile-navigation", MobileNavigation);
+  if (!customElements.get("mobile-navigation"))
+    customElements.define("mobile-navigation", MobileNavigation);
 </script>

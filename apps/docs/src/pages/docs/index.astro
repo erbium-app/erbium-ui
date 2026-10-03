@@ -1,4 +1,6 @@
 ---
+import Icon from "../../components/ui/Icon.astro";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import PageHeader from "../../components/PageHeader.astro";
 import Button from "../../components/ui/Button.astro";
@@ -6,7 +8,7 @@ import ComponentPreview from "../../components/ComponentPreview.tsx";
 import { Content, frontmatter } from "@erbium/content/introduction.md";
 ---
 <DocsLayout title="Introduction" description={frontmatter.description}>
-  <PageHeader title={frontmatter.title} description={frontmatter.description} category="Getting started"><Button href="/docs/installation" size="sm">Get started <span aria-hidden="true">→</span></Button><Button href="/docs/components" size="sm" variant="outline">Browse components</Button></PageHeader>
+  <PageHeader title={frontmatter.title} description={frontmatter.description} category="Getting started"><Button href="/docs/installation" size="sm">Get started <Icon icon={ArrowRight01Icon} class="rtl:rotate-180" /></Button><Button href="/docs/components" size="sm" variant="outline">Browse components</Button></PageHeader>
   <article class="markdown-copy"><Content /></article>
   <div class="sampler"><div class="sampler-example"><ComponentPreview name="card" client:visible /></div><div class="sampler-example"><ComponentPreview name="input" client:visible /></div><div class="sampler-example"><ComponentPreview name="switch" client:visible /></div></div>
 </DocsLayout>

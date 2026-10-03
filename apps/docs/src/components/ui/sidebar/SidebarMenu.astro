@@ -5,4 +5,12 @@ import { sidebarStyles } from "@erbium/ui/lib/sidebar-styles";
 type Props = HTMLAttributes<"ul">;
 const { class: className, ...props } = Astro.props;
 ---
-<ul data-slot="sidebar-menu" data-sidebar="menu" class={cn(sidebarStyles.menu, className)} {...props}><slot /></ul>
+
+<ul
+  data-slot="sidebar-menu"
+  data-sidebar="menu"
+  class={cn(sidebarStyles.menu, className)}
+  {...props}
+>
+  <slot />
+</ul>

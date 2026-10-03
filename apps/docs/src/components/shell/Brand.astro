@@ -1,8 +1,17 @@
 ---
-interface Props { compact?: boolean; }
+interface Props {
+  compact?: boolean;
+}
 const { compact = false } = Astro.props;
 ---
+
 <a href="/" class="site-brand" aria-label="Erbium UI home">
   <span class="brand-mark" aria-hidden="true">er<span>68</span></span>
-  {!compact && <span>erbium <span class="brand-suffix">ui</span></span>}
+  {
+    !compact && (
+      <span>
+        erbium <span class="brand-suffix">ui</span>
+      </span>
+    )
+  }
 </a>

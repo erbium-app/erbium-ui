@@ -128,7 +128,6 @@ items.push({
   description: "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
   dependencies: [
     "@fontsource-variable/geist",
-    "@fontsource-variable/inter",
     "easing-gradients",
     "shadcn",
     "shadow-plugin",

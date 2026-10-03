@@ -1,6 +1,7 @@
 ---
+import Icon from "../components/ui/Icon.astro";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 import SiteLayout from "../layouts/SiteLayout.astro";
-import SiteFooter from "../components/shell/SiteFooter.astro";
 import Button from "../components/ui/Button.astro";
 import ComponentPreview from "../components/ComponentPreview.tsx";
 import { Content, frontmatter } from "@erbium/content/overview.md";
@@ -9,7 +10,7 @@ const lastSpace = frontmatter.title.lastIndexOf(" ");
 ---
 <SiteLayout title="Erbium UI" description={frontmatter.description}>
   <main id="main-content" tabindex="-1" class="landing site-container">
-    <section class="landing-hero"><p class="eyebrow"><span class="status-dot"></span> Open source · Built on Base UI</p><h1>{frontmatter.title.slice(0, lastSpace)} <em>{frontmatter.title.slice(lastSpace + 1)}</em></h1><article class="markdown-copy"><Content /></article><div class="hero-actions"><Button href="/docs/installation" size="lg">Get started <span aria-hidden="true">→</span></Button><Button href="/docs/components" size="lg" variant="outline">Explore components</Button><span class="hero-note">Copy. Compose. Make it yours.</span></div></section>
+    <section class="landing-hero"><p class="eyebrow"><span class="status-dot"></span> Open source · Built on Base UI</p><h1>{frontmatter.title.slice(0, lastSpace)} <em>{frontmatter.title.slice(lastSpace + 1)}</em></h1><article class="markdown-copy"><Content /></article><div class="hero-actions"><Button href="/docs/installation" size="lg">Get started <Icon icon={ArrowRight01Icon} class="rtl:rotate-180" /></Button><Button href="/docs/components" size="lg" variant="outline">Explore components</Button><span class="hero-note">Copy. Compose. Make it yours.</span></div></section>
     <section class="landing-showcase" aria-label="Interactive component collection">
       <div class="collection-heading"><span>THE COLLECTION</span><span>{components.filter((item) => item.kind === "component").length} components, endless possibilities</span></div>
       <div class="landing-grid">
@@ -19,6 +20,5 @@ const lastSpace = frontmatter.title.lastIndexOf(" ");
         <div class="landing-example"><div class="example-label"><a href="/docs/components/input">Input</a><span>04</span></div><ComponentPreview name="input" variant="Overview" client:visible /></div>
       </div>
     </section>
-    <SiteFooter />
   </main>
 </SiteLayout>

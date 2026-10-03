@@ -46,8 +46,8 @@ body {
   inset-block-start: 0;
   z-index: 40;
   height: var(--header-height);
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--background) 94%, transparent);
+  @apply carve-bottom;
+  background-color: color-mix(in srgb, var(--background) 94%, transparent);
   backdrop-filter: blur(16px);
 }
 .site-header-inner,
@@ -67,10 +67,35 @@ body {
 .header-actions {
   gap: 0.5rem;
 }
+/* Match the React Separator API and use the library's carved rule tokens. */
+.docs-separator {
+  flex-shrink: 0;
+}
+.docs-separator[data-horizontal]:not([data-labeled]) {
+  height: 2px;
+  align-self: stretch;
+}
+.docs-separator[data-vertical]:not([data-labeled]) {
+  width: 2px;
+  align-self: stretch;
+}
+.docs-separator[data-labeled] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.docs-separator[data-labeled][data-vertical] {
+  flex-direction: column;
+}
+.markdown-copy hr {
+  @apply carve-rule;
+  height: 2px;
+  border: 0;
+  margin-block: 2rem;
+}
 .header-divider {
-  width: 1px;
+  width: 2px;
   height: 1.25rem;
-  background: var(--border);
   flex-shrink: 0;
 }
 .site-brand {
@@ -150,7 +175,7 @@ body {
   display: flex;
   gap: 1rem;
   padding: 0.7rem 0.8rem;
-  border-top: 1px solid var(--border);
+  @apply carve-top;
   color: var(--muted-foreground);
   font-size: 0.68rem;
 }
@@ -195,8 +220,8 @@ theme-toggle {
 .docs-nav-group {
   padding: 0.5rem 0;
 }
-.docs-nav-group + .docs-nav-group {
-  margin-block-start: 0.7rem;
+.docs-nav-separator {
+  margin-block: 0.75rem;
 }
 .docs-nav-label {
   color: var(--foreground);
@@ -211,10 +236,7 @@ theme-toggle {
   justify-content: space-between;
   align-items: center;
 }
-.docs-nav-label span {
-  color: var(--muted-foreground);
-  font: 0.625rem var(--font-mono);
-}
+
 .docs-nav-link {
   position: relative;
   min-height: 2rem;
@@ -228,24 +250,7 @@ theme-toggle {
   background: color-mix(in srgb, var(--primary) 7%, transparent);
   font-weight: 550;
 }
-.docs-nav-link[data-active]::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  width: 2px;
-  height: 0.8rem;
-  background: var(--primary);
-  border-radius: 1px;
-}
-.docs-sidebar-footer {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 0.65rem;
-  border-top: 1px solid var(--border);
-  color: var(--muted-foreground);
-  font-size: 0.65rem;
-}
+
 .status-dot {
   display: inline-block;
   width: 0.35rem;
@@ -257,16 +262,13 @@ theme-toggle {
 .docs-page-frame {
   min-width: 0;
   margin-block: 1.5rem;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  background: var(--background);
-  overflow: clip;
 }
 .docs-page {
+  @apply surface-panel;
+  border: 1px solid transparent;
   min-width: 0;
   border-radius: 1rem;
   padding: 2.5rem clamp(1.5rem, 4vw, 3.5rem) 3.5rem;
-  background: var(--card);
 }
 .docs-page-inner {
   width: 100%;
@@ -371,26 +373,22 @@ theme-toggle {
   font-size: 0.8em;
 }
 .markdown-copy :not(pre) > code {
+  @apply surface-frame;
   padding: 0.15rem 0.3rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.3rem;
-  background: var(--muted);
   overflow-wrap: anywhere;
 }
 .markdown-copy pre {
+  @apply surface-field;
+  --surface-face: var(--th-background);
   overflow: auto;
   margin-block: 1rem;
   padding: 1.25rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.65rem;
   font-size: 0.8125rem;
   line-height: 1.8;
-}
-.dark .markdown-copy .astro-code {
-  background: var(--shiki-dark-bg) !important;
-}
-.dark .markdown-copy .astro-code span {
-  color: var(--shiki-dark) !important;
 }
 .markdown-copy table {
   display: block;
@@ -402,7 +400,7 @@ theme-toggle {
 }
 .markdown-copy th,
 .markdown-copy td {
-  border-bottom: 1px solid var(--border);
+  @apply carve-bottom;
   padding: 0.6rem 0.8rem;
   text-align: start;
   vertical-align: top;
@@ -421,6 +419,8 @@ theme-toggle {
   letter-spacing: -0.025em;
 }
 .heading-anchor {
+  display: inline-flex;
+  vertical-align: middle;
   opacity: 0;
   margin-inline-start: 0.5rem;
   color: var(--muted-foreground);
@@ -428,6 +428,8 @@ theme-toggle {
 }
 .demo-section > h2 a:hover .heading-anchor,
 .demo-section > h2 a:focus-visible .heading-anchor {
+  display: inline-flex;
+  vertical-align: middle;
   opacity: 1;
 }
 .variant-description {
@@ -447,12 +449,15 @@ theme-toggle {
   justify-content: space-between;
   padding-block-end: 0.65rem;
 }
+.showcase-header-separator {
+  margin-block-end: 0.75rem;
+}
 .showcase-toolbar [role="tablist"] {
   display: flex;
   gap: 0.25rem;
 }
 .showcase-toolbar [aria-selected="true"] {
-  background: var(--accent);
+  @apply surface-control;
   color: var(--foreground);
 }
 .showcase-toolbar [aria-selected="false"] {
@@ -463,15 +468,15 @@ theme-toggle {
   font: 0.625rem var(--font-mono);
 }
 .component-demo {
+  @apply surface-frame;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 16rem;
   padding: clamp(1.25rem, 3vw, 2.5rem);
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.75rem;
-  background: var(--background);
   color: var(--foreground);
   overflow: auto;
 }
@@ -480,9 +485,11 @@ theme-toggle {
   font-family: var(--font-sans);
 }
 .showcase-code {
+  @apply surface-field;
+  --surface-face: var(--th-background);
   max-height: 34rem;
   overflow: auto;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.75rem;
   background: var(--background);
 }
@@ -490,9 +497,11 @@ theme-toggle {
   display: none;
 }
 .source-file + .source-file {
-  border-top: 1px solid var(--border);
+  @apply carve-top;
 }
 .source-file-header {
+  @apply surface-frame;
+  --surface-face: var(--surface-panel);
   position: sticky;
   inset-block-start: 0;
   z-index: 1;
@@ -501,8 +510,7 @@ theme-toggle {
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 0.85rem;
-  background: var(--muted);
-  border-bottom: 1px solid var(--border);
+  @apply carve-bottom;
   color: var(--muted-foreground);
   font: 0.65rem var(--font-mono);
 }
@@ -536,15 +544,15 @@ theme-toggle {
   transform: rotate(45deg);
 }
 .install-command {
+  @apply surface-field;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.5rem;
   margin-block-start: 0.5rem;
-  background: var(--background);
   color: var(--foreground);
 }
 .install-command code {
@@ -560,7 +568,7 @@ copy-button {
   gap: 0.75rem;
   width: 100%;
   margin-block-start: 2rem;
-  border-top: 1px solid var(--border);
+  @apply carve-top;
   padding-block-start: 1rem;
   font-size: 0.75rem;
 }
@@ -583,9 +591,9 @@ copy-button {
 .preview-controls textarea {
   min-width: 0;
   max-width: 100%;
-  border: 1px solid var(--input);
+  @apply surface-field;
+  border: 1px solid transparent;
   border-radius: 0.375rem;
-  background: var(--card);
   padding: 0.35rem 0.5rem;
   color: var(--foreground);
 }
@@ -601,17 +609,31 @@ copy-button {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin-block-start: 3rem;
-  border-top: 1px solid var(--border);
+  @apply carve-top;
   padding-block-start: 1.5rem;
 }
-.page-pagination a {
+.page-pagination .pagination-button {
+  height: auto;
+  min-width: 0;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  white-space: normal;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   font-size: 0.8125rem;
 }
-.page-pagination a:last-child {
+.page-pagination .pagination-button:last-child {
+  align-items: flex-end;
   text-align: end;
+}
+.pagination-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.page-pagination a:last-child .pagination-label {
+  justify-content: flex-end;
 }
 .page-pagination span {
   color: var(--muted-foreground);
@@ -620,29 +642,7 @@ copy-button {
 .page-pagination a:hover strong {
   color: var(--primary);
 }
-.site-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.5rem 2rem;
-  color: var(--muted-foreground);
-  font-size: 0.75rem;
-}
-.site-footer .site-brand {
-  font-size: 0.8125rem;
-}
-.site-footer .brand-mark {
-  display: none;
-}
-.site-footer p {
-  margin-block-start: 0.35rem;
-  font-size: 0.7rem;
-}
-.site-footer > a:hover {
-  color: var(--foreground);
-}
+
 .directory-intro {
   margin-block-end: 2rem;
 }
@@ -652,21 +652,21 @@ copy-button {
   gap: 0.75rem;
 }
 .directory-item {
+  @apply surface-panel;
   display: block;
   padding: 1.1rem 1.25rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.65rem;
-  transition: border-color 150ms;
-}
-.directory-item:hover {
-  border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+  transition:
+    background-color 150ms,
+    box-shadow 150ms;
 }
 .directory-item > div {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
-.directory-item h2 {
+.directory-item h3 {
   font-size: 0.875rem;
   font-weight: 550;
 }
@@ -686,10 +686,11 @@ copy-button {
   gap: 1rem;
 }
 .sampler-example {
+  @apply surface-frame;
   display: flex;
   justify-content: center;
   padding: 2rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.75rem;
   background: var(--background);
 }
@@ -735,7 +736,7 @@ copy-button {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem;
-  border-top: 1px solid var(--border);
+  @apply carve-top;
   padding-block: 1.1rem;
   color: var(--muted-foreground);
   font: 0.65rem/1.5 var(--font-mono);
@@ -746,12 +747,13 @@ copy-button {
   gap: 1rem;
 }
 .landing-example {
+  @apply surface-panel;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   min-width: 0;
   padding: 1.25rem;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   border-radius: 0.85rem;
   background: var(--card);
 }
@@ -773,14 +775,10 @@ copy-button {
 .example-label > span {
   font: 0.625rem var(--font-mono);
 }
-.landing > .site-footer {
-  padding-inline: 0;
-  margin-block-start: 2rem;
-}
+
 .site-header a:focus-visible,
 .docs-sidebar a:focus-visible,
 .directory-item:focus-visible,
-.site-footer a:focus-visible,
 .page-pagination a:focus-visible,
 .showcase [role="tab"]:focus-visible,
 .install-example summary:focus-visible {
@@ -835,6 +833,7 @@ copy-button {
     padding: 2rem 1.5rem;
   }
   .mobile-navigation-panel {
+    @apply surface-modal;
     position: fixed;
     inset-block: 0;
     inset-inline-start: 0;
@@ -845,9 +844,7 @@ copy-button {
     max-height: none;
     margin: 0;
     padding: 0;
-    border: 0;
-    border-inline-end: 1px solid var(--border);
-    background: var(--background);
+    border: 1px solid transparent;
     color: var(--foreground);
   }
   .mobile-navigation-panel[open] {
@@ -865,7 +862,7 @@ copy-button {
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem;
-    border-bottom: 1px solid var(--border);
+    @apply carve-bottom;
   }
   .mobile-navigation-panel .docs-sidebar-content {
     padding: 0.75rem 1rem 2rem;
@@ -907,20 +904,13 @@ copy-button {
     height: 1rem;
   }
   .docs-page-frame {
-    border: 0;
-    border-radius: 0;
-    margin-block: 0;
+    margin-block: 1rem;
   }
   .docs-page {
-    border-radius: 0;
-    padding: 2rem 0;
-    background: var(--background);
-    box-shadow: none;
+    border-radius: 0.75rem;
+    padding: 1.5rem 1rem;
   }
-  .docs-page-frame > .site-footer {
-    padding-inline: 0;
-    border-top: 1px solid var(--border);
-  }
+
   .page-description {
     font-size: 0.9375rem;
   }
@@ -966,4 +956,14 @@ copy-button {
 
 .component-documentation[data-repeated-summary] > p:first-child {
   display: none;
+}
+
+.directory-section {
+  margin-block-end: 2rem;
+  scroll-margin-block-start: calc(var(--header-height) + 2rem);
+}
+.directory-section > h2 {
+  margin-block-end: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
