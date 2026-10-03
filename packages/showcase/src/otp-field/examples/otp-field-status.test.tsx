@@ -23,7 +23,8 @@ async function mount() {
       ({ cancel: vi.fn() }) as unknown as Animation,
   );
   Object.defineProperty(Element.prototype, "animate", { configurable: true, value: animate });
-  vi.useFakeTimers();
+  // Keep React's asynchronous act scheduling on real timers.
+  vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout"] });
 
   const container = document.createElement("div");
   document.body.append(container);
