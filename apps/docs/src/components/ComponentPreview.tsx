@@ -1,14 +1,7 @@
-import { Component, lazy, Suspense, useState, type ReactNode } from "react";
+import { Component, lazy, Suspense, useState, useEffect, useRef, type ReactNode } from "react";
 import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Spinner } from "@erbium/ui/components/spinner";
-
-function optionLabel(value: unknown) {
-  if (value === undefined) return "Default";
-  if (typeof value === "string") return value;
-  if (typeof value === "number" || typeof value === "boolean") return String(value);
-  return JSON.stringify(value) ?? "Default";
-}
 
 const previews = new Map<string, ReturnType<typeof lazy>>();
 class PreviewErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
@@ -31,115 +24,38 @@ class PreviewErrorBoundary extends Component<{ children: ReactNode }, { failed: 
     return this.props.children;
   }
 }
-function ObjectControl({
-  value,
-  onChange,
-}: {
-  value: unknown;
-  onChange: (value: unknown) => void;
-}) {
-  const [draft, setDraft] = useState(JSON.stringify(value));
-  const [error, setError] = useState("");
-  function commit() {
-    try {
-      const parsed: unknown = JSON.parse(draft);
-      if (
-        Array.isArray(value) &&
-        (!Array.isArray(parsed) ||
-          parsed.some((item: unknown) => typeof item !== "number" || !Number.isFinite(item)))
-      )
-        throw new Error("Enter an array of numbers.");
-      onChange(parsed);
-      setError("");
-    } catch {
-      setError("Enter a valid JSON value matching this control.");
-    }
-  }
-  return (
-    <>
-      <textarea
-        aria-label="JSON value"
-        value={draft}
-        aria-invalid={Boolean(error)}
-        onChange={(event) => setDraft(event.target.value)}
-        onBlur={commit}
-      />
-      <span role="status">{error}</span>
-    </>
-  );
-}
-
 function Preview({ story }: { story: ShowcaseStory }) {
   const [args, setArgs] = useState(story.args ?? {});
+  const [revision, setRevision] = useState(0);
+  const container = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const showcase = container.current?.closest("showcase-tabs");
+    const controls =
+      showcase?.querySelector<import("../lib/showcase-controls").ControlsElement>(
+        "showcase-controls",
+      );
+    if (controls?.values) setArgs(controls.values);
+    const update = (event: Event) => {
+      if (event instanceof CustomEvent) setArgs(event.detail);
+    };
+    const reset = () => setRevision((value) => value + 1);
+    showcase?.addEventListener("showcase-preview-reset", reset);
+    showcase?.addEventListener("showcase-args-change", update);
+    return () => {
+      showcase?.removeEventListener("showcase-args-change", update);
+      showcase?.removeEventListener("showcase-preview-reset", reset);
+    };
+  }, []);
   const Example = story.render;
   return (
-    <>
+    <div ref={container} className="preview-stage">
       <ShowcaseSurface>
-        <Example {...args} />
+        <Example
+          key={`${revision}-${JSON.stringify(Object.entries(args).filter(([name]) => name.startsWith("default")))}`}
+          {...args}
+        />
       </ShowcaseSurface>
-      {story.argTypes && (
-        <fieldset className="preview-controls">
-          <legend>Controls</legend>
-          {Object.entries(story.argTypes).map(([name, settings]) => {
-            const type =
-              typeof settings.control === "string"
-                ? settings.control
-                : settings.control && settings.control.type;
-            if (!type) return null;
-            const value = args[name];
-            return (
-              <label key={name}>
-                {name}
-                {settings.description && <span>{settings.description}</span>}
-                {settings.options ? (
-                  <select
-                    value={String(settings.options.indexOf(value))}
-                    onChange={(event) =>
-                      setArgs({ ...args, [name]: settings.options?.[Number(event.target.value)] })
-                    }
-                  >
-                    {settings.options.map((option, index) => (
-                      <option key={index} value={index}>
-                        {optionLabel(option)}
-                      </option>
-                    ))}
-                  </select>
-                ) : type === "boolean" ? (
-                  <input
-                    type="checkbox"
-                    checked={Boolean(value)}
-                    onChange={(event) => setArgs({ ...args, [name]: event.target.checked })}
-                  />
-                ) : type === "object" ? (
-                  <ObjectControl
-                    value={value}
-                    onChange={(value) => setArgs({ ...args, [name]: value })}
-                  />
-                ) : ["text", "number", "range"].includes(type) ? (
-                  <input
-                    type={type}
-                    value={typeof value === "string" || typeof value === "number" ? value : ""}
-                    {...(typeof settings.control === "object"
-                      ? {
-                          min: settings.control.min,
-                          max: settings.control.max,
-                          step: settings.control.step,
-                        }
-                      : {})}
-                    onChange={(event) =>
-                      setArgs({
-                        ...args,
-                        [name]: type === "text" ? event.target.value : event.target.valueAsNumber,
-                      })
-                    }
-                  />
-                ) : null}
-              </label>
-            );
-          })}
-        </fieldset>
-      )}
-    </>
+    </div>
   );
 }
 export default function ComponentPreview({

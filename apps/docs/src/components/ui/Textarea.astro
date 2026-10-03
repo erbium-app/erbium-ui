@@ -1,0 +1,8 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { textareaClassName } from "@erbium/ui/lib/form-control-styles";
+import { cn } from "@erbium/ui/lib/utils";
+type Props = HTMLAttributes<"textarea"> & { defaultValue?: string | number };
+const { class: className, value, defaultValue, ...props } = Astro.props;
+---
+<textarea data-slot="textarea" class={cn(textareaClassName, className)} {...props}>{value ?? defaultValue}<slot /></textarea>

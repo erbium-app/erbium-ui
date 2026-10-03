@@ -1,8 +1,10 @@
 ---
+import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
+import ShowcaseControls from "./ShowcaseControls.astro";
 import Icon from "./ui/Icon.astro";
 import Add01Icon from "@hugeicons/core-free-icons/Add01Icon";
 import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
-import { highlightSource } from "../lib/highlight.ts";
+import CodeBlock from "./CodeBlock.astro";
 import Separator from "./ui/Separator.astro";
 import Button from "./ui/Button.astro";
 import ShowcaseThemeToggle from "./ShowcaseThemeToggle.tsx";
@@ -19,6 +21,8 @@ interface Props {
 const { name, variant, slug, title, source, files } = Astro.props;
 const id = `${name}-${slug}`;
 const sources = files.length ? files : [{ path: `${slug}.tsx`, source }];
+const catalog = await loadShowcase(name);
+const story = catalog[variant] as ShowcaseStory;
 const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
 ---
 
@@ -77,18 +81,12 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       hidden
     >
       {
-        sources.map((file, index) => (
-          <div class="source-file">
-            <>
-              <div class="source-file-copy">
-                <CopyButton iconOnly target={`${id}-source-${index}`} label={`Copy ${file.path.replace(/^src\//, "")}`} />
-              </div>
-              <pre class="th-code"><code id={`${id}-source-${index}`} set:html={highlightSource(file.source, file.path)} /></pre>
-            </>
-          </div>
+        sources.map((file) => (
+          <CodeBlock source={file.source} path={file.path} />
         ))
       }
     </div>
+    <ShowcaseControls story={story} id={id} />
   </showcase-tabs>
   <details class="install-example">
     <summary>Install this example <span aria-hidden="true"><Icon icon={Add01Icon} size={14} /></span></summary

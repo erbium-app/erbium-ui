@@ -541,6 +541,19 @@
       ]
     },
     {
+      "name": "form-control-styles",
+      "type": "registry:lib",
+      "title": "Form Control Styles",
+      "description": "Erbium form control styles lib.",
+      "files": [
+        {
+          "path": "src/lib/form-control-styles.ts",
+          "type": "registry:lib",
+          "target": "@lib/form-control-styles.ts"
+        }
+      ]
+    },
+    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
@@ -561,7 +574,7 @@
       "title": "Input",
       "description": "Erbium input component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/form-control-styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/input.tsx",
@@ -1171,7 +1184,7 @@
       "title": "Textarea",
       "description": "Erbium textarea component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/form-control-styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/textarea.tsx",

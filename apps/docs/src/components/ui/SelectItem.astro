@@ -1,0 +1,5 @@
+---
+import type { HTMLAttributes } from "astro/types";
+type Props = HTMLAttributes<"option">;
+---
+<option data-slot="select-item" {...Astro.props}><slot /></option>

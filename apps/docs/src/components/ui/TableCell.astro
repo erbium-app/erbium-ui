@@ -1,0 +1,7 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@erbium/ui/lib/utils";
+type Props = HTMLAttributes<"td">;
+const { class: className, ...props } = Astro.props;
+---
+<td data-slot="table-cell" class={cn("p-2 align-middle", className)} {...props}><slot /></td>

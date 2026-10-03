@@ -1,0 +1,49 @@
+---
+import type { ShowcaseStory } from "@erbium/showcase/catalog";
+import { controlRows, displayValue } from "../lib/showcase-controls";
+import Button from "./ui/Button.astro";
+import Input from "./ui/Input.astro";
+import Select from "./ui/Select.astro";
+import SelectItem from "./ui/SelectItem.astro";
+import Switch from "./ui/Switch.astro";
+import Textarea from "./ui/Textarea.astro";
+import Table from "./ui/Table.astro";
+import TableHeader from "./ui/TableHeader.astro";
+import TableBody from "./ui/TableBody.astro";
+import TableRow from "./ui/TableRow.astro";
+import TableHead from "./ui/TableHead.astro";
+import TableCell from "./ui/TableCell.astro";
+interface Props { story: ShowcaseStory; id: string; }
+const { story, id } = Astro.props;
+const rows = controlRows(story);
+---
+{rows.length > 0 && <showcase-controls class="preview-controls" data-defaults={JSON.stringify(story.args ?? {})}>
+  <form aria-labelledby={`${id}-controls-title`}>
+    <header class="preview-controls-header">
+      <div><h3 id={`${id}-controls-title`}>Playground API</h3><p>Explore the props. Changes update the preview above.</p></div>
+      <Button type="reset" variant="outline" size="xs">Reset</Button>
+    </header>
+    <Table class="preview-api-table" aria-label="Playground properties">
+      <TableHeader><TableRow><TableHead scope="col">Property / type</TableHead><TableHead scope="col">Example default</TableHead><TableHead scope="col">Value</TableHead></TableRow></TableHeader>
+      <TableBody>{rows.map((row) => {
+        const controlId = `${id}-control-${row.name}`;
+        const errorId = `${controlId}-error`;
+        const editable = Boolean(row.options || ["boolean", "object", "text", "number", "range"].includes(row.control || ""));
+        const PropertyName = editable ? "label" : "span";
+        return <TableRow>
+          <TableCell><PropertyName for={editable ? controlId : undefined} class="preview-prop-name">{row.name}</PropertyName><code class="preview-prop-type">{row.type}</code><span class="preview-mobile-default">Default: <code>{displayValue(row.value)}</code></span>{row.description && <p id={`${controlId}-description`}>{row.description}</p>}</TableCell>
+          <TableCell><code class="preview-default">{displayValue(row.value)}</code></TableCell>
+          <TableCell><div class="preview-control-value">
+            {row.options ? <Select id={controlId} name={row.name} aria-label={row.name} aria-describedby={row.description ? `${controlId}-description` : undefined} data-control="select" data-options={JSON.stringify(row.options)}><SelectItem value="" selected={row.value === undefined}>Unset</SelectItem>{row.options.map((option, index) => <SelectItem value={String(index)} selected={displayValue(option) === displayValue(row.value)}>{typeof option === "string" ? option : displayValue(option)}</SelectItem>)}</Select> :
+              row.control === "boolean" ? <div class="preview-boolean"><Switch id={controlId} name={row.name} checked={Boolean(row.value)} aria-label={row.name} aria-describedby={row.description ? `${controlId}-description` : undefined} data-control="boolean" /><output for={controlId}>{String(Boolean(row.value))}</output></div> :
+              row.control === "object" ? <><Textarea id={controlId} name={row.name} value={row.value === undefined ? "" : JSON.stringify(row.value, null, 2)} rows={2} aria-label={row.name} aria-describedby={[row.description ? `${controlId}-description` : "", errorId].filter(Boolean).join(" ")} data-control="object" /><span id={errorId} class="preview-control-error" role="status" /></> :
+              ["text", "number", "range"].includes(row.control || "") ? <Input id={controlId} name={row.name} type={row.control === "number" ? "number" : row.control === "range" ? "range" : "text"} value={typeof row.value === "string" || typeof row.value === "number" ? row.value : ""} min={row.constraints?.min} max={row.constraints?.max} step={row.constraints?.step ?? (row.control === "number" ? "any" : undefined)} aria-label={row.name} aria-describedby={row.description ? `${controlId}-description` : undefined} data-control={row.control} /> : <span class="preview-readonly" id={controlId}>{row.type === "callback" ? "Event callback" : "Read only"}</span>}
+          </div></TableCell>
+        </TableRow>;
+      })}</TableBody>
+    </Table>
+  </form>
+</showcase-controls>}
+<script>
+  import "./showcase-controls";
+</script>

@@ -1,6 +1,7 @@
 import { unified } from "@astrojs/markdown-remark";
 import { rehypeHighlightCodeBlocks } from "@tanstack/highlight/rehype";
 import { highlighter } from "./src/lib/highlight.ts";
+import { rehypeCodeBlocks } from "./src/lib/rehype-code-blocks.ts";
 import { rehypeExternalLinks } from "./src/lib/rehype-external-links.ts";
 import { registryPlugin, registryIntegration } from "./registry-plugin.mjs";
 import { showcaseVitePlugin, showcaseIntegration } from "./showcase-vite-plugin.mjs";
@@ -15,7 +16,11 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     processor: unified({
-      rehypePlugins: [[rehypeHighlightCodeBlocks, { highlighter }], rehypeExternalLinks],
+      rehypePlugins: [
+        [rehypeHighlightCodeBlocks, { highlighter }],
+        rehypeCodeBlocks,
+        rehypeExternalLinks,
+      ],
     }),
   },
   trailingSlash: "never",

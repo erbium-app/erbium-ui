@@ -387,17 +387,6 @@ theme-toggle {
   border-radius: 0.3rem;
   overflow-wrap: anywhere;
 }
-.markdown-copy pre {
-  @apply surface-field;
-  --surface-face: var(--code);
-  overflow: auto;
-  margin-block: 1rem;
-  padding: 1.25rem;
-  border: 1px solid transparent;
-  border-radius: 0.65rem;
-  font-size: 0.8125rem;
-  line-height: 1.8;
-}
 .markdown-copy table {
   display: block;
   max-width: 100%;
@@ -472,8 +461,8 @@ theme-toggle {
 .showcase-toolbar [aria-selected="false"] {
   color: var(--muted-foreground);
 }
+.docs-code-block,
 .component-demo,
-.showcase-code,
 .install-command {
   @apply surface-field;
   --surface-face: var(--surface-canvas);
@@ -491,11 +480,15 @@ theme-toggle {
   color: var(--foreground);
   overflow: auto;
 }
+.component-demo + .component-demo {
+  margin-block-start: 1rem;
+}
 .showcase-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5rem;
   width: 100%;
   min-height: 16rem;
   padding: clamp(1.25rem, 3vw, 2.5rem);
@@ -503,6 +496,7 @@ theme-toggle {
   color: var(--foreground);
 }
 .component-preview {
+  gap: 1.5rem;
   color: var(--foreground);
   font-family: var(--font-sans);
 }
@@ -513,22 +507,26 @@ theme-toggle {
   justify-content: center;
 }
 .showcase-code {
-  max-height: 34rem;
-  overflow: auto;
-  border: 1px solid transparent;
-  border-radius: 0.75rem;
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
 }
 .showcase [hidden] {
   display: none;
 }
-.source-file + .source-file {
-  @apply carve-top;
-}
-.source-file {
+.docs-code-block {
+  display: block;
   position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+}
+.markdown-copy .docs-code-block {
+  margin-block: 1rem;
 }
 .showcase-preview-actions,
-.source-file-copy {
+.code-block-copy {
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -539,10 +537,12 @@ theme-toggle {
   border-radius: 0.375rem;
   background-color: var(--surface-canvas);
 }
-.source-file pre {
+.docs-code-block pre {
   background-color: var(--surface-canvas);
+  max-height: 34rem;
   margin: 0;
   padding: 1.25rem;
+  padding-inline-end: 3rem;
   font: 0.75rem/1.8 var(--font-mono);
   overflow: auto;
 }
@@ -588,46 +588,267 @@ copy-button {
   display: inline-flex;
   flex-shrink: 0;
 }
-.preview-controls {
-  display: grid;
-  gap: 0.75rem;
+/* Native Astro adapters share Erbium's surfaces and semantic state tokens. */
+.astro-select {
+  position: relative;
   width: 100%;
-  margin-block-start: 2rem;
-  @apply carve-top;
-  padding-block-start: 1rem;
-  font-size: 0.75rem;
 }
-.preview-controls legend {
-  padding-block-start: 1rem;
+.astro-select-control {
+  @apply surface-field;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: 2rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding-inline: 0.625rem 2rem;
+  font: inherit;
+  color: var(--foreground);
+  outline: none;
+}
+.astro-select-control[data-size="sm"] {
+  height: 1.75rem;
+}
+.astro-select-control:focus-visible {
+  border-color: var(--ring);
+}
+.astro-select-control:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.astro-select-control[aria-invalid="true"] {
+  border-color: var(--error);
+}
+.astro-select-chevron {
+  position: absolute;
+  inset-inline-end: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  color: var(--muted-foreground);
+}
+.astro-switch {
+  position: relative;
+  display: inline-flex;
+  width: 2rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+.astro-switch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.astro-switch-track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding-inline: 1px;
+  background: var(--input);
+  transition: background-color 150ms;
+}
+.astro-switch-track [data-slot="switch-thumb"] {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 999px;
+  background: var(--background);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+  transition: transform 150ms;
+}
+.astro-switch input:checked + .astro-switch-track {
+  background: var(--selection);
+}
+.dark .astro-switch input:not(:checked) + .astro-switch-track [data-slot="switch-thumb"] {
+  background: var(--foreground);
+}
+.dark .astro-switch input:checked + .astro-switch-track [data-slot="switch-thumb"] {
+  background: var(--selection-foreground);
+}
+.astro-switch input:checked + .astro-switch-track [data-slot="switch-thumb"] {
+  transform: translateX(0.875rem);
+}
+.astro-switch:dir(rtl) input:checked + .astro-switch-track [data-slot="switch-thumb"] {
+  transform: translateX(-0.875rem);
+}
+.astro-switch input:focus-visible + .astro-switch-track {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+.astro-switch input:disabled + .astro-switch-track {
+  opacity: 0.5;
+}
+.astro-switch input:disabled {
+  cursor: not-allowed;
+}
+.astro-switch input[aria-invalid="true"] + .astro-switch-track {
+  outline: 1px solid var(--error);
+}
+.astro-switch[data-size="sm"] {
+  width: 1.5rem;
+  height: 0.875rem;
+}
+.astro-switch[data-size="sm"] [data-slot="switch-thumb"] {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+.astro-switch[data-size="sm"] input:checked + .astro-switch-track [data-slot="switch-thumb"] {
+  transform: translateX(0.625rem);
+}
+.astro-switch[data-size="sm"]:dir(rtl)
+  input:checked
+  + .astro-switch-track
+  [data-slot="switch-thumb"] {
+  transform: translateX(-0.625rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  .astro-switch-track,
+  .astro-switch-track [data-slot="switch-thumb"] {
+    transition: none;
+  }
+}
+.preview-stage {
+  width: 100%;
+  min-width: 0;
+}
+.preview-controls {
+  display: block;
+  width: 100%;
+  margin-block-start: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  @apply surface-panel;
+}
+.preview-controls-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  @apply carve-bottom;
+}
+.preview-controls-header h3 {
+  margin: 0;
+  font-size: 0.875rem;
   font-weight: 600;
 }
-.preview-controls label {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
+.preview-controls-header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
 }
-.preview-controls label > span {
+.preview-api-table {
+  table-layout: fixed;
+  font-size: 0.75rem;
+}
+.preview-api-table th {
+  padding: 0.625rem 1.25rem;
   color: var(--muted-foreground);
   font-size: 0.7rem;
 }
-.preview-controls input:not([type="checkbox"]),
-.preview-controls select,
-.preview-controls textarea {
+.preview-api-table th:first-child {
+  width: 42%;
+}
+.preview-api-table th:nth-child(2) {
+  width: 22%;
+}
+.preview-api-table td {
+  padding: 1rem 1.25rem;
+  vertical-align: top;
+}
+.preview-prop-name {
+  display: block;
+  width: fit-content;
+  font: 500 0.75rem/1.5 var(--font-mono);
+  cursor: pointer;
+}
+.preview-prop-type {
+  display: block;
+  margin-block-start: 0.35rem;
+  font: 0.6875rem/1.6 var(--font-mono);
+  color: var(--muted-foreground);
+  overflow-wrap: anywhere;
+}
+.preview-api-table td p {
+  margin: 0.45rem 0 0;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.preview-mobile-default {
+  display: none;
+}
+.preview-default {
+  font: 0.6875rem/1.6 var(--font-mono);
+  color: var(--muted-foreground);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.preview-control-value {
+  display: grid;
+  gap: 0.35rem;
   min-width: 0;
-  max-width: 100%;
-  @apply surface-field;
-  border: 1px solid transparent;
-  border-radius: 0.375rem;
-  padding: 0.35rem 0.5rem;
-  color: var(--foreground);
 }
-.preview-controls input[type="checkbox"] {
-  accent-color: var(--selection);
+.preview-control-value [data-slot="input"],
+.preview-control-value [data-slot="textarea"] {
+  font-size: 0.75rem;
 }
-.preview-controls textarea {
-  width: 100%;
+.preview-control-value [data-slot="textarea"] {
   font-family: var(--font-mono);
+}
+.preview-boolean {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2rem;
+}
+.preview-boolean output {
+  font: 0.6875rem var(--font-mono);
+  color: var(--muted-foreground);
+}
+.preview-control-error {
+  font-size: 0.6875rem;
+  color: var(--error);
+}
+.preview-control-error:empty {
+  display: none;
+}
+.preview-readonly {
+  display: block;
+  padding-block: 0.35rem;
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+}
+@media (max-width: 640px) {
+  .preview-api-table th,
+  .preview-api-table td {
+    padding: 0.75rem;
+  }
+  .preview-api-table th:first-child {
+    width: 48%;
+  }
+  .preview-api-table th:nth-child(2),
+  .preview-api-table td:nth-child(2) {
+    display: none;
+  }
+  .preview-mobile-default {
+    display: block;
+    margin-block-start: 0.4rem;
+    font-size: 0.6875rem;
+    color: var(--muted-foreground);
+    overflow-wrap: anywhere;
+  }
+  .preview-controls-header {
+    padding: 1rem 0.75rem;
+  }
 }
 .page-pagination {
   display: grid;
@@ -990,4 +1211,8 @@ copy-button {
 }
 .base-ui-reference p {
   margin-block-end: 1rem;
+}
+
+.docs-code-block pre code {
+  font: inherit;
 }

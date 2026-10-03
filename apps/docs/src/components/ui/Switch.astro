@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@erbium/ui/lib/utils";
+type Props = Omit<HTMLAttributes<"input">, "size" | "type"> & { defaultChecked?: boolean; readOnly?: boolean; size?: "sm" | "default" };
+const { class: className, checked, defaultChecked, readOnly, readonly, size = "default", ...props } = Astro.props;
+---
+<span class={cn("astro-switch", className)} data-size={size}>
+  <input type="checkbox" role="switch" data-slot="switch" checked={checked ?? defaultChecked} readonly={readOnly || readonly} {...props} />
+  <span class="astro-switch-track" aria-hidden="true"><span data-slot="switch-thumb" /></span>
+</span>
+<script>
+  document.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLInputElement && event.target.matches('.astro-switch input[readonly]')) event.preventDefault();
+  });
+</script>
