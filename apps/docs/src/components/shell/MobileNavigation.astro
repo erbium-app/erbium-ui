@@ -43,6 +43,7 @@ import DocsNavigation from "./DocsNavigation.astro";
     connectedCallback() {
       this.controller?.abort();
       this.controller = new AbortController();
+      const options = { signal: this.controller.signal };
       const dialog = this.querySelector<HTMLDialogElement>("dialog")!;
       const trigger = this.querySelector<HTMLButtonElement>(
         "[data-navigation-open]",
@@ -50,17 +51,19 @@ import DocsNavigation from "./DocsNavigation.astro";
       this.querySelector("[data-navigation-search]")?.addEventListener("click", () => {
         dialog.close();
         window.dispatchEvent(new Event("erbium-search-open"));
-      });
+      }, options);
       trigger.addEventListener("click", () => {
         dialog.showModal();
         trigger.setAttribute("aria-expanded", "true");
-      });
+      }, options);
       this.querySelector("[data-navigation-close]")?.addEventListener(
         "click",
         () => dialog.close(),
+        options,
       );
       dialog.addEventListener("close", () =>
         trigger.setAttribute("aria-expanded", "false"),
+        options,
       );
       dialog.addEventListener("click", (event) => {
         const bounds = dialog.getBoundingClientRect();
@@ -74,7 +77,7 @@ import DocsNavigation from "./DocsNavigation.astro";
           dialog.close();
         if (event.target instanceof Element && event.target.closest("a"))
           dialog.close();
-      });
+      }, options);
       window
         .matchMedia("(min-width: 960px)")
         .addEventListener("change", (event) => {

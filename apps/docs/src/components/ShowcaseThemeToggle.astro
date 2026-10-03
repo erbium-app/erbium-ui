@@ -1,0 +1,12 @@
+---
+import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
+import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
+import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+---
+
+<Button variant="ghost" size="icon-xs" aria-label="Use dark theme for this showcase"
+  aria-pressed="false" data-showcase-theme-toggle>
+  <Icon icon={Sun03Icon} class="showcase-theme-sun" />
+  <Icon icon={Moon02Icon} class="showcase-theme-moon" />
+</Button>

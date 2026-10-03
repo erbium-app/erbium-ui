@@ -61,3 +61,36 @@ Base UI reference sections are authored once in
 shared buttons; Storybook includes the same section in its component description.
 Agent exports and generated portable Storybook stories also consume these files.
 After editing references, run `bun run showcase:registry` to refresh portable stories.
+
+## Navigation stability
+
+`SiteLayout` owns the Astro client router. The inline `theme-init.ts` script applies
+browser preferences before the initial paint and carries the theme into incoming
+HTML before a swap. Delegated controls share that theme owner; showcase overrides
+remain local to their preview. Theme icons are rendered on the server and selected
+by CSS, without waiting for hydration. System changes follow the OS until a user
+chooses a theme; storage events synchronize tabs and printing temporarily uses light mode.
+
+The sidebar navigation and search island persist across routes. Navigation updates
+active links after each swap and restores the sidebar offset after Astro restores
+focus. Initial loads and destinations reached outside the sidebar reveal an
+otherwise hidden active link; ordinary sidebar clicks preserve the exact offset.
+Documentation links prefetch on hover. Component instances must remove listeners
+on disconnect, or delegate through a single document listener.
+
+When changing the shell, verify in development and with `bun run docs:build` plus
+`bun run --cwd apps/docs preview`:
+
+- Open a deep component URL and confirm its active sidebar link is visible.
+- Scroll the sidebar, click nearby links, and confirm its position stays unchanged.
+- Use search, Previous/Next, and Back/Forward; confirm active links and titles update.
+- Navigate in both themes; confirm controls and preview icons never flash the other theme.
+- Override a showcase theme, then change the site theme; the local override should hold.
+- Open and dismiss search repeatedly with Cmd/Ctrl+K, including after navigation.
+- Open mobile navigation, follow a link, dismiss with Escape, and resize to desktop.
+- Check thin scrollbars and fades at the top, middle, and bottom in the built preview.
+- Check OS theme following, cross-tab preference updates, and light-mode print preview.
+
+Keep scroll timelines separate from animation shorthand in production CSS. The docs
+use Tailwind optimization without minification and esbuild for final CSS minification
+to avoid Lightning CSS folding the shadcn fade timeline into an unsupported shorthand.

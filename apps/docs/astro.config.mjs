@@ -24,6 +24,7 @@ export default defineConfig({
     }),
   },
   trailingSlash: "never",
+  prefetch: { prefetchAll: false, defaultStrategy: "hover" },
   redirects: {
     "/docs/foundations/styles": "/docs/installation",
     "/docs/components/styles": "/docs/installation",

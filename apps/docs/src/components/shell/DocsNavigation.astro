@@ -24,7 +24,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           <SidebarGroup class="docs-nav-group">
             <SidebarGroupLabel class="docs-nav-label">
               {group.href ? (
-                <a href={group.href}>
+                <a href={group.href} data-astro-prefetch="hover">
                   {group.title}
                 </a>
               ) : (
@@ -37,6 +37,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       href={item.href}
+                      data-astro-prefetch="hover"
                       isActive={pathname === item.href}
                       class="docs-nav-link"
                     >
@@ -54,7 +55,24 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 </SidebarContent>
 
 <script>
+  const sidebarContent = () => document.querySelector<HTMLElement>(
+    ".docs-sidebar .docs-sidebar-content",
+  );
+  const revealActive = () => {
+    const sidebar = sidebarContent();
+    const active = sidebar?.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!sidebar || !active || sidebar.clientHeight === 0) return;
+    const viewport = sidebar.getBoundingClientRect();
+    const bounds = active.getBoundingClientRect();
+    if (bounds.top < viewport.top) sidebar.scrollTop += bounds.top - viewport.top;
+    else if (bounds.bottom > viewport.bottom) sidebar.scrollTop += bounds.bottom - viewport.bottom;
+  };
   let sidebarScrollTop = 0;
+  let sidebarNavigation = false;
+  document.addEventListener("astro:before-preparation", (event) => {
+    sidebarNavigation = event.sourceElement instanceof Element &&
+      Boolean(event.sourceElement.closest(".docs-sidebar .docs-sidebar-content"));
+  });
   document.addEventListener("astro:before-swap", () => {
     sidebarScrollTop = document.querySelector<HTMLElement>(
       ".docs-sidebar .docs-sidebar-content",
@@ -74,5 +92,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       if (active) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     }
+    if (!sidebarNavigation) revealActive();
   });
+  revealActive();
 </script>

@@ -1,3 +1,4 @@
+import { flushSync } from "react-dom";
 import { navigate } from "astro:transitions/client";
 import { kindTitles } from "../data/documentation-sections";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -41,9 +42,13 @@ export default function ComponentSearch({ components }: { components: Component[
       document.querySelector<HTMLDialogElement>(".mobile-navigation-panel[open]")?.close();
       setOpen(true);
     };
+    // Remove dialog portals and scroll locks before Astro replaces the body.
+    const closeSearch = () => flushSync(() => setOpen(false));
+    document.addEventListener("astro:before-swap", closeSearch);
     window.addEventListener("erbium-search-open", openSearch);
     window.addEventListener("keydown", keydown);
     return () => {
+      document.removeEventListener("astro:before-swap", closeSearch);
       window.removeEventListener("keydown", keydown);
       window.removeEventListener("erbium-search-open", openSearch);
     };

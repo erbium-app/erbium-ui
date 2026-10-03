@@ -14,6 +14,13 @@ html {
 body {
   margin: 0;
 }
+/* Theme palettes switch together; interaction transitions resume after paint. */
+html[data-theme-changing],
+html[data-theme-changing] *,
+html[data-theme-changing] *::before,
+html[data-theme-changing] *::after {
+  transition: none !important;
+}
 @layer base {
   /* Native scrollers mirror the shared ScrollArea's thin, muted thumb. */
   * {
@@ -1294,4 +1301,25 @@ copy-button {
     padding: 1rem;
     flex-shrink: 0;
   }
+}
+
+/* Both icons are server-rendered; CSS selects the correct one before paint. */
+.showcase-theme-moon,
+.dark .showcase-theme-sun {
+  display: none;
+}
+.dark .showcase-theme-moon {
+  display: block;
+}
+.showcase:has([data-showcase-content][data-theme="light"]) .showcase-theme-sun {
+  display: block;
+}
+.showcase:has([data-showcase-content][data-theme="light"]) .showcase-theme-moon {
+  display: none;
+}
+.showcase:has([data-showcase-content][data-theme="dark"]) .showcase-theme-sun {
+  display: none;
+}
+.showcase:has([data-showcase-content][data-theme="dark"]) .showcase-theme-moon {
+  display: block;
 }
