@@ -69,7 +69,6 @@ import ValidationAndErrorsExample from "./variants/validation-and-errors";
 import ValidationAndErrorsSource from "./variants/validation-and-errors.tsx?raw";
 
 const meta = {
-  title: "UI/Field",
   component: Field,
   tags: ["autodocs"],
   parameters: {

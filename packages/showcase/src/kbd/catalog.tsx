@@ -25,7 +25,6 @@ import InputGroupExample from "./variants/input-group";
 import InputGroupSource from "./variants/input-group.tsx?raw";
 
 const meta = {
-  title: "UI/Kbd",
   component: Kbd,
   tags: ["autodocs"],
   parameters: {

@@ -33,7 +33,6 @@ import EmptyExample from "./variants/empty";
 import EmptySource from "./variants/empty.tsx?raw";
 
 const meta = {
-  title: "UI/Spinner",
   component: Spinner,
   tags: ["autodocs"],
   parameters: {

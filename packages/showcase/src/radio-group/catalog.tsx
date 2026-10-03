@@ -45,7 +45,6 @@ import InvalidExample from "./variants/invalid";
 import InvalidSource from "./variants/invalid.tsx?raw";
 
 const meta = {
-  title: "UI/Radio Group",
   component: RadioGroup,
   tags: ["autodocs"],
   parameters: {

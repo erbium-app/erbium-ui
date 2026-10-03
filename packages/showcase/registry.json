@@ -7774,7 +7774,7 @@
     {
       "name": "csp-provider-examples",
       "type": "registry:item",
-      "title": "CSP Provider examples",
+      "title": "Csp Provider examples",
       "description": "All csp-provider examples.",
       "registryDependencies": [
         "@erbium-examples/csp-provider-external-styles",
@@ -7784,7 +7784,7 @@
     {
       "name": "csp-provider-external-styles",
       "type": "registry:component",
-      "title": "CSP Provider: External Styles",
+      "title": "Csp Provider: External Styles",
       "description": "",
       "registryDependencies": ["@erbium/csp-provider", "@erbium/scroll-area", "@erbium/styles"],
       "files": [
@@ -7798,7 +7798,7 @@
     {
       "name": "csp-provider-showcase",
       "type": "registry:block",
-      "title": "CSP Provider: Showcase",
+      "title": "Csp Provider: Showcase",
       "description": "",
       "registryDependencies": ["@erbium/csp-provider", "@erbium/scroll-area", "@erbium/styles"],
       "files": [
@@ -7817,7 +7817,7 @@
     {
       "name": "csp-provider-stories",
       "type": "registry:item",
-      "title": "CSP Provider stories",
+      "title": "Csp Provider stories",
       "description": "All csp-provider variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
@@ -13746,7 +13746,7 @@
     {
       "name": "otp-field-alphanumeric",
       "type": "registry:block",
-      "title": "OTP Field: Alphanumeric",
+      "title": "Otp Field: Alphanumeric",
       "description": "Use `validationType=\"alphanumeric\"` with `normalizeValue` for recovery codes.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13765,7 +13765,7 @@
     {
       "name": "otp-field-controlled",
       "type": "registry:block",
-      "title": "OTP Field: Controlled",
+      "title": "Otp Field: Controlled",
       "description": "Control the value with `value` and `onValueChange`.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13798,7 +13798,7 @@
     {
       "name": "otp-field-disabled",
       "type": "registry:block",
-      "title": "OTP Field: Disabled",
+      "title": "Otp Field: Disabled",
       "description": "`disabled` dims the field and removes it from the tab order.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13817,7 +13817,7 @@
     {
       "name": "otp-field-examples",
       "type": "registry:item",
-      "title": "OTP Field examples",
+      "title": "Otp Field examples",
       "description": "All otp-field examples.",
       "registryDependencies": [
         "@erbium-examples/otp-field-playground",
@@ -13836,7 +13836,7 @@
     {
       "name": "otp-field-form",
       "type": "registry:block",
-      "title": "OTP Field: Form",
+      "title": "Otp Field: Form",
       "description": "A verification card with a labelled field.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
@@ -13862,7 +13862,7 @@
     {
       "name": "otp-field-four-digits",
       "type": "registry:block",
-      "title": "OTP Field: Four Digits",
+      "title": "Otp Field: Four Digits",
       "description": "Any `length` works.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13881,7 +13881,7 @@
     {
       "name": "otp-field-invalid",
       "type": "registry:block",
-      "title": "OTP Field: Invalid",
+      "title": "Otp Field: Invalid",
       "description": "`status=\"error\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\"success\"`.",
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13900,7 +13900,7 @@
     {
       "name": "otp-field-overview",
       "type": "registry:block",
-      "title": "OTP Field: Overview",
+      "title": "Otp Field: Overview",
       "description": "Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13919,7 +13919,7 @@
     {
       "name": "otp-field-pattern",
       "type": "registry:block",
-      "title": "OTP Field: Pattern",
+      "title": "Otp Field: Pattern",
       "description": "`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.",
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13938,7 +13938,7 @@
     {
       "name": "otp-field-playground",
       "type": "registry:component",
-      "title": "OTP Field: Playground",
+      "title": "Otp Field: Playground",
       "description": "",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13952,7 +13952,7 @@
     {
       "name": "otp-field-separator",
       "type": "registry:block",
-      "title": "OTP Field: Separator",
+      "title": "Otp Field: Separator",
       "description": "Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13971,7 +13971,7 @@
     {
       "name": "otp-field-status",
       "type": "registry:block",
-      "title": "OTP Field: Status",
+      "title": "Otp Field: Status",
       "description": "`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13990,7 +13990,7 @@
     {
       "name": "otp-field-stories",
       "type": "registry:item",
-      "title": "OTP Field stories",
+      "title": "Otp Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],

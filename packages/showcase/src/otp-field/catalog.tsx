@@ -49,7 +49,6 @@ import AlphanumericExample from "./variants/alphanumeric";
 import AlphanumericSource from "./variants/alphanumeric.tsx?raw";
 
 const meta = {
-  title: "UI/OTP Field",
   component: OTPField,
   tags: ["autodocs"],
   parameters: {

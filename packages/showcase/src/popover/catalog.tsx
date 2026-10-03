@@ -25,7 +25,6 @@ import WithFormExample from "./variants/with-form";
 import WithFormSource from "./variants/with-form.tsx?raw";
 
 const meta = {
-  title: "UI/Popover",
   component: Popover,
   tags: ["autodocs"],
   parameters: {

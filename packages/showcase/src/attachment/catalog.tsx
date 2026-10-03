@@ -33,7 +33,6 @@ import TriggerExample from "./variants/trigger";
 import TriggerSource from "./variants/trigger.tsx?raw";
 
 const meta = {
-  title: "UI/Attachment",
   component: Attachment,
   tags: ["autodocs"],
   parameters: {

@@ -1,6 +1,6 @@
 # Shared showcases
 
-`@erbium/showcase` owns the React compositions used by the Astro documentation and Storybook. `@erbium/ui` owns primitives and styles; `@erbium/content` owns Markdown. Applications consume these packages without importing each other's source.
+`@erbium/showcase` owns the React compositions used by the Astro documentation and Storybook. `@erbium/ui` owns primitives and styles; `@erbium/content` owns Markdown and the semantic taxonomy in `src/sections.json`. Applications consume these packages without importing each other's source.
 
 ```text
 packages/showcase/
@@ -20,12 +20,12 @@ packages/showcase/
   scripts/
 ```
 
-Each catalog preserves the original Storybook title and export names. Variant names and prose live in `packages/content/components/<component>/<variant>.md`; component documentation lives in `index.md`. The catalog imports that Markdown and the real variant source, so descriptions and source panels stay synchronized.
+Catalogs preserve stable story export names. Storybook namespaces are generated from the shared semantic section and the component Markdown title; docs navigation consumes the same taxonomy. Variant names and prose live in `packages/content/components/<component>/<variant>.md`; component documentation lives in `index.md`. The catalog imports that Markdown and the real variant source, so descriptions and source panels stay synchronized.
 
 ## Authoring
 
 1. Add or edit a React composition in `src/<component>/variants/<variant>.tsx`. Keep reusable state, helpers and fixtures in that component's folder. Use `@erbium/ui` primitives and real event handlers.
-2. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters and browser `play` tests. Use the matching `variantDocumentation` and `?raw` source imports. Keep `meta.title` a static string.
+2. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters and browser `play` tests. Use the matching `variantDocumentation` and `?raw` source imports. Classify the component once in `packages/content/src/sections.json`; do not add a title to the catalog.
 3. Add the matching Markdown file under `packages/content/components/<component>/`, with a JSON-quoted `title` and the stable `story` export name in frontmatter. An empty body is valid when the example has no additional explanation.
 4. Run `bun run showcase:generate`, then `bun run showcase:registry` from the workspace root.
 5. Run `bun run showcase:check` and review both applications with `bun run showcase`.

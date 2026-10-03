@@ -17,7 +17,6 @@ import RangeExample from "./variants/range";
 import RangeSource from "./variants/range.tsx?raw";
 
 const meta = {
-  title: "UI/Meter",
   component: Meter,
   tags: ["autodocs"],
   parameters: {

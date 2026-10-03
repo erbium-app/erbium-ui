@@ -15,7 +15,6 @@ import SingleEdgeAndCustomDepthExample from "./variants/single-edge-and-custom-d
 import SingleEdgeAndCustomDepthSource from "./variants/single-edge-and-custom-depth.tsx?raw";
 
 const meta = {
-  title: "Utilities/Scroll Fade",
   tags: ["autodocs"],
   parameters: {
     layout: "centered",

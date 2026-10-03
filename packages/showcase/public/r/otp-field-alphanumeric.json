@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-alphanumeric",
   "type": "registry:block",
-  "title": "OTP Field: Alphanumeric",
+  "title": "Otp Field: Alphanumeric",
   "description": "Use `validationType=\"alphanumeric\"` with `normalizeValue` for recovery codes.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

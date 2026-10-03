@@ -7,7 +7,6 @@ import SemanticExample from "./variants/semantic";
 import SemanticSource from "./variants/semantic.tsx?raw";
 
 const meta = {
-  title: "Foundations/Colors",
   parameters: {
     docs: { description: { component: componentDocumentation("colors") } },
     layout: "padded",

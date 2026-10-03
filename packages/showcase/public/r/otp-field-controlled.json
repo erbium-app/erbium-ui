@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-controlled",
   "type": "registry:block",
-  "title": "OTP Field: Controlled",
+  "title": "Otp Field: Controlled",
   "description": "Control the value with `value` and `onValueChange`.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

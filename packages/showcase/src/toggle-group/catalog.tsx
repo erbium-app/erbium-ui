@@ -37,7 +37,6 @@ import SizeExample from "./variants/size";
 import SizeSource from "./variants/size.tsx?raw";
 
 const meta = {
-  title: "UI/Toggle Group",
   component: ToggleGroup,
   tags: ["autodocs"],
   parameters: {

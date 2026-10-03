@@ -17,7 +17,6 @@ import LinkComponentExample from "./variants/link-component";
 import LinkComponentSource from "./variants/link-component.tsx?raw";
 
 const meta = {
-  title: "UI/Navigation Menu",
   component: NavigationMenu,
   tags: ["autodocs"],
   parameters: {

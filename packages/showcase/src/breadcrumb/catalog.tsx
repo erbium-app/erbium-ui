@@ -33,7 +33,6 @@ import LinkComponentExample from "./variants/link-component";
 import LinkComponentSource from "./variants/link-component.tsx?raw";
 
 const meta = {
-  title: "UI/Breadcrumb",
   component: Breadcrumb,
   tags: ["autodocs"],
   parameters: {

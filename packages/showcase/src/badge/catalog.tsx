@@ -29,7 +29,6 @@ import WithSpinnerExample from "./variants/with-spinner";
 import WithSpinnerSource from "./variants/with-spinner.tsx?raw";
 
 const meta = {
-  title: "UI/Badge",
   component: Badge,
   parameters: {
     layout: "centered",

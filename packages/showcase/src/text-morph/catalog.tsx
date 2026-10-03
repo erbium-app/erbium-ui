@@ -7,7 +7,6 @@ import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
 
 const meta = {
-  title: "UI/Text Morph",
   parameters: {
     layout: "centered",
     docs: { description: { component: componentDocumentation("text-morph") } },

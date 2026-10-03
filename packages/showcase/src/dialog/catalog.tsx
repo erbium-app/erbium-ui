@@ -29,7 +29,6 @@ import ScrollableContentExample from "./variants/scrollable-content";
 import ScrollableContentSource from "./variants/scrollable-content.tsx?raw";
 
 const meta = {
-  title: "UI/Dialog",
   component: Dialog,
   tags: ["autodocs"],
   parameters: {

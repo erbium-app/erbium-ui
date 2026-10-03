@@ -37,7 +37,6 @@ import CardExample from "./variants/card";
 import CardSource from "./variants/card.tsx?raw";
 
 const meta = {
-  title: "UI/Accordion",
   component: Accordion,
   parameters: {
     layout: "centered",

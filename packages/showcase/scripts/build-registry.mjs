@@ -181,7 +181,7 @@ for (const catalog of manifest) {
   const toast = catalog.name === "toast";
   portable = portable.replace(
     /export default meta;/,
-    `export default { ...meta, ${toast ? "parameters: { ...meta.parameters, docs: { ...meta.parameters.docs, container: ToastDocsContainer } }," : ""} decorators: [(Story, context) => <ShowcaseProviders toast={${toast} && context.viewMode !== "docs"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;`,
+    `export default { ...meta, title: ${JSON.stringify(catalog.title)}, ${toast ? "parameters: { ...meta.parameters, docs: { ...meta.parameters.docs, container: ToastDocsContainer } }," : ""} decorators: [(Story, context) => <ShowcaseProviders toast={${toast} && context.viewMode !== "docs"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;`,
   );
   const toastDocs = toast
     ? 'import { DocsContainer, type DocsContainerProps } from "@storybook/addon-docs/blocks";\nimport type { PropsWithChildren } from "react";\nfunction ToastDocsContainer(props: PropsWithChildren<DocsContainerProps>) { return <DocsContainer {...props}><ShowcaseProviders toast>{props.children}</ShowcaseProviders></DocsContainer>; }\n'

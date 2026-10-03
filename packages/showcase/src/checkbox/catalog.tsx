@@ -57,7 +57,6 @@ import InvalidStateExample from "./variants/invalid-state";
 import InvalidStateSource from "./variants/invalid-state.tsx?raw";
 
 const meta = {
-  title: "UI/Checkbox",
   component: Checkbox,
   tags: ["autodocs"],
   parameters: {

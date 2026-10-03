@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-pattern",
   "type": "registry:block",
-  "title": "OTP Field: Pattern",
+  "title": "Otp Field: Pattern",
   "description": "`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.",
   "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
   "files": [

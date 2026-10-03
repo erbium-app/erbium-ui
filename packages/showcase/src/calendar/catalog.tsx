@@ -53,7 +53,6 @@ import CustomCellSizeExample from "./variants/custom-cell-size";
 import CustomCellSizeSource from "./variants/custom-cell-size.tsx?raw";
 
 const meta = {
-  title: "UI/Calendar",
   component: Calendar,
   tags: ["autodocs"],
   parameters: {

@@ -29,7 +29,6 @@ import IconsExample from "./variants/icons";
 import IconsSource from "./variants/icons.tsx?raw";
 
 const meta = {
-  title: "UI/Tabs",
   component: Tabs,
   tags: ["autodocs"],
   parameters: {

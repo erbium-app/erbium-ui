@@ -7,7 +7,6 @@ import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
 
 const meta = {
-  title: "UI/Overlay Provider",
   parameters: {
     layout: "centered",
     docs: { description: { component: componentDocumentation("overlay-provider") } },

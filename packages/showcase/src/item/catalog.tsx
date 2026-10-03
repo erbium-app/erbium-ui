@@ -61,7 +61,6 @@ import ImageExample from "./variants/image";
 import ImageSource from "./variants/image.tsx?raw";
 
 const meta = {
-  title: "UI/Item",
   component: Item,
   tags: ["autodocs"],
   parameters: {

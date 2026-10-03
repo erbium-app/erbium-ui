@@ -21,7 +21,6 @@ import IconsOnlyExample from "./variants/icons-only";
 import IconsOnlySource from "./variants/icons-only.tsx?raw";
 
 const meta = {
-  title: "UI/Pagination",
   component: Pagination,
   tags: ["autodocs"],
   parameters: {

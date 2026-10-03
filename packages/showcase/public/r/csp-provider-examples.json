@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "csp-provider-examples",
   "type": "registry:item",
-  "title": "CSP Provider examples",
+  "title": "Csp Provider examples",
   "description": "All csp-provider examples.",
   "registryDependencies": [
     "@erbium-examples/csp-provider-external-styles",

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "csp-provider-showcase",
   "type": "registry:block",
-  "title": "CSP Provider: Showcase",
+  "title": "Csp Provider: Showcase",
   "description": "",
   "registryDependencies": ["@erbium/csp-provider", "@erbium/scroll-area", "@erbium/styles"],
   "files": [

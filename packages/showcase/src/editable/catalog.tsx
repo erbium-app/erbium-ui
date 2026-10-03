@@ -9,7 +9,6 @@ import RenameTabExample from "./variants/rename-tab";
 import RenameTabSource from "./variants/rename-tab.tsx?raw";
 
 const meta = {
-  title: "UI/Editable",
   component: Editable,
   tags: ["autodocs"],
   parameters: {

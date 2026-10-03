@@ -29,7 +29,6 @@ import ControlledExample from "./variants/controlled";
 import ControlledSource from "./variants/controlled.tsx?raw";
 
 const meta = {
-  title: "UI/Progress",
   component: Progress,
   tags: ["autodocs"],
   parameters: {

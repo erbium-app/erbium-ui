@@ -13,6 +13,7 @@
   "exports": {
     "./package.json": "./package.json",
     "./*.md": "./*.md",
+    "./taxonomy": "./src/taxonomy.ts",
     "./documents": "./src/documents.ts",
     "./markdown": "./src/markdown.ts",
     "./components/*": "./components/*"

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-overview",
   "type": "registry:block",
-  "title": "OTP Field: Overview",
+  "title": "Otp Field: Overview",
   "description": "Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-status",
   "type": "registry:block",
-  "title": "OTP Field: Status",
+  "title": "Otp Field: Status",
   "description": "`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

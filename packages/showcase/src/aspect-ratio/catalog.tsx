@@ -21,7 +21,6 @@ import PortraitExample from "./variants/portrait";
 import PortraitSource from "./variants/portrait.tsx?raw";
 
 const meta = {
-  title: "UI/Aspect Ratio",
   component: AspectRatio,
   tags: ["autodocs"],
   parameters: {

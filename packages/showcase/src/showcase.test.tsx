@@ -3,6 +3,7 @@ import { renderToString } from "react-dom/server";
 import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
+import { documentationSections } from "@erbium/content/taxonomy";
 import manifest from "../manifest.json";
 import uiRegistry from "../../ui/registry.json";
 import { ShowcaseProviders } from "./preview";
@@ -47,3 +48,25 @@ it.each(manifest)("$name preserves the Storybook export list", ({ name, variants
     variants.map((variant) => variant.exportName),
   );
 });
+
+it.each(manifest)(
+  "$name derives its Storybook namespace from shared content",
+  ({ name, title }) => {
+    const section = documentationSections.find((section) => section.names.includes(name));
+    const markdown = readFileSync(
+      fileURLToPath(new URL(`../../content/components/${name}/index.md`, import.meta.url)),
+      "utf8",
+    );
+    const rawHeading = markdown.match(/^title:[ \t]*(.+)$/m)![1];
+    const heading = rawHeading.startsWith('"') ? JSON.parse(rawHeading) : rawHeading.trim();
+    expect(title).toBe(`${section?.title}/${heading}`);
+    expect(catalogs[`./${name}/catalog.tsx`].default).not.toHaveProperty("title");
+    const adapter = readFileSync(
+      fileURLToPath(
+        new URL(`../../../apps/storybook/src/stories/${name}.stories.tsx`, import.meta.url),
+      ),
+      "utf8",
+    );
+    expect(adapter).toContain(`title: ${JSON.stringify(title)}`);
+  },
+);

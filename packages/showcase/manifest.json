@@ -1,7 +1,7 @@
 [
   {
     "name": "accordion",
-    "title": "UI/Accordion",
+    "title": "Layout & containers/Accordion",
     "variants": [
       {
         "exportName": "Playground",
@@ -55,7 +55,7 @@
   },
   {
     "name": "alert",
-    "title": "UI/Alert",
+    "title": "Feedback & status/Alert",
     "variants": [
       {
         "exportName": "Playground",
@@ -109,7 +109,7 @@
   },
   {
     "name": "alert-dialog",
-    "title": "UI/Alert Dialog",
+    "title": "Overlays & menus/Alert Dialog",
     "variants": [
       {
         "exportName": "Playground",
@@ -157,7 +157,7 @@
   },
   {
     "name": "aspect-ratio",
-    "title": "UI/Aspect Ratio",
+    "title": "Layout & containers/Aspect Ratio",
     "variants": [
       {
         "exportName": "Playground",
@@ -187,7 +187,7 @@
   },
   {
     "name": "attachment",
-    "title": "UI/Attachment",
+    "title": "Messaging/Attachment",
     "variants": [
       {
         "exportName": "Playground",
@@ -235,7 +235,7 @@
   },
   {
     "name": "autocomplete",
-    "title": "UI/Autocomplete",
+    "title": "Inputs & forms/Autocomplete",
     "variants": [
       {
         "exportName": "Overview",
@@ -331,7 +331,7 @@
   },
   {
     "name": "avatar",
-    "title": "UI/Avatar",
+    "title": "Data display/Avatar",
     "variants": [
       {
         "exportName": "Playground",
@@ -409,7 +409,7 @@
   },
   {
     "name": "badge",
-    "title": "UI/Badge",
+    "title": "Data display/Badge",
     "variants": [
       {
         "exportName": "Playground",
@@ -451,7 +451,7 @@
   },
   {
     "name": "breadcrumb",
-    "title": "UI/Breadcrumb",
+    "title": "Navigation/Breadcrumb",
     "variants": [
       {
         "exportName": "Playground",
@@ -499,7 +499,7 @@
   },
   {
     "name": "bubble",
-    "title": "UI/Bubble",
+    "title": "Messaging/Bubble",
     "variants": [
       {
         "exportName": "Playground",
@@ -565,7 +565,7 @@
   },
   {
     "name": "button",
-    "title": "UI/Button",
+    "title": "Actions/Button",
     "variants": [
       {
         "exportName": "Playground",
@@ -697,7 +697,7 @@
   },
   {
     "name": "button-group",
-    "title": "UI/Button Group",
+    "title": "Actions/Button Group",
     "variants": [
       {
         "exportName": "Playground",
@@ -775,7 +775,7 @@
   },
   {
     "name": "calendar",
-    "title": "UI/Calendar",
+    "title": "Inputs & forms/Calendar",
     "variants": [
       {
         "exportName": "Playground",
@@ -853,7 +853,7 @@
   },
   {
     "name": "card",
-    "title": "UI/Card",
+    "title": "Layout & containers/Card",
     "variants": [
       {
         "exportName": "Playground",
@@ -889,7 +889,7 @@
   },
   {
     "name": "carousel",
-    "title": "UI/Carousel",
+    "title": "Layout & containers/Carousel",
     "variants": [
       {
         "exportName": "Playground",
@@ -943,7 +943,7 @@
   },
   {
     "name": "chart",
-    "title": "UI/Chart",
+    "title": "Data display/Chart",
     "variants": [
       {
         "exportName": "Playground",
@@ -991,7 +991,7 @@
   },
   {
     "name": "checkbox",
-    "title": "UI/Checkbox",
+    "title": "Inputs & forms/Checkbox",
     "variants": [
       {
         "exportName": "Playground",
@@ -1075,7 +1075,7 @@
   },
   {
     "name": "collapsible",
-    "title": "UI/Collapsible",
+    "title": "Layout & containers/Collapsible",
     "variants": [
       {
         "exportName": "Playground",
@@ -1129,7 +1129,7 @@
   },
   {
     "name": "combobox",
-    "title": "UI/Combobox",
+    "title": "Inputs & forms/Combobox",
     "variants": [
       {
         "exportName": "Playground",
@@ -1207,7 +1207,7 @@
   },
   {
     "name": "command",
-    "title": "UI/Command",
+    "title": "Navigation/Command",
     "variants": [
       {
         "exportName": "Playground",
@@ -1249,7 +1249,7 @@
   },
   {
     "name": "context-menu",
-    "title": "UI/Context Menu",
+    "title": "Overlays & menus/Context Menu",
     "variants": [
       {
         "exportName": "Playground",
@@ -1321,7 +1321,7 @@
   },
   {
     "name": "control",
-    "title": "UI/Control",
+    "title": "Inputs & forms/Control",
     "variants": [
       {
         "exportName": "Overview",
@@ -1435,7 +1435,7 @@
   },
   {
     "name": "csp-provider",
-    "title": "UI/CSP Provider",
+    "title": "Providers/Csp Provider",
     "variants": [
       {
         "exportName": "ExternalStyles",
@@ -1453,7 +1453,7 @@
   },
   {
     "name": "dialog",
-    "title": "UI/Dialog",
+    "title": "Overlays & menus/Dialog",
     "variants": [
       {
         "exportName": "Playground",
@@ -1495,7 +1495,7 @@
   },
   {
     "name": "direction",
-    "title": "UI/Direction",
+    "title": "Providers/Direction",
     "variants": [
       {
         "exportName": "Playground",
@@ -1513,7 +1513,7 @@
   },
   {
     "name": "drawer",
-    "title": "UI/Drawer",
+    "title": "Overlays & menus/Drawer",
     "variants": [
       {
         "exportName": "Playground",
@@ -1579,7 +1579,7 @@
   },
   {
     "name": "dropdown-menu",
-    "title": "UI/Dropdown Menu",
+    "title": "Overlays & menus/Dropdown Menu",
     "variants": [
       {
         "exportName": "Playground",
@@ -1663,7 +1663,7 @@
   },
   {
     "name": "editable",
-    "title": "UI/Editable",
+    "title": "Inputs & forms/Editable",
     "variants": [
       {
         "exportName": "RenameTab",
@@ -1675,7 +1675,7 @@
   },
   {
     "name": "empty",
-    "title": "UI/Empty",
+    "title": "Feedback & status/Empty",
     "variants": [
       {
         "exportName": "Playground",
@@ -1729,7 +1729,7 @@
   },
   {
     "name": "field",
-    "title": "UI/Field",
+    "title": "Inputs & forms/Field",
     "variants": [
       {
         "exportName": "Playground",
@@ -1831,7 +1831,7 @@
   },
   {
     "name": "form",
-    "title": "UI/Form",
+    "title": "Inputs & forms/Form",
     "variants": [
       {
         "exportName": "Playground",
@@ -1849,7 +1849,7 @@
   },
   {
     "name": "hover-card",
-    "title": "UI/Hover Card",
+    "title": "Overlays & menus/Hover Card",
     "variants": [
       {
         "exportName": "Playground",
@@ -1891,7 +1891,7 @@
   },
   {
     "name": "input",
-    "title": "UI/Input",
+    "title": "Inputs & forms/Input",
     "variants": [
       {
         "exportName": "Playground",
@@ -1999,7 +1999,7 @@
   },
   {
     "name": "input-group",
-    "title": "UI/Input Group",
+    "title": "Inputs & forms/Input Group",
     "variants": [
       {
         "exportName": "Playground",
@@ -2089,7 +2089,7 @@
   },
   {
     "name": "item",
-    "title": "UI/Item",
+    "title": "Layout & containers/Item",
     "variants": [
       {
         "exportName": "Playground",
@@ -2179,7 +2179,7 @@
   },
   {
     "name": "kbd",
-    "title": "UI/Kbd",
+    "title": "Data display/Kbd",
     "variants": [
       {
         "exportName": "Playground",
@@ -2215,7 +2215,7 @@
   },
   {
     "name": "marker",
-    "title": "UI/Marker",
+    "title": "Messaging/Marker",
     "variants": [
       {
         "exportName": "Playground",
@@ -2275,7 +2275,7 @@
   },
   {
     "name": "menubar",
-    "title": "UI/Menubar",
+    "title": "Navigation/Menubar",
     "variants": [
       {
         "exportName": "Playground",
@@ -2317,7 +2317,7 @@
   },
   {
     "name": "message",
-    "title": "UI/Message",
+    "title": "Messaging/Message",
     "variants": [
       {
         "exportName": "Playground",
@@ -2365,7 +2365,7 @@
   },
   {
     "name": "message-scroller",
-    "title": "UI/Message Scroller",
+    "title": "Messaging/Message Scroller",
     "variants": [
       {
         "exportName": "Playground",
@@ -2443,7 +2443,7 @@
   },
   {
     "name": "meter",
-    "title": "UI/Meter",
+    "title": "Feedback & status/Meter",
     "variants": [
       {
         "exportName": "Playground",
@@ -2467,7 +2467,7 @@
   },
   {
     "name": "navigation-menu",
-    "title": "UI/Navigation Menu",
+    "title": "Navigation/Navigation Menu",
     "variants": [
       {
         "exportName": "Playground",
@@ -2491,7 +2491,7 @@
   },
   {
     "name": "number-field",
-    "title": "UI/Number Field",
+    "title": "Inputs & forms/Number Field",
     "variants": [
       {
         "exportName": "Default",
@@ -2539,7 +2539,7 @@
   },
   {
     "name": "otp-field",
-    "title": "UI/OTP Field",
+    "title": "Inputs & forms/Otp Field",
     "variants": [
       {
         "exportName": "Playground",
@@ -2611,7 +2611,7 @@
   },
   {
     "name": "overlay-provider",
-    "title": "UI/Overlay Provider",
+    "title": "Providers/Overlay Provider",
     "variants": [
       {
         "exportName": "Overview",
@@ -2623,7 +2623,7 @@
   },
   {
     "name": "pagination",
-    "title": "UI/Pagination",
+    "title": "Navigation/Pagination",
     "variants": [
       {
         "exportName": "Playground",
@@ -2653,7 +2653,7 @@
   },
   {
     "name": "popover",
-    "title": "UI/Popover",
+    "title": "Overlays & menus/Popover",
     "variants": [
       {
         "exportName": "Playground",
@@ -2689,7 +2689,7 @@
   },
   {
     "name": "progress",
-    "title": "UI/Progress",
+    "title": "Feedback & status/Progress",
     "variants": [
       {
         "exportName": "Playground",
@@ -2731,7 +2731,7 @@
   },
   {
     "name": "questionnaire",
-    "title": "UI/Questionnaire",
+    "title": "Inputs & forms/Questionnaire",
     "variants": [
       {
         "exportName": "Playground",
@@ -2827,7 +2827,7 @@
   },
   {
     "name": "radio-group",
-    "title": "UI/Radio Group",
+    "title": "Inputs & forms/Radio Group",
     "variants": [
       {
         "exportName": "Playground",
@@ -2893,7 +2893,7 @@
   },
   {
     "name": "resizable",
-    "title": "UI/Resizable",
+    "title": "Layout & containers/Resizable",
     "variants": [
       {
         "exportName": "Playground",
@@ -2923,7 +2923,7 @@
   },
   {
     "name": "scroll-area",
-    "title": "UI/Scroll Area",
+    "title": "Layout & containers/Scroll Area",
     "variants": [
       {
         "exportName": "Playground",
@@ -2971,7 +2971,7 @@
   },
   {
     "name": "select",
-    "title": "UI/Select",
+    "title": "Inputs & forms/Select",
     "variants": [
       {
         "exportName": "Playground",
@@ -3019,7 +3019,7 @@
   },
   {
     "name": "separator",
-    "title": "UI/Separator",
+    "title": "Layout & containers/Separator",
     "variants": [
       {
         "exportName": "Playground",
@@ -3079,7 +3079,7 @@
   },
   {
     "name": "shake",
-    "title": "UI/Shake",
+    "title": "Utilities/Shake",
     "variants": [
       {
         "exportName": "Overview",
@@ -3091,7 +3091,7 @@
   },
   {
     "name": "sheet",
-    "title": "UI/Sheet",
+    "title": "Overlays & menus/Sheet",
     "variants": [
       {
         "exportName": "Playground",
@@ -3121,7 +3121,7 @@
   },
   {
     "name": "sidebar",
-    "title": "UI/Sidebar",
+    "title": "Navigation/Sidebar",
     "variants": [
       {
         "exportName": "Playground",
@@ -3145,7 +3145,7 @@
   },
   {
     "name": "skeleton",
-    "title": "UI/Skeleton",
+    "title": "Feedback & status/Skeleton",
     "variants": [
       {
         "exportName": "Playground",
@@ -3205,7 +3205,7 @@
   },
   {
     "name": "slider",
-    "title": "UI/Slider",
+    "title": "Inputs & forms/Slider",
     "variants": [
       {
         "exportName": "Playground",
@@ -3259,7 +3259,7 @@
   },
   {
     "name": "spinner",
-    "title": "UI/Spinner",
+    "title": "Feedback & status/Spinner",
     "variants": [
       {
         "exportName": "Playground",
@@ -3307,7 +3307,7 @@
   },
   {
     "name": "stateful-button",
-    "title": "UI/Stateful Button",
+    "title": "Actions/Stateful Button",
     "variants": [
       {
         "exportName": "AsyncAction",
@@ -3331,7 +3331,7 @@
   },
   {
     "name": "stateful-icon",
-    "title": "UI/Stateful Icon",
+    "title": "Motion/Stateful Icon",
     "variants": [
       {
         "exportName": "CopyFeedback",
@@ -3367,7 +3367,7 @@
   },
   {
     "name": "styles",
-    "title": "UI/Erbium styles",
+    "title": "Foundations/Erbium styles",
     "variants": [
       {
         "exportName": "Overview",
@@ -3421,7 +3421,7 @@
   },
   {
     "name": "switch",
-    "title": "UI/Switch",
+    "title": "Inputs & forms/Switch",
     "variants": [
       {
         "exportName": "Playground",
@@ -3499,7 +3499,7 @@
   },
   {
     "name": "table",
-    "title": "UI/Table",
+    "title": "Data display/Table",
     "variants": [
       {
         "exportName": "Playground",
@@ -3541,7 +3541,7 @@
   },
   {
     "name": "tabs",
-    "title": "UI/Tabs",
+    "title": "Navigation/Tabs",
     "variants": [
       {
         "exportName": "Playground",
@@ -3583,7 +3583,7 @@
   },
   {
     "name": "text-morph",
-    "title": "UI/Text Morph",
+    "title": "Motion/Text Morph",
     "variants": [
       {
         "exportName": "Overview",
@@ -3595,7 +3595,7 @@
   },
   {
     "name": "textarea",
-    "title": "UI/Textarea",
+    "title": "Inputs & forms/Textarea",
     "variants": [
       {
         "exportName": "Playground",
@@ -3643,7 +3643,7 @@
   },
   {
     "name": "toast",
-    "title": "UI/Toast",
+    "title": "Feedback & status/Toast",
     "variants": [
       {
         "exportName": "Playground",
@@ -3691,7 +3691,7 @@
   },
   {
     "name": "toggle",
-    "title": "UI/Toggle",
+    "title": "Actions/Toggle",
     "variants": [
       {
         "exportName": "Playground",
@@ -3745,7 +3745,7 @@
   },
   {
     "name": "toggle-group",
-    "title": "UI/Toggle Group",
+    "title": "Actions/Toggle Group",
     "variants": [
       {
         "exportName": "Playground",
@@ -3799,7 +3799,7 @@
   },
   {
     "name": "toolbar",
-    "title": "UI/Toolbar",
+    "title": "Actions/Toolbar",
     "variants": [
       {
         "exportName": "Formatting",
@@ -3835,7 +3835,7 @@
   },
   {
     "name": "tooltip",
-    "title": "UI/Tooltip",
+    "title": "Overlays & menus/Tooltip",
     "variants": [
       {
         "exportName": "Playground",
@@ -3871,7 +3871,7 @@
   },
   {
     "name": "use-copy-to-clipboard",
-    "title": "UI/Use Copy To Clipboard",
+    "title": "Hooks/Use Copy To Clipboard",
     "variants": [
       {
         "exportName": "Overview",
@@ -3883,7 +3883,7 @@
   },
   {
     "name": "use-drag-select",
-    "title": "UI/Use Drag Select",
+    "title": "Hooks/Use Drag Select",
     "variants": [
       {
         "exportName": "Overview",
@@ -3895,7 +3895,7 @@
   },
   {
     "name": "use-is-mobile",
-    "title": "UI/Use Is Mobile",
+    "title": "Hooks/Use Is Mobile",
     "variants": [
       {
         "exportName": "Overview",
@@ -3907,7 +3907,7 @@
   },
   {
     "name": "use-media-query",
-    "title": "UI/Use Media Query",
+    "title": "Hooks/Use Media Query",
     "variants": [
       {
         "exportName": "Overview",

@@ -6,7 +6,6 @@ type StoryArgs<T> = T extends { component: infer C }
     ? P
     : T;
 export type Meta<T = unknown> = {
-  title: string;
   component?: T;
   tags?: string[];
   parameters?: Record<string, unknown>;

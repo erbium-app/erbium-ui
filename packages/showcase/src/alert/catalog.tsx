@@ -37,7 +37,6 @@ import WarningExample from "./variants/warning";
 import WarningSource from "./variants/warning.tsx?raw";
 
 const meta = {
-  title: "UI/Alert",
   component: Alert,
   parameters: {
     layout: "centered",

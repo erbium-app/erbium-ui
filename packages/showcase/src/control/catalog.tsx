@@ -77,7 +77,6 @@ import RowExample from "./variants/row";
 import RowSource from "./variants/row.tsx?raw";
 
 const meta = {
-  title: "UI/Control",
   component: Control.Number,
   tags: ["autodocs"],
   parameters: {

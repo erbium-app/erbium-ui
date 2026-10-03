@@ -25,7 +25,6 @@ import ShowcaseExample from "./variants/showcase";
 import ShowcaseSource from "./variants/showcase.tsx?raw";
 
 const meta = {
-  title: "UI/Toolbar",
   component: Toolbar,
   tags: ["autodocs"],
   parameters: {

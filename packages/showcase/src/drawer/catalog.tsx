@@ -45,7 +45,6 @@ import ResponsiveExample from "./variants/responsive";
 import ResponsiveSource from "./variants/responsive.tsx?raw";
 
 const meta = {
-  title: "UI/Drawer",
   component: Drawer,
   tags: ["autodocs"],
   parameters: {

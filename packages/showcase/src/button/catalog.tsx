@@ -89,7 +89,6 @@ import AsLinkExample from "./variants/as-link";
 import AsLinkSource from "./variants/as-link.tsx?raw";
 
 const meta = {
-  title: "UI/Button",
   component: Button,
   parameters: {
     layout: "centered",

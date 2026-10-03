@@ -49,7 +49,6 @@ import SidesExample from "./variants/sides";
 import SidesSource from "./variants/sides.tsx?raw";
 
 const meta = {
-  title: "UI/Context Menu",
   component: ContextMenu,
   tags: ["autodocs"],
   parameters: {

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-disabled",
   "type": "registry:block",
-  "title": "OTP Field: Disabled",
+  "title": "Otp Field: Disabled",
   "description": "`disabled` dims the field and removes it from the tab order.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

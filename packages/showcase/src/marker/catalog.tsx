@@ -41,7 +41,6 @@ import LinkButtonExample from "./variants/link-button";
 import LinkButtonSource from "./variants/link-button.tsx?raw";
 
 const meta = {
-  title: "UI/Marker",
   component: Marker,
   tags: ["autodocs"],
   parameters: {

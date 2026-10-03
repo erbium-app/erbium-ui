@@ -30,7 +30,6 @@ import RTLExample from "./variants/rtl";
 import RTLSource from "./variants/rtl.tsx?raw";
 
 const meta = {
-  title: "UI/Table",
   component: Table,
   tags: ["autodocs"],
   parameters: {

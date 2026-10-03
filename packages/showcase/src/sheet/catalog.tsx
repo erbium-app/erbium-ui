@@ -21,7 +21,6 @@ import NoCloseButtonExample from "./variants/no-close-button";
 import NoCloseButtonSource from "./variants/no-close-button.tsx?raw";
 
 const meta = {
-  title: "UI/Sheet",
   component: Sheet,
   tags: ["autodocs"],
   parameters: {

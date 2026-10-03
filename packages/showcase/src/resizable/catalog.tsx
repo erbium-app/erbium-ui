@@ -19,7 +19,6 @@ import HandleExample from "./variants/handle";
 import HandleSource from "./variants/handle.tsx?raw";
 
 const meta = {
-  title: "UI/Resizable",
   tags: ["autodocs"],
   parameters: {
     layout: "centered",

@@ -33,7 +33,6 @@ import AttachmentExample from "./variants/attachment";
 import AttachmentSource from "./variants/attachment.tsx?raw";
 
 const meta = {
-  title: "UI/Message",
   component: Message,
   tags: ["autodocs"],
   parameters: {

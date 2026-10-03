@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "csp-provider-external-styles",
   "type": "registry:component",
-  "title": "CSP Provider: External Styles",
+  "title": "Csp Provider: External Styles",
   "description": "",
   "registryDependencies": ["@erbium/csp-provider", "@erbium/scroll-area", "@erbium/styles"],
   "files": [

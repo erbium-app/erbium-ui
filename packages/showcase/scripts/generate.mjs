@@ -4,6 +4,13 @@ import { readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+const sections = JSON.parse(
+  await readFile(new URL("../../content/src/sections.json", import.meta.url), "utf8"),
+);
+const classifiedNames = sections.flatMap((section) => section.names);
+if (new Set(classifiedNames).size !== classifiedNames.length)
+  throw new Error("Showcase names must belong to exactly one semantic section");
+
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const check = process.argv.includes("--check");
 export async function output(path, content, json = false) {
@@ -25,8 +32,16 @@ for (const entry of (await readdir(join(root, "src"), { withFileTypes: true }))
     () => null,
   );
   if (!source) continue;
-  const title = source.match(/title:\s*"([^"]+)"/)?.[1];
-  if (!title) throw new Error(`Catalog requires a static title: ${entry.name}`);
+  const section = sections.find((section) => section.names.includes(entry.name));
+  if (!section) throw new Error(`Missing semantic classification: ${entry.name}`);
+  const markdown = await readFile(
+    join(root, "../content/components", entry.name, "index.md"),
+    "utf8",
+  );
+  const heading = markdown.match(/^title:[ \t]*(.+)$/m)?.[1];
+  if (!heading) throw new Error(`Missing Markdown title: ${entry.name}`);
+  const displayTitle = heading.startsWith('"') ? JSON.parse(heading) : heading.trim();
+  const title = `${section.title}/${displayTitle}`;
   const variants = [];
   for (const match of source.matchAll(/export const (\w+)(?:\s*:[^=]+)?\s*=/g)) {
     const exportName = match[1];
@@ -54,6 +69,10 @@ for (const entry of (await readdir(join(root, "src"), { withFileTypes: true }))
     join(root, "../../apps/storybook/src/stories", `${entry.name}.stories.tsx`),
     adapter,
   );
+}
+for (const name of classifiedNames) {
+  if (!manifest.some((entry) => entry.name === name))
+    throw new Error(`Semantic classification has no showcase: ${name}`);
 }
 await output(join(root, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, true);
 console.log(

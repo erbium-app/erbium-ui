@@ -23,7 +23,6 @@ import ThemeToggleIconExample from "./variants/theme-toggle-icon";
 import ThemeToggleIconSource from "./variants/theme-toggle-icon.tsx?raw";
 
 const meta = {
-  title: "UI/Stateful Icon",
   parameters: {
     docs: {
       description: {

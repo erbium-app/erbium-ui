@@ -37,7 +37,6 @@ import EventsExample from "./variants/events";
 import EventsSource from "./variants/events.tsx?raw";
 
 const meta = {
-  title: "UI/Carousel",
   component: Carousel,
   tags: ["autodocs"],
   parameters: {

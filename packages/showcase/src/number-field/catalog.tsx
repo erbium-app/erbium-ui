@@ -33,7 +33,6 @@ import ShowcaseExample from "./variants/showcase";
 import ShowcaseSource from "./variants/showcase.tsx?raw";
 
 const meta = {
-  title: "UI/Number Field",
   component: NumberField,
   parameters: {
     layout: "centered",

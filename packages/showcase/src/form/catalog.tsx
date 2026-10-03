@@ -11,7 +11,6 @@ import ValidationExample from "./variants/validation";
 import ValidationSource from "./variants/validation.tsx?raw";
 
 const meta = {
-  title: "UI/Form",
   tags: ["autodocs"],
   parameters: {
     docs: {

@@ -33,7 +33,6 @@ import ErrorVariantExample from "./variants/error-variant";
 import ErrorVariantSource from "./variants/error-variant.tsx?raw";
 
 const meta = {
-  title: "UI/Alert Dialog",
   component: AlertDialog,
   tags: ["autodocs"],
   parameters: {

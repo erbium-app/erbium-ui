@@ -17,7 +17,6 @@ import ControlledSidebarExample from "./variants/controlled-sidebar";
 import ControlledSidebarSource from "./variants/controlled-sidebar.tsx?raw";
 
 const meta = {
-  title: "UI/Sidebar",
   component: Sidebar,
   tags: ["autodocs"],
   parameters: {

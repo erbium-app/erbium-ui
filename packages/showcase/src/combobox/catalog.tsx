@@ -53,7 +53,6 @@ import ClearButtonExample from "./variants/clear-button";
 import ClearButtonSource from "./variants/clear-button.tsx?raw";
 
 const meta = {
-  title: "UI/Combobox",
   component: Combobox,
   tags: ["autodocs"],
   parameters: {

@@ -53,7 +53,6 @@ import SizesExample from "./variants/sizes";
 import SizesSource from "./variants/sizes.tsx?raw";
 
 const meta = {
-  title: "UI/Avatar",
   component: Avatar,
   parameters: {
     layout: "centered",

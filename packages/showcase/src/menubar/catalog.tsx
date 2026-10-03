@@ -29,7 +29,6 @@ import WithIconsExample from "./variants/with-icons";
 import WithIconsSource from "./variants/with-icons.tsx?raw";
 
 const meta = {
-  title: "UI/Menubar",
   component: Menubar,
   tags: ["autodocs"],
   parameters: {

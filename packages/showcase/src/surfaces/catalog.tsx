@@ -27,7 +27,6 @@ import ControlStatesExample from "./variants/control-states";
 import ControlStatesSource from "./variants/control-states.tsx?raw";
 
 const meta = {
-  title: "Foundations/Surfaces",
   parameters: {
     docs: { description: { component: componentDocumentation("surfaces") } },
     layout: "fullscreen",

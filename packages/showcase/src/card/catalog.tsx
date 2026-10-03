@@ -25,7 +25,6 @@ import ImageExample from "./variants/image";
 import ImageSource from "./variants/image.tsx?raw";
 
 const meta = {
-  title: "UI/Card",
   component: Card,
   tags: ["autodocs"],
   parameters: {

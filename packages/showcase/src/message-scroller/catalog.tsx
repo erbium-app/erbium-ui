@@ -53,7 +53,6 @@ import ScrollableExample from "./variants/scrollable";
 import ScrollableSource from "./variants/scrollable.tsx?raw";
 
 const meta = {
-  title: "UI/Message Scroller",
   component: MessageScroller,
   tags: ["autodocs"],
   parameters: {

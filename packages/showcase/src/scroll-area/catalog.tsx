@@ -17,7 +17,6 @@ import HorizontalExample from "./variants/horizontal";
 import HorizontalSource from "./variants/horizontal.tsx?raw";
 
 const meta = {
-  title: "UI/Scroll Area",
   component: ScrollArea,
   tags: ["autodocs"],
   parameters: {

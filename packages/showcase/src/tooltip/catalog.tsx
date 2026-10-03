@@ -25,7 +25,6 @@ import DisabledButtonExample from "./variants/disabled-button";
 import DisabledButtonSource from "./variants/disabled-button.tsx?raw";
 
 const meta = {
-  title: "UI/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
   parameters: {

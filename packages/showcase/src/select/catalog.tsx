@@ -33,7 +33,6 @@ import AlignItemWithTriggerExample from "./variants/align-item-with-trigger";
 import AlignItemWithTriggerSource from "./variants/align-item-with-trigger.tsx?raw";
 
 const meta = {
-  title: "UI/Select",
   component: Select,
   tags: ["autodocs"],
   parameters: {

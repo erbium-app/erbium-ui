@@ -37,7 +37,6 @@ import BackgroundExample from "./variants/background";
 import BackgroundSource from "./variants/background.tsx?raw";
 
 const meta = {
-  title: "UI/Empty",
   component: Empty,
   tags: ["autodocs"],
   parameters: {

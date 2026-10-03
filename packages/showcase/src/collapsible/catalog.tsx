@@ -29,7 +29,6 @@ import ControlledStateExample from "./variants/controlled-state";
 import ControlledStateSource from "./variants/controlled-state.tsx?raw";
 
 const meta = {
-  title: "UI/Collapsible",
   component: Collapsible,
   parameters: {
     layout: "centered",

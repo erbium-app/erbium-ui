@@ -33,7 +33,6 @@ import ExampleLegendExample from "./variants/example-legend";
 import ExampleLegendSource from "./variants/example-legend.tsx?raw";
 
 const meta = {
-  title: "UI/Chart",
   component: Chart,
   tags: ["autodocs"],
   parameters: {

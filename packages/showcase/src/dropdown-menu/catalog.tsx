@@ -57,7 +57,6 @@ import ComplexExample from "./variants/complex";
 import ComplexSource from "./variants/complex.tsx?raw";
 
 const meta = {
-  title: "UI/Dropdown Menu",
   component: DropdownMenu,
   tags: ["autodocs"],
   parameters: {

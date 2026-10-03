@@ -53,7 +53,6 @@ import SplitExample from "./variants/split";
 import SplitSource from "./variants/split.tsx?raw";
 
 const meta = {
-  title: "UI/Button Group",
   component: ButtonGroup,
   tags: ["autodocs"],
   parameters: {

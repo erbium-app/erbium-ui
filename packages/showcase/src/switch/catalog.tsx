@@ -53,7 +53,6 @@ import FormExample from "./variants/form";
 import FormSource from "./variants/form.tsx?raw";
 
 const meta = {
-  title: "UI/Switch",
   component: Switch,
   tags: ["autodocs"],
   parameters: {

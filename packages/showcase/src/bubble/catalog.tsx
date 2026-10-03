@@ -45,7 +45,6 @@ import VariantsExample from "./variants/variants";
 import VariantsSource from "./variants/variants.tsx?raw";
 
 const meta = {
-  title: "UI/Bubble",
   component: Bubble,
   tags: ["autodocs"],
   parameters: {

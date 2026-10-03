@@ -29,7 +29,6 @@ import PositioningExample from "./variants/positioning";
 import PositioningSource from "./variants/positioning.tsx?raw";
 
 const meta = {
-  title: "UI/Hover Card",
   component: HoverCard,
   tags: ["autodocs"],
   parameters: {

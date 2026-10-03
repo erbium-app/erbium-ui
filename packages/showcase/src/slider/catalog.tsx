@@ -37,7 +37,6 @@ import MultipleThumbsExample from "./variants/multiple-thumbs";
 import MultipleThumbsSource from "./variants/multiple-thumbs.tsx?raw";
 
 const meta = {
-  title: "UI/Slider",
   component: Slider,
   tags: ["autodocs"],
   parameters: {

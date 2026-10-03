@@ -41,7 +41,6 @@ import MarginSizingExample from "./variants/margin-sizing";
 import MarginSizingSource from "./variants/margin-sizing.tsx?raw";
 
 const meta = {
-  title: "UI/Separator",
   component: Separator,
   tags: ["autodocs"],
   parameters: {

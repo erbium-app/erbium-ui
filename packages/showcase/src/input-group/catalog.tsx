@@ -61,7 +61,6 @@ import CustomExample from "./variants/custom";
 import CustomSource from "./variants/custom.tsx?raw";
 
 const meta = {
-  title: "UI/Input Group",
   component: InputGroup,
   tags: ["autodocs"],
   parameters: {

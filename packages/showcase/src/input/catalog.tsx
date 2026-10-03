@@ -73,7 +73,6 @@ import FormExample from "./variants/form";
 import FormSource from "./variants/form.tsx?raw";
 
 const meta = {
-  title: "UI/Input",
   component: Input,
   tags: ["autodocs"],
   parameters: {

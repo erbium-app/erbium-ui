@@ -65,7 +65,6 @@ import NavigationStateExample from "./variants/navigation-state";
 import NavigationStateSource from "./variants/navigation-state.tsx?raw";
 
 const meta = {
-  title: "UI/Questionnaire",
   component: Questionnaire,
   tags: ["autodocs"],
   parameters: {

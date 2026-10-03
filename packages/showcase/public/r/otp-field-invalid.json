@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-invalid",
   "type": "registry:block",
-  "title": "OTP Field: Invalid",
+  "title": "Otp Field: Invalid",
   "description": "`status=\"error\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\"success\"`.",
   "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
   "files": [

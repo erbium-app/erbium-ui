@@ -29,7 +29,6 @@ import ScrollableExample from "./variants/scrollable";
 import ScrollableSource from "./variants/scrollable.tsx?raw";
 
 const meta = {
-  title: "UI/Command",
   component: Command,
   tags: ["autodocs"],
   parameters: {

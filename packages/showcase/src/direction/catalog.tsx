@@ -13,7 +13,6 @@ import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
 
 const meta = {
-  title: "UI/Direction",
   component: DirectionProvider,
   tags: ["autodocs"],
   parameters: {

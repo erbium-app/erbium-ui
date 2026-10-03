@@ -33,7 +33,6 @@ import QueueExample from "./variants/queue";
 import QueueSource from "./variants/queue.tsx?raw";
 
 const meta = {
-  title: "UI/Toast",
   component: Toast,
   tags: ["autodocs"],
   parameters: {

@@ -33,7 +33,6 @@ import ButtonExample from "./variants/button";
 import ButtonSource from "./variants/button.tsx?raw";
 
 const meta = {
-  title: "UI/Textarea",
   component: Textarea,
   tags: ["autodocs"],
   parameters: {

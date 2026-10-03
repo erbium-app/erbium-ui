@@ -41,7 +41,6 @@ import TableExample from "./variants/table";
 import TableSource from "./variants/table.tsx?raw";
 
 const meta = {
-  title: "UI/Skeleton",
   component: Skeleton,
   tags: ["autodocs"],
   parameters: {

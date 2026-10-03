@@ -17,7 +17,6 @@ import DirectionsExample from "./variants/directions";
 import DirectionsSource from "./variants/directions.tsx?raw";
 
 const meta = {
-  title: "UI/Stateful Button",
   component: StatefulButton,
   parameters: {
     docs: {
