@@ -8,22 +8,16 @@ import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 interface Props {
   title: string;
   description?: string;
-  category?: string;
   previous?: { title: string; href: string };
   next?: { title: string; href: string };
 }
-const {
-  title,
-  description,
-  category = "Documentation",
-  previous,
-  next,
-} = Astro.props;
+const { title, description, previous, next } = Astro.props;
 ---
 
 <header class="page-header">
   <div class="page-header-top">
-    <p class="eyebrow">{category}</p><div class="page-neighbors">
+    <h1>{title}</h1>
+    <div class="page-neighbors">
       {
         previous && (
           <Button
@@ -51,6 +45,6 @@ const {
       }
     </div>
   </div>
-  <h1>{title}</h1>{description && <p class="page-description">{description}</p>}
+  {description && <p class="page-description">{description}</p>}
   <div class="page-actions"><slot /><CopyButton url={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")} text="Copy Markdown" label="Copy page as Markdown" variant="outline" /></div>
 </header>

@@ -20387,7 +20387,7 @@
           "path": "src/styles/examples/styles-demo.tsx",
           "type": "registry:component",
           "target": "@components/showcase/styles/examples/styles-demo.tsx",
-          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3 p-6\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
         }
       ]
     },
@@ -20409,7 +20409,7 @@
           "path": "src/styles/examples/styles-demo.tsx",
           "type": "registry:component",
           "target": "@components/showcase/styles/examples/styles-demo.tsx",
-          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3 p-6\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
         },
         {
           "path": "src/styles/variants/overview.tsx",
@@ -20444,7 +20444,7 @@
           "path": "src/styles/examples/styles-demo.tsx",
           "type": "registry:component",
           "target": "@components/showcase/styles/examples/styles-demo.tsx",
-          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3 p-6\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
+          "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nexport default function Demo() {\n  return (\n    <Card>\n      <CardContent className=\"flex flex-wrap gap-3\">\n        <Button>Primary</Button>\n        <Button variant=\"secondary\">Secondary</Button>\n        <Button variant=\"outline\">Outline</Button>\n      </CardContent>\n    </Card>\n  );\n}\n"
         },
         {
           "path": "src/styles/styles.stories.tsx",

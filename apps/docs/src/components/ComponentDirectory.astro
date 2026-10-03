@@ -31,7 +31,6 @@ const groups = documentationSections.filter((section) => section.kind === kind).
   <PageHeader
     title={frontmatter.title}
     description={frontmatter.description}
-    category="Library"
   />
   <article class="markdown-copy directory-intro"><Content /></article>
   {groups.map((group) => <section id={group.slug} class="directory-section">

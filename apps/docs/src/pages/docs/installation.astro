@@ -4,6 +4,6 @@ import PageHeader from "../../components/PageHeader.astro";
 import { Content, frontmatter } from "@erbium/content/installation.md";
 ---
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
-  <PageHeader title={frontmatter.title} description={frontmatter.description} category="Getting started" previous={{ title: "Introduction", href: "/docs" }} />
+  <PageHeader title={frontmatter.title} description={frontmatter.description} previous={{ title: "Introduction", href: "/docs" }} />
   <article class="markdown-copy"><Content /></article>
 </DocsLayout>

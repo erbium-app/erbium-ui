@@ -3,7 +3,7 @@ import { Card, CardContent } from "@erbium/ui/components/card";
 export default function Demo() {
   return (
     <Card>
-      <CardContent className="flex flex-wrap gap-3 p-6">
+      <CardContent className="flex flex-wrap gap-3">
         <Button>Primary</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="outline">Outline</Button>

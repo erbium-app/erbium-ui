@@ -4,7 +4,7 @@ import DocsLayout from "../../layouts/DocsLayout.astro";
 import { Content, frontmatter } from "@erbium/content/shimmer.md";
 ---
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
-  <PageHeader title={frontmatter.title} description={frontmatter.description} category="Utilities" />
+  <PageHeader title={frontmatter.title} description={frontmatter.description} />
   <article class="markdown-copy shimmer-copy"><Content /></article>
   <div class="shimmer-demo" aria-label="Shimmer text preview"><p class="shimmer text-muted-foreground">Generating response…</p></div>
 </DocsLayout>

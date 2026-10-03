@@ -14,11 +14,13 @@ interface Props {
   name: string;
   variant: string;
   slug: string;
+  anchorId?: string;
   title: string;
   source: string;
   files: { path: string; source: string }[];
 }
 const { name, variant, slug, title, source, files } = Astro.props;
+const anchorId = Astro.props.anchorId ?? slug;
 const id = `${name}-${slug}`;
 const sources = files.length ? files : [{ path: `${slug}.tsx`, source }];
 const catalog = await loadShowcase(name);
@@ -26,10 +28,10 @@ const story = catalog[variant] as ShowcaseStory;
 const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
 ---
 
-<section id={slug} class="demo-section">
+<section id={anchorId} class="demo-section">
   <Separator class="showcase-header-separator" variant="full" decorative />
   <h2>
-    <a href={`#${slug}`}
+    <a href={`#${anchorId}`}
       >{title}<span class="heading-anchor" aria-hidden="true"><Icon icon={Link01Icon} size={14} /></span></a
     >
   </h2>
