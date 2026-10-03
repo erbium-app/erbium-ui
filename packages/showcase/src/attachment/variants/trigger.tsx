@@ -1,4 +1,4 @@
-import { AttachmentTriggerDemo } from "../examples/upstream/attachment-trigger";
+import { AttachmentTriggerDemo } from "../examples/attachment-trigger";
 
 const Example = () => <AttachmentTriggerDemo />;
 

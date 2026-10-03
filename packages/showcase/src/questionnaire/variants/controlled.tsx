@@ -1,4 +1,4 @@
-import { QuestionnaireControlled } from "../examples/upstream/questionnaire-controlled";
+import { QuestionnaireControlled } from "../examples/questionnaire-controlled";
 
 const Example = () => <QuestionnaireControlled />;
 

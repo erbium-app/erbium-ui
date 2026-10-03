@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/button-group/examples/upstream/button-group-split.tsx",
+      "path": "src/button-group/examples/button-group-split.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/button-group/examples/upstream/button-group-split.tsx",
+      "target": "@components/showcase/button-group/examples/button-group-split.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSplit() {\n  return (\n    <ButtonGroup>\n      <Button variant=\"secondary\">Button</Button>\n      <ButtonGroupSeparator />\n      <Button size=\"icon\" variant=\"secondary\">\n        <HugeiconsIcon icon={PlusIcon} />\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
     },
     {
       "path": "src/button-group/variants/split.tsx",
       "type": "registry:component",
       "target": "@components/showcase/button-group/variants/split.tsx",
-      "content": "import ButtonGroupSplit from \"../examples/upstream/button-group-split\";\n\nconst Example = () => <ButtonGroupSplit />;\n\nexport default Example;\n"
+      "content": "import ButtonGroupSplit from \"../examples/button-group-split\";\n\nconst Example = () => <ButtonGroupSplit />;\n\nexport default Example;\n"
     }
   ]
 }

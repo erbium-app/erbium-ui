@@ -10,7 +10,7 @@ packages/showcase/
       variants/            # One React composition per named variant
         playground.tsx
         controlled.tsx
-      examples/            # Stateful compositions and upstream adaptations
+      examples/            # Scenario compositions, fixtures, and local helpers
       helpers.tsx          # Component-specific shared logic, where needed
     preview.tsx            # Shared CSP and overlay providers
     types.ts               # Framework-independent catalog types
@@ -45,6 +45,6 @@ Registry generation follows relative imports recursively, includes helper files,
 
 The documentation serves the UI registry at `/r/ui/` and the showcase registry at `/r/examples/`, in development and static builds. Storybook serves the showcase package's `public/r` at `/r/`. Generated registry JSON belongs to its source package; applications publish those artifacts during their builds.
 
-`bun run showcase:check` verifies generated artifacts, repository lint/types, variant rendering, registry schema/dependency completeness, and both builds. Tests for stateful compositions stay beside those compositions. Upstream attribution is retained in `src/shared/examples/upstream`.
+`bun run showcase:check` verifies generated artifacts, repository lint/types, variant rendering, registry schema/dependency completeness, and both builds. Tests for stateful compositions stay beside those compositions. Example attribution is retained in [ATTRIBUTION.md](./ATTRIBUTION.md), with licenses under `licenses/`. Examples are organized by component and scenario in `src/<component>/examples`; provenance does not determine their directory.
 
 For a real shadcn CLI installation into a temporary React project with custom aliases, run `bun run showcase:registry:test`. Add `--all` to install all story collections. This integration check installs consumer dependencies and leaves the fixture path in its output for inspection.

@@ -1,4 +1,4 @@
-import { InputInputGroup } from "../examples/upstream/input-input-group";
+import { InputInputGroup } from "../examples/input-input-group";
 
 const Example = () => <InputInputGroup />;
 

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
   "files": [
     {
-      "path": "src/context-menu/examples/upstream/context-menu-checkboxes.tsx",
+      "path": "src/context-menu/examples/context-menu-checkboxes.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/context-menu/examples/upstream/context-menu-checkboxes.tsx",
+      "target": "@components/showcase/context-menu/examples/context-menu-checkboxes.tsx",
       "content": "import {\n  ContextMenu,\n  ContextMenuCheckboxItem,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuTrigger,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuCheckboxes() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuCheckboxItem defaultChecked>Show Bookmarks Bar</ContextMenuCheckboxItem>\n          <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>\n          <ContextMenuCheckboxItem defaultChecked>Show Developer Tools</ContextMenuCheckboxItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
     },
     {
       "path": "src/context-menu/variants/checkboxes.tsx",
       "type": "registry:component",
       "target": "@components/showcase/context-menu/variants/checkboxes.tsx",
-      "content": "import { ContextMenuCheckboxes } from \"../examples/upstream/context-menu-checkboxes\";\n\nconst Example = () => <ContextMenuCheckboxes />;\n\nexport default Example;\n"
+      "content": "import { ContextMenuCheckboxes } from \"../examples/context-menu-checkboxes\";\n\nconst Example = () => <ContextMenuCheckboxes />;\n\nexport default Example;\n"
     }
   ]
 }

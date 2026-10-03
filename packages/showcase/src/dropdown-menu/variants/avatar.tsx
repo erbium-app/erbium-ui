@@ -1,4 +1,4 @@
-import { DropdownMenuAvatar } from "../examples/upstream/dropdown-menu-avatar";
+import { DropdownMenuAvatar } from "../examples/dropdown-menu-avatar";
 
 const Example = () => <DropdownMenuAvatar />;
 

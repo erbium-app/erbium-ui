@@ -1,4 +1,4 @@
-import { DropdownMenuComplex } from "../examples/upstream/dropdown-menu-complex";
+import { DropdownMenuComplex } from "../examples/dropdown-menu-complex";
 
 const Example = () => <DropdownMenuComplex />;
 

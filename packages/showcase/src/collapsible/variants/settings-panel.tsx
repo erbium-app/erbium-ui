@@ -1,4 +1,4 @@
-import { CollapsibleSettings } from "../examples/upstream/collapsible-settings";
+import { CollapsibleSettings } from "../examples/collapsible-settings";
 
 const Example = () => <CollapsibleSettings />;
 

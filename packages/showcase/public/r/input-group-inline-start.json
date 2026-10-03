@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/input-group/examples/upstream/input-group-inline-start.tsx",
+      "path": "src/input-group/examples/input-group-inline-start.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input-group/examples/upstream/input-group-inline-start.tsx",
+      "target": "@components/showcase/input-group/examples/input-group-inline-start.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport function InputGroupInlineStart() {\n  return (\n    <Field className=\"max-w-sm\">\n      <FieldLabel>Input</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon align=\"inline-start\">\n          <HugeiconsIcon icon={Search01Icon} className=\"text-muted-foreground\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <FieldDescription>Icon positioned at the start.</FieldDescription>\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/input-group/variants/inline-start.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input-group/variants/inline-start.tsx",
-      "content": "import { InputGroupInlineStart } from \"../examples/upstream/input-group-inline-start\";\n\nconst Example = () => <InputGroupInlineStart />;\n\nexport default Example;\n"
+      "content": "import { InputGroupInlineStart } from \"../examples/input-group-inline-start\";\n\nconst Example = () => <InputGroupInlineStart />;\n\nexport default Example;\n"
     }
   ]
 }

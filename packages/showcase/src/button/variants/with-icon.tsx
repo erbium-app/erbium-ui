@@ -1,4 +1,4 @@
-import ButtonWithIcon from "../examples/upstream/button-with-icon";
+import ButtonWithIcon from "../examples/button-with-icon";
 
 const Example = () => <ButtonWithIcon />;
 

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
   "files": [
     {
-      "path": "src/dropdown-menu/examples/upstream/dropdown-menu-basic.tsx",
+      "path": "src/dropdown-menu/examples/dropdown-menu-basic.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/dropdown-menu/examples/upstream/dropdown-menu-basic.tsx",
+      "target": "@components/showcase/dropdown-menu/examples/dropdown-menu-basic.tsx",
       "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuBasic() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuGroup>\n          <DropdownMenuLabel>My Account</DropdownMenuLabel>\n          <DropdownMenuItem>Profile</DropdownMenuItem>\n          <DropdownMenuItem>Billing</DropdownMenuItem>\n          <DropdownMenuItem>Settings</DropdownMenuItem>\n        </DropdownMenuGroup>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem>GitHub</DropdownMenuItem>\n        <DropdownMenuItem>Support</DropdownMenuItem>\n        <DropdownMenuItem disabled>API</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
     },
     {
       "path": "src/dropdown-menu/variants/basic.tsx",
       "type": "registry:component",
       "target": "@components/showcase/dropdown-menu/variants/basic.tsx",
-      "content": "import { DropdownMenuBasic } from \"../examples/upstream/dropdown-menu-basic\";\n\nconst Example = () => <DropdownMenuBasic />;\n\nexport default Example;\n"
+      "content": "import { DropdownMenuBasic } from \"../examples/dropdown-menu-basic\";\n\nconst Example = () => <DropdownMenuBasic />;\n\nexport default Example;\n"
     }
   ]
 }

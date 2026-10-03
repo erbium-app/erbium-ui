@@ -1,4 +1,4 @@
-import { RadioGroupFieldset } from "../examples/upstream/radio-group-fieldset";
+import { RadioGroupFieldset } from "../examples/radio-group-fieldset";
 
 const Example = () => <RadioGroupFieldset />;
 

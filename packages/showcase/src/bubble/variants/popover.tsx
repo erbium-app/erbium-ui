@@ -1,4 +1,4 @@
-import { BubblePopoverDemo } from "../examples/upstream/bubble-popover";
+import { BubblePopoverDemo } from "../examples/bubble-popover";
 
 const Example = () => <BubblePopoverDemo />;
 

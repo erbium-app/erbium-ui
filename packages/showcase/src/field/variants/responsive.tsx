@@ -1,4 +1,4 @@
-import { FieldResponsive } from "../examples/upstream/field-responsive";
+import { FieldResponsive } from "../examples/field-profile-form";
 
 const Example = () => <FieldResponsive />;
 

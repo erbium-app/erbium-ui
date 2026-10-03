@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
   "files": [
     {
-      "path": "src/attachment/examples/upstream/attachment-sizes.tsx",
+      "path": "src/attachment/examples/attachment-sizes.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/attachment/examples/upstream/attachment-sizes.tsx",
+      "target": "@components/showcase/attachment/examples/attachment-sizes.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport FileTextIcon from \"@hugeicons/core-free-icons/FileTextIcon\";\n\nimport {\n  Attachment,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentMedia,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\n\nexport function AttachmentSizes() {\n  return (\n    <div className=\"mx-auto flex w-full max-w-sm flex-col gap-3 py-12\">\n      <Attachment size=\"default\" className=\"w-full\">\n        <AttachmentMedia>\n          <HugeiconsIcon icon={FileTextIcon} />\n        </AttachmentMedia>\n        <AttachmentContent>\n          <AttachmentTitle>Default attachment</AttachmentTitle>\n          <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>\n        </AttachmentContent>\n      </Attachment>\n      <Attachment size=\"sm\" className=\"w-full\">\n        <AttachmentMedia>\n          <HugeiconsIcon icon={FileTextIcon} />\n        </AttachmentMedia>\n        <AttachmentContent>\n          <AttachmentTitle>Small attachment</AttachmentTitle>\n          <AttachmentDescription>PDF · 2.4 MB</AttachmentDescription>\n        </AttachmentContent>\n      </Attachment>\n      <Attachment size=\"xs\" className=\"w-full\">\n        <AttachmentMedia>\n          <HugeiconsIcon icon={FileTextIcon} />\n        </AttachmentMedia>\n        <AttachmentContent>\n          <AttachmentTitle>Extra small attachment</AttachmentTitle>\n        </AttachmentContent>\n      </Attachment>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/attachment/variants/sizes.tsx",
       "type": "registry:component",
       "target": "@components/showcase/attachment/variants/sizes.tsx",
-      "content": "import { AttachmentSizes } from \"../examples/upstream/attachment-sizes\";\n\nconst Example = () => <AttachmentSizes />;\n\nexport default Example;\n"
+      "content": "import { AttachmentSizes } from \"../examples/attachment-sizes\";\n\nconst Example = () => <AttachmentSizes />;\n\nexport default Example;\n"
     }
   ]
 }

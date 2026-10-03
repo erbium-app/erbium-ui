@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
   "files": [
     {
-      "path": "src/drawer/examples/upstream/drawer-swipe-handle.tsx",
+      "path": "src/drawer/examples/drawer-swipe-handle.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/drawer/examples/upstream/drawer-swipe-handle.tsx",
+      "target": "@components/showcase/drawer/examples/drawer-swipe-handle.tsx",
       "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerContent,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\n\nexport function DrawerSwipeHandle() {\n  return (\n    <Drawer showSwipeHandle>\n      <DrawerTrigger render={<Button variant=\"secondary\" />}>Open Drawer</DrawerTrigger>\n      <DrawerPanel>\n        <DrawerHeader>\n          <DrawerTitle>Drawer</DrawerTitle>\n          <DrawerDescription>Drawer with a swipe handle.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>\n          <div className=\"rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full\" />\n        </DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button />}>Close</DrawerClose>\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n"
     },
     {
       "path": "src/drawer/variants/swipe-handle.tsx",
       "type": "registry:component",
       "target": "@components/showcase/drawer/variants/swipe-handle.tsx",
-      "content": "import { DrawerSwipeHandle } from \"../examples/upstream/drawer-swipe-handle\";\n\nconst Example = () => <DrawerSwipeHandle />;\n\nexport default Example;\n"
+      "content": "import { DrawerSwipeHandle } from \"../examples/drawer-swipe-handle\";\n\nconst Example = () => <DrawerSwipeHandle />;\n\nexport default Example;\n"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { InputField } from "../examples/upstream/input-field";
+import { InputField } from "../examples/input-field";
 
 const Example = () => <InputField />;
 

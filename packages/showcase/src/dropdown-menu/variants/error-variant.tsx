@@ -1,4 +1,4 @@
-import { DropdownMenuError } from "../examples/upstream/dropdown-menu-error";
+import { DropdownMenuError } from "../examples/dropdown-menu-error";
 
 const Example = () => <DropdownMenuError />;
 

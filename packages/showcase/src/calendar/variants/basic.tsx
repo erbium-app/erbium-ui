@@ -1,4 +1,4 @@
-import CalendarBasic from "../examples/upstream/calendar-basic";
+import CalendarBasic from "../examples/calendar-basic";
 
 const Example = () => <CalendarBasic />;
 

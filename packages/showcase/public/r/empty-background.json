@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/styles"],
   "files": [
     {
-      "path": "src/empty/examples/upstream/empty-background.tsx",
+      "path": "src/empty/examples/empty-background.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/empty/examples/upstream/empty-background.tsx",
+      "target": "@components/showcase/empty/examples/empty-background.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BellIcon from \"@hugeicons/core-free-icons/BellIcon\";\nimport RefreshCcwIcon from \"@hugeicons/core-free-icons/RefreshCcwIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport function EmptyMuted() {\n  return (\n    <Empty className=\"h-full bg-muted/30\">\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <HugeiconsIcon icon={BellIcon} />\n        </EmptyMedia>\n        <EmptyTitle>No Notifications</EmptyTitle>\n        <EmptyDescription className=\"max-w-xs text-pretty\">\n          You&apos;re all caught up. New notifications will appear here.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\">\n          <HugeiconsIcon icon={RefreshCcwIcon} data-icon=\"inline-start\" />\n          Refresh\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
     },
     {
       "path": "src/empty/variants/background.tsx",
       "type": "registry:component",
       "target": "@components/showcase/empty/variants/background.tsx",
-      "content": "import { EmptyMuted } from \"../examples/upstream/empty-background\";\n\nconst Example = () => <EmptyMuted />;\n\nexport default Example;\n"
+      "content": "import { EmptyMuted } from \"../examples/empty-background\";\n\nconst Example = () => <EmptyMuted />;\n\nexport default Example;\n"
     }
   ]
 }

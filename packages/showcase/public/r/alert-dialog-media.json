@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "path": "src/alert-dialog/examples/upstream/alert-dialog-media.tsx",
+      "path": "src/alert-dialog/examples/alert-dialog-media.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-media.tsx",
+      "target": "@components/showcase/alert-dialog/examples/alert-dialog-media.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CircleFadingPlusIcon from \"@hugeicons/core-free-icons/CircleFadingPlusIcon\";\n\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogWithMedia() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Share Project</Button>} />\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogMedia>\n            <HugeiconsIcon icon={CircleFadingPlusIcon} />\n          </AlertDialogMedia>\n          <AlertDialogTitle>Share this project?</AlertDialogTitle>\n          <AlertDialogDescription>\n            Anyone with the link will be able to view and edit this project.\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Cancel</AlertDialogCancel>\n          <AlertDialogAction>Share</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
     },
     {
       "path": "src/alert-dialog/variants/media.tsx",
       "type": "registry:component",
       "target": "@components/showcase/alert-dialog/variants/media.tsx",
-      "content": "import { AlertDialogWithMedia } from \"../examples/upstream/alert-dialog-media\";\n\nconst Example = () => <AlertDialogWithMedia />;\n\nexport default Example;\n"
+      "content": "import { AlertDialogWithMedia } from \"../examples/alert-dialog-media\";\n\nconst Example = () => <AlertDialogWithMedia />;\n\nexport default Example;\n"
     }
   ]
 }

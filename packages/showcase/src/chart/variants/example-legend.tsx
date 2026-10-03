@@ -1,4 +1,4 @@
-import { ChartBarDemoLegend } from "../examples/upstream/chart-example-legend";
+import { ChartBarDemoLegend } from "../examples/chart-example-legend";
 
 const Example = () => <ChartBarDemoLegend />;
 

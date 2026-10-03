@@ -1,4 +1,4 @@
-import { MessageAvatarDemo } from "../examples/upstream/message-avatar";
+import { MessageAvatarDemo } from "../examples/message-avatar";
 
 const Example = () => <MessageAvatarDemo />;
 

@@ -1,4 +1,4 @@
-import { ItemImage } from "../examples/upstream/item-image";
+import { ItemImage } from "../examples/item-image";
 
 const Example = () => <ItemImage />;
 

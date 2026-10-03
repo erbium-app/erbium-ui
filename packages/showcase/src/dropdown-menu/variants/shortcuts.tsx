@@ -1,4 +1,4 @@
-import { DropdownMenuShortcuts } from "../examples/upstream/dropdown-menu-shortcuts";
+import { DropdownMenuShortcuts } from "../examples/dropdown-menu-shortcuts";
 
 const Example = () => <DropdownMenuShortcuts />;
 

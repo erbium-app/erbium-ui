@@ -1,4 +1,4 @@
-import { DialogStickyFooter } from "../examples/upstream/dialog-sticky-footer";
+import { DialogStickyFooter } from "../examples/dialog-sticky-footer";
 
 const Example = () => <DialogStickyFooter />;
 

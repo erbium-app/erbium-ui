@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/card", "@erbium/carousel", "@erbium/styles"],
   "files": [
     {
-      "path": "src/carousel/examples/upstream/carousel-plugin.tsx",
+      "path": "src/carousel/examples/carousel-plugin.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/carousel/examples/upstream/carousel-plugin.tsx",
+      "target": "@components/showcase/carousel/examples/carousel-plugin.tsx",
       "content": "import * as React from \"react\";\nimport Autoplay from \"embla-carousel-autoplay\";\n\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nimport {\n  Carousel,\n  CarouselContent,\n  CarouselItem,\n  CarouselNext,\n  CarouselPrevious,\n} from \"@/registry/erbium/ui/carousel\";\n\nexport default function CarouselPlugin() {\n  const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));\n\n  return (\n    <Carousel\n      plugins={[plugin.current]}\n      className=\"w-full max-w-[10rem] sm:max-w-xs\"\n      onMouseEnter={plugin.current.stop}\n      onMouseLeave={plugin.current.reset}\n    >\n      <CarouselContent>\n        {Array.from({ length: 5 }).map((_, index) => (\n          <CarouselItem key={index}>\n            <div className=\"p-1\">\n              <Card>\n                <CardContent className=\"flex aspect-square items-center justify-center p-6\">\n                  <span className=\"text-4xl font-semibold\">{index + 1}</span>\n                </CardContent>\n              </Card>\n            </div>\n          </CarouselItem>\n        ))}\n      </CarouselContent>\n      <CarouselPrevious />\n      <CarouselNext />\n    </Carousel>\n  );\n}\n"
     },
     {
       "path": "src/carousel/variants/plugin.tsx",
       "type": "registry:component",
       "target": "@components/showcase/carousel/variants/plugin.tsx",
-      "content": "import CarouselPlugin from \"../examples/upstream/carousel-plugin\";\n\nconst Example = () => <CarouselPlugin />;\n\nexport default Example;\n"
+      "content": "import CarouselPlugin from \"../examples/carousel-plugin\";\n\nconst Example = () => <CarouselPlugin />;\n\nexport default Example;\n"
     }
   ]
 }

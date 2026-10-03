@@ -1,4 +1,4 @@
-import { BreadcrumbEllipsisDemo } from "../examples/upstream/breadcrumb-ellipsis";
+import { BreadcrumbEllipsisDemo } from "../examples/breadcrumb-ellipsis";
 
 const Example = () => <BreadcrumbEllipsisDemo />;
 

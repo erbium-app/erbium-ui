@@ -1,4 +1,4 @@
-import { CommandWithGroups } from "../examples/upstream/command-groups";
+import { CommandWithGroups } from "../examples/command-groups";
 
 const Example = () => <CommandWithGroups />;
 

@@ -1,4 +1,4 @@
-import { InputRequired } from "../examples/upstream/input-required";
+import { InputRequired } from "../examples/input-required";
 
 const Example = () => <InputRequired />;
 

@@ -1,4 +1,4 @@
-import { SkeletonText } from "../examples/upstream/skeleton-text";
+import { SkeletonText } from "../examples/skeleton-text";
 
 const Example = () => <SkeletonText />;
 

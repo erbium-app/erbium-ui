@@ -1,4 +1,4 @@
-import { CollapsibleFileTree } from "../examples/upstream/collapsible-file-tree";
+import { CollapsibleFileTree } from "../examples/collapsible-file-tree";
 
 const Example = () => <CollapsibleFileTree />;
 

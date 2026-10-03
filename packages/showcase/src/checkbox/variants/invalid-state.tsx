@@ -1,4 +1,4 @@
-import { CheckboxInvalid } from "../examples/upstream/checkbox-invalid";
+import { CheckboxInvalid } from "../examples/checkbox-invalid";
 
 const Example = () => <CheckboxInvalid />;
 

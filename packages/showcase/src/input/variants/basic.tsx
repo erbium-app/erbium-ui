@@ -1,4 +1,4 @@
-import { InputBasic } from "../examples/upstream/input-basic";
+import { InputBasic } from "../examples/input-basic";
 
 const Example = () => <InputBasic />;
 

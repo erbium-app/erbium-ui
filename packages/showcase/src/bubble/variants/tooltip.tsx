@@ -1,4 +1,4 @@
-import { BubbleTooltipDemo } from "../examples/upstream/bubble-tooltip";
+import { BubbleTooltipDemo } from "../examples/bubble-tooltip";
 
 const Example = () => <BubbleTooltipDemo />;
 

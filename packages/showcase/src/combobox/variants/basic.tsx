@@ -1,4 +1,4 @@
-import ComboboxBasic from "../examples/upstream/combobox-basic";
+import ComboboxBasic from "../examples/combobox-basic";
 
 const Example = () => <ComboboxBasic />;
 

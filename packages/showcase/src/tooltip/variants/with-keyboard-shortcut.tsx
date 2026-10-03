@@ -1,4 +1,4 @@
-import { TooltipKeyboard } from "../examples/upstream/tooltip-keyboard";
+import { TooltipKeyboard } from "../examples/tooltip-keyboard";
 
 const Example = () => <TooltipKeyboard />;
 

@@ -1,4 +1,4 @@
-import { SwitchChoiceCard } from "../examples/upstream/switch-choice-card";
+import { SwitchChoiceCard } from "../examples/switch-choice-card";
 
 const Example = () => <SwitchChoiceCard />;
 

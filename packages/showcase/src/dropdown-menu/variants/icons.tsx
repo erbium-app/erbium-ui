@@ -1,4 +1,4 @@
-import { DropdownMenuIcons } from "../examples/upstream/dropdown-menu-icons";
+import { DropdownMenuIcons } from "../examples/dropdown-menu-icons";
 
 const Example = () => <DropdownMenuIcons />;
 

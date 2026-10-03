@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "path": "src/textarea/examples/upstream/textarea-button.tsx",
+      "path": "src/textarea/examples/textarea-button.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/textarea/examples/upstream/textarea-button.tsx",
+      "target": "@components/showcase/textarea/examples/textarea-button.tsx",
       "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport function TextareaButton() {\n  return (\n    <div className=\"grid w-full gap-2\">\n      <Textarea placeholder=\"Type your message here.\" />\n      <Button>Send message</Button>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/textarea/variants/button.tsx",
       "type": "registry:component",
       "target": "@components/showcase/textarea/variants/button.tsx",
-      "content": "import { TextareaButton } from \"../examples/upstream/textarea-button\";\n\nconst Example = () => <TextareaButton />;\n\nexport default Example;\n"
+      "content": "import { TextareaButton } from \"../examples/textarea-button\";\n\nconst Example = () => <TextareaButton />;\n\nexport default Example;\n"
     }
   ]
 }

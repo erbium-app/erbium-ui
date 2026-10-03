@@ -1,4 +1,4 @@
-import { SkeletonTable } from "../examples/upstream/skeleton-table";
+import { SkeletonTable } from "../examples/skeleton-table";
 
 const Example = () => <SkeletonTable />;
 

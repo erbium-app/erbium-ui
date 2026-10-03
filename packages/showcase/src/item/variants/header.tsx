@@ -1,4 +1,4 @@
-import { ItemHeaderDemo } from "../examples/upstream/item-header";
+import { ItemHeaderDemo } from "../examples/item-header";
 
 const Example = () => <ItemHeaderDemo />;
 

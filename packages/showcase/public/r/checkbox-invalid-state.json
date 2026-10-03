@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
-      "path": "src/checkbox/examples/upstream/checkbox-invalid.tsx",
+      "path": "src/checkbox/examples/checkbox-invalid.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/checkbox/examples/upstream/checkbox-invalid.tsx",
+      "target": "@components/showcase/checkbox/examples/checkbox-invalid.tsx",
       "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxInvalid() {\n  return (\n    <FieldGroup className=\"mx-auto w-56\">\n      <Field orientation=\"horizontal\" invalid>\n        <Checkbox name=\"terms-checkbox-invalid\" />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
     },
     {
       "path": "src/checkbox/variants/invalid-state.tsx",
       "type": "registry:component",
       "target": "@components/showcase/checkbox/variants/invalid-state.tsx",
-      "content": "import { CheckboxInvalid } from \"../examples/upstream/checkbox-invalid\";\n\nconst Example = () => <CheckboxInvalid />;\n\nexport default Example;\n"
+      "content": "import { CheckboxInvalid } from \"../examples/checkbox-invalid\";\n\nconst Example = () => <CheckboxInvalid />;\n\nexport default Example;\n"
     }
   ]
 }

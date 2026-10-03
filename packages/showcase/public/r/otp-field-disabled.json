@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
-      "path": "src/otp-field/examples/upstream/otp-field-disabled.tsx",
+      "path": "src/otp-field/examples/otp-field-disabled.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/otp-field/examples/upstream/otp-field-disabled.tsx",
+      "target": "@components/showcase/otp-field/examples/otp-field-disabled.tsx",
       "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldDisabled() {\n  return (\n    <OTPField aria-label=\"Verification code\" length={6} groups={[3, 3]} disabled value=\"123456\" />\n  );\n}\n"
     },
     {
       "path": "src/otp-field/variants/disabled.tsx",
       "type": "registry:component",
       "target": "@components/showcase/otp-field/variants/disabled.tsx",
-      "content": "import { OTPFieldDisabled } from \"../examples/upstream/otp-field-disabled\";\n\nconst Example = () => <OTPFieldDisabled />;\n\nexport default Example;\n"
+      "content": "import { OTPFieldDisabled } from \"../examples/otp-field-disabled\";\n\nconst Example = () => <OTPFieldDisabled />;\n\nexport default Example;\n"
     }
   ]
 }

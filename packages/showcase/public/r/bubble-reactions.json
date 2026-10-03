@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "path": "src/bubble/examples/upstream/bubble-reactions.tsx",
+      "path": "src/bubble/examples/bubble-reactions.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/bubble/examples/upstream/bubble-reactions.tsx",
+      "target": "@components/showcase/bubble/examples/bubble-reactions.tsx",
       "content": "import { toast } from \"@/registry/erbium/ui/toast\";\n\nimport { Bubble, BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function BubbleReactionsDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-12 py-12\">\n      <Bubble variant=\"muted\" align=\"end\">\n        <BubbleContent>I don&apos;t need tests, I know my code works.</BubbleContent>\n        <BubbleReactions align=\"start\" role=\"img\" aria-label=\"Reactions: thumbs up, surprised\">\n          <span>👍</span>\n          <span>😮</span>\n        </BubbleReactions>\n      </Bubble>\n      <Bubble variant=\"muted\">\n        <BubbleContent>\n          Bold. Fine I&apos;ll add some tests. I&apos;ll let you know when they&apos;re done.\n        </BubbleContent>\n        <BubbleReactions role=\"img\" aria-label=\"Reactions: eyes, rocket, and 2 more\">\n          <span>👀</span>\n          <span>🚀</span>\n          <span>+2</span>\n        </BubbleReactions>\n      </Bubble>\n      <Bubble variant=\"default\" align=\"end\">\n        <BubbleContent>Tests passed on the first try. All 142 of them. Looking good!</BubbleContent>\n        <BubbleReactions\n          side=\"top\"\n          align=\"start\"\n          role=\"img\"\n          aria-label=\"Reactions: party popper, clapping hands\"\n        >\n          <span>🎉</span>\n          <span>👏</span>\n        </BubbleReactions>\n      </Bubble>\n      <Bubble variant=\"error\">\n        <BubbleContent>Are you sure I can run this command?</BubbleContent>\n        <BubbleReactions>\n          <Button\n            variant=\"ghost\"\n            size=\"xs\"\n            onClick={() =>\n              toast.add({ type: \"success\", title: \"You clicked yes, running command...\" })\n            }\n          >\n            Yes, run it\n          </Button>\n        </BubbleReactions>\n      </Bubble>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/bubble/variants/reactions.tsx",
       "type": "registry:component",
       "target": "@components/showcase/bubble/variants/reactions.tsx",
-      "content": "import { BubbleReactionsDemo } from \"../examples/upstream/bubble-reactions\";\n\nconst Example = () => <BubbleReactionsDemo />;\n\nexport default Example;\n"
+      "content": "import { BubbleReactionsDemo } from \"../examples/bubble-reactions\";\n\nconst Example = () => <BubbleReactionsDemo />;\n\nexport default Example;\n"
     }
   ]
 }

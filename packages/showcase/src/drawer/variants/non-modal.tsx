@@ -1,4 +1,4 @@
-import { DrawerNonModal } from "../examples/upstream/drawer-non-modal";
+import { DrawerNonModal } from "../examples/drawer-non-modal";
 
 const Example = () => <DrawerNonModal />;
 

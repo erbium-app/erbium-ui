@@ -1,4 +1,4 @@
-import { CommandBasic } from "../examples/upstream/command-basic";
+import { CommandBasic } from "../examples/command-basic";
 
 const Example = () => <CommandBasic />;
 

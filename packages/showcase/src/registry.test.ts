@@ -23,6 +23,9 @@ it.each(registry.items)("$name is a complete installable registry item", ({ name
   const files = new Set(item.files?.map((file) => file.path));
   for (const file of item.files ?? []) {
     expect(file.target).toMatch(/^@components\/showcase\//);
+    expect(file.path).not.toMatch(/\/upstream\//);
+    expect(file.target).not.toMatch(/\/upstream\//);
+    expect(file.content).not.toContain("/examples/upstream/");
     expect(file.content).not.toContain("variantDocumentation(");
     expect(file.content).not.toContain("componentDocumentation(");
     for (const [, specifier] of file.content?.matchAll(

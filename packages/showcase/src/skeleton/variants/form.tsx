@@ -1,4 +1,4 @@
-import { SkeletonForm } from "../examples/upstream/skeleton-form";
+import { SkeletonForm } from "../examples/skeleton-form";
 
 const Example = () => <SkeletonForm />;
 

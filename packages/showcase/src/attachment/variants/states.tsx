@@ -1,4 +1,4 @@
-import { AttachmentStates } from "../examples/upstream/attachment-states";
+import { AttachmentStates } from "../examples/attachment-states";
 
 const Example = () => <AttachmentStates />;
 

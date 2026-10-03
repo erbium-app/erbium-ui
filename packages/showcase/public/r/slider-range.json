@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
-      "path": "src/slider/examples/upstream/slider-range.tsx",
+      "path": "src/slider/examples/slider-range.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/slider/examples/upstream/slider-range.tsx",
+      "target": "@components/showcase/slider/examples/slider-range.tsx",
       "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderRange() {\n  return <Slider defaultValue={[25, 50]} max={100} step={5} className=\"mx-auto w-full max-w-xs\" />;\n}\n"
     },
     {
       "path": "src/slider/variants/range.tsx",
       "type": "registry:component",
       "target": "@components/showcase/slider/variants/range.tsx",
-      "content": "import { SliderRange } from \"../examples/upstream/slider-range\";\n\nconst Example = () => <SliderRange />;\n\nexport default Example;\n"
+      "content": "import { SliderRange } from \"../examples/slider-range\";\n\nconst Example = () => <SliderRange />;\n\nexport default Example;\n"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { ContextMenuIcons } from "../examples/upstream/context-menu-icons";
+import { ContextMenuIcons } from "../examples/context-menu-icons";
 
 const Example = () => <ContextMenuIcons />;
 

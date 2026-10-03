@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/select", "@erbium/styles"],
   "files": [
     {
-      "path": "src/select/examples/upstream/select-invalid.tsx",
+      "path": "src/select/examples/select-invalid.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/select/examples/upstream/select-invalid.tsx",
+      "target": "@components/showcase/select/examples/select-invalid.tsx",
       "content": "import { Field, FieldError, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nconst items = [\n  { label: \"Select a fruit\", value: null },\n  { label: \"Apple\", value: \"apple\" },\n  { label: \"Banana\", value: \"banana\" },\n  { label: \"Blueberry\", value: \"blueberry\" },\n];\n\nexport function SelectInvalid() {\n  return (\n    <Field invalid className=\"w-full max-w-48\">\n      <FieldLabel>Fruit</FieldLabel>\n      <Select items={items}>\n        <SelectTrigger>\n          <SelectValue />\n        </SelectTrigger>\n        <SelectContent>\n          <SelectGroup>\n            {items.map((item) => (\n              <SelectItem key={item.value} value={item.value}>\n                {item.label}\n              </SelectItem>\n            ))}\n          </SelectGroup>\n        </SelectContent>\n      </Select>\n      <FieldError match>Please select a fruit.</FieldError>\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/select/variants/invalid.tsx",
       "type": "registry:component",
       "target": "@components/showcase/select/variants/invalid.tsx",
-      "content": "import { SelectInvalid } from \"../examples/upstream/select-invalid\";\n\nconst Example = () => <SelectInvalid />;\n\nexport default Example;\n"
+      "content": "import { SelectInvalid } from \"../examples/select-invalid\";\n\nconst Example = () => <SelectInvalid />;\n\nexport default Example;\n"
     }
   ]
 }

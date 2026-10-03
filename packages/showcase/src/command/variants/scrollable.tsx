@@ -1,4 +1,4 @@
-import { CommandManyItems } from "../examples/upstream/command-scrollable";
+import { CommandManyItems } from "../examples/command-scrollable";
 
 const Example = () => <CommandManyItems />;
 

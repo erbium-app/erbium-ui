@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/styles"],
   "files": [
     {
-      "path": "src/empty/examples/upstream/empty-outline.tsx",
+      "path": "src/empty/examples/empty-outline.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/empty/examples/upstream/empty-outline.tsx",
+      "target": "@components/showcase/empty/examples/empty-outline.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CloudIcon from \"@hugeicons/core-free-icons/CloudIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <HugeiconsIcon icon={CloudIcon} />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\" size=\"sm\">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
     },
     {
       "path": "src/empty/variants/outline.tsx",
       "type": "registry:component",
       "target": "@components/showcase/empty/variants/outline.tsx",
-      "content": "import EmptyOutline from \"../examples/upstream/empty-outline\";\n\nconst Example = () => <EmptyOutline />;\n\nexport default Example;\n"
+      "content": "import EmptyOutline from \"../examples/empty-outline\";\n\nconst Example = () => <EmptyOutline />;\n\nexport default Example;\n"
     }
   ]
 }

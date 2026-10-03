@@ -1,4 +1,4 @@
-import EmptyInputGroup from "../examples/upstream/empty-input-group";
+import EmptyInputGroup from "../examples/empty-input-group";
 
 const Example = () => <EmptyInputGroup />;
 

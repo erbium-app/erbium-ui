@@ -1,4 +1,4 @@
-import { ContextMenuGroups } from "../examples/upstream/context-menu-groups";
+import { ContextMenuGroups } from "../examples/context-menu-groups";
 
 const Example = () => <ContextMenuGroups />;
 

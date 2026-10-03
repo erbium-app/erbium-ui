@@ -1,4 +1,4 @@
-import { ToastPromise } from "../examples/upstream/toast-promise";
+import { ToastPromise } from "../examples/toast-promise";
 
 const Example = () => <ToastPromise />;
 

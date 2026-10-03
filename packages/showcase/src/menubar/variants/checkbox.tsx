@@ -1,4 +1,4 @@
-import { MenubarCheckbox } from "../examples/upstream/menubar-checkbox";
+import { MenubarCheckbox } from "../examples/menubar-checkbox";
 
 const Example = () => <MenubarCheckbox />;
 

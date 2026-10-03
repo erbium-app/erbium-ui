@@ -1,4 +1,4 @@
-import { ChartBarDemoAxis } from "../examples/upstream/chart-example-axis";
+import { ChartBarDemoAxis } from "../examples/chart-example-axis";
 
 const Example = () => <ChartBarDemoAxis />;
 

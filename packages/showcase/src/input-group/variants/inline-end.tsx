@@ -1,4 +1,4 @@
-import { InputGroupInlineEnd } from "../examples/upstream/input-group-inline-end";
+import { InputGroupInlineEnd } from "../examples/input-group-inline-end";
 
 const Example = () => <InputGroupInlineEnd />;
 

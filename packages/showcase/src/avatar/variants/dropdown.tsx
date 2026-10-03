@@ -1,4 +1,4 @@
-import { AvatarDropdown } from "../examples/upstream/avatar-dropdown";
+import { AvatarDropdown } from "../examples/avatar-dropdown";
 
 const Example = () => <AvatarDropdown />;
 

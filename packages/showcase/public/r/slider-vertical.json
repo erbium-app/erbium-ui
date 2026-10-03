@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
-      "path": "src/slider/examples/upstream/slider-vertical.tsx",
+      "path": "src/slider/examples/slider-vertical.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/slider/examples/upstream/slider-vertical.tsx",
+      "target": "@components/showcase/slider/examples/slider-vertical.tsx",
       "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderVertical() {\n  return (\n    <div className=\"mx-auto flex w-full max-w-xs items-center justify-center gap-6\">\n      <Slider defaultValue={[50]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n      <Slider defaultValue={[25]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/slider/variants/vertical.tsx",
       "type": "registry:component",
       "target": "@components/showcase/slider/variants/vertical.tsx",
-      "content": "import { SliderVertical } from \"../examples/upstream/slider-vertical\";\n\nconst Example = () => <SliderVertical />;\n\nexport default Example;\n"
+      "content": "import { SliderVertical } from \"../examples/slider-vertical\";\n\nconst Example = () => <SliderVertical />;\n\nexport default Example;\n"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import ButtonLoading from "../examples/upstream/button-spinner";
+import ButtonLoading from "../examples/button-spinner";
 
 const Example = () => <ButtonLoading />;
 

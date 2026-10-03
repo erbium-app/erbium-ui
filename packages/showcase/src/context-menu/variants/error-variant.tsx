@@ -1,4 +1,4 @@
-import { ContextMenuError } from "../examples/upstream/context-menu-error";
+import { ContextMenuError } from "../examples/context-menu-error";
 
 const Example = () => <ContextMenuError />;
 

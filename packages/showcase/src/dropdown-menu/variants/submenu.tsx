@@ -1,4 +1,4 @@
-import { DropdownMenuSubmenu } from "../examples/upstream/dropdown-menu-submenu";
+import { DropdownMenuSubmenu } from "../examples/dropdown-menu-submenu";
 
 const Example = () => <DropdownMenuSubmenu />;
 

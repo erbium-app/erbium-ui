@@ -1,4 +1,4 @@
-import { ComboboxDisabled } from "../examples/upstream/combobox-disabled";
+import { ComboboxDisabled } from "../examples/combobox-disabled";
 
 const Example = () => <ComboboxDisabled />;
 

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/progress", "@erbium/styles"],
   "files": [
     {
-      "path": "src/progress/examples/upstream/progress-label.tsx",
+      "path": "src/progress/examples/progress-label.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/progress/examples/upstream/progress-label.tsx",
+      "target": "@components/showcase/progress/examples/progress-label.tsx",
       "content": "import { Progress, ProgressLabel, ProgressValue } from \"@/registry/erbium/ui/progress\";\n\nexport function ProgressWithLabel() {\n  return (\n    <Progress value={56} className=\"w-full max-w-sm\">\n      <ProgressLabel>Upload progress</ProgressLabel>\n      <ProgressValue />\n    </Progress>\n  );\n}\n"
     },
     {
       "path": "src/progress/variants/label.tsx",
       "type": "registry:component",
       "target": "@components/showcase/progress/variants/label.tsx",
-      "content": "import { ProgressWithLabel } from \"../examples/upstream/progress-label\";\n\nconst Example = () => <ProgressWithLabel />;\n\nexport default Example;\n"
+      "content": "import { ProgressWithLabel } from \"../examples/progress-label\";\n\nconst Example = () => <ProgressWithLabel />;\n\nexport default Example;\n"
     }
   ]
 }

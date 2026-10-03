@@ -1,4 +1,4 @@
-import { TextareaButton } from "../examples/upstream/textarea-button";
+import { TextareaButton } from "../examples/textarea-button";
 
 const Example = () => <TextareaButton />;
 

@@ -1,4 +1,4 @@
-import { BubbleReactionsDemo } from "../examples/upstream/bubble-reactions";
+import { BubbleReactionsDemo } from "../examples/bubble-reactions";
 
 const Example = () => <BubbleReactionsDemo />;
 

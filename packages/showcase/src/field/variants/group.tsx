@@ -1,4 +1,4 @@
-import FieldGroupExample from "../examples/upstream/field-group";
+import FieldGroupExample from "../examples/field-notification-settings";
 
 const Example = () => <FieldGroupExample />;
 

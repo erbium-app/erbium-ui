@@ -1,4 +1,4 @@
-import { OTPFieldStatusDemo } from "../examples/upstream/otp-field-status";
+import { OTPFieldStatusDemo } from "../examples/otp-field-status";
 
 const Example = () => <OTPFieldStatusDemo />;
 

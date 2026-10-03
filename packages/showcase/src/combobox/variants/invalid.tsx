@@ -1,4 +1,4 @@
-import { ComboboxInvalid } from "../examples/upstream/combobox-invalid";
+import { ComboboxInvalid } from "../examples/combobox-invalid";
 
 const Example = () => <ComboboxInvalid />;
 

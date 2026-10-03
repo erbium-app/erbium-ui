@@ -1,4 +1,4 @@
-import { DialogNoCloseButton } from "../examples/upstream/dialog-no-close-button";
+import { DialogNoCloseButton } from "../examples/dialog-no-close-button";
 
 const Example = () => <DialogNoCloseButton />;
 

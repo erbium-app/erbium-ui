@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "path": "src/alert-dialog/examples/upstream/alert-dialog-small.tsx",
+      "path": "src/alert-dialog/examples/alert-dialog-small.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/alert-dialog/examples/upstream/alert-dialog-small.tsx",
+      "target": "@components/showcase/alert-dialog/examples/alert-dialog-small.tsx",
       "content": "import {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/registry/erbium/ui/alert-dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport function AlertDialogSmall() {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger render={<Button variant=\"outline\">Show Dialog</Button>} />\n      <AlertDialogContent size=\"sm\">\n        <AlertDialogHeader>\n          <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>\n          <AlertDialogDescription>\n            Do you want to allow the USB accessory to connect to this device?\n          </AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel>Don&apos;t allow</AlertDialogCancel>\n          <AlertDialogAction>Allow</AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n"
     },
     {
       "path": "src/alert-dialog/variants/small.tsx",
       "type": "registry:component",
       "target": "@components/showcase/alert-dialog/variants/small.tsx",
-      "content": "import { AlertDialogSmall } from \"../examples/upstream/alert-dialog-small\";\n\nconst Example = () => <AlertDialogSmall />;\n\nexport default Example;\n"
+      "content": "import { AlertDialogSmall } from \"../examples/alert-dialog-small\";\n\nconst Example = () => <AlertDialogSmall />;\n\nexport default Example;\n"
     }
   ]
 }

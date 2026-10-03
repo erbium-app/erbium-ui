@@ -1,4 +1,4 @@
-import AccordionCard from "../examples/upstream/accordion-card";
+import AccordionCard from "../examples/accordion-card";
 
 const Example = () => <AccordionCard />;
 

@@ -1,4 +1,4 @@
-import { CheckboxInTable } from "../../checkbox/examples/upstream/checkbox-table";
+import { CheckboxInTable } from "../../checkbox/examples/checkbox-table";
 
 const Example = () => <CheckboxInTable />;
 

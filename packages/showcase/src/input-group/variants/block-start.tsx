@@ -1,4 +1,4 @@
-import { InputGroupBlockStart } from "../examples/upstream/input-group-block-start";
+import { InputGroupBlockStart } from "../examples/input-group-block-start";
 
 const Example = () => <InputGroupBlockStart />;
 

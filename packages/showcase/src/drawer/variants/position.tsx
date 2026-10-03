@@ -1,4 +1,4 @@
-import { DrawerWithSides } from "../examples/upstream/drawer-sides";
+import { DrawerWithSides } from "../examples/drawer-sides";
 
 const Example = () => <DrawerWithSides />;
 

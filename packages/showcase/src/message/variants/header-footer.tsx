@@ -1,4 +1,4 @@
-import { MessageHeaderFooterDemo } from "../examples/upstream/message-header-footer";
+import { MessageHeaderFooterDemo } from "../examples/message-header-footer";
 
 const Example = () => <MessageHeaderFooterDemo />;
 

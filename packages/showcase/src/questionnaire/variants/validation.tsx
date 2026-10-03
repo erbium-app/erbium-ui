@@ -1,4 +1,4 @@
-import { QuestionnaireValidation } from "../examples/upstream/questionnaire-validation";
+import { QuestionnaireValidation } from "../examples/questionnaire-validation";
 
 const Example = () => <QuestionnaireValidation />;
 

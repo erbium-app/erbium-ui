@@ -1,4 +1,4 @@
-import { SliderVertical } from "../examples/upstream/slider-vertical";
+import { SliderVertical } from "../examples/slider-vertical";
 
 const Example = () => <SliderVertical />;
 

@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/badge", "@erbium/styles"],
   "files": [
     {
-      "path": "src/badge/examples/upstream/badge-icon.tsx",
+      "path": "src/badge/examples/badge-icon.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/badge/examples/upstream/badge-icon.tsx",
+      "target": "@components/showcase/badge/examples/badge-icon.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Bookmark01Icon from \"@hugeicons/core-free-icons/Bookmark01Icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport function BadgeWithIconLeft() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <Badge variant=\"success\" statusIcon>\n        Verified\n      </Badge>\n      <Badge variant=\"outline\">\n        Bookmark\n        <HugeiconsIcon icon={Bookmark01Icon} data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/badge/variants/with-icon.tsx",
       "type": "registry:component",
       "target": "@components/showcase/badge/variants/with-icon.tsx",
-      "content": "import { BadgeWithIconLeft } from \"../examples/upstream/badge-icon\";\n\nconst Example = () => <BadgeWithIconLeft />;\n\nexport default Example;\n"
+      "content": "import { BadgeWithIconLeft } from \"../examples/badge-icon\";\n\nconst Example = () => <BadgeWithIconLeft />;\n\nexport default Example;\n"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { CommandWithShortcuts } from "../examples/upstream/command-shortcuts";
+import { CommandWithShortcuts } from "../examples/command-shortcuts";
 
 const Example = () => <CommandWithShortcuts />;
 

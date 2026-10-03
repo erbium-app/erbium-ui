@@ -1,4 +1,4 @@
-import CarouselDApiDemo from "../examples/upstream/carousel-api";
+import CarouselDApiDemo from "../examples/carousel-slide-counter";
 
 const Example = () => <CarouselDApiDemo />;
 

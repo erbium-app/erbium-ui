@@ -1,4 +1,4 @@
-import { SwitchSizes } from "../examples/upstream/switch-sizes";
+import { SwitchSizes } from "../examples/switch-sizes";
 
 const Example = () => <SwitchSizes />;
 

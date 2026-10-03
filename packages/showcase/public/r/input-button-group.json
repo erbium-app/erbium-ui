@@ -13,16 +13,16 @@
   ],
   "files": [
     {
-      "path": "src/input/examples/upstream/input-button-group.tsx",
+      "path": "src/input/examples/input-button-group.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input/examples/upstream/input-button-group.tsx",
+      "target": "@components/showcase/input/examples/input-button-group.tsx",
       "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputButtonGroup() {\n  return (\n    <Field>\n      <FieldLabel>Search</FieldLabel>\n      <ButtonGroup>\n        <Input placeholder=\"Type to search...\" />\n        <Button variant=\"outline\">Search</Button>\n      </ButtonGroup>\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/input/variants/button-group.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input/variants/button-group.tsx",
-      "content": "import { InputButtonGroup } from \"../examples/upstream/input-button-group\";\n\nconst Example = () => <InputButtonGroup />;\n\nexport default Example;\n"
+      "content": "import { InputButtonGroup } from \"../examples/input-button-group\";\n\nconst Example = () => <InputButtonGroup />;\n\nexport default Example;\n"
     }
   ]
 }

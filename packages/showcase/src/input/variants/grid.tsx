@@ -1,4 +1,4 @@
-import { InputGrid } from "../examples/upstream/input-grid";
+import { InputGrid } from "../examples/input-grid";
 
 const Example = () => <InputGrid />;
 

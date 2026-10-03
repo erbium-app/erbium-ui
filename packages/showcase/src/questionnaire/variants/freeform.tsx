@@ -1,4 +1,4 @@
-import { QuestionnaireFreeform } from "../examples/upstream/questionnaire-freeform";
+import { QuestionnaireFreeform } from "../examples/questionnaire-freeform";
 
 const Example = () => <QuestionnaireFreeform />;
 

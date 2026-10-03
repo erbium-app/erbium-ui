@@ -1,4 +1,4 @@
-import { CheckboxGroupFieldset } from "../examples/upstream/checkbox-group";
+import { CheckboxGroupFieldset } from "../examples/checkbox-group";
 
 const Example = () => <CheckboxGroupFieldset />;
 

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/pagination", "@erbium/styles"],
   "files": [
     {
-      "path": "src/pagination/examples/upstream/pagination-simple.tsx",
+      "path": "src/pagination/examples/pagination-simple.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/pagination/examples/upstream/pagination-simple.tsx",
+      "target": "@components/showcase/pagination/examples/pagination-simple.tsx",
       "content": "import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n} from \"@/registry/erbium/ui/pagination\";\n\nexport function PaginationSimple() {\n  return (\n    <Pagination>\n      <PaginationContent>\n        <PaginationItem>\n          <PaginationLink href=\"#\">1</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\" isActive>\n            2\n          </PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\">3</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\">4</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\">5</PaginationLink>\n        </PaginationItem>\n      </PaginationContent>\n    </Pagination>\n  );\n}\n"
     },
     {
       "path": "src/pagination/variants/simple.tsx",
       "type": "registry:component",
       "target": "@components/showcase/pagination/variants/simple.tsx",
-      "content": "import { PaginationSimple } from \"../examples/upstream/pagination-simple\";\n\nconst Example = () => <PaginationSimple />;\n\nexport default Example;\n"
+      "content": "import { PaginationSimple } from \"../examples/pagination-simple\";\n\nconst Example = () => <PaginationSimple />;\n\nexport default Example;\n"
     }
   ]
 }

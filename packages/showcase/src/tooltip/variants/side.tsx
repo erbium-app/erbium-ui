@@ -1,4 +1,4 @@
-import { TooltipSides } from "../examples/upstream/tooltip-sides";
+import { TooltipSides } from "../examples/tooltip-sides";
 
 const Example = () => <TooltipSides />;
 

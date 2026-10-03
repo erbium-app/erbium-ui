@@ -1,4 +1,4 @@
-import { MessageAttachmentDemo } from "../examples/upstream/message-attachment";
+import { MessageAttachmentDemo } from "../examples/message-attachment";
 
 const Example = () => <MessageAttachmentDemo />;
 

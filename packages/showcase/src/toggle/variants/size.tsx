@@ -1,4 +1,4 @@
-import { ToggleSizes } from "../examples/upstream/toggle-sizes";
+import { ToggleSizes } from "../examples/toggle-sizes";
 
 const Example = () => <ToggleSizes />;
 

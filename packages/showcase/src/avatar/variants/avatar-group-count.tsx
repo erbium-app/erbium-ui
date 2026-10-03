@@ -1,4 +1,4 @@
-import { AvatarGroupCountExample } from "../examples/upstream/avatar-group-count";
+import { AvatarGroupCountExample } from "../examples/avatar-group-count";
 
 const Example = () => <AvatarGroupCountExample />;
 

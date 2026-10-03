@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
   "files": [
     {
-      "path": "src/context-menu/examples/upstream/context-menu-icons.tsx",
+      "path": "src/context-menu/examples/context-menu-icons.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/context-menu/examples/upstream/context-menu-icons.tsx",
+      "target": "@components/showcase/context-menu/examples/context-menu-icons.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ClipboardPasteIcon from \"@hugeicons/core-free-icons/ClipboardPasteIcon\";\nimport CopyIcon from \"@hugeicons/core-free-icons/CopyIcon\";\nimport ScissorsIcon from \"@hugeicons/core-free-icons/ScissorsIcon\";\nimport TrashIcon from \"@hugeicons/core-free-icons/TrashIcon\";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuIcons() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>\n            <HugeiconsIcon icon={CopyIcon} />\n            Copy\n          </ContextMenuItem>\n          <ContextMenuItem>\n            <HugeiconsIcon icon={ScissorsIcon} />\n            Cut\n          </ContextMenuItem>\n          <ContextMenuItem>\n            <HugeiconsIcon icon={ClipboardPasteIcon} />\n            Paste\n          </ContextMenuItem>\n        </ContextMenuGroup>\n        <ContextMenuSeparator />\n        <ContextMenuGroup>\n          <ContextMenuItem variant=\"error\">\n            <HugeiconsIcon icon={TrashIcon} />\n            Delete\n          </ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
     },
     {
       "path": "src/context-menu/variants/icons.tsx",
       "type": "registry:component",
       "target": "@components/showcase/context-menu/variants/icons.tsx",
-      "content": "import { ContextMenuIcons } from \"../examples/upstream/context-menu-icons\";\n\nconst Example = () => <ContextMenuIcons />;\n\nexport default Example;\n"
+      "content": "import { ContextMenuIcons } from \"../examples/context-menu-icons\";\n\nconst Example = () => <ContextMenuIcons />;\n\nexport default Example;\n"
     }
   ]
 }

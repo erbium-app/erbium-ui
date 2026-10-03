@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "path": "src/bubble/examples/upstream/bubble-link-button.tsx",
+      "path": "src/bubble/examples/bubble-link-button.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/bubble/examples/upstream/bubble-link-button.tsx",
+      "target": "@components/showcase/bubble/examples/bubble-link-button.tsx",
       "content": "import { toast } from \"@/registry/erbium/ui/toast\";\n\nimport { Bubble, BubbleContent, BubbleGroup } from \"@/registry/erbium/ui/bubble\";\n\nexport function BubbleLinkButtonDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Bubble variant=\"muted\">\n        <BubbleContent>How can I help you today?</BubbleContent>\n      </Bubble>\n      <BubbleGroup>\n        <Bubble variant=\"tinted\" align=\"end\">\n          <BubbleContent\n            render={<button onClick={() => toast.add({ title: \"You clicked forgot password\" })} />}\n          >\n            I forgot my password\n          </BubbleContent>\n        </Bubble>\n        <Bubble variant=\"tinted\" align=\"end\">\n          <BubbleContent\n            render={\n              <button onClick={() => toast.add({ title: \"You clicked help with subscription\" })} />\n            }\n          >\n            I need help with my subscription\n          </BubbleContent>\n        </Bubble>\n        <Bubble variant=\"tinted\" align=\"end\">\n          <BubbleContent\n            render={\n              <button\n                onClick={() => toast.add({ title: \"You clicked something else. Talk to a human.\" })}\n              />\n            }\n          >\n            Something else. Talk to a human.\n          </BubbleContent>\n        </Bubble>\n      </BubbleGroup>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/bubble/variants/link-button.tsx",
       "type": "registry:component",
       "target": "@components/showcase/bubble/variants/link-button.tsx",
-      "content": "import { BubbleLinkButtonDemo } from \"../examples/upstream/bubble-link-button\";\n\nconst Example = () => <BubbleLinkButtonDemo />;\n\nexport default Example;\n"
+      "content": "import { BubbleLinkButtonDemo } from \"../examples/bubble-link-button\";\n\nconst Example = () => <BubbleLinkButtonDemo />;\n\nexport default Example;\n"
     }
   ]
 }

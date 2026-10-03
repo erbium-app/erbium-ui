@@ -1,4 +1,4 @@
-import { MarkerBorderDemo } from "../examples/upstream/marker-border";
+import { MarkerBorderDemo } from "../examples/marker-border";
 
 const Example = () => <MarkerBorderDemo />;
 

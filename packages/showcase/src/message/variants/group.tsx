@@ -1,4 +1,4 @@
-import { MessageGroupDemo } from "../examples/upstream/message-group";
+import { MessageGroupDemo } from "../examples/message-group";
 
 const Example = () => <MessageGroupDemo />;
 

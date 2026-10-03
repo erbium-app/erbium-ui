@@ -1,4 +1,4 @@
-import { MarkerLinkButtonDemo } from "../examples/upstream/marker-link-button";
+import { MarkerLinkButtonDemo } from "../examples/marker-link-button";
 
 const Example = () => <MarkerLinkButtonDemo />;
 

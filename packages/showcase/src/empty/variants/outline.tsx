@@ -1,4 +1,4 @@
-import EmptyOutline from "../examples/upstream/empty-outline";
+import EmptyOutline from "../examples/empty-outline";
 
 const Example = () => <EmptyOutline />;
 

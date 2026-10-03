@@ -1,4 +1,4 @@
-import { ComboboxPopup } from "../examples/upstream/combobox-popup";
+import { ComboboxPopup } from "../examples/combobox-popup";
 
 const Example = () => <ComboboxPopup />;
 

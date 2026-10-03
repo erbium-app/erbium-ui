@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/input-group", "@erbium/kbd", "@erbium/styles"],
   "files": [
     {
-      "path": "src/input-group/examples/upstream/input-group-kbd.tsx",
+      "path": "src/input-group/examples/input-group-kbd.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input-group/examples/upstream/input-group-kbd.tsx",
+      "target": "@components/showcase/input-group/examples/input-group-kbd.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport function InputGroupKbd() {\n  return (\n    <InputGroup className=\"max-w-sm\">\n      <InputGroupInput placeholder=\"Search...\" />\n      <InputGroupAddon>\n        <HugeiconsIcon icon={Search01Icon} className=\"text-muted-foreground\" />\n      </InputGroupAddon>\n      <InputGroupAddon align=\"inline-end\">\n        <Kbd hotkey=\"Mod+K\" />\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n"
     },
     {
       "path": "src/input-group/variants/kbd.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input-group/variants/kbd.tsx",
-      "content": "import { InputGroupKbd } from \"../examples/upstream/input-group-kbd\";\n\nconst Example = () => <InputGroupKbd />;\n\nexport default Example;\n"
+      "content": "import { InputGroupKbd } from \"../examples/input-group-kbd\";\n\nconst Example = () => <InputGroupKbd />;\n\nexport default Example;\n"
     }
   ]
 }

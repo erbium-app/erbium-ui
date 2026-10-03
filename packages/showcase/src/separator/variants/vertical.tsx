@@ -1,4 +1,4 @@
-import { SeparatorVertical } from "../examples/upstream/separator-vertical";
+import { SeparatorVertical } from "../examples/separator-vertical";
 
 const Example = () => <SeparatorVertical />;
 

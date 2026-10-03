@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
   "files": [
     {
-      "path": "src/breadcrumb/examples/upstream/breadcrumb-link.tsx",
+      "path": "src/breadcrumb/examples/breadcrumb-link.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/breadcrumb/examples/upstream/breadcrumb-link.tsx",
+      "target": "@components/showcase/breadcrumb/examples/breadcrumb-link.tsx",
       "content": "import {\n  Breadcrumb,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbList,\n  BreadcrumbPage,\n  BreadcrumbSeparator,\n} from \"@/registry/erbium/ui/breadcrumb\";\n\nexport function BreadcrumbLinkDemo() {\n  return (\n    <Breadcrumb>\n      <BreadcrumbList>\n        <BreadcrumbItem>\n          <BreadcrumbLink render={<a href=\"#link-component\" />}>Home</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbLink render={<a href=\"#link-component\" />}>Components</BreadcrumbLink>\n        </BreadcrumbItem>\n        <BreadcrumbSeparator />\n        <BreadcrumbItem>\n          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>\n        </BreadcrumbItem>\n      </BreadcrumbList>\n    </Breadcrumb>\n  );\n}\n"
     },
     {
       "path": "src/breadcrumb/variants/link-component.tsx",
       "type": "registry:component",
       "target": "@components/showcase/breadcrumb/variants/link-component.tsx",
-      "content": "import { BreadcrumbLinkDemo } from \"../examples/upstream/breadcrumb-link\";\n\nconst Example = () => <BreadcrumbLinkDemo />;\n\nexport default Example;\n"
+      "content": "import { BreadcrumbLinkDemo } from \"../examples/breadcrumb-link\";\n\nconst Example = () => <BreadcrumbLinkDemo />;\n\nexport default Example;\n"
     }
   ]
 }

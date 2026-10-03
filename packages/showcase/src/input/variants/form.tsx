@@ -1,4 +1,4 @@
-import { InputForm } from "../examples/upstream/input-form";
+import { InputForm } from "../examples/input-form";
 
 const Example = () => <InputForm />;
 

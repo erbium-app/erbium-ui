@@ -1,4 +1,4 @@
-import { InputFieldgroup } from "../examples/upstream/input-fieldgroup";
+import { InputFieldgroup } from "../examples/input-fieldgroup";
 
 const Example = () => <InputFieldgroup />;
 

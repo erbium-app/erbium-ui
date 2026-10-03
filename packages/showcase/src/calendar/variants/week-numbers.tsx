@@ -1,4 +1,4 @@
-import { CalendarWeekNumbers } from "../examples/upstream/calendar-week-numbers";
+import { CalendarWeekNumbers } from "../examples/calendar-week-numbers";
 
 const Example = () => <CalendarWeekNumbers />;
 

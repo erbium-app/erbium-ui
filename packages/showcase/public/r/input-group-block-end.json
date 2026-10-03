@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/input-group/examples/upstream/input-group-block-end.tsx",
+      "path": "src/input-group/examples/input-group-block-end.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input-group/examples/upstream/input-group-block-end.tsx",
+      "target": "@components/showcase/input-group/examples/input-group-block-end.tsx",
       "content": "import { Field, FieldDescription, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport function InputGroupBlockEnd() {\n  return (\n    <FieldGroup className=\"max-w-sm\">\n      <Field>\n        <FieldLabel>Input</FieldLabel>\n        <InputGroup className=\"h-auto\">\n          <InputGroupInput placeholder=\"Enter amount\" />\n          <InputGroupAddon align=\"block-end\">\n            <InputGroupText>USD</InputGroupText>\n          </InputGroupAddon>\n        </InputGroup>\n        <FieldDescription>Footer positioned below the input.</FieldDescription>\n      </Field>\n      <Field>\n        <FieldLabel>Textarea</FieldLabel>\n        <InputGroup>\n          <InputGroupTextarea placeholder=\"Write a comment...\" />\n          <InputGroupAddon align=\"block-end\">\n            <InputGroupText>0/280</InputGroupText>\n            <InputGroupButton variant=\"default\" size=\"sm\" className=\"ml-auto\">\n              Post\n            </InputGroupButton>\n          </InputGroupAddon>\n        </InputGroup>\n        <FieldDescription>Footer positioned below the textarea.</FieldDescription>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
     },
     {
       "path": "src/input-group/variants/block-end.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input-group/variants/block-end.tsx",
-      "content": "import { InputGroupBlockEnd } from \"../examples/upstream/input-group-block-end\";\n\nconst Example = () => <InputGroupBlockEnd />;\n\nexport default Example;\n"
+      "content": "import { InputGroupBlockEnd } from \"../examples/input-group-block-end\";\n\nconst Example = () => <InputGroupBlockEnd />;\n\nexport default Example;\n"
     }
   ]
 }

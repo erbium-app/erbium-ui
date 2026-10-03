@@ -1,4 +1,4 @@
-import { SelectInvalid } from "../examples/upstream/select-invalid";
+import { SelectInvalid } from "../examples/select-invalid";
 
 const Example = () => <SelectInvalid />;
 

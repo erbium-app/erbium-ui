@@ -1,4 +1,4 @@
-import { ComboboxWithGroupsAndSeparator } from "../examples/upstream/combobox-groups";
+import { ComboboxWithGroupsAndSeparator } from "../examples/combobox-groups";
 
 const Example = () => <ComboboxWithGroupsAndSeparator />;
 

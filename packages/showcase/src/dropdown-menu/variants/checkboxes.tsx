@@ -1,4 +1,4 @@
-import { DropdownMenuCheckboxes } from "../examples/upstream/dropdown-menu-checkboxes";
+import { DropdownMenuCheckboxes } from "../examples/dropdown-menu-checkboxes";
 
 const Example = () => <DropdownMenuCheckboxes />;
 

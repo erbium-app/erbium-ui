@@ -1,4 +1,4 @@
-import { BubbleVariantsDemo } from "../examples/upstream/bubble-variants";
+import { BubbleVariantsDemo } from "../examples/bubble-variants";
 
 const Example = () => <BubbleVariantsDemo />;
 

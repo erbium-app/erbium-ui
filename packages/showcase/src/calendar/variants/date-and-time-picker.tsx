@@ -1,4 +1,4 @@
-import { CalendarWithTime } from "../examples/upstream/calendar-time";
+import { CalendarWithTime } from "../examples/calendar-time";
 
 const Example = () => <CalendarWithTime />;
 

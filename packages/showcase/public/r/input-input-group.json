@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/input/examples/upstream/input-input-group.tsx",
+      "path": "src/input/examples/input-input-group.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input/examples/upstream/input-input-group.tsx",
+      "target": "@components/showcase/input/examples/input-input-group.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport InfoIcon from \"@hugeicons/core-free-icons/InfoIcon\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport function InputInputGroup() {\n  return (\n    <Field>\n      <FieldLabel>Website URL</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"example.com\" />\n        <InputGroupAddon>\n          <InputGroupText>https://</InputGroupText>\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <HugeiconsIcon icon={InfoIcon} />\n        </InputGroupAddon>\n      </InputGroup>\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/input/variants/input-group.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input/variants/input-group.tsx",
-      "content": "import { InputInputGroup } from \"../examples/upstream/input-input-group\";\n\nconst Example = () => <InputInputGroup />;\n\nexport default Example;\n"
+      "content": "import { InputInputGroup } from \"../examples/input-input-group\";\n\nconst Example = () => <InputInputGroup />;\n\nexport default Example;\n"
     }
   ]
 }

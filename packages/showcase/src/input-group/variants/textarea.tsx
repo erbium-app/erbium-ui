@@ -1,4 +1,4 @@
-import InputGroupTextareaExample from "../examples/upstream/input-group-textarea";
+import InputGroupTextareaExample from "../examples/input-group-textarea";
 
 const Example = () => <InputGroupTextareaExample />;
 

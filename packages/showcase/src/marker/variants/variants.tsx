@@ -1,4 +1,4 @@
-import { MarkerVariantsDemo } from "../examples/upstream/marker-variants";
+import { MarkerVariantsDemo } from "../examples/marker-variants";
 
 const Example = () => (
   <div className="w-72 max-w-[calc(100vw-2rem)]">

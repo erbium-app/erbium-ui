@@ -1,4 +1,4 @@
-import { BubbleLinkButtonDemo } from "../examples/upstream/bubble-link-button";
+import { BubbleLinkButtonDemo } from "../examples/bubble-link-button";
 
 const Example = () => <BubbleLinkButtonDemo />;
 

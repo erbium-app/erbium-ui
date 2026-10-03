@@ -8,9 +8,9 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "path": "src/toggle/examples/upstream/toggle-text.tsx",
+      "path": "src/toggle/examples/toggle-text.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/toggle/examples/upstream/toggle-text.tsx",
+      "target": "@components/showcase/toggle/examples/toggle-text.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ItalicIcon from \"@hugeicons/core-free-icons/ItalicIcon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <HugeiconsIcon icon={ItalicIcon} />\n      Italic\n    </Toggle>\n  );\n}\n"
     }
   ]

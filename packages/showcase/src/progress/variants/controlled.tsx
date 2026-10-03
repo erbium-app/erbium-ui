@@ -1,4 +1,4 @@
-import { ProgressControlled } from "../examples/upstream/progress-controlled";
+import { ProgressControlled } from "../examples/progress-controlled";
 
 const Example = () => <ProgressControlled />;
 

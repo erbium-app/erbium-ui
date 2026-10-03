@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/radio-group/examples/upstream/radio-group-description.tsx",
+      "path": "src/radio-group/examples/radio-group-description.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/radio-group/examples/upstream/radio-group-description.tsx",
+      "target": "@components/showcase/radio-group/examples/radio-group-description.tsx",
       "content": "import {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport function RadioGroupDescription() {\n  return (\n    <Field>\n      <RadioGroup defaultValue=\"comfortable\" className=\"w-fit\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"default\" />\n          <FieldContent>\n            <FieldLabel>Default</FieldLabel>\n            <FieldDescription>Standard spacing for most use cases.</FieldDescription>\n          </FieldContent>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"comfortable\" />\n          <FieldContent>\n            <FieldLabel>Comfortable</FieldLabel>\n            <FieldDescription>More space between elements.</FieldDescription>\n          </FieldContent>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"compact\" />\n          <FieldContent>\n            <FieldLabel>Compact</FieldLabel>\n            <FieldDescription>Minimal spacing for dense layouts.</FieldDescription>\n          </FieldContent>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/radio-group/variants/description.tsx",
       "type": "registry:component",
       "target": "@components/showcase/radio-group/variants/description.tsx",
-      "content": "import { RadioGroupDescription } from \"../examples/upstream/radio-group-description\";\n\nconst Example = () => <RadioGroupDescription />;\n\nexport default Example;\n"
+      "content": "import { RadioGroupDescription } from \"../examples/radio-group-description\";\n\nconst Example = () => <RadioGroupDescription />;\n\nexport default Example;\n"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { AttachmentSizes } from "../examples/upstream/attachment-sizes";
+import { AttachmentSizes } from "../examples/attachment-sizes";
 
 const Example = () => <AttachmentSizes />;
 

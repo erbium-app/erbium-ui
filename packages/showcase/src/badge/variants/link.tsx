@@ -1,4 +1,4 @@
-import { BadgeAsLink } from "../examples/upstream/badge-link";
+import { BadgeAsLink } from "../examples/badge-link";
 
 const Example = () => <BadgeAsLink />;
 

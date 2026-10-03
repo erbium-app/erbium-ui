@@ -1,4 +1,4 @@
-import { RadioGroupDisabled } from "../examples/upstream/radio-group-disabled";
+import { RadioGroupDisabled } from "../examples/radio-group-disabled";
 
 const Example = () => <RadioGroupDisabled />;
 

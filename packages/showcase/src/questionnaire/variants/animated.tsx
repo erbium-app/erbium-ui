@@ -1,4 +1,4 @@
-import { QuestionnaireAnimated } from "../examples/upstream/questionnaire-animated";
+import { QuestionnaireAnimated } from "../examples/questionnaire-animated";
 
 const Example = () => <QuestionnaireAnimated />;
 

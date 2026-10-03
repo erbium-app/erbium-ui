@@ -1,4 +1,4 @@
-import InputGroupButtonExample from "../examples/upstream/input-group-button";
+import InputGroupButtonExample from "../examples/input-group-button";
 
 const Example = () => <InputGroupButtonExample />;
 

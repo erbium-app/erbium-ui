@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
   "files": [
     {
-      "path": "src/context-menu/examples/upstream/context-menu-basic.tsx",
+      "path": "src/context-menu/examples/context-menu-basic.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/context-menu/examples/upstream/context-menu-basic.tsx",
+      "target": "@components/showcase/context-menu/examples/context-menu-basic.tsx",
       "content": "import {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuTrigger,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuBasic() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuGroup>\n          <ContextMenuItem>Back</ContextMenuItem>\n          <ContextMenuItem disabled>Forward</ContextMenuItem>\n          <ContextMenuItem>Reload</ContextMenuItem>\n        </ContextMenuGroup>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
     },
     {
       "path": "src/context-menu/variants/basic.tsx",
       "type": "registry:component",
       "target": "@components/showcase/context-menu/variants/basic.tsx",
-      "content": "import { ContextMenuBasic } from \"../examples/upstream/context-menu-basic\";\n\nconst Example = () => <ContextMenuBasic />;\n\nexport default Example;\n"
+      "content": "import { ContextMenuBasic } from \"../examples/context-menu-basic\";\n\nconst Example = () => <ContextMenuBasic />;\n\nexport default Example;\n"
     }
   ]
 }

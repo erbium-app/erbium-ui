@@ -1,4 +1,4 @@
-import CarouselPlugin from "../examples/upstream/carousel-plugin";
+import CarouselPlugin from "../examples/carousel-plugin";
 
 const Example = () => <CarouselPlugin />;
 

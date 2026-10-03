@@ -219,11 +219,17 @@ async function walk(directory) {
     )
   ).flat();
 }
-// Preserve the public names of the original standalone examples, including nested helpers.
+// Standalone examples use globally unique component/scenario names.
+const standaloneSources = new Map();
 for (const path of await walk(join(root, "src"))) {
   if (!path.includes("/examples/") || extname(path) !== ".tsx" || path.endsWith(".test.tsx"))
     continue;
   const name = path.split("/").at(-1).slice(0, -4);
+  if (standaloneSources.has(name))
+    throw new Error(
+      `Ambiguous standalone example ${name}: ${standaloneSources.get(name)} and ${path}`,
+    );
+  standaloneSources.set(name, path);
   if (!items.has(name))
     items.set(
       name,

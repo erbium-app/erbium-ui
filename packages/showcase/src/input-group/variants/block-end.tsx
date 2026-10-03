@@ -1,4 +1,4 @@
-import { InputGroupBlockEnd } from "../examples/upstream/input-group-block-end";
+import { InputGroupBlockEnd } from "../examples/input-group-block-end";
 
 const Example = () => <InputGroupBlockEnd />;
 

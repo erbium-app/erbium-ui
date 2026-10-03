@@ -1,4 +1,4 @@
-import { DropdownMenuCheckboxesIcons } from "../examples/upstream/dropdown-menu-checkboxes-icons";
+import { DropdownMenuCheckboxesIcons } from "../examples/dropdown-menu-checkboxes-icons";
 
 const Example = () => <DropdownMenuCheckboxesIcons />;
 

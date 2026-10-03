@@ -1,4 +1,4 @@
-import { ToastTypes } from "../examples/upstream/toast-types";
+import { ToastTypes } from "../examples/toast-types";
 
 const Example = () => <ToastTypes />;
 

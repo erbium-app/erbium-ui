@@ -1,4 +1,4 @@
-import { ContextMenuSubmenu } from "../examples/upstream/context-menu-submenu";
+import { ContextMenuSubmenu } from "../examples/context-menu-submenu";
 
 const Example = () => <ContextMenuSubmenu />;
 

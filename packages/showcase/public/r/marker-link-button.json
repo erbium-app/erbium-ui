@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/marker", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "path": "src/marker/examples/upstream/marker-link-button.tsx",
+      "path": "src/marker/examples/marker-link-button.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/marker/examples/upstream/marker-link-button.tsx",
+      "target": "@components/showcase/marker/examples/marker-link-button.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport RotateCcwIcon from \"@hugeicons/core-free-icons/RotateCcwIcon\";\n\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerLinkButtonDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker render={<a href=\"#links-and-buttons\" />}>\n        <MarkerIcon>\n          <HugeiconsIcon icon={GitBranchIcon} />\n        </MarkerIcon>\n        <MarkerContent>View the pull request</MarkerContent>\n      </Marker>\n      <Marker\n        render={\n          <button\n            type=\"button\"\n            className=\"transition-colors hover:text-foreground\"\n            onClick={() => toast.add({ title: \"You clicked the revert button\" })}\n          />\n        }\n      >\n        <MarkerIcon>\n          <HugeiconsIcon icon={RotateCcwIcon} />\n        </MarkerIcon>\n        <MarkerContent>Revert this change</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/marker/variants/link-button.tsx",
       "type": "registry:component",
       "target": "@components/showcase/marker/variants/link-button.tsx",
-      "content": "import { MarkerLinkButtonDemo } from \"../examples/upstream/marker-link-button\";\n\nconst Example = () => <MarkerLinkButtonDemo />;\n\nexport default Example;\n"
+      "content": "import { MarkerLinkButtonDemo } from \"../examples/marker-link-button\";\n\nconst Example = () => <MarkerLinkButtonDemo />;\n\nexport default Example;\n"
     }
   ]
 }

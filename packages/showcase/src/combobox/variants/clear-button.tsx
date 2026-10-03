@@ -1,4 +1,4 @@
-import { ComboboxWithClear } from "../examples/upstream/combobox-clear";
+import { ComboboxWithClear } from "../examples/combobox-clear";
 
 const Example = () => <ComboboxWithClear />;
 

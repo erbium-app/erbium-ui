@@ -1,4 +1,4 @@
-import { BreadcrumbLinkDemo } from "../examples/upstream/breadcrumb-link";
+import { BreadcrumbLinkDemo } from "../examples/breadcrumb-link";
 
 const Example = () => <BreadcrumbLinkDemo />;
 

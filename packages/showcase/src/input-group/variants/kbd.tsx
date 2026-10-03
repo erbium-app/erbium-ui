@@ -1,4 +1,4 @@
-import { InputGroupKbd } from "../examples/upstream/input-group-kbd";
+import { InputGroupKbd } from "../examples/input-group-kbd";
 
 const Example = () => <InputGroupKbd />;
 

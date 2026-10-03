@@ -1,4 +1,4 @@
-import { BadgeWithSpinner } from "../examples/upstream/badge-spinner";
+import { BadgeWithSpinner } from "../examples/badge-spinner";
 
 const Example = () => <BadgeWithSpinner />;
 

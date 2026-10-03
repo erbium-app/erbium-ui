@@ -1,4 +1,4 @@
-import { SelectDisabled } from "../examples/upstream/select-disabled";
+import { SelectDisabled } from "../examples/select-disabled";
 
 const Example = () => <SelectDisabled />;
 

@@ -1,4 +1,4 @@
-import { ChartBarDemoTooltip } from "../examples/upstream/chart-example-tooltip";
+import { ChartBarDemoTooltip } from "../examples/chart-example-tooltip";
 
 const Example = () => <ChartBarDemoTooltip />;
 

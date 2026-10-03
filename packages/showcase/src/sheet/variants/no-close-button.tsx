@@ -1,4 +1,4 @@
-import SheetNoCloseButton from "../examples/upstream/sheet-no-close-button";
+import SheetNoCloseButton from "../examples/sheet-no-close-button";
 
 const Example = () => <SheetNoCloseButton />;
 

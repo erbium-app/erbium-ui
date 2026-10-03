@@ -1,4 +1,4 @@
-import { AttachmentImage } from "../examples/upstream/attachment-image";
+import { AttachmentImage } from "../examples/attachment-image";
 
 const Example = () => <AttachmentImage />;
 

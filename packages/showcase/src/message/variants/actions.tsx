@@ -1,4 +1,4 @@
-import { MessageActionsDemo } from "../examples/upstream/message-actions";
+import { MessageActionsDemo } from "../examples/message-actions";
 
 const Example = () => <MessageActionsDemo />;
 

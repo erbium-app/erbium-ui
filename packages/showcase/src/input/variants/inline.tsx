@@ -1,4 +1,4 @@
-import { InputInline } from "../examples/upstream/input-inline";
+import { InputInline } from "../examples/input-inline";
 
 const Example = () => <InputInline />;
 

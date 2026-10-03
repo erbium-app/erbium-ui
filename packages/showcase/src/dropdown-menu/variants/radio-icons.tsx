@@ -1,4 +1,4 @@
-import { DropdownMenuRadioIcons } from "../examples/upstream/dropdown-menu-radio-icons";
+import { DropdownMenuRadioIcons } from "../examples/dropdown-menu-radio-icons";
 
 const Example = () => <DropdownMenuRadioIcons />;
 

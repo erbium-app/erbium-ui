@@ -1,4 +1,4 @@
-import { CheckboxBasic } from "../examples/upstream/checkbox-basic";
+import { CheckboxBasic } from "../examples/checkbox-basic";
 
 const Example = () => <CheckboxBasic />;
 

@@ -1,4 +1,4 @@
-import { ContextMenuCheckboxes } from "../examples/upstream/context-menu-checkboxes";
+import { ContextMenuCheckboxes } from "../examples/context-menu-checkboxes";
 
 const Example = () => <ContextMenuCheckboxes />;
 

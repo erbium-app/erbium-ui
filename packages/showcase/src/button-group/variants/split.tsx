@@ -1,4 +1,4 @@
-import ButtonGroupSplit from "../examples/upstream/button-group-split";
+import ButtonGroupSplit from "../examples/button-group-split";
 
 const Example = () => <ButtonGroupSplit />;
 

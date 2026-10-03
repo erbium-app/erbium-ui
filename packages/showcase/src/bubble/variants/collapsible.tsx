@@ -1,4 +1,4 @@
-import { BubbleCollapsible } from "../examples/upstream/bubble-collapsible";
+import { BubbleCollapsible } from "../examples/bubble-collapsible";
 
 const Example = () => <BubbleCollapsible />;
 

@@ -1,4 +1,4 @@
-import { SliderRange } from "../examples/upstream/slider-range";
+import { SliderRange } from "../examples/slider-range";
 
 const Example = () => <SliderRange />;
 

@@ -1,4 +1,4 @@
-import { BreadcrumbSeparatorDemo } from "../examples/upstream/breadcrumb-separator";
+import { BreadcrumbSeparatorDemo } from "../examples/breadcrumb-separator";
 
 const Example = () => <BreadcrumbSeparatorDemo />;
 

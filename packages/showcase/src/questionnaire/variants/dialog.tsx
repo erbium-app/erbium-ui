@@ -1,4 +1,4 @@
-import { QuestionnaireDialog } from "../examples/upstream/questionnaire-dialog";
+import { QuestionnaireDialog } from "../examples/questionnaire-dialog";
 
 const Example = () => <QuestionnaireDialog />;
 

@@ -1,4 +1,4 @@
-import { AlertDialogWithMedia } from "../examples/upstream/alert-dialog-media";
+import { AlertDialogWithMedia } from "../examples/alert-dialog-media";
 
 const Example = () => <AlertDialogWithMedia />;
 

@@ -1,4 +1,4 @@
-import { ProgressWithLabel } from "../examples/upstream/progress-label";
+import { ProgressWithLabel } from "../examples/progress-label";
 
 const Example = () => <ProgressWithLabel />;
 

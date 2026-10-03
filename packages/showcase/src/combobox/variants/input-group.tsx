@@ -1,4 +1,4 @@
-import { ComboxboxInputGroup } from "../examples/upstream/combobox-input-group";
+import { ComboxboxInputGroup } from "../examples/combobox-input-group";
 
 const Example = () => <ComboxboxInputGroup />;
 

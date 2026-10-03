@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
   "files": [
     {
-      "path": "src/drawer/examples/upstream/drawer-snap-points.tsx",
+      "path": "src/drawer/examples/drawer-snap-points.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/drawer/examples/upstream/drawer-snap-points.tsx",
+      "target": "@components/showcase/drawer/examples/drawer-snap-points.tsx",
       "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerContent,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\n\nconst SNAP_POINTS = [\"31rem\", 1];\n\nexport function DrawerSnapPoints() {\n  return (\n    <Drawer snapPoints={SNAP_POINTS} showSwipeHandle>\n      <DrawerTrigger render={<Button variant=\"outline\" />}>Open Snap Drawer</DrawerTrigger>\n      <DrawerPanel>\n        <DrawerHeader>\n          <DrawerTitle>Snap points</DrawerTitle>\n          <DrawerDescription>\n            Drag the drawer to snap between a compact peek and a near full-height view.\n          </DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>\n          <div className=\"rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full\" />\n        </DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button />}>Close</DrawerClose>\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n"
     },
     {
       "path": "src/drawer/variants/snap-points.tsx",
       "type": "registry:component",
       "target": "@components/showcase/drawer/variants/snap-points.tsx",
-      "content": "import { DrawerSnapPoints } from \"../examples/upstream/drawer-snap-points\";\n\nconst Example = () => <DrawerSnapPoints />;\n\nexport default Example;\n"
+      "content": "import { DrawerSnapPoints } from \"../examples/drawer-snap-points\";\n\nconst Example = () => <DrawerSnapPoints />;\n\nexport default Example;\n"
     }
   ]
 }

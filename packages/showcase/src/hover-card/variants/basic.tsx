@@ -1,4 +1,4 @@
-import HoverCardDemo from "../examples/upstream/hover-card-demo";
+import HoverCardDemo from "../examples/hover-card-basic";
 
 const Example = () => <HoverCardDemo />;
 

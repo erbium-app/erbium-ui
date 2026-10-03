@@ -1,4 +1,4 @@
-import { ContextMenuRadio } from "../examples/upstream/context-menu-radio";
+import { ContextMenuRadio } from "../examples/context-menu-radio";
 
 const Example = () => <ContextMenuRadio />;
 

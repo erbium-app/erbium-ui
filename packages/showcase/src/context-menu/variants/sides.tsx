@@ -1,4 +1,4 @@
-import { ContextMenuSides } from "../examples/upstream/context-menu-sides";
+import { ContextMenuSides } from "../examples/context-menu-sides";
 
 const Example = () => <ContextMenuSides />;
 

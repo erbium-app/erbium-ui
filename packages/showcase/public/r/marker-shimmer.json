@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/marker", "@erbium/styles"],
   "files": [
     {
-      "path": "src/marker/examples/upstream/marker-shimmer.tsx",
+      "path": "src/marker/examples/marker-shimmer.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/marker/examples/upstream/marker-shimmer.tsx",
+      "target": "@components/showcase/marker/examples/marker-shimmer.tsx",
       "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerShimmerDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker role=\"status\">\n        <MarkerContent className=\"shimmer\">Thinking...</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\" role=\"status\">\n        <MarkerContent className=\"shimmer\">Reading 4 files</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/marker/variants/shimmer.tsx",
       "type": "registry:component",
       "target": "@components/showcase/marker/variants/shimmer.tsx",
-      "content": "import { MarkerShimmerDemo } from \"../examples/upstream/marker-shimmer\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerShimmerDemo />\n  </div>\n);\n\nexport default Example;\n"
+      "content": "import { MarkerShimmerDemo } from \"../examples/marker-shimmer\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerShimmerDemo />\n  </div>\n);\n\nexport default Example;\n"
     }
   ]
 }

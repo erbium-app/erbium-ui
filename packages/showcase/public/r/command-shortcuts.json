@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
   "files": [
     {
-      "path": "src/command/examples/upstream/command-shortcuts.tsx",
+      "path": "src/command/examples/command-shortcuts.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/command/examples/upstream/command-shortcuts.tsx",
+      "target": "@components/showcase/command/examples/command-shortcuts.tsx",
       "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport CreditCardIcon from \"@hugeicons/core-free-icons/CreditCardIcon\";\nimport Settings01Icon from \"@hugeicons/core-free-icons/Settings01Icon\";\nimport UserIcon from \"@hugeicons/core-free-icons/UserIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Command,\n  CommandDialog,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n  CommandShortcut,\n} from \"@/registry/erbium/ui/command\";\n\nexport function CommandWithShortcuts() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Button onClick={() => setOpen(true)} variant=\"outline\" className=\"w-fit\">\n        Open Menu\n      </Button>\n      <CommandDialog open={open} onOpenChange={setOpen}>\n        <Command>\n          <CommandInput placeholder=\"Type a command or search...\" />\n          <CommandList>\n            <CommandEmpty>No results found.</CommandEmpty>\n            <CommandGroup heading=\"Settings\">\n              <CommandItem>\n                <HugeiconsIcon icon={UserIcon} />\n                <span>Profile</span>\n                <CommandShortcut hotkey=\"Mod+P\" />\n              </CommandItem>\n              <CommandItem>\n                <HugeiconsIcon icon={CreditCardIcon} />\n                <span>Billing</span>\n                <CommandShortcut hotkey=\"Mod+B\" />\n              </CommandItem>\n              <CommandItem>\n                <HugeiconsIcon icon={Settings01Icon} />\n                <span>Settings</span>\n                <CommandShortcut hotkey=\"Mod+S\" />\n              </CommandItem>\n            </CommandGroup>\n          </CommandList>\n        </Command>\n      </CommandDialog>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/command/variants/shortcuts.tsx",
       "type": "registry:component",
       "target": "@components/showcase/command/variants/shortcuts.tsx",
-      "content": "import { CommandWithShortcuts } from \"../examples/upstream/command-shortcuts\";\n\nconst Example = () => <CommandWithShortcuts />;\n\nexport default Example;\n"
+      "content": "import { CommandWithShortcuts } from \"../examples/command-shortcuts\";\n\nconst Example = () => <CommandWithShortcuts />;\n\nexport default Example;\n"
     }
   ]
 }

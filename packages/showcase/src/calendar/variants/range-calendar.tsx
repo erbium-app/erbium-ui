@@ -1,4 +1,4 @@
-import { CalendarRange } from "../examples/upstream/calendar-range";
+import { CalendarRange } from "../examples/calendar-range";
 
 const Example = () => <CalendarRange />;
 

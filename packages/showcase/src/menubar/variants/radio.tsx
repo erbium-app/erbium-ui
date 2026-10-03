@@ -1,4 +1,4 @@
-import { MenubarRadio } from "../examples/upstream/menubar-radio";
+import { MenubarRadio } from "../examples/menubar-radio";
 
 const Example = () => <MenubarRadio />;
 

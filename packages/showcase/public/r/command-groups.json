@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
   "files": [
     {
-      "path": "src/command/examples/upstream/command-groups.tsx",
+      "path": "src/command/examples/command-groups.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/command/examples/upstream/command-groups.tsx",
+      "target": "@components/showcase/command/examples/command-groups.tsx",
       "content": "import * as React from \"react\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport CalculatorIcon from \"@hugeicons/core-free-icons/CalculatorIcon\";\nimport Calendar01Icon from \"@hugeicons/core-free-icons/Calendar01Icon\";\nimport CreditCardIcon from \"@hugeicons/core-free-icons/CreditCardIcon\";\nimport Settings01Icon from \"@hugeicons/core-free-icons/Settings01Icon\";\nimport SmileIcon from \"@hugeicons/core-free-icons/SmileIcon\";\nimport UserIcon from \"@hugeicons/core-free-icons/UserIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Command,\n  CommandDialog,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n  CommandSeparator,\n  CommandShortcut,\n} from \"@/registry/erbium/ui/command\";\n\nexport function CommandWithGroups() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <Button onClick={() => setOpen(true)} variant=\"outline\" className=\"w-fit\">\n        Open Menu\n      </Button>\n      <CommandDialog open={open} onOpenChange={setOpen}>\n        <Command>\n          <CommandInput placeholder=\"Type a command or search...\" />\n          <CommandList>\n            <CommandEmpty>No results found.</CommandEmpty>\n            <CommandGroup heading=\"Suggestions\">\n              <CommandItem>\n                <HugeiconsIcon icon={Calendar01Icon} />\n                <span>Calendar</span>\n              </CommandItem>\n              <CommandItem>\n                <HugeiconsIcon icon={SmileIcon} />\n                <span>Search Emoji</span>\n              </CommandItem>\n              <CommandItem>\n                <HugeiconsIcon icon={CalculatorIcon} />\n                <span>Calculator</span>\n              </CommandItem>\n            </CommandGroup>\n            <CommandSeparator />\n            <CommandGroup heading=\"Settings\">\n              <CommandItem>\n                <HugeiconsIcon icon={UserIcon} />\n                <span>Profile</span>\n                <CommandShortcut hotkey=\"Mod+P\" />\n              </CommandItem>\n              <CommandItem>\n                <HugeiconsIcon icon={CreditCardIcon} />\n                <span>Billing</span>\n                <CommandShortcut hotkey=\"Mod+B\" />\n              </CommandItem>\n              <CommandItem>\n                <HugeiconsIcon icon={Settings01Icon} />\n                <span>Settings</span>\n                <CommandShortcut hotkey=\"Mod+S\" />\n              </CommandItem>\n            </CommandGroup>\n          </CommandList>\n        </Command>\n      </CommandDialog>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/command/variants/groups.tsx",
       "type": "registry:component",
       "target": "@components/showcase/command/variants/groups.tsx",
-      "content": "import { CommandWithGroups } from \"../examples/upstream/command-groups\";\n\nconst Example = () => <CommandWithGroups />;\n\nexport default Example;\n"
+      "content": "import { CommandWithGroups } from \"../examples/command-groups\";\n\nconst Example = () => <CommandWithGroups />;\n\nexport default Example;\n"
     }
   ]
 }

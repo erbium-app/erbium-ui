@@ -1,4 +1,4 @@
-import { HoverCardSides } from "../examples/upstream/hover-card-sides";
+import { HoverCardSides } from "../examples/hover-card-sides";
 
 const Example = () => <HoverCardSides />;
 

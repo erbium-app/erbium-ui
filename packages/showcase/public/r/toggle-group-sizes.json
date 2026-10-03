@@ -7,9 +7,9 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
-      "path": "src/toggle-group/examples/upstream/toggle-group-sizes.tsx",
+      "path": "src/toggle-group/examples/toggle-group-sizes.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/toggle-group/examples/upstream/toggle-group-sizes.tsx",
+      "target": "@components/showcase/toggle-group/examples/toggle-group-sizes.tsx",
       "content": "import { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupSizes() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <ToggleGroup size=\"sm\" defaultValue={[\"top\"]} variant=\"outline\">\n        <ToggleGroupItem value=\"top\" aria-label=\"Toggle top\">\n          Top\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"bottom\" aria-label=\"Toggle bottom\">\n          Bottom\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"left\" aria-label=\"Toggle left\">\n          Left\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"right\" aria-label=\"Toggle right\">\n          Right\n        </ToggleGroupItem>\n      </ToggleGroup>\n      <ToggleGroup defaultValue={[\"top\"]} variant=\"outline\">\n        <ToggleGroupItem value=\"top\" aria-label=\"Toggle top\">\n          Top\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"bottom\" aria-label=\"Toggle bottom\">\n          Bottom\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"left\" aria-label=\"Toggle left\">\n          Left\n        </ToggleGroupItem>\n        <ToggleGroupItem value=\"right\" aria-label=\"Toggle right\">\n          Right\n        </ToggleGroupItem>\n      </ToggleGroup>\n    </div>\n  );\n}\n"
     }
   ]

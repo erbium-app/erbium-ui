@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/input-group/examples/upstream/input-group-inline-end.tsx",
+      "path": "src/input-group/examples/input-group-inline-end.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input-group/examples/upstream/input-group-inline-end.tsx",
+      "target": "@components/showcase/input-group/examples/input-group-inline-end.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport EyeOffIcon from \"@hugeicons/core-free-icons/EyeOffIcon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport function InputGroupInlineEnd() {\n  return (\n    <Field className=\"max-w-sm\">\n      <FieldLabel>Input</FieldLabel>\n      <InputGroup>\n        <InputGroupInput type=\"password\" placeholder=\"Enter password\" />\n        <InputGroupAddon align=\"inline-end\">\n          <HugeiconsIcon icon={EyeOffIcon} />\n        </InputGroupAddon>\n      </InputGroup>\n      <FieldDescription>Icon positioned at the end.</FieldDescription>\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/input-group/variants/inline-end.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input-group/variants/inline-end.tsx",
-      "content": "import { InputGroupInlineEnd } from \"../examples/upstream/input-group-inline-end\";\n\nconst Example = () => <InputGroupInlineEnd />;\n\nexport default Example;\n"
+      "content": "import { InputGroupInlineEnd } from \"../examples/input-group-inline-end\";\n\nconst Example = () => <InputGroupInlineEnd />;\n\nexport default Example;\n"
     }
   ]
 }

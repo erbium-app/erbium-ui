@@ -1,4 +1,4 @@
-import { DrawerSnapPoints } from "../examples/upstream/drawer-snap-points";
+import { DrawerSnapPoints } from "../examples/drawer-snap-points";
 
 const Example = () => <DrawerSnapPoints />;
 

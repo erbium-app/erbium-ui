@@ -1,4 +1,4 @@
-import AppSidebar from "../examples/upstream/sidebar-controlled";
+import AppSidebar from "../examples/sidebar-controlled";
 
 const Example = () => <AppSidebar />;
 

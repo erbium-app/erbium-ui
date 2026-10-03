@@ -1,4 +1,4 @@
-import { AlertDialogError } from "../examples/upstream/alert-dialog-error";
+import { AlertDialogError } from "../examples/alert-dialog-error";
 
 const Example = () => <AlertDialogError />;
 

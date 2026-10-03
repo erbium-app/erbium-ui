@@ -1,4 +1,4 @@
-import { SkeletonAvatar } from "../examples/upstream/skeleton-avatar";
+import { SkeletonAvatar } from "../examples/skeleton-avatar";
 
 const Example = () => <SkeletonAvatar />;
 

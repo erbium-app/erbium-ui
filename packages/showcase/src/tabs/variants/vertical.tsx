@@ -1,4 +1,4 @@
-import { TabsVertical } from "../examples/upstream/tabs-vertical";
+import { TabsVertical } from "../examples/tabs-vertical";
 
 const Example = () => <TabsVertical />;
 

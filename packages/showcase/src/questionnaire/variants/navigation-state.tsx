@@ -1,4 +1,4 @@
-import { QuestionnaireNavigationState } from "../examples/upstream/questionnaire-navigation-state";
+import { QuestionnaireNavigationState } from "../examples/questionnaire-navigation-state";
 
 const Example = () => <QuestionnaireNavigationState />;
 

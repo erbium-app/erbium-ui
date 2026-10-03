@@ -1,4 +1,4 @@
-import { BubbleAlignmentDemo } from "../examples/upstream/bubble-alignment";
+import { BubbleAlignmentDemo } from "../examples/bubble-alignment";
 
 const Example = () => <BubbleAlignmentDemo />;
 

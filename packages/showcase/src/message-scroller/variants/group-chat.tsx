@@ -1,4 +1,4 @@
-import { MessageScrollerGroupChat } from "../examples/upstream/message-scroller-group-chat";
+import { MessageScrollerGroupChat } from "../examples/message-scroller-group-chat";
 
 const Example = () => <MessageScrollerGroupChat />;
 

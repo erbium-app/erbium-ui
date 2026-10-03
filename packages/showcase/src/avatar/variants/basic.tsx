@@ -1,4 +1,4 @@
-import AvatarDemo from "../examples/upstream/avatar-basic";
+import AvatarDemo from "../examples/avatar-basic";
 
 const Example = () => <AvatarDemo />;
 

@@ -1,4 +1,4 @@
-import { ChartBarDemoGrid } from "../examples/upstream/chart-example-grid";
+import { ChartBarDemoGrid } from "../examples/chart-example-grid";
 
 const Example = () => <ChartBarDemoGrid />;
 

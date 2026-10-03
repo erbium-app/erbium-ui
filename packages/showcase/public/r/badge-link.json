@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/badge", "@erbium/styles"],
   "files": [
     {
-      "path": "src/badge/examples/upstream/badge-link.tsx",
+      "path": "src/badge/examples/badge-link.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/badge/examples/upstream/badge-link.tsx",
+      "target": "@components/showcase/badge/examples/badge-link.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUpRight01Icon from \"@hugeicons/core-free-icons/ArrowUpRight01Icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport function BadgeAsLink() {\n  return (\n    <Badge render={<a href=\"#link\" />}>\n      Open Link <HugeiconsIcon icon={ArrowUpRight01Icon} data-icon=\"inline-end\" />\n    </Badge>\n  );\n}\n"
     },
     {
       "path": "src/badge/variants/link.tsx",
       "type": "registry:component",
       "target": "@components/showcase/badge/variants/link.tsx",
-      "content": "import { BadgeAsLink } from \"../examples/upstream/badge-link\";\n\nconst Example = () => <BadgeAsLink />;\n\nexport default Example;\n"
+      "content": "import { BadgeAsLink } from \"../examples/badge-link\";\n\nconst Example = () => <BadgeAsLink />;\n\nexport default Example;\n"
     }
   ]
 }

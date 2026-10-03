@@ -1,4 +1,4 @@
-import { AlertDialogSmall } from "../examples/upstream/alert-dialog-small";
+import { AlertDialogSmall } from "../examples/alert-dialog-small";
 
 const Example = () => <AlertDialogSmall />;
 

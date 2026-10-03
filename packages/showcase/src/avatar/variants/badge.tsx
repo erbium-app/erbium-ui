@@ -1,4 +1,4 @@
-import { AvatarWithBadge } from "../examples/upstream/avatar-badge";
+import { AvatarWithBadge } from "../examples/avatar-badge";
 
 const Example = () => <AvatarWithBadge />;
 

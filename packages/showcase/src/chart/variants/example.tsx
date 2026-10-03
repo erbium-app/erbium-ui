@@ -1,4 +1,4 @@
-import { ChartExample } from "../examples/upstream/chart-example";
+import { ChartExample } from "../examples/chart-example";
 
 const Example = () => <ChartExample />;
 

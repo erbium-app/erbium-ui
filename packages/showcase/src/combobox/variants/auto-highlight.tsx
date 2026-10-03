@@ -1,4 +1,4 @@
-import { ComboboxAutoHighlight } from "../examples/upstream/combobox-auto-highlight";
+import { ComboboxAutoHighlight } from "../examples/combobox-auto-highlight";
 
 const Example = () => <ComboboxAutoHighlight />;
 

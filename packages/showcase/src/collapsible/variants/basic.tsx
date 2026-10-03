@@ -1,4 +1,4 @@
-import { CollapsibleBasic } from "../examples/upstream/collapsible-basic";
+import { CollapsibleBasic } from "../examples/collapsible-basic";
 
 const Example = () => <CollapsibleBasic />;
 

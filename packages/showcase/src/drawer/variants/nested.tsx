@@ -1,4 +1,4 @@
-import { DrawerNested } from "../examples/upstream/drawer-nested";
+import { DrawerNested } from "../examples/drawer-nested";
 
 const Example = () => <DrawerNested />;
 

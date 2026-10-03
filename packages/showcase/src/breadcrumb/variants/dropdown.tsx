@@ -1,4 +1,4 @@
-import { BreadcrumbDropdown } from "../examples/upstream/breadcrumb-dropdown";
+import { BreadcrumbDropdown } from "../examples/breadcrumb-dropdown";
 
 const Example = () => <BreadcrumbDropdown />;
 

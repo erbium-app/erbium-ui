@@ -1,4 +1,4 @@
-import { InputBadge } from "../examples/upstream/input-badge";
+import { InputBadge } from "../examples/input-badge";
 
 const Example = () => <InputBadge />;
 

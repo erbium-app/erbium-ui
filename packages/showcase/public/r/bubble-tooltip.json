@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/button", "@erbium/styles", "@erbium/tooltip"],
   "files": [
     {
-      "path": "src/bubble/examples/upstream/bubble-tooltip.tsx",
+      "path": "src/bubble/examples/bubble-tooltip.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/bubble/examples/upstream/bubble-tooltip.tsx",
+      "target": "@components/showcase/bubble/examples/bubble-tooltip.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CheckIcon from \"@hugeicons/core-free-icons/CheckIcon\";\n\nimport { Bubble, BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function BubbleTooltipDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-4 py-12\">\n      <Bubble variant=\"secondary\">\n        <BubbleContent>Did you remove the stale route?</BubbleContent>\n      </Bubble>\n      <Bubble align=\"end\">\n        <BubbleContent>Yes, removed it from the registry.</BubbleContent>\n        <BubbleReactions>\n          <Tooltip>\n            <TooltipTrigger render={<Button variant=\"ghost\" size=\"icon-xs\" />}>\n              <HugeiconsIcon icon={CheckIcon} />\n            </TooltipTrigger>\n            <TooltipContent>Read on Jan 5, 2026 at 4:32 PM</TooltipContent>\n          </Tooltip>\n        </BubbleReactions>\n      </Bubble>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/bubble/variants/tooltip.tsx",
       "type": "registry:component",
       "target": "@components/showcase/bubble/variants/tooltip.tsx",
-      "content": "import { BubbleTooltipDemo } from \"../examples/upstream/bubble-tooltip\";\n\nconst Example = () => <BubbleTooltipDemo />;\n\nexport default Example;\n"
+      "content": "import { BubbleTooltipDemo } from \"../examples/bubble-tooltip\";\n\nconst Example = () => <BubbleTooltipDemo />;\n\nexport default Example;\n"
     }
   ]
 }

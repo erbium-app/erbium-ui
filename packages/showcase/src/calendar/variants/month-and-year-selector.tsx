@@ -1,4 +1,4 @@
-import { CalendarCaption } from "../examples/upstream/calendar-caption";
+import { CalendarCaption } from "../examples/calendar-caption";
 
 const Example = () => <CalendarCaption />;
 

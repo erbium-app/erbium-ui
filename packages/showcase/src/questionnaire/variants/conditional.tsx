@@ -1,4 +1,4 @@
-import { QuestionnaireConditional } from "../examples/upstream/questionnaire-conditional";
+import { QuestionnaireConditional } from "../examples/questionnaire-conditional";
 
 const Example = () => <QuestionnaireConditional />;
 

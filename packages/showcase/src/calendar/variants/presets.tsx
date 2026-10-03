@@ -1,4 +1,4 @@
-import { CalendarWithPresets } from "../examples/upstream/calendar-presets";
+import { CalendarWithPresets } from "../examples/calendar-presets";
 
 const Example = () => <CalendarWithPresets />;
 

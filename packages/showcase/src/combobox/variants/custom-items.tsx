@@ -1,4 +1,4 @@
-import { ComboboxWithCustomItems } from "../examples/upstream/combobox-custom";
+import { ComboboxWithCustomItems } from "../examples/combobox-custom";
 
 const Example = () => <ComboboxWithCustomItems />;
 

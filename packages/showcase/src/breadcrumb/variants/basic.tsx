@@ -1,4 +1,4 @@
-import { BreadcrumbBasic } from "../examples/upstream/breadcrumb-basic";
+import { BreadcrumbBasic } from "../examples/breadcrumb-basic";
 
 const Example = () => <BreadcrumbBasic />;
 

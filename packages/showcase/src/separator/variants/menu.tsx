@@ -1,4 +1,4 @@
-import { SeparatorMenu } from "../examples/upstream/separator-menu";
+import { SeparatorMenu } from "../examples/separator-menu";
 
 const Example = () => <SeparatorMenu />;
 

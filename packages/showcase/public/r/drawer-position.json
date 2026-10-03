@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
   "files": [
     {
-      "path": "src/drawer/examples/upstream/drawer-sides.tsx",
+      "path": "src/drawer/examples/drawer-sides.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/drawer/examples/upstream/drawer-sides.tsx",
+      "target": "@components/showcase/drawer/examples/drawer-sides.tsx",
       "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerContent,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\n\nexport function DrawerWithSides() {\n  return (\n    <Drawer swipeDirection=\"left\">\n      <DrawerTrigger render={<Button variant=\"secondary\" />}>Open Left Drawer</DrawerTrigger>\n      <DrawerPanel>\n        <DrawerHeader>\n          <DrawerTitle>Move Goal</DrawerTitle>\n          <DrawerDescription>Set your daily activity goal.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>\n          <div className=\"size-full rounded-2xl bg-muted\" />\n        </DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button />}>Close</DrawerClose>\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n"
     },
     {
       "path": "src/drawer/variants/position.tsx",
       "type": "registry:component",
       "target": "@components/showcase/drawer/variants/position.tsx",
-      "content": "import { DrawerWithSides } from \"../examples/upstream/drawer-sides\";\n\nconst Example = () => <DrawerWithSides />;\n\nexport default Example;\n"
+      "content": "import { DrawerWithSides } from \"../examples/drawer-sides\";\n\nconst Example = () => <DrawerWithSides />;\n\nexport default Example;\n"
     }
   ]
 }

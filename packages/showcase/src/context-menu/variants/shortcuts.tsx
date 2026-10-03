@@ -1,4 +1,4 @@
-import { ContextMenuShortcuts } from "../examples/upstream/context-menu-shortcuts";
+import { ContextMenuShortcuts } from "../examples/context-menu-shortcuts";
 
 const Example = () => <ContextMenuShortcuts />;
 

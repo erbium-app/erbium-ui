@@ -8,16 +8,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "path": "src/input-group/examples/upstream/input-group-block-start.tsx",
+      "path": "src/input-group/examples/input-group-block-start.tsx",
       "type": "registry:component",
-      "target": "@components/showcase/input-group/examples/upstream/input-group-block-start.tsx",
+      "target": "@components/showcase/input-group/examples/input-group-block-start.tsx",
       "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CopyIcon from \"@hugeicons/core-free-icons/CopyIcon\";\nimport FileCodeIcon from \"@hugeicons/core-free-icons/FileCodeIcon\";\n\nimport { Field, FieldDescription, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport function InputGroupBlockStart() {\n  return (\n    <FieldGroup className=\"max-w-sm\">\n      <Field>\n        <FieldLabel>Input</FieldLabel>\n        <InputGroup className=\"h-auto\">\n          <InputGroupInput placeholder=\"Enter your name\" />\n          <InputGroupAddon align=\"block-start\">\n            <InputGroupText>Full Name</InputGroupText>\n          </InputGroupAddon>\n        </InputGroup>\n        <FieldDescription>Header positioned above the input.</FieldDescription>\n      </Field>\n      <Field>\n        <FieldLabel>Textarea</FieldLabel>\n        <InputGroup>\n          <InputGroupTextarea\n            placeholder=\"console.log('Hello, world!');\"\n            className=\"font-mono text-sm\"\n          />\n          <InputGroupAddon align=\"block-start\">\n            <HugeiconsIcon icon={FileCodeIcon} className=\"text-muted-foreground\" />\n            <InputGroupText className=\"font-mono\">script.js</InputGroupText>\n            <InputGroupButton size=\"icon-xs\" className=\"ml-auto\">\n              <HugeiconsIcon icon={CopyIcon} />\n              <span className=\"sr-only\">Copy</span>\n            </InputGroupButton>\n          </InputGroupAddon>\n        </InputGroup>\n        <FieldDescription>Header positioned above the textarea.</FieldDescription>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
     },
     {
       "path": "src/input-group/variants/block-start.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input-group/variants/block-start.tsx",
-      "content": "import { InputGroupBlockStart } from \"../examples/upstream/input-group-block-start\";\n\nconst Example = () => <InputGroupBlockStart />;\n\nexport default Example;\n"
+      "content": "import { InputGroupBlockStart } from \"../examples/input-group-block-start\";\n\nconst Example = () => <InputGroupBlockStart />;\n\nexport default Example;\n"
     }
   ]
 }

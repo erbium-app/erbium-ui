@@ -1,4 +1,4 @@
-import { ToggleGroupVertical } from "../examples/upstream/toggle-group-vertical";
+import { ToggleGroupVertical } from "../examples/toggle-group-vertical";
 
 const Example = () => <ToggleGroupVertical />;
 

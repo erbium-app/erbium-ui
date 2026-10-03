@@ -1,4 +1,4 @@
-import { QuestionnaireSkipExample } from "../examples/upstream/questionnaire-skip";
+import { QuestionnaireSkipExample } from "../examples/questionnaire-skip";
 
 const Example = () => <QuestionnaireSkipExample />;
 

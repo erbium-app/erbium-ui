@@ -1,4 +1,4 @@
-import { CheckboxDescription } from "../examples/upstream/checkbox-description";
+import { CheckboxDescription } from "../examples/checkbox-description";
 
 const Example = () => <CheckboxDescription />;
 

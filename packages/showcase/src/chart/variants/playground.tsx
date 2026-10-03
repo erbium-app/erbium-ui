@@ -1,4 +1,4 @@
-import { visitorChart } from "../examples/upstream/chart-example";
+import { visitorChart } from "../examples/chart-example";
 import { Chart } from "@erbium/ui/components/chart";
 
 const Example = (args: {

@@ -1,4 +1,4 @@
-import { PaginationIconsOnly } from "../examples/upstream/pagination-icons-only";
+import { PaginationIconsOnly } from "../examples/pagination-icons-only";
 
 const Example = () => <PaginationIconsOnly />;
 

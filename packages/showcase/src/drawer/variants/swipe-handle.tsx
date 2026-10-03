@@ -1,4 +1,4 @@
-import { DrawerSwipeHandle } from "../examples/upstream/drawer-swipe-handle";
+import { DrawerSwipeHandle } from "../examples/drawer-swipe-handle";
 
 const Example = () => <DrawerSwipeHandle />;
 

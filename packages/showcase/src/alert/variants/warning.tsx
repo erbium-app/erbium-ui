@@ -1,4 +1,4 @@
-import AlertColors from "../examples/upstream/alert-colors";
+import AlertColors from "../examples/alert-colors";
 
 const Example = () => <AlertColors />;
 

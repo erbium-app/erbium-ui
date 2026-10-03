@@ -1,4 +1,4 @@
-import { PaginationSimple } from "../examples/upstream/pagination-simple";
+import { PaginationSimple } from "../examples/pagination-simple";
 
 const Example = () => <PaginationSimple />;
 

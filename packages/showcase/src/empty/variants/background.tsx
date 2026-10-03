@@ -1,4 +1,4 @@
-import { EmptyMuted } from "../examples/upstream/empty-background";
+import { EmptyMuted } from "../examples/empty-background";
 
 const Example = () => <EmptyMuted />;
 

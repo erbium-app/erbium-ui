@@ -1,4 +1,4 @@
-import { SwitchInvalid } from "../examples/upstream/switch-invalid";
+import { SwitchInvalid } from "../examples/switch-invalid";
 
 const Example = () => <SwitchInvalid />;
 

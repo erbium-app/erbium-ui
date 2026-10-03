@@ -1,4 +1,4 @@
-import { AttachmentGroupDemo } from "../examples/upstream/attachment-group";
+import { AttachmentGroupDemo } from "../examples/attachment-group";
 
 const Example = () => <AttachmentGroupDemo />;
 

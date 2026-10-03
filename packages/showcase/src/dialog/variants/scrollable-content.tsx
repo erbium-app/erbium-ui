@@ -1,4 +1,4 @@
-import { DialogScrollableContent } from "../examples/upstream/dialog-scrollable-content";
+import { DialogScrollableContent } from "../examples/dialog-scrollable-content";
 
 const Example = () => <DialogScrollableContent />;
 

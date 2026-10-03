@@ -1,4 +1,4 @@
-import InputGroupCustom from "../examples/upstream/input-group-custom";
+import InputGroupCustom from "../examples/input-group-custom";
 
 const Example = () => <InputGroupCustom />;
 

@@ -1,4 +1,4 @@
-import { MenubarSubmenu } from "../examples/upstream/menubar-submenu";
+import { MenubarSubmenu } from "../examples/menubar-submenu";
 
 const Example = () => <MenubarSubmenu />;
 

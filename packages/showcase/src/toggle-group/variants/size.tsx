@@ -1,4 +1,4 @@
-import { ToggleGroupSizes } from "../examples/upstream/toggle-group-sizes";
+import { ToggleGroupSizes } from "../examples/toggle-group-sizes";
 
 const Example = () => <ToggleGroupSizes />;
 
