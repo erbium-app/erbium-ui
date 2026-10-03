@@ -1,31 +1,95 @@
 ---
+import Icon from "../components/ui/Icon.astro";
+import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
 import { markdownPath } from "../lib/agent-pages";
 import { syntaxThemeCss } from "../lib/highlight-theme.mjs";
 import SiteHeader from "../components/shell/SiteHeader.astro";
 import "../styles/docs.css";
-interface Props { title?: string; description?: string; }
-const { title = "Erbium UI", description = "Accessible React components that you can customize and own." } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Erbium UI",
+  description = "Accessible React components that you can customize and own.",
+} = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <style is:inline set:html={syntaxThemeCss} />
+    <style is:inline set:html={syntaxThemeCss}></style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#1c6b48" />
     <title>{title} · Erbium UI</title>
-    <link rel="alternate" type="text/markdown" href={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")} title="Markdown" />
-    <link rel="alternate" type="text/plain" href="/llms.txt" title="Agent documentation index" />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")}
+      title="Markdown"
+    />
+    <link
+      rel="alternate"
+      type="text/plain"
+      href="/llms.txt"
+      title="Agent documentation index"
+    />
     <link rel="sitemap" href="/sitemap.xml" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {
         const preference = localStorage.getItem("erbium-theme");
-        document.documentElement.classList.toggle("dark", preference ? preference === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches);
-      } catch { document.documentElement.classList.toggle("dark", window.matchMedia("(prefers-color-scheme: dark)").matches); }
+        document.documentElement.classList.toggle(
+          "dark",
+          preference
+            ? preference === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches,
+        );
+      } catch {
+        document.documentElement.classList.toggle(
+          "dark",
+          window.matchMedia("(prefers-color-scheme: dark)").matches,
+        );
+      }
     </script>
   </head>
-  <body><a href="#main-content" class="skip-link">Skip to content</a><SiteHeader /><slot /></body>
+  <body
+    ><a href="#main-content" class="skip-link">Skip to content</a><SiteHeader
+    /><slot /><template id="external-link-icon"
+      ><Icon
+        icon={ArrowUpRight01Icon}
+        size={14}
+        class="external-link-icon"
+        data-external-link-icon
+      /></template
+    >
+    <script>
+      const template = document.getElementById(
+        "external-link-icon",
+      ) as HTMLTemplateElement;
+      const updateLinks = () => {
+        for (const link of document.querySelectorAll<HTMLAnchorElement>(
+          "a[href]",
+        )) {
+          const url = new URL(link.href, location.href);
+          if (
+            !["http:", "https:"].includes(url.protocol) ||
+            url.origin === location.origin ||
+            url.origin === "https://ui.erbium.app"
+          )
+            continue;
+          link.target = "_blank";
+          link.relList.add("noopener", "noreferrer");
+          if (!link.querySelector("[data-external-link-icon]"))
+            link.append(template.content.cloneNode(true));
+        }
+      };
+      updateLinks();
+      const observer = new MutationObserver(updateLinks);
+      observer.observe(document.body, { childList: true, subtree: true });
+    </script>
+  </body>
 </html>

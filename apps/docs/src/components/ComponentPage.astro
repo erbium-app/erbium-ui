@@ -1,7 +1,6 @@
 ---
 import { componentReference } from "@erbium/content/markdown";
 import Icon from "./ui/Icon.astro";
-import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
 import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
 import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 import {
@@ -74,7 +73,7 @@ const index = neighbors.findIndex((item) => item.name === name);
           variant="outline"
           size="xs"
         >
-          View source <Icon icon={ArrowUpRight01Icon} size={14} />
+          View source
         </Button>
       )
     }
@@ -111,7 +110,7 @@ const index = neighbors.findIndex((item) => item.name === name);
   {reference && <section class="base-ui-reference" aria-labelledby="base-ui-reference-title">
     <h2 id="base-ui-reference-title">{reference.title}</h2>
     <p>{reference.description}</p>
-    <div class="page-actions">{reference.links.map((link) => <Button href={link.href} variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>
+    <div class="page-actions">{reference.links.map((link) => <Button href={link.href} variant="outline" size="sm">{link.title}</Button>)}</div>
   </section>}
   <nav aria-label="Adjacent documentation pages" class="page-pagination">
     {

@@ -1005,3 +1005,10 @@ copy-button {
 .base-ui-reference p {
   margin-block-end: 1rem;
 }
+
+.external-link-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-inline-start: 0.25em;
+  vertical-align: -0.125em;
+}
