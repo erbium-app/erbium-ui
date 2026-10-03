@@ -3366,18 +3366,6 @@
     ]
   },
   {
-    "name": "styles",
-    "title": "Foundations/Erbium styles",
-    "variants": [
-      {
-        "exportName": "Overview",
-        "slug": "overview",
-        "title": "Overview",
-        "source": "src/styles/variants/overview.tsx"
-      }
-    ]
-  },
-  {
     "name": "surfaces",
     "title": "Foundations/Surfaces",
     "variants": [

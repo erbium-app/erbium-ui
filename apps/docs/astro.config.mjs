@@ -24,16 +24,20 @@ export default defineConfig({
     }),
   },
   trailingSlash: "never",
-  redirects: Object.fromEntries(
-    documentationSections
-      .filter((section) => section.kind !== "component")
-      .flatMap((section) =>
-        section.names.map((name) => [
-          `/docs/components/${name}`,
-          `/docs/${kindPaths[section.kind]}/${name}`,
-        ]),
-      ),
-  ),
+  redirects: {
+    "/docs/foundations/styles": "/docs/installation",
+    "/docs/components/styles": "/docs/installation",
+    ...Object.fromEntries(
+      documentationSections
+        .filter((section) => section.kind !== "component")
+        .flatMap((section) =>
+          section.names.map((name) => [
+            `/docs/components/${name}`,
+            `/docs/${kindPaths[section.kind]}/${name}`,
+          ]),
+        ),
+    ),
+  },
   integrations: [react(), registryIntegration(), showcaseIntegration()],
   vite: {
     // Lightning CSS folds scroll timelines into animation shorthand, which
