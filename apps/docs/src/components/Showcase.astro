@@ -51,7 +51,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
           tabindex="-1"
           data-tab="code">Code</Button
         >
-      </div><span class="showcase-caption">React</span>
+      </div>
     </div>
     <div
       id={`${id}-preview`}
@@ -76,11 +76,8 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
         sources.map((file, index) => (
           <div class="source-file">
             <>
-              <div class="source-file-header">
-                <>
-                  <span>{file.path.replace(/^src\//, "")}</span>
-                  <CopyButton target={`${id}-source-${index}`} />
-                </>
+              <div class="source-file-copy">
+                <CopyButton target={`${id}-source-${index}`} label={`Copy ${file.path.replace(/^src\//, "")}`} />
               </div>
               <pre class="th-code"><code id={`${id}-source-${index}`} set:html={highlightSource(file.source, file.path)} /></pre>
             </>

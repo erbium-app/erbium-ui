@@ -1,7 +1,5 @@
 ---
-import Button from "./ui/Button.astro";
-import Icon from "./ui/Icon.astro";
-import Copy01Icon from "@hugeicons/core-free-icons/Copy01Icon";
+import CopyAction from "./CopyAction.tsx";
 interface Props {
   target?: string;
   url?: string;
@@ -9,47 +7,5 @@ interface Props {
   variant?: "ghost" | "outline";
   label?: string;
 }
-const { target, url, text = "Copy", variant = "ghost", label = "Copy code" } = Astro.props;
 ---
-
-<copy-button data-copy-target={target} data-copy-url={url}>
-  <Button variant={variant} size="xs" aria-label={label}
-    ><Icon icon={Copy01Icon} size={14} /><span data-copy-label>{text}</span
-    ></Button
-  >
-  <span class="sr-only" role="status" data-copy-status></span>
-</copy-button>
-<script>
-  class CopyButton extends HTMLElement {
-    connectedCallback() {
-      const button = this.querySelector("button")!;
-      const label = this.querySelector("[data-copy-label]")!;
-      const status = this.querySelector("[data-copy-status]")!;
-      const originalLabel = label.textContent;
-      button.addEventListener("click", async () => {
-        const target = document.getElementById(this.dataset.copyTarget!);
-        if (!target && !this.dataset.copyUrl) return;
-        try {
-          let content = target?.textContent ?? "";
-          if (this.dataset.copyUrl) {
-            const response = await fetch(this.dataset.copyUrl);
-            if (!response.ok) throw new Error("Markdown could not be loaded");
-            content = await response.text();
-          }
-          await navigator.clipboard.writeText(content);
-          label.textContent = "Copied";
-          status.textContent = "Copied to clipboard.";
-        } catch {
-          status.textContent =
-            "Unable to copy. Please try again.";
-        }
-        window.setTimeout(() => {
-          label.textContent = originalLabel;
-          status.textContent = "";
-        }, 2500);
-      });
-    }
-  }
-  if (!customElements.get("copy-button"))
-    customElements.define("copy-button", CopyButton);
-</script>
+<CopyAction {...Astro.props} client:load />
