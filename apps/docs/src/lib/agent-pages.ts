@@ -1,3 +1,4 @@
+import { componentReferences } from "@erbium/content/markdown";
 import { parseFrontmatter } from "@astrojs/markdown-remark";
 import manifest from "@erbium/showcase/manifest";
 import registry from "@erbium/showcase/registry";
@@ -126,6 +127,8 @@ for (const component of components) {
       blocks.push(code(`packages/showcase/${file.path}`, file.content));
     }
   }
+  const references = componentReferences(component.name);
+  if (references) blocks.push(references);
   agentPages.push(
     page(
       component.href,

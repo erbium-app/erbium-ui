@@ -162,9 +162,21 @@ for (const catalog of manifest) {
       JSON.stringify(copy),
     );
   }
-  const copy = markdownBody(
-    await readFile(join(root, "../content/components", catalog.name, "index.md"), "utf8"),
-  );
+  const referenceCopy = await readFile(
+    join(root, "../content/references", `${catalog.name}.md`),
+    "utf8",
+  ).catch((error) => {
+    if (error.code === "ENOENT") return "";
+    throw error;
+  });
+  const copy = [
+    markdownBody(
+      await readFile(join(root, "../content/components", catalog.name, "index.md"), "utf8"),
+    ),
+    referenceCopy.trim(),
+  ]
+    .filter(Boolean)
+    .join("\n\n");
   portable = portable.replaceAll(`componentDocumentation("${catalog.name}")`, JSON.stringify(copy));
   const toast = catalog.name === "toast";
   portable = portable.replace(

@@ -43,3 +43,9 @@ artifacts work in Astro development and on a static host without a backend.
 Source files are build inputs and are not bundled into browser islands. New
 standalone routes must be added to the shared page catalog; component routes are
 included automatically through the showcase manifest and navigation taxonomy.
+
+Base UI reference sections are authored once in
+`packages/content/references/<component>.md`. The docs render their links with
+shared buttons; Storybook includes the same section in its component description.
+Agent exports and generated portable Storybook stories also consume these files.
+After editing references, run `bun run showcase:registry` to refresh portable stories.

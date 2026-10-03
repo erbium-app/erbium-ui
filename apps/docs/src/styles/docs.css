@@ -992,3 +992,16 @@ copy-button {
   font-size: 1.05rem;
   font-weight: 600;
 }
+
+.base-ui-reference {
+  margin-block-start: 2rem;
+  font-size: 0.875rem;
+}
+.base-ui-reference h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-block-end: 1rem;
+}
+.base-ui-reference p {
+  margin-block-end: 1rem;
+}

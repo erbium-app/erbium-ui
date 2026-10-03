@@ -1,0 +1,5 @@
+## Base UI documentation
+
+Explore the underlying primitives and their API reference.
+
+- [Input](https://base-ui.com/react/components/input)
