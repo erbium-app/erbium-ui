@@ -8,6 +8,20 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const check = process.argv.includes("--check");
 const manifest = JSON.parse(await readFile(join(root, "manifest.json"), "utf8"));
 const packageJson = JSON.parse(await readFile(join(root, "package.json"), "utf8"));
+const workspaceJson = JSON.parse(await readFile(join(root, "../../package.json"), "utf8"));
+
+function dependencyVersion(name) {
+  const version = packageJson.dependencies[name];
+  if (!version) throw new Error(`Undeclared showcase dependency: ${name}`);
+  if (!version.startsWith("catalog:")) return version;
+  const catalogName = version.slice("catalog:".length);
+  const catalog = catalogName
+    ? workspaceJson.workspaces.catalogs?.[catalogName]
+    : workspaceJson.workspaces.catalog;
+  const resolved = catalog?.[name];
+  if (!resolved) throw new Error(`Missing workspace catalog version: ${name} (${version})`);
+  return resolved;
+}
 const uiRegistry = JSON.parse(await readFile(join(root, "../ui/registry.json"), "utf8"));
 const uiNames = new Set(uiRegistry.items.map((item) => item.name));
 const virtual = new Map();
@@ -74,8 +88,7 @@ async function itemFor(name, entry, title, description, story = false) {
           ? specifier.split("/").slice(0, 2).join("/")
           : specifier.split("/")[0];
         if (!dependency.startsWith("@storybook/")) {
-          const version = packageJson.dependencies[dependency];
-          if (!version) throw new Error(`Undeclared showcase dependency: ${dependency}`);
+          const version = dependencyVersion(dependency);
           dependencies.add(`${dependency}@${version}`);
         }
       }
@@ -260,8 +273,8 @@ for (const item of registry.items)
     ...item,
   });
 await output(join(root, "public/r/registry.json"), registry);
-console.log(
-  `${check ? "Verified" : "Built"} ${registry.items.length} installable showcase registry items.`,
+process.stdout.write(
+  `${check ? "Verified" : "Built"} ${registry.items.length} installable showcase registry items.\n`,
 );
 
 if (!check)

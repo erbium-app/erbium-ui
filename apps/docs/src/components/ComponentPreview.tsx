@@ -1,9 +1,26 @@
-import { Component, lazy, Suspense, useState, useEffect, useRef, type ReactNode } from "react";
+import { Component, use, Suspense, useState, useEffect, useRef, type ReactNode } from "react";
 import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Spinner } from "@erbium/ui/components/spinner";
 
-const previews = new Map<string, ReturnType<typeof lazy>>();
+const previews = new Map<string, Promise<ShowcaseStory>>();
+function storyResource(name: string, variant: string) {
+  const key = `${name}/${variant}`;
+  let resource = previews.get(key);
+  if (!resource) {
+    resource = loadShowcase(name).then((catalog) => {
+      const story = catalog[variant] as ShowcaseStory | undefined;
+      if (!story) throw new Error(`Missing interactive showcase: ${key}`);
+      return story;
+    });
+    previews.set(key, resource);
+  }
+  return resource;
+}
+function LoadedPreview({ name, variant }: { name: string; variant: string }) {
+  const story = use(storyResource(name, variant));
+  return <Preview story={story} />;
+}
 class PreviewErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
 
@@ -66,22 +83,11 @@ export default function ComponentPreview({
   variant?: string;
 }) {
   const key = `${name}/${variant}`;
-  if (!previews.has(key))
-    previews.set(
-      key,
-      lazy(async () => {
-        const catalog = await loadShowcase(name);
-        const story = catalog[variant] as ShowcaseStory | undefined;
-        if (!story) throw new Error(`Missing interactive showcase: ${key}`);
-        return { default: () => <Preview story={story} /> };
-      }),
-    );
-  const Example = previews.get(key)!;
   return (
     <ShowcaseProviders>
       <PreviewErrorBoundary key={key}>
         <Suspense fallback={<Spinner aria-label="Loading preview" />}>
-          <Example />
+          <LoadedPreview name={name} variant={variant} />
         </Suspense>
       </PreviewErrorBoundary>
     </ShowcaseProviders>

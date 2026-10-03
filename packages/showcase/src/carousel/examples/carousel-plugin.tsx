@@ -11,14 +11,14 @@ import {
 } from "@erbium/ui/components/carousel";
 
 export default function CarouselPlugin() {
-  const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const [plugin] = React.useState(() => Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
     <Carousel
-      plugins={[plugin.current]}
+      plugins={[plugin]}
       className="w-full max-w-[10rem] sm:max-w-xs"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
+      onMouseEnter={plugin.stop}
+      onMouseLeave={plugin.reset}
     >
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (

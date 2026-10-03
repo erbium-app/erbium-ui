@@ -32,7 +32,7 @@ const tableData: User[] = [
 
 const features = tableFeatures({
   rowSelectionFeature,
-  columnMeta: metaHelper<{ className?: string }>(),
+  columnMeta: metaHelper<{ selection?: boolean }>(),
 });
 
 const columnHelper = createColumnHelper<typeof features, User>();
@@ -57,7 +57,7 @@ const columns = columnHelper.columns([
         onCheckedChange={(checked) => row.toggleSelected(checked)}
       />
     ),
-    meta: { className: "w-8" },
+    meta: { selection: true },
   }),
   columnHelper.accessor("name", {
     header: "Name",
@@ -97,7 +97,10 @@ export function CheckboxInTable() {
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>
+              <TableHead
+                className={header.column.columnDef.meta?.selection ? "w-8" : undefined}
+                key={header.id}
+              >
                 {header.isPlaceholder ? null : <table.FlexRender header={header} />}
               </TableHead>
             ))}
@@ -108,7 +111,10 @@ export function CheckboxInTable() {
         {rows.map((row) => (
           <TableRow data-state={row.getIsSelected() ? "selected" : undefined} key={row.id}>
             {row.getAllCells().map((cell) => (
-              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>
+              <TableCell
+                className={cell.column.columnDef.meta?.selection ? "w-8" : undefined}
+                key={cell.id}
+              >
                 <table.FlexRender cell={cell} />
               </TableCell>
             ))}

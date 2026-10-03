@@ -22,7 +22,10 @@ export function ShowcaseProviders({
 
 export function ShowcaseSurface({ children }: { children?: ReactNode }) {
   return (
-    <div className="component-preview relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout">
+    <div
+      data-slot="component-preview"
+      className="relative isolate flex w-full min-w-0 items-center justify-center font-sans text-foreground contain-layout"
+    >
       {children}
     </div>
   );

@@ -1,3 +1,4 @@
+import { cn } from "@erbium/ui/lib/utils";
 import {
   Table,
   TableBody,
@@ -29,8 +30,10 @@ const invoices: Invoice[] = [
 
 const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
-// Column meta carries the classes shared by a column's head, cells and footer.
-const features = tableFeatures({ columnMeta: metaHelper<{ className?: string }>() });
+// Column metadata describes alignment and width shared by the head, cells and footer.
+const features = tableFeatures({
+  columnMeta: metaHelper<{ alignment?: "end"; narrow?: boolean }>(),
+});
 
 const columnHelper = createColumnHelper<typeof features, Invoice>();
 
@@ -39,7 +42,7 @@ const columns = columnHelper.columns([
     header: "Invoice",
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
     footer: "Total",
-    meta: { className: "w-[100px]" },
+    meta: { narrow: true },
   }),
   columnHelper.accessor("paymentStatus", { header: "Status" }),
   columnHelper.accessor("paymentMethod", { header: "Method" }),
@@ -50,7 +53,7 @@ const columns = columnHelper.columns([
       currency.format(
         table.getRowModel().rows.reduce((sum, row) => sum + row.original.totalAmount, 0),
       ),
-    meta: { className: "text-end" },
+    meta: { alignment: "end" },
   }),
 ]);
 
@@ -64,7 +67,13 @@ export function TableFooterExample() {
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>
+              <TableHead
+                className={cn(
+                  header.column.columnDef.meta?.alignment === "end" && "text-end",
+                  header.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={header.id}
+              >
                 {header.isPlaceholder ? null : <table.FlexRender header={header} />}
               </TableHead>
             ))}
@@ -75,7 +84,13 @@ export function TableFooterExample() {
         {table.getRowModel().rows.map((row) => (
           <TableRow key={row.id}>
             {row.getAllCells().map((cell) => (
-              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>
+              <TableCell
+                className={cn(
+                  cell.column.columnDef.meta?.alignment === "end" && "text-end",
+                  cell.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={cell.id}
+              >
                 <table.FlexRender cell={cell} />
               </TableCell>
             ))}
@@ -86,7 +101,13 @@ export function TableFooterExample() {
         {table.getFooterGroups().map((footerGroup) => (
           <TableRow key={footerGroup.id}>
             {footerGroup.headers.map((footer) => (
-              <TableCell className={footer.column.columnDef.meta?.className} key={footer.id}>
+              <TableCell
+                className={cn(
+                  footer.column.columnDef.meta?.alignment === "end" && "text-end",
+                  footer.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={footer.id}
+              >
                 <table.FlexRender footer={footer} />
               </TableCell>
             ))}

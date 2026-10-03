@@ -68,7 +68,9 @@ function TextMorph({
     scale,
   });
   const cursorRef = React.useRef(cursorIndex);
-  cursorRef.current = cursorIndex;
+  React.useLayoutEffect(() => {
+    cursorRef.current = cursorIndex;
+  }, [cursorIndex]);
   // torph owns the DOM after mount; a stable object keeps React from rewriting it.
   const [initialHtml] = React.useState(() => ({
     __html: escapeHtml(

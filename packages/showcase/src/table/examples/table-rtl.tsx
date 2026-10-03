@@ -1,3 +1,4 @@
+import { cn } from "@erbium/ui/lib/utils";
 import {
   Table,
   TableBody,
@@ -26,7 +27,9 @@ const invoices: Invoice[] = [
 
 const currency = new Intl.NumberFormat("ar", { style: "currency", currency: "USD" });
 
-const features = tableFeatures({ columnMeta: metaHelper<{ className?: string }>() });
+const features = tableFeatures({
+  columnMeta: metaHelper<{ alignment?: "end"; narrow?: boolean }>(),
+});
 
 const columnHelper = createColumnHelper<typeof features, Invoice>();
 
@@ -37,7 +40,7 @@ const columns = columnHelper.columns([
     header: "الفاتورة",
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
     footer: "المجموع",
-    meta: { className: "w-[100px]" },
+    meta: { narrow: true },
   }),
   columnHelper.accessor("paymentStatus", { header: "الحالة" }),
   columnHelper.accessor("paymentMethod", { header: "الطريقة" }),
@@ -48,7 +51,7 @@ const columns = columnHelper.columns([
       currency.format(
         table.getRowModel().rows.reduce((sum, row) => sum + row.original.totalAmount, 0),
       ),
-    meta: { className: "text-end" },
+    meta: { alignment: "end" },
   }),
 ]);
 
@@ -62,7 +65,13 @@ export default function TableRtl() {
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>
+              <TableHead
+                className={cn(
+                  header.column.columnDef.meta?.alignment === "end" && "text-end",
+                  header.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={header.id}
+              >
                 {header.isPlaceholder ? null : <table.FlexRender header={header} />}
               </TableHead>
             ))}
@@ -73,7 +82,13 @@ export default function TableRtl() {
         {table.getRowModel().rows.map((row) => (
           <TableRow key={row.id}>
             {row.getAllCells().map((cell) => (
-              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>
+              <TableCell
+                className={cn(
+                  cell.column.columnDef.meta?.alignment === "end" && "text-end",
+                  cell.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={cell.id}
+              >
                 <table.FlexRender cell={cell} />
               </TableCell>
             ))}
@@ -84,7 +99,13 @@ export default function TableRtl() {
         {table.getFooterGroups().map((footerGroup) => (
           <TableRow key={footerGroup.id}>
             {footerGroup.headers.map((footer) => (
-              <TableCell className={footer.column.columnDef.meta?.className} key={footer.id}>
+              <TableCell
+                className={cn(
+                  footer.column.columnDef.meta?.alignment === "end" && "text-end",
+                  footer.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={footer.id}
+              >
                 <table.FlexRender footer={footer} />
               </TableCell>
             ))}

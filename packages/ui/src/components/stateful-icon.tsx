@@ -39,13 +39,12 @@ function StatefulIcon<State extends string>({
         <motion.span
           animate={{ rotate: 0, scale: 1 }}
           aria-hidden="true"
-          className="col-start-1 row-start-1 grid place-items-center"
+          className="relative col-start-1 row-start-1 grid place-items-center"
           data-active="true"
           data-state={state}
           exit={{ rotate: 90, scale: 0 }}
           initial={false}
           key={state}
-          style={{ position: "relative" }}
           transition={{ duration: 0.15 }}
         >
           {icons[state]}

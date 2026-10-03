@@ -188,33 +188,34 @@ export const movies = [
 ];
 
 export function AsyncAutocomplete() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<typeof movies>([]);
-  const [loading, setLoading] = useState(false);
+  const [request, setRequest] = useState({ query: "" });
+  const { query } = request;
+  const [response, setResponse] = useState({ request, results: [] as typeof movies });
+  const results = query ? response.results : [];
+  const loading = Boolean(query && response.request !== request);
   const { contains } = useAutocompleteFilter({ sensitivity: "base" });
   useEffect(() => {
-    if (!query) {
-      setResults([]);
-      setLoading(false);
-      return;
-    }
-    setLoading(true);
+    if (!query) return;
     const timer = setTimeout(() => {
-      setResults(
-        movies.filter(
+      setResponse({
+        request,
+        results: movies.filter(
           (movie) => contains(movie.title, query) || contains(String(movie.year), query),
         ),
-      );
-      setLoading(false);
+      });
     }, 450);
     return () => clearTimeout(timer);
-  }, [query, contains]);
+  }, [request, query, contains]);
   return (
     <Autocomplete
       items={results}
       filter={null}
       value={query}
-      onValueChange={setQuery}
+      onValueChange={(query) => {
+        const next = { query };
+        setRequest(next);
+        if (!query) setResponse({ request: next, results: [] });
+      }}
       itemToStringValue={(movie) => movie.title}
     >
       <AutocompleteInput aria-label="Search movies" placeholder="Search title or year…" />

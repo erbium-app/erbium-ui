@@ -132,12 +132,12 @@ function EditablePreview({
   children,
   ...props
 }: ButtonPrimitive.Props) {
-  const context = useEditableContext("EditablePreview");
+  const { previewRef, ...context } = useEditableContext("EditablePreview");
   return (
     <ButtonPrimitive
       {...props}
       type="button"
-      ref={context.previewRef}
+      ref={previewRef}
       data-slot="editable-preview"
       data-empty={!context.value ? "" : undefined}
       data-interactive={!context.disabled && !context.readOnly ? "" : undefined}

@@ -115,7 +115,7 @@ export default function ItemBookLibrary() {
               <ItemMedia variant="image" className="h-14 w-10 rounded-sm shadow-sm">
                 <span
                   aria-hidden="true"
-                  className={`flex size-full items-end border-s-4 border-border p-1 text-[10px] font-semibold tracking-wider ${book.cover}`}
+                  className={`flex size-full items-end border-s-4 border-border p-1 text-micro font-semibold tracking-wider ${book.cover}`}
                 >
                   {book.monogram}
                 </span>

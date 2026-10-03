@@ -75,8 +75,8 @@ for (const name of classifiedNames) {
     throw new Error(`Semantic classification has no showcase: ${name}`);
 }
 await output(join(root, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, true);
-console.log(
-  `${check ? "Verified" : "Generated"} ${manifest.length} catalogs and ${manifest.reduce((total, entry) => total + entry.variants.length, 0)} variants.`,
+process.stdout.write(
+  `${check ? "Verified" : "Generated"} ${manifest.length} catalogs and ${manifest.reduce((total, entry) => total + entry.variants.length, 0)} variants.\n`,
 );
 
 if (!check)

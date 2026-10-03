@@ -3,9 +3,11 @@ import * as React from "react";
 export function useCopyToClipboard({
   timeout = 2000,
   onCopy,
+  onError,
 }: {
   timeout?: number;
   onCopy?: () => void;
+  onError?: (error: unknown) => void;
 } = {}): { copyToClipboard: (value: string) => void; isCopied: boolean } {
   const [isCopied, setIsCopied] = React.useState(false);
   const timeoutIdRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -17,23 +19,29 @@ export function useCopyToClipboard({
 
     if (!value) return;
 
-    navigator.clipboard.writeText(value).then(() => {
-      if (timeoutIdRef.current) {
-        clearTimeout(timeoutIdRef.current);
-      }
-      setIsCopied(true);
+    navigator.clipboard.writeText(value).then(
+      () => {
+        if (timeoutIdRef.current) {
+          clearTimeout(timeoutIdRef.current);
+        }
+        setIsCopied(true);
 
-      if (onCopy) {
-        onCopy();
-      }
+        if (onCopy) {
+          onCopy();
+        }
 
-      if (timeout !== 0) {
-        timeoutIdRef.current = setTimeout(() => {
-          setIsCopied(false);
-          timeoutIdRef.current = null;
-        }, timeout);
-      }
-    }, console.error);
+        if (timeout !== 0) {
+          timeoutIdRef.current = setTimeout(() => {
+            setIsCopied(false);
+            timeoutIdRef.current = null;
+          }, timeout);
+        }
+      },
+      (error: unknown) => {
+        setIsCopied(false);
+        onError?.(error);
+      },
+    );
   };
 
   // Cleanup timeout on unmount

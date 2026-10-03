@@ -12,21 +12,28 @@ import {
 
 export default function CarouselDApiDemo() {
   const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+  const subscribe = React.useCallback(
+    (notify: () => void) => {
+      if (!api) return () => {};
+      api.on("select", notify);
+      api.on("reInit", notify);
+      return () => {
+        api.off("select", notify);
+        api.off("reInit", notify);
+      };
+    },
+    [api],
+  );
+  const current = React.useSyncExternalStore(
+    subscribe,
+    () => (api ? api.selectedScrollSnap() + 1 : 0),
+    () => 0,
+  );
+  const count = React.useSyncExternalStore(
+    subscribe,
+    () => api?.scrollSnapList().length ?? 0,
+    () => 0,
+  );
 
   return (
     <div className="mx-auto max-w-xs">

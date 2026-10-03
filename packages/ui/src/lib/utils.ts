@@ -9,6 +9,7 @@ const anySurfaceColor = () => true;
 export const cn = createCn({
   extend: {
     classGroups: {
+      "font-size": [{ text: ["button-sm", "micro"] }],
       surface: [
         {
           surface: [

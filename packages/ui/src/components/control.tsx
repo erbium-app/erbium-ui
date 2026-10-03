@@ -16,6 +16,7 @@ import {
   animate,
   LayoutGroup,
   motion,
+  type MotionStyle,
   useMotionValue,
   useReducedMotion,
   useTransform,
@@ -326,24 +327,26 @@ function ControlNumber({
       >
         <div className="absolute -inset-px overflow-hidden rounded-lg">
           <motion.div
-            className="absolute inset-y-0 inset-s-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
-            style={{ width: fillWidth }}
+            className="w-(--control-fill-width) absolute inset-y-0 inset-s-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
+            style={{ "--control-fill-width": fillWidth } as MotionStyle}
           />
           {markValues.map((mark) => (
             <span
               key={mark}
               data-slot="control-number-step"
               data-active={Math.abs(mark - current) < 0.000001 || undefined}
-              className="absolute top-1/2 size-1.25 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/35 transition-[background-color,transform] duration-150 data-active:scale-125 data-active:bg-foreground/80 rtl:translate-x-1/2 motion-reduce:transition-none"
-              style={{
-                insetInlineStart: `clamp(4px, ${((mark - lower) / (upper - lower)) * 100}%, calc(100% - 4px))`,
-              }}
+              className="inset-s-(--control-step-start) absolute top-1/2 size-1.25 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/35 transition-[background-color,transform] duration-150 data-active:scale-125 data-active:bg-foreground/80 rtl:translate-x-1/2 motion-reduce:transition-none"
+              style={
+                {
+                  "--control-step-start": `clamp(4px, ${((mark - lower) / (upper - lower)) * 100}%, calc(100% - 4px))`,
+                } as React.CSSProperties
+              }
             />
           ))}
         </div>
         <motion.div
-          className="absolute top-1/2 h-5 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/70 opacity-0 transition-opacity duration-150 group-hover/number:opacity-70 group-data-elastic-dragging/number:opacity-100 rtl:translate-x-1/2 motion-reduce:transition-none"
-          style={{ insetInlineStart: handleStart }}
+          className="inset-s-(--control-handle-start) absolute top-1/2 h-5 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/70 opacity-0 transition-opacity duration-150 group-hover/number:opacity-70 group-data-elastic-dragging/number:opacity-100 rtl:translate-x-1/2 motion-reduce:transition-none"
+          style={{ "--control-handle-start": handleStart } as MotionStyle}
         />
       </div>
       <SliderPrimitive.Control
@@ -797,7 +800,11 @@ function Color({
   const [local, setLocal] = React.useState(defaultValue);
   const [draft, setDraft] = React.useState(value ?? defaultValue);
   const current = value ?? local;
-  React.useEffect(() => setDraft(current), [current]);
+  const [previous, setPrevious] = React.useState(current);
+  if (previous !== current) {
+    setPrevious(current);
+    setDraft(current);
+  }
   const valid = /^#[\da-fA-F]{6}$/.test(current);
   const change = (next: string) => {
     setLocal(next);
@@ -826,8 +833,8 @@ function Color({
         className={cn(valueClass, monoClass, "w-20 bg-transparent")}
       />
       <span
-        className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob"
-        style={{ backgroundColor: valid ? current : "transparent" }}
+        className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob bg-(--control-color)!"
+        style={{ "--control-color": valid ? current : "transparent" } as React.CSSProperties}
       >
         <input
           aria-label={`Pick ${label}`}
@@ -1005,11 +1012,13 @@ function Pad({
         }}
       >
         <span
-          className="pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-selection"
-          style={{
-            left: `${((current.x - min) / span) * 100}%`,
-            top: `${100 - ((current.y - min) / span) * 100}%`,
-          }}
+          className="left-(--control-point-x) top-(--control-point-y) pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-selection"
+          style={
+            {
+              "--control-point-x": `${((current.x - min) / span) * 100}%`,
+              "--control-point-y": `${100 - ((current.y - min) / span) * 100}%`,
+            } as React.CSSProperties
+          }
         />
       </div>
       <div className="mt-1.5 grid grid-cols-2 gap-1.5">
@@ -1121,7 +1130,9 @@ function Spring({
   const [local, setLocal] = React.useState<SpringValue>(defaultValue);
   const current = value ?? local;
   const cache = React.useRef({ time: defaultTimeSpring, physics: defaultPhysicsSpring });
-  cache.current[springIsTime(current) ? "time" : "physics"] = current;
+  React.useLayoutEffect(() => {
+    cache.current[springIsTime(current) ? "time" : "physics"] = current;
+  }, [current]);
   const change = (next: SpringValue) => {
     setLocal(next);
     onValueChange?.(next);
@@ -1212,9 +1223,11 @@ function Transition({
     physics: defaultPhysicsSpring,
   });
   const mode = current.type === "easing" ? "easing" : springIsTime(current) ? "time" : "physics";
-  if (current.type === "easing") cache.current.easing = current;
-  else if (springIsTime(current)) cache.current.time = current;
-  else cache.current.physics = current;
+  React.useLayoutEffect(() => {
+    if (current.type === "easing") cache.current.easing = current;
+    else if (springIsTime(current)) cache.current.time = current;
+    else cache.current.physics = current;
+  }, [current]);
   const change = (next: TransitionValue) => {
     setLocal(next);
     onValueChange?.(next);

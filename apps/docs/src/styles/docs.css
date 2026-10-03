@@ -623,12 +623,12 @@ theme-toggle {
   background-color: var(--surface-canvas);
   color: var(--foreground);
 }
-.component-preview {
+[data-slot="component-preview"] {
   gap: 1.5rem;
   color: var(--foreground);
   font-family: var(--font-sans);
 }
-.component-preview > :where(.min-w-72.max-w-2xl) {
+[data-slot="component-preview"] > :where(.min-w-72.max-w-2xl) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1120,7 +1120,7 @@ copy-button {
 .landing-example-wide {
   grid-column: 1 / -1;
 }
-.landing-example .component-preview {
+.landing-example [data-slot="component-preview"] {
   min-height: 10rem;
 }
 .example-label {

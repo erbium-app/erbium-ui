@@ -1,3 +1,4 @@
+import { cn } from "@erbium/ui/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
 import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
 
@@ -33,7 +34,9 @@ const products: Product[] = [
 
 const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 
-const features = tableFeatures({ columnMeta: metaHelper<{ className?: string }>() });
+const features = tableFeatures({
+  columnMeta: metaHelper<{ alignment?: "end"; narrow?: boolean }>(),
+});
 
 const columnHelper = createColumnHelper<typeof features, Product>();
 
@@ -64,7 +67,7 @@ const columns = columnHelper.columns([
         </DropdownMenuContent>
       </DropdownMenu>
     ),
-    meta: { className: "text-end" },
+    meta: { alignment: "end" },
   }),
 ]);
 
@@ -77,7 +80,13 @@ export function TableActions() {
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <TableHead className={header.column.columnDef.meta?.className} key={header.id}>
+              <TableHead
+                className={cn(
+                  header.column.columnDef.meta?.alignment === "end" && "text-end",
+                  header.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={header.id}
+              >
                 {header.isPlaceholder ? null : <table.FlexRender header={header} />}
               </TableHead>
             ))}
@@ -88,7 +97,13 @@ export function TableActions() {
         {table.getRowModel().rows.map((row) => (
           <TableRow key={row.id}>
             {row.getAllCells().map((cell) => (
-              <TableCell className={cell.column.columnDef.meta?.className} key={cell.id}>
+              <TableCell
+                className={cn(
+                  cell.column.columnDef.meta?.alignment === "end" && "text-end",
+                  cell.column.columnDef.meta?.narrow && "w-25",
+                )}
+                key={cell.id}
+              >
                 <table.FlexRender cell={cell} />
               </TableCell>
             ))}

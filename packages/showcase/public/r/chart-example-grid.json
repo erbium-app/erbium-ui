@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chart: Example Grid",
   "description": "Show grid lines in a chart.",
-  "dependencies": ["@tanstack/charts@0.18.0"],
+  "dependencies": ["@tanstack/charts@1.0.0"],
   "registryDependencies": ["@erbium/chart", "@erbium/styles"],
   "files": [
     {

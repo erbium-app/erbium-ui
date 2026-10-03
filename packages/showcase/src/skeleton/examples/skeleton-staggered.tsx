@@ -22,7 +22,7 @@ function StaggeredRow({ delay }: { delay: number }) {
 
   return (
     <div className="flex items-center gap-4">
-      <Skeleton className="size-10 shrink-0 rounded-[35%]" />
+      <Skeleton className="size-10 shrink-0 rounded-avatar" />
       <div className="flex flex-1 flex-col gap-2">
         <Skeleton className="h-4 w-3/4" />
         <Skeleton className="h-4 w-1/2" />

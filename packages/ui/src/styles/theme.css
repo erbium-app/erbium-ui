@@ -96,6 +96,8 @@
   --color-code: var(--code);
   --color-ring: var(--ring);
   --color-overlay-base: var(--overlay-base);
+  --color-cursor-fill: #000000;
+  --color-cursor-stroke: #ffffff;
   --color-overlay-backdrop: var(--overlay-backdrop);
   --color-input: var(--input);
   --color-border: var(--border);
