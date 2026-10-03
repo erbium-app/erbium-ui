@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 const packageName = (specifier) =>
   specifier.startsWith("@") ? specifier.split("/").slice(0, 2).join("/") : specifier.split("/")[0];
 
+// Image generation only runs in Astro's server/build environment.
+const serverOnlyDependencies = new Set(["satori", "sharp"]);
+
 function sourceFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const path = join(directory, entry.name);
@@ -27,6 +30,7 @@ function showcaseDependencies() {
       const source = readFileSync(file, "utf8");
       for (const match of source.matchAll(/(?:from\s*|import\s*)["']([^"']+)["']/g)) {
         const specifier = match[1];
+        if (serverOnlyDependencies.has(packageName(specifier))) continue;
         if (specifier.startsWith("@erbium/") || !dependencies[packageName(specifier)]) continue;
         if (!imports.has(specifier))
           imports.set(specifier, relative === "./" ? specifier : `${pkg.name} > ${specifier}`);

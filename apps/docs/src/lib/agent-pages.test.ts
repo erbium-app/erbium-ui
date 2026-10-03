@@ -4,6 +4,7 @@ import manifest from "@erbium/showcase/manifest";
 import { showcaseSource } from "@erbium/showcase/sources";
 import { components } from "../data/components";
 import { agentPages, llmsFull, llmsIndex, markdownPath, pageIndex } from "./agent-pages";
+import { ogPageForRoute, ogPages, plainText } from "./og-pages";
 
 vi.mock("@erbium/content/documents", () => {
   const raw = import.meta.glob<string>("../../../../packages/content/components/*/index.md", {
@@ -24,6 +25,21 @@ vi.mock("@erbium/content/documents", () => {
 });
 
 describe("agent documentation", () => {
+  it("assigns a unique versioned social image to every canonical page", () => {
+    expect(ogPages.map((page) => page.route)).toEqual(pageIndex.map((page) => page.route));
+    expect(new Set(ogPages.map((page) => page.imagePath)).size).toBe(pageIndex.length);
+    for (const page of ogPages) {
+      expect(page.imagePath).toMatch(/^\/og\/.+-[a-f0-9]{12}\.jpg$/);
+      expect(ogPageForRoute(`${page.route}/`)).toBe(page);
+      expect(page.description).not.toMatch(/\]\(https?:\/\//);
+    }
+    expect(ogPageForRoute("/").title).toBe("Erbium UI");
+    expect(ogPageForRoute("/docs").title).toBe("Introduction");
+    expect(() => ogPageForRoute("/missing")).toThrow("Missing social image metadata");
+    expect(plainText("Use [`Button`](https://example.com) with **care**.")).toBe(
+      "Use Button with care.",
+    );
+  });
   it("publishes unique mirrors for all canonical pages", () => {
     expect(agentPages).toHaveLength(88);
     expect(agentPages.some((page) => page.route === "/docs/components")).toBe(false);

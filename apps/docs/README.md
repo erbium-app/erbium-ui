@@ -1,5 +1,15 @@
 # Documentation website
 
+Every canonical HTML route has a 1200×630 JPEG social card. `src/lib/og-pages.ts`
+derives titles, descriptions, and section labels from the shared page catalog;
+`src/pages/og/[...path].jpg.ts` generates the images at build time with Satori and
+Sharp. The renderer uses the official Erbium mark and bundled OFL-licensed Geist
+fonts, with no build-time font downloads. The shared site layout emits absolute
+Open Graph and Twitter card URLs. Image paths include a content hash; increment
+the design version in `og-pages.ts` when changing the card's appearance. Redirects
+share their destination's metadata, and machine-readable resources do not need
+social cards.
+
 The Astro site renders Markdown from `@erbium/content` and interactive React islands from `@erbium/showcase`. Every shared catalog variant appears on its component page, including playground controls, all source files and registry installation commands. Storybook consumes the same catalogs.
 
 Run `bun run showcase` at the workspace root to start both sites. Authoring instructions are in [the showcase package](../../packages/showcase/README.md). Validate synchronization with `bun run showcase:check`.
