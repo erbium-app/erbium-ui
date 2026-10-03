@@ -36,6 +36,9 @@ export default defineConfig({
   ),
   integrations: [react(), registryIntegration(), showcaseIntegration()],
   vite: {
-    plugins: [tailwindcss(), registryPlugin(), showcaseVitePlugin()],
+    // Lightning CSS folds scroll timelines into animation shorthand, which
+    // browsers reject. Keep shadcn's scroll-fade declarations separate.
+    build: { cssMinify: "esbuild" },
+    plugins: [tailwindcss({ optimize: { minify: false } }), registryPlugin(), showcaseVitePlugin()],
   },
 });
