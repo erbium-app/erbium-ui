@@ -5,6 +5,7 @@ import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
 import { highlightSource } from "../lib/highlight.ts";
 import Separator from "./ui/Separator.astro";
 import Button from "./ui/Button.astro";
+import ShowcaseThemeToggle from "./ShowcaseThemeToggle.tsx";
 import CopyButton from "./CopyButton.astro";
 import ComponentPreview from "./ComponentPreview.tsx";
 interface Props {
@@ -61,7 +62,10 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       class="component-demo"
       tabindex="0"
     >
-      <ComponentPreview name={name} variant={variant} client:visible />
+      <div class="showcase-preview-actions"><ShowcaseThemeToggle client:load /></div>
+      <div class="showcase-content" data-showcase-content>
+        <ComponentPreview name={name} variant={variant} client:visible />
+      </div>
     </div>
     <div
       id={`${id}-code`}
@@ -77,7 +81,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
           <div class="source-file">
             <>
               <div class="source-file-copy">
-                <CopyButton target={`${id}-source-${index}`} label={`Copy ${file.path.replace(/^src\//, "")}`} />
+                <CopyButton iconOnly target={`${id}-source-${index}`} label={`Copy ${file.path.replace(/^src\//, "")}`} />
               </div>
               <pre class="th-code"><code id={`${id}-source-${index}`} set:html={highlightSource(file.source, file.path)} /></pre>
             </>
@@ -90,6 +94,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
     <summary>Install this example <span aria-hidden="true"><Icon icon={Add01Icon} size={14} /></span></summary
     ><div class="install-command">
       <code id={`${id}-install`}>{command}</code><CopyButton
+        iconOnly
         target={`${id}-install`}
         label="Copy installation command"
       />

@@ -11,6 +11,7 @@ interface CopyActionProps {
   text?: string;
   variant?: "ghost" | "outline";
   label?: string;
+  iconOnly?: boolean;
 }
 export default function CopyAction({
   target,
@@ -18,6 +19,7 @@ export default function CopyAction({
   text = "Copy",
   variant = "ghost",
   label = "Copy code",
+  iconOnly = false,
 }: CopyActionProps) {
   const [copied, setCopied] = useState(false);
   const [status, setStatus] = useState("");
@@ -51,7 +53,12 @@ export default function CopyAction({
   };
   return (
     <>
-      <Button variant={variant} size="xs" aria-label={label} onClick={copy}>
+      <Button
+        variant={variant}
+        size={iconOnly ? "icon-xs" : "xs"}
+        aria-label={label}
+        onClick={copy}
+      >
         <StatefulIcon
           state={copied ? "copied" : "idle"}
           icons={{
@@ -59,7 +66,7 @@ export default function CopyAction({
             copied: <HugeiconsIcon icon={CheckIcon} size={14} />,
           }}
         />
-        <span data-copy-label>{copied ? "Copied" : text}</span>
+        {!iconOnly && <span data-copy-label>{copied ? "Copied" : text}</span>}
       </Button>
       <span className="sr-only" role="status">
         {status}

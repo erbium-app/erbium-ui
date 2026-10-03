@@ -1,7 +1,7 @@
 ---
 import { markdownPath } from "../lib/agent-pages";
 import { ogPageForRoute, ogSize, plainText } from "../lib/og-pages";
-import { lightColors } from "../lib/semantic-colors";
+import { lightColors, showcaseLightThemeCss } from "../lib/semantic-colors";
 import { syntaxThemeCss } from "../lib/highlight-theme.mjs";
 import SiteHeader from "../components/shell/SiteHeader.astro";
 import "../styles/docs.css";
@@ -25,7 +25,7 @@ const imageAlt = `${socialPage.title} — Erbium UI ${socialPage.section}`;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <style is:inline set:html={syntaxThemeCss}></style>
+    <style is:inline set:html={syntaxThemeCss + "\n" + showcaseLightThemeCss}></style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={socialDescription} />
     <meta name="theme-color" content={lightColors.background} />

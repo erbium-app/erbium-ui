@@ -27,3 +27,12 @@ function colorsFor(selector: ":root" | ".dark") {
 
 export const lightColors = colorsFor(":root");
 export const darkColors = colorsFor(".dark");
+
+// A local light scope must reset inherited dark tokens without copying the palette.
+export const showcaseLightThemeCss = [themeCss, surfacesCss]
+  .map((css) => {
+    const start = css.indexOf(":root {");
+    const end = css.indexOf("\n}", start) + 2;
+    return css.slice(start, end).replace(":root", ".showcase-content.light");
+  })
+  .join("\n");

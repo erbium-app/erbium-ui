@@ -6,6 +6,7 @@ interface Props {
   text?: string;
   variant?: "ghost" | "outline";
   label?: string;
+  iconOnly?: boolean;
 }
 ---
 <CopyAction {...Astro.props} client:load />

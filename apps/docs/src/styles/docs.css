@@ -1,6 +1,8 @@
 @import "@erbium/ui/globals.css";
 @source "../../../../packages/showcase/src";
 
+@custom-variant dark (&:is(.dark *):not(.showcase-content.light *));
+
 :root {
   --header-height: 3.75rem;
   --sidebar-width: 15rem;
@@ -446,6 +448,7 @@ theme-toggle {
   margin: 0.5rem 0 0.8rem;
 }
 .showcase {
+  color: var(--foreground);
   display: block;
   margin-block-start: 1rem;
 }
@@ -469,23 +472,35 @@ theme-toggle {
 .showcase-toolbar [aria-selected="false"] {
   color: var(--muted-foreground);
 }
+.component-demo,
 .showcase-code,
 .install-command {
   @apply surface-field;
-  --surface-face: var(--code);
+  --surface-face: var(--surface-canvas);
 }
 .component-demo {
-  @apply surface-field;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 16rem;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
+  padding: 0;
   border: 1px solid transparent;
   border-radius: 0.75rem;
   color: var(--foreground);
   overflow: auto;
+}
+.showcase-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 16rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background-color: var(--surface-canvas);
+  color: var(--foreground);
 }
 .component-preview {
   color: var(--foreground);
@@ -512,15 +527,20 @@ theme-toggle {
 .source-file {
   position: relative;
 }
+.showcase-preview-actions,
 .source-file-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
   position: absolute;
   inset-block-start: 0.5rem;
   inset-inline-end: 0.5rem;
   z-index: 1;
   border-radius: 0.375rem;
-  background-color: var(--code);
+  background-color: var(--surface-canvas);
 }
 .source-file pre {
+  background-color: var(--surface-canvas);
   margin: 0;
   padding: 1.25rem;
   font: 0.75rem/1.8 var(--font-mono);
@@ -905,7 +925,7 @@ copy-button {
   .page-description {
     font-size: 0.9375rem;
   }
-  .component-demo {
+  .showcase-content {
     padding: 1.25rem 0.75rem;
   }
   .documentation-directory {
