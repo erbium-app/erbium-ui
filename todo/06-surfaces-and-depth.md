@@ -10,9 +10,9 @@ Every component takes its look from a small set of surface roles instead of hand
 
 References:
 
-- Foglamp: `/Volumes/AlirezaDev/Codes/agents/foglamp/packages/ui`
-- Coss UI: `/Volumes/AlirezaDev/Codes/Packages/coss/packages/ui`
-- Fluid Functionalism: `/Volumes/AlirezaDev/Codes/Packages/fluid-functionalism`
+- Foglamp: `foglamp/packages/ui`
+- Coss UI: `coss/packages/ui`
+- Fluid Functionalism: `fluid-functionalism`
 - Vitesse: `.reference/vitesse-{light,dark}.json`
 
 ## Decisions

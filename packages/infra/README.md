@@ -69,3 +69,36 @@ Validate with `bun run check`, `bun run infra:typecheck` and `bun run docs:build
 Planning and deploying additionally require Cloudflare credentials.
 
 Reference: [Alchemy Astro resource](https://alchemy.run/cloudflare/frontend/astro/).
+
+## Static-site monitoring
+
+The stack manages a Cloudflare Web Analytics site for `ui.erbium.app` through
+`Cloudflare.Rum.Site("DocsAnalytics")`. Alchemy passes its public site token to
+the Astro build as `PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN`; the shared site layout
+embeds Cloudflare's deferred beacon in production HTML. Development and builds
+without a token omit the beacon. Standalone production builds can set the token
+using `apps/docs/.env.example` as a template. Keep automatic beacon injection
+disabled for this hostname to avoid duplicate measurement.
+
+After deployment, view visits, page load performance and Core Web Vitals in
+Cloudflare's **Web Analytics** dashboard. Creating the analytics resource requires
+the account's **Account Settings Write** API permission (called **Account Settings
+Edit** in the dashboard). If this hostname already has an analytics site, review
+Alchemy's adoption plan before taking ownership of that existing resource.
+
+Worker logs and invocation logs are explicitly enabled; traces remain disabled.
+Because the docs deploy as assets only, ordinary page visits do not invoke a
+Worker and do not produce Worker logs. Astro build errors appear in build output.
+
+`.github/workflows/quality.yml` runs `bun run ready` and infrastructure typechecks
+on pull requests and pushes to `main`. It checks out a pinned `anti-slop` commit
+at the relative path required by the existing local dependency. The workflow
+becomes active after being pushed. Deployment remains the existing
+`bun run deploy` command.
+
+Browser error reporting requires an error-reporting service project and its
+public DSN, plus upload credentials for private source maps. Web Analytics does
+not capture JavaScript exceptions. No error-reporting service is configured yet.
+
+References: [Web Analytics setup](https://developers.cloudflare.com/web-analytics/get-started/)
+and [RUM beacon](https://developers.cloudflare.com/speed/observatory/rum-beacon/).

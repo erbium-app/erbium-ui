@@ -1,0 +1,43 @@
+name: Checks and builds
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: project/erbium-ui
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: project/erbium-ui
+          persist-credentials: false
+      # Preserve the root package's ../../Packages/anti-slop file dependency.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: dmmulroy/anti-slop
+          ref: c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b
+          path: Packages/anti-slop
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.4.2
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Validate and build applications
+        run: bun run ready
+      - name: Typecheck infrastructure
+        run: bun run infra:typecheck

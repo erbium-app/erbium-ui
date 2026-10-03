@@ -21,6 +21,9 @@ const canonicalUrl = new URL(socialPage.route, Astro.site);
 const imageUrl = new URL(socialPage.imagePath, Astro.site);
 const socialDescription = plainText(description);
 const imageAlt = `${socialPage.title} — Erbium UI ${socialPage.section}`;
+const analyticsToken = import.meta.env.PROD
+  ? import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN
+  : undefined;
 ---
 
 <!doctype html>
@@ -110,7 +113,14 @@ const imageAlt = `${socialPage.title} — Erbium UI ${socialPage.section}`;
       <DocsSidebar />
       <div class="site-page-content"><slot /></div>
     </SidebarProvider>
-
+    {analyticsToken && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: analyticsToken })}
+      ></script>
+    )}
   </body>
 </html>
 <script>
