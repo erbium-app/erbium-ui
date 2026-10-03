@@ -1,6 +1,7 @@
 import { Component, lazy, Suspense, useState, type ReactNode } from "react";
 import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
+import { Spinner } from "@erbium/ui/components/spinner";
 
 function optionLabel(value: unknown) {
   if (value === undefined) return "Default";
@@ -163,7 +164,7 @@ export default function ComponentPreview({
   return (
     <ShowcaseProviders>
       <PreviewErrorBoundary key={key}>
-        <Suspense fallback={<p role="status">Loading preview…</p>}>
+        <Suspense fallback={<Spinner aria-label="Loading preview" />}>
           <Example />
         </Suspense>
       </PreviewErrorBoundary>

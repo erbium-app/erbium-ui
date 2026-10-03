@@ -1,6 +1,4 @@
 ---
-import Icon from "../components/ui/Icon.astro";
-import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
 import { markdownPath } from "../lib/agent-pages";
 import { syntaxThemeCss } from "../lib/highlight-theme.mjs";
 import SiteHeader from "../components/shell/SiteHeader.astro";
@@ -38,7 +36,7 @@ const {
     />
     <link rel="sitemap" href="/sitemap.xml" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link id="site-favicon" rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {
         const preference = localStorage.getItem("erbium-theme");
@@ -54,42 +52,13 @@ const {
           window.matchMedia("(prefers-color-scheme: dark)").matches,
         );
       }
+      document.getElementById("site-favicon").setAttribute(
+        "href",
+        document.documentElement.classList.contains("dark")
+          ? "/brand/erbium-logo-dark.svg"
+          : "/brand/erbium-logo-light.svg",
+      );
     </script>
   </head>
-  <body
-    ><a href="#main-content" class="skip-link">Skip to content</a><SiteHeader
-    /><slot /><template id="external-link-icon"
-      ><Icon
-        icon={ArrowUpRight01Icon}
-        size={14}
-        class="external-link-icon"
-        data-external-link-icon
-      /></template
-    >
-    <script>
-      const template = document.getElementById(
-        "external-link-icon",
-      ) as HTMLTemplateElement;
-      const updateLinks = () => {
-        for (const link of document.querySelectorAll<HTMLAnchorElement>(
-          "a[href]",
-        )) {
-          const url = new URL(link.href, location.href);
-          if (
-            !["http:", "https:"].includes(url.protocol) ||
-            url.origin === location.origin ||
-            url.origin === "https://ui.erbium.app"
-          )
-            continue;
-          link.target = "_blank";
-          link.relList.add("noopener", "noreferrer");
-          if (!link.querySelector("[data-external-link-icon]"))
-            link.append(template.content.cloneNode(true));
-        }
-      };
-      updateLinks();
-      const observer = new MutationObserver(updateLinks);
-      observer.observe(document.body, { childList: true, subtree: true });
-    </script>
-  </body>
+  <body><a href="#main-content" class="skip-link">Skip to content</a><SiteHeader /><slot /></body>
 </html>

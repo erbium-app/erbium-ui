@@ -49,7 +49,9 @@ export default function ComponentSearch({ components }: { components: Component[
       >
         <HugeiconsIcon icon={Search01Icon} size={20} strokeWidth={1.5} aria-hidden="true" />
         <span>Search documentation…</span>
-        <Kbd hotkey="Mod+K" />
+        <Kbd className="shrink-0" aria-label="Command or Control plus K">
+          <span>⌘ K</span>
+        </Kbd>
       </Button>
       <CommandDialog
         open={open}

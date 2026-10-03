@@ -29,6 +29,10 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
           dark ? "Use light theme" : "Use dark theme",
         );
         button.setAttribute("aria-pressed", String(dark));
+        document.getElementById("site-favicon")?.setAttribute(
+          "href",
+          dark ? "/brand/erbium-logo-dark.svg" : "/brand/erbium-logo-light.svg",
+        );
       };
       sync();
       button.addEventListener("click", () => {

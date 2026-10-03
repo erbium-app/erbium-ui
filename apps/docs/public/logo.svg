@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#2563eb"/><path d="M18 18h28v8H26v5h16v8H26v7h20v8H18z" fill="white"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 49 49" role="img" aria-label="Erbium logo">
+  <title>Erbium logo</title>
+  <path fill="#525252" d="M47.5391 13.2308L34.4831 8.7132L1.84314 31.4821L30.0558 41.2403L36.5838 36.6887L21.4271 31.4483V24.6266L34.4831 29.1443L41.0111 24.5927L27.9551 20.0751V13.2647L41.0111 17.7824L47.5391 13.2308Z" />
+  <path fill="#000" d="M13.9116 23.1056L21.3431 31.5536V24.7319L27.8711 20.1804V13.37L13.9116 23.1056Z" />
+</svg>

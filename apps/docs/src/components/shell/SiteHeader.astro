@@ -1,5 +1,5 @@
 ---
-import Separator from "../ui/Separator.astro";
+import { Separator } from "@erbium/ui/components/separator";
 import Brand from "./Brand.astro";
 import MobileNavigation from "./MobileNavigation.astro";
 import ThemeToggle from "./ThemeToggle.astro";
@@ -36,8 +36,8 @@ const links = [
     <div class="header-leading">
       <MobileNavigation /><Brand /><Separator
         orientation="vertical"
-        class="header-divider"
-        decorative
+        className="header-divider"
+        role="none"
       /><nav aria-label="Main navigation" class="main-navigation">
         {
           links.map((link) => (
@@ -50,9 +50,11 @@ const links = [
     </div>
     <div class="header-actions">
       <ComponentSearch components={components} client:load />
-      <Separator orientation="vertical" class="header-divider" decorative />
+      <Separator orientation="vertical" className="header-divider" role="none" />
       <Button
         href="https://github.com/erbium-app/erbium-ui"
+        target="_blank"
+        rel="noopener noreferrer"
         variant="ghost"
         size="icon"
         aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button
