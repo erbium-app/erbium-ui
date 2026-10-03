@@ -10,6 +10,13 @@
 
 :root {
   --sidebar-width: 15rem;
+  --site-gutter: 1.5rem;
+  --site-max-width: 90rem;
+  --site-section-space: 1.5rem;
+  --site-column-gap: 1.5rem;
+  --docs-page-padding-inline: 2.5rem;
+  --docs-page-padding-start: 3rem;
+  --docs-page-padding-end: 3.5rem;
   --font-sans: var(--font-docs-sans);
   --font-heading: var(--font-docs-sans);
 }
@@ -76,9 +83,10 @@ html[data-theme-changing] *::after {
   }
 }
 
-.site-container {
-  width: min(100% - 3rem, 87rem);
-  margin-inline: auto;
+/* The shell owns the outer gutter; header and content fill the same column. */
+.site-shell {
+  margin-inline-start: max(var(--site-gutter), calc((100% - var(--site-max-width)) / 2));
+  margin-inline-end: var(--site-gutter);
 }
 .skip-link {
   position: fixed;
@@ -121,6 +129,7 @@ html[data-theme-changing] *::after {
   margin-block: 2rem;
 }
 .site-brand {
+  color: var(--foreground);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -203,20 +212,17 @@ theme-toggle {
   display: none;
 }
 .docs-frame {
-  width: auto;
-  margin-inline-start: max(1.5rem, calc((100% - 90rem) / 2));
-  margin-inline-end: 1.5rem;
   display: grid;
   grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
   align-items: start;
-  gap: 1.5rem;
+  gap: var(--site-column-gap);
   min-height: 100svh;
 }
 .docs-sidebar {
   position: sticky;
   inset-block-start: 0;
   height: 100svh;
-  padding-block-start: 1rem;
+  padding-block-start: var(--site-section-space);
   width: 100%;
 }
 .docs-sidebar-content {
@@ -274,14 +280,15 @@ theme-toggle {
 }
 .docs-page-frame {
   min-width: 0;
-  margin-block: 1.5rem;
+  margin-block: var(--site-section-space);
 }
 .docs-page {
   @apply surface-panel;
   border: 1px solid transparent;
   min-width: 0;
   border-radius: 1rem;
-  padding: 3rem 2.5rem 3.5rem;
+  padding: var(--docs-page-padding-start) var(--docs-page-padding-inline)
+    var(--docs-page-padding-end);
 }
 .docs-page-body {
   min-width: 0;
@@ -1146,9 +1153,9 @@ copy-button {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .docs-frame {
+  :root {
     --sidebar-width: 13rem;
-    gap: 1rem;
+    --site-column-gap: 1rem;
   }
   .hero-note {
     width: 100%;
@@ -1156,63 +1163,114 @@ copy-button {
   }
 }
 @media (max-width: 959px) {
+  .page-toc {
+    display: none;
+  }
   .docs-sidebar {
     display: none;
   }
-  .site-container {
-    width: calc(100% - 2rem);
+  :root {
+    --site-gutter: 1rem;
+    --site-section-space: 0rem;
+    --docs-page-padding-inline: 0rem;
+    --docs-page-padding-start: 0.5rem;
+    --docs-page-padding-end: 2rem;
   }
   .mobile-navigation {
     display: inline-flex;
   }
   .docs-frame {
-    width: calc(100% - 2rem);
-    margin-inline: auto;
     display: block;
   }
-  .docs-page-frame {
-    margin-block: 1rem;
-  }
   .docs-page {
-    padding: 2rem 1.5rem;
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
   }
   .mobile-navigation-panel {
-    @apply surface-modal;
+    --sidebar-width: 18rem;
+    /* Keep the column layout while the discrete display transition exits. */
+    flex-direction: column;
+    background: var(--sidebar);
+    box-shadow: none;
     position: fixed;
     inset-block: 0;
     inset-inline-start: 0;
     inset-inline-end: auto;
-    width: min(21rem, calc(100vw - 2rem));
+    width: min(var(--sidebar-width), calc(100vw - 2rem));
     max-width: none;
     height: 100dvh;
     max-height: none;
     margin: 0;
     padding: 0;
-    border: 1px solid transparent;
-    color: var(--foreground);
+    border: 0;
+    border-inline-end: 1px solid var(--sidebar-border);
+    color: var(--sidebar-foreground);
+    overflow: hidden;
+    overscroll-behavior: contain;
+  }
+  html:has(.mobile-navigation-panel[open]) {
+    overflow: hidden;
+  }
+  .mobile-navigation-panel {
+    opacity: 0;
+    transform: translateX(-2.5rem);
+    transition:
+      opacity 200ms ease-in-out,
+      transform 200ms ease-in-out,
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
+  }
+  [dir="rtl"] .mobile-navigation-panel {
+    transform: translateX(2.5rem);
   }
   .mobile-navigation-panel[open] {
     display: flex;
-    flex-direction: column;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  @starting-style {
+    .mobile-navigation-panel[open] {
+      opacity: 0;
+      transform: translateX(-2.5rem);
+    }
+    [dir="rtl"] .mobile-navigation-panel[open] {
+      transform: translateX(2.5rem);
+    }
   }
   .mobile-navigation-panel::backdrop {
     background: var(--overlay-backdrop);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition:
+      opacity 150ms ease-in-out,
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
   }
-  .mobile-navigation-header {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
-    @apply carve-bottom;
+  .mobile-navigation-panel[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    .mobile-navigation-panel[open]::backdrop {
+      opacity: 0;
+    }
   }
   .mobile-navigation-panel .docs-sidebar-content {
-    padding: 0.75rem 1rem 2rem;
+    min-height: 0;
+    overscroll-behavior: contain;
+    padding: 0 0.75rem 1rem;
   }
   .mobile-navigation-panel .docs-nav-link {
-    min-height: 2.5rem;
+    min-height: 2rem;
+    padding-inline: 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.375rem;
+  }
+  .mobile-sidebar-footer button,
+  .mobile-sidebar-footer a {
+    width: 2.75rem;
+    height: 2.75rem;
   }
   .landing {
     padding-block-start: 2.5rem;
@@ -1237,13 +1295,6 @@ copy-button {
   .docs-search-trigger svg {
     width: 1rem;
     height: 1rem;
-  }
-  .docs-page-frame {
-    margin-block: 1rem;
-  }
-  .docs-page {
-    border-radius: 0.75rem;
-    padding: 1.5rem 1rem;
   }
 
   .page-description {
@@ -1323,7 +1374,7 @@ copy-button {
 .site-page-content {
   min-width: 0;
 }
-.mobile-sidebar-trigger {
+.mobile-site-header {
   display: none;
 }
 
@@ -1362,27 +1413,40 @@ copy-button {
   padding-block-start: 2rem;
 }
 @media (max-width: 959px) {
-  .mobile-sidebar-trigger {
+  .mobile-site-header {
+    color: var(--foreground);
     display: flex;
-    position: fixed;
-    inset-block-end: 1rem;
-    inset-inline-start: 1rem;
-    z-index: 40;
-    border-radius: 0.5rem;
-    @apply surface-modal;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.75rem;
   }
-  .mobile-sidebar-trigger > mobile-navigation > button {
+  .mobile-site-header > mobile-navigation > button {
     width: 2.75rem;
     height: 2.75rem;
   }
   .mobile-sidebar-search {
-    padding: 0.75rem 1rem;
+    flex-shrink: 0;
+    padding: calc(1rem + env(safe-area-inset-top, 0px)) 1rem 1rem;
+  }
+  .mobile-navigation-search {
+    width: 100%;
+    height: 2rem;
+    min-height: 2rem;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    color: var(--muted-foreground);
   }
   .mobile-sidebar-footer {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    margin-inline: 1rem;
+    padding-block: 0.75rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
     flex-shrink: 0;
+    @apply carve-top;
   }
 }
 

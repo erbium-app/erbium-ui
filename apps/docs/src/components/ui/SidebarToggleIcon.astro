@@ -1,0 +1,70 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "@erbium/ui/lib/utils";
+type Props = Omit<HTMLAttributes<"svg">, "children"> & {
+  isOpen?: boolean;
+  side?: "left" | "right";
+  duration?: number;
+};
+const {
+  isOpen = false,
+  side = "left",
+  duration = 0.3,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<svg
+  {...props}
+  aria-hidden="true"
+  class={cn("size-3.75 shrink-0 text-muted-foreground", className)}
+  data-slot="sidebar-toggle-icon"
+  data-state={isOpen ? "open" : "closed"}
+  data-side={side}
+  fill="none"
+  focusable="false"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect
+    height="18"
+    rx="4"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    width="20"
+    x="2"
+    y="3"
+  />
+  <rect
+    class="sidebar-toggle-panel"
+    fill="currentColor"
+    height="12"
+    width={isOpen ? 6 : 2}
+    rx="1"
+    x="5"
+    y="6"
+    style={{ transitionDuration: `${duration}s` }}
+  />
+</svg>
+
+<style>
+  [data-slot="sidebar-toggle-icon"][data-side="right"] {
+    transform: scaleX(-1);
+  }
+  .sidebar-toggle-panel {
+    width: 2px;
+    transition-property: width;
+    transition-timing-function: ease-out;
+  }
+  [data-state="open"] .sidebar-toggle-panel {
+    width: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sidebar-toggle-panel {
+      transition: none;
+    }
+  }
+</style>

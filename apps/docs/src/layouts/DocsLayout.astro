@@ -11,7 +11,7 @@ const { headings = [], ...siteProps } = Astro.props;
 
 <SiteLayout {...siteProps}>
     <div class="docs-page-frame">
-      <main id="main-content" tabindex="-1" class="docs-page surface-panel">
+      <main id="main-content" tabindex="-1" class="docs-page">
         <div class="docs-page-body">
           {headings.length > 0 && <TableOfContents headings={headings} />}
           <div class="docs-page-inner"><slot /></div>

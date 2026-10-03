@@ -8,6 +8,7 @@ import { lightColors, showcaseLightThemeCss } from "../lib/semantic-colors";
 import { syntaxThemeCss } from "../lib/highlight-theme.mjs";
 import SidebarProvider from "../components/ui/sidebar/SidebarProvider.astro";
 import DocsSidebar from "../components/shell/DocsSidebar.astro";
+import Brand from "../components/shell/Brand.astro";
 import MobileNavigation from "../components/shell/MobileNavigation.astro";
 import "../styles/docs.css";
 interface Props {
@@ -82,11 +83,16 @@ const analyticsToken = import.meta.env.PROD
   </head>
   <body>
     <a href="#main-content" class="skip-link"> Skip to content </a>
-    <div class="mobile-sidebar-trigger"><MobileNavigation /></div>
-    <SidebarProvider class="docs-frame site-container">
-      <DocsSidebar />
-      <div class="site-page-content"><slot /></div>
-    </SidebarProvider>
+    <div class="site-shell">
+      <header class="mobile-site-header">
+        <Brand />
+        <MobileNavigation />
+      </header>
+      <SidebarProvider class="docs-frame">
+        <DocsSidebar />
+        <div class="site-page-content"><slot /></div>
+      </SidebarProvider>
+    </div>
     {analyticsToken && (
       <script
         is:inline

@@ -1,11 +1,10 @@
 ---
 import Button from "../ui/Button.astro";
 import Icon from "../ui/Icon.astro";
-import Menu01Icon from "@hugeicons/core-free-icons/Menu01Icon";
-import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
+import SidebarToggleIcon from "../ui/SidebarToggleIcon.astro";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 import ThemeToggle from "./ThemeToggle.astro";
 import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
-import Brand from "./Brand.astro";
 import DocsNavigation from "./DocsNavigation.astro";
 ---
 
@@ -17,22 +16,17 @@ import DocsNavigation from "./DocsNavigation.astro";
     aria-haspopup="dialog"
     aria-controls="mobile-navigation"
     aria-expanded="false"
-    data-navigation-open><Icon icon={Menu01Icon} /></Button
+    data-navigation-open><SidebarToggleIcon /></Button
   >
   <dialog
     id="mobile-navigation"
     class="mobile-navigation-panel"
+    data-slot="sidebar"
+    data-sidebar="sidebar"
+    data-mobile="true"
     aria-label="Documentation navigation"
   >
-    <div class="mobile-navigation-header">
-      <Brand /><Button
-        variant="ghost"
-        size="icon"
-        aria-label="Close navigation"
-        data-navigation-close><Icon icon={Cancel01Icon} /></Button
-      >
-    </div>
-    <div class="mobile-sidebar-search"><Button variant="outline" class="w-full" data-navigation-search>Search documentation… <kbd>⌘ K</kbd></Button></div>
+    <div class="mobile-sidebar-search"><Button variant="outline" class="mobile-navigation-search" data-navigation-search><Icon icon={Search01Icon} /><span>Search documentation…</span></Button></div>
     <DocsNavigation />
     <div class="mobile-sidebar-footer"><Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button><ThemeToggle /></div>
   </dialog>
@@ -48,23 +42,36 @@ import DocsNavigation from "./DocsNavigation.astro";
       const trigger = this.querySelector<HTMLButtonElement>(
         "[data-navigation-open]",
       )!;
+      const syncState = () => {
+        trigger.setAttribute("aria-expanded", String(dialog.open));
+        for (const icon of this.querySelectorAll('[data-slot="sidebar-toggle-icon"]')) {
+          icon.setAttribute("data-state", dialog.open ? "open" : "closed");
+        }
+      };
+      syncState();
       this.querySelector("[data-navigation-search]")?.addEventListener("click", () => {
         dialog.close();
         window.dispatchEvent(new Event("erbium-search-open"));
       }, options);
-      trigger.addEventListener("click", () => {
+      const toggleSidebar = () => {
+        if (dialog.open) {
+          dialog.close();
+          return;
+        }
         dialog.showModal();
-        trigger.setAttribute("aria-expanded", "true");
+        syncState();
+      };
+      trigger.addEventListener("click", toggleSidebar, options);
+      window.addEventListener("keydown", (event) => {
+        if (
+          event.key === "b" && (event.metaKey || event.ctrlKey) &&
+          window.matchMedia("(max-width: 959px)").matches
+        ) {
+          event.preventDefault();
+          toggleSidebar();
+        }
       }, options);
-      this.querySelector("[data-navigation-close]")?.addEventListener(
-        "click",
-        () => dialog.close(),
-        options,
-      );
-      dialog.addEventListener("close", () =>
-        trigger.setAttribute("aria-expanded", "false"),
-        options,
-      );
+      dialog.addEventListener("close", syncState, options);
       dialog.addEventListener("click", (event) => {
         const bounds = dialog.getBoundingClientRect();
         if (
