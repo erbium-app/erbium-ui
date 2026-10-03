@@ -1,4 +1,5 @@
 ---
+import { markdownPath } from "../lib/agent-pages";
 import { syntaxThemeCss } from "../lib/highlight-theme.mjs";
 import SiteHeader from "../components/shell/SiteHeader.astro";
 import "../styles/docs.css";
@@ -14,6 +15,10 @@ const { title = "Erbium UI", description = "Accessible React components that you
     <meta name="description" content={description} />
     <meta name="theme-color" content="#1c6b48" />
     <title>{title} · Erbium UI</title>
+    <link rel="alternate" type="text/markdown" href={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")} title="Markdown" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Agent documentation index" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>
       try {

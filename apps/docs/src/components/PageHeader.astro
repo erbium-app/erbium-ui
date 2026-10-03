@@ -1,4 +1,6 @@
 ---
+import CopyButton from "./CopyButton.astro";
+import { markdownPath } from "../lib/agent-pages";
 import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
 import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
@@ -50,5 +52,5 @@ const {
     </div>
   </div>
   <h1>{title}</h1>{description && <p class="page-description">{description}</p>}
-  <div class="page-actions"><slot /></div>
+  <div class="page-actions"><slot /><CopyButton url={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")} text="Copy Markdown" label="Copy page as Markdown" variant="outline" /></div>
 </header>

@@ -3,15 +3,18 @@ import Button from "./ui/Button.astro";
 import Icon from "./ui/Icon.astro";
 import Copy01Icon from "@hugeicons/core-free-icons/Copy01Icon";
 interface Props {
-  target: string;
+  target?: string;
+  url?: string;
+  text?: string;
+  variant?: "ghost" | "outline";
   label?: string;
 }
-const { target, label = "Copy code" } = Astro.props;
+const { target, url, text = "Copy", variant = "ghost", label = "Copy code" } = Astro.props;
 ---
 
-<copy-button data-copy-target={target}>
-  <Button variant="ghost" size="xs" aria-label={label}
-    ><Icon icon={Copy01Icon} size={14} /><span data-copy-label>Copy</span
+<copy-button data-copy-target={target} data-copy-url={url}>
+  <Button variant={variant} size="xs" aria-label={label}
+    ><Icon icon={Copy01Icon} size={14} /><span data-copy-label>{text}</span
     ></Button
   >
   <span class="sr-only" role="status" data-copy-status></span>
@@ -22,19 +25,26 @@ const { target, label = "Copy code" } = Astro.props;
       const button = this.querySelector("button")!;
       const label = this.querySelector("[data-copy-label]")!;
       const status = this.querySelector("[data-copy-status]")!;
+      const originalLabel = label.textContent;
       button.addEventListener("click", async () => {
         const target = document.getElementById(this.dataset.copyTarget!);
-        if (!target) return;
+        if (!target && !this.dataset.copyUrl) return;
         try {
-          await navigator.clipboard.writeText(target.textContent ?? "");
+          let content = target?.textContent ?? "";
+          if (this.dataset.copyUrl) {
+            const response = await fetch(this.dataset.copyUrl);
+            if (!response.ok) throw new Error("Markdown could not be loaded");
+            content = await response.text();
+          }
+          await navigator.clipboard.writeText(content);
           label.textContent = "Copied";
           status.textContent = "Copied to clipboard.";
         } catch {
           status.textContent =
-            "Unable to copy. Select the code to copy it manually.";
+            "Unable to copy. Please try again.";
         }
         window.setTimeout(() => {
-          label.textContent = "Copy";
+          label.textContent = originalLabel;
           status.textContent = "";
         }, 2500);
       });
