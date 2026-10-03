@@ -20,6 +20,7 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
 </theme-toggle>
 <script>
   class ThemeToggle extends HTMLElement {
+    private observer?: MutationObserver;
     connectedCallback() {
       const button = this.querySelector("button")!;
       const sync = () => {
@@ -39,7 +40,9 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
         );
       };
       sync();
-      new MutationObserver(sync).observe(document.documentElement, {
+      this.observer?.disconnect();
+      this.observer = new MutationObserver(sync);
+      this.observer.observe(document.documentElement, {
         attributes: true,
         attributeFilter: ["class"],
       });
@@ -52,6 +55,9 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
         }
         sync();
       });
+    }
+    disconnectedCallback() {
+      this.observer?.disconnect();
     }
   }
   if (!customElements.get("theme-toggle"))

@@ -8,10 +8,12 @@ import SidebarMenu from "../ui/sidebar/SidebarMenu.astro";
 import SidebarMenuItem from "../ui/sidebar/SidebarMenuItem.astro";
 import SidebarMenuButton from "../ui/sidebar/SidebarMenuButton.astro";
 import { navigationGroups } from "../../data/components";
+interface Props { persist?: string; }
+const { persist } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
-<SidebarContent class="docs-sidebar-content">
+<SidebarContent class="docs-sidebar-content" transition:persist={persist}>
   <nav aria-label="Documentation">
     {
       navigationGroups.map((group, index) => (
@@ -50,3 +52,27 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     }
   </nav>
 </SidebarContent>
+
+<script>
+  let sidebarScrollTop = 0;
+  document.addEventListener("astro:before-swap", () => {
+    sidebarScrollTop = document.querySelector<HTMLElement>(
+      ".docs-sidebar .docs-sidebar-content",
+    )?.scrollTop ?? 0;
+  });
+  // Astro restores focus to persisted links during the swap, which can scroll
+  // their container. Restore the offset after that focus step, before paint.
+  document.addEventListener("astro:after-swap", () => {
+    const sidebar = document.querySelector<HTMLElement>(
+      ".docs-sidebar .docs-sidebar-content",
+    );
+    if (sidebar) sidebar.scrollTop = sidebarScrollTop;
+    const pathname = window.location.pathname.replace(/\/$/, "") || "/";
+    for (const link of document.querySelectorAll<HTMLAnchorElement>(".docs-nav-link")) {
+      const active = link.pathname === pathname;
+      link.toggleAttribute("data-active", active);
+      if (active) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    }
+  });
+</script>

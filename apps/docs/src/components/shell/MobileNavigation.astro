@@ -39,7 +39,10 @@ import DocsNavigation from "./DocsNavigation.astro";
 </mobile-navigation>
 <script>
   class MobileNavigation extends HTMLElement {
+    private controller?: AbortController;
     connectedCallback() {
+      this.controller?.abort();
+      this.controller = new AbortController();
       const dialog = this.querySelector<HTMLDialogElement>("dialog")!;
       const trigger = this.querySelector<HTMLButtonElement>(
         "[data-navigation-open]",
@@ -76,7 +79,10 @@ import DocsNavigation from "./DocsNavigation.astro";
         .matchMedia("(min-width: 960px)")
         .addEventListener("change", (event) => {
           if (event.matches) dialog.close();
-        });
+        }, { signal: this.controller.signal });
+    }
+    disconnectedCallback() {
+      this.controller?.abort();
     }
   }
   if (!customElements.get("mobile-navigation"))

@@ -8,6 +8,7 @@
 }
 
 html {
+  scrollbar-gutter: stable;
   scroll-padding-top: 2rem;
 }
 body {
@@ -178,6 +179,7 @@ theme-toggle {
   width: 100%;
 }
 .docs-sidebar-content {
+  scrollbar-gutter: stable;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--muted-foreground) 35%, transparent) transparent;
   padding-inline-end: 0.7rem;

@@ -1,3 +1,4 @@
+import { navigate } from "astro:transitions/client";
 import { kindTitles } from "../data/documentation-sections";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
@@ -47,7 +48,10 @@ export default function ComponentSearch({ components }: { components: Component[
       window.removeEventListener("erbium-search-open", openSearch);
     };
   }, []);
-  const navigate = (href: string) => window.location.assign(href);
+  const openPage = (href: string) => {
+    setOpen(false);
+    void navigate(href);
+  };
   return (
     <>
       <Button
@@ -75,8 +79,8 @@ export default function ComponentSearch({ components }: { components: Component[
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Getting started">
-              <CommandItem onSelect={() => navigate("/")}>Introduction</CommandItem>
-              <CommandItem onSelect={() => navigate("/docs/installation")}>
+              <CommandItem onSelect={() => openPage("/")}>Introduction</CommandItem>
+              <CommandItem onSelect={() => openPage("/docs/installation")}>
                 Installation
               </CommandItem>
             </CommandGroup>
@@ -89,7 +93,7 @@ export default function ComponentSearch({ components }: { components: Component[
                       key={item.name}
                       value={item.title}
                       keywords={[item.name, item.description]}
-                      onSelect={() => navigate(item.href)}
+                      onSelect={() => openPage(item.href)}
                     >
                       <span>{item.title}</span>
                       <span className="search-result-path">{item.href.replace("/docs/", "")}</span>

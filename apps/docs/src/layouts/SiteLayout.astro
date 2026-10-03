@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import { markdownPath } from "../lib/agent-pages";
 import { ogPageForRoute, ogSize, plainText } from "../lib/og-pages";
 import { lightColors, showcaseLightThemeCss } from "../lib/semantic-colors";
@@ -27,8 +28,9 @@ const analyticsToken = import.meta.env.PROD
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
+    <ClientRouter fallback="swap" />
     <meta charset="UTF-8" />
     <style is:inline set:html={syntaxThemeCss + "\n" + showcaseLightThemeCss}
     ></style>
@@ -125,4 +127,19 @@ const analyticsToken = import.meta.env.PROD
 </html>
 <script>
   import "../components/code-block";
+
+  // Incoming HTML is rendered without a browser theme preference. Carry the
+  // live theme into it before Astro replaces root attributes and mounts islands.
+  document.addEventListener("astro:before-swap", (event) => {
+    const dark = document.documentElement.classList.contains("dark");
+    event.newDocument.documentElement.classList.toggle("dark", dark);
+    event.newDocument.getElementById("site-favicon")?.setAttribute(
+      "href",
+      dark ? "/brand/erbium-logo-dark.svg" : "/brand/erbium-logo-light.svg",
+    );
+    const themeColor = document.querySelector('meta[name="theme-color"]')?.getAttribute("content");
+    if (themeColor) {
+      event.newDocument.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor);
+    }
+  });
 </script>
