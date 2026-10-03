@@ -26,11 +26,16 @@
   },
   "workspaces": [
     "packages/*",
-    "apps/*",
-    "tools/*"
+    "apps/*"
   ],
   "type": "module",
   "scripts": {
+    "infra:profile": "bun run --cwd packages/infra profile",
+    "infra:plan": "bun run --cwd packages/infra plan",
+    "deploy": "bun run --cwd packages/infra deploy",
+    "deploy:prod": "bun run deploy --stage prod",
+    "infra:destroy": "bun run --cwd packages/infra destroy",
+    "infra:typecheck": "bun run --cwd packages/infra typecheck",
     "dev": "vp run --parallel --filter './apps/*' dev",
     "docs": "bun run --cwd apps/docs dev",
     "docs:build": "bun run --cwd apps/docs build",
@@ -80,7 +85,7 @@
     "@intellectronica/ruler": "0.3.44",
     "@oxlint/plugins": "^1.86.0",
     "@shadcn/lint": "^0.2.0",
-    "@tanstack/intent": "^0.5.0",
+    "@tanstack/intent": "^0.5.2",
     "@types/node": "^26.6.4",
     "anti-slop": "file:../../Packages/anti-slop",
     "knip": "^6.39.0",
