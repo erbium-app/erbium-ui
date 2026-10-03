@@ -25,7 +25,8 @@ vi.mock("@erbium/content/documents", () => {
 
 describe("agent documentation", () => {
   it("publishes unique mirrors for all canonical pages", () => {
-    expect(agentPages).toHaveLength(89);
+    expect(agentPages).toHaveLength(88);
+    expect(agentPages.some((page) => page.route === "/docs/components")).toBe(false);
     expect(new Set(agentPages.map((page) => page.route)).size).toBe(agentPages.length);
     expect(markdownPath("/")).toBe("/index.md");
     for (const entry of pageIndex) {

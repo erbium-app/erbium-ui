@@ -43,12 +43,11 @@ export const navigationGroups = [
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "Installation", href: "/docs/installation" },
-      { title: "All components", href: "/docs/components" },
     ],
   },
   ...documentationSections.map((section) => ({
     title: section.title,
-    href: `/docs/${kindPaths[section.kind]}${section.kind === "component" ? `#${section.slug}` : ""}`,
+    href: section.kind === "component" ? undefined : `/docs/${kindPaths[section.kind]}`,
     items: [
       ...section.names.map((name) => components.find((item) => item.name === name)!),
       ...(section.kind === "utility" ? [{ title: "Shimmer", href: "/docs/shimmer" }] : []),

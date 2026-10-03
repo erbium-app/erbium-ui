@@ -8,7 +8,6 @@ Erbium UI gives you accessible React components that are easy to understand, cus
 ## Start here
 
 - [Installation](/docs/installation): add the theme and compose your first component.
-- [Components](/docs/components): explore the interactive showcases.
 - [Scroll Fade](/docs/components/scroll-fade): work with overflowing content.
 
 ## Component sampler

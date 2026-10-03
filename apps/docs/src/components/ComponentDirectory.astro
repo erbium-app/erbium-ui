@@ -1,12 +1,6 @@
 ---
-import Icon from "./ui/Icon.astro";
-import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
 import { documentationSections, type DocumentationKind } from "../data/documentation-sections";
 import { components } from "../data/components";
-import {
-  Content as ComponentsContent,
-  frontmatter as componentsFrontmatter,
-} from "@erbium/content/components.md";
 import {
   Content as HooksContent,
   frontmatter as hooksFrontmatter,
@@ -17,11 +11,10 @@ import { Content as UtilitiesContent, frontmatter as utilitiesFrontmatter } from
 import DocsLayout from "../layouts/DocsLayout.astro";
 import PageHeader from "./PageHeader.astro";
 interface Props {
-  kind: DocumentationKind;
+  kind: Exclude<DocumentationKind, "component">;
 }
 const { kind } = Astro.props;
 const documents = {
-  component: { Content: ComponentsContent, frontmatter: componentsFrontmatter },
   hook: { Content: HooksContent, frontmatter: hooksFrontmatter },
   foundation: { Content: FoundationsContent, frontmatter: foundationsFrontmatter },
   provider: { Content: ProvidersContent, frontmatter: providersFrontmatter },
@@ -42,7 +35,6 @@ const groups = documentationSections.filter((section) => section.kind === kind).
   />
   <article class="markdown-copy directory-intro"><Content /></article>
   {groups.map((group) => <section id={group.slug} class="directory-section">
-    {kind === "component" && <h2>{group.title}</h2>}
-    <div class="component-directory">{group.items.map((item) => <a href={item.href} class="directory-item"><div><h3>{item.title}</h3><Icon icon={ArrowUpRight01Icon} size={14} /></div><p>{item.description}</p></a>)}</div>
+    <div class="documentation-directory">{group.items.map((item) => <a href={item.href} class="directory-item"><div class="directory-item-copy"><h3>{item.title}</h3></div></a>)}</div>
   </section>)}
 </DocsLayout>

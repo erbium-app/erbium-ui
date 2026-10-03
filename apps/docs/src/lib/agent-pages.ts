@@ -79,6 +79,7 @@ export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
   return page(route, frontmatter.title, frontmatter.description, section, body(file));
 });
 for (const [kind, path] of Object.entries(kindPaths)) {
+  if (kind === "component") continue;
   const entries = components.filter((item) => item.kind === kind);
   agentPages.push(
     page(

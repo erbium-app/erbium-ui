@@ -1,24 +1,27 @@
 ---
-import Button from "../ui/Button.astro";
 import Separator from "../ui/Separator.astro";
-import Icon from "../ui/Icon.astro";
-import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
 import Brand from "./Brand.astro";
 import MobileNavigation from "./MobileNavigation.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import ComponentSearch from "../ComponentSearch.tsx";
 import { components } from "../../data/components";
+import Icon from "../ui/Icon.astro";
+import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
+import Button from "../ui/Button.astro";
+
 const pathname = Astro.url.pathname;
 const links = [
   {
     title: "Docs",
     href: "/docs",
-    active: pathname === "/docs" || pathname === "/docs/installation" || pathname.startsWith("/docs/foundations") || pathname.startsWith("/docs/providers") || pathname.startsWith("/docs/utilities") || pathname === "/docs/shimmer",
-  },
-  {
-    title: "Components",
-    href: "/docs/components",
-    active: pathname.startsWith("/docs/components"),
+    active:
+      pathname === "/docs" ||
+      pathname === "/docs/installation" ||
+      pathname.startsWith("/docs/components/") ||
+      pathname.startsWith("/docs/foundations") ||
+      pathname.startsWith("/docs/providers") ||
+      pathname.startsWith("/docs/utilities") ||
+      pathname === "/docs/shimmer",
   },
   {
     title: "Hooks",
@@ -46,16 +49,15 @@ const links = [
       </nav>
     </div>
     <div class="header-actions">
-      <ComponentSearch components={components} client:load /><Separator
-        orientation="vertical"
-        class="header-divider"
-        decorative
-      /><Button
+      <ComponentSearch components={components} client:load />
+      <Separator orientation="vertical" class="header-divider" decorative />
+      <Button
         href="https://github.com/erbium-app/erbium-ui"
         variant="ghost"
-        size="sm"
+        size="icon"
         aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button
-      ><ThemeToggle />
+      >
+      <ThemeToggle />
     </div>
   </div>
 </header>

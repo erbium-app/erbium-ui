@@ -670,7 +670,7 @@ copy-button {
 .directory-intro {
   margin-block-end: 2rem;
 }
-.component-directory {
+.documentation-directory {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
@@ -685,26 +685,11 @@ copy-button {
     background-color 150ms,
     box-shadow 150ms;
 }
-.directory-item > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
 .directory-item h3 {
   font-size: 0.875rem;
   font-weight: 550;
 }
-.directory-item span {
-  font-size: 0.8rem;
-  color: var(--muted-foreground);
-}
-.directory-item p {
-  margin-block-start: 0.4rem;
-  color: var(--muted-foreground);
-  font-size: 0.75rem;
-  line-height: 1.65;
-  text-wrap: pretty;
-}
+
 .sampler {
   display: grid;
   gap: 1rem;
@@ -942,7 +927,7 @@ copy-button {
   .component-demo {
     padding: 1.25rem 0.75rem;
   }
-  .component-directory {
+  .documentation-directory {
     grid-template-columns: 1fr;
   }
   .landing-grid {
@@ -1004,11 +989,4 @@ copy-button {
 }
 .base-ui-reference p {
   margin-block-end: 1rem;
-}
-
-.external-link-icon {
-  display: inline-block;
-  flex-shrink: 0;
-  margin-inline-start: 0.25em;
-  vertical-align: -0.125em;
 }
