@@ -32,7 +32,9 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
   <Separator class="showcase-header-separator" variant="full" decorative />
   <h2>
     <a href={`#${anchorId}`}
-      >{title}<span class="heading-anchor" aria-hidden="true"><Icon icon={Link01Icon} size={14} /></span></a
+      >{title}<span class="heading-anchor" aria-hidden="true"
+        ><Icon icon={Link01Icon} size={14} /></span
+      ></a
     >
   </h2>
   <div class="markdown-copy variant-description"><slot /></div>
@@ -68,7 +70,9 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       class="component-demo"
       tabindex="0"
     >
-      <div class="showcase-preview-actions"><ShowcaseThemeToggle client:load /></div>
+      <div class="showcase-preview-actions">
+        <ShowcaseThemeToggle client:load />
+      </div>
       <div class="showcase-content" data-showcase-content>
         <ComponentPreview name={name} variant={variant} client:visible />
       </div>
@@ -91,7 +95,10 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
     <ShowcaseControls story={story} id={id} />
   </showcase-tabs>
   <details class="install-example">
-    <summary>Install this example <span aria-hidden="true"><Icon icon={Add01Icon} size={14} /></span></summary
+    <summary
+      >Install this example <span aria-hidden="true"
+        ><Icon icon={Add01Icon} size={14} /></span
+      ></summary
     ><div class="install-command">
       <code id={`${id}-install`}>{command}</code><CopyButton
         iconOnly

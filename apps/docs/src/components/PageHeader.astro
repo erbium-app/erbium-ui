@@ -46,5 +46,13 @@ const { title, description, previous, next } = Astro.props;
     </div>
   </div>
   {description && <p class="page-description">{description}</p>}
-  <div class="page-actions"><slot /><CopyButton url={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")} text="Copy Markdown" label="Copy page as Markdown" variant="outline" /></div>
+  <div class="page-actions">
+    <slot />
+    <CopyButton
+      url={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")}
+      text="Copy Markdown"
+      label="Copy page as Markdown"
+      variant="outline"
+    />
+  </div>
 </header>
