@@ -35,7 +35,15 @@ Components provide a foundation. Content, hierarchy, and flow still need care. A
 >
 > — Steve Jobs, [The Guts of a New Machine](https://www.nytimes.com/2003/11/30/magazine/the-guts-of-a-new-machine.html), 2003
 
-Loading states, validation feedback, and overlay layouts are part of that work. We build them into the primitives and blocks so projects don’t have to start again. Validation errors and repeated toasts can shake for emphasis.
+Loading states, validation feedback, and overlay layouts are part of that work. We build them into the primitives and blocks so projects don’t have to start again. Validation errors can shake for emphasis.
+
+## Keep cause and effect together
+
+Feedback belongs to the interaction that caused it. Before adding a message, decide what changes immediately, where pending work appears, what durable state proves success, and where failure remains visible with a way to recover.
+
+Prefer feedback in the affected control, form, or row. A copy button can become a checkmark; a form can keep its error beside the submit area; a failed optimistic change can restore the row and explain why. Background work needs a persistent activity surface with progress, results, and recovery actions.
+
+[Toasts](/docs/components/toast) are a fallback for brief, supplementary information that is safe to miss. The result and any useful action must remain available elsewhere after the message disappears. Avoid repeating an already visible result or sending every request failure to a global notification. A polished component still needs a reason to appear.
 
 ## Ready for agents
 

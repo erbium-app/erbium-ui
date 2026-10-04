@@ -3,7 +3,7 @@
   "name": "toast-queue",
   "type": "registry:component",
   "title": "Toast: Queue",
-  "description": "Add five persistent notifications, then hover the stack to see and scroll the full queue.",
+  "description": "This example adds five notifications with automatic dismissal disabled to demonstrate the stack. Hover or focus the stack to see and scroll the full queue.\n\nA queue is not notification history. Avoid one toast per rapid or bulk operation; update the affected interface and keep any useful summary in a persistent surface.",
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

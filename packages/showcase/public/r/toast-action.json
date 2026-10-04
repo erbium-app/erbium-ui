@@ -3,7 +3,7 @@
   "name": "toast-action",
   "type": "registry:component",
   "title": "Toast: Action",
-  "description": "Pass button props with `actionProps` to render an action.\n\n```tsx\nconst id = toast.add({\n  id: \"event-created\",\n  title: \"Event created\",\n  actionProps: {\n    children: \"Undo\",\n    onClick() {\n      toast.close(id);\n    },\n  },\n});\n```",
+  "description": "Pass button props with `actionProps` to render a supplementary action. Keep the same action available in a persistent surface after the toast disappears. An Undo toast must not be the only way to restore an item; provide recovery in the affected list or history.\n\nThe example below shows the action API and closes the toast. A real Undo handler must also restore the application state.\n\n```tsx\nconst id = toast.add({\n  id: \"event-created\",\n  title: \"Event created\",\n  actionProps: {\n    children: \"Undo\",\n    onClick() {\n      toast.close(id);\n    },\n  },\n});\n```",
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
