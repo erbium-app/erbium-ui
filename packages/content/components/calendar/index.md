@@ -9,7 +9,7 @@ Select a date or date range.
 
 ## Usage
 
-See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.
+See the [React DayPicker](https://daypicker.dev/v9) documentation for more information.
 
 ```tsx
 import { Calendar } from "@erbium/ui/components/calendar";
@@ -23,7 +23,7 @@ return <Calendar mode="single" selected={date} onSelect={setDate} />;
 
 ## About
 
-The `Calendar` component is built on top of [React DayPicker](https://react-day-picker.js.org).
+The `Calendar` component is built on top of [React DayPicker](https://daypicker.dev/v9).
 
 ## Date Picker
 

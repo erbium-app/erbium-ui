@@ -1422,16 +1422,16 @@ docs-copy {
   display: none;
 }
 
-.base-ui-reference {
+.component-reference {
   margin-block-start: 2rem;
   font-size: 0.875rem;
 }
-.base-ui-reference h2 {
+.component-reference h2 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-block-end: 1rem;
 }
-.base-ui-reference p {
+.component-reference p {
   margin-block-end: 1rem;
 }
 

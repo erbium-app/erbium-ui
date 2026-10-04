@@ -1,6 +1,6 @@
-## Base UI documentation
+## External documentation
 
-Explore the underlying primitives and their API reference.
+Explore the underlying Base UI primitives and Motion for React, used for animated control feedback.
 
 - [Button](https://base-ui.com/react/components/button)
 - [Field](https://base-ui.com/react/components/field)
@@ -10,3 +10,4 @@ Explore the underlying primitives and their API reference.
 - [Select](https://base-ui.com/react/components/select)
 - [Slider](https://base-ui.com/react/components/slider)
 - [Switch](https://base-ui.com/react/components/switch)
+- [Motion for React](https://motion.dev/docs/react)

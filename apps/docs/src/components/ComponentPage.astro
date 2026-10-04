@@ -60,7 +60,7 @@ const headings = [
   { depth: 2, slug: showcaseAnchor(lead.slug), text: lead.title },
   ...markdownHeadings,
   ...remaining.map((variant) => ({ depth: 2, slug: showcaseAnchor(variant.slug), text: variant.title })),
-  ...(reference ? [{ depth: 2, slug: "base-ui-reference-title", text: reference.title }] : []),
+  ...(reference ? [{ depth: 2, slug: "component-reference-title", text: reference.title }] : []),
 ];
 const section = documentationSections.find((section) => section.slug === component.sectionSlug)!;
 const neighbors = section.names.map((name) => components.find((item) => item.name === name)!);
@@ -120,8 +120,8 @@ const index = neighbors.findIndex((item) => item.name === name);
     ))
   }
   {name === "toast" && <ShowcaseToaster client:load />}
-  {reference && <section class="base-ui-reference" aria-labelledby="base-ui-reference-title">
-    <h2 id="base-ui-reference-title">{reference.title}</h2>
+  {reference && <section class="component-reference" aria-labelledby="component-reference-title">
+    <h2 id="component-reference-title">{reference.title}</h2>
     <p>{reference.description}</p>
     <div class="page-actions">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>
   </section>}
