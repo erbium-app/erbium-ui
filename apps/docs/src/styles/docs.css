@@ -34,6 +34,15 @@ body {
   overflow-wrap: anywhere;
   word-break: normal;
 }
+/* Shared squircle corners apply to docs surfaces too; circles and pills
+   retain their geometry just like the library's rounded-full controls. */
+@supports (corner-shape: squircle) {
+  .status-dot,
+  .astro-switch-track,
+  .astro-switch-track [data-slot="switch-thumb"] {
+    corner-shape: round;
+  }
+}
 /* Theme palettes switch together; interaction transitions resume after paint. */
 html[data-theme-changing],
 html[data-theme-changing] *,
