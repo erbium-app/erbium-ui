@@ -1,0 +1,9 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import { Content, frontmatter, getHeadings } from "@erbium/content/roadmap.md";
+---
+<DocsLayout title={frontmatter.title} description={frontmatter.description} headings={getHeadings()}>
+  <PageHeader title={frontmatter.title} description={frontmatter.description} />
+  <article class="markdown-copy"><Content /></article>
+</DocsLayout>

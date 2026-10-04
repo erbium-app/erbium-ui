@@ -43,6 +43,7 @@ export const navigationGroups = [
     items: [
       { title: "Introduction", href: "/" },
       { title: "Installation", href: "/docs/installation" },
+      { title: "Roadmap", href: "/docs/roadmap" },
     ],
   },
   ...documentationSections.map((section) => ({

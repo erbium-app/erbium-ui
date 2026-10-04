@@ -71,6 +71,7 @@ function page(
 const guides = [
   ["/", "introduction.md", "Getting started"],
   ["/docs/installation", "installation.md", "Getting started"],
+  ["/docs/roadmap", "roadmap.md", "Getting started"],
   ["/docs/shimmer", "shimmer.md", "Utilities"],
 ];
 export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {

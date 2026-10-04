@@ -13,6 +13,7 @@ const groups = [
   { title: "Getting started", items: [
     { title: "Introduction", href: "/", name: "introduction", description: "" },
     { title: "Installation", href: "/docs/installation", name: "installation", description: "" },
+    { title: "Roadmap", href: "/docs/roadmap", name: "roadmap", description: "Planned components, tools, and platforms." },
   ] },
   ...(["foundation", "component", "provider", "utility", "hook"] as const).map((kind) => ({
     title: kindTitles[kind], items: Astro.props.components.filter((item) => item.kind === kind),
