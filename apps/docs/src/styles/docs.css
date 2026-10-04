@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *):not(.showcase-content.light *));
 
 @theme inline {
-  --font-sans: var(--font-docs-sans);
-  --font-heading: var(--font-docs-sans);
+  --font-sans: var(--font-docs-arabic), var(--font-docs-sans);
+  --font-heading: var(--font-docs-arabic), var(--font-docs-sans);
 }
 
 :root {
@@ -17,8 +17,8 @@
   --docs-page-padding-inline: 2.5rem;
   --docs-page-padding-start: 3rem;
   --docs-page-padding-end: 3.5rem;
-  --font-sans: var(--font-docs-sans);
-  --font-heading: var(--font-docs-sans);
+  --font-sans: var(--font-docs-arabic), var(--font-docs-sans);
+  --font-heading: var(--font-docs-arabic), var(--font-docs-sans);
 }
 
 html {
@@ -30,7 +30,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: var(--font-docs-sans);
+  font-family: var(--font-sans);
   overflow-wrap: anywhere;
   word-break: normal;
 }

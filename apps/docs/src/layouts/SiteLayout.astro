@@ -76,6 +76,8 @@ const analyticsToken = import.meta.env.PROD
       type="image/svg+xml"
     />
     <Font cssVariable="--font-docs-sans" preload={[{ style: "normal" }]} />
+    <!-- Unicode ranges trigger the Arabic subset only when its glyphs render. -->
+    <Font cssVariable="--font-docs-arabic" preload={false} />
     <ClientRouter fallback="swap" />
     <style is:inline set:html={syntaxThemeCss + "\n" + showcaseLightThemeCss}
     ></style>

@@ -20,6 +20,37 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.local(),
+      name: "Vazirmatn",
+      cssVariable: "--font-docs-arabic",
+      display: "swap",
+      // Keep this script-specific face ahead of Cal Sans without adding
+      // generic or metric-adjusted fallbacks that would capture Latin text.
+      fallbacks: [],
+      optimizedFallbacks: false,
+      options: {
+        variants: [
+          {
+            // Fontsource's Arabic variable subset, vendored with its OFL license.
+            src: ["./src/assets/fonts/Vazirmatn-Arabic-VF.woff2"],
+            weight: "100 900",
+            style: "normal",
+            // Exclude shared punctuation so English alone never requests it.
+            unicodeRange: [
+              "U+0600-06FF",
+              "U+0750-077F",
+              "U+0870-089F",
+              "U+08A0-08FF",
+              "U+FB50-FDFF",
+              "U+FE70-FEFF",
+              "U+10EC0-10EFF",
+              "U+1EE00-1EEFF",
+            ],
+          },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
       name: "Cal Sans",
       cssVariable: "--font-docs-sans",
       fallbacks: ["Arial", "sans-serif"],
