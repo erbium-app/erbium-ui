@@ -1,5 +1,6 @@
+import { useState } from "react";
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
 
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@erbium/ui/components/field";
@@ -13,6 +14,7 @@ import {
 } from "@erbium/ui/components/input-group";
 
 export function InputGroupBlockStart() {
+  const [code, setCode] = useState("console.log('Hello, world!');");
   return (
     <FieldGroup className="max-w-sm">
       <Field>
@@ -29,16 +31,19 @@ export function InputGroupBlockStart() {
         <FieldLabel>Textarea</FieldLabel>
         <InputGroup>
           <InputGroupTextarea
+            value={code}
+            onChange={(event) => setCode(event.target.value)}
             placeholder="console.log('Hello, world!');"
             className="font-mono text-sm"
           />
           <InputGroupAddon align="block-start">
             <HugeiconsIcon icon={FileCodeIcon} className="text-muted-foreground" />
             <InputGroupText className="font-mono">script.js</InputGroupText>
-            <InputGroupButton size="icon-xs" className="ml-auto">
-              <HugeiconsIcon icon={CopyIcon} />
-              <span className="sr-only">Copy</span>
-            </InputGroupButton>
+            <CopyButton
+              value={code}
+              aria-label="Copy script"
+              render={<InputGroupButton size="icon-xs" className="ml-auto" />}
+            />
           </InputGroupAddon>
         </InputGroup>
         <FieldDescription>Header positioned above the textarea.</FieldDescription>

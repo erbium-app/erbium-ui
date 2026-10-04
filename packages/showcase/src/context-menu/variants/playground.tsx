@@ -1,3 +1,4 @@
+import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
 import {
   ContextMenu,
   ContextMenuTrigger,
@@ -14,7 +15,10 @@ const Example = (args: {
       Right click here
     </ContextMenuTrigger>
     <ContextMenuContent side={args.side} align={args.align}>
-      <ContextMenuItem>Copy</ContextMenuItem>
+      <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
+        <CopyButtonIcon />
+        <span>Copy</span>
+      </CopyButton>
       <ContextMenuItem>Paste</ContextMenuItem>
     </ContextMenuContent>
   </ContextMenu>

@@ -1,3 +1,4 @@
+import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -50,10 +51,11 @@ export function ContextMenuGroups() {
             Cut
             <ContextMenuShortcut hotkey="Mod+X" />
           </ContextMenuItem>
-          <ContextMenuItem>
-            Copy
+          <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
+            <CopyButtonIcon />
+            <span>Copy</span>
             <ContextMenuShortcut hotkey="Mod+C" />
-          </ContextMenuItem>
+          </CopyButton>
           <ContextMenuItem>
             Paste
             <ContextMenuShortcut hotkey="Mod+V" />

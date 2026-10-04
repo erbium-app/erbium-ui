@@ -1,5 +1,5 @@
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
 import ThumbsDownIcon from "@hugeicons/core-free-icons/ThumbsDownIcon";
 import ThumbsUpIcon from "@hugeicons/core-free-icons/ThumbsUpIcon";
@@ -17,9 +17,10 @@ export function MessageActionsDemo() {
             <BubbleContent>The install failure is coming from the workspace package.</BubbleContent>
           </Bubble>
           <MessageFooter>
-            <Button variant="ghost" size="icon" aria-label="Copy" title="Copy">
-              <HugeiconsIcon icon={CopyIcon} />
-            </Button>
+            <CopyButton
+              value="The install failure is coming from the workspace package."
+              aria-label="Copy message"
+            />
             <Button variant="ghost" size="icon" aria-label="Like" title="Like">
               <HugeiconsIcon icon={ThumbsUpIcon} />
             </Button>

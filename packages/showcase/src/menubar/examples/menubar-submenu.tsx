@@ -1,3 +1,4 @@
+import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
 import {
   Menubar,
   MenubarContent,
@@ -51,7 +52,10 @@ export function MenubarSubmenu() {
           </MenubarSub>
           <MenubarSeparator />
           <MenubarItem>Cut</MenubarItem>
-          <MenubarItem>Copy</MenubarItem>
+          <CopyButton value="Erbium UI" render={<MenubarItem />}>
+            <CopyButtonIcon />
+            <span>Copy</span>
+          </CopyButton>
           <MenubarItem>Paste</MenubarItem>
         </MenubarContent>
       </MenubarMenu>

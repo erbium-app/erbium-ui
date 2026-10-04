@@ -1,7 +1,6 @@
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import * as React from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
 import StarIcon from "@hugeicons/core-free-icons/StarIcon";
 
@@ -14,28 +13,18 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/popover";
 
 export default function InputGroupButtonExample() {
-  const [isCopied, setIsCopied] = React.useState(false);
-  async function copyToClipboard(value: string) {
-    await navigator.clipboard.writeText(value);
-    setIsCopied(true);
-  }
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   return (
     <div className="grid w-full max-w-sm gap-6">
       <InputGroup>
-        <InputGroupInput placeholder="https://example.com/john-doe" readOnly />
+        <InputGroupInput value="https://example.com/john-doe" readOnly />
         <InputGroupAddon align="inline-end">
-          <InputGroupButton
-            aria-label="Copy"
-            title="Copy"
-            size="icon-xs"
-            onClick={() => {
-              void copyToClipboard("https://example.com/john-doe");
-            }}
-          >
-            {isCopied ? <HugeiconsIcon icon={CheckIcon} /> : <HugeiconsIcon icon={CopyIcon} />}
-          </InputGroupButton>
+          <CopyButton
+            value="https://example.com/john-doe"
+            aria-label="Copy profile URL"
+            render={<InputGroupButton size="icon-xs" />}
+          />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup className="[--radius:9999px]">

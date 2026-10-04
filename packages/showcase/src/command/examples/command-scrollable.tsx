@@ -5,7 +5,6 @@ import CalculatorIcon from "@hugeicons/core-free-icons/CalculatorIcon";
 import Calendar01Icon from "@hugeicons/core-free-icons/Calendar01Icon";
 import ClipboardPasteIcon from "@hugeicons/core-free-icons/ClipboardPasteIcon";
 import CodeIcon from "@hugeicons/core-free-icons/CodeIcon";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
 import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
 import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
@@ -85,9 +84,9 @@ export function CommandManyItems() {
                 <CommandShortcut hotkey="Shift+Mod+N" />
               </CommandItem>
               <CommandItem>
-                <HugeiconsIcon icon={CopyIcon} />
-                <span>Copy</span>
-                <CommandShortcut hotkey="Mod+C" />
+                <HugeiconsIcon icon={FileTextIcon} />
+                <span>Duplicate file</span>
+                <CommandShortcut hotkey="Mod+D" />
               </CommandItem>
               <CommandItem>
                 <HugeiconsIcon icon={ScissorsIcon} />

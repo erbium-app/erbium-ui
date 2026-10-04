@@ -1,7 +1,7 @@
+import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import Alert01Icon from "@hugeicons/core-free-icons/Alert01Icon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
 import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 import UserRoundXIcon from "@hugeicons/core-free-icons/UserRoundXIcon";
@@ -53,10 +53,10 @@ export default function ButtonGroupDropdown() {
               <HugeiconsIcon icon={Share01Icon} />
               Share Conversation
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={CopyIcon} />
-              Copy Conversation
-            </DropdownMenuItem>
+            <CopyButton value="Conversation with Alex" render={<DropdownMenuItem />}>
+              <CopyButtonIcon />
+              <span>Copy Conversation</span>
+            </CopyButton>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>

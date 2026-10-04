@@ -1,5 +1,6 @@
+import { useState } from "react";
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import CornerDownLeftIcon from "@hugeicons/core-free-icons/CornerDownLeftIcon";
 import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
 import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
@@ -13,10 +14,13 @@ import {
 } from "@erbium/ui/components/input-group";
 
 export default function InputGroupTextareaExample() {
+  const [code, setCode] = useState("console.log('Hello, world!');");
   return (
     <div className="grid w-full max-w-md gap-4">
       <InputGroup>
         <InputGroupTextarea
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
           id="textarea-code-32"
           placeholder="console.log('Hello, world!');"
           className="min-h-[200px]"
@@ -35,9 +39,11 @@ export default function InputGroupTextareaExample() {
           <InputGroupButton className="ml-auto" size="icon-xs">
             <HugeiconsIcon icon={RefreshCcwIcon} />
           </InputGroupButton>
-          <InputGroupButton variant="ghost" size="icon-xs">
-            <HugeiconsIcon icon={CopyIcon} />
-          </InputGroupButton>
+          <CopyButton
+            value={code}
+            aria-label="Copy script"
+            render={<InputGroupButton variant="ghost" size="icon-xs" />}
+          />
         </InputGroupAddon>
       </InputGroup>
     </div>

@@ -1093,6 +1093,7 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/attachment",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dialog",
         "@erbium/overlay-provider",
@@ -1184,7 +1185,12 @@
       "title": "Attachment: Trigger",
       "description": "Add an `AttachmentTrigger` to make the whole card open a link or dialog. It fills the card behind the actions, so the actions stay clickable.\n\n```tsx\n<Dialog>\n  <Attachment>\n    {/* media, content, actions */}\n    <DialogTrigger render={<AttachmentTrigger aria-label=\"Preview research-summary.pdf\" />} />\n  </Attachment>\n  <DialogPanel>{/* ... */}</DialogPanel>\n</Dialog>\n```",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/attachment", "@erbium/dialog", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/attachment",
+        "@erbium/copy-button",
+        "@erbium/dialog",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/attachment/examples/attachment-trigger.tsx",
@@ -3272,6 +3278,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/copy-button",
         "@erbium/dropdown-menu",
         "@erbium/stateful-icon",
         "@erbium/styles"
@@ -3293,6 +3300,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/copy-button",
         "@erbium/dropdown-menu",
         "@erbium/stateful-icon",
         "@erbium/styles"
@@ -3519,7 +3527,12 @@
       "type": "registry:block",
       "title": "Button Group: Separator",
       "description": "The `ButtonGroupSeparator` component visually divides buttons within a group.\n\nButtons with variant `outline` do not need a separator since they have a border. For other variants, a separator is recommended to improve the visual hierarchy.",
-      "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/copy-button",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/button-group/examples/button-group-separator.tsx",
@@ -3583,6 +3596,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/input",
@@ -7008,7 +7022,7 @@
       "type": "registry:block",
       "title": "Context Menu: Groups",
       "description": "Group related actions and separate them with dividers.",
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-groups.tsx",
@@ -7028,7 +7042,7 @@
       "title": "Context Menu: Icons",
       "description": "Combine icons with labels for quick scanning.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-icons.tsx",
@@ -7066,7 +7080,7 @@
       "type": "registry:component",
       "title": "Context Menu: Playground",
       "description": "",
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/variants/playground.tsx",
@@ -7141,6 +7155,7 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/context-menu",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -7269,7 +7284,7 @@
       "type": "registry:block",
       "title": "Context Menu: Submenu",
       "description": "Use `ContextMenuSub` to nest secondary actions.",
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-submenu.tsx",
@@ -10706,7 +10721,12 @@
       "title": "Input Group: Block Start",
       "description": "Position an addon above the input.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/field",
+        "@erbium/input-group",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input-group/examples/input-group-block-start.tsx",
@@ -10724,9 +10744,14 @@
       "name": "input-group-button",
       "type": "registry:block",
       "title": "Input Group: Button",
-      "description": "Place an action button inside an input group.",
+      "description": "Place an action button inside an input group.\n\nCompose copy actions with `CopyButton` and `render={<InputGroupButton size=\"icon-xs\" />}`. The block owns clipboard state, animated feedback, and announcements.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/popover", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/input-group",
+        "@erbium/popover",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input-group/examples/input-group-button.tsx",
@@ -10781,6 +10806,7 @@
       "description": "Add a dropdown action inside an input group.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
+        "@erbium/copy-button",
         "@erbium/dropdown-menu",
         "@erbium/input-group",
         "@erbium/stateful-icon",
@@ -10946,6 +10972,7 @@
       ],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/field",
@@ -11120,7 +11147,7 @@
       "title": "Input Group: Textarea",
       "description": "Compose a textarea with addons.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/input-group", "@erbium/styles"],
       "files": [
         {
           "path": "src/input-group/examples/input-group-textarea.tsx",
@@ -12479,7 +12506,7 @@
       "type": "registry:component",
       "title": "menubar demo",
       "description": "Erbium menubar demo example.",
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/examples/menubar-demo.tsx",
@@ -12522,7 +12549,7 @@
       "type": "registry:block",
       "title": "Menubar: Overview",
       "description": "",
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/examples/menubar-demo.tsx",
@@ -12577,6 +12604,7 @@
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/menubar",
         "@erbium/overlay-provider",
@@ -12656,7 +12684,7 @@
       "type": "registry:block",
       "title": "Menubar: Submenu",
       "description": "Use `MenubarSub`, `MenubarSubTrigger`, and `MenubarSubContent` for nested menus.",
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/examples/menubar-submenu.tsx",
@@ -12699,6 +12727,7 @@
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
+        "@erbium/copy-button",
         "@erbium/message",
         "@erbium/styles"
       ],
@@ -13283,6 +13312,7 @@
         "@erbium/avatar",
         "@erbium/bubble",
         "@erbium/button",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/message",
         "@erbium/overlay-provider",
@@ -18205,14 +18235,8 @@
       "name": "stateful-icon-copy-feedback",
       "type": "registry:block",
       "title": "Stateful Icon: Copy Feedback",
-      "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/stateful-icon",
-        "@erbium/styles",
-        "@erbium/use-copy-to-clipboard"
-      ],
+      "description": "`CopyButton` uses StatefulIcon internally for copy, success, and failure feedback. Use the block for copy actions instead of managing clipboard state and switching icons in the caller.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/stateful-icon/examples/stateful-icon-demo.tsx",
@@ -18231,13 +18255,7 @@
       "type": "registry:component",
       "title": "stateful icon demo",
       "description": "Erbium stateful icon demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/stateful-icon",
-        "@erbium/styles",
-        "@erbium/use-copy-to-clipboard"
-      ],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/stateful-icon/examples/stateful-icon-demo.tsx",
@@ -18316,17 +18334,15 @@
       "type": "registry:item",
       "title": "Stateful Icon stories",
       "description": "All stateful-icon variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/collapsible",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/stateful-icon",
         "@erbium/styles",
-        "@erbium/toast",
-        "@erbium/use-copy-to-clipboard"
+        "@erbium/toast"
       ],
       "files": [
         {

@@ -1,6 +1,6 @@
+import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ClipboardPasteIcon from "@hugeicons/core-free-icons/ClipboardPasteIcon";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import ScissorsIcon from "@hugeicons/core-free-icons/ScissorsIcon";
 import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
 
@@ -22,10 +22,10 @@ export function ContextMenuIcons() {
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuGroup>
-          <ContextMenuItem>
-            <HugeiconsIcon icon={CopyIcon} />
-            Copy
-          </ContextMenuItem>
+          <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
+            <CopyButtonIcon />
+            <span>Copy</span>
+          </CopyButton>
           <ContextMenuItem>
             <HugeiconsIcon icon={ScissorsIcon} />
             Cut

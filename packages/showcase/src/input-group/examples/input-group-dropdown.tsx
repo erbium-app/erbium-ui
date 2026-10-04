@@ -1,3 +1,4 @@
+import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
 
@@ -31,7 +32,10 @@ export default function InputGroupDropdown() {
             />
             <DropdownMenuContent align="end">
               <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Copy path</DropdownMenuItem>
+              <CopyButton value="/projects/erbium/script.js" render={<DropdownMenuItem />}>
+                <CopyButtonIcon />
+                <span>Copy path</span>
+              </CopyButton>
               <DropdownMenuItem>Open location</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

@@ -1,5 +1,5 @@
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { HugeiconsIcon } from "@hugeicons/react";
-import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import FileSearchIcon from "@hugeicons/core-free-icons/FileSearchIcon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
 
@@ -36,9 +36,11 @@ export function AttachmentTriggerDemo() {
             <AttachmentDescription>Open preview dialog</AttachmentDescription>
           </AttachmentContent>
           <AttachmentActions>
-            <AttachmentAction aria-label="Copy link">
-              <HugeiconsIcon icon={CopyIcon} />
-            </AttachmentAction>
+            <CopyButton
+              value="https://example.com/research-summary.pdf"
+              aria-label="Copy attachment link"
+              render={<AttachmentAction />}
+            />
             <AttachmentAction aria-label="Remove research-summary.pdf">
               <HugeiconsIcon icon={XIcon} />
             </AttachmentAction>
