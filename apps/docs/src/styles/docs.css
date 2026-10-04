@@ -1287,6 +1287,9 @@ docs-copy {
   .docs-frame {
     display: block;
   }
+  .docs-page-inner {
+    max-width: none;
+  }
   .docs-page {
     background: transparent;
     box-shadow: none;
