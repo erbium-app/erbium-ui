@@ -43,6 +43,7 @@ export const navigationGroups = [
     items: [
       { title: "Introduction", href: "/" },
       { title: "Installation", href: "/docs/installation" },
+      { title: "Getting started", href: "/docs/getting-started" },
       { title: "Roadmap", href: "/docs/roadmap" },
     ],
   },

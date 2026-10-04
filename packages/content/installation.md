@@ -1,94 +1,159 @@
 ---
 title: Installation
-description: Add Erbium UI styles and components to your React project.
+description: Add Erbium UI to a new React project with the shadcn CLI.
 ---
 
-Import the shared theme once, then compose components using their individual imports.
+Add Erbium components to your React application with the [shadcn CLI](https://ui.shadcn.com/docs/cli). It copies the source into your project and installs the dependencies. Import from those local files and edit them as needed. You do not need to clone this repository or install an `@erbium/ui` package.
 
-## In this workspace
+## Prerequisites
 
-The apps consume `@erbium/ui` through Bun workspaces. Run `bun install` from the repository root, then start the docs and Storybook with `bun run showcase`.
+Use a React project with TypeScript and [Tailwind CSS v4](https://tailwindcss.com/docs/installation). The CLI needs a `components.json` file and configured import aliases. If your app already has shadcn configured, skip to **Configure the registries**.
 
-## Import the theme
+Run all commands below in your application directory. The examples use Bun; `npx` can replace `bunx`.
 
-```tsx
-import "@erbium/ui/globals.css";
+## Set up your application
+
+For a new Vite application:
+
+Run the creation command from the parent directory:
+
+```sh
+bunx shadcn@latest init --template vite --base base --preset nova --no-monorepo --name my-app --yes
+cd my-app
 ```
 
-The components use Tailwind CSS v4. Configure Tailwind in your app and include the component source in its scan when consuming source outside your app directory.
+The CLI creates the app, configures Tailwind and the `@/` import alias, and writes `components.json`.
 
-## Import a component
+For an existing React application, follow the [shadcn setup for your framework](https://ui.shadcn.com/docs/installation), then initialize it from its root:
 
-```tsx
-import { Button } from "@erbium/ui/components/button";
-
-export default function Example() {
-  return <Button variant="outline">Continue</Button>;
-}
+```sh
+bunx shadcn@latest init
 ```
 
-## Add overlays
+Choose Base UI during setup. Continue below once `components.json`, Tailwind v4, and your aliases are configured. File paths in this guide use the default Vite layout; use your framework’s global CSS entry and configured aliases elsewhere.
 
-Wrap your React tree with `OverlayProvider` when using drawers. Mount `Toaster` once to display notifications created with `toast.add`.
+## Configure the registries
 
-```tsx
-import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
-import { Toaster } from "@erbium/ui/components/toast";
-
-export default function App() {
-  return (
-    <OverlayProvider>
-      <Example />
-      <Toaster />
-    </OverlayProvider>
-  );
-}
-```
-
-See [CSP Provider](/docs/components/csp-provider) for nonce and external stylesheet configuration.
-
-## Copy into a project
-
-The UI registry generates installable files in `packages/ui/public/r`, and the example registry generates files in `packages/showcase/public/r`. Host both directories and configure their URLs in your project's `components.json`:
+Add these entries to the `registries` object in your project’s `components.json`. Keep the rest of the generated configuration.
 
 ```json
 {
   "registries": {
-    "@erbium": "https://your-domain.example/r/ui/{name}.json",
-    "@erbium-examples": "https://your-domain.example/r/examples/{name}.json"
+    "@erbium": "https://ui.erbium.app/r/ui/{name}.json",
+    "@erbium-examples": "https://ui.erbium.app/r/examples/{name}.json"
   }
 }
 ```
 
-Replace the placeholder hosts with your registry URLs, then install the styles and an example:
+`@erbium` contains components, hooks, providers, and styles. `@erbium-examples` contains compositions and portable Storybook stories. The CLI resolves their dependencies and uses your [configured aliases](https://ui.shadcn.com/docs/components-json).
+
+## Install styles and a component
 
 ```sh
-bunx shadcn@latest add @erbium/styles
-bunx shadcn@latest add @erbium-examples/button-demo
+bunx shadcn@latest add @erbium/styles @erbium/button --yes --overwrite
 ```
 
-Import the installed `src/styles/globals.css` in your app's stylesheet entry. Registry installation rewrites the workspace imports to your project's local component paths and installs the component dependencies.
+This replaces the starter’s shadcn Button with Erbium’s version. In an existing project, omit `--overwrite` and review any file conflicts before replacing your own components.
 
-The documentation website publishes both registries at these paths when deployed. During local development, use `http://localhost:4321/r/ui/{name}.json` and `http://localhost:4321/r/examples/{name}.json` instead.
+The installation adds shared CSS to `src/styles/`, the Button to `src/components/ui/button.tsx`, and its helpers and npm dependencies. Erbium’s class merger is installed separately as `src/lib/erbium-utils.ts`.
 
-## Install variants or Storybook stories
+## Load the styles
 
-Install one variant, all examples for a component, or its portable React Storybook stories:
+For the new Vite app, replace the generated contents of `src/index.css` with:
 
-```sh
-bunx shadcn@latest add @erbium-examples/checkbox-controlled
-bunx shadcn@latest add @erbium-examples/checkbox-examples
-bunx shadcn@latest add @erbium-examples/checkbox-stories
+```css
+@import "./styles/globals.css";
 ```
 
-Examples install beneath your configured components directory, in `showcase/<component>/`. Helpers and dependencies are included automatically. Import a variant directly into a React project:
+Keep `import "./index.css"` in `src/main.tsx`. The shared stylesheet includes Tailwind, fonts, semantic tokens, surfaces, motion, and utilities. Add your own CSS after the import.
+
+In another framework, load the installed `src/styles/globals.css` from its global CSS entry, using the appropriate relative path. Keep one global Tailwind/theme entry; avoid retaining the starter’s conflicting theme definitions. The CLI copies the styles but does not wire this import for you.
+
+## Use the component
+
+Replace `src/App.tsx` with:
 
 ```tsx
-import CheckboxControlled from "@/components/showcase/checkbox/variants/controlled";
+import { Button } from "@/components/ui/button";
 
 export default function App() {
-  return <CheckboxControlled />;
+  return (
+    <main className="min-h-screen p-8">
+      <Button>Continue</Button>
+    </main>
+  );
 }
 ```
 
-Use your own configured component alias in the import. Portable stories add `@storybook/react` as a development dependency and include descriptions, controls, default arguments and interaction tests. Include `**/*.stories.tsx` beneath the installed component directory in your existing Storybook configuration. Erbium's class merger installs as `erbium-utils.ts` beneath the configured library alias.
+```sh
+bun run dev
+```
+
+Run `bun run build` to check the production build. Continue with [Getting started](/docs/getting-started) for examples, providers, themes, and stories.
+
+## Recommended tooling
+
+These tools are optional development dependencies in your application.
+
+### Linting and formatting
+
+We recommend [Oxlint](https://oxc.rs/docs/guide/usage/oxlint) and [Oxfmt](https://oxc.rs/docs/guide/usage/oxfmt), configured through [Ultracite](https://ultracite.ai/). Add the [shadcn linter](https://github.com/shadcn-ui/lint) for rules that check component usage and design tokens.
+
+```sh
+bunx ultracite@latest init --pm bun --linter oxlint --frameworks react --js-plugins @shadcn/lint
+```
+
+The setup installs the tools and writes their configuration. Choose your editor and coding agent integrations when prompted. If your app already has a linting setup, review and migrate its configuration rather than keeping competing lint and format commands.
+
+```sh
+bunx ultracite check
+bunx ultracite fix
+```
+
+Keep your framework’s TypeScript check and production build alongside linting. For the Vite app above, run `bun run build`.
+
+### Project skills
+
+We recommend [skills.sh](https://skills.sh/) to find and manage coding agent skills. Run its [CLI](https://skills.sh/docs/cli) from your application root and choose the agents you use. Install skills at project scope so their guidance travels with the project.
+
+Choose the skills that match your work:
+
+- [Jakub Krehel](https://jakub.kr/), founding design engineer at [Interfere](https://interfere.com/): [Better typography](https://skills.sh/jakubkrehel/skills/better-typography), [Better accessibility](https://skills.sh/jakubkrehel/skills/better-accessibility), [Better layout](https://skills.sh/jakubkrehel/skills/better-layout), and [Better colors](https://skills.sh/jakubkrehel/skills/better-colors) cover readability, interaction, layout, and color.
+- [Emil Kowalski](https://emilkowal.ski/), design engineer at [Linear](https://linear.app/): [Animate](https://skills.sh/emilkowalski/skill/animate) and [Review animations](https://skills.sh/emilkowalski/skill/review-animations) guide motion implementation and review.
+- [Vercel](https://vercel.com/): [Building components](https://skills.sh/vercel/components.build/building-components), based on the [specification co-authored by Hayden Bleasel and shadcn](https://components.build/), covers accessible component APIs. [React composition patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) covers reusable React compositions.
+
+```sh
+bunx skills add jakubkrehel/skills --skill better-typography better-accessibility better-layout better-colors
+bunx skills add emilkowalski/skill --skill animate review-animations
+bunx skills add vercel/components.build --skill building-components
+bunx skills add vercel-labs/agent-skills --skill vercel-composition-patterns
+```
+
+List installed skills and update the project’s skills with:
+
+```sh
+bunx skills list
+bunx skills update --project
+```
+
+### Skills shipped with dependencies
+
+[TanStack Intent](https://tanstack.com/intent/latest/docs/overview) discovers skills shipped inside installed npm packages. Their guidance follows the installed library version. Intent configures your agent to discover and load that guidance; it does not install the libraries themselves.
+
+After installing the packages your app needs, set up Intent from your project root:
+
+```sh
+bun add -d @tanstack/intent
+bunx intent install
+bunx intent list
+```
+
+[TanStack Table](https://tanstack.com/table/latest/docs/agent-skills) ships skills for React setup, table state, filtering, sorting, pagination, and composition with Query and Virtual. For a React table, load its setup guidance with:
+
+```sh
+bunx intent load @tanstack/react-table#getting-started
+```
+
+For keyboard interactions, refer to [TanStack Hotkeys](https://tanstack.com/hotkeys/latest/docs/overview). Check `intent list` for skills available in your installed release and use the package and skill names it reports. The Hotkeys version currently used by Erbium does not bundle skills, so use its documentation when none are listed. Other dependencies, including Ultracite and TanStack Charts, can also expose packaged skills through Intent.
+
+Give your agent [llms.txt](/llms.txt) to discover Erbium’s documentation. Each documentation page is also available as Markdown by appending `.md` to its URL. Install [examples and stories](/docs/getting-started) alongside components when the agent needs composition and usage guidance.
