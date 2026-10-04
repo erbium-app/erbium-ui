@@ -6,111 +6,85 @@
     "names": ["colors", "surfaces"]
   },
   {
-    "title": "Actions",
-    "slug": "actions",
-    "kind": "component",
-    "names": ["button", "button-group", "stateful-button", "toggle", "toggle-group", "toolbar"]
-  },
-  {
-    "title": "Inputs & forms",
-    "slug": "inputs-forms",
+    "title": "Components",
+    "slug": "components",
     "kind": "component",
     "names": [
-      "form",
+      "accordion",
+      "alert",
+      "alert-dialog",
+      "aspect-ratio",
+      "attachment",
+      "autocomplete",
+      "avatar",
+      "badge",
+      "breadcrumb",
+      "bubble",
+      "button",
+      "button-group",
+      "calendar",
+      "card",
+      "carousel",
+      "chart",
+      "checkbox",
+      "collapsible",
+      "combobox",
+      "command",
+      "context-menu",
+      "control",
+      "dialog",
+      "drawer",
+      "dropdown-menu",
+      "editable",
+      "empty",
       "field",
+      "form",
+      "hover-card",
       "input",
       "input-group",
-      "textarea",
+      "item",
+      "kbd",
+      "marker",
+      "menubar",
+      "message",
+      "message-scroller",
+      "meter",
+      "navigation-menu",
       "number-field",
       "otp-field",
-      "checkbox",
-      "radio-group",
-      "switch",
-      "slider",
-      "select",
-      "combobox",
-      "autocomplete",
-      "calendar",
-      "editable",
-      "control",
-      "questionnaire"
-    ]
-  },
-  {
-    "title": "Navigation",
-    "slug": "navigation",
-    "kind": "component",
-    "names": [
-      "sidebar",
-      "navigation-menu",
-      "menubar",
-      "breadcrumb",
-      "tabs",
       "pagination",
-      "command"
-    ]
-  },
-  {
-    "title": "Layout & containers",
-    "slug": "layout",
-    "kind": "component",
-    "names": [
-      "card",
-      "item",
-      "separator",
-      "aspect-ratio",
+      "popover",
+      "progress",
+      "questionnaire",
+      "radio-group",
       "resizable",
       "scroll-area",
-      "accordion",
-      "collapsible",
-      "carousel"
-    ]
-  },
-  {
-    "title": "Data display",
-    "slug": "data-display",
-    "kind": "component",
-    "names": ["table", "chart", "avatar", "badge", "kbd"]
-  },
-  {
-    "title": "Feedback & status",
-    "slug": "feedback",
-    "kind": "component",
-    "names": ["alert", "toast", "empty", "progress", "meter", "spinner", "skeleton"]
-  },
-  {
-    "title": "Overlays & menus",
-    "slug": "overlays",
-    "kind": "component",
-    "names": [
-      "dialog",
-      "alert-dialog",
+      "select",
+      "separator",
       "sheet",
-      "drawer",
-      "popover",
-      "tooltip",
-      "hover-card",
-      "dropdown-menu",
-      "context-menu"
+      "sidebar",
+      "skeleton",
+      "slider",
+      "spinner",
+      "stateful-button",
+      "stateful-icon",
+      "switch",
+      "table",
+      "tabs",
+      "text-morph",
+      "textarea",
+      "toast",
+      "toggle",
+      "toggle-group",
+      "toolbar",
+      "tooltip"
     ]
   },
   {
-    "title": "Messaging",
-    "slug": "messaging",
-    "kind": "component",
-    "names": ["message", "bubble", "message-scroller", "attachment", "marker"]
-  },
-  {
-    "title": "Motion",
-    "slug": "motion",
-    "kind": "component",
-    "names": ["text-morph", "stateful-icon"]
-  },
-  {
-    "title": "Providers",
-    "slug": "providers",
-    "kind": "provider",
-    "names": ["direction", "overlay-provider", "csp-provider"]
+    "title": "Hooks",
+    "slug": "hooks",
+    "kind": "hook",
+    "names": ["use-copy-to-clipboard", "use-drag-select", "use-is-mobile", "use-media-query"]
   },
   {
     "title": "Utilities",
@@ -119,9 +93,9 @@
     "names": ["scroll-fade", "shake"]
   },
   {
-    "title": "Hooks",
-    "slug": "hooks",
-    "kind": "hook",
-    "names": ["use-copy-to-clipboard", "use-drag-select", "use-is-mobile", "use-media-query"]
+    "title": "Providers",
+    "slug": "providers",
+    "kind": "provider",
+    "names": ["csp-provider", "direction", "overlay-provider"]
   }
 ]

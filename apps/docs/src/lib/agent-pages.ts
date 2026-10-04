@@ -71,9 +71,9 @@ function page(
 const guides = [
   ["/", "introduction.md", "Getting started"],
   ["/docs/installation", "installation.md", "Getting started"],
-  ["/docs/getting-started", "getting-started.md", "Getting started"],
-  ["/docs/roadmap", "roadmap.md", "Getting started"],
-  ["/docs/shimmer", "shimmer.md", "Utilities"],
+  ["/docs/getting-started", "getting-started.md", "Guides"],
+  ["/docs/roadmap", "roadmap.md", "Guides"],
+  ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
 ];
 export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
   const { frontmatter } = document(file);

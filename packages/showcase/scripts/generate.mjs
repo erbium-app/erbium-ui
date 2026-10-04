@@ -9,7 +9,7 @@ const sections = JSON.parse(
 );
 const classifiedNames = sections.flatMap((section) => section.names);
 if (new Set(classifiedNames).size !== classifiedNames.length)
-  throw new Error("Showcase names must belong to exactly one semantic section");
+  throw new Error("Showcase names must belong to exactly one documentation section");
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const check = process.argv.includes("--check");
@@ -33,7 +33,7 @@ for (const entry of (await readdir(join(root, "src"), { withFileTypes: true }))
   );
   if (!source) continue;
   const section = sections.find((section) => section.names.includes(entry.name));
-  if (!section) throw new Error(`Missing semantic classification: ${entry.name}`);
+  if (!section) throw new Error(`Missing documentation classification: ${entry.name}`);
   const markdown = await readFile(
     join(root, "../content/components", entry.name, "index.md"),
     "utf8",
@@ -72,7 +72,7 @@ for (const entry of (await readdir(join(root, "src"), { withFileTypes: true }))
 }
 for (const name of classifiedNames) {
   if (name !== "colors" && !manifest.some((entry) => entry.name === name))
-    throw new Error(`Semantic classification has no showcase: ${name}`);
+    throw new Error(`Documentation classification has no showcase: ${name}`);
 }
 await output(join(root, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, true);
 process.stdout.write(

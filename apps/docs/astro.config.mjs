@@ -79,6 +79,7 @@ export default defineConfig({
   trailingSlash: "never",
   prefetch: { prefetchAll: false, defaultStrategy: "hover" },
   redirects: {
+    "/docs/shimmer": "/docs/utilities/shimmer",
     "/docs/foundations/styles": "/docs/installation",
     "/docs/components/styles": "/docs/installation",
     ...Object.fromEntries(

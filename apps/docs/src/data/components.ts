@@ -45,6 +45,12 @@ export const navigationGroups = [
     items: [
       { title: "Introduction", href: "/" },
       { title: "Installation", href: "/docs/installation" },
+    ],
+  },
+  {
+    title: "Guides",
+    href: undefined,
+    items: [
       { title: "Getting started", href: "/docs/getting-started" },
       { title: "Roadmap", href: "/docs/roadmap" },
     ],
@@ -54,7 +60,9 @@ export const navigationGroups = [
     href: section.kind === "component" ? undefined : `/docs/${kindPaths[section.kind]}`,
     items: [
       ...section.names.map((name) => components.find((item) => item.name === name)!),
-      ...(section.kind === "utility" ? [{ title: "Shimmer", href: "/docs/shimmer" }] : []),
-    ],
+      ...(section.kind === "utility"
+        ? [{ title: "Shimmer", href: "/docs/utilities/shimmer" }]
+        : []),
+    ].sort((a, b) => a.title.localeCompare(b.title)),
   })),
 ];

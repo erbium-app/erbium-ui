@@ -34,6 +34,12 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    options: {
+      storySort: {
+        method: "alphabetical",
+        order: ["Foundations", "Components", "Hooks", "Utilities", "Providers"],
+      },
+    },
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
     docs: { container: ThemeAwareDocsContainer },
   },

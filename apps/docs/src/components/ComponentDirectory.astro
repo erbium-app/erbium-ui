@@ -23,7 +23,10 @@ const documents = {
 const { frontmatter, Content } = documents[kind];
 const groups = documentationSections.filter((section) => section.kind === kind).map((section) => ({
   ...section,
-  items: section.names.map((name) => components.find((item) => item.name === name)!),
+  items: [
+    ...section.names.map((name) => components.find((item) => item.name === name)!),
+    ...(kind === "utility" ? [{ title: "Shimmer", href: "/docs/utilities/shimmer" }] : []),
+  ].sort((a, b) => a.title.localeCompare(b.title)),
 }));
 ---
 
