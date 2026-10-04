@@ -1,5 +1,7 @@
 # Paper design-system research
 
+Status reviewed 2026-10-04: this is a historical capability/research snapshot, not a current implementation report. Recheck vendor capabilities before using its conclusions. The active plan and repository status are in [05-paper-design-system.md](./05-paper-design-system.md).
+
 Researched on 2026-10-04. Companion to [the Paper parity checklist](./05-paper-design-system.md). This document records findings and a proposed architecture; it does not indicate that synchronization has been implemented.
 
 ## Goal and recommendation

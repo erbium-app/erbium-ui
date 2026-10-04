@@ -1,61 +1,21 @@
-# 03 — Blocks and particles
+# 03 — Blocks and stories
 
-The blocks layer will initially focus on adapting the Coss UI particle registry. These are composable examples built from primitives, not new foundation components.
+Reviewed 2026-10-04.
 
-## Registry shape
+## Implemented foundation
 
-- [ ] Decide whether the directory is named `blocks`, `particles`, or both; use one canonical registry terminology.
-- [ ] Add `registry:block` support to the Erbium registry build.
-- [ ] Keep blocks separate from `src/components` so examples do not become accidental public primitives.
-- [ ] Define block naming, metadata, categories, dependencies, and preview conventions.
-- [ ] Ensure block dependencies resolve to Erbium registry items rather than Coss package paths.
+`packages/showcase/src` contains examples and composition stories. Its manifest, Storybook adapters, and registry are generated. `packages/showcase/scripts/build-registry.mjs` already emits installable examples and story items, including `registry:block` compositions. The registry infrastructure is not pending work.
 
-## Porting order
+## Remaining work
 
-Port the Coss families in this order:
+- [ ] Review existing catalogs before adding or porting examples; add only compositions that demonstrate a recurring need.
+- [ ] Expand card, dialog, form, and selection stories where layout or behavior decisions need explanation.
+- [ ] Cover useful loading, empty, error, disabled, success, long-content, keyboard, and RTL cases in the relevant stories.
+- [ ] Add agent session, file tree, and diff compositions after their package/API boundaries are agreed.
+- [ ] Document source inspiration and intentional differences when adapting Coss, OpenCode, or Pierre examples.
 
-1. [ ] Forms and fields: `field`, `fieldset`, `form`, `input`, `input-group`, `textarea`, `number-field`, `otp-field`.
-2. [ ] Selection: `checkbox`, `checkbox-group`, `radio-group`, `select`, `combobox`, `autocomplete`.
-3. [ ] Feedback and status: `alert`, `progress`, `meter`, `spinner`, `skeleton`, `toast`.
-4. [ ] Overlays and menus: `dialog`, `alert-dialog`, `drawer`, `popover`, `preview-card`, `menu`, `context-menu`, `tooltip`.
-5. [ ] Navigation and layout: `tabs`, `accordion`, `collapsible`, `toolbar`, `sidebar`, `breadcrumb`, `pagination`, `frame`, `group`.
-6. [ ] Content and data: `card`, `table`, `avatar`, `badge`, `calendar`, and date-picker compositions.
-7. [ ] Remaining Coss particles and Erbium-specific examples.
+Keep workflows and network state in applications or dedicated packages. Stories should explain composition rather than turn every example into a new primitive. Remove redundant variants instead of seeking complete parity with another registry.
 
-## Required coverage for missing pieces
+## Synchronization
 
-Before declaring parity for a family, add at least one block or particle for:
-
-- autocomplete with loading, empty, and highlighted results;
-- checkbox group with validation and orientation;
-- number field with increment/decrement and invalid input;
-- meter alongside progress to demonstrate the semantic difference;
-- toolbar with roving focus and mixed controls;
-- generic menu with checkbox, radio, submenu, shortcut, and disabled items;
-- fieldset and Base UI-backed field validation;
-- toast/notification with action, close, loading, and stacked states;
-- direction/CSP/provider setup where the primitive requires it.
-
-## Block quality requirements
-
-- [ ] Every block uses only public Erbium primitives and documented APIs.
-- [ ] Every block has a narrow purpose and remains easy to copy, paste, and own.
-- [ ] No block embeds product-specific network state or application routing.
-- [ ] Variants cover useful states rather than merely changing colors.
-- [ ] Examples include loading, empty, error, disabled, and success states where relevant.
-- [ ] Examples are RTL-safe and keyboard accessible.
-- [ ] Blocks have visual regression or story coverage where practical.
-- [ ] Every block documents whether it uses a Base UI behavior primitive, a shadcn composition pattern, or a Coss-derived layout pattern.
-
-## Deferred higher-order blocks
-
-Do not port these as foundation blocks yet:
-
-- rich editors;
-- full command palettes;
-- data grids with server-side filtering or pagination;
-- upload workflows;
-- chat and messaging systems;
-- auth, billing, settings, and dashboard workflows.
-
-When revisited, these should become dedicated packages or application-level compositions built on the primitives and blocks registry.
+After showcase source or shared content changes, run `bun run showcase:generate` and `bun run showcase:registry`. Use `bun run showcase:check` to verify generated adapters, registries, checks, and builds. Never hand-edit generated adapters or registry output.

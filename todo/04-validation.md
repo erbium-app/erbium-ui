@@ -1,6 +1,6 @@
 # 04 — Validation and release gates
 
-Use the repository's existing checks throughout the work.
+Reviewed 2026-10-04. This is a recurring acceptance checklist, not a list of missing implementations. The repository has no automated test suite or test runner configuration; verify interaction behavior manually in Storybook or docs and record the scope checked.
 
 ## Per-component checks
 
@@ -8,7 +8,6 @@ Use the repository's existing checks throughout the work.
 - [ ] Verify keyboard navigation and focus restoration.
 - [ ] Verify screen-reader labeling and live-region behavior where relevant.
 - [ ] Verify RTL layout and directional keyboard behavior.
-- [ ] Verify controlled/uncontrolled parity.
 - [ ] Verify generated registry output and dependency metadata.
 - [ ] Verify the component has a stable public name and does not duplicate another primitive.
 - [ ] Verify Base UI pass-through props are typed and functional.
@@ -18,6 +17,12 @@ Use the repository's existing checks throughout the work.
 - [ ] Verify controlled/uncontrolled parity and state reset behavior.
 - [ ] Verify reduced-motion behavior for transitions and loading indicators.
 
+## Registry synchronization
+
+- [ ] For `packages/ui/src` changes, run `bun run ui:registry`.
+- [ ] For showcase source or shared content changes, run `bun run showcase:generate` and `bun run showcase:registry`.
+- [ ] Run `bun run showcase:check` to verify generated adapters and registries. Do not hand-edit generated output.
+
 ## Repository checks
 
 - [ ] Run `bun run fix` after mechanical edits.
@@ -25,11 +30,11 @@ Use the repository's existing checks throughout the work.
 - [ ] Run `bun run ready` before considering the registry parity work release-ready.
 - [ ] Run `bun run knip` only when unused files or dependencies are in scope.
 
-## Parity review
+## Scope review
 
 - [ ] Compare the final primitive list with the active Coss registry.
-- [ ] Compare all Coss particle families with Erbium block families.
-- [ ] Verify that repeated concepts retain shadcn-compatible names.
+- [ ] Compare relevant Coss compositions with existing showcase examples; exclude redundant examples.
+- [ ] Verify Base UI naming/API alignment and document intentional differences from shadcn.
 - [ ] Verify that Base UI-backed components use current APIs rather than compatibility behavior.
 - [ ] Record intentional differences in the package documentation.
 
@@ -56,7 +61,7 @@ Use the repository's existing checks throughout the work.
 
 - [ ] Every Base UI public component that is in Erbium scope has a wrapper, alias, or documented intentional omission.
 - [ ] Every Coss primitive in scope has an Erbium equivalent or a recorded reason for exclusion.
-- [ ] Every repeated shadcn concept retains a familiar public name or has a documented compatibility alias.
+- [ ] Public names and APIs agree with the current Base UI alignment policy; no redundant compatibility aliases are added.
 - [ ] The registry, Storybook, docs, and package exports agree on the same public component list.
 - [ ] The package boundary review has moved feature-heavy components out of the foundation where appropriate.
 - [ ] The Paper design-system file, component manifest, Storybook stories, registry, and source implementation agree.

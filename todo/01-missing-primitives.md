@@ -1,15 +1,20 @@
-# 01 — Missing primitives
+# 01 — Component additions
 
-Add a primitive when it supplies distinct behavior or composition. Use Base UI for behavior, shadcn UI for familiar composition and names, and Coss UI for concepts that add a real capability. An added primitive needs a registry item, a Storybook example, and focused accessibility and interaction coverage.
+Reviewed 2026-10-04. Meter is implemented at `packages/ui/src/components/meter.tsx`; it is no longer a missing primitive.
 
-## Build
+## Planned additions
 
-- [ ] `meter`: wrap Base UI Meter for measured values with accessible labels and range semantics. Keep it distinct from task progress.
+- [ ] Lightbox: image viewing, navigation, focus management, and keyboard access.
+- [ ] Stepper: step navigation, validation, controlled state, and a step indicator.
+- [ ] Agent session compositions informed by OpenCode.
+- [ ] File tree and diff compositions using or adapting Pierre's reusable pieces; evaluate icons separately.
 
-## Decide from actual use
+Command replacement is tracked in [07](./07-searchable-menus.md). Platform libraries and agent integrations are tracked in [09](./09-agent-tooling-and-platforms.md).
 
-- [ ] `menu`: expose a generic Base UI Menu composition only if it reduces duplication or enables a use case the existing `dropdown-menu`, `context-menu`, and `menubar` APIs cannot express. Preserve those public names.
-- [ ] `frame`: add a Coss-style content surface only when blocks need a reusable API beyond `Card` and existing surface styles.
-- [ ] `group`: add connected controls only when `ButtonGroup`, `InputGroup`, and `Toolbar` cannot express the intended behavior or layout. Define RTL edge behavior before implementation.
+## Candidates, not commitments
 
-API modernization for existing components belongs in [Base UI conventions](./02-base-ui-api.md). Per-component verification belongs in [Validation](./04-validation.md).
+- `menu`: add only if existing dropdown, context-menu, and menubar compositions cannot express the needed behavior.
+- `frame`: add only if Card and surface utilities cannot express a recurring layout.
+- `group`: add only if ButtonGroup, InputGroup, and Toolbar leave a concrete gap.
+
+Every addition needs source, documentation, useful stories, registry metadata, and the relevant checks in [04](./04-validation.md).

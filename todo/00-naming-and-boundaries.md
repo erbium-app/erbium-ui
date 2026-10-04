@@ -1,16 +1,19 @@
 # 00 — Naming and boundaries
 
-Erbium is an opinionated composition of Base UI behavior, shadcn UI conventions, and useful Coss UI concepts. It should have one clear public name for each concept.
+Reviewed 2026-10-04.
 
-## Naming decisions
+Base UI owns primitive behavior; Erbium owns design, composition, and documented API decisions. Prefer Base UI naming and APIs where applicable. shadcn compatibility is primarily the installation and registry workflow, not a requirement to preserve every upstream component name.
 
-- Keep familiar shadcn names for shared concepts: `input-otp`, `hover-card`, `navigation-menu`, `radio-group`, and the existing menu variants.
-- Use a Coss name only when it represents a distinct reusable primitive. Do not add aliases solely for parity with another library's inventory.
-- Keep `FieldSet` with the `field` components unless independent installation or behavior gives a separate registry item a clear purpose.
-- Keep form state in the application. `Field` provides layout and accessible control association; it is not a second form state system.
-- Treat a date picker as a composition of `calendar` and input or popup primitives. Keep calendar behavior in one place.
-- Use kebab-case filenames, PascalCase exports, and stable `data-slot` names.
+## Current decisions
 
-## Package boundary
+- Use `otp-field`, Field, and Fieldset. Labels belong to fields; no standalone Label component is required.
+- Use semantic `error` naming rather than `destructive`.
+- `packages/ui` owns reusable components and styles. `packages/showcase` owns composition examples and installable stories; apps own product routing, fetching, and persistence.
+- Preserve stable `data-slot` names, RTL behavior, and useful Base UI composition props. Narrow APIs only with a documented reason.
+- Every component, block, and story must earn its place. Remove redundant options and wrappers instead of adding aliases for inventory parity.
 
-`packages/ui` owns reusable controls and presentation. Product workflows, fetching, persistence, and domain state belong in apps, blocks, or dedicated packages. Review feature-heavy components against this boundary when changing them; do not rename or relocate them for inventory parity alone.
+## Remaining decisions
+
+- [ ] Define package boundaries for agent sessions, file trees, and diffs before implementation.
+- [ ] Define shared API contracts for Astro and React Native, documenting necessary platform differences.
+- [ ] Review proposed Menu, Frame, and Group abstractions against actual compositions before exposing them.
