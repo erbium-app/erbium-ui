@@ -1,5 +1,7 @@
 ---
-import CopyAction from "./CopyAction.tsx";
+import Button from "./ui/Button.astro";
+import Icon from "./ui/Icon.astro";
+import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 interface Props {
   target?: string;
   url?: string;
@@ -8,5 +10,15 @@ interface Props {
   label?: string;
   iconOnly?: boolean;
 }
+const { target, url, text = "Copy", variant = "ghost", label = "Copy code", iconOnly = false } = Astro.props;
 ---
-<CopyAction {...Astro.props} client:load />
+<docs-copy data-target={target} data-url={url}>
+  <Button variant={variant} size={iconOnly ? "icon-xs" : "xs"} aria-label={label}>
+    <Icon icon={CopyIcon} size={14} />
+    {!iconOnly && <span data-copy-label>{text}</span>}
+  </Button>
+  <span class="sr-only" role="status"></span>
+</docs-copy>
+<script>
+  import "../lib/copy-control";
+</script>

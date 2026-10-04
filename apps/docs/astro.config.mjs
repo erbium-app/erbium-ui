@@ -13,6 +13,10 @@ import { defineConfig, fontProviders } from "astro/config";
 export default defineConfig({
   site: "https://ui.erbium.app",
   output: "static",
+  build: {
+    // Keep first-paint styles in the HTML instead of a blocking CSS request.
+    inlineStylesheets: "always",
+  },
   fonts: [
     {
       provider: fontProviders.local(),
