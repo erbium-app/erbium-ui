@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Table: RTL",
   "description": "Set `dir=\"rtl\"` on the table. Columns use logical classes such as `text-end`, so alignment follows the reading direction.",
-  "dependencies": ["@tanstack/react-table@9.2.4"],
+  "dependencies": ["@tanstack/react-table@9.2.5"],
   "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
   "files": [
     {

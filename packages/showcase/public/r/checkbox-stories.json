@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Checkbox stories",
   "description": "All checkbox variants as portable React CSF stories.",
-  "dependencies": ["@tanstack/react-table@9.2.4"],
+  "dependencies": ["@tanstack/react-table@9.2.5"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/checkbox",

@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "table demo",
   "description": "Erbium table demo example.",
-  "dependencies": ["@tanstack/react-table@9.2.4"],
+  "dependencies": ["@tanstack/react-table@9.2.5"],
   "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
   "files": [
     {
