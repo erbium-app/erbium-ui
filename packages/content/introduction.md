@@ -7,6 +7,8 @@ Erbium UI is the open-source component library and design system behind [erbium.
 
 We build on [Base UI](https://base-ui.com/), [Shadcn/ui](https://ui.shadcn.com/), and [coss ui](https://coss.com/ui). Design and motion draw from [Fluid Functionalism](https://www.fluidfunctionalism.com/), [Sonner](https://sonner.emilkowal.ski/), [Animate UI](https://animate-ui.com/), [Transition](https://transition.dev/), and [ReUI](https://reui.io/).
 
+We also wanted better building blocks for agentic interfaces: dedicated code blocks and diffs, tree views, matrix loaders, steppers, and toolbars. These needs guide both existing components and planned additions.
+
 ## A few more opinions
 
 Focused APIs, thoughtful defaults, and a consistent visual language give developers and agents a considered starting point. We keep the scope small and leave room to compose.
