@@ -3,9 +3,7 @@ title: "Action"
 story: Action
 ---
 
-Pass button props with `actionProps` to render a supplementary action. Keep the same action available in a persistent surface after the toast disappears. An Undo toast must not be the only way to restore an item; provide recovery in the affected list or history.
-
-The example below shows the action API and closes the toast. A real Undo handler must also restore the application state.
+Pass button props with `actionProps` to render an action. This example closes the toast; a real Undo handler must also restore application state.
 
 ```tsx
 const id = toast.add({

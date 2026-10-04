@@ -3,54 +3,24 @@ title: Introduction
 description: An agent ready design system with taste built in
 ---
 
-Erbium UI is a set of components and the design system behind [erbium.app](https://erbium.app). All components and blocks are open source. Copy the code into your own project and change it to suit your design.
+Erbium UI is the open-source component library and design system behind [erbium.app](https://erbium.app). Copy components and blocks into your project and adapt them to your design.
 
-We build on [Base UI](https://base-ui.com/), [shadcn/ui](https://ui.shadcn.com/), and [coss ui](https://coss.com/ui). Our design and motion also draw from [Fluid Functionalism](https://www.fluidfunctionalism.com/), [Sonner](https://sonner.emilkowal.ski/), [Animate UI](https://animate-ui.com/), [Transition](https://transition.dev/), and [ReUI](https://reui.io/).
+We build on [Base UI](https://base-ui.com/), [shadcn/ui](https://ui.shadcn.com/), and [coss ui](https://coss.com/ui). Design and motion draw from [Fluid Functionalism](https://www.fluidfunctionalism.com/), [Sonner](https://sonner.emilkowal.ski/), [Animate UI](https://animate-ui.com/), [Transition](https://transition.dev/), and [ReUI](https://reui.io/).
 
 ## A few more opinions
 
-Erbium keeps APIs focused, with thoughtful defaults and consistent design. We narrow the design space to guide developers and agents toward considered choices, while leaving room to compose.
+Focused APIs, thoughtful defaults, and a consistent visual language give developers and agents a considered starting point. We keep the scope small and leave room to compose.
 
-Between Base UI’s primitives and the broad collections of components, blocks, and templates in some registries, we keep a focused scope. We remove unnecessary options and thin wrappers. Storybook stories document composition and best practices.
-
-## Closer to Base UI
-
-We follow Base UI’s naming, APIs, and defaults, including where they differ from shadcn’s conventions.
-
-Internationalization and RTL support are built in, with Base UI’s [Direction Provider](/docs/providers/direction) handling text direction.
-
-Our tokens use `error` instead of `destructive` to name the state.
-
-OTP, Field, Fieldset, and Toast use Base UI directly. Labels belong to fields rather than a separate Label component.
+We follow Base UI’s naming, APIs, and defaults. Internationalization and RTL support are built in. Labels belong to fields, and our tokens use `error` instead of `destructive`.
 
 ## A note on design
 
-Surface and shadow tokens give interfaces depth and hierarchy.
+Surface and shadow tokens provide depth and hierarchy. Squircle corners soften components, with ordinary rounded corners as a fallback; circles and pills stay round.
 
-Squircle corners give components and these docs a softer shape. We use native CSS where supported and fall back to ordinary rounded corners elsewhere. Circles and pills stay round.
-
-Components provide a foundation. Content, hierarchy, and flow still need care. A finished interface can still be hard to use. Our examples give developers and agents a shared starting point to review and refine together.
-
-> “It’s not just what it looks like and feels like. Design is how it works.”
->
-> — Steve Jobs, [The Guts of a New Machine](https://www.nytimes.com/2003/11/30/magazine/the-guts-of-a-new-machine.html), 2003
-
-Loading states, validation feedback, and overlay layouts are part of that work. We build them into the primitives and blocks so projects don’t have to start again. Validation errors can shake for emphasis.
-
-## Keep cause and effect together
-
-Feedback belongs to the interaction that caused it. Before adding a message, decide what changes immediately, where pending work appears, what durable state proves success, and where failure remains visible with a way to recover.
-
-Prefer feedback in the affected control, form, or row. A copy button can become a checkmark; a form can keep its error beside the submit area; a failed optimistic change can restore the row and explain why. Background work needs a persistent activity surface with progress, results, and recovery actions.
-
-[Toasts](/docs/components/toast) are a fallback for brief, supplementary information that is safe to miss. The result and any useful action must remain available elsewhere after the message disappears. Avoid repeating an already visible result or sending every request failure to a global notification. A polished component still needs a reason to appear.
+Content, hierarchy, and flow matter as much as the components. Feedback stays close to its cause; [toasts](/docs/components/toast) are reserved for supplementary information that is safe to miss.
 
 ## Ready for agents
 
-Useful abstractions save code and tokens. Documentation and examples explain the decisions behind them. Agents can read the source without having to reconstruct the intent.
+Documentation and Storybook examples explain both composition and intent. Every page has a `.md` version, alongside a [Markdown introduction](/index.md), [llms.txt index](/llms.txt), and [JSON API](/api/docs.json).
 
-Every documentation page has a `.md` version, with a [Markdown introduction](/index.md), [llms.txt index](/llms.txt), and [JSON API](/api/docs.json). Component guidance links to Base UI’s docs.
-
-Install components, styles, blocks, and stories through the [shadcn CLI and registry](https://ui.shadcn.com/docs/registry) or copy paste them into your codebase manually.
-
-Primitives and blocks evolve with erbium.app. See the [roadmap](/docs/roadmap) for planned components, agent tools, and platforms.
+Install through the [shadcn CLI and registry](https://ui.shadcn.com/docs/registry) or copy the source directly. Erbium UI evolves with erbium.app; see the [roadmap](/docs/roadmap) for what’s planned.

@@ -3,7 +3,7 @@
   "name": "toast-progress",
   "type": "registry:component",
   "title": "Toast: Progress",
-  "description": "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.\n\nThis example demonstrates updates to a supplementary notification. Long-running work needs persistent progress and recovery in an activity surface, even if its toast stays open.",
+  "description": "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.",
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

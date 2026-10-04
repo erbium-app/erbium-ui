@@ -19791,7 +19791,7 @@
       "name": "toast-action",
       "type": "registry:component",
       "title": "Toast: Action",
-      "description": "Pass button props with `actionProps` to render a supplementary action. Keep the same action available in a persistent surface after the toast disappears. An Undo toast must not be the only way to restore an item; provide recovery in the affected list or history.\n\nThe example below shows the action API and closes the toast. A real Undo handler must also restore the application state.\n\n```tsx\nconst id = toast.add({\n  id: \"event-created\",\n  title: \"Event created\",\n  actionProps: {\n    children: \"Undo\",\n    onClick() {\n      toast.close(id);\n    },\n  },\n});\n```",
+      "description": "Pass button props with `actionProps` to render an action. This example closes the toast; a real Undo handler must also restore application state.\n\n```tsx\nconst id = toast.add({\n  id: \"event-created\",\n  title: \"Event created\",\n  actionProps: {\n    children: \"Undo\",\n    onClick() {\n      toast.close(id);\n    },\n  },\n});\n```",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -19867,7 +19867,7 @@
       "name": "toast-progress",
       "type": "registry:component",
       "title": "Toast: Progress",
-      "description": "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.\n\nThis example demonstrates updates to a supplementary notification. Long-running work needs persistent progress and recovery in an activity surface, even if its toast stays open.",
+      "description": "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -19881,7 +19881,7 @@
       "name": "toast-promise",
       "type": "registry:block",
       "title": "Toast: Promise",
-      "description": "Use `toast.promise` to update one supplementary toast as an asynchronous task moves through loading, success, and error states. Keep pending state and recovery in the control or surface that owns the task. For uploads, imports, and exports, preserve progress, results, and failures in a persistent activity surface; the toast is not job history.",
+      "description": "Use `toast.promise` to update one toast through loading, success, and error states.",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -19900,7 +19900,7 @@
       "name": "toast-queue",
       "type": "registry:component",
       "title": "Toast: Queue",
-      "description": "This example adds five notifications with automatic dismissal disabled to demonstrate the stack. Hover or focus the stack to see and scroll the full queue.\n\nA queue is not notification history. Avoid one toast per rapid or bulk operation; update the affected interface and keep any useful summary in a persistent surface.",
+      "description": "This example adds five notifications with automatic dismissal disabled. Hover or focus the stack to see and scroll the full queue.",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
