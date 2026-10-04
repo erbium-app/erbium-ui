@@ -4,7 +4,6 @@ import manifest from "@erbium/showcase/manifest";
 import registry from "@erbium/showcase/registry";
 import { showcaseSource } from "@erbium/showcase/sources";
 import { components } from "../data/components";
-import { kindPaths } from "../data/documentation-sections";
 
 export const site = "https://ui.erbium.app";
 const documents = import.meta.glob<string>("../../../../packages/content/**/*.md", {
@@ -79,19 +78,6 @@ export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
   const { frontmatter } = document(file);
   return page(route, frontmatter.title, frontmatter.description, section, body(file));
 });
-for (const [kind, path] of Object.entries(kindPaths)) {
-  if (kind === "component") continue;
-  const entries = components.filter((item) => item.kind === kind);
-  agentPages.push(
-    page(
-      `/docs/${path}`,
-      document(`${path}.md`).frontmatter.title,
-      document(`${path}.md`).frontmatter.description,
-      "Library",
-      `${body(`${path}.md`)}\n\n${entries.map((item) => `- [${item.title}](${absolute(item.href)}): ${item.description}`).join("\n")}`,
-    ),
-  );
-}
 for (const component of components) {
   const catalog = manifest.find((entry) => entry.name === component.name)!;
   if (component.name === "colors") {

@@ -1118,29 +1118,6 @@ docs-copy {
   color: var(--link);
 }
 
-.directory-intro {
-  margin-block-end: 2rem;
-}
-.documentation-directory {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-.directory-item {
-  @apply surface-panel;
-  display: block;
-  padding: 1.1rem 1.25rem;
-  border: 1px solid transparent;
-  border-radius: 0.65rem;
-  transition:
-    background-color 150ms,
-    box-shadow 150ms;
-}
-.directory-item h3 {
-  font-size: 0.875rem;
-  font-weight: 550;
-}
-
 .sampler {
   display: grid;
   gap: 1rem;
@@ -1239,7 +1216,6 @@ docs-copy {
 
 .site-brand:focus-visible,
 .docs-sidebar a:focus-visible,
-.directory-item:focus-visible,
 .page-pagination a:focus-visible,
 .showcase [role="tab"]:focus-visible,
 .install-example summary:focus-visible {
@@ -1411,9 +1387,6 @@ docs-copy {
   .showcase-content {
     padding: 1.25rem 0.75rem;
   }
-  .documentation-directory {
-    grid-template-columns: 1fr;
-  }
   .landing-grid {
     grid-template-columns: 1fr;
   }
@@ -1443,23 +1416,10 @@ docs-copy {
   *::after {
     scroll-behavior: auto !important;
   }
-  .directory-item {
-    transition: none;
-  }
 }
 
 .component-documentation[data-repeated-summary] > p:first-child {
   display: none;
-}
-
-.directory-section {
-  margin-block-end: 2rem;
-  scroll-margin-block-start: 2rem;
-}
-.directory-section > h2 {
-  margin-block-end: 0.75rem;
-  font-size: 1.05rem;
-  font-weight: 600;
 }
 
 .base-ui-reference {

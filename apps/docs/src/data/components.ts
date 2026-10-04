@@ -57,7 +57,7 @@ export const navigationGroups = [
   },
   ...documentationSections.map((section) => ({
     title: section.title,
-    href: section.kind === "component" ? undefined : `/docs/${kindPaths[section.kind]}`,
+    href: undefined,
     items: [
       ...section.names.map((name) => components.find((item) => item.name === name)!),
       ...(section.kind === "utility"
