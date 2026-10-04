@@ -1,30 +1,34 @@
 ---
 title: Roadmap
-description: What we’re planning for Erbium UI.
+description: Where we’re taking Erbium UI.
 ---
 
-We’re extending Erbium with a few new components, agent tools, and platform libraries. These plans have no fixed release dates and will evolve with the product.
+Erbium is growing from a set of primitives into a focused system for building data interfaces, editing content, and working with agents. The direction comes from recurring product needs. Each component, block, and story still has to earn its place; these plans have no fixed release dates.
 
-## Components and blocks
+## Working with data
 
-Our planned additions are:
+We’re building toward a full-featured data table on [TanStack Table](https://tanstack.com/table/latest), with sorting, pagination, selection, grouping, column controls, and [TanStack Virtual](https://tanstack.com/virtual/latest) for large datasets. Filters will share a field, operator, and value model across tables, lists, and search.
 
-- **Command:** a CMDK replacement built on Base UI command and autocomplete behavior.
-- **Lightbox:** an image viewer with navigation.
-- **Stepper:** step navigation, validation, and a step indicator.
-- **Agent sessions:** chat and session UI drawing from [OpenCode](https://opencode.ai/).
-- **Files and diffs:** compositions using [Pierre](https://pierre.computer/)’s [Trees](https://trees.software/) and [Diffs](https://diffs.com/). We’re also considering its icons and other reusable pieces.
+Editable data sheets extend that direction with cell editing, range selection, clipboard operations, and undo/redo. Table behavior and editing will remain composable, with applications owning fetching and persistence.
 
-## Agent tooling
+## Composing product interfaces
 
-We plan to support [OpenUI](https://www.openui.com/) and [MCP-UI](https://mcpui.dev/), with agent skills for their integration and for composing Erbium interfaces.
+We want common product decisions to have useful starting points: property and settings panels, searchable tags with optional creation, and icon and emoji selection. These will be small compositions with stories that explain their use.
 
-A [Paper](https://paper.design/) canvas will bring components, states, and page compositions into one design kit. It will follow the source tokens and Storybook examples, allowing agents to assemble mockups through Paper’s MCP connection.
+Multi-step forms will bring together a functional Stepper, step indicators, and [TanStack Form](https://tanstack.com/form/latest) validation. Responsive overlays and searchable menus will carry the same interaction decisions across desktop and mobile. Command will move from CMDK toward Base UI command and autocomplete behavior.
 
-## Platforms
+## Files and media
 
-Astro and React Native libraries are planned with consistent design and the same public API wherever the platforms allow. Behavior will suit each platform.
+File handling will connect picking, drag and drop, validation, and attachment previews. A Lightbox will support image viewing and navigation; audio playback, waveforms, and transcripts are another area we’re exploring.
 
-## Continued work
+For file trees and code review, we’re looking to [Pierre](https://pierre.computer/)’s [Trees](https://trees.software/) and [Diffs](https://diffs.com/), alongside its icons and other reusable pieces.
 
-We’ll continue improving composition stories, searchable menus, and responsive overlays, including keyboard access, RTL, reduced motion, and state coverage. Components and stories will grow around recurring needs, with each addition earning its place through use.
+## Interfaces for agents
+
+Agent sessions will draw from [OpenCode](https://opencode.ai/), with chat compositions and a prompt composer for attachments and submission states. [OpenUI](https://www.openui.com/) and [MCP-UI](https://mcpui.dev/) support will connect these interfaces to agent workflows, with skills documenting integration and composition.
+
+A [Paper](https://paper.design/) canvas will connect components, states, and page compositions to the same source tokens and Storybook examples. Agents will be able to assemble mockups through Paper’s MCP connection.
+
+## Consistent across platforms
+
+Astro and React Native libraries will share Erbium’s design and public APIs wherever the platforms allow, with behavior suited to each runtime. Keyboard access, RTL, reduced motion, and meaningful state coverage will remain part of the system as it grows.
