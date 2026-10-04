@@ -8,9 +8,9 @@
   --popover-foreground: #393a34;
   --primary: #393a34;
   --primary-foreground: #ffffff;
-  /* Green remains the link and selected-control color, separate from neutral actions. */
-  --link: #1c6b48;
-  --selection: #1c6b48;
+  /* Vitesse's violet anchors interaction; info keeps its distinct muted blue. */
+  --link: #6f42c1;
+  --selection: #6f42c1;
   --selection-foreground: #ffffff;
   --secondary: #f0f0f0;
   --secondary-foreground: #393a34;
@@ -36,7 +36,7 @@
   --info-soft-foreground: #245b8a;
   --border: rgb(57 58 52 / 0.08);
   --input: rgb(57 58 52 / 0.12);
-  --ring: #1c6b48;
+  --ring: #6f42c1;
   --overlay-base: #000000;
   --cursor-shadow: rgb(0 0 0 / 0.53);
   --overlay-backdrop: rgb(0 0 0 / 0.2);
@@ -63,7 +63,7 @@
   --sidebar-accent: rgb(57 58 52 / 0.06);
   --sidebar-accent-foreground: #393a34;
   --sidebar-border: rgb(57 58 52 / 0.08);
-  --sidebar-ring: #1c6b48;
+  --sidebar-ring: #6f42c1;
   --code: #f7f7f7;
   --code-foreground: #586069;
   --code-highlight: #e6cc7744;
@@ -166,8 +166,8 @@
   --popover-foreground: #dbd7ca;
   --primary: #dbd7ca;
   --primary-foreground: #121212;
-  --link: #4d9375;
-  --selection: #4d9375;
+  --link: #b392f0;
+  --selection: #b392f0;
   --selection-foreground: #121212;
   --secondary: #232323;
   --secondary-foreground: #dbd7ca;
@@ -193,7 +193,7 @@
   --info-soft-foreground: #8eb4d4;
   --border: rgb(222 220 213 / 0.08);
   --input: rgb(222 220 213 / 0.12);
-  --ring: #4d9375;
+  --ring: #b392f0;
   --overlay-base: #000000;
   --cursor-shadow: rgb(0 0 0 / 0.53);
   --overlay-backdrop: rgb(0 0 0 / 0.2);
@@ -220,7 +220,7 @@
   --sidebar-accent: rgb(222 220 213 / 0.07);
   --sidebar-accent-foreground: #dbd7ca;
   --sidebar-border: rgb(222 220 213 / 0.08);
-  --sidebar-ring: #4d9375;
+  --sidebar-ring: #b392f0;
   --code: #181818;
   --code-foreground: #dbd7ca;
   --code-highlight: #e6cc7722;
