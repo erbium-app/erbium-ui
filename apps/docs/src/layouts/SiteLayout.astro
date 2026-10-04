@@ -100,7 +100,7 @@ const analyticsToken = import.meta.env.PROD
       </header>
       <SidebarProvider class="docs-frame">
         <DocsSidebar />
-        <div class="site-page-content"><slot /></div>
+        <div class="site-page-content" transition:name="docs-content" transition:animate="none"><slot /></div>
       </SidebarProvider>
     </div>}
     {analyticsToken && (

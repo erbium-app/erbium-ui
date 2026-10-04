@@ -11,9 +11,9 @@ import DocsNavigation from "./DocsNavigation.astro";
 ---
 
 <Sidebar class="docs-sidebar" collapsible="none">
-  <div class="sidebar-heading"><Brand /><div class="sidebar-search"><ComponentSearch components={components} /></div></div>
+  <div class="sidebar-heading"><div transition:persist="docs-sidebar-brand"><Brand /></div><div class="sidebar-search"><ComponentSearch components={components} /></div></div>
   <DocsNavigation persist="docs-sidebar-navigation" />
-  <div class="sidebar-controls">
+  <div class="sidebar-controls" transition:persist="docs-sidebar-controls">
     <Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button>
     <ThemeToggle />
   </div>

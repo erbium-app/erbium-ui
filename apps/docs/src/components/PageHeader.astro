@@ -23,6 +23,7 @@ const { title, description, previous, next } = Astro.props;
         previous && (
           <Button
             href={previous.href}
+            data-astro-prefetch="viewport"
             variant="outline"
             size="icon-sm"
             aria-label={`Previous: ${previous.title}`}
@@ -35,6 +36,7 @@ const { title, description, previous, next } = Astro.props;
         next && (
           <Button
             href={next.href}
+            data-astro-prefetch="viewport"
             variant="outline"
             size="icon-sm"
             aria-label={`Next: ${next.title}`}

@@ -78,11 +78,24 @@ remain local to their preview. Theme icons are rendered on the server and select
 by CSS, without waiting for hydration. System changes follow the OS until a user
 chooses a theme; storage events synchronize tabs and printing temporarily uses light mode.
 
-The sidebar navigation and search island persist across routes. Navigation updates
+The sidebar navigation persists across routes. Search is recreated with each page. Navigation updates
 active links after each swap and restores the sidebar offset after Astro restores
 focus. Initial loads and destinations reached outside the sidebar reveal an
 otherwise hidden active link; ordinary sidebar clicks preserve the exact offset.
-Documentation links prefetch on hover. Component instances must remove listeners
+Internal links (including prose and search results) prefetch on hover or keyboard
+focus through Astro's built-in prefetching. Only the previous/next page controls
+use viewport prefetching, warming two likely destinations without downloading the
+whole sidebar. Search also warms its first match after typing pauses so Enter can
+use the prefetched document. Astro respects data saver and slow connections.
+
+The shared `ClientRouter` swaps pages without a document reload. Desktop navigation,
+branding, and controls persist across routes; the navigation updates `aria-current`
+and preserves its scroll position after swaps. Content transitions have no animation
+delay. Search and mobile dialogs close on navigation, and page-specific islands are
+recreated for the new document. Keep experimental client prerendering disabled while
+using this client-router shell; native prerendering is a separate navigation approach.
+
+Component instances must remove listeners
 on disconnect, or delegate through a single document listener.
 
 When changing the shell, verify in development and with `bun run docs:build` plus
