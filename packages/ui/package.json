@@ -43,7 +43,7 @@
     "@hugeicons/react": "catalog:",
     "@shadcn/react": "catalog:",
     "@tanstack/charts": "catalog:",
-    "@tanstack/hotkeys": "^0.10.1",
+    "@tanstack/hotkeys": "^0.11.0",
     "@tanstack/react-pacer": "catalog:",
     "@tanstack/react-table": "catalog:",
     "class-variance-authority": "catalog:",
