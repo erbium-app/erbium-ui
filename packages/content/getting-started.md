@@ -13,6 +13,10 @@ bunx shadcn@latest add @erbium/field @erbium/input @erbium/dialog
 
 Import from the files in your app, such as `@/components/ui/field`. The CLI brings in component dependencies automatically. Use the installation command on each component page to find its registry name.
 
+## Supporting libraries
+
+We use [TanStack Charts](https://tanstack.com/charts/latest), [Form](https://tanstack.com/form/latest), [Hotkeys](https://tanstack.com/hotkeys/latest), [Pacer](https://tanstack.com/pacer/latest), and [Table](https://tanstack.com/table/latest) for charts, forms, shortcuts, timing, and tables.
+
 ## Start from an example
 
 ```sh
