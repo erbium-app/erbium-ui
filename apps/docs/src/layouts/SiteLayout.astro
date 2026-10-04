@@ -1,4 +1,6 @@
 ---
+import { structuredData } from "../lib/structured-data";
+import { siteName, siteDescription } from "../lib/site-config";
 import { themeInitScript } from "../lib/theme-init";
 import { ClientRouter } from "astro:transitions";
 import { Font } from "astro:assets";
@@ -14,13 +16,17 @@ import "../styles/docs.css";
 interface Props {
   title?: string;
   description?: string;
+  indexable?: boolean;
+  shell?: "docs" | "standalone";
 }
 const {
-  title = "Erbium UI",
-  description = "Accessible React components that you can customize and own.",
+  title = siteName,
+  description = siteDescription,
+  indexable = true,
+  shell = "docs",
 } = Astro.props;
-const pageTitle = title === "Erbium UI" ? title : `Erbium UI · ${title}`;
-const socialPage = ogPageForRoute(Astro.url.pathname);
+const pageTitle = Astro.url.pathname === "/" ? `${siteName} · Accessible React components` : `${title} · ${siteName}`;
+const socialPage = ogPageForRoute(indexable ? Astro.url.pathname : "/");
 const canonicalUrl = new URL(socialPage.route, Astro.site);
 const imageUrl = new URL(socialPage.imagePath, Astro.site);
 const socialDescription = plainText(description);
@@ -36,6 +42,7 @@ const analyticsToken = import.meta.env.PROD
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={socialDescription} />
+    <meta name="robots" content={indexable ? "index, follow, max-image-preview:large" : "noindex, follow"} />
     <meta name="theme-color" content={lightColors.background} />
     <title>{pageTitle}</title>
     <meta property="og:type" content="website" />
@@ -43,7 +50,7 @@ const analyticsToken = import.meta.env.PROD
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={socialDescription} />
-    <meta property="og:url" content={canonicalUrl} />
+    {indexable && <meta property="og:url" content={canonicalUrl} />}
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:secure_url" content={imageUrl} />
     <meta property="og:image:type" content="image/jpeg" />
@@ -55,20 +62,21 @@ const analyticsToken = import.meta.env.PROD
     <meta name="twitter:description" content={socialDescription} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content={imageAlt} />
-    <link
+    {indexable && <link
       rel="alternate"
       type="text/markdown"
       href={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")}
       title="Markdown"
-    />
+    />}
     <link
       rel="alternate"
       type="text/plain"
       href="/llms.txt"
       title="Agent documentation index"
     />
-    <link rel="sitemap" href="/sitemap.xml" />
-    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    {indexable && <link rel="canonical" href={canonicalUrl} />}
+    {indexable && <script type="application/ld+json" is:inline set:html={structuredData(socialPage.route, title, socialDescription, imageUrl.href)} />}
     <link
       id="site-favicon"
       rel="icon"
@@ -85,7 +93,7 @@ const analyticsToken = import.meta.env.PROD
   </head>
   <body>
     <a href="#main-content" class="skip-link"> Skip to content </a>
-    <div class="site-shell">
+    {shell === "standalone" ? <slot /> : <div class="site-shell">
       <header class="mobile-site-header">
         <Brand />
         <MobileNavigation />
@@ -94,7 +102,7 @@ const analyticsToken = import.meta.env.PROD
         <DocsSidebar />
         <div class="site-page-content"><slot /></div>
       </SidebarProvider>
-    </div>
+    </div>}
     {analyticsToken && (
       <script
         is:inline

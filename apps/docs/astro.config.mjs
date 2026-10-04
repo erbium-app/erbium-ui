@@ -5,13 +5,15 @@ import { rehypeCodeBlocks } from "./src/lib/rehype-code-blocks.ts";
 import { rehypeExternalLinks } from "./src/lib/rehype-external-links.ts";
 import { registryPlugin, registryIntegration } from "./registry-plugin.mjs";
 import { showcaseVitePlugin, showcaseIntegration } from "./showcase-vite-plugin.mjs";
-import { documentationSections, kindPaths } from "./src/data/documentation-sections.ts";
+import sitemap from "@astrojs/sitemap";
+import { seoIntegration } from "./seo-integration.mjs";
+import { site } from "./src/lib/site-config.ts";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
-  site: "https://ui.erbium.app",
+  site,
   output: "static",
   build: {
     // Keep first-paint styles in the HTML instead of a blocking CSS request.
@@ -78,22 +80,19 @@ export default defineConfig({
   },
   trailingSlash: "never",
   prefetch: { prefetchAll: false, defaultStrategy: "hover" },
-  redirects: {
-    "/docs/shimmer": "/docs/utilities/shimmer",
-    "/docs/foundations/styles": "/docs/installation",
-    "/docs/components/styles": "/docs/installation",
-    ...Object.fromEntries(
-      documentationSections
-        .filter((section) => section.kind !== "component")
-        .flatMap((section) =>
-          section.names.map((name) => [
-            `/docs/components/${name}`,
-            `/docs/${kindPaths[section.kind]}/${name}`,
-          ]),
-        ),
-    ),
-  },
-  integrations: [react(), registryIntegration(), showcaseIntegration()],
+  integrations: [
+    react(),
+    registryIntegration(),
+    showcaseIntegration(),
+    sitemap({
+      filter: (url) => {
+        const path = new URL(url).pathname.replace(/\/+$/, "") || "/";
+        return (path === "/" || path.startsWith("/docs/")) && !/\.[^/]+$/.test(path);
+      },
+      namespaces: { news: false, xhtml: false, image: false, video: false },
+    }),
+    seoIntegration(),
+  ],
   vite: {
     // Lightning CSS folds scroll timelines into animation shorthand, which
     // browsers reject. Keep shadcn's scroll-fade declarations separate.

@@ -21,7 +21,7 @@ const artifacts = [
         pages: `${site}/api/docs.json`,
         openapi: `${site}/openapi.json`,
         skills: `${site}/.well-known/agent-skills/index.json`,
-        sitemap: `${site}/sitemap.xml`,
+        sitemap: `${site}/sitemap-index.xml`,
       },
       pages: pageIndex,
     }),
@@ -43,16 +43,6 @@ const artifacts = [
     path: "/.well-known/agent-skills/erbium-ui/SKILL.md",
     type: "text/markdown",
     body: `---\nname: erbium-ui\ndescription: Install and compose Erbium UI React components and examples.\n---\n\n# Erbium UI\n\nRead ${site}/llms.txt to discover the current documentation. Read ${site}/docs/installation.md before installing. Append .md to any canonical documentation URL for its full documentation, component source and all showcase variants. Read ${site}/api/docs.json for the complete page catalog.\n\nConfigure shadcn registries @erbium as ${site}/r/ui/{name}.json and @erbium-examples as ${site}/r/examples/{name}.json. Initialize the consumer app with shadcn first. Install @erbium/styles once and then the required components or examples. Import the installed src/styles/globals.css from the app's global CSS entry; the registry does not wire that import automatically. Follow ${site}/docs/getting-started.md for providers and stories. Use registry installation to rewrite workspace imports to your project's aliases. Preserve accessibility, RTL support and shared surface tokens. Astro shell adapters belong to the docs application; the reusable UI and examples are React.\n`,
-  },
-  {
-    path: "/robots.txt",
-    type: "text/plain",
-    body: `User-agent: *\nAllow: /\nSitemap: ${site}/sitemap.xml\n`,
-  },
-  {
-    path: "/sitemap.xml",
-    type: "application/xml",
-    body: `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${pageIndex.map((entry) => `<url><loc>${entry.url}</loc></url>`).join("")}</urlset>`,
   },
   {
     path: "/openapi.json",

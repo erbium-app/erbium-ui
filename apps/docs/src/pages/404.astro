@@ -1,0 +1,63 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Brand from "../components/shell/Brand.astro";
+import ThemeToggle from "../components/shell/ThemeToggle.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<SiteLayout
+  title="Page not found"
+  description="This documentation page could not be found."
+  indexable={false}
+  shell="standalone"
+>
+  <div class="not-found-screen">
+    <header class="not-found-header">
+      <Brand />
+      <ThemeToggle />
+    </header>
+    <main id="main-content" tabindex="-1" class="not-found-main">
+      <div class="not-found-content">
+        <header class="page-header">
+          <h1>Page not found</h1>
+          <p class="page-description">
+            This page may have moved or been removed. Let’s get you back to the
+            docs.
+          </p>
+        </header>
+        <div class="not-found-actions">
+          <Button href="/">Back to home</Button>
+        </div>
+      </div>
+    </main>
+  </div>
+</SiteLayout>
+<style>
+  .not-found-screen {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+  .not-found-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem clamp(1.25rem, 4vw, 4rem);
+  }
+  .not-found-main {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 3rem 1.5rem 7rem;
+  }
+  .not-found-content {
+    width: 100%;
+    max-width: 30rem;
+  }
+  .not-found-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-block-start: 2rem;
+  }
+</style>

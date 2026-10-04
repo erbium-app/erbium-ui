@@ -21,7 +21,7 @@ export function BreadcrumbSeparatorDemo() {
           <HugeiconsIcon icon={DotIcon} />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbLink render={<a href="/components" />}>Components</BreadcrumbLink>
+          <BreadcrumbLink render={<a href="/docs/installation" />}>Installation</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           <HugeiconsIcon icon={DotIcon} />

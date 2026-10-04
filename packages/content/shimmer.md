@@ -3,8 +3,6 @@ title: Shimmer
 description: CSS utilities for adding a shimmer effect to text.
 ---
 
-# Shimmer
-
 Add a soft animated highlight to text, useful for live status and streaming content.
 
 ## Installation

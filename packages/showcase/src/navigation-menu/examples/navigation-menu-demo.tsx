@@ -12,7 +12,7 @@ export default function Demo() {
           <NavigationMenuLink href="/">Home</NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink href="/docs">Docs</NavigationMenuLink>
+          <NavigationMenuLink href="/docs/installation">Docs</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

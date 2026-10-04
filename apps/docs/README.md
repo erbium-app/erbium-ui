@@ -29,7 +29,7 @@ Astro shell primitives live in `src/components/ui/`, compositions in `src/compon
 
 Introduction is the homepage at `/`, rendered directly by `src/pages/index.astro` from `@erbium/content/introduction.md`. There is no `/docs` index route or homepage redirect. Navigation, search, social metadata, and agent resources use `/` as its canonical route.
 
-UI components use `/docs/components/{name}`, design tokens use `/docs/foundations/{name}`, providers use `/docs/providers/{name}`, helpers use `/docs/utilities/{name}`, and hooks use `/docs/hooks/{name}`. Legacy component URLs redirect to their canonical section. `packages/content/src/sections.json` assigns each showcase exactly once. Components appear in one alphabetical section; foundations, hooks, utilities, providers, and guides have separate sections. Storybook titles are generated from the same taxonomy and sorted alphabetically. Documentation groups have individual pages without directory landing routes. Navigation, search, and adjacent-page links derive from this classification and `src/data/components.ts`; adjacent-page links stay within the same documentation section.
+UI components use `/docs/components/{name}`, design tokens use `/docs/foundations/{name}`, providers use `/docs/providers/{name}`, helpers use `/docs/utilities/{name}`, and hooks use `/docs/hooks/{name}`. Only canonical page URLs are supported. `packages/content/src/sections.json` assigns each showcase exactly once. Components appear in one alphabetical section; foundations, hooks, utilities, providers, and guides have separate sections. Storybook titles are generated from the same taxonomy and sorted alphabetically. Documentation groups have individual pages without directory landing routes. Navigation, search, and adjacent-page links derive from this classification and `src/data/components.ts`; adjacent-page links stay within the same documentation section.
 
 Preview/code tabs preserve the mounted React island when switching panels. Theme choice persists locally, search supports Cmd/Ctrl+K, and mobile navigation uses a native dialog with focus trapping and Escape dismissal.
 
@@ -55,7 +55,7 @@ UI registry sources. `src/pages/[...resource].ts` serves and statically emits:
 - `/openapi.json`: the read-only documentation API description.
 - `/agent-readability.json`: discovery manifest with emitted resources.
 - `/.well-known/agent-skills/index.json` and the Erbium UI usage `SKILL.md`.
-- `/sitemap.xml` and `/robots.txt`: crawler discovery.
+- `/sitemap-index.xml` and `/robots.txt`: crawler discovery.
 
 HTML pages advertise their Markdown mirror through an alternate link. All
 artifacts work in Astro development and on a static host without a backend.
@@ -101,3 +101,13 @@ When changing the shell, verify in development and with `bun run docs:build` plu
 Keep scroll timelines separate from animation shorthand in production CSS. The docs
 use Tailwind optimization without minification and esbuild for final CSS minification
 to avoid Lightning CSS folding the shadcn fade timeline into an unsupported shorthand.
+
+## Search indexing
+
+`src/lib/site-config.ts` defines the production origin used by Astro, canonical metadata, structured data, and agent resources. The official `@astrojs/sitemap` integration discovers HTML pages at build time and excludes non-HTML resources. `robots.txt` allows crawling and advertises `/sitemap-index.xml`. Group landing routes stay absent.
+
+Every documentation page includes a unique title, description, canonical URL, Open Graph/Twitter image metadata, and JSON-LD for the website, source-code project, page, and breadcrumbs. Breadcrumbs link directly from the homepage to the page, without linking removed group routes. The custom 404 is noindex and has no canonical pointing at the homepage.
+
+`seo-integration.mjs` emits Cloudflare `_headers` to keep Markdown, JSON/API, registry, and agent discovery copies out of search results while allowing crawlers and agents to read them. Markdown and page JSON copies also advertise their HTML canonical through a `Link` header. Cloudflare workers.dev URLs receive noindex headers. Astro preview does not emulate Cloudflare header rules.
+
+After deployment, verify live headers and 404 status, then submit `/sitemap-index.xml` in Google Search Console and Bing Webmaster Tools. Ownership verification belongs to the domain owner’s account; analytics alone does not verify ownership.
