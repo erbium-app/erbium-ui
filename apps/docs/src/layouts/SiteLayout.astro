@@ -3,7 +3,6 @@ import { structuredData } from "../lib/structured-data";
 import { siteName, siteDescription } from "../lib/site-config";
 import { themeInitScript } from "../lib/theme-init";
 import { ClientRouter } from "astro:transitions";
-import { Font } from "astro:assets";
 import { markdownPath } from "../lib/agent-pages";
 import { ogPageForRoute, ogSize, plainText } from "../lib/og-pages";
 import { lightColors, showcaseLightThemeCss } from "../lib/semantic-colors";
@@ -83,9 +82,6 @@ const analyticsToken = import.meta.env.PROD
       href="/favicon.svg"
       type="image/svg+xml"
     />
-    <Font cssVariable="--font-docs-sans" preload={[{ style: "normal" }]} />
-    <!-- Unicode ranges trigger the Arabic subset only when its glyphs render. -->
-    <Font cssVariable="--font-docs-arabic" preload={false} />
     <ClientRouter fallback="swap" />
     <style is:inline set:html={syntaxThemeCss + "\n" + showcaseLightThemeCss}
     ></style>

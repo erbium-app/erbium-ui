@@ -21026,6 +21026,135 @@
       ]
     },
     {
+      "name": "typography-code",
+      "type": "registry:component",
+      "title": "Typography: Code",
+      "description": "Geist Mono in commands, inline identifiers, and code samples.",
+      "registryDependencies": ["@erbium/card", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/typography/variants/code.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/code.tsx"
+        }
+      ]
+    },
+    {
+      "name": "typography-examples",
+      "type": "registry:item",
+      "title": "Typography examples",
+      "description": "All typography examples.",
+      "registryDependencies": [
+        "@erbium-examples/typography-interface",
+        "@erbium-examples/typography-code",
+        "@erbium-examples/typography-reading",
+        "@erbium-examples/typography-multilingual"
+      ]
+    },
+    {
+      "name": "typography-interface",
+      "type": "registry:component",
+      "title": "Typography: Interface",
+      "description": "Cal Sans in headings, descriptions, form labels, fields, and actions.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/typography/variants/interface.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/interface.tsx"
+        }
+      ]
+    },
+    {
+      "name": "typography-multilingual",
+      "type": "registry:component",
+      "title": "Typography: Multilingual",
+      "description": "Vazirmatn in Persian and Arabic interfaces, with mixed Latin text and RTL layout.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/typography/variants/multilingual.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/multilingual.tsx"
+        }
+      ]
+    },
+    {
+      "name": "typography-reading",
+      "type": "registry:component",
+      "title": "Typography: Reading",
+      "description": "Cal Sans with docs and compact reading presets.",
+      "registryDependencies": ["@erbium/card", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/typography/variants/reading.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/reading.tsx"
+        }
+      ]
+    },
+    {
+      "name": "typography-stories",
+      "type": "registry:item",
+      "title": "Typography stories",
+      "description": "All typography variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        },
+        {
+          "path": "src/typography/typography.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/typography/typography.stories.tsx"
+        },
+        {
+          "path": "src/typography/variants/code.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/code.tsx"
+        },
+        {
+          "path": "src/typography/variants/interface.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/interface.tsx"
+        },
+        {
+          "path": "src/typography/variants/multilingual.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/multilingual.tsx"
+        },
+        {
+          "path": "src/typography/variants/reading.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/typography/variants/reading.tsx"
+        }
+      ]
+    },
+    {
       "name": "use-copy-to-clipboard-custom-button",
       "type": "registry:component",
       "title": "Use Copy To Clipboard: Custom Button",

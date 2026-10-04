@@ -1091,7 +1091,7 @@
       "title": "Erbium styles",
       "description": "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
       "dependencies": [
-        "@fontsource-variable/geist",
+        "@fontsource-variable/geist-mono",
         "easing-gradients",
         "shadcn",
         "shadow-plugin",
@@ -1143,6 +1143,16 @@
           "path": "src/styles/variants.css",
           "type": "registry:file",
           "target": "~/src/styles/variants.css"
+        },
+        {
+          "path": "src/assets/fonts/OFL.txt",
+          "type": "registry:file",
+          "target": "~/src/assets/fonts/OFL.txt"
+        },
+        {
+          "path": "src/assets/fonts/Vazirmatn-OFL.txt",
+          "type": "registry:file",
+          "target": "~/src/assets/fonts/Vazirmatn-OFL.txt"
         }
       ]
     },

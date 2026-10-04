@@ -70,12 +70,21 @@ const guides = [
   ["/", "introduction.md", "Overview"],
   ["/docs/installation", "installation.md", "Guides"],
   ["/docs/getting-started", "getting-started.md", "Guides"],
+  ["/docs/typography", "typography.md", "Guides"],
   ["/docs/roadmap", "roadmap.md", "Overview"],
   ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
 ];
 export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
   const { frontmatter } = document(file);
-  return page(route, frontmatter.title, frontmatter.description, section, body(file));
+  return page(
+    route,
+    frontmatter.title,
+    frontmatter.description,
+    section,
+    file === "typography.md"
+      ? `${body("typography-introduction.md")}\n\n${body(file)}`
+      : body(file),
+  );
 });
 for (const component of components) {
   const catalog = manifest.find((entry) => entry.name === component.name)!;
@@ -151,7 +160,7 @@ export const pageIndex = agentPages.map(({ markdown: _markdown, ...entry }) => (
   markdownUrl: absolute(markdownPath(entry.route)),
   jsonUrl: absolute(`/api/docs/${entry.route === "/" ? "index" : entry.route.slice(1)}.json`),
 }));
-export const llmsIndex = `# Erbium UI\n\n> Accessible React components with shared Markdown documentation and runnable examples.\n\nInstall components and examples through the shadcn registries. Read the installation guide first. Source code uses workspace imports; registry installation rewrites these to local aliases.\n\n## Agent resources\n\n- [Full documentation](${site}/llms-full.txt): Every page with component and example source.\n- [Page index](${site}/api/docs.json): JSON catalog linking Markdown and JSON pages.\n- [OpenAPI](${site}/openapi.json): Read-only documentation API.\n- [Agent discovery](${site}/agent-readability.json)\n- [Usage skill](${site}/.well-known/agent-skills/erbium-ui/SKILL.md)\n- [Sitemap](${site}/sitemap-index.xml)\n\n${[
+export const llmsIndex = `# Erbium UI\n\n> Accessible React components with shared Markdown documentation and runnable examples.\n\nInstall components and examples through the Shadcn registries. Read the installation guide first. Source code uses workspace imports; registry installation rewrites these to local aliases.\n\n## Agent resources\n\n- [Full documentation](${site}/llms-full.txt): Every page with component and example source.\n- [Page index](${site}/api/docs.json): JSON catalog linking Markdown and JSON pages.\n- [OpenAPI](${site}/openapi.json): Read-only documentation API.\n- [Agent discovery](${site}/agent-readability.json)\n- [Usage skill](${site}/.well-known/agent-skills/erbium-ui/SKILL.md)\n- [Sitemap](${site}/sitemap-index.xml)\n\n${[
   ...new Set(agentPages.map((entry) => entry.section)),
 ]
   .map(

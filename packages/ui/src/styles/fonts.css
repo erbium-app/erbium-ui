@@ -1,1 +1,29 @@
-@import "@fontsource-variable/geist";
+/* Cal Sans and Vazirmatn: SIL Open Font License 1.1. See ../assets/fonts/*.txt. */
+@import "@fontsource-variable/geist-mono";
+
+@font-face {
+  font-family: "Cal Sans";
+  src: url("../assets/fonts/CalSansVF.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cal Sans";
+  src: url("../assets/fonts/CalSansVF-Italic.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../assets/fonts/Vazirmatn-Arabic-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range:
+    U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+10EC0-10EFF,
+    U+1EE00-1EEFF;
+}

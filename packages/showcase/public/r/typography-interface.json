@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography-interface",
+  "type": "registry:component",
+  "title": "Typography: Interface",
+  "description": "Cal Sans in headings, descriptions, form labels, fields, and actions.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/typography/variants/interface.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/typography/variants/interface.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from \"@/registry/erbium/ui/card\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function InterfaceExample() {\n  return (\n    <Card className=\"w-full max-w-md\">\n      <CardHeader>\n        <CardTitle>Workspace preferences</CardTitle>\n        <CardDescription>Update the name shown to workspace members.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"grid gap-2\">\n        <Field>\n          <FieldLabel htmlFor=\"typography-workspace\">Workspace name</FieldLabel>\n          <Input id=\"typography-workspace\" defaultValue=\"Erbium Studio\" />\n        </Field>\n        <p className=\"text-xs text-muted-foreground\">Use a name your team will recognize.</p>\n      </CardContent>\n      <CardFooter>\n        <Button>Save preferences</Button>\n      </CardFooter>\n    </Card>\n  );\n}\n"
+    }
+  ]
+}

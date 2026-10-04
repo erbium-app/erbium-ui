@@ -12,6 +12,7 @@ export function seoIntegration() {
       },
       "astro:build:done": async ({ dir }) => {
         const headers = [
+          "/fonts/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=86400",
           "/api/*\n  X-Robots-Tag: noindex",
           "/r/*\n  X-Robots-Tag: noindex",
           "/*.md\n  X-Robots-Tag: noindex",

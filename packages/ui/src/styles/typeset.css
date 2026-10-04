@@ -453,3 +453,20 @@
     margin-block-start: 0;
   }
 }
+
+/* Erbium reading presets. Layouts own their measure (for example max-w-[70ch]). */
+@layer components {
+  .typeset-docs {
+    --typeset-font-body: var(--font-sans);
+    --typeset-size: 1rem;
+    --typeset-leading: 1.75;
+    --typeset-flow: 1.5em;
+  }
+
+  .typeset-compact {
+    --typeset-font-body: var(--font-sans);
+    --typeset-size: 0.875rem;
+    --typeset-leading: 1.6;
+    --typeset-flow: 1em;
+  }
+}

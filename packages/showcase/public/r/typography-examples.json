@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "typography-examples",
+  "type": "registry:item",
+  "title": "Typography examples",
+  "description": "All typography examples.",
+  "registryDependencies": [
+    "@erbium-examples/typography-interface",
+    "@erbium-examples/typography-code",
+    "@erbium-examples/typography-reading",
+    "@erbium-examples/typography-multilingual"
+  ]
+}

@@ -3864,6 +3864,36 @@
     ]
   },
   {
+    "name": "typography",
+    "title": "Foundations/Typography",
+    "variants": [
+      {
+        "exportName": "Interface",
+        "slug": "interface",
+        "title": "Interface",
+        "source": "src/typography/variants/interface.tsx"
+      },
+      {
+        "exportName": "Code",
+        "slug": "code",
+        "title": "Code",
+        "source": "src/typography/variants/code.tsx"
+      },
+      {
+        "exportName": "Reading",
+        "slug": "reading",
+        "title": "Reading",
+        "source": "src/typography/variants/reading.tsx"
+      },
+      {
+        "exportName": "Multilingual",
+        "slug": "multilingual",
+        "title": "Multilingual",
+        "source": "src/typography/variants/multilingual.tsx"
+      }
+    ]
+  },
+  {
     "name": "use-copy-to-clipboard",
     "title": "Hooks/Use Copy To Clipboard",
     "variants": [

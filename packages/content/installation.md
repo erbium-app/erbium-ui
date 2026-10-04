@@ -1,13 +1,13 @@
 ---
 title: Installation
-description: Add Erbium UI to a new React project with the shadcn CLI.
+description: Add Erbium UI to a new React project with the Shadcn CLI.
 ---
 
-Add Erbium components to your React application with the [shadcn CLI](https://ui.shadcn.com/docs/cli). It copies the source into your project and installs the dependencies. Import from those local files and edit them as needed. You do not need to clone this repository or install an `@erbium/ui` package.
+Add Erbium components to your React application with the [Shadcn CLI](https://ui.shadcn.com/docs/cli). It copies the source into your project and installs the dependencies. Import from those local files and edit them as needed. You do not need to clone this repository or install an `@erbium/ui` package.
 
 ## Prerequisites
 
-Use a React project with TypeScript and [Tailwind CSS v4](https://tailwindcss.com/docs/installation). The CLI needs a `components.json` file and configured import aliases. If your app already has shadcn configured, skip to **Configure the registries**.
+Use a React project with TypeScript and [Tailwind CSS v4](https://tailwindcss.com/docs/installation). The CLI needs a `components.json` file and configured import aliases. If your app already has Shadcn configured, skip to **Configure the registries**.
 
 Run all commands below in your application directory. The examples use Bun; `npx` can replace `bunx`.
 
@@ -24,7 +24,7 @@ cd my-app
 
 The CLI creates the app, configures Tailwind and the `@/` import alias, and writes `components.json`.
 
-For an existing React application, follow the [shadcn setup for your framework](https://ui.shadcn.com/docs/installation), then initialize it from its root:
+For an existing React application, follow the [Shadcn setup for your framework](https://ui.shadcn.com/docs/installation), then initialize it from its root:
 
 ```sh
 bunx shadcn@latest init
@@ -53,7 +53,7 @@ Add these entries to the `registries` object in your project’s `components.jso
 bunx shadcn@latest add @erbium/styles @erbium/button --yes --overwrite
 ```
 
-This replaces the starter’s shadcn Button with Erbium’s version. In an existing project, omit `--overwrite` and review any file conflicts before replacing your own components.
+This replaces the starter’s Shadcn Button with Erbium’s version. In an existing project, omit `--overwrite` and review any file conflicts before replacing your own components.
 
 The installation adds shared CSS to `src/styles/`, the Button to `src/components/ui/button.tsx`, and its helpers and npm dependencies. Erbium’s class merger is installed separately as `src/lib/erbium-utils.ts`.
 
@@ -97,7 +97,7 @@ These tools are optional development dependencies in your application.
 
 ### Linting and formatting
 
-We recommend [Oxlint](https://oxc.rs/docs/guide/usage/oxlint) and [Oxfmt](https://oxc.rs/docs/guide/usage/oxfmt), configured through [Ultracite](https://ultracite.ai/). Add the [shadcn linter](https://github.com/shadcn-ui/lint) for rules that check component usage and design tokens.
+We recommend [Oxlint](https://oxc.rs/docs/guide/usage/oxlint) and [Oxfmt](https://oxc.rs/docs/guide/usage/oxfmt), configured through [Ultracite](https://ultracite.ai/). Add the [Shadcn linter](https://github.com/shadcn-ui/lint) for rules that check component usage and design tokens.
 
 ```sh
 bunx ultracite@latest init --pm bun --linter oxlint --frameworks react --js-plugins @shadcn/lint
@@ -120,7 +120,7 @@ Choose the skills that match your work:
 
 - [Jakub Krehel](https://jakub.kr/), founding design engineer at [Interfere](https://interfere.com/): [Better typography](https://skills.sh/jakubkrehel/skills/better-typography), [Better accessibility](https://skills.sh/jakubkrehel/skills/better-accessibility), [Better layout](https://skills.sh/jakubkrehel/skills/better-layout), and [Better colors](https://skills.sh/jakubkrehel/skills/better-colors) cover readability, interaction, layout, and color.
 - [Emil Kowalski](https://emilkowal.ski/), design engineer at [Linear](https://linear.app/): [Animate](https://skills.sh/emilkowalski/skill/animate) and [Review animations](https://skills.sh/emilkowalski/skill/review-animations) guide motion implementation and review.
-- [Vercel](https://vercel.com/): [Building components](https://skills.sh/vercel/components.build/building-components), based on the [specification co-authored by Hayden Bleasel and shadcn](https://components.build/), covers accessible component APIs. [React composition patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) covers reusable React compositions.
+- [Vercel](https://vercel.com/): [Building components](https://skills.sh/vercel/components.build/building-components), based on the [specification co-authored by Hayden Bleasel and Shadcn](https://components.build/), covers accessible component APIs. [React composition patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) covers reusable React compositions.
 
 ```sh
 bunx skills add jakubkrehel/skills --skill better-typography better-accessibility better-layout better-colors
@@ -157,3 +157,5 @@ bunx intent load @tanstack/react-table#getting-started
 For keyboard interactions, refer to [TanStack Hotkeys](https://tanstack.com/hotkeys/latest/docs/overview). Check `intent list` for skills available in your installed release and use the package and skill names it reports. The Hotkeys version currently used by Erbium does not bundle skills, so use its documentation when none are listed. Other dependencies, including Ultracite and TanStack Charts, can also expose packaged skills through Intent.
 
 Give your agent [llms.txt](/llms.txt) to discover Erbium’s documentation. Each documentation page is also available as Markdown by appending `.md` to its URL. Install [examples and stories](/docs/getting-started) alongside components when the agent needs composition and usage guidance.
+
+See [Typography](/docs/typography) for font roles, loading, customization, and reading presets.

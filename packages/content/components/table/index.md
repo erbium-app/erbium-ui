@@ -86,4 +86,4 @@ const columns = columnHelper.columns([columnHelper.accessor("invoice", { header:
 const table = useTable({ features, columns, data });
 ```
 
-Column `meta` (typed with `metaHelper`) carries per-column classes such as `text-end`. See the shadcn [Data Table](https://ui.shadcn.com/docs/components/base/data-table) guide for sorting, filtering and pagination.
+Column `meta` (typed with `metaHelper`) carries per-column classes such as `text-end`. See the Shadcn [Data Table](https://ui.shadcn.com/docs/components/base/data-table) guide for sorting, filtering and pagination.

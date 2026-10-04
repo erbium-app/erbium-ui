@@ -17,6 +17,7 @@ const groups = [
   { title: "Guides", items: [
     { title: "Installation", href: "/docs/installation", name: "installation", description: "" },
     { title: "Using components", href: "/docs/getting-started", name: "getting-started", description: "Compose installed components, examples, and stories." },
+    { title: "Typography", href: "/docs/typography", name: "typography", description: "Fonts, type roles, and Typeset reading presets." },
   ] },
   ...(["foundation", "block", "component", "hook", "utility", "provider"] as const).map((kind) => ({
     title: kindTitles[kind], items: [

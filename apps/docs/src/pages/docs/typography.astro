@@ -1,0 +1,23 @@
+---
+import Showcase from "../../components/Showcase.astro";
+import manifest from "@erbium/showcase/manifest";
+import { showcaseSource } from "@erbium/showcase/sources";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import { Content as Introduction } from "@erbium/content/typography-introduction.md";
+import { Content, frontmatter, getHeadings } from "@erbium/content/typography.md";
+const previews = manifest.find((entry) => entry.name === "typography")!.variants;
+const headings = [...previews.map((variant) => ({ depth: 2, slug: `preview-${variant.slug}`, text: variant.title })), ...getHeadings()];
+---
+<DocsLayout title={frontmatter.title} description={frontmatter.description} headings={headings}>
+  <PageHeader title={frontmatter.title} description={frontmatter.description} previous={{ title: "Using components", href: "/docs/getting-started" }} />
+  <article class="markdown-copy"><Introduction /></article>
+  {previews.map((variant) => (
+    <Showcase name="typography" variant={variant.exportName} slug={variant.slug}
+      anchorId={`preview-${variant.slug}`} title={variant.title}
+      source={showcaseSource(variant.source)} files={[]}>
+      <p>{variant.title === "Multilingual" ? "Vazirmatn in Arabic and Persian, alongside Latin text in Cal Sans." : variant.title === "Code" ? "Geist Mono for commands and identifiers, with Cal Sans for supporting UI." : variant.title === "Reading" ? "Cal Sans in docs and compact reading presets." : "Cal Sans in headings, labels, fields, and actions."}</p>
+    </Showcase>
+  ))}
+  <article class="typeset typeset-docs min-w-0"><Content /></article>
+</DocsLayout>

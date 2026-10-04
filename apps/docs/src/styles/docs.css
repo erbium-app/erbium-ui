@@ -3,11 +3,6 @@
 
 @custom-variant dark (&:is(.dark *):not(.showcase-content.light *));
 
-@theme inline {
-  --font-sans: var(--font-docs-arabic), var(--font-docs-sans);
-  --font-heading: var(--font-docs-arabic), var(--font-docs-sans);
-}
-
 :root {
   --sidebar-width: 15rem;
   --site-gutter: 1.5rem;
@@ -17,8 +12,6 @@
   --docs-page-padding-inline: 2.5rem;
   --docs-page-padding-start: 3rem;
   --docs-page-padding-end: 3.5rem;
-  --font-sans: var(--font-docs-arabic), var(--font-docs-sans);
-  --font-heading: var(--font-docs-arabic), var(--font-docs-sans);
 }
 
 html {
@@ -566,7 +559,8 @@ theme-toggle {
 .markdown-copy li::marker {
   color: var(--muted-foreground);
 }
-.markdown-copy a {
+.markdown-copy a,
+.typeset-docs a:not(:where(.not-typeset *, [data-not-typeset] *)) {
   color: var(--link);
   font-weight: 500;
   text-decoration: underline;
@@ -577,6 +571,11 @@ theme-toggle {
 .markdown-copy strong {
   color: var(--foreground);
   font-weight: 600;
+}
+
+.markdown-copy a :is(strong, b),
+.typeset-docs a :is(strong, b) {
+  color: inherit;
 }
 
 @media (min-width: 64rem) {

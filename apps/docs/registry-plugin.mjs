@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const registries = {
+  "/fonts/": resolve(root, "../../packages/ui/src/assets/fonts"),
   "/r/ui/": resolve(root, "../../packages/ui/public/r"),
   "/r/examples/": resolve(root, "../../packages/showcase/public/r"),
 };
@@ -15,10 +16,20 @@ export function registryPlugin() {
         const path = request.url?.split("?")[0] ?? "";
         const prefix = Object.keys(registries).find((prefix) => path.startsWith(prefix));
         const filename = prefix ? path.slice(prefix.length) : "";
-        if (!prefix || !/^[\w-]+\.json$/.test(filename)) return next();
+        if (!prefix) return next();
+        const isFont = prefix === "/fonts/";
+        if (!(isFont ? /^[\w-]+\.(woff2|txt|md)$/ : /^[\w-]+\.json$/).test(filename)) return next();
         try {
           const content = await readFile(join(registries[prefix], filename));
-          response.setHeader("Content-Type", "application/json");
+          response.setHeader(
+            "Content-Type",
+            isFont
+              ? filename.endsWith(".woff2")
+                ? "font/woff2"
+                : "text/plain"
+              : "application/json",
+          );
+          if (isFont) response.setHeader("Access-Control-Allow-Origin", "*");
           response.end(content);
         } catch {
           next();

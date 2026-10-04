@@ -139,7 +139,7 @@ items.push({
   title: "Erbium styles",
   description: "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
   dependencies: [
-    "@fontsource-variable/geist",
+    "@fontsource-variable/geist-mono",
     "easing-gradients",
     "shadcn",
     "shadow-plugin",
@@ -152,6 +152,18 @@ items.push({
     target: `~/src/styles/${file}`,
   })),
 });
+
+// Preserve font licenses in source installations. Binary faces are served separately so
+// unicode-range can prevent unused script fonts from downloading.
+items
+  .find((item) => item.name === "styles")
+  .files.push(
+    ...["OFL.txt", "Vazirmatn-OFL.txt"].map((file) => ({
+      path: `src/assets/fonts/${file}`,
+      type: "registry:file",
+      target: `~/src/assets/fonts/${file}`,
+    })),
+  );
 
 items.sort((a, b) => a.name.localeCompare(b.name));
 await writeFile(
@@ -176,6 +188,14 @@ for (const item of items) {
   for (const file of item.files) {
     const sourceFile = join(packageRoot, file.path);
     let content = await readFile(sourceFile, "utf8");
+    if (file.path === "src/styles/fonts.css") {
+      for (const match of content.matchAll(/url\("(\.\.\/assets\/fonts\/[^" ]+\.woff2)"\)/g)) {
+        content = content.replace(
+          match[0],
+          `url("https://ui.erbium.app/fonts/${match[1].split("/").pop()}")`,
+        );
+      }
+    }
     for (const specifier of readImports(content)) {
       const internal = await getInternalItem(specifier, sourceFile);
       if (!internal || !itemBySource.has(internal)) continue;

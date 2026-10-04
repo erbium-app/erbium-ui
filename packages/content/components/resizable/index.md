@@ -59,6 +59,6 @@ If you're using `react-resizable-panels` primitives directly, note the following
 | `ref` prop on Panel          | `panelRef` prop         |
 | `data-panel-group-direction` | `aria-orientation`      |
 
-The shadcn/ui wrapper components (`ResizablePanelGroup`, `ResizablePanel`,
+The Shadcn/ui wrapper components (`ResizablePanelGroup`, `ResizablePanel`,
 
 `ResizableHandle`) remain unchanged.
