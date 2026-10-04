@@ -89,7 +89,7 @@ export default function App() {
 bun run dev
 ```
 
-Run `bun run build` to check the production build. Continue with [Getting started](/docs/getting-started) for examples, providers, themes, and stories.
+Run `bun run build` to check the production build. Continue with [Using components](/docs/getting-started) for examples, providers, themes, and stories.
 
 ## Recommended tooling
 

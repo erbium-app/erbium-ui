@@ -1,5 +1,5 @@
 ---
-title: Getting started
+title: Using components
 description: Compose installed components, examples, and stories in your project.
 ---
 

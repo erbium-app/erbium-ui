@@ -67,10 +67,10 @@ function page(
   };
 }
 const guides = [
-  ["/", "introduction.md", "Getting started"],
-  ["/docs/installation", "installation.md", "Getting started"],
+  ["/", "introduction.md", "Overview"],
+  ["/docs/installation", "installation.md", "Guides"],
   ["/docs/getting-started", "getting-started.md", "Guides"],
-  ["/docs/roadmap", "roadmap.md", "Guides"],
+  ["/docs/roadmap", "roadmap.md", "Overview"],
   ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
 ];
 export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {

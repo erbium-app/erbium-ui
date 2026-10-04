@@ -40,19 +40,19 @@ export const components = [...manifest, { name: "colors", title: "Colors", varia
 
 export const navigationGroups = [
   {
-    title: "Getting started",
+    title: "Overview",
     href: undefined,
     items: [
       { title: "Introduction", href: "/" },
-      { title: "Installation", href: "/docs/installation" },
+      { title: "Roadmap", href: "/docs/roadmap" },
     ],
   },
   {
     title: "Guides",
     href: undefined,
     items: [
-      { title: "Getting started", href: "/docs/getting-started" },
-      { title: "Roadmap", href: "/docs/roadmap" },
+      { title: "Installation", href: "/docs/installation" },
+      { title: "Using components", href: "/docs/getting-started" },
     ],
   },
   ...documentationSections.map((section) => ({
