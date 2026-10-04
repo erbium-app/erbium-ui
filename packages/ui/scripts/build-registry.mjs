@@ -58,6 +58,16 @@ for (const filePath of await filesInRecursive(componentRoot)) {
     itemBySource.set(filePath, name);
   }
 }
+for (const filePath of await filesInRecursive(join(sourceRoot, "blocks"))) {
+  if ([".ts", ".tsx"].includes(extname(filePath)))
+    itemBySource.set(
+      filePath,
+      relative(join(sourceRoot, "blocks"), filePath)
+        .slice(0, -extname(filePath).length)
+        .split(sep)
+        .join("-"),
+    );
+}
 for (const file of await filesIn(join(sourceRoot, "hooks"))) {
   if ([".ts", ".tsx"].includes(extname(file)))
     itemBySource.set(join(sourceRoot, "hooks", file), file.slice(0, -extname(file).length));
@@ -98,7 +108,7 @@ async function itemFor(sourceFile, name, type) {
       {
         path: sourcePath,
         type,
-        target: `${type === "registry:ui" ? "@ui" : type === "registry:hook" ? "@hooks" : "@lib"}/${name === "utils" ? "erbium-utils.ts" : sourcePath.split("/").slice(2).join("/")}`,
+        target: `${type === "registry:ui" ? "@ui" : type === "registry:hook" ? "@hooks" : type === "registry:block" ? "@components/blocks" : "@lib"}/${name === "utils" ? "erbium-utils.ts" : sourcePath.split("/").slice(2).join("/")}`,
       },
     ],
   };
@@ -110,9 +120,11 @@ for (const [sourceFile, name] of itemBySource) {
   const type =
     directory === "components"
       ? "registry:ui"
-      : directory === "hooks"
-        ? "registry:hook"
-        : "registry:lib";
+      : directory === "blocks"
+        ? "registry:block"
+        : directory === "hooks"
+          ? "registry:hook"
+          : "registry:lib";
   items.push(await itemFor(sourceFile, name, type));
 }
 

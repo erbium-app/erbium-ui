@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copy-to-clipboard-custom-button",
+  "type": "registry:component",
+  "title": "Use Copy To Clipboard: Custom Button",
+  "description": "Use the hook directly when your interface owns the button composition. CopyIcon provides the same stateful animation as CopyButton. Include an accessible status region when composing feedback yourself.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/copy-button",
+    "@erbium/styles",
+    "@erbium/use-copy-to-clipboard"
+  ],
+  "files": [
+    {
+      "path": "src/use-copy-to-clipboard/variants/custom-button.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/use-copy-to-clipboard/variants/custom-button.tsx",
+      "content": "import { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\nimport { CopyIcon } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Example() {\n  const { copyToClipboard, isCopied, isPending, error } = useCopyToClipboard();\n  return (\n    <div>\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        aria-busy={isPending}\n        onClick={() => void copyToClipboard(\"Erbium UI\")}\n      >\n        <CopyIcon copied={isCopied} data-icon=\"inline-start\" />\n        {isCopied ? \"Copied\" : \"Copy project name\"}\n      </Button>\n      <span role=\"status\" className=\"sr-only\" aria-atomic=\"true\">\n        {error ? \"Unable to copy. Please try again.\" : isCopied ? \"Copied to clipboard.\" : \"\"}\n      </span>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

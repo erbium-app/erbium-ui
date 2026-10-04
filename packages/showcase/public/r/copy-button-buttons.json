@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button-buttons",
+  "type": "registry:component",
+  "title": "Copy Button: Buttons",
+  "description": "Use existing button sizes and surfaces, or compose a labeled button.",
+  "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/copy-button/variants/buttons.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/copy-button/variants/buttons.tsx",
+      "content": "import { CopyButton, CopyIcon } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Example() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <CopyButton value=\"Small\" size=\"icon-xs\" variant=\"outline\" />\n      <CopyButton value=\"Medium\" size=\"icon-sm\" variant=\"secondary\" />\n      <CopyButton value=\"Large\" size=\"icon-lg\" />\n      <CopyButton\n        value=\"Erbium UI\"\n        render={(props, state) => (\n          <Button {...props} size=\"sm\" variant=\"outline\">\n            <CopyIcon copied={state.copied} data-icon=\"inline-start\" />\n            {state.copied ? \"Copied\" : \"Copy name\"}\n          </Button>\n        )}\n      />\n    </div>\n  );\n}\n"
+    }
+  ]
+}

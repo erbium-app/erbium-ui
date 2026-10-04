@@ -4,5 +4,8 @@
   "type": "registry:item",
   "title": "Use Copy To Clipboard examples",
   "description": "All use-copy-to-clipboard examples.",
-  "registryDependencies": ["@erbium-examples/use-copy-to-clipboard-overview"]
+  "registryDependencies": [
+    "@erbium-examples/use-copy-to-clipboard-overview",
+    "@erbium-examples/use-copy-to-clipboard-custom-button"
+  ]
 }

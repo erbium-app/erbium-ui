@@ -1,3 +1,4 @@
+import { createCopyToClipboard } from "@erbium/ui/lib/copy-to-clipboard";
 import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
@@ -23,48 +24,49 @@ export function createCodeCopy(target: string, label: string) {
 
 class DocsCopy extends HTMLElement {
   private controller?: AbortController;
-  private timer?: ReturnType<typeof setTimeout>;
-  private pending = false;
+  private clipboard = createCopyToClipboard();
+  private unsubscribe?: () => void;
 
   connectedCallback() {
     this.controller?.abort();
+    this.unsubscribe?.();
     this.controller = new AbortController();
     const button = this.querySelector("button");
     const icon = button?.querySelector<HTMLElement>('[data-slot="stateful-icon"]');
     const status = this.querySelector('[role="status"]');
     const label = this.querySelector("[data-copy-label]");
     const originalLabel = label?.textContent ?? "Copy";
-    const reset = () => {
-      if (icon) setIconState(icon, "idle");
-      if (label) label.textContent = originalLabel;
-      if (status) status.textContent = "";
+    const render = () => {
+      const { isCopied, isPending, error } = this.clipboard.getSnapshot();
+      if (icon) setIconState(icon, isCopied ? "copied" : "idle");
+      if (button) button.setAttribute("aria-busy", String(isPending));
+      if (label) label.textContent = isCopied ? "Copied" : originalLabel;
+      if (status)
+        status.textContent = error
+          ? "Unable to copy. Please try again."
+          : isCopied
+            ? "Copied to clipboard."
+            : "";
     };
+    this.unsubscribe = this.clipboard.subscribe(render);
+    render();
     button?.addEventListener(
       "click",
-      async () => {
-        if (this.pending) return;
-        this.pending = true;
-        try {
-          let content = this.dataset.target
+      (event) => {
+        if (event.defaultPrevented || button.disabled) return;
+        const signal = this.controller?.signal;
+        void this.clipboard.copyToClipboard(async () => {
+          if (this.dataset.url) {
+            const response = await fetch(this.dataset.url, { signal });
+            if (!response.ok) throw new Error("Markdown could not be loaded");
+            return response.text();
+          }
+          const content = this.dataset.target
             ? document.getElementById(this.dataset.target)?.textContent
             : undefined;
-          if (this.dataset.url) {
-            const response = await fetch(this.dataset.url, { signal: this.controller?.signal });
-            if (!response.ok) throw new Error("Markdown could not be loaded");
-            content = await response.text();
-          }
           if (content == null) throw new Error("Copy target could not be found");
-          await navigator.clipboard.writeText(content);
-          if (icon) setIconState(icon, "copied");
-          if (label) label.textContent = "Copied";
-          if (status) status.textContent = "Copied to clipboard.";
-        } catch {
-          if (status) status.textContent = "Unable to copy. Please try again.";
-        } finally {
-          this.pending = false;
-          clearTimeout(this.timer);
-          if (this.isConnected) this.timer = setTimeout(reset, 2500);
-        }
+          return content;
+        });
       },
       { signal: this.controller.signal },
     );
@@ -72,7 +74,8 @@ class DocsCopy extends HTMLElement {
 
   disconnectedCallback() {
     this.controller?.abort();
-    clearTimeout(this.timer);
+    this.unsubscribe?.();
+    this.clipboard.dispose();
   }
 }
 

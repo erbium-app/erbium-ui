@@ -16,6 +16,8 @@ type StatefulIconProps<State extends string> = {
   /** Accessible name for the current state. Omit when the icon is decorative. */
   labels?: Partial<Record<State, string>>;
   className?: string;
+  /** Placement hint for button spacing. */
+  "data-icon"?: "inline-start" | "inline-end";
 };
 
 function StatefulIcon<State extends string>({
@@ -23,7 +25,9 @@ function StatefulIcon<State extends string>({
   icons,
   labels,
   className,
+  "data-icon": placement,
 }: StatefulIconProps<State>) {
+  const reduceMotion = useReducedMotion();
   const label = labels?.[state];
 
   return (
@@ -31,6 +35,7 @@ function StatefulIcon<State extends string>({
       aria-hidden={label ? undefined : true}
       aria-label={label}
       className={cn("inline-grid shrink-0 align-middle *:col-start-1 *:row-start-1", className)}
+      data-icon={placement}
       data-slot="stateful-icon"
       data-state={state}
       role={label ? "img" : undefined}
@@ -42,10 +47,10 @@ function StatefulIcon<State extends string>({
           className="relative col-start-1 row-start-1 grid place-items-center"
           data-active="true"
           data-state={state}
-          exit={{ rotate: 90, scale: 0 }}
+          exit={{ rotate: reduceMotion ? 0 : 90, scale: reduceMotion ? 1 : 0 }}
           initial={false}
           key={state}
-          transition={{ duration: 0.15 }}
+          transition={{ duration: reduceMotion ? 0 : 0.15 }}
         >
           {icons[state]}
         </motion.span>

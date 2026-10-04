@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button",
+  "type": "registry:block",
+  "title": "Copy Button",
+  "description": "Erbium copy button block.",
+  "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/stateful-icon",
+    "@erbium/use-copy-to-clipboard"
+  ],
+  "files": [
+    {
+      "path": "src/blocks/copy-button.tsx",
+      "type": "registry:block",
+      "target": "@components/blocks/copy-button.tsx",
+      "content": "import { useRender } from \"@base-ui/react/use-render\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport CopySvg from \"@hugeicons/core-free-icons/CopyIcon\";\nimport CheckIcon from \"@hugeicons/core-free-icons/CheckIcon\";\nimport type { ComponentProps } from \"react\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { StatefulIcon } from \"@/registry/erbium/ui/stateful-icon\";\nimport { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\n\ntype CopyIconProps = {\n  copied: boolean;\n  className?: string;\n  \"data-icon\"?: \"inline-start\" | \"inline-end\";\n};\n\nfunction CopyIcon({ copied, ...props }: CopyIconProps) {\n  return (\n    <StatefulIcon\n      {...props}\n      state={copied ? \"copied\" : \"idle\"}\n      icons={{ idle: <HugeiconsIcon icon={CopySvg} />, copied: <HugeiconsIcon icon={CheckIcon} /> }}\n    />\n  );\n}\n\ntype CopyButtonState = { copied: boolean; pending: boolean };\ntype CopyButtonProps = Omit<ComponentProps<\"button\">, \"onCopy\" | \"value\"> &\n  Pick<ComponentProps<typeof Button>, \"variant\" | \"size\" | \"loading\" | \"focusableWhenDisabled\"> & {\n    value: string;\n    timeout?: number;\n    onCopied?: () => void;\n    onError?: (error: unknown) => void;\n    successMessage?: string;\n    errorMessage?: string;\n    render?: useRender.RenderProp<CopyButtonState>;\n  };\n\nfunction CopyButton({\n  value,\n  timeout,\n  onCopied,\n  onError,\n  successMessage = \"Copied to clipboard.\",\n  errorMessage = \"Unable to copy. Please try again.\",\n  render,\n  children,\n  onClick,\n  disabled,\n  ...props\n}: CopyButtonProps) {\n  const { copyToClipboard, isCopied, isPending, error } = useCopyToClipboard({\n    timeout,\n    onCopy: onCopied,\n    onError,\n  });\n  const state = { copied: isCopied, pending: isPending };\n  const element = useRender({\n    defaultTagName: \"button\",\n    render: render ?? <Button />,\n    state,\n    props: mergeProps<\"button\">(\n      {\n        type: \"button\",\n        \"aria-label\": \"Copy\",\n        \"aria-busy\": isPending,\n        children: children ?? <CopyIcon copied={isCopied} />,\n        onClick(event) {\n          if (!event.defaultPrevented && !disabled && !isPending) void copyToClipboard(value);\n        },\n      },\n      { ...(!render ? { variant: \"ghost\", size: \"icon\" } : {}), ...props, disabled, onClick },\n    ),\n  });\n\n  return (\n    <>\n      {element}\n      <span className=\"sr-only\" role=\"status\" aria-atomic=\"true\">\n        {error ? errorMessage : isCopied ? successMessage : \"\"}\n      </span>\n    </>\n  );\n}\n\nexport { CopyButton, CopyIcon };\nexport type { CopyButtonProps, CopyButtonState, CopyIconProps };\n"
+    }
+  ]
+}

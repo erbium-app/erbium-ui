@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button-overview",
+  "type": "registry:component",
+  "title": "Copy Button: Overview",
+  "description": "Copy text with an icon button.",
+  "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/copy-button/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/copy-button/variants/overview.tsx",
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nexport default function Example() {\n  return <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" />;\n}\n"
+    }
+  ]
+}

@@ -30,7 +30,8 @@
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts",
     "./globals.css": "./src/styles/globals.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./blocks/*": "./src/blocks/*.tsx"
   },
   "scripts": {
     "registry:build": "node scripts/build-registry.mjs && vp fmt registry.json public/r --write",

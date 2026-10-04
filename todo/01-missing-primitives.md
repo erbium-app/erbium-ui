@@ -4,6 +4,8 @@ Reviewed 2026-10-04. Meter is implemented at `packages/ui/src/components/meter.t
 
 ## Planned additions
 
+- [ ] CodeBlock: reusable source-code display with syntax highlighting, overflow handling, optional language/file labels, and shared CopyButton feedback. Keep source text and presentation composable.
+- [ ] TerminalCommand (working name): shell and CLI snippets for Bash, Zsh, PowerShell, and other terminal contexts; optional package-manager or platform selection, prompt presentation, and shared CopyButton. Copy the selected executable command without decorative prompts. Compose CodeBlock where useful. This is separate from the existing Command palette.
 - [ ] Lightbox: image viewing, navigation, focus management, and keyboard access.
 - [ ] Stepper: step navigation, validation, controlled state, and a step indicator.
 - [ ] Agent session compositions informed by OpenCode.

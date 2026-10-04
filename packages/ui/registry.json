@@ -407,6 +407,38 @@
       ]
     },
     {
+      "name": "copy-button",
+      "type": "registry:block",
+      "title": "Copy Button",
+      "description": "Erbium copy button block.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/stateful-icon",
+        "@erbium/use-copy-to-clipboard"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/copy-button.tsx",
+          "type": "registry:block",
+          "target": "@components/blocks/copy-button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-to-clipboard",
+      "type": "registry:lib",
+      "title": "Copy To Clipboard",
+      "description": "Erbium copy to clipboard lib.",
+      "files": [
+        {
+          "path": "src/lib/copy-to-clipboard.ts",
+          "type": "registry:lib",
+          "target": "@lib/copy-to-clipboard.ts"
+        }
+      ]
+    },
+    {
       "name": "csp-provider",
       "type": "registry:ui",
       "title": "Csp Provider",
@@ -1280,6 +1312,7 @@
       "type": "registry:hook",
       "title": "Use Copy To Clipboard",
       "description": "Erbium use copy to clipboard hook.",
+      "registryDependencies": ["@erbium/copy-to-clipboard"],
       "files": [
         {
           "path": "src/hooks/use-copy-to-clipboard.ts",

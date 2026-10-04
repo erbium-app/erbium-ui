@@ -12,7 +12,7 @@ export default function StatefulIconDemo() {
   return (
     <Button
       aria-label={isCopied ? "Copied" : "Copy example text"}
-      onClick={() => copyToClipboard("Stateful icons animate between states.")}
+      onClick={() => void copyToClipboard("Stateful icons animate between states.")}
       size="icon"
       variant="outline"
     >

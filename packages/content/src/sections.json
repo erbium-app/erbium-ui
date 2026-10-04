@@ -81,6 +81,12 @@
     ]
   },
   {
+    "title": "Blocks",
+    "slug": "blocks",
+    "kind": "block",
+    "names": ["copy-button"]
+  },
+  {
     "title": "Hooks",
     "slug": "hooks",
     "kind": "hook",

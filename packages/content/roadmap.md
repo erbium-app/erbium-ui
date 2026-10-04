@@ -17,6 +17,10 @@ We want common product decisions to have useful starting points: property and se
 
 Multi-step forms will bring together a functional Stepper, step indicators, and [TanStack Form](https://tanstack.com/form/latest) validation. Responsive overlays and searchable menus will carry the same interaction decisions across desktop and mobile. Command will move from CMDK toward Base UI command and autocomplete behavior.
 
+## Code and terminal commands
+
+A CodeBlock will display source code with syntax highlighting, overflow handling, optional language or file labels, and shared copy feedback. A TerminalCommand block (working name) will compose shell and CLI snippets with optional package-manager or platform selection. It will copy the selected command without decorative prompts and reuse CodeBlock where useful. This planned block is separate from the Command palette.
+
 ## Files and media
 
 File handling will connect picking, drag and drop, validation, and attachment previews. A Lightbox will support image viewing and navigation; audio playback, waveforms, and transcripts are another area we’re exploring.

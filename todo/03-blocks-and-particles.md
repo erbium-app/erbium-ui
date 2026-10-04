@@ -8,6 +8,7 @@ Reviewed 2026-10-04.
 
 ## Remaining work
 
+- [ ] Create CodeBlock and TerminalCommand stories once their APIs are agreed; replace the removed ad hoc CopyButton command-panel example with these shared abstractions. Track additions in [01](./01-missing-primitives.md).
 - [ ] Review existing catalogs before adding or porting examples; add only compositions that demonstrate a recurring need.
 - [ ] Expand card, dialog, form, and selection stories where layout or behavior decisions need explanation.
 - [ ] Cover useful loading, empty, error, disabled, success, long-content, keyboard, and RTL cases in the relevant stories.

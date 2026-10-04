@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-to-clipboard",
+  "type": "registry:lib",
+  "title": "Copy To Clipboard",
+  "description": "Erbium copy to clipboard lib.",
+  "files": [
+    {
+      "path": "src/lib/copy-to-clipboard.ts",
+      "type": "registry:lib",
+      "target": "@lib/copy-to-clipboard.ts",
+      "content": "type CopyToClipboardState = {\n  isCopied: boolean;\n  isPending: boolean;\n  error: unknown;\n};\ntype CopyToClipboardOptions = {\n  timeout?: number;\n  onCopy?: () => void;\n  onError?: (error: unknown) => void;\n};\nconst idleState: CopyToClipboardState = { isCopied: false, isPending: false, error: null };\n\n/** Framework-independent clipboard lifecycle. Dispose when the owner unmounts. */\nfunction createCopyToClipboard() {\n  let state = idleState;\n  let timer: ReturnType<typeof setTimeout> | undefined;\n  let generation = 0;\n  const listeners = new Set<() => void>();\n  const update = (next: CopyToClipboardState) => {\n    state = next;\n    for (const listener of listeners) listener();\n  };\n  return {\n    getSnapshot: () => state,\n    getServerSnapshot: () => idleState,\n    subscribe(this: void, listener: () => void) {\n      listeners.add(listener);\n      return () => {\n        listeners.delete(listener);\n      };\n    },\n    async copyToClipboard(\n      value: string | (() => Promise<string>),\n      { timeout = 2000, onCopy, onError }: CopyToClipboardOptions = {},\n    ): Promise<boolean> {\n      if (state.isPending) return false;\n      const operation = ++generation;\n      clearTimeout(timer);\n      update({ isCopied: false, isPending: true, error: null });\n      try {\n        if (typeof navigator === \"undefined\" || !navigator.clipboard?.writeText) {\n          throw new Error(\"Clipboard access is unavailable\");\n        }\n        const text = typeof value === \"function\" ? await value() : value;\n        if (operation !== generation) return false;\n        await navigator.clipboard.writeText(text);\n      } catch (error) {\n        if (operation === generation) {\n          update({ isCopied: false, isPending: false, error });\n          onError?.(error);\n        }\n        return false;\n      }\n      if (operation !== generation) return true;\n      update({ isCopied: true, isPending: false, error: null });\n      if (timeout !== 0) timer = setTimeout(() => update(idleState), timeout);\n      onCopy?.();\n      return true;\n    },\n    dispose() {\n      generation++;\n      clearTimeout(timer);\n      state = idleState;\n    },\n  };\n}\nexport { createCopyToClipboard };\nexport type { CopyToClipboardOptions, CopyToClipboardState };\n"
+    }
+  ]
+}

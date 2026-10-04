@@ -26,3 +26,16 @@ export const Overview: Story = {
   },
   render: OverviewExample,
 };
+
+import CustomButtonExample from "./variants/custom-button";
+import CustomButtonSource from "./variants/custom-button.tsx?raw";
+
+export const CustomButton: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("use-copy-to-clipboard", "custom-button") },
+      source: { code: CustomButtonSource },
+    },
+  },
+  render: CustomButtonExample,
+};

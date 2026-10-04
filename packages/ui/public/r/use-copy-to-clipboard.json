@@ -4,12 +4,13 @@
   "type": "registry:hook",
   "title": "Use Copy To Clipboard",
   "description": "Erbium use copy to clipboard hook.",
+  "registryDependencies": ["@erbium/copy-to-clipboard"],
   "files": [
     {
       "path": "src/hooks/use-copy-to-clipboard.ts",
       "type": "registry:hook",
       "target": "@hooks/use-copy-to-clipboard.ts",
-      "content": "import * as React from \"react\";\n\nexport function useCopyToClipboard({\n  timeout = 2000,\n  onCopy,\n  onError,\n}: {\n  timeout?: number;\n  onCopy?: () => void;\n  onError?: (error: unknown) => void;\n} = {}): { copyToClipboard: (value: string) => void; isCopied: boolean } {\n  const [isCopied, setIsCopied] = React.useState(false);\n  const timeoutIdRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);\n\n  const copyToClipboard = (value: string): void => {\n    if (typeof navigator === \"undefined\" || !navigator.clipboard?.writeText) {\n      return;\n    }\n\n    if (!value) return;\n\n    navigator.clipboard.writeText(value).then(\n      () => {\n        if (timeoutIdRef.current) {\n          clearTimeout(timeoutIdRef.current);\n        }\n        setIsCopied(true);\n\n        if (onCopy) {\n          onCopy();\n        }\n\n        if (timeout !== 0) {\n          timeoutIdRef.current = setTimeout(() => {\n            setIsCopied(false);\n            timeoutIdRef.current = null;\n          }, timeout);\n        }\n      },\n      (error: unknown) => {\n        setIsCopied(false);\n        onError?.(error);\n      },\n    );\n  };\n\n  // Cleanup timeout on unmount\n  React.useEffect(() => {\n    return (): void => {\n      if (timeoutIdRef.current) {\n        clearTimeout(timeoutIdRef.current);\n      }\n    };\n  }, []);\n\n  return { copyToClipboard, isCopied };\n}\n"
+      "content": "import * as React from \"react\";\nimport { createCopyToClipboard } from \"@/registry/erbium/lib/copy-to-clipboard\";\nimport type { CopyToClipboardOptions } from \"@/registry/erbium/lib/copy-to-clipboard\";\n\n/** React adapter for the shared clipboard lifecycle. */\nexport function useCopyToClipboard(options: CopyToClipboardOptions = {}) {\n  const [clipboard] = React.useState(createCopyToClipboard);\n  const state = React.useSyncExternalStore(\n    clipboard.subscribe,\n    clipboard.getSnapshot,\n    clipboard.getServerSnapshot,\n  );\n  React.useEffect(() => () => clipboard.dispose(), [clipboard]);\n  const copyToClipboard = (value: string): Promise<boolean> =>\n    clipboard.copyToClipboard(value, options);\n  return { ...state, copyToClipboard };\n}\nexport type { CopyToClipboardOptions };\n"
     }
   ]
 }

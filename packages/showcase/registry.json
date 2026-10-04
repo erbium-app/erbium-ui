@@ -7711,6 +7711,102 @@
       ]
     },
     {
+      "name": "copy-button-buttons",
+      "type": "registry:component",
+      "title": "Copy Button: Buttons",
+      "description": "Use existing button sizes and surfaces, or compose a labeled button.",
+      "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/copy-button/variants/buttons.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/copy-button/variants/buttons.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button-examples",
+      "type": "registry:item",
+      "title": "Copy Button examples",
+      "description": "All copy-button examples.",
+      "registryDependencies": [
+        "@erbium-examples/copy-button-overview",
+        "@erbium-examples/copy-button-buttons",
+        "@erbium-examples/copy-button-input"
+      ]
+    },
+    {
+      "name": "copy-button-input",
+      "type": "registry:component",
+      "title": "Copy Button: Input",
+      "description": "Copy the current input value using an input group button.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/input-group", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/copy-button/variants/input.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/copy-button/variants/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button-overview",
+      "type": "registry:component",
+      "title": "Copy Button: Overview",
+      "description": "Copy text with an icon button.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/copy-button/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/copy-button/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "copy-button-stories",
+      "type": "registry:item",
+      "title": "Copy Button stories",
+      "description": "All copy-button variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/input-group",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/copy-button/copy-button.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/copy-button/copy-button.stories.tsx"
+        },
+        {
+          "path": "src/copy-button/variants/buttons.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/copy-button/variants/buttons.tsx"
+        },
+        {
+          "path": "src/copy-button/variants/input.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/copy-button/variants/input.tsx"
+        },
+        {
+          "path": "src/copy-button/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/copy-button/variants/overview.tsx"
+        },
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        }
+      ]
+    },
+    {
       "name": "csp-provider-demo",
       "type": "registry:component",
       "title": "csp provider demo",
@@ -20943,11 +21039,30 @@
       ]
     },
     {
+      "name": "use-copy-to-clipboard-custom-button",
+      "type": "registry:component",
+      "title": "Use Copy To Clipboard: Custom Button",
+      "description": "Use the hook directly when your interface owns the button composition. CopyIcon provides the same stateful animation as CopyButton. Include an accessible status region when composing feedback yourself.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/styles",
+        "@erbium/use-copy-to-clipboard"
+      ],
+      "files": [
+        {
+          "path": "src/use-copy-to-clipboard/variants/custom-button.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/use-copy-to-clipboard/variants/custom-button.tsx"
+        }
+      ]
+    },
+    {
       "name": "use-copy-to-clipboard-demo",
       "type": "registry:component",
       "title": "use copy to clipboard demo",
       "description": "Erbium use copy to clipboard demo example.",
-      "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/use-copy-to-clipboard"],
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
@@ -20961,14 +21076,17 @@
       "type": "registry:item",
       "title": "Use Copy To Clipboard examples",
       "description": "All use-copy-to-clipboard examples.",
-      "registryDependencies": ["@erbium-examples/use-copy-to-clipboard-overview"]
+      "registryDependencies": [
+        "@erbium-examples/use-copy-to-clipboard-overview",
+        "@erbium-examples/use-copy-to-clipboard-custom-button"
+      ]
     },
     {
       "name": "use-copy-to-clipboard-overview",
       "type": "registry:block",
       "title": "Use Copy To Clipboard: Overview",
-      "description": "",
-      "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/use-copy-to-clipboard"],
+      "description": "Use CopyButton for ready-to-use copying with an animated icon and accessible feedback. It uses useCopyToClipboard internally and inherits icon sizing from its button.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
@@ -20990,6 +21108,8 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/copy-to-clipboard",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -21011,6 +21131,11 @@
           "path": "src/use-copy-to-clipboard/use-copy-to-clipboard.stories.tsx",
           "type": "registry:file",
           "target": "@components/showcase/use-copy-to-clipboard/use-copy-to-clipboard.stories.tsx"
+        },
+        {
+          "path": "src/use-copy-to-clipboard/variants/custom-button.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/use-copy-to-clipboard/variants/custom-button.tsx"
         },
         {
           "path": "src/use-copy-to-clipboard/variants/overview.tsx",

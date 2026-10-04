@@ -1,10 +1,9 @@
-import { useCopyToClipboard } from "@erbium/ui/hooks/use-copy-to-clipboard";
-import { Button } from "@erbium/ui/components/button";
+import { CopyButton } from "@erbium/ui/blocks/copy-button";
 export default function Demo() {
-  const { copyToClipboard, isCopied } = useCopyToClipboard();
   return (
-    <Button onClick={() => copyToClipboard("Erbium UI")}>
-      {isCopied ? "Copied" : "Copy Erbium UI"}
-    </Button>
+    <div className="flex items-center gap-3">
+      <code className="text-sm">Erbium UI</code>
+      <CopyButton value="Erbium UI" aria-label="Copy project name" variant="outline" />
+    </div>
   );
 }

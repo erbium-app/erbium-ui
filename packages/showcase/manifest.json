@@ -1422,6 +1422,30 @@
     ]
   },
   {
+    "name": "copy-button",
+    "title": "Blocks/Copy Button",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "title": "Overview",
+        "source": "src/copy-button/variants/overview.tsx"
+      },
+      {
+        "exportName": "Buttons",
+        "slug": "buttons",
+        "title": "Buttons",
+        "source": "src/copy-button/variants/buttons.tsx"
+      },
+      {
+        "exportName": "Input",
+        "slug": "input",
+        "title": "Input",
+        "source": "src/copy-button/variants/input.tsx"
+      }
+    ]
+  },
+  {
     "name": "csp-provider",
     "title": "Providers/Csp Provider",
     "variants": [
@@ -3854,6 +3878,12 @@
         "slug": "overview",
         "title": "Overview",
         "source": "src/use-copy-to-clipboard/variants/overview.tsx"
+      },
+      {
+        "exportName": "CustomButton",
+        "slug": "custom-button",
+        "title": "Custom Button",
+        "source": "src/use-copy-to-clipboard/variants/custom-button.tsx"
       }
     ]
   },

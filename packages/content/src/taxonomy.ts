@@ -1,6 +1,12 @@
 import sections from "./sections.json";
 
-export type DocumentationKind = "foundation" | "component" | "provider" | "utility" | "hook";
+export type DocumentationKind =
+  | "block"
+  | "foundation"
+  | "component"
+  | "provider"
+  | "utility"
+  | "hook";
 
 type DocumentationSection = {
   title: string;
@@ -11,6 +17,7 @@ type DocumentationSection = {
 
 export const documentationSections = sections as DocumentationSection[];
 export const kindPaths: Record<DocumentationKind, string> = {
+  block: "blocks",
   foundation: "foundations",
   component: "components",
   provider: "providers",
@@ -18,6 +25,7 @@ export const kindPaths: Record<DocumentationKind, string> = {
   hook: "hooks",
 };
 export const kindTitles: Record<DocumentationKind, string> = {
+  block: "Blocks",
   foundation: "Foundations",
   component: "Components",
   provider: "Providers",

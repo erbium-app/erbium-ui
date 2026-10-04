@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button-stories",
+  "type": "registry:item",
+  "title": "Copy Button stories",
+  "description": "All copy-button variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/copy-button",
+    "@erbium/csp-provider",
+    "@erbium/input-group",
+    "@erbium/overlay-provider",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/copy-button/copy-button.stories.tsx",
+      "type": "registry:file",
+      "target": "@components/showcase/copy-button/copy-button.stories.tsx",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\nimport OverviewExample from \"./variants/overview\";\nconst OverviewSource = \"import { CopyButton } from \\\"@/registry/erbium/blocks/copy-button\\\";\\nexport default function Example() {\\n  return <CopyButton value=\\\"Erbium UI\\\" aria-label=\\\"Copy project name\\\" />;\\n}\\n\";\nimport ButtonsExample from \"./variants/buttons\";\nconst ButtonsSource = \"import { CopyButton, CopyIcon } from \\\"@/registry/erbium/blocks/copy-button\\\";\\nimport { Button } from \\\"@/registry/erbium/ui/button\\\";\\nexport default function Example() {\\n  return (\\n    <div className=\\\"flex items-center gap-3\\\">\\n      <CopyButton value=\\\"Small\\\" size=\\\"icon-xs\\\" variant=\\\"outline\\\" />\\n      <CopyButton value=\\\"Medium\\\" size=\\\"icon-sm\\\" variant=\\\"secondary\\\" />\\n      <CopyButton value=\\\"Large\\\" size=\\\"icon-lg\\\" />\\n      <CopyButton\\n        value=\\\"Erbium UI\\\"\\n        render={(props, state) => (\\n          <Button {...props} size=\\\"sm\\\" variant=\\\"outline\\\">\\n            <CopyIcon copied={state.copied} data-icon=\\\"inline-start\\\" />\\n            {state.copied ? \\\"Copied\\\" : \\\"Copy name\\\"}\\n          </Button>\\n        )}\\n      />\\n    </div>\\n  );\\n}\\n\";\nimport InputExample from \"./variants/input\";\nconst InputSource = \"import { useState } from \\\"react\\\";\\nimport { CopyButton } from \\\"@/registry/erbium/blocks/copy-button\\\";\\nimport {\\n  InputGroup,\\n  InputGroupInput,\\n  InputGroupAddon,\\n  InputGroupButton,\\n} from \\\"@/registry/erbium/ui/input-group\\\";\\nexport default function Example() {\\n  const [value, setValue] = useState(\\\"https://erbium.dev\\\");\\n  return (\\n    <InputGroup className=\\\"w-80\\\">\\n      <InputGroupInput value={value} onChange={(event) => setValue(event.target.value)} />\\n      <InputGroupAddon align=\\\"inline-end\\\">\\n        <CopyButton\\n          value={value}\\n          aria-label=\\\"Copy URL\\\"\\n          render={<InputGroupButton size=\\\"icon-xs\\\" />}\\n        />\\n      </InputGroupAddon>\\n    </InputGroup>\\n  );\\n}\\n\";\nconst meta = {\n  parameters: {\n    layout: \"centered\",\n    docs: { description: { component: \"## Usage\\n\\nImport `CopyButton` and `CopyIcon` from `@/registry/erbium/blocks/copy-button`.\\n\\n```tsx\\n<CopyButton value={command} aria-label=\\\"Copy installation command\\\" />\\n```\\n\\nThe registry installs this block into your components `blocks` directory, together with its clipboard hook, Button, StatefulIcon, and their dependencies.\\n\\n## Composition\\n\\nThe default is a ghost icon button. Use Button's `size`, `variant`, and `className` props to customize it. Default icons inherit the surrounding button's SVG sizing rules.\\n\\nUse `render={<InputGroupButton size=\\\"icon-xs\\\" />}` to compose with an input group button. The rendered component owns its size and surface unless you explicitly pass them to CopyButton.\\n\\nA render callback receives button props and `{ copied, pending }`. Spread those props onto your button and use `CopyIcon copied={state.copied}` with your own label. `CopyIcon` accepts `className` and `data-icon` for icon styling and inline placement. Custom children replace the automatic icon.\\n\\n## Behavior\\n\\n`value` is the text copied on activation. The hook prevents overlapping writes, sets success only after the write completes, and resets feedback after `timeout` milliseconds (default 2000; zero keeps success visible). `onCopied` runs after success; `onError` receives clipboard failures. A consumer click handler can cancel copying with `event.preventDefault()`.\\n\\n`data-copied` and `data-pending` expose state for styling. Clipboard access requires a secure browser context. Empty strings are valid clipboard values.\\n\\n## Accessibility\\n\\nThe default accessible name is Copy. Provide a specific `aria-label` for icon buttons. A persistent status region announces `successMessage` or `errorMessage`; both can be translated. Icons are decorative and animation respects reduced motion. Focus remains on the button while the clipboard write is pending.\\n\\nCode blocks should supply their active source text through `value`; the copy button does not inspect the DOM or own package-manager selection.\" } },\n  },\n} satisfies Meta;\nexport default { ...meta, title: \"Blocks/Copy Button\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\ntype Story = StoryObj<typeof meta>;\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Copy text with an icon button.\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\nexport const Buttons: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use existing button sizes and surfaces, or compose a labeled button.\" },\n      source: { code: ButtonsSource },\n    },\n  },\n  render: ButtonsExample,\n};\nexport const Input: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Copy the current input value using an input group button.\" },\n      source: { code: InputSource },\n    },\n  },\n  render: InputExample,\n};\n"
+    },
+    {
+      "path": "src/copy-button/variants/buttons.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/copy-button/variants/buttons.tsx",
+      "content": "import { CopyButton, CopyIcon } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Example() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <CopyButton value=\"Small\" size=\"icon-xs\" variant=\"outline\" />\n      <CopyButton value=\"Medium\" size=\"icon-sm\" variant=\"secondary\" />\n      <CopyButton value=\"Large\" size=\"icon-lg\" />\n      <CopyButton\n        value=\"Erbium UI\"\n        render={(props, state) => (\n          <Button {...props} size=\"sm\" variant=\"outline\">\n            <CopyIcon copied={state.copied} data-icon=\"inline-start\" />\n            {state.copied ? \"Copied\" : \"Copy name\"}\n          </Button>\n        )}\n      />\n    </div>\n  );\n}\n"
+    },
+    {
+      "path": "src/copy-button/variants/input.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/copy-button/variants/input.tsx",
+      "content": "import { useState } from \"react\";\nimport { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  InputGroup,\n  InputGroupInput,\n  InputGroupAddon,\n  InputGroupButton,\n} from \"@/registry/erbium/ui/input-group\";\nexport default function Example() {\n  const [value, setValue] = useState(\"https://erbium.dev\");\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupInput value={value} onChange={(event) => setValue(event.target.value)} />\n      <InputGroupAddon align=\"inline-end\">\n        <CopyButton\n          value={value}\n          aria-label=\"Copy URL\"\n          render={<InputGroupButton size=\"icon-xs\" />}\n        />\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n"
+    },
+    {
+      "path": "src/copy-button/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/copy-button/variants/overview.tsx",
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nexport default function Example() {\n  return <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" />;\n}\n"
+    },
+    {
+      "path": "src/preview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/preview.tsx",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div\n      data-slot=\"component-preview\"\n      className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-6 p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n    >\n      {children}\n    </div>\n  );\n}\n"
+    }
+  ]
+}

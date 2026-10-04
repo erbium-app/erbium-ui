@@ -8,6 +8,7 @@ import {
 import { Content as FoundationsContent, frontmatter as foundationsFrontmatter } from "@erbium/content/foundations.md";
 import { Content as ProvidersContent, frontmatter as providersFrontmatter } from "@erbium/content/providers.md";
 import { Content as UtilitiesContent, frontmatter as utilitiesFrontmatter } from "@erbium/content/utilities.md";
+import { Content as BlocksContent, frontmatter as blocksFrontmatter } from "@erbium/content/blocks.md";
 import DocsLayout from "../layouts/DocsLayout.astro";
 import PageHeader from "./PageHeader.astro";
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 }
 const { kind } = Astro.props;
 const documents = {
+  block: { Content: BlocksContent, frontmatter: blocksFrontmatter },
   hook: { Content: HooksContent, frontmatter: hooksFrontmatter },
   foundation: { Content: FoundationsContent, frontmatter: foundationsFrontmatter },
   provider: { Content: ProvidersContent, frontmatter: providersFrontmatter },

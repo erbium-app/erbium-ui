@@ -3,14 +3,14 @@
   "name": "use-copy-to-clipboard-overview",
   "type": "registry:block",
   "title": "Use Copy To Clipboard: Overview",
-  "description": "",
-  "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/use-copy-to-clipboard"],
+  "description": "Use CopyButton for ready-to-use copying with an animated icon and accessible feedback. It uses useCopyToClipboard internally and inherits icon sizing from its button.",
+  "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
   "files": [
     {
       "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "type": "registry:component",
       "target": "@components/showcase/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
-      "content": "import { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const { copyToClipboard, isCopied } = useCopyToClipboard();\n  return (\n    <Button onClick={() => copyToClipboard(\"Erbium UI\")}>\n      {isCopied ? \"Copied\" : \"Copy Erbium UI\"}\n    </Button>\n  );\n}\n"
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nexport default function Demo() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <code className=\"text-sm\">Erbium UI</code>\n      <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" variant=\"outline\" />\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/use-copy-to-clipboard/variants/overview.tsx",

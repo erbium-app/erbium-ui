@@ -69,7 +69,7 @@ async function itemFor(name, entry, title, description, story = false) {
       throw new Error(`Example depends on an application file: ${path}`);
     const source = await sourceAt(path);
     const rewritten = source.replace(
-      /@erbium\/ui\/(components|hooks|lib)\/([\w-]+)/g,
+      /@erbium\/ui\/(components|blocks|hooks|lib)\/([\w-]+)/g,
       (_, directory, item) => {
         registryDependencies.add(`@erbium/${item}`);
         return uiImport(directory, item);
