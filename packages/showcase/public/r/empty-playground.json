@@ -4,13 +4,14 @@
   "type": "registry:component",
   "title": "Empty: Playground",
   "description": "",
+  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
   "registryDependencies": ["@erbium/empty", "@erbium/styles"],
   "files": [
     {
       "path": "src/empty/variants/playground.tsx",
       "type": "registry:component",
       "target": "@components/showcase/empty/variants/playground.tsx",
-      "content": "import { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from \"@/registry/erbium/ui/empty\";\nimport { Empty } from \"@/registry/erbium/ui/empty\";\n\nconst Example = (args: {\n  className: string;\n  mediaVariant: \"default\" | \"icon\";\n  title: string;\n  description: string;\n}) => (\n  <Empty className={`w-80 ${args.className}`}>\n    <EmptyHeader>\n      <EmptyMedia variant={args.mediaVariant}>☆</EmptyMedia>\n      <EmptyTitle>{args.title}</EmptyTitle>\n      <EmptyDescription>{args.description}</EmptyDescription>\n    </EmptyHeader>\n  </Empty>\n);\n\nexport default Example;\n"
+      "content": "import StarIcon from \"@hugeicons/core-free-icons/StarIcon\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from \"@/registry/erbium/ui/empty\";\nimport { Empty } from \"@/registry/erbium/ui/empty\";\n\nconst Example = (args: {\n  className: string;\n  mediaVariant: \"default\" | \"icon\";\n  title: string;\n  description: string;\n}) => (\n  <Empty className={`w-80 ${args.className}`}>\n    <EmptyHeader>\n      <EmptyMedia variant={args.mediaVariant}>\n        <HugeiconsIcon icon={StarIcon} aria-hidden=\"true\" />\n      </EmptyMedia>\n      <EmptyTitle>{args.title}</EmptyTitle>\n      <EmptyDescription>{args.description}</EmptyDescription>\n    </EmptyHeader>\n  </Empty>\n);\n\nexport default Example;\n"
     }
   ]
 }
