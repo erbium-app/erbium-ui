@@ -731,6 +731,16 @@ theme-toggle {
 .markdown-copy .docs-code-block {
   margin-block: 1rem;
 }
+/* The wrapper owns prose flow because its pre margin is reset below. */
+.typeset .docs-code-block:not(:where(.not-typeset *, [data-not-typeset] *)) {
+  margin-block-start: 1em;
+  margin-block-end: 0;
+}
+
+.typeset > .docs-code-block:first-child {
+  margin-block-start: 0;
+}
+
 .showcase-preview-actions,
 .code-block-copy {
   display: flex;
