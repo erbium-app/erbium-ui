@@ -23,5 +23,6 @@ Reviewed against the repository on 2026-10-04. The [public roadmap](../packages/
 8. [Searchable menus and Command](./07-searchable-menus.md)
 9. [Responsive overlays](./08-responsive-overlays.md)
 10. [Agent tooling and platforms](./09-agent-tooling-and-platforms.md)
+11. [Opinionated sidebars](./10-opinionated-sidebars.md)
 
 Keep these notes aligned with the public roadmap when scope changes. Add components and stories for recurring needs, not inventory parity.
