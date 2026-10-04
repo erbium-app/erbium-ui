@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { Card, CardContent } from "@erbium/ui/components/card";
 import {
   Carousel,

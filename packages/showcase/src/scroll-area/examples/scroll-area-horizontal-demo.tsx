@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import { ScrollArea } from "@erbium/ui/components/scroll-area";
 
 export interface Artwork {

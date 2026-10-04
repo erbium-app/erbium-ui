@@ -17,7 +17,7 @@
       "path": "src/table/variants/playground.tsx",
       "type": "registry:component",
       "target": "@components/showcase/table/variants/playground.tsx",
-      "content": "import { PlaygroundArgs, PlaygroundTable } from \"../helpers\";\n\nconst Example = (args: PlaygroundArgs) => <PlaygroundTable {...args} />;\n\nexport default Example;\n"
+      "content": "import { type PlaygroundArgs, PlaygroundTable } from \"../helpers\";\n\nconst Example = (args: PlaygroundArgs) => <PlaygroundTable {...args} />;\n\nexport default Example;\n"
     }
   ]
 }
