@@ -1,0 +1,10 @@
+---
+import Icon from "./Icon.astro";
+import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
+import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+---
+
+<span class="size-4" data-slot="theme-toggle-icon" data-astro-icon aria-hidden="true">
+  <span data-theme="light"><Icon icon={Sun03Icon} class="size-full" /></span>
+  <span data-theme="dark"><Icon icon={Moon02Icon} class="size-full" /></span>
+</span>

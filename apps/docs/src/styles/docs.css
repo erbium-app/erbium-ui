@@ -45,7 +45,7 @@ body {
 }
 /* Theme palettes switch together; interaction transitions resume after paint. */
 html[data-theme-changing],
-html[data-theme-changing] *,
+html[data-theme-changing] *:not([data-slot="theme-toggle-icon"][data-astro-icon] > span),
 html[data-theme-changing] *::before,
 html[data-theme-changing] *::after {
   transition: none !important;
@@ -297,13 +297,7 @@ html:has(.docs-search-dialog[open]) {
 theme-toggle {
   display: inline-flex;
 }
-.theme-moon,
-.dark .theme-sun {
-  display: none;
-}
-.dark .theme-moon {
-  display: block;
-}
+
 .mobile-navigation {
   display: none;
 }
@@ -797,9 +791,31 @@ theme-toggle {
   overflow: auto;
   font: 0.7rem/1.8 var(--font-mono);
 }
-copy-button {
+docs-copy {
   display: inline-flex;
   flex-shrink: 0;
+}
+/* Match StatefulIcon's wait sequence: exit, then enter, each over 150ms. */
+[data-slot="stateful-icon"][data-astro-icon] {
+  display: inline-grid;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+[data-slot="stateful-icon"][data-astro-icon] > [data-state] {
+  display: grid;
+  place-items: center;
+  grid-area: 1 / 1;
+  transform: rotate(90deg) scale(0);
+  transition: transform 150ms ease-in-out;
+}
+[data-slot="stateful-icon"][data-astro-icon] > [data-active="true"] {
+  transform: rotate(0deg) scale(1);
+  transition-delay: 150ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="stateful-icon"][data-astro-icon] > [data-state] {
+    transition: none;
+  }
 }
 /* Native Astro adapters share Erbium's surfaces and semantic state tokens. */
 .astro-select {
@@ -1248,6 +1264,10 @@ copy-button {
   }
 }
 @media (max-width: 959px) {
+  /* When the page panel loses its frame, its surface fills the viewport. */
+  body {
+    background-color: var(--surface-panel);
+  }
   .page-toc {
     display: none;
   }
@@ -1535,23 +1555,46 @@ copy-button {
   }
 }
 
-/* Both icons are server-rendered; CSS selects the correct one before paint. */
-.showcase-theme-moon,
-.dark .showcase-theme-sun {
-  display: none;
+/* ThemeToggleIcon mirrors React's simultaneous 200ms sun/moon exchange.
+   The local showcase theme wins over the site theme before the first paint. */
+[data-slot="theme-toggle-icon"][data-astro-icon] {
+  display: inline-grid;
+  flex-shrink: 0;
+  vertical-align: middle;
+  --theme-sun-rotation: 0deg;
+  --theme-sun-scale: 1;
+  --theme-moon-rotation: 90deg;
+  --theme-moon-scale: 0;
 }
-.dark .showcase-theme-moon {
-  display: block;
+.dark [data-slot="theme-toggle-icon"][data-astro-icon],
+.showcase:has([data-showcase-content][data-theme="dark"])
+  [data-slot="theme-toggle-icon"][data-astro-icon] {
+  --theme-sun-rotation: -90deg;
+  --theme-sun-scale: 0;
+  --theme-moon-rotation: 0deg;
+  --theme-moon-scale: 1;
 }
-.showcase:has([data-showcase-content][data-theme="light"]) .showcase-theme-sun {
-  display: block;
+.showcase:has([data-showcase-content][data-theme="light"])
+  [data-slot="theme-toggle-icon"][data-astro-icon] {
+  --theme-sun-rotation: 0deg;
+  --theme-sun-scale: 1;
+  --theme-moon-rotation: 90deg;
+  --theme-moon-scale: 0;
 }
-.showcase:has([data-showcase-content][data-theme="light"]) .showcase-theme-moon {
-  display: none;
+[data-slot="theme-toggle-icon"][data-astro-icon] > span {
+  display: grid;
+  place-items: center;
+  grid-area: 1 / 1;
+  transition: transform 200ms ease-in-out;
 }
-.showcase:has([data-showcase-content][data-theme="dark"]) .showcase-theme-sun {
-  display: none;
+[data-slot="theme-toggle-icon"][data-astro-icon] > [data-theme="light"] {
+  transform: rotate(var(--theme-sun-rotation)) scale(var(--theme-sun-scale));
 }
-.showcase:has([data-showcase-content][data-theme="dark"]) .showcase-theme-moon {
-  display: block;
+[data-slot="theme-toggle-icon"][data-astro-icon] > [data-theme="dark"] {
+  transform: rotate(var(--theme-moon-rotation)) scale(var(--theme-moon-scale));
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="theme-toggle-icon"][data-astro-icon] > span {
+    transition: none;
+  }
 }

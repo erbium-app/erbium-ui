@@ -1,8 +1,6 @@
 ---
 import Button from "../ui/Button.astro";
-import Icon from "../ui/Icon.astro";
-import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
-import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+import ThemeToggleIcon from "../ui/ThemeToggleIcon.astro";
 ---
 
 <theme-toggle>
@@ -12,9 +10,6 @@ import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
     aria-label="Use dark theme"
     aria-pressed="false"
     data-theme-toggle
-    ><Icon icon={Sun03Icon} class="theme-sun" /><Icon
-      icon={Moon02Icon}
-      class="theme-moon"
-    /></Button
+    ><ThemeToggleIcon /></Button
   >
 </theme-toggle>

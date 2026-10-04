@@ -1,43 +1,19 @@
 import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
-
-function copyIcon(icon: typeof CopyIcon) {
-  const namespace = "http://www.w3.org/2000/svg";
-  const svg = document.createElementNS(namespace, "svg");
-  for (const [key, value] of Object.entries({
-    width: "14",
-    height: "14",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    "aria-hidden": "true",
-  }))
-    svg.setAttribute(key, value);
-  for (const [tag, attributes] of icon) {
-    const child = document.createElementNS(namespace, tag);
-    for (const [key, value] of Object.entries(attributes)) {
-      if (key !== "key")
-        child.setAttribute(
-          key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`),
-          String(value),
-        );
-    }
-    svg.append(child);
-  }
-  return svg;
-}
+import { createStatefulIcon, setIconState } from "./stateful-icon";
 
 export function createCodeCopy(target: string, label: string) {
   const control = document.createElement("docs-copy");
   control.dataset.target = target;
   const button = document.createElement("button");
   button.type = "button";
-  button.className = buttonVariants({ variant: "ghost", size: "icon-xs" });
+  button.className = buttonVariants({ variant: "ghost", size: "icon" });
   button.dataset.slot = "button";
-  button.dataset.size = "icon-xs";
+  button.dataset.size = "icon";
   button.dataset.variant = "ghost";
   button.setAttribute("aria-label", label);
-  button.append(copyIcon(CopyIcon));
+  button.append(createStatefulIcon("idle", { idle: CopyIcon, copied: CheckIcon }));
   const status = document.createElement("span");
   status.className = "sr-only";
   status.setAttribute("role", "status");
@@ -54,11 +30,12 @@ class DocsCopy extends HTMLElement {
     this.controller?.abort();
     this.controller = new AbortController();
     const button = this.querySelector("button");
+    const icon = button?.querySelector<HTMLElement>('[data-slot="stateful-icon"]');
     const status = this.querySelector('[role="status"]');
     const label = this.querySelector("[data-copy-label]");
     const originalLabel = label?.textContent ?? "Copy";
     const reset = () => {
-      button?.querySelector("svg")?.replaceWith(copyIcon(CopyIcon));
+      if (icon) setIconState(icon, "idle");
       if (label) label.textContent = originalLabel;
       if (status) status.textContent = "";
     };
@@ -78,7 +55,7 @@ class DocsCopy extends HTMLElement {
           }
           if (content == null) throw new Error("Copy target could not be found");
           await navigator.clipboard.writeText(content);
-          button.querySelector("svg")?.replaceWith(copyIcon(CheckIcon));
+          if (icon) setIconState(icon, "copied");
           if (label) label.textContent = "Copied";
           if (status) status.textContent = "Copied to clipboard.";
         } catch {

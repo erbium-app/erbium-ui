@@ -1,0 +1,19 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Icon from "./Icon.astro";
+import type { IconDefinition } from "../../lib/stateful-icon";
+
+type Props = HTMLAttributes<"span"> & {
+  state: string;
+  icons: Readonly<Record<string, IconDefinition>>;
+};
+const { state, icons, class: className = "size-4", ...props } = Astro.props;
+---
+
+<span {...props} class={className} data-slot="stateful-icon" data-state={state} data-astro-icon aria-hidden="true">
+  {Object.entries(icons).map(([key, icon]) => (
+    <span data-state={key} data-active={key === state ? "true" : "false"}>
+      <Icon icon={icon} class="size-full" />
+    </span>
+  ))}
+</span>

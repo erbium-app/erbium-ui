@@ -1,7 +1,8 @@
 ---
 import Button from "./ui/Button.astro";
-import Icon from "./ui/Icon.astro";
+import StatefulIcon from "./ui/StatefulIcon.astro";
 import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 interface Props {
   target?: string;
   url?: string;
@@ -13,8 +14,8 @@ interface Props {
 const { target, url, text = "Copy", variant = "ghost", label = "Copy code", iconOnly = false } = Astro.props;
 ---
 <docs-copy data-target={target} data-url={url}>
-  <Button variant={variant} size={iconOnly ? "icon-xs" : "xs"} aria-label={label}>
-    <Icon icon={CopyIcon} size={14} />
+  <Button variant={variant} size={iconOnly ? "icon" : "xs"} aria-label={label}>
+    <StatefulIcon state="idle" icons={{ idle: CopyIcon, copied: CheckIcon }} class={iconOnly ? "size-4" : "size-3"} data-icon={iconOnly ? undefined : "inline-start"} />
     {!iconOnly && <span data-copy-label>{text}</span>}
   </Button>
   <span class="sr-only" role="status"></span>
