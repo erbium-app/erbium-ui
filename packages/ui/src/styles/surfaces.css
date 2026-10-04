@@ -84,31 +84,31 @@
  */
 
 :root {
-  --surface-light-source: #ffffff;
-  --surface-dark-source: #000000;
-  --surface-canvas: #f7f7f7;
-  --surface-panel: #ffffff;
-  --surface-control: #ffffff;
-  --surface-input: #ffffff;
-  --surface-overlay: #ffffff;
-  --surface-modal: #ffffff;
-  --surface-top: #ffffff;
-  --surface-well: rgb(57 58 52 / 0.05);
+  --surface-light-source: oklch(100% 0 none);
+  --surface-dark-source: oklch(0% 0 none);
+  --surface-canvas: oklch(97.613879% 0 none);
+  --surface-panel: oklch(100% 0 none);
+  --surface-control: oklch(100% 0 none);
+  --surface-input: oklch(100% 0 none);
+  --surface-overlay: oklch(100% 0 none);
+  --surface-modal: oklch(100% 0 none);
+  --surface-top: oklch(100% 0 none);
+  --surface-well: oklch(34.541285% 0.01028535 114.61857 / 0.05);
 
-  --surface-edge: rgb(57 58 52 / 0.1);
-  --surface-edge-well: rgb(57 58 52 / 0.08);
+  --surface-edge: oklch(34.541285% 0.01028535 114.61857 / 0.1);
+  --surface-edge-well: oklch(34.541285% 0.01028535 114.61857 / 0.08);
   --surface-border: transparent;
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
   --surface-catchlight-lift: 0%;
-  --surface-shadow: rgb(57 58 52 / 0.06);
-  --surface-shadow-strong: rgb(57 58 52 / 0.1);
-  --surface-shadow-inset: rgb(57 58 52 / 0.1);
+  --surface-shadow: oklch(34.541285% 0.01028535 114.61857 / 0.06);
+  --surface-shadow-strong: oklch(34.541285% 0.01028535 114.61857 / 0.1);
+  --surface-shadow-inset: oklch(34.541285% 0.01028535 114.61857 / 0.1);
   --surface-shadow-divider: color-mix(in srgb, var(--foreground) 8%, transparent);
 
-  --surface-tint-hover: rgb(57 58 52 / 0.04);
-  --surface-tint-pressed: rgb(57 58 52 / 0.07);
+  --surface-tint-hover: oklch(34.541285% 0.01028535 114.61857 / 0.04);
+  --surface-tint-pressed: oklch(34.541285% 0.01028535 114.61857 / 0.07);
   --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 10%;
 
@@ -118,29 +118,29 @@
 }
 
 .dark {
-  --surface-canvas: #121212;
-  --surface-panel: #181818;
-  --surface-control: #1e1e1e;
+  --surface-canvas: oklch(18.22037% 0 none);
+  --surface-panel: oklch(20.903609% 0 none);
+  --surface-control: oklch(23.503113% 0 none);
   --surface-input: color-mix(in srgb, var(--surface-control) 97.5%, var(--surface-light-source));
-  --surface-overlay: #222222;
-  --surface-modal: #262626;
-  --surface-top: #2b2b2b;
-  --surface-well: rgb(0 0 0 / 0.25);
+  --surface-overlay: oklch(25.196475% 0 none);
+  --surface-modal: oklch(26.861828% 0 none);
+  --surface-top: oklch(28.908005% 0 none);
+  --surface-well: oklch(0% 0 none / 0.25);
 
-  --surface-edge: rgb(222 220 213 / 0.03);
-  --surface-edge-well: rgb(222 220 213 / 0.04);
+  --surface-edge: oklch(89.409654% 0.00970052 93.578683 / 0.03);
+  --surface-edge-well: oklch(89.409654% 0.00970052 93.578683 / 0.04);
   --surface-border: transparent;
-  --surface-highlight: rgb(222 220 213 / 0.06);
-  --surface-highlight-strong: rgb(222 220 213 / 0.09);
+  --surface-highlight: oklch(89.409654% 0.00970052 93.578683 / 0.06);
+  --surface-highlight-strong: oklch(89.409654% 0.00970052 93.578683 / 0.09);
   --surface-highlight-divider: var(--surface-highlight);
   --surface-catchlight-lift: 100%;
-  --surface-shadow: rgb(0 0 0 / 0.3);
-  --surface-shadow-strong: rgb(0 0 0 / 0.5);
-  --surface-shadow-inset: rgb(0 0 0 / 0.35);
+  --surface-shadow: oklch(0% 0 none / 0.3);
+  --surface-shadow-strong: oklch(0% 0 none / 0.5);
+  --surface-shadow-inset: oklch(0% 0 none / 0.35);
   --surface-shadow-divider: var(--surface-shadow);
 
-  --surface-tint-hover: rgb(222 220 213 / 0.025);
-  --surface-tint-pressed: rgb(0 0 0 / 0.12);
+  --surface-tint-hover: oklch(89.409654% 0.00970052 93.578683 / 0.025);
+  --surface-tint-pressed: oklch(0% 0 none / 0.12);
   --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 15%;
 }

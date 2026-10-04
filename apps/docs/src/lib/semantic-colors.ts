@@ -1,3 +1,4 @@
+import Color from "colorjs.io";
 import themeCss from "../../../../packages/ui/src/styles/theme.css?raw";
 import surfacesCss from "../../../../packages/ui/src/styles/surfaces.css?raw";
 
@@ -15,7 +16,9 @@ function colorsFor(selector: ":root" | ".dark") {
     const value = declarations.get(name);
     if (!value) throw new Error(`Missing shared color token: ${name}`);
     const alias = /^var\(--([\w-]+)\)$/.exec(value);
-    return alias ? resolve(alias[1]) : value;
+    if (alias) return resolve(alias[1]);
+    const color = new Color(value).to("srgb");
+    return color.toString({ format: color.alpha < 1 ? "rgba_number" : "rgb_number", precision: 8 });
   }
   return {
     background: resolve("background"),

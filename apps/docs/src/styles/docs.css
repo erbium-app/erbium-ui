@@ -197,7 +197,7 @@ docs-search {
   border-radius: var(--radius-xl);
   background: var(--popover);
   color: var(--popover-foreground);
-  box-shadow: 0 16px 48px #0003;
+  box-shadow: 0 16px 48px oklch(0% 0 none / 0.2);
   overflow: hidden;
 }
 .docs-search-dialog[open] {
@@ -205,7 +205,7 @@ docs-search {
   flex-direction: column;
 }
 .docs-search-dialog::backdrop {
-  background: #0006;
+  background: oklch(0% 0 none / 0.4);
 }
 html:has(.docs-search-dialog[open]) {
   overflow: hidden;
@@ -890,7 +890,7 @@ docs-copy {
   height: 0.875rem;
   border-radius: 999px;
   background: var(--background);
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+  box-shadow: 0 1px 3px oklch(0% 0 none / 0.2);
   transition: transform 150ms;
 }
 .astro-switch input:checked + .astro-switch-track {
@@ -1597,4 +1597,24 @@ docs-copy {
   [data-slot="theme-toggle-icon"][data-astro-icon] > span {
     transition: none;
   }
+}
+
+/* Color previews preserve the literal's opacity and exact copied text. */
+.code-color-value {
+  background-color: var(--code-color);
+  color: var(--code-color-text-light);
+  border-radius: 2px;
+}
+.dark .code-color-value {
+  color: var(--code-color-text-dark);
+}
+.code-color-value span {
+  color: inherit;
+}
+
+[data-code-appearance="light"] .code-color-value {
+  color: var(--code-color-text-light);
+}
+[data-code-appearance="dark"] .code-color-value {
+  color: var(--code-color-text-dark);
 }

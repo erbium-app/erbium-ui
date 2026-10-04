@@ -94,6 +94,20 @@ for (const [kind, path] of Object.entries(kindPaths)) {
 }
 for (const component of components) {
   const catalog = manifest.find((entry) => entry.name === component.name)!;
+  if (component.name === "colors") {
+    const theme = sources[`${sourceRoot}src/styles/theme.css`];
+    const surfaces = sources[`${sourceRoot}src/styles/surfaces.css`];
+    agentPages.push(
+      page(
+        component.href,
+        component.title,
+        component.description,
+        component.section,
+        `${body("components/colors/index.md")}\n\n## Theme CSS\n\nInstall @erbium/styles for complete surface recipes. These source files define the color system.\n\n${code("theme.css", theme)}\n\n${code("surfaces.css", surfaces)}`,
+      ),
+    );
+    continue;
+  }
   const included = new Set<string>();
   const blocks = [body(`components/${component.name}/index.md`), "## Component source"];
   for (const file of component.files ?? []) {

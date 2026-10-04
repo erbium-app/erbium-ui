@@ -15,26 +15,28 @@ const pages = componentDocuments as Record<
   import("astro").MarkdownInstance<{ title: string; description: string }>
 >;
 
-export const components = manifest.map((entry) => {
-  const item = (registry.items as ComponentEntry[]).find((item) => item.name === entry.name) ?? {
-    name: entry.name,
-    title: entry.title,
-    description: "",
-  };
-  const section = documentationSections.find((section) => section.names.includes(item.name));
-  if (!section) throw new Error(`Missing navigation classification for ${item.name}`);
-  const page = pages[`../components/${item.name}/index.md`];
-  if (!page) throw new Error(`Missing documentation for ${item.name}`);
-  return {
-    ...item,
-    title: page.frontmatter.title,
-    description: page.frontmatter.description,
-    href: `/docs/${kindPaths[section.kind]}/${item.name}`,
-    kind: section.kind,
-    section: section.title,
-    sectionSlug: section.slug,
-  };
-});
+export const components = [...manifest, { name: "colors", title: "Colors", variants: [] }].map(
+  (entry) => {
+    const item = (registry.items as ComponentEntry[]).find((item) => item.name === entry.name) ?? {
+      name: entry.name,
+      title: entry.title,
+      description: "",
+    };
+    const section = documentationSections.find((section) => section.names.includes(item.name));
+    if (!section) throw new Error(`Missing navigation classification for ${item.name}`);
+    const page = pages[`../components/${item.name}/index.md`];
+    if (!page) throw new Error(`Missing documentation for ${item.name}`);
+    return {
+      ...item,
+      title: page.frontmatter.title,
+      description: page.frontmatter.description,
+      href: `/docs/${kindPaths[section.kind]}/${item.name}`,
+      kind: section.kind,
+      section: section.title,
+      sectionSlug: section.slug,
+    };
+  },
+);
 
 export const navigationGroups = [
   {

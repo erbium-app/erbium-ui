@@ -1116,18 +1116,6 @@
     ]
   },
   {
-    "name": "colors",
-    "title": "Foundations/Colors",
-    "variants": [
-      {
-        "exportName": "Semantic",
-        "slug": "semantic",
-        "title": "Semantic",
-        "source": "src/colors/variants/semantic.tsx"
-      }
-    ]
-  },
-  {
     "name": "combobox",
     "title": "Inputs & forms/Combobox",
     "variants": [

@@ -1,13 +1,15 @@
 ---
-import { highlightSource } from "../lib/highlight";
+import { highlightSource, highlightColorSource } from "../lib/highlight";
 
 interface Props {
   source: string;
   path: string;
+  colorSwatches?: boolean;
+  appearance?: "light" | "dark";
 }
-const { source, path } = Astro.props;
+const { source, path, colorSwatches = false, appearance } = Astro.props;
 ---
 
-<docs-code-block class="docs-code-block" data-copy-label={`Copy ${path.replace(/^src\//, "")}`}>
-  <pre class="th-code"><code set:html={highlightSource(source, path)} /></pre>
+<docs-code-block class="docs-code-block" data-code-appearance={appearance} data-copy-label={`Copy ${path.replace(/^src\//, "")}`}>
+  <pre class="th-code"><code set:html={colorSwatches ? highlightColorSource(source) : highlightSource(source, path)} /></pre>
 </docs-code-block>

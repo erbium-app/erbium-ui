@@ -46,3 +46,12 @@ export const syntaxThemeCss = createThemeCss({
   light: syntaxTheme(lightReference, "light"),
   dark: syntaxTheme(darkReference, "dark"),
 });
+
+// Color documentation can pin a block's appearance independently of the page.
+export const colorPreviewSyntaxThemeCss = createThemeCss({
+  light: syntaxTheme(lightReference, "light"),
+  dark: syntaxTheme(darkReference, "dark"),
+  lightSelector: '[data-code-appearance="light"]',
+  darkSelector: '[data-code-appearance="dark"]',
+  includeBaseStyles: false,
+});

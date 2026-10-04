@@ -6224,67 +6224,6 @@
       ]
     },
     {
-      "name": "colors-examples",
-      "type": "registry:item",
-      "title": "Colors examples",
-      "description": "All colors examples.",
-      "registryDependencies": ["@erbium-examples/colors-semantic"]
-    },
-    {
-      "name": "colors-semantic",
-      "type": "registry:block",
-      "title": "Colors: Semantic",
-      "description": "",
-      "registryDependencies": ["@erbium/styles"],
-      "files": [
-        {
-          "path": "src/colors/helpers.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/colors/helpers.tsx"
-        },
-        {
-          "path": "src/colors/variants/semantic.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/colors/variants/semantic.tsx"
-        }
-      ]
-    },
-    {
-      "name": "colors-stories",
-      "type": "registry:item",
-      "title": "Colors stories",
-      "description": "All colors variants as portable React CSF stories.",
-      "devDependencies": ["@storybook/react@^10.6.1"],
-      "registryDependencies": [
-        "@erbium/csp-provider",
-        "@erbium/overlay-provider",
-        "@erbium/styles",
-        "@erbium/toast"
-      ],
-      "files": [
-        {
-          "path": "src/colors/colors.stories.tsx",
-          "type": "registry:file",
-          "target": "@components/showcase/colors/colors.stories.tsx"
-        },
-        {
-          "path": "src/colors/helpers.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/colors/helpers.tsx"
-        },
-        {
-          "path": "src/colors/variants/semantic.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/colors/variants/semantic.tsx"
-        },
-        {
-          "path": "src/preview.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/preview.tsx"
-        }
-      ]
-    },
-    {
       "name": "combobox-auto-highlight",
       "type": "registry:block",
       "title": "Combobox: Auto Highlight",
