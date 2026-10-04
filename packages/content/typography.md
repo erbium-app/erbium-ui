@@ -13,7 +13,7 @@ description: Fonts, loading, and reading styles for Erbium UI.
 
 Each role includes system fallbacks. Headings inherit the body family. The Geist Mono import has no italic face, so code italics may be synthesized.
 
-Fonts use `font-display: swap` and load when rendered text needs them. Nothing is preloaded. Vazirmatn’s `unicode-range` limits it to Arabic-script characters; Latin-only pages do not request it.
+Fonts use `font-display: swap` and load when rendered text needs them. Nothing is preloaded. Vazirmatn’s `unicode-range` limits it to Arabic-script characters. Latin-only pages do not request it.
 
 ## Setup
 
@@ -35,7 +35,7 @@ Load them from your application’s global CSS entry:
 import "./index.css";
 ```
 
-The CLI copies the styles and installs Geist Mono through Fontsource. It does not wire the global import. In Astro, import your global CSS in the shared layout frontmatter; no additional font provider is needed.
+The CLI copies the styles and installs Geist Mono through Fontsource. It does not wire the global import. In Astro, import your global CSS in the shared layout frontmatter. No additional font provider is needed.
 
 Registry installations load Cal Sans and Vazirmatn from `https://ui.erbium.app/fonts/`. To self-host them, copy the font files into your public directory and update the URLs in `fonts.css`, preserving the Unicode ranges and bundled licenses.
 
@@ -51,7 +51,7 @@ Use semantic elements for document structure and font utilities for appearance:
 <code className="font-mono text-sm">user.name</code>
 ```
 
-Use normal weight for body copy, medium for labels, and semibold for emphasis. Keep small text for metadata; allow wrapping and browser zoom. Set `dir` and `lang` on multilingual content.
+Use normal weight for body copy, medium for labels, and semibold for emphasis. Keep small text for metadata. Allow wrapping and browser zoom. Set `dir` and `lang` on multilingual content.
 
 ## Reading styles
 
@@ -70,7 +70,7 @@ Wrap reading content with `typeset` and an optional preset:
 | `typeset typeset-docs`    | `1rem`                           | `1.75`      | `1.5em`       |
 | `typeset typeset-compact` | `0.875rem`                       | `1.6`       | `1em`         |
 
-A preset alone does not activate Typeset. Below 48rem, text size increases by 12.5%. The layout controls width; about 60–70 characters per line suits prose. Colors and RTL spacing follow the shared theme.
+A preset alone does not activate Typeset. Below 48rem, text size increases by 12.5%. The layout controls width. About 60–70 characters per line suits prose. Colors and RTL spacing follow the shared theme.
 
 Use `not-typeset` or `data-not-typeset` to exclude embedded components and their descendants. Wrap wide tables with `typeset-scroll`:
 

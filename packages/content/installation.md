@@ -118,12 +118,12 @@ We recommend [skills.sh](https://skills.sh/) to find and manage coding agent ski
 
 Choose the skills that match your work:
 
-- [Jakub Krehel](https://jakub.kr/), founding design engineer at [Interfere](https://interfere.com/): [Better typography](https://skills.sh/jakubkrehel/skills/better-typography), [Better accessibility](https://skills.sh/jakubkrehel/skills/better-accessibility), [Better layout](https://skills.sh/jakubkrehel/skills/better-layout), and [Better colors](https://skills.sh/jakubkrehel/skills/better-colors) cover readability, interaction, layout, and color.
+- [Jakub Krehel](https://jakub.kr/), founding design engineer at [Interfere](https://interfere.com/): [Better typography](https://skills.sh/jakubkrehel/skills/better-typography), [Better accessibility](https://skills.sh/jakubkrehel/skills/better-accessibility), [Better layout](https://skills.sh/jakubkrehel/skills/better-layout), [Better writing](https://skills.sh/jakubkrehel/skills/better-writing), and [Better colors](https://skills.sh/jakubkrehel/skills/better-colors) cover readability, interaction, layout, copy, and color.
 - [Emil Kowalski](https://emilkowal.ski/), design engineer at [Linear](https://linear.app/): [Animate](https://skills.sh/emilkowalski/skill/animate) and [Review animations](https://skills.sh/emilkowalski/skill/review-animations) guide motion implementation and review.
 - [Vercel](https://vercel.com/): [Building components](https://skills.sh/vercel/components.build/building-components), based on the [specification co-authored by Hayden Bleasel and Shadcn](https://components.build/), covers accessible component APIs. [React composition patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) covers reusable React compositions.
 
 ```sh
-bunx skills add jakubkrehel/skills --skill better-typography better-accessibility better-layout better-colors
+bunx skills add jakubkrehel/skills --skill better-typography better-accessibility better-layout better-writing better-colors
 bunx skills add emilkowalski/skill --skill animate review-animations
 bunx skills add vercel/components.build --skill building-components
 bunx skills add vercel-labs/agent-skills --skill vercel-composition-patterns
