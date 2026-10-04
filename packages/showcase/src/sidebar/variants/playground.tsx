@@ -1,5 +1,6 @@
 import {
   SidebarProvider,
+  SidebarTrigger,
   SidebarContent,
   SidebarGroup,
   SidebarGroupLabel,
@@ -17,6 +18,7 @@ const Example = (args: {
   defaultOpen: boolean;
 }) => (
   <SidebarProvider key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
+    <SidebarTrigger side={args.side} />
     <div className="relative h-64 w-80 overflow-hidden rounded border">
       <Sidebar side={args.side} variant={args.variant} collapsible={args.collapsible}>
         <SidebarContent>

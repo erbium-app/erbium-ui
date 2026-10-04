@@ -3,12 +3,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import FrameIcon from "@hugeicons/core-free-icons/FrameIcon";
 import LifebuoyIcon from "@hugeicons/core-free-icons/LifebuoyIcon";
 import MapIcon from "@hugeicons/core-free-icons/MapIcon";
-import PanelLeftCloseIcon from "@hugeicons/core-free-icons/PanelLeftCloseIcon";
-import PanelLeftOpenIcon from "@hugeicons/core-free-icons/PanelLeftOpenIcon";
 import PieChartIcon from "@hugeicons/core-free-icons/PieChartIcon";
 import SendIcon from "@hugeicons/core-free-icons/SendIcon";
 
-import { Button } from "@erbium/ui/components/button";
 import {
   Sidebar,
   SidebarContent,
@@ -20,6 +17,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarTrigger,
+  useSidebar,
 } from "@erbium/ui/components/sidebar";
 
 const projects = [
@@ -50,6 +49,17 @@ const projects = [
   },
 ];
 
+function ControlledSidebarTrigger() {
+  const { isMobile, open, openMobile } = useSidebar();
+  const isOpen = isMobile ? openMobile : open;
+
+  return (
+    <SidebarTrigger size="sm">
+      <span>{isOpen ? "Close" : "Open"} Sidebar</span>
+    </SidebarTrigger>
+  );
+}
+
 export default function AppSidebar() {
   const [open, setOpen] = React.useState(true);
 
@@ -76,14 +86,7 @@ export default function AppSidebar() {
       </Sidebar>
       <SidebarInset>
         <header className="flex h-12 items-center justify-between px-4">
-          <Button onClick={() => setOpen((open) => !open)} size="sm" variant="ghost">
-            {open ? (
-              <HugeiconsIcon icon={PanelLeftCloseIcon} />
-            ) : (
-              <HugeiconsIcon icon={PanelLeftOpenIcon} />
-            )}
-            <span>{open ? "Close" : "Open"} Sidebar</span>
-          </Button>
+          <ControlledSidebarTrigger />
         </header>
       </SidebarInset>
     </SidebarProvider>

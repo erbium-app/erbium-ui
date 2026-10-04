@@ -944,12 +944,7 @@
       "type": "registry:ui",
       "title": "Sidebar",
       "description": "Erbium sidebar component.",
-      "dependencies": [
-        "@base-ui/react",
-        "@hugeicons/core-free-icons",
-        "@hugeicons/react",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input",
@@ -958,6 +953,7 @@
         "@erbium/sheet",
         "@erbium/sidebar-styles",
         "@erbium/skeleton",
+        "@erbium/stateful-icon",
         "@erbium/tooltip",
         "@erbium/use-is-mobile",
         "@erbium/utils"

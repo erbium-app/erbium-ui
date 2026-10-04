@@ -20,8 +20,7 @@ import {
 } from "./sheet";
 import { Skeleton } from "./skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
-import { HugeiconsIcon } from "@hugeicons/react";
-import PanelLeftIcon from "@hugeicons/core-free-icons/PanelLeftIcon";
+import { SidebarToggleIcon } from "./stateful-icon";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -259,11 +258,19 @@ function Sidebar({
   );
 }
 
-function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar();
+function SidebarTrigger({
+  className,
+  onClick,
+  children,
+  side = "left",
+  ...props
+}: React.ComponentProps<typeof Button> & { side?: "left" | "right" }) {
+  const { toggleSidebar, isMobile, open, openMobile } = useSidebar();
+  const isOpen = isMobile ? openMobile : open;
 
   return (
     <Button
+      aria-expanded={isOpen}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
@@ -275,8 +282,8 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
       }}
       {...props}
     >
-      <HugeiconsIcon icon={PanelLeftIcon} className="rtl:rotate-180" />
-      <span className="sr-only">Toggle Sidebar</span>
+      <SidebarToggleIcon isOpen={isOpen} side={side} className="rtl:rotate-180" />
+      {children ?? <span className="sr-only">Toggle Sidebar</span>}
     </Button>
   );
 }

@@ -16973,7 +16973,7 @@
       "title": "sidebar controlled",
       "description": "Erbium sidebar controlled example.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/sidebar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/sidebar", "@erbium/styles"],
       "files": [
         {
           "path": "src/sidebar/examples/sidebar-controlled.tsx",
@@ -16988,7 +16988,7 @@
       "title": "Sidebar: Controlled Sidebar",
       "description": "Use the `open` and `onOpenChange` props to control the sidebar.\n\n```tsx\nexport function AppSidebar() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <SidebarProvider open={open} onOpenChange={setOpen}>\n      <Sidebar />\n    </SidebarProvider>\n  );\n}\n```",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/sidebar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/sidebar", "@erbium/styles"],
       "files": [
         {
           "path": "src/sidebar/examples/sidebar-controlled.tsx",
@@ -17080,7 +17080,6 @@
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/collapsible",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
