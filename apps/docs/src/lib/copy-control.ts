@@ -1,5 +1,6 @@
 import { createCopyToClipboard } from "@erbium/ui/lib/copy-to-clipboard";
 import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
+import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
 import { createStatefulIcon, setIconState } from "./stateful-icon";
@@ -14,7 +15,9 @@ export function createCodeCopy(target: string, label: string) {
   button.dataset.size = "icon";
   button.dataset.variant = "ghost";
   button.setAttribute("aria-label", label);
-  button.append(createStatefulIcon("idle", { idle: CopyIcon, copied: CheckIcon }));
+  button.append(
+    createStatefulIcon("idle", { idle: CopyIcon, copied: CheckIcon, error: Cancel01Icon }),
+  );
   const status = document.createElement("span");
   status.className = "sr-only";
   status.setAttribute("role", "status");
@@ -34,19 +37,30 @@ class DocsCopy extends HTMLElement {
     const button = this.querySelector("button");
     const icon = button?.querySelector<HTMLElement>('[data-slot="stateful-icon"]');
     const status = this.querySelector('[role="status"]');
-    const label = this.querySelector("[data-copy-label]");
-    const originalLabel = label?.textContent ?? "Copy";
+    const labels = this.querySelectorAll<HTMLElement>("[data-copy-label]");
     const render = () => {
-      const { isCopied, isPending, error } = this.clipboard.getSnapshot();
-      if (icon) setIconState(icon, isCopied ? "copied" : "idle");
+      const { isCopied, isPending, status: copyStatus, revision } = this.clipboard.getSnapshot();
+      if (icon) setIconState(icon, copyStatus === "error" ? "error" : isCopied ? "copied" : "idle");
       if (button) button.setAttribute("aria-busy", String(isPending));
-      if (label) label.textContent = isCopied ? "Copied" : originalLabel;
-      if (status)
-        status.textContent = error
-          ? "Unable to copy. Please try again."
-          : isCopied
-            ? "Copied to clipboard."
-            : "";
+      for (const label of labels) {
+        label.dataset.active = String(label.dataset.copyLabel === copyStatus);
+      }
+      if (
+        status &&
+        (status.getAttribute("data-revision") !== String(revision) ||
+          status.getAttribute("data-status") !== copyStatus)
+      ) {
+        status.setAttribute("data-revision", String(revision));
+        status.setAttribute("data-status", copyStatus);
+        const announcement = document.createElement("span");
+        announcement.textContent =
+          copyStatus === "error"
+            ? "Unable to copy. Please try again."
+            : isCopied
+              ? "Copied to clipboard."
+              : "";
+        status.replaceChildren(announcement);
+      }
     };
     this.unsubscribe = this.clipboard.subscribe(render);
     render();

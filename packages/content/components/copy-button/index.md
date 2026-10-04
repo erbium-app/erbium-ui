@@ -1,34 +1,54 @@
 ---
 title: "Copy Button"
-description: "Copy text with animated, accessible feedback."
+description: "Composable copy actions with stable, animated feedback."
 ---
 
 ## Usage
 
-Import `CopyButton` and `CopyIcon` from `@erbium/ui/blocks/copy-button`.
+Import from `@erbium/ui/blocks/copy-button`. The default is a ghost icon button with copy, success, and failure feedback.
 
 ```tsx
 <CopyButton value={command} aria-label="Copy installation command" />
 ```
 
-The registry installs this block into your components `blocks` directory, together with its clipboard hook, Button, StatefulIcon, and their dependencies.
+The registry installs the block in your components/blocks directory with the shared clipboard hook and controller, Button, and StatefulIcon dependencies.
 
-## Composition
+## Labels with defaults
 
-The default is a ghost icon button. Use Button's `size`, `variant`, and `className` props to customize it. Default icons inherit the surrounding button's SVG sizing rules.
+```tsx
+<CopyButton value={code} variant="outline">
+  <CopyButtonIcon data-icon="inline-start" />
+  <CopyButtonLabel />
+</CopyButton>
+```
 
-Use `render={<InputGroupButton size="icon-xs" />}` to compose with an input group button. The rendered component owns its size and surface unless you explicitly pass them to CopyButton.
+CopyButtonLabel includes Copy, Copied, and Failed states by default. All labels remain mounted in one grid cell, reserving the widest label's space. Transitions respect reduced motion. Children automatically select a normal button size; icon-only defaults use the icon size. Icons inherit the button's SVG sizing.
 
-A render callback receives button props and `{ copied, pending }`. Spread those props onto your button and use `CopyIcon copied={state.copied}` with your own label. `CopyIcon` accepts `className` and `data-icon` for icon styling and inline placement. Custom children replace the automatic icon.
+## Custom labels
+
+```tsx
+<CopyButton value={code} size="sm" variant="outline">
+  <CopyButtonIcon data-icon="inline-start" />
+  <CopyButtonLabel>
+    <CopyButtonLabelIdle>Copy code</CopyButtonLabelIdle>
+    <CopyButtonLabelCopied>Code copied!</CopyButtonLabelCopied>
+    <CopyButtonLabelError>Try again</CopyButtonLabelError>
+  </CopyButtonLabel>
+</CopyButton>
+```
+
+The content components consume internal copy state. Developers do not pass copied flags or reproduce animation markup. Include all three label states when replacing the defaults. Static text alongside CopyButtonIcon is also supported when the action label should remain unchanged.
+
+## Existing buttons
+
+Use `render={<InputGroupButton size="icon-xs" />}` to compose the default icon with an input group control. Explicit props on the rendered element have precedence. Keep the rendered element a button-compatible component and forward the supplied props and ref. A render callback receives copied, pending, status, and revision, but normal compositions use the content components directly.
 
 ## Behavior
 
-`value` is the text copied on activation. The hook prevents overlapping writes, sets success only after the write completes, and resets feedback after `timeout` milliseconds (default 2000; zero keeps success visible). `onCopied` runs after success; `onError` receives clipboard failures. A consumer click handler can cancel copying with `event.preventDefault()`.
+The shared controller synchronously blocks overlapping writes, including clicks before React rerenders. Pending repeat writes preserve previous feedback. Each successful or failed attempt increments a revision to refresh feedback; the timeout starts when that attempt settles. Old timers and disposed operations cannot overwrite newer feedback.
 
-`data-copied` and `data-pending` expose state for styling. Clipboard access requires a secure browser context. Empty strings are valid clipboard values.
+`timeout` defaults to 2000 milliseconds; zero keeps confirmation visible. `onCopied` fires after a successful write and `onError` receives failures. Empty strings are valid. Clipboard access requires a secure browser context. Consumer click handlers can cancel with preventDefault(). Disabled and loading buttons cannot start copying.
 
-## Accessibility
+`data-copied`, `data-pending`, and `data-status` expose presentation state. A separate persistent status region announces successMessage and errorMessage, which can be translated. Provide a specific aria-label for icon-only buttons. Custom label text determines a labeled button's name unless overridden.
 
-The default accessible name is Copy. Provide a specific `aria-label` for icon buttons. A persistent status region announces `successMessage` or `errorMessage`; both can be translated. Icons are decorative and animation respects reduced motion. Focus remains on the button while the clipboard write is pending.
-
-Code blocks should supply their active source text through `value`; the copy button does not inspect the DOM or own package-manager selection.
+Code blocks own their active source text and supply it through value. Tooltips remain normal Base UI composition; CopyButton does not force a popup open after every click.

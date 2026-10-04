@@ -7714,8 +7714,8 @@
       "name": "copy-button-buttons",
       "type": "registry:component",
       "title": "Copy Button: Buttons",
-      "description": "Use existing button sizes and surfaces, or compose a labeled button.",
-      "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
+      "description": "Use existing button sizes and surfaces, or compose a labeled button.\n\nThe labeled button keeps all labels mounted in one grid cell. Its width accommodates the longest label, while opacity and a small vertical transition change the visible state. Reduced motion disables the transition.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/copy-button/variants/buttons.tsx",
@@ -7770,7 +7770,6 @@
       "description": "All copy-button variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/input-group",
@@ -19792,7 +19791,7 @@
       "name": "toast-action",
       "type": "registry:component",
       "title": "Toast: Action",
-      "description": "Pass button props with `actionProps` to render an action.\n\n```tsx\nconst id = toast.add({\n  id: \"event-created\",\n  title: \"Event created\",\n  actionProps: {\n    children: \"Undo\",\n    onClick() {\n      toast.close(id);\n    },\n  },\n});\n```",
+      "description": "Pass button props with `actionProps` to render a supplementary action. Keep the same action available in a persistent surface after the toast disappears. An Undo toast must not be the only way to restore an item; provide recovery in the affected list or history.\n\nThe example below shows the action API and closes the toast. A real Undo handler must also restore the application state.\n\n```tsx\nconst id = toast.add({\n  id: \"event-created\",\n  title: \"Event created\",\n  actionProps: {\n    children: \"Undo\",\n    onClick() {\n      toast.close(id);\n    },\n  },\n});\n```",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -19868,7 +19867,7 @@
       "name": "toast-progress",
       "type": "registry:component",
       "title": "Toast: Progress",
-      "description": "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.",
+      "description": "Use the ID returned by `toast.add` to update a specific toast. Call `toast.close(id)` to dismiss it.\n\nThis example demonstrates updates to a supplementary notification. Long-running work needs persistent progress and recovery in an activity surface, even if its toast stays open.",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -19882,7 +19881,7 @@
       "name": "toast-promise",
       "type": "registry:block",
       "title": "Toast: Promise",
-      "description": "Use `toast.promise` to update one toast as an asynchronous task moves through\n\nloading, success, and error states.",
+      "description": "Use `toast.promise` to update one supplementary toast as an asynchronous task moves through loading, success, and error states. Keep pending state and recovery in the control or surface that owns the task. For uploads, imports, and exports, preserve progress, results, and failures in a persistent activity surface; the toast is not job history.",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -19901,7 +19900,7 @@
       "name": "toast-queue",
       "type": "registry:component",
       "title": "Toast: Queue",
-      "description": "Add five persistent notifications, then hover the stack to see and scroll the full queue.",
+      "description": "This example adds five notifications with automatic dismissal disabled to demonstrate the stack. Hover or focus the stack to see and scroll the full queue.\n\nA queue is not notification history. Avoid one toast per rapid or bulk operation; update the affected interface and keep any useful summary in a persistent surface.",
       "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -21010,13 +21009,8 @@
       "name": "use-copy-to-clipboard-custom-button",
       "type": "registry:component",
       "title": "Use Copy To Clipboard: Custom Button",
-      "description": "Use the hook directly when your interface owns the button composition. CopyIcon provides the same stateful animation as CopyButton. Include an accessible status region when composing feedback yourself.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/copy-button",
-        "@erbium/styles",
-        "@erbium/use-copy-to-clipboard"
-      ],
+      "description": "Compose CopyButton with an existing Button through render. CopyButtonIcon and CopyButtonLabel share state automatically; labels have stable sizing, animations, failure feedback, and accessible announcements built in.",
+      "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/variants/custom-button.tsx",

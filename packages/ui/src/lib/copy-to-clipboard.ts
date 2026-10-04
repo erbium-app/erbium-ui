@@ -1,4 +1,6 @@
 type CopyToClipboardState = {
+  status: "idle" | "copied" | "error";
+  revision: number;
   isCopied: boolean;
   isPending: boolean;
   error: unknown;
@@ -8,7 +10,13 @@ type CopyToClipboardOptions = {
   onCopy?: () => void;
   onError?: (error: unknown) => void;
 };
-const idleState: CopyToClipboardState = { isCopied: false, isPending: false, error: null };
+const idleState: CopyToClipboardState = {
+  status: "idle",
+  revision: 0,
+  isCopied: false,
+  isPending: false,
+  error: null,
+};
 
 /** Framework-independent clipboard lifecycle. Dispose when the owner unmounts. */
 function createCopyToClipboard() {
@@ -36,7 +44,7 @@ function createCopyToClipboard() {
       if (state.isPending) return false;
       const operation = ++generation;
       clearTimeout(timer);
-      update({ isCopied: false, isPending: true, error: null });
+      update({ ...state, isPending: true });
       try {
         if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) {
           throw new Error("Clipboard access is unavailable");
@@ -46,14 +54,33 @@ function createCopyToClipboard() {
         await navigator.clipboard.writeText(text);
       } catch (error) {
         if (operation === generation) {
-          update({ isCopied: false, isPending: false, error });
+          update({
+            status: "error",
+            revision: state.revision + 1,
+            isCopied: false,
+            isPending: false,
+            error,
+          });
+          if (timeout !== 0)
+            timer = setTimeout(() => {
+              if (generation === operation) update({ ...idleState, revision: state.revision });
+            }, timeout);
           onError?.(error);
         }
         return false;
       }
       if (operation !== generation) return true;
-      update({ isCopied: true, isPending: false, error: null });
-      if (timeout !== 0) timer = setTimeout(() => update(idleState), timeout);
+      update({
+        status: "copied",
+        revision: state.revision + 1,
+        isCopied: true,
+        isPending: false,
+        error: null,
+      });
+      if (timeout !== 0)
+        timer = setTimeout(() => {
+          if (generation === operation) update({ ...idleState, revision: state.revision });
+        }, timeout);
       onCopy?.();
       return true;
     },

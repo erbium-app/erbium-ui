@@ -3,14 +3,14 @@
   "name": "copy-button-buttons",
   "type": "registry:component",
   "title": "Copy Button: Buttons",
-  "description": "Use existing button sizes and surfaces, or compose a labeled button.",
-  "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
+  "description": "Use existing button sizes and surfaces, or compose a labeled button.\n\nThe labeled button keeps all labels mounted in one grid cell. Its width accommodates the longest label, while opacity and a small vertical transition change the visible state. Reduced motion disables the transition.",
+  "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
   "files": [
     {
       "path": "src/copy-button/variants/buttons.tsx",
       "type": "registry:component",
       "target": "@components/showcase/copy-button/variants/buttons.tsx",
-      "content": "import { CopyButton, CopyIcon } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Example() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <CopyButton value=\"Small\" size=\"icon-xs\" variant=\"outline\" />\n      <CopyButton value=\"Medium\" size=\"icon-sm\" variant=\"secondary\" />\n      <CopyButton value=\"Large\" size=\"icon-lg\" />\n      <CopyButton\n        value=\"Erbium UI\"\n        render={(props, state) => (\n          <Button {...props} size=\"sm\" variant=\"outline\">\n            <CopyIcon copied={state.copied} data-icon=\"inline-start\" />\n            {state.copied ? \"Copied\" : \"Copy name\"}\n          </Button>\n        )}\n      />\n    </div>\n  );\n}\n"
+      "content": "import {\n  CopyButton,\n  CopyButtonIcon,\n  CopyButtonLabel,\n  CopyButtonLabelIdle,\n  CopyButtonLabelCopied,\n  CopyButtonLabelError,\n} from \"@/registry/erbium/blocks/copy-button\";\nexport default function Example() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-3\">\n      <CopyButton value=\"Small\" size=\"icon-xs\" variant=\"outline\" />\n      <CopyButton value=\"Medium\" size=\"icon-sm\" variant=\"secondary\" />\n      <CopyButton value=\"Large\" size=\"icon-lg\" />\n      <CopyButton value=\"Erbium UI\" size=\"sm\" variant=\"outline\">\n        <CopyButtonIcon data-icon=\"inline-start\" />\n        <CopyButtonLabel />\n      </CopyButton>\n      <CopyButton value=\"Erbium UI\" size=\"sm\" variant=\"outline\">\n        <CopyButtonIcon data-icon=\"inline-start\" />\n        <CopyButtonLabel>\n          <CopyButtonLabelIdle>Copy project name</CopyButtonLabelIdle>\n          <CopyButtonLabelCopied>Name copied!</CopyButtonLabelCopied>\n          <CopyButtonLabelError>Try again</CopyButtonLabelError>\n        </CopyButtonLabel>\n      </CopyButton>\n    </div>\n  );\n}\n"
     }
   ]
 }

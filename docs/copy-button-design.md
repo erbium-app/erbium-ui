@@ -2,6 +2,12 @@
 
 Recorded on 2026-10-05.
 
+## Current API revision
+
+The implemented API now uses CopyButton with context-aware CopyButtonIcon and CopyButtonLabel. Empty labels provide Copy/Copied/Failed defaults; custom labels compose CopyButtonLabelIdle, CopyButtonLabelCopied, and CopyButtonLabelError. The former explicit CopyIcon export is removed. Earlier examples below are historical design discussion, not the current API. See public documentation for current examples.
+
+Rapid clicks are guarded synchronously in the shared controller. Repeat writes preserve visible feedback while pending, increment revision on settlement, and invalidate stale reset timers. Failure has a visual icon and label, as well as an accessible announcement. Fluid Functionalism inspired repeated confirmation and failure feedback; tooltip choreography remains a future composed integration, and execCommand fallback is not adopted.
+
 ## Status
 
 The first CopyButton block is implemented. The extensions below are proposals, not implemented APIs. This document records the current direction and the evidence for revisiting it.
@@ -228,3 +234,11 @@ Before changing the API, manually verify in Storybook or the docs playground:
 - Keyboard activation, focus retention, live announcements and reduced motion.
 
 The repository has no automated test suite. Run bun run fix when mechanical changes are appropriate, bun run check for repository validation, and rebuild the UI/showcase registries when their sources change. Use bun run showcase:check to verify generated synchronization and docs/Storybook builds.
+
+## Stable label presentation
+
+Astro copy labels and the labeled React examples keep idle and success labels mounted in the same grid cell. Both contribute to layout, so the button reserves space for the longest label. Only the active label is visible; a 150ms opacity/vertical transition matches StatefulButton and is disabled for reduced motion. Astro label visuals are decorative because the button already has an accessible name and a separate live status region.
+
+This follows Interior's copy button and Erbium's StatefulButton approach. Avoid replacing a single text node, display:none, or conditional mounting when stable intrinsic width is required. No fixed width or runtime measurement is necessary.
+
+Torph remains an optional text-morph composition. It must animate inside an independently reserved label area: morphing text alone does not guarantee stable button width. A public StatefulLabel abstraction is deferred until more consumers establish its API.

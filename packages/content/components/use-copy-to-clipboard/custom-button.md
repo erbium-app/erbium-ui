@@ -3,4 +3,4 @@ title: "Custom Button"
 story: CustomButton
 ---
 
-Use the hook directly when your interface owns the button composition. CopyIcon provides the same stateful animation as CopyButton. Include an accessible status region when composing feedback yourself.
+Compose CopyButton with an existing Button through render. CopyButtonIcon and CopyButtonLabel share state automatically; labels have stable sizing, animations, failure feedback, and accessible announcements built in.
