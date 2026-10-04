@@ -1,7 +1,7 @@
 import ExampleItemSettingsPanel from "../examples/item-settings-panel";
 
 const Example = () => (
-  <div className="flex min-h-dvh justify-center bg-surface-canvas p-6 text-foreground">
+  <div className="flex w-full min-w-0 justify-center bg-surface-canvas text-foreground">
     <ExampleItemSettingsPanel />
   </div>
 );

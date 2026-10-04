@@ -9,7 +9,11 @@ export const states = [
 ] as const;
 
 export function Canvas({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-dvh bg-surface-canvas p-8 text-sm text-foreground">{children}</div>;
+  return (
+    <div className="@container grid w-full min-w-0 place-items-center bg-surface-canvas text-sm text-foreground">
+      {children}
+    </div>
+  );
 }
 
 export const ladder = [

@@ -9,9 +9,9 @@ import { Canvas, control } from "../helpers";
 
 const Example = () => (
   <Canvas>
-    <div className="grid max-w-3xl gap-6">
+    <div className="grid w-full max-w-3xl gap-6">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="flex h-8 w-72 items-center gap-2 rounded-lg border surface-field px-2.5">
+        <div className="flex h-8 w-full max-w-72 items-center gap-2 rounded-lg border surface-field px-2.5">
           <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
           <span className="text-muted-foreground">Search repositories and people…</span>
         </div>
@@ -39,7 +39,7 @@ const Example = () => (
         </button>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid gap-4 @md:grid-cols-2">
         {[
           ["Tokens", "0", Coins01Icon],
           ["Total cost", "$0.00", SparklesIcon],

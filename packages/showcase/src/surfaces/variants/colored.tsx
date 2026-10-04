@@ -2,7 +2,7 @@ import { Canvas, coloredSurfaces, tagColors } from "../helpers";
 
 const Example = () => (
   <Canvas>
-    <div className="grid max-w-lg gap-4">
+    <div className="grid w-full max-w-lg gap-4">
       {coloredSurfaces.map(([color, fill, tint]) => (
         <div key={color} className="grid grid-cols-2 gap-4">
           <div className={`${fill} rounded-lg border p-3`}>{color} fill</div>
