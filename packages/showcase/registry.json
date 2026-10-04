@@ -10809,7 +10809,6 @@
         "@erbium-examples/input-group-icon",
         "@erbium-examples/input-group-text",
         "@erbium-examples/input-group-dropdown",
-        "@erbium-examples/input-group-spinner",
         "@erbium-examples/input-group-inline-start",
         "@erbium-examples/input-group-inline-end",
         "@erbium-examples/input-group-block-start",
@@ -10934,26 +10933,6 @@
       ]
     },
     {
-      "name": "input-group-spinner",
-      "type": "registry:block",
-      "title": "Input Group: Spinner",
-      "description": "Show progress inside an input group.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/spinner", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/input-group/examples/input-group-spinner.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/input-group/examples/input-group-spinner.tsx"
-        },
-        {
-          "path": "src/input-group/variants/spinner.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/input-group/variants/spinner.tsx"
-        }
-      ]
-    },
-    {
       "name": "input-group-stories",
       "type": "registry:item",
       "title": "Input Group stories",
@@ -10972,7 +10951,6 @@
         "@erbium/kbd",
         "@erbium/overlay-provider",
         "@erbium/popover",
-        "@erbium/spinner",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast"
@@ -11027,11 +11005,6 @@
           "path": "src/input-group/examples/input-group-kbd.tsx",
           "type": "registry:component",
           "target": "@components/showcase/input-group/examples/input-group-kbd.tsx"
-        },
-        {
-          "path": "src/input-group/examples/input-group-spinner.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/input-group/examples/input-group-spinner.tsx"
         },
         {
           "path": "src/input-group/examples/input-group-text.tsx",
@@ -11102,11 +11075,6 @@
           "path": "src/input-group/variants/playground.tsx",
           "type": "registry:component",
           "target": "@components/showcase/input-group/variants/playground.tsx"
-        },
-        {
-          "path": "src/input-group/variants/spinner.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/input-group/variants/spinner.tsx"
         },
         {
           "path": "src/input-group/variants/text.tsx",

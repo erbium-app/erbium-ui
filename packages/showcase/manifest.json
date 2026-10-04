@@ -2044,12 +2044,6 @@
         "source": "src/input-group/variants/dropdown.tsx"
       },
       {
-        "exportName": "Spinner",
-        "slug": "spinner",
-        "title": "Spinner",
-        "source": "src/input-group/variants/spinner.tsx"
-      },
-      {
         "exportName": "InlineStart",
         "slug": "inline-start",
         "title": "Inline Start",

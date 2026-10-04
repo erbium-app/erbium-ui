@@ -24,10 +24,6 @@ import DropdownExample from "./variants/dropdown";
 
 import DropdownSource from "./variants/dropdown.tsx?raw";
 
-import SpinnerExample from "./variants/spinner";
-
-import SpinnerSource from "./variants/spinner.tsx?raw";
-
 import InlineStartExample from "./variants/inline-start";
 
 import InlineStartSource from "./variants/inline-start.tsx?raw";
@@ -151,16 +147,6 @@ export const Dropdown: Story = {
     },
   },
   render: DropdownExample,
-};
-
-export const Spinner: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("input-group", "spinner") },
-      source: { code: SpinnerSource },
-    },
-  },
-  render: SpinnerExample,
 };
 
 export const InlineStart: Story = {

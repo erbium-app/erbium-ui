@@ -78,15 +78,17 @@ function Preview({ story }: { story: ShowcaseStory }) {
 export default function ComponentPreview({
   name,
   variant = "Overview",
+  loading,
 }: {
   name: string;
   variant?: string;
+  loading?: ReactNode;
 }) {
   const key = `${name}/${variant}`;
   return (
     <ShowcaseProviders>
       <PreviewErrorBoundary key={key}>
-        <Suspense fallback={<Spinner aria-label="Loading preview" />}>
+        <Suspense fallback={loading ?? <Spinner aria-label="Loading preview" />}>
           <LoadedPreview name={name} variant={variant} />
         </Suspense>
       </PreviewErrorBoundary>

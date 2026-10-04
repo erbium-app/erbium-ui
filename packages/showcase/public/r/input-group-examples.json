@@ -10,7 +10,6 @@
     "@erbium-examples/input-group-icon",
     "@erbium-examples/input-group-text",
     "@erbium-examples/input-group-dropdown",
-    "@erbium-examples/input-group-spinner",
     "@erbium-examples/input-group-inline-start",
     "@erbium-examples/input-group-inline-end",
     "@erbium-examples/input-group-block-start",

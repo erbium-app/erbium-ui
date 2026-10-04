@@ -6,7 +6,6 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 export const Icon = { ...showcases.Icon, name: "Icon" };
 export const Text = { ...showcases.Text, name: "Text" };
 export const Dropdown = { ...showcases.Dropdown, name: "Dropdown" };
-export const Spinner = { ...showcases.Spinner, name: "Spinner" };
 export const InlineStart = { ...showcases.InlineStart, name: "Inline Start" };
 export const InlineEnd = { ...showcases.InlineEnd, name: "Inline End" };
 export const BlockStart = { ...showcases.BlockStart, name: "Block Start" };

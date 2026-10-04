@@ -10,6 +10,7 @@ import Button from "./ui/Button.astro";
 import ShowcaseThemeToggle from "./ShowcaseThemeToggle.astro";
 import CopyButton from "./CopyButton.astro";
 import ComponentPreview from "./ComponentPreview.tsx";
+import Spinner from "./ui/Spinner.astro";
 interface Props {
   name: string;
   variant: string;
@@ -75,7 +76,9 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
         <ShowcaseThemeToggle />
       </div>
       <div class="showcase-content" data-showcase-content>
-        <ComponentPreview name={name} variant={variant} client:visible />
+        <ComponentPreview name={name} variant={variant} client:visible>
+          <Spinner slot="loading" aria-label="Loading preview" />
+        </ComponentPreview>
       </div>
     </div>
     <div
