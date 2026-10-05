@@ -5,7 +5,7 @@ description: "A content row with media and actions."
 
 ## Usage
 
-Compose content rows with media, a title, a description, and actions.
+Compose content rows with media, a title, a description, and actions. Use the default variant for flat rows or `variant="card"` for standalone cards.
 
 **Import:** `@erbium/ui/components/item`
 

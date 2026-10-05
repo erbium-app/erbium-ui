@@ -78,7 +78,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{
-  variant: "default" | "outline" | "muted";
+  variant: "default" | "card";
   size: "default" | "sm" | "xs";
   mediaVariant: "default" | "icon" | "image";
   asLink: boolean;
@@ -92,7 +92,7 @@ export const Playground: StoryObj<{
     className: "",
   },
   argTypes: {
-    variant: { control: "select", options: ["default", "outline", "muted"] },
+    variant: { control: "select", options: ["default", "card"] },
     size: { control: "select", options: ["default", "sm", "xs"] },
     mediaVariant: { control: "select", options: ["default", "icon", "image"] },
     asLink: { control: "boolean" },

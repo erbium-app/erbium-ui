@@ -27,7 +27,7 @@ export default function ItemLink() {
         }
       />
       <Item
-        variant="outline"
+        variant="card"
         render={
           <a href="#" target="_blank" rel="noopener noreferrer">
             <ItemContent>

@@ -15,7 +15,7 @@ import {
 export default function ItemDemo() {
   return (
     <div className="flex w-full max-w-md flex-col gap-6">
-      <Item variant="outline">
+      <Item variant="card">
         <ItemContent>
           <ItemTitle>Basic Item</ItemTitle>
           <ItemDescription>A simple item with title and description.</ItemDescription>
@@ -27,7 +27,7 @@ export default function ItemDemo() {
         </ItemActions>
       </Item>
       <Item
-        variant="outline"
+        variant="card"
         size="sm"
         render={
           <a href="#">

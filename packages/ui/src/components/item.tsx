@@ -59,8 +59,7 @@ const itemVariants = cva(
     variants: {
       variant: {
         default: "surface-flat",
-        outline: "surface-panel text-card-foreground",
-        muted: "surface-frame",
+        card: "surface-panel text-card-foreground",
       },
       size: {
         default: "gap-2.5 px-3 py-2.5",

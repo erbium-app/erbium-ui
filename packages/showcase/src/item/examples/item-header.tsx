@@ -36,7 +36,7 @@ export function ItemHeaderDemo() {
     <div className="flex w-full max-w-xl flex-col gap-6">
       <ItemGroup className="grid grid-cols-3 gap-4">
         {models.map((model) => (
-          <Item key={model.name} variant="outline">
+          <Item key={model.name} variant="card">
             <ItemHeader>
               <img
                 src={model.image}

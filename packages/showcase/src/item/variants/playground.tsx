@@ -4,7 +4,7 @@ import { ItemContent, ItemTitle, ItemDescription, ItemMedia } from "@erbium/ui/c
 import { Item } from "@erbium/ui/components/item";
 
 const Example = (args: {
-  variant: "default" | "outline" | "muted";
+  variant: "default" | "card";
   size: "default" | "sm" | "xs";
   mediaVariant: "default" | "icon" | "image";
   asLink: boolean;

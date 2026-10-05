@@ -21,21 +21,10 @@ export default function ItemVariant() {
           </Button>
         </ItemActions>
       </Item>
-      <Item variant="outline">
+      <Item variant="card">
         <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
+          <ItemTitle>Card Variant</ItemTitle>
           <ItemDescription>Raised panel styling with a subtle edge and shadow.</ItemDescription>
-        </ItemContent>
-        <ItemActions>
-          <Button variant="outline" size="sm">
-            Open
-          </Button>
-        </ItemActions>
-      </Item>
-      <Item variant="muted">
-        <ItemContent>
-          <ItemTitle>Muted Variant</ItemTitle>
-          <ItemDescription>A softer panel surface for secondary content.</ItemDescription>
         </ItemContent>
         <ItemActions>
           <Button variant="outline" size="sm">

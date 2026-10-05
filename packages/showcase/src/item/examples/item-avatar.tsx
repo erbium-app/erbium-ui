@@ -15,7 +15,7 @@ import {
 export default function ItemAvatar() {
   return (
     <div className="flex w-full max-w-lg flex-col gap-6">
-      <Item variant="outline">
+      <Item variant="card">
         <ItemMedia>
           <Avatar className="size-10">
             <AvatarImage
@@ -35,7 +35,7 @@ export default function ItemAvatar() {
           </Button>
         </ItemActions>
       </Item>
-      <Item variant="outline">
+      <Item variant="card">
         <ItemMedia>
           <div className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">
             <Avatar className="hidden sm:flex">

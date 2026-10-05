@@ -3,14 +3,14 @@
   "name": "item-variant",
   "type": "registry:block",
   "title": "Item: Variant",
-  "description": "Use the `variant` prop to change the visual style of the item.",
+  "description": "Use `variant=\"default\"` for a flat row that inherits its surrounding surface, or `variant=\"card\"` for a raised card surface with a subtle edge and shadow.",
   "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
   "files": [
     {
       "path": "src/item/examples/item-variant.tsx",
       "type": "registry:component",
       "target": "@components/showcase/item/examples/item-variant.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemVariant() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <Item>\n        <ItemContent>\n          <ItemTitle>Default Variant</ItemTitle>\n          <ItemDescription>Flat styling that inherits its surrounding surface.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant=\"outline\">\n        <ItemContent>\n          <ItemTitle>Outline Variant</ItemTitle>\n          <ItemDescription>Raised panel styling with a subtle edge and shadow.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant=\"muted\">\n        <ItemContent>\n          <ItemTitle>Muted Variant</ItemTitle>\n          <ItemDescription>A softer panel surface for secondary content.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  );\n}\n"
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemVariant() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <Item>\n        <ItemContent>\n          <ItemTitle>Default Variant</ItemTitle>\n          <ItemDescription>Flat styling that inherits its surrounding surface.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant=\"card\">\n        <ItemContent>\n          <ItemTitle>Card Variant</ItemTitle>\n          <ItemDescription>Raised panel styling with a subtle edge and shadow.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/item/variants/variant.tsx",
