@@ -1,19 +1,17 @@
 ---
-import Separator from "../ui/Separator.astro";
-import SidebarContent from "../ui/sidebar/SidebarContent.astro";
-import SidebarGroup from "../ui/sidebar/SidebarGroup.astro";
-import SidebarGroupLabel from "../ui/sidebar/SidebarGroupLabel.astro";
-import SidebarGroupContent from "../ui/sidebar/SidebarGroupContent.astro";
-import SidebarMenu from "../ui/sidebar/SidebarMenu.astro";
-import SidebarMenuItem from "../ui/sidebar/SidebarMenuItem.astro";
-import SidebarMenuButton from "../ui/sidebar/SidebarMenuButton.astro";
-import { navigationGroups } from "../../data/components";
-interface Props { persist?: string; }
-const { persist } = Astro.props;
+import Separator from "../primitives/Separator.astro";
+import SidebarContent from "../primitives/sidebar/SidebarContent.astro";
+import SidebarGroup from "../primitives/sidebar/SidebarGroup.astro";
+import SidebarGroupLabel from "../primitives/sidebar/SidebarGroupLabel.astro";
+import SidebarGroupContent from "../primitives/sidebar/SidebarGroupContent.astro";
+import SidebarMenu from "../primitives/sidebar/SidebarMenu.astro";
+import SidebarMenuItem from "../primitives/sidebar/SidebarMenuItem.astro";
+import SidebarMenuButton from "../primitives/sidebar/SidebarMenuButton.astro";
+import { navigationGroups } from "../../content/catalog";
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
-<SidebarContent class="docs-sidebar-content [scrollbar-gutter:stable] [scrollbar-width:thin] [scrollbar-color:color-mix(in_srgb,_var(--muted-foreground)_35%,_transparent)_transparent] pe-[0.7rem] pb-8" transition:persist={persist}>
+<SidebarContent class="docs-sidebar-content [scrollbar-gutter:stable] [scrollbar-width:thin] [scrollbar-color:color-mix(in_srgb,_var(--muted-foreground)_35%,_transparent)_transparent] pe-[0.7rem] pb-8">
   <nav aria-label="Documentation">
     {
       navigationGroups.map((group, index) => (
@@ -53,46 +51,3 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     }
   </nav>
 </SidebarContent>
-
-<script>
-  const sidebarContent = () => document.querySelector<HTMLElement>(
-    ".docs-sidebar .docs-sidebar-content",
-  );
-  const revealActive = () => {
-    const sidebar = sidebarContent();
-    const active = sidebar?.querySelector<HTMLElement>('[aria-current="page"]');
-    if (!sidebar || !active || sidebar.clientHeight === 0) return;
-    const viewport = sidebar.getBoundingClientRect();
-    const bounds = active.getBoundingClientRect();
-    if (bounds.top < viewport.top) sidebar.scrollTop += bounds.top - viewport.top;
-    else if (bounds.bottom > viewport.bottom) sidebar.scrollTop += bounds.bottom - viewport.bottom;
-  };
-  let sidebarScrollTop = 0;
-  let sidebarNavigation = false;
-  document.addEventListener("astro:before-preparation", (event) => {
-    sidebarNavigation = event.sourceElement instanceof Element &&
-      Boolean(event.sourceElement.closest(".docs-sidebar .docs-sidebar-content"));
-  });
-  document.addEventListener("astro:before-swap", () => {
-    sidebarScrollTop = document.querySelector<HTMLElement>(
-      ".docs-sidebar .docs-sidebar-content",
-    )?.scrollTop ?? 0;
-  });
-  // Astro restores focus to persisted links during the swap, which can scroll
-  // their container. Restore the offset after that focus step, before paint.
-  document.addEventListener("astro:after-swap", () => {
-    const sidebar = document.querySelector<HTMLElement>(
-      ".docs-sidebar .docs-sidebar-content",
-    );
-    if (sidebar) sidebar.scrollTop = sidebarScrollTop;
-    const pathname = window.location.pathname.replace(/\/$/, "") || "/";
-    for (const link of document.querySelectorAll<HTMLAnchorElement>(".docs-nav-link")) {
-      const active = link.pathname === pathname;
-      link.toggleAttribute("data-active", active);
-      if (active) link.setAttribute("aria-current", "page");
-      else link.removeAttribute("aria-current");
-    }
-    if (!sidebarNavigation) revealActive();
-  });
-  revealActive();
-</script>

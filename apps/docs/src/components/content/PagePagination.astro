@@ -1,0 +1,33 @@
+---
+import Button from "../primitives/Button.astro";
+import Icon from "../primitives/Icon.astro";
+import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
+interface Entry { href: string; title: string; }
+interface Props { previous?: Entry; next?: Entry; }
+const { previous, next } = Astro.props;
+---
+  <nav aria-label="Adjacent documentation pages" class="page-pagination grid grid-cols-2 gap-4 mt-12 carve-top pt-6 [&_.pagination-button]:h-auto [&_.pagination-button]:min-w-0 [&_.pagination-button]:items-start [&_.pagination-button]:p-[0.85rem_1rem] [&_.pagination-button]:whitespace-normal [&_.pagination-button]:flex [&_.pagination-button]:flex-col [&_.pagination-button]:gap-1 [&_.pagination-button]:[font-size:0.8125rem] [&_.pagination-button:last-child]:items-end [&_.pagination-button:last-child]:text-end [&_a:last-child_.pagination-label]:justify-end [&_span]:text-muted-foreground [&_span]:[font-size:0.7rem] [&_a:hover_strong]:text-link [&_a:focus-visible]:[outline:2px_solid_var(--ring)] [&_a:focus-visible]:[outline-offset:3px]">
+    {
+      previous ? (
+        <Button data-astro-prefetch="hover" href={previous.href} variant="outline" class="pagination-button" aria-label={`Previous: ${previous.title}`}>
+          <>
+            <span class="pagination-label flex items-center gap-[0.35rem]"><Icon icon={ArrowLeft01Icon} size={14} class="rtl:rotate-180" /> Previous</span>
+            <strong>{previous.title}</strong>
+          </>
+        </Button>
+      ) : (
+        <span />
+      )
+    }
+    {
+      next && (
+        <Button data-astro-prefetch="hover" href={next.href} variant="outline" class="pagination-button" aria-label={`Next: ${next.title}`}>
+          <>
+            <span class="pagination-label flex items-center gap-[0.35rem]">Next <Icon icon={ArrowRight01Icon} size={14} class="rtl:rotate-180" /></span>
+            <strong>{next.title}</strong>
+          </>
+        </Button>
+      )
+    }
+  </nav>

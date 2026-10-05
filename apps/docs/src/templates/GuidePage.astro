@@ -1,0 +1,16 @@
+---
+import DocsLayout from "../layouts/DocsLayout.astro";
+import PageHeader from "../components/content/PageHeader.astro";
+interface Props {
+  title: string;
+  description?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+  previous?: { title: string; href: string };
+  next?: { title: string; href: string };
+}
+const { previous, next, ...page } = Astro.props;
+---
+<DocsLayout {...page}>
+  <PageHeader title={page.title} description={page.description} previous={previous} next={next} />
+  <slot />
+</DocsLayout>

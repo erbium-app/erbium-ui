@@ -1,15 +1,14 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
+import DocumentLayout from "../layouts/DocumentLayout.astro";
 import Brand from "../components/shell/Brand.astro";
 import ThemeToggle from "../components/shell/ThemeToggle.astro";
-import Button from "../components/ui/Button.astro";
+import Button from "../components/primitives/Button.astro";
 ---
 
-<SiteLayout
+<DocumentLayout
   title="Page not found"
   description="This documentation page could not be found."
   indexable={false}
-  shell="standalone"
 >
   <div class="min-h-svh flex flex-col">
     <header class="flex items-center justify-between px-[clamp(1.25rem,4vw,4rem)] py-6">
@@ -31,4 +30,4 @@ import Button from "../components/ui/Button.astro";
       </div>
     </main>
   </div>
-</SiteLayout>
+</DocumentLayout>

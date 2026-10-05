@@ -1,0 +1,62 @@
+---
+import Separator from "../primitives/Separator.astro";
+import CopyButton from "../../features/code/CopyButton.astro";
+import { markdownPath } from "../../build/agent/artifacts";
+import Button from "../primitives/Button.astro";
+import Icon from "../primitives/Icon.astro";
+import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
+interface Props {
+  title: string;
+  description?: string;
+  previous?: { title: string; href: string };
+  next?: { title: string; href: string };
+}
+const { title, description, previous, next } = Astro.props;
+---
+
+<header class="page-header mb-4 [&_h1]:min-w-0 [&_h1]:wrap-anywhere [&_h1]:m-0 [&_h1]:text-foreground [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-[1.2] [&_h1]:tracking-[normal] min-[1280px]:[&_h1]:text-4xl min-[1280px]:[&_h1]:leading-[1.1111] [&_+_.demo-section]:mt-4">
+  <div class="page-header-top flex justify-between items-center gap-4">
+    <h1>{title}</h1>
+    <div class="page-neighbors shrink-0 flex gap-[0.35rem]">
+      {
+        previous && (
+          <Button
+            href={previous.href}
+            data-astro-prefetch="viewport"
+            variant="outline"
+            size="icon-sm"
+            aria-label={`Previous: ${previous.title}`}
+            title={previous.title}
+          >
+            <Icon icon={ArrowLeft01Icon} />
+          </Button>
+        )
+      }{
+        next && (
+          <Button
+            href={next.href}
+            data-astro-prefetch="viewport"
+            variant="outline"
+            size="icon-sm"
+            aria-label={`Next: ${next.title}`}
+            title={next.title}
+          >
+            <Icon icon={ArrowRight01Icon} />
+          </Button>
+        )
+      }
+    </div>
+  </div>
+  {description && <p class="page-description [text-wrap-style:pretty] max-w-168 mt-[0.65rem] text-lg leading-[1.5556] text-muted-foreground max-[560px]:[font-size:0.9375rem]">{description}</p>}
+  <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] [&:empty]:hidden">
+    <slot />
+    <CopyButton
+      url={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")}
+      text="Copy Markdown"
+      label="Copy page as Markdown"
+      variant="outline"
+    />
+  </div>
+  <Separator class="page-header-separator mt-6" variant="full" decorative />
+</header>

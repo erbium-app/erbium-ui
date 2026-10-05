@@ -1,6 +1,6 @@
 import type { APIRoute, GetStaticPaths } from "astro";
-import { createOgImage } from "../../lib/og-image";
-import { ogPages, type OgPage } from "../../lib/og-pages";
+import { createOgImage } from "../../build/seo/og-image";
+import { ogPages, type OgPage } from "../../build/seo/og-pages";
 
 export const prerender = true;
 

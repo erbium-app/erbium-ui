@@ -1,0 +1,27 @@
+---
+import { codeBlockStyles } from "../../styles/content";
+import { highlightSource, highlightColorSource } from "../../build/markdown/highlight";
+
+interface Props {
+  source: string;
+  path: string;
+  colorSwatches?: boolean;
+  appearance?: "light" | "dark";
+}
+const { source, path, colorSwatches = false, appearance } = Astro.props;
+---
+
+<docs-code-block
+  class={codeBlockStyles}
+  data-code-appearance={appearance}
+  data-copy-label={`Copy ${path.replace(/^src\//, "")}`}
+>
+  <pre
+    class="th-code">
+    <code set:html={colorSwatches ? highlightColorSource(source) : highlightSource(source, path)} />
+  </pre>
+</docs-code-block>
+
+<script>
+  import "./code-block.client";
+</script>

@@ -1,6 +1,7 @@
 ---
-import SiteLayout from "./SiteLayout.astro";
-import TableOfContents from "../components/TableOfContents.astro";
+import DocumentLayout from "./DocumentLayout.astro";
+import DocsShell from "../components/shell/DocsShell.astro";
+import TableOfContents from "../components/content/TableOfContents.astro";
 interface Props {
   title?: string;
   description?: string;
@@ -9,7 +10,8 @@ interface Props {
 const { headings = [], ...siteProps } = Astro.props;
 ---
 
-<SiteLayout {...siteProps}>
+<DocumentLayout {...siteProps}>
+  <DocsShell>
     <div class="docs-page-frame min-w-0 my-[var(--site-section-space)]">
       <main id="main-content" tabindex="-1" class="docs-page surface-panel border border-transparent min-w-0 rounded-xl p-[var(--docs-page-padding-start)_var(--docs-page-padding-inline)_var(--docs-page-padding-end)] max-[959px]:bg-transparent max-[959px]:shadow-none max-[959px]:border-0 max-[959px]:rounded-none">
         <div class="docs-page-body min-w-0 grid [grid-template-columns:minmax(0,_1fr)_11rem] items-start gap-12 [&_>_.docs-page-inner]:[grid-column:1] [&_>_.docs-page-inner]:[grid-row:1] max-[1200px]:flex max-[1200px]:flex-col max-[1200px]:gap-6">
@@ -18,4 +20,5 @@ const { headings = [], ...siteProps } = Astro.props;
         </div>
       </main>
     </div>
-</SiteLayout>
+  </DocsShell>
+</DocumentLayout>

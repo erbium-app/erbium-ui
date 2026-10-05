@@ -1,0 +1,78 @@
+---
+import Prose from "../components/content/Prose.astro";
+import PagePagination from "../components/content/PagePagination.astro";
+import { referencePage } from "../content/reference-page";
+import Icon from "../components/primitives/Icon.astro";
+import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
+import DocsLayout from "../layouts/DocsLayout.astro";
+import PageHeader from "../components/content/PageHeader.astro";
+import Showcase from "../features/showcase/Showcase.astro";
+import ShowcaseToaster from "../features/showcase/ShowcaseToaster.tsx";
+import Button from "../components/primitives/Button.astro";
+interface Props {
+  name: string;
+}
+const { name } = Astro.props;
+const { component, reference, Content, frontmatter, repeatedSummary, lead, remaining, headings, showcaseAnchor, neighbors, index } = referencePage(name);
+---
+
+<DocsLayout title={component.title} description={frontmatter.description} headings={headings}>
+  <PageHeader
+    title={component.title}
+    description={frontmatter.description}
+    previous={neighbors[index - 1]}
+    next={neighbors[index + 1]}
+  >
+    {
+      component.files?.[0] && (
+        <Button
+          href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="outline"
+          size="xs"
+        >
+          View source <Icon icon={ArrowUpRight01Icon} size={14} />
+        </Button>
+      )
+    }
+  </PageHeader>
+  <Showcase
+    name={name}
+    separator={false}
+    variant={lead.exportName}
+    slug={lead.slug}
+    anchorId={showcaseAnchor(lead.slug)}
+    title={lead.title}
+    source={lead.source}
+    files={lead.files}><lead.Content /></Showcase
+  >
+  <Prose
+    class="component-documentation [&[data-repeated-summary]_>_p:first-child]:hidden"
+    data-repeated-summary={repeatedSummary ? "" : undefined}
+  >
+    <Content />
+  </Prose>
+  {
+    remaining.map((variant) => (
+      <Showcase
+        name={name}
+        variant={variant.exportName}
+        slug={variant.slug}
+        anchorId={showcaseAnchor(variant.slug)}
+        title={variant.title}
+        source={variant.source}
+        files={variant.files}
+      >
+        <variant.Content />
+      </Showcase>
+    ))
+  }
+  {name === "toast" && <ShowcaseToaster client:load />}
+  {reference && <section class="component-reference mt-8 text-sm [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mb-4 [&_p]:mb-4" aria-labelledby="component-reference-title">
+    <h2 id="component-reference-title">{reference.title}</h2>
+    <p>{reference.description}</p>
+    <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] [&:empty]:hidden">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>
+  </section>}
+  <PagePagination previous={neighbors[index - 1]} next={neighbors[index + 1]} />
+</DocsLayout>

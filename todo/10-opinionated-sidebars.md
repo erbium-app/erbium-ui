@@ -26,7 +26,7 @@ Current source:
 
 - `packages/ui/src/components/sidebar.tsx`
 - `packages/ui/src/lib/sidebar-styles.ts`
-- `apps/docs/src/components/ui/sidebar/`
+- `apps/docs/src/components/primitives/sidebar/`
 - `apps/docs/src/components/shell/DocsNavigation.astro`
 - `apps/docs/src/styles/docs.css`
 

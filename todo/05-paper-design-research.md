@@ -33,7 +33,7 @@ Sources: [Paper changelog](https://paper.design/build-log), [roadmap](https://pa
 - `packages/showcase/src/<component>/catalog.tsx` owns live example definitions. The Button catalog already includes sizes, variants, disabled, and loading examples.
 - `packages/showcase/scripts/generate.mjs` generates the showcase manifest and Storybook adapters.
 - `packages/content/components` owns the written component and example documentation.
-- `apps/docs/src/data/components.ts` joins the showcase manifest, registry, and content into documentation entries.
+- `apps/docs/src/content/catalog.ts` joins the showcase manifest, registry, and content into documentation entries.
 
 Extend this existing pipeline. Do not create independent copies of component examples for Paper, docs, and Storybook, or hand-edit generated manifests.
 

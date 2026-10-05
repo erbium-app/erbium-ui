@@ -1,6 +1,6 @@
 ---
-import { components } from "../../../data/components";
-import ComponentPage from "../../../components/ComponentPage.astro";
+import { components } from "../../../content/catalog";
+import ComponentPage from "../../../templates/ReferencePage.astro";
 export function getStaticPaths() { return components.filter((component) => component.kind === "utility").map((component) => ({ params: { name: component.name } })); }
 const { name } = Astro.params;
 ---

@@ -1,5 +1,12 @@
 import type { APIRoute } from "astro";
-import { agentPages, llmsFull, llmsIndex, markdownPath, pageIndex, site } from "../lib/agent-pages";
+import {
+  agentPages,
+  llmsFull,
+  llmsIndex,
+  markdownPath,
+  pageIndex,
+  site,
+} from "../build/agent/artifacts";
 
 const json = (value: unknown) => JSON.stringify(value, null, 2);
 const artifacts = [
