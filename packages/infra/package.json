@@ -8,9 +8,6 @@
     "deploy": "alchemy deploy --stage prod --profile default",
     "deploy:ci": "alchemy deploy --stage prod --profile default --yes --no-input",
     "destroy": "alchemy destroy --stage prod --profile default",
-    "builds:plan": "alchemy plan builds.run.ts --stage prod --profile default",
-    "builds:deploy": "alchemy deploy builds.run.ts --stage prod --profile default",
-    "builds:destroy": "alchemy destroy builds.run.ts --stage prod --profile default",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {

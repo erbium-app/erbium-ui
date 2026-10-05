@@ -18,8 +18,8 @@ Run commands from the repository root:
 
 ```sh
 bun install
-bun run infra:profile --add Cloudflare
-bun run infra:plan
+bun run infra profile --add Cloudflare
+bun run infra plan
 bun run deploy
 ```
 
@@ -40,7 +40,7 @@ DNS Edit). See [Cloudflare setup](https://alchemy.run/cloudflare/setup/) and
 
 State is stored in Cloudflare through `Cloudflare.state()` so local and CI runs
 share the same production stack state. To remove the production deployment and
-its managed resources explicitly, run `bun run infra:destroy`.
+its managed resources explicitly, run `bun run infra destroy`.
 
 ## Astro assets
 
@@ -116,16 +116,13 @@ Set `BUN_VERSION=1.4.2`, `NODE_VERSION=26.10.0`, and
 `CLOUDFLARE_API_TOKEN` with the deployment permissions above. Do not provide a
 token-admin credential to the build runner.
 
-The separate `ErbiumUIBuilds` stack in `builds.run.ts` defines the deployment
-token, build-token registration, main-branch trigger and build environment through
-project-local Alchemy providers. The pinned Alchemy release has no built-in
-Workers Builds resource. Use `bun run infra:builds:plan` to review it and
-`bun run infra:builds:deploy` to provision it. Provisioning requires credentials
-that can create user API tokens; the current OAuth profile cannot perform that
-operation. The dedicated bootstrap-token integration still needs completion
-before this stack can be applied. Merely pushing these definitions does not
-provision the CI resources.
+The Git connection, build trigger and build variables are managed in the Cloudflare
+dashboard. Alchemy owns the production Worker, domain, analytics and shared remote
+state through `alchemy.run.ts`. Updating this repository does not change dashboard
+build settings. No custom Workers Builds providers or token-admin credential are
+needed for this pipeline.
 
-`bun run infra:builds:destroy` removes the managed build trigger and tokens;
-`bun run infra:destroy` removes the production docs deployment. The stacks share
-Cloudflare state storage but have separate resource ownership.
+Use `bun run infra <command>` for infrastructure operations: `profile`, `plan`,
+`deploy`, `deploy:ci`, `typecheck` or `destroy`. The root `deploy` and `deploy:ci`
+shortcuts remain available. `bun run infra destroy` removes the production docs
+resources; manage the Git connection separately in Cloudflare.

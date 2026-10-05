@@ -63,15 +63,9 @@
   },
   "type": "module",
   "scripts": {
-    "infra:profile": "vp run --filter ./packages/infra --fail-if-no-match profile",
-    "infra:plan": "vp run --filter ./packages/infra --fail-if-no-match plan",
-    "deploy": "vp run --filter ./packages/infra --fail-if-no-match deploy",
-    "deploy:ci": "vp run --filter ./packages/infra --fail-if-no-match deploy:ci",
-    "infra:destroy": "vp run --filter ./packages/infra --fail-if-no-match destroy",
-    "infra:typecheck": "vp run --filter ./packages/infra --fail-if-no-match typecheck",
-    "infra:builds:plan": "vp run --filter ./packages/infra --fail-if-no-match builds:plan",
-    "infra:builds:deploy": "vp run --filter ./packages/infra --fail-if-no-match builds:deploy",
-    "infra:builds:destroy": "vp run --filter ./packages/infra --fail-if-no-match builds:destroy",
+    "deploy": "bun run infra deploy",
+    "deploy:ci": "bun run infra deploy:ci",
+    "infra:typecheck": "bun run infra typecheck",
     "dev": "vp run --parallel --filter './apps/*' dev",
     "docs": "vp run --filter ./apps/docs --fail-if-no-match dev",
     "docs:build": "vp run --filter ./apps/docs --fail-if-no-match build",
@@ -111,7 +105,8 @@
     "showcase:generate": "vp run --filter ./packages/showcase --fail-if-no-match generate",
     "showcase:registry": "vp run --filter ./packages/showcase --fail-if-no-match registry:build",
     "intent:list": "intent list",
-    "build:cached": "vp run -r --cache build"
+    "build:cached": "vp run -r --cache build",
+    "infra": "bun run --cwd packages/infra"
   },
   "devDependencies": {
     "@intellectronica/ruler": "0.3.44",
