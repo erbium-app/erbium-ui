@@ -61,7 +61,7 @@ export default Alchemy.Stack(
       name: "Erbium UI docs main",
       tokenUuid: buildToken.uuid,
       apiToken: token.value,
-      buildCommand: "bun install --frozen-lockfile && bun run build:docs",
+      buildCommand: "bun install --frozen-lockfile",
       deployCommand: "bun run deploy:ci",
       bunVersion: "1.4.2",
       nodeVersion: readFileSync(new URL("../../.node-version", import.meta.url), "utf8").trim(),

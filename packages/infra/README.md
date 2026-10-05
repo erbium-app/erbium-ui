@@ -98,14 +98,14 @@ and [RUM beacon](https://developers.cloudflare.com/speed/observatory/rum-beacon/
 
 ## Workers Builds
 
-Cloudflare Workers Builds runs installation, checks and deployment remotely for
+Cloudflare Workers Builds runs installation and deployment remotely for
 pushes to `main`. Connect `erbium-app/erbium-ui` to the existing docs Worker in
 **Settings > Builds** and authorize the Cloudflare GitHub App for that repository.
 Use root directory `/` and these commands:
 
 ```sh
 # Build command
-bun install --frozen-lockfile && bun run check && bun run infra:typecheck
+bun install --frozen-lockfile
 
 # Deploy command (Alchemy builds Astro and deploys it)
 bun run deploy:ci
