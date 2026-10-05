@@ -6386,7 +6386,7 @@
       "type": "registry:item",
       "title": "Checkbox stories",
       "description": "All checkbox variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/checkbox",
@@ -6564,7 +6564,7 @@
       "type": "registry:block",
       "title": "Checkbox: Table",
       "description": "Click a checkbox to toggle one row, or drag across rows to select or clear a range. The header checkbox reflects partial selection and selects all rows.",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/styles",
@@ -21071,7 +21071,7 @@
       "dependencies": [
         "@hugeicons/core-free-icons@^4.3.5",
         "@hugeicons/react@^1.1.10",
-        "@tanstack/react-table@9.2.5"
+        "@tanstack/react-table@9.2.6"
       ],
       "registryDependencies": [
         "@erbium/button",
@@ -21100,7 +21100,7 @@
       "type": "registry:component",
       "title": "table demo",
       "description": "Erbium table demo example.",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21130,7 +21130,7 @@
       "type": "registry:block",
       "title": "Table: Footer",
       "description": "Define `footer` on a column and render `getFooterGroups()` inside `<TableFooter />`. The total is computed from the row model, so it stays correct as rows change.",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21152,7 +21152,7 @@
       "type": "registry:block",
       "title": "Table: Overview",
       "description": "",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21174,7 +21174,7 @@
       "type": "registry:block",
       "title": "Table: Playground",
       "description": "",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": ["@erbium/styles", "@erbium/table"],
       "files": [
         {
@@ -21196,7 +21196,7 @@
       "type": "registry:block",
       "title": "Table: Row Selection",
       "description": "Register `rowSelectionFeature` and add a display column of checkboxes. Click a row checkbox or drag across rows to select or clear a range. Selected `TableRow` elements use `data-state=selected`, and the header checkbox reflects partial or full selection.",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/styles",
@@ -21223,7 +21223,7 @@
       "type": "registry:block",
       "title": "Table: RTL",
       "description": "Set `dir=\"rtl\"` on the table. Columns use logical classes such as `text-end`, so alignment follows the reading direction.",
-      "dependencies": ["@tanstack/react-table@9.2.5"],
+      "dependencies": ["@tanstack/react-table@9.2.6"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21248,7 +21248,7 @@
       "dependencies": [
         "@hugeicons/core-free-icons@^4.3.5",
         "@hugeicons/react@^1.1.10",
-        "@tanstack/react-table@9.2.5"
+        "@tanstack/react-table@9.2.6"
       ],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [

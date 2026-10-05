@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Checkbox: Table",
   "description": "Click a checkbox to toggle one row, or drag across rows to select or clear a range. The header checkbox reflects partial selection and selects all rows.",
-  "dependencies": ["@tanstack/react-table@9.2.5"],
+  "dependencies": ["@tanstack/react-table@9.2.6"],
   "registryDependencies": [
     "@erbium/checkbox",
     "@erbium/styles",
