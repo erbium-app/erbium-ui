@@ -15,3 +15,9 @@ These adapters do not implement React's `render` prop, context, or event-handler
 `Table`, `TableHeader`, `TableBody`, `TableRow`, `TableHead`, `TableCell`, and `TableCaption` use the same slots and composition as the React table. Pass native attributes such as `scope` and accessible names.
 
 `ShowcaseControls` composes these adapters into a server-rendered playground API table. It lists every declared argument/control, including read-only and callback rows. Example defaults and types come from the catalog; this is not an exhaustive reflection of the underlying component's TypeScript API. The component reference links remain authoritative for that API. A scoped `showcase-controls` element validates and publishes native control values to its own React preview. Reset restores both the form and preview state.
+
+## Styling
+
+The docs use Tailwind v4 through `@tailwindcss/vite` in `astro.config.mjs`. `src/styles/docs.css` imports `@erbium/ui/globals.css`, so fonts, semantic colors, surfaces, carved rules, and variants come from the shared library. Explicit `@source` entries include the docs and workspace showcase files. Keep complete utility names in source so Tailwind can detect them.
+
+Use Tailwind utilities in Astro `class` attributes, `class:list` for arrays, and `cn` when merging adapter classes. Repeated prose and code-block utilities live in `src/lib/docs-styles.ts`; the Markdown rehype plugin uses the same code-block recipe as the Astro component. Keep CSS limited to global browser behavior and runtime theme or syntax values.

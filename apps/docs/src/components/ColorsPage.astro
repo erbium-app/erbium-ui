@@ -1,4 +1,5 @@
 ---
+import { proseStyles } from "../lib/docs-styles";
 import { componentDocuments } from "@erbium/content/documents";
 import theme from "../../../../packages/ui/src/styles/theme.css?raw";
 import surfaces from "../../../../packages/ui/src/styles/surfaces.css?raw";
@@ -29,9 +30,9 @@ const headings = [...await page.getHeadings(), ...examples.map(({ id, title }) =
 ---
 <DocsLayout title="Colors" description={frontmatter.description} headings={headings}>
   <PageHeader title="Colors" description={frontmatter.description} next={{ title: "Surfaces", href: "/docs/foundations/surfaces" }} />
-  <article class="markdown-copy component-documentation"><Content /></article>
+  <article class:list={[proseStyles, 'component-documentation [&[data-repeated-summary]_>_p:first-child]:hidden']}><Content /></article>
   <style is:inline set:html={colorPreviewThemeCss + "\n" + colorPreviewSyntaxThemeCss} />
-  {examples.map(({ id, title, source, appearance }) => <section class="markdown-copy" aria-labelledby={id}>
+  {examples.map(({ id, title, source, appearance }) => <section class={proseStyles} aria-labelledby={id}>
     <h2 id={id}>{title}</h2>
     <CodeBlock source={source} path={`${id}.css`} appearance={appearance} colorSwatches />
   </section>)}

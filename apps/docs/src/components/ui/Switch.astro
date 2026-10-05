@@ -4,9 +4,9 @@ import { cn } from "@erbium/ui/lib/utils";
 type Props = Omit<HTMLAttributes<"input">, "size" | "type"> & { defaultChecked?: boolean; readOnly?: boolean; size?: "sm" | "default" };
 const { class: className, checked, defaultChecked, readOnly, readonly, size = "default", ...props } = Astro.props;
 ---
-<span class={cn("astro-switch", className)} data-size={size}>
-  <input type="checkbox" role="switch" data-slot="switch" checked={checked ?? defaultChecked} readonly={readOnly || readonly} {...props} />
-  <span class="astro-switch-track" aria-hidden="true"><span data-slot="switch-thumb" /></span>
+<span class={cn("astro-switch group/switch relative inline-flex h-4.5 w-8 shrink-0 data-[size=sm]:h-3.5 data-[size=sm]:w-6", className)} data-size={size}>
+  <input class="peer absolute inset-0 z-1 m-0 size-full cursor-pointer opacity-0 disabled:cursor-not-allowed" type="checkbox" role="switch" data-slot="switch" checked={checked ?? defaultChecked} readonly={readOnly || readonly} {...props} />
+  <span class="flex w-full items-center rounded-full border border-transparent bg-input px-px transition-colors peer-checked:bg-selection peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-3 peer-disabled:opacity-50 peer-aria-invalid:outline peer-aria-invalid:outline-error motion-reduce:transition-none [corner-shape:round]" aria-hidden="true"><span data-slot="switch-thumb" class="size-3.5 rounded-full bg-background shadow-sm transition-transform group-data-[size=sm]/switch:size-2.5 group-has-checked/switch:translate-x-3.5 rtl:group-has-checked/switch:-translate-x-3.5 group-data-[size=sm]/switch:group-has-checked/switch:translate-x-2.5 rtl:group-data-[size=sm]/switch:group-has-checked/switch:-translate-x-2.5 dark:bg-foreground dark:group-has-checked/switch:bg-selection-foreground motion-reduce:transition-none [corner-shape:round]" /></span>
 </span>
 <script>
   document.addEventListener("click", (event) => {

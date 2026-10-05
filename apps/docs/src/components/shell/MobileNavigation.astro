@@ -8,7 +8,7 @@ import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
 import DocsNavigation from "./DocsNavigation.astro";
 ---
 
-<mobile-navigation class="mobile-navigation">
+<mobile-navigation class="mobile-navigation hidden max-[959px]:inline-flex">
   <Button
     variant="ghost"
     size="icon"
@@ -20,15 +20,15 @@ import DocsNavigation from "./DocsNavigation.astro";
   >
   <dialog
     id="mobile-navigation"
-    class="mobile-navigation-panel"
+    class="mobile-navigation-panel max-[959px]:[--sidebar-width:18rem] max-[959px]:flex-col max-[959px]:bg-sidebar max-[959px]:shadow-none max-[959px]:fixed max-[959px]:[inset-block:0] max-[959px]:start-0 max-[959px]:end-auto max-[959px]:w-[min(var(--sidebar-width),_calc(100vw_-_2rem))] max-[959px]:max-w-none max-[959px]:h-[100dvh] max-[959px]:max-h-none max-[959px]:m-0 max-[959px]:p-0 max-[959px]:border-0 max-[959px]:[border-inline-end:1px_solid_var(--sidebar-border)] max-[959px]:text-sidebar-foreground max-[959px]:overflow-hidden max-[959px]:overscroll-contain max-[959px]:opacity-0 max-[959px]:[transform:translateX(-2.5rem)] rtl:max-[959px]:[transform:translateX(2.5rem)] max-[959px]:[transition:opacity_200ms_ease-in-out,_transform_200ms_ease-in-out,_display_200ms_allow-discrete,_overlay_200ms_allow-discrete] max-[959px]:[&[open]]:flex max-[959px]:[&[open]]:opacity-100 max-[959px]:[&[open]]:[transform:translateX(0)] rtl:max-[959px]:[&[open]]:[transform:translateX(0)] max-[959px]:[&::backdrop]:bg-overlay-backdrop max-[959px]:[&::backdrop]:[backdrop-filter:blur(2px)] max-[959px]:[&::backdrop]:opacity-0 max-[959px]:[&::backdrop]:[transition:opacity_150ms_ease-in-out,_display_200ms_allow-discrete,_overlay_200ms_allow-discrete] max-[959px]:[&[open]::backdrop]:opacity-100 max-[959px]:[&_.docs-sidebar-content]:min-h-0 max-[959px]:[&_.docs-sidebar-content]:overscroll-contain max-[959px]:[&_.docs-sidebar-content]:p-[0_0.75rem_1rem] max-[959px]:[&_.docs-nav-link]:min-h-8 max-[959px]:[&_.docs-nav-link]:px-2 max-[959px]:[&_.docs-nav-link]:text-sm max-[959px]:[&_.docs-nav-link]:rounded-sm"
     data-slot="sidebar"
     data-sidebar="sidebar"
     data-mobile="true"
     aria-label="Documentation navigation"
   >
-    <div class="mobile-sidebar-search"><Button variant="outline" class="mobile-navigation-search" data-navigation-search><Icon icon={Search01Icon} /><span>Search documentation…</span></Button></div>
+    <div class="mobile-sidebar-search max-[959px]:shrink-0 max-[959px]:p-[calc(1rem_+_env(safe-area-inset-top,_0px))_1rem_1rem]"><Button variant="outline" class="mobile-navigation-search max-[959px]:w-full max-[959px]:h-8 max-[959px]:min-h-8 max-[959px]:p-2 max-[959px]:text-sm max-[959px]:justify-start max-[959px]:gap-2 max-[959px]:text-muted-foreground" data-navigation-search><Icon icon={Search01Icon} /><span>Search documentation…</span></Button></div>
     <DocsNavigation />
-    <div class="mobile-sidebar-footer"><Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button><ThemeToggle /></div>
+    <div class="mobile-sidebar-footer max-[959px]:[&_button]:w-11 max-[959px]:[&_button]:h-11 max-[959px]:[&_a]:w-11 max-[959px]:[&_a]:h-11 max-[959px]:flex max-[959px]:items-center max-[959px]:justify-between max-[959px]:mx-4 max-[959px]:py-[0.75rem_calc(0.75rem_+_env(safe-area-inset-bottom,_0px))] max-[959px]:shrink-0 max-[959px]:carve-top"><Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button><ThemeToggle /></div>
   </dialog>
 </mobile-navigation>
 <script>

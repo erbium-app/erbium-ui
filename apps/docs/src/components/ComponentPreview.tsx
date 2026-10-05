@@ -65,7 +65,7 @@ function Preview({ story }: { story: ShowcaseStory }) {
   }, []);
   const Example = story.render;
   return (
-    <div ref={container} className="preview-stage">
+    <div ref={container} className="w-full min-w-0">
       <ShowcaseSurface>
         <Example
           key={`${revision}-${JSON.stringify(Object.entries(args).filter(([name]) => name.startsWith("default")))}`}

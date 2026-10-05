@@ -1,9 +1,10 @@
 ---
+import { proseStyles } from "../../lib/docs-styles";
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import PageHeader from "../../components/PageHeader.astro";
 import { Content, frontmatter, getHeadings } from "@erbium/content/getting-started.md";
 ---
 <DocsLayout title={frontmatter.title} description={frontmatter.description} headings={getHeadings()}>
   <PageHeader title={frontmatter.title} description={frontmatter.description} previous={{ title: "Installation", href: "/docs/installation" }} />
-  <article class="markdown-copy"><Content /></article>
+  <article class={proseStyles}><Content /></article>
 </DocsLayout>

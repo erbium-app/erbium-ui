@@ -1,4 +1,5 @@
 ---
+import { proseStyles } from "../lib/docs-styles";
 import { componentReference } from "@erbium/content/markdown";
 import Icon from "./ui/Icon.astro";
 import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
@@ -99,7 +100,7 @@ const index = neighbors.findIndex((item) => item.name === name);
     files={lead.files}><lead.Content /></Showcase
   >
   <article
-    class="markdown-copy component-documentation"
+    class:list={[proseStyles, 'component-documentation [&[data-repeated-summary]_>_p:first-child]:hidden']}
     data-repeated-summary={repeatedSummary ? "" : undefined}
   >
     <Content />
@@ -120,17 +121,17 @@ const index = neighbors.findIndex((item) => item.name === name);
     ))
   }
   {name === "toast" && <ShowcaseToaster client:load />}
-  {reference && <section class="component-reference" aria-labelledby="component-reference-title">
+  {reference && <section class="component-reference mt-8 text-sm [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mb-4 [&_p]:mb-4" aria-labelledby="component-reference-title">
     <h2 id="component-reference-title">{reference.title}</h2>
     <p>{reference.description}</p>
-    <div class="page-actions">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>
+    <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] [&:empty]:hidden">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>
   </section>}
-  <nav aria-label="Adjacent documentation pages" class="page-pagination">
+  <nav aria-label="Adjacent documentation pages" class="page-pagination grid grid-cols-2 gap-4 mt-12 carve-top pt-6 [&_.pagination-button]:h-auto [&_.pagination-button]:min-w-0 [&_.pagination-button]:items-start [&_.pagination-button]:p-[0.85rem_1rem] [&_.pagination-button]:whitespace-normal [&_.pagination-button]:flex [&_.pagination-button]:flex-col [&_.pagination-button]:gap-1 [&_.pagination-button]:[font-size:0.8125rem] [&_.pagination-button:last-child]:items-end [&_.pagination-button:last-child]:text-end [&_a:last-child_.pagination-label]:justify-end [&_span]:text-muted-foreground [&_span]:[font-size:0.7rem] [&_a:hover_strong]:text-link [&_a:focus-visible]:[outline:2px_solid_var(--ring)] [&_a:focus-visible]:[outline-offset:3px]">
     {
       neighbors[index - 1] ? (
         <Button href={neighbors[index - 1].href} variant="outline" class="pagination-button" aria-label={`Previous: ${neighbors[index - 1].title}`}>
           <>
-            <span class="pagination-label"><Icon icon={ArrowLeft01Icon} size={14} class="rtl:rotate-180" /> Previous</span>
+            <span class="pagination-label flex items-center gap-[0.35rem]"><Icon icon={ArrowLeft01Icon} size={14} class="rtl:rotate-180" /> Previous</span>
             <strong>{neighbors[index - 1].title}</strong>
           </>
         </Button>
@@ -142,7 +143,7 @@ const index = neighbors.findIndex((item) => item.name === name);
       neighbors[index + 1] && (
         <Button href={neighbors[index + 1].href} variant="outline" class="pagination-button" aria-label={`Next: ${neighbors[index + 1].title}`}>
           <>
-            <span class="pagination-label">Next <Icon icon={ArrowRight01Icon} size={14} class="rtl:rotate-180" /></span>
+            <span class="pagination-label flex items-center gap-[0.35rem]">Next <Icon icon={ArrowRight01Icon} size={14} class="rtl:rotate-180" /></span>
             <strong>{neighbors[index + 1].title}</strong>
           </>
         </Button>

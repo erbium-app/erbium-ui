@@ -14,7 +14,7 @@ interface Props {
 }
 const { target, url, text = "Copy", variant = "ghost", label = "Copy code", iconOnly = false } = Astro.props;
 ---
-<docs-copy data-target={target} data-url={url}>
+<docs-copy class="inline-flex shrink-0" data-target={target} data-url={url}>
   <Button variant={variant} size={iconOnly ? "icon" : "xs"} aria-label={label}>
     <StatefulIcon state="idle" icons={{ idle: CopyIcon, copied: CheckIcon, error: Cancel01Icon }} class={iconOnly ? "size-4" : "size-3"} data-icon={iconOnly ? undefined : "inline-start"} />
     {!iconOnly && <span class="inline-grid items-center justify-items-center" aria-hidden="true">

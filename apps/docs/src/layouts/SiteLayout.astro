@@ -36,7 +36,7 @@ const analyticsToken = import.meta.env.PROD
 ---
 
 <!doctype html>
-<html lang="en" transition:animate="none">
+<html class="[scrollbar-gutter:stable] scroll-pt-8 [font-optical-sizing:auto] antialiased has-[.docs-search-dialog[open]]:overflow-hidden has-[.mobile-navigation-panel[open]]:overflow-hidden" lang="en" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,16 +87,16 @@ const analyticsToken = import.meta.env.PROD
     ></style>
     <script is:inline set:html={themeInitScript} />
   </head>
-  <body>
-    <a href="#main-content" class="skip-link"> Skip to content </a>
-    {shell === "standalone" ? <slot /> : <div class="site-shell">
-      <header class="mobile-site-header">
+  <body class="m-0 font-sans wrap-anywhere break-normal max-[959px]:bg-surface-panel">
+    <a href="#main-content" class="skip-link fixed top-2 start-4 z-100 p-[0.6rem_1rem] bg-primary text-primary-foreground rounded-md [transform:translateY(-150%)] [&:focus]:[transform:translateY(0)]"> Skip to content </a>
+    {shell === "standalone" ? <slot /> : <div class="site-shell ms-[max(var(--site-gutter),_calc((100%_-_var(--site-max-width))_/_2))] me-[var(--site-gutter)]">
+      <header class="mobile-site-header hidden max-[959px]:text-foreground max-[959px]:flex max-[959px]:items-center max-[959px]:justify-between max-[959px]:gap-4 max-[959px]:py-3 max-[959px]:[&_>_mobile-navigation_>_button]:w-11 max-[959px]:[&_>_mobile-navigation_>_button]:h-11">
         <Brand />
         <MobileNavigation />
       </header>
-      <SidebarProvider class="docs-frame">
+      <SidebarProvider class="docs-frame grid [grid-template-columns:var(--sidebar-width)_minmax(0,_1fr)] items-start gap-[var(--site-column-gap)] min-h-[100svh] max-[959px]:block">
         <DocsSidebar />
-        <div class="site-page-content" transition:name="docs-content" transition:animate="none"><slot /></div>
+        <div class="site-page-content min-w-0" transition:name="docs-content" transition:animate="none"><slot /></div>
       </SidebarProvider>
     </div>}
     {analyticsToken && (

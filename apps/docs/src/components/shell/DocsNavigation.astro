@@ -13,16 +13,16 @@ const { persist } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
-<SidebarContent class="docs-sidebar-content" transition:persist={persist}>
+<SidebarContent class="docs-sidebar-content [scrollbar-gutter:stable] [scrollbar-width:thin] [scrollbar-color:color-mix(in_srgb,_var(--muted-foreground)_35%,_transparent)_transparent] pe-[0.7rem] pb-8" transition:persist={persist}>
   <nav aria-label="Documentation">
     {
       navigationGroups.map((group, index) => (
         <>
           {index > 0 && (
-            <Separator class="docs-nav-separator" variant="inset" decorative />
+            <Separator class="docs-nav-separator my-3" variant="inset" decorative />
           )}
-          <SidebarGroup class="docs-nav-group">
-            <SidebarGroupLabel class="docs-nav-label">
+          <SidebarGroup class="docs-nav-group p-[0.5rem_0]">
+            <SidebarGroupLabel class="docs-nav-label text-foreground text-xs font-semibold px-[0.65rem] mb-1 [&_>_a]:flex [&_>_a]:w-full [&_>_a]:justify-between [&_>_a]:items-center">
               {group.href ? (
                 <a href={group.href} data-astro-prefetch="hover">
                   {group.title}
@@ -39,7 +39,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
                       href={item.href}
                       data-astro-prefetch="hover"
                       isActive={pathname === item.href}
-                      class="docs-nav-link"
+                      class="docs-nav-link relative min-h-8 px-[0.85rem] text-muted-foreground [font-size:0.8125rem] rounded-sm [&:hover]:text-sidebar-accent-foreground [&:hover]:bg-sidebar-accent [&:active]:text-sidebar-accent-foreground [&:active]:bg-sidebar-accent [&[data-active]]:text-sidebar-accent-foreground [&[data-active]]:bg-sidebar-accent [&[data-active]]:font-medium"
                     >
                       {item.title}
                     </SidebarMenuButton>

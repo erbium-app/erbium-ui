@@ -1,4 +1,5 @@
 ---
+import { proseStyles } from "../../lib/docs-styles";
 import Showcase from "../../components/Showcase.astro";
 import manifest from "@erbium/showcase/manifest";
 import { showcaseSource } from "@erbium/showcase/sources";
@@ -11,7 +12,7 @@ const headings = [...previews.map((variant) => ({ depth: 2, slug: `preview-${var
 ---
 <DocsLayout title={frontmatter.title} description={frontmatter.description} headings={headings}>
   <PageHeader title={frontmatter.title} description={frontmatter.description} previous={{ title: "Using components", href: "/docs/getting-started" }} />
-  <article class="markdown-copy"><Introduction /></article>
+  <article class={proseStyles}><Introduction /></article>
   {previews.map((variant) => (
     <Showcase name="typography" variant={variant.exportName} slug={variant.slug}
       anchorId={`preview-${variant.slug}`} title={variant.title}
@@ -19,5 +20,5 @@ const headings = [...previews.map((variant) => ({ depth: 2, slug: `preview-${var
       <p>{variant.title === "Multilingual" ? "Vazirmatn in Arabic and Persian, alongside Latin text in Cal Sans." : variant.title === "Code" ? "Geist Mono for commands and identifiers, with Cal Sans for supporting UI." : variant.title === "Reading" ? "Cal Sans in docs and compact reading presets." : "Cal Sans in headings, labels, fields, and actions."}</p>
     </Showcase>
   ))}
-  <article class="typeset typeset-docs min-w-0"><Content /></article>
+  <article class="typeset typeset-docs [&_a:not(:where(.not-typeset_*,_[data-not-typeset]_*))]:text-link [&_a:not(:where(.not-typeset_*,_[data-not-typeset]_*))]:font-medium [&_a:not(:where(.not-typeset_*,_[data-not-typeset]_*))]:underline [&_a:not(:where(.not-typeset_*,_[data-not-typeset]_*))]:[text-underline-offset:0.2em] [&_a:not(:where(.not-typeset_*,_[data-not-typeset]_*))]:[text-decoration-thickness:from-font] [&_a:not(:where(.not-typeset_*,_[data-not-typeset]_*))]:[text-underline-position:from-font] [&_a_:is(strong,_b)]:text-inherit min-w-0"><Content /></article>
 </DocsLayout>

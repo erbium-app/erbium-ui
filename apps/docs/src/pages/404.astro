@@ -11,53 +11,24 @@ import Button from "../components/ui/Button.astro";
   indexable={false}
   shell="standalone"
 >
-  <div class="not-found-screen">
-    <header class="not-found-header">
+  <div class="min-h-svh flex flex-col">
+    <header class="flex items-center justify-between px-[clamp(1.25rem,4vw,4rem)] py-6">
       <Brand />
       <ThemeToggle />
     </header>
-    <main id="main-content" tabindex="-1" class="not-found-main">
-      <div class="not-found-content">
-        <header class="page-header">
+    <main id="main-content" tabindex="-1" class="flex-1 grid place-items-center px-6 pt-12 pb-28">
+      <div class="w-full max-w-120">
+        <header class="page-header mb-4 [&_h1]:min-w-0 [&_h1]:wrap-anywhere [&_h1]:m-0 [&_h1]:text-foreground [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-[1.2] [&_h1]:tracking-[normal] min-[1280px]:[&_h1]:text-4xl min-[1280px]:[&_h1]:leading-[1.1111] [&_+_.demo-section]:mt-4">
           <h1>Page not found</h1>
-          <p class="page-description">
+          <p class="page-description [text-wrap-style:pretty] max-w-168 mt-[0.65rem] text-lg leading-[1.5556] text-muted-foreground max-[560px]:[font-size:0.9375rem]">
             This page may have moved or been removed. Let’s get you back to the
             docs.
           </p>
         </header>
-        <div class="not-found-actions">
+        <div class="flex flex-wrap gap-3 mt-8">
           <Button href="/">Back to home</Button>
         </div>
       </div>
     </main>
   </div>
 </SiteLayout>
-<style>
-  .not-found-screen {
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-  }
-  .not-found-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem clamp(1.25rem, 4vw, 4rem);
-  }
-  .not-found-main {
-    flex: 1;
-    display: grid;
-    place-items: center;
-    padding: 3rem 1.5rem 7rem;
-  }
-  .not-found-content {
-    width: 100%;
-    max-width: 30rem;
-  }
-  .not-found-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-block-start: 2rem;
-  }
-</style>

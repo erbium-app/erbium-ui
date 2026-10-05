@@ -9,7 +9,8 @@ class CodeBlock extends HTMLElement {
     if (!code) return;
     code.id ||= `code-${crypto.randomUUID()}`;
     this.actions = document.createElement("div");
-    this.actions.className = "code-block-copy";
+    this.actions.className =
+      "code-block-copy flex items-center gap-1 absolute top-2 end-2 z-1 rounded-sm bg-surface-canvas";
     this.actions.append(createCodeCopy(code.id, this.dataset.copyLabel ?? "Copy code"));
     this.append(this.actions);
   }

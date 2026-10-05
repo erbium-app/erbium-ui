@@ -10,10 +10,10 @@ import Sidebar from "../ui/sidebar/Sidebar.astro";
 import DocsNavigation from "./DocsNavigation.astro";
 ---
 
-<Sidebar class="docs-sidebar" collapsible="none">
-  <div class="sidebar-heading"><div transition:persist="docs-sidebar-brand"><Brand /></div><div class="sidebar-search"><ComponentSearch components={components} /></div></div>
+<Sidebar class="docs-sidebar sticky top-0 h-[100svh] pt-[var(--site-section-space)] w-full [&_a:focus-visible]:[outline:2px_solid_var(--ring)] [&_a:focus-visible]:[outline-offset:3px] max-[959px]:hidden" collapsible="none">
+  <div class="sidebar-heading flex flex-col gap-5 shrink-0 p-[0.5rem_0.7rem_1rem_0]"><div transition:persist="docs-sidebar-brand"><Brand /></div><div class="sidebar-search [&_.docs-search-trigger]:w-full [&_.docs-search-trigger]:h-8 [&_.docs-search-trigger]:p-2 [&_.docs-search-trigger_>_span]:block [&_.docs-search-trigger_>_span]:min-w-0 [&_.docs-search-trigger_>_span]:overflow-hidden [&_.docs-search-trigger_>_span]:text-ellipsis [&_.docs-search-trigger_kbd]:inline-flex"><ComponentSearch components={components} /></div></div>
   <DocsNavigation persist="docs-sidebar-navigation" />
-  <div class="sidebar-controls" transition:persist="docs-sidebar-controls">
+  <div class="sidebar-controls flex shrink-0 items-center justify-between p-[0.75rem_0.7rem_0.75rem_0] carve-top" transition:persist="docs-sidebar-controls">
     <Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button>
     <ThemeToggle />
   </div>

@@ -75,7 +75,7 @@ export function highlightColorSource(source: string) {
       const color = colors.find((entry) => entry.start === start);
       if (color)
         output.push(
-          `<span class="code-color-value" style="--code-color:${color.value};--code-color-text-light:${color.text[0]};--code-color-text-dark:${color.text[1]}">`,
+          `<span class="code-color-value bg-(--code-color) text-(--code-color-text-light) rounded-xs dark:text-(--code-color-text-dark) [&_span]:text-inherit" style="--code-color:${color.value};--code-color-text-light:${color.text[0]};--code-color-text-dark:${color.text[1]}">`,
         );
       output.push(
         renderNodesToHtml(

@@ -10,9 +10,9 @@ type Props = HTMLAttributes<"span"> & {
 const { state, icons, class: className = "size-4", ...props } = Astro.props;
 ---
 
-<span {...props} class={className} data-slot="stateful-icon" data-state={state} data-astro-icon aria-hidden="true">
+<span {...props} class:list={["inline-grid shrink-0 align-middle", className]} data-slot="stateful-icon" data-state={state} data-astro-icon aria-hidden="true">
   {Object.entries(icons).map(([key, icon]) => (
-    <span data-state={key} data-active={key === state ? "true" : "false"}>
+    <span class="col-start-1 row-start-1 grid place-items-center rotate-90 scale-0 transition-transform duration-150 ease-in-out data-[active=true]:rotate-0 data-[active=true]:scale-100 data-[active=true]:delay-150 motion-reduce:transition-none" data-state={key} data-active={key === state ? "true" : "false"}>
       <Icon icon={icon} class="size-full" />
     </span>
   ))}

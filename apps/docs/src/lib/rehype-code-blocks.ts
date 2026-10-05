@@ -1,3 +1,5 @@
+import { codeBlockStyles } from "./docs-styles";
+
 interface HtmlNode {
   type: string;
   tagName?: string;
@@ -14,7 +16,7 @@ export function rehypeCodeBlocks() {
           return {
             type: "element",
             tagName: "docs-code-block",
-            properties: { className: ["docs-code-block"] },
+            properties: { className: codeBlockStyles.split(" ") },
             children: [child],
           };
         }
