@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { searchGroups } from "../content/search-index";
+import { searchGroups } from "@/content/search-index";
 
 export const GET: APIRoute = () =>
   new Response(JSON.stringify(searchGroups), {

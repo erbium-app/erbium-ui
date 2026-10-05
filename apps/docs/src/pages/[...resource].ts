@@ -6,7 +6,7 @@ import {
   markdownPath,
   pageIndex,
   site,
-} from "../build/agent/artifacts";
+} from "@/build/agent/artifacts";
 
 const json = (value: unknown) => JSON.stringify(value, null, 2);
 const artifacts = [

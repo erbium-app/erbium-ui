@@ -1,6 +1,6 @@
 import Color from "colorjs.io";
-import themeCss from "../../../../../packages/ui/src/styles/theme.css?raw";
-import surfacesCss from "../../../../../packages/ui/src/styles/surfaces.css?raw";
+import themeCss from "@ui/src/styles/theme.css?raw";
+import surfacesCss from "@ui/src/styles/surfaces.css?raw";
 
 // Build-time renderers cannot read browser CSS variables. Resolve only the
 // shared semantic colors needed by metadata and social preview images.

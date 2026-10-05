@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { pageIndex } from "../agent/artifacts";
+import { pageIndex } from "@/build/agent/artifacts";
 
 export const ogSize = { width: 1200, height: 630 };
 

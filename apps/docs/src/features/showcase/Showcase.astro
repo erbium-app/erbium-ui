@@ -1,17 +1,17 @@
 ---
-import Prose from "../../components/content/Prose.astro";
+import Prose from "@/components/content/Prose.astro";
 import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
-import ShowcaseControls from "./ShowcaseControls.astro";
-import Icon from "../../components/primitives/Icon.astro";
+import ShowcaseControls from "@/features/showcase/ShowcaseControls.astro";
+import Icon from "@/components/primitives/Icon.astro";
 import Add01Icon from "@hugeicons/core-free-icons/Add01Icon";
 import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
-import CodeBlock from "../code/CodeBlock.astro";
-import Separator from "../../components/primitives/Separator.astro";
-import Button from "../../components/primitives/Button.astro";
-import ShowcaseThemeToggle from "./ShowcaseThemeToggle.astro";
-import CopyButton from "../code/CopyButton.astro";
-import ComponentPreview from "./ComponentPreview.tsx";
-import Spinner from "../../components/primitives/Spinner.astro";
+import CodeBlock from "@/features/code/CodeBlock.astro";
+import Separator from "@/components/primitives/Separator.astro";
+import Button from "@/components/primitives/Button.astro";
+import ShowcaseThemeToggle from "@/features/showcase/ShowcaseThemeToggle.astro";
+import CopyButton from "@/features/code/CopyButton.astro";
+import ComponentPreview from "@/features/showcase/ComponentPreview.tsx";
+import Spinner from "@/components/primitives/Spinner.astro";
 interface Props {
   name: string;
   variant: string;
@@ -114,5 +114,5 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
   </details>
 </section>
 <script>
-  import "./tabs.client";
+  import "@/features/showcase/tabs.client";
 </script>

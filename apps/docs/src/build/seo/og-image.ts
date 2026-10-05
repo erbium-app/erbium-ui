@@ -1,10 +1,10 @@
 import satori from "satori";
 import sharp from "sharp";
-import regularFont from "../../assets/og/Geist-Regular.ttf?inline";
-import semiboldFont from "../../assets/og/Geist-SemiBold.ttf?inline";
-import logo from "../../../public/brand/erbium-logo-dark.svg?raw";
-import { darkColors } from "../theme/colors";
-import { ogSize, type OgPage } from "./og-pages";
+import regularFont from "@/assets/og/Geist-Regular.ttf?inline";
+import semiboldFont from "@/assets/og/Geist-SemiBold.ttf?inline";
+import logo from "@public/brand/erbium-logo-dark.svg?raw";
+import { darkColors } from "@/build/theme/colors";
+import { ogSize, type OgPage } from "@/build/seo/og-pages";
 
 const fonts = [
   { name: "Geist", data: Buffer.from(regularFont.split(",")[1], "base64"), weight: 400 as const },

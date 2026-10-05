@@ -1,6 +1,6 @@
 import { createThemeCss } from "@tanstack/highlight/theme";
-import lightReference from "../../../../../.reference/vitesse-light.json";
-import darkReference from "../../../../../.reference/vitesse-dark.json";
+import lightReference from "@reference/vitesse-light.json";
+import darkReference from "@reference/vitesse-dark.json";
 
 // Syntax roles come from the reference theme, not a copied docs palette.
 function syntaxTheme(reference, type) {

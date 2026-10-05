@@ -1,5 +1,5 @@
-import { components } from "./catalog";
-import { kindTitles } from "./sections";
+import { components } from "@/content/catalog";
+import { kindTitles } from "@/content/sections";
 export const searchGroups = [
   {
     title: "Overview",

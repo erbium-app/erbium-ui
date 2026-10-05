@@ -1,13 +1,13 @@
 ---
-import { structuredData } from "../build/seo/structured-data";
-import { siteName, siteDescription } from "../config/site";
-import { themeInitScript } from "../runtime/theme";
+import { structuredData } from "@/build/seo/structured-data";
+import { siteName, siteDescription } from "@/config/site";
+import { themeInitScript } from "@/runtime/theme";
 import { ClientRouter } from "astro:transitions";
-import { markdownPath } from "../build/agent/artifacts";
-import { ogPageForRoute, ogSize, plainText } from "../build/seo/og-pages";
-import { lightColors, showcaseLightThemeCss } from "../build/theme/colors";
-import { syntaxThemeCss } from "../build/markdown/highlight-theme.mjs";
-import "../styles/globals.css";
+import { markdownPath } from "@/build/agent/artifacts";
+import { ogPageForRoute, ogSize, plainText } from "@/build/seo/og-pages";
+import { lightColors, showcaseLightThemeCss } from "@/build/theme/colors";
+import { syntaxThemeCss } from "@/build/markdown/highlight-theme.mjs";
+import "@/styles/globals.css";
 interface Props {
   title?: string;
   description?: string;

@@ -1,4 +1,4 @@
-import type { ControlsElement } from "./controls";
+import type { ControlsElement } from "@/features/showcase/controls";
 
 class ShowcaseControls extends HTMLElement implements ControlsElement {
   values: Record<string, unknown> = {};

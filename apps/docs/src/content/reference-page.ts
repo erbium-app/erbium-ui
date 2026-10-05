@@ -3,8 +3,8 @@ import { componentDocuments, variantDocuments } from "@erbium/content/documents"
 import manifest from "@erbium/showcase/manifest";
 import { showcaseSource } from "@erbium/showcase/sources";
 import showcaseRegistry from "@erbium/showcase/registry";
-import { documentationSections } from "./sections";
-import { components } from "./catalog";
+import { documentationSections } from "@/content/sections";
+import { components } from "@/content/catalog";
 
 export function referencePage(name: string) {
   const component = components.find((item) => item.name === name);

@@ -3,9 +3,9 @@ import { parseFrontmatter } from "@astrojs/markdown-remark";
 import manifest from "@erbium/showcase/manifest";
 import registry from "@erbium/showcase/registry";
 import { showcaseSource } from "@erbium/showcase/sources";
-import { components } from "../../content/catalog";
-import { site } from "../../config/site";
-export { site } from "../../config/site";
+import { components } from "@/content/catalog";
+import { site } from "@/config/site";
+export { site } from "@/config/site";
 const documents = import.meta.glob<string>("../../../../../packages/content/**/*.md", {
   eager: true,
   query: "?raw",

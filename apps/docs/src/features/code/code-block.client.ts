@@ -1,4 +1,4 @@
-import { createCodeCopy } from "./copy-control.client";
+import { createCodeCopy } from "@/features/code/copy-control.client";
 
 class CodeBlock extends HTMLElement {
   private actions?: HTMLDivElement;

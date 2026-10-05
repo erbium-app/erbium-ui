@@ -1,4 +1,4 @@
-import { repositoryUrl, site, siteName } from "../../config/site";
+import { repositoryUrl, site, siteName } from "@/config/site";
 
 export function structuredData(route: string, title: string, description: string, image: string) {
   const url = new URL(route, site).href;

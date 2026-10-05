@@ -1,18 +1,18 @@
 ---
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
-import { controlRows, displayValue } from "./controls";
-import Button from "../../components/primitives/Button.astro";
-import Input from "../../components/primitives/Input.astro";
-import Select from "../../components/primitives/Select.astro";
-import SelectItem from "../../components/primitives/SelectItem.astro";
-import Switch from "../../components/primitives/Switch.astro";
-import Textarea from "../../components/primitives/Textarea.astro";
-import Table from "../../components/primitives/Table.astro";
-import TableHeader from "../../components/primitives/TableHeader.astro";
-import TableBody from "../../components/primitives/TableBody.astro";
-import TableRow from "../../components/primitives/TableRow.astro";
-import TableHead from "../../components/primitives/TableHead.astro";
-import TableCell from "../../components/primitives/TableCell.astro";
+import { controlRows, displayValue } from "@/features/showcase/controls";
+import Button from "@/components/primitives/Button.astro";
+import Input from "@/components/primitives/Input.astro";
+import Select from "@/components/primitives/Select.astro";
+import SelectItem from "@/components/primitives/SelectItem.astro";
+import Switch from "@/components/primitives/Switch.astro";
+import Textarea from "@/components/primitives/Textarea.astro";
+import Table from "@/components/primitives/Table.astro";
+import TableHeader from "@/components/primitives/TableHeader.astro";
+import TableBody from "@/components/primitives/TableBody.astro";
+import TableRow from "@/components/primitives/TableRow.astro";
+import TableHead from "@/components/primitives/TableHead.astro";
+import TableCell from "@/components/primitives/TableCell.astro";
 interface Props {
   story: ShowcaseStory;
   id: string;
@@ -212,5 +212,5 @@ const rows = controlRows(story);
   )
 }
 <script>
-  import "./controls.client";
+  import "@/features/showcase/controls.client";
 </script>

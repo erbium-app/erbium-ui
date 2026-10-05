@@ -57,7 +57,9 @@ function Preview({ story }: { story: ShowcaseStory }) {
   useEffect(() => {
     const showcase = container.current?.closest("showcase-tabs");
     const controls =
-      showcase?.querySelector<import("./controls").ControlsElement>("showcase-controls");
+      showcase?.querySelector<import("@/features/showcase/controls").ControlsElement>(
+        "showcase-controls",
+      );
     if (controls?.values) setArgs(controls.values);
     const update = (event: Event) => {
       if (event instanceof CustomEvent) setArgs(event.detail);

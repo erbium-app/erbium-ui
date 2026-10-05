@@ -3,7 +3,7 @@ import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
-import { createStatefulIcon, setIconState } from "../../components/primitives/stateful-icon";
+import { createStatefulIcon, setIconState } from "@/components/primitives/stateful-icon";
 
 export function createCodeCopy(target: string, label: string) {
   const control = document.createElement("docs-copy");

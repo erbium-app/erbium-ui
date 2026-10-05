@@ -1,10 +1,10 @@
 ---
-import Prose from "../../components/content/Prose.astro";
-import Showcase from "../../features/showcase/Showcase.astro";
+import Prose from "@/components/content/Prose.astro";
+import Showcase from "@/features/showcase/Showcase.astro";
 import manifest from "@erbium/showcase/manifest";
 import { showcaseSource } from "@erbium/showcase/sources";
-import DocsLayout from "../../layouts/DocsLayout.astro";
-import PageHeader from "../../components/content/PageHeader.astro";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import PageHeader from "@/components/content/PageHeader.astro";
 import { Content as Introduction } from "@erbium/content/typography-introduction.md";
 import { Content, frontmatter, getHeadings } from "@erbium/content/typography.md";
 const previews = manifest.find((entry) => entry.name === "typography")!.variants;

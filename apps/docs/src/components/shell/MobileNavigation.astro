@@ -1,11 +1,11 @@
 ---
-import Button from "../primitives/Button.astro";
-import Icon from "../primitives/Icon.astro";
-import SidebarToggleIcon from "../primitives/SidebarToggleIcon.astro";
+import Button from "@/components/primitives/Button.astro";
+import Icon from "@/components/primitives/Icon.astro";
+import SidebarToggleIcon from "@/components/primitives/SidebarToggleIcon.astro";
 import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
-import ThemeToggle from "./ThemeToggle.astro";
+import ThemeToggle from "@/components/shell/ThemeToggle.astro";
 import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
-import DocsNavigation from "./DocsNavigation.astro";
+import DocsNavigation from "@/components/shell/DocsNavigation.astro";
 ---
 
 <mobile-navigation class="mobile-navigation hidden max-[959px]:inline-flex">
@@ -32,5 +32,5 @@ import DocsNavigation from "./DocsNavigation.astro";
   </dialog>
 </mobile-navigation>
 <script>
-  import "./mobile-navigation.client";
+  import "@/components/shell/mobile-navigation.client";
 </script>

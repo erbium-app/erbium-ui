@@ -1,6 +1,6 @@
 ---
-import Button from "../../components/primitives/Button.astro";
-import StatefulIcon from "../../components/primitives/StatefulIcon.astro";
+import Button from "@/components/primitives/Button.astro";
+import StatefulIcon from "@/components/primitives/StatefulIcon.astro";
 import CopyIcon from "@hugeicons/core-free-icons/CopyIcon";
 import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
@@ -26,5 +26,5 @@ const { target, url, text = "Copy", variant = "ghost", label = "Copy code", icon
   <span class="sr-only" role="status"></span>
 </docs-copy>
 <script>
-  import "./copy-control.client";
+  import "@/features/code/copy-control.client";
 </script>

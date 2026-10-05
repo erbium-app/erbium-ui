@@ -1,7 +1,7 @@
-import { documentationSections, kindPaths } from "./sections";
+import { documentationSections, kindPaths } from "@/content/sections";
 import { componentDocuments } from "@erbium/content/documents";
 import manifest from "@erbium/showcase/manifest";
-import registry from "../../../../packages/ui/registry.json";
+import registry from "@ui/registry.json";
 
 type ComponentEntry = {
   name: string;

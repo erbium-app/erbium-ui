@@ -1,12 +1,12 @@
 ---
-import Prose from "../components/content/Prose.astro";
+import Prose from "@/components/content/Prose.astro";
 import { componentDocuments } from "@erbium/content/documents";
-import theme from "../../../../packages/ui/src/styles/theme.css?raw";
-import surfaces from "../../../../packages/ui/src/styles/surfaces.css?raw";
-import DocsLayout from "../layouts/DocsLayout.astro";
-import PageHeader from "../components/content/PageHeader.astro";
-import CodeBlock from "../features/code/CodeBlock.astro";
-import { colorPreviewSyntaxThemeCss } from "../build/markdown/highlight-theme.mjs";
+import theme from "@ui/src/styles/theme.css?raw";
+import surfaces from "@ui/src/styles/surfaces.css?raw";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import PageHeader from "@/components/content/PageHeader.astro";
+import CodeBlock from "@/features/code/CodeBlock.astro";
+import { colorPreviewSyntaxThemeCss } from "@/build/markdown/highlight-theme.mjs";
 
 const page = componentDocuments["../components/colors/index.md"];
 const { Content, frontmatter } = page;

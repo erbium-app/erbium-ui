@@ -1,6 +1,6 @@
 ---
-import { codeBlockStyles } from "../../styles/content";
-import { highlightSource, highlightColorSource } from "../../build/markdown/highlight";
+import { codeBlockStyles } from "@/styles/content";
+import { highlightSource, highlightColorSource } from "@/build/markdown/highlight";
 
 interface Props {
   source: string;
@@ -23,5 +23,5 @@ const { source, path, colorSwatches = false, appearance } = Astro.props;
 </docs-code-block>
 
 <script>
-  import "./code-block.client";
+  import "@/features/code/code-block.client";
 </script>

@@ -1,5 +1,5 @@
 import { prefetch } from "astro:prefetch";
-import type { searchGroups } from "../../content/search-index";
+import type { searchGroups } from "@/content/search-index";
 
 type SearchGroups = typeof searchGroups;
 let index: Promise<SearchGroups> | undefined;
