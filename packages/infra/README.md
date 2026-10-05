@@ -31,10 +31,10 @@ stage; use the local docs playground for development. Direct Alchemy commands
 must also pass `--stage prod --profile default`.
 
 For CI, provide `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` through the
-runner's secret environment and run `bun run deploy`. Use your deployment
+runner's secret environment and run `bun run deploy:ci`. Use your deployment
 account's ID and a token with Workers Scripts and the
 permissions needed for Alchemy's Cloudflare state backend and custom domains
-(Workers KV Storage, Workers Custom Domains, Secrets Store Write, Zone Read and
+(Workers KV Storage, Account Settings Write, Secrets Store Write, Zone Read and
 DNS Edit). See [Cloudflare setup](https://alchemy.run/cloudflare/setup/) and
 [CI configuration](https://alchemy.run/environments/ci/).
 
@@ -86,10 +86,8 @@ Because the docs deploy as assets only, ordinary page visits do not invoke a
 Worker and do not produce Worker logs. Astro build errors appear in build output.
 
 `.github/workflows/quality.yml` runs `bun run ready` and infrastructure typechecks
-on pull requests and pushes to `main`. It checks out a pinned `anti-slop` commit
-at the relative path required by the existing local dependency. The workflow
-becomes active after being pushed. Deployment remains the existing
-`bun run deploy` command.
+on pull requests and pushes to `main`. The `anti-slop` dependency uses a pinned
+GitHub commit so remote installations do not require an adjacent local checkout.
 
 Browser error reporting requires an error-reporting service project and its
 public DSN, plus upload credentials for private source maps. Web Analytics does
@@ -97,3 +95,37 @@ not capture JavaScript exceptions. No error-reporting service is configured yet.
 
 References: [Web Analytics setup](https://developers.cloudflare.com/web-analytics/get-started/)
 and [RUM beacon](https://developers.cloudflare.com/speed/observatory/rum-beacon/).
+
+## Workers Builds
+
+Cloudflare Workers Builds runs installation, checks and deployment remotely for
+pushes to `main`. Connect `erbium-app/erbium-ui` to the existing docs Worker in
+**Settings > Builds** and authorize the Cloudflare GitHub App for that repository.
+Use root directory `/` and these commands:
+
+```sh
+# Build command
+bun install --frozen-lockfile && bun run check && bun run infra:typecheck
+
+# Deploy command (Alchemy builds Astro and deploys it)
+bun run deploy:ci
+```
+
+Set `BUN_VERSION=1.4.2`, `NODE_VERSION=26.10.0`, and
+`SKIP_DEPENDENCY_INSTALL=1`. Configure `CLOUDFLARE_ACCOUNT_ID` and a secret
+`CLOUDFLARE_API_TOKEN` with the deployment permissions above. Do not provide a
+token-admin credential to the build runner.
+
+The separate `ErbiumUIBuilds` stack in `builds.run.ts` defines the deployment
+token, build-token registration, main-branch trigger and build environment through
+project-local Alchemy providers. The pinned Alchemy release has no built-in
+Workers Builds resource. Use `bun run infra:builds:plan` to review it and
+`bun run infra:builds:deploy` to provision it. Provisioning requires credentials
+that can create user API tokens; the current OAuth profile cannot perform that
+operation. The dedicated bootstrap-token integration still needs completion
+before this stack can be applied. Merely pushing these definitions does not
+provision the CI resources.
+
+`bun run infra:builds:destroy` removes the managed build trigger and tokens;
+`bun run infra:destroy` removes the production docs deployment. The stacks share
+Cloudflare state storage but have separate resource ownership.
