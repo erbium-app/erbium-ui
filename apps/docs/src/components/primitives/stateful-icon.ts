@@ -1,3 +1,7 @@
+export const statefulIconRootStyles = "inline-grid shrink-0 align-middle";
+export const statefulIconLayerStyles =
+  "col-start-1 row-start-1 grid place-items-center rotate-90 scale-0 transition-transform duration-150 ease-in-out data-[active=true]:rotate-0 data-[active=true]:scale-100 data-[active=true]:delay-150 motion-reduce:transition-none";
+
 export type IconDefinition = readonly (readonly [string, Record<string, string | number>])[];
 
 // Client-created controls use the same layered markup as StatefulIcon.astro.
@@ -6,11 +10,12 @@ export function createStatefulIcon(state: string, icons: Readonly<Record<string,
   root.dataset.slot = "stateful-icon";
   root.dataset.state = state;
   root.dataset.astroIcon = "";
-  root.className = "size-4";
+  root.className = `${statefulIconRootStyles} size-4`;
   root.setAttribute("aria-hidden", "true");
   const namespace = "http://www.w3.org/2000/svg";
   for (const [key, icon] of Object.entries(icons)) {
     const layer = document.createElement("span");
+    layer.className = statefulIconLayerStyles;
     layer.dataset.state = key;
     layer.dataset.active = String(key === state);
     const svg = document.createElementNS(namespace, "svg");

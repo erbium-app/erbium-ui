@@ -7,6 +7,7 @@ import { createStatefulIcon, setIconState } from "@/components/primitives/statef
 
 export function createCodeCopy(target: string, label: string) {
   const control = document.createElement("docs-copy");
+  control.className = "inline-flex shrink-0";
   control.dataset.target = target;
   const button = document.createElement("button");
   button.type = "button";

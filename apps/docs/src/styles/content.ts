@@ -11,7 +11,7 @@ export const proseStyles = [
   "[&_ul]:[list-style:revert] [&_ul]:my-6 [&_ol]:ps-[1.4rem] [&_ol]:[list-style:revert] [&_ol]:my-6",
   "[&_li]:ps-[0.2rem] [&_li]:my-2 [&_li::marker]:text-muted-foreground [&_a]:text-link [&_a]:font-medium",
   "[&_a]:underline [&_a]:[text-underline-offset:0.2em] [&_a]:[text-decoration-thickness:from-font] [&_a]:[text-underline-position:from-font] [&_strong]:text-foreground",
-  "[&_strong]:font-semibold [&_a_:is(strong,_b)]:text-inherit min-[1024px]:[&_h2]:mt-16 [&_code]:font-mono [&_code]:[font-size:0.8em]",
+  "[&_strong]:font-semibold [&_a_:is(strong,_b)]:text-inherit min-[1024px]:[&_h2]:mt-16 [&_code]:font-mono [&_:not(pre)>code]:[font-size:0.8em]",
   "[&_:not(pre)_>_code]:surface-frame [&_:not(pre)_>_code]:p-[0.15rem_0.3rem] [&_:not(pre)_>_code]:border [&_:not(pre)_>_code]:border-transparent [&_:not(pre)_>_code]:rounded-sm",
   "[&_:not(pre)_>_code]:wrap-anywhere [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:border-collapse",
   "[&_table]:my-6 [&_table]:[font-size:0.8rem] [&_th]:carve-bottom [&_th]:p-[0.6rem_0.8rem] [&_th]:text-start",
@@ -20,8 +20,8 @@ export const proseStyles = [
 ].join(" ");
 
 export const codeBlockStyles = [
-  "docs-code-block surface-field [--surface-face:var(--surface-canvas)] block relative",
+  "docs-code-block surface-field block relative",
   "min-w-0 overflow-hidden border border-transparent rounded-lg",
-  "[&_pre]:bg-surface-canvas [&_pre]:max-h-136 [&_pre]:m-0 [&_pre]:p-5 [&_pre]:pe-12",
-  "[&_pre]:text-[0.75rem] [&_pre]:leading-[1.8] [&_pre]:font-mono [&_pre]:overflow-auto [&_pre_code]:[font-family:inherit]",
+  "[&_pre]:bg-transparent [&_pre]:max-h-136 [&_pre]:m-0 [&_pre]:p-5 [&_pre]:pe-12",
+  "[&_pre]:text-base [&_pre]:leading-[1.75] [&_pre]:font-mono [&_pre]:overflow-auto [&_pre_code]:[font:inherit]",
 ].join(" ");

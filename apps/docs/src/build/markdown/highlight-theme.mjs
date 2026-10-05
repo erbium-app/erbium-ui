@@ -14,7 +14,8 @@ function syntaxTheme(reference, type) {
   return {
     name: reference.name,
     type,
-    background: "var(--code)",
+    // The code-block wrapper owns its shared field surface.
+    background: "transparent",
     foreground: "var(--code-foreground)",
     tokens: {
       token: "var(--code-foreground)",
