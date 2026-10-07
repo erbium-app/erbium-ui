@@ -5,7 +5,9 @@ interface Props {
 const { headings } = Astro.props;
 ---
 
-<page-table-of-contents class="page-toc block [grid-column:2] [grid-row:1] sticky top-8 max-h-[calc(100svh_-_4rem)] overflow-y-auto [scrollbar-width:thin] [font-size:0.8125rem] leading-[1.5] [&_ul]:list-none [&_ul]:m-0 [&_ul]:p-0 [&_a]:block [&_a]:p-[0.35rem_0] [&_a]:text-muted-foreground [&_a]:wrap-anywhere [&_a[aria-current='location']]:text-foreground [&_a[aria-current='location']]:font-semibold [&_a:hover]:text-foreground [&_a:focus-visible]:text-foreground max-[1200px]:[order:1] max-[1200px]:static max-[1200px]:max-h-none max-[1200px]:w-full max-[959px]:hidden">
+<page-table-of-contents
+  class="page-toc block col-2 row-1 sticky top-8 max-h-[calc(100svh-4rem)] overflow-y-auto scrollbar-thin text-[0.8125rem] leading-normal [&_ul]:list-none [&_ul]:m-0 [&_ul]:p-0 [&_a]:block [&_a]:p-[0.35rem_0] [&_a]:text-muted-foreground [&_a]:wrap-anywhere [&_a[aria-current='location']]:text-foreground [&_a[aria-current='location']]:font-semibold [&_a:hover]:text-foreground [&_a:focus-visible]:text-foreground max-[1200px]:order-1 max-[1200px]:static max-[1200px]:max-h-none max-[1200px]:w-full max-[959px]:hidden"
+>
   <nav aria-label="Table of contents">
     <ul>
       {

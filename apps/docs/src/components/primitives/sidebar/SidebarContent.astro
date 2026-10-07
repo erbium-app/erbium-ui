@@ -8,7 +8,10 @@ const { class: className, ...props } = Astro.props;
 <div
   data-slot="sidebar-content"
   data-sidebar="content"
-  class={cn("min-h-0 flex-1 overflow-y-auto overscroll-contain scroll-fade-y", className)}
+  class={cn(
+    "min-h-0 flex-1 overflow-y-auto overscroll-contain scroll-fade-y",
+    className,
+  )}
   {...props}
 >
   <slot />

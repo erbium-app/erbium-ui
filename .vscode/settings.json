@@ -56,18 +56,23 @@
     "autodocs",
     "autoscrolling",
     "Blume",
+    "bunx",
     "cmdk",
     "Debouncer",
+    "dmmulroy",
     "Embla",
     "emilkowalski",
+    "frontmatter",
     "frontmost",
     "hugeicons",
     "intellectronica",
+    "llms",
     "oklch",
     "taze",
     "torph",
     "trackpad",
-    "ultracite"
+    "ultracite",
+    "Vazirmatn"
   ],
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"

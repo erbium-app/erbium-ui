@@ -6,22 +6,27 @@ import { showcaseSource } from "@erbium/showcase/sources";
 import { components } from "@/content/catalog";
 import { site } from "@/config/site";
 export { site } from "@/config/site";
+
 const documents = import.meta.glob<string>("../../../../../packages/content/**/*.md", {
   eager: true,
   query: "?raw",
   import: "default",
 });
+
 const sources = import.meta.glob<string>("../../../../../packages/ui/src/**/*.{ts,tsx,css}", {
   eager: true,
   query: "?raw",
   import: "default",
 });
+
 const portableStories = import.meta.glob<{ files: Array<{ path: string; content: string }> }>(
   "../../../../../packages/showcase/public/r/*-stories.json",
   { eager: true, import: "default" },
 );
+
 const contentRoot = "../../../../../packages/content/";
 const sourceRoot = "../../../../../packages/ui/";
+
 export const markdownPath = (route: string) => (route === "/" ? "/index.md" : `${route}.md`);
 const absolute = (path: string) => `${site}${path}`;
 function document(path: string) {

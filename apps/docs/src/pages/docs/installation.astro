@@ -1,8 +1,19 @@
 ---
 import GuidePage from "@/templates/GuidePage.astro";
 import Prose from "@/components/content/Prose.astro";
-import { Content, frontmatter, getHeadings } from "@erbium/content/installation.md";
+import {
+  Content,
+  frontmatter,
+  getHeadings,
+} from "@erbium/content/installation.md";
 ---
-<GuidePage title={frontmatter.title} description={frontmatter.description} headings={getHeadings()} previous={{ title: "Introduction", href: "/" }} next={{ title: "Using components", href: "/docs/getting-started" }}>
+
+<GuidePage
+  title={frontmatter.title}
+  description={frontmatter.description}
+  headings={getHeadings()}
+  previous={{ title: "Introduction", href: "/" }}
+  next={{ title: "Using components", href: "/docs/getting-started" }}
+>
   <Prose><Content /></Prose>
 </GuidePage>

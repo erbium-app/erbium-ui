@@ -3,6 +3,13 @@ import GuidePage from "@/templates/GuidePage.astro";
 import Prose from "@/components/content/Prose.astro";
 import { Content, frontmatter, getHeadings } from "@erbium/content/roadmap.md";
 ---
-<GuidePage title={frontmatter.title} description={frontmatter.description} headings={getHeadings()}>
-  <Prose><Content /></Prose>
+
+<GuidePage
+  title={frontmatter.title}
+  description={frontmatter.description}
+  headings={getHeadings()}
+>
+  <Prose>
+    <Content />
+  </Prose>
 </GuidePage>
