@@ -1,3 +1,5 @@
+import { useId } from "react";
+import { useForm } from "@tanstack/react-form";
 import { HugeiconsIcon } from "@hugeicons/react";
 import RefreshCwIcon from "@hugeicons/core-free-icons/RefreshCwIcon";
 
@@ -11,10 +13,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@erbium/ui/components/card";
-import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
 import { OTPField } from "@erbium/ui/components/otp-field";
 
 export function OTPFieldForm() {
+  const formId = useId();
+  const form = useForm({
+    defaultValues: { code: "" },
+    onSubmit: () => undefined,
+  });
   return (
     <Card className="mx-auto w-full max-w-sm">
       <CardHeader>
@@ -24,27 +31,83 @@ export function OTPFieldForm() {
           <span className="font-medium text-foreground">m@example.com</span>.
         </CardDescription>
         <CardAction>
-          <Button type="button" variant="outline" size="xs">
+          <Button type="button" variant="outline" size="xs" onClick={() => form.reset()}>
             <HugeiconsIcon icon={RefreshCwIcon} />
             Resend
           </Button>
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form id="otp-verification-form" onSubmit={(event) => event.preventDefault()}>
-          <Field>
-            <FieldLabel>Verification code</FieldLabel>
-            <OTPField length={6} groups={[3, 3]} required />
-            <FieldDescription>
-              <a href="#">I no longer have access to this email address.</a>
-            </FieldDescription>
-          </Field>
+        <form
+          id={formId}
+          noValidate
+          onSubmit={(event) => {
+            event.preventDefault();
+            void form.handleSubmit();
+          }}
+        >
+          <form.Field
+            name="code"
+            validators={{
+              onChange: ({ value }) =>
+                value.length === 6 && value !== "123456"
+                  ? "Incorrect code. Try 123456."
+                  : undefined,
+              onSubmit: ({ value }) => (value.length !== 6 ? "Enter all 6 digits." : undefined),
+            }}
+          >
+            {(field) => (
+              <Field
+                name={field.name}
+                invalid={field.state.meta.isTouched && !field.state.meta.isValid}
+                touched={field.state.meta.isTouched}
+                dirty={field.state.meta.isDirty}
+              >
+                <FieldLabel>Verification code</FieldLabel>
+                <OTPField
+                  length={6}
+                  groups={[3, 3]}
+                  required
+                  value={field.state.value}
+                  validation={field.state.meta}
+                  verifiedValue={
+                    form.state.isSubmitted && field.state.meta.isValid
+                      ? field.state.value
+                      : undefined
+                  }
+                  onValueChange={field.handleChange}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget)) field.handleBlur();
+                  }}
+                />
+                <FieldDescription>Demo code: 123456</FieldDescription>
+                <FieldError errors={field.state.meta.isTouched ? field.state.meta.errors : []} />
+              </Field>
+            )}
+          </form.Field>
         </form>
       </CardContent>
       <CardFooter className="flex-col items-stretch gap-3">
-        <Button type="submit" form="otp-verification-form">
-          Verify
-        </Button>
+        <form.Subscribe
+          selector={(state) => [
+            state.canSubmit,
+            state.isSubmitting,
+            state.isSubmitted && state.isValid && state.values.code.length === 6,
+          ]}
+        >
+          {([canSubmit, isSubmitting, isSubmitted]) => (
+            <>
+              <Button type="submit" form={formId} disabled={!canSubmit || isSubmitting}>
+                {isSubmitting ? "Verifying…" : "Verify"}
+              </Button>
+              {isSubmitted && (
+                <p role="status" className="text-sm text-success-soft-foreground">
+                  Code verified.
+                </p>
+              )}
+            </>
+          )}
+        </form.Subscribe>
         <p className="text-center text-sm text-muted-foreground">
           Having trouble signing in?{" "}
           <a

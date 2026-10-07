@@ -4,15 +4,21 @@ const Example = (args: {
   length: number;
   disabled: boolean;
   validationType: "numeric" | "alphanumeric" | "none";
-  status: "idle" | "loading" | "success" | "error";
+  isValidating: boolean;
 }) => (
   <OTPField
     key={`${args.length}-${args.validationType}`}
     aria-label="One-time password"
     length={args.length}
     disabled={args.disabled}
+    value={args.isValidating ? "12345678".slice(0, args.length) : undefined}
     validationType={args.validationType}
-    status={args.status}
+    validation={{
+      isValidating: args.isValidating,
+      isValid: true,
+      isTouched: false,
+      isDirty: false,
+    }}
   />
 );
 

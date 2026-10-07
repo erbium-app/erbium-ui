@@ -13920,8 +13920,12 @@
       "name": "otp-field-form",
       "type": "registry:block",
       "title": "OTP Field: Form",
-      "description": "A verification card with a labelled field.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+      "description": "A verification card owned by TanStack Form. The field validates on change, requires all\nsix digits on submit, and shows submission feedback from `form.Subscribe`. Resend resets\nthe demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
+      "dependencies": [
+        "@hugeicons/core-free-icons@^4.3.5",
+        "@hugeicons/react@^1.1.10",
+        "@tanstack/react-form@1.33.5"
+      ],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
@@ -13965,7 +13969,8 @@
       "name": "otp-field-invalid",
       "type": "registry:block",
       "title": "OTP Field: Invalid",
-      "description": "`status=\"error\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\"success\"`.",
+      "description": "TanStack Form's `onChange` validator checks every complete changed code. Errors come from\n`field.state.meta.errors` through `FieldError`; `Field invalid` supplies accessible invalid\nstate to every slot. Editing a complete incorrect code revalidates it immediately.\nDemo code: 123456.",
+      "dependencies": ["@tanstack/react-form@1.33.5"],
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
         {
@@ -14055,8 +14060,9 @@
       "name": "otp-field-status",
       "type": "registry:block",
       "title": "OTP Field: Status",
-      "description": "`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.",
-      "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
+      "description": "Pass TanStack Form's `field.state.meta` as `validation`. `isValidating` applies the shared Skeleton sweep to the slots using Skeleton’s default neutral colors,\na touched invalid value shows an error. Success appears only when the current complete\nvalue matches `verifiedValue`, which the demo sets after verification finishes.\nValidation keeps editing enabled. This demo uses `onChangeAsync` to check every complete\nchanged code, including corrections made while a previous check is pending. Demo code: 123456.\n\nIncomplete values clear verification feedback without checking the code. Verification starts only when all six digits are present.",
+      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
         {
           "path": "src/otp-field/examples/otp-field-status.tsx",
@@ -14075,7 +14081,11 @@
       "type": "registry:item",
       "title": "OTP Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
+      "dependencies": [
+        "@hugeicons/core-free-icons@^4.3.5",
+        "@hugeicons/react@^1.1.10",
+        "@tanstack/react-form@1.33.5"
+      ],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",

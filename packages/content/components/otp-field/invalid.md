@@ -3,4 +3,7 @@ title: "Invalid"
 story: Invalid
 ---
 
-`status="error"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status="success"`.
+TanStack Form's `onChange` validator checks every complete changed code. Errors come from
+`field.state.meta.errors` through `FieldError`; `Field invalid` supplies accessible invalid
+state to every slot. Editing a complete incorrect code revalidates it immediately.
+Demo code: 123456.

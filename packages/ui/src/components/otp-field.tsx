@@ -4,6 +4,14 @@ import { cn } from "../lib/utils";
 import { shake } from "../lib/shake";
 import { Separator } from "./separator";
 
+/** Structural subset of TanStack Form's field.state.meta. */
+type OTPFieldValidation = {
+  isValid: boolean;
+  isValidating: boolean;
+  isTouched: boolean;
+  isDirty: boolean;
+};
+
 type OTPFieldStatus = "idle" | "loading" | "success" | "error";
 
 const OTPFieldStatusContext = React.createContext<OTPFieldStatus>("idle");
@@ -36,13 +44,10 @@ function OTPFieldSlots({ groups, length }: { groups?: number[]; length: number }
 }
 
 type OTPFieldProps = OTPFieldPrimitive.Root.Props & {
-  /**
-   * Verification state. `error` marks every slot invalid and shakes the field;
-   * `loading` and `success` lock it read-only so the value stays focusable and
-   * selectable. Base UI only knows `invalid` (via `Field.Root`), so the rest
-   * lives here.
-   */
-  status?: OTPFieldStatus;
+  /** Validation metadata owned by the form library. Does not lock editing. */
+  validation?: OTPFieldValidation;
+  /** Value confirmed by verification. Valid form metadata alone does not imply success. */
+  verifiedValue?: string;
   /**
    * Splits the default slots into visual groups, e.g. `[3, 3]` renders
    * `123-456`. Ignored when `children` are passed.
@@ -57,15 +62,32 @@ function OTPField({
   length,
   readOnly,
   ref,
-  status = "idle",
+  validation,
+  verifiedValue,
+  value,
   ...props
 }: OTPFieldProps) {
   const rootRef = React.useRef<HTMLDivElement | null>(null);
-  const locked = status === "loading" || status === "success";
+  const status: OTPFieldStatus =
+    validation?.isValidating && value?.length === length
+      ? "loading"
+      : validation?.isTouched && !validation.isValid
+        ? "error"
+        : validation?.isValid && value?.length === length && value === verifiedValue
+          ? "success"
+          : "idle";
 
   React.useEffect(() => {
     if (status === "error") {
       shake(rootRef.current);
+    }
+    if (status === "loading") {
+      // Match Skeleton's document timeline so all loading surfaces share one sweep.
+      for (const animation of rootRef.current?.getAnimations({ subtree: true }) ?? []) {
+        if (animation instanceof CSSAnimation && animation.animationName === "skeleton") {
+          animation.startTime = 0;
+        }
+      }
     }
   }, [status]);
 
@@ -76,7 +98,8 @@ function OTPField({
         data-status={status === "idle" ? undefined : status}
         aria-busy={status === "loading" || undefined}
         length={length}
-        readOnly={readOnly || locked}
+        readOnly={readOnly}
+        value={value}
         ref={(node) => {
           rootRef.current = node;
           if (typeof ref === "function") {
@@ -111,10 +134,10 @@ function OTPFieldInput({ className, ...props }: OTPFieldPrimitive.Input.Props) {
     <OTPFieldPrimitive.Input
       data-slot="otp-field-input"
       data-status={status === "idle" ? undefined : status}
-      aria-invalid={status === "error" || undefined}
       spellCheck={false}
       className={cn(
-        "relative size-8 min-w-0 rounded-lg border surface-field text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none aria-invalid:border-error focus-visible:aria-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:aria-invalid:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-muted-foreground motion-safe:data-[status=loading]:animate-pulse data-[status=loading]:focus-visible:ring-0 data-[status=success]:focus-visible:ring-0",
+        "relative size-8 min-w-0 rounded-lg border text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-muted-foreground",
+        status === "loading" ? "skeleton border-border text-muted-foreground" : "surface-field",
         className,
       )}
       {...props}
@@ -138,5 +161,5 @@ function OTPFieldSeparator({ className, ...props }: OTPFieldPrimitive.Separator.
   );
 }
 
-export type { OTPFieldProps, OTPFieldStatus };
+export type { OTPFieldProps, OTPFieldValidation };
 export { OTPField, OTPFieldGroup, OTPFieldInput, OTPFieldSeparator };

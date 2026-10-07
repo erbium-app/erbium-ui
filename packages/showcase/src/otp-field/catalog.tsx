@@ -69,14 +69,14 @@ export const Playground: StoryObj<{
   length: number;
   disabled: boolean;
   validationType: "numeric" | "alphanumeric" | "none";
-  status: "idle" | "loading" | "success" | "error";
+  isValidating: boolean;
 }> = {
-  args: { length: 6, disabled: false, validationType: "numeric", status: "idle" },
+  args: { length: 6, disabled: false, validationType: "numeric", isValidating: false },
   argTypes: {
     length: { control: { type: "number", min: 1, max: 8 } },
     disabled: { control: "boolean" },
     validationType: { control: "select", options: ["numeric", "alphanumeric", "none"] },
-    status: { control: "select", options: ["idle", "loading", "success", "error"] },
+    isValidating: { control: "boolean" },
   },
   parameters: {
     docs: {
