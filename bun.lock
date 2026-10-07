@@ -171,6 +171,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "@tanstack/form-core@1.33.5": "patches/@tanstack%2Fform-core@1.33.5.patch",
+  },
   "overrides": {
     "vite": "catalog:",
   },

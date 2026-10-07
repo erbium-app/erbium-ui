@@ -3,6 +3,7 @@ import { createContext, use, useEffect, useMemo, useState } from "react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { TokensResult } from "shiki/core";
 import { TabsList, TabsTrigger } from "../components/tabs";
+import { Separator } from "../components/separator";
 import { highlightCode } from "../lib/code-highlighter";
 import { cn } from "../lib/utils";
 import { CopyButton } from "./copy-button";
@@ -79,7 +80,7 @@ function CodeBlock({
         data-slot="code-block"
         data-surface={surface}
         className={cn(
-          "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl border surface-field text-foreground",
+          "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl border surface-panel text-foreground",
           className,
         )}
         value={active?.value ?? null}
@@ -114,14 +115,17 @@ function CodeBlock({
 }
 function CodeBlockHeader({ className, ...props }: ComponentProps<"div">) {
   return (
-    <div
-      {...props}
-      data-slot="code-block-header"
-      className={cn(
-        "flex min-h-10 items-center justify-between gap-2 border-b px-3 py-1.5 group-data-[surface=command]/code-block:min-h-9",
-        className,
-      )}
-    />
+    <>
+      <div
+        {...props}
+        data-slot="code-block-header"
+        className={cn(
+          "flex min-h-10 items-center justify-between gap-2 px-3 py-1.5 group-data-[surface=command]/code-block:min-h-9",
+          className,
+        )}
+      />
+      <Separator variant="full" />
+    </>
   );
 }
 function CodeBlockTitle({ className, ...props }: ComponentProps<"span">) {
