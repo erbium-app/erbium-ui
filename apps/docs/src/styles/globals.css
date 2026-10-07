@@ -10,10 +10,18 @@
   --site-gutter: 1.5rem;
   --site-max-width: 90rem;
   --site-section-space: 1.5rem;
-  --site-column-gap: 1.5rem;
-  --docs-page-padding-inline: 2.5rem;
-  --docs-page-padding-start: 3rem;
-  --docs-page-padding-end: 3.5rem;
+  --site-column-gap: 2rem;
+  --docs-page-padding-inline: clamp(1.5rem, 3vw, 2rem);
+  --docs-page-padding-start: 2rem;
+  --docs-page-padding-end: 3rem;
+  --docs-title-line-height: 2.25rem;
+  --docs-description-gap: 0.75rem;
+  --docs-description-line-height: 1.75rem;
+  --docs-header-midpoint: calc(
+    (var(--docs-title-line-height) + var(--docs-description-gap) +
+        var(--docs-description-line-height)) /
+      2
+  );
 }
 
 html[data-theme-changing],
@@ -67,6 +75,12 @@ html[data-theme-changing] *::after {
   margin-block-start: 0;
 }
 
+@media (min-width: 1280px) {
+  :root {
+    --docs-title-line-height: 2.5rem;
+  }
+}
+
 @media (max-width: 1100px) {
   :root {
     --sidebar-width: 13rem;
@@ -74,7 +88,7 @@ html[data-theme-changing] *::after {
   }
 }
 
-@media (max-width: 959px) {
+@media (width < 959px) {
   :root {
     --site-gutter: 1rem;
     --site-section-space: 0rem;

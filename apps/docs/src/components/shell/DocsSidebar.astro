@@ -10,9 +10,9 @@ import DocsNavigation from "@/components/shell/DocsNavigation.astro";
 ---
 
 <Sidebar class="docs-sidebar sticky top-0 h-[100svh] pt-[var(--site-section-space)] w-full [&_a:focus-visible]:[outline:2px_solid_var(--ring)] [&_a:focus-visible]:[outline-offset:3px] max-[959px]:hidden" collapsible="none">
-  <div class="sidebar-heading flex flex-col gap-5 shrink-0 p-[0.5rem_0.7rem_1rem_0]"><div><Brand /></div><div class="sidebar-search [&_.docs-search-trigger]:w-full [&_.docs-search-trigger]:h-8 [&_.docs-search-trigger]:p-2 [&_.docs-search-trigger_>_span]:block [&_.docs-search-trigger_>_span]:min-w-0 [&_.docs-search-trigger_>_span]:overflow-hidden [&_.docs-search-trigger_>_span]:text-ellipsis [&_.docs-search-trigger_kbd]:inline-flex"><SearchTrigger /></div></div>
+  <div class="sidebar-heading flex flex-col gap-[calc(var(--docs-page-padding-start)_+_1px_+_var(--docs-header-midpoint)_-_3rem)] shrink-0 pt-0 pe-[0.7rem] pb-4 ps-0"><div class="h-8 [&_.site-brand]:flex"><Brand /></div><div class="sidebar-search [&_.docs-search-trigger]:w-full [&_.docs-search-trigger]:h-8 [&_.docs-search-trigger]:p-2 [&_.docs-search-trigger_>_span]:block [&_.docs-search-trigger_>_span]:min-w-0 [&_.docs-search-trigger_>_span]:overflow-hidden [&_.docs-search-trigger_>_span]:text-ellipsis [&_.docs-search-trigger_kbd]:inline-flex"><SearchTrigger /></div></div>
   <DocsNavigation />
-  <div class="sidebar-controls flex shrink-0 items-center justify-between p-[0.75rem_0.7rem_0.75rem_0] carve-top">
+  <div class="sidebar-controls flex shrink-0 items-center justify-between py-3 pe-[0.7rem] carve-top">
     <Button href="https://github.com/erbium-app/erbium-ui" target="_blank" rel="noopener noreferrer" variant="ghost" size="icon" aria-label="Erbium UI on GitHub"><Icon icon={GithubIcon} /></Button>
     <ThemeToggle />
   </div>
