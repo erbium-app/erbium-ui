@@ -10,11 +10,7 @@ export function OTPFieldInvalid() {
 
   function handleValueChange(nextValue: string) {
     setValue(nextValue);
-    setStatus("idle");
-  }
-
-  function handleValueComplete(code: string) {
-    setStatus(code === "123456" ? "success" : "error");
+    setStatus(nextValue.length === 6 ? (nextValue === "123456" ? "success" : "error") : "idle");
   }
 
   return (
@@ -25,7 +21,6 @@ export function OTPFieldInvalid() {
         groups={[2, 2, 2]}
         length={6}
         onValueChange={handleValueChange}
-        onValueComplete={handleValueComplete}
         status={status}
         value={value}
       />

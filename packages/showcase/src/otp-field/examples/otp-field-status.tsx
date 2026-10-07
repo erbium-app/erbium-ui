@@ -14,13 +14,13 @@ export function OTPFieldStatusDemo() {
   function handleValueChange(nextValue: string) {
     setValue(nextValue);
     clearTimeout(timer.current);
-    setStatus("idle");
-  }
-
-  function handleValueComplete(code: string) {
+    if (nextValue.length !== 6) {
+      setStatus("idle");
+      return;
+    }
     setStatus("loading");
     timer.current = setTimeout(() => {
-      setStatus(code === "123456" ? "success" : "error");
+      setStatus(nextValue === "123456" ? "success" : "error");
     }, VERIFY_DELAY);
   }
 
@@ -32,7 +32,6 @@ export function OTPFieldStatusDemo() {
         groups={[3, 3]}
         length={6}
         onValueChange={handleValueChange}
-        onValueComplete={handleValueComplete}
         status={status}
         value={value}
       />
