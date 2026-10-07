@@ -56,7 +56,7 @@
     "motion": "^14.0.0",
     "react-day-picker": "catalog:",
     "react-resizable-panels": "^4.14.2",
-    "shadcn": "^4.21.3",
+    "shadcn": "^4.21.4",
     "shadow-plugin": "^2.1.1",
     "tailwindcss": "latest",
     "torph": "^0.1.3",
