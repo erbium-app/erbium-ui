@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Stateful Button stories",
   "description": "All stateful-button variants as portable React CSF stories.",
-  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",

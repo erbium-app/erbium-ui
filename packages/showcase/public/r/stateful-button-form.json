@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "stateful button form",
   "description": "Erbium stateful button form example.",
-  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
   "registryDependencies": [
     "@erbium/field",
     "@erbium/input",

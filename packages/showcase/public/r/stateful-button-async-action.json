@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Stateful Button: Async Action",
   "description": "",
-  "dependencies": ["@tanstack/react-pacer@0.24.0"],
+  "dependencies": ["@tanstack/react-pacer@0.24.1"],
   "registryDependencies": ["@erbium/stateful-button", "@erbium/styles"],
   "files": [
     {

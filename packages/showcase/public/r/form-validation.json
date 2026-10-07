@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Form: Validation",
   "description": "Validate a form field and display its error beside the control.\n\nCompose `FieldDescription` and `FieldError` together. The description is removed while the field is invalid and returns when validation clears, so helper information and errors never appear together.",
-  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+  "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
   "registryDependencies": [
     "@erbium/field",
     "@erbium/input",
