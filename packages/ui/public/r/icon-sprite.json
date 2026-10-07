@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-sprite",
+  "type": "registry:ui",
+  "title": "Icon Sprite",
+  "description": "Erbium icon sprite component.",
+  "dependencies": ["@erbium/icons"],
+  "files": [
+    {
+      "path": "src/components/icon-sprite.tsx",
+      "type": "registry:ui",
+      "target": "@ui/icon-sprite.tsx",
+      "content": "import { spriteSheet } from \"@erbium/icons/sprite\";\n\nfunction IconSprite() {\n  return (\n    <div\n      data-slot=\"icon-sprite\"\n      aria-hidden=\"true\"\n      className=\"pointer-events-none absolute size-0 overflow-hidden\"\n      // This markup is generated from the package's authored SVG assets.\n      dangerouslySetInnerHTML={{ __html: spriteSheet }}\n    />\n  );\n}\n\nexport { IconSprite };\n"
+    }
+  ]
+}

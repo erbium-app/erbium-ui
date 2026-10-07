@@ -17,8 +17,8 @@ import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
 import ChangingSourceExample from "./variants/changing-source";
 import ChangingSourceSource from "./variants/changing-source.tsx?raw";
-import RtlExample from "./variants/rtl";
-import RtlSource from "./variants/rtl.tsx?raw";
+import LanguagesExample from "./variants/languages";
+import LanguagesSource from "./variants/languages.tsx?raw";
 const meta = {
   component: CodeBlock,
   tags: ["autodocs"],
@@ -29,6 +29,16 @@ const meta = {
 } satisfies Meta<typeof CodeBlock>;
 export default meta;
 type Story = StoryObj;
+
+export const Languages: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("code-block", "languages") },
+      source: { code: LanguagesSource },
+    },
+  },
+  render: LanguagesExample,
+};
 
 export const Overview: Story = {
   parameters: {
@@ -108,14 +118,4 @@ export const ChangingSource: Story = {
     },
   },
   render: ChangingSourceExample,
-};
-
-export const Rtl: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("code-block", "rtl") },
-      source: { code: RtlSource },
-    },
-  },
-  render: RtlExample,
 };

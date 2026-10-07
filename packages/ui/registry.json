@@ -308,7 +308,9 @@
       "dependencies": ["@base-ui/react", "shiki"],
       "registryDependencies": [
         "@erbium/code-highlighter",
+        "@erbium/code-language-icon",
         "@erbium/copy-button",
+        "@erbium/icon",
         "@erbium/separator",
         "@erbium/tabs",
         "@erbium/utils"
@@ -332,6 +334,21 @@
           "path": "src/lib/code-highlighter.ts",
           "type": "registry:lib",
           "target": "@lib/code-highlighter.ts"
+        }
+      ]
+    },
+    {
+      "name": "code-language-icon",
+      "type": "registry:lib",
+      "title": "Code Language Icon",
+      "description": "Erbium code language icon lib.",
+      "dependencies": ["@erbium/icons"],
+      "registryDependencies": ["@erbium/code-highlighter"],
+      "files": [
+        {
+          "path": "src/lib/code-language-icon.ts",
+          "type": "registry:lib",
+          "target": "@lib/code-language-icon.ts"
         }
       ]
     },
@@ -632,6 +649,35 @@
           "path": "src/components/hover-card.tsx",
           "type": "registry:ui",
           "target": "@ui/hover-card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon",
+      "description": "Erbium icon component.",
+      "dependencies": ["@erbium/icons"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/icon.tsx",
+          "type": "registry:ui",
+          "target": "@ui/icon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "icon-sprite",
+      "type": "registry:ui",
+      "title": "Icon Sprite",
+      "description": "Erbium icon sprite component.",
+      "dependencies": ["@erbium/icons"],
+      "files": [
+        {
+          "path": "src/components/icon-sprite.tsx",
+          "type": "registry:ui",
+          "target": "@ui/icon-sprite.tsx"
         }
       ]
     },

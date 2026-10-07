@@ -5977,7 +5977,7 @@
       "name": "code-block-composition",
       "type": "registry:component",
       "title": "Code Block: Composition",
-      "description": "Compose a custom header and the existing copy button labels.",
+      "description": "Compose a custom header and the existing copy button labels.\n\nPlace `CodeBlockIcon` before the title to use the active source’s language icon.",
       "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
       "files": [
         {
@@ -6007,6 +6007,7 @@
       "title": "Code Block examples",
       "description": "All code-block examples.",
       "registryDependencies": [
+        "@erbium-examples/code-block-languages",
         "@erbium-examples/code-block-overview",
         "@erbium-examples/code-block-commands",
         "@erbium-examples/code-block-files",
@@ -6014,21 +6015,34 @@
         "@erbium-examples/code-block-composition",
         "@erbium-examples/code-block-overflow",
         "@erbium-examples/code-block-states",
-        "@erbium-examples/code-block-changing-source",
-        "@erbium-examples/code-block-rtl"
+        "@erbium-examples/code-block-changing-source"
       ]
     },
     {
       "name": "code-block-files",
       "type": "registry:component",
       "title": "Code Block: Files",
-      "description": "Switch files with line numbers and a disabled tab.",
+      "description": "Switch files with line numbers and a disabled tab.\n\nEach tab includes the icon for its own source language, including disabled tabs.",
       "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
       "files": [
         {
           "path": "src/code-block/variants/files.tsx",
           "type": "registry:component",
           "target": "@components/showcase/code-block/variants/files.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-languages",
+      "type": "registry:component",
+      "title": "Code Block: Languages",
+      "description": "Header icons follow the source language automatically. Language aliases share the\nsame icon; plaintext has a text-file icon, and unknown languages use a generic file.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/languages.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/languages.tsx"
         }
       ]
     },
@@ -6061,20 +6075,6 @@
       ]
     },
     {
-      "name": "code-block-rtl",
-      "type": "registry:component",
-      "title": "Code Block: Rtl",
-      "description": "RTL controls surround an explicitly LTR code region.",
-      "registryDependencies": ["@erbium/code-block", "@erbium/direction", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/code-block/variants/rtl.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/code-block/variants/rtl.tsx"
-        }
-      ]
-    },
-    {
       "name": "code-block-states",
       "type": "registry:component",
       "title": "Code Block: States",
@@ -6099,7 +6099,7 @@
         "@erbium/code-block",
         "@erbium/copy-button",
         "@erbium/csp-provider",
-        "@erbium/direction",
+        "@erbium/icon-sprite",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/textarea",
@@ -6137,6 +6137,11 @@
           "target": "@components/showcase/code-block/variants/files.tsx"
         },
         {
+          "path": "src/code-block/variants/languages.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/languages.tsx"
+        },
+        {
           "path": "src/code-block/variants/overflow.tsx",
           "type": "registry:component",
           "target": "@components/showcase/code-block/variants/overflow.tsx"
@@ -6145,11 +6150,6 @@
           "path": "src/code-block/variants/overview.tsx",
           "type": "registry:component",
           "target": "@components/showcase/code-block/variants/overview.tsx"
-        },
-        {
-          "path": "src/code-block/variants/rtl.tsx",
-          "type": "registry:component",
-          "target": "@components/showcase/code-block/variants/rtl.tsx"
         },
         {
           "path": "src/code-block/variants/states.tsx",

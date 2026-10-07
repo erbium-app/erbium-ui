@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-language-icon",
+  "type": "registry:lib",
+  "title": "Code Language Icon",
+  "description": "Erbium code language icon lib.",
+  "dependencies": ["@erbium/icons"],
+  "registryDependencies": ["@erbium/code-highlighter"],
+  "files": [
+    {
+      "path": "src/lib/code-language-icon.ts",
+      "type": "registry:lib",
+      "target": "@lib/code-language-icon.ts",
+      "content": "import type { IconName } from \"@erbium/icons\";\nimport { normalizeCodeLanguage } from \"@/registry/erbium/lib/code-highlighter\";\n\nconst languageIcons: Record<string, IconName> = {\n  ts: \"lang-typescript-duo\",\n  js: \"lang-javascript-duo\",\n  tsx: \"react\",\n  jsx: \"react\",\n  json: \"braces\",\n  jsonc: \"braces\",\n  css: \"lang-css-duo\",\n  html: \"lang-html-duo\",\n  shell: \"bash-duo\",\n  zsh: \"bash-duo\",\n  yaml: \"yml\",\n  python: \"lang-python\",\n  sql: \"file-table-duo\",\n  markdown: \"lang-markdown\",\n  mdx: \"lang-markdown\",\n  text: \"file-text-duo\",\n  plaintext: \"file-text-duo\",\n  plain: \"file-text-duo\",\n  txt: \"file-text-duo\",\n  go: \"lang-go\",\n  rust: \"lang-rust\",\n  ruby: \"lang-ruby\",\n  swift: \"lang-swift\",\n  c: \"lang-c\",\n  cpp: \"lang-c\",\n  astro: \"astro\",\n  vue: \"vue\",\n  svelte: \"svelte\",\n  graphql: \"graphql\",\n  sass: \"sass\",\n  scss: \"sass\",\n};\n\nexport function codeLanguageIcon(language?: string): IconName {\n  return languageIcons[normalizeCodeLanguage(language ?? \"text\")] ?? \"file-duo\";\n}\n"
+    }
+  ]
+}

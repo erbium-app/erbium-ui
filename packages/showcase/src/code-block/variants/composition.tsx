@@ -5,6 +5,7 @@ import {
   CodeBlockCopyButton,
   CodeBlockHeader,
   CodeBlockLanguage,
+  CodeBlockIcon,
   CodeBlockTitle,
 } from "@erbium/ui/blocks/code-block";
 import { CopyButtonIcon, CopyButtonLabel } from "@erbium/ui/blocks/copy-button";
@@ -16,8 +17,11 @@ export default function Example() {
       code={'{\n  "name": "Erbium",\n  "accessible": true\n}'}
       language="json"
     >
-      <CodeBlockHeader>
-        <CodeBlockTitle>project.json</CodeBlockTitle>
+      <CodeBlockHeader className="justify-start pe-24">
+        <CodeBlockTitle>
+          <CodeBlockIcon />
+          <span className="truncate">project.json</span>
+        </CodeBlockTitle>
         <CodeBlockLanguage />
       </CodeBlockHeader>
       <CodeBlockActions>

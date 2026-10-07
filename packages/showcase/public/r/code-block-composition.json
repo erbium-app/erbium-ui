@@ -3,14 +3,14 @@
   "name": "code-block-composition",
   "type": "registry:component",
   "title": "Code Block: Composition",
-  "description": "Compose a custom header and the existing copy button labels.",
+  "description": "Compose a custom header and the existing copy button labels.\n\nPlace `CodeBlockIcon` before the title to use the active source’s language icon.",
   "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
   "files": [
     {
       "path": "src/code-block/variants/composition.tsx",
       "type": "registry:component",
       "target": "@components/showcase/code-block/variants/composition.tsx",
-      "content": "import {\n  CodeBlock,\n  CodeBlockActions,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockLanguage,\n  CodeBlockTitle,\n} from \"@/registry/erbium/blocks/code-block\";\nimport { CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function Example() {\n  return (\n    <CodeBlock\n      className=\"w-full max-w-xl\"\n      code={'{\\n  \"name\": \"Erbium\",\\n  \"accessible\": true\\n}'}\n      language=\"json\"\n    >\n      <CodeBlockHeader>\n        <CodeBlockTitle>project.json</CodeBlockTitle>\n        <CodeBlockLanguage />\n      </CodeBlockHeader>\n      <CodeBlockActions>\n        <CodeBlockCopyButton aria-label=\"Copy project configuration\">\n          <CopyButtonIcon data-icon=\"inline-start\" />\n          <CopyButtonLabel />\n        </CodeBlockCopyButton>\n      </CodeBlockActions>\n      <CodeBlockContent className=\"pe-24\" />\n    </CodeBlock>\n  );\n}\n"
+      "content": "import {\n  CodeBlock,\n  CodeBlockActions,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockLanguage,\n  CodeBlockIcon,\n  CodeBlockTitle,\n} from \"@/registry/erbium/blocks/code-block\";\nimport { CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function Example() {\n  return (\n    <CodeBlock\n      className=\"w-full max-w-xl\"\n      code={'{\\n  \"name\": \"Erbium\",\\n  \"accessible\": true\\n}'}\n      language=\"json\"\n    >\n      <CodeBlockHeader className=\"justify-start pe-24\">\n        <CodeBlockTitle>\n          <CodeBlockIcon />\n          <span className=\"truncate\">project.json</span>\n        </CodeBlockTitle>\n        <CodeBlockLanguage />\n      </CodeBlockHeader>\n      <CodeBlockActions>\n        <CodeBlockCopyButton aria-label=\"Copy project configuration\">\n          <CopyButtonIcon data-icon=\"inline-start\" />\n          <CopyButtonLabel />\n        </CodeBlockCopyButton>\n      </CodeBlockActions>\n      <CodeBlockContent className=\"pe-24\" />\n    </CodeBlock>\n  );\n}\n"
     }
   ]
 }

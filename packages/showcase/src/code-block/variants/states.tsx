@@ -4,6 +4,7 @@ import {
   CodeBlockContent,
   CodeBlockCopyButton,
   CodeBlockHeader,
+  CodeBlockIcon,
   CodeBlockTitle,
 } from "@erbium/ui/blocks/code-block";
 
@@ -17,7 +18,10 @@ export default function Example() {
       />
       <CodeBlock code="This source remains copyable with a custom header." title="Custom header">
         <CodeBlockHeader>
-          <CodeBlockTitle>Custom header</CodeBlockTitle>
+          <CodeBlockTitle>
+            <CodeBlockIcon />
+            <span className="truncate">Custom header</span>
+          </CodeBlockTitle>
         </CodeBlockHeader>
         <CodeBlockActions>
           <CodeBlockCopyButton />

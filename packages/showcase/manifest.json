@@ -1078,6 +1078,12 @@
     "title": "Blocks/Code Block",
     "variants": [
       {
+        "exportName": "Languages",
+        "slug": "languages",
+        "title": "Languages",
+        "source": "src/code-block/variants/languages.tsx"
+      },
+      {
         "exportName": "Overview",
         "slug": "overview",
         "title": "Overview",
@@ -1124,12 +1130,6 @@
         "slug": "changing-source",
         "title": "Changing Source",
         "source": "src/code-block/variants/changing-source.tsx"
-      },
-      {
-        "exportName": "Rtl",
-        "slug": "rtl",
-        "title": "Rtl",
-        "source": "src/code-block/variants/rtl.tsx"
       }
     ]
   },

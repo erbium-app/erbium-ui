@@ -1,4 +1,5 @@
 ---
+import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { structuredData } from "@/build/seo/structured-data";
 import { siteName, siteDescription } from "@/config/site";
 import { themeInitScript } from "@/runtime/theme";
@@ -118,6 +119,7 @@ const analyticsToken = import.meta.env.PROD
     >
       Skip to content
     </a>
+    <IconSprite />
     <slot />
     {
       analyticsToken && (

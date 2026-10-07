@@ -3,6 +3,7 @@ import "../src/styles.css";
 import { createElement } from "react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
+import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { DrawerIndent } from "@erbium/ui/components/drawer";
 import type { Preview } from "@storybook/tanstack-react";
 import { ThemeAwareDocsContainer } from "./docs-container";
@@ -23,6 +24,7 @@ const preview: Preview = {
       return createElement(
         ShowcaseProviders,
         { toast: !isDocs },
+        !isDocs && createElement(IconSprite),
         isDocs
           ? createElement(ShowcaseSurface, null, createElement(Story))
           : createElement(

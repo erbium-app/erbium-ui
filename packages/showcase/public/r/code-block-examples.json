@@ -5,6 +5,7 @@
   "title": "Code Block examples",
   "description": "All code-block examples.",
   "registryDependencies": [
+    "@erbium-examples/code-block-languages",
     "@erbium-examples/code-block-overview",
     "@erbium-examples/code-block-commands",
     "@erbium-examples/code-block-files",
@@ -12,7 +13,6 @@
     "@erbium-examples/code-block-composition",
     "@erbium-examples/code-block-overflow",
     "@erbium-examples/code-block-states",
-    "@erbium-examples/code-block-changing-source",
-    "@erbium-examples/code-block-rtl"
+    "@erbium-examples/code-block-changing-source"
   ]
 }

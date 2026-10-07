@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "type": "registry:ui",
+  "title": "Icon",
+  "description": "Erbium icon component.",
+  "dependencies": ["@erbium/icons"],
+  "registryDependencies": ["@erbium/utils"],
+  "files": [
+    {
+      "path": "src/components/icon.tsx",
+      "type": "registry:ui",
+      "target": "@ui/icon.tsx",
+      "content": "import { iconDefinitions } from \"@erbium/icons\";\nimport type { IconName } from \"@erbium/icons\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\ntype IconProps = Omit<ComponentProps<\"svg\">, \"children\" | \"dangerouslySetInnerHTML\"> & {\n  name: IconName;\n};\n\nfunction Icon({ name, className, ...props }: IconProps) {\n  const { id, viewBox } = iconDefinitions[name];\n  return (\n    <svg\n      aria-hidden=\"true\"\n      focusable=\"false\"\n      data-slot=\"icon\"\n      {...props}\n      viewBox={viewBox}\n      className={cn(\"size-4 shrink-0\", className)}\n    >\n      <use href={`#${id}`} />\n    </svg>\n  );\n}\n\nexport { Icon };\nexport type { IconProps };\n"
+    }
+  ]
+}

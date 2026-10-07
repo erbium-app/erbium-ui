@@ -2,6 +2,7 @@ import { DocsContainer, type DocsContainerProps } from "@storybook/addon-docs/bl
 import { useEffect, useState } from "react";
 import { GLOBALS_UPDATED } from "storybook/internal/core-events";
 import { themes } from "storybook/theming";
+import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { Toaster } from "@erbium/ui/components/toast";
 
 function ThemeAwareDocsContainer({
@@ -23,6 +24,7 @@ function ThemeAwareDocsContainer({
 
   return (
     <DocsContainer context={context} theme={isDark ? themes.dark : themes.light}>
+      <IconSprite />
       {children}
       <Toaster />
     </DocsContainer>

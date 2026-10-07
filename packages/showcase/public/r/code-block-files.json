@@ -3,7 +3,7 @@
   "name": "code-block-files",
   "type": "registry:component",
   "title": "Code Block: Files",
-  "description": "Switch files with line numbers and a disabled tab.",
+  "description": "Switch files with line numbers and a disabled tab.\n\nEach tab includes the icon for its own source language, including disabled tabs.",
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {

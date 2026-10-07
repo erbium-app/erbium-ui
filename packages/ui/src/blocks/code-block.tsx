@@ -1,9 +1,12 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { createContext, use, useEffect, useMemo, useState } from "react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { TokensResult } from "shiki/core";
 import { TabsList, TabsTrigger } from "../components/tabs";
 import { Separator } from "../components/separator";
+import { Icon } from "../components/icon";
+import { codeLanguageIcon } from "../lib/code-language-icon";
 import { highlightCode } from "../lib/code-highlighter";
 import { cn } from "../lib/utils";
 import { CopyButton } from "./copy-button";
@@ -21,9 +24,10 @@ type CodeBlockSource =
   | { items: readonly CodeBlockItem[]; code?: never; language?: never };
 type CodeBlockProps = Omit<
   TabsPrimitive.Root.Props,
-  "value" | "defaultValue" | "onValueChange" | "orientation"
+  "value" | "defaultValue" | "onValueChange" | "orientation" | "dir"
 > &
   CodeBlockSource & {
+    dir?: never;
     value?: string;
     defaultValue?: string;
     onValueChange?: (value: string, details: TabsPrimitive.Root.ChangeEventDetails) => void;
@@ -74,45 +78,51 @@ function CodeBlock({
     items.find((item) => item.value === requested && !item.disabled) ??
     items.find((item) => !item.disabled);
   return (
-    <CodeBlockContext value={{ items, active, surface, lineNumbers, wrap }}>
-      <TabsPrimitive.Root
-        {...props}
-        data-slot="code-block"
-        data-surface={surface}
-        className={cn(
-          "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl border surface-panel text-foreground",
-          className,
-        )}
-        value={active?.value ?? null}
-        onValueChange={(next, details) => {
-          if (typeof next !== "string") return;
-          onValueChange?.(next, details);
-          if (!details.isCanceled && value === undefined) setSelection(next);
-        }}
-      >
-        {children ?? (
-          <>
-            {(providedItems && items.length > 0) || title ? (
-              <CodeBlockHeader>
-                {providedItems && items.length > 0 ? (
-                  <CodeBlockTabs />
-                ) : (
-                  <CodeBlockTitle>{title}</CodeBlockTitle>
-                )}
-              </CodeBlockHeader>
-            ) : null}
-            <CodeBlockActions>
-              <CodeBlockCopyButton />
-            </CodeBlockActions>
-            {providedItems ? (
-              items.map((item) => <CodeBlockPanel key={item.value} value={item.value} />)
-            ) : (
-              <CodeBlockContent />
-            )}
-          </>
-        )}
-      </TabsPrimitive.Root>
-    </CodeBlockContext>
+    <DirectionProvider direction="ltr">
+      <CodeBlockContext value={{ items, active, surface, lineNumbers, wrap }}>
+        <TabsPrimitive.Root
+          {...props}
+          dir="ltr"
+          data-slot="code-block"
+          data-surface={surface}
+          className={cn(
+            "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl border surface-panel text-foreground",
+            className,
+          )}
+          value={active?.value ?? null}
+          onValueChange={(next, details) => {
+            if (typeof next !== "string") return;
+            onValueChange?.(next, details);
+            if (!details.isCanceled && value === undefined) setSelection(next);
+          }}
+        >
+          {children ?? (
+            <>
+              {(providedItems && items.length > 0) || title ? (
+                <CodeBlockHeader>
+                  {providedItems && items.length > 0 ? (
+                    <CodeBlockTabs />
+                  ) : (
+                    <CodeBlockTitle>
+                      <CodeBlockIcon />
+                      <span className="truncate">{title}</span>
+                    </CodeBlockTitle>
+                  )}
+                </CodeBlockHeader>
+              ) : null}
+              <CodeBlockActions>
+                <CodeBlockCopyButton />
+              </CodeBlockActions>
+              {providedItems ? (
+                items.map((item) => <CodeBlockPanel key={item.value} value={item.value} />)
+              ) : (
+                <CodeBlockContent />
+              )}
+            </>
+          )}
+        </TabsPrimitive.Root>
+      </CodeBlockContext>
+    </DirectionProvider>
   );
 }
 function CodeBlockHeader({ className, ...props }: ComponentProps<"div">) {
@@ -135,7 +145,10 @@ function CodeBlockTitle({ className, ...props }: ComponentProps<"span">) {
     <span
       {...props}
       data-slot="code-block-title"
-      className={cn("truncate text-xs font-medium text-muted-foreground", className)}
+      className={cn(
+        "inline-flex min-w-0 items-center gap-2 truncate text-xs font-medium text-muted-foreground",
+        className,
+      )}
     />
   );
 }
@@ -155,6 +168,22 @@ function CodeBlockLanguage({ children, ...props }: ComponentProps<typeof CodeBlo
   const { active } = useCodeBlock();
   return <CodeBlockTitle {...props}>{children ?? active?.language ?? "text"}</CodeBlockTitle>;
 }
+function CodeBlockIcon({
+  value,
+  className,
+  ...props
+}: Omit<ComponentProps<typeof Icon>, "name"> & { value?: string }) {
+  const { active, items, surface } = useCodeBlock();
+  const item = value === undefined ? active : items.find((entry) => entry.value === value);
+  return (
+    <Icon
+      {...props}
+      className={cn("size-4.5", className)}
+      name={codeLanguageIcon(item?.language ?? (surface === "command" ? "shell" : undefined))}
+      data-slot="code-block-icon"
+    />
+  );
+}
 function CodeBlockTabs({
   children,
   className,
@@ -171,6 +200,7 @@ function CodeBlockTabs({
       {children ??
         items.map((item) => (
           <CodeBlockTab key={item.value} value={item.value} disabled={item.disabled}>
+            <CodeBlockIcon value={item.value} />
             {item.label}
           </CodeBlockTab>
         ))}
@@ -197,7 +227,10 @@ function CodeBlockCopyButton({
   );
 }
 
-type CodeBlockContentProps = Omit<ComponentProps<"pre">, "children" | "dangerouslySetInnerHTML">;
+type CodeBlockContentProps = Omit<
+  ComponentProps<"pre">,
+  "children" | "dangerouslySetInnerHTML" | "dir"
+>;
 function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps) {
   const { active, lineNumbers, wrap, surface } = useCodeBlock();
   const code = active?.code ?? "";
@@ -320,6 +353,7 @@ export {
   CodeBlockTitle,
   CodeBlockActions,
   CodeBlockLanguage,
+  CodeBlockIcon,
   CodeBlockTabs,
   CodeBlockTab,
   CodeBlockPanel,
