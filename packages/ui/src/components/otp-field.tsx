@@ -81,14 +81,6 @@ function OTPField({
     if (status === "error") {
       shake(rootRef.current);
     }
-    if (status === "loading") {
-      // Match Skeleton's document timeline so all loading surfaces share one sweep.
-      for (const animation of rootRef.current?.getAnimations({ subtree: true }) ?? []) {
-        if (animation instanceof CSSAnimation && animation.animationName === "skeleton") {
-          animation.startTime = 0;
-        }
-      }
-    }
   }, [status]);
 
   return (
@@ -127,7 +119,7 @@ function OTPFieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function OTPFieldInput({ className, ...props }: OTPFieldPrimitive.Input.Props) {
+function OTPFieldInput({ className, render, ...props }: OTPFieldPrimitive.Input.Props) {
   const status = React.useContext(OTPFieldStatusContext);
 
   return (
@@ -135,9 +127,26 @@ function OTPFieldInput({ className, ...props }: OTPFieldPrimitive.Input.Props) {
       data-slot="otp-field-input"
       data-status={status === "idle" ? undefined : status}
       spellCheck={false}
+      render={
+        render ??
+        ((inputProps, state) => (
+          <span className="relative inline-flex">
+            <input {...inputProps} />
+            {status === "loading" && (
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm text-muted-foreground"
+              >
+                <span className="shimmer motion-reduce:animate-none [--shimmer-color:color-mix(in_oklab,currentColor_35%,transparent)] [--shimmer-spread:1.5ch]">
+                  {state.value}
+                </span>
+              </span>
+            )}
+          </span>
+        ))
+      }
       className={cn(
-        "relative size-8 min-w-0 rounded-lg border text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-muted-foreground",
-        status === "loading" ? "skeleton border-border text-muted-foreground" : "surface-field",
+        "relative size-8 min-w-0 rounded-lg border surface-field text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
         className,
       )}
       {...props}

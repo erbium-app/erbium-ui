@@ -12,7 +12,7 @@ export function OTPFieldStatusDemo() {
       validators={{
         onChangeAsync: async ({ value, signal, fieldApi }) => {
           if (value.length !== 6) return undefined;
-          await new Promise((resolve) => setTimeout(resolve, 900));
+          await new Promise((resolve) => setTimeout(resolve, 1500));
           if (signal.aborted || fieldApi.state.value !== value) return undefined;
           if (value === "123456") {
             setVerifiedValue(value);
