@@ -19,11 +19,11 @@ const { headings = [], ...siteProps } = Astro.props;
         class="docs-page surface-panel border border-transparent min-w-0 rounded-xl outline-none p-[var(--docs-page-padding-start)_var(--docs-page-padding-inline)_var(--docs-page-padding-end)] max-[959px]:bg-transparent max-[959px]:shadow-none max-[959px]:border-0 max-[959px]:rounded-none"
       >
         <div
-          class:list={["docs-page-body min-w-0 grid items-start gap-12 [&_>_.docs-page-inner]:col-1 [&_>_.docs-page-inner]:row-1 max-[1200px]:flex max-[1200px]:flex-col max-[1200px]:gap-6", headings.length > 0 && "grid-cols-[minmax(0,1fr)_11rem]"]}
+          class="docs-page-body min-w-0 grid grid-cols-[minmax(0,1fr)_11rem] items-start gap-12 [&_>_.docs-page-inner]:col-1 [&_>_.docs-page-inner]:row-1 max-[1200px]:flex max-[1200px]:flex-col max-[1200px]:gap-6"
         >
           {headings.length > 0 && <TableOfContents headings={headings} />}
           <div
-            class="docs-page-inner w-full max-w-3xl min-w-0 max-[959px]:max-w-none"
+            class="docs-page-inner w-full max-w-3xl mx-auto min-w-0 max-[959px]:max-w-none"
           >
             <slot />
           </div>

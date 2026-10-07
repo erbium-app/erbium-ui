@@ -26,9 +26,9 @@ export default defineConfig({
     }),
   },
   trailingSlash: "never",
-  // Warm internal destinations on hover/focus, including prose and search links.
-  // Astro falls back to tap when data saver or a slow connection is detected.
-  prefetch: { prefetchAll: false, defaultStrategy: "hover" },
+  // The docs runtime shares speculative documents with ClientRouter directly.
+  // Disable Astro's separate HTTP-cache-only prefetch to avoid duplicate requests.
+  prefetch: false,
   integrations: [
     react(),
     registryIntegration(),

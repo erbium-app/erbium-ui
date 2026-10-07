@@ -10,7 +10,7 @@
       "path": "src/calendar/examples/calendar-demo.tsx",
       "type": "registry:component",
       "target": "@components/showcase/calendar/examples/calendar-demo.tsx",
-      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarDemo() {\n  const [date, setDate] = React.useState<Date | undefined>(new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n}\n"
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarDemo() {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n}\n"
     },
     {
       "path": "src/calendar/variants/overview.tsx",

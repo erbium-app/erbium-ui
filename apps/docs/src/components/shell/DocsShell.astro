@@ -5,7 +5,7 @@ import Brand from "@/components/shell/Brand.astro";
 import MobileNavigation from "@/components/shell/MobileNavigation.astro";
 import SearchDialog from "@/features/search/SearchDialog.astro";
 ---
-    <div class="site-shell ms-[max(var(--site-gutter),_calc((100%_-_var(--site-max-width))_/_2))] me-[max(var(--site-gutter),_calc((100%_-_var(--site-max-width))_/_2))]">
+    <div class="site-shell ms-[max(var(--site-gutter),_calc((100%_-_var(--site-max-width))_/_2))] me-[var(--site-gutter)]">
       <header transition:persist="docs-mobile-header" class="mobile-site-header hidden max-[959px]:text-foreground max-[959px]:flex max-[959px]:items-center max-[959px]:justify-between max-[959px]:gap-4 max-[959px]:py-3 max-[959px]:[&_>_mobile-navigation_>_button]:w-11 max-[959px]:[&_>_mobile-navigation_>_button]:h-11">
         <Brand />
         <MobileNavigation />

@@ -5,10 +5,10 @@ import { type DateRange } from "react-day-picker";
 import { Calendar } from "@erbium/ui/components/calendar";
 
 export function CalendarRange() {
-  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>(() => ({
     from: new Date(new Date().getFullYear(), 0, 12),
     to: addDays(new Date(new Date().getFullYear(), 0, 12), 30),
-  });
+  }));
 
   return (
     <Calendar

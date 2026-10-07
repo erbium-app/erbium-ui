@@ -1,4 +1,5 @@
 @import "@erbium/ui/globals.css";
+@import "./recipes.css";
 @source "../";
 @source "../../../../packages/showcase/src";
 
@@ -10,8 +11,8 @@
   --site-gutter: 1.5rem;
   --site-max-width: 90rem;
   --site-section-space: 1.5rem;
-  --site-column-gap: 2rem;
-  --docs-page-padding-inline: clamp(1.5rem, 3vw, 2rem);
+  --site-column-gap: 1.5rem;
+  --docs-page-padding-inline: 2.5rem;
   --docs-page-padding-start: 2rem;
   --docs-page-padding-end: 3rem;
   --docs-title-line-height: 2.25rem;

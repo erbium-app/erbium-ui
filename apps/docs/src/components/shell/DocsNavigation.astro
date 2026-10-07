@@ -6,7 +6,6 @@ import SidebarGroupLabel from "@/components/primitives/sidebar/SidebarGroupLabel
 import SidebarGroupContent from "@/components/primitives/sidebar/SidebarGroupContent.astro";
 import SidebarMenu from "@/components/primitives/sidebar/SidebarMenu.astro";
 import SidebarMenuItem from "@/components/primitives/sidebar/SidebarMenuItem.astro";
-import SidebarMenuButton from "@/components/primitives/sidebar/SidebarMenuButton.astro";
 import { navigationGroups } from "@/content/catalog";
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
@@ -33,14 +32,15 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
               <SidebarMenu>
                 {group.items.map((item) => (
                   <SidebarMenuItem>
-                    <SidebarMenuButton
+                    <a
                       href={item.href}
                       data-astro-prefetch="hover"
-                      isActive={pathname === item.href}
-                      class="docs-nav-link relative min-h-8 px-[0.85rem] text-muted-foreground [font-size:0.8125rem] rounded-sm [&:hover]:text-sidebar-accent-foreground [&:hover]:bg-sidebar-accent [&:active]:text-sidebar-accent-foreground [&:active]:bg-sidebar-accent [&[data-active]]:text-sidebar-accent-foreground [&[data-active]]:bg-sidebar-accent [&[data-active]]:font-medium"
+                      aria-current={pathname === item.href ? "page" : undefined}
+                      data-active={pathname === item.href ? "" : undefined}
+                      class="docs-nav-link"
                     >
                       {item.title}
-                    </SidebarMenuButton>
+                    </a>
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>

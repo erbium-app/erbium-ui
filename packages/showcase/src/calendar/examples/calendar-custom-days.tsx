@@ -6,10 +6,10 @@ import { Calendar, CalendarDayButton } from "@erbium/ui/components/calendar";
 import { Card, CardContent } from "@erbium/ui/components/card";
 
 export function CalendarCustomDays() {
-  const [range, setRange] = React.useState<DateRange | undefined>({
+  const [range, setRange] = React.useState<DateRange | undefined>(() => ({
     from: new Date(new Date().getFullYear(), 11, 8),
     to: addDays(new Date(new Date().getFullYear(), 11, 8), 10),
-  });
+  }));
 
   return (
     <Card className="mx-auto w-fit p-0">

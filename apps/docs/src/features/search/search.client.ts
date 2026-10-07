@@ -1,4 +1,4 @@
-import { prefetch } from "astro:prefetch";
+import { prefetch } from "@/runtime/prefetch.client";
 import type { searchGroups } from "@/content/search-index";
 
 type SearchGroups = typeof searchGroups;
@@ -159,7 +159,7 @@ class DocsSearch extends HTMLElement {
     const warmResult = (event: Event) => {
       const link =
         event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a") : null;
-      if (link && results.contains(link)) prefetch(link.href);
+      if (link && results.contains(link)) void prefetch(link.href);
     };
     results.addEventListener("pointerover", warmResult, options);
     results.addEventListener("focusin", warmResult, options);
@@ -170,7 +170,7 @@ class DocsSearch extends HTMLElement {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
           const first = visibleLinks()[0];
-          if (dialog.open && input.value.trim() && first) prefetch(first.href);
+          if (dialog.open && input.value.trim() && first) void prefetch(first.href);
         }, 150);
       },
       options,

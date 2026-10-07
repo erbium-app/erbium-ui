@@ -41,7 +41,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
     >
   </h2>
   <Prose as="div" class="variant-description [text-wrap-style:pretty] text-muted-foreground [font-size:0.8125rem] [&_p]:m-[0.5rem_0_0.8rem]"><slot /></Prose>
-  <showcase-tabs class="showcase text-foreground block mt-4 [&_[hidden]]:hidden [&_[role='tab']:focus-visible]:[outline:2px_solid_var(--ring)] [&_[role='tab']:focus-visible]:[outline-offset:3px] [&:has([data-showcase-content][data-theme='dark'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-sun-rotation:-90deg] [&:has([data-showcase-content][data-theme='dark'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-sun-scale:0] [&:has([data-showcase-content][data-theme='dark'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-moon-rotation:0deg] [&:has([data-showcase-content][data-theme='dark'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-moon-scale:1] [&:has([data-showcase-content][data-theme='light'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-sun-rotation:0deg] [&:has([data-showcase-content][data-theme='light'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-sun-scale:1] [&:has([data-showcase-content][data-theme='light'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-moon-rotation:90deg] [&:has([data-showcase-content][data-theme='light'])_[data-slot='theme-toggle-icon'][data-astro-icon]]:[--theme-moon-scale:0]">
+  <showcase-tabs class="showcase">
     <div class="showcase-toolbar flex items-center justify-between pb-[0.65rem] [&_[role='tablist']]:flex [&_[role='tablist']]:gap-1 [&_[aria-selected='true']]:surface-control [&_[aria-selected='true']]:text-foreground [&_[aria-selected='false']]:text-muted-foreground">
       <div role="tablist" aria-label={`${title} example`}>
         <Button
@@ -76,7 +76,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       <div class="showcase-preview-actions flex items-center gap-1 absolute top-2 end-2 z-1 rounded-sm bg-surface-canvas">
         <ShowcaseThemeToggle />
       </div>
-      <div class="showcase-content flex flex-col items-center justify-center gap-6 w-full min-h-64 p-0 bg-surface-canvas text-foreground max-[560px]:p-[1.25rem_0.75rem]" data-showcase-content>
+      <div class="showcase-content flex flex-col items-center justify-center gap-6 w-full min-h-64 p-0 bg-surface-canvas text-foreground max-[560px]:p-[1.25rem_0.75rem]" data-showcase-content data-preview-name={name} data-preview-slug={slug}>
         <ComponentPreview name={name} slug={slug} args={JSON.parse(JSON.stringify(story.args ?? {}))} client:visible={{ rootMargin: "200px" }}>
           <Spinner slot="loading" aria-label="Loading preview" />
         </ComponentPreview>

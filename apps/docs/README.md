@@ -92,18 +92,34 @@ abortable controllers and clean up on disconnect. Persisted elements can reconne
 during a swap; connection must be idempotent. The shared client router manages
 history, document announcements, and asset loading.
 
-Navigation links prefetch on hover; the two page-header neighbors prefetch when
-visible. Search warms its first match after typing pauses. Search mounts alongside
-the shell, never reparents its dialog, and fetches `/search-index.json` on first
-open. Successful index loads are reused; failed requests can be retried by reopening.
-The search index contains metadata only, with no document bodies or example source.
+`runtime/prefetch.client.ts` warms adjacent and visible sidebar destinations during
+idle time, with two background requests at a time. Pointer, keyboard focus, touch,
+and search intent start warming immediately. Astro's separate prefetch is disabled
+so it does not duplicate these requests. Speculative HTML is parsed once and kept
+in a bounded in-memory cache (8 documents, approximately 8 MiB of source text,
+three-minute lifetime). The `astro:before-preparation` loader reuses a clone and
+preloads any new stylesheets, while Astro retains ownership of history, swaps,
+focus, scripts, and announcements. Redirects, failures, expired entries, and forms
+use the normal router loader. Data saver, offline, and 2G connections disable
+speculative requests. HTML has a 60-second browser freshness window after deployment;
+a prefetched document can remain available for up to three minutes in an open tab.
 
-Shared CSS uses Astro's default external/inlining policy, allowing large stylesheets
-to be cached between pages. React previews hydrate within 200px of visibility and
-import individual variant modules. Browser previews never import the full story
-catalog, raw example source, content documents, or registries. Catalogs supply controls
-and initial serializable arguments at build time. Tabs retain the mounted island;
-route navigation replaces it. Toast examples alone load the page-level toaster.
+Search mounts alongside the shell, never reparents its dialog, and fetches
+`/search-index.json` on first open. Successful index loads are reused; failed
+requests can be retried by reopening. The search index contains metadata only,
+with no document bodies or example source.
+
+Repeated prose, code, navigation, showcase, and static button base recipes live in
+cached CSS rather than repeated class attributes. The button base is derived from
+the shared UI recipe into `.astro/button.css` when Astro starts; custom, size, and
+variant utilities retain precedence. React previews hydrate within 200px of
+visibility. The shared entry lists component-level lazy loaders; each component's
+variant/dependency map loads separately. Navigation intent warms only the first
+preview and its renderer, while viewport page warming fetches HTML only. Browser
+previews never import the full story catalog, raw example source, content documents,
+or registries. Catalogs supply controls and initial serializable arguments at build
+time. Tabs retain the mounted island; route navigation replaces it. Toast examples
+alone load the page-level toaster.
 
 Keep experimental client prerendering disabled with this client-router shell.
 

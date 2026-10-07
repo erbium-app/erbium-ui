@@ -2,22 +2,7 @@ import { Component, use, Suspense, useState, useEffect, useRef, type ReactNode }
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Spinner } from "@erbium/ui/components/spinner";
-
-const examples = import.meta.glob<{ default: ShowcaseStory["render"] }>(
-  "../../../../../packages/showcase/src/*/variants/*.tsx",
-);
-const previews = new Map<string, Promise<{ default: ShowcaseStory["render"] }>>();
-function exampleResource(name: string, slug: string) {
-  const key = `../../../../../packages/showcase/src/${name}/variants/${slug}.tsx`;
-  const loader = examples[key];
-  if (!loader) throw new Error(`Missing interactive example: ${name}/${slug}`);
-  let resource = previews.get(key);
-  if (!resource) {
-    resource = loader();
-    previews.set(key, resource);
-  }
-  return resource;
-}
+import { exampleResource } from "./preview-resources";
 function LoadedPreview({
   name,
   slug,

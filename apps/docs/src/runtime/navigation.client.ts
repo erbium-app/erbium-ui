@@ -1,3 +1,4 @@
+import "./prefetch.client";
 const sidebarContent = () =>
   document.querySelector<HTMLElement>(".docs-sidebar .docs-sidebar-content");
 const revealActive = () => {
