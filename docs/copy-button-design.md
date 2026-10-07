@@ -136,7 +136,8 @@ Make the two operation sources mutually exclusive:
 ```ts
 // Proposed type; not implemented.
 type CopySource =
-  { value: string; action?: never } | { action: () => void | Promise<void>; value?: never };
+  | { value: string; action?: never }
+  | { action: () => void | Promise<void>; value?: never };
 ```
 
 Both paths use the same lifecycle:
