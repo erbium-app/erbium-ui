@@ -114,7 +114,7 @@ function OTPFieldInput({ className, ...props }: OTPFieldPrimitive.Input.Props) {
       aria-invalid={status === "error" || undefined}
       spellCheck={false}
       className={cn(
-        "relative size-8 min-w-0 rounded-lg border surface-field text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-ring/50 motion-reduce:transition-none aria-invalid:border-error focus-visible:aria-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:aria-invalid:border-error/50 data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-muted-foreground motion-safe:data-[status=loading]:animate-pulse data-[status=loading]:focus-visible:ring-0 data-[status=success]:focus-visible:ring-0",
+        "relative size-8 min-w-0 rounded-lg border surface-field text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none aria-invalid:border-error focus-visible:aria-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:aria-invalid:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-muted-foreground motion-safe:data-[status=loading]:animate-pulse data-[status=loading]:focus-visible:ring-0 data-[status=success]:focus-visible:ring-0",
         className,
       )}
       {...props}

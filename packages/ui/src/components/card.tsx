@@ -82,7 +82,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
       <Separator variant="full" className="-mb-(--card-spacing)" />
       <div
         data-slot="card-footer"
-        className={cn("flex items-center rounded-b-xl bg-muted/50 p-(--card-spacing)", className)}
+        className={cn("flex items-center rounded-b-xl bg-footer p-(--card-spacing)", className)}
         {...props}
       />
     </>

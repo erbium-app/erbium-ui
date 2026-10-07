@@ -4,4 +4,4 @@ import { cn } from "@erbium/ui/lib/utils";
 type Props = HTMLAttributes<"tr">;
 const { class: className, ...props } = Astro.props;
 ---
-<tr data-slot="table-row" class={cn("carve-bottom transition-colors hover:bg-muted/50", className)} {...props}><slot /></tr>
+<tr data-slot="table-row" class={cn("carve-bottom transition-colors hover:bg-muted-hover", className)} {...props}><slot /></tr>

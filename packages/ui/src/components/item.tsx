@@ -54,7 +54,7 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
 }
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-sm transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-ring/40 group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-4 group-data-[variant=panel]/item-group:py-4 group-data-[variant=panel]/item-group:shadow-none",
+  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-sm transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-focus-halo group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-4 group-data-[variant=panel]/item-group:py-4 group-data-[variant=panel]/item-group:shadow-none",
   {
     variants: {
       variant: {
@@ -193,7 +193,10 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="item-footer"
-      className={cn("flex basis-full items-center justify-between gap-2", className)}
+      className={cn(
+        "flex basis-full items-center justify-between gap-2 rounded-md bg-footer p-2",
+        className,
+      )}
       {...props}
     />
   );

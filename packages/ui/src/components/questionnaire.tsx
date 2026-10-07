@@ -99,7 +99,7 @@ function QuestionnaireChoice({
     <QuestionnairePrimitive.Choice
       data-slot="questionnaire-choice"
       className={cn(
-        "group/questionnaire-choice relative flex min-h-11 cursor-pointer items-start gap-2.5 rounded-lg border border-input bg-transparent px-3 py-2.5 text-start text-sm transition-[color,background-color,border-color,box-shadow] outline-none select-none hover:bg-muted/50 has-[>input:focus-visible]:border-ring data-invalid:border-error data-invalid:ring-[1.5px] data-invalid:ring-error/20 data-invalid:has-[>input:focus-visible]:border-error data-invalid:data-checked:border-error dark:bg-input/20 dark:data-invalid:border-error/50 dark:data-invalid:ring-error/40 dark:data-invalid:has-[>input:focus-visible]:border-error/50 dark:data-invalid:data-checked:border-error/50 data-checked:border-selection/40 data-checked:bg-muted dark:data-checked:bg-muted",
+        "group/questionnaire-choice relative flex min-h-11 cursor-pointer items-start gap-2.5 rounded-lg border border-input bg-transparent px-3 py-2.5 text-start text-sm transition-[color,background-color,border-color,box-shadow] outline-none select-none hover:bg-muted-hover has-[>input:focus-visible]:border-ring data-invalid:border-error data-invalid:ring-[1.5px] data-invalid:ring-invalid-halo data-invalid:has-[>input:focus-visible]:border-error data-invalid:data-checked:border-error dark:bg-input/20 dark:data-invalid:border-invalid dark:data-invalid:has-[>input:focus-visible]:border-invalid dark:data-invalid:data-checked:border-invalid data-checked:border-selection/40 data-checked:bg-muted dark:data-checked:bg-muted",
         "data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
@@ -161,7 +161,7 @@ function QuestionnaireInput({
       <QuestionnairePrimitive.Input
         data-slot="questionnaire-input"
         className={cn(
-          "h-8 min-h-11 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-[color,box-shadow,background-color] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-error/20 sm:min-h-0 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-error/50 dark:aria-invalid:ring-error/40",
+          "h-8 min-h-11 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-[color,box-shadow,background-color] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo sm:min-h-0 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-invalid",
           "selection:bg-selection selection:text-selection-foreground placeholder:text-muted-foreground",
           className,
         )}

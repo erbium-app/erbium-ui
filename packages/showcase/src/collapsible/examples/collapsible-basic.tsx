@@ -12,7 +12,7 @@ export function CollapsibleBasic() {
   return (
     <Card className="mx-auto w-64 gap-0 p-0" size="sm">
       <Collapsible>
-        <CollapsibleTrigger className="group group/details flex w-full items-center rounded-xl px-3 py-2 text-start text-sm font-medium outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-ring/40">
+        <CollapsibleTrigger className="group group/details flex w-full items-center rounded-xl px-3 py-2 text-start text-sm font-medium outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-focus-halo">
           Product details
           <RotatingChevron scope="collapsible" className="ms-auto size-4 text-muted-foreground" />
         </CollapsibleTrigger>

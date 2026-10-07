@@ -1,4 +1,18 @@
 :root {
+  /* Shared roles keep opacity decisions in the theme. */
+  --footer: color-mix(in oklab, var(--muted) 50%, transparent);
+  --muted-hover: color-mix(in oklab, var(--muted) 50%, transparent);
+  --muted-selected: color-mix(in oklab, var(--muted) 50%, transparent);
+  --focus-halo: color-mix(in oklab, var(--ring) 40%, transparent);
+  --focus-halo-strong: color-mix(in oklab, var(--ring) 50%, transparent);
+  --invalid-halo: color-mix(in oklab, var(--error) 20%, transparent);
+  --invalid: var(--error);
+  --error-interactive: color-mix(in oklab, var(--error) 10%, transparent);
+  --error-focus: color-mix(in oklab, var(--error) 40%, transparent);
+  --success-focus: color-mix(in oklab, var(--success) 40%, transparent);
+  --warning-focus: color-mix(in oklab, var(--warning) 40%, transparent);
+  --info-focus: color-mix(in oklab, var(--info) 40%, transparent);
+
   /* Runtime tokens also serve Typeset and plain CSS outside Tailwind utilities. */
   --font-sans: "Vazirmatn", "Cal Sans", ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-sans);
@@ -78,6 +92,19 @@
 }
 
 @theme inline {
+  --color-footer: var(--footer);
+  --color-muted-hover: var(--muted-hover);
+  --color-muted-selected: var(--muted-selected);
+  --color-focus-halo: var(--focus-halo);
+  --color-focus-halo-strong: var(--focus-halo-strong);
+  --color-invalid-halo: var(--invalid-halo);
+  --color-invalid: var(--invalid);
+  --color-error-interactive: var(--error-interactive);
+  --color-error-focus: var(--error-focus);
+  --color-success-focus: var(--success-focus);
+  --color-warning-focus: var(--warning-focus);
+  --color-info-focus: var(--info-focus);
+
   --font-heading: var(--font-sans);
   --font-sans: "Vazirmatn", "Cal Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono:
@@ -162,6 +189,20 @@
 }
 
 .dark {
+  /* Shared roles keep opacity decisions in the theme. */
+  --footer: color-mix(in oklab, var(--muted) 50%, transparent);
+  --muted-hover: color-mix(in oklab, var(--muted) 50%, transparent);
+  --muted-selected: color-mix(in oklab, var(--muted) 50%, transparent);
+  --focus-halo: color-mix(in oklab, var(--ring) 40%, transparent);
+  --focus-halo-strong: color-mix(in oklab, var(--ring) 50%, transparent);
+  --invalid-halo: color-mix(in oklab, var(--error) 40%, transparent);
+  --invalid: color-mix(in oklab, var(--error) 50%, transparent);
+  --error-interactive: color-mix(in oklab, var(--error) 20%, transparent);
+  --error-focus: color-mix(in oklab, var(--error) 40%, transparent);
+  --success-focus: color-mix(in oklab, var(--success) 40%, transparent);
+  --warning-focus: color-mix(in oklab, var(--warning) 40%, transparent);
+  --info-focus: color-mix(in oklab, var(--info) 40%, transparent);
+
   color-scheme: dark;
   --background: var(--surface-canvas);
   --foreground: oklch(87.87469% 0.01809873 92.700936);

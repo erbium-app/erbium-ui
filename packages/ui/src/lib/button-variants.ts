@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 /* Each variant names one surface; hover, press, engaged, invalid, and
    disabled states come from the surface itself. */
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-error/20 dark:aria-invalid:border-error/50 dark:aria-invalid:ring-error/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-sm font-medium whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-invalid-halo dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
   {
     variants: {
       variant: {
@@ -11,18 +11,18 @@ const buttonVariants = cva(
         outline: "surface-control text-foreground",
         secondary: "surface-flat bg-secondary text-secondary-foreground",
         ghost: "surface-flat hover:text-foreground engaged:text-foreground",
-        error: "surface-fill-error text-error-foreground focus-visible:border-error/40",
-        success: "surface-fill-success text-success-foreground focus-visible:border-success/40",
-        warning: "surface-fill-warning text-warning-foreground focus-visible:border-warning/40",
-        info: "surface-fill-info text-info-foreground focus-visible:border-info/40",
+        error: "surface-fill-error text-error-foreground focus-visible:border-error-focus",
+        success: "surface-fill-success text-success-foreground focus-visible:border-success-focus",
+        warning: "surface-fill-warning text-warning-foreground focus-visible:border-warning-focus",
+        info: "surface-fill-info text-info-foreground focus-visible:border-info-focus",
         "ghost-error":
-          "surface-ghost-error-soft text-error-soft-foreground focus-visible:border-error/40",
+          "surface-ghost-error-soft text-error-soft-foreground focus-visible:border-error-focus",
         "ghost-success":
-          "surface-ghost-success-soft text-success-soft-foreground focus-visible:border-success/40",
+          "surface-ghost-success-soft text-success-soft-foreground focus-visible:border-success-focus",
         "ghost-warning":
-          "surface-ghost-warning-soft text-warning-soft-foreground focus-visible:border-warning/40",
+          "surface-ghost-warning-soft text-warning-soft-foreground focus-visible:border-warning-focus",
         "ghost-info":
-          "surface-ghost-info-soft text-info-soft-foreground focus-visible:border-info/40",
+          "surface-ghost-info-soft text-info-soft-foreground focus-visible:border-info-focus",
         link: "text-link underline-offset-4 hover:underline",
       },
       size: {

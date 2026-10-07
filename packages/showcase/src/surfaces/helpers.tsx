@@ -3,7 +3,7 @@ export const states = [
   ["hover", {}, "[--surface-tint:var(--surface-hover-tint)]"],
   ["selected / open", { "aria-pressed": true }, ""],
   ["pressed", {}, "[--surface-tint:var(--surface-press-tint)]"],
-  ["focus", {}, "ring-3 ring-ring/50"],
+  ["focus", {}, "ring-3 ring-focus-halo-strong"],
   ["invalid", { "aria-invalid": true }, ""],
   ["disabled", { "aria-disabled": true }, "opacity-50"],
 ] as const;

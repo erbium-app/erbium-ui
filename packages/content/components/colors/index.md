@@ -37,3 +37,23 @@ Erbium adds tokens for a few more interface roles:
 ## Using the tokens
 
 Use `bg-selection text-selection-foreground`, or `var(--selection)` in CSS, when styling components. Copy the CSS blocks below when editing your theme. Each OKLCH value uses its own color as a background, with contrasting text, without changing the copied code. Pair solid and soft backgrounds with their corresponding foregrounds. The blocks come directly from the shared theme files, preserving aliases and color mixes where they express a relationship.
+
+## Shared translucent roles
+
+Repeated opacity treatments have dedicated tokens. Their color mixes live in `theme.css`, so components consume the role without choosing an opacity. The mixes preserve the previous Tailwind opacity values in both themes.
+
+| Role                                  | Token                                                         | Current treatment                   |
+| ------------------------------------- | ------------------------------------------------------------- | ----------------------------------- |
+| Footer background                     | `footer`                                                      | Muted at 50%                        |
+| Neutral hover background              | `muted-hover`                                                 | Muted at 50%                        |
+| Active navigation background          | `muted-selected`                                              | Muted at 50%                        |
+| Focus halo                            | `focus-halo`                                                  | Ring at 40%                         |
+| Strong focus halo and default outline | `focus-halo-strong`                                           | Ring at 50%                         |
+| Invalid control halo                  | `invalid-halo`                                                | Error at 20% in light, 40% in dark  |
+| Invalid control border                | `invalid`                                                     | Error at 100% in light, 50% in dark |
+| Destructive menu interaction          | `error-interactive`                                           | Error at 10% in light, 20% in dark  |
+| Status button focus border            | `error-focus`, `success-focus`, `warning-focus`, `info-focus` | Corresponding status at 40%         |
+
+Use `bg-footer`, `focus-visible:ring-focus-halo`, or `aria-invalid:ring-invalid-halo` for these roles. Sidebar footers retain their own background treatment.
+
+Opacity modifiers remain appropriate for component-specific treatments: scrollbar thumb states, cursor trails, tooltip keycaps, attachment feedback, and slider selection. Repeated input opacity values span different roles (checkbox faces, popup search fields, chat bubbles, and questionnaire fields); they remain local rather than sharing a token solely because their numeric value matches. Text attenuation and isolated demonstration backgrounds also remain local.
