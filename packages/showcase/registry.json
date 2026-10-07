@@ -10093,7 +10093,7 @@
       "name": "field-validation-and-errors",
       "type": "registry:component",
       "title": "Field: Validation And Errors",
-      "description": "- Add `invalid` to `Field` (Base UI `Field.Root`) to switch the entire block into an error state. Controls inside it receive `aria-invalid` and `data-invalid` automatically.\n\n- With TanStack Form, pass `invalid={!field.state.meta.isValid}` and `errors={field.state.meta.errors}` to `FieldError`.\n\n- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.\n\n```tsx\n<Field invalid>\n  <FieldLabel>Email</FieldLabel>\n  <Input type=\"email\" />\n  <FieldError match>Enter a valid email address.</FieldError>\n</Field>\n```",
+      "description": "- Add `invalid` to `Field` (Base UI `Field.Root`) to switch the entire block into an error state. Controls inside it receive `aria-invalid` and `data-invalid` automatically.\n\n- With TanStack Form, pass `invalid={!field.state.meta.isValid}` and `errors={field.state.meta.errors}` to `FieldError`.\n\n- `FieldDescription` renders only while the field is valid. Compose it with `FieldError` in the same field: the error replaces the helper information, including its accessible description. This also applies to `FieldSet` and descriptions inside `FieldContent`.\n\n- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.\n\n```tsx\n<Field invalid>\n  <FieldLabel>Email</FieldLabel>\n  <Input type=\"email\" />\n  <FieldDescription>We will use this to contact you.</FieldDescription>\n  <FieldError match>Enter a valid email address.</FieldError>\n</Field>\n```",
       "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
       "files": [
         {
@@ -10209,7 +10209,7 @@
       "name": "form-validation",
       "type": "registry:block",
       "title": "Form: Validation",
-      "description": "Validate a form field and display its error beside the control.",
+      "description": "Validate a form field and display its error beside the control.\n\nCompose `FieldDescription` and `FieldError` together. The description is removed while the field is invalid and returns when validation clears, so helper information and errors never appear together.",
       "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
       "registryDependencies": [
         "@erbium/field",

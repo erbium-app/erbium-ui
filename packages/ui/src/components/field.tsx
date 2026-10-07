@@ -129,18 +129,25 @@ function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
   );
 }
 
+/** Helper information is replaced by the error while the field is invalid. */
 function FieldDescription({ className, ...props }: FieldPrimitive.Description.Props) {
   return (
-    <FieldPrimitive.Description
-      data-slot="field-description"
-      className={cn(
-        "text-start text-sm leading-normal font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
-        "last:mt-0 nth-last-2:-mt-1",
-        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
-        className,
-      )}
-      {...props}
-    />
+    <FieldPrimitive.Validity>
+      {({ validity }) =>
+        validity.valid === false ? null : (
+          <FieldPrimitive.Description
+            data-slot="field-description"
+            className={cn(
+              "text-start text-sm leading-normal font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
+              "last:mt-0 nth-last-2:-mt-1",
+              "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
+              className,
+            )}
+            {...props}
+          />
+        )
+      }
+    </FieldPrimitive.Validity>
   );
 }
 
@@ -216,7 +223,7 @@ function FieldError({ className, children, errors, match, ...props }: FieldError
       role="alert"
       match={errors ? messages.length > 0 : match}
       className={cn(
-        "grid text-sm font-normal text-error transition-[grid-template-rows,opacity] duration-200 ease-out data-ending-style:grid-rows-[0fr] data-ending-style:opacity-0 data-starting-style:grid-rows-[0fr] data-starting-style:opacity-0 motion-reduce:transition-none",
+        "grid text-sm font-normal text-error transition-[grid-template-rows,opacity] duration-200 ease-out data-ending-style:hidden data-starting-style:grid-rows-[0fr] data-starting-style:opacity-0 motion-reduce:transition-none",
         className,
       )}
       {...props}

@@ -1,5 +1,6 @@
 import {
   FieldDescription,
+  FieldError,
   FieldItem,
   FieldLabel,
   FieldLegend,
@@ -26,6 +27,7 @@ export function RadioGroupInvalid() {
           <FieldLabel className="font-normal">Both Email & SMS</FieldLabel>
         </FieldItem>
       </RadioGroup>
+      <FieldError match>Choose an available notification preference.</FieldError>
     </FieldSet>
   );
 }
