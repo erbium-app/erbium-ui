@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-separator",
   "type": "registry:block",
-  "title": "Otp Field: Separator",
+  "title": "OTP Field: Separator",
   "description": "Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
@@ -16,7 +16,7 @@
       "path": "src/otp-field/variants/separator.tsx",
       "type": "registry:component",
       "target": "@components/showcase/otp-field/variants/separator.tsx",
-      "content": "import ExampleOtpFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOtpFieldSeparator />;\n\nexport default Example;\n"
+      "content": "import ExampleOTPFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOTPFieldSeparator />;\n\nexport default Example;\n"
     }
   ]
 }

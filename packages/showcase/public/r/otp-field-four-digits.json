@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-four-digits",
   "type": "registry:block",
-  "title": "Otp Field: Four Digits",
+  "title": "OTP Field: Four Digits",
   "description": "Any `length` works.",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

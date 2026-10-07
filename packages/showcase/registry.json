@@ -10091,7 +10091,7 @@
       "type": "registry:component",
       "title": "form demo",
       "description": "Erbium form demo example.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -10122,7 +10122,7 @@
       "type": "registry:block",
       "title": "Form: Playground",
       "description": "",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -10148,7 +10148,7 @@
       "type": "registry:item",
       "title": "Form stories",
       "description": "All form variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
@@ -10193,7 +10193,7 @@
       "type": "registry:block",
       "title": "Form: Validation",
       "description": "Validate a form field and display its error beside the control.\n\nCompose `FieldDescription` and `FieldError` together. The description is removed while the field is invalid and returns when validation clears, so helper information and errors never appear together.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -13829,7 +13829,7 @@
     {
       "name": "otp-field-alphanumeric",
       "type": "registry:block",
-      "title": "Otp Field: Alphanumeric",
+      "title": "OTP Field: Alphanumeric",
       "description": "Use `validationType=\"alphanumeric\"` with `normalizeValue` for recovery codes.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13848,7 +13848,7 @@
     {
       "name": "otp-field-controlled",
       "type": "registry:block",
-      "title": "Otp Field: Controlled",
+      "title": "OTP Field: Controlled",
       "description": "Control the value with `value` and `onValueChange`.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13881,7 +13881,7 @@
     {
       "name": "otp-field-disabled",
       "type": "registry:block",
-      "title": "Otp Field: Disabled",
+      "title": "OTP Field: Disabled",
       "description": "`disabled` dims the field and removes it from the tab order.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13900,7 +13900,7 @@
     {
       "name": "otp-field-examples",
       "type": "registry:item",
-      "title": "Otp Field examples",
+      "title": "OTP Field examples",
       "description": "All otp-field examples.",
       "registryDependencies": [
         "@erbium-examples/otp-field-playground",
@@ -13919,7 +13919,7 @@
     {
       "name": "otp-field-form",
       "type": "registry:block",
-      "title": "Otp Field: Form",
+      "title": "OTP Field: Form",
       "description": "A verification card with a labelled field.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
@@ -13945,7 +13945,7 @@
     {
       "name": "otp-field-four-digits",
       "type": "registry:block",
-      "title": "Otp Field: Four Digits",
+      "title": "OTP Field: Four Digits",
       "description": "Any `length` works.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13964,7 +13964,7 @@
     {
       "name": "otp-field-invalid",
       "type": "registry:block",
-      "title": "Otp Field: Invalid",
+      "title": "OTP Field: Invalid",
       "description": "`status=\"error\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\"success\"`.",
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -13983,7 +13983,7 @@
     {
       "name": "otp-field-overview",
       "type": "registry:block",
-      "title": "Otp Field: Overview",
+      "title": "OTP Field: Overview",
       "description": "Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -14002,7 +14002,7 @@
     {
       "name": "otp-field-pattern",
       "type": "registry:block",
-      "title": "Otp Field: Pattern",
+      "title": "OTP Field: Pattern",
       "description": "`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.",
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -14021,7 +14021,7 @@
     {
       "name": "otp-field-playground",
       "type": "registry:component",
-      "title": "Otp Field: Playground",
+      "title": "OTP Field: Playground",
       "description": "",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -14035,7 +14035,7 @@
     {
       "name": "otp-field-separator",
       "type": "registry:block",
-      "title": "Otp Field: Separator",
+      "title": "OTP Field: Separator",
       "description": "Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -14054,7 +14054,7 @@
     {
       "name": "otp-field-status",
       "type": "registry:block",
-      "title": "Otp Field: Status",
+      "title": "OTP Field: Status",
       "description": "`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -14073,7 +14073,7 @@
     {
       "name": "otp-field-stories",
       "type": "registry:item",
-      "title": "Otp Field stories",
+      "title": "OTP Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
@@ -18044,7 +18044,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Async Action",
       "description": "",
-      "dependencies": ["@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1"],
       "registryDependencies": ["@erbium/stateful-button", "@erbium/styles"],
       "files": [
         {
@@ -18064,7 +18064,7 @@
       "type": "registry:component",
       "title": "stateful button demo",
       "description": "Erbium stateful button demo example.",
-      "dependencies": ["@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1"],
       "registryDependencies": ["@erbium/stateful-button", "@erbium/styles"],
       "files": [
         {
@@ -18079,7 +18079,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Directions",
       "description": "",
-      "dependencies": ["@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/direction",
@@ -18115,7 +18115,7 @@
       "type": "registry:component",
       "title": "stateful button form",
       "description": "Erbium stateful button form example.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -18136,7 +18136,7 @@
       "type": "registry:item",
       "title": "Stateful Button stories",
       "description": "All stateful-button variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -18193,7 +18193,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Tan Stack Form",
       "description": "",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",

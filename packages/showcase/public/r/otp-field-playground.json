@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-playground",
   "type": "registry:component",
-  "title": "Otp Field: Playground",
+  "title": "OTP Field: Playground",
   "description": "",
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [

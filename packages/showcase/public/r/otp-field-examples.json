@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-examples",
   "type": "registry:item",
-  "title": "Otp Field examples",
+  "title": "OTP Field examples",
   "description": "All otp-field examples.",
   "registryDependencies": [
     "@erbium-examples/otp-field-playground",

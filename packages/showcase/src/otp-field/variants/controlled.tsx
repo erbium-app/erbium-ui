@@ -1,5 +1,5 @@
-import ExampleOtpFieldControlled from "../examples/otp-field-controlled";
+import ExampleOTPFieldControlled from "../examples/otp-field-controlled";
 
-const Example = () => <ExampleOtpFieldControlled />;
+const Example = () => <ExampleOTPFieldControlled />;
 
 export default Example;

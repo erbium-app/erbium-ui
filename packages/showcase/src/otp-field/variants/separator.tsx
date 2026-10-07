@@ -1,5 +1,5 @@
-import ExampleOtpFieldSeparator from "../examples/otp-field-separator";
+import ExampleOTPFieldSeparator from "../examples/otp-field-separator";
 
-const Example = () => <ExampleOtpFieldSeparator />;
+const Example = () => <ExampleOTPFieldSeparator />;
 
 export default Example;

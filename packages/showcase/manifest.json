@@ -2545,7 +2545,7 @@
   },
   {
     "name": "otp-field",
-    "title": "Components/Otp Field",
+    "title": "Components/OTP Field",
     "variants": [
       {
         "exportName": "Playground",

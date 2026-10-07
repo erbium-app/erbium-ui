@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "otp-field-form",
   "type": "registry:block",
-  "title": "Otp Field: Form",
+  "title": "OTP Field: Form",
   "description": "A verification card with a labelled field.",
   "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
   "registryDependencies": [

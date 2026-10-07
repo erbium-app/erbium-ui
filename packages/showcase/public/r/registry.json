@@ -11174,7 +11174,7 @@
       "type": "registry:component",
       "title": "form demo",
       "description": "Erbium form demo example.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -11206,7 +11206,7 @@
       "type": "registry:block",
       "title": "Form: Playground",
       "description": "",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -11234,7 +11234,7 @@
       "type": "registry:item",
       "title": "Form stories",
       "description": "All form variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
@@ -11284,7 +11284,7 @@
       "type": "registry:block",
       "title": "Form: Validation",
       "description": "Validate a form field and display its error beside the control.\n\nCompose `FieldDescription` and `FieldError` together. The description is removed while the field is invalid and returns when validation clears, so helper information and errors never appear together.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -15315,7 +15315,7 @@
     {
       "name": "otp-field-alphanumeric",
       "type": "registry:block",
-      "title": "Otp Field: Alphanumeric",
+      "title": "OTP Field: Alphanumeric",
       "description": "Use `validationType=\"alphanumeric\"` with `normalizeValue` for recovery codes.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15336,7 +15336,7 @@
     {
       "name": "otp-field-controlled",
       "type": "registry:block",
-      "title": "Otp Field: Controlled",
+      "title": "OTP Field: Controlled",
       "description": "Control the value with `value` and `onValueChange`.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15350,7 +15350,7 @@
           "path": "src/otp-field/variants/controlled.tsx",
           "type": "registry:component",
           "target": "@components/showcase/otp-field/variants/controlled.tsx",
-          "content": "import ExampleOtpFieldControlled from \"../examples/otp-field-controlled\";\n\nconst Example = () => <ExampleOtpFieldControlled />;\n\nexport default Example;\n"
+          "content": "import ExampleOTPFieldControlled from \"../examples/otp-field-controlled\";\n\nconst Example = () => <ExampleOTPFieldControlled />;\n\nexport default Example;\n"
         }
       ]
     },
@@ -15372,7 +15372,7 @@
     {
       "name": "otp-field-disabled",
       "type": "registry:block",
-      "title": "Otp Field: Disabled",
+      "title": "OTP Field: Disabled",
       "description": "`disabled` dims the field and removes it from the tab order.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15393,7 +15393,7 @@
     {
       "name": "otp-field-examples",
       "type": "registry:item",
-      "title": "Otp Field examples",
+      "title": "OTP Field examples",
       "description": "All otp-field examples.",
       "registryDependencies": [
         "@erbium-examples/otp-field-playground",
@@ -15412,7 +15412,7 @@
     {
       "name": "otp-field-form",
       "type": "registry:block",
-      "title": "Otp Field: Form",
+      "title": "OTP Field: Form",
       "description": "A verification card with a labelled field.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
@@ -15440,7 +15440,7 @@
     {
       "name": "otp-field-four-digits",
       "type": "registry:block",
-      "title": "Otp Field: Four Digits",
+      "title": "OTP Field: Four Digits",
       "description": "Any `length` works.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15461,7 +15461,7 @@
     {
       "name": "otp-field-invalid",
       "type": "registry:block",
-      "title": "Otp Field: Invalid",
+      "title": "OTP Field: Invalid",
       "description": "`status=\"error\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\"success\"`.",
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15482,7 +15482,7 @@
     {
       "name": "otp-field-overview",
       "type": "registry:block",
-      "title": "Otp Field: Overview",
+      "title": "OTP Field: Overview",
       "description": "Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15503,7 +15503,7 @@
     {
       "name": "otp-field-pattern",
       "type": "registry:block",
-      "title": "Otp Field: Pattern",
+      "title": "OTP Field: Pattern",
       "description": "`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.",
       "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15524,7 +15524,7 @@
     {
       "name": "otp-field-playground",
       "type": "registry:component",
-      "title": "Otp Field: Playground",
+      "title": "OTP Field: Playground",
       "description": "",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15539,7 +15539,7 @@
     {
       "name": "otp-field-separator",
       "type": "registry:block",
-      "title": "Otp Field: Separator",
+      "title": "OTP Field: Separator",
       "description": "Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15553,14 +15553,14 @@
           "path": "src/otp-field/variants/separator.tsx",
           "type": "registry:component",
           "target": "@components/showcase/otp-field/variants/separator.tsx",
-          "content": "import ExampleOtpFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOtpFieldSeparator />;\n\nexport default Example;\n"
+          "content": "import ExampleOTPFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOTPFieldSeparator />;\n\nexport default Example;\n"
         }
       ]
     },
     {
       "name": "otp-field-status",
       "type": "registry:block",
-      "title": "Otp Field: Status",
+      "title": "OTP Field: Status",
       "description": "`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.",
       "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
       "files": [
@@ -15581,7 +15581,7 @@
     {
       "name": "otp-field-stories",
       "type": "registry:item",
-      "title": "Otp Field stories",
+      "title": "OTP Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
@@ -15660,7 +15660,7 @@
           "path": "src/otp-field/otp-field.stories.tsx",
           "type": "registry:file",
           "target": "@components/showcase/otp-field/otp-field.stories.tsx",
-          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { OTPField } from \\\"@/registry/erbium/ui/otp-field\\\";\\n\\nconst Example = (args: {\\n  length: number;\\n  disabled: boolean;\\n  validationType: \\\"numeric\\\" | \\\"alphanumeric\\\" | \\\"none\\\";\\n  status: \\\"idle\\\" | \\\"loading\\\" | \\\"success\\\" | \\\"error\\\";\\n}) => (\\n  <OTPField\\n    key={`${args.length}-${args.validationType}`}\\n    aria-label=\\\"One-time password\\\"\\n    length={args.length}\\n    disabled={args.disabled}\\n    validationType={args.validationType}\\n    status={args.status}\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/otp-field-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nimport SeparatorExample from \"./variants/separator\";\n\nconst SeparatorSource = \"import ExampleOtpFieldSeparator from \\\"../examples/otp-field-separator\\\";\\n\\nconst Example = () => <ExampleOtpFieldSeparator />;\\n\\nexport default Example;\\n\";\n\nimport ControlledExample from \"./variants/controlled\";\n\nconst ControlledSource = \"import ExampleOtpFieldControlled from \\\"../examples/otp-field-controlled\\\";\\n\\nconst Example = () => <ExampleOtpFieldControlled />;\\n\\nexport default Example;\\n\";\n\nimport FormExample from \"./variants/form\";\n\nconst FormSource = \"import { OTPFieldForm } from \\\"../examples/otp-field-form\\\";\\n\\nconst Example = () => <OTPFieldForm />;\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import { OTPFieldDisabled } from \\\"../examples/otp-field-disabled\\\";\\n\\nconst Example = () => <OTPFieldDisabled />;\\n\\nexport default Example;\\n\";\n\nimport InvalidExample from \"./variants/invalid\";\n\nconst InvalidSource = \"import { OTPFieldInvalid } from \\\"../examples/otp-field-invalid\\\";\\n\\nconst Example = () => <OTPFieldInvalid />;\\n\\nexport default Example;\\n\";\n\nimport StatusExample from \"./variants/status\";\n\nconst StatusSource = \"import { OTPFieldStatusDemo } from \\\"../examples/otp-field-status\\\";\\n\\nconst Example = () => <OTPFieldStatusDemo />;\\n\\nexport default Example;\\n\";\n\nimport PatternExample from \"./variants/pattern\";\n\nconst PatternSource = \"import { OTPFieldPattern } from \\\"../examples/otp-field-pattern\\\";\\n\\nconst Example = () => <OTPFieldPattern />;\\n\\nexport default Example;\\n\";\n\nimport FourDigitsExample from \"./variants/four-digits\";\n\nconst FourDigitsSource = \"import { OTPFieldFourDigits } from \\\"../examples/otp-field-four-digits\\\";\\n\\nconst Example = () => <OTPFieldFourDigits />;\\n\\nexport default Example;\\n\";\n\nimport AlphanumericExample from \"./variants/alphanumeric\";\n\nconst AlphanumericSource = \"import { OTPFieldAlphanumeric } from \\\"../examples/otp-field-alphanumeric\\\";\\n\\nconst Example = () => <OTPFieldAlphanumeric />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: OTPField,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nAccessible one-time password field built on Base UI's [OTP Field](https://base-ui.com/react/components/otp-field), with `status` for loading, success and error.\\n\\n**Import:** `@/registry/erbium/ui/otp-field`\\n\\n## Usage\\n\\n```tsx\\nimport { OTPField } from \\\"@/registry/erbium/ui/otp-field\\\";\\n\\n<OTPField aria-label=\\\"One-time password\\\" length={6} groups={[3, 3]} status=\\\"idle\\\" />;\\n```\\n\\n## Composition\\n\\nWithout children the field renders `length` inputs. Pass children to compose them yourself:\\n\\n```text\\nOTPField\\n├── OTPFieldGroup\\n│   └── OTPFieldInput (×n)\\n├── OTPFieldSeparator\\n└── OTPFieldGroup\\n```\\n\\nSlots after the first need an `aria-label` such as `Character 2 of 6` when composed by hand.\\n\\n## Base UI documentation\\n\\nExplore the underlying primitives and their API reference.\\n\\n- [OTP Field](https://base-ui.com/react/components/otp-field)\",\n      },\n    },\n  },\n} satisfies Meta<typeof OTPField>;\n\nexport default { ...meta, title: \"Components/Otp Field\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  length: number;\n  disabled: boolean;\n  validationType: \"numeric\" | \"alphanumeric\" | \"none\";\n  status: \"idle\" | \"loading\" | \"success\" | \"error\";\n}> = {\n  args: { length: 6, disabled: false, validationType: \"numeric\", status: \"idle\" },\n  argTypes: {\n    length: { control: { type: \"number\", min: 1, max: 8 } },\n    disabled: { control: \"boolean\" },\n    validationType: { control: \"select\", options: [\"numeric\", \"alphanumeric\", \"none\"] },\n    status: { control: \"select\", options: [\"idle\", \"loading\", \"success\", \"error\"] },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Separator: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.\" },\n      source: { code: SeparatorSource },\n    },\n  },\n  render: SeparatorExample,\n};\n\nexport const Controlled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Control the value with `value` and `onValueChange`.\" },\n      source: { code: ControlledSource },\n    },\n  },\n  render: ControlledExample,\n};\n\nexport const Form: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A verification card with a labelled field.\" },\n      source: { code: FormSource },\n    },\n  },\n  render: FormExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`disabled` dims the field and removes it from the tab order.\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const Invalid: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`status=\\\"error\\\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\\\"success\\\"`.\" },\n      source: { code: InvalidSource },\n    },\n  },\n  render: InvalidExample,\n};\n\nexport const Status: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.\" },\n      source: { code: StatusSource },\n    },\n  },\n  render: StatusExample,\n};\n\nexport const Pattern: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.\" },\n      source: { code: PatternSource },\n    },\n  },\n  render: PatternExample,\n};\n\nexport const FourDigits: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Any `length` works.\" },\n      source: { code: FourDigitsSource },\n    },\n  },\n  render: FourDigitsExample,\n};\n\nexport const Alphanumeric: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `validationType=\\\"alphanumeric\\\"` with `normalizeValue` for recovery codes.\" },\n      source: { code: AlphanumericSource },\n    },\n  },\n  render: AlphanumericExample,\n};\n"
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { OTPField } from \\\"@/registry/erbium/ui/otp-field\\\";\\n\\nconst Example = (args: {\\n  length: number;\\n  disabled: boolean;\\n  validationType: \\\"numeric\\\" | \\\"alphanumeric\\\" | \\\"none\\\";\\n  status: \\\"idle\\\" | \\\"loading\\\" | \\\"success\\\" | \\\"error\\\";\\n}) => (\\n  <OTPField\\n    key={`${args.length}-${args.validationType}`}\\n    aria-label=\\\"One-time password\\\"\\n    length={args.length}\\n    disabled={args.disabled}\\n    validationType={args.validationType}\\n    status={args.status}\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/otp-field-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nimport SeparatorExample from \"./variants/separator\";\n\nconst SeparatorSource = \"import ExampleOTPFieldSeparator from \\\"../examples/otp-field-separator\\\";\\n\\nconst Example = () => <ExampleOTPFieldSeparator />;\\n\\nexport default Example;\\n\";\n\nimport ControlledExample from \"./variants/controlled\";\n\nconst ControlledSource = \"import ExampleOTPFieldControlled from \\\"../examples/otp-field-controlled\\\";\\n\\nconst Example = () => <ExampleOTPFieldControlled />;\\n\\nexport default Example;\\n\";\n\nimport FormExample from \"./variants/form\";\n\nconst FormSource = \"import { OTPFieldForm } from \\\"../examples/otp-field-form\\\";\\n\\nconst Example = () => <OTPFieldForm />;\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import { OTPFieldDisabled } from \\\"../examples/otp-field-disabled\\\";\\n\\nconst Example = () => <OTPFieldDisabled />;\\n\\nexport default Example;\\n\";\n\nimport InvalidExample from \"./variants/invalid\";\n\nconst InvalidSource = \"import { OTPFieldInvalid } from \\\"../examples/otp-field-invalid\\\";\\n\\nconst Example = () => <OTPFieldInvalid />;\\n\\nexport default Example;\\n\";\n\nimport StatusExample from \"./variants/status\";\n\nconst StatusSource = \"import { OTPFieldStatusDemo } from \\\"../examples/otp-field-status\\\";\\n\\nconst Example = () => <OTPFieldStatusDemo />;\\n\\nexport default Example;\\n\";\n\nimport PatternExample from \"./variants/pattern\";\n\nconst PatternSource = \"import { OTPFieldPattern } from \\\"../examples/otp-field-pattern\\\";\\n\\nconst Example = () => <OTPFieldPattern />;\\n\\nexport default Example;\\n\";\n\nimport FourDigitsExample from \"./variants/four-digits\";\n\nconst FourDigitsSource = \"import { OTPFieldFourDigits } from \\\"../examples/otp-field-four-digits\\\";\\n\\nconst Example = () => <OTPFieldFourDigits />;\\n\\nexport default Example;\\n\";\n\nimport AlphanumericExample from \"./variants/alphanumeric\";\n\nconst AlphanumericSource = \"import { OTPFieldAlphanumeric } from \\\"../examples/otp-field-alphanumeric\\\";\\n\\nconst Example = () => <OTPFieldAlphanumeric />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: OTPField,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nAccessible one-time password field built on Base UI's [OTP Field](https://base-ui.com/react/components/otp-field), with `status` for loading, success and error.\\n\\n**Import:** `@/registry/erbium/ui/otp-field`\\n\\n## Usage\\n\\n```tsx\\nimport { OTPField } from \\\"@/registry/erbium/ui/otp-field\\\";\\n\\n<OTPField aria-label=\\\"One-time password\\\" length={6} groups={[3, 3]} status=\\\"idle\\\" />;\\n```\\n\\n## Composition\\n\\nWithout children the field renders `length` inputs. Pass children to compose them yourself:\\n\\n```text\\nOTPField\\n├── OTPFieldGroup\\n│   └── OTPFieldInput (×n)\\n├── OTPFieldSeparator\\n└── OTPFieldGroup\\n```\\n\\nSlots after the first need an `aria-label` such as `Character 2 of 6` when composed by hand.\\n\\n## Base UI documentation\\n\\nExplore the underlying primitives and their API reference.\\n\\n- [OTP Field](https://base-ui.com/react/components/otp-field)\",\n      },\n    },\n  },\n} satisfies Meta<typeof OTPField>;\n\nexport default { ...meta, title: \"Components/OTP Field\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  length: number;\n  disabled: boolean;\n  validationType: \"numeric\" | \"alphanumeric\" | \"none\";\n  status: \"idle\" | \"loading\" | \"success\" | \"error\";\n}> = {\n  args: { length: 6, disabled: false, validationType: \"numeric\", status: \"idle\" },\n  argTypes: {\n    length: { control: { type: \"number\", min: 1, max: 8 } },\n    disabled: { control: \"boolean\" },\n    validationType: { control: \"select\", options: [\"numeric\", \"alphanumeric\", \"none\"] },\n    status: { control: \"select\", options: [\"idle\", \"loading\", \"success\", \"error\"] },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Default six-slot field with two groups of three. Pass `length` and the field renders the inputs, labelled per slot, for you.\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Separator: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `groups` to split the slots with separators, or compose `OTPFieldGroup` and `OTPFieldSeparator` yourself.\" },\n      source: { code: SeparatorSource },\n    },\n  },\n  render: SeparatorExample,\n};\n\nexport const Controlled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Control the value with `value` and `onValueChange`.\" },\n      source: { code: ControlledSource },\n    },\n  },\n  render: ControlledExample,\n};\n\nexport const Form: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A verification card with a labelled field.\" },\n      source: { code: FormSource },\n    },\n  },\n  render: FormExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`disabled` dims the field and removes it from the tab order.\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const Invalid: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`status=\\\"error\\\"` marks every slot invalid and shakes the field once. Pair it with `FieldError` for the message; a correct code switches to `status=\\\"success\\\"`.\" },\n      source: { code: InvalidSource },\n    },\n  },\n  render: InvalidExample,\n};\n\nexport const Status: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`status` is `idle`, `loading`, `success` or `error`. `loading` and `success` lock the field with `readOnly` rather than `disabled`, so it keeps focus and its value. `error` shakes the field. Nothing renders outside the slots, so the layout never shifts.\" },\n      source: { code: StatusSource },\n    },\n  },\n  render: StatusExample,\n};\n\nexport const Pattern: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`validationType` limits accepted characters: `numeric` (default), `alphanumeric` or `none`.\" },\n      source: { code: PatternSource },\n    },\n  },\n  render: PatternExample,\n};\n\nexport const FourDigits: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Any `length` works.\" },\n      source: { code: FourDigitsSource },\n    },\n  },\n  render: FourDigitsExample,\n};\n\nexport const Alphanumeric: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `validationType=\\\"alphanumeric\\\"` with `normalizeValue` for recovery codes.\" },\n      source: { code: AlphanumericSource },\n    },\n  },\n  render: AlphanumericExample,\n};\n"
         },
         {
           "path": "src/otp-field/variants/alphanumeric.tsx",
@@ -15672,7 +15672,7 @@
           "path": "src/otp-field/variants/controlled.tsx",
           "type": "registry:component",
           "target": "@components/showcase/otp-field/variants/controlled.tsx",
-          "content": "import ExampleOtpFieldControlled from \"../examples/otp-field-controlled\";\n\nconst Example = () => <ExampleOtpFieldControlled />;\n\nexport default Example;\n"
+          "content": "import ExampleOTPFieldControlled from \"../examples/otp-field-controlled\";\n\nconst Example = () => <ExampleOTPFieldControlled />;\n\nexport default Example;\n"
         },
         {
           "path": "src/otp-field/variants/disabled.tsx",
@@ -15720,7 +15720,7 @@
           "path": "src/otp-field/variants/separator.tsx",
           "type": "registry:component",
           "target": "@components/showcase/otp-field/variants/separator.tsx",
-          "content": "import ExampleOtpFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOtpFieldSeparator />;\n\nexport default Example;\n"
+          "content": "import ExampleOTPFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOTPFieldSeparator />;\n\nexport default Example;\n"
         },
         {
           "path": "src/otp-field/variants/status.tsx",
@@ -19994,7 +19994,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Async Action",
       "description": "",
-      "dependencies": ["@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1"],
       "registryDependencies": ["@erbium/stateful-button", "@erbium/styles"],
       "files": [
         {
@@ -20016,7 +20016,7 @@
       "type": "registry:component",
       "title": "stateful button demo",
       "description": "Erbium stateful button demo example.",
-      "dependencies": ["@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1"],
       "registryDependencies": ["@erbium/stateful-button", "@erbium/styles"],
       "files": [
         {
@@ -20032,7 +20032,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Directions",
       "description": "",
-      "dependencies": ["@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/direction",
@@ -20070,7 +20070,7 @@
       "type": "registry:component",
       "title": "stateful button form",
       "description": "Erbium stateful button form example.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",
@@ -20092,7 +20092,7 @@
       "type": "registry:item",
       "title": "Stateful Button stories",
       "description": "All stateful-button variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -20156,7 +20156,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Tan Stack Form",
       "description": "",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.0"],
+      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
       "registryDependencies": [
         "@erbium/field",
         "@erbium/input",

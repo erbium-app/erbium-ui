@@ -1,5 +1,5 @@
 ---
-title: "Otp Field"
+title: "OTP Field"
 description: "Enter and verify a one-time code."
 ---
 
