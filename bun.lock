@@ -97,6 +97,15 @@
         "vite": "catalog:",
       },
     },
+    "packages/icons": {
+      "name": "@erbium/icons",
+      "version": "0.0.0",
+      "devDependencies": {
+        "oxfmt": "0.72.0",
+        "svgo": "4.1.0",
+        "vite-plus": "catalog:",
+      },
+    },
     "packages/infra": {
       "name": "@erbium/infra",
       "devDependencies": {
@@ -432,6 +441,8 @@
     "@emnapi/wasi-threads": ["@emnapi/wasi-threads@1.2.2", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA=="],
 
     "@erbium/content": ["@erbium/content@workspace:packages/content"],
+
+    "@erbium/icons": ["@erbium/icons@workspace:packages/icons"],
 
     "@erbium/infra": ["@erbium/infra@workspace:packages/infra"],
 

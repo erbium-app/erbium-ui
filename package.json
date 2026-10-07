@@ -106,7 +106,10 @@
     "showcase:registry": "vp run --filter ./packages/showcase --fail-if-no-match registry:build",
     "intent:list": "intent list",
     "build:cached": "vp run -r --cache build",
-    "infra": "bun run --cwd packages/infra"
+    "infra": "bun run --cwd packages/infra",
+    "icons:generate": "vp run --filter ./packages/icons --fail-if-no-match generate",
+    "icons:check": "vp run --filter ./packages/icons --fail-if-no-match check",
+    "icons:dev": "vp run --filter ./packages/icons --fail-if-no-match dev"
   },
   "devDependencies": {
     "@intellectronica/ruler": "0.3.44",
