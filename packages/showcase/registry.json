@@ -6078,7 +6078,7 @@
       "name": "code-block-states",
       "type": "registry:component",
       "title": "Code Block: States",
-      "description": "Empty source, unknown languages, disabled copy, and no examples.",
+      "description": "Empty source, unknown languages, and copyable source with a custom header.",
       "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
       "files": [
         {

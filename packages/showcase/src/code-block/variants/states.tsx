@@ -1,5 +1,6 @@
 import {
   CodeBlock,
+  CodeBlockActions,
   CodeBlockContent,
   CodeBlockCopyButton,
   CodeBlockHeader,
@@ -14,14 +15,15 @@ export default function Example() {
         code="An unsupported language remains readable and copyable."
         language="unknown-language"
       />
-      <CodeBlock code="Copy is unavailable for this example." title="Disabled copy">
+      <CodeBlock code="This source remains copyable with a custom header." title="Custom header">
         <CodeBlockHeader>
-          <CodeBlockTitle>Disabled copy</CodeBlockTitle>
-          <CodeBlockCopyButton disabled />
+          <CodeBlockTitle>Custom header</CodeBlockTitle>
         </CodeBlockHeader>
+        <CodeBlockActions>
+          <CodeBlockCopyButton />
+        </CodeBlockActions>
         <CodeBlockContent />
       </CodeBlock>
-      <CodeBlock items={[]} title="No examples" />
     </div>
   );
 }

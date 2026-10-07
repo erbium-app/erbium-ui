@@ -309,6 +309,7 @@
       "registryDependencies": [
         "@erbium/code-highlighter",
         "@erbium/copy-button",
+        "@erbium/separator",
         "@erbium/tabs",
         "@erbium/utils"
       ],

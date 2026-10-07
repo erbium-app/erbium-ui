@@ -11,7 +11,7 @@ Import from `@erbium/ui/blocks/code-block`.
 <CodeBlock code={source} language="tsx" title="app.tsx" />
 ```
 
-The default layout includes a header, an icon copy button, and the source. Vitesse light and dark syntax colors follow the application's appearance. There is no theme or highlighting-engine setting. Code surfaces scroll horizontally by default and have a bounded height; use `wrap` or `lineNumbers` when appropriate.
+The default layout includes the source and an anchored icon copy button. A header and separator appear only when you provide a `title` or tabbed `items`; the language does not create a header. Actions stay at the block’s top inline end while the source scrolls. Vitesse light and dark syntax colors follow the application's appearance. There is no theme or highlighting-engine setting. Code surfaces scroll horizontally by default and have a bounded height; use `wrap` or `lineNumbers` when appropriate.
 
 ## Tabs for code and commands
 
@@ -36,16 +36,16 @@ Use either `code` and `language` for a single source, or `items` for tabbed cont
 <CodeBlock code={source} language="json">
   <CodeBlockHeader>
     <CodeBlockTitle>config.json</CodeBlockTitle>
-    <CodeBlockActions>
-      <CodeBlockLanguage />
-      <CodeBlockCopyButton />
-    </CodeBlockActions>
+    <CodeBlockLanguage />
   </CodeBlockHeader>
+  <CodeBlockActions>
+    <CodeBlockCopyButton />
+  </CodeBlockActions>
   <CodeBlockContent />
 </CodeBlock>
 ```
 
-Providing children replaces the default layout. Compose `CodeBlockTabs`, `CodeBlockTab`, and `CodeBlockPanel` for custom tabbed layouts; panel values reference the root's items rather than duplicating source strings. `CodeBlockTabs` generates tabs from items when it has no children. Give its `aria-label` a name appropriate to the alternatives. Each panel renders its corresponding source. For a single source or only the active source, use `CodeBlockContent`.
+Providing children replaces the default layout. Place `CodeBlockActions` directly inside the root, independently of the optional header. It anchors custom actions outside the scrolling content, using logical positioning for RTL. Omit the actions part for a read-only block without controls. Content reserves space for the default icon action; for wider custom actions, increase the content’s end padding through `className`. Compose `CodeBlockTabs`, `CodeBlockTab`, and `CodeBlockPanel` for custom tabbed layouts; panel values reference the root's items rather than duplicating source strings. `CodeBlockTabs` generates tabs from items when it has no children. Give its `aria-label` a name appropriate to the alternatives. Each panel renders its corresponding source. For a single source or only the active source, use `CodeBlockContent`.
 
 `CodeBlockCopyButton` wraps the existing CopyButton and reads the active source from context. It accepts CopyButton props, including custom labels, `render`, callbacks, and translated announcements. An explicit `value` overrides copied text. Source changes reset copy feedback without remounting the button. The button remains visible for keyboard and touch users. Use the existing CopyButtonIcon and CopyButtonLabel parts for a labeled action.
 

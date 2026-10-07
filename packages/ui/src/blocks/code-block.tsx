@@ -92,16 +92,18 @@ function CodeBlock({
       >
         {children ?? (
           <>
-            <CodeBlockHeader>
-              {providedItems && items.length > 0 ? (
-                <CodeBlockTabs />
-              ) : (
-                <CodeBlockTitle>
-                  {title ?? language ?? (surface === "command" ? "Terminal" : "Code")}
-                </CodeBlockTitle>
-              )}
+            {(providedItems && items.length > 0) || title ? (
+              <CodeBlockHeader>
+                {providedItems && items.length > 0 ? (
+                  <CodeBlockTabs />
+                ) : (
+                  <CodeBlockTitle>{title}</CodeBlockTitle>
+                )}
+              </CodeBlockHeader>
+            ) : null}
+            <CodeBlockActions>
               <CodeBlockCopyButton />
-            </CodeBlockHeader>
+            </CodeBlockActions>
             {providedItems ? (
               items.map((item) => <CodeBlockPanel key={item.value} value={item.value} />)
             ) : (
@@ -120,7 +122,7 @@ function CodeBlockHeader({ className, ...props }: ComponentProps<"div">) {
         {...props}
         data-slot="code-block-header"
         className={cn(
-          "flex min-h-10 items-center justify-between gap-2 px-3 py-1.5 group-data-[surface=command]/code-block:min-h-9",
+          "flex min-h-10 items-center justify-between gap-2 px-3 py-1.5 pe-12 group-data-[surface=command]/code-block:min-h-9",
           className,
         )}
       />
@@ -142,7 +144,10 @@ function CodeBlockActions({ className, ...props }: ComponentProps<"div">) {
     <div
       {...props}
       data-slot="code-block-actions"
-      className={cn("flex shrink-0 items-center gap-1", className)}
+      className={cn(
+        "absolute end-2 top-2 z-10 flex items-center gap-1 rounded-md bg-surface-panel",
+        className,
+      )}
     />
   );
 }
@@ -182,6 +187,7 @@ function CodeBlockCopyButton({
   const { active, surface } = useCodeBlock();
   return (
     <CopyButton
+      variant="ghost"
       value={value ?? active?.code ?? ""}
       aria-label={surface === "command" ? "Copy command" : "Copy code"}
       size={props.children == null ? "icon-xs" : "xs"}
@@ -245,6 +251,7 @@ function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps)
         "m-0 max-h-120 overflow-auto p-4 font-mono text-sm leading-6 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
         wrap ? "whitespace-pre-wrap break-words" : "whitespace-pre",
         surface === "command" && "px-3 py-3",
+        "group-has-[[data-slot=code-block-actions]]/code-block:pe-12",
         className,
       )}
     >

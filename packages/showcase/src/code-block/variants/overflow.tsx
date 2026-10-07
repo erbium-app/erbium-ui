@@ -13,7 +13,6 @@ export default function Example() {
           "\n",
         )}
         language="js"
-        title="Bounded height"
         lineNumbers
       />
     </div>

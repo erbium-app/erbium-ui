@@ -18,15 +18,15 @@ export default function Example() {
     >
       <CodeBlockHeader>
         <CodeBlockTitle>project.json</CodeBlockTitle>
-        <CodeBlockActions>
-          <CodeBlockLanguage className="me-2" />
-          <CodeBlockCopyButton aria-label="Copy project configuration" variant="outline">
-            <CopyButtonIcon data-icon="inline-start" />
-            <CopyButtonLabel />
-          </CodeBlockCopyButton>
-        </CodeBlockActions>
+        <CodeBlockLanguage />
       </CodeBlockHeader>
-      <CodeBlockContent />
+      <CodeBlockActions>
+        <CodeBlockCopyButton aria-label="Copy project configuration">
+          <CopyButtonIcon data-icon="inline-start" />
+          <CopyButtonLabel />
+        </CodeBlockCopyButton>
+      </CodeBlockActions>
+      <CodeBlockContent className="pe-24" />
     </CodeBlock>
   );
 }

@@ -3,14 +3,14 @@
   "name": "code-block-states",
   "type": "registry:component",
   "title": "Code Block: States",
-  "description": "Empty source, unknown languages, disabled copy, and no examples.",
+  "description": "Empty source, unknown languages, and copyable source with a custom header.",
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
       "path": "src/code-block/variants/states.tsx",
       "type": "registry:component",
       "target": "@components/showcase/code-block/variants/states.tsx",
-      "content": "import {\n  CodeBlock,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockTitle,\n} from \"@/registry/erbium/blocks/code-block\";\n\nexport default function Example() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-4\">\n      <CodeBlock code=\"\" title=\"Empty source\" />\n      <CodeBlock\n        code=\"An unsupported language remains readable and copyable.\"\n        language=\"unknown-language\"\n      />\n      <CodeBlock code=\"Copy is unavailable for this example.\" title=\"Disabled copy\">\n        <CodeBlockHeader>\n          <CodeBlockTitle>Disabled copy</CodeBlockTitle>\n          <CodeBlockCopyButton disabled />\n        </CodeBlockHeader>\n        <CodeBlockContent />\n      </CodeBlock>\n      <CodeBlock items={[]} title=\"No examples\" />\n    </div>\n  );\n}\n"
+      "content": "import {\n  CodeBlock,\n  CodeBlockActions,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockTitle,\n} from \"@/registry/erbium/blocks/code-block\";\n\nexport default function Example() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-4\">\n      <CodeBlock code=\"\" title=\"Empty source\" />\n      <CodeBlock\n        code=\"An unsupported language remains readable and copyable.\"\n        language=\"unknown-language\"\n      />\n      <CodeBlock code=\"This source remains copyable with a custom header.\" title=\"Custom header\">\n        <CodeBlockHeader>\n          <CodeBlockTitle>Custom header</CodeBlockTitle>\n        </CodeBlockHeader>\n        <CodeBlockActions>\n          <CodeBlockCopyButton />\n        </CodeBlockActions>\n        <CodeBlockContent />\n      </CodeBlock>\n    </div>\n  );\n}\n"
     }
   ]
 }
