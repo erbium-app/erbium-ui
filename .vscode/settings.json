@@ -72,7 +72,8 @@
     "torph",
     "trackpad",
     "ultracite",
-    "Vazirmatn"
+    "Vazirmatn",
+    "wordmark"
   ],
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"

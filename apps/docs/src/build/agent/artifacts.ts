@@ -28,27 +28,33 @@ const contentRoot = "../../../../../packages/content/";
 const sourceRoot = "../../../../../packages/ui/";
 
 export const markdownPath = (route: string) => (route === "/" ? "/index.md" : `${route}.md`);
+
 const absolute = (path: string) => `${site}${path}`;
+
 function document(path: string) {
   const raw = documents[`${contentRoot}${path}`];
   if (!raw) throw new Error(`Missing agent documentation: ${path}`);
   return parseFrontmatter(raw);
 }
+
 function body(path: string) {
   return rewriteLinks(document(path).content.trim());
 }
+
 function code(path: string, source: string) {
   const runs = source.match(/`+/g) ?? [];
   const fence = "`".repeat(Math.max(3, ...runs.map((run) => run.length + 1)));
   const language = path.split(".").at(-1) ?? "text";
   return `### ${path}\n\n${fence}${language}\n${source}\n${fence}`;
 }
+
 function rewriteLinks(markdown: string) {
   return markdown.replace(
     /\]\(\/(?!\/)([^)]+)\)/g,
     (_, path: string) => `](${absolute(`/${path}`)})`,
   );
 }
+
 export interface AgentPage {
   route: string;
   title: string;
@@ -56,6 +62,7 @@ export interface AgentPage {
   section: string;
   markdown: string;
 }
+
 function page(
   route: string,
   title: string,
@@ -71,6 +78,7 @@ function page(
     markdown: `# ${title}\n\n> ${description}\n\nSource: ${absolute(route)}\n\n${content}\n`,
   };
 }
+
 const guides = [
   ["/", "introduction.md", "Overview"],
   ["/docs/installation", "installation.md", "Guides"],
@@ -79,6 +87,7 @@ const guides = [
   ["/docs/roadmap", "roadmap.md", "Overview"],
   ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
 ];
+
 export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
   const { frontmatter } = document(file);
   return page(
@@ -91,6 +100,7 @@ export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
       : body(file),
   );
 });
+
 for (const component of components) {
   const catalog = manifest.find((entry) => entry.name === component.name)!;
   if (component.name === "colors") {
@@ -159,12 +169,14 @@ for (const [route, names] of [["/", ["card", "input", "switch"]]] as const) {
   const landing = agentPages.find((entry) => entry.route === route)!;
   landing.markdown += `\n## Showcased components\n\n${names.map((name) => agentPages.find((entry) => entry.route === components.find((item) => item.name === name)!.href)!.markdown).join("\n\n---\n\n")}`;
 }
+
 export const pageIndex = agentPages.map(({ markdown: _markdown, ...entry }) => ({
   ...entry,
   url: absolute(entry.route),
   markdownUrl: absolute(markdownPath(entry.route)),
   jsonUrl: absolute(`/api/docs/${entry.route === "/" ? "index" : entry.route.slice(1)}.json`),
 }));
+
 export const llmsIndex = `# Erbium UI\n\n> Accessible React components with shared Markdown documentation and runnable examples.\n\nInstall components and examples through the Shadcn registries. Read the installation guide first. Source code uses workspace imports; registry installation rewrites these to local aliases.\n\n## Agent resources\n\n- [Full documentation](${site}/llms-full.txt): Every page with component and example source.\n- [Page index](${site}/api/docs.json): JSON catalog linking Markdown and JSON pages.\n- [OpenAPI](${site}/openapi.json): Read-only documentation API.\n- [Agent discovery](${site}/agent-readability.json)\n- [Usage skill](${site}/.well-known/agent-skills/erbium-ui/SKILL.md)\n- [Sitemap](${site}/sitemap-index.xml)\n\n${[
   ...new Set(agentPages.map((entry) => entry.section)),
 ]
@@ -176,4 +188,5 @@ export const llmsIndex = `# Erbium UI\n\n> Accessible React components with shar
         .join("\n")}`,
   )
   .join("\n\n")}\n`;
+
 export const llmsFull = agentPages.map((entry) => entry.markdown).join("\n\n---\n\n");

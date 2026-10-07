@@ -61,6 +61,7 @@ class PageTableOfContents extends HTMLElement {
     }
   }
 }
+
 if (!customElements.get("page-table-of-contents")) {
   customElements.define("page-table-of-contents", PageTableOfContents);
 }

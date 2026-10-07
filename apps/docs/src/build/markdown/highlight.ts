@@ -30,6 +30,7 @@ function codeBackground(selector: string) {
   if (!value) throw new Error(`Missing code background for ${selector}`);
   return new Color(value).to("srgb");
 }
+
 const codeBackgrounds = [codeBackground(":root"), codeBackground(".dark")];
 const black = new Color("oklch(0% 0 none)");
 const white = new Color("oklch(100% 0 none)");
