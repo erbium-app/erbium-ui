@@ -7,7 +7,7 @@ import Add01Icon from "@hugeicons/core-free-icons/Add01Icon";
 import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
 import CodeBlock from "@/features/code/CodeBlock.astro";
 import Separator from "@/components/primitives/Separator.astro";
-import Button from "@/components/primitives/Button.astro";
+import ShowcaseTabs from "@/features/showcase/ShowcaseTabs.tsx";
 import ShowcaseThemeToggle from "@/features/showcase/ShowcaseThemeToggle.astro";
 import CopyButton from "@/features/code/CopyButton.astro";
 import ComponentPreview from "@/features/showcase/ComponentPreview.tsx";
@@ -42,28 +42,8 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
   </h2>
   <Prose as="div" class="variant-description [text-wrap-style:pretty] text-muted-foreground [font-size:0.8125rem] [&_p]:m-[0.5rem_0_0.8rem]"><slot /></Prose>
   <showcase-tabs class="showcase">
-    <div class="showcase-toolbar flex items-center justify-between pb-[0.65rem] [&_[role='tablist']]:flex [&_[role='tablist']]:gap-1 [&_[aria-selected='true']]:surface-control [&_[aria-selected='true']]:text-foreground [&_[aria-selected='false']]:text-muted-foreground">
-      <div role="tablist" aria-label={`${title} example`}>
-        <Button
-          id={`${id}-preview-tab`}
-          variant="ghost"
-          size="sm"
-          role="tab"
-          aria-selected="true"
-          aria-controls={`${id}-preview`}
-          data-tab="preview">Preview</Button
-        >
-        <Button
-          id={`${id}-code-tab`}
-          variant="ghost"
-          size="sm"
-          role="tab"
-          aria-selected="false"
-          aria-controls={`${id}-code`}
-          tabindex="-1"
-          data-tab="code">Code</Button
-        >
-      </div>
+    <div class="showcase-toolbar flex items-center justify-between pb-[0.65rem]">
+      <ShowcaseTabs id={id} title={title} client:load />
     </div>
     <div
       id={`${id}-preview`}
