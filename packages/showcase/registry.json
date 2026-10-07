@@ -5946,6 +5946,224 @@
       ]
     },
     {
+      "name": "code-block-changing-source",
+      "type": "registry:component",
+      "title": "Code Block: Changing Source",
+      "description": "Edit source and verify that copy feedback follows the current text.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles", "@erbium/textarea"],
+      "files": [
+        {
+          "path": "src/code-block/variants/changing-source.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/changing-source.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-commands",
+      "type": "registry:component",
+      "title": "Code Block: Commands",
+      "description": "Package-manager commands use the same block and copy the active tab.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/commands.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/commands.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-composition",
+      "type": "registry:component",
+      "title": "Code Block: Composition",
+      "description": "Compose a custom header and the existing copy button labels.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/composition.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-controlled",
+      "type": "registry:component",
+      "title": "Code Block: Controlled",
+      "description": "Synchronize package-manager selection across multiple blocks.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/controlled.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/controlled.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-examples",
+      "type": "registry:item",
+      "title": "Code Block examples",
+      "description": "All code-block examples.",
+      "registryDependencies": [
+        "@erbium-examples/code-block-overview",
+        "@erbium-examples/code-block-commands",
+        "@erbium-examples/code-block-files",
+        "@erbium-examples/code-block-controlled",
+        "@erbium-examples/code-block-composition",
+        "@erbium-examples/code-block-overflow",
+        "@erbium-examples/code-block-states",
+        "@erbium-examples/code-block-changing-source",
+        "@erbium-examples/code-block-rtl"
+      ]
+    },
+    {
+      "name": "code-block-files",
+      "type": "registry:component",
+      "title": "Code Block: Files",
+      "description": "Switch files with line numbers and a disabled tab.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/files.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/files.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-overflow",
+      "type": "registry:component",
+      "title": "Code Block: Overflow",
+      "description": "Compare horizontal scrolling, wrapping, and bounded height.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/overflow.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/overflow.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-overview",
+      "type": "registry:component",
+      "title": "Code Block: Overview",
+      "description": "A highlighted snippet with exact-source copying.",
+      "registryDependencies": ["@erbium/button", "@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-rtl",
+      "type": "registry:component",
+      "title": "Code Block: Rtl",
+      "description": "RTL controls surround an explicitly LTR code region.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/direction", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/rtl.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/rtl.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-states",
+      "type": "registry:component",
+      "title": "Code Block: States",
+      "description": "Empty source, unknown languages, disabled copy, and no examples.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/states.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/states.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-block-stories",
+      "type": "registry:item",
+      "title": "Code Block stories",
+      "description": "All code-block variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/code-block",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/direction",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/textarea",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/code-block/code-block.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/code-block/code-block.stories.tsx"
+        },
+        {
+          "path": "src/code-block/variants/changing-source.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/changing-source.tsx"
+        },
+        {
+          "path": "src/code-block/variants/commands.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/commands.tsx"
+        },
+        {
+          "path": "src/code-block/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/composition.tsx"
+        },
+        {
+          "path": "src/code-block/variants/controlled.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/controlled.tsx"
+        },
+        {
+          "path": "src/code-block/variants/files.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/files.tsx"
+        },
+        {
+          "path": "src/code-block/variants/overflow.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/overflow.tsx"
+        },
+        {
+          "path": "src/code-block/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/overview.tsx"
+        },
+        {
+          "path": "src/code-block/variants/rtl.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/rtl.tsx"
+        },
+        {
+          "path": "src/code-block/variants/states.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/code-block/variants/states.tsx"
+        },
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        }
+      ]
+    },
+    {
       "name": "collapsible-basic",
       "type": "registry:block",
       "title": "Collapsible: Basic",

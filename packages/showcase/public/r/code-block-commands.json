@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-commands",
+  "type": "registry:component",
+  "title": "Code Block: Commands",
+  "description": "Package-manager commands use the same block and copy the active tab.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/code-block/variants/commands.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/code-block/variants/commands.tsx",
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function Example() {\n  return (\n    <CodeBlock\n      className=\"w-full max-w-xl\"\n      surface=\"command\"\n      defaultValue=\"bun\"\n      items={[\n        {\n          value: \"bun\",\n          label: \"Bun\",\n          language: \"shell\",\n          code: \"bunx shadcn@latest add @erbium/button\",\n        },\n        {\n          value: \"npm\",\n          label: \"npm\",\n          language: \"shell\",\n          code: \"npx shadcn@latest add @erbium/button\",\n        },\n        {\n          value: \"pnpm\",\n          label: \"pnpm\",\n          language: \"shell\",\n          code: \"pnpm dlx shadcn@latest add @erbium/button\",\n        },\n        {\n          value: \"yarn\",\n          label: \"Yarn\",\n          language: \"shell\",\n          code: \"yarn dlx shadcn@latest add @erbium/button\",\n        },\n      ]}\n    />\n  );\n}\n"
+    }
+  ]
+}

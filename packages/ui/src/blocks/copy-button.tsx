@@ -4,7 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import CopySvg from "@hugeicons/core-free-icons/CopyIcon";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
-import { createContext, use } from "react";
+import { createContext, use, useEffect, useRef } from "react";
 import type { ComponentProps } from "react";
 import { Button } from "../components/button";
 import { StatefulIcon } from "../components/stateful-icon";
@@ -48,6 +48,14 @@ function CopyButton({
   ...props
 }: CopyButtonProps) {
   const clipboard = useCopyToClipboard({ timeout, onCopy: onCopied, onError });
+  const { reset } = clipboard;
+  const previousValue = useRef(value);
+  useEffect(() => {
+    if (previousValue.current !== value) {
+      previousValue.current = value;
+      reset();
+    }
+  }, [value, reset]);
   const state = {
     copied: clipboard.isCopied,
     pending: clipboard.isPending,

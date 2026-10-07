@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-files",
+  "type": "registry:component",
+  "title": "Code Block: Files",
+  "description": "Switch files with line numbers and a disabled tab.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/code-block/variants/files.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/code-block/variants/files.tsx",
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function Example() {\n  return (\n    <CodeBlock\n      className=\"w-full max-w-xl\"\n      lineNumbers\n      items={[\n        {\n          value: \"component\",\n          label: \"app.tsx\",\n          language: \"tsx\",\n          code: `export function App() {\n  return <main className=\"app\">Hello, Erbium.</main>;\n}`,\n        },\n        {\n          value: \"styles\",\n          label: \"styles.css\",\n          language: \"css\",\n          code: `.app {\n  display: grid;\n  place-items: center;\n  min-height: 100dvh;\n}`,\n        },\n        {\n          value: \"config\",\n          label: \"config.json\",\n          language: \"json\",\n          code: '{ \"theme\": \"system\" }',\n          disabled: true,\n        },\n      ]}\n    />\n  );\n}\n"
+    }
+  ]
+}

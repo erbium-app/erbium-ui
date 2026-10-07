@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-changing-source",
+  "type": "registry:component",
+  "title": "Code Block: Changing Source",
+  "description": "Edit source and verify that copy feedback follows the current text.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/styles", "@erbium/textarea"],
+  "files": [
+    {
+      "path": "src/code-block/variants/changing-source.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/code-block/variants/changing-source.tsx",
+      "content": "import { useState } from \"react\";\nimport { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function Example() {\n  const [code, setCode] = useState('const greeting = \"Hello, Erbium.\";\\n');\n  return (\n    <div className=\"grid w-full max-w-xl gap-4\">\n      <label className=\"grid gap-2 text-sm\">\n        Source\n        <Textarea\n          value={code}\n          onChange={(event) => setCode(event.target.value)}\n          className=\"font-mono\"\n        />\n      </label>\n      <CodeBlock code={code} language=\"ts\" title=\"Live source\" />\n      <p className=\"text-xs text-muted-foreground\">\n        Copy, then edit the source. Feedback resets and the next copy uses the new text.\n      </p>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

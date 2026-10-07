@@ -1074,6 +1074,66 @@
     ]
   },
   {
+    "name": "code-block",
+    "title": "Blocks/Code Block",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "title": "Overview",
+        "source": "src/code-block/variants/overview.tsx"
+      },
+      {
+        "exportName": "Commands",
+        "slug": "commands",
+        "title": "Commands",
+        "source": "src/code-block/variants/commands.tsx"
+      },
+      {
+        "exportName": "Files",
+        "slug": "files",
+        "title": "Files",
+        "source": "src/code-block/variants/files.tsx"
+      },
+      {
+        "exportName": "Controlled",
+        "slug": "controlled",
+        "title": "Controlled",
+        "source": "src/code-block/variants/controlled.tsx"
+      },
+      {
+        "exportName": "Composition",
+        "slug": "composition",
+        "title": "Composition",
+        "source": "src/code-block/variants/composition.tsx"
+      },
+      {
+        "exportName": "Overflow",
+        "slug": "overflow",
+        "title": "Overflow",
+        "source": "src/code-block/variants/overflow.tsx"
+      },
+      {
+        "exportName": "States",
+        "slug": "states",
+        "title": "States",
+        "source": "src/code-block/variants/states.tsx"
+      },
+      {
+        "exportName": "ChangingSource",
+        "slug": "changing-source",
+        "title": "Changing Source",
+        "source": "src/code-block/variants/changing-source.tsx"
+      },
+      {
+        "exportName": "Rtl",
+        "slug": "rtl",
+        "title": "Rtl",
+        "source": "src/code-block/variants/rtl.tsx"
+      }
+    ]
+  },
+  {
     "name": "collapsible",
     "title": "Components/Collapsible",
     "variants": [

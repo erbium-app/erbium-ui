@@ -13,6 +13,6 @@ export function useCopyToClipboard(options: CopyToClipboardOptions = {}) {
   React.useEffect(() => () => clipboard.dispose(), [clipboard]);
   const copyToClipboard = (value: string): Promise<boolean> =>
     clipboard.copyToClipboard(value, options);
-  return { ...state, copyToClipboard };
+  return { ...state, copyToClipboard, reset: clipboard.reset };
 }
 export type { CopyToClipboardOptions };

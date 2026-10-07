@@ -84,6 +84,11 @@ function createCopyToClipboard() {
       onCopy?.();
       return true;
     },
+    reset(this: void) {
+      generation++;
+      clearTimeout(timer);
+      update({ ...idleState, revision: state.revision });
+    },
     dispose() {
       generation++;
       clearTimeout(timer);

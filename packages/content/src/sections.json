@@ -84,7 +84,7 @@
     "title": "Blocks",
     "slug": "blocks",
     "kind": "block",
-    "names": ["copy-button"]
+    "names": ["code-block", "copy-button"]
   },
   {
     "title": "Hooks",

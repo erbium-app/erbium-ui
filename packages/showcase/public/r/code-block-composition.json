@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-composition",
+  "type": "registry:component",
+  "title": "Code Block: Composition",
+  "description": "Compose a custom header and the existing copy button labels.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/code-block/variants/composition.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/code-block/variants/composition.tsx",
+      "content": "import {\n  CodeBlock,\n  CodeBlockActions,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockLanguage,\n  CodeBlockTitle,\n} from \"@/registry/erbium/blocks/code-block\";\nimport { CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function Example() {\n  return (\n    <CodeBlock\n      className=\"w-full max-w-xl\"\n      code={'{\\n  \"name\": \"Erbium\",\\n  \"accessible\": true\\n}'}\n      language=\"json\"\n    >\n      <CodeBlockHeader>\n        <CodeBlockTitle>project.json</CodeBlockTitle>\n        <CodeBlockActions>\n          <CodeBlockLanguage className=\"me-2\" />\n          <CodeBlockCopyButton aria-label=\"Copy project configuration\" variant=\"outline\">\n            <CopyButtonIcon data-icon=\"inline-start\" />\n            <CopyButtonLabel />\n          </CodeBlockCopyButton>\n        </CodeBlockActions>\n      </CodeBlockHeader>\n      <CodeBlockContent />\n    </CodeBlock>\n  );\n}\n"
+    }
+  ]
+}

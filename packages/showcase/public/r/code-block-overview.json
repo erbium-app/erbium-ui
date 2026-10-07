@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-overview",
+  "type": "registry:component",
+  "title": "Code Block: Overview",
+  "description": "A highlighted snippet with exact-source copying.",
+  "registryDependencies": ["@erbium/button", "@erbium/code-block", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/code-block/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/code-block/variants/overview.tsx",
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst code = `import { Button } from \"@/registry/erbium/ui/button\";\n\nexport function SaveButton() {\n  return <Button>Save changes</Button>;\n}\n`;\n\nexport default function Example() {\n  return (\n    <CodeBlock className=\"w-full max-w-xl\" code={code} language=\"tsx\" title=\"save-button.tsx\" />\n  );\n}\n"
+    }
+  ]
+}
