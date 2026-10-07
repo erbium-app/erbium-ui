@@ -21,6 +21,7 @@ class DocsSearch extends HTMLElement {
   private controller?: AbortController;
   private timer?: ReturnType<typeof setTimeout>;
   private loaded = false;
+  private resizeObserver?: ResizeObserver;
 
   connectedCallback() {
     this.controller?.abort();
@@ -29,13 +30,21 @@ class DocsSearch extends HTMLElement {
     const options = { signal };
     const dialog = this.querySelector<HTMLDialogElement>("dialog")!;
     const input = this.querySelector<HTMLInputElement>('input[type="search"]')!;
+    const clear = this.querySelector<HTMLButtonElement>("[data-search-clear]")!;
     const results = this.querySelector<HTMLElement>(".docs-search-results")!;
     const empty = this.querySelector<HTMLElement>("[data-search-empty]")!;
     const status = this.querySelector<HTMLElement>("[data-search-status]")!;
     const visibleLinks = () => [
       ...results.querySelectorAll<HTMLAnchorElement>("[data-search-item]:not([hidden]) a"),
     ];
+    const updateOverflow = () => {
+      results.toggleAttribute("data-has-overflow-y", results.scrollHeight > results.clientHeight);
+    };
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = new ResizeObserver(updateOverflow);
+    this.resizeObserver.observe(results);
     const filter = () => {
+      clear.hidden = input.value.length === 0;
       if (!this.loaded) return;
       const query = normalize(input.value);
       for (const item of results.querySelectorAll<HTMLElement>("[data-search-item]")) {
@@ -47,6 +56,7 @@ class DocsSearch extends HTMLElement {
       const count = visibleLinks().length;
       empty.textContent = "No results found.";
       empty.hidden = count > 0;
+      updateOverflow();
       status.textContent = `${count} ${count === 1 ? "result" : "results"} found.`;
     };
     const render = (groups: SearchGroups) => {
@@ -83,6 +93,7 @@ class DocsSearch extends HTMLElement {
       document.querySelector<HTMLDialogElement>(".mobile-navigation-panel[open]")?.close();
       if (dialog.open) return;
       input.value = "";
+      clear.hidden = true;
       dialog.showModal();
       input.focus();
       if (this.loaded) {
@@ -122,6 +133,16 @@ class DocsSearch extends HTMLElement {
     this.querySelector("[data-search-close]")?.addEventListener(
       "click",
       () => dialog.close(),
+      options,
+    );
+    clear.addEventListener(
+      "click",
+      () => {
+        input.value = "";
+        clearTimeout(this.timer);
+        filter();
+        input.focus();
+      },
       options,
     );
     window.addEventListener(
@@ -200,6 +221,7 @@ class DocsSearch extends HTMLElement {
 
   disconnectedCallback() {
     this.controller?.abort();
+    this.resizeObserver?.disconnect();
     clearTimeout(this.timer);
   }
 }

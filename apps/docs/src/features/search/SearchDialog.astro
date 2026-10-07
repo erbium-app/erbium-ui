@@ -8,15 +8,18 @@ import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
 import ArrowDown01Icon from "@hugeicons/core-free-icons/ArrowDown01Icon";
 ---
 <docs-search class="contents" transition:persist="docs-search">
-  <dialog id="docs-search-dialog" class="docs-search-dialog fixed top-[15vh] bottom-auto w-[min(32rem,_calc(100vw_-_2rem))] max-h-[min(32rem,_75dvh)] mx-auto p-0 border border-border rounded-xl bg-popover text-popover-foreground [box-shadow:0_16px_48px_oklch(0%_0_none_/_0.2)] overflow-hidden [&[open]]:flex [&[open]]:flex-col [&::backdrop]:[background:oklch(0%_0_none_/_0.4)] [&_.search-footer]:shrink-0" aria-labelledby="docs-search-title" aria-describedby="docs-search-description">
+  <dialog id="docs-search-dialog" class="docs-search-dialog fixed top-[15vh] bottom-auto w-[min(32rem,_calc(100vw_-_2rem))] max-h-[min(32rem,_75dvh)] mx-auto p-0 surface-modal border border-transparent rounded-xl text-foreground [--ring:var(--muted-foreground)] overflow-hidden [&[open]]:flex [&[open]]:flex-col [&::backdrop]:bg-overlay-backdrop [&::backdrop]:backdrop-blur-[2px] [&_.search-footer]:shrink-0" aria-labelledby="docs-search-title" aria-describedby="docs-search-description">
     <h2 id="docs-search-title" class="sr-only">Search documentation</h2>
     <p id="docs-search-description" class="sr-only">Find a component, hook, or guide. Use the arrow keys to navigate results and Enter to open a page.</p>
-    <div class="docs-search-input-row flex items-center gap-2 p-[0.7rem_0.8rem] shrink-0 carve-bottom [&_>_svg]:text-muted-foreground [&_>_svg]:shrink-0 [&_input]:w-full [&_input]:min-w-0 [&_input]:border-0 [&_input]:outline-none [&_input]:bg-transparent [&_input]:text-inherit [&_input]:[font-family:inherit] [&_input]:text-sm [&:focus-within]:[box-shadow:inset_0_-2px_var(--ring)]">
+    <div class="docs-search-input-row flex items-center gap-3 p-3 shrink-0 carve-bottom [&_>_svg]:text-muted-foreground [&_>_svg]:shrink-0 [&_input]:w-full [&_input]:min-w-0 [&_input]:border-0 [&_input]:outline-none [&_input]:bg-transparent [&_input::-webkit-search-cancel-button]:appearance-none [&_input::-webkit-search-decoration]:appearance-none [&_input]:text-inherit [&_input]:[font-family:inherit] [&_input]:text-sm ">
       <Icon icon={Search01Icon} size={18} />
       <input type="search" placeholder="Search documentation…" aria-label="Search documentation" aria-controls="docs-search-results" autocomplete="off" spellcheck="false" />
-      <Button variant="ghost" size="icon-xs" aria-label="Close search" data-search-close><Icon icon={Cancel01Icon} size={16} /></Button>
+      <Button variant="ghost" size="icon-sm" class="shrink-0 text-muted-foreground" aria-label="Clear search" data-search-clear hidden><Icon icon={Cancel01Icon} size={16} /></Button>
+      <div class="shrink-0 border-s border-border ps-3">
+        <Button variant="outline" size="sm" class="text-xs text-muted-foreground" aria-label="Close search" data-search-close>Esc</Button>
+      </div>
     </div>
-    <div id="docs-search-results" class="docs-search-results overflow-y-auto overscroll-contain p-[0.4rem] min-h-0 [&_h3]:p-[0.5rem_0.5rem_0.25rem] [&_h3]:[font-size:0.7rem] [&_h3]:font-medium [&_h3]:text-muted-foreground [&_ul]:list-none [&_ul]:m-0 [&_ul]:p-0 [&_a]:flex [&_a]:items-center [&_a]:gap-2 [&_a]:p-2 [&_a]:rounded-sm [&_a]:[font-size:0.8rem] [&_a]:no-underline [&_a]:outline-none [&_a:hover]:bg-accent [&_a:hover]:text-accent-foreground [&_a:focus-visible]:bg-accent [&_a:focus-visible]:text-accent-foreground [&_[data-search-empty]]:p-6 [&_[data-search-empty]]:text-center [&_[data-search-empty]]:text-sm">
+    <div id="docs-search-results" class="docs-search-results data-has-overflow-y:scroll-fade-y overflow-y-auto overscroll-contain p-[0.4rem] min-h-0 [&_h3]:p-[0.5rem_0.5rem_0.25rem] [&_h3]:[font-size:0.7rem] [&_h3]:font-medium [&_h3]:text-muted-foreground [&_ul]:list-none [&_ul]:m-0 [&_ul]:p-0 [&_a]:flex [&_a]:items-center [&_a]:gap-2 [&_a]:p-2 [&_a]:rounded-sm [&_a]:[font-size:0.8rem] [&_a]:no-underline [&_a]:outline-none [&_a:hover]:bg-surface-control [&_a:hover]:text-foreground [&_a:focus-visible]:bg-surface-control [&_a:focus-visible]:text-foreground [&_a:focus-visible]:[outline:1px_solid_var(--muted-foreground)] [&_[data-search-empty]]:p-6 [&_[data-search-empty]]:text-center [&_[data-search-empty]]:text-sm">
       <p data-search-empty hidden>No results found.</p>
     </div>
     <span class="sr-only" role="status" data-search-status></span>
