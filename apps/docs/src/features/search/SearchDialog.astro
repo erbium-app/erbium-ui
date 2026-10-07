@@ -1,4 +1,5 @@
 ---
+import { searchGroups } from "@/content/search-index";
 import Button from "@/components/primitives/Button.astro";
 import Icon from "@/components/primitives/Icon.astro";
 import Kbd from "@/components/primitives/Kbd.astro";
@@ -20,6 +21,21 @@ import ArrowDown01Icon from "@hugeicons/core-free-icons/ArrowDown01Icon";
       </div>
     </div>
     <div id="docs-search-results" class="docs-search-results data-has-overflow-y:scroll-fade-y overflow-y-auto overscroll-contain p-[0.4rem] min-h-0 [&_h3]:p-[0.5rem_0.5rem_0.25rem] [&_h3]:[font-size:0.7rem] [&_h3]:font-medium [&_h3]:text-muted-foreground [&_ul]:list-none [&_ul]:m-0 [&_ul]:p-0 [&_a]:flex [&_a]:items-center [&_a]:gap-2 [&_a]:p-2 [&_a]:rounded-sm [&_a]:[font-size:0.8rem] [&_a]:no-underline [&_a]:outline-none [&_a:hover]:bg-surface-control [&_a:hover]:text-foreground [&_a:focus-visible]:bg-surface-control [&_a:focus-visible]:text-foreground [&_a:focus-visible]:[outline:1px_solid_var(--muted-foreground)] [&_[data-search-empty]]:p-6 [&_[data-search-empty]]:text-center [&_[data-search-empty]]:text-sm">
+      {searchGroups.map((group) => (
+        <section data-search-group aria-label={group.title}>
+          <h3>{group.title}</h3>
+          <ul>
+            {group.items.map((item) => (
+              <li data-search-item data-keywords={`${item.title} ${item.name} ${item.description}`.toLowerCase().replace(/[-_]/g, " ").trim()}>
+                <a href={item.href}>
+                  <span>{item.title}</span>
+                  <span class="ms-auto font-mono text-[0.65rem] text-muted-foreground max-[560px]:hidden">{item.href.replace("/docs/", "")}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
       <p data-search-empty hidden>No results found.</p>
     </div>
     <span class="sr-only" role="status" data-search-status></span>

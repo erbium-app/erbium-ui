@@ -1,26 +1,9 @@
 import { prefetch } from "@/runtime/prefetch.client";
-import type { searchGroups } from "@/content/search-index";
-
-type SearchGroups = typeof searchGroups;
-let index: Promise<SearchGroups> | undefined;
-function loadIndex() {
-  index ??= fetch("/search-index.json")
-    .then(async (response) => {
-      if (!response.ok) throw new Error("Search index could not load");
-      return response.json() as Promise<SearchGroups>;
-    })
-    .catch((error: unknown) => {
-      index = undefined;
-      throw error;
-    });
-  return index;
-}
 const normalize = (value: string) => value.toLowerCase().replace(/[-_]/g, " ").trim();
 
 class DocsSearch extends HTMLElement {
   private controller?: AbortController;
   private timer?: ReturnType<typeof setTimeout>;
-  private loaded = false;
   private resizeObserver?: ResizeObserver;
 
   connectedCallback() {
@@ -45,7 +28,6 @@ class DocsSearch extends HTMLElement {
     this.resizeObserver.observe(results);
     const filter = () => {
       clear.hidden = input.value.length === 0;
-      if (!this.loaded) return;
       const query = normalize(input.value);
       for (const item of results.querySelectorAll<HTMLElement>("[data-search-item]")) {
         item.hidden = !item.dataset.keywords?.includes(query);
@@ -59,74 +41,26 @@ class DocsSearch extends HTMLElement {
       updateOverflow();
       status.textContent = `${count} ${count === 1 ? "result" : "results"} found.`;
     };
-    const render = (groups: SearchGroups) => {
-      for (const group of groups) {
-        const section = document.createElement("section");
-        section.dataset.searchGroup = "";
-        section.setAttribute("aria-label", group.title);
-        const heading = document.createElement("h3");
-        heading.textContent = group.title;
-        const list = document.createElement("ul");
-        for (const item of group.items) {
-          const row = document.createElement("li");
-          row.dataset.searchItem = "";
-          row.dataset.keywords = normalize(`${item.title} ${item.name} ${item.description}`);
-          const link = document.createElement("a");
-          link.href = item.href;
-          const title = document.createElement("span");
-          title.textContent = item.title;
-          const path = document.createElement("span");
-          path.className =
-            "ms-auto font-mono text-[0.65rem] text-muted-foreground max-[560px]:hidden";
-          path.textContent = item.href.replace("/docs/", "");
-          link.append(title, path);
-          row.append(link);
-          list.append(row);
-        }
-        section.append(heading, list);
-        results.insertBefore(section, empty);
-      }
-      this.loaded = true;
-      filter();
-    };
-    const open = async () => {
+    const open = () => {
       document.querySelector<HTMLDialogElement>(".mobile-navigation-panel[open]")?.close();
       if (dialog.open) return;
       input.value = "";
       clear.hidden = true;
       dialog.showModal();
+      filter();
       input.focus();
-      if (this.loaded) {
-        filter();
-        return;
-      }
-      empty.hidden = false;
-      empty.textContent = "Loading documentation…";
-      results.setAttribute("aria-busy", "true");
-      try {
-        const groups = await loadIndex();
-        if (!signal.aborted && !this.loaded) render(groups);
-      } catch {
-        if (!signal.aborted) {
-          empty.textContent = "Search could not load. Close and reopen to try again.";
-          status.textContent = empty.textContent;
-        }
-      } finally {
-        results.removeAttribute("aria-busy");
-      }
     };
     document.addEventListener(
       "click",
       (event) => {
-        if (event.target instanceof Element && event.target.closest("[data-search-open]"))
-          void open();
+        if (event.target instanceof Element && event.target.closest("[data-search-open]")) open();
       },
       options,
     );
     window.addEventListener(
       "erbium-search-open",
       () => {
-        void open();
+        open();
       },
       options,
     );
@@ -151,7 +85,7 @@ class DocsSearch extends HTMLElement {
         if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
           event.preventDefault();
           if (dialog.open) dialog.close();
-          else void open();
+          else open();
         }
       },
       options,
