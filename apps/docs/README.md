@@ -99,9 +99,10 @@ so it does not duplicate these requests. Speculative HTML is parsed once and kep
 in a bounded in-memory cache (8 documents, approximately 8 MiB of source text,
 three-minute lifetime). The `astro:before-preparation` loader reuses a clone and
 preloads any new stylesheets, while Astro retains ownership of history, swaps,
-focus, scripts, and announcements. Redirects, failures, expired entries, and forms
-use the normal router loader. Data saver, offline, and 2G connections disable
-speculative requests. HTML has a 60-second browser freshness window after deployment;
+focus, scripts, and announcements. Pages fetched on click are also cached before the swap, so revisits can reuse
+pristine markup. Redirects, failures, expired entries, and forms use the normal
+router loader. Data saver and offline connections disable speculative requests.
+The browser's estimated connection class does not disable warming. HTML has a 60-second browser freshness window after deployment;
 a prefetched document can remain available for up to three minutes in an open tab.
 
 Search mounts alongside the shell, never reparents its dialog, and fetches
@@ -120,6 +121,15 @@ previews never import the full story catalog, raw example source, content docume
 or registries. Catalogs supply controls and initial serializable arguments at build
 time. Tabs retain the mounted island; route navigation replaces it. Toast examples
 alone load the page-level toaster.
+
+Open a page with `?navigation-debug=1` to enable timing diagnostics for that tab.
+After each navigation, the root element exposes `data-docs-navigation-ms` (router
+preparation through DOM swap) and `data-docs-navigation-cache` (`hit` or `miss`), plus preparation, native-transition,
+and swap phase durations.
+These measure the content transition, not demo hydration or the following paint.
+The document root opts out of view-transition screenshots, and content has no
+named transition. Disabling animation alone still incurred snapshot preparation
+before Astro could swap cached pages.
 
 Keep experimental client prerendering disabled with this client-router shell.
 

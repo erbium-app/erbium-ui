@@ -5,6 +5,12 @@
 
 @custom-variant dark (&:is(.dark *):not(.showcase-content.light *));
 
+/* Instant docs swaps need no browser screenshots. ClientRouter still handles
+   routing and persisted elements, with its swap fallback on older browsers. */
+html:root {
+  view-transition-name: none;
+}
+
 /* Global browser behavior and runtime theme state; component styling lives in utilities. */
 :root {
   --sidebar-width: 15rem;

@@ -4,19 +4,25 @@ const maxPages = 8;
 const maxBytes = 8 * 1024 * 1024;
 const lifetime = 3 * 60 * 1000;
 type Page = { document: Document; bytes: number };
-type Entry = { started: number; page: Promise<Page | undefined>; bytes: number };
+type Entry = { started: number; page: Promise<Page | undefined>; bytes: number; visited?: boolean };
 const pages = new Map<string, Entry>();
 const warmedModules = new Set<string>();
 const queued = new Set<string>();
 const adjacentRoutes = new Set<string>();
 let intendedRoute: string | undefined;
 let active = 0;
+const debugNavigation = new URLSearchParams(location.search).has("navigation-debug");
+let navigationStarted = 0;
+let navigationCacheHit = false;
+let navigationIsForm = false;
+let preparationFinished = 0;
+let swapStarted = 0;
 
 function allowsSpeculation() {
-  const connection = Reflect.get(navigator, "connection") as
-    | { saveData?: boolean; effectiveType?: string }
-    | undefined;
-  return navigator.onLine && !connection?.saveData && !/2g/.test(connection?.effectiveType ?? "");
+  const connection = Reflect.get(navigator, "connection") as { saveData?: boolean } | undefined;
+  // effectiveType is a rolling estimate: localhost and an idle connection can
+  // report slow-2g. Honor the explicit data-saver preference instead.
+  return navigator.onLine && !connection?.saveData;
 }
 
 function route(href: string) {
@@ -36,7 +42,9 @@ function trimPages() {
   let bytes = [...pages.values()].reduce((total, entry) => total + entry.bytes, 0);
   // Keep adjacent pages and the latest intent ahead of incidental viewport
   // destinations when scrolling changes the warm set.
-  const importance = (key: string) => Number(adjacentRoutes.has(key) || key === intendedRoute);
+  const importance = (key: string) =>
+    Number(Boolean(pages.get(key)?.visited)) +
+    2 * Number(adjacentRoutes.has(key) || key === intendedRoute || key === route(location.href));
   const entries = [...pages].sort(([left], [right]) => importance(left) - importance(right));
   for (const [key, entry] of entries) {
     if (pages.size <= maxPages && bytes <= maxBytes && Date.now() - entry.started < lifetime)
@@ -165,6 +173,9 @@ async function preloadStyles(next: Document, destination: string, signal: AbortS
 // Cache only speculative GET documents; keep Astro's swap, history, focus,
 // announcements, scripts, redirects, and fallback handling intact.
 document.addEventListener("astro:before-preparation", (event) => {
+  navigationStarted = performance.now();
+  navigationCacheHit = false;
+  navigationIsForm = Boolean(event.formData);
   const key = route(event.to.href);
   const entry = key ? pages.get(key) : undefined;
   if (event.formData || !entry || Date.now() - entry.started >= lifetime) return;
@@ -176,8 +187,65 @@ document.addEventListener("astro:before-preparation", (event) => {
     const next = page.document.cloneNode(true);
     if (!(next instanceof Document)) return original();
     await preloadStyles(next, event.to.href, event.signal);
-    if (!event.signal.aborted) event.newDocument = next;
+    if (!event.signal.aborted) {
+      navigationCacheHit = true;
+      event.newDocument = next;
+    }
   };
+});
+
+document.addEventListener("astro:after-preparation", () => {
+  preparationFinished = performance.now();
+});
+
+// Keep pristine destination markup before Astro moves nodes into the live DOM.
+// This also caches pages fetched on click, not only speculative destinations.
+document.addEventListener("astro:before-swap", (event) => {
+  swapStarted = performance.now();
+  if (event.signal.aborted || navigationIsForm) return;
+  const key = route(event.to.href);
+  if (!key || !event.newDocument.querySelector('[name="astro-view-transitions-enabled"]')) return;
+  const existing = pages.get(key);
+  if (navigationCacheHit && existing) {
+    existing.started = Date.now();
+    existing.visited = true;
+    pages.delete(key);
+    pages.set(key, existing);
+    intendedRoute = key;
+    trimPages();
+    return;
+  }
+  const bytes = event.newDocument.documentElement.outerHTML.length * 2;
+  if (bytes > maxBytes) return;
+  const next = event.newDocument.cloneNode(true);
+  if (!(next instanceof Document)) return;
+  pages.delete(key);
+  pages.set(key, {
+    started: Date.now(),
+    bytes,
+    visited: true,
+    page: Promise.resolve({ document: next, bytes }),
+  });
+  intendedRoute = key;
+  trimPages();
+});
+
+document.addEventListener("astro:after-swap", () => {
+  if (!navigationStarted) return;
+  const duration = Math.round(performance.now() - navigationStarted);
+  if (debugNavigation) {
+    document.documentElement.dataset.docsNavigationMs = String(duration);
+    document.documentElement.dataset.docsPreparationMs = String(
+      Math.round(preparationFinished - navigationStarted),
+    );
+    document.documentElement.dataset.docsTransitionMs = String(
+      Math.round(swapStarted - preparationFinished),
+    );
+    document.documentElement.dataset.docsSwapMs = String(
+      Math.round(performance.now() - swapStarted),
+    );
+    document.documentElement.dataset.docsNavigationCache = navigationCacheHit ? "hit" : "miss";
+  }
 });
 
 function drain() {
