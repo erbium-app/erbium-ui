@@ -342,7 +342,7 @@
       "type": "registry:ui",
       "title": "Command",
       "description": "Erbium command component.",
-      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "cmdk"],
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/dialog",
         "@erbium/kbd",

@@ -1,19 +1,14 @@
 import * as React from "react";
-import { cn } from "@erbium/ui/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArrowUpDownIcon from "@hugeicons/core-free-icons/ArrowUpDownIcon";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-
 import { Button } from "@erbium/ui/components/button";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@erbium/ui/components/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/popover";
+  Combobox,
+  ComboboxTrigger,
+  ComboboxSearchInput,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxEmpty,
+} from "@erbium/ui/components/combobox";
 
 const frameworks = [
   {
@@ -40,54 +35,33 @@ const frameworks = [
 
 export default function ComboboxDemo() {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [value, setValue] = React.useState<(typeof frameworks)[number] | null>(null);
+  const anchor = React.useRef<HTMLButtonElement | null>(null);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger
-        render={
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className="w-[200px] justify-between"
-          >
-            {value
-              ? frameworks.find((framework) => framework.value === value)?.label
-              : "Select framework..."}
-            <HugeiconsIcon icon={ArrowUpDownIcon} className="opacity-50" />
-          </Button>
-        }
-      />
-      <PopoverContent className="w-[200px] p-0">
-        <Command>
-          <CommandInput placeholder="Search framework..." className="h-9" />
-          <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
-            <CommandGroup>
-              {frameworks.map((framework) => (
-                <CommandItem
-                  key={framework.value}
-                  value={framework.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  {framework.label}
-                  <HugeiconsIcon
-                    icon={CheckIcon}
-                    className={cn(
-                      "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0",
-                    )}
-                  />
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
+    <Combobox
+      items={frameworks}
+      value={value}
+      onValueChange={setValue}
+      open={open}
+      onOpenChange={setOpen}
+    >
+      <ComboboxTrigger
+        render={<Button ref={anchor} variant="outline" className="w-[200px] justify-between" />}
+      >
+        {value?.label ?? "Select framework..."}
+      </ComboboxTrigger>
+      <ComboboxContent anchor={anchor} className="w-[200px]">
+        <ComboboxSearchInput aria-label="Search frameworks" placeholder="Search framework..." />
+        <ComboboxEmpty className="py-6">No framework found.</ComboboxEmpty>
+        <ComboboxList>
+          {(framework: (typeof frameworks)[number]) => (
+            <ComboboxItem key={framework.value} value={framework}>
+              {framework.label}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
   );
 }

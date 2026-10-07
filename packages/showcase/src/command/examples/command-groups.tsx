@@ -13,12 +13,89 @@ import {
   CommandDialog,
   CommandEmpty,
   CommandGroup,
+  CommandGroupLabel,
+  CommandCollection,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
   CommandShortcut,
 } from "@erbium/ui/components/command";
+
+const commandGroups = [
+  {
+    label: "Suggestions",
+    items: [
+      {
+        label: "Calendar",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Calendar01Icon} />
+            <span>Calendar</span>
+          </>
+        ),
+      },
+      {
+        label: "Search Emoji",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={SmileIcon} />
+            <span>Search Emoji</span>
+          </>
+        ),
+      },
+      {
+        label: "Calculator",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={CalculatorIcon} />
+            <span>Calculator</span>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    label: "Settings",
+    items: [
+      {
+        label: "Profile",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={UserIcon} />
+            <span>Profile</span>
+            <CommandShortcut hotkey="Mod+P" />
+          </>
+        ),
+      },
+      {
+        label: "Billing",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={CreditCardIcon} />
+            <span>Billing</span>
+            <CommandShortcut hotkey="Mod+B" />
+          </>
+        ),
+      },
+      {
+        label: "Settings",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Settings01Icon} />
+            <span>Settings</span>
+            <CommandShortcut hotkey="Mod+S" />
+          </>
+        ),
+      },
+    ],
+  },
+];
 
 export function CommandWithGroups() {
   const [open, setOpen] = React.useState(false);
@@ -29,42 +106,27 @@ export function CommandWithGroups() {
         Open Menu
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <Command>
-          <CommandInput placeholder="Type a command or search..." />
+        <Command items={commandGroups}>
+          <CommandInput aria-label="Search commands" placeholder="Type a command or search..." />
+          <CommandEmpty>No results found.</CommandEmpty>
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem>
-                <HugeiconsIcon icon={Calendar01Icon} />
-                <span>Calendar</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={SmileIcon} />
-                <span>Search Emoji</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={CalculatorIcon} />
-                <span>Calculator</span>
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Settings">
-              <CommandItem>
-                <HugeiconsIcon icon={UserIcon} />
-                <span>Profile</span>
-                <CommandShortcut hotkey="Mod+P" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={CreditCardIcon} />
-                <span>Billing</span>
-                <CommandShortcut hotkey="Mod+B" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={Settings01Icon} />
-                <span>Settings</span>
-                <CommandShortcut hotkey="Mod+S" />
-              </CommandItem>
-            </CommandGroup>
+            {(group: (typeof commandGroups)[number]) => (
+              <CommandGroup key={group.label} items={group.items}>
+                <CommandGroupLabel>{group.label}</CommandGroupLabel>
+                <CommandCollection>
+                  {(item: (typeof commandGroups)[number]["items"][number]) => (
+                    <CommandItem
+                      key={item.label}
+                      value={item}
+                      disabled={item.disabled}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.content}
+                    </CommandItem>
+                  )}
+                </CommandCollection>
+              </CommandGroup>
+            )}
           </CommandList>
         </Command>
       </CommandDialog>

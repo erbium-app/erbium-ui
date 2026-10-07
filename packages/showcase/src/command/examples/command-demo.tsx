@@ -10,51 +10,108 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
+  CommandGroupLabel,
+  CommandCollection,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
   CommandShortcut,
 } from "@erbium/ui/components/command";
 
-export default function CommandDemo() {
-  return (
-    <Command className="md:min-w-[450px]">
-      <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
-          <CommandItem>
+const commandGroups = [
+  {
+    label: "Suggestions",
+    items: [
+      {
+        label: "Calendar",
+        disabled: false,
+        content: (
+          <>
             <HugeiconsIcon icon={Calendar01Icon} />
             <span>Calendar</span>
-          </CommandItem>
-          <CommandItem>
+          </>
+        ),
+      },
+      {
+        label: "Search Emoji",
+        disabled: false,
+        content: (
+          <>
             <HugeiconsIcon icon={SmileIcon} />
             <span>Search Emoji</span>
-          </CommandItem>
-          <CommandItem disabled>
+          </>
+        ),
+      },
+      {
+        label: "Calculator",
+        disabled: true,
+        content: (
+          <>
             <HugeiconsIcon icon={CalculatorIcon} />
             <span>Calculator</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Settings">
-          <CommandItem>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    label: "Settings",
+    items: [
+      {
+        label: "Profile",
+        disabled: false,
+        content: (
+          <>
             <HugeiconsIcon icon={UserIcon} />
             <span>Profile</span>
             <CommandShortcut hotkey="Mod+P" />
-          </CommandItem>
-          <CommandItem>
+          </>
+        ),
+      },
+      {
+        label: "Billing",
+        disabled: false,
+        content: (
+          <>
             <HugeiconsIcon icon={CreditCardIcon} />
             <span>Billing</span>
             <CommandShortcut hotkey="Mod+B" />
-          </CommandItem>
-          <CommandItem>
+          </>
+        ),
+      },
+      {
+        label: "Settings",
+        disabled: false,
+        content: (
+          <>
             <HugeiconsIcon icon={Settings01Icon} />
             <span>Settings</span>
             <CommandShortcut hotkey="Mod+S" />
-          </CommandItem>
-        </CommandGroup>
+          </>
+        ),
+      },
+    ],
+  },
+];
+
+export default function CommandDemo() {
+  return (
+    <Command items={commandGroups} className="md:min-w-[450px]">
+      <CommandInput aria-label="Search commands" placeholder="Type a command or search..." />
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandList>
+        {(group: (typeof commandGroups)[number]) => (
+          <CommandGroup key={group.label} items={group.items}>
+            <CommandGroupLabel>{group.label}</CommandGroupLabel>
+            <CommandCollection>
+              {(item: (typeof commandGroups)[number]["items"][number]) => (
+                <CommandItem key={item.label} value={item} disabled={item.disabled}>
+                  {item.content}
+                </CommandItem>
+              )}
+            </CommandCollection>
+          </CommandGroup>
+        )}
       </CommandList>
     </Command>
   );

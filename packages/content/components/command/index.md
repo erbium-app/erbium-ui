@@ -3,13 +3,9 @@ title: "Command"
 description: "Searchable commands and quick actions."
 ---
 
-Searchable commands and quick actions.
-
 **Import:** `@erbium/ui/components/command`
 
-## About
-
-The `<Command />` component uses the [`cmdk`](https://github.com/dip/cmdk) component by [Dip](https://www.dip.org/).
+Command composes Base UI Autocomplete in inline mode. Wrap it in CommandDialog for a modal palette. It highlights the first match, keeps keyboard focus in the search input, and supports pointer and Enter activation through `onClick`.
 
 ## Usage
 
@@ -19,48 +15,40 @@ import {
   CommandDialog,
   CommandEmpty,
   CommandGroup,
+  CommandGroupLabel,
+  CommandCollection,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
   CommandShortcut,
 } from "@erbium/ui/components/command";
-```
 
-```tsx
-<Command className="max-w-sm">
-  <CommandInput placeholder="Type a command or search..." />
+const actions = [
+  { value: "calendar", label: "Calendar" },
+  { value: "settings", label: "Settings" },
+];
+
+<Command items={actions}>
+  <CommandInput aria-label="Search commands" placeholder="Search commands..." />
+  <CommandEmpty>No results found.</CommandEmpty>
   <CommandList>
-    <CommandEmpty>No results found.</CommandEmpty>
-    <CommandGroup heading="Suggestions">
-      <CommandItem>Calendar</CommandItem>
-      <CommandItem>Search Emoji</CommandItem>
-      <CommandItem>Calculator</CommandItem>
-    </CommandGroup>
-    <CommandSeparator />
-    <CommandGroup heading="Settings">
-      <CommandItem>Profile</CommandItem>
-      <CommandItem>Billing</CommandItem>
-      <CommandItem>Settings</CommandItem>
-    </CommandGroup>
+    {(action: (typeof actions)[number]) => (
+      <CommandItem key={action.value} value={action} onClick={() => runAction(action.value)}>
+        {action.label}
+      </CommandItem>
+    )}
   </CommandList>
-</Command>
+</Command>;
 ```
 
-## Composition
+Supply `items` and render the filtered results using the list callback. Objects with a `label` are searchable by that label; use `itemToStringValue` for other shapes. For grouped results, pass an array of `{ label, items }`, render each group with `CommandGroup items={group.items}`, and place `CommandGroupLabel` and `CommandCollection` inside it. Render items using the collection callback. Keep `CommandEmpty` outside the list so it can appear when the list has no results. Base UI keeps its status element mounted even when results exist; apply spacing only when it contains the empty-state message (`not-empty:py-6`).
 
-Use the following composition to build a `Command`:
+## Dialog and actions
 
-```text
-Command
-├── CommandInput
-└── CommandList
-    ├── CommandEmpty
-    ├── CommandGroup
-    │   ├── CommandItem
-    │   └── CommandItem
-    ├── CommandSeparator
-    └── CommandGroup
-        ├── CommandItem
-        └── CommandItem
-```
+Control `CommandDialog` with `open` and `onOpenChange`. Its `title` and `description` provide accessible dialog labels. Close the dialog from an item's `onClick` after running the action. Applications can register their own Mod+K shortcut, excluding editable targets and cleaning up the listener on unmount. `CommandShortcut` displays a shortcut; it does not register one.
+
+## Filtering and migration
+
+`value` and `onValueChange` on Command control the search query. Use `filter` for custom matching or `filteredItems` for externally filtered and asynchronous results. Provide an accessible label on CommandInput. Disabled items are excluded from activation.
+
+The previous command API used implicit filtering of JSX children. Migrate to explicit item data and filtered collection callbacks, replace group `heading` with CommandGroupLabel, and replace item `onSelect` with `onClick`. For a persistent selected value, use the Combobox component rather than a command action list.

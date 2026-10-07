@@ -29,12 +29,286 @@ import {
   CommandDialog,
   CommandEmpty,
   CommandGroup,
+  CommandGroupLabel,
+  CommandCollection,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
   CommandShortcut,
 } from "@erbium/ui/components/command";
+
+const commandGroups = [
+  {
+    label: "Navigation",
+    items: [
+      {
+        label: "Home",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Home01Icon} />
+            <span>Home</span>
+            <CommandShortcut hotkey="Mod+H" />
+          </>
+        ),
+      },
+      {
+        label: "Inbox",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={InboxIcon} />
+            <span>Inbox</span>
+            <CommandShortcut hotkey="Mod+I" />
+          </>
+        ),
+      },
+      {
+        label: "Documents",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={FileTextIcon} />
+            <span>Documents</span>
+            <CommandShortcut hotkey="Mod+D" />
+          </>
+        ),
+      },
+      {
+        label: "Folders",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Folder01Icon} />
+            <span>Folders</span>
+            <CommandShortcut hotkey="Mod+F" />
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    label: "Actions",
+    items: [
+      {
+        label: "New File",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={PlusIcon} />
+            <span>New File</span>
+            <CommandShortcut hotkey="Mod+N" />
+          </>
+        ),
+      },
+      {
+        label: "New Folder",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={FolderPlusIcon} />
+            <span>New Folder</span>
+            <CommandShortcut hotkey="Shift+Mod+N" />
+          </>
+        ),
+      },
+      {
+        label: "Duplicate file",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={FileTextIcon} />
+            <span>Duplicate file</span>
+            <CommandShortcut hotkey="Mod+D" />
+          </>
+        ),
+      },
+      {
+        label: "Cut",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={ScissorsIcon} />
+            <span>Cut</span>
+            <CommandShortcut hotkey="Mod+X" />
+          </>
+        ),
+      },
+      {
+        label: "Paste",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={ClipboardPasteIcon} />
+            <span>Paste</span>
+            <CommandShortcut hotkey="Mod+V" />
+          </>
+        ),
+      },
+      {
+        label: "Delete",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={TrashIcon} />
+            <span>Delete</span>
+            <CommandShortcut hotkey="Backspace" />
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    label: "View",
+    items: [
+      {
+        label: "Grid View",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={LayoutGridIcon} />
+            <span>Grid View</span>
+          </>
+        ),
+      },
+      {
+        label: "List View",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={ListIcon} />
+            <span>List View</span>
+          </>
+        ),
+      },
+      {
+        label: "Zoom In",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={ZoomInIcon} />
+            <span>Zoom In</span>
+            <CommandShortcut hotkey="Mod+Plus" />
+          </>
+        ),
+      },
+      {
+        label: "Zoom Out",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={ZoomOutIcon} />
+            <span>Zoom Out</span>
+            <CommandShortcut hotkey="Mod+-" />
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    label: "Account",
+    items: [
+      {
+        label: "Profile",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={UserIcon} />
+            <span>Profile</span>
+            <CommandShortcut hotkey="Mod+P" />
+          </>
+        ),
+      },
+      {
+        label: "Billing",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={CreditCardIcon} />
+            <span>Billing</span>
+            <CommandShortcut hotkey="Mod+B" />
+          </>
+        ),
+      },
+      {
+        label: "Settings",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Settings01Icon} />
+            <span>Settings</span>
+            <CommandShortcut hotkey="Mod+S" />
+          </>
+        ),
+      },
+      {
+        label: "Notifications",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={BellIcon} />
+            <span>Notifications</span>
+          </>
+        ),
+      },
+      {
+        label: "Help & Support",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={HelpCircleIcon} />
+            <span>Help & Support</span>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    label: "Tools",
+    items: [
+      {
+        label: "Calculator",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={CalculatorIcon} />
+            <span>Calculator</span>
+          </>
+        ),
+      },
+      {
+        label: "Calendar",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Calendar01Icon} />
+            <span>Calendar</span>
+          </>
+        ),
+      },
+      {
+        label: "Image Editor",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={Image01Icon} />
+            <span>Image Editor</span>
+          </>
+        ),
+      },
+      {
+        label: "Code Editor",
+        disabled: false,
+        content: (
+          <>
+            <HugeiconsIcon icon={CodeIcon} />
+            <span>Code Editor</span>
+          </>
+        ),
+      },
+    ],
+  },
+];
 
 export function CommandManyItems() {
   const [open, setOpen] = React.useState(false);
@@ -45,131 +319,27 @@ export function CommandManyItems() {
         Open Menu
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
-        <Command>
-          <CommandInput placeholder="Type a command or search..." />
+        <Command items={commandGroups}>
+          <CommandInput aria-label="Search commands" placeholder="Type a command or search..." />
+          <CommandEmpty>No results found.</CommandEmpty>
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Navigation">
-              <CommandItem>
-                <HugeiconsIcon icon={Home01Icon} />
-                <span>Home</span>
-                <CommandShortcut hotkey="Mod+H" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={InboxIcon} />
-                <span>Inbox</span>
-                <CommandShortcut hotkey="Mod+I" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={FileTextIcon} />
-                <span>Documents</span>
-                <CommandShortcut hotkey="Mod+D" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={Folder01Icon} />
-                <span>Folders</span>
-                <CommandShortcut hotkey="Mod+F" />
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Actions">
-              <CommandItem>
-                <HugeiconsIcon icon={PlusIcon} />
-                <span>New File</span>
-                <CommandShortcut hotkey="Mod+N" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={FolderPlusIcon} />
-                <span>New Folder</span>
-                <CommandShortcut hotkey="Shift+Mod+N" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={FileTextIcon} />
-                <span>Duplicate file</span>
-                <CommandShortcut hotkey="Mod+D" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={ScissorsIcon} />
-                <span>Cut</span>
-                <CommandShortcut hotkey="Mod+X" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={ClipboardPasteIcon} />
-                <span>Paste</span>
-                <CommandShortcut hotkey="Mod+V" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={TrashIcon} />
-                <span>Delete</span>
-                <CommandShortcut hotkey="Backspace" />
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="View">
-              <CommandItem>
-                <HugeiconsIcon icon={LayoutGridIcon} />
-                <span>Grid View</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={ListIcon} />
-                <span>List View</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={ZoomInIcon} />
-                <span>Zoom In</span>
-                <CommandShortcut hotkey="Mod+Plus" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={ZoomOutIcon} />
-                <span>Zoom Out</span>
-                <CommandShortcut hotkey="Mod+-" />
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Account">
-              <CommandItem>
-                <HugeiconsIcon icon={UserIcon} />
-                <span>Profile</span>
-                <CommandShortcut hotkey="Mod+P" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={CreditCardIcon} />
-                <span>Billing</span>
-                <CommandShortcut hotkey="Mod+B" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={Settings01Icon} />
-                <span>Settings</span>
-                <CommandShortcut hotkey="Mod+S" />
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={BellIcon} />
-                <span>Notifications</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={HelpCircleIcon} />
-                <span>Help & Support</span>
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Tools">
-              <CommandItem>
-                <HugeiconsIcon icon={CalculatorIcon} />
-                <span>Calculator</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={Calendar01Icon} />
-                <span>Calendar</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={Image01Icon} />
-                <span>Image Editor</span>
-              </CommandItem>
-              <CommandItem>
-                <HugeiconsIcon icon={CodeIcon} />
-                <span>Code Editor</span>
-              </CommandItem>
-            </CommandGroup>
+            {(group: (typeof commandGroups)[number]) => (
+              <CommandGroup key={group.label} items={group.items}>
+                <CommandGroupLabel>{group.label}</CommandGroupLabel>
+                <CommandCollection>
+                  {(item: (typeof commandGroups)[number]["items"][number]) => (
+                    <CommandItem
+                      key={item.label}
+                      value={item}
+                      disabled={item.disabled}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.content}
+                    </CommandItem>
+                  )}
+                </CommandCollection>
+              </CommandGroup>
+            )}
           </CommandList>
         </Command>
       </CommandDialog>

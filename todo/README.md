@@ -8,7 +8,7 @@ Reviewed against the repository on 2026-10-04. The [public roadmap](../packages/
 - OverlayProvider coordinates Base UI drawers; DrawerIndent exposes page indentation. Automatic responsive presentation across other overlays remains separate work.
 - Shared surface roles, semantic `error` tokens, and native squircle corners with rounded-corner fallback are implemented.
 - `packages/showcase` owns composition examples, installable stories, generated Storybook adapters, and the example registry. Documentation has Markdown mirrors, llms indexes, a JSON API, and a usage skill.
-- Command still uses `cmdk`. Its Base UI migration is planned.
+- Command uses Base UI inline Autocomplete with explicit filtered collections.
 - Paper parity, reusable Astro and React Native libraries, Lightbox, Stepper, and agent integrations remain planned.
 
 ## Work areas

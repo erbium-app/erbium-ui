@@ -49,7 +49,6 @@
     "@tanstack/react-pacer": "catalog:",
     "@tanstack/react-table": "catalog:",
     "class-variance-authority": "catalog:",
-    "cmdk": "^1.1.1",
     "cn": "^0.4.0",
     "date-fns": "catalog:",
     "easing-gradients": "^0.0.3",

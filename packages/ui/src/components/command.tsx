@@ -1,22 +1,63 @@
 import * as React from "react";
-import { Command as CommandPrimitive } from "cmdk";
+import { Autocomplete as CommandPrimitive } from "@base-ui/react/autocomplete";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Dialog, DialogPanel, DialogContent, DialogDescription, DialogTitle } from "./dialog";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 
-function Command({ className, ...props }: React.ComponentProps<typeof CommandPrimitive>) {
+function Command<Items extends readonly { items: readonly unknown[] }[]>(
+  props: Omit<CommandPrimitive.Root.Props<Items[number]["items"][number]>, "items"> & {
+    items: Items;
+    className?: string;
+  },
+): React.JSX.Element;
+function Command<ItemValue>(
+  props: Omit<CommandPrimitive.Root.Props<ItemValue>, "items"> & {
+    items?: readonly ItemValue[];
+    className?: string;
+  },
+): React.JSX.Element;
+function Command<ItemValue>({
+  className,
+  children,
+  autoHighlight = "always",
+  keepHighlight = true,
+  ...props
+}: Omit<CommandPrimitive.Root.Props<ItemValue>, "items"> & {
+  items?: readonly ItemValue[];
+  className?: string;
+}) {
   return (
-    <CommandPrimitive
-      data-slot="command"
-      className={cn(
-        "flex size-full flex-col overflow-hidden rounded-xl border surface-overlay text-popover-foreground in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:bg-transparent in-data-[slot=dialog-content]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
-        className,
-      )}
+    <CommandPrimitive.Root
+      autoHighlight={autoHighlight}
+      keepHighlight={keepHighlight}
+      {...props}
+      inline
+      open
+    >
+      <div
+        data-slot="command"
+        className={cn(
+          "flex size-full flex-col overflow-hidden rounded-xl border surface-overlay text-popover-foreground in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:bg-transparent in-data-[slot=dialog-content]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
+          className,
+        )}
+      >
+        {children}
+      </div>
+    </CommandPrimitive.Root>
+  );
+}
+
+const CommandCollection = CommandPrimitive.Collection;
+
+function CommandGroupLabel({ className, ...props }: CommandPrimitive.GroupLabel.Props) {
+  return (
+    <CommandPrimitive.GroupLabel
+      data-slot="command-group-label"
+      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
       {...props}
     />
   );
@@ -52,10 +93,7 @@ function CommandDialog({
   );
 }
 
-function CommandInput({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Input>) {
+function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
   return (
     <div data-slot="command-input-wrapper">
       <div className="flex h-10 items-center gap-2 px-3">
@@ -78,93 +116,67 @@ function CommandInput({
   );
 }
 
-function CommandList({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.List>) {
+function CommandList({ className, children, ...props }: CommandPrimitive.List.Props) {
   return (
     <ScrollArea
       className="min-h-0 max-h-72 overscroll-contain"
       fade="vertical"
       scrollbar="thin"
       viewportClassName="max-h-72 overflow-x-hidden! scroll-py-1"
-      viewportRender={
-        <CommandPrimitive.List
-          data-slot="command-list"
-          className={cn("outline-none", className)}
-          {...props}
-        />
-      }
-      contentClassName="p-1"
     >
-      {children}
+      <CommandPrimitive.List
+        data-slot="command-list"
+        className={cn("not-empty:p-1 outline-none", className)}
+        {...props}
+      >
+        {children}
+      </CommandPrimitive.List>
     </ScrollArea>
   );
 }
 
-function CommandEmpty({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Empty>) {
+function CommandEmpty({ className, ...props }: CommandPrimitive.Empty.Props) {
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("py-6 text-center text-sm", className)}
+      className={cn("not-empty:py-6 text-center text-sm", className)}
       {...props}
     />
   );
 }
 
-function CommandGroup({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Group>) {
+function CommandGroup({ className, ...props }: CommandPrimitive.Group.Props) {
   return (
     <CommandPrimitive.Group
       data-slot="command-group"
-      className={cn(
-        "overflow-hidden text-foreground **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-xs **:[[cmdk-group-heading]]:font-medium **:[[cmdk-group-heading]]:text-muted-foreground",
-        className,
-      )}
+      className={cn("overflow-hidden text-foreground", className)}
       {...props}
     />
   );
 }
 
-function CommandSeparator({
-  className,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Separator>) {
-  // cmdk keeps its own asChild API; a spread also preserves it through
-  // shadcn's Base UI registry conversion of literal asChild attributes.
-  const separatorProps = { asChild: true, ...props };
+function CommandSeparator({ className, ...props }: CommandPrimitive.Separator.Props) {
   return (
-    <CommandPrimitive.Separator {...separatorProps}>
-      <Separator data-slot="command-separator" className={cn("-mx-1 my-1", className)} />
-    </CommandPrimitive.Separator>
+    <CommandPrimitive.Separator
+      data-slot="command-separator"
+      render={<Separator />}
+      className={cn("-mx-1 my-1", className)}
+      {...props}
+    />
   );
 }
 
-function CommandItem({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof CommandPrimitive.Item>) {
+function CommandItem({ className, children, ...props }: CommandPrimitive.Item.Props) {
   return (
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-md px-1.5 py-1 text-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-selected:bg-accent data-selected:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:*:[svg]:text-accent-foreground data-selected:*:[svg]:text-accent-foreground",
+        "group/command-item relative flex cursor-default items-center gap-2 rounded-md px-1.5 py-1 text-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
         className,
       )}
       {...props}
     >
       {children}
-      <HugeiconsIcon
-        icon={CheckIcon}
-        className="ms-auto opacity-0 group-has-data-[slot=command-shortcut]/command-item:hidden group-data-[checked=true]/command-item:opacity-100"
-      />
     </CommandPrimitive.Item>
   );
 }
@@ -174,7 +186,7 @@ function CommandShortcut({ className, ...props }: React.ComponentProps<typeof Kb
     <Kbd
       data-slot="command-shortcut"
       className={cn(
-        "ms-auto group-hover/command-item:text-accent-foreground group-data-selected/command-item:text-accent-foreground",
+        "ms-auto group-hover/command-item:text-accent-foreground group-data-highlighted/command-item:text-accent-foreground",
         className,
       )}
       {...props}
@@ -189,6 +201,8 @@ export {
   CommandList,
   CommandEmpty,
   CommandGroup,
+  CommandGroupLabel,
+  CommandCollection,
   CommandItem,
   CommandShortcut,
   CommandSeparator,

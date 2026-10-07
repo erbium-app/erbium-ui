@@ -1,5 +1,6 @@
 ## External documentation
 
-cmdk supplies the command menu primitives, keyboard navigation, and filtering.
+Base UI Autocomplete supplies inline filtering, active-descendant keyboard navigation, collections, and empty states. Compose it with Dialog for a command palette.
 
-- [cmdk](https://github.com/dip/cmdk)
+- [Base UI Autocomplete](https://base-ui.com/react/components/autocomplete)
+- [Base UI Dialog](https://base-ui.com/react/components/dialog)
