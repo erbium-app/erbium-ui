@@ -32,7 +32,7 @@ export function BubbleCollapsible() {
             <div>{open || !isLong ? text : preview}</div>
             {isLong ? (
               <CollapsibleTrigger
-                render={<Button variant="link" className="group gap-1 p-0 text-muted-foreground" />}
+                render={<Button variant="link" className="group text-muted-foreground" />}
               >
                 {open ? "Show less" : "Show more"}
                 <RotatingChevron />

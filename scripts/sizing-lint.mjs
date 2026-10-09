@@ -18,6 +18,8 @@ export default {
         messages: {
           padding:
             "{{owner}} owns its padding. Remove this padding override or extra padded wrapper; compose Header, Content, and Footer as siblings.",
+          separator:
+            "{{owner}} already provides its separator. Remove the extra top border or Separator.",
           scrolling:
             "{{owner}} already owns scrolling. Place independently scrolling content beside it in the panel, not inside its viewport.",
         },
@@ -25,7 +27,16 @@ export default {
       create(context) {
         const imports = new Map();
         const namespaces = new Set();
+        const separatedFooters = new Set([
+          "CardFooter",
+          "DialogFooter",
+          "DrawerFooter",
+          "SheetFooter",
+        ]);
         const padded = new Set([
+          "CardContent",
+          "CardHeader",
+          "CardFooter",
           "DialogContent",
           "DrawerContent",
           "SheetContent",
@@ -39,6 +50,7 @@ export default {
           "SheetContent",
           "ScrollArea",
           "SidebarContent",
+          "MessageScrollerViewport",
           "CommandList",
           "ComboboxList",
           "AutocompleteList",
@@ -47,7 +59,7 @@ export default {
           "MenubarList",
           "SelectContent",
         ]);
-        const scrollChildren = new Set([...scrolling, "Command"]);
+        const scrollChildren = new Set([...scrolling, "Command", "MessageScroller"]);
         // These components portal their children; lexical nesting is not scroll nesting.
         const portals = new Set([
           "DialogPanel",
@@ -165,6 +177,24 @@ export default {
                 (property.key?.name ?? property.key?.value ?? "").startsWith("overflow") &&
                 strings(property.value).some((value) => ["auto", "scroll"].includes(value)),
             );
+            const footerOwner = separatedFooters.has(component)
+              ? component
+              : component === "Separator" && separatedFooters.has(name(ancestors[0]))
+                ? name(ancestors[0])
+                : null;
+            if (
+              footerOwner &&
+              (component === "Separator" ||
+                classes.some((token) => /(?:^|:)!?border-t(?:-|!|$)/.test(token)) ||
+                style?.properties?.some((property) =>
+                  (property.key?.name ?? property.key?.value ?? "").startsWith("borderTop"),
+                ))
+            )
+              context.report({
+                node: node.openingElement,
+                messageId: "separator",
+                data: { owner: footerOwner },
+              });
             const paddingOwner = padded.has(component)
               ? component
               : padded.has(name(ancestors[0])) && /^[a-z]/.test(node.openingElement.name.name ?? "")
@@ -195,7 +225,7 @@ export default {
         schema: [],
         messages: {
           useSize:
-            "Use the component size prop instead of '{{token}}'; geometry comes from its shared recipe.",
+            "Use shared component geometry instead of '{{token}}'; choose an existing size where supported.",
         },
       },
       create(context) {
@@ -311,7 +341,12 @@ export default {
               return;
             for (const value of strings(node.value)) {
               for (const token of value.split(/\s+/)) {
+                const file = context.physicalFilename ?? context.filename ?? "";
+                const overridesSpacing =
+                  !file.includes("/packages/ui/src/") &&
+                  /(?:^|:)!?(?:p|px|py|pt|pb|pl|pr|ps|pe|gap|gap-x|gap-y)-/.test(token);
                 if (
+                  overridesSpacing ||
                   /(?:^|:)!?(?:h|min-h)-\d+(?:\.\d+)?!?$/.test(token) ||
                   /(?:^|:)!?size-(?:[5-9]|[1-9]\d+)(?:\.\d+)?!?$/.test(token) ||
                   /(?:^|:)!?(?:h|min-h|size)-\[/.test(token)

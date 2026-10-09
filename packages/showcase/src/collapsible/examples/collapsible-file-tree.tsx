@@ -93,7 +93,7 @@ export function CollapsibleFileTree() {
         key={fileItem.name}
         variant="link"
         size="sm"
-        className="w-full justify-start gap-related text-foreground"
+        className="w-full justify-start text-foreground"
       >
         <HugeiconsIcon icon={File01Icon} />
         <span>{fileItem.name}</span>

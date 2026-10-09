@@ -13,11 +13,11 @@ export default function BadgeDemo() {
         <Badge variant="success" statusIcon>
           Verified
         </Badge>
-        <Badge className="min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>
-        <Badge className="min-w-5 rounded-full px-1 font-mono tabular-nums" variant="error">
+        <Badge className="min-w-5 rounded-full font-mono tabular-nums">8</Badge>
+        <Badge className="min-w-5 rounded-full font-mono tabular-nums" variant="error">
           99
         </Badge>
-        <Badge className="min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">
+        <Badge className="min-w-5 rounded-full font-mono tabular-nums" variant="outline">
           20+
         </Badge>
       </div>

@@ -7,7 +7,7 @@ import {
 } from "@erbium/ui/components/number-field";
 
 const Example = () => (
-  <div className="flex w-48 flex-col gap-3">
+  <div className="flex w-48 flex-col gap-related">
     {(["sm", "default", "lg"] as const).map((size) => (
       <NumberField key={size} size={size} defaultValue={8}>
         <NumberFieldGroup>

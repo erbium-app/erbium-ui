@@ -7,7 +7,7 @@ export function SliderControlled() {
   const [value, setValue] = React.useState([0.3, 0.7]);
 
   return (
-    <Field className="mx-auto max-w-xs gap-3">
+    <Field className="mx-auto max-w-xs gap-related">
       <div className="flex items-center justify-between gap-related">
         <FieldLabel>Temperature</FieldLabel>
         <span className="text-caption text-muted-foreground">{value.join(", ")}</span>

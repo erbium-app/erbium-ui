@@ -27,7 +27,7 @@ export default function ButtonGroupDropdown() {
       <DropdownMenu>
         <DropdownMenuTrigger
           render={
-            <Button variant="outline" className="group group/menu-trigger pl-2!">
+            <Button variant="outline" className="group group/menu-trigger">
               <RotatingChevron />
             </Button>
           }

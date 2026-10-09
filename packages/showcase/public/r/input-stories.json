@@ -66,7 +66,7 @@
       "path": "src/input/examples/input-file.tsx",
       "type": "registry:component",
       "target": "@components/showcase/input/examples/input-file.tsx",
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function InputFile() {\n  return (\n    <Field className=\"grid w-full max-w-sm items-center gap-3\">\n      <FieldLabel>Picture</FieldLabel>\n      <Input type=\"file\" />\n    </Field>\n  );\n}\n"
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function InputFile() {\n  return (\n    <Field className=\"grid w-full max-w-sm items-center gap-related\">\n      <FieldLabel>Picture</FieldLabel>\n      <Input type=\"file\" />\n    </Field>\n  );\n}\n"
     },
     {
       "path": "src/input/examples/input-form.tsx",

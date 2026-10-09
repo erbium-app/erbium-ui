@@ -7,7 +7,7 @@ import {
 } from "@erbium/ui/components/number-field";
 
 const Example = () => (
-  <div className="flex w-56 flex-col gap-3">
+  <div className="flex w-56 flex-col gap-related">
     <NumberField defaultValue={1499.5} step={0.5} format={{ style: "currency", currency: "USD" }}>
       <NumberFieldGroup>
         <NumberFieldDecrement />
