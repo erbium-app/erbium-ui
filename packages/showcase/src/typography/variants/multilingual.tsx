@@ -23,7 +23,7 @@ export default function MultilingualExample() {
             <FieldLabel htmlFor="typography-persian">نام فضای کاری</FieldLabel>
             <Input id="typography-persian" defaultValue="استودیوی اربیوم" />
           </Field>
-          <p className="text-sm">فضای کاری Erbium برای همکاری تیم شما.</p>
+          <p className="text-body">فضای کاری Erbium برای همکاری تیم شما.</p>
         </CardContent>
         <CardFooter>
           <Button>ذخیره تنظیمات</Button>
@@ -39,7 +39,7 @@ export default function MultilingualExample() {
             <FieldLabel htmlFor="typography-arabic">اسم مساحة العمل</FieldLabel>
             <Input id="typography-arabic" defaultValue="استوديو إربيوم" />
           </Field>
-          <p className="text-sm">مساحة عمل Erbium لفريقك.</p>
+          <p className="text-body">مساحة عمل Erbium لفريقك.</p>
         </CardContent>
         <CardFooter>
           <Button>حفظ الإعدادات</Button>

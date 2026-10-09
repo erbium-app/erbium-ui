@@ -16,7 +16,7 @@ const { title, description, previous, next } = Astro.props;
 ---
 
 <header
-  class="page-header mb-4 [&_h1]:min-w-0 [&_h1]:wrap-anywhere [&_h1]:m-0 [&_h1]:text-foreground [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-(--docs-title-line-height) [&_h1]:tracking-[normal] min-[1280px]:[&_h1]:text-4xl [&+.demo-section]:mt-4"
+  class="page-header mb-4 [&_h1]:min-w-0 [&_h1]:wrap-anywhere [&_h1]:m-0 [&_h1]:text-foreground [&_h1]:text-display [&+.demo-section]:mt-4"
 >
   <div class="page-header-top flex justify-between items-center gap-4">
     <h1>{title}</h1>
@@ -52,7 +52,7 @@ const { title, description, previous, next } = Astro.props;
   </div>
   {
     description && (
-      <p class="page-description [text-wrap-style:pretty] max-w-2xl mt-(--docs-description-gap) text-lg leading-(--docs-description-line-height) text-muted-foreground max-[560px]:text-[0.9375rem]">
+      <p class="page-description max-w-2xl mt-(--docs-description-gap) text-body text-muted-foreground">
         {description}
       </p>
     )

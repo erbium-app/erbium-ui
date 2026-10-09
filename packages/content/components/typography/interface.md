@@ -1,6 +1,6 @@
 ---
 title: "Interface"
-description: Cal Sans in headings, descriptions, form labels, fields, and actions.
+description: Five text roles in Cal Sans, with shared title and description defaults in real controls.
 ---
 
-Cal Sans in headings, descriptions, form labels, fields, and actions.
+Five text roles in Cal Sans, with shared title and description defaults in real controls.

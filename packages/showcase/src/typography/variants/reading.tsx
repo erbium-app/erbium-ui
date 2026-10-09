@@ -6,11 +6,11 @@ export default function ReadingExample() {
       {(["docs", "compact"] as const).map((preset) => (
         <Card key={preset}>
           <CardHeader>
-            <CardTitle>Reading rhythm</CardTitle>
+            <CardTitle>{preset === "docs" ? "Default reading" : "Compact reading"}</CardTitle>
           </CardHeader>
           <CardContent>
-            <article className={`typeset typeset-${preset}`}>
-              <h3>Workspace access</h3>
+            <article className={`typeset typeset-${preset} max-w-[65ch]`}>
+              <h2>Workspace access</h2>
               <p>
                 Members can view shared projects. Administrators can also manage access and
                 workspace settings.

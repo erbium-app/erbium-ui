@@ -1,6 +1,6 @@
 ---
 title: "Reading"
-description: Cal Sans with docs and compact reading presets.
+description: Shared heading roles with explicit default and compact reading rhythms.
 ---
 
-Cal Sans with docs and compact reading presets.
+Shared heading roles with explicit default and compact reading rhythms.

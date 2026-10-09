@@ -21,9 +21,9 @@ html:root {
   --docs-page-padding-inline: 2.5rem;
   --docs-page-padding-start: 2rem;
   --docs-page-padding-end: 3rem;
-  --docs-title-line-height: 2.25rem;
+  --docs-title-line-height: calc(var(--text-display) * var(--text-display--line-height));
   --docs-description-gap: 0.75rem;
-  --docs-description-line-height: 1.75rem;
+  --docs-description-line-height: calc(var(--text-body) * var(--text-body--line-height));
   --docs-header-midpoint: calc(
     (
         var(--docs-title-line-height) + var(--docs-description-gap) +

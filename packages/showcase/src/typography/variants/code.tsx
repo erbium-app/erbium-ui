@@ -20,7 +20,7 @@ export default function CodeExample() {
         <pre>
           <code>{"bunx shadcn@latest add @erbium/button\n\n<Button>Continue</Button>"}</code>
         </pre>
-        <p className="font-mono text-sm">0123456789 · Il1 O0 · {"{} [] => !="}</p>
+        <p className="font-mono text-caption leading-code">0123456789 · Il1 O0 · {"{} [] => !="}</p>
       </CardContent>
     </Card>
   );

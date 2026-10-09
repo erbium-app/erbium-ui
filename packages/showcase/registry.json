@@ -21266,7 +21266,7 @@
       "name": "typography-interface",
       "type": "registry:component",
       "title": "Typography: Interface",
-      "description": "Cal Sans in headings, descriptions, form labels, fields, and actions.",
+      "description": "Five text roles in Cal Sans, with shared title and description defaults in real controls.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
@@ -21306,7 +21306,7 @@
       "name": "typography-reading",
       "type": "registry:component",
       "title": "Typography: Reading",
-      "description": "Cal Sans with docs and compact reading presets.",
+      "description": "Shared heading roles with explicit default and compact reading rhythms.",
       "registryDependencies": ["@erbium/card", "@erbium/styles"],
       "files": [
         {
