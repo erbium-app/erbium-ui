@@ -1,6 +1,6 @@
 ---
 title: "Code"
-description: Geist Mono in commands, inline identifiers, and code samples.
+description: Paper Mono in commands, inline identifiers, and code samples.
 ---
 
-Geist Mono in commands, inline identifiers, and code samples.
+Paper Mono in commands, inline identifiers, and code samples.

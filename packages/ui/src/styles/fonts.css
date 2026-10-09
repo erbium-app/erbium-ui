@@ -1,5 +1,11 @@
-/* Cal Sans and Vazirmatn: SIL Open Font License 1.1. See ../assets/fonts/*.txt. */
-@import "@fontsource-variable/geist-mono";
+/* Cal Sans, Vazirmatn, and Paper Mono: SIL Open Font License 1.1. See ../assets/fonts/*.txt. */
+@font-face {
+  font-family: "Paper Mono";
+  src: url("../assets/fonts/PaperMonoVF.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: "Cal Sans";

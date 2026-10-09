@@ -3,7 +3,7 @@
   "name": "typography-code",
   "type": "registry:component",
   "title": "Typography: Code",
-  "description": "Geist Mono in commands, inline identifiers, and code samples.",
+  "description": "Paper Mono in commands, inline identifiers, and code samples.",
   "registryDependencies": ["@erbium/card", "@erbium/styles"],
   "files": [
     {

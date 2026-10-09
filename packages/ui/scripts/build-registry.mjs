@@ -138,14 +138,7 @@ items.push({
   type: "registry:item",
   title: "Erbium styles",
   description: "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
-  dependencies: [
-    "@fontsource-variable/geist-mono",
-    "easing-gradients",
-    "shadcn",
-    "shadow-plugin",
-    "tailwindcss",
-    "tw-animate-css",
-  ],
+  dependencies: ["easing-gradients", "shadcn", "shadow-plugin", "tailwindcss", "tw-animate-css"],
   files: styleFiles.map((file) => ({
     path: `src/styles/${file}`,
     type: "registry:file",
@@ -158,7 +151,7 @@ items.push({
 items
   .find((item) => item.name === "styles")
   .files.push(
-    ...["OFL.txt", "Vazirmatn-OFL.txt"].map((file) => ({
+    ...["OFL.txt", "Vazirmatn-OFL.txt", "PaperMono-OFL.txt"].map((file) => ({
       path: `src/assets/fonts/${file}`,
       type: "registry:file",
       target: `~/src/assets/fonts/${file}`,

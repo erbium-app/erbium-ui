@@ -5,13 +5,13 @@ description: Fonts, loading, and reading styles for Erbium UI.
 
 ## Fonts
 
-| Role                                                | Typeface                                              | Weights and styles         |
-| --------------------------------------------------- | ----------------------------------------------------- | -------------------------- |
-| Body and headings, `--font-sans` / `--font-heading` | [Cal Sans](https://github.com/calcom/sans) for Latin  | 400–700, normal and italic |
-| Arabic and Persian, within the same body stack      | [Vazirmatn](https://rastikerdar.github.io/vazirmatn/) | 100–900, normal            |
-| Code, `--font-mono`                                 | [Geist Mono](https://vercel.com/font)                 | 100–900, normal            |
+| Role                                                | Typeface                                                 | Weights and styles         |
+| --------------------------------------------------- | -------------------------------------------------------- | -------------------------- |
+| Body and headings, `--font-sans` / `--font-heading` | [Cal Sans](https://github.com/calcom/sans) for Latin     | 400–700, normal and italic |
+| Arabic and Persian, within the same body stack      | [Vazirmatn](https://rastikerdar.github.io/vazirmatn/)    | 100–900, normal            |
+| Code, `--font-mono`                                 | [Paper Mono](https://github.com/paper-design/paper-mono) | 100–800, normal            |
 
-Each role includes system fallbacks. Headings inherit the body family. The Geist Mono import has no italic face, so code italics may be synthesized.
+Each role includes system fallbacks. Headings inherit the body family. Paper Mono has no italic face, so code italics may be synthesized.
 
 Fonts use `font-display: swap` and load when rendered text needs them. Nothing is preloaded. Vazirmatn’s `unicode-range` limits it to Arabic-script characters. Latin-only pages do not request it.
 
@@ -35,9 +35,9 @@ Load them from your application’s global CSS entry:
 import "./index.css";
 ```
 
-The CLI copies the styles and installs Geist Mono through Fontsource. It does not wire the global import. In Astro, import your global CSS in the shared layout frontmatter. No additional font provider is needed.
+The CLI copies the styles and font licenses. It does not wire the global import. In Astro, import your global CSS in the shared layout frontmatter. No additional font provider is needed.
 
-Registry installations load Cal Sans and Vazirmatn from `https://ui.erbium.app/fonts/`. To self-host them, copy the font files into your public directory and update the URLs in `fonts.css`, preserving the Unicode ranges and bundled licenses.
+Registry installations load Cal Sans, Vazirmatn, and Paper Mono from `https://ui.erbium.app/fonts/`. To self-host them, copy the font files into your public directory and update the URLs in `fonts.css`, preserving the Unicode ranges and bundled licenses.
 
 Workspace apps import `@erbium/ui/globals.css` and use local assets from `packages/ui/src/assets/fonts`.
 

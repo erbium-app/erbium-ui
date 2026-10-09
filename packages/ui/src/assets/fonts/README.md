@@ -4,4 +4,6 @@ Cal Sans 2.0 variable fonts, reused from coss UI’s shared fonts. Upstream: htt
 
 Vazirmatn’s Arabic variable subset is vendored from Fontsource with its SIL Open Font License; see [Vazirmatn-OFL.txt](./Vazirmatn-OFL.txt).
 
-The shared fonts.css defines script-aware faces for all applications. Workspace builds use local assets; the registry generator references separately hosted WOFF2 files in published fonts.css and includes both licenses. Geist Mono is supplied separately by @fontsource-variable/geist-mono.
+Paper Mono’s variable WOFF2 is vendored unmodified from [paper-design/paper-mono](https://github.com/paper-design/paper-mono/tree/e6eaeceaef02e77e3db997711e07a16378de2bd7), with weights 100–800 and its SIL Open Font License; see [PaperMono-OFL.txt](./PaperMono-OFL.txt).
+
+The shared fonts.css defines script-aware faces for all applications. Workspace builds use local assets; the registry generator references separately hosted WOFF2 files in published fonts.css and includes all three licenses.
