@@ -41,7 +41,7 @@ export default function InputGroupButtonExample() {
                 </InputGroupButton>
               }
             />
-            <PopoverContent align="start" className="flex flex-col gap-1 rounded-xl text-sm">
+            <PopoverContent align="start" className="flex flex-col gap-1 rounded-xl text-caption">
               <p className="font-medium">Your connection is not secure.</p>
               <p>You should not enter any sensitive information on this site.</p>
             </PopoverContent>

@@ -94,7 +94,7 @@ export function MessageScrollerOpeningPosition() {
           </Tabs>
         </CardFooter>
       </Card>
-      <div className="mx-auto max-w-sm px-0.5 text-center text-xs text-muted-foreground">
+      <div className="mx-auto max-w-sm px-0.5 text-center text-metadata text-muted-foreground">
         Toggle the defaultScrollPosition to see where the transcript starts when you open the thread
       </div>
     </div>

@@ -27,8 +27,10 @@ export default function CollapsibleDemo() {
             className="size-4 shrink-0 text-muted-foreground"
           />
           <span className="min-w-0 flex-1">
-            <span className="block text-sm font-medium">Project files</span>
-            <span className="block text-xs text-muted-foreground">3 files in this workspace</span>
+            <span className="block text-caption font-medium">Project files</span>
+            <span className="block text-metadata text-muted-foreground">
+              3 files in this workspace
+            </span>
           </span>
           <RotatingChevron scope="collapsible" className="size-4 shrink-0 text-muted-foreground" />
         </CollapsibleTrigger>
@@ -36,7 +38,7 @@ export default function CollapsibleDemo() {
           <Separator />
           <div className="space-y-1 px-3 pt-2 pb-3">
             {files.map((file) => (
-              <div key={file} className="flex items-center gap-2 py-1 text-sm">
+              <div key={file} className="flex items-center gap-2 py-1 text-caption">
                 <HugeiconsIcon
                   icon={FileTextIcon}
                   aria-hidden="true"

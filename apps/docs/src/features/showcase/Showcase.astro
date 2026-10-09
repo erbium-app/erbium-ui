@@ -31,7 +31,7 @@ const story = catalog[variant] as ShowcaseStory;
 const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
 ---
 
-<section id={anchorId} class="demo-section my-10 scroll-mt-8 [&_>_h2]:m-[0_0_0.5rem] [&_>_h2]:[font-size:1.15rem] [&_>_h2]:font-semibold [&_>_h2]:tracking-[-0.025em] [&_>_h2_a:hover_.heading-anchor]:inline-flex [&_>_h2_a:hover_.heading-anchor]:align-middle [&_>_h2_a:hover_.heading-anchor]:opacity-100 [&_>_h2_a:focus-visible_.heading-anchor]:inline-flex [&_>_h2_a:focus-visible_.heading-anchor]:align-middle [&_>_h2_a:focus-visible_.heading-anchor]:opacity-100">
+<section id={anchorId} class="demo-section my-10 scroll-mt-8 [&_>_h2]:m-[0_0_0.5rem] [&_>_h2]:text-title [&_>_h2]:font-semibold  [&_>_h2_a:hover_.heading-anchor]:inline-flex [&_>_h2_a:hover_.heading-anchor]:align-middle [&_>_h2_a:hover_.heading-anchor]:opacity-100 [&_>_h2_a:focus-visible_.heading-anchor]:inline-flex [&_>_h2_a:focus-visible_.heading-anchor]:align-middle [&_>_h2_a:focus-visible_.heading-anchor]:opacity-100">
   {Astro.props.separator !== false && <Separator class="showcase-header-separator mb-4" variant="full" decorative />}
   <h2>
     <a href={`#${anchorId}`}
@@ -40,7 +40,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       ></a
     >
   </h2>
-  <Prose as="div" class="variant-description [text-wrap-style:pretty] text-muted-foreground [font-size:0.8125rem] [&_p]:m-[0.5rem_0_0.8rem]"><slot /></Prose>
+  <Prose as="div" class="variant-description [text-wrap-style:pretty] text-muted-foreground text-control [&_p]:m-[0.5rem_0_0.8rem]"><slot /></Prose>
   <showcase-tabs class="showcase">
     <div class="showcase-toolbar flex items-center justify-between pb-[0.65rem]">
       <ShowcaseTabs id={id} title={title} client:load />
@@ -79,12 +79,12 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
     </div>
     <ShowcaseControls story={story} id={id} />
   </showcase-tabs>
-  <details class="install-example mt-3 [font-size:0.7rem] text-muted-foreground [&_summary]:flex [&_summary]:w-fit [&_summary]:gap-3 [&_summary]:items-center [&_summary]:cursor-pointer [&_summary]:list-none [&_summary]:py-[0.3rem] [&_summary::-webkit-details-marker]:hidden [&[open]_summary_>_span]:[transform:rotate(45deg)] [&_summary:focus-visible]:[outline:2px_solid_var(--ring)] [&_summary:focus-visible]:[outline-offset:3px]">
+  <details class="install-example mt-3 text-metadata text-muted-foreground [&_summary]:flex [&_summary]:w-fit [&_summary]:gap-3 [&_summary]:items-center [&_summary]:cursor-pointer [&_summary]:list-none [&_summary]:py-[0.3rem] [&_summary::-webkit-details-marker]:hidden [&[open]_summary_>_span]:[transform:rotate(45deg)] [&_summary:focus-visible]:[outline:2px_solid_var(--ring)] [&_summary:focus-visible]:[outline-offset:3px]">
     <summary
       >Install this example <span aria-hidden="true"
         ><Icon icon={Add01Icon} size={14} /></span
       ></summary
-    ><div class="install-command surface-field [--surface-face:var(--surface-canvas)] flex items-center justify-between gap-3 p-[0.7rem_1rem] border border-transparent rounded-md mt-2 text-foreground [&_code]:flex-1 [&_code]:min-w-0 [&_code]:whitespace-nowrap [&_code]:overflow-auto [&_code]:text-[0.7rem] [&_code]:leading-[1.8] [&_code]:font-mono">
+    ><div class="install-command surface-field [--surface-face:var(--surface-canvas)] flex items-center justify-between gap-3 p-[0.7rem_1rem] border border-transparent rounded-md mt-2 text-foreground [&_code]:flex-1 [&_code]:min-w-0 [&_code]:whitespace-nowrap [&_code]:overflow-auto [&_code]:text-metadata  [&_code]:font-mono">
       <code id={`${id}-install`}>{command}</code><CopyButton
         iconOnly
         target={`${id}-install`}

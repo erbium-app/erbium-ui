@@ -20,14 +20,14 @@ export function ControlledExample() {
           <button
             key={delta}
             type="button"
-            className="rounded-md border px-2 py-1 text-xs"
+            className="rounded-md border px-2 py-1 text-metadata"
             onClick={() => setValue((current) => Math.max(0, (current ?? 0) + delta))}
           >
             {delta > 0 ? `+${delta}` : delta}
           </button>
         ))}
       </div>
-      <p className="text-xs text-muted-foreground">Value: {value ?? "—"}</p>
+      <p className="text-metadata text-muted-foreground">Value: {value ?? "—"}</p>
     </div>
   );
 }

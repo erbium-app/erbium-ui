@@ -4,7 +4,7 @@ import Icon from "@/components/primitives/Icon.astro";
 import Kbd from "@/components/primitives/Kbd.astro";
 import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 ---
-  <Button variant="outline" class="docs-search-trigger w-60 justify-start gap-2 text-muted-foreground text-xs [&_>_span]:min-w-0 [&_>_span]:flex-1 [&_>_span]:truncate [&_>_span]:text-start [&_kbd]:[font-size:0.65rem] max-[1100px]:w-48 max-[1100px]:[&_>_span]:overflow-hidden max-[1100px]:[&_>_span]:text-ellipsis max-[560px]:w-8 max-[560px]:h-8 max-[560px]:p-[0.4rem] max-[560px]:[&_>_span]:hidden max-[560px]:[&_kbd]:hidden max-[560px]:[&_svg]:w-4 max-[560px]:[&_svg]:h-4" aria-haspopup="dialog" aria-controls="docs-search-dialog" data-search-open>
+  <Button variant="outline" class="docs-search-trigger w-60 justify-start gap-2 text-muted-foreground text-metadata [&_>_span]:min-w-0 [&_>_span]:flex-1 [&_>_span]:truncate [&_>_span]:text-start [&_kbd]:text-metadata max-[1100px]:w-48 max-[1100px]:[&_>_span]:overflow-hidden max-[1100px]:[&_>_span]:text-ellipsis max-[560px]:w-8 max-[560px]:h-8 max-[560px]:p-[0.4rem] max-[560px]:[&_>_span]:hidden max-[560px]:[&_kbd]:hidden max-[560px]:[&_svg]:w-4 max-[560px]:[&_svg]:h-4" aria-haspopup="dialog" aria-controls="docs-search-dialog" data-search-open>
     <Icon icon={Search01Icon} />
     <span>Search documentation…</span>
     <Kbd class="shrink-0" aria-label="Command or Control plus K">⌘ K</Kbd>

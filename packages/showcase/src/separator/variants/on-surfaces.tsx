@@ -8,9 +8,9 @@ const Example = () => (
         key={name}
         className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-transparent p-3 ${surface}`}
       >
-        <span className="text-xs font-medium">{name}</span>
+        <span className="text-metadata font-medium">{name}</span>
         <Separator />
-        <Separator className="text-xs">or</Separator>
+        <Separator className="text-metadata">or</Separator>
       </div>
     ))}
   </div>

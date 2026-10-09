@@ -57,7 +57,7 @@ function CommandGroupLabel({ className, ...props }: CommandPrimitive.GroupLabel.
   return (
     <CommandPrimitive.GroupLabel
       data-slot="command-group-label"
-      className={cn("px-2 py-1.5 text-xs font-medium text-muted-foreground", className)}
+      className={cn("px-2 py-1.5 text-control-sm text-muted-foreground", className)}
       {...props}
     />
   );
@@ -105,7 +105,7 @@ function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "h-full min-w-0 flex-1 bg-transparent text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "h-full min-w-0 flex-1 bg-transparent text-control outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}
@@ -139,7 +139,7 @@ function CommandEmpty({ className, ...props }: CommandPrimitive.Empty.Props) {
   return (
     <CommandPrimitive.Empty
       data-slot="command-empty"
-      className={cn("not-empty:py-6 text-center text-sm", className)}
+      className={cn("not-empty:py-6 text-center text-control", className)}
       {...props}
     />
   );
@@ -171,7 +171,7 @@ function CommandItem({ className, children, ...props }: CommandPrimitive.Item.Pr
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-md px-1.5 py-1 text-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
+        "group/command-item relative flex cursor-default items-center gap-2 rounded-md px-1.5 py-1 text-control whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
         className,
       )}
       {...props}

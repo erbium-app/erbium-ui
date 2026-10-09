@@ -39,7 +39,7 @@ export function ScrollAreaHorizontalDemo() {
                 height={400}
               />
             </div>
-            <figcaption className="pt-2 text-xs text-muted-foreground">
+            <figcaption className="pt-2 text-metadata text-muted-foreground">
               Photo by <span className="font-semibold text-foreground">{artwork.artist}</span>
             </figcaption>
           </figure>

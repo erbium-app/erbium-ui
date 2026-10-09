@@ -10,7 +10,7 @@ export function ContextMenuSides() {
   return (
     <div className="grid w-full max-w-sm grid-cols-2 gap-4">
       <ContextMenu>
-        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm">
+        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
           <span className="hidden pointer-fine:inline-block">Right click (top)</span>
           <span className="hidden pointer-coarse:inline-block">Long press (top)</span>
         </ContextMenuTrigger>
@@ -23,7 +23,7 @@ export function ContextMenuSides() {
         </ContextMenuContent>
       </ContextMenu>
       <ContextMenu>
-        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm">
+        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
           <span className="hidden pointer-fine:inline-block">Right click (right)</span>
           <span className="hidden pointer-coarse:inline-block">Long press (right)</span>
         </ContextMenuTrigger>
@@ -36,7 +36,7 @@ export function ContextMenuSides() {
         </ContextMenuContent>
       </ContextMenu>
       <ContextMenu>
-        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm">
+        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
           <span className="hidden pointer-fine:inline-block">Right click (bottom)</span>
           <span className="hidden pointer-coarse:inline-block">Long press (bottom)</span>
         </ContextMenuTrigger>
@@ -49,7 +49,7 @@ export function ContextMenuSides() {
         </ContextMenuContent>
       </ContextMenu>
       <ContextMenu>
-        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-sm">
+        <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
           <span className="hidden pointer-fine:inline-block">Right click (left)</span>
           <span className="hidden pointer-coarse:inline-block">Long press (left)</span>
         </ContextMenuTrigger>

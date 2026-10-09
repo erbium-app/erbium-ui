@@ -10,7 +10,7 @@ export const states = [
 
 export function Canvas({ children }: { children: React.ReactNode }) {
   return (
-    <div className="@container grid w-full min-w-0 place-items-center bg-surface-canvas text-sm text-foreground">
+    <div className="@container grid w-full min-w-0 place-items-center bg-surface-canvas text-caption text-foreground">
       {children}
     </div>
   );
@@ -27,7 +27,7 @@ export const ladder = [
 ] as const;
 
 export const control =
-  "inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-xs font-medium transition-[background-color,box-shadow] duration-150";
+  "inline-flex h-8 items-center gap-1.5 rounded-lg px-3 text-metadata font-medium transition-[background-color,box-shadow] duration-150";
 
 export const coloredSurfaces = [
   [

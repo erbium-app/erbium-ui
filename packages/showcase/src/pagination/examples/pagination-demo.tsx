@@ -48,7 +48,7 @@ export default function PaginationDemo() {
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-      <p className="text-center text-sm text-muted-foreground" aria-live="polite">
+      <p className="text-center text-caption text-muted-foreground" aria-live="polite">
         Page {page} of 3
       </p>
     </div>

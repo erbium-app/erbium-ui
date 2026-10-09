@@ -5,6 +5,7 @@ import { scaleOrdinal } from "@tanstack/charts/scales/ordinal";
 import { tooltip } from "@tanstack/charts/tooltip";
 import { colorLegend, colorLegendItems } from "@tanstack/charts/legend";
 import { Chart } from "@erbium/ui/components/chart";
+import { chartTextRole } from "@erbium/ui/lib/typography";
 
 const monthlyVisitors = [
   { month: "January", desktop: 186, mobile: 80 },
@@ -58,7 +59,7 @@ export function visitorChart(
                 gap: 16,
                 rowGap: 8,
                 indicator: { shape: "dot", width: 8, height: 8, gap: 7 },
-                label: { fontSize: 13, fontWeight: 500, fill: "var(--muted-foreground)" },
+                label: { ...chartTextRole("metadata"), fill: "var(--muted-foreground)" },
               }),
             }),
           }

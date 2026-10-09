@@ -10,7 +10,7 @@
       "path": "src/separator/variants/labeled.tsx",
       "type": "registry:component",
       "target": "@components/showcase/separator/variants/labeled.tsx",
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"w-72 rounded-lg surface-panel p-4\">\n    <Separator className=\"text-xs text-muted-foreground\">or</Separator>\n  </div>\n);\n\nexport default Example;\n"
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"w-72 rounded-lg surface-panel p-4\">\n    <Separator className=\"text-metadata text-muted-foreground\">or</Separator>\n  </div>\n);\n\nexport default Example;\n"
     }
   ]
 }

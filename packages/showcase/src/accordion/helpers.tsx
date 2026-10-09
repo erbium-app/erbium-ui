@@ -68,7 +68,7 @@ export function ControlledAccordionExample() {
           Close all
         </Button>
       </div>
-      <p className="text-muted-foreground text-sm">
+      <p className="text-muted-foreground text-caption">
         Open items: {value.length > 0 ? value.join(", ") : "None"}
       </p>
     </div>

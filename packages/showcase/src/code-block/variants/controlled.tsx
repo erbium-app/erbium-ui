@@ -14,7 +14,7 @@ export default function Example() {
   const [manager, setManager] = useState("bun");
   return (
     <div className="grid w-full max-w-xl gap-4">
-      <p className="text-sm text-muted-foreground">
+      <p className="text-caption text-muted-foreground">
         Choose once. Both commands follow your preference.
       </p>
       <CodeBlock surface="command" items={items} value={manager} onValueChange={setManager} />

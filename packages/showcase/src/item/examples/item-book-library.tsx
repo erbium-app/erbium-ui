@@ -66,10 +66,10 @@ export default function ItemBookLibrary() {
     <section className="w-[min(42rem,90vw)] space-y-4" aria-label="Book library">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold">My library</h2>
-          <p className="text-sm text-muted-foreground">Books on your shelf</p>
+          <h2 className="text-subtitle">My library</h2>
+          <p className="text-caption text-muted-foreground">Books on your shelf</p>
         </div>
-        <p className="text-sm text-muted-foreground" role="status">
+        <p className="text-caption text-muted-foreground" role="status">
           {selected.length} of {books.length} selected
         </p>
       </div>
@@ -115,7 +115,7 @@ export default function ItemBookLibrary() {
               <ItemMedia variant="image" className="h-14 w-10 rounded-sm shadow-sm">
                 <span
                   aria-hidden="true"
-                  className={`flex size-full items-end border-s-4 border-border p-1 text-micro font-semibold tracking-wider ${book.cover}`}
+                  className={`flex size-full items-end border-s-4 border-border p-1 text-metadata font-semibold ${book.cover}`}
                 >
                   {book.monogram}
                 </span>

@@ -146,7 +146,7 @@ function CodeBlockTitle({ className, ...props }: ComponentProps<"span">) {
       {...props}
       data-slot="code-block-title"
       className={cn(
-        "inline-flex min-w-0 items-center gap-2 truncate text-xs font-medium text-muted-foreground",
+        "inline-flex min-w-0 items-center gap-2 truncate text-metadata font-medium text-muted-foreground",
         className,
       )}
     />
@@ -281,7 +281,7 @@ function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps)
       tabIndex={0}
       style={blockStyle}
       className={cn(
-        "m-0 max-h-120 overflow-auto p-4 font-mono text-sm leading-6 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
+        "m-0 max-h-120 overflow-auto p-4 text-code-block outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
         wrap ? "whitespace-pre-wrap break-words" : "whitespace-pre",
         surface === "command" && "px-3 py-3",
         "group-has-[[data-slot=code-block-actions]]/code-block:pe-12",

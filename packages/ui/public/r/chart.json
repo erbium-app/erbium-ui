@@ -11,7 +11,7 @@
       "path": "src/components/chart.tsx",
       "type": "registry:ui",
       "target": "@ui/chart.tsx",
-      "content": "import { Chart as TanStackChart } from \"@tanstack/charts/react\";\nimport type { ChartProps as TanStackChartProps } from \"@tanstack/charts/react\";\nimport type { ChartValue } from \"@tanstack/charts\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nexport function Chart<\n  TDatum,\n  TXValue extends ChartValue = ChartValue,\n  TYValue extends ChartValue = ChartValue,\n>({ className, ...props }: TanStackChartProps<TDatum, TXValue, TYValue>) {\n  return <TanStackChart className={cn(\"erbium-chart\", className)} {...props} />;\n}\nexport type ChartProps = TanStackChartProps;\n"
+      "content": "import { Chart as TanStackChart } from \"@tanstack/charts/react\";\nimport type { ChartProps as TanStackChartProps } from \"@tanstack/charts/react\";\nimport type { ChartValue } from \"@tanstack/charts\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nexport function Chart<\n  TDatum,\n  TXValue extends ChartValue = ChartValue,\n  TYValue extends ChartValue = ChartValue,\n>({ className, ...props }: TanStackChartProps<TDatum, TXValue, TYValue>) {\n  return <TanStackChart className={cn(\"erbium-chart text-metadata\", className)} {...props} />;\n}\nexport type ChartProps = TanStackChartProps;\n"
     }
   ]
 }

@@ -16,7 +16,7 @@
       "path": "src/scroll-fade/variants/single-edge-and-custom-depth.tsx",
       "type": "registry:component",
       "target": "@components/showcase/scroll-fade/variants/single-edge-and-custom-depth.tsx",
-      "content": "import { rows } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"w-72 overflow-hidden rounded-lg border bg-background\">\n    <div className=\"scroll-fade-b-8 h-56 overflow-y-auto px-4\">\n      {rows.map((row) => (\n        <div key={row} className=\"border-b py-4 text-sm\">\n          Bottom edge only · row {row}\n        </div>\n      ))}\n    </div>\n  </div>\n);\n\nexport default Example;\n"
+      "content": "import { rows } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"w-72 overflow-hidden rounded-lg border bg-background\">\n    <div className=\"scroll-fade-b-8 h-56 overflow-y-auto px-4\">\n      {rows.map((row) => (\n        <div key={row} className=\"border-b py-4 text-caption\">\n          Bottom edge only · row {row}\n        </div>\n      ))}\n    </div>\n  </div>\n);\n\nexport default Example;\n"
     }
   ]
 }

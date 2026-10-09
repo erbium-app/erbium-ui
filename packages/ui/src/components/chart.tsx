@@ -8,6 +8,6 @@ export function Chart<
   TXValue extends ChartValue = ChartValue,
   TYValue extends ChartValue = ChartValue,
 >({ className, ...props }: TanStackChartProps<TDatum, TXValue, TYValue>) {
-  return <TanStackChart className={cn("erbium-chart", className)} {...props} />;
+  return <TanStackChart className={cn("erbium-chart text-metadata", className)} {...props} />;
 }
 export type ChartProps = TanStackChartProps;

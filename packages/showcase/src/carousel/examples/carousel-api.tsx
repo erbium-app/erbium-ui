@@ -43,7 +43,7 @@ export default function CarouselDApiDemo() {
             <CarouselItem key={index}>
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
+                  <span className="text-display font-semibold">{index + 1}</span>
                 </CardContent>
               </Card>
             </CarouselItem>
@@ -52,7 +52,7 @@ export default function CarouselDApiDemo() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div className="py-2 text-center text-sm text-muted-foreground">
+      <div className="py-2 text-center text-caption text-muted-foreground">
         Slide {current} of {count}
       </div>
     </div>

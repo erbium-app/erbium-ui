@@ -16,6 +16,22 @@
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.571429;
   --text-caption--font-weight: 400;
+  /* Density roles: controls and supporting text are not article paragraphs. */
+  --text-control: 0.875rem;
+  --text-control--line-height: 1.428571;
+  --text-control--font-weight: 500;
+  --text-control-sm: 0.75rem;
+  --text-control-sm--line-height: 1.5;
+  --text-control-sm--font-weight: 500;
+  --text-metadata: 0.75rem;
+  --text-metadata--line-height: 1.5;
+  --text-metadata--font-weight: 400;
+  --text-code-block: 0.875rem;
+  --text-code-block--line-height: var(--leading-code);
+  --text-code-block--font-weight: 400;
+  --text-inline-code: 0.875em;
+  --text-inline-code--line-height: inherit;
+  --text-inline-code--font-weight: 400;
 }
 
 @utility text-display {
@@ -49,11 +65,43 @@
     --text-subtitle--line-height: 1.6;
     --text-body--line-height: 1.75;
     --text-caption--line-height: 1.75;
+    --text-control--line-height: 1.6;
+    --text-control-sm--line-height: 1.6;
+    --text-metadata--line-height: 1.6;
   }
 }
 
 @layer base {
   :where(code, pre) {
     font-variant-ligatures: none;
+  }
+}
+
+@utility text-code-block {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+}
+
+@utility text-inline-code {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  overflow-wrap: anywhere;
+}
+
+/* Editable text follows its preview rather than establishing another scale. */
+@utility text-editable {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+/* Touch inputs stay at 16px, even on tablets with a wide viewport. */
+@utility text-field {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  font-weight: 400;
+
+  @media (min-width: 48rem) and (pointer: fine) {
+    font-size: var(--text-control);
+    line-height: var(--text-control--line-height);
   }
 }

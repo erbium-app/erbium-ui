@@ -30,9 +30,9 @@ const autocompleteInputVariants = cva("", {
 const autocompleteFieldVariants = cva("", {
   variants: {
     size: {
-      sm: "h-7 px-2 text-xs",
+      sm: "h-7 px-2 text-control-sm",
       default: "",
-      lg: "h-9 px-3 text-base",
+      lg: "h-9 px-3 text-body",
     },
   },
 });
@@ -171,7 +171,7 @@ export function AutocompleteItem({
   return (
     <AutocompletePrimitive.Item
       className={cn(
-        "flex min-h-7 cursor-default select-none items-center gap-2 rounded-md px-1.5 py-1 text-sm outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64",
+        "flex min-h-7 cursor-default select-none items-center gap-2 rounded-md px-1.5 py-1 text-control outline-none data-disabled:pointer-events-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-disabled:opacity-64",
         className,
       )}
       data-slot="autocomplete-item"
@@ -215,7 +215,7 @@ export function AutocompleteGroupLabel({
 }: AutocompletePrimitive.GroupLabel.Props): React.ReactElement {
   return (
     <AutocompletePrimitive.GroupLabel
-      className={cn("px-2 py-1.5 font-medium text-muted-foreground text-xs", className)}
+      className={cn("px-2 py-1.5 font-medium text-muted-foreground text-control-sm", className)}
       data-slot="autocomplete-group-label"
       {...props}
     />
@@ -228,10 +228,7 @@ export function AutocompleteEmpty({
 }: AutocompletePrimitive.Empty.Props): React.ReactElement {
   return (
     <AutocompletePrimitive.Empty
-      className={cn(
-        "not-empty:p-2 text-center text-base text-muted-foreground sm:text-sm",
-        className,
-      )}
+      className={cn("not-empty:p-2 text-center text-caption text-muted-foreground", className)}
       data-slot="autocomplete-empty"
       {...props}
     />
@@ -289,7 +286,7 @@ export function AutocompleteStatus({
   return (
     <AutocompletePrimitive.Status
       className={cn(
-        "px-3 py-2 font-medium text-muted-foreground text-xs empty:m-0 empty:p-0",
+        "px-3 py-2 font-medium text-muted-foreground text-control-sm empty:m-0 empty:p-0",
         className,
       )}
       data-slot="autocomplete-status"

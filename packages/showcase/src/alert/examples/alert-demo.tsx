@@ -4,8 +4,8 @@ export default function AlertDemo() {
   return (
     <section className="w-full max-w-2xl overflow-hidden rounded-xl border surface-panel">
       <header className="border-b border-transparent px-5 py-4">
-        <h2 className="mt-1 font-heading text-lg font-semibold">Refactor the billing flow</h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h2 className="mt-1 font-heading text-subtitle font-semibold">Refactor the billing flow</h2>
+        <p className="mt-1 text-caption text-muted-foreground">
           Agent activity across planning, tools, and verification
         </p>
       </header>

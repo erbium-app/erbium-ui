@@ -25,7 +25,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
             />
           )}
           <SidebarGroup class="docs-nav-group p-[0.5rem_0]">
-            <SidebarGroupLabel class="docs-nav-label text-foreground text-xs font-semibold px-[0.65rem] mb-1 [&_>_a]:flex [&_>_a]:w-full [&_>_a]:justify-between [&_>_a]:items-center">
+            <SidebarGroupLabel class="docs-nav-label text-foreground text-metadata font-semibold px-[0.65rem] mb-1 [&_>_a]:flex [&_>_a]:w-full [&_>_a]:justify-between [&_>_a]:items-center">
               {group.href ? (
                 <a href={group.href} data-astro-prefetch="hover">
                   {group.title}

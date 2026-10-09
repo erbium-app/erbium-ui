@@ -101,14 +101,14 @@ export function OTPFieldForm() {
                 {isSubmitting ? "Verifying…" : "Verify"}
               </Button>
               {isSubmitted && (
-                <p role="status" className="text-sm text-success-soft-foreground">
+                <p role="status" className="text-caption text-success-soft-foreground">
                   Code verified.
                 </p>
               )}
             </>
           )}
         </form.Subscribe>
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-caption text-muted-foreground">
           Having trouble signing in?{" "}
           <a
             href="#"

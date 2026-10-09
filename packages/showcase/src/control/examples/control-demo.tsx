@@ -17,7 +17,7 @@ export default function ControlDemo() {
 
   return (
     <div className="w-72 rounded-xl border surface-panel p-3">
-      <h3 className="mb-3 text-sm font-semibold">Photo Stack</h3>
+      <h3 className="mb-3 text-subtitle">Photo Stack</h3>
       <Control.Group>
         <Control.Text label="Title" value={title} onValueChange={setTitle} />
         <Control.Select

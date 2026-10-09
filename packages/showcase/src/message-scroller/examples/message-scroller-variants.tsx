@@ -32,7 +32,7 @@ function Transcript({ messages }: { messages: typeof initialMessages }) {
               scrollAnchor={index % 2 === 0}
             >
               <div
-                className={`max-w-72 rounded-lg p-3 text-sm ${index % 2 === 0 ? "ms-auto bg-primary text-primary-foreground" : "bg-muted"}`}
+                className={`max-w-72 rounded-lg p-3 text-caption ${index % 2 === 0 ? "ms-auto bg-primary text-primary-foreground" : "bg-muted"}`}
               >
                 {message.text}
               </div>
@@ -65,7 +65,7 @@ function Commands() {
 function Visibility() {
   const { currentAnchorId, visibleMessageIds } = useMessageScrollerVisibility();
   return (
-    <p className="text-xs text-muted-foreground">
+    <p className="text-metadata text-muted-foreground">
       Current turn: {currentAnchorId ?? "none"} · Visible: {visibleMessageIds.length}
     </p>
   );
@@ -74,7 +74,7 @@ function Visibility() {
 function Scrollable() {
   const { start, end } = useMessageScrollerScrollable();
   return (
-    <p className="text-xs text-muted-foreground">
+    <p className="text-metadata text-muted-foreground">
       Can scroll up: {start ? "yes" : "no"} · down: {end ? "yes" : "no"}
     </p>
   );

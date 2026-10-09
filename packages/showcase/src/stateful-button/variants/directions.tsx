@@ -13,7 +13,7 @@ const Example = () => (
       return (
         <DirectionProvider direction={direction} key={direction}>
           <div dir={direction} className="rounded-lg border p-4">
-            <p className="mb-3 text-sm font-medium uppercase">{direction}</p>
+            <p className="mb-3 text-caption font-medium uppercase">{direction}</p>
             <div className="flex flex-wrap gap-3">
               <AsyncStatefulButton successLabel={successLabel}>{label}</AsyncStatefulButton>
               <StatefulButton successLabel={successLabel} variant="outline">

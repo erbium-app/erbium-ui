@@ -95,10 +95,10 @@ const Example = () => (
         <span className="flex h-[18px] w-8 items-center justify-end rounded-full surface-well bg-primary px-0.5">
           <span className="size-3.5 rounded-full surface-knob bg-primary-foreground" />
         </span>
-        <span className="rounded-full border surface-tag-green px-2.5 py-0.5 text-xs font-medium text-tag-green">
+        <span className="rounded-full border surface-tag-green px-2.5 py-0.5 text-metadata font-medium text-tag-green">
           Healthy
         </span>
-        <span className="rounded-full border surface-tag-orange px-2.5 py-0.5 text-xs font-medium text-tag-orange">
+        <span className="rounded-full border surface-tag-orange px-2.5 py-0.5 text-metadata font-medium text-tag-orange">
           Degraded
         </span>
         <Kbd hotkey="Mod+K" />

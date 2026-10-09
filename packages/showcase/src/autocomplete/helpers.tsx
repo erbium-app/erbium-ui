@@ -236,7 +236,7 @@ export function AsyncAutocomplete() {
               <AutocompleteItem key={movie.id} value={movie}>
                 <span className="flex flex-col">
                   <span className="font-medium">{movie.title}</span>
-                  <span className="text-xs text-muted-foreground">{movie.year}</span>
+                  <span className="text-metadata text-muted-foreground">{movie.year}</span>
                 </span>
               </AutocompleteItem>
             )}
@@ -274,7 +274,7 @@ export function FormAutocomplete() {
         </AutocompletePopup>
       </Autocomplete>
       <Button type="submit">Submit</Button>
-      {submitted && <p className="text-sm text-muted-foreground">Form submitted.</p>}
+      {submitted && <p className="text-caption text-muted-foreground">Form submitted.</p>}
     </form>
   );
 }

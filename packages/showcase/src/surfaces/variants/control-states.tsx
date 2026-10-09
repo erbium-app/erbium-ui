@@ -8,7 +8,7 @@ const Example = () => (
     <div className="grid gap-8">
       {(["ltr", "rtl"] as const).map((direction) => (
         <section key={direction} dir={direction} className="grid justify-items-start gap-4">
-          <h2 className="font-medium">{direction.toUpperCase()}</h2>
+          <h2 className="text-subtitle">{direction.toUpperCase()}</h2>
           {(["xs", "sm", "default", "lg"] as const).map((size) => (
             <ButtonGroup key={size} aria-label={`${direction} ${size} states`}>
               <Button variant="outline" size={size}>

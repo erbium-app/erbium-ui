@@ -22,7 +22,48 @@ export default function ReadingExample() {
               <ul>
                 <li>Review member roles before granting access.</li>
                 <li>Remove access when a member leaves the team.</li>
+                <li>
+                  Keep access deliberate.
+                  <ul>
+                    <li>Invite collaborators to the projects they need.</li>
+                  </ul>
+                </li>
               </ul>
+              <blockquote>
+                <p>A clear next step helps everyone keep work moving.</p>
+              </blockquote>
+              <p>
+                Use <code>workspace.members</code> to inspect the current members.
+              </p>
+              <div
+                className="typeset-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label="Workspace role comparison"
+              >
+                <table>
+                  <caption>Access by workspace role</caption>
+                  <thead>
+                    <tr>
+                      <th>Role</th>
+                      <th>Projects</th>
+                      <th>Members</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Member</th>
+                      <td>View</td>
+                      <td>24</td>
+                    </tr>
+                    <tr>
+                      <th>Administrator</th>
+                      <td>Manage</td>
+                      <td>3</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </article>
           </CardContent>
         </Card>

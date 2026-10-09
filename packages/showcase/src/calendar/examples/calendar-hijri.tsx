@@ -51,7 +51,7 @@ export default function CalendarHijri() {
         >
           <HugeiconsIcon icon={ChevronRightIcon} />
         </Button>
-        <span className="text-sm font-medium">{monthFormatter.format(anchor)}</span>
+        <span className="text-caption font-medium">{monthFormatter.format(anchor)}</span>
         <Button
           aria-label="ماه بعد"
           size="icon-sm"
@@ -61,7 +61,7 @@ export default function CalendarHijri() {
           <HugeiconsIcon icon={ChevronLeftIcon} />
         </Button>
       </div>
-      <div className="grid grid-cols-7 text-center text-sm">
+      <div className="grid grid-cols-7 text-center text-caption">
         {weekDays.map((day, index) => (
           <span className="py-2 text-muted-foreground" key={index}>
             {day}

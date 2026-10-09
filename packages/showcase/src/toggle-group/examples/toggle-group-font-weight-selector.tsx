@@ -16,36 +16,36 @@ export function ToggleGroupFontWeightSelector() {
         size="lg"
       >
         <ToggleGroupItem
-          value="light"
-          aria-label="Light"
+          value="semibold"
+          aria-label="Semibold"
           className="flex size-16 flex-col items-center justify-center rounded-xl"
         >
-          <span className="text-2xl leading-none font-light">Aa</span>
-          <span className="text-xs text-muted-foreground">Light</span>
+          <span className="text-title font-semibold">Aa</span>
+          <span className="text-metadata text-muted-foreground">Semibold</span>
         </ToggleGroupItem>
         <ToggleGroupItem
           value="normal"
-          aria-label="Normal"
+          aria-label="Regular"
           className="flex size-16 flex-col items-center justify-center rounded-xl"
         >
-          <span className="text-2xl leading-none font-normal">Aa</span>
-          <span className="text-xs text-muted-foreground">Normal</span>
+          <span className="text-title font-normal">Aa</span>
+          <span className="text-metadata text-muted-foreground">Regular</span>
         </ToggleGroupItem>
         <ToggleGroupItem
           value="medium"
           aria-label="Medium"
           className="flex size-16 flex-col items-center justify-center rounded-xl"
         >
-          <span className="text-2xl leading-none font-medium">Aa</span>
-          <span className="text-xs text-muted-foreground">Medium</span>
+          <span className="text-title font-medium">Aa</span>
+          <span className="text-metadata text-muted-foreground">Medium</span>
         </ToggleGroupItem>
         <ToggleGroupItem
           value="bold"
           aria-label="Bold"
           className="flex size-16 flex-col items-center justify-center rounded-xl"
         >
-          <span className="text-2xl leading-none font-bold">Aa</span>
-          <span className="text-xs text-muted-foreground">Bold</span>
+          <span className="text-title font-bold">Aa</span>
+          <span className="text-metadata text-muted-foreground">Bold</span>
         </ToggleGroupItem>
       </ToggleGroup>
       <FieldDescription>

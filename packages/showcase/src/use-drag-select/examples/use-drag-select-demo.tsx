@@ -67,7 +67,7 @@ export default function ItemJoinedSelection() {
 
   return (
     <section className="w-[min(48rem,92vw)]" aria-label="Projects">
-      <div className="flex justify-between px-3 pb-2 text-xs text-muted-foreground">
+      <div className="flex justify-between px-3 pb-2 text-metadata text-muted-foreground">
         <span>Name</span>
         <span>Issues</span>
       </div>

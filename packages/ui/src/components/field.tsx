@@ -35,7 +35,7 @@ function FieldLegend({
       data-slot="field-legend"
       data-variant={variant}
       className={cn(
-        "mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base",
+        "mb-1.5 font-medium data-[variant=label]:text-control data-[variant=legend]:text-body",
         className,
       )}
       {...props}
@@ -110,7 +110,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="field-content"
-      className={cn("group/field-content flex flex-1 flex-col gap-0.5 leading-snug", className)}
+      className={cn("group/field-content flex flex-1 flex-col gap-0.5 ", className)}
       {...props}
     />
   );
@@ -121,7 +121,7 @@ function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
     <FieldPrimitive.Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 text-sm leading-snug font-medium select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
+        "group/field-label peer/field-label flex w-fit gap-2 text-control select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
         className,
       )}
       {...props}
@@ -138,7 +138,7 @@ function FieldDescription({ className, ...props }: FieldPrimitive.Description.Pr
           <FieldPrimitive.Description
             data-slot="field-description"
             className={cn(
-              "text-start text-sm leading-normal font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
+              "text-start text-caption font-normal text-muted-foreground group-has-data-horizontal/field:text-balance [[data-variant=legend]+&]:-mt-1.5",
               "last:mt-0 nth-last-2:-mt-1",
               "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
               className,
@@ -163,7 +163,7 @@ function FieldSeparator({
       data-slot="field-separator"
       data-content={!!children}
       className={cn(
-        "relative -my-2 flex h-5 items-center text-sm group-data-[variant=outline]/field-group:-mb-2",
+        "relative -my-2 flex h-5 items-center text-caption group-data-[variant=outline]/field-group:-mb-2",
         className,
       )}
       {...props}
@@ -223,7 +223,7 @@ function FieldError({ className, children, errors, match, ...props }: FieldError
       role="alert"
       match={errors ? messages.length > 0 : match}
       className={cn(
-        "grid text-sm font-normal text-error transition-[grid-template-rows,opacity] duration-200 ease-out data-ending-style:hidden data-starting-style:grid-rows-[0fr] data-starting-style:opacity-0 motion-reduce:transition-none",
+        "grid text-caption font-normal text-error transition-[grid-template-rows,opacity] duration-200 ease-out data-ending-style:hidden data-starting-style:grid-rows-[0fr] data-starting-style:opacity-0 motion-reduce:transition-none",
         className,
       )}
       {...props}

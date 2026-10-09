@@ -27,12 +27,12 @@ export default function ButtonGroupPopover() {
             </Button>
           }
         />
-        <PopoverContent align="end" className="gap-0 overflow-hidden rounded-xl p-0 text-sm">
+        <PopoverContent align="end" className="gap-0 overflow-hidden rounded-xl p-0 text-caption">
           <div className="px-3 py-2">
-            <div className="text-sm font-medium">Agent Tasks</div>
+            <div className="text-caption font-medium">Agent Tasks</div>
           </div>
           <Separator />
-          <div className="p-3 text-sm *:[p:not(:last-child)]:mb-2">
+          <div className="p-3 text-caption *:[p:not(:last-child)]:mb-2">
             <Textarea
               placeholder="Describe your task in natural language."
               className="mb-3 resize-none"

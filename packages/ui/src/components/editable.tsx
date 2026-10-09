@@ -116,7 +116,10 @@ function Editable({
         data-slot="editable"
         data-editing={editing ? "" : undefined}
         data-disabled={disabled ? "" : undefined}
-        className={cn("relative inline-grid min-w-[2ch] max-w-full align-middle", className)}
+        className={cn(
+          "relative inline-grid min-w-[2ch] max-w-full align-middle text-field",
+          className,
+        )}
         {...props}
       >
         {children}
@@ -145,7 +148,7 @@ function EditablePreview({
       aria-hidden={context.editing || undefined}
       tabIndex={context.editing ? -1 : props.tabIndex}
       className={cn(
-        "block w-full min-w-0 truncate border-0 bg-transparent p-0 text-start text-inherit leading-[inherit] tracking-[inherit] font-[inherit] text-[length:inherit] outline-none placeholder:text-muted-foreground disabled:cursor-default data-empty:text-muted-foreground data-interactive:cursor-text",
+        "block w-full min-w-0 truncate border-0 bg-transparent p-0 text-start text-inherit text-editable outline-none placeholder:text-muted-foreground disabled:cursor-default data-empty:text-muted-foreground data-interactive:cursor-text",
         "opacity-0",
         className,
       )}
@@ -195,7 +198,7 @@ function EditableInput({
       placeholder={context.placeholder}
       value={context.editing ? context.draft : context.value}
       className={cn(
-        "absolute inset-0 block size-full min-w-0 rounded-none border-0 bg-transparent p-0 text-start text-inherit leading-[inherit] tracking-[inherit] font-[inherit] text-[length:inherit] outline-none placeholder:text-muted-foreground not-data-editing:pointer-events-none",
+        "absolute inset-0 block size-full min-w-0 rounded-none border-0 bg-transparent p-0 text-start text-inherit text-editable outline-none placeholder:text-muted-foreground not-data-editing:pointer-events-none",
         className,
       )}
       onChange={(event) => {

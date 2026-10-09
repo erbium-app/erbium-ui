@@ -35,6 +35,22 @@
     @apply bg-background text-foreground text-body;
   }
 
+  :where(h1) {
+    @apply text-display;
+  }
+
+  :where(h2) {
+    @apply text-title;
+  }
+
+  :where(h3) {
+    @apply text-subtitle;
+  }
+
+  :where(h4, h5, h6) {
+    @apply text-body font-semibold text-balance;
+  }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;

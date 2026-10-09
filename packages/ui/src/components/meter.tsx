@@ -48,7 +48,7 @@ function MeterLabel({ className, ...props }: MeterPrimitive.Label.Props) {
   return (
     <MeterPrimitive.Label
       data-slot="meter-label"
-      className={cn("text-sm font-medium", className)}
+      className={cn("text-control font-medium", className)}
       {...props}
     />
   );
@@ -58,7 +58,7 @@ function MeterValue({ className, ...props }: MeterPrimitive.Value.Props) {
   return (
     <MeterPrimitive.Value
       data-slot="meter-value"
-      className={cn("ms-auto text-sm text-muted-foreground tabular-nums", className)}
+      className={cn("ms-auto text-caption text-muted-foreground tabular-nums", className)}
       {...props}
     />
   );

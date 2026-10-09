@@ -127,7 +127,7 @@ export default function ItemSettingsPanel() {
       </ItemGroup>
 
       <section className="space-y-4" aria-labelledby="interface-heading">
-        <h2 id="interface-heading" className="px-4 text-sm font-medium">
+        <h2 id="interface-heading" className="px-4 text-subtitle">
           Interface and theme
         </h2>
         <ItemGroup variant="panel">

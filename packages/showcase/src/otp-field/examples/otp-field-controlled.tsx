@@ -8,7 +8,7 @@ export default function OTPFieldControlled() {
   return (
     <div className="space-y-2">
       <OTPField aria-label="One-time password" length={6} value={value} onValueChange={setValue} />
-      <div className="text-center text-sm">
+      <div className="text-center text-caption">
         {value === "" ? <>Enter your one-time password.</> : <>You entered: {value}</>}
       </div>
     </div>

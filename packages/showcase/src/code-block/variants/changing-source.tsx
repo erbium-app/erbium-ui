@@ -6,7 +6,7 @@ export default function Example() {
   const [code, setCode] = useState('const greeting = "Hello, Erbium.";\n');
   return (
     <div className="grid w-full max-w-xl gap-4">
-      <label className="grid gap-2 text-sm">
+      <label className="grid gap-2 text-caption">
         Source
         <Textarea
           value={code}
@@ -15,7 +15,7 @@ export default function Example() {
         />
       </label>
       <CodeBlock code={code} language="ts" title="Live source" />
-      <p className="text-xs text-muted-foreground">
+      <p className="text-metadata text-muted-foreground">
         Copy, then edit the source. Feedback resets and the next copy uses the new text.
       </p>
     </div>

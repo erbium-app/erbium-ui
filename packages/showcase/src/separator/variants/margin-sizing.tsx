@@ -11,7 +11,7 @@ const Example = () => (
               data-separator-case
               className={`w-72 gap-2 bg-surface-panel p-4 ${layout}`}
             >
-              <span className="text-sm">
+              <span className="text-caption">
                 {direction}: {layout}
               </span>
               <Separator data-inset="0" className="-mx-4" />

@@ -16,9 +16,9 @@ export default function HoverCardDemo() {
             <AvatarFallback>EU</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">@erbium</h4>
-            <p className="text-sm">Accessible components for building your next interface.</p>
-            <div className="text-xs text-muted-foreground">Joined December 2021</div>
+            <h4 className="text-subtitle">@erbium</h4>
+            <p className="text-caption">Accessible components for building your next interface.</p>
+            <div className="text-metadata text-muted-foreground">Joined December 2021</div>
           </div>
         </div>
       </HoverCardContent>

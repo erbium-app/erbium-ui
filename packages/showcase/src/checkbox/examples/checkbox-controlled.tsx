@@ -11,7 +11,7 @@ export default function CheckboxControlled() {
         <Checkbox checked={checked} onCheckedChange={setChecked} />
         <FieldLabel>Receive marketing emails</FieldLabel>
       </Field>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-caption text-muted-foreground">
         checked: <code>{String(checked)}</code>
       </p>
     </div>

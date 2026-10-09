@@ -53,7 +53,7 @@ Use five roles across product UI and Markdown. Start with the role, then choose 
 | Body     | `text-body`     | 1rem / 16px     | 1.625 / 26px | 400    | Paragraphs and general content        |
 | Caption  | `text-caption`  | 0.875rem / 14px | 1.571 / 22px | 400    | Supporting descriptions and metadata  |
 
-Pixel equivalents assume the browser’s default 16px root size. All sizes use rem and all line heights are unitless. Browser zoom and user font preferences remain effective. Body text starts at the body role; shared titles and descriptions use subtitle and caption. Existing compact controls keep their size variants.
+Pixel equivalents assume the browser’s default 16px root size. All sizes use rem and all line heights are unitless. Browser zoom and user font preferences remain effective. Body text starts at the body role; shared titles and descriptions use subtitle and caption. Native h1, h2, and h3 receive display, title, and subtitle defaults. h4–h6 use body text at semibold. Utilities can change appearance while the element keeps its semantic heading level. Controls use the density roles below so their sizing is part of the same system.
 
 Use `text-foreground` for primary content and `text-muted-foreground` for supporting content. Links and status messages keep their semantic colors. Muted text is a color token, not foreground with reduced opacity. Essential instructions belong in body text, not tiny metadata.
 
@@ -63,6 +63,34 @@ Use `text-foreground` for primary content and `text-muted-foreground` for suppor
 <p className="text-body">Manage who can access your projects.</p>
 <p className="text-caption text-muted-foreground">Changes apply immediately.</p>
 ```
+
+### Controls, metadata, and code
+
+The five roles describe content hierarchy. Functional text uses these shared density roles rather than introducing local sizes:
+
+| Role               | Default                                                             | Use                                                                            |
+| ------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `text-control`     | 14px / 20px, 500                                                    | Buttons, labels, menu items, tabs, and short item titles                       |
+| `text-control-sm`  | 12px / 18px, 500                                                    | Compact control variants, keyboard keys, and badges                            |
+| `text-metadata`    | 12px / 18px, 400                                                    | Short timestamps, filenames, and supporting rows                               |
+| `text-code-block`  | 14px / 22.4px, 400                                                  | Paper Mono code blocks                                                         |
+| `text-inline-code` | 0.875em, inherited leading, 400                                     | Paper Mono identifiers inside prose                                            |
+| `text-field`       | 16px body rhythm; 14px control rhythm on wide, fine-pointer screens | Inputs and textareas; touch screens retain 16px even on tablets                |
+| `text-editable`    | Inherits the root’s typography                                      | Inline editing without a visual size jump; the root defaults to the field role |
+
+Sizes are expressed in rem except inline code, which scales with its paragraph. Arabic-script controls and metadata use a 1.6 line height. Do not use metadata for essential instructions or long paragraphs. Changing values get `tabular-nums`; they do not need a new font size.
+
+The system supports regular (400), medium (500), semibold (600), and bold (700). Roles set the default weight. Use `font-normal`, `font-medium`, `font-semibold`, or `font-bold` only when emphasis or a selected state requires it; keep hover weights stable. Cal Sans does not supply lighter or heavier faces.
+
+### Enforcement
+
+Chart legends use `chartTextRole("metadata")` from the shared typography adapter because the chart library requires numerical pixel values. It reads the same CSS tokens as HTML and supplies safe defaults during server rendering. Chart tooltips use the control role through shared CSS tokens.
+
+`bun run typography:lint:check` verifies that invalid styles fail and valid roles pass in both component and story scopes.
+
+`bun run check` enforces typography in shared React components, class recipes, showcase examples, Storybook code, and application components. The same role rule runs over Astro’s parsed component tree and CSS `@apply` recipes. CSS font declarations and new text tokens belong in the shared typography files. Shadcn lint validates styling contracts and rejects inline font sizing, families, weights, leading, and tracking. The local `erbium-typography/use-roles` rule also catches stock size utilities, arbitrary text sizes, local leading and tracking, unsupported weights or font families, numerical font literals in chart recipes, and dynamic typography fragments on plain HTML and recipes.
+
+Use the role that matches the text’s job. Responsive and state variants may switch between defined roles; they may not introduce a new local scale. Define an intentional new treatment in the shared stylesheet and update the documentation rather than suppressing diagnostics.
 
 ### Defaults for our fonts
 
@@ -124,7 +152,7 @@ Use `not-typeset` or `data-not-typeset` to exclude embedded components and their
 </article>
 ```
 
-Tailwind utilities override Typeset styles on individual elements. Use the semantic text roles for new UI; existing `text-sm` and `text-base` utilities remain available for component density variants.
+Tailwind utilities override Typeset styles on individual elements. Use semantic text roles in components and stories. Stock size utilities and local leading or tracking overrides are rejected by the typography lint policy.
 
 ## Customization
 

@@ -12,7 +12,7 @@ export default function SpinnerDemo() {
           <ItemTitle className="line-clamp-1">Processing payment...</ItemTitle>
         </ItemContent>
         <ItemContent className="flex-none justify-end">
-          <span className="text-sm tabular-nums">$100.00</span>
+          <span className="text-caption tabular-nums">$100.00</span>
         </ItemContent>
       </Item>
     </div>

@@ -55,13 +55,7 @@ function EmptyMedia({
 }
 
 function EmptyTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="empty-title"
-      className={cn("font-heading text-base font-medium tracking-tight", className)}
-      {...props}
-    />
-  );
+  return <div data-slot="empty-title" className={cn("text-subtitle", className)} {...props} />;
 }
 
 function EmptyDescription({ className, ...props }: React.ComponentProps<"div">) {
@@ -69,7 +63,7 @@ function EmptyDescription({ className, ...props }: React.ComponentProps<"div">) 
     <div
       data-slot="empty-description"
       className={cn(
-        "text-sm/relaxed text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
+        "text-caption text-muted-foreground [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
         className,
       )}
       {...props}
@@ -82,7 +76,7 @@ function EmptyContent({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="empty-content"
       className={cn(
-        "flex w-full max-w-sm min-w-0 flex-col items-center gap-2 text-sm text-balance",
+        "flex w-full max-w-sm min-w-0 flex-col items-center gap-2 text-caption text-balance",
         className,
       )}
       {...props}

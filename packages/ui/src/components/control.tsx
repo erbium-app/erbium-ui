@@ -28,10 +28,10 @@ import { TextMorph } from "./text-morph";
 import { cn } from "../lib/utils";
 
 const rowClass =
-  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border surface-control px-2.5 text-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
-const labelClass = "min-w-0 shrink-0 truncate text-sm font-medium text-muted-foreground";
+  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border surface-control px-2.5 text-control text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+const labelClass = "min-w-0 shrink-0 truncate text-control font-medium text-muted-foreground";
 const valueClass =
-  "ms-auto min-w-0 flex-1 text-end text-sm text-foreground outline-none placeholder:text-muted-foreground";
+  "ms-auto min-w-0 flex-1 text-end text-field text-foreground outline-none placeholder:text-muted-foreground";
 const monoClass = "font-mono tabular-nums";
 
 type CommonProps = {
@@ -408,7 +408,7 @@ function ControlNumber({
           ref={inputRef}
           aria-label={`${label} value`}
           className={cn(
-            "absolute inset-e-2.5 top-1/2 z-30 w-20 -translate-y-1/2 border-b border-ring bg-surface-control text-end text-sm outline-none",
+            "absolute inset-e-2.5 top-1/2 z-30 w-20 -translate-y-1/2 border-b border-ring bg-surface-control text-end text-field outline-none",
             monoClass,
           )}
           inputMode="decimal"
@@ -432,7 +432,7 @@ function ControlNumber({
         disabled={disabled}
         aria-label={`Edit ${label} value`}
         className={cn(
-          "absolute inset-e-2.5 top-1/2 z-20 -translate-y-1/2 rounded-sm px-0.5 text-sm text-muted-foreground hover:text-foreground",
+          "absolute inset-e-2.5 top-1/2 z-20 -translate-y-1/2 rounded-sm px-0.5 text-control text-muted-foreground hover:text-foreground",
           monoClass,
           editing && "invisible",
         )}
@@ -528,7 +528,7 @@ function Textarea({
             rows={1}
             className={cn(
               valueClass,
-              "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent leading-5",
+              "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent ",
             )}
             {...mergeProps(defaultProps, props)}
           />
@@ -585,7 +585,7 @@ function SegmentedTrack({
           <RadioPrimitive.Root
             key={option.value}
             value={option.value}
-            className="relative flex min-h-6 min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-xs text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
+            className="relative flex min-h-6 min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-control-sm text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
           >
             {value === option.value && (
               <motion.span
@@ -763,7 +763,7 @@ function Select({
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
-      <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay text-sm outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+      <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay text-control outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
         {options.map((option) => (
           <SelectPrimitive.Item
             key={option.value}
@@ -896,7 +896,7 @@ function Image({
         >
           <SelectPrimitive.Trigger
             aria-label={label}
-            className="group group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground outline-none hover:text-foreground"
+            className="group group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
           >
             {preview ? (
               <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
@@ -911,7 +911,7 @@ function Image({
               <SelectPrimitive.Item
                 key={option.value}
                 value={option.value}
-                className="flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+                className="flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-control outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
               >
                 <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
                 <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
@@ -930,7 +930,7 @@ function Image({
           onClick={() => ref.current?.click()}
           data-no-options={!options?.length ? "" : undefined}
           className={cn(
-            "flex min-w-0 items-center gap-2 rounded-sm text-sm text-muted-foreground hover:text-foreground data-no-options:ms-auto",
+            "flex min-w-0 items-center gap-2 rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto",
           )}
         >
           {!options?.length && preview ? (
@@ -1380,7 +1380,7 @@ function Section({
       className={cn("w-full min-w-0", className)}
     >
       <Separator className="mb-2" />
-      <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-sm font-medium text-muted-foreground outline-none hover:text-foreground">
+      <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control font-medium text-muted-foreground outline-none hover:text-foreground">
         {title}
         <RotatingChevron scope="collapsible" className="size-4" />
       </CollapsibleTrigger>

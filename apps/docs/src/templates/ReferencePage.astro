@@ -69,7 +69,7 @@ const { component, reference, Content, frontmatter, repeatedSummary, lead, remai
     ))
   }
   {name === "toast" && <ShowcaseToaster client:load />}
-  {reference && <section class="component-reference mt-8 text-sm [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mb-4 [&_p]:mb-4" aria-labelledby="component-reference-title">
+  {reference && <section class="component-reference mt-8 text-caption [&_h2]:text-subtitle [&_h2]:font-semibold [&_h2]:mb-4 [&_p]:mb-4" aria-labelledby="component-reference-title">
     <h2 id="component-reference-title">{reference.title}</h2>
     <p>{reference.description}</p>
     <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] [&:empty]:hidden">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>

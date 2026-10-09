@@ -45,7 +45,7 @@ function ButtonShortcut({ className, ...props }: React.ComponentProps<typeof Kbd
       <Kbd
         aria-hidden
         className={cn(
-          "group-data-[size=xs]/button:h-4 group-data-[size=xs]/button:min-w-4 group-data-[size=xs]/button:text-[10px]",
+          "group-data-[size=xs]/button:h-4 group-data-[size=xs]/button:min-w-4 group-data-[size=xs]/button:text-control-sm",
           className,
         )}
         {...props}

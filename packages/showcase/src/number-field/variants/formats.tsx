@@ -23,13 +23,13 @@ const Example = () => (
       </NumberFieldGroup>
     </NumberField>
     <NumberField defaultValue={1234567}>
-      <span className="text-xs text-muted-foreground">Western grouping (en)</span>
+      <span className="text-metadata text-muted-foreground">Western grouping (en)</span>
       <NumberFieldGroup>
         <NumberFieldInput aria-label="Western grouping" className="text-start" />
       </NumberFieldGroup>
     </NumberField>
     <NumberField defaultValue={1234567} locale="en-IN">
-      <span className="text-xs text-muted-foreground">Indian lakh grouping (en-IN)</span>
+      <span className="text-metadata text-muted-foreground">Indian lakh grouping (en-IN)</span>
       <NumberFieldGroup>
         <NumberFieldInput aria-label="Indian lakh grouping" className="text-start" />
       </NumberFieldGroup>

@@ -10,7 +10,22 @@ export const cn = createCn({
   extend: {
     classGroups: {
       "font-size": [
-        { text: ["button-sm", "micro", "display", "title", "subtitle", "body", "caption"] },
+        {
+          text: [
+            "control",
+            "control-sm",
+            "metadata",
+            "code-block",
+            "inline-code",
+            "field",
+            "editable",
+            "display",
+            "title",
+            "subtitle",
+            "body",
+            "caption",
+          ],
+        },
       ],
       surface: [
         {

@@ -13,7 +13,7 @@ const Example = () => (
         {tagColors.map(([color, classes]) => (
           <span
             key={color}
-            className={`${classes} rounded-full border px-2.5 py-0.5 text-xs font-medium`}
+            className={`${classes} rounded-full border px-2.5 py-0.5 text-metadata font-medium`}
           >
             {color}
           </span>

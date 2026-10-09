@@ -34,7 +34,7 @@ export function InputGroupBlockStart() {
             value={code}
             onChange={(event) => setCode(event.target.value)}
             placeholder="console.log('Hello, world!');"
-            className="font-mono text-sm"
+            className="font-mono text-caption"
           />
           <InputGroupAddon align="block-start">
             <HugeiconsIcon icon={FileCodeIcon} className="text-muted-foreground" />

@@ -19,7 +19,7 @@ const Example = () => (
       </div>
       <div className="grid gap-4 rounded-2xl border surface-modal p-6">
         <div>
-          <div className="text-base font-medium">Invite people</div>
+          <div className="text-body font-medium">Invite people</div>
           <div className="text-muted-foreground">A menu opened in a dialog climbs above it.</div>
         </div>
         <span aria-expanded className={`${control} w-fit border surface-control`}>

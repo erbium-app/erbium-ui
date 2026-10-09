@@ -10,7 +10,7 @@ export function SliderControlled() {
     <Field className="mx-auto max-w-xs gap-3">
       <div className="flex items-center justify-between gap-2">
         <FieldLabel>Temperature</FieldLabel>
-        <span className="text-sm text-muted-foreground">{value.join(", ")}</span>
+        <span className="text-caption text-muted-foreground">{value.join(", ")}</span>
       </div>
       <Slider
         value={value}

@@ -15,10 +15,6 @@
 
 @plugin "easing-gradients";
 
-@utility leading-code {
-  line-height: var(--leading-code);
-}
-
 @utility animate-in {
   animation: var(--animate-in);
 }
@@ -39,10 +35,6 @@
 
 @utility rounded-avatar {
   @apply rounded-[35%];
-}
-
-@utility text-micro {
-  @apply text-[10px];
 }
 
 @utility transition-sidebar-size {
@@ -75,8 +67,4 @@
 
 @utility rounded-button-sm {
   @apply rounded-[min(var(--radius-md),12px)];
-}
-
-@utility text-button-sm {
-  @apply text-[0.8rem];
 }

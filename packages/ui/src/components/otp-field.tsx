@@ -135,7 +135,7 @@ function OTPFieldInput({ className, render, ...props }: OTPFieldPrimitive.Input.
             {status === "loading" && (
               <span
                 aria-hidden
-                className="pointer-events-none absolute inset-0 flex items-center justify-center text-sm text-muted-foreground"
+                className="pointer-events-none absolute inset-0 flex items-center justify-center text-caption text-muted-foreground"
               >
                 <span className="shimmer motion-reduce:animate-none [--shimmer-color:color-mix(in_oklab,currentColor_35%,transparent)] [--shimmer-spread:1.5ch]">
                   {state.value}
@@ -146,7 +146,7 @@ function OTPFieldInput({ className, render, ...props }: OTPFieldPrimitive.Input.
         ))
       }
       className={cn(
-        "relative size-8 min-w-0 rounded-lg border surface-field text-center text-sm outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
+        "relative size-8 min-w-0 rounded-lg border surface-field text-center text-caption outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
         className,
       )}
       {...props}

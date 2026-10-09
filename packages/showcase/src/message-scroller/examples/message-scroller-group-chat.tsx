@@ -162,14 +162,14 @@ export function MessageScrollerGroupChat() {
             >
               {buttonLabel}
             </Button>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-metadata text-muted-foreground">
               {rockyTurn === "idle"
                 ? "This will create a marker and make it the anchor"
                 : "Now send Rocky's reply into the conversation"}
             </p>
           </CardFooter>
         </Card>
-        <div className="mx-auto max-w-sm px-0.5 text-center text-xs text-balance text-muted-foreground">
+        <div className="mx-auto max-w-sm px-0.5 text-center text-metadata text-balance text-muted-foreground">
           When a user joins, a marker is created. scrollAnchor on the marker marks it as the next
           turn
         </div>

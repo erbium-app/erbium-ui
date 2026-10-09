@@ -49,7 +49,7 @@ export default function InputGroupDropdown() {
               render={
                 <InputGroupButton
                   variant="ghost"
-                  className="group group/search-menu-trigger pr-1.5! text-xs"
+                  className="group group/search-menu-trigger pr-1.5! text-metadata"
                 >
                   Search In... <RotatingChevron className="size-3" />
                 </InputGroupButton>

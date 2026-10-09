@@ -23,7 +23,7 @@ export default function RadioGroupControlled() {
           ))}
         </RadioGroup>
       </Field>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-caption text-muted-foreground">
         value: <code>{value}</code>
       </p>
     </div>

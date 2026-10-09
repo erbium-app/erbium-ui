@@ -1,74 +1,32 @@
 @import "@erbium/ui/globals.css";
 
-:root {
-  --sans: var(--font-sans);
-  --heading: var(--font-heading);
-  --mono: var(--font-mono);
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color: var(--muted-foreground);
-  background: var(--background);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--foreground);
-}
-
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+  margin: 2rem 0;
 }
+
 h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+  margin: 0 0 0.5rem;
 }
+
 p {
   margin: 0;
 }
 
 code,
 .counter {
-  font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
   color: var(--foreground);
 }
 
 code {
-  font-size: 15px;
-  line-height: 135%;
+  @apply text-inline-code;
   padding: 4px 8px;
   background: var(--code);
 }
 
 .counter {
-  font-size: 16px;
+  @apply text-control tabular-nums;
   padding: 5px 10px;
   border-radius: 5px;
   color: var(--link);
@@ -196,7 +154,7 @@ code {
 
   a {
     color: var(--foreground);
-    font-size: 16px;
+    @apply text-control;
     border-radius: 6px;
     background: var(--muted);
     display: flex;

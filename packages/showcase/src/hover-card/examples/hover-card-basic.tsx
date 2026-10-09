@@ -10,7 +10,7 @@ export default function HoverCardDemo() {
       <HoverCardContent className="flex w-64 flex-col gap-0.5">
         <div className="font-semibold">@erbium</div>
         <div>Accessible components for building your next interface.</div>
-        <div className="mt-1 text-xs text-muted-foreground">Joined December 2021</div>
+        <div className="mt-1 text-metadata text-muted-foreground">Joined December 2021</div>
       </HoverCardContent>
     </HoverCard>
   );

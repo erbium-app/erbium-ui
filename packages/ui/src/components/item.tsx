@@ -54,7 +54,7 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
 }
 
 const itemVariants = cva(
-  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-sm transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-focus-halo group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-4 group-data-[variant=panel]/item-group:py-4 group-data-[variant=panel]/item-group:shadow-none",
+  "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-caption transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-focus-halo group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-4 group-data-[variant=panel]/item-group:py-4 group-data-[variant=panel]/item-group:shadow-none",
   {
     variants: {
       variant: {
@@ -148,7 +148,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
-        "line-clamp-1 flex w-fit items-center gap-2 text-sm leading-snug font-medium underline-offset-4",
+        "line-clamp-1 flex w-fit items-center gap-2 text-control underline-offset-4",
         className,
       )}
       {...props}
@@ -161,7 +161,7 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="item-description"
       className={cn(
-        "line-clamp-2 text-start text-sm leading-normal font-normal text-muted-foreground group-data-[size=xs]/item:text-xs [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
+        "line-clamp-2 text-start text-caption font-normal text-muted-foreground group-data-[size=xs]/item:text-metadata [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
         className,
       )}
       {...props}

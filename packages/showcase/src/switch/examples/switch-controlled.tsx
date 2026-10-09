@@ -11,7 +11,7 @@ export default function SwitchControlled() {
         <Switch checked={checked} onCheckedChange={setChecked} />
         <FieldLabel>Wi-Fi</FieldLabel>
       </Field>
-      <p className="text-sm text-muted-foreground">
+      <p className="text-caption text-muted-foreground">
         checked: <code>{String(checked)}</code>
       </p>
     </div>

@@ -16,7 +16,7 @@
       "path": "src/separator/variants/on-surfaces.tsx",
       "type": "registry:component",
       "target": "@components/showcase/separator/variants/on-surfaces.tsx",
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport { surfaceSamples } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"grid w-160 max-w-[calc(100vw-2rem)] grid-cols-2 gap-3 p-4 sm:grid-cols-3\">\n    {surfaceSamples.map(([name, surface]) => (\n      <div\n        key={name}\n        className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-transparent p-3 ${surface}`}\n      >\n        <span className=\"text-xs font-medium\">{name}</span>\n        <Separator />\n        <Separator className=\"text-xs\">or</Separator>\n      </div>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport { surfaceSamples } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"grid w-160 max-w-[calc(100vw-2rem)] grid-cols-2 gap-3 p-4 sm:grid-cols-3\">\n    {surfaceSamples.map(([name, surface]) => (\n      <div\n        key={name}\n        className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-transparent p-3 ${surface}`}\n      >\n        <span className=\"text-metadata font-medium\">{name}</span>\n        <Separator />\n        <Separator className=\"text-metadata\">or</Separator>\n      </div>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
     }
   ]
 }

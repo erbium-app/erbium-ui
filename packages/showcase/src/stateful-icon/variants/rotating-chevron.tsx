@@ -11,7 +11,7 @@ const Example = () => (
       Project details
       <RotatingChevronIcon direction="right" className="ms-auto size-4" />
     </CollapsibleTrigger>
-    <CollapsibleContent className="px-3 py-2 text-sm text-muted-foreground">
+    <CollapsibleContent className="px-3 py-2 text-caption text-muted-foreground">
       The shared chevron follows the trigger’s open state.
     </CollapsibleContent>
   </Collapsible>
