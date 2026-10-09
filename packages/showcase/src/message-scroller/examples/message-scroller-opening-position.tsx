@@ -3,7 +3,6 @@ import * as React from "react";
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -68,12 +67,12 @@ export function MessageScrollerOpeningPosition() {
           <CardTitle>Opening Position</CardTitle>
           <CardDescription>Choose where a saved transcript opens.</CardDescription>
         </CardHeader>
-        <CardContent className="flex-1 overflow-hidden p-0">
+        <div className="min-h-0 flex-1 overflow-hidden">
           <MessageScrollerProvider>
             <OpeningPositionScroller position={position} positionKey={positionKey} />
           </MessageScrollerProvider>
-        </CardContent>
-        <CardFooter className="flex items-center justify-center border-t">
+        </div>
+        <CardFooter className="flex items-center justify-center">
           <Tabs
             value={position}
             onValueChange={(value) => {
@@ -137,7 +136,7 @@ function OpeningPositionScroller({
   return (
     <MessageScroller>
       <MessageScrollerViewport>
-        <MessageScrollerContent className="p-4">
+        <MessageScrollerContent className="p-panel">
           {messages.map((message) => {
             const isUserMessage = message.role === "user";
 

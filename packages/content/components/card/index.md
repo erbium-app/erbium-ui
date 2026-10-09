@@ -52,3 +52,7 @@ Card
 ├── CardContent
 └── CardFooter
 ```
+
+Card owns the vertical rhythm; CardHeader, CardContent, and CardFooter own their gutters. Use `size="sm"` for the compact recipe rather than overriding section padding. A calendar or independently scrolling body that owns its internal spacing belongs directly in Card, without a CardContent wrapper whose padding must be cancelled. Put an aspect ratio on Card itself, so its gutters count toward the overall dimensions.
+
+CardFooter includes the full-width separator. Do not add `border-t` or a second Separator. The same ownership rule applies to dialog, sheet, and drawer footers.

@@ -7,7 +7,6 @@ import { Button } from "@erbium/ui/components/button";
 import {
   Card,
   CardAction,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -130,11 +129,11 @@ export function MessageScrollerGroupChat() {
               </Tooltip>
             </CardAction>
           </CardHeader>
-          <CardContent className="min-h-0 flex-1 p-0">
+          <div className="min-h-0 flex-1 overflow-hidden">
             <MessageScrollerProvider>
               <MessageScroller key={demoKey}>
                 <MessageScrollerViewport>
-                  <MessageScrollerContent className="p-4">
+                  <MessageScrollerContent className="p-panel">
                     {items.map((item) =>
                       item.type === "message" ? (
                         <GroupChatMessage key={item.id} item={item} />
@@ -151,8 +150,8 @@ export function MessageScrollerGroupChat() {
                 <MessageScrollerButton />
               </MessageScroller>
             </MessageScrollerProvider>
-          </CardContent>
-          <CardFooter className="flex flex-col items-center gap-related border-t">
+          </div>
+          <CardFooter className="flex flex-col items-center gap-related">
             <Button
               type="button"
               disabled={isComplete}

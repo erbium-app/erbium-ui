@@ -17,7 +17,7 @@ export function CalendarWithTime() {
       <CardContent>
         <Calendar mode="single" selected={date} onSelect={setDate} className="p-0" />
       </CardContent>
-      <CardFooter className="border-t">
+      <CardFooter>
         <FieldGroup>
           <Field>
             <FieldLabel>Start Time</FieldLabel>

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Calendar } from "@erbium/ui/components/calendar";
-import { Card, CardContent } from "@erbium/ui/components/card";
+import { Card } from "@erbium/ui/components/card";
 
 export function CalendarBookedDates() {
   const [date, setDate] = React.useState<Date | undefined>(
@@ -14,21 +14,19 @@ export function CalendarBookedDates() {
 
   return (
     <Card className="mx-auto w-fit p-0">
-      <CardContent className="p-0">
-        <Calendar
-          mode="single"
-          defaultMonth={date}
-          selected={date}
-          onSelect={setDate}
-          disabled={bookedDates}
-          modifiers={{
-            booked: bookedDates,
-          }}
-          modifiersClassNames={{
-            booked: "[&>button]:line-through opacity-100",
-          }}
-        />
-      </CardContent>
+      <Calendar
+        mode="single"
+        defaultMonth={date}
+        selected={date}
+        onSelect={setDate}
+        disabled={bookedDates}
+        modifiers={{
+          booked: bookedDates,
+        }}
+        modifiersClassNames={{
+          booked: "[&>button]:line-through opacity-100",
+        }}
+      />
     </Card>
   );
 }
