@@ -16,14 +16,12 @@ import LanguagesIcon from "@hugeicons/core-free-icons/LanguagesIcon";
 import Layout01Icon from "@hugeicons/core-free-icons/Layout01Icon";
 import LogOutIcon from "@hugeicons/core-free-icons/LogOutIcon";
 import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
-import MonitorIcon from "@hugeicons/core-free-icons/MonitorIcon";
-import MoonIcon from "@hugeicons/core-free-icons/MoonIcon";
+import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
 import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
-import PaletteIcon from "@hugeicons/core-free-icons/PaletteIcon";
 import SaveIcon from "@hugeicons/core-free-icons/SaveIcon";
 import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
 import Shield01Icon from "@hugeicons/core-free-icons/Shield01Icon";
-import Sun01Icon from "@hugeicons/core-free-icons/Sun01Icon";
+import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
 import UserIcon from "@hugeicons/core-free-icons/UserIcon";
 
 import { Button } from "@erbium/ui/components/button";
@@ -154,35 +152,20 @@ export function DropdownMenuComplex() {
               <HugeiconsIcon icon={Layout01Icon} />
               Show Status Bar
             </DropdownMenuCheckboxItem>
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger>
-                <HugeiconsIcon icon={PaletteIcon} />
-                Theme
-              </DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent>
-                  <DropdownMenuList>
-                    <DropdownMenuGroup>
-                      <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-                      <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-                        <DropdownMenuRadioItem value="light">
-                          <HugeiconsIcon icon={Sun01Icon} />
-                          Light
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="dark">
-                          <HugeiconsIcon icon={MoonIcon} />
-                          Dark
-                        </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem value="system">
-                          <HugeiconsIcon icon={MonitorIcon} />
-                          System
-                        </DropdownMenuRadioItem>
-                      </DropdownMenuRadioGroup>
-                    </DropdownMenuGroup>
-                  </DropdownMenuList>
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Theme</DropdownMenuLabel>
+            <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+              <DropdownMenuRadioItem value="light">
+                <HugeiconsIcon icon={Sun03Icon} />
+                Light
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="dark">
+                <HugeiconsIcon icon={Moon02Icon} />
+                Dark
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>

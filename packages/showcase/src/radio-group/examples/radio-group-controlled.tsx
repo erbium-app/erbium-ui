@@ -5,11 +5,10 @@ import { useState } from "react";
 const options = [
   { value: "light", label: "Light" },
   { value: "dark", label: "Dark" },
-  { value: "system", label: "System" },
 ];
 
 export default function RadioGroupControlled() {
-  const [value, setValue] = useState("system");
+  const [value, setValue] = useState("light");
 
   return (
     <div className="flex flex-col gap-group">

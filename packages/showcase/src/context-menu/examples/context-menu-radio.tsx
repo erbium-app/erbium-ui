@@ -1,4 +1,7 @@
 import * as React from "react";
+import { HugeiconsIcon } from "@hugeicons/react";
+import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
+import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
 
 import {
   ContextMenu,
@@ -35,9 +38,14 @@ export function ContextMenuRadio() {
           <ContextMenuGroup>
             <ContextMenuLabel>Theme</ContextMenuLabel>
             <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>
-              <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
-              <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
-              <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>
+              <ContextMenuRadioItem value="light">
+                <HugeiconsIcon icon={Sun03Icon} />
+                Light
+              </ContextMenuRadioItem>
+              <ContextMenuRadioItem value="dark">
+                <HugeiconsIcon icon={Moon02Icon} />
+                Dark
+              </ContextMenuRadioItem>
             </ContextMenuRadioGroup>
           </ContextMenuGroup>
         </ContextMenuList>

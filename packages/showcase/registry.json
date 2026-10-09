@@ -7399,6 +7399,7 @@
       "type": "registry:block",
       "title": "Context Menu: Radio",
       "description": "Use `ContextMenuRadioItem` for exclusive choices.",
+      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
       "files": [
         {
@@ -9124,7 +9125,7 @@
       "name": "dropdown-menu-complex",
       "type": "registry:block",
       "title": "Dropdown Menu: Complex",
-      "description": "A richer example combining groups, icons, and submenus.",
+      "description": "A richer example combining groups, icons, and submenus.\n\nTheme is a direct Light or Dark choice in the main menu. Keep this binary preference visible rather than placing it in a submenu or adding a System option. The sun and moon match the shared theme toggle.",
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
       "files": [
@@ -12977,6 +12978,7 @@
       "type": "registry:block",
       "title": "Menubar: Radio",
       "description": "Use `MenubarRadioGroup` and `MenubarRadioItem` for single-select options.",
+      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
       "files": [
         {
