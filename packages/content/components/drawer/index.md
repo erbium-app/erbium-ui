@@ -97,3 +97,11 @@ Base UI also exposes attributes like `data-swiping`, `data-starting-style`, and
 `DrawerPanel` can use `group-data-[swipe-axis=x]/drawer-popup` and
 
 `group-data-[swipe-axis=y]/drawer-popup` for axis-specific styling.
+
+## Search, touch controls, and the keyboard
+
+Keep search inside its own result surface using Command or an inline AutocompleteSearchInput. Search rows stay flush and use the shared separator; do not add an inset field shell. DrawerContent already owns content scrolling, while header and footer remain outside it.
+
+Bottom drawers already integrate Base UI's virtual keyboard provider. Avoid adding another provider or compensating for the keyboard with custom viewport calculations. Let the drawer coordinate keyboard dismissal, scrolling, and item taps.
+
+Use `data-base-ui-swipe-ignore` on an interaction that must fully opt out of drawer swipes. For a touch control that only handles one axis, use `"x"` or `"y"` so the other axis can still swipe the drawer. Place this marker on the control, not the entire content area. The SearchAndControls story demonstrates a horizontal slider beside a searchable list. Real-device checks are still needed for swipe velocity and virtual keyboard behavior.

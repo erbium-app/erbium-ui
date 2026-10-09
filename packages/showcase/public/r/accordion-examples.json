@@ -12,6 +12,7 @@
     "@erbium-examples/accordion-controlled",
     "@erbium-examples/accordion-disabled",
     "@erbium-examples/accordion-borders",
-    "@erbium-examples/accordion-card"
+    "@erbium-examples/accordion-card",
+    "@erbium-examples/accordion-find-in-page"
   ]
 }

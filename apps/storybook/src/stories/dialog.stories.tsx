@@ -7,3 +7,4 @@ export const CustomCloseButton = { ...showcases.CustomCloseButton, name: "Custom
 export const NoCloseButton = { ...showcases.NoCloseButton, name: "No Close Button" };
 export const StickyFooter = { ...showcases.StickyFooter, name: "Sticky Footer" };
 export const ScrollableContent = { ...showcases.ScrollableContent, name: "Scrollable Content" };
+export const Programmatic = { ...showcases.Programmatic, name: "Programmatic opening" };

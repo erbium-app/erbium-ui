@@ -44,3 +44,9 @@ Accordion
     ├── AccordionTrigger
     └── AccordionContent
 ```
+
+## Discoverable collapsed content
+
+Use `hiddenUntilFound` on AccordionContent when reading content should remain discoverable through browser Find. Base UI opens the panel when a supported browser reveals a match. Do not add `display: none`, a `hidden` utility, or your own beforematch handler; these interfere with the primitive's reveal behavior. Keep ordinary unmounted panels for content that does not need browser search.
+
+Disabled triggers use the native disabled button behavior. Use the primitive's `disabled` prop rather than recreating it with pointer-event classes.

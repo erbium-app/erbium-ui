@@ -11,3 +11,4 @@ export const Nested = { ...showcases.Nested, name: "Nested" };
 export const CustomSizes = { ...showcases.CustomSizes, name: "Custom Sizes" };
 export const Styling = { ...showcases.Styling, name: "Styling" };
 export const Responsive = { ...showcases.Responsive, name: "Responsive" };
+export const SearchAndControls = { ...showcases.SearchAndControls, name: "Search and controls" };

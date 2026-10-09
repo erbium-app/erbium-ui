@@ -1,3 +1,5 @@
+import ProgrammaticExample from "./variants/programmatic";
+import ProgrammaticSource from "./variants/programmatic.tsx?raw";
 import { Dialog } from "@erbium/ui/components/dialog";
 
 import type { Meta, StoryObj } from "../types";
@@ -105,4 +107,14 @@ export const ScrollableContent: Story = {
     },
   },
   render: ScrollableContentExample,
+};
+
+export const Programmatic: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("dialog", "programmatic") },
+      source: { code: ProgrammaticSource },
+    },
+  },
+  render: ProgrammaticExample,
 };

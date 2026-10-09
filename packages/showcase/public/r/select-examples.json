@@ -11,6 +11,7 @@
     "@erbium-examples/select-groups",
     "@erbium-examples/select-disabled",
     "@erbium-examples/select-invalid",
-    "@erbium-examples/select-align-item-with-trigger"
+    "@erbium-examples/select-align-item-with-trigger",
+    "@erbium-examples/select-readonly-selection"
   ]
 }

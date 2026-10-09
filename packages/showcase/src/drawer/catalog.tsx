@@ -1,3 +1,5 @@
+import SearchAndControlsExample from "./variants/search-and-controls";
+import SearchAndControlsSource from "./variants/search-and-controls.tsx?raw";
 import { Drawer } from "@erbium/ui/components/drawer";
 
 import type { Meta, StoryObj } from "../types";
@@ -171,4 +173,14 @@ export const Responsive: Story = {
     },
   },
   render: ResponsiveExample,
+};
+
+export const SearchAndControls: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("drawer", "search-and-controls") },
+      source: { code: SearchAndControlsSource },
+    },
+  },
+  render: SearchAndControlsExample,
 };

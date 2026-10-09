@@ -9,3 +9,4 @@ export const Controlled = { ...showcases.Controlled, name: "Controlled" };
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
 export const Borders = { ...showcases.Borders, name: "Borders" };
 export const Card = { ...showcases.Card, name: "Card" };
+export const FindInPage = { ...showcases.FindInPage, name: "Find in page" };

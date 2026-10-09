@@ -11,3 +11,4 @@ export const AlignItemWithTrigger = {
   ...showcases.AlignItemWithTrigger,
   name: "Align Item With Trigger",
 };
+export const ReadonlySelection = { ...showcases.ReadonlySelection, name: "Readonly selection" };

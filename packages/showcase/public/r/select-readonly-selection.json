@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "select-readonly-selection",
+  "type": "registry:component",
+  "title": "Select: Readonly selection",
+  "description": "Select multiple teams. The initial selection is a readonly array, and updates replace it rather than mutate it. The value display follows the selected labels while the application keeps stable IDs. Select stays a non-searchable value picker; use Combobox for searchable values.",
+  "registryDependencies": ["@erbium/select", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/select/variants/readonly-selection.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/select/variants/readonly-selection.tsx",
+      "content": "import { useState } from \"react\";\nimport {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectContent,\n  SelectItem,\n} from \"@/registry/erbium/ui/select\";\n\nconst options = [\n  { value: \"design\", label: \"Design\" },\n  { value: \"engineering\", label: \"Engineering\" },\n  { value: \"research\", label: \"Research\" },\n];\nconst initialValues: readonly string[] = [\"design\"];\n\nexport default function ReadonlySelectionExample() {\n  const [value, setValue] = useState<readonly string[]>(initialValues);\n  return (\n    <div className=\"grid gap-related\">\n      <Select multiple items={options} value={value} onValueChange={setValue}>\n        <SelectTrigger aria-label=\"Project teams\" className=\"w-64\">\n          <SelectValue placeholder=\"Choose teams\" />\n        </SelectTrigger>\n        <SelectContent>\n          {options.map((option) => (\n            <SelectItem key={option.value} value={option.value}>\n              {option.label}\n            </SelectItem>\n          ))}\n        </SelectContent>\n      </Select>\n      <p role=\"status\" className=\"text-caption text-muted-foreground\">\n        Selected teams: {value.join(\", \") || \"none\"}\n      </p>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

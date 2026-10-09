@@ -1,3 +1,5 @@
+import ReadonlySelectionExample from "./variants/readonly-selection";
+import ReadonlySelectionSource from "./variants/readonly-selection.tsx?raw";
 import type { Meta, StoryObj } from "../types";
 
 import { Select } from "@erbium/ui/components/select";
@@ -138,4 +140,14 @@ export const AlignItemWithTrigger: Story = {
     },
   },
   render: AlignItemWithTriggerExample,
+};
+
+export const ReadonlySelection: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("select", "readonly-selection") },
+      source: { code: ReadonlySelectionSource },
+    },
+  },
+  render: ReadonlySelectionExample,
 };

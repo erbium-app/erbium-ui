@@ -50,6 +50,12 @@
         "slug": "card",
         "title": "Card",
         "source": "src/accordion/variants/card.tsx"
+      },
+      {
+        "exportName": "FindInPage",
+        "slug": "find-in-page",
+        "title": "Find in page",
+        "source": "src/accordion/variants/find-in-page.tsx"
       }
     ]
   },
@@ -1586,6 +1592,12 @@
         "slug": "scrollable-content",
         "title": "Scrollable Content",
         "source": "src/dialog/variants/scrollable-content.tsx"
+      },
+      {
+        "exportName": "Programmatic",
+        "slug": "programmatic",
+        "title": "Programmatic opening",
+        "source": "src/dialog/variants/programmatic.tsx"
       }
     ]
   },
@@ -1670,6 +1682,12 @@
         "slug": "responsive",
         "title": "Responsive",
         "source": "src/drawer/variants/responsive.tsx"
+      },
+      {
+        "exportName": "SearchAndControls",
+        "slug": "search-and-controls",
+        "title": "Search and controls",
+        "source": "src/drawer/variants/search-and-controls.tsx"
       }
     ]
   },
@@ -3116,6 +3134,12 @@
         "slug": "align-item-with-trigger",
         "title": "Align Item With Trigger",
         "source": "src/select/variants/align-item-with-trigger.tsx"
+      },
+      {
+        "exportName": "ReadonlySelection",
+        "slug": "readonly-selection",
+        "title": "Readonly selection",
+        "source": "src/select/variants/readonly-selection.tsx"
       }
     ]
   },

@@ -14,6 +14,7 @@
     "@erbium-examples/drawer-nested",
     "@erbium-examples/drawer-custom-sizes",
     "@erbium-examples/drawer-styling",
-    "@erbium-examples/drawer-responsive"
+    "@erbium-examples/drawer-responsive",
+    "@erbium-examples/drawer-search-and-controls"
   ]
 }

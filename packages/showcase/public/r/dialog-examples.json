@@ -10,6 +10,7 @@
     "@erbium-examples/dialog-custom-close-button",
     "@erbium-examples/dialog-no-close-button",
     "@erbium-examples/dialog-sticky-footer",
-    "@erbium-examples/dialog-scrollable-content"
+    "@erbium-examples/dialog-scrollable-content",
+    "@erbium-examples/dialog-programmatic"
   ]
 }

@@ -120,7 +120,22 @@
         "@erbium-examples/accordion-controlled",
         "@erbium-examples/accordion-disabled",
         "@erbium-examples/accordion-borders",
-        "@erbium-examples/accordion-card"
+        "@erbium-examples/accordion-card",
+        "@erbium-examples/accordion-find-in-page"
+      ]
+    },
+    {
+      "name": "accordion-find-in-page",
+      "type": "registry:component",
+      "title": "Accordion: Find in page",
+      "description": "Search for “workspace recovery” using your browser's Find command. With `hiddenUntilFound`, supporting browsers reveal and open the matching panel. The panel remains collapsed until the user opens it or browser search finds a match. The disabled section demonstrates native disabled trigger behavior.",
+      "registryDependencies": ["@erbium/accordion", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/accordion/variants/find-in-page.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/accordion/variants/find-in-page.tsx"
+        }
       ]
     },
     {
@@ -235,6 +250,11 @@
           "path": "src/accordion/variants/disabled.tsx",
           "type": "registry:component",
           "target": "@components/showcase/accordion/variants/disabled.tsx"
+        },
+        {
+          "path": "src/accordion/variants/find-in-page.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/accordion/variants/find-in-page.tsx"
         },
         {
           "path": "src/accordion/variants/multiple.tsx",
@@ -8280,7 +8300,8 @@
         "@erbium-examples/dialog-custom-close-button",
         "@erbium-examples/dialog-no-close-button",
         "@erbium-examples/dialog-sticky-footer",
-        "@erbium-examples/dialog-scrollable-content"
+        "@erbium-examples/dialog-scrollable-content",
+        "@erbium-examples/dialog-programmatic"
       ]
     },
     {
@@ -8339,6 +8360,20 @@
           "path": "src/dialog/variants/playground.tsx",
           "type": "registry:component",
           "target": "@components/showcase/dialog/variants/playground.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog-programmatic",
+      "type": "registry:component",
+      "title": "Dialog: Programmatic opening",
+      "description": "Open the same dialog from the external application-state button and from its registered trigger. Close it with Done or Escape. Focus should return to the control that actually opened it. Keep controlled open state at the application boundary; use the existing Dialog API rather than an additional overlay context.",
+      "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/dialog/variants/programmatic.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/dialog/variants/programmatic.tsx"
         }
       ]
     },
@@ -8447,6 +8482,11 @@
           "path": "src/dialog/variants/playground.tsx",
           "type": "registry:component",
           "target": "@components/showcase/dialog/variants/playground.tsx"
+        },
+        {
+          "path": "src/dialog/variants/programmatic.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/dialog/variants/programmatic.tsx"
         },
         {
           "path": "src/dialog/variants/scrollable-content.tsx",
@@ -8618,7 +8658,8 @@
         "@erbium-examples/drawer-nested",
         "@erbium-examples/drawer-custom-sizes",
         "@erbium-examples/drawer-styling",
-        "@erbium-examples/drawer-responsive"
+        "@erbium-examples/drawer-responsive",
+        "@erbium-examples/drawer-search-and-controls"
       ]
     },
     {
@@ -8737,6 +8778,27 @@
       ]
     },
     {
+      "name": "drawer-search-and-controls",
+      "type": "registry:component",
+      "title": "Drawer: Search and controls",
+      "description": "Search the project list, choose a project, and adjust the preview scale. The Command input remains flush with its result surface and is separated from results by the shared separator. Only the content scrolls; the drawer header and footer stay in place. The slider uses `data-base-ui-swipe-ignore=\"x\"` to reserve horizontal touch gestures for the control while allowing the drawer to handle the other axis. Verify swipe dismissal and virtual-keyboard behavior on a real touch device.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/command",
+        "@erbium/drawer",
+        "@erbium/field",
+        "@erbium/slider",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/drawer/variants/search-and-controls.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/drawer/variants/search-and-controls.tsx"
+        }
+      ]
+    },
+    {
       "name": "drawer-sides",
       "type": "registry:component",
       "title": "drawer sides",
@@ -8777,10 +8839,13 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/command",
         "@erbium/csp-provider",
         "@erbium/dialog",
         "@erbium/drawer",
+        "@erbium/field",
         "@erbium/overlay-provider",
+        "@erbium/slider",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/use-is-mobile"
@@ -8860,6 +8925,11 @@
           "path": "src/drawer/variants/responsive.tsx",
           "type": "registry:component",
           "target": "@components/showcase/drawer/variants/responsive.tsx"
+        },
+        {
+          "path": "src/drawer/variants/search-and-controls.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/drawer/variants/search-and-controls.tsx"
         },
         {
           "path": "src/drawer/variants/snap-points.tsx",
@@ -16680,7 +16750,8 @@
         "@erbium-examples/select-groups",
         "@erbium-examples/select-disabled",
         "@erbium-examples/select-invalid",
-        "@erbium-examples/select-align-item-with-trigger"
+        "@erbium-examples/select-align-item-with-trigger",
+        "@erbium-examples/select-readonly-selection"
       ]
     },
     {
@@ -16751,6 +16822,20 @@
           "path": "src/select/variants/playground.tsx",
           "type": "registry:component",
           "target": "@components/showcase/select/variants/playground.tsx"
+        }
+      ]
+    },
+    {
+      "name": "select-readonly-selection",
+      "type": "registry:component",
+      "title": "Select: Readonly selection",
+      "description": "Select multiple teams. The initial selection is a readonly array, and updates replace it rather than mutate it. The value display follows the selected labels while the application keeps stable IDs. Select stays a non-searchable value picker; use Combobox for searchable values.",
+      "registryDependencies": ["@erbium/select", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/select/variants/readonly-selection.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/select/variants/readonly-selection.tsx"
         }
       ]
     },
@@ -16858,6 +16943,11 @@
           "path": "src/select/variants/playground.tsx",
           "type": "registry:component",
           "target": "@components/showcase/select/variants/playground.tsx"
+        },
+        {
+          "path": "src/select/variants/readonly-selection.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/select/variants/readonly-selection.tsx"
         },
         {
           "path": "src/select/variants/scrollable.tsx",

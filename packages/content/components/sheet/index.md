@@ -54,3 +54,7 @@ Sheet
     ├── SheetContent
     └── SheetFooter
 ```
+
+## Interaction ownership
+
+Sheet uses Dialog behavior with a side panel. Keep its existing controlled open state; programmatic opening and nested overlays follow the Dialog focus contract.

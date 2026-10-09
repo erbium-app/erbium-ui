@@ -38,3 +38,7 @@ Tooltip
 ├── TooltipTrigger
 └── TooltipContent
 ```
+
+## Interaction ownership
+
+Keep tooltip content tied to hover or focus on its current trigger. Remounting a closed trigger should not animate the tooltip open. Tooltips do not take focus; keep actions and interactive content in a Popover instead.

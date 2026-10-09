@@ -1,3 +1,5 @@
+import FindInPageExample from "./variants/find-in-page";
+import FindInPageSource from "./variants/find-in-page.tsx?raw";
 import type { Meta, StoryObj } from "../types";
 
 import { Accordion } from "@erbium/ui/components/accordion";
@@ -132,4 +134,14 @@ export const Card: Story = {
     },
   },
   render: CardExample,
+};
+
+export const FindInPage: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("accordion", "find-in-page") },
+      source: { code: FindInPageSource },
+    },
+  },
+  render: FindInPageExample,
 };

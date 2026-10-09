@@ -36,3 +36,7 @@ HoverCard
 ├── HoverCardTrigger
 └── HoverCardContent
 ```
+
+## Interaction ownership
+
+Keep preview content tied to the current trigger. Remounting a trigger while the card is closed should not start an opening transition. A hover card is a preview, so avoid adding focus traps or application overlay contexts.

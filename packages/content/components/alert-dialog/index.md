@@ -60,3 +60,7 @@ AlertDialog
         ├── AlertDialogCancel
         └── AlertDialogAction
 ```
+
+## Interaction ownership
+
+Keep destructive-action confirmation controlled at the application boundary. Programmatic opening must restore focus to the actual opening control; do not force focus to an unrelated trigger. See the Dialog programmatic-opening story for the shared focus contract.
