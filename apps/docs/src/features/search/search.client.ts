@@ -1,3 +1,4 @@
+import { focusSearchInput } from "@erbium/ui/lib/focus-search-input";
 import { prefetch } from "@/runtime/prefetch.client";
 const normalize = (value: string) => value.toLowerCase().replace(/[-_]/g, " ").trim();
 
@@ -13,6 +14,13 @@ class DocsSearch extends HTMLElement {
     const options = { signal };
     const dialog = this.querySelector<HTMLDialogElement>("dialog")!;
     const input = this.querySelector<HTMLInputElement>('input[type="search"]')!;
+    input
+      .closest<HTMLElement>(".search-input-row")
+      ?.addEventListener(
+        "pointerdown",
+        (event) => focusSearchInput(event.currentTarget as HTMLElement, event),
+        options,
+      );
     const clear = this.querySelector<HTMLButtonElement>("[data-search-clear]")!;
     const results = this.querySelector<HTMLElement>(".docs-search-results")!;
     const empty = this.querySelector<HTMLElement>("[data-search-empty]")!;

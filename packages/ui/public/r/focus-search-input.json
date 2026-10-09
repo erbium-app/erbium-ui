@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "focus-search-input",
+  "type": "registry:lib",
+  "title": "Focus Search Input",
+  "description": "Erbium focus search input lib.",
+  "files": [
+    {
+      "path": "src/lib/focus-search-input.ts",
+      "type": "registry:lib",
+      "target": "@lib/focus-search-input.ts",
+      "content": "/** Search-row padding belongs to the field; nested actions retain their behavior. */\nexport function focusSearchInput(\n  container: HTMLElement,\n  event: Pick<PointerEvent, \"button\" | \"target\" | \"defaultPrevented\" | \"preventDefault\">,\n) {\n  if (event.button !== 0 || event.defaultPrevented) return;\n  if (event.target instanceof Element && event.target.closest(\"input, button, a, select, textarea\"))\n    return;\n  const input = container.querySelector(\"input\");\n  if (!input || input.disabled) return;\n  event.preventDefault();\n  input.focus();\n}\n"
+    }
+  ]
+}

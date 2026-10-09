@@ -47,6 +47,7 @@ for (const path of sourceFiles(join(root, "apps/docs/src")).filter((file) =>
       ),
   });
   const sizingVisitors = sizingPlugin.rules["use-component-geometry"].create({
+    physicalFilename: path,
     sourceCode: { getAncestors: (node) => ancestors.get(node) ?? [] },
     report: ({ node, data }) =>
       report(

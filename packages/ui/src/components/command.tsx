@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Autocomplete as CommandPrimitive } from "@base-ui/react/autocomplete";
+import { focusSearchInput } from "../lib/focus-search-input";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Dialog, DialogPanel, DialogContent, DialogDescription, DialogTitle } from "./dialog";
@@ -96,7 +97,10 @@ function CommandDialog({
 function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
   return (
     <div data-slot="command-input-wrapper">
-      <div className="flex search-input-row items-center">
+      <div
+        className="flex search-input-row items-center"
+        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+      >
         <HugeiconsIcon
           icon={Search01Icon}
           aria-hidden="true"

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
+import { focusSearchInput } from "../lib/focus-search-input";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "./input-group";
@@ -81,7 +82,10 @@ function ComboboxInput({
 function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Props) {
   return (
     <div data-slot="combobox-search-input-wrapper">
-      <div className="flex search-input-row items-center">
+      <div
+        className="flex search-input-row items-center"
+        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+      >
         <HugeiconsIcon
           icon={Search01Icon}
           aria-hidden="true"

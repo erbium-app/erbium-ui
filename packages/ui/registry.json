@@ -375,6 +375,7 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/focus-search-input",
         "@erbium/input-group",
         "@erbium/scroll-area",
         "@erbium/separator",
@@ -397,6 +398,7 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/dialog",
+        "@erbium/focus-search-input",
         "@erbium/kbd",
         "@erbium/scroll-area",
         "@erbium/separator",
@@ -621,6 +623,19 @@
           "path": "src/components/field.tsx",
           "type": "registry:ui",
           "target": "@ui/field.tsx"
+        }
+      ]
+    },
+    {
+      "name": "focus-search-input",
+      "type": "registry:lib",
+      "title": "Focus Search Input",
+      "description": "Erbium focus search input lib.",
+      "files": [
+        {
+          "path": "src/lib/focus-search-input.ts",
+          "type": "registry:lib",
+          "target": "@lib/focus-search-input.ts"
         }
       ]
     },

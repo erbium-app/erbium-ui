@@ -214,6 +214,9 @@
 
 /* Search headers separate editable text from the results below it. */
 @utility search-input-row {
+  & > input {
+    padding-block: 0;
+  }
   min-height: 2.5rem;
   padding-block: 0.5rem;
   padding-inline: 0.75rem;

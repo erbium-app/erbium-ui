@@ -60,12 +60,20 @@ export default {
         }
         function inspectDescendantOverrides(node, value) {
           if (typeof value !== "string" || !classContext(node, context)) return;
+          const file = context.physicalFilename ?? context.filename ?? "";
+          // Library recipes may intentionally coordinate children; consumers
+          // cannot redefine their control geometry through ancestor selectors.
+          if (file.includes("/packages/ui/src/")) return;
           for (const token of value.split(/\s+/)) {
-            if (
-              /(?:docs-search-trigger|docs-nav-link)\]:(?:!?)(?:h-|min-h-|size-|p-|px-|py-|text-(?:control|caption|body|metadata))/.test(
-                token,
-              )
-            )
+            const end = token.lastIndexOf("]:");
+            if (end < 0) continue;
+            const selector = token.slice(0, end + 1);
+            const utility = token.slice(end + 2).replace(/^!/, "");
+            const targetsControl =
+              /(?:docs-search-trigger|docs-nav-link|data-slot=['"]?(?:button|input|textarea|select-trigger|sidebar-menu-button|toggle|input-group))/.test(
+                selector,
+              ) || /(?:_|>|\s)(?:button|input|select|textarea)(?:\]|_|:|\s|$)/.test(selector);
+            if (targetsControl && /^(?:h-|min-h-|size-|p-|px-|py-|pt-|pb-|ps-|pe-)/.test(utility))
               context.report({ node, messageId: "useSize", data: { token } });
           }
         }
@@ -92,6 +100,32 @@ export default {
             const opening = context.sourceCode
               .getAncestors(node)
               .findLast((parent) => parent.type === "JSXOpeningElement");
+            if (controls.has(opening?.name?.name) && node.name?.name === "style") {
+              const expression =
+                node.value?.type === "JSXExpressionContainer" ? node.value.expression : null;
+              for (const property of expression?.properties ?? []) {
+                const key = property.key?.name ?? property.key?.value;
+                if (
+                  [
+                    "height",
+                    "minHeight",
+                    "maxHeight",
+                    "padding",
+                    "paddingBlock",
+                    "paddingInline",
+                    "paddingTop",
+                    "paddingBottom",
+                    "paddingLeft",
+                    "paddingRight",
+                  ].includes(key)
+                )
+                  context.report({
+                    node: property,
+                    messageId: "useSize",
+                    data: { token: `style.${key}` },
+                  });
+              }
+            }
             if (
               !["className", "class"].includes(node.name?.name) ||
               !controls.has(opening?.name?.name)
