@@ -84,6 +84,7 @@ const guides = [
   ["/docs/installation", "installation.md", "Guides"],
   ["/docs/getting-started", "getting-started.md", "Guides"],
   ["/docs/typography", "typography.md", "Guides"],
+  ["/docs/sizing", "sizing.md", "Guides"],
   ["/docs/roadmap", "roadmap.md", "Overview"],
   ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
 ];

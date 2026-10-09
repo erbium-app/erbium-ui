@@ -21,11 +21,14 @@ function ComboboxTrigger({ className, children, ...props }: ComboboxPrimitive.Tr
   return (
     <ComboboxPrimitive.Trigger
       data-slot="combobox-trigger"
-      className={cn("group group/combobox-trigger [&_svg:not([class*='size-'])]:size-4", className)}
+      className={cn(
+        "group group/combobox-trigger [&_svg:not([class*='size-'])]:size-control-icon",
+        className,
+      )}
       {...props}
     >
       {children}
-      <RotatingChevron className="pointer-events-none size-4 text-muted-foreground" />
+      <RotatingChevron className="pointer-events-none size-control-icon text-muted-foreground" />
     </ComboboxPrimitive.Trigger>
   );
 }
@@ -78,11 +81,11 @@ function ComboboxInput({
 function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Props) {
   return (
     <div data-slot="combobox-search-input-wrapper">
-      <div className="flex h-10 items-center gap-2 px-3">
+      <div className="flex min-h-control control-adaptive items-center gap-related px-control-inset">
         <HugeiconsIcon
           icon={Search01Icon}
           aria-hidden="true"
-          className="size-4 shrink-0 text-muted-foreground"
+          className="size-control-icon shrink-0 text-muted-foreground"
         />
         <ComboboxPrimitive.Input
           data-slot="combobox-search-input"
@@ -125,7 +128,7 @@ function ComboboxContent({
           data-slot="combobox-content"
           data-chips={!!anchor}
           className={cn(
-            "group/combobox-content relative max-h-(--available-height) w-(--anchor-width) max-w-(--available-width) min-w-[calc(var(--anchor-width)+(--spacing(7)))] origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay text-popover-foreground border duration-100 data-[chips=true]:min-w-(--anchor-width) data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-start-2 data-[side=inline-start]:slide-in-from-end-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 *:data-[slot=input-group]:m-1 *:data-[slot=input-group]:mb-0 *:data-[slot=input-group]:h-8 *:data-[slot=input-group]:border-input/30 *:data-[slot=input-group]:bg-input/30 *:data-[slot=input-group]:shadow-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            "group/combobox-content relative max-h-(--available-height) w-(--anchor-width) max-w-(--available-width) min-w-[calc(var(--anchor-width)+(--spacing(7)))] origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay text-popover-foreground border duration-100 data-[chips=true]:min-w-(--anchor-width) data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-start-2 data-[side=inline-start]:slide-in-from-end-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 *:data-[slot=input-group]:m-1 *:data-[slot=input-group]:mb-0 *:data-[slot=input-group]:min-h-control *:data-[slot=input-group]:border-input/30 *:data-[slot=input-group]:bg-input/30 *:data-[slot=input-group]:shadow-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className,
           )}
           {...props}
@@ -159,7 +162,7 @@ function ComboboxItem({ className, children, ...props }: ComboboxPrimitive.Item.
     <ComboboxPrimitive.Item
       data-slot="combobox-item"
       className={cn(
-        "relative flex w-full cursor-default items-center gap-2 rounded-md py-1 pe-8 ps-1.5 text-control outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=error]:data-highlighted:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex w-full cursor-default items-center rounded-md row-size pe-8 text-control-sm outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=error]:data-highlighted:**:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}
@@ -167,7 +170,7 @@ function ComboboxItem({ className, children, ...props }: ComboboxPrimitive.Item.
       {children}
       <ComboboxPrimitive.ItemIndicator
         render={
-          <span className="pointer-events-none absolute inset-e-2 flex size-4 items-center justify-center" />
+          <span className="pointer-events-none absolute inset-e-2 flex size-control-icon items-center justify-center" />
         }
       >
         <HugeiconsIcon icon={CheckIcon} className="pointer-events-none" />
@@ -228,7 +231,7 @@ function ComboboxChips({
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
       className={cn(
-        "flex min-h-8 flex-wrap items-center gap-1 rounded-lg border surface-field px-2.5 py-1 text-control transition-[color,background-color,box-shadow] duration-150 motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo has-data-[slot=combobox-chip]:px-1 dark:has-aria-invalid:border-invalid",
+        "flex min-h-control control-adaptive flex-wrap items-center gap-1 rounded-lg border surface-field px-2.5 py-1 text-control transition-[color,background-color,box-shadow] duration-150 motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo has-data-[slot=combobox-chip]:px-1 dark:has-aria-invalid:border-invalid",
         className,
       )}
       {...props}

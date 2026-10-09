@@ -24,7 +24,10 @@ function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   return (
     <MenubarPrimitive
       data-slot="menubar"
-      className={cn("flex h-8 items-center gap-0.5 rounded-lg border p-0.75", className)}
+      className={cn(
+        "flex min-h-control control-adaptive items-center gap-0.5 rounded-lg border p-0.75",
+        className,
+      )}
       {...props}
     />
   );
@@ -47,7 +50,7 @@ function MenubarTrigger({ className, ...props }: React.ComponentProps<typeof Dro
     <DropdownMenuTrigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex items-center rounded-sm px-1.5 py-0.5 text-control font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
+        "flex items-center rounded-sm segmented-size px-control-inset py-0 text-control-sm font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
         className,
       )}
       {...props}
@@ -114,7 +117,7 @@ function MenubarCheckboxItem({
       checked={checked}
       {...props}
     >
-      <span className="pointer-events-none absolute inset-s-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
+      <span className="pointer-events-none absolute inset-s-1.5 flex size-control-icon items-center justify-center [&_svg:not([class*='size-'])]:size-control-icon">
         <MenuPrimitive.CheckboxItemIndicator>
           <HugeiconsIcon icon={CheckIcon} />
         </MenuPrimitive.CheckboxItemIndicator>
@@ -141,12 +144,12 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center gap-2 rounded-md py-1 pe-1.5 ps-7 text-control whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-default items-center gap-2 rounded-md py-1 pe-1.5 ps-7 text-control whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}
     >
-      <span className="pointer-events-none absolute inset-s-1.5 flex size-4 items-center justify-center [&_svg:not([class*='size-'])]:size-4">
+      <span className="pointer-events-none absolute inset-s-1.5 flex size-control-icon items-center justify-center [&_svg:not([class*='size-'])]:size-control-icon">
         <MenuPrimitive.RadioItemIndicator>
           <HugeiconsIcon icon={CheckIcon} />
         </MenuPrimitive.RadioItemIndicator>

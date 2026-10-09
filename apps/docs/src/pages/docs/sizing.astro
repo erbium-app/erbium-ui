@@ -1,0 +1,16 @@
+---
+import Prose from "@/components/content/Prose.astro";
+import Showcase from "@/features/showcase/Showcase.astro";
+import manifest from "@erbium/showcase/manifest";
+import { showcaseSource } from "@erbium/showcase/sources";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import PageHeader from "@/components/content/PageHeader.astro";
+import { Content, frontmatter, getHeadings } from "@erbium/content/sizing.md";
+const previews = manifest.find(entry => entry.name === "sizing")!.variants;
+const headings = [...previews.map(variant => ({ depth: 2, slug: `preview-${variant.slug}`, text: variant.title })), ...getHeadings()];
+---
+<DocsLayout title={frontmatter.title} description={frontmatter.description} headings={headings}>
+  <PageHeader title={frontmatter.title} description={frontmatter.description} />
+  {previews.map(variant => <Showcase name="sizing" variant={variant.exportName} slug={variant.slug} anchorId={`preview-${variant.slug}`} title={variant.title} source={showcaseSource(variant.source)} files={[]}><p>Shared geometry in composed components.</p></Showcase>)}
+  <Prose><Content /></Prose>
+</DocsLayout>

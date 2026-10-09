@@ -158,7 +158,7 @@ function NumberFieldGroup({ className, ...props }: NumberFieldPrimitive.Group.Pr
     <NumberFieldPrimitive.Group
       data-slot="number-field-group"
       className={cn(
-        "relative flex h-8 w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:h-9 group-data-[size=sm]/number-field:h-7 motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex min-h-control control-adaptive w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}

@@ -17,7 +17,7 @@ function FieldSet({ className, ...props }: FieldPrimitive.Root.Props) {
       render={<FieldsetPrimitive.Root />}
       data-slot="field-set"
       className={cn(
-        "flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
+        "flex flex-col gap-group has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
         className,
       )}
       {...props}
@@ -48,7 +48,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="field-group"
       className={cn(
-        "group/field-group @container/field-group flex w-full flex-col gap-5 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
+        "group/field-group @container/field-group flex w-full flex-col gap-group data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-group",
         className,
       )}
       {...props}
@@ -63,7 +63,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
  * radio) tint it, focus and validity color the rim. The label stretches over
  * the card, so the whole card toggles its control.
  */
-const fieldVariants = cva("group/field flex w-full gap-2 data-invalid:text-error", {
+const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text-error", {
   variants: {
     variant: {
       default: "",
@@ -121,7 +121,7 @@ function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
     <FieldPrimitive.Label
       data-slot="field-label"
       className={cn(
-        "group/field-label peer/field-label flex w-fit gap-2 text-control select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
+        "group/field-label peer/field-label flex w-fit gap-related text-control select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
         className,
       )}
       {...props}

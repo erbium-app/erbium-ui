@@ -76,7 +76,7 @@ function EmptyContent({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="empty-content"
       className={cn(
-        "flex w-full max-w-sm min-w-0 flex-col items-center gap-2 text-caption text-balance",
+        "flex w-full max-w-sm min-w-0 flex-col items-center gap-related text-caption text-balance",
         className,
       )}
       {...props}

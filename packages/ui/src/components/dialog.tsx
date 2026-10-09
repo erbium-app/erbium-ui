@@ -84,7 +84,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
     <>
       <div
         data-slot="dialog-header"
-        className={cn("flex shrink-0 flex-col gap-1 px-4 pt-4 pb-2", className)}
+        className={cn("flex shrink-0 flex-col gap-1 px-panel pt-4 pb-2", className)}
         {...props}
       />
       <Separator variant="full" />
@@ -105,7 +105,7 @@ function DialogContent({ className, children, ...props }: React.ComponentProps<"
       viewportClassName="min-h-0 flex-1 overscroll-contain"
       viewportRender={<div data-slot="dialog-content" {...props} />}
       contentClassName={cn(
-        "separator-inset p-4 group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
+        "separator-inset p-panel group-has-[[data-slot=dialog-header]]/dialog-panel:pt-2",
         className,
       )}
     >
@@ -131,7 +131,7 @@ function DialogFooter({
       <div
         data-slot="dialog-footer"
         className={cn(
-          "flex shrink-0 flex-col-reverse gap-2 rounded-b-[calc(var(--radius-xl)-1px)] bg-footer px-4 py-3 sm:flex-row sm:justify-end",
+          "flex shrink-0 flex-col-reverse gap-related rounded-b-[calc(var(--radius-xl)-1px)] bg-footer px-panel py-3 sm:flex-row sm:justify-end",
           className,
         )}
         {...props}

@@ -3210,6 +3210,24 @@
     ]
   },
   {
+    "name": "sizing",
+    "title": "Foundations/Sizing",
+    "variants": [
+      {
+        "exportName": "Controls",
+        "slug": "controls",
+        "title": "Controls",
+        "source": "src/sizing/variants/controls.tsx"
+      },
+      {
+        "exportName": "Composition",
+        "slug": "composition",
+        "title": "Composition",
+        "source": "src/sizing/variants/composition.tsx"
+      }
+    ]
+  },
+  {
     "name": "skeleton",
     "title": "Components/Skeleton",
     "variants": [

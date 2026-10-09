@@ -96,16 +96,16 @@ function CommandDialog({
 function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
   return (
     <div data-slot="command-input-wrapper">
-      <div className="flex h-10 items-center gap-2 px-3">
+      <div className="flex min-h-control control-adaptive items-center gap-related px-control-inset">
         <HugeiconsIcon
           icon={Search01Icon}
           aria-hidden="true"
-          className="size-4 shrink-0 text-muted-foreground"
+          className="size-control-icon shrink-0 text-muted-foreground"
         />
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "h-full min-w-0 flex-1 bg-transparent text-control outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "min-h-control control-adaptive min-w-0 flex-1 bg-transparent text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}
@@ -171,7 +171,7 @@ function CommandItem({ className, children, ...props }: CommandPrimitive.Item.Pr
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "group/command-item relative flex cursor-default items-center gap-2 rounded-md px-1.5 py-1 text-control whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
+        "group/command-item relative flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent data-highlighted:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon hover:*:[svg]:text-accent-foreground data-highlighted:*:[svg]:text-accent-foreground",
         className,
       )}
       {...props}

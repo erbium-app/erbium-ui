@@ -12,7 +12,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
         className,
       )}
       {...props}
@@ -76,16 +76,19 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+function CardFooter({ className, children, ...props }: React.ComponentProps<"div">) {
   return (
-    <>
-      <Separator variant="full" className="-mb-(--card-spacing)" />
-      <div
-        data-slot="card-footer"
-        className={cn("flex items-center rounded-b-xl bg-footer p-(--card-spacing)", className)}
-        {...props}
-      />
-    </>
+    <div
+      data-slot="card-footer"
+      className={cn(
+        "relative mt-auto flex items-center rounded-b-xl bg-footer p-(--card-spacing)",
+        className,
+      )}
+      {...props}
+    >
+      <Separator variant="full" className="absolute inset-x-0 top-0" />
+      {children}
+    </div>
   );
 }
 

@@ -6,11 +6,19 @@ export default defineConfig({
   jsPlugins: [
     { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
     { name: "erbium-typography", specifier: "./scripts/typography-lint.mjs" },
+    { name: "erbium-sizing", specifier: "./scripts/sizing-lint.mjs" },
   ],
   settings: {
     shadcn: { ui: ["@erbium/ui/components", "@erbium/ui/blocks"] },
   },
   overrides: [
+    {
+      files: [
+        "packages/ui/src/lib/{button-variants,form-control-styles,sidebar-styles}.ts",
+        "packages/ui/src/components/{select,toggle,tabs,number-field,input-group,menubar,toolbar,otp-field}.tsx",
+      ],
+      rules: { "erbium-sizing/use-geometry": "error" },
+    },
     {
       files: [
         "packages/ui/src/**/*.{ts,tsx}",

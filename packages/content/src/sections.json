@@ -3,7 +3,7 @@
     "title": "Foundations",
     "slug": "foundations",
     "kind": "foundation",
-    "names": ["colors", "surfaces", "typography"]
+    "names": ["colors", "surfaces", "typography", "sizing"]
   },
   {
     "title": "Components",

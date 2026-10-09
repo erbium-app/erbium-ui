@@ -17441,6 +17441,99 @@
       ]
     },
     {
+      "name": "sizing-composition",
+      "type": "registry:component",
+      "title": "Sizing: Composition",
+      "description": "Panel insets, field groups, and related actions form a consistent hierarchy. Narrow containers wrap actions without shrinking reading text.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/sizing/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/sizing/variants/composition.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sizing-controls",
+      "type": "registry:component",
+      "title": "Sizing: Controls",
+      "description": "Compare related controls together. Default controls use a 28px minimum, compact controls 24px, and large controls 32px. Below 48rem general controls use a 36px minimum to align with readable fields. Touch targets expand independently of viewport width.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/input",
+        "@erbium/select",
+        "@erbium/styles",
+        "@erbium/tabs",
+        "@erbium/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/sizing/variants/controls.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/sizing/variants/controls.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sizing-examples",
+      "type": "registry:item",
+      "title": "Sizing examples",
+      "description": "All sizing examples.",
+      "registryDependencies": [
+        "@erbium-examples/sizing-controls",
+        "@erbium-examples/sizing-composition"
+      ]
+    },
+    {
+      "name": "sizing-stories",
+      "type": "registry:item",
+      "title": "Sizing stories",
+      "description": "All sizing variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/overlay-provider",
+        "@erbium/select",
+        "@erbium/styles",
+        "@erbium/tabs",
+        "@erbium/toast",
+        "@erbium/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        },
+        {
+          "path": "src/sizing/sizing.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/sizing/sizing.stories.tsx"
+        },
+        {
+          "path": "src/sizing/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/sizing/variants/composition.tsx"
+        },
+        {
+          "path": "src/sizing/variants/controls.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/sizing/variants/controls.tsx"
+        }
+      ]
+    },
+    {
       "name": "skeleton-avatar",
       "type": "registry:block",
       "title": "Skeleton: Avatar",

@@ -89,7 +89,7 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
       dir={direction}
       className={cn(
         "group/toast-viewport pointer-events-none fixed inset-x-4 bottom-4 z-50 mx-auto w-auto max-w-sm outline-none sm:inset-e-4 sm:inset-s-auto sm:mx-0 sm:w-full",
-        "data-expanded:inset-x-0 data-expanded:bottom-0 data-expanded:flex data-expanded:max-h-dvh data-expanded:max-w-104 data-expanded:flex-col-reverse data-expanded:scroll-fade-y data-expanded:overflow-y-auto data-expanded:p-4 sm:data-expanded:inset-e-0 sm:data-expanded:inset-s-auto",
+        "data-expanded:inset-x-0 data-expanded:bottom-0 data-expanded:flex data-expanded:max-h-dvh data-expanded:max-w-104 data-expanded:flex-col-reverse data-expanded:scroll-fade-y data-expanded:overflow-y-auto data-expanded:p-panel sm:data-expanded:inset-e-0 sm:data-expanded:inset-s-auto",
         className,
       )}
       {...props}
@@ -137,7 +137,7 @@ function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
     <ToastPrimitive.Content
       data-slot="toast-content"
       className={cn(
-        "flex items-center gap-3 overflow-hidden p-4 transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
+        "flex items-center gap-3 overflow-hidden p-panel transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
         className,
       )}
       {...props}

@@ -14,9 +14,9 @@ const toggleVariants = cva(
       },
       size: {
         default:
-          "h-8 min-w-8 px-2.5 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2",
-        sm: "h-7 min-w-7 rounded-[min(var(--radius-md),12px)] px-2.5 text-control-sm has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 min-w-9 px-2.5 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2",
+          "control-size control-adaptive min-w-control text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
+        sm: "control-size-sm control-adaptive min-w-control-sm text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        lg: "control-size-lg control-adaptive min-w-control-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
       },
     },
     defaultVariants: {

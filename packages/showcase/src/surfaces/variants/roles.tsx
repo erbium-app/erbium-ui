@@ -11,7 +11,7 @@ const Example = () => (
   <Canvas>
     <div className="grid w-full max-w-3xl gap-6">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="flex h-8 w-full max-w-72 items-center gap-2 rounded-lg border surface-field px-2.5">
+        <div className="flex control-size control-adaptive w-full max-w-72 items-center rounded-lg border surface-field">
           <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
           <span className="text-muted-foreground">Search repositories and people…</span>
         </div>
@@ -85,9 +85,9 @@ const Example = () => (
 
       <div className="flex flex-wrap items-center gap-4 rounded-xl border surface-panel p-5">
         <div className="inline-flex rounded-lg surface-well p-0.5">
-          <span className={`${control} h-7 border surface-control`}>Overview</span>
-          <span className={`${control} h-7 text-muted-foreground`}>Traces</span>
-          <span className={`${control} h-7 text-muted-foreground`}>Costs</span>
+          <span className={`${control} min-h-control-sm border surface-control`}>Overview</span>
+          <span className={`${control} min-h-control-sm text-muted-foreground`}>Traces</span>
+          <span className={`${control} min-h-control-sm text-muted-foreground`}>Costs</span>
         </div>
         <span className="flex h-[18px] w-8 items-center rounded-full surface-well px-0.5">
           <span className="size-3.5 rounded-full surface-knob" />

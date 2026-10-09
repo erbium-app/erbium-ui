@@ -27,8 +27,17 @@ export const cn = createCn({
           ],
         },
       ],
+      "control-adaptation": ["control-adaptive", "control-embedded"],
+      "control-geometry": ["control-size", "control-size-sm", "control-size-xs", "control-size-lg"],
       surface: [
         {
+          "control-adaptation": ["control-adaptive", "control-embedded"],
+          "control-geometry": [
+            "control-size",
+            "control-size-sm",
+            "control-size-xs",
+            "control-size-lg",
+          ],
           surface: [
             "panel",
             "control",

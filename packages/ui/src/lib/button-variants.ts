@@ -27,15 +27,17 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2",
-        xs: "h-6 gap-1 rounded-button-xs px-2 text-control-sm in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-button-sm px-2.5 text-control-sm in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pe-2 has-data-[icon=inline-start]:ps-2",
-        icon: "size-8",
+          "control-size control-adaptive text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
+        xs: "control-size-xs text-control-sm rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        sm: "control-size-sm control-adaptive text-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        lg: "control-size-lg control-adaptive text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        icon: "size-control control-adaptive [&_svg:not([class*='size-'])]:size-control-icon",
         "icon-xs":
-          "size-6 rounded-button-xs in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm": "size-7 rounded-button-sm in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-9",
+          "size-control-xs rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        "icon-sm":
+          "size-control-sm control-adaptive rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        "icon-lg":
+          "size-control-lg control-adaptive [&_svg:not([class*='size-'])]:size-control-icon-lg",
       },
     },
     defaultVariants: {

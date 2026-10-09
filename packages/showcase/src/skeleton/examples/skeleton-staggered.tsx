@@ -27,7 +27,7 @@ function StaggeredRow({ delay }: { delay: number }) {
         <Skeleton className="h-4 w-3/4" />
         <Skeleton className="h-4 w-1/2" />
       </div>
-      <Skeleton className="h-7 w-18" />
+      <Skeleton className="min-h-control-sm w-18" />
     </div>
   );
 }

@@ -54,6 +54,7 @@ export const navigationGroups = [
       { title: "Installation", href: "/docs/installation" },
       { title: "Using components", href: "/docs/getting-started" },
       { title: "Typography", href: "/docs/typography" },
+      { title: "Sizing", href: "/docs/sizing" },
     ],
   },
   ...documentationSections.map((section) => ({

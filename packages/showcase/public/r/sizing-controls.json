@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sizing-controls",
+  "type": "registry:component",
+  "title": "Sizing: Controls",
+  "description": "Compare related controls together. Default controls use a 28px minimum, compact controls 24px, and large controls 32px. Below 48rem general controls use a 36px minimum to align with readable fields. Touch targets expand independently of viewport width.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/input",
+    "@erbium/select",
+    "@erbium/styles",
+    "@erbium/tabs",
+    "@erbium/toggle"
+  ],
+  "files": [
+    {
+      "path": "src/sizing/variants/controls.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/sizing/variants/controls.tsx",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Input } from \"@/registry/erbium/ui/input\";\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport default function ControlsExample() {\n  return (\n    <div className=\"flex flex-col gap-section p-panel\">\n      <div className=\"flex flex-wrap items-center gap-related\">\n        <Button size=\"xs\">Embedded</Button>\n        <Button size=\"sm\">Small</Button>\n        <Button>Default</Button>\n        <Button size=\"lg\">Large</Button>\n      </div>\n      <div className=\"flex flex-wrap items-center gap-related\">\n        <Input aria-label=\"Search projects\" placeholder=\"Search projects\" className=\"w-48\" />\n        <Select defaultValue=\"updated\">\n          <SelectTrigger>\n            <SelectValue>\n              {(value) => (value === \"updated\" ? \"Recently updated\" : \"Project name\")}\n            </SelectValue>\n          </SelectTrigger>\n          <SelectContent>\n            <SelectItem value=\"updated\">Recently updated</SelectItem>\n            <SelectItem value=\"name\">Project name</SelectItem>\n          </SelectContent>\n        </Select>\n        <Toggle aria-label=\"Pin projects\">Pin</Toggle>\n        <Button>New project</Button>\n      </div>\n      <Tabs defaultValue=\"table\">\n        <TabsList>\n          <TabsTrigger value=\"table\">Table</TabsTrigger>\n          <TabsTrigger value=\"board\">Board</TabsTrigger>\n        </TabsList>\n      </Tabs>\n      <div lang=\"fa\" dir=\"rtl\" className=\"flex flex-wrap items-center gap-related\">\n        <Input aria-label=\"جستجو\" placeholder=\"جستجوی پروژه‌ها\" className=\"w-48\" />\n        <Button>پروژه جدید</Button>\n      </div>\n      <p className=\"text-caption text-muted-foreground\">\n        Resize the container and use touch emulation: layout wraps, editable text stays readable,\n        and general targets expand.\n      </p>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

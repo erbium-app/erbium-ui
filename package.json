@@ -85,6 +85,7 @@
     "format": "vp fmt",
     "format:check": "vp fmt --check",
     "check": "vp check && node scripts/check-astro-typography.mjs",
+    "sizing:lint:check": "node scripts/check-sizing-lint.mjs",
     "typography:lint:check": "node scripts/check-typography-lint.mjs",
     "fix": "vp check --fix",
     "knip": "knip",

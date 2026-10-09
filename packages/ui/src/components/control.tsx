@@ -28,7 +28,7 @@ import { TextMorph } from "./text-morph";
 import { cn } from "../lib/utils";
 
 const rowClass =
-  "group/control relative flex min-h-8 w-full min-w-0 items-center gap-2.5 rounded-lg border surface-control px-2.5 text-control text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+  "group/control relative flex control-size control-adaptive w-full min-w-0 items-center rounded-lg border surface-control text-control-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
 const labelClass = "min-w-0 shrink-0 truncate text-control font-medium text-muted-foreground";
 const valueClass =
   "ms-auto min-w-0 flex-1 text-end text-field text-foreground outline-none placeholder:text-muted-foreground";
@@ -267,7 +267,7 @@ function ControlNumber({
       data-elastic-dragging={dragging || undefined}
       aria-labelledby={id}
       className={cn(
-        "group/number relative block h-8 w-full min-w-0 data-disabled:opacity-50",
+        "group/number relative block min-h-control control-adaptive w-full min-w-0 data-disabled:opacity-50",
         className,
       )}
       disabled={disabled}
@@ -481,7 +481,7 @@ function Text({
         value={value}
         defaultValue={defaultValue}
         onValueChange={onValueChange}
-        className={cn(valueClass, "h-7 bg-transparent")}
+        className={cn(valueClass, "min-h-control-sm bg-transparent")}
         {...props}
       />
     </FieldPrimitive.Root>

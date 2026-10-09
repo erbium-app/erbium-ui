@@ -1205,6 +1205,11 @@
           "target": "~/src/styles/globals.css"
         },
         {
+          "path": "src/styles/sizing.css",
+          "type": "registry:file",
+          "target": "~/src/styles/sizing.css"
+        },
+        {
           "path": "src/styles/surfaces.css",
           "type": "registry:file",
           "target": "~/src/styles/surfaces.css"

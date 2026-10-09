@@ -55,7 +55,7 @@ const columns = columnHelper.columns([
     header: "Actions",
     cell: ({ row }) => (
       <DropdownMenu>
-        <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="size-8" />}>
+        <DropdownMenuTrigger render={<Button variant="ghost" size="icon" />}>
           <HugeiconsIcon icon={MoreHorizontalIcon} />
           <span className="sr-only">Open menu for {row.original.name}</span>
         </DropdownMenuTrigger>

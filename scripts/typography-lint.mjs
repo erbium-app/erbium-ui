@@ -27,7 +27,7 @@ const fontUtilities = new Set([
   "font-bold",
 ]);
 
-function classContext(node, context, seen = new Set()) {
+export function classContext(node, context, seen = new Set()) {
   if (seen.has(node)) return false;
   seen.add(node);
   const parents = context.sourceCode.getAncestors(node);

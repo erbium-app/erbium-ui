@@ -26,7 +26,7 @@ function MeterTrack({ className, ...props }: MeterPrimitive.Track.Props) {
     <MeterPrimitive.Track
       data-slot="meter-track"
       className={cn(
-        "relative flex h-1 w-full items-center overflow-x-hidden rounded-full bg-muted",
+        "relative flex h-track w-full items-center overflow-x-hidden rounded-full bg-muted",
         className,
       )}
       {...props}
