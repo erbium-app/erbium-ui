@@ -40,3 +40,5 @@ HoverCard
 ## Interaction ownership
 
 Keep preview content tied to the current trigger. Remounting a trigger while the card is closed should not start an opening transition. A hover card is a preview, so avoid adding focus traps or application overlay contexts.
+
+The surface provides the shared compact panel gutter. Compose content inside that gutter without adding another padded wrapper.

@@ -109,3 +109,5 @@ Use `data-base-ui-swipe-ignore` on an interaction that must fully opt out of dra
 ## Scrolling surfaces
 
 Use the component's built-in scrolling list or content area. It uses the product's thin scrollbar, scroll-aware edge fade, and keyboard-aware viewport. Search headers stay outside the scrolling list. Do not put a second native overflow container around the list or swap in a thicker scrollbar. The available popup space constrains the list while the header keeps its shared responsive geometry.
+
+The panel owns the surface. Header and footer own their padding; Content owns body padding and the single body scroll viewport. Do not add a ScrollArea or duplicate panel gutters inside Content. Independently scrolling search results belong beside Content, directly in the panel.

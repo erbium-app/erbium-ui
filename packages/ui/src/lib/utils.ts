@@ -9,6 +9,9 @@ const anySurfaceColor = () => true;
 export const cn = createCn({
   extend: {
     classGroups: {
+      p: [{ p: ["panel", "panel-sm"] }],
+      px: [{ px: ["panel"] }],
+      py: [{ py: ["panel"] }],
       "font-size": [
         {
           text: [

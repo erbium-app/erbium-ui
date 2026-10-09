@@ -42,7 +42,7 @@ function Command<ItemValue>({
       <div
         data-slot="command"
         className={cn(
-          "flex min-h-0 w-full flex-col overflow-hidden rounded-xl border surface-overlay text-popover-foreground in-data-[slot=dialog-panel]:rounded-none in-data-[slot=dialog-panel]:border-0 in-data-[slot=dialog-panel]:bg-transparent in-data-[slot=dialog-panel]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
+          "flex min-h-0 w-full flex-col overflow-hidden rounded-xl border surface-overlay text-popover-foreground in-data-[slot=dialog-panel]:rounded-none in-data-[slot=dialog-panel]:border-0 in-data-[slot=dialog-panel]:bg-transparent in-data-[slot=dialog-panel]:shadow-none in-data-[slot=drawer-popup]:rounded-none in-data-[slot=drawer-popup]:border-0 in-data-[slot=drawer-popup]:bg-transparent in-data-[slot=drawer-popup]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
           className,
         )}
       >

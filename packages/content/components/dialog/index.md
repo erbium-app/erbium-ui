@@ -56,3 +56,5 @@ Dialog
 ## Opening, closing, and focus
 
 Use the existing controlled open state and primitive event details for application-driven opening. Focus restoration should follow the actual opening control; do not force focus to a different registered trigger. Let Base UI coordinate nested overlays and trigger lifetimes, and keep the default close/unmount behavior unless a concrete integration requires retained content. Avoid application-level focus loops and extra overlay contexts.
+
+The panel owns the surface. Header and footer own their padding; Content owns body padding and the single body scroll viewport. Do not add a ScrollArea or duplicate panel gutters inside Content. Independently scrolling search results belong beside Content, directly in the panel.

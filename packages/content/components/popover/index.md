@@ -48,3 +48,5 @@ Popover
 ## Interaction ownership
 
 Let the primitive own trigger registration, focus guards, and close animations. Reopening a retained popup or remounting a closed trigger should not require custom transition state. Keep normal unmounting as the default.
+
+The surface provides the shared compact panel gutter. Compose content inside that gutter without adding another padded wrapper.

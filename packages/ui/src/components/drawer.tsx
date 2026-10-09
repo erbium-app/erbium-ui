@@ -235,7 +235,7 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="drawer-header"
       className={cn(
-        "flex shrink-0 flex-col gap-related p-6 pb-3 group-data-[swipe-axis=y]/drawer-popup:text-center md:text-start max-sm:pb-4",
+        "flex shrink-0 flex-col gap-related p-panel pb-3 group-data-[swipe-axis=y]/drawer-popup:text-center md:text-start max-sm:pb-4",
         className,
       )}
       {...props}
@@ -260,7 +260,7 @@ function DrawerContent({ className, children, ...props }: React.ComponentProps<"
         scrollbar="thin"
         viewportClassName="min-h-0 flex-1 overscroll-contain"
         contentClassName={cn(
-          "separator-inset p-6 group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1 group-not-has-[[data-slot=drawer-footer]]/drawer-popup:pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(6))]",
+          "separator-inset p-panel group-has-[[data-slot=drawer-header]]/drawer-popup:pt-1 group-not-has-[[data-slot=drawer-footer]]/drawer-popup:pb-[calc(env(safe-area-inset-bottom,0px)+var(--panel-padding))]",
           className,
         )}
       >
@@ -278,7 +278,7 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="drawer-footer"
       className={cn(
-        "mt-auto flex shrink-0 flex-col-reverse gap-related border-t bg-footer px-6 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+(--spacing(4)))] sm:flex-row sm:justify-end",
+        "mt-auto flex shrink-0 flex-col-reverse gap-related border-t bg-footer px-panel pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+(--spacing(4)))] sm:flex-row sm:justify-end",
         className,
       )}
       {...props}

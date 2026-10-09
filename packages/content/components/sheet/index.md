@@ -58,3 +58,5 @@ Sheet
 ## Interaction ownership
 
 Sheet uses Dialog behavior with a side panel. Keep its existing controlled open state; programmatic opening and nested overlays follow the Dialog focus contract.
+
+The panel owns the surface. Header and footer own their padding; Content owns body padding and the single body scroll viewport. Do not add a ScrollArea or duplicate panel gutters inside Content. Independently scrolling search results belong beside Content, directly in the panel.
