@@ -1364,6 +1364,12 @@
         "slug": "sides",
         "title": "Sides",
         "source": "src/context-menu/variants/sides.tsx"
+      },
+      {
+        "exportName": "Searchable",
+        "slug": "searchable",
+        "title": "Searchable",
+        "source": "src/context-menu/variants/searchable.tsx"
       }
     ]
   },
@@ -1730,6 +1736,12 @@
         "slug": "complex",
         "title": "Complex",
         "source": "src/dropdown-menu/variants/complex.tsx"
+      },
+      {
+        "exportName": "Searchable",
+        "slug": "searchable",
+        "title": "Searchable",
+        "source": "src/dropdown-menu/variants/searchable.tsx"
       }
     ]
   },
@@ -2378,6 +2390,12 @@
         "slug": "with-icons",
         "title": "With Icons",
         "source": "src/menubar/variants/with-icons.tsx"
+      },
+      {
+        "exportName": "Searchable",
+        "slug": "searchable",
+        "title": "Searchable",
+        "source": "src/menubar/variants/searchable.tsx"
       }
     ]
   },

@@ -10,6 +10,7 @@ import {
   ContextMenuItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuError() {
@@ -20,23 +21,25 @@ export function ContextMenuError() {
         <span className="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuGroup>
-          <ContextMenuItem>
-            <HugeiconsIcon icon={PencilIcon} />
-            Edit
-          </ContextMenuItem>
-          <ContextMenuItem>
-            <HugeiconsIcon icon={Share01Icon} />
-            Share
-          </ContextMenuItem>
-        </ContextMenuGroup>
-        <ContextMenuSeparator />
-        <ContextMenuGroup>
-          <ContextMenuItem variant="error">
-            <HugeiconsIcon icon={TrashIcon} />
-            Delete
-          </ContextMenuItem>
-        </ContextMenuGroup>
+        <ContextMenuList>
+          <ContextMenuGroup>
+            <ContextMenuItem>
+              <HugeiconsIcon icon={PencilIcon} />
+              Edit
+            </ContextMenuItem>
+            <ContextMenuItem>
+              <HugeiconsIcon icon={Share01Icon} />
+              Share
+            </ContextMenuItem>
+          </ContextMenuGroup>
+          <ContextMenuSeparator />
+          <ContextMenuGroup>
+            <ContextMenuItem variant="error">
+              <HugeiconsIcon icon={TrashIcon} />
+              Delete
+            </ContextMenuItem>
+          </ContextMenuGroup>
+        </ContextMenuList>
       </ContextMenuContent>
     </ContextMenu>
   );

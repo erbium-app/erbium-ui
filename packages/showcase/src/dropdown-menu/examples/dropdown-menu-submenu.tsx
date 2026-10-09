@@ -11,6 +11,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuSubmenu() {
@@ -18,35 +19,41 @@ export function DropdownMenuSubmenu() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuGroup>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem>Email</DropdownMenuItem>
-                <DropdownMenuItem>Message</DropdownMenuItem>
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>More options</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem>Calendly</DropdownMenuItem>
-                      <DropdownMenuItem>Slack</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>Webhook</DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Advanced...</DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-          <DropdownMenuItem>
-            New Team
-            <DropdownMenuShortcut hotkey="Mod+PlusT" />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuList>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSub>
+                      <DropdownMenuSubTrigger>More options</DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          <DropdownMenuList>
+                            <DropdownMenuItem>Calendly</DropdownMenuItem>
+                            <DropdownMenuItem>Slack</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>Webhook</DropdownMenuItem>
+                          </DropdownMenuList>
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Advanced...</DropdownMenuItem>
+                  </DropdownMenuList>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+            <DropdownMenuItem>
+              New Team
+              <DropdownMenuShortcut hotkey="Mod+PlusT" />
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

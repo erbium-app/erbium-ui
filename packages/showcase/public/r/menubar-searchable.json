@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "menubar-searchable",
+  "type": "registry:component",
+  "title": "Menubar: Searchable",
+  "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.",
+  "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/menubar/variants/searchable.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/menubar/variants/searchable.tsx",
+      "content": "import { useState } from \"react\";\n\nimport {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarContent,\n  MenubarSearch,\n  MenubarList,\n  MenubarEmpty,\n  MenubarGroup,\n  MenubarLabel,\n  MenubarItem,\n} from \"@/registry/erbium/ui/menubar\";\n\nexport default function SearchableExample() {\n  const [action, setAction] = useState(\"No action selected.\");\n  return (\n    <div className=\"grid gap-related\">\n      <Menubar>\n        <MenubarMenu searchable>\n          <MenubarTrigger>Project</MenubarTrigger>\n          <MenubarContent className=\"w-72\">\n            <MenubarSearch aria-label=\"Search project actions\" />\n            <MenubarEmpty>No project actions found.</MenubarEmpty>\n            <MenubarList>\n              <MenubarGroup>\n                <MenubarLabel>Project</MenubarLabel>\n                {[\"Open project\", \"Rename project\", \"Duplicate project\", \"Copy project link\"].map(\n                  (label) => (\n                    <MenubarItem key={label} label={label} onClick={() => setAction(label)}>\n                      {label}\n                    </MenubarItem>\n                  ),\n                )}\n              </MenubarGroup>\n\n              <MenubarGroup>\n                <MenubarLabel>Export</MenubarLabel>\n                {[\"Export PDF\", \"Export Markdown\", \"Export CSV\", \"Download archive\"].map(\n                  (label) => (\n                    <MenubarItem key={label} label={label} onClick={() => setAction(label)}>\n                      {label}\n                    </MenubarItem>\n                  ),\n                )}\n              </MenubarGroup>\n            </MenubarList>\n          </MenubarContent>\n        </MenubarMenu>\n      </Menubar>\n      <p role=\"status\" className=\"text-caption text-muted-foreground\">\n        {action}\n      </p>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

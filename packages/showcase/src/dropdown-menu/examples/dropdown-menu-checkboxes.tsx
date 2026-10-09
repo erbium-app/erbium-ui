@@ -8,6 +8,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuCheckboxes() {
@@ -19,25 +20,27 @@ export function DropdownMenuCheckboxes() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
       <DropdownMenuContent className="w-40">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-          <DropdownMenuCheckboxItem
-            checked={showStatusBar ?? false}
-            onCheckedChange={setShowStatusBar}
-          >
-            Status Bar
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={showActivityBar}
-            onCheckedChange={setShowActivityBar}
-            disabled
-          >
-            Activity Bar
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-            Panel
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+            <DropdownMenuCheckboxItem
+              checked={showStatusBar ?? false}
+              onCheckedChange={setShowStatusBar}
+            >
+              Status Bar
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={showActivityBar}
+              onCheckedChange={setShowActivityBar}
+              disabled
+            >
+              Activity Bar
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
+              Panel
+            </DropdownMenuCheckboxItem>
+          </DropdownMenuGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

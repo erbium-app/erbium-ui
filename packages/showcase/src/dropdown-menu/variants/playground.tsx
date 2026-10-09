@@ -3,6 +3,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 import { Button } from "@erbium/ui/components/button";
 
@@ -14,8 +15,10 @@ const Example = (args: {
   <DropdownMenu key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>
     <DropdownMenuTrigger render={<Button variant="outline">Open menu</Button>} />
     <DropdownMenuContent side={args.side} align={args.align}>
-      <DropdownMenuItem>Profile</DropdownMenuItem>
-      <DropdownMenuItem>Settings</DropdownMenuItem>
+      <DropdownMenuList>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+      </DropdownMenuList>
     </DropdownMenuContent>
   </DropdownMenu>
 );

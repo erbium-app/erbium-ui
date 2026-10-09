@@ -10,6 +10,7 @@
     "@erbium-examples/menubar-checkbox",
     "@erbium-examples/menubar-radio",
     "@erbium-examples/menubar-submenu",
-    "@erbium-examples/menubar-with-icons"
+    "@erbium-examples/menubar-with-icons",
+    "@erbium-examples/menubar-searchable"
   ]
 }

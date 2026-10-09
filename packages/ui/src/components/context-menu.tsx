@@ -1,15 +1,27 @@
 import * as React from "react";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Separator } from "./separator";
-import { ScrollArea } from "./scroll-area";
+
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { RotatingChevron } from "./stateful-icon";
 
-function ContextMenu({ ...props }: ContextMenuPrimitive.Root.Props) {
-  return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
+function ContextMenu({
+  searchable = false,
+  ...props
+}: ContextMenuPrimitive.Root.Props & {
+  /** Filter actions using the shared flush search header. */
+  searchable?: boolean;
+}) {
+  const menu = <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
+  return searchable ? (
+    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
+  ) : (
+    menu
+  );
 }
 
 function ContextMenuPortal({ ...props }: ContextMenuPrimitive.Portal.Props) {
@@ -53,15 +65,7 @@ function ContextMenuContent({
           )}
           {...props}
         >
-          <ScrollArea
-            className="min-h-0 overscroll-contain"
-            fade="vertical"
-            scrollbar="thin"
-            viewportClassName="overflow-x-hidden!"
-            contentClassName="p-1 in-data-has-overflow-y:pe-3"
-          >
-            {children}
-          </ScrollArea>
+          {children}
         </ContextMenuPrimitive.Popup>
       </ContextMenuPrimitive.Positioner>
     </ContextMenuPrimitive.Portal>
@@ -69,7 +73,9 @@ function ContextMenuContent({
 }
 
 function ContextMenuGroup({ ...props }: ContextMenuPrimitive.Group.Props) {
-  return <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />;
+  return (
+    <ContextMenuPrimitive.Group data-slot="context-menu-group" data-filter-section {...props} />
+  );
 }
 
 function ContextMenuLabel({
@@ -107,7 +113,7 @@ function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/context-menu-item relative flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground not-data-[variant=error]:hover:**:text-accent-foreground not-data-[variant=error]:focus:**:text-accent-foreground data-inset:ps-7 data-[variant=error]:text-error data-[variant=error]:hover:bg-error-interactive data-[variant=error]:hover:text-error data-[variant=error]:focus:bg-error-interactive data-[variant=error]:focus:text-error data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon data-[variant=error]:*:[svg]:text-error",
+        "group/context-menu-item relative flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=error]:hover:**:text-accent-foreground not-data-[variant=error]:focus:**:text-accent-foreground data-inset:ps-7 data-[variant=error]:text-error data-[variant=error]:hover:bg-error-interactive data-[variant=error]:hover:text-error data-[variant=error]:focus:bg-error-interactive data-[variant=error]:focus:text-error data-[variant=error]:data-highlighted:bg-error-interactive data-[variant=error]:data-highlighted:text-error data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon data-[variant=error]:*:[svg]:text-error",
         className,
       )}
       {...props}
@@ -115,8 +121,19 @@ function ContextMenuItem({
   );
 }
 
-function ContextMenuSub({ ...props }: ContextMenuPrimitive.SubmenuRoot.Props) {
-  return <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />;
+function ContextMenuSub({
+  searchable = false,
+  ...props
+}: ContextMenuPrimitive.SubmenuRoot.Props & {
+  /** Filter actions using the shared flush search header. */
+  searchable?: boolean;
+}) {
+  const menu = <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />;
+  return searchable ? (
+    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
+  ) : (
+    menu
+  );
 }
 
 function ContextMenuSubTrigger({
@@ -132,7 +149,7 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "group group/context-menu-sub-trigger flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "group group/context-menu-sub-trigger flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}
@@ -161,7 +178,7 @@ function ContextMenuCheckboxItem({
       data-slot="context-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       checked={checked}
@@ -178,7 +195,13 @@ function ContextMenuCheckboxItem({
 }
 
 function ContextMenuRadioGroup({ ...props }: ContextMenuPrimitive.RadioGroup.Props) {
-  return <ContextMenuPrimitive.RadioGroup data-slot="context-menu-radio-group" {...props} />;
+  return (
+    <ContextMenuPrimitive.RadioGroup
+      data-slot="context-menu-radio-group"
+      data-filter-section
+      {...props}
+    />
+  );
 }
 
 function ContextMenuRadioItem({
@@ -194,7 +217,7 @@ function ContextMenuRadioItem({
       data-slot="context-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}
@@ -250,3 +273,9 @@ export {
   ContextMenuSubTrigger,
   ContextMenuRadioGroup,
 };
+
+export {
+  MenuSearch as ContextMenuSearch,
+  MenuList as ContextMenuList,
+  MenuEmpty as ContextMenuEmpty,
+} from "./menu-search";

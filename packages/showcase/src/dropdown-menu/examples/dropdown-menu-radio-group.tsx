@@ -10,6 +10,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export default function DropdownMenuRadioGroupDemo() {
@@ -19,15 +20,17 @@ export default function DropdownMenuRadioGroupDemo() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
       <DropdownMenuContent className="w-56">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
-        </DropdownMenuRadioGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+            <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

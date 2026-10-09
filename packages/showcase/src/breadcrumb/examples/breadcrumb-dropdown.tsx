@@ -16,6 +16,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function BreadcrumbDropdown() {
@@ -39,11 +40,13 @@ export function BreadcrumbDropdown() {
               <RotatingChevron className="size-3.5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start">
-              <DropdownMenuGroup>
-                <DropdownMenuItem>Documentation</DropdownMenuItem>
-                <DropdownMenuItem>Themes</DropdownMenuItem>
-                <DropdownMenuItem>GitHub</DropdownMenuItem>
-              </DropdownMenuGroup>
+              <DropdownMenuList>
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>Documentation</DropdownMenuItem>
+                  <DropdownMenuItem>Themes</DropdownMenuItem>
+                  <DropdownMenuItem>GitHub</DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuList>
             </DropdownMenuContent>
           </DropdownMenu>
         </BreadcrumbItem>

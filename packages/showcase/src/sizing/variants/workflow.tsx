@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 import {
   Table,
@@ -52,8 +53,12 @@ export default function WorkflowExample() {
                 Workspace actions
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setQuery("")}>Show all projects</DropdownMenuItem>
-                <DropdownMenuItem disabled>Archive workspace</DropdownMenuItem>
+                <DropdownMenuList>
+                  <DropdownMenuItem onClick={() => setQuery("")}>
+                    Show all projects
+                  </DropdownMenuItem>
+                  <DropdownMenuItem disabled>Archive workspace</DropdownMenuItem>
+                </DropdownMenuList>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -111,10 +116,12 @@ export default function WorkflowExample() {
                           Actions
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                          <DropdownMenuItem onClick={() => setQuery(project)}>
-                            Show this project
-                          </DropdownMenuItem>
-                          <DropdownMenuItem disabled>Archive project</DropdownMenuItem>
+                          <DropdownMenuList>
+                            <DropdownMenuItem onClick={() => setQuery(project)}>
+                              Show this project
+                            </DropdownMenuItem>
+                            <DropdownMenuItem disabled>Archive project</DropdownMenuItem>
+                          </DropdownMenuList>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>

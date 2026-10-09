@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuAvatar() {
@@ -30,25 +31,27 @@ export function DropdownMenuAvatar() {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={BadgeCheckIcon} />
+              Account
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={CreditCardIcon} />
+              Billing
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={BellIcon} />
+              Notifications
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <HugeiconsIcon icon={BadgeCheckIcon} />
-            Account
+            <HugeiconsIcon icon={LogOutIcon} />
+            Sign Out
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <HugeiconsIcon icon={CreditCardIcon} />
-            Billing
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <HugeiconsIcon icon={BellIcon} />
-            Notifications
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <HugeiconsIcon icon={LogOutIcon} />
-          Sign Out
-        </DropdownMenuItem>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

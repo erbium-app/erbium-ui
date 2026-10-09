@@ -15,6 +15,7 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
+  MenubarList,
 } from "@erbium/ui/components/menubar";
 
 export function MenubarIcons() {
@@ -23,39 +24,43 @@ export function MenubarIcons() {
       <MenubarMenu>
         <MenubarTrigger>File</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>
-            <HugeiconsIcon icon={File01Icon} />
-            New File <MenubarShortcut hotkey="Mod+N" />
-          </MenubarItem>
-          <MenubarItem>
-            <HugeiconsIcon icon={Folder01Icon} />
-            Open Folder
-          </MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>
-            <HugeiconsIcon icon={SaveIcon} />
-            Save <MenubarShortcut hotkey="Mod+S" />
-          </MenubarItem>
+          <MenubarList>
+            <MenubarItem>
+              <HugeiconsIcon icon={File01Icon} />
+              New File <MenubarShortcut hotkey="Mod+N" />
+            </MenubarItem>
+            <MenubarItem>
+              <HugeiconsIcon icon={Folder01Icon} />
+              Open Folder
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>
+              <HugeiconsIcon icon={SaveIcon} />
+              Save <MenubarShortcut hotkey="Mod+S" />
+            </MenubarItem>
+          </MenubarList>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>More</MenubarTrigger>
         <MenubarContent>
-          <MenubarGroup>
-            <MenubarItem>
-              <HugeiconsIcon icon={Settings01Icon} />
-              Settings
-            </MenubarItem>
-            <MenubarItem>
-              <HugeiconsIcon icon={HelpCircleIcon} />
-              Help
-            </MenubarItem>
-            <MenubarSeparator />
-            <MenubarItem variant="error">
-              <HugeiconsIcon icon={TrashIcon} />
-              Delete
-            </MenubarItem>
-          </MenubarGroup>
+          <MenubarList>
+            <MenubarGroup>
+              <MenubarItem>
+                <HugeiconsIcon icon={Settings01Icon} />
+                Settings
+              </MenubarItem>
+              <MenubarItem>
+                <HugeiconsIcon icon={HelpCircleIcon} />
+                Help
+              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem variant="error">
+                <HugeiconsIcon icon={TrashIcon} />
+                Delete
+              </MenubarItem>
+            </MenubarGroup>
+          </MenubarList>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

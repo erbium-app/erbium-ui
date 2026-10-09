@@ -14,3 +14,4 @@ export const RadioIcons = { ...showcases.RadioIcons, name: "Radio Icons" };
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };
 export const Avatar = { ...showcases.Avatar, name: "Avatar" };
 export const Complex = { ...showcases.Complex, name: "Complex" };
+export const Searchable = { ...showcases.Searchable, name: "Searchable" };

@@ -420,7 +420,7 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/kbd",
-        "@erbium/scroll-area",
+        "@erbium/menu-search",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -568,7 +568,7 @@
       "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
       "registryDependencies": [
         "@erbium/kbd",
-        "@erbium/scroll-area",
+        "@erbium/menu-search",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -790,11 +790,32 @@
       ]
     },
     {
+      "name": "menu-search",
+      "type": "registry:ui",
+      "title": "Menu Search",
+      "description": "Erbium menu search component.",
+      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/focus-search-input",
+        "@erbium/scroll-area",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/menu-search.tsx",
+          "type": "registry:ui",
+          "target": "@ui/menu-search.tsx"
+        }
+      ]
+    },
+    {
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
       "description": "Erbium menubar component.",
-      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
+      "dependencies": ["@base-ui/react"],
       "registryDependencies": ["@erbium/dropdown-menu", "@erbium/utils"],
       "files": [
         {

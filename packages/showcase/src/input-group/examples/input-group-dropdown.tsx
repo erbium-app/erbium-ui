@@ -8,6 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 import {
   InputGroup,
@@ -31,12 +32,14 @@ export default function InputGroupDropdown() {
               }
             />
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <CopyButton value="/projects/erbium/script.js" render={<DropdownMenuItem />}>
-                <CopyButtonIcon />
-                <span>Copy path</span>
-              </CopyButton>
-              <DropdownMenuItem>Open location</DropdownMenuItem>
+              <DropdownMenuList>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <CopyButton value="/projects/erbium/script.js" render={<DropdownMenuItem />}>
+                  <CopyButtonIcon />
+                  <span>Copy path</span>
+                </CopyButton>
+                <DropdownMenuItem>Open location</DropdownMenuItem>
+              </DropdownMenuList>
             </DropdownMenuContent>
           </DropdownMenu>
         </InputGroupAddon>
@@ -56,9 +59,11 @@ export default function InputGroupDropdown() {
               }
             />
             <DropdownMenuContent align="end" className="[--radius:0.95rem]">
-              <DropdownMenuItem>Documentation</DropdownMenuItem>
-              <DropdownMenuItem>Blog Posts</DropdownMenuItem>
-              <DropdownMenuItem>Changelog</DropdownMenuItem>
+              <DropdownMenuList>
+                <DropdownMenuItem>Documentation</DropdownMenuItem>
+                <DropdownMenuItem>Blog Posts</DropdownMenuItem>
+                <DropdownMenuItem>Changelog</DropdownMenuItem>
+              </DropdownMenuList>
             </DropdownMenuContent>
           </DropdownMenu>
         </InputGroupAddon>

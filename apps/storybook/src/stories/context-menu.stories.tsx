@@ -12,3 +12,4 @@ export const Checkboxes = { ...showcases.Checkboxes, name: "Checkboxes" };
 export const Radio = { ...showcases.Radio, name: "Radio" };
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };
 export const Sides = { ...showcases.Sides, name: "Sides" };
+export const Searchable = { ...showcases.Searchable, name: "Searchable" };

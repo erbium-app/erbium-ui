@@ -24,6 +24,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export default function ButtonGroupDemo() {
@@ -51,51 +52,55 @@ export default function ButtonGroupDemo() {
             }
           />
           <DropdownMenuContent align="end" className="w-52">
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={MailCheckIcon} />
-                Mark as Read
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={ArchiveIcon} />
-                Archive
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={Clock01Icon} />
-                Snooze
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={CalendarPlusIcon} />
-                Add to Calendar
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={ListFilterIcon} />
-                Add to List
-              </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>
-                  <HugeiconsIcon icon={Tag01Icon} />
-                  Label As...
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  <DropdownMenuRadioGroup value={label} onValueChange={setLabel}>
-                    <DropdownMenuRadioItem value="personal">Personal</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="work">Work</DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="other">Other</DropdownMenuRadioItem>
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem variant="error">
-                <HugeiconsIcon icon={Delete02Icon} />
-                Trash
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
+            <DropdownMenuList>
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <HugeiconsIcon icon={MailCheckIcon} />
+                  Mark as Read
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <HugeiconsIcon icon={ArchiveIcon} />
+                  Archive
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <HugeiconsIcon icon={Clock01Icon} />
+                  Snooze
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <HugeiconsIcon icon={CalendarPlusIcon} />
+                  Add to Calendar
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <HugeiconsIcon icon={ListFilterIcon} />
+                  Add to List
+                </DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <HugeiconsIcon icon={Tag01Icon} />
+                    Label As...
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuList>
+                      <DropdownMenuRadioGroup value={label} onValueChange={setLabel}>
+                        <DropdownMenuRadioItem value="personal">Personal</DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="work">Work</DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="other">Other</DropdownMenuRadioItem>
+                      </DropdownMenuRadioGroup>
+                    </DropdownMenuList>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem variant="error">
+                  <HugeiconsIcon icon={Delete02Icon} />
+                  Trash
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </DropdownMenuList>
           </DropdownMenuContent>
         </DropdownMenu>
       </ButtonGroup>

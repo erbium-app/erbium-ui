@@ -10,6 +10,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuSubmenu() {
@@ -20,35 +21,39 @@ export function ContextMenuSubmenu() {
         <span className="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuGroup>
-          <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
-            <CopyButtonIcon />
-            <span>Copy</span>
-            <ContextMenuShortcut hotkey="Mod+C" />
-          </CopyButton>
-          <ContextMenuItem>
-            Cut
-            <ContextMenuShortcut hotkey="Mod+X" />
-          </ContextMenuItem>
-        </ContextMenuGroup>
-        <ContextMenuSub>
-          <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>
-          <ContextMenuSubContent>
-            <ContextMenuGroup>
-              <ContextMenuItem>Save Page...</ContextMenuItem>
-              <ContextMenuItem>Create Shortcut...</ContextMenuItem>
-              <ContextMenuItem>Name Window...</ContextMenuItem>
-            </ContextMenuGroup>
-            <ContextMenuSeparator />
-            <ContextMenuGroup>
-              <ContextMenuItem>Developer Tools</ContextMenuItem>
-            </ContextMenuGroup>
-            <ContextMenuSeparator />
-            <ContextMenuGroup>
-              <ContextMenuItem variant="error">Delete</ContextMenuItem>
-            </ContextMenuGroup>
-          </ContextMenuSubContent>
-        </ContextMenuSub>
+        <ContextMenuList>
+          <ContextMenuGroup>
+            <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
+              <CopyButtonIcon />
+              <span>Copy</span>
+              <ContextMenuShortcut hotkey="Mod+C" />
+            </CopyButton>
+            <ContextMenuItem>
+              Cut
+              <ContextMenuShortcut hotkey="Mod+X" />
+            </ContextMenuItem>
+          </ContextMenuGroup>
+          <ContextMenuSub>
+            <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>
+            <ContextMenuSubContent>
+              <ContextMenuList>
+                <ContextMenuGroup>
+                  <ContextMenuItem>Save Page...</ContextMenuItem>
+                  <ContextMenuItem>Create Shortcut...</ContextMenuItem>
+                  <ContextMenuItem>Name Window...</ContextMenuItem>
+                </ContextMenuGroup>
+                <ContextMenuSeparator />
+                <ContextMenuGroup>
+                  <ContextMenuItem>Developer Tools</ContextMenuItem>
+                </ContextMenuGroup>
+                <ContextMenuSeparator />
+                <ContextMenuGroup>
+                  <ContextMenuItem variant="error">Delete</ContextMenuItem>
+                </ContextMenuGroup>
+              </ContextMenuList>
+            </ContextMenuSubContent>
+          </ContextMenuSub>
+        </ContextMenuList>
       </ContextMenuContent>
     </ContextMenu>
   );

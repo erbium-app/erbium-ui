@@ -9,6 +9,7 @@ import {
   ContextMenuRadioItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuRadio() {
@@ -22,22 +23,24 @@ export function ContextMenuRadio() {
         <span className="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuGroup>
-          <ContextMenuLabel>People</ContextMenuLabel>
-          <ContextMenuRadioGroup value={user} onValueChange={setUser}>
-            <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
-            <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
-          </ContextMenuRadioGroup>
-        </ContextMenuGroup>
-        <ContextMenuSeparator />
-        <ContextMenuGroup>
-          <ContextMenuLabel>Theme</ContextMenuLabel>
-          <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>
-            <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
-            <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
-            <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>
-          </ContextMenuRadioGroup>
-        </ContextMenuGroup>
+        <ContextMenuList>
+          <ContextMenuGroup>
+            <ContextMenuLabel>People</ContextMenuLabel>
+            <ContextMenuRadioGroup value={user} onValueChange={setUser}>
+              <ContextMenuRadioItem value="pedro">Pedro Duarte</ContextMenuRadioItem>
+              <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+            </ContextMenuRadioGroup>
+          </ContextMenuGroup>
+          <ContextMenuSeparator />
+          <ContextMenuGroup>
+            <ContextMenuLabel>Theme</ContextMenuLabel>
+            <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>
+              <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
+              <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
+              <ContextMenuRadioItem value="system">System</ContextMenuRadioItem>
+            </ContextMenuRadioGroup>
+          </ContextMenuGroup>
+        </ContextMenuList>
       </ContextMenuContent>
     </ContextMenu>
   );

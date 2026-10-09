@@ -4,6 +4,7 @@ import {
   ContextMenuTrigger,
   ContextMenuContent,
   ContextMenuItem,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 const Example = (args: {
@@ -15,11 +16,13 @@ const Example = (args: {
       Right click here
     </ContextMenuTrigger>
     <ContextMenuContent side={args.side} align={args.align}>
-      <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
-        <CopyButtonIcon />
-        <span>Copy</span>
-      </CopyButton>
-      <ContextMenuItem>Paste</ContextMenuItem>
+      <ContextMenuList>
+        <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
+          <CopyButtonIcon />
+          <span>Copy</span>
+        </CopyButton>
+        <ContextMenuItem>Paste</ContextMenuItem>
+      </ContextMenuList>
     </ContextMenuContent>
   </ContextMenu>
 );

@@ -15,6 +15,7 @@
     "@erbium-examples/context-menu-checkboxes",
     "@erbium-examples/context-menu-radio",
     "@erbium-examples/context-menu-error-variant",
-    "@erbium-examples/context-menu-sides"
+    "@erbium-examples/context-menu-sides",
+    "@erbium-examples/context-menu-searchable"
   ]
 }

@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function AvatarDropdown() {
@@ -24,15 +25,17 @@ export function AvatarDropdown() {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-32">
-        <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem variant="error">Log out</DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Settings</DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem variant="error">Log out</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

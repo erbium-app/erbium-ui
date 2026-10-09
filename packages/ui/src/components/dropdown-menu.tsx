@@ -3,13 +3,24 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Separator } from "./separator";
-import { ScrollArea } from "./scroll-area";
+
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 import { RotatingChevron } from "./stateful-icon";
 
-function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
-  return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
+function DropdownMenu({
+  searchable = false,
+  ...props
+}: MenuPrimitive.Root.Props & {
+  /** Filter actions using the shared flush search header. */
+  searchable?: boolean;
+}) {
+  const menu = <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
+  return searchable ? (
+    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
+  ) : (
+    menu
+  );
 }
 
 function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props) {
@@ -53,15 +64,7 @@ function DropdownMenuContent({
           )}
           {...props}
         >
-          <ScrollArea
-            className="min-h-0 overscroll-contain"
-            fade="vertical"
-            scrollbar="thin"
-            viewportClassName="overflow-x-hidden!"
-            contentClassName="p-1 in-data-has-overflow-y:pe-3"
-          >
-            {children}
-          </ScrollArea>
+          {children}
         </MenuPrimitive.Popup>
       </MenuPrimitive.Positioner>
     </MenuPrimitive.Portal>
@@ -69,7 +72,7 @@ function DropdownMenuContent({
 }
 
 function DropdownMenuGroup({ ...props }: MenuPrimitive.Group.Props) {
-  return <MenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />;
+  return <MenuPrimitive.Group data-slot="dropdown-menu-group" data-filter-section {...props} />;
 }
 
 function DropdownMenuLabel({
@@ -107,7 +110,7 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/dropdown-menu-item relative flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground not-data-[variant=error]:hover:**:text-accent-foreground not-data-[variant=error]:focus:**:text-accent-foreground data-inset:ps-7 data-[variant=error]:text-error data-[variant=error]:hover:bg-error-interactive data-[variant=error]:hover:text-error data-[variant=error]:focus:bg-error-interactive data-[variant=error]:focus:text-error data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon data-[variant=error]:*:[svg]:text-error",
+        "group/dropdown-menu-item relative flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground not-data-[variant=error]:hover:**:text-accent-foreground not-data-[variant=error]:focus:**:text-accent-foreground data-inset:ps-7 data-[variant=error]:text-error data-[variant=error]:hover:bg-error-interactive data-[variant=error]:hover:text-error data-[variant=error]:focus:bg-error-interactive data-[variant=error]:focus:text-error data-[variant=error]:data-highlighted:bg-error-interactive data-[variant=error]:data-highlighted:text-error data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon data-[variant=error]:*:[svg]:text-error",
         className,
       )}
       {...props}
@@ -115,8 +118,19 @@ function DropdownMenuItem({
   );
 }
 
-function DropdownMenuSub({ ...props }: MenuPrimitive.SubmenuRoot.Props) {
-  return <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />;
+function DropdownMenuSub({
+  searchable = false,
+  ...props
+}: MenuPrimitive.SubmenuRoot.Props & {
+  /** Filter actions using the shared flush search header. */
+  searchable?: boolean;
+}) {
+  const menu = <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />;
+  return searchable ? (
+    <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
+  ) : (
+    menu
+  );
 }
 
 function DropdownMenuSubTrigger({
@@ -132,7 +146,7 @@ function DropdownMenuSubTrigger({
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "group group/dropdown-menu-sub-trigger flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "group group/dropdown-menu-sub-trigger flex cursor-default items-center rounded-md row-size text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}
@@ -181,7 +195,7 @@ function DropdownMenuCheckboxItem({
       data-slot="dropdown-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       checked={checked}
@@ -201,7 +215,13 @@ function DropdownMenuCheckboxItem({
 }
 
 function DropdownMenuRadioGroup({ ...props }: MenuPrimitive.RadioGroup.Props) {
-  return <MenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />;
+  return (
+    <MenuPrimitive.RadioGroup
+      data-slot="dropdown-menu-radio-group"
+      data-filter-section
+      {...props}
+    />
+  );
 }
 
 function DropdownMenuRadioItem({
@@ -217,7 +237,7 @@ function DropdownMenuRadioItem({
       data-slot="dropdown-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "relative flex cursor-default items-center rounded-md row-size pe-8 text-control-sm whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-highlighted:bg-accent data-highlighted:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}
@@ -276,3 +296,9 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
 };
+
+export {
+  MenuSearch as DropdownMenuSearch,
+  MenuList as DropdownMenuList,
+  MenuEmpty as DropdownMenuEmpty,
+} from "./menu-search";

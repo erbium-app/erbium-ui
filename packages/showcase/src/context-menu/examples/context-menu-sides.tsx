@@ -4,6 +4,7 @@ import {
   ContextMenuGroup,
   ContextMenuItem,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuSides() {
@@ -15,11 +16,13 @@ export function ContextMenuSides() {
           <span className="hidden pointer-coarse:inline-block">Long press (top)</span>
         </ContextMenuTrigger>
         <ContextMenuContent side="top">
-          <ContextMenuGroup>
-            <ContextMenuItem>Back</ContextMenuItem>
-            <ContextMenuItem>Forward</ContextMenuItem>
-            <ContextMenuItem>Reload</ContextMenuItem>
-          </ContextMenuGroup>
+          <ContextMenuList>
+            <ContextMenuGroup>
+              <ContextMenuItem>Back</ContextMenuItem>
+              <ContextMenuItem>Forward</ContextMenuItem>
+              <ContextMenuItem>Reload</ContextMenuItem>
+            </ContextMenuGroup>
+          </ContextMenuList>
         </ContextMenuContent>
       </ContextMenu>
       <ContextMenu>
@@ -28,11 +31,13 @@ export function ContextMenuSides() {
           <span className="hidden pointer-coarse:inline-block">Long press (right)</span>
         </ContextMenuTrigger>
         <ContextMenuContent side="right">
-          <ContextMenuGroup>
-            <ContextMenuItem>Back</ContextMenuItem>
-            <ContextMenuItem>Forward</ContextMenuItem>
-            <ContextMenuItem>Reload</ContextMenuItem>
-          </ContextMenuGroup>
+          <ContextMenuList>
+            <ContextMenuGroup>
+              <ContextMenuItem>Back</ContextMenuItem>
+              <ContextMenuItem>Forward</ContextMenuItem>
+              <ContextMenuItem>Reload</ContextMenuItem>
+            </ContextMenuGroup>
+          </ContextMenuList>
         </ContextMenuContent>
       </ContextMenu>
       <ContextMenu>
@@ -41,11 +46,13 @@ export function ContextMenuSides() {
           <span className="hidden pointer-coarse:inline-block">Long press (bottom)</span>
         </ContextMenuTrigger>
         <ContextMenuContent side="bottom">
-          <ContextMenuGroup>
-            <ContextMenuItem>Back</ContextMenuItem>
-            <ContextMenuItem>Forward</ContextMenuItem>
-            <ContextMenuItem>Reload</ContextMenuItem>
-          </ContextMenuGroup>
+          <ContextMenuList>
+            <ContextMenuGroup>
+              <ContextMenuItem>Back</ContextMenuItem>
+              <ContextMenuItem>Forward</ContextMenuItem>
+              <ContextMenuItem>Reload</ContextMenuItem>
+            </ContextMenuGroup>
+          </ContextMenuList>
         </ContextMenuContent>
       </ContextMenu>
       <ContextMenu>
@@ -54,11 +61,13 @@ export function ContextMenuSides() {
           <span className="hidden pointer-coarse:inline-block">Long press (left)</span>
         </ContextMenuTrigger>
         <ContextMenuContent side="left">
-          <ContextMenuGroup>
-            <ContextMenuItem>Back</ContextMenuItem>
-            <ContextMenuItem>Forward</ContextMenuItem>
-            <ContextMenuItem>Reload</ContextMenuItem>
-          </ContextMenuGroup>
+          <ContextMenuList>
+            <ContextMenuGroup>
+              <ContextMenuItem>Back</ContextMenuItem>
+              <ContextMenuItem>Forward</ContextMenuItem>
+              <ContextMenuItem>Reload</ContextMenuItem>
+            </ContextMenuGroup>
+          </ContextMenuList>
         </ContextMenuContent>
       </ContextMenu>
     </div>

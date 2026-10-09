@@ -12,6 +12,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuCheckboxesIcons() {
@@ -25,36 +26,38 @@ export function DropdownMenuCheckboxesIcons() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>Notifications</DropdownMenuTrigger>
       <DropdownMenuContent className="w-48">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>Notification Preferences</DropdownMenuLabel>
-          <DropdownMenuCheckboxItem
-            checked={notifications.email}
-            onCheckedChange={(checked) =>
-              setNotifications({ ...notifications, email: checked === true })
-            }
-          >
-            <HugeiconsIcon icon={Mail01Icon} />
-            Email notifications
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={notifications.sms}
-            onCheckedChange={(checked) =>
-              setNotifications({ ...notifications, sms: checked === true })
-            }
-          >
-            <HugeiconsIcon icon={MessageSquareIcon} />
-            SMS notifications
-          </DropdownMenuCheckboxItem>
-          <DropdownMenuCheckboxItem
-            checked={notifications.push}
-            onCheckedChange={(checked) =>
-              setNotifications({ ...notifications, push: checked === true })
-            }
-          >
-            <HugeiconsIcon icon={BellIcon} />
-            Push notifications
-          </DropdownMenuCheckboxItem>
-        </DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Notification Preferences</DropdownMenuLabel>
+            <DropdownMenuCheckboxItem
+              checked={notifications.email}
+              onCheckedChange={(checked) =>
+                setNotifications({ ...notifications, email: checked === true })
+              }
+            >
+              <HugeiconsIcon icon={Mail01Icon} />
+              Email notifications
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={notifications.sms}
+              onCheckedChange={(checked) =>
+                setNotifications({ ...notifications, sms: checked === true })
+              }
+            >
+              <HugeiconsIcon icon={MessageSquareIcon} />
+              SMS notifications
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={notifications.push}
+              onCheckedChange={(checked) =>
+                setNotifications({ ...notifications, push: checked === true })
+              }
+            >
+              <HugeiconsIcon icon={BellIcon} />
+              Push notifications
+            </DropdownMenuCheckboxItem>
+          </DropdownMenuGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

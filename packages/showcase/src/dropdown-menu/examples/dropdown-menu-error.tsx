@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuError() {
@@ -18,23 +19,25 @@ export function DropdownMenuError() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>Actions</DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <HugeiconsIcon icon={PencilIcon} />
-            Edit
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <HugeiconsIcon icon={Share01Icon} />
-            Share
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem variant="error">
-            <HugeiconsIcon icon={TrashIcon} />
-            Delete
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={PencilIcon} />
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={Share01Icon} />
+              Share
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem variant="error">
+              <HugeiconsIcon icon={TrashIcon} />
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

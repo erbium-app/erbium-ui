@@ -1,3 +1,5 @@
+import SearchableExample from "./variants/searchable";
+import SearchableSource from "./variants/searchable.tsx?raw";
 import { DropdownMenu } from "@erbium/ui/components/dropdown-menu";
 
 import type { Meta, StoryObj } from "../types";
@@ -212,4 +214,14 @@ export const Complex: Story = {
     },
   },
   render: ComplexExample,
+};
+
+export const Searchable: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("dropdown-menu", "searchable") },
+      source: { code: SearchableSource },
+    },
+  },
+  render: SearchableExample,
 };

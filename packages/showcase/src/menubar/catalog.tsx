@@ -1,3 +1,5 @@
+import SearchableExample from "./variants/searchable";
+import SearchableSource from "./variants/searchable.tsx?raw";
 import { Menubar } from "@erbium/ui/components/menubar";
 
 import type { Meta, StoryObj } from "../types";
@@ -115,4 +117,14 @@ export const WithIcons: Story = {
     },
   },
   render: WithIconsExample,
+};
+
+export const Searchable: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("menubar", "searchable") },
+      source: { code: SearchableSource },
+    },
+  },
+  render: SearchableExample,
 };

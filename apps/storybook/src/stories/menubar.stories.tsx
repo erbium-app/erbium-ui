@@ -7,3 +7,4 @@ export const Checkbox = { ...showcases.Checkbox, name: "Checkbox" };
 export const Radio = { ...showcases.Radio, name: "Radio" };
 export const Submenu = { ...showcases.Submenu, name: "Submenu" };
 export const WithIcons = { ...showcases.WithIcons, name: "With Icons" };
+export const Searchable = { ...showcases.Searchable, name: "Searchable" };

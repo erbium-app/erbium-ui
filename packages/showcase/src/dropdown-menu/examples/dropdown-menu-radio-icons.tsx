@@ -13,6 +13,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuRadioIcons() {
@@ -24,23 +25,25 @@ export function DropdownMenuRadioIcons() {
         Payment Method
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-56">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>Select Payment Method</DropdownMenuLabel>
-          <DropdownMenuRadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
-            <DropdownMenuRadioItem value="card">
-              <HugeiconsIcon icon={CreditCardIcon} />
-              Credit Card
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="paypal">
-              <HugeiconsIcon icon={Wallet01Icon} />
-              PayPal
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="bank">
-              <HugeiconsIcon icon={Building02Icon} />
-              Bank Transfer
-            </DropdownMenuRadioItem>
-          </DropdownMenuRadioGroup>
-        </DropdownMenuGroup>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Select Payment Method</DropdownMenuLabel>
+            <DropdownMenuRadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
+              <DropdownMenuRadioItem value="card">
+                <HugeiconsIcon icon={CreditCardIcon} />
+                Credit Card
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="paypal">
+                <HugeiconsIcon icon={Wallet01Icon} />
+                PayPal
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="bank">
+                <HugeiconsIcon icon={Building02Icon} />
+                Bank Transfer
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuGroup>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );

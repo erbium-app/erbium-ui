@@ -4,6 +4,7 @@ import {
   ContextMenuGroup,
   ContextMenuItem,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuBasic() {
@@ -14,11 +15,13 @@ export function ContextMenuBasic() {
         <span className="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuGroup>
-          <ContextMenuItem>Back</ContextMenuItem>
-          <ContextMenuItem disabled>Forward</ContextMenuItem>
-          <ContextMenuItem>Reload</ContextMenuItem>
-        </ContextMenuGroup>
+        <ContextMenuList>
+          <ContextMenuGroup>
+            <ContextMenuItem>Back</ContextMenuItem>
+            <ContextMenuItem disabled>Forward</ContextMenuItem>
+            <ContextMenuItem>Reload</ContextMenuItem>
+          </ContextMenuGroup>
+        </ContextMenuList>
       </ContextMenuContent>
     </ContextMenu>
   );

@@ -233,9 +233,11 @@ Use the `SidebarHeader` component to add a sticky header to the sidebar.
             <ChevronDown className="ml-auto" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>
-              <span>Acme Inc</span>
-            </DropdownMenuItem>
+            <DropdownMenuList>
+              <DropdownMenuItem>
+                <span>Acme Inc</span>
+              </DropdownMenuItem>
+            </DropdownMenuList>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

@@ -7218,7 +7218,8 @@
         "@erbium-examples/context-menu-checkboxes",
         "@erbium-examples/context-menu-radio",
         "@erbium-examples/context-menu-error-variant",
-        "@erbium-examples/context-menu-sides"
+        "@erbium-examples/context-menu-sides",
+        "@erbium-examples/context-menu-searchable"
       ]
     },
     {
@@ -7309,6 +7310,20 @@
           "path": "src/context-menu/variants/radio.tsx",
           "type": "registry:component",
           "target": "@components/showcase/context-menu/variants/radio.tsx"
+        }
+      ]
+    },
+    {
+      "name": "context-menu-searchable",
+      "type": "registry:component",
+      "title": "Context Menu: Searchable",
+      "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.",
+      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/context-menu/variants/searchable.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/context-menu/variants/searchable.tsx"
         }
       ]
     },
@@ -7460,6 +7475,11 @@
           "path": "src/context-menu/variants/radio.tsx",
           "type": "registry:component",
           "target": "@components/showcase/context-menu/variants/radio.tsx"
+        },
+        {
+          "path": "src/context-menu/variants/searchable.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/context-menu/variants/searchable.tsx"
         },
         {
           "path": "src/context-menu/variants/shortcuts.tsx",
@@ -9037,7 +9057,8 @@
         "@erbium-examples/dropdown-menu-radio-icons",
         "@erbium-examples/dropdown-menu-error-variant",
         "@erbium-examples/dropdown-menu-avatar",
-        "@erbium-examples/dropdown-menu-complex"
+        "@erbium-examples/dropdown-menu-complex",
+        "@erbium-examples/dropdown-menu-searchable"
       ]
     },
     {
@@ -9129,6 +9150,20 @@
           "path": "src/dropdown-menu/variants/radio-icons.tsx",
           "type": "registry:component",
           "target": "@components/showcase/dropdown-menu/variants/radio-icons.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu-searchable",
+      "type": "registry:component",
+      "title": "Dropdown Menu: Searchable",
+      "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.\n\nThe folder submenu has an independent query. Search for “Move”, open it, and filter folders without changing the parent search. Checkbox actions keep their usual selection behavior.",
+      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/dropdown-menu/variants/searchable.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/dropdown-menu/variants/searchable.tsx"
         }
       ]
     },
@@ -9287,6 +9322,11 @@
           "path": "src/dropdown-menu/variants/radio-icons.tsx",
           "type": "registry:component",
           "target": "@components/showcase/dropdown-menu/variants/radio-icons.tsx"
+        },
+        {
+          "path": "src/dropdown-menu/variants/searchable.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/dropdown-menu/variants/searchable.tsx"
         },
         {
           "path": "src/dropdown-menu/variants/shortcuts.tsx",
@@ -12730,7 +12770,8 @@
         "@erbium-examples/menubar-checkbox",
         "@erbium-examples/menubar-radio",
         "@erbium-examples/menubar-submenu",
-        "@erbium-examples/menubar-with-icons"
+        "@erbium-examples/menubar-with-icons",
+        "@erbium-examples/menubar-searchable"
       ]
     },
     {
@@ -12801,6 +12842,20 @@
       ]
     },
     {
+      "name": "menubar-searchable",
+      "type": "registry:component",
+      "title": "Menubar: Searchable",
+      "description": "Type to filter, use arrow keys to highlight an action, and press Enter to activate it. Escape closes the menu and returns focus to its trigger; opening again starts with an empty query. Clear search restores the full list. Empty groups disappear with their items. The flush search header stays above the scrolling list and uses the same typography, responsive height, and separator as Command.",
+      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/menubar/variants/searchable.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/menubar/variants/searchable.tsx"
+        }
+      ]
+    },
+    {
       "name": "menubar-stories",
       "type": "registry:item",
       "title": "Menubar stories",
@@ -12865,6 +12920,11 @@
           "path": "src/menubar/variants/radio.tsx",
           "type": "registry:component",
           "target": "@components/showcase/menubar/variants/radio.tsx"
+        },
+        {
+          "path": "src/menubar/variants/searchable.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/menubar/variants/searchable.tsx"
         },
         {
           "path": "src/menubar/variants/submenu.tsx",

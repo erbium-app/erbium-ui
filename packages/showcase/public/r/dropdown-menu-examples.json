@@ -17,6 +17,7 @@
     "@erbium-examples/dropdown-menu-radio-icons",
     "@erbium-examples/dropdown-menu-error-variant",
     "@erbium-examples/dropdown-menu-avatar",
-    "@erbium-examples/dropdown-menu-complex"
+    "@erbium-examples/dropdown-menu-complex",
+    "@erbium-examples/dropdown-menu-searchable"
   ]
 }

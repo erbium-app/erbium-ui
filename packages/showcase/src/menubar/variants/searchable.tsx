@@ -1,0 +1,57 @@
+import { useState } from "react";
+
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarSearch,
+  MenubarList,
+  MenubarEmpty,
+  MenubarGroup,
+  MenubarLabel,
+  MenubarItem,
+} from "@erbium/ui/components/menubar";
+
+export default function SearchableExample() {
+  const [action, setAction] = useState("No action selected.");
+  return (
+    <div className="grid gap-related">
+      <Menubar>
+        <MenubarMenu searchable>
+          <MenubarTrigger>Project</MenubarTrigger>
+          <MenubarContent className="w-72">
+            <MenubarSearch aria-label="Search project actions" />
+            <MenubarEmpty>No project actions found.</MenubarEmpty>
+            <MenubarList>
+              <MenubarGroup>
+                <MenubarLabel>Project</MenubarLabel>
+                {["Open project", "Rename project", "Duplicate project", "Copy project link"].map(
+                  (label) => (
+                    <MenubarItem key={label} label={label} onClick={() => setAction(label)}>
+                      {label}
+                    </MenubarItem>
+                  ),
+                )}
+              </MenubarGroup>
+
+              <MenubarGroup>
+                <MenubarLabel>Export</MenubarLabel>
+                {["Export PDF", "Export Markdown", "Export CSV", "Download archive"].map(
+                  (label) => (
+                    <MenubarItem key={label} label={label} onClick={() => setAction(label)}>
+                      {label}
+                    </MenubarItem>
+                  ),
+                )}
+              </MenubarGroup>
+            </MenubarList>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+      <p role="status" className="text-caption text-muted-foreground">
+        {action}
+      </p>
+    </div>
+  );
+}

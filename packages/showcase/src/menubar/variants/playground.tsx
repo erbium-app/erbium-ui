@@ -4,6 +4,7 @@ import {
   MenubarTrigger,
   MenubarContent,
   MenubarItem,
+  MenubarList,
 } from "@erbium/ui/components/menubar";
 
 const Example = (args: {
@@ -16,8 +17,10 @@ const Example = (args: {
     <MenubarMenu>
       <MenubarTrigger disabled={args.disabled}>File</MenubarTrigger>
       <MenubarContent align={args.align}>
-        <MenubarItem variant={args.itemVariant}>New</MenubarItem>
-        <MenubarItem>Open</MenubarItem>
+        <MenubarList>
+          <MenubarItem variant={args.itemVariant}>New</MenubarItem>
+          <MenubarItem>Open</MenubarItem>
+        </MenubarList>
       </MenubarContent>
     </MenubarMenu>
   </Menubar>

@@ -1,3 +1,5 @@
+import SearchableExample from "./variants/searchable";
+import SearchableSource from "./variants/searchable.tsx?raw";
 import { ContextMenu } from "@erbium/ui/components/context-menu";
 
 import type { Meta, StoryObj } from "../types";
@@ -182,4 +184,14 @@ export const Sides: Story = {
     },
   },
   render: SidesExample,
+};
+
+export const Searchable: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("context-menu", "searchable") },
+      source: { code: SearchableSource },
+    },
+  },
+  render: SearchableExample,
 };

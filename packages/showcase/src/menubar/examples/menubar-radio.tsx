@@ -9,6 +9,7 @@ import {
   MenubarRadioItem,
   MenubarSeparator,
   MenubarTrigger,
+  MenubarList,
 } from "@erbium/ui/components/menubar";
 
 export function MenubarRadio() {
@@ -20,24 +21,28 @@ export function MenubarRadio() {
       <MenubarMenu>
         <MenubarTrigger>Profiles</MenubarTrigger>
         <MenubarContent>
-          <MenubarRadioGroup value={user} onValueChange={setUser}>
-            <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
-            <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
-            <MenubarRadioItem value="luis">Luis</MenubarRadioItem>
-          </MenubarRadioGroup>
-          <MenubarSeparator />
-          <MenubarItem inset>Edit...</MenubarItem>
-          <MenubarItem inset>Add Profile...</MenubarItem>
+          <MenubarList>
+            <MenubarRadioGroup value={user} onValueChange={setUser}>
+              <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
+              <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
+              <MenubarRadioItem value="luis">Luis</MenubarRadioItem>
+            </MenubarRadioGroup>
+            <MenubarSeparator />
+            <MenubarItem inset>Edit...</MenubarItem>
+            <MenubarItem inset>Add Profile...</MenubarItem>
+          </MenubarList>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
         <MenubarTrigger>Theme</MenubarTrigger>
         <MenubarContent>
-          <MenubarRadioGroup value={theme} onValueChange={setTheme}>
-            <MenubarRadioItem value="light">Light</MenubarRadioItem>
-            <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
-            <MenubarRadioItem value="system">System</MenubarRadioItem>
-          </MenubarRadioGroup>
+          <MenubarList>
+            <MenubarRadioGroup value={theme} onValueChange={setTheme}>
+              <MenubarRadioItem value="light">Light</MenubarRadioItem>
+              <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+              <MenubarRadioItem value="system">System</MenubarRadioItem>
+            </MenubarRadioGroup>
+          </MenubarList>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>

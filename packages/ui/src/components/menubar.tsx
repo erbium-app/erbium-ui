@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Menubar as MenubarPrimitive } from "@base-ui/react/menubar";
 import { cn } from "../lib/utils";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
@@ -17,8 +18,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
 
 function Menubar({ className, ...props }: MenubarPrimitive.Props) {
   return (
@@ -38,7 +37,7 @@ function MenubarMenu({ ...props }: React.ComponentProps<typeof DropdownMenu>) {
 }
 
 function MenubarGroup({ ...props }: React.ComponentProps<typeof DropdownMenuGroup>) {
-  return <DropdownMenuGroup data-slot="menubar-group" {...props} />;
+  return <DropdownMenuGroup data-slot="menubar-group" data-filter-section {...props} />;
 }
 
 function MenubarPortal({ ...props }: React.ComponentProps<typeof DropdownMenuPortal>) {
@@ -97,66 +96,16 @@ function MenubarItem({
   );
 }
 
-function MenubarCheckboxItem({
-  className,
-  children,
-  checked,
-  inset,
-  ...props
-}: MenuPrimitive.CheckboxItem.Props & {
-  inset?: boolean;
-}) {
-  return (
-    <MenuPrimitive.CheckboxItem
-      data-slot="menubar-checkbox-item"
-      data-inset={inset}
-      className={cn(
-        "relative flex cursor-default items-center gap-related rounded-md py-1 pe-1.5 ps-7 text-control whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
-        className,
-      )}
-      checked={checked}
-      {...props}
-    >
-      <span className="pointer-events-none absolute inset-s-1.5 flex size-control-icon items-center justify-center [&_svg:not([class*='size-'])]:size-control-icon">
-        <MenuPrimitive.CheckboxItemIndicator>
-          <HugeiconsIcon icon={CheckIcon} />
-        </MenuPrimitive.CheckboxItemIndicator>
-      </span>
-      {children}
-    </MenuPrimitive.CheckboxItem>
-  );
+function MenubarCheckboxItem({ ...props }: React.ComponentProps<typeof DropdownMenuCheckboxItem>) {
+  return <DropdownMenuCheckboxItem data-slot="menubar-checkbox-item" {...props} />;
 }
 
 function MenubarRadioGroup({ ...props }: React.ComponentProps<typeof DropdownMenuRadioGroup>) {
-  return <DropdownMenuRadioGroup data-slot="menubar-radio-group" {...props} />;
+  return <DropdownMenuRadioGroup data-slot="menubar-radio-group" data-filter-section {...props} />;
 }
 
-function MenubarRadioItem({
-  className,
-  children,
-  inset,
-  ...props
-}: MenuPrimitive.RadioItem.Props & {
-  inset?: boolean;
-}) {
-  return (
-    <MenuPrimitive.RadioItem
-      data-slot="menubar-radio-item"
-      data-inset={inset}
-      className={cn(
-        "relative flex cursor-default items-center gap-related rounded-md py-1 pe-1.5 ps-7 text-control whitespace-nowrap outline-hidden select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:**:text-accent-foreground focus:**:text-accent-foreground data-inset:ps-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
-        className,
-      )}
-      {...props}
-    >
-      <span className="pointer-events-none absolute inset-s-1.5 flex size-control-icon items-center justify-center [&_svg:not([class*='size-'])]:size-control-icon">
-        <MenuPrimitive.RadioItemIndicator>
-          <HugeiconsIcon icon={CheckIcon} />
-        </MenuPrimitive.RadioItemIndicator>
-      </span>
-      {children}
-    </MenuPrimitive.RadioItem>
-  );
+function MenubarRadioItem({ ...props }: React.ComponentProps<typeof DropdownMenuRadioItem>) {
+  return <DropdownMenuRadioItem data-slot="menubar-radio-item" {...props} />;
 }
 
 function MenubarLabel({
@@ -260,3 +209,9 @@ export {
   MenubarSubTrigger,
   MenubarSubContent,
 };
+
+export {
+  DropdownMenuSearch as MenubarSearch,
+  DropdownMenuList as MenubarList,
+  DropdownMenuEmpty as MenubarEmpty,
+} from "./dropdown-menu";

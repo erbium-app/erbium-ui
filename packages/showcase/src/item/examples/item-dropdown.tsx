@@ -6,6 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 import {
   Item,
@@ -48,27 +49,33 @@ export default function ItemDropdown() {
           }
         />
         <DropdownMenuContent className="w-72 [--radius:0.65rem]" align="end">
-          {people.map((person) => (
-            <DropdownMenuItem key={person.username} className="p-0">
-              <Item size="sm" className="w-full p-2">
-                <ItemMedia>
-                  <Avatar className="size-8">
-                    <AvatarImage alt={person.username} src={person.avatar} className="grayscale" />
-                    <AvatarFallback>
-                      {person.username
-                        .split(" ")
-                        .map((part) => part[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                </ItemMedia>
-                <ItemContent className="gap-0.5">
-                  <ItemTitle>{person.username}</ItemTitle>
-                  <ItemDescription>{person.email}</ItemDescription>
-                </ItemContent>
-              </Item>
-            </DropdownMenuItem>
-          ))}
+          <DropdownMenuList>
+            {people.map((person) => (
+              <DropdownMenuItem key={person.username} className="p-0">
+                <Item size="sm" className="w-full p-2">
+                  <ItemMedia>
+                    <Avatar className="size-8">
+                      <AvatarImage
+                        alt={person.username}
+                        src={person.avatar}
+                        className="grayscale"
+                      />
+                      <AvatarFallback>
+                        {person.username
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+                  </ItemMedia>
+                  <ItemContent className="gap-0.5">
+                    <ItemTitle>{person.username}</ItemTitle>
+                    <ItemDescription>{person.email}</ItemDescription>
+                  </ItemContent>
+                </Item>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuList>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

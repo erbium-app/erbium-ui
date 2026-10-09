@@ -11,6 +11,7 @@ import {
   ContextMenuItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuIcons() {
@@ -21,27 +22,29 @@ export function ContextMenuIcons() {
         <span className="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuGroup>
-          <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
-            <CopyButtonIcon />
-            <span>Copy</span>
-          </CopyButton>
-          <ContextMenuItem>
-            <HugeiconsIcon icon={ScissorsIcon} />
-            Cut
-          </ContextMenuItem>
-          <ContextMenuItem>
-            <HugeiconsIcon icon={ClipboardPasteIcon} />
-            Paste
-          </ContextMenuItem>
-        </ContextMenuGroup>
-        <ContextMenuSeparator />
-        <ContextMenuGroup>
-          <ContextMenuItem variant="error">
-            <HugeiconsIcon icon={TrashIcon} />
-            Delete
-          </ContextMenuItem>
-        </ContextMenuGroup>
+        <ContextMenuList>
+          <ContextMenuGroup>
+            <CopyButton value="Erbium UI" render={<ContextMenuItem />}>
+              <CopyButtonIcon />
+              <span>Copy</span>
+            </CopyButton>
+            <ContextMenuItem>
+              <HugeiconsIcon icon={ScissorsIcon} />
+              Cut
+            </ContextMenuItem>
+            <ContextMenuItem>
+              <HugeiconsIcon icon={ClipboardPasteIcon} />
+              Paste
+            </ContextMenuItem>
+          </ContextMenuGroup>
+          <ContextMenuSeparator />
+          <ContextMenuGroup>
+            <ContextMenuItem variant="error">
+              <HugeiconsIcon icon={TrashIcon} />
+              Delete
+            </ContextMenuItem>
+          </ContextMenuGroup>
+        </ContextMenuList>
       </ContextMenuContent>
     </ContextMenu>
   );

@@ -6,6 +6,7 @@ import {
   ContextMenuSeparator,
   ContextMenuShortcut,
   ContextMenuTrigger,
+  ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
 export function ContextMenuShortcuts() {
@@ -16,31 +17,33 @@ export function ContextMenuShortcuts() {
         <span className="hidden pointer-coarse:inline-block">Long press here</span>
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuGroup>
-          <ContextMenuItem>
-            Back
-            <ContextMenuShortcut hotkey="Mod+[" />
-          </ContextMenuItem>
-          <ContextMenuItem disabled>
-            Forward
-            <ContextMenuShortcut hotkey="Mod+]" />
-          </ContextMenuItem>
-          <ContextMenuItem>
-            Reload
-            <ContextMenuShortcut hotkey="Mod+R" />
-          </ContextMenuItem>
-        </ContextMenuGroup>
-        <ContextMenuSeparator />
-        <ContextMenuGroup>
-          <ContextMenuItem>
-            Save
-            <ContextMenuShortcut hotkey="Mod+S" />
-          </ContextMenuItem>
-          <ContextMenuItem>
-            Save As...
-            <ContextMenuShortcut hotkey="Shift+Mod+S" />
-          </ContextMenuItem>
-        </ContextMenuGroup>
+        <ContextMenuList>
+          <ContextMenuGroup>
+            <ContextMenuItem>
+              Back
+              <ContextMenuShortcut hotkey="Mod+[" />
+            </ContextMenuItem>
+            <ContextMenuItem disabled>
+              Forward
+              <ContextMenuShortcut hotkey="Mod+]" />
+            </ContextMenuItem>
+            <ContextMenuItem>
+              Reload
+              <ContextMenuShortcut hotkey="Mod+R" />
+            </ContextMenuItem>
+          </ContextMenuGroup>
+          <ContextMenuSeparator />
+          <ContextMenuGroup>
+            <ContextMenuItem>
+              Save
+              <ContextMenuShortcut hotkey="Mod+S" />
+            </ContextMenuItem>
+            <ContextMenuItem>
+              Save As...
+              <ContextMenuShortcut hotkey="Shift+Mod+S" />
+            </ContextMenuItem>
+          </ContextMenuGroup>
+        </ContextMenuList>
       </ContextMenuContent>
     </ContextMenu>
   );

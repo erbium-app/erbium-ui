@@ -17,6 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export default function ButtonGroupDropdown() {
@@ -32,39 +33,41 @@ export default function ButtonGroupDropdown() {
           }
         />
         <DropdownMenuContent align="end" className="[--radius:1rem]">
-          <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={VolumeOffIcon} />
-              Mute Conversation
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={CheckIcon} />
-              Mark as Read
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={Alert01Icon} />
-              Report Conversation
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={UserRoundXIcon} />
-              Block User
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <HugeiconsIcon icon={Share01Icon} />
-              Share Conversation
-            </DropdownMenuItem>
-            <CopyButton value="Conversation with Alex" render={<DropdownMenuItem />}>
-              <CopyButtonIcon />
-              <span>Copy Conversation</span>
-            </CopyButton>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem variant="error">
-              <HugeiconsIcon icon={TrashIcon} />
-              Delete Conversation
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
+          <DropdownMenuList>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <HugeiconsIcon icon={VolumeOffIcon} />
+                Mute Conversation
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <HugeiconsIcon icon={CheckIcon} />
+                Mark as Read
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <HugeiconsIcon icon={Alert01Icon} />
+                Report Conversation
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <HugeiconsIcon icon={UserRoundXIcon} />
+                Block User
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <HugeiconsIcon icon={Share01Icon} />
+                Share Conversation
+              </DropdownMenuItem>
+              <CopyButton value="Conversation with Alex" render={<DropdownMenuItem />}>
+                <CopyButtonIcon />
+                <span>Copy Conversation</span>
+              </CopyButton>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem variant="error">
+                <HugeiconsIcon icon={TrashIcon} />
+                Delete Conversation
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuList>
         </DropdownMenuContent>
       </DropdownMenu>
     </ButtonGroup>

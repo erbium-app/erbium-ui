@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 import {
   Table,
@@ -60,10 +61,12 @@ const columns = columnHelper.columns([
           <span className="sr-only">Open menu for {row.original.name}</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>Duplicate</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem variant="error">Delete</DropdownMenuItem>
+          <DropdownMenuList>
+            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>Duplicate</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem variant="error">Delete</DropdownMenuItem>
+          </DropdownMenuList>
         </DropdownMenuContent>
       </DropdownMenu>
     ),

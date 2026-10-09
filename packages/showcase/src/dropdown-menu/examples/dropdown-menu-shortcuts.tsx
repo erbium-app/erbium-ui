@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
+  DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
 export function DropdownMenuShortcuts() {
@@ -15,26 +16,28 @@ export function DropdownMenuShortcuts() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuItem>
+              Profile
+              <DropdownMenuShortcut hotkey="Shift+Mod+P" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Billing
+              <DropdownMenuShortcut hotkey="Mod+B" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Settings
+              <DropdownMenuShortcut hotkey="Mod+S" />
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
           <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut hotkey="Shift+Mod+P" />
+            Log out
+            <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut hotkey="Mod+B" />
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut hotkey="Mod+S" />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Log out
-          <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
-        </DropdownMenuItem>
+        </DropdownMenuList>
       </DropdownMenuContent>
     </DropdownMenu>
   );
