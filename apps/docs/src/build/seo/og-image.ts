@@ -1,4 +1,11 @@
-import satori from "satori";
+import { createRequire } from "node:module";
+import type satoriType from "satori";
+
+// Satori embeds Yoga with CommonJS path handling. Use its supported Node entry
+// instead of the ESM bundle, which references __dirname during initialization.
+const { default: satori } = createRequire(import.meta.url)("satori") as {
+  default: typeof satoriType;
+};
 import sharp from "sharp";
 import regularFont from "@/assets/og/Geist-Regular.ttf?inline";
 import semiboldFont from "@/assets/og/Geist-SemiBold.ttf?inline";
