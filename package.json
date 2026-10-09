@@ -121,7 +121,7 @@
     "anti-slop": "github:dmmulroy/anti-slop#c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b",
     "knip": "^6.41.0",
     "oxfmt": "0.72.0",
-    "oxlint": "1.86.0",
+    "oxlint": "1.87.0",
     "skills": "^1.7.1",
     "taze": "^21.3.0",
     "typescript": "catalog:",
