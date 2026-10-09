@@ -1,6 +1,6 @@
 ---
 title: "Reading"
-description: Shared heading roles with explicit default and compact reading rhythms.
+description: One reading rhythm using shared body, heading, and code roles.
 ---
 
-Shared heading roles with explicit default and compact reading rhythms.
+One reading rhythm using shared body, heading, and code roles.

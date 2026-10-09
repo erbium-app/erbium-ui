@@ -33,7 +33,7 @@ export const searchGroups = [
         title: "Typography",
         href: "/docs/typography",
         name: "typography",
-        description: "Fonts, type roles, and Typeset reading presets.",
+        description: "Fonts, type roles, and one Typeset reading rhythm.",
       },
     ],
   },

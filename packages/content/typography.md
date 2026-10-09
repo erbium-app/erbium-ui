@@ -66,12 +66,12 @@ Use `text-foreground` for primary content and `text-muted-foreground` for suppor
 
 ### Controls, metadata, and code
 
-The five roles describe content hierarchy. Functional text uses these shared density roles rather than introducing local sizes:
+The five content roles plus two control roles define the shared scale. Metadata, code, fields, and editing are recipes that reuse it; they do not add another size scale:
 
 | Role               | Default                                                             | Use                                                                            |
 | ------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `text-control`     | 14px / 20px, 500                                                    | Buttons, labels, menu items, tabs, and short item titles                       |
-| `text-control-sm`  | 12px / 18px, 500                                                    | Compact control variants, keyboard keys, and badges                            |
+| `text-control`     | 14px / 20px, 500                                                    | Larger actions, field labels, and short item titles                            |
+| `text-control-sm`  | 12px / 18px, 500                                                    | Default dense controls, menus, tabs, keyboard keys, and badges                 |
 | `text-metadata`    | 12px / 18px, 400                                                    | Short timestamps, filenames, and supporting rows                               |
 | `text-code-block`  | 14px / 22.4px, 400                                                  | Paper Mono code blocks                                                         |
 | `text-inline-code` | 0.875em, inherited leading, 400                                     | Paper Mono identifiers inside prose                                            |
@@ -117,31 +117,25 @@ Keep inputs at least 16px on touch devices. Avoid fixed heights for multiline ti
 
 ## Reading styles
 
-Wrap reading content with `typeset` and an optional preset:
+Wrap reading content with `typeset`. It owns the single reading rhythm:
 
 ```tsx
-<article className="typeset typeset-docs max-w-[65ch]">
+<article className="typeset max-w-[65ch]">
   <h2>Getting started</h2>
   <p>Render HTML or Markdown here.</p>
 </article>
 ```
 
-| Preset                    | Base size                        | Line height  | Block spacing |
-| ------------------------- | -------------------------------- | ------------ | ------------- |
-| `typeset`                 | `1em`, relative to its container | Body role    | `1.25em`      |
-| `typeset typeset-docs`    | Body role, 1rem                  | Body role    | `1.5em`       |
-| `typeset typeset-compact` | Caption role, 0.875rem           | Caption role | `1em`         |
+Reading uses the body role at 16px with its shared line height and 1.5em block spacing. It keeps the same typography on narrow and wide screens. Script-specific line heights apply automatically. There is no compact reading preset and no separate documentation preset.
 
-A preset alone does not activate Typeset. Text keeps the same size on narrow and wide screens; compact reading is an explicit choice for short content, never the default for an article. Language-specific line heights apply to both presets.
-
-Markdown shares the interface heading roles: h1 is display, h2 is title, and h3 is subtitle. h4–h6 use the container’s body size at semibold. The semantic levels remain distinct for navigation, without introducing smaller uppercase headings. Heading sizes remain the same in both reading presets. Space goes above each block; the first block has no extra top margin.
+Markdown shares the interface heading roles: h1 is display, h2 is title, and h3 is subtitle. h4–h6 use the container’s body size at semibold. The semantic levels remain distinct for navigation, without introducing smaller uppercase headings. Heading sizes use the same roles in reading content and interfaces. Space goes above each block; the first block has no extra top margin.
 
 Typeset balances headings, pretty-wraps paragraphs, uses font-derived underline metrics, isolates code blocks as LTR, and aligns table numbers with tabular figures. Colors and spacing follow the shared theme.
 
 Use `not-typeset` or `data-not-typeset` to exclude embedded components and their descendants. Wrap wide tables with `typeset-scroll`:
 
 ```tsx
-<article className="typeset typeset-docs">
+<article className="typeset">
   <p>Choose your preferences.</p>
   <div className="not-typeset">
     <SettingsForm />
@@ -184,16 +178,8 @@ Load a replacement font before assigning it. Override both runtime tokens and Ta
 
 Apply the same pattern to `--font-mono` for a code font or `--font-heading` for a separate heading family. Keep system fallbacks and check language coverage.
 
-Define reading rhythm through three variables:
+Reading consumes the shared font and text roles directly. It does not expose a second set of font, size, leading, or flow variables. Change shared roles only as a design-system decision; use layout constraints to adapt content to its container.
 
-```css
-@layer components {
-  .typeset-reading {
-    --typeset-size: 1.125rem;
-    --typeset-leading: 1.9;
-    --typeset-flow: 1.75em;
-  }
-}
-```
+Metadata reuses the small control size with regular weight. Code blocks reuse the caption size with a fixed code rhythm. Inline code scales relative to its surrounding text. These semantic recipes do not introduce independently adjustable font-size tokens.
 
-Use `typeset typeset-reading` to apply it. The same examples are available in Storybook under **Foundations / Typography**. The approach adapts [Fluid Functionalism’s typography](https://www.fluidfunctionalism.com/docs/typography): a small shared scale, clear weights, and careful wrapping, with defaults for Erbium’s three font roles.
+The same examples are available in Storybook under **Foundations / Typography**. The approach takes inspiration from Fluid Functionalism's shared scale and shadcn's rich-text semantics, while keeping one opinionated reading default.

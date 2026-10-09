@@ -21406,7 +21406,7 @@
       "name": "typography-reading",
       "type": "registry:component",
       "title": "Typography: Reading",
-      "description": "Shared heading roles with explicit default and compact reading rhythms.",
+      "description": "One reading rhythm using shared body, heading, and code roles.",
       "registryDependencies": ["@erbium/card", "@erbium/styles"],
       "files": [
         {

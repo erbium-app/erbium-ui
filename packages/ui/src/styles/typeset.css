@@ -5,20 +5,9 @@
 
 @layer components {
   .typeset {
-    --typeset-font-body: inherit;
-    --typeset-font-heading: var(--font-heading);
-    --typeset-font-mono: var(--font-mono);
-    --typeset-size: 1em;
-    --typeset-leading: var(--text-body--line-height);
-    --typeset-flow: 1.25em;
-  }
-}
-
-@layer components {
-  .typeset {
-    font-family: var(--typeset-font-body);
-    font-size: var(--typeset-size);
-    line-height: var(--typeset-leading);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
     color: var(--color-foreground, currentColor);
     overflow-wrap: break-word;
     margin-trim: block-start;
@@ -33,7 +22,7 @@
   .typeset *:not(:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)) {
     /* Paragraphs. */
     &:where(p) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
       text-wrap: pretty;
     }
@@ -41,7 +30,7 @@
     /* Headings. */
     &:where(h1, h2, h3, h4, h5, h6) {
       color: var(--color-foreground, currentColor);
-      font-family: var(--typeset-font-heading);
+      font-family: var(--font-heading);
       font-weight: 600;
       text-wrap: balance;
       margin-block-end: 0;
@@ -50,36 +39,33 @@
       font-size: var(--text-display);
       line-height: var(--text-display--line-height);
       font-weight: var(--text-display--font-weight);
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
     }
     &:where(h2) {
       font-size: var(--text-title);
       line-height: var(--text-title--line-height);
       font-weight: var(--text-title--font-weight);
-      margin-block-start: calc(var(--typeset-flow) * 1.4);
+      margin-block-start: calc(1.5em * 1.4);
     }
     &:where(h3) {
       font-size: var(--text-subtitle);
       line-height: var(--text-subtitle--line-height);
       font-weight: var(--text-subtitle--font-weight);
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
     }
     &:where(h4, h5, h6) {
       font-size: 1em;
       line-height: var(--text-body--line-height);
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
     }
     /* Anchors. */
     &:where([id]) {
-      scroll-margin-block-start: var(--typeset-flow);
+      scroll-margin-block-start: 1.5em;
     }
 
     /* Headings own the space below them. */
     &:where(h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + *) {
       margin-block-start: 1em;
-    }
-    &:where(:is(h1, h2, h3, h4) :is(code)) {
-      font-size: 0.9em;
     }
 
     /* Links. */
@@ -173,7 +159,7 @@
       list-style-type: upper-roman;
     }
     &:where(ul, ol) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
       padding-inline-start: 1.5em;
     }
@@ -204,7 +190,7 @@
 
     /* Disclosures. */
     &:where(details) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
     }
     &:where(summary) {
@@ -228,7 +214,7 @@
 
     /* Definition lists. */
     &:where(dl) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
     }
     &:where(dt) {
@@ -248,9 +234,7 @@
     /* Inline code. */
     &:where(:not(pre) > code) {
       background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
-      font-family: var(--typeset-font-mono);
-      font-size: 0.875em;
-      overflow-wrap: anywhere;
+      @apply text-inline-code;
       border-radius: min(calc(var(--radius, 0.5em) * 0.6), 0.35em);
       padding: 0.125em 0.3em;
     }
@@ -258,15 +242,14 @@
     /* Code blocks. */
     &:where(pre) {
       background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
-      font-family: var(--typeset-font-mono);
-      font-size: var(--text-caption);
-      line-height: var(--leading-code);
+      font-family: var(--font-mono);
+      @apply text-code-block;
       tab-size: 2;
       direction: ltr;
       border-radius: var(--radius, 0.5em);
       padding: 0.75em 1em;
       overflow-x: auto;
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
     }
     &:where(pre code) {
@@ -281,7 +264,7 @@
     &:where(blockquote) {
       border-inline-start: 2px solid var(--typeset-rule);
       padding-inline-start: 1em;
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
       margin-inline: 0;
     }
@@ -290,25 +273,25 @@
     &:where(hr) {
       border: 0;
       border-block-start: 1px solid var(--typeset-rule);
-      margin-block-start: calc(var(--typeset-flow) * 2.4);
+      margin-block-start: calc(1.5em * 2.4);
       margin-block-end: 0;
     }
     &:where(hr + h1, hr + h2, hr + h3, hr + h4) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
     }
 
     /* GFM footnotes. */
     &:where(.footnotes, [data-footnotes]) {
-      margin-block-start: calc(var(--typeset-flow) * 2);
+      margin-block-start: calc(1.5em * 2);
       border-block-start: 1px solid var(--typeset-rule);
-      padding-block-start: var(--typeset-flow);
+      padding-block-start: 1.5em;
       font-size: 0.875em;
       color: var(--typeset-muted);
     }
 
     /* Math. */
     &:where(math[display="block"]) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
       overflow-x: auto;
       overflow-y: hidden;
@@ -320,14 +303,14 @@
       border-radius: var(--radius, 0.5em);
       max-width: 100%;
       height: auto;
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
     }
     &:where(p img) {
       margin-block-start: 0;
     }
     &:where(figure) {
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
       margin-inline: 0;
     }
@@ -351,7 +334,7 @@
       border-collapse: separate;
       border-spacing: 0;
       border-block-end: 1px solid var(--typeset-rule);
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
       margin-block-end: 0;
     }
 
@@ -360,7 +343,7 @@
        instead of compress. */
     &:where(.typeset-scroll) {
       overflow-x: auto;
-      margin-block-start: var(--typeset-flow);
+      margin-block-start: 1.5em;
     }
     &:where(.typeset-scroll > *) {
       margin-block-start: 0;
@@ -440,22 +423,5 @@
       figure > picture > img
     ):not(:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)) {
     margin-block-start: 0;
-  }
-}
-
-/* Erbium reading presets. Layouts own their measure (for example max-w-[70ch]). */
-@layer components {
-  .typeset-docs {
-    --typeset-font-body: var(--font-sans);
-    --typeset-size: var(--text-body);
-    --typeset-leading: var(--text-body--line-height);
-    --typeset-flow: 1.5em;
-  }
-
-  .typeset-compact {
-    --typeset-font-body: var(--font-sans);
-    --typeset-size: var(--text-caption);
-    --typeset-leading: var(--text-caption--line-height);
-    --typeset-flow: 1em;
   }
 }

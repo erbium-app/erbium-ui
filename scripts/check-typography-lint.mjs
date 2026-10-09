@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const invalid = `import { cn } from "@erbium/ui/lib/utils";
 import { cva } from "class-variance-authority";
-export const labelClass = "text-sm";
+export const labelClass = "text-sm typeset-docs typeset-compact";
 export const labelOptions = { fontSize: 13 };
 export function SvgProbe() { return <svg><text fontSize={14}>SVG</text></svg>; }
 export function HtmlProbe() { const element = document.createElement("div"); element.innerHTML = '<p class="text-sm">HTML</p>'; }
@@ -48,7 +48,7 @@ for (const directory of ["packages/ui/src", "packages/showcase/src"]) {
     assert.equal(rejected.passed, false, rejected.output);
     assert.equal(
       (rejected.output.match(/erbium-typography\(use-roles\)/g) ?? []).length,
-      12,
+      14,
       rejected.output,
     );
     assert.match(rejected.output, /Typography comes from Erbium text roles/);

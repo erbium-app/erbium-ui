@@ -1,6 +1,5 @@
 /* Shared roles for interfaces and reading content. Sizes respect browser zoom. */
 @theme static {
-  --leading-code: 1.6;
   --text-display: 2rem;
   --text-display--line-height: 1.25;
   --text-display--font-weight: 700;
@@ -23,15 +22,6 @@
   --text-control-sm: 0.75rem;
   --text-control-sm--line-height: 1.5;
   --text-control-sm--font-weight: 500;
-  --text-metadata: 0.75rem;
-  --text-metadata--line-height: 1.5;
-  --text-metadata--font-weight: 400;
-  --text-code-block: 0.875rem;
-  --text-code-block--line-height: var(--leading-code);
-  --text-code-block--font-weight: 400;
-  --text-inline-code: 0.875em;
-  --text-inline-code--line-height: inherit;
-  --text-inline-code--font-weight: 400;
 }
 
 @utility text-display {
@@ -67,7 +57,6 @@
     --text-caption--line-height: 1.75;
     --text-control--line-height: 1.6;
     --text-control-sm--line-height: 1.6;
-    --text-metadata--line-height: 1.6;
   }
 }
 
@@ -77,12 +66,25 @@
   }
 }
 
+/* Supporting roles reuse the scale; they do not expose another size ladder. */
+@utility text-metadata {
+  font-size: var(--text-control-sm);
+  line-height: var(--text-control-sm--line-height);
+  font-weight: 400;
+}
+
 @utility text-code-block {
+  font-size: var(--text-caption);
+  line-height: 1.6;
+  font-weight: 400;
   font-family: var(--font-mono);
   font-variant-ligatures: none;
 }
 
 @utility text-inline-code {
+  font-size: 0.875em;
+  line-height: inherit;
+  font-weight: 400;
   font-family: var(--font-mono);
   font-variant-ligatures: none;
   overflow-wrap: anywhere;

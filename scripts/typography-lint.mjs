@@ -78,6 +78,7 @@ export function typographyViolations(value) {
   return value.split(/\s+/).filter((token) => {
     const font = token.match(/(?:^|:)!?(font-[^\s!]+)!?$/)?.[1];
     return (
+      /(?:^|:)typeset-(?:docs|compact)$/.test(token) ||
       stockSize.test(token) ||
       roleLeadingOverride.test(token) ||
       dynamicType.test(token) ||
