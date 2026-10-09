@@ -96,7 +96,7 @@ function CommandDialog({
 function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
   return (
     <div data-slot="command-input-wrapper">
-      <div className="flex min-h-control control-adaptive items-center gap-related px-control-inset">
+      <div className="flex search-input-row items-center">
         <HugeiconsIcon
           icon={Search01Icon}
           aria-hidden="true"
@@ -105,7 +105,7 @@ function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "min-h-control control-adaptive min-w-0 flex-1 bg-transparent text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "min-h-0 min-w-0 flex-1 bg-transparent py-0 text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}

@@ -54,6 +54,7 @@ Use logical inline spacing for RTL. Preserve alignment between labels, fields, c
 
 ## Specialized geometry
 
+- Search headers in command, combobox search, and the docs search dialog use a 40px desktop minimum with 8px vertical padding. Narrow and coarse-pointer layouts use at least 48px; rows grow further when their actions or editable text need more room. Search triggers remain ordinary controls.
 - Menus use a 28px row minimum and a 44px touch minimum, with their own inset. Portaled popups apply these defaults explicitly; parent CSS inheritance cannot size them.
 - Segmented controls include their outer inset in the height budget. Their inner segments occupy the remaining space rather than adding another full control height.
 - Checkbox and radio glyphs are 14px; their labels and surrounding rows provide interaction space.

@@ -211,3 +211,14 @@
   width: 0.75rem;
   height: 0.75rem;
 }
+
+/* Search headers separate editable text from the results below it. */
+@utility search-input-row {
+  min-height: 2.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem;
+  gap: 0.5rem;
+  @media (width < 48rem), (pointer: coarse) {
+    min-height: 3rem;
+  }
+}

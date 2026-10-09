@@ -81,7 +81,7 @@ function ComboboxInput({
 function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Props) {
   return (
     <div data-slot="combobox-search-input-wrapper">
-      <div className="flex min-h-control control-adaptive items-center gap-related px-control-inset">
+      <div className="flex search-input-row items-center">
         <HugeiconsIcon
           icon={Search01Icon}
           aria-hidden="true"
@@ -90,7 +90,7 @@ function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Pr
         <ComboboxPrimitive.Input
           data-slot="combobox-search-input"
           className={cn(
-            "h-full min-w-0 flex-1 bg-transparent text-control outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            "min-h-0 min-w-0 flex-1 bg-transparent py-0 text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}
