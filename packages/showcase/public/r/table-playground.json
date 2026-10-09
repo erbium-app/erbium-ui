@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Table: Playground",
   "description": "",
-  "dependencies": ["@tanstack/react-table@9.2.6"],
+  "dependencies": ["@tanstack/react-table@9.2.8"],
   "registryDependencies": ["@erbium/styles", "@erbium/table"],
   "files": [
     {

@@ -5773,7 +5773,7 @@
       "type": "registry:component",
       "title": "chart demo",
       "description": "Erbium chart demo example.",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5789,7 +5789,7 @@
       "type": "registry:block",
       "title": "Chart: Example",
       "description": "A chart with the default configuration.",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5811,7 +5811,7 @@
       "type": "registry:block",
       "title": "Chart: Example Axis",
       "description": "Show chart axes and labels.",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5839,7 +5839,7 @@
       "type": "registry:block",
       "title": "Chart: Example Grid",
       "description": "Show grid lines in a chart.",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5867,7 +5867,7 @@
       "type": "registry:block",
       "title": "Chart: Legend",
       "description": "TanStack Charts renders the legend from the chart definition. The example maps Desktop and Mobile to fixed colors and enables a legend labeled Device.\n\n```tsx\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  color: {\n    scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n    legend: colorLegend({\n      label: \"Device\",\n      items: colorLegendItems({\n        justify: \"start\",\n        gap: 16,\n        rowGap: 8,\n        indicator: { shape: \"dot\", width: 8, height: 8, gap: 7 },\n        label: { fontSize: 13, fontWeight: 500, fill: \"var(--muted-foreground)\" },\n      }),\n    }),\n  },\n});\n```",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5895,7 +5895,7 @@
       "type": "registry:block",
       "title": "Chart: Tooltip",
       "description": "Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\n\n```tsx\nimport { tooltip } from \"@tanstack/charts/tooltip\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  focus: \"group-x\",\n  tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n});\n```\n\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5938,7 +5938,7 @@
       "type": "registry:block",
       "title": "Chart: Overview",
       "description": "",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5960,7 +5960,7 @@
       "type": "registry:block",
       "title": "Chart: Playground",
       "description": "",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5982,7 +5982,7 @@
       "type": "registry:item",
       "title": "Chart stories",
       "description": "All chart variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/charts@1.0.0"],
+      "dependencies": ["@tanstack/charts@1.1.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/chart",
@@ -6386,7 +6386,7 @@
       "type": "registry:item",
       "title": "Checkbox stories",
       "description": "All checkbox variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/checkbox",
@@ -6564,7 +6564,7 @@
       "type": "registry:block",
       "title": "Checkbox: Table",
       "description": "Click a checkbox to toggle one row, or drag across rows to select or clear a range. The header checkbox reflects partial selection and selects all rows.",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/styles",
@@ -21302,7 +21302,7 @@
       "dependencies": [
         "@hugeicons/core-free-icons@^4.3.5",
         "@hugeicons/react@^1.1.10",
-        "@tanstack/react-table@9.2.6"
+        "@tanstack/react-table@9.2.8"
       ],
       "registryDependencies": [
         "@erbium/button",
@@ -21331,7 +21331,7 @@
       "type": "registry:component",
       "title": "table demo",
       "description": "Erbium table demo example.",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21361,7 +21361,7 @@
       "type": "registry:block",
       "title": "Table: Footer",
       "description": "Define `footer` on a column and render `getFooterGroups()` inside `<TableFooter />`. The total is computed from the row model, so it stays correct as rows change.",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21383,7 +21383,7 @@
       "type": "registry:block",
       "title": "Table: Overview",
       "description": "",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21405,7 +21405,7 @@
       "type": "registry:block",
       "title": "Table: Playground",
       "description": "",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": ["@erbium/styles", "@erbium/table"],
       "files": [
         {
@@ -21427,7 +21427,7 @@
       "type": "registry:block",
       "title": "Table: Row Selection",
       "description": "Register `rowSelectionFeature` and add a display column of checkboxes. Click a row checkbox or drag across rows to select or clear a range. Selected `TableRow` elements use `data-state=selected`, and the header checkbox reflects partial or full selection.",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/styles",
@@ -21454,7 +21454,7 @@
       "type": "registry:block",
       "title": "Table: RTL",
       "description": "Set `dir=\"rtl\"` on the table. Columns use logical classes such as `text-end`, so alignment follows the reading direction.",
-      "dependencies": ["@tanstack/react-table@9.2.6"],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -21479,7 +21479,7 @@
       "dependencies": [
         "@hugeicons/core-free-icons@^4.3.5",
         "@hugeicons/react@^1.1.10",
-        "@tanstack/react-table@9.2.6"
+        "@tanstack/react-table@9.2.8"
       ],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [

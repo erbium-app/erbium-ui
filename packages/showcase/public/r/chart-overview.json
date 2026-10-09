@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chart: Overview",
   "description": "",
-  "dependencies": ["@tanstack/charts@1.0.0"],
+  "dependencies": ["@tanstack/charts@1.1.0"],
   "registryDependencies": ["@erbium/chart", "@erbium/styles"],
   "files": [
     {
