@@ -1,3 +1,5 @@
+import SearchSurfaceExample from "./variants/search-surface";
+import SearchSurfaceSource from "./variants/search-surface.tsx?raw";
 import type { Meta, StoryObj } from "../types";
 
 import { Autocomplete } from "@erbium/ui/components/autocomplete";
@@ -231,4 +233,14 @@ export const Showcase: Story = {
     },
   },
   render: ShowcaseExample,
+};
+
+export const SearchSurface: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("autocomplete", "search-surface") },
+      source: { code: SearchSurfaceSource },
+    },
+  },
+  render: SearchSurfaceExample,
 };

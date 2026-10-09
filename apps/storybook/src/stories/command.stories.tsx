@@ -7,3 +7,4 @@ export const Basic = { ...showcases.Basic, name: "Basic" };
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
 export const Groups = { ...showcases.Groups, name: "Groups" };
 export const Scrollable = { ...showcases.Scrollable, name: "Scrollable" };
+export const AsyncResults = { ...showcases.AsyncResults, name: "Async results" };

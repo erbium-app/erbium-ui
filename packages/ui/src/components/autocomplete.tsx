@@ -7,10 +7,45 @@ import { cva } from "class-variance-authority";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ArrowUpDownIcon from "@hugeicons/core-free-icons/ArrowUpDownIcon";
 import XIcon from "@hugeicons/core-free-icons/XIcon";
+import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { focusSearchInput } from "../lib/focus-search-input";
 
 import type React from "react";
 
 export const Autocomplete: typeof AutocompletePrimitive.Root = AutocompletePrimitive.Root;
+
+/** Search within an inline surface; form fields use AutocompleteInput. */
+export function AutocompleteSearchInput({
+  className,
+  placeholder = "Search…",
+  ...props
+}: AutocompletePrimitive.Input.Props) {
+  return (
+    <div data-slot="autocomplete-search" className="shrink-0">
+      <div
+        className="flex search-input-row items-center"
+        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+      >
+        <HugeiconsIcon
+          icon={Search01Icon}
+          aria-hidden="true"
+          className="size-control-icon shrink-0 text-muted-foreground"
+        />
+        <AutocompletePrimitive.Input
+          data-slot="autocomplete-search-input"
+          aria-label="Search"
+          placeholder={placeholder}
+          className={cn(
+            "min-h-0 min-w-0 flex-1 bg-transparent py-0 text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+            className,
+          )}
+          {...props}
+        />
+      </div>
+      <Separator variant="full" />
+    </div>
+  );
+}
 
 const autocompleteInputVariants = cva("", {
   variants: {

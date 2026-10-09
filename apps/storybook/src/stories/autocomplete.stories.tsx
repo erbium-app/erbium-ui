@@ -19,3 +19,4 @@ export const WithLimitResults = { ...showcases.WithLimitResults, name: "With Lim
 export const AsyncSearch = { ...showcases.AsyncSearch, name: "Async Search" };
 export const FormIntegration = { ...showcases.FormIntegration, name: "Form Integration" };
 export const Showcase = { ...showcases.Showcase, name: "Showcase" };
+export const SearchSurface = { ...showcases.SearchSurface, name: "Search surface" };

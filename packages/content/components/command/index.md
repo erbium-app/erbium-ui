@@ -52,3 +52,11 @@ Control `CommandDialog` with `open` and `onOpenChange`. Its `title` and `descrip
 `value` and `onValueChange` on Command control the search query. Use `filter` for custom matching or `filteredItems` for externally filtered and asynchronous results. Provide an accessible label on CommandInput. Disabled items are excluded from activation.
 
 The previous command API used implicit filtering of JSX children. Migrate to explicit item data and filtered collection callbacks, replace group `heading` with CommandGroupLabel, and replace item `onSelect` with `onClick`. For a persistent selected value, use the Combobox component rather than a command action list.
+
+## Current interaction contract
+
+The root forwards Base UI's current props and event details. Let the primitive own focus, matching, and keyboard navigation instead of duplicating them in application handlers.
+
+Command keeps its opinionated inline/open behavior and automatic highlighting. Its input remains a flush search header separated from the list. For asynchronous results, withhold stale items, cancel obsolete requests, and use `filter={null}` for results filtered upstream. The AsyncResults story demonstrates this with a local request simulation.
+
+`onItemHighlighted(item, details)` can drive a contextual preview. The originating event is available in `details.event`; pointer interactions can report MouseEvent or PointerEvent, while typing can report the reason `none`. Do not assume highlighting means selection.

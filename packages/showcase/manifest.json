@@ -326,6 +326,12 @@
         "slug": "showcase",
         "title": "Showcase",
         "source": "src/autocomplete/variants/showcase.tsx"
+      },
+      {
+        "exportName": "SearchSurface",
+        "slug": "search-surface",
+        "title": "Search surface",
+        "source": "src/autocomplete/variants/search-surface.tsx"
       }
     ]
   },
@@ -1250,6 +1256,12 @@
         "slug": "clear-button",
         "title": "Clear Button",
         "source": "src/combobox/variants/clear-button.tsx"
+      },
+      {
+        "exportName": "ItemCollection",
+        "slug": "item-collection",
+        "title": "Item collection",
+        "source": "src/combobox/variants/item-collection.tsx"
       }
     ]
   },
@@ -1292,6 +1304,12 @@
         "slug": "scrollable",
         "title": "Scrollable",
         "source": "src/command/variants/scrollable.tsx"
+      },
+      {
+        "exportName": "AsyncResults",
+        "slug": "async-results",
+        "title": "Async results",
+        "source": "src/command/variants/async-results.tsx"
       }
     ]
   },

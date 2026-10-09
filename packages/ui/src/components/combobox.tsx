@@ -14,6 +14,8 @@ import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 const Combobox = ComboboxPrimitive.Root;
 
+const createComboboxItems = ComboboxPrimitive.createItems;
+
 function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
   return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />;
 }
@@ -289,6 +291,7 @@ function useComboboxAnchor() {
 }
 
 export {
+  createComboboxItems,
   Combobox,
   ComboboxInput,
   ComboboxSearchInput,

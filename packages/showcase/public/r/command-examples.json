@@ -10,6 +10,7 @@
     "@erbium-examples/command-basic",
     "@erbium-examples/command-shortcuts",
     "@erbium-examples/command-groups",
-    "@erbium-examples/command-scrollable"
+    "@erbium-examples/command-scrollable",
+    "@erbium-examples/command-async-results"
   ]
 }

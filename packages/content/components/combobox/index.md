@@ -91,3 +91,15 @@ Combobox
                 ├── ComboboxItem
                 └── ComboboxItem
 ```
+
+## Current interaction contract
+
+The root forwards Base UI's current props and event details. Let the primitive own focus, matching, and keyboard navigation instead of duplicating them in application handlers.
+
+Use `createComboboxItems(data, { getValue, getLabel })` for object collections whose selected values should be IDs. The collection preserves source objects for List rendering and resolves trigger labels even when items are unmounted. Create static collections at module scope; memoize collections derived from changing data. Multiple selection accepts readonly value arrays; copy values when modifying them.
+
+Use `ComboboxSearchInput` inside a popup. Its flush row and full-width separator match Command and searchable menus. `ComboboxInput` remains the standalone field recipe. Use `autoHighlight` for query-driven pickers; results arriving asynchronously participate in highlighting.
+
+`onItemHighlighted(item, details)` can drive a contextual preview. The originating event is available in `details.event`; pointer interactions can report MouseEvent or PointerEvent, while typing can report the reason `none`. Do not assume highlighting means selection.
+
+Popup retention is explicit: `actionsRef` alone does not keep the popup mounted. Only call `details.preventUnmountOnClose()` in `onOpenChange` when the application owns delayed cleanup, then call `actionsRef.current?.unmount()` when that work completes. Let popups unmount normally by default; retaining every popup adds unnecessary lifetime and state.

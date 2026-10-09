@@ -89,6 +89,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "@erbium/focus-search-input",
         "@erbium/input",
         "@erbium/scroll-area",
         "@erbium/separator",

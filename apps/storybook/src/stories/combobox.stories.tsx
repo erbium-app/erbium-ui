@@ -13,3 +13,4 @@ export const Popup = { ...showcases.Popup, name: "Popup" };
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
 export const CustomItems = { ...showcases.CustomItems, name: "Custom Items" };
 export const ClearButton = { ...showcases.ClearButton, name: "Clear Button" };
+export const ItemCollection = { ...showcases.ItemCollection, name: "Item collection" };

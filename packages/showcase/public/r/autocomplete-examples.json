@@ -19,6 +19,7 @@
     "@erbium-examples/autocomplete-with-limit-results",
     "@erbium-examples/autocomplete-async-search",
     "@erbium-examples/autocomplete-form-integration",
-    "@erbium-examples/autocomplete-showcase"
+    "@erbium-examples/autocomplete-showcase",
+    "@erbium-examples/autocomplete-search-surface"
   ]
 }

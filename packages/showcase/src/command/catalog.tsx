@@ -1,3 +1,5 @@
+import AsyncResultsExample from "./variants/async-results";
+import AsyncResultsSource from "./variants/async-results.tsx?raw";
 import type { Meta, StoryObj } from "../types";
 
 import { Command } from "@erbium/ui/components/command";
@@ -105,4 +107,14 @@ export const Scrollable: Story = {
     },
   },
   render: ScrollableExample,
+};
+
+export const AsyncResults: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("command", "async-results") },
+      source: { code: AsyncResultsSource },
+    },
+  },
+  render: AsyncResultsExample,
 };

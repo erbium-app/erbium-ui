@@ -209,6 +209,7 @@ export function AsyncAutocomplete() {
   return (
     <Autocomplete
       items={results}
+      autoHighlight
       filter={null}
       value={query}
       onValueChange={(query) => {

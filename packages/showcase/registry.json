@@ -1313,7 +1313,8 @@
         "@erbium-examples/autocomplete-with-limit-results",
         "@erbium-examples/autocomplete-async-search",
         "@erbium-examples/autocomplete-form-integration",
-        "@erbium-examples/autocomplete-showcase"
+        "@erbium-examples/autocomplete-showcase",
+        "@erbium-examples/autocomplete-search-surface"
       ]
     },
     {
@@ -1413,6 +1414,20 @@
           "path": "src/autocomplete/variants/overview.tsx",
           "type": "registry:component",
           "target": "@components/showcase/autocomplete/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "autocomplete-search-surface",
+      "type": "registry:component",
+      "title": "Autocomplete: Search surface",
+      "description": "Search a set of documents inside a panel. The search row is flush with the surrounding surface and separated from the results by a full-width separator. Use this pattern for inline search; use AutocompleteInput when the input is a standalone form field. Use Command when choosing a result executes an application action.",
+      "registryDependencies": ["@erbium/autocomplete", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/autocomplete/variants/search-surface.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/autocomplete/variants/search-surface.tsx"
         }
       ]
     },
@@ -1527,6 +1542,11 @@
           "path": "src/autocomplete/variants/overview.tsx",
           "type": "registry:component",
           "target": "@components/showcase/autocomplete/variants/overview.tsx"
+        },
+        {
+          "path": "src/autocomplete/variants/search-surface.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/autocomplete/variants/search-surface.tsx"
         },
         {
           "path": "src/autocomplete/variants/showcase.tsx",
@@ -6613,7 +6633,8 @@
         "@erbium-examples/combobox-popup",
         "@erbium-examples/combobox-input-group",
         "@erbium-examples/combobox-custom-items",
-        "@erbium-examples/combobox-clear-button"
+        "@erbium-examples/combobox-clear-button",
+        "@erbium-examples/combobox-item-collection"
       ]
     },
     {
@@ -6671,6 +6692,20 @@
           "path": "src/combobox/variants/invalid.tsx",
           "type": "registry:component",
           "target": "@components/showcase/combobox/variants/invalid.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox-item-collection",
+      "type": "registry:component",
+      "title": "Combobox: Item collection",
+      "description": "The displayed project is an object; the selected value is its stable ID. Filter by the project name and choose a result. The trigger retains its label after the popup unmounts. Create static collections outside the component; memoize a collection when its source data changes. Use `value={project.id}` on each item, not the whole object.",
+      "registryDependencies": ["@erbium/button", "@erbium/combobox", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/combobox/variants/item-collection.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/combobox/variants/item-collection.tsx"
         }
       ]
     },
@@ -6864,6 +6899,11 @@
           "target": "@components/showcase/combobox/variants/invalid.tsx"
         },
         {
+          "path": "src/combobox/variants/item-collection.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/combobox/variants/item-collection.tsx"
+        },
+        {
           "path": "src/combobox/variants/multiple.tsx",
           "type": "registry:component",
           "target": "@components/showcase/combobox/variants/multiple.tsx"
@@ -6887,6 +6927,20 @@
           "path": "src/preview.tsx",
           "type": "registry:component",
           "target": "@components/showcase/preview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "command-async-results",
+      "type": "registry:component",
+      "title": "Command: Async results",
+      "description": "The story simulates a delayed request locally. Change the query quickly, then use arrow keys and Enter after results arrive. Previous requests are cancelled; stale results are withheld while searching. Automatic highlighting applies to arriving results, and `onItemHighlighted` drives the contextual preview. A real remote search should cancel its request and use `filter={null}` when the server has already filtered the results.",
+      "registryDependencies": ["@erbium/command", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/command/variants/async-results.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/command/variants/async-results.tsx"
         }
       ]
     },
@@ -6935,7 +6989,8 @@
         "@erbium-examples/command-basic",
         "@erbium-examples/command-shortcuts",
         "@erbium-examples/command-groups",
-        "@erbium-examples/command-scrollable"
+        "@erbium-examples/command-scrollable",
+        "@erbium-examples/command-async-results"
       ]
     },
     {
@@ -7077,6 +7132,11 @@
           "path": "src/command/examples/command-shortcuts.tsx",
           "type": "registry:component",
           "target": "@components/showcase/command/examples/command-shortcuts.tsx"
+        },
+        {
+          "path": "src/command/variants/async-results.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/command/variants/async-results.tsx"
         },
         {
           "path": "src/command/variants/basic.tsx",

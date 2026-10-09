@@ -64,3 +64,11 @@ Select
         ├── SelectItem
         └── SelectItem
 ```
+
+## Current interaction contract
+
+The root forwards Base UI's current props and event details. Let the primitive own focus, matching, and keyboard navigation instead of duplicating them in application handlers.
+
+Multiple values accept readonly arrays. Keep Select for choosing from a finite list without an editable query; use Combobox for a searchable value picker and searchable menus for actions.
+
+Popup retention is explicit: `actionsRef` alone does not keep the popup mounted. Only call `details.preventUnmountOnClose()` in `onOpenChange` when the application owns delayed cleanup, then call `actionsRef.current?.unmount()` when that work completes. Let popups unmount normally by default; retaining every popup adds unnecessary lifetime and state.

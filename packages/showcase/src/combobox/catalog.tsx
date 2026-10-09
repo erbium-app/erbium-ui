@@ -1,3 +1,5 @@
+import ItemCollectionExample from "./variants/item-collection";
+import ItemCollectionSource from "./variants/item-collection.tsx?raw";
 import type { Meta, StoryObj } from "../types";
 
 import { Combobox } from "@erbium/ui/components/combobox";
@@ -208,4 +210,14 @@ export const ClearButton: Story = {
     },
   },
   render: ClearButtonExample,
+};
+
+export const ItemCollection: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("combobox", "item-collection") },
+      source: { code: ItemCollectionSource },
+    },
+  },
+  render: ItemCollectionExample,
 };
