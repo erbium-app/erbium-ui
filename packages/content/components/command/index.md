@@ -64,3 +64,5 @@ Command keeps its opinionated inline/open behavior and automatic highlighting. I
 ## Scrolling surfaces
 
 Use the component's built-in scrolling list or content area. It uses the product's thin scrollbar, scroll-aware edge fade, and keyboard-aware viewport. Search headers stay outside the scrolling list. Do not put a second native overflow container around the list or swap in a thicker scrollbar. The available popup space constrains the list while the header keeps its shared responsive geometry.
+
+CommandDialog owns the modal surface; CommandInput owns its flush search header and separator; CommandList owns result padding and scrolling. Place Command directly inside CommandDialog. Do not wrap it in DialogContent or add panel padding: that creates duplicate spacing and scroll containers.

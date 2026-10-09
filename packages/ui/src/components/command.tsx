@@ -3,7 +3,7 @@ import { Autocomplete as CommandPrimitive } from "@base-ui/react/autocomplete";
 import { focusSearchInput } from "../lib/focus-search-input";
 import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
-import { Dialog, DialogPanel, DialogContent, DialogDescription, DialogTitle } from "./dialog";
+import { Dialog, DialogPanel, DialogDescription, DialogTitle } from "./dialog";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -42,7 +42,7 @@ function Command<ItemValue>({
       <div
         data-slot="command"
         className={cn(
-          "flex size-full flex-col overflow-hidden rounded-xl border surface-overlay text-popover-foreground in-data-[slot=dialog-content]:rounded-none in-data-[slot=dialog-content]:border-0 in-data-[slot=dialog-content]:bg-transparent in-data-[slot=dialog-content]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
+          "flex min-h-0 w-full flex-col overflow-hidden rounded-xl border surface-overlay text-popover-foreground in-data-[slot=dialog-panel]:rounded-none in-data-[slot=dialog-panel]:border-0 in-data-[slot=dialog-panel]:bg-transparent in-data-[slot=dialog-panel]:shadow-none in-data-[slot=popover-content]:rounded-none in-data-[slot=popover-content]:border-0 in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none",
           className,
         )}
       >
@@ -84,11 +84,9 @@ function CommandDialog({
         className={cn("top-1/3 translate-y-0 overflow-hidden p-0", className)}
         showCloseButton={showCloseButton}
       >
-        <DialogContent className="overflow-hidden p-0">
-          <DialogTitle className="sr-only">{title}</DialogTitle>
-          <DialogDescription className="sr-only">{description}</DialogDescription>
-          {children}
-        </DialogContent>
+        <DialogTitle className="sr-only">{title}</DialogTitle>
+        <DialogDescription className="sr-only">{description}</DialogDescription>
+        {children}
       </DialogPanel>
     </Dialog>
   );
