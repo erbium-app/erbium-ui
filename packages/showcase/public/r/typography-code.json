@@ -3,14 +3,14 @@
   "name": "typography-code",
   "type": "registry:component",
   "title": "Typography: Code",
-  "description": "Paper Mono in commands, inline identifiers, and code samples.",
-  "registryDependencies": ["@erbium/card", "@erbium/styles"],
+  "description": "Paper Mono in command and source samples using the shared code block.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
       "path": "src/typography/variants/code.tsx",
       "type": "registry:component",
       "target": "@components/showcase/typography/variants/code.tsx",
-      "content": "import {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n} from \"@/registry/erbium/ui/card\";\n\nexport default function CodeExample() {\n  return (\n    <Card className=\"w-full max-w-lg\">\n      <CardHeader>\n        <CardTitle>Install your first component</CardTitle>\n        <CardDescription>Run the command below to add a component to your project.</CardDescription>\n      </CardHeader>\n      <CardContent className=\"typeset typeset-compact\">\n        <p>\n          Install <code>@erbium/button</code> from the registry.\n        </p>\n        <pre>\n          <code>{\"bunx shadcn@latest add @erbium/button\\n\\n<Button>Continue</Button>\"}</code>\n        </pre>\n        <p className=\"font-mono text-caption leading-code\">0123456789 · Il1 O0 · {\"{} [] => !=\"}</p>\n      </CardContent>\n    </Card>\n  );\n}\n"
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function CodeExample() {\n  return (\n    <div className=\"flex w-full max-w-lg flex-col gap-4\">\n      <CodeBlock surface=\"command\" language=\"shell\" code=\"bunx shadcn@latest add @erbium/button\" />\n      <CodeBlock title=\"button.tsx\" language=\"tsx\" code=\"<Button>Continue</Button>\" />\n    </div>\n  );\n}\n"
     }
   ]
 }

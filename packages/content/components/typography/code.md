@@ -1,6 +1,6 @@
 ---
 title: "Code"
-description: Paper Mono in commands, inline identifiers, and code samples.
+description: Paper Mono in command and source samples using the shared code block.
 ---
 
-Paper Mono in commands, inline identifiers, and code samples.
+Paper Mono in command and source samples using the shared code block.

@@ -1,3 +1,4 @@
+import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { Switch } from "@erbium/ui/components/switch";
@@ -26,7 +27,7 @@ export default function SwitchForm() {
       <StatefulButton className="self-start" type="submit">
         Submit
       </StatefulButton>
-      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
+      {submitted ? <CodeBlock code={submitted} language="json" title="Submitted values" /> : null}
     </form>
   );
 }

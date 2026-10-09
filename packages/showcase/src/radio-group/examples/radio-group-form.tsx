@@ -1,3 +1,4 @@
+import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { Field, FieldItem, FieldLabel } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
@@ -30,7 +31,7 @@ export default function RadioGroupForm() {
       <StatefulButton className="self-start" type="submit">
         Submit
       </StatefulButton>
-      {submitted ? <pre className="rounded-md bg-muted p-3 text-xs">{submitted}</pre> : null}
+      {submitted ? <CodeBlock code={submitted} language="json" title="Submitted values" /> : null}
     </form>
   );
 }

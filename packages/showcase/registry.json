@@ -5627,6 +5627,7 @@
       "description": "A hidden input submits with the form. `name` sets the key, `value` the checked value (defaults to `\"on\"`), and `uncheckedValue` what an unticked box submits. `required` blocks submission until checked. An invalid submit shakes the visible terms row; selecting it clears the invalid state. Drag across both choices to change them together. Use `form` to associate a checkbox rendered outside its form.",
       "registryDependencies": [
         "@erbium/checkbox",
+        "@erbium/code-block",
         "@erbium/field",
         "@erbium/shake",
         "@erbium/stateful-button",
@@ -5777,6 +5778,7 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/checkbox",
+        "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/overlay-provider",
@@ -15841,6 +15843,7 @@
       "title": "Radio Group: Form",
       "description": "`name` submits the selected `value` with the form; `required` blocks submission until an item is chosen.",
       "registryDependencies": [
+        "@erbium/code-block",
         "@erbium/field",
         "@erbium/radio-group",
         "@erbium/stateful-button",
@@ -15937,6 +15940,7 @@
       "description": "All radio-group variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/overlay-provider",
@@ -18933,6 +18937,7 @@
       "title": "Switch: Form",
       "description": "Set `name` to submit the switch with a form. `value` and `uncheckedValue` choose what is sent for each state, and `required` blocks submission until the switch is on.",
       "registryDependencies": [
+        "@erbium/code-block",
         "@erbium/field",
         "@erbium/stateful-button",
         "@erbium/styles",
@@ -19097,6 +19102,7 @@
       "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/overlay-provider",
@@ -21240,8 +21246,8 @@
       "name": "typography-code",
       "type": "registry:component",
       "title": "Typography: Code",
-      "description": "Paper Mono in commands, inline identifiers, and code samples.",
-      "registryDependencies": ["@erbium/card", "@erbium/styles"],
+      "description": "Paper Mono in command and source samples using the shared code block.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
       "files": [
         {
           "path": "src/typography/variants/code.tsx",
@@ -21325,6 +21331,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
+        "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/input",
