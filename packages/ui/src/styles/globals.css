@@ -5,6 +5,7 @@
 @import "tw-animate-css";
 @import "./fonts.css";
 @import "./theme.css";
+@import "./typography.css";
 @import "./surfaces.css";
 @import "./chart.css";
 @import "./variants.css";
@@ -13,6 +14,10 @@
 @import "./base.css";
 
 @plugin "easing-gradients";
+
+@utility leading-code {
+  line-height: var(--leading-code);
+}
 
 @utility animate-in {
   animation: var(--animate-in);

@@ -1220,6 +1220,11 @@
           "target": "~/src/styles/typeset.css"
         },
         {
+          "path": "src/styles/typography.css",
+          "type": "registry:file",
+          "target": "~/src/styles/typography.css"
+        },
+        {
           "path": "src/styles/variants.css",
           "type": "registry:file",
           "target": "~/src/styles/variants.css"
