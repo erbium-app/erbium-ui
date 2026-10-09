@@ -90,3 +90,9 @@ Equal values do not imply the same meaning: group separation and panel inset hav
 - Verify narrow containers, desktop, touch tablets, long labels, RTL, text enlargement, and keyboard focus. Check composed controls together, not only isolated specimens.
 
 Repository checks reject independent control-height overrides in shared recipes and component usage. The opening Controls showcase covers the ladder, toolbar alignment, segmented controls, and Persian text. Composition demonstrates forms and footers in default and compact cards without changing the reading hierarchy.
+
+### Overlay composition
+
+Panel components own the surface. Header and Footer own their gutters; DialogContent, DrawerContent, and SheetContent own body padding and scrolling. Keep independently scrolling search results beside Content in the panel. Do not nest ScrollArea, Command, or another result list inside Content. PopoverContent and HoverCardContent already provide compact padding: do not override it or add a padded body wrapper.
+
+The existing sizing lint rule `erbium-sizing/use-overlay-layout` enforces these compositions in shared components, applications, and stories. It checks imported components (including aliases), static class expressions, and inline padding or overflow styles. Portalled child overlays begin a separate surface and are allowed. Keep layout classes statically readable so the linter can inspect them; runtime-generated classes and opaque custom component internals still need review.

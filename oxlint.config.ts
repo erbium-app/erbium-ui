@@ -30,6 +30,7 @@ export default defineConfig({
       rules: {
         "erbium-typography/use-roles": "error",
         "erbium-sizing/use-component-geometry": "error",
+        "erbium-sizing/use-overlay-layout": "error",
         "shadcn/no-inline-styles": [
           "error",
           {

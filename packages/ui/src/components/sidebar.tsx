@@ -10,14 +10,7 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
-import {
-  Sheet,
-  SheetPanel,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "./sheet";
+import { Sheet, SheetPanel, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
 import { Skeleton } from "./skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { SidebarToggleIcon } from "./stateful-icon";
@@ -223,7 +216,7 @@ function Sidebar({
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
           </SheetHeader>
-          <SheetContent className="flex h-full w-full flex-col p-0">{children}</SheetContent>
+          <div className="flex min-h-0 w-full flex-1 flex-col">{children}</div>
         </SheetPanel>
       </Sheet>
     );

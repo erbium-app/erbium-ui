@@ -11,6 +11,184 @@ export function sizingViolations(classes) {
 export default {
   meta: { name: "erbium-sizing" },
   rules: {
+    "use-overlay-layout": {
+      meta: {
+        type: "problem",
+        schema: [],
+        messages: {
+          padding:
+            "{{owner}} owns its padding. Remove this padding override or extra padded wrapper; compose Header, Content, and Footer as siblings.",
+          scrolling:
+            "{{owner}} already owns scrolling. Place independently scrolling content beside it in the panel, not inside its viewport.",
+        },
+      },
+      create(context) {
+        const imports = new Map();
+        const namespaces = new Set();
+        const padded = new Set([
+          "DialogContent",
+          "DrawerContent",
+          "SheetContent",
+          "PopoverContent",
+          "HoverCardContent",
+          "AlertDialogContent",
+        ]);
+        const scrolling = new Set([
+          "DialogContent",
+          "DrawerContent",
+          "SheetContent",
+          "ScrollArea",
+          "SidebarContent",
+          "CommandList",
+          "ComboboxList",
+          "AutocompleteList",
+          "DropdownMenuList",
+          "ContextMenuList",
+          "MenubarList",
+          "SelectContent",
+        ]);
+        const scrollChildren = new Set([...scrolling, "Command"]);
+        // These components portal their children; lexical nesting is not scroll nesting.
+        const portals = new Set([
+          "DialogPanel",
+          "DrawerPanel",
+          "SheetPanel",
+          "CommandDialog",
+          "PopoverContent",
+          "HoverCardContent",
+          "AlertDialogContent",
+          "DropdownMenuContent",
+          "DropdownMenuSubContent",
+          "ContextMenuContent",
+          "ContextMenuSubContent",
+          "MenubarContent",
+          "MenubarSubContent",
+          "ComboboxContent",
+          "AutocompletePopup",
+          "SelectContent",
+          "TooltipContent",
+        ]);
+        function name(element) {
+          const tag = element?.openingElement.name;
+          if (tag?.type === "JSXMemberExpression" && namespaces.has(tag.object.name))
+            return tag.property.name;
+          return imports.get(tag?.name);
+        }
+        function strings(node, seen = new Set()) {
+          if (!node || seen.has(node)) return [];
+          seen.add(node);
+          if (node.type === "Literal" && typeof node.value === "string") return [node.value];
+          if (node.type === "JSXExpressionContainer") return strings(node.expression, seen);
+          if (node.type === "TemplateLiteral") return node.quasis.map((part) => part.value.raw);
+          if (node.type === "ConditionalExpression")
+            return [...strings(node.consequent, seen), ...strings(node.alternate, seen)];
+          if (node.type === "CallExpression" || node.type === "ArrayExpression")
+            return (node.arguments ?? node.elements).flatMap((arg) => strings(arg, seen));
+          if (node.type === "LogicalExpression")
+            return [...strings(node.left, seen), ...strings(node.right, seen)];
+          if (node.type !== "Identifier") return [];
+          for (let scope = context.sourceCode.getScope?.(node); scope; scope = scope.upper) {
+            const variable = scope.variables.find((item) => item.name === node.name);
+            if (variable) return variable.defs.flatMap((def) => strings(def.node?.init, seen));
+          }
+          return [];
+        }
+        function owner(ancestors, owners) {
+          for (const ancestor of ancestors) {
+            const component = name(ancestor);
+            if (owners.has(component)) return component;
+            if (portals.has(component)) return null;
+            const classes = ancestor.openingElement.attributes
+              .filter((attribute) => ["className", "class"].includes(attribute.name?.name))
+              .flatMap((attribute) => strings(attribute.value));
+            const style = ancestor.openingElement.attributes.find(
+              (attribute) => attribute.name?.name === "style",
+            )?.value?.expression;
+            if (
+              style?.properties?.some(
+                (property) =>
+                  (property.key?.name ?? property.key?.value ?? "").startsWith("overflow") &&
+                  strings(property.value).some((value) => ["auto", "scroll"].includes(value)),
+              )
+            )
+              return "This scroll container";
+            if (
+              classes.some((value) =>
+                value
+                  .split(/\s+/)
+                  .some((token) => /(?:^|:)!?overflow-(?:[xy]-)?(?:auto|scroll)!?$/.test(token)),
+              )
+            )
+              return "This scroll container";
+          }
+          return null;
+        }
+        return {
+          ImportDeclaration(node) {
+            const source = node.source.value;
+            if (!source.startsWith("@erbium/ui/components/") && !/^\.\/[^/]+$/.test(source)) return;
+            for (const specifier of node.specifiers) {
+              if (specifier.type === "ImportNamespaceSpecifier")
+                namespaces.add(specifier.local.name);
+              if (specifier.imported?.name)
+                imports.set(specifier.local.name, specifier.imported.name);
+            }
+          },
+          JSXElement(node) {
+            const component = name(node);
+            const ancestors = context.sourceCode
+              .getAncestors(node)
+              .filter((parent) => parent.type === "JSXElement")
+              .reverse();
+            const attributes = node.openingElement.attributes;
+            const classes = attributes
+              .filter((attribute) =>
+                ["className", "class", "viewportClassName", "contentClassName"].includes(
+                  attribute.name?.name,
+                ),
+              )
+              .flatMap((attribute) => strings(attribute.value))
+              .flatMap((value) => value.split(/\s+/));
+            const padding = classes.some((token) =>
+              /(?:^|:)!?(?:p|px|py|pt|pb|pl|pr|ps|pe)-/.test(token),
+            );
+            const nativeScroll = classes.some((token) =>
+              /(?:^|:)!?overflow-(?:[xy]-)?(?:auto|scroll)!?$/.test(token),
+            );
+            const style = attributes.find((attribute) => attribute.name?.name === "style")?.value
+              ?.expression;
+            const stylePadding = style?.properties?.some((property) =>
+              (property.key?.name ?? property.key?.value ?? "").startsWith("padding"),
+            );
+            const styleScroll = style?.properties?.some(
+              (property) =>
+                (property.key?.name ?? property.key?.value ?? "").startsWith("overflow") &&
+                strings(property.value).some((value) => ["auto", "scroll"].includes(value)),
+            );
+            const paddingOwner = padded.has(component)
+              ? component
+              : padded.has(name(ancestors[0])) && /^[a-z]/.test(node.openingElement.name.name ?? "")
+                ? name(ancestors[0])
+                : null;
+            if (paddingOwner && (padding || stylePadding))
+              context.report({
+                node: node.openingElement,
+                messageId: "padding",
+                data: { owner: paddingOwner },
+              });
+            // A portal starts a new visual surface even when nested in JSX.
+            if (portals.has(component)) return;
+            const scrollOwner = owner(ancestors, scrolling);
+            if (scrollOwner && (scrollChildren.has(component) || nativeScroll || styleScroll))
+              context.report({
+                node: node.openingElement,
+                messageId: "scrolling",
+                data: { owner: scrollOwner },
+              });
+          },
+        };
+      },
+    },
     "use-component-geometry": {
       meta: {
         type: "problem",
