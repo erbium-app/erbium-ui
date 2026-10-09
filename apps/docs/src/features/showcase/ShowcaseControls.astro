@@ -28,7 +28,7 @@ const rows = controlRows(story);
       data-defaults={JSON.stringify(story.args ?? {})}
     >
       <form aria-labelledby={`${id}-controls-title`}>
-        <header class="preview-controls-header flex items-center justify-between gap-4 p-[1rem_1.25rem] carve-bottom [&_h3]:m-0 [&_h3]:text-caption [&_h3]:font-semibold [&_p]:m-[0.25rem_0_0] [&_p]:text-muted-foreground [&_p]:text-metadata max-[640px]:p-[1rem_0.75rem]">
+        <header class="preview-controls-header flex items-center justify-between gap-group p-[1rem_1.25rem] carve-bottom [&_h3]:m-0 [&_h3]:text-caption [&_h3]:font-semibold [&_p]:m-[0.25rem_0_0] [&_p]:text-muted-foreground [&_p]:text-metadata max-[640px]:p-[1rem_0.75rem]">
           <div>
             <>
               <h3 id={`${id}-controls-title`}>Playground API</h3>

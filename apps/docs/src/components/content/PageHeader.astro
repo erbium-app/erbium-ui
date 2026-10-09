@@ -18,7 +18,7 @@ const { title, description, previous, next } = Astro.props;
 <header
   class="page-header mb-4 [&_h1]:min-w-0 [&_h1]:wrap-anywhere [&_h1]:m-0 [&_h1]:text-foreground [&_h1]:text-display [&+.demo-section]:mt-4"
 >
-  <div class="page-header-top flex justify-between items-center gap-4">
+  <div class="page-header-top flex justify-between items-center gap-group">
     <h1>{title}</h1>
     <div class="page-neighbors shrink-0 flex gap-[0.35rem]">
       {
@@ -57,7 +57,7 @@ const { title, description, previous, next } = Astro.props;
       </p>
     )
   }
-  <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] empty:hidden">
+  <div class="page-actions flex flex-wrap gap-related mt-[1.15rem] empty:hidden">
     <slot />
     <CopyButton
       url={markdownPath(Astro.url.pathname.replace(/\/$/, "") || "/")}

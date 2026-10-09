@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { tableStyles } from "@erbium/ui/lib/table-styles";
 import { cn } from "@erbium/ui/lib/utils";
 type Props = HTMLAttributes<"th">;
 const { class: className, ...props } = Astro.props;
 ---
-<th data-slot="table-head" class={cn("h-10 px-2 text-start align-middle font-medium whitespace-nowrap text-foreground", className)} {...props}><slot /></th>
+<th data-slot="table-head" class={cn(tableStyles.tableHead, className)} {...props}><slot /></th>

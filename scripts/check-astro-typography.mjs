@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import sizingPlugin from "./sizing-lint.mjs";
 import plugin, { typographyViolations } from "./typography-lint.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
@@ -45,6 +46,16 @@ for (const path of sourceFiles(join(root, "apps/docs/src")).filter((file) =>
         `"${data.token ?? data.property}" bypasses Erbium typography. Use a shared text role.`,
       ),
   });
+  const sizingVisitors = sizingPlugin.rules["use-component-geometry"].create({
+    sourceCode: { getAncestors: (node) => ancestors.get(node) ?? [] },
+    report: ({ node, data }) =>
+      report(
+        path,
+        source,
+        node.start,
+        `"${data.token}" overrides shared component geometry. Use its size prop.`,
+      ),
+  });
   function walk(node, parents = []) {
     if (!node || typeof node !== "object") return;
     if (Array.isArray(node)) {
@@ -53,6 +64,7 @@ for (const path of sourceFiles(join(root, "apps/docs/src")).filter((file) =>
     }
     ancestors.set(node, parents);
     visitors[node.type]?.(node);
+    sizingVisitors[node.type]?.(node);
     for (const value of Object.values(node)) walk(value, [...parents, node]);
   }
   walk(ast);
@@ -110,4 +122,7 @@ for (const directory of [
 }
 
 if (errors) process.exitCode = 1;
-else process.stdout.write("Typography roles verified in Astro components and CSS recipes.\n");
+else
+  process.stdout.write(
+    "Typography and component geometry verified in Astro components and CSS recipes.\n",
+  );

@@ -8,7 +8,7 @@ Use `class` for styling and `<slot />` for children. `Button` accepts the same `
 
 These adapters do not implement React's `render` prop, context, or event-handler API. Interactive component showcases continue to run the actual shared React examples. Native shell behavior stays in the docs app.
 
-`Input` and `Textarea` use `@erbium/ui/lib/form-control-styles`, shared with their React equivalents. They accept native attributes, `value` and `defaultValue`. Native events update the DOM; React controlled state and Base UI field context belong to the React examples.
+`Input` and `Textarea` use `@erbium/ui/lib/form-control-styles`, shared with their React equivalents. Keycaps, table parts, and switch geometry also import shared recipes from `packages/ui`; keep framework-specific interaction wiring here, not a second visual scale. They accept native attributes, `value` and `defaultValue`. Native events update the DOM; React controlled state and Base UI field context belong to the React examples.
 
 `Select` composes with `SelectItem`, accepts `size="sm" | "default"`, and uses the browser's native select keyboard and popup behavior. Set `selected` on the initial item. `Switch` uses a native checkbox with `role="switch"`, `checked`/`defaultChecked`, `disabled`, and matching size values. It submits native checkbox values and emits native input/change events. It preserves RTL thumb direction and reduced-motion preferences.
 

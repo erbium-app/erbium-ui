@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { kbdClassName } from "@erbium/ui/lib/kbd-styles";
 import { cn } from "@erbium/ui/lib/utils";
 type Props = HTMLAttributes<"kbd">;
 const { class: className, ...props } = Astro.props;
 ---
-<kbd data-slot="kbd" dir="ltr" class={cn("pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm border surface-control px-1 font-sans text-metadata font-medium text-muted-foreground select-none", className)} {...props}><slot /></kbd>
+<kbd data-slot="kbd" dir="ltr" class={cn(kbdClassName, className)} {...props}><slot /></kbd>

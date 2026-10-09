@@ -56,7 +56,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       <div class="showcase-preview-actions flex items-center gap-1 absolute top-2 end-2 z-1 rounded-sm bg-surface-canvas">
         <ShowcaseThemeToggle />
       </div>
-      <div class="showcase-content flex flex-col items-center justify-center gap-6 w-full min-h-64 p-0 bg-surface-canvas text-foreground max-[560px]:p-[1.25rem_0.75rem]" data-showcase-content data-preview-name={name} data-preview-slug={slug}>
+      <div class="showcase-content flex flex-col items-center justify-center gap-section w-full min-h-64 p-0 bg-surface-canvas text-foreground max-[560px]:p-[1.25rem_0.75rem]" data-showcase-content data-preview-name={name} data-preview-slug={slug}>
         <ComponentPreview name={name} slug={slug} args={JSON.parse(JSON.stringify(story.args ?? {}))} client:visible={{ rootMargin: "200px" }}>
           <Spinner slot="loading" aria-label="Loading preview" />
         </ComponentPreview>
@@ -67,7 +67,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
       role="tabpanel"
       aria-labelledby={`${id}-code-tab`}
       data-panel="code"
-      class="showcase-code grid gap-4 min-w-0"
+      class="showcase-code grid gap-group min-w-0"
       tabindex="0"
       hidden
     >

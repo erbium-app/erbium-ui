@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { tableStyles } from "@erbium/ui/lib/table-styles";
 import { cn } from "@erbium/ui/lib/utils";
 type Props = HTMLAttributes<"caption">;
 const { class: className, ...props } = Astro.props;
 ---
-<caption data-slot="table-caption" class={cn("mt-4 text-caption text-muted-foreground", className)} {...props}><slot /></caption>
+<caption data-slot="table-caption" class={cn(tableStyles.tableCaption, className)} {...props}><slot /></caption>

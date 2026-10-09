@@ -37,7 +37,48 @@ try {
     cwd: root,
     stdio: "pipe",
   });
-  process.stdout.write("Sizing lint rejects raw control geometry and accepts shared recipes.\n");
+  writeFileSync(
+    config,
+    JSON.stringify({
+      jsPlugins: [{ name: "erbium-sizing", specifier: join(root, "scripts/sizing-lint.mjs") }],
+      rules: { "erbium-sizing/use-component-geometry": "error" },
+    }),
+  );
+  writeFileSync(
+    fixture,
+    'import { Button as Action } from "@erbium/ui/components/button"; const dimensions = "h-8"; const alias = dimensions; export function Probe() { return <Action className={alias}>Save</Action>; }',
+  );
+  assert.throws(
+    () =>
+      execFileSync("bunx", ["--no-install", "oxlint", "--config", config, fixture], {
+        cwd: root,
+        stdio: "pipe",
+      }),
+    (error) => `${error.stdout}`.includes("erbium-sizing(use-component-geometry)"),
+  );
+  writeFileSync(
+    fixture,
+    'import { Button } from "@erbium/ui/components/button"; export function Probe() { return <div className="h-8"><Button size="lg">Save</Button></div>; }',
+  );
+  execFileSync("bunx", ["--no-install", "oxlint", "--config", config, fixture], {
+    cwd: root,
+    stdio: "pipe",
+  });
+  writeFileSync(
+    fixture,
+    'export function Probe() { return <div className="[&_.docs-search-trigger]:p-2" />; }',
+  );
+  assert.throws(
+    () =>
+      execFileSync("bunx", ["--no-install", "oxlint", "--config", config, fixture], {
+        cwd: root,
+        stdio: "pipe",
+      }),
+    (error) => `${error.stdout}`.includes("erbium-sizing(use-component-geometry)"),
+  );
+  process.stdout.write(
+    "Sizing lint rejects recipe and component-usage drift while accepting layout dimensions.\n",
+  );
 } finally {
   rmSync(directory, { recursive: true, force: true });
 }

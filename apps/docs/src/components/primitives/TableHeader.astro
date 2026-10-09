@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { tableStyles } from "@erbium/ui/lib/table-styles";
 import { cn } from "@erbium/ui/lib/utils";
 type Props = HTMLAttributes<"thead">;
 const { class: className, ...props } = Astro.props;
 ---
-<thead data-slot="table-header" class={cn("[&_tr]:carve-bottom", className)} {...props}><slot /></thead>
+<thead data-slot="table-header" class={cn(tableStyles.tableHeader, className)} {...props}><slot /></thead>

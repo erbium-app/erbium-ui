@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import { tableStyles } from "@erbium/ui/lib/table-styles";
 import { cn } from "@erbium/ui/lib/utils";
 type Props = HTMLAttributes<"table">;
 const { class: className, ...props } = Astro.props;
 ---
-<div data-slot="table-container" class="relative w-full overflow-x-auto"><table data-slot="table" class={cn("w-full border-separate border-spacing-0 caption-bottom text-caption", className)} {...props}><slot /></table></div>
+<div data-slot="table-container" class="relative w-full overflow-x-auto"><table data-slot="table" class={cn(tableStyles.table, className)} {...props}><slot /></table></div>

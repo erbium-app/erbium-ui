@@ -65,7 +65,7 @@ const cssPath = `${root}apps/docs/src/styles/typography-policy-probe-${randomUUI
 try {
   writeFileSync(
     astroPath,
-    '<p class:list={["text-sm"]} style={{fontSize:14}}>Example</p><p style="font:14px monospace">Example</p>',
+    '---\nimport Button from "@/components/primitives/Button.astro";\n---\n<Button class="h-8">Example</Button><p class:list={["text-sm"]} style={{fontSize:14}}>Example</p><p style="font:14px monospace">Example</p>',
   );
   writeFileSync(cssPath, ".probe { font-size: 15px; @apply text-sm; }");
   assert.throws(
@@ -77,7 +77,8 @@ try {
         output.includes("text-sm") &&
         output.includes("fontSize") &&
         output.includes('"font"') &&
-        output.includes("font-size")
+        output.includes("font-size") &&
+        output.includes('"h-8" overrides shared component geometry')
       );
     },
   );

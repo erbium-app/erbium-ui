@@ -18,7 +18,7 @@ const labeled = Astro.slots.has("default");
 
 <div
   {...props}
-  class={cn("docs-separator shrink-0 [&[data-horizontal]:not([data-labeled])]:h-[2px] [&[data-horizontal]:not([data-labeled])]:self-stretch [&[data-vertical]:not([data-labeled])]:w-[2px] [&[data-vertical]:not([data-labeled])]:self-stretch [&[data-labeled]]:flex [&[data-labeled]]:items-center [&[data-labeled]]:gap-2 [&[data-labeled][data-vertical]]:flex-col", className)}
+  class={cn("docs-separator shrink-0 [&[data-horizontal]:not([data-labeled])]:h-[2px] [&[data-horizontal]:not([data-labeled])]:self-stretch [&[data-vertical]:not([data-labeled])]:w-[2px] [&[data-vertical]:not([data-labeled])]:self-stretch [&[data-labeled]]:flex [&[data-labeled]]:items-center [&[data-labeled]]:gap-related [&[data-labeled][data-vertical]]:flex-col", className)}
   data-slot="separator"
   data-separator=""
   data-orientation={orientation}

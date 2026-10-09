@@ -138,3 +138,8 @@ html[data-theme-changing] *::after {
 [data-code-appearance="dark"] .code-color-value {
   color: var(--code-color-text-dark);
 }
+
+/* The page header owns the boundary before an immediately adjacent showcase. */
+.page-header + .demo-section > .showcase-header-separator {
+  display: none;
+}
