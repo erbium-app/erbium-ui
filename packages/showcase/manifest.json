@@ -3518,6 +3518,12 @@
         "slug": "theme-toggle-icon",
         "title": "Theme Toggle Icon",
         "source": "src/stateful-icon/variants/theme-toggle-icon.tsx"
+      },
+      {
+        "exportName": "CheckboxState",
+        "slug": "checkbox-state",
+        "title": "Checkbox state",
+        "source": "src/stateful-icon/variants/checkbox-state.tsx"
       }
     ]
   },

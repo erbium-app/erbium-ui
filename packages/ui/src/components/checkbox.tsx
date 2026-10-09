@@ -1,9 +1,7 @@
+import { CheckboxStateIcon } from "./stateful-icon";
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group";
 import { mergeProps } from "@base-ui/react/merge-props";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import MinusIcon from "@hugeicons/core-free-icons/MinusIcon";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { flushSync } from "react-dom";
 
 import { useDragSelect } from "../hooks/use-drag-select";
@@ -22,20 +20,9 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
         keepMounted
-        className="group/checkbox-indicator grid place-content-center text-current"
+        className="group/check-indicator grid place-content-center text-current"
       >
-        <HugeiconsIcon
-          aria-hidden="true"
-          className="col-start-1 row-start-1 size-3.5 opacity-0 transition-opacity duration-120 group-data-checked/checkbox-indicator:opacity-100 group-data-checked/checkbox-indicator:delay-75 [&>path]:[stroke-dasharray:32] [&>path]:[stroke-dashoffset:32] [&>path]:transition-[stroke-dashoffset] [&>path]:duration-120 group-data-checked/checkbox-indicator:[&>path]:[stroke-dashoffset:0] group-data-checked/checkbox-indicator:[&>path]:delay-75 motion-reduce:transition-none motion-reduce:[&>path]:transition-none"
-          icon={CheckIcon}
-          strokeWidth={3.5}
-        />
-        <HugeiconsIcon
-          aria-hidden="true"
-          className="col-start-1 row-start-1 size-3.5 opacity-0 transition-opacity duration-120 group-data-indeterminate/checkbox-indicator:opacity-100 [&>path]:[stroke-dasharray:24] [&>path]:[stroke-dashoffset:24] [&>path]:transition-[stroke-dashoffset] [&>path]:duration-120 group-data-indeterminate/checkbox-indicator:[&>path]:[stroke-dashoffset:0] motion-reduce:transition-none motion-reduce:[&>path]:transition-none"
-          icon={MinusIcon}
-          strokeWidth={3.5}
-        />
+        <CheckboxStateIcon />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

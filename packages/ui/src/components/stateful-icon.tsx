@@ -1,3 +1,5 @@
+import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import MinusIcon from "@hugeicons/core-free-icons/MinusIcon";
 import { HugeiconsIcon } from "@hugeicons/react";
 import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
 import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
@@ -227,7 +229,38 @@ function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
   );
 }
 
-export { ExpandableChevron, RotatingChevron, SidebarToggleIcon, StatefulIcon, ThemeToggleIcon };
+/** Shared draw-on check and mixed mark. Place inside a keepMounted indicator with group/check-indicator. */
+function CheckboxStateIcon({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      data-slot="checkbox-state-icon"
+      className={cn("inline-grid size-3.5 shrink-0", className)}
+    >
+      <HugeiconsIcon
+        aria-hidden="true"
+        className="col-start-1 row-start-1 size-full opacity-0 transition-opacity duration-120 group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 [&>path]:[stroke-dasharray:32] [&>path]:[stroke-dashoffset:32] [&>path]:transition-[stroke-dashoffset] [&>path]:duration-120 group-data-checked/check-indicator:[&>path]:[stroke-dashoffset:0] group-data-checked/check-indicator:[&>path]:delay-75 motion-reduce:transition-none motion-reduce:[&>path]:transition-none"
+        icon={CheckIcon}
+        strokeWidth={3.5}
+      />
+      <HugeiconsIcon
+        aria-hidden="true"
+        className="col-start-1 row-start-1 size-full opacity-0 transition-opacity duration-120 group-data-indeterminate/check-indicator:opacity-100 [&>path]:[stroke-dasharray:24] [&>path]:[stroke-dashoffset:24] [&>path]:transition-[stroke-dashoffset] [&>path]:duration-120 group-data-indeterminate/check-indicator:[&>path]:[stroke-dashoffset:0] motion-reduce:transition-none motion-reduce:[&>path]:transition-none"
+        icon={MinusIcon}
+        strokeWidth={3.5}
+      />
+    </span>
+  );
+}
+
+export {
+  CheckboxStateIcon,
+  ExpandableChevron,
+  RotatingChevron,
+  SidebarToggleIcon,
+  StatefulIcon,
+  ThemeToggleIcon,
+};
 export type {
   ExpandableChevronProps,
   RotatingChevronProps,

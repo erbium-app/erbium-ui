@@ -7,7 +7,7 @@ import { Separator } from "./separator";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { RotatingChevron } from "./stateful-icon";
+import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 
 function ContextMenu({
   searchable = false,
@@ -185,8 +185,11 @@ function ContextMenuCheckboxItem({
       {...props}
     >
       <span className="pointer-events-none absolute inset-e-2">
-        <ContextMenuPrimitive.CheckboxItemIndicator>
-          <HugeiconsIcon icon={CheckIcon} />
+        <ContextMenuPrimitive.CheckboxItemIndicator
+          keepMounted
+          className="group/check-indicator inline-grid"
+        >
+          <CheckboxStateIcon className="size-control-icon" />
         </ContextMenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}

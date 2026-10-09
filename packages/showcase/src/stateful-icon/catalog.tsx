@@ -1,3 +1,5 @@
+import CheckboxStateExample from "./variants/checkbox-state";
+import CheckboxStateSource from "./variants/checkbox-state.tsx?raw";
 import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
@@ -84,4 +86,14 @@ export const ThemeToggleIcon: Story = {
     },
   },
   render: ThemeToggleIconExample,
+};
+
+export const CheckboxState: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("stateful-icon", "checkbox-state") },
+      source: { code: CheckboxStateSource },
+    },
+  },
+  render: CheckboxStateExample,
 };

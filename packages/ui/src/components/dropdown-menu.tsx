@@ -6,7 +6,7 @@ import { Separator } from "./separator";
 
 import { HugeiconsIcon } from "@hugeicons/react";
 import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import { RotatingChevron } from "./stateful-icon";
+import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 
 function DropdownMenu({
   searchable = false,
@@ -205,8 +205,11 @@ function DropdownMenuCheckboxItem({
         className="pointer-events-none absolute inset-e-2 flex items-center justify-center"
         data-slot="dropdown-menu-checkbox-item-indicator"
       >
-        <MenuPrimitive.CheckboxItemIndicator>
-          <HugeiconsIcon icon={CheckIcon} />
+        <MenuPrimitive.CheckboxItemIndicator
+          keepMounted
+          className="group/check-indicator inline-grid"
+        >
+          <CheckboxStateIcon className="size-control-icon" />
         </MenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}

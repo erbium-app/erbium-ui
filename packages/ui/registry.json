@@ -291,8 +291,8 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Erbium checkbox component.",
-      "dependencies": ["@base-ui/react", "@hugeicons/core-free-icons", "@hugeicons/react"],
-      "registryDependencies": ["@erbium/use-drag-select", "@erbium/utils"],
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/stateful-icon", "@erbium/use-drag-select", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/checkbox.tsx",

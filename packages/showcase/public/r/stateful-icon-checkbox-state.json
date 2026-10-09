@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stateful-icon-checkbox-state",
+  "type": "registry:component",
+  "title": "Stateful Icon: Checkbox state",
+  "description": "Toggle Show details in the field, dropdown, menubar, or context menu. They share the same state and draw-on checkmark when checked. Toggle it off and on again to replay the animation. Mixed selection uses the shared minus mark. Reduced-motion preferences remove both transitions.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/checkbox",
+    "@erbium/context-menu",
+    "@erbium/dropdown-menu",
+    "@erbium/field",
+    "@erbium/menubar",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "path": "src/stateful-icon/variants/checkbox-state.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/stateful-icon/variants/checkbox-state.tsx",
+      "content": "import { useState } from \"react\";\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuTrigger,\n  DropdownMenuContent,\n  DropdownMenuList,\n  DropdownMenuCheckboxItem,\n} from \"@/registry/erbium/ui/dropdown-menu\";\nimport {\n  ContextMenu,\n  ContextMenuTrigger,\n  ContextMenuContent,\n  ContextMenuList,\n  ContextMenuCheckboxItem,\n} from \"@/registry/erbium/ui/context-menu\";\nimport {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarContent,\n  MenubarList,\n  MenubarCheckboxItem,\n} from \"@/registry/erbium/ui/menubar\";\n\nexport default function CheckboxStateExample() {\n  const [checked, setChecked] = useState(false);\n  return (\n    <div className=\"grid gap-group\">\n      <Field orientation=\"horizontal\">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Show details</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox indeterminate />\n        <FieldLabel>Mixed selection</FieldLabel>\n      </Field>\n      <DropdownMenu>\n        <DropdownMenuTrigger render={<Button variant=\"outline\" />}>\n          View options\n        </DropdownMenuTrigger>\n        <DropdownMenuContent>\n          <DropdownMenuList>\n            <DropdownMenuCheckboxItem checked={checked} onCheckedChange={setChecked}>\n              Show details\n            </DropdownMenuCheckboxItem>\n          </DropdownMenuList>\n        </DropdownMenuContent>\n      </DropdownMenu>\n      <Menubar>\n        <MenubarMenu>\n          <MenubarTrigger>View</MenubarTrigger>\n          <MenubarContent>\n            <MenubarList>\n              <MenubarCheckboxItem checked={checked} onCheckedChange={setChecked}>\n                Show details\n              </MenubarCheckboxItem>\n            </MenubarList>\n          </MenubarContent>\n        </MenubarMenu>\n      </Menubar>\n      <ContextMenu>\n        <ContextMenuTrigger className=\"rounded-lg border border-dashed p-panel text-control\">\n          Right-click for view options\n        </ContextMenuTrigger>\n        <ContextMenuContent>\n          <ContextMenuList>\n            <ContextMenuCheckboxItem checked={checked} onCheckedChange={setChecked}>\n              Show details\n            </ContextMenuCheckboxItem>\n          </ContextMenuList>\n        </ContextMenuContent>\n      </ContextMenu>\n    </div>\n  );\n}\n"
+    }
+  ]
+}
