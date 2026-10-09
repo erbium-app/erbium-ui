@@ -22,14 +22,14 @@
     "class-variance-authority": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "satori": "^0.35.1",
+    "satori": "^0.35.2",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@alchemy.run/frontend-frameworks": "2.0.0-beta.80",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "astro": "^7.3.6",
+    "astro": "^7.3.8",
     "colorjs.io": "^0.7.1",
     "typescript": "catalog:astro"
   }
