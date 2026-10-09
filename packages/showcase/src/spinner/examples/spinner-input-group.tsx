@@ -12,7 +12,7 @@ import { Spinner } from "@erbium/ui/components/spinner";
 
 export default function SpinnerInputGroup() {
   return (
-    <div className="flex w-full max-w-md flex-col gap-4">
+    <div className="flex w-full max-w-md flex-col gap-group">
       <InputGroup>
         <InputGroupInput placeholder="Send a message..." disabled />
         <InputGroupAddon align="inline-end">

@@ -6,7 +6,7 @@ export default function EditableDemo() {
   const [name, setName] = useState("Overview");
 
   return (
-    <div className="flex w-96 items-center gap-2 rounded-lg border border-transparent p-2 text-caption">
+    <div className="flex w-96 items-center gap-related rounded-lg border border-transparent p-2 text-caption">
       <span className="shrink-0 text-muted-foreground">Tab</span>
       <Editable value={name} onValueChange={setName} className="min-w-0 flex-1 font-medium">
         <EditablePreview aria-label="Rename tab" />

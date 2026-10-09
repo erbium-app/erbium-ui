@@ -8,7 +8,7 @@ import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 export default function SwitchIcons() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Field orientation="horizontal">
         <Switch
           startIcon={<HugeiconsIcon icon={CheckIcon} />}

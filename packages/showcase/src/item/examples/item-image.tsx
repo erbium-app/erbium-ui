@@ -30,8 +30,8 @@ const music = [
 
 export function ItemImage() {
   return (
-    <div className="flex w-full max-w-md flex-col gap-6">
-      <ItemGroup className="gap-4">
+    <div className="flex w-full max-w-md flex-col gap-section">
+      <ItemGroup className="gap-group">
         {music.map((song) => (
           <Item key={song.title} variant="card" render={<a href="#" />} role="listitem">
             <ItemMedia variant="image">

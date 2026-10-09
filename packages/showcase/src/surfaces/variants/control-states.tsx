@@ -7,7 +7,7 @@ const Example = () => (
   <Canvas>
     <div className="grid gap-8">
       {(["ltr", "rtl"] as const).map((direction) => (
-        <section key={direction} dir={direction} className="grid justify-items-start gap-4">
+        <section key={direction} dir={direction} className="grid justify-items-start gap-group">
           <h2 className="text-subtitle">{direction.toUpperCase()}</h2>
           {(["xs", "sm", "default", "lg"] as const).map((size) => (
             <ButtonGroup key={size} aria-label={`${direction} ${size} states`}>
@@ -25,7 +25,7 @@ const Example = () => (
               </Button>
             </ButtonGroup>
           ))}
-          <div className="flex flex-wrap items-start gap-6">
+          <div className="flex flex-wrap items-start gap-section">
             <ButtonGroup orientation="vertical" aria-label={`${direction} vertical states`}>
               <Button variant="outline">Rest</Button>
               <Button variant="outline" aria-pressed>

@@ -8,7 +8,7 @@ import {
 
 export default function InputGroupTextExample() {
   return (
-    <div className="grid w-full max-w-sm gap-6">
+    <div className="grid w-full max-w-sm gap-section">
       <InputGroup>
         <InputGroupAddon>
           <InputGroupText>$</InputGroupText>

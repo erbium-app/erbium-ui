@@ -9,6 +9,7 @@ export function ToggleGroupFontWeightSelector() {
     <Field>
       <FieldLabel>Font Weight</FieldLabel>
       <ToggleGroup
+        className="flex-wrap"
         value={[fontWeight]}
         onValueChange={(value) => setFontWeight(value[0])}
         variant="outline"
@@ -18,7 +19,7 @@ export function ToggleGroupFontWeightSelector() {
         <ToggleGroupItem
           value="semibold"
           aria-label="Semibold"
-          className="flex size-16 flex-col items-center justify-center rounded-xl"
+          className="flex min-w-20 flex-col items-center justify-center rounded-xl"
         >
           <span className="text-title font-semibold">Aa</span>
           <span className="text-metadata text-muted-foreground">Semibold</span>
@@ -26,7 +27,7 @@ export function ToggleGroupFontWeightSelector() {
         <ToggleGroupItem
           value="normal"
           aria-label="Regular"
-          className="flex size-16 flex-col items-center justify-center rounded-xl"
+          className="flex min-w-20 flex-col items-center justify-center rounded-xl"
         >
           <span className="text-title font-normal">Aa</span>
           <span className="text-metadata text-muted-foreground">Regular</span>
@@ -34,7 +35,7 @@ export function ToggleGroupFontWeightSelector() {
         <ToggleGroupItem
           value="medium"
           aria-label="Medium"
-          className="flex size-16 flex-col items-center justify-center rounded-xl"
+          className="flex min-w-20 flex-col items-center justify-center rounded-xl"
         >
           <span className="text-title font-medium">Aa</span>
           <span className="text-metadata text-muted-foreground">Medium</span>
@@ -42,7 +43,7 @@ export function ToggleGroupFontWeightSelector() {
         <ToggleGroupItem
           value="bold"
           aria-label="Bold"
-          className="flex size-16 flex-col items-center justify-center rounded-xl"
+          className="flex min-w-20 flex-col items-center justify-center rounded-xl"
         >
           <span className="text-title font-bold">Aa</span>
           <span className="text-metadata text-muted-foreground">Bold</span>

@@ -6,7 +6,7 @@ export default function CheckboxControlled() {
   const [checked, setChecked] = useState(false);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Field orientation="horizontal">
         <Checkbox checked={checked} onCheckedChange={setChecked} />
         <FieldLabel>Receive marketing emails</FieldLabel>

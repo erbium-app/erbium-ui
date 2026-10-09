@@ -2,7 +2,7 @@ import { Separator } from "@erbium/ui/components/separator";
 
 export function SeparatorMenu() {
   return (
-    <div className="flex items-center gap-2 text-caption md:gap-4">
+    <div className="flex items-center gap-related text-caption md:gap-group">
       <div className="flex flex-col gap-1">
         <span className="font-medium">Settings</span>
         <span className="text-metadata text-muted-foreground">Manage preferences</span>

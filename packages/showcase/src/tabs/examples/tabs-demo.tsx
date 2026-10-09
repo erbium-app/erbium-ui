@@ -13,7 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@erbium/ui/components/
 
 export default function TabsDemo() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6">
+    <div className="flex w-full max-w-sm flex-col gap-section">
       <Tabs defaultValue="account">
         <TabsList>
           <TabsTrigger value="account">Account</TabsTrigger>
@@ -27,7 +27,7 @@ export default function TabsDemo() {
                 Make changes to your account here. Click save when you&apos;re done.
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
+            <CardContent className="grid gap-section">
               <Field>
                 <FieldLabel>Name</FieldLabel>
                 <Input defaultValue="Pedro Duarte" />
@@ -50,7 +50,7 @@ export default function TabsDemo() {
                 Change your password here. After saving, you&apos;ll be logged out.
               </CardDescription>
             </CardHeader>
-            <CardContent className="grid gap-6">
+            <CardContent className="grid gap-section">
               <Field>
                 <FieldLabel>Current password</FieldLabel>
                 <Input type="password" />

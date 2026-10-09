@@ -28,7 +28,7 @@ export function InputForm() {
           <Input type="email" placeholder="john@example.com" />
           <FieldDescription>We&apos;ll never share your email with anyone.</FieldDescription>
         </Field>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-group">
           <Field>
             <FieldLabel>Phone</FieldLabel>
             <Input type="tel" placeholder="+1 (555) 123-4567" />

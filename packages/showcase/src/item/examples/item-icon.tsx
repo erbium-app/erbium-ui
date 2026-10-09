@@ -13,7 +13,7 @@ import {
 
 export default function ItemIcon() {
   return (
-    <div className="flex w-full max-w-lg flex-col gap-6">
+    <div className="flex w-full max-w-lg flex-col gap-section">
       <Item variant="card">
         <ItemMedia variant="icon">
           <HugeiconsIcon icon={ShieldAlertIcon} />

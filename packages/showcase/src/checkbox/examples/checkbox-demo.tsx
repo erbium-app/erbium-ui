@@ -3,7 +3,7 @@ import { Field, FieldContent, FieldDescription, FieldLabel } from "@erbium/ui/co
 
 export default function CheckboxDemo() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-section">
       <Field orientation="horizontal">
         <Checkbox />
         <FieldLabel>Accept terms and conditions</FieldLabel>

@@ -3,7 +3,7 @@ import { Textarea } from "@erbium/ui/components/textarea";
 
 export function TextareaButton() {
   return (
-    <div className="grid w-full gap-2">
+    <div className="grid w-full gap-related">
       <Textarea placeholder="Type your message here." />
       <Button>Send message</Button>
     </div>

@@ -6,7 +6,7 @@ import { Kbd } from "@erbium/ui/components/kbd";
 
 export default function KbdInputGroup() {
   return (
-    <div className="flex w-full max-w-xs flex-col gap-6">
+    <div className="flex w-full max-w-xs flex-col gap-section">
       <InputGroup>
         <InputGroupInput placeholder="Search..." />
         <InputGroupAddon>

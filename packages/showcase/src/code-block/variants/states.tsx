@@ -10,7 +10,7 @@ import {
 
 export default function Example() {
   return (
-    <div className="grid w-full max-w-xl gap-4">
+    <div className="grid w-full max-w-xl gap-group">
       <CodeBlock code="" title="Empty source" />
       <CodeBlock
         code="An unsupported language remains readable and copyable."

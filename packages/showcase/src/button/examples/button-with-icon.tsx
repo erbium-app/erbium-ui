@@ -6,7 +6,7 @@ import { Button } from "@erbium/ui/components/button";
 
 export default function ButtonWithIcon() {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-related">
       <Button variant="outline">
         <HugeiconsIcon icon={GitBranchIcon} data-icon="inline-start" /> New Branch
       </Button>

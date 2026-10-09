@@ -12,13 +12,13 @@ import { Input } from "@erbium/ui/components/input";
 
 export default function MultilingualExample() {
   return (
-    <div className="grid w-full gap-4 lg:grid-cols-2">
+    <div className="grid w-full gap-group lg:grid-cols-2">
       <Card dir="rtl" lang="fa">
         <CardHeader>
           <CardTitle>تنظیمات فضای کاری</CardTitle>
           <CardDescription>متن فارسی با فونت وزیرمتن نمایش داده می‌شود.</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-2">
+        <CardContent className="grid gap-related">
           <Field>
             <FieldLabel htmlFor="typography-persian">نام فضای کاری</FieldLabel>
             <Input id="typography-persian" defaultValue="استودیوی اربیوم" />
@@ -34,7 +34,7 @@ export default function MultilingualExample() {
           <CardTitle>إعدادات مساحة العمل</CardTitle>
           <CardDescription>النص العربي يستخدم نفس الأدوار الطباعية.</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-2">
+        <CardContent className="grid gap-related">
           <Field>
             <FieldLabel htmlFor="typography-arabic">اسم مساحة العمل</FieldLabel>
             <Input id="typography-arabic" defaultValue="استوديو إربيوم" />

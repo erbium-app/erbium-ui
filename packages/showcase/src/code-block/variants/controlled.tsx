@@ -13,7 +13,7 @@ const runItems = [
 export default function Example() {
   const [manager, setManager] = useState("bun");
   return (
-    <div className="grid w-full max-w-xl gap-4">
+    <div className="grid w-full max-w-xl gap-group">
       <p className="text-caption text-muted-foreground">
         Choose once. Both commands follow your preference.
       </p>

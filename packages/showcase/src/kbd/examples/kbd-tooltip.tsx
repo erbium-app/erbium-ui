@@ -5,7 +5,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/t
 
 export default function KbdTooltip() {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-group">
       <ButtonGroup>
         <Tooltip>
           <TooltipTrigger

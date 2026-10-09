@@ -9,7 +9,7 @@ import {
 
 export default function ItemVariant() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-section">
       <Item>
         <ItemContent>
           <ItemTitle>Default Variant</ItemTitle>

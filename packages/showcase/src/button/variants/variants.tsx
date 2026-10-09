@@ -1,7 +1,7 @@
 import { Button } from "@erbium/ui/components/button";
 
 const Example = () => (
-  <div className="flex flex-wrap gap-2">
+  <div className="flex flex-wrap gap-related">
     {(
       [
         "default",

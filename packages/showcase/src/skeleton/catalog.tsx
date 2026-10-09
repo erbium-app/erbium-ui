@@ -58,7 +58,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Skeleton> = {
-  args: { className: "h-8 w-48" },
+  args: { className: "min-h-control control-adaptive w-48" },
   argTypes: {},
   parameters: {
     docs: {

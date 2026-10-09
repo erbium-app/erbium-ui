@@ -101,7 +101,7 @@ export function CommandWithGroups() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Button onClick={() => setOpen(true)} variant="outline" className="w-fit">
         Open Menu
       </Button>

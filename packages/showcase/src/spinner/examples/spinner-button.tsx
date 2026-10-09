@@ -2,7 +2,7 @@ import { Button } from "@erbium/ui/components/button";
 
 export default function SpinnerButton() {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-group">
       <Button loading size="sm">
         Loading...
       </Button>

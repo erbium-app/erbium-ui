@@ -2,7 +2,7 @@ import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group
 
 export function ToggleGroupSizes() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <ToggleGroup size="sm" defaultValue={["top"]} variant="outline">
         <ToggleGroupItem value="top" aria-label="Toggle top">
           Top

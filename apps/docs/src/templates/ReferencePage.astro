@@ -24,7 +24,7 @@ const { component, reference, Content, frontmatter, repeatedSummary, lead, remai
     next={neighbors[index + 1]}
   >
     {
-      component.files?.[0] && (
+      component.kind !== "foundation" && component.files?.[0] && (
         <Button
           href={`https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`}
           target="_blank"

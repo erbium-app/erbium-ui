@@ -1,7 +1,7 @@
 import { Separator } from "@erbium/ui/components/separator";
 
 const Example = () => (
-  <div className="grid w-72 gap-6">
+  <div className="grid w-72 gap-section">
     <div className="overflow-hidden rounded-lg surface-panel py-3">
       <div className="px-3 pb-3 text-caption">Card header</div>
       <Separator />

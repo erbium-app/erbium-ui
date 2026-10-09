@@ -1,6 +1,6 @@
 ---
 title: "Code"
-description: Paper Mono in command and source samples using the shared code block.
+description: Paper Mono for source, commands, and identifiers.
 ---
 
-Paper Mono in command and source samples using the shared code block.
+Compare standalone code with supporting interface text. Code uses its own readable line rhythm and explicit punctuation, while adjacent controls retain the interface family. Use the shared code block for source and commands rather than sizing a monospace paragraph independently.

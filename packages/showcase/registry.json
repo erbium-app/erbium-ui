@@ -17444,7 +17444,7 @@
       "name": "sizing-composition",
       "type": "registry:component",
       "title": "Sizing: Composition",
-      "description": "Panel insets, field groups, and related actions form a consistent hierarchy. Narrow containers wrap actions without shrinking reading text.",
+      "description": "Compare the same form in cards with 16px and 12px insets. Panel spacing changes while text roles and control behavior remain consistent. Headers, fields, and actions share alignment edges; footer backgrounds reach the bottom even when cards stretch to equal height. Narrow layouts stack without fixed field heights or negative-margin adjustments.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
@@ -17464,7 +17464,7 @@
       "name": "sizing-controls",
       "type": "registry:component",
       "title": "Sizing: Controls",
-      "description": "Compare related controls together. Default controls use a 28px minimum, compact controls 24px, and large controls 32px. Below 48rem general controls use a 36px minimum to align with readable fields. Touch targets expand independently of viewport width.",
+      "description": "The first row compares the four action sizes; xs is shown for reference and belongs inside a containing control in product usage. The toolbar combines a field, select, toggle, and action, followed by segmented navigation and a Persian row. Resize the example: related controls wrap, fields stay readable, and the shared target floors adapt automatically. Open the select to inspect its independent popup-row sizing.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input",
@@ -21340,7 +21340,7 @@
       "name": "typography-code",
       "type": "registry:component",
       "title": "Typography: Code",
-      "description": "Paper Mono in command and source samples using the shared code block.",
+      "description": "Compare standalone code with supporting interface text. Code uses its own readable line rhythm and explicit punctuation, while adjacent controls retain the interface family. Use the shared code block for source and commands rather than sizing a monospace paragraph independently.",
       "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
       "files": [
         {
@@ -21366,7 +21366,7 @@
       "name": "typography-interface",
       "type": "registry:component",
       "title": "Typography: Interface",
-      "description": "Five text roles in Cal Sans, with shared title and description defaults in real controls.",
+      "description": "Compare the five content roles with real field labels, descriptions, and actions. The hierarchy stays stable while components supply their own functional text defaults. This is the starting composition for application text; choose roles by purpose rather than by the available screen width.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
@@ -21386,7 +21386,7 @@
       "name": "typography-multilingual",
       "type": "registry:component",
       "title": "Typography: Multilingual",
-      "description": "Vazirmatn in Persian and Arabic interfaces, with mixed Latin text and RTL layout.",
+      "description": "Compare Latin, Persian, and Arabic content within the same hierarchy. Script-specific line room preserves marks; RTL layout follows the content boundary, and mixed-direction identifiers remain legible. Verify wrapping and editable text without adding letter spacing or reducing font size.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
@@ -21406,7 +21406,7 @@
       "name": "typography-reading",
       "type": "registry:component",
       "title": "Typography: Reading",
-      "description": "One reading rhythm using shared body, heading, and code roles.",
+      "description": "Read paragraphs, emphasis, nested lists, a quotation, an inline identifier, and a role-comparison table in one article. This is the complete Typeset composition: body text retains its size on narrow screens, and the table has its own keyboard-accessible scroll region.",
       "registryDependencies": ["@erbium/card", "@erbium/styles"],
       "files": [
         {

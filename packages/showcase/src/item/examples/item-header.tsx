@@ -33,8 +33,8 @@ const models = [
 
 export function ItemHeaderDemo() {
   return (
-    <div className="flex w-full max-w-xl flex-col gap-6">
-      <ItemGroup className="grid grid-cols-3 gap-4">
+    <div className="flex w-full max-w-xl flex-col gap-section">
+      <ItemGroup className="grid grid-cols-3 gap-group">
         {models.map((model) => (
           <Item key={model.name} variant="card">
             <ItemHeader>

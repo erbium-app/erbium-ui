@@ -1,7 +1,7 @@
 import { Badge } from "@erbium/ui/components/badge";
 
 const Example = () => (
-  <div className="flex gap-2">
+  <div className="flex gap-related">
     {(
       [
         "default",

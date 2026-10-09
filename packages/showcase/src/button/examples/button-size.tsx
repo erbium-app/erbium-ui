@@ -6,7 +6,7 @@ import { Button } from "@erbium/ui/components/button";
 export default function ButtonSize() {
   return (
     <div className="flex flex-col items-start gap-8 sm:flex-row">
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-related">
         <Button size="sm" variant="outline">
           Small
         </Button>
@@ -14,13 +14,13 @@ export default function ButtonSize() {
           <HugeiconsIcon icon={ArrowUpRight01Icon} />
         </Button>
       </div>
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-related">
         <Button variant="outline">Default</Button>
         <Button size="icon" aria-label="Submit" variant="outline">
           <HugeiconsIcon icon={ArrowUpRight01Icon} />
         </Button>
       </div>
-      <div className="flex items-start gap-2">
+      <div className="flex items-start gap-related">
         <Button variant="outline" size="lg">
           Large
         </Button>

@@ -3,7 +3,7 @@ import { DirectionProvider } from "@erbium/ui/components/direction";
 
 export default function KbdButton() {
   return (
-    <div className="flex flex-wrap items-center gap-4">
+    <div className="flex flex-wrap items-center gap-group">
       <Button variant="outline" size="sm">
         Accept
         <ButtonShortcut hotkey="Enter" />

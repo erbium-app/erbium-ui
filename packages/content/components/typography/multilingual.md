@@ -1,6 +1,6 @@
 ---
 title: "Multilingual"
-description: Vazirmatn in Persian and Arabic interfaces, with mixed Latin text and RTL layout.
+description: Arabic and Persian content with mixed Latin values.
 ---
 
-Vazirmatn in Persian and Arabic interfaces, with mixed Latin text and RTL layout.
+Compare Latin, Persian, and Arabic content within the same hierarchy. Script-specific line room preserves marks; RTL layout follows the content boundary, and mixed-direction identifiers remain legible. Verify wrapping and editable text without adding letter spacing or reducing font size.

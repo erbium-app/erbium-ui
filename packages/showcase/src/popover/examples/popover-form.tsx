@@ -20,7 +20,7 @@ export function PopoverForm() {
             <PopoverTitle>Dimensions</PopoverTitle>
             <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>
           </PopoverHeader>
-          <FieldGroup className="gap-4">
+          <FieldGroup className="gap-group">
             <Field orientation="horizontal">
               <FieldLabel className="w-1/2">Width</FieldLabel>
               <Input defaultValue="100%" />

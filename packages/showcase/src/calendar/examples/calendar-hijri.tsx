@@ -45,7 +45,7 @@ export default function CalendarHijri() {
       <div className="mb-3 flex items-center justify-between">
         <Button
           aria-label="ماه قبل"
-          size="icon-sm"
+          size="icon"
           variant="ghost"
           onClick={() => first && setAnchor(moveDay(first, -10))}
         >
@@ -54,7 +54,7 @@ export default function CalendarHijri() {
         <span className="text-caption font-medium">{monthFormatter.format(anchor)}</span>
         <Button
           aria-label="ماه بعد"
-          size="icon-sm"
+          size="icon"
           variant="ghost"
           onClick={() => first && setAnchor(moveDay(first, 35))}
         >
@@ -78,9 +78,9 @@ export default function CalendarHijri() {
                 dateStyle: "full",
               }).format(date)}
               aria-pressed={active}
-              className="size-9 rounded-md"
+              className="rounded-md"
               key={date.toISOString()}
-              size="icon-sm"
+              size="icon"
               variant={active ? "default" : "ghost"}
               onClick={() => setSelected(date)}
             >

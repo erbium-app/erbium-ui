@@ -10,7 +10,7 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/compone
 
 export default function InputGroupIcon() {
   return (
-    <div className="grid w-full max-w-sm gap-6">
+    <div className="grid w-full max-w-sm gap-section">
       <InputGroup>
         <InputGroupInput placeholder="Search..." />
         <InputGroupAddon>

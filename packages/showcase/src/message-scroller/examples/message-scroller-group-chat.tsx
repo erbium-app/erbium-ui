@@ -97,7 +97,7 @@ export function MessageScrollerGroupChat() {
 
   return (
     <MessageScrollerProvider>
-      <div className="relative flex flex-col gap-4">
+      <div className="relative flex flex-col gap-group">
         <Card className="mx-auto h-140 w-full max-w-sm gap-0">
           <CardHeader className="gap-1 border-b">
             <CardTitle>Group Chat</CardTitle>
@@ -152,7 +152,7 @@ export function MessageScrollerGroupChat() {
               </MessageScroller>
             </MessageScrollerProvider>
           </CardContent>
-          <CardFooter className="flex flex-col items-center gap-2 border-t">
+          <CardFooter className="flex flex-col items-center gap-related border-t">
             <Button
               type="button"
               disabled={isComplete}

@@ -5,7 +5,7 @@ import { Canvas, control } from "../helpers";
 const Example = () => (
   <Canvas>
     <div className="grid w-full max-w-3xl items-start gap-8 @xl:grid-cols-2">
-      <div className="grid gap-2">
+      <div className="grid gap-related">
         <span aria-expanded className={`${control} w-fit border surface-control`}>
           Workspace <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
         </span>
@@ -17,7 +17,7 @@ const Example = () => (
           ))}
         </div>
       </div>
-      <div className="grid gap-4 rounded-2xl border surface-modal p-6">
+      <div className="grid gap-group rounded-2xl border surface-modal p-6">
         <div>
           <div className="text-body font-medium">Invite people</div>
           <div className="text-muted-foreground">A menu opened in a dialog climbs above it.</div>

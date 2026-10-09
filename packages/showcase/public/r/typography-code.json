@@ -3,14 +3,14 @@
   "name": "typography-code",
   "type": "registry:component",
   "title": "Typography: Code",
-  "description": "Paper Mono in command and source samples using the shared code block.",
+  "description": "Compare standalone code with supporting interface text. Code uses its own readable line rhythm and explicit punctuation, while adjacent controls retain the interface family. Use the shared code block for source and commands rather than sizing a monospace paragraph independently.",
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
       "path": "src/typography/variants/code.tsx",
       "type": "registry:component",
       "target": "@components/showcase/typography/variants/code.tsx",
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function CodeExample() {\n  return (\n    <div className=\"flex w-full max-w-lg flex-col gap-4\">\n      <CodeBlock surface=\"command\" language=\"shell\" code=\"bunx shadcn@latest add @erbium/button\" />\n      <CodeBlock title=\"button.tsx\" language=\"tsx\" code=\"<Button>Continue</Button>\" />\n    </div>\n  );\n}\n"
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function CodeExample() {\n  return (\n    <div className=\"flex w-full max-w-lg flex-col gap-group\">\n      <CodeBlock surface=\"command\" language=\"shell\" code=\"bunx shadcn@latest add @erbium/button\" />\n      <CodeBlock title=\"button.tsx\" language=\"tsx\" code=\"<Button>Continue</Button>\" />\n    </div>\n  );\n}\n"
     }
   ]
 }

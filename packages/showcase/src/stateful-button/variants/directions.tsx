@@ -4,7 +4,7 @@ import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { AsyncStatefulButton } from "../examples/stateful-button-demo";
 
 const Example = () => (
-  <div className="flex flex-col gap-4">
+  <div className="flex flex-col gap-group">
     {(["ltr", "rtl"] as const).map((direction) => {
       const isRtl = direction === "rtl";
       const label = isRtl ? "حفظ" : "Save";

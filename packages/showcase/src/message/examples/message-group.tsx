@@ -9,7 +9,7 @@ import {
 
 export function MessageGroupDemo() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6 py-12">
+    <div className="flex w-full max-w-sm flex-col gap-section py-12">
       <MessageGroup>
         <Message>
           <MessageAvatar />

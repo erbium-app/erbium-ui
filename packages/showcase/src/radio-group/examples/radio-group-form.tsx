@@ -9,7 +9,7 @@ export default function RadioGroupForm() {
 
   return (
     <form
-      className="flex w-72 flex-col gap-4"
+      className="flex w-72 flex-col gap-group"
       onSubmit={(event) => {
         event.preventDefault();
         const data = Object.fromEntries(new FormData(event.currentTarget));

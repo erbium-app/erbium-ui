@@ -38,7 +38,7 @@ const people = [
 
 export default function ItemDropdown() {
   return (
-    <div className="flex min-h-64 w-full max-w-md flex-col items-center gap-6">
+    <div className="flex min-h-64 w-full max-w-md flex-col items-center gap-section">
       <DropdownMenu>
         <DropdownMenuTrigger
           render={

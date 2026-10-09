@@ -16,24 +16,12 @@ export const searchGroups = [
   {
     title: "Guides",
     items: [
-      {
-        title: "Sizing",
-        href: "/docs/sizing",
-        name: "sizing",
-        description: "Coordinated component geometry and responsive spacing.",
-      },
       { title: "Installation", href: "/docs/installation", name: "installation", description: "" },
       {
         title: "Using components",
         href: "/docs/getting-started",
         name: "getting-started",
         description: "Compose installed components, examples, and stories.",
-      },
-      {
-        title: "Typography",
-        href: "/docs/typography",
-        name: "typography",
-        description: "Fonts, type roles, and one Typeset reading rhythm.",
       },
     ],
   },

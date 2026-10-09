@@ -9,8 +9,8 @@ import { Canvas, control } from "../helpers";
 
 const Example = () => (
   <Canvas>
-    <div className="grid w-full max-w-3xl gap-6">
-      <div className="flex flex-wrap items-center gap-2">
+    <div className="grid w-full max-w-3xl gap-section">
+      <div className="flex flex-wrap items-center gap-related">
         <div className="flex control-size control-adaptive w-full max-w-72 items-center rounded-lg border surface-field">
           <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
           <span className="text-muted-foreground">Search repositories and people…</span>
@@ -39,7 +39,7 @@ const Example = () => (
         </button>
       </div>
 
-      <div className="grid gap-4 @md:grid-cols-2">
+      <div className="grid gap-group @md:grid-cols-2">
         {[
           ["Tokens", "0", Coins01Icon],
           ["Total cost", "$0.00", SparklesIcon],
@@ -47,7 +47,7 @@ const Example = () => (
           return (
             <div key={label as string} className="rounded-xl border surface-panel p-5">
               <div className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-related">
                   <HugeiconsIcon
                     icon={Icon as IconSvgElement}
                     className="size-3.5 text-muted-foreground"
@@ -83,7 +83,7 @@ const Example = () => (
         })}
       </div>
 
-      <div className="flex flex-wrap items-center gap-4 rounded-xl border surface-panel p-5">
+      <div className="flex flex-wrap items-center gap-group rounded-xl border surface-panel p-5">
         <div className="inline-flex rounded-lg surface-well p-0.5">
           <span className={`${control} min-h-control-sm border surface-control`}>Overview</span>
           <span className={`${control} min-h-control-sm text-muted-foreground`}>Traces</span>

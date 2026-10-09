@@ -5,7 +5,7 @@ import { Badge } from "@erbium/ui/components/badge";
 
 export function BadgeWithIconLeft() {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-related">
       <Badge variant="success" statusIcon>
         Verified
       </Badge>

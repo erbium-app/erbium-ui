@@ -2,22 +2,22 @@ import { Badge } from "@erbium/ui/components/badge";
 
 export default function BadgeDemo() {
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="flex w-full flex-wrap gap-2">
+    <div className="flex flex-col items-center gap-related">
+      <div className="flex w-full flex-wrap gap-related">
         <Badge>Badge</Badge>
         <Badge variant="secondary">Secondary</Badge>
         <Badge variant="error">Error</Badge>
         <Badge variant="outline">Outline</Badge>
       </div>
-      <div className="flex w-full flex-wrap gap-2">
+      <div className="flex w-full flex-wrap gap-related">
         <Badge variant="success" statusIcon>
           Verified
         </Badge>
-        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>
-        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="error">
+        <Badge className="min-w-5 rounded-full px-1 font-mono tabular-nums">8</Badge>
+        <Badge className="min-w-5 rounded-full px-1 font-mono tabular-nums" variant="error">
           99
         </Badge>
-        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">
+        <Badge className="min-w-5 rounded-full px-1 font-mono tabular-nums" variant="outline">
           20+
         </Badge>
       </div>

@@ -19,7 +19,7 @@ import { Spinner } from "@erbium/ui/components/spinner";
 
 export function AttachmentStates() {
   return (
-    <div className="mx-auto flex w-full max-w-sm flex-col gap-2 py-12">
+    <div className="mx-auto flex w-full max-w-sm flex-col gap-related py-12">
       <Attachment state="idle" className="w-full">
         <AttachmentMedia>
           <HugeiconsIcon icon={Clock01Icon} />

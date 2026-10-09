@@ -6,7 +6,7 @@ const Example = () => (
     {surfaceSamples.map(([name, surface]) => (
       <div
         key={name}
-        className={`flex min-h-24 flex-col justify-center gap-2 rounded-lg border border-transparent p-3 ${surface}`}
+        className={`flex min-h-24 flex-col justify-center gap-related rounded-lg border border-transparent p-3 ${surface}`}
       >
         <span className="text-metadata font-medium">{name}</span>
         <Separator />

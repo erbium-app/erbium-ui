@@ -13,7 +13,7 @@ export default function CheckboxForm() {
 
   return (
     <form
-      className="flex w-72 flex-col gap-4"
+      className="flex w-72 flex-col gap-group"
       onInvalid={(event) => {
         if (event.target === termsInputRef.current) {
           setTermsInvalid(true);

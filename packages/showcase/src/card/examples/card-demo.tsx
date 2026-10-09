@@ -24,7 +24,7 @@ export default function CardDemo() {
       </CardHeader>
       <CardContent>
         <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-section">
             <Field>
               <FieldLabel>Email</FieldLabel>
               <Input type="email" placeholder="m@example.com" required />
@@ -44,7 +44,7 @@ export default function CardDemo() {
           </div>
         </form>
       </CardContent>
-      <CardFooter className="gap-2">
+      <CardFooter className="gap-related">
         <StatefulButton type="submit" form="card-login-form" className="min-w-0 flex-1">
           Login
         </StatefulButton>

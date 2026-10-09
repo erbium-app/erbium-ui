@@ -2,7 +2,7 @@ import { Button } from "@erbium/ui/components/button";
 
 export default function ButtonLoading() {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-related">
       <Button variant="outline" loading>
         Generating
       </Button>

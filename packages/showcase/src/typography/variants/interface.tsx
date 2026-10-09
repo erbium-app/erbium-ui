@@ -12,8 +12,8 @@ import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 export default function InterfaceExample() {
   return (
-    <div className="grid w-full gap-6 lg:grid-cols-2">
-      <section className="grid content-start gap-4" aria-label="Typography roles">
+    <div className="grid w-full gap-section lg:grid-cols-2">
+      <section className="grid content-start gap-group" aria-label="Typography roles">
         <h1 className="text-display">A place for your team</h1>
         <h2 className="text-title">Work together</h2>
         <h3 className="text-subtitle">Keep projects moving</h3>
@@ -29,7 +29,7 @@ export default function InterfaceExample() {
           <CardTitle>Workspace preferences</CardTitle>
           <CardDescription>Update the name shown to workspace members.</CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-2">
+        <CardContent className="grid gap-related">
           <Field>
             <FieldLabel htmlFor="typography-workspace">Workspace name</FieldLabel>
             <Input id="typography-workspace" defaultValue="Erbium Studio" />

@@ -2,7 +2,7 @@ import { Toggle } from "@erbium/ui/components/toggle";
 
 export function ToggleSizes() {
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-related">
       <Toggle variant="outline" aria-label="Toggle small" size="sm">
         Small
       </Toggle>

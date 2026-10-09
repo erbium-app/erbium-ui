@@ -26,7 +26,7 @@ export function CalendarWithPresets() {
           className="p-0 [--cell-size:--spacing(9.5)]"
         />
       </CardContent>
-      <CardFooter className="flex flex-wrap gap-2 border-t">
+      <CardFooter className="flex flex-wrap gap-related border-t">
         {[
           { label: "Today", value: 0 },
           { label: "Tomorrow", value: 1 },

@@ -22,7 +22,7 @@ export default function DialogCloseButton() {
           <DialogTitle>Share link</DialogTitle>
           <DialogDescription>Anyone who has this link will be able to view this.</DialogDescription>
         </DialogHeader>
-        <DialogContent className="flex items-center gap-2">
+        <DialogContent className="flex items-center gap-related">
           <Field className="flex-1">
             <FieldLabel className="sr-only">Link</FieldLabel>
             <Input defaultValue="https://ui.erbium.app/docs/installation" readOnly />

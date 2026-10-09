@@ -16,7 +16,7 @@ import {
 export default function InputGroupTextareaExample() {
   const [code, setCode] = useState("console.log('Hello, world!');");
   return (
-    <div className="grid w-full max-w-md gap-4">
+    <div className="grid w-full max-w-md gap-group">
       <InputGroup>
         <InputGroupTextarea
           value={code}

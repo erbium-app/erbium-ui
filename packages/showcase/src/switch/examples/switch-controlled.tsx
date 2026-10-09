@@ -6,7 +6,7 @@ export default function SwitchControlled() {
   const [checked, setChecked] = useState(true);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Field orientation="horizontal">
         <Switch checked={checked} onCheckedChange={setChecked} />
         <FieldLabel>Wi-Fi</FieldLabel>

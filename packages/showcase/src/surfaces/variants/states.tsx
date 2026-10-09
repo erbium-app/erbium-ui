@@ -2,9 +2,9 @@ import { Canvas, control, sunk, stateRoles, states } from "../helpers";
 
 const Example = () => (
   <Canvas>
-    <div className="grid w-full max-w-3xl gap-4 rounded-xl border surface-panel p-6">
+    <div className="grid w-full max-w-3xl gap-group rounded-xl border surface-panel p-6">
       {stateRoles.map(([role, raised]) => (
-        <div key={role} className="flex flex-wrap gap-4">
+        <div key={role} className="flex flex-wrap gap-group">
           {states.map(([name, attributes, classes]) => (
             <span
               key={name}

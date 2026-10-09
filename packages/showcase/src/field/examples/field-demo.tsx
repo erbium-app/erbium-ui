@@ -38,7 +38,7 @@ export default function FieldDemo() {
                 <Input placeholder="1234 5678 9012 3456" required />
                 <FieldDescription>Enter your 16-digit card number</FieldDescription>
               </Field>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-group">
                 <Field>
                   <FieldLabel htmlFor="checkout-exp-month-ts6">Month</FieldLabel>
                   <Select defaultValue="">

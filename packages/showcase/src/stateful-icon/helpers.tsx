@@ -35,7 +35,7 @@ export function SidebarToggleIconExample({ side }: { side: "left" | "right" }) {
     <button
       aria-expanded={isOpen}
       aria-label={`${isOpen ? "Close" : "Open"} ${side} sidebar`}
-      className="flex items-center gap-2 rounded-lg border px-3 py-2 text-caption"
+      className="flex items-center gap-related rounded-lg border px-3 py-2 text-caption"
       onClick={() => setIsOpen((open) => !open)}
       type="button"
     >
@@ -51,7 +51,7 @@ export function ThemeToggleIconExample() {
   return (
     <button
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-      className="flex items-center gap-2 rounded-lg border px-3 py-2 text-caption"
+      className="flex items-center gap-related rounded-lg border px-3 py-2 text-caption"
       onClick={() => setTheme((current) => (current === "light" ? "dark" : "light"))}
       type="button"
     >

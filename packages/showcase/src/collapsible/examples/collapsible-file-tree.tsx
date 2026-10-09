@@ -93,7 +93,7 @@ export function CollapsibleFileTree() {
         key={fileItem.name}
         variant="link"
         size="sm"
-        className="w-full justify-start gap-2 text-foreground"
+        className="w-full justify-start gap-related text-foreground"
       >
         <HugeiconsIcon icon={File01Icon} />
         <span>{fileItem.name}</span>
@@ -102,7 +102,7 @@ export function CollapsibleFileTree() {
   };
 
   return (
-    <Card className="mx-auto w-full max-w-[16rem] gap-2" size="sm">
+    <Card className="mx-auto w-full max-w-[16rem] gap-related" size="sm">
       <CardHeader>
         <Tabs defaultValue="explorer">
           <TabsList className="w-full">

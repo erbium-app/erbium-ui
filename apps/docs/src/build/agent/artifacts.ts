@@ -83,23 +83,13 @@ const guides = [
   ["/", "introduction.md", "Overview"],
   ["/docs/installation", "installation.md", "Guides"],
   ["/docs/getting-started", "getting-started.md", "Guides"],
-  ["/docs/typography", "typography.md", "Guides"],
-  ["/docs/sizing", "sizing.md", "Guides"],
   ["/docs/roadmap", "roadmap.md", "Overview"],
   ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
 ];
 
 export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
   const { frontmatter } = document(file);
-  return page(
-    route,
-    frontmatter.title,
-    frontmatter.description,
-    section,
-    file === "typography.md"
-      ? `${body("typography-introduction.md")}\n\n${body(file)}`
-      : body(file),
-  );
+  return page(route, frontmatter.title, frontmatter.description, section, body(file));
 });
 
 for (const component of components) {
@@ -119,11 +109,14 @@ for (const component of components) {
     continue;
   }
   const included = new Set<string>();
-  const blocks = [body(`components/${component.name}/index.md`), "## Component source"];
-  for (const file of component.files ?? []) {
-    const source = sources[`${sourceRoot}${file.path}`];
-    if (source === undefined) throw new Error(`Missing component source: ${file.path}`);
-    blocks.push(code(`packages/ui/${file.path}`, source));
+  const blocks = [body(`components/${component.name}/index.md`)];
+  if (component.kind !== "foundation" && component.files?.length) {
+    blocks.push("## Component source");
+    for (const file of component.files) {
+      const source = sources[`${sourceRoot}${file.path}`];
+      if (source === undefined) throw new Error(`Missing component source: ${file.path}`);
+      blocks.push(code(`packages/ui/${file.path}`, source));
+    }
   }
   blocks.push("## Interactive examples");
   for (const variant of catalog.variants) {
@@ -142,7 +135,7 @@ for (const component of components) {
   }
   const stories =
     portableStories[`../../../../../packages/showcase/public/r/${component.name}-stories.json`];
-  if (stories) {
+  if (stories && component.kind !== "foundation") {
     blocks.push(
       "## Portable Storybook stories",
       "These files use the registry's installable local import paths. Install the corresponding stories registry item to include its dependencies.",

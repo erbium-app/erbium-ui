@@ -158,4 +158,4 @@ For keyboard interactions, refer to [TanStack Hotkeys](https://tanstack.com/hotk
 
 Give your agent [llms.txt](/llms.txt) to discover Erbium’s documentation. Each documentation page is also available as Markdown by appending `.md` to its URL. Install [examples and stories](/docs/getting-started) alongside components when the agent needs composition and usage guidance.
 
-See [Typography](/docs/typography) for font roles, loading, customization, and reading presets.
+See [Typography](/docs/foundations/typography) for font roles, reading, and multilingual usage.

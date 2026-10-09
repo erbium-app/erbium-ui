@@ -98,7 +98,7 @@ export function QuestionnaireDialog() {
               <QuestionnaireError className="px-4" />
             </QuestionnaireItem>
 
-            <div className="flex flex-col-reverse gap-2 border-t bg-footer px-4 py-3 sm:flex-row sm:justify-end">
+            <div className="flex flex-col-reverse gap-related border-t bg-footer px-4 py-3 sm:flex-row sm:justify-end">
               <DialogClose render={<Button type="button" variant="outline" />}>Cancel</DialogClose>
               <QuestionnaireActions>
                 <QuestionnairePrevious />

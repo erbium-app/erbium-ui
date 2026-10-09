@@ -42,7 +42,7 @@ export default function DialogDemo() {
               Make changes to your profile here. Click save when you&apos;re done.
             </DialogDescription>
           </DialogHeader>
-          <DialogContent className="grid content-start gap-4">
+          <DialogContent className="grid content-start gap-group">
             <Field>
               <FieldLabel>Name</FieldLabel>
               <Input name="name" defaultValue="Pedro Duarte" />

@@ -16,7 +16,7 @@
       "path": "src/surfaces/variants/states.tsx",
       "type": "registry:component",
       "target": "@components/showcase/surfaces/variants/states.tsx",
-      "content": "import { Canvas, control, sunk, stateRoles, states } from \"../helpers\";\n\nconst Example = () => (\n  <Canvas>\n    <div className=\"grid w-full max-w-3xl gap-4 rounded-xl border surface-panel p-6\">\n      {stateRoles.map(([role, raised]) => (\n        <div key={role} className=\"flex flex-wrap gap-4\">\n          {states.map(([name, attributes, classes]) => (\n            <span\n              key={name}\n              {...attributes}\n              className={`${control} border ${role} ${classes} ${name === \"pressed\" && raised ? sunk : \"\"}`}\n            >\n              {name}\n            </span>\n          ))}\n        </div>\n      ))}\n    </div>\n  </Canvas>\n);\n\nexport default Example;\n"
+      "content": "import { Canvas, control, sunk, stateRoles, states } from \"../helpers\";\n\nconst Example = () => (\n  <Canvas>\n    <div className=\"grid w-full max-w-3xl gap-group rounded-xl border surface-panel p-6\">\n      {stateRoles.map(([role, raised]) => (\n        <div key={role} className=\"flex flex-wrap gap-group\">\n          {states.map(([name, attributes, classes]) => (\n            <span\n              key={name}\n              {...attributes}\n              className={`${control} border ${role} ${classes} ${name === \"pressed\" && raised ? sunk : \"\"}`}\n            >\n              {name}\n            </span>\n          ))}\n        </div>\n      ))}\n    </div>\n  </Canvas>\n);\n\nexport default Example;\n"
     }
   ]
 }

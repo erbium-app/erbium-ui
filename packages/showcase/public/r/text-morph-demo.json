@@ -10,7 +10,7 @@
       "path": "src/text-morph/examples/text-morph-demo.tsx",
       "type": "registry:component",
       "target": "@components/showcase/text-morph/examples/text-morph-demo.tsx",
-      "content": "import { useState } from \"react\";\nimport { TextMorph } from \"@/registry/erbium/ui/text-morph\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const [count, setCount] = useState(10);\n  return (\n    <div className=\"flex items-center gap-4\">\n      <TextMorph aria-live=\"polite\">{count}</TextMorph>\n      <Button onClick={() => setCount(count + 1)}>Increment</Button>\n    </div>\n  );\n}\n"
+      "content": "import { useState } from \"react\";\nimport { TextMorph } from \"@/registry/erbium/ui/text-morph\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const [count, setCount] = useState(10);\n  return (\n    <div className=\"flex items-center gap-group\">\n      <TextMorph aria-live=\"polite\">{count}</TextMorph>\n      <Button onClick={() => setCount(count + 1)}>Increment</Button>\n    </div>\n  );\n}\n"
     }
   ]
 }

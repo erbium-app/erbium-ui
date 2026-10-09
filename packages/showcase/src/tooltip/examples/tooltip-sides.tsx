@@ -3,7 +3,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/t
 
 export function TooltipSides() {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-related">
       {(["left", "top", "bottom", "right"] as const).map((side) => (
         <Tooltip key={side}>
           <TooltipTrigger render={<Button variant="outline" className="w-fit capitalize" />}>

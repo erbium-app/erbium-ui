@@ -9,13 +9,13 @@ import {
 export function ControlledExample() {
   const [value, setValue] = useState<number | null>(2500);
   return (
-    <div className="flex w-56 flex-col gap-2">
+    <div className="flex w-56 flex-col gap-related">
       <NumberField value={value} onValueChange={setValue} min={0} largeStep={1000}>
         <NumberFieldGroup>
           <NumberFieldInput aria-label="Budget" className="text-end" />
         </NumberFieldGroup>
       </NumberField>
-      <div className="flex gap-2">
+      <div className="flex gap-related">
         {[-1000, 1000, 10_000].map((delta) => (
           <button
             key={delta}

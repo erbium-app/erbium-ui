@@ -223,7 +223,7 @@ export function AsyncAutocomplete() {
         <AutocompletePopup aria-busy={loading || undefined}>
           <AutocompleteStatus>
             {loading ? (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-related">
                 Searching…
                 <Spinner className="size-4" />
               </span>

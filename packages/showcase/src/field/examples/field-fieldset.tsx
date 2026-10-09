@@ -19,7 +19,7 @@ export default function FieldFieldset() {
             <FieldLabel>Street Address</FieldLabel>
             <Input type="text" placeholder="123 Main St" />
           </Field>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-group">
             <Field>
               <FieldLabel>City</FieldLabel>
               <Input type="text" placeholder="New York" />

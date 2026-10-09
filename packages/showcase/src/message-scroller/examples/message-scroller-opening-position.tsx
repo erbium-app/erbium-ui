@@ -62,7 +62,7 @@ export function MessageScrollerOpeningPosition() {
   const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
 
   return (
-    <div className="relative flex flex-col gap-4">
+    <div className="relative flex flex-col gap-group">
       <Card className="mx-auto h-140 w-full max-w-sm gap-0">
         <CardHeader className="gap-1 border-b">
           <CardTitle>Opening Position</CardTitle>

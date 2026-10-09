@@ -3,7 +3,7 @@ import { Spinner } from "@erbium/ui/components/spinner";
 
 export default function SpinnerDemo() {
   return (
-    <div className="flex w-full max-w-xs flex-col gap-4 [--radius:1rem]">
+    <div className="flex w-full max-w-xs flex-col gap-group [--radius:1rem]">
       <Item variant="card">
         <ItemMedia>
           <Spinner />

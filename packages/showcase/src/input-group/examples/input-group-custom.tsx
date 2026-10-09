@@ -4,7 +4,7 @@ import { InputGroup, InputGroupAddon, InputGroupButton } from "@erbium/ui/compon
 
 export default function InputGroupCustom() {
   return (
-    <div className="grid w-full max-w-sm gap-6">
+    <div className="grid w-full max-w-sm gap-section">
       <InputGroup>
         <TextareaAutosize
           data-slot="input-group-control"

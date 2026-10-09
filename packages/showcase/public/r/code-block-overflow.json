@@ -10,7 +10,7 @@
       "path": "src/code-block/variants/overflow.tsx",
       "type": "registry:component",
       "target": "@components/showcase/code-block/variants/overflow.tsx",
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst code =\n  'const description = \"A code block preserves the original source, including long lines, while keeping the surrounding layout within the available width.\";';\n\nexport default function Example() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-4\">\n      <CodeBlock code={code} language=\"ts\" title=\"Horizontal scrolling\" />\n      <CodeBlock code={code} language=\"ts\" title=\"Wrapped lines\" wrap />\n      <CodeBlock\n        code={Array.from({ length: 40 }, (_, index) => `console.log(\"Line ${index + 1}\");`).join(\n          \"\\n\",\n        )}\n        language=\"js\"\n        lineNumbers\n      />\n    </div>\n  );\n}\n"
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst code =\n  'const description = \"A code block preserves the original source, including long lines, while keeping the surrounding layout within the available width.\";';\n\nexport default function Example() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <CodeBlock code={code} language=\"ts\" title=\"Horizontal scrolling\" />\n      <CodeBlock code={code} language=\"ts\" title=\"Wrapped lines\" wrap />\n      <CodeBlock\n        code={Array.from({ length: 40 }, (_, index) => `console.log(\"Line ${index + 1}\");`).join(\n          \"\\n\",\n        )}\n        language=\"js\"\n        lineNumbers\n      />\n    </div>\n  );\n}\n"
     }
   ]
 }

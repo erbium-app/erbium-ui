@@ -14,7 +14,7 @@ import {
 
 export default function ItemDemo() {
   return (
-    <div className="flex w-full max-w-md flex-col gap-6">
+    <div className="flex w-full max-w-md flex-col gap-section">
       <Item variant="card">
         <ItemContent>
           <ItemTitle>Basic Item</ItemTitle>

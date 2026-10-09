@@ -17,7 +17,7 @@ import {
 
 export function PaginationIconsOnly() {
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-center justify-between gap-group">
       <Field orientation="horizontal" className="w-fit">
         <FieldLabel htmlFor="select-rows-per-page">Rows per page</FieldLabel>
         <Select defaultValue="25">

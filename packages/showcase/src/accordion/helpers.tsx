@@ -51,7 +51,7 @@ export function ControlledAccordionExample() {
   const [value, setValue] = useState<string[]>(["item-1"]);
 
   return (
-    <div className="flex w-80 flex-col gap-4">
+    <div className="flex w-80 flex-col gap-group">
       <Accordion multiple onValueChange={setValue} value={value}>
         {accordionItems.map((item) => (
           <AccordionItem key={item.value} value={item.value}>
@@ -60,7 +60,7 @@ export function ControlledAccordionExample() {
           </AccordionItem>
         ))}
       </Accordion>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-related">
         <Button onClick={() => setValue(["item-1", "item-2"])} variant="outline">
           Open first two
         </Button>

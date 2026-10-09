@@ -10,7 +10,7 @@
       "path": "src/skeleton/examples/skeleton-table.tsx",
       "type": "registry:component",
       "target": "@components/showcase/skeleton/examples/skeleton-table.tsx",
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonTable() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-2\">\n      {Array.from({ length: 5 }).map((_, index) => (\n        <div className=\"flex gap-4\" key={index}>\n          <Skeleton className=\"h-4 flex-1\" />\n          <Skeleton className=\"h-4 w-24\" />\n          <Skeleton className=\"h-4 w-20\" />\n        </div>\n      ))}\n    </div>\n  );\n}\n"
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonTable() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-related\">\n      {Array.from({ length: 5 }).map((_, index) => (\n        <div className=\"flex gap-group\" key={index}>\n          <Skeleton className=\"h-4 flex-1\" />\n          <Skeleton className=\"h-4 w-24\" />\n          <Skeleton className=\"h-4 w-20\" />\n        </div>\n      ))}\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/skeleton/variants/table.tsx",

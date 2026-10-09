@@ -10,7 +10,7 @@
       "path": "src/skeleton/examples/skeleton-text.tsx",
       "type": "registry:component",
       "target": "@components/showcase/skeleton/examples/skeleton-text.tsx",
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonText() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-2\">\n      <Skeleton className=\"h-4 w-full\" />\n      <Skeleton className=\"h-4 w-full\" />\n      <Skeleton className=\"h-4 w-3/4\" />\n    </div>\n  );\n}\n"
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonText() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-related\">\n      <Skeleton className=\"h-4 w-full\" />\n      <Skeleton className=\"h-4 w-full\" />\n      <Skeleton className=\"h-4 w-3/4\" />\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/skeleton/variants/text.tsx",

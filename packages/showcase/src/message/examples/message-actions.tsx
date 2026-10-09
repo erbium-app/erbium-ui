@@ -35,7 +35,7 @@ export function MessageActionsDemo() {
           <Bubble>
             <BubbleContent>Okay drop me a link. Taking a look...</BubbleContent>
           </Bubble>
-          <MessageFooter className="gap-2">
+          <MessageFooter className="gap-related">
             <span className="font-normal text-error">Failed to send</span>
             <Button variant="ghost" size="icon-xs" title="Retry" aria-label="Retry">
               <HugeiconsIcon icon={RefreshCcwIcon} />

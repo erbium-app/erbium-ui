@@ -10,7 +10,7 @@
       "path": "src/spinner/examples/spinner-button.tsx",
       "type": "registry:component",
       "target": "@components/showcase/spinner/examples/spinner-button.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Button loading size=\"sm\">\n        Loading...\n      </Button>\n      <Button variant=\"outline\" loading size=\"sm\">\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" loading size=\"sm\">\n        Processing\n      </Button>\n    </div>\n  );\n}\n"
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-group\">\n      <Button loading size=\"sm\">\n        Loading...\n      </Button>\n      <Button variant=\"outline\" loading size=\"sm\">\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" loading size=\"sm\">\n        Processing\n      </Button>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/spinner/variants/button.tsx",

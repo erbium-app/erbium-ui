@@ -12,7 +12,7 @@ export default function RadioGroupControlled() {
   const [value, setValue] = useState("system");
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Field>
         <RadioGroup value={value} onValueChange={setValue}>
           {options.map((option) => (

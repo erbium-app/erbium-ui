@@ -18,7 +18,7 @@ export default function PaginationDemo() {
     };
   }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Pagination>
         <PaginationContent>
           <PaginationItem>

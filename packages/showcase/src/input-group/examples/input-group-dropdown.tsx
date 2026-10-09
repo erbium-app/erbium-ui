@@ -18,7 +18,7 @@ import {
 
 export default function InputGroupDropdown() {
   return (
-    <div className="grid w-full max-w-sm gap-4">
+    <div className="grid w-full max-w-sm gap-group">
       <InputGroup>
         <InputGroupInput placeholder="Enter file name" />
         <InputGroupAddon align="inline-end">

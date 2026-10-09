@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/p
 export function PopoverAlignments() {
   return (
     <>
-      <div className="flex gap-6">
+      <div className="flex gap-section">
         <Popover>
           <PopoverTrigger render={<Button variant="outline" size="sm" />}>Start</PopoverTrigger>
           <PopoverContent align="start" className="w-40">

@@ -3,7 +3,7 @@ import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 export default function CheckboxDisabled() {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-group">
       <Field orientation="horizontal">
         <Checkbox disabled />
         <FieldLabel>Accept terms and conditions</FieldLabel>

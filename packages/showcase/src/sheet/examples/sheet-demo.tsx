@@ -24,7 +24,7 @@ export default function SheetDemo() {
             Make changes to your profile here. Click save when you&apos;re done.
           </SheetDescription>
         </SheetHeader>
-        <SheetContent className="grid content-start gap-6">
+        <SheetContent className="grid content-start gap-section">
           <Field>
             <FieldLabel>Name</FieldLabel>
             <Input defaultValue="Pedro Duarte" />

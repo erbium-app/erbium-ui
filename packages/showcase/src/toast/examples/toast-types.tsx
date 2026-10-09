@@ -3,7 +3,7 @@ import { toast } from "@erbium/ui/components/toast";
 
 export function ToastTypes() {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-related">
       <Button
         variant="outline"
         onClick={() =>

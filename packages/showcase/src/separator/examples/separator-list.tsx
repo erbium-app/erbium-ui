@@ -2,7 +2,7 @@ import { Separator } from "@erbium/ui/components/separator";
 
 export function SeparatorList() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-2 text-caption">
+    <div className="flex w-full max-w-sm flex-col gap-related text-caption">
       <dl className="flex items-center justify-between">
         <dt>Item 1</dt>
         <dd className="text-muted-foreground">Value 1</dd>

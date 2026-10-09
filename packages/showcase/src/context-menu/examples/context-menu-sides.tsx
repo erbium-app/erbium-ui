@@ -8,7 +8,7 @@ import {
 
 export function ContextMenuSides() {
   return (
-    <div className="grid w-full max-w-sm grid-cols-2 gap-4">
+    <div className="grid w-full max-w-sm grid-cols-2 gap-group">
       <ContextMenu>
         <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
           <span className="hidden pointer-fine:inline-block">Right click (top)</span>

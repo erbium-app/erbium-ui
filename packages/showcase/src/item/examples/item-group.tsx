@@ -38,7 +38,7 @@ const people = [
 
 export default function ItemGroupExample() {
   return (
-    <div className="flex w-full max-w-md flex-col gap-6">
+    <div className="flex w-full max-w-md flex-col gap-section">
       <ItemGroup>
         {people.map((person, index) => (
           <React.Fragment key={person.username}>

@@ -48,7 +48,7 @@ function Transcript({ messages }: { messages: typeof initialMessages }) {
 function Commands() {
   const { scrollToStart, scrollToEnd, scrollToMessage } = useMessageScroller();
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-related">
       <Button size="sm" variant="outline" onClick={() => scrollToStart()}>
         First
       </Button>

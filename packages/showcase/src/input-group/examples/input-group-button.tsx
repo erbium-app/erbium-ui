@@ -16,7 +16,7 @@ export default function InputGroupButtonExample() {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   return (
-    <div className="grid w-full max-w-sm gap-6">
+    <div className="grid w-full max-w-sm gap-section">
       <InputGroup>
         <InputGroupInput value="https://example.com/john-doe" readOnly />
         <InputGroupAddon align="inline-end">

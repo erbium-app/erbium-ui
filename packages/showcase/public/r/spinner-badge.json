@@ -10,7 +10,7 @@
       "path": "src/spinner/examples/spinner-badge.tsx",
       "type": "registry:component",
       "target": "@components/showcase/spinner/examples/spinner-badge.tsx",
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-4 [--radius:1.2rem]\">\n      <Badge loading>Syncing</Badge>\n      <Badge variant=\"secondary\" loading>\n        Updating\n      </Badge>\n      <Badge variant=\"outline\" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n"
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-group [--radius:1.2rem]\">\n      <Badge loading>Syncing</Badge>\n      <Badge variant=\"secondary\" loading>\n        Updating\n      </Badge>\n      <Badge variant=\"outline\" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/spinner/variants/badge.tsx",
