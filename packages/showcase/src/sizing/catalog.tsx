@@ -4,6 +4,8 @@ import ControlsExample from "./variants/controls";
 import ControlsSource from "./variants/controls.tsx?raw";
 import CompositionExample from "./variants/composition";
 import CompositionSource from "./variants/composition.tsx?raw";
+import WorkflowExample from "./variants/workflow";
+import WorkflowSource from "./variants/workflow.tsx?raw";
 const meta = {
   parameters: {
     docs: { description: { component: componentDocumentation("sizing") } },
@@ -29,4 +31,14 @@ export const Composition: Story = {
     },
   },
   render: CompositionExample,
+};
+
+export const Workflow: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("sizing", "workflow") },
+      source: { code: WorkflowSource },
+    },
+  },
+  render: WorkflowExample,
 };

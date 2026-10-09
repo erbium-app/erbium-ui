@@ -17488,7 +17488,8 @@
       "description": "All sizing examples.",
       "registryDependencies": [
         "@erbium-examples/sizing-controls",
-        "@erbium-examples/sizing-composition"
+        "@erbium-examples/sizing-composition",
+        "@erbium-examples/sizing-workflow"
       ]
     },
     {
@@ -17501,11 +17502,13 @@
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
+        "@erbium/dropdown-menu",
         "@erbium/field",
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/styles",
+        "@erbium/table",
         "@erbium/tabs",
         "@erbium/toast",
         "@erbium/toggle"
@@ -17530,6 +17533,33 @@
           "path": "src/sizing/variants/controls.tsx",
           "type": "registry:component",
           "target": "@components/showcase/sizing/variants/controls.tsx"
+        },
+        {
+          "path": "src/sizing/variants/workflow.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/sizing/variants/workflow.tsx"
+        }
+      ]
+    },
+    {
+      "name": "sizing-workflow",
+      "type": "registry:component",
+      "title": "Sizing: Workflow",
+      "description": "Filter projects, open workspace or row actions, and submit an empty project name to inspect validation. Create a project with a long name to verify natural content growth. Related controls wrap instead of shrinking text; errors preserve their reading rhythm, and menus share the row contract across portals. This specimen exercises the relationships that isolated size comparisons cannot show.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/dropdown-menu",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/styles",
+        "@erbium/table"
+      ],
+      "files": [
+        {
+          "path": "src/sizing/variants/workflow.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/sizing/variants/workflow.tsx"
         }
       ]
     },

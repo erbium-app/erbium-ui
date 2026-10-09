@@ -6,6 +6,7 @@
   "description": "All sizing examples.",
   "registryDependencies": [
     "@erbium-examples/sizing-controls",
-    "@erbium-examples/sizing-composition"
+    "@erbium-examples/sizing-composition",
+    "@erbium-examples/sizing-workflow"
   ]
 }
