@@ -17,7 +17,7 @@ export default function FieldCheckbox() {
         <FieldSet>
           <FieldLegend variant="label">Show these items on the desktop</FieldLegend>
           <FieldDescription>Select the items you want to show on the desktop.</FieldDescription>
-          <FieldGroup className="gap-3">
+          <FieldGroup className="gap-related">
             <Field orientation="horizontal">
               <Checkbox defaultChecked />
               <FieldLabel className="font-normal">Hard disks</FieldLabel>

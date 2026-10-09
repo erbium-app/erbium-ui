@@ -10,8 +10,9 @@ export const cn = createCn({
   extend: {
     classGroups: {
       p: [{ p: ["panel", "panel-sm"] }],
-      px: [{ px: ["panel"] }],
-      py: [{ py: ["panel"] }],
+      px: [{ px: ["panel", "related", "control-inset"] }],
+      py: [{ py: ["panel", "related", "control-gap"] }],
+      gap: [{ gap: ["related", "group", "section", "control-gap"] }],
       "font-size": [
         {
           text: [

@@ -48,7 +48,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="field-group"
       className={cn(
-        "group/field-group @container/field-group flex w-full flex-col gap-group data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-group",
+        "group/field-group @container/field-group flex w-full flex-col gap-group data-[slot=checkbox-group]:gap-related *:data-[slot=field-group]:gap-group",
         className,
       )}
       {...props}
@@ -67,7 +67,7 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
   variants: {
     variant: {
       default: "",
-      card: "group/field-card relative rounded-lg border surface-frame p-2.5 transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--selection)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
+      card: "group/field-card relative rounded-lg border surface-frame p-panel-sm transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--selection)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
     },
     orientation: {
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
