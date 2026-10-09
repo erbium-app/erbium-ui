@@ -13,6 +13,17 @@ const documents = [
   "Sizing foundations",
   "Surface guidelines",
   "Accessibility checklist",
+  "Forms and validation",
+  "Menu interactions",
+  "Dialog composition",
+  "Drawer gestures",
+  "Keyboard navigation",
+  "Focus restoration",
+  "Selection patterns",
+  "Search patterns",
+  "Icon guidelines",
+  "Motion guidelines",
+  "Internationalization",
 ];
 
 export default function SearchSurfaceExample() {

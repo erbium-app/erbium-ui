@@ -1,3 +1,5 @@
+import AsyncSearchExample from "./variants/async-search";
+import AsyncSearchSource from "./variants/async-search.tsx?raw";
 import ItemCollectionExample from "./variants/item-collection";
 import ItemCollectionSource from "./variants/item-collection.tsx?raw";
 import type { Meta, StoryObj } from "../types";
@@ -220,4 +222,14 @@ export const ItemCollection: Story = {
     },
   },
   render: ItemCollectionExample,
+};
+
+export const AsyncSearch: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("combobox", "async-search") },
+      source: { code: AsyncSearchSource },
+    },
+  },
+  render: AsyncSearchExample,
 };

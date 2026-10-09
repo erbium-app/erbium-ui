@@ -60,3 +60,7 @@ The root forwards Base UI's current props and event details. Let the primitive o
 Command keeps its opinionated inline/open behavior and automatic highlighting. Its input remains a flush search header separated from the list. For asynchronous results, withhold stale items, cancel obsolete requests, and use `filter={null}` for results filtered upstream. The AsyncResults story demonstrates this with a local request simulation.
 
 `onItemHighlighted(item, details)` can drive a contextual preview. The originating event is available in `details.event`; pointer interactions can report MouseEvent or PointerEvent, while typing can report the reason `none`. Do not assume highlighting means selection.
+
+## Scrolling surfaces
+
+Use the component's built-in scrolling list or content area. It uses the product's thin scrollbar, scroll-aware edge fade, and keyboard-aware viewport. Search headers stay outside the scrolling list. Do not put a second native overflow container around the list or swap in a thicker scrollbar. The available popup space constrains the list while the header keeps its shared responsive geometry.

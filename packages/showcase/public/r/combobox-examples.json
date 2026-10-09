@@ -17,6 +17,7 @@
     "@erbium-examples/combobox-input-group",
     "@erbium-examples/combobox-custom-items",
     "@erbium-examples/combobox-clear-button",
-    "@erbium-examples/combobox-item-collection"
+    "@erbium-examples/combobox-item-collection",
+    "@erbium-examples/combobox-async-search"
   ]
 }

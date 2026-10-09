@@ -1268,6 +1268,12 @@
         "slug": "item-collection",
         "title": "Item collection",
         "source": "src/combobox/variants/item-collection.tsx"
+      },
+      {
+        "exportName": "AsyncSearch",
+        "slug": "async-search",
+        "title": "Async search",
+        "source": "src/combobox/variants/async-search.tsx"
       }
     ]
   },

@@ -14,3 +14,4 @@ export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
 export const CustomItems = { ...showcases.CustomItems, name: "Custom Items" };
 export const ClearButton = { ...showcases.ClearButton, name: "Clear Button" };
 export const ItemCollection = { ...showcases.ItemCollection, name: "Item collection" };
+export const AsyncSearch = { ...showcases.AsyncSearch, name: "Async search" };

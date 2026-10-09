@@ -1441,7 +1441,7 @@
       "name": "autocomplete-search-surface",
       "type": "registry:component",
       "title": "Autocomplete: Search surface",
-      "description": "Search a set of documents inside a panel. The search row is flush with the surrounding surface and separated from the results by a full-width separator. Use this pattern for inline search; use AutocompleteInput when the input is a standalone form field. Use Command when choosing a result executes an application action.",
+      "description": "Search a set of documents inside a panel. The search row is flush with the surrounding surface and separated from the results by a full-width separator. Use this pattern for inline search; use AutocompleteInput when the input is a standalone form field. Use Command when choosing a result executes an application action.\n\nThe longer document list demonstrates the thin product scrollbar. Scroll results while the flush search header remains fixed; filtering reduces the list and removes the scrollbar when it is no longer needed.",
       "registryDependencies": ["@erbium/autocomplete", "@erbium/styles"],
       "files": [
         {
@@ -6500,6 +6500,20 @@
       ]
     },
     {
+      "name": "combobox-async-search",
+      "type": "registry:component",
+      "title": "Combobox: Async search",
+      "description": "Open the project picker and type a query. This story simulates a delayed request locally, cancels obsolete requests, and hides stale results while searching. The first arriving match is highlighted; use arrow keys and Enter to choose it. Search for a missing project to see the empty state, then clear the query to restore the longer list and its thin scrollbar.\n\nThe flush search header stays outside the scrolling list and retains its separator. Header height follows our search sizing on desktop and mobile; the list uses the space left by the actual header rather than subtracting a fixed height. For a real service, cancel the request and use `filter={null}` when the service already filters results.",
+      "registryDependencies": ["@erbium/button", "@erbium/combobox", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/combobox/variants/async-search.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/combobox/variants/async-search.tsx"
+        }
+      ]
+    },
+    {
       "name": "combobox-auto-highlight",
       "type": "registry:block",
       "title": "Combobox: Auto Highlight",
@@ -6654,7 +6668,8 @@
         "@erbium-examples/combobox-input-group",
         "@erbium-examples/combobox-custom-items",
         "@erbium-examples/combobox-clear-button",
-        "@erbium-examples/combobox-item-collection"
+        "@erbium-examples/combobox-item-collection",
+        "@erbium-examples/combobox-async-search"
       ]
     },
     {
@@ -6877,6 +6892,11 @@
           "path": "src/combobox/examples/combobox-popup.tsx",
           "type": "registry:component",
           "target": "@components/showcase/combobox/examples/combobox-popup.tsx"
+        },
+        {
+          "path": "src/combobox/variants/async-search.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/combobox/variants/async-search.tsx"
         },
         {
           "path": "src/combobox/variants/auto-highlight.tsx",

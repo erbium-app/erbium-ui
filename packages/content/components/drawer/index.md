@@ -105,3 +105,7 @@ Keep search inside its own result surface using Command or an inline Autocomplet
 Bottom drawers already integrate Base UI's virtual keyboard provider. Avoid adding another provider or compensating for the keyboard with custom viewport calculations. Let the drawer coordinate keyboard dismissal, scrolling, and item taps.
 
 Use `data-base-ui-swipe-ignore` on an interaction that must fully opt out of drawer swipes. For a touch control that only handles one axis, use `"x"` or `"y"` so the other axis can still swipe the drawer. Place this marker on the control, not the entire content area. The SearchAndControls story demonstrates a horizontal slider beside a searchable list. Real-device checks are still needed for swipe velocity and virtual keyboard behavior.
+
+## Scrolling surfaces
+
+Use the component's built-in scrolling list or content area. It uses the product's thin scrollbar, scroll-aware edge fade, and keyboard-aware viewport. Search headers stay outside the scrolling list. Do not put a second native overflow container around the list or swap in a thicker scrollbar. The available popup space constrains the list while the header keeps its shared responsive geometry.

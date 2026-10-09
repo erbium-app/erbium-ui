@@ -71,3 +71,7 @@ Keep action handlers on items. Use `onItemHighlighted` for contextual previews w
 ## Updating existing usage
 
 Wrap the items previously placed directly in Content or SubContent in List. Put Search and Empty outside that List, and opt the corresponding root or submenu into `searchable`. Plain menu structure follows the same list contract. Existing item, checkbox, radio, shortcut, and submenu APIs remain available.
+
+## Scrolling surfaces
+
+Use the component's built-in scrolling list or content area. It uses the product's thin scrollbar, scroll-aware edge fade, and keyboard-aware viewport. Search headers stay outside the scrolling list. Do not put a second native overflow container around the list or swap in a thicker scrollbar. The available popup space constrains the list while the header keeps its shared responsive geometry.
