@@ -181,12 +181,12 @@ export function AutocompletePopup({
       >
         <span
           className={cn(
-            "relative flex max-h-full min-w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) rounded-lg border surface-overlay transition-[scale,opacity]",
+            "relative flex min-h-0 max-h-full min-w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay transition-[scale,opacity]",
             className,
           )}
         >
           <AutocompletePrimitive.Popup
-            className="flex max-h-[min(var(--available-height),23rem)] flex-1 flex-col text-foreground"
+            className="flex min-h-0 max-h-[min(var(--available-height),23rem)] flex-1 flex-col text-foreground"
             data-slot="autocomplete-popup"
             {...props}
           >
@@ -286,7 +286,12 @@ export function AutocompleteList({
   ...props
 }: AutocompletePrimitive.List.Props): React.ReactElement {
   return (
-    <ScrollArea className="overscroll-contain" fade="vertical" scrollbar="thin">
+    <ScrollArea
+      className="flex min-h-0 max-h-72 flex-col overflow-hidden overscroll-contain"
+      fade="vertical"
+      scrollbar="thin"
+      viewportClassName="min-h-0 max-h-72 flex-1 overflow-x-hidden! scroll-py-1"
+    >
       <AutocompletePrimitive.List
         className={cn("not-empty:scroll-py-1 not-empty:p-1 in-data-has-overflow-y:pe-3", className)}
         data-slot="autocomplete-list"

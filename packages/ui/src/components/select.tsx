@@ -94,10 +94,10 @@ function SelectContent({
         >
           <SelectScrollUpButton />
           <ScrollArea
-            className="min-h-0 flex-1 overscroll-contain"
+            className="flex min-h-0 flex-1 flex-col overflow-hidden overscroll-contain"
             fade="vertical"
             scrollbar="thin"
-            viewportClassName="overflow-x-hidden!"
+            viewportClassName="min-h-0 flex-1 overflow-x-hidden!"
             viewportRole="listbox"
             viewportRender={<SelectPrimitive.List />}
             contentClassName="p-1 in-data-has-overflow-y:pe-3"

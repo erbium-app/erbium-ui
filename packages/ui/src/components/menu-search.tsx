@@ -51,10 +51,10 @@ function MenuSearch({
 function MenuList({ className, children, ...props }: MenuPrimitive.List.Props) {
   return (
     <ScrollArea
-      className="min-h-0 max-h-72 overscroll-contain"
+      className="flex min-h-0 max-h-72 flex-col overflow-hidden overscroll-contain"
       fade="vertical"
       scrollbar="thin"
-      viewportClassName="max-h-72 overflow-x-hidden! scroll-py-1"
+      viewportClassName="min-h-0 max-h-72 flex-1 overflow-x-hidden! scroll-py-1"
     >
       <MenuPrimitive.List
         data-slot="menu-list"
