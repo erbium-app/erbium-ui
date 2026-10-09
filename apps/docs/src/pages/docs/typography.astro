@@ -58,9 +58,5 @@ const headings = [
       </Showcase>
     ))
   }
-  <article
-    class="typeset typeset-docs [&_a:not(:where(.not-typeset_*,[data-not-typeset]_*))]:text-link [&_a:not(:where(.not-typeset_*,[data-not-typeset]_*))]:font-medium [&_a:not(:where(.not-typeset_*,[data-not-typeset]_*))]:underline [&_a:not(:where(.not-typeset_*,[data-not-typeset]_*))]:underline-offset-[0.2em] [&_a:not(:where(.not-typeset_*,[data-not-typeset]_*))]:decoration-from-font [&_a:not(:where(.not-typeset_*,[data-not-typeset]_*))]:[text-underline-position:from-font] [&_a_:is(strong,b)]:text-inherit min-w-0 [&_.typeset-scroll]:max-w-full [&_table]:max-w-full [&_.typeset-scroll_table]:max-w-none"
-  >
-    <Content />
-  </article>
+  <Prose><Content /></Prose>
 </DocsLayout>

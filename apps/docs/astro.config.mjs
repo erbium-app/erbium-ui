@@ -3,6 +3,7 @@ import { rehypeHighlightCodeBlocks } from "@tanstack/highlight/rehype";
 import { highlighter } from "./src/build/markdown/highlight.ts";
 import { rehypeCodeBlocks } from "./src/build/markdown/rehype-code-blocks.ts";
 import { rehypeExternalLinks } from "./src/build/markdown/rehype-external-links.ts";
+import { rehypeTables } from "./src/build/markdown/rehype-tables.ts";
 import { registryPlugin, registryIntegration } from "./registry-plugin.mjs";
 import { showcaseVitePlugin, showcaseIntegration } from "./showcase-vite-plugin.mjs";
 import sitemap from "@astrojs/sitemap";
@@ -21,6 +22,7 @@ export default defineConfig({
       rehypePlugins: [
         [rehypeHighlightCodeBlocks, { highlighter }],
         rehypeCodeBlocks,
+        rehypeTables,
         rehypeExternalLinks,
       ],
     }),
