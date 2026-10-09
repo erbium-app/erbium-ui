@@ -8,7 +8,7 @@ function Tabs({ className, orientation = "horizontal", ...props }: TabsPrimitive
       data-slot="tabs"
       data-orientation={orientation}
       orientation={orientation}
-      className={cn("group/tabs flex gap-2 data-horizontal:flex-col", className)}
+      className={cn("group/tabs flex gap-related data-horizontal:flex-col", className)}
       {...props}
     />
   );

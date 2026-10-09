@@ -138,7 +138,7 @@ function NumberField({
         data-slot="number-field"
         data-size={size}
         className={cn(
-          "group/number-field flex w-full min-w-0 flex-col items-start gap-2",
+          "group/number-field flex w-full min-w-0 flex-col items-start gap-related",
           className,
         )}
         format={format}

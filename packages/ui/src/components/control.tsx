@@ -585,7 +585,7 @@ function SegmentedTrack({
           <RadioPrimitive.Root
             key={option.value}
             value={option.value}
-            className="relative flex min-h-6 min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-control-sm text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
+            className="relative flex min-h-control-sm min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-control-sm text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
           >
             {value === option.value && (
               <motion.span
@@ -756,7 +756,7 @@ function Select({
         )}
       >
         <span className={labelClass}>{label}</span>
-        <span className="ms-auto flex min-w-0 items-center gap-2 text-muted-foreground">
+        <span className="ms-auto flex min-w-0 items-center gap-related text-muted-foreground">
           <SelectPrimitive.Value className="truncate text-end text-foreground" />
           <SelectPrimitive.Icon>
             <RotatingChevron className="size-3.5" />
@@ -896,7 +896,7 @@ function Image({
         >
           <SelectPrimitive.Trigger
             aria-label={label}
-            className="group group/control-select ms-auto flex min-w-0 items-center gap-2 rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
+            className="group group/control-select ms-auto flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
           >
             {preview ? (
               <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
@@ -911,7 +911,7 @@ function Image({
               <SelectPrimitive.Item
                 key={option.value}
                 value={option.value}
-                className="flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-control outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+                className="flex cursor-default items-center gap-related rounded-md px-2 py-1.5 text-control outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
               >
                 <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
                 <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
@@ -930,7 +930,7 @@ function Image({
           onClick={() => ref.current?.click()}
           data-no-options={!options?.length ? "" : undefined}
           className={cn(
-            "flex min-w-0 items-center gap-2 rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto",
+            "flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto",
           )}
         >
           {!options?.length && preview ? (

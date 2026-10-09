@@ -84,7 +84,7 @@ function QuestionnaireChoices({
   return (
     <QuestionnairePrimitive.Choices
       data-slot="questionnaire-choices"
-      className={cn("group/questionnaire-choices grid min-w-0 gap-2", className)}
+      className={cn("group/questionnaire-choices grid min-w-0 gap-related", className)}
       {...props}
     />
   );
@@ -189,7 +189,7 @@ function QuestionnaireActions({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="questionnaire-actions"
       className={cn(
-        "grid min-h-control-touch w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 pointer-fine:min-h-control",
+        "grid min-h-control-touch w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-related pointer-fine:min-h-control",
         className,
       )}
       {...props}

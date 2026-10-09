@@ -737,12 +737,25 @@
       "title": "Kbd",
       "description": "Erbium kbd component.",
       "dependencies": ["@tanstack/hotkeys"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd-styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/kbd.tsx",
           "type": "registry:ui",
           "target": "@ui/kbd.tsx"
+        }
+      ]
+    },
+    {
+      "name": "kbd-styles",
+      "type": "registry:lib",
+      "title": "Kbd Styles",
+      "description": "Erbium kbd styles lib.",
+      "files": [
+        {
+          "path": "src/lib/kbd-styles.ts",
+          "type": "registry:lib",
+          "target": "@lib/kbd-styles.ts"
         }
       ]
     },
@@ -1257,7 +1270,7 @@
       "title": "Switch",
       "description": "Erbium switch component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/switch-styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/switch.tsx",
@@ -1267,17 +1280,43 @@
       ]
     },
     {
+      "name": "switch-styles",
+      "type": "registry:lib",
+      "title": "Switch Styles",
+      "description": "Erbium switch styles lib.",
+      "files": [
+        {
+          "path": "src/lib/switch-styles.ts",
+          "type": "registry:lib",
+          "target": "@lib/switch-styles.ts"
+        }
+      ]
+    },
+    {
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
       "description": "Erbium table component.",
       "dependencies": ["@tanstack/react-table"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/table-styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/table.tsx",
           "type": "registry:ui",
           "target": "@ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table-styles",
+      "type": "registry:lib",
+      "title": "Table Styles",
+      "description": "Erbium table styles lib.",
+      "files": [
+        {
+          "path": "src/lib/table-styles.ts",
+          "type": "registry:lib",
+          "target": "@lib/table-styles.ts"
         }
       ]
     },

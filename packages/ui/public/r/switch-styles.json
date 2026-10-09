@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch-styles",
+  "type": "registry:lib",
+  "title": "Switch Styles",
+  "description": "Erbium switch styles lib.",
+  "files": [
+    {
+      "path": "src/lib/switch-styles.ts",
+      "type": "registry:lib",
+      "target": "@lib/switch-styles.ts",
+      "content": "export const switchGeometryClassName =\n  \"data-[size=default]:h-[18.4px] data-[size=default]:w-8 data-[size=default]:[--switch-thumb:--spacing(3.5)] data-[size=sm]:h-3.5 data-[size=sm]:w-6 data-[size=sm]:[--switch-thumb:--spacing(2.5)]\";\n"
+    }
+  ]
+}

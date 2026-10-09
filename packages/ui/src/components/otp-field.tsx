@@ -100,7 +100,7 @@ function OTPField({
             ref.current = node;
           }
         }}
-        className={cn("flex w-fit items-center gap-2", className)}
+        className={cn("flex w-fit items-center gap-related", className)}
         {...props}
       >
         {children ?? <OTPFieldSlots groups={groups} length={length} />}
@@ -113,7 +113,7 @@ function OTPFieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="otp-field-group"
-      className={cn("flex items-center gap-2", className)}
+      className={cn("flex items-center gap-related", className)}
       {...props}
     />
   );

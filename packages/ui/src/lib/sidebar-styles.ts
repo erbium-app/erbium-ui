@@ -11,7 +11,7 @@ export const sidebarStyles = {
 } as const;
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button group/menu-button flex w-full items-center gap-related overflow-hidden rounded-md p-2 text-start text-control-sm outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-sidebar-size group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-control! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:font-medium data-active:text-sidebar-accent-foreground [&_svg]:size-4 [&_svg]:shrink-0 [&>span:last-child]:truncate",
+  "peer/menu-button group/menu-button flex w-full items-center overflow-hidden rounded-md text-start text-control-sm outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-sidebar-size group-has-data-[sidebar=menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-control! group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:justify-center hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground data-active:bg-sidebar-accent data-active:font-medium data-active:text-sidebar-accent-foreground [&_svg]:size-control-icon [&_svg]:shrink-0 [&>span:last-child]:truncate",
   {
     variants: {
       variant: {
@@ -21,8 +21,8 @@ const sidebarMenuButtonVariants = cva(
       },
       size: {
         default: "control-size control-adaptive text-control-sm",
-        sm: "control-size-sm control-adaptive text-control-sm",
-        lg: "control-size-lg control-adaptive text-control group-data-[collapsible=icon]:p-0!",
+        sm: "control-size-sm control-adaptive text-control-sm [&_svg]:size-control-icon-sm",
+        lg: "control-size-lg control-adaptive [&_svg]:size-control-icon-lg text-control group-data-[collapsible=icon]:p-0!",
       },
     },
     defaultVariants: {

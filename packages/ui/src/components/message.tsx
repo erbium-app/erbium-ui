@@ -5,7 +5,7 @@ function MessageGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="message-group"
-      className={cn("flex min-w-0 flex-col gap-2", className)}
+      className={cn("flex min-w-0 flex-col gap-related", className)}
       {...props}
     />
   );
@@ -21,7 +21,7 @@ function Message({
       data-slot="message"
       data-align={align}
       className={cn(
-        "group/message relative flex w-full min-w-0 gap-2 text-caption data-[align=end]:flex-row-reverse",
+        "group/message relative flex w-full min-w-0 gap-related text-caption data-[align=end]:flex-row-reverse",
         className,
       )}
       {...props}

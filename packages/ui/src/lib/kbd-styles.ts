@@ -1,0 +1,2 @@
+export const kbdClassName =
+  "pointer-events-none inline-flex min-h-badge w-fit min-w-5 items-center justify-center gap-1 rounded-sm border surface-control px-1 font-sans text-control-sm font-medium text-muted-foreground select-none in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:shadow-none in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 [&_svg:not([class*='size-'])]:size-3";

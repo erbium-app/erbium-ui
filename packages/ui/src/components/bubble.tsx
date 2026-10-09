@@ -8,7 +8,7 @@ function BubbleGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="bubble-group"
-      className={cn("flex min-w-0 flex-col gap-2", className)}
+      className={cn("flex min-w-0 flex-col gap-related", className)}
       {...props}
     />
   );

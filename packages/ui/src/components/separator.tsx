@@ -7,7 +7,7 @@ const separatorVariants = cva(
   {
     variants: {
       labeled: {
-        true: "flex items-center gap-2 data-vertical:h-full data-vertical:flex-col",
+        true: "flex items-center gap-related data-vertical:h-full data-vertical:flex-col",
         false: "data-horizontal:h-0.5 data-vertical:w-0.5 data-vertical:self-stretch",
       },
     },

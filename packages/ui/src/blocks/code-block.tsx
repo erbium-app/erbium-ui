@@ -132,7 +132,7 @@ function CodeBlockHeader({ className, ...props }: ComponentProps<"div">) {
         {...props}
         data-slot="code-block-header"
         className={cn(
-          "flex min-h-10 items-center justify-between gap-2 px-3 py-1.5 pe-12 group-data-[surface=command]/code-block:min-h-9",
+          "flex min-h-10 items-center justify-between gap-related px-3 py-1.5 pe-12 group-data-[surface=command]/code-block:min-h-9",
           className,
         )}
       />
@@ -146,7 +146,7 @@ function CodeBlockTitle({ className, ...props }: ComponentProps<"span">) {
       {...props}
       data-slot="code-block-title"
       className={cn(
-        "inline-flex min-w-0 items-center gap-2 truncate text-metadata font-medium text-muted-foreground",
+        "inline-flex min-w-0 items-center gap-related truncate text-metadata font-medium text-muted-foreground",
         className,
       )}
     />

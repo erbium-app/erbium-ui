@@ -1,94 +1,50 @@
 import * as React from "react";
+import { tableStyles } from "../lib/table-styles";
 import { cn } from "../lib/utils";
 
 function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
     <div data-slot="table-container" className="relative w-full overflow-x-auto">
-      <table
-        data-slot="table"
-        className={cn(
-          "w-full border-separate border-spacing-0 caption-bottom text-caption",
-          className,
-        )}
-        {...props}
-      />
+      <table data-slot="table" className={cn(tableStyles.table, className)} {...props} />
     </div>
   );
 }
 
 function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
-    <thead data-slot="table-header" className={cn("[&_tr]:carve-bottom", className)} {...props} />
+    <thead data-slot="table-header" className={cn(tableStyles.tableHeader, className)} {...props} />
   );
 }
 
 function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
   return (
-    <tbody
-      data-slot="table-body"
-      className={cn(
-        "[&_tr:last-child]:bg-none [&>tr[data-state=selected]>td]:carve-bottom [&>tr[data-state=selected]>td]:bg-(--surface-tint-selected) [&>tr:last-child[data-state=selected]>td]:bg-none [&>tr[data-state=selected]>td:first-child]:rounded-s-lg [&>tr[data-state=selected]>td:last-child]:rounded-e-lg [&>tr[data-state=selected]:has(+tr[data-state=selected])>td]:rounded-b-none [&>tr[data-state=selected]+tr[data-state=selected]>td]:rounded-t-none",
-        className,
-      )}
-      {...props}
-    />
+    <tbody data-slot="table-body" className={cn(tableStyles.tableBody, className)} {...props} />
   );
 }
 
 function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   return (
-    <tfoot
-      data-slot="table-footer"
-      className={cn("carve-top bg-footer font-medium [&>tr]:last:bg-none", className)}
-      {...props}
-    />
+    <tfoot data-slot="table-footer" className={cn(tableStyles.tableFooter, className)} {...props} />
   );
 }
 
 function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
-  return (
-    <tr
-      data-slot="table-row"
-      className={cn(
-        "carve-bottom transition-colors hover:bg-muted-hover has-aria-expanded:bg-muted-hover",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <tr data-slot="table-row" className={cn(tableStyles.tableRow, className)} {...props} />;
 }
 
 function TableHead({ className, ...props }: React.ComponentProps<"th">) {
-  return (
-    <th
-      data-slot="table-head"
-      className={cn(
-        "h-row px-related text-start align-middle font-medium whitespace-nowrap text-foreground has-[[role=checkbox]]:pe-0",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <th data-slot="table-head" className={cn(tableStyles.tableHead, className)} {...props} />;
 }
 
 function TableCell({ className, ...props }: React.ComponentProps<"td">) {
-  return (
-    <td
-      data-slot="table-cell"
-      className={cn(
-        "px-related py-control-gap align-middle whitespace-nowrap has-[[role=checkbox]]:pe-0",
-        className,
-      )}
-      {...props}
-    />
-  );
+  return <td data-slot="table-cell" className={cn(tableStyles.tableCell, className)} {...props} />;
 }
 
 function TableCaption({ className, ...props }: React.ComponentProps<"caption">) {
   return (
     <caption
       data-slot="table-caption"
-      className={cn("mt-4 text-caption text-muted-foreground", className)}
+      className={cn(tableStyles.tableCaption, className)}
       {...props}
     />
   );
