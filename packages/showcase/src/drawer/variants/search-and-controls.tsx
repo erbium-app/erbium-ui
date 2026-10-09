@@ -45,18 +45,18 @@ export default function SearchAndControlsExample() {
           <DrawerTitle>Workspace projects</DrawerTitle>
           <DrawerDescription>Find a project and adjust its preview scale.</DrawerDescription>
         </DrawerHeader>
+        <Command items={projects}>
+          <CommandInput aria-label="Search projects" placeholder="Search projects…" />
+          <CommandEmpty>No projects found.</CommandEmpty>
+          <CommandList>
+            {(project) => (
+              <CommandItem key={project} value={project} onClick={() => setSelected(project)}>
+                {project}
+              </CommandItem>
+            )}
+          </CommandList>
+        </Command>
         <DrawerContent className="grid gap-group">
-          <Command items={projects}>
-            <CommandInput aria-label="Search projects" placeholder="Search projects…" />
-            <CommandEmpty>No projects found.</CommandEmpty>
-            <CommandList>
-              {(project) => (
-                <CommandItem key={project} value={project} onClick={() => setSelected(project)}>
-                  {project}
-                </CommandItem>
-              )}
-            </CommandList>
-          </Command>
           <Field>
             <FieldLabel>Preview scale</FieldLabel>
             <Slider

@@ -8,6 +8,8 @@ import {
   DialogClose,
   DialogPanel,
   DialogContent,
+  DialogHeader,
+  DialogFooter,
   DialogDescription,
   DialogTitle,
   DialogTrigger,
@@ -51,24 +53,26 @@ export function QuestionnaireDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger render={<Button variant="outline" />}>Open clarification</DialogTrigger>
       <DialogPanel>
-        <DialogContent className="p-0">
-          <Questionnaire
-            defaultItem="scope"
-            items={items}
-            onSubmit={handleSubmit}
-            className="gap-0"
-          >
-            <QuestionnaireItem name="scope" required>
-              <div className="flex flex-col gap-1 border-b px-4 pt-4 pb-2">
-                <QuestionnaireProgress />
-                <QuestionnaireTitle render={<DialogTitle />}>
-                  Which files are in scope?
-                </QuestionnaireTitle>
-                <QuestionnaireDescription render={<DialogDescription />}>
-                  Choose how broadly the agent can update the workspace.
-                </QuestionnaireDescription>
-              </div>
-              <QuestionnaireChoices className="px-4 pb-4">
+        <DialogTitle className="sr-only">Workspace clarification</DialogTitle>
+        <DialogDescription className="sr-only">
+          Choose the scope and verification for this request.
+        </DialogDescription>
+        <Questionnaire
+          defaultItem="scope"
+          items={items}
+          onSubmit={handleSubmit}
+          className="min-h-0 flex-1 gap-0"
+        >
+          <QuestionnaireItem name="scope" required className="min-h-0 flex-1 gap-0">
+            <DialogHeader>
+              <QuestionnaireProgress />
+              <QuestionnaireTitle>Which files are in scope?</QuestionnaireTitle>
+              <QuestionnaireDescription>
+                Choose how broadly the agent can update the workspace.
+              </QuestionnaireDescription>
+            </DialogHeader>
+            <DialogContent>
+              <QuestionnaireChoices>
                 <QuestionnaireChoice value="component">Component only</QuestionnaireChoice>
                 <QuestionnaireChoice value="feature">
                   Complete feature directory
@@ -77,37 +81,37 @@ export function QuestionnaireDialog() {
                   Any related workspace file
                 </QuestionnaireChoice>
               </QuestionnaireChoices>
-              <QuestionnaireError className="px-4" />
-            </QuestionnaireItem>
+              <QuestionnaireError />
+            </DialogContent>
+          </QuestionnaireItem>
 
-            <QuestionnaireItem name="tests" required>
-              <div className="flex flex-col gap-1 border-b px-4 pt-4 pb-2">
-                <QuestionnaireProgress />
-                <QuestionnaireTitle render={<DialogTitle />}>
-                  How much verification is needed?
-                </QuestionnaireTitle>
-                <QuestionnaireDescription render={<DialogDescription />}>
-                  Choose the checks the agent should run before handoff.
-                </QuestionnaireDescription>
-              </div>
-              <QuestionnaireChoices className="px-4 pb-4">
+          <QuestionnaireItem name="tests" required className="min-h-0 flex-1 gap-0">
+            <DialogHeader>
+              <QuestionnaireProgress />
+              <QuestionnaireTitle>How much verification is needed?</QuestionnaireTitle>
+              <QuestionnaireDescription>
+                Choose the checks the agent should run before handoff.
+              </QuestionnaireDescription>
+            </DialogHeader>
+            <DialogContent>
+              <QuestionnaireChoices>
                 <QuestionnaireChoice value="targeted">Targeted tests</QuestionnaireChoice>
                 <QuestionnaireChoice value="package">Package tests</QuestionnaireChoice>
                 <QuestionnaireChoice value="full">Full workspace verification</QuestionnaireChoice>
               </QuestionnaireChoices>
-              <QuestionnaireError className="px-4" />
-            </QuestionnaireItem>
+              <QuestionnaireError />
+            </DialogContent>
+          </QuestionnaireItem>
 
-            <div className="flex flex-col-reverse gap-related border-t bg-footer px-4 py-3 sm:flex-row sm:justify-end">
-              <DialogClose render={<Button type="button" variant="outline" />}>Cancel</DialogClose>
-              <QuestionnaireActions>
-                <QuestionnairePrevious />
-                <QuestionnaireNext>Next</QuestionnaireNext>
-                <QuestionnaireSubmit>Send answer</QuestionnaireSubmit>
-              </QuestionnaireActions>
-            </div>
-          </Questionnaire>
-        </DialogContent>
+          <DialogFooter>
+            <DialogClose render={<Button type="button" variant="outline" />}>Cancel</DialogClose>
+            <QuestionnaireActions>
+              <QuestionnairePrevious />
+              <QuestionnaireNext>Next</QuestionnaireNext>
+              <QuestionnaireSubmit>Send answer</QuestionnaireSubmit>
+            </QuestionnaireActions>
+          </DialogFooter>
+        </Questionnaire>
       </DialogPanel>
     </Dialog>
   );
