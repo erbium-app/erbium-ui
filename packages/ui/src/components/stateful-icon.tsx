@@ -7,7 +7,7 @@ import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
 import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
 import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
 import type { ReactNode } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "../lib/utils";
 
 type StatefulIconProps<State extends string> = {
@@ -42,21 +42,23 @@ function StatefulIcon<State extends string>({
       data-state={state}
       role={label ? "img" : undefined}
     >
-      <AnimatePresence mode="wait">
-        <motion.span
-          animate={{ rotate: 0, scale: 1 }}
-          aria-hidden="true"
-          className="relative col-start-1 row-start-1 grid place-items-center"
-          data-active="true"
-          data-state={state}
-          exit={{ rotate: reduceMotion ? 0 : 90, scale: reduceMotion ? 1 : 0 }}
-          initial={false}
-          key={state}
-          transition={{ duration: reduceMotion ? 0 : 0.15 }}
-        >
-          {icons[state]}
-        </motion.span>
-      </AnimatePresence>
+      {Object.entries<ReactNode>(icons).map(([key, icon]) => {
+        const active = key === state;
+        return (
+          <motion.span
+            animate={{ rotate: active || reduceMotion ? 0 : 90, scale: active ? 1 : 0 }}
+            aria-hidden="true"
+            className="relative col-start-1 row-start-1 grid place-items-center"
+            data-active={active}
+            data-state={key}
+            initial={false}
+            key={key}
+            transition={{ duration: reduceMotion ? 0 : 0.15 }}
+          >
+            {icon}
+          </motion.span>
+        );
+      })}
     </span>
   );
 }

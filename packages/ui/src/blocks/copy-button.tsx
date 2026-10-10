@@ -104,17 +104,15 @@ function CopyButton({
 function CopyButtonIcon(
   props: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">,
 ) {
-  const { status, revision } = useCopyButtonState();
+  const { status } = useCopyButtonState();
   return (
     <StatefulIcon
       {...props}
-      state={`${status}-${revision}`}
+      state={status}
       icons={{
-        [`${status}-${revision}`]: (
-          <HugeiconsIcon
-            icon={status === "copied" ? CheckIcon : status === "error" ? Cancel01Icon : CopySvg}
-          />
-        ),
+        idle: <HugeiconsIcon icon={CopySvg} />,
+        copied: <HugeiconsIcon icon={CheckIcon} />,
+        error: <HugeiconsIcon icon={Cancel01Icon} />,
       }}
     />
   );
