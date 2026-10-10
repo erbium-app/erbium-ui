@@ -12,6 +12,7 @@
  *   surface-field          inputs, textareas, OTP slots, input groups
  *   surface-overlay        popovers, menus, select popups, toasts
  *   surface-modal          dialogs, sheets, drawers
+ *   surface-footer         attached action area, with a carved top divider
  *   surface-flat           ghost and secondary controls: no elevation
  *   surface-frame          hairline-framed flat parts
  *   surface-well           recessed tracks; use sparingly
@@ -86,6 +87,7 @@
 :root {
   --surface-light-source: oklch(100% 0 none);
   --surface-dark-source: oklch(0% 0 none);
+  --surface-footer-mix: var(--surface-dark-source);
   --surface-canvas: oklch(97.613879% 0 none);
   --surface-panel: oklch(100% 0 none);
   --surface-control: oklch(100% 0 none);
@@ -118,6 +120,7 @@
 }
 
 .dark {
+  --surface-footer-mix: var(--surface-light-source);
   --surface-canvas: oklch(18.22037% 0 none);
   --surface-panel: oklch(20.903609% 0 none);
   --surface-control: oklch(23.503113% 0 none);
@@ -298,6 +301,7 @@
 /* Neutral roles. Each one sets its face and elevation tokens, and runs the
    separators that divide it solid to its edges. */
 @utility surface-panel {
+  --surface-container-face: var(--surface-panel);
   --surface-face: var(--surface-panel);
   --surface-rim: var(--surface-edge);
   --surface-catchlight: var(--surface-highlight);
@@ -386,6 +390,7 @@
 }
 
 @utility surface-modal {
+  --surface-container-face: var(--surface-modal);
   --surface-face: var(--surface-modal);
   --surface-rim: var(--surface-edge);
   --surface-catchlight: var(--surface-highlight-strong);
@@ -398,6 +403,17 @@
   :where(&) {
     --separator-fade: 0%;
   }
+}
+
+/* Attached sections inherit the container face, unlike non-inheriting --surface-face.
+   Keep the fill opaque and the divider shared; elevation belongs to the container. */
+@utility surface-footer {
+  background-color: color-mix(
+    in srgb,
+    var(--surface-container-face, var(--surface-panel)) 96%,
+    var(--surface-footer-mix)
+  );
+  @apply carve-top;
 }
 
 /* A hairline frame with no elevation, over a half-strength panel face. */

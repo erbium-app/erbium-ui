@@ -242,7 +242,7 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Erbium card component.",
-      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
+      "registryDependencies": ["@erbium/utils"],
       "files": [
         {
           "path": "src/components/card.tsx",

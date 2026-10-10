@@ -346,7 +346,7 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-footer"
       data-sidebar="footer"
-      className={cn(sidebarStyles.header, className)}
+      className={cn(sidebarStyles.header, "carve-top", className)}
       {...props}
     />
   );

@@ -194,7 +194,7 @@ function ItemFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-footer"
       className={cn(
-        "flex basis-full items-center justify-between gap-related rounded-md bg-footer p-2",
+        "flex basis-full items-center justify-between gap-related rounded-md carve-top bg-footer p-2",
         className,
       )}
       {...props}

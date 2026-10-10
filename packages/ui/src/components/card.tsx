@@ -1,6 +1,5 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { Separator } from "./separator";
 
 function Card({
   className,
@@ -12,7 +11,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl border-0 surface-panel forced-colors:border py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
         className,
       )}
       {...props}
@@ -81,12 +80,11 @@ function CardFooter({ className, children, ...props }: React.ComponentProps<"div
     <div
       data-slot="card-footer"
       className={cn(
-        "relative mt-auto flex items-center rounded-b-xl bg-footer p-(--card-spacing)",
+        "relative mt-auto flex items-center surface-footer p-(--card-spacing)",
         className,
       )}
       {...props}
     >
-      <Separator variant="full" className="absolute inset-x-0 top-0" />
       {children}
     </div>
   );
