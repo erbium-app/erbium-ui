@@ -9,6 +9,7 @@ import {
   ComboboxList,
   ComboboxItem,
   ComboboxEmpty,
+  ComboboxStatus,
 } from "@erbium/ui/components/combobox";
 
 const projects = [
@@ -67,7 +68,8 @@ export default function AsyncSearchExample() {
         </ComboboxTrigger>
         <ComboboxContent className="w-72">
           <ComboboxSearchInput aria-label="Search projects" placeholder="Search projects…" />
-          <ComboboxEmpty>{loading ? "Searching…" : "No projects found."}</ComboboxEmpty>
+          <ComboboxStatus>{loading ? "Searching…" : ""}</ComboboxStatus>
+          <ComboboxEmpty>{loading ? null : "No projects found."}</ComboboxEmpty>
           <ComboboxList aria-busy={loading || undefined}>
             {(project) => (
               <ComboboxItem key={project.id} value={project}>

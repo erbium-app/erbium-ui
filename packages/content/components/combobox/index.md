@@ -107,3 +107,7 @@ Popup retention is explicit: `actionsRef` alone does not keep the popup mounted.
 ## Scrolling surfaces
 
 Use the component's built-in scrolling list or content area. It uses the product's thin scrollbar, scroll-aware edge fade, and keyboard-aware viewport. Search headers stay outside the scrolling list. Do not put a second native overflow container around the list or swap in a thicker scrollbar. The available popup space constrains the list while the header keeps its shared responsive geometry.
+
+## Async status and clearing
+
+Use `ComboboxStatus` inside Content to announce loading or errors politely. Keep it mounted and update its children; empty status content adds no spacing. Keep `ComboboxEmpty` for completed searches with no matches. `ComboboxClear` is also exported for independently composed clear controls.

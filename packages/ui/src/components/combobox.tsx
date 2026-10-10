@@ -218,6 +218,20 @@ function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
   );
 }
 
+/** Keep mounted and update its children so async changes are announced consistently. */
+function ComboboxStatus({ className, ...props }: ComboboxPrimitive.Status.Props) {
+  return (
+    <ComboboxPrimitive.Status
+      data-slot="combobox-status"
+      className={cn(
+        "px-3 py-2 font-medium text-muted-foreground text-control-sm empty:m-0 empty:p-0",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 function ComboboxSeparator({ className, ...props }: ComboboxPrimitive.Separator.Props) {
   return (
     <ComboboxPrimitive.Separator
@@ -302,6 +316,8 @@ export {
   ComboboxLabel,
   ComboboxCollection,
   ComboboxEmpty,
+  ComboboxStatus,
+  ComboboxClear,
   ComboboxSeparator,
   ComboboxChips,
   ComboboxChip,
