@@ -1,6 +1,12 @@
 ---
 title: "Multilingual"
-description: Arabic and Persian content with mixed Latin values.
+description: Vazirmatn in Arabic and Farsi, alongside Latin text.
 ---
 
-Compare Latin, Persian, and Arabic content within the same hierarchy. Script-specific line room preserves marks; RTL layout follows the content boundary, and mixed-direction identifiers remain legible. Verify wrapping and editable text without adding letter spacing or reducing font size.
+[Vazirmatn](https://github.com/rastikerdar/vazirmatn), created by [Saber Rastikerdar](https://github.com/rastikerdar), brings Arabic and Farsi into the same text hierarchy. These settings panels show the font in headings, descriptions, fields, and actions, alongside Latin project names.
+
+We want to expand Erbium’s typography to support more languages and scripts. We believe AI has made internationalization easier, and everyone should be able to enjoy their apps in a language they know. That means making room for each script’s letterforms, reading direction, and spacing as we grow the system.
+
+Set `lang` and `dir` at the content boundary. Arabic, Farsi, and Urdu keep the shared sizes but receive extra line height for their marks: 1.5 for display and title, 1.6 for subtitle and controls, and 1.75 for body and caption.
+
+Keep natural letter spacing in Arabic-script text, avoid uppercase transformations, and use semibold emphasis rather than synthesized italics. Wrap mixed-direction identifiers and numbers in `bdi`; code blocks remain left-to-right. Try editing the fields and narrowing the preview to see how the text wraps.

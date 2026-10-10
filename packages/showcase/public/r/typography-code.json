@@ -3,7 +3,7 @@
   "name": "typography-code",
   "type": "registry:component",
   "title": "Typography: Code",
-  "description": "Compare standalone code with supporting interface text. Code uses its own readable line rhythm and explicit punctuation, while adjacent controls retain the interface family. Use the shared code block for source and commands rather than sizing a monospace paragraph independently.",
+  "description": "The command and source listing use Paper Mono, while their labels stay in Cal Sans. Inline identifiers sit within a sentence without changing its line height.",
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {

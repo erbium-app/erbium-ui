@@ -3,4 +3,4 @@ title: "Reading"
 description: One reading rhythm for structured content.
 ---
 
-Read paragraphs, emphasis, nested lists, a quotation, an inline identifier, and a role-comparison table in one article. This is the complete Typeset composition: body text retains its size on narrow screens, and the table has its own keyboard-accessible scroll region.
+This article pairs ordinary prose with emphasis, nested lists, a quotation, and inline code. The comparison table has a named scroll region you can focus with the keyboard.

@@ -4138,6 +4138,12 @@
     "title": "Foundations/Typography",
     "variants": [
       {
+        "exportName": "Typefaces",
+        "slug": "typefaces",
+        "title": "Typefaces",
+        "source": "src/typography/variants/typefaces.tsx"
+      },
+      {
         "exportName": "Interface",
         "slug": "interface",
         "title": "Interface",

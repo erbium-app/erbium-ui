@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "../types";
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
+import TypefacesExample from "./variants/typefaces";
+import TypefacesSource from "./variants/typefaces.tsx?raw";
 import InterfaceExample from "./variants/interface";
 import InterfaceSource from "./variants/interface.tsx?raw";
 import CodeExample from "./variants/code";
@@ -16,6 +18,15 @@ const meta = {
 } satisfies Meta;
 export default meta;
 type Story = StoryObj;
+export const Typefaces: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("typography", "typefaces") },
+      source: { code: TypefacesSource },
+    },
+  },
+  render: TypefacesExample,
+};
 export const Interface: Story = {
   parameters: {
     docs: {

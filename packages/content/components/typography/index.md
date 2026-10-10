@@ -1,17 +1,23 @@
 ---
 title: Typography
-description: One shared hierarchy for interfaces, reading, code, and multilingual text.
+description: The typefaces and text roles behind Erbium.
 ---
 
-## The system
+Typography gives a page its reading order: a title to orient you, a heading to group related content, and body text to explain what comes next. Erbium uses three typefaces and a shared set of roles across its components and documentation.
 
-Typography describes the job of the text. Layout describes its available space; [sizing](/docs/foundations/sizing) describes the control around it; [surfaces](/docs/foundations/surfaces) describe its interaction and elevation. Choose a text role before adjusting a layout. Smaller containers rearrange content rather than inventing a smaller type scale.
+## The typefaces
 
-Load the shared styles as described in [Installation](/docs/installation). Components already include their text defaults. Apply roles to application text and plain HTML; do not restyle every component instance.
+[Cal Sans](https://cal.com/font), designed by [Mark Davis at WORDMARK](https://wordmark.nyc/calsans/) for Cal.com, is the Latin face throughout Erbium. It appears in page titles, article text, field labels, and buttons. Headings and body text share a family; size and weight establish the hierarchy.
 
-## Fonts and hierarchy
+[Vazirmatn](https://github.com/rastikerdar/vazirmatn), created by [Saber Rastikerdar](https://github.com/rastikerdar), supplies Arabic-script glyphs for Persian and Arabic text. It sits alongside Cal Sans in the shared sans-serif stack, so mixed-script sentences can use both faces without a font override.
 
-Cal Sans is the Latin interface and reading face. Vazirmatn serves Arabic-script text in the same family stack. Paper Mono serves code, commands, paths, and identifiers. Headings use the interface family. Keep system fallbacks and natural letter spacing.
+[Paper Mono](https://github.com/paper-design/paper-mono) by [Paper](https://paper.design) is reserved for source code, commands, paths, and identifiers. Code ligatures are disabled to keep punctuation explicit. Ordinary labels and numerical values use the sans-serif stack; use `tabular-nums` when changing counts or totals need aligned digits.
+
+All three fonts are bundled with the shared styles under the SIL Open Font License 1.1. The opening showcase presents Cal Sans and Paper Mono. The final Multilingual showcase shows Vazirmatn in Arabic and Farsi.
+
+## Choose a text role
+
+Load the shared styles following [Installation](/docs/installation). Components already carry their text defaults. For headings, paragraphs, and other text you compose yourself, choose a role by its purpose.
 
 | Text role         | Size / line height | Weight | Use                                                    |
 | ----------------- | ------------------ | ------ | ------------------------------------------------------ |
@@ -25,7 +31,7 @@ Cal Sans is the Latin interface and reading face. Vazirmatn serves Arabic-script
 
 Values assume a 16px root; rem units respect browser text sizing. Native h1, h2, and h3 use display, title, and subtitle. h4–h6 use body size at semibold. Preserve semantic heading levels for navigation; do not choose an element only for its visual size.
 
-These seven roles define the scale. Other treatments reuse it:
+Fields, metadata, and code reuse the same scale:
 
 | Treatment          | Behavior                                                                     | Use                                               |
 | ------------------ | ---------------------------------------------------------------------------- | ------------------------------------------------- |
@@ -37,36 +43,16 @@ These seven roles define the scale. Other treatments reuse it:
 
 Do not put essential instructions in metadata. Color expresses importance separately: use foreground for primary text and muted foreground for supporting text.
 
-## One reading rhythm
+## Reading and articles
 
-Use `typeset` on an article or Markdown container. It establishes body text, the shared heading hierarchy, and 1.5em spacing between reading blocks. The first block has no extra top margin. There is one reading treatment on desktop and mobile; there are no compact or documentation presets.
+Apply `typeset` to an article or Markdown container. It handles headings, paragraphs, lists, quotations, and tables, with 1.5em between reading blocks and no extra margin above the first block. Keep prose around 65 characters per line; tables and code can use more width.
 
-The Reading showcase demonstrates paragraphs, emphasis, nested lists, quotations, inline code, and a table. Use its source as the complete composition example. Let the layout constrain prose to approximately 65 characters per line. Wide code and tables can occupy more room.
+Embedded controls can opt out with `not-typeset` or `data-not-typeset`. For a wide table, use a `typeset-scroll` wrapper with a descriptive accessible name and keyboard access, while preserving the table's native markup. The Reading example shows this composition in full.
 
-Inside an article, exclude embedded interface components with `not-typeset` or `data-not-typeset`. Wrap wide native tables in `typeset-scroll`, give the scroll region a descriptive accessible name, and allow keyboard access. Keep table semantics intact rather than turning a table into a block for scrolling.
+## Wrapping and editable text
 
-## Screens, language, and content growth
+Keep the text scale steady as the layout narrows. Let titles and descriptions wrap, and give long identifiers their own wrapping or scrolling region. A smaller panel should change its arrangement rather than shrink its text. [Sizing](/docs/foundations/sizing) covers the surrounding controls and spacing.
 
-The text hierarchy stays stable as the screen changes. Allow headings and descriptions to wrap; do not force their line boxes into fixed heights. Heading roles balance lines, while body and caption roles favor readable paragraph wrapping. Long identifiers wrap or scroll within their own region, without widening the page.
+Fields use 16px text on touch devices and below 48rem. A wide layout with a fine primary pointer uses 14px. Inline editing inherits the text it replaces, avoiding a size jump between reading and editing.
 
-Editable text remains 16px on touch devices, including wide tablets. It also remains 16px below 48rem. Only wide layouts with a fine primary pointer use 14px fields. The sizing foundation coordinates neighboring controls with those larger line boxes.
-
-Set `lang` and `dir` at the content boundary. Arabic, Persian, and Urdu retain the same font sizes but receive more line room: display and title use 1.5, subtitle and controls use 1.6, and body and caption use 1.75. Never add tracking or uppercase transformations to Arabic-script text. Prefer semibold to synthesized italic emphasis in that script.
-
-Use `bdi` for mixed-direction identifiers and numbers. Code blocks stay left-to-right. Use `tabular-nums` for changing counts, timers, and totals; numerical data does not require a monospace font.
-
-## Emphasis and state
-
-Use regular for prose, medium for controls, semibold for emphasis and section headings, and bold for page titles. The supported product weights are 400, 500, 600, and 700. Preserve a label's weight during hover so nearby content does not move. Selected-state emphasis must not create clipping or layout jumps.
-
-Paper Mono keeps punctuation explicit with code ligatures disabled. Use it for technical content, not ordinary labels or paragraphs. Its code rhythm does not introduce another independently adjustable size scale.
-
-## Usage contract
-
-- Use component defaults first; choose a semantic text role for application-owned text.
-- Keep typography independent of control size and panel spacing. A compact panel does not shrink its prose or headings.
-- Use the single `typeset` reading treatment. Preserve heading order, reading measure, table semantics, and access to full truncated values.
-- Use shared roles for responsive and state treatments. Do not introduce local font sizes, line heights, tracking, unsupported families, or new font weights.
-- Treat changes to fonts or the shared scale as a design-system decision, verified across components, languages, and text enlargement.
-
-Repository checks enforce these roles across React, Astro, stories, and CSS recipes. The showcases below cover code, reading, and multilingual behavior; the opening Interface showcase demonstrates the hierarchy in a real settings panel.
+Use the supported weights—400, 500, 600, and 700—for prose, controls, emphasis, and headings. Keep label weight steady on hover, and check that selected text has enough room.

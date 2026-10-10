@@ -3,4 +3,4 @@ title: "Interface"
 description: Shared text hierarchy in a workspace settings panel.
 ---
 
-Compare the five content roles with real field labels, descriptions, and actions. The hierarchy stays stable while components supply their own functional text defaults. This is the starting composition for application text; choose roles by purpose rather than by the available screen width.
+A settings panel brings the scale together: a page title, a section heading, supporting copy, and editable fields. Labels and actions use the components’ built-in defaults.

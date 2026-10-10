@@ -3,4 +3,4 @@ title: "Code"
 description: Paper Mono for source, commands, and identifiers.
 ---
 
-Compare standalone code with supporting interface text. Code uses its own readable line rhythm and explicit punctuation, while adjacent controls retain the interface family. Use the shared code block for source and commands rather than sizing a monospace paragraph independently.
+The command and source listing use Paper Mono, while their labels stay in Cal Sans. Inline identifiers sit within a sentence without changing its line height.

@@ -5,6 +5,7 @@
   "title": "Typography examples",
   "description": "All typography examples.",
   "registryDependencies": [
+    "@erbium-examples/typography-typefaces",
     "@erbium-examples/typography-interface",
     "@erbium-examples/typography-code",
     "@erbium-examples/typography-reading",
