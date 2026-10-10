@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff-view-composition",
+  "type": "registry:block",
+  "title": "Diff View: Composition",
+  "description": "Compose the header, preferences, stats, and copy actions for both versions.",
+  "registryDependencies": [
+    "@erbium/copy-button",
+    "@erbium/diff-view",
+    "@erbium/styles",
+    "@erbium/toggle"
+  ],
+  "files": [
+    {
+      "path": "src/diff-view/examples/files.ts",
+      "type": "registry:component",
+      "target": "@components/showcase/diff-view/examples/files.ts",
+      "content": "const oldFile = {\n  name: \"greeting.ts\",\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n};\nconst newFile = {\n  name: \"greeting.ts\",\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n};\nexport { oldFile, newFile };\n"
+    },
+    {
+      "path": "src/diff-view/variants/composition.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/diff-view/variants/composition.tsx",
+      "content": "import { useState } from \"react\";\nimport {\n  DiffView,\n  DiffViewHeader,\n  DiffViewTitle,\n  DiffViewStats,\n  DiffViewActions,\n  DiffViewCopyButton,\n  DiffViewContent,\n} from \"@/registry/erbium/blocks/diff-view\";\nimport { CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function Example() {\n  const [unified, setUnified] = useState(false);\n  return (\n    <DiffView\n      className=\"w-full max-w-4xl\"\n      oldFile={oldFile}\n      newFile={newFile}\n      options={{ diffStyle: unified ? \"unified\" : \"split\" }}\n    >\n      <DiffViewHeader>\n        <div className=\"flex min-w-0 items-center gap-3\">\n          <DiffViewTitle />\n          <DiffViewStats />\n        </div>\n        <DiffViewActions>\n          <Toggle pressed={unified} onPressedChange={setUnified} size=\"sm\">\n            Unified\n          </Toggle>\n          <DiffViewCopyButton side=\"old\">\n            <CopyButtonIcon />\n            <CopyButtonLabel>Copy before</CopyButtonLabel>\n          </DiffViewCopyButton>\n          <DiffViewCopyButton>\n            <CopyButtonIcon />\n            <CopyButtonLabel>Copy after</CopyButtonLabel>\n          </DiffViewCopyButton>\n        </DiffViewActions>\n      </DiffViewHeader>\n      <DiffViewContent className=\"max-h-80\" />\n    </DiffView>\n  );\n}\n"
+    }
+  ]
+}

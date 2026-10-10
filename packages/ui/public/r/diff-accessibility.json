@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff-accessibility",
+  "type": "registry:lib",
+  "title": "Diff Accessibility",
+  "description": "Erbium diff accessibility lib.",
+  "files": [
+    {
+      "path": "src/lib/diff-accessibility.ts",
+      "type": "registry:lib",
+      "target": "@lib/diff-accessibility.ts",
+      "content": "const initializedRoots = new WeakSet<ShadowRoot>();\n\n// Pierre 1.5 renders expansion controls as div[role=button]. Supply names,\n// focusability, and native button keyboard behavior after each render.\nfunction enhanceDiffAccessibility(host: HTMLElement) {\n  const root = host.shadowRoot;\n  if (!root) return;\n  for (const button of root.querySelectorAll<HTMLElement>(\"[data-expand-button]\")) {\n    button.tabIndex = 0;\n    button.setAttribute(\n      \"aria-label\",\n      button.hasAttribute(\"data-expand-all-button\")\n        ? \"Expand all unchanged lines\"\n        : button.hasAttribute(\"data-expand-up\")\n          ? \"Expand unchanged lines above\"\n          : button.hasAttribute(\"data-expand-down\")\n            ? \"Expand unchanged lines below\"\n            : \"Expand unchanged lines\",\n    );\n  }\n  if (initializedRoots.has(root)) return;\n  initializedRoots.add(root);\n  root.addEventListener(\"keydown\", (event) => {\n    if (!(event instanceof KeyboardEvent)) return;\n    const target = event.target;\n    if (!(target instanceof HTMLElement) || !target.matches(\"[data-expand-button]\")) return;\n    if (event.key !== \"Enter\" && event.key !== \" \") return;\n    event.preventDefault();\n    target.click();\n  });\n}\n\nexport { enhanceDiffAccessibility };\n"
+    }
+  ]
+}

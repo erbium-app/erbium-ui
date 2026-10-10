@@ -528,6 +528,53 @@
       ]
     },
     {
+      "name": "diff-accessibility",
+      "type": "registry:lib",
+      "title": "Diff Accessibility",
+      "description": "Erbium diff accessibility lib.",
+      "files": [
+        {
+          "path": "src/lib/diff-accessibility.ts",
+          "type": "registry:lib",
+          "target": "@lib/diff-accessibility.ts"
+        }
+      ]
+    },
+    {
+      "name": "diff-theme",
+      "type": "registry:lib",
+      "title": "Diff Theme",
+      "description": "Erbium diff theme lib.",
+      "files": [
+        {
+          "path": "src/lib/diff-theme.ts",
+          "type": "registry:lib",
+          "target": "@lib/diff-theme.ts"
+        }
+      ]
+    },
+    {
+      "name": "diff-view",
+      "type": "registry:block",
+      "title": "Diff View",
+      "description": "Erbium diff view block.",
+      "dependencies": ["@base-ui/react", "@pierre/diffs"],
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/diff-accessibility",
+        "@erbium/diff-theme",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/diff-view.tsx",
+          "type": "registry:block",
+          "target": "@components/blocks/diff-view.tsx"
+        }
+      ]
+    },
+    {
       "name": "direction",
       "type": "registry:ui",
       "title": "Direction",

@@ -146,6 +146,7 @@
     ]
   },
   "patchedDependencies": {
-    "@tanstack/form-core@1.33.5": "patches/@tanstack%2Fform-core@1.33.5.patch"
+    "@tanstack/form-core@1.33.5": "patches/@tanstack%2Fform-core@1.33.5.patch",
+    "@pierre/diffs@1.5.2": "patches/@pierre%2Fdiffs@1.5.2.patch"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff-view-context",
+  "type": "registry:component",
+  "title": "Diff View: Context",
+  "description": "Expand unchanged context in ten-line steps using complete file contents.",
+  "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/diff-view/variants/context.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/diff-view/variants/context.tsx",
+      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst before =\n  Array.from({ length: 80 }, (_, index) => `export const value${index + 1} = ${index + 1};`).join(\n    \"\\n\",\n  ) + \"\\n\";\nconst after = before.replace(\"value40 = 40\", \"value40 = 400\");\nconst oldFile = { name: \"values.ts\", contents: before };\nconst newFile = { name: \"values.ts\", contents: after };\n\nexport default function Example() {\n  return (\n    <DiffView\n      className=\"w-full max-w-4xl\"\n      oldFile={oldFile}\n      newFile={newFile}\n      options={{ expansionLineCount: 10, parseDiffOptions: { context: 3 } }}\n    />\n  );\n}\n"
+    }
+  ]
+}

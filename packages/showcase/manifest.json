@@ -1608,6 +1608,66 @@
     ]
   },
   {
+    "name": "diff-view",
+    "title": "Blocks/Diff View",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "title": "Overview",
+        "source": "src/diff-view/variants/overview.tsx"
+      },
+      {
+        "exportName": "Layouts",
+        "slug": "layouts",
+        "title": "Layouts",
+        "source": "src/diff-view/variants/layouts.tsx"
+      },
+      {
+        "exportName": "Highlighting",
+        "slug": "highlighting",
+        "title": "Highlighting",
+        "source": "src/diff-view/variants/highlighting.tsx"
+      },
+      {
+        "exportName": "Context",
+        "slug": "context",
+        "title": "Context",
+        "source": "src/diff-view/variants/context.tsx"
+      },
+      {
+        "exportName": "Annotations",
+        "slug": "annotations",
+        "title": "Annotations",
+        "source": "src/diff-view/variants/annotations.tsx"
+      },
+      {
+        "exportName": "Composition",
+        "slug": "composition",
+        "title": "Composition",
+        "source": "src/diff-view/variants/composition.tsx"
+      },
+      {
+        "exportName": "States",
+        "slug": "states",
+        "title": "States",
+        "source": "src/diff-view/variants/states.tsx"
+      },
+      {
+        "exportName": "ChangingSource",
+        "slug": "changing-source",
+        "title": "Changing Source",
+        "source": "src/diff-view/variants/changing-source.tsx"
+      },
+      {
+        "exportName": "Patch",
+        "slug": "patch",
+        "title": "Patch",
+        "source": "src/diff-view/variants/patch.tsx"
+      }
+    ]
+  },
+  {
     "name": "direction",
     "title": "Providers/Direction",
     "variants": [

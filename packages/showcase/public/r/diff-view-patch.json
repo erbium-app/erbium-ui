@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff-view-patch",
+  "type": "registry:component",
+  "title": "Diff View: Patch",
+  "description": "Render prepared single-file patch metadata; copying is disabled for partial contents.",
+  "dependencies": ["@pierre/diffs@1.5.2"],
+  "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/diff-view/variants/patch.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/diff-view/variants/patch.tsx",
+      "content": "import { parsePatchFiles } from \"@pierre/diffs\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst patch = `diff --git a/settings.json b/settings.json\n--- a/settings.json\n+++ b/settings.json\n@@ -1,3 +1,4 @@\n {\n-  \"theme\": \"light\"\n+  \"theme\": \"system\",\n+  \"wrap\": true\n }\n`;\nconst fileDiff = parsePatchFiles(patch, \"settings-patch\", true)[0]?.files[0];\n\nexport default function Example() {\n  if (!fileDiff) return null;\n  return (\n    <DiffView className=\"w-full max-w-4xl\" fileDiff={fileDiff} options={{ diffStyle: \"unified\" }} />\n  );\n}\n"
+    }
+  ]
+}

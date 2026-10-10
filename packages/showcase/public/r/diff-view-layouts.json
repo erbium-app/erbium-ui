@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff-view-layouts",
+  "type": "registry:block",
+  "title": "Diff View: Layouts",
+  "description": "Switch between split and unified layouts, and enable line wrapping.",
+  "registryDependencies": [
+    "@erbium/diff-view",
+    "@erbium/styles",
+    "@erbium/toggle",
+    "@erbium/toggle-group"
+  ],
+  "files": [
+    {
+      "path": "src/diff-view/examples/files.ts",
+      "type": "registry:component",
+      "target": "@components/showcase/diff-view/examples/files.ts",
+      "content": "const oldFile = {\n  name: \"greeting.ts\",\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n};\nconst newFile = {\n  name: \"greeting.ts\",\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n};\nexport { oldFile, newFile };\n"
+    },
+    {
+      "path": "src/diff-view/variants/layouts.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/diff-view/variants/layouts.tsx",
+      "content": "import { useState } from \"react\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function Example() {\n  const [layout, setLayout] = useState<\"split\" | \"unified\">(\"split\");\n  const [wrap, setWrap] = useState(false);\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <div className=\"flex flex-wrap items-center gap-3\">\n        <ToggleGroup\n          aria-label=\"Diff layout\"\n          value={[layout]}\n          onValueChange={(values) => {\n            const value = values[0];\n            if (value === \"split\" || value === \"unified\") setLayout(value);\n          }}\n          size=\"sm\"\n          variant=\"outline\"\n        >\n          <ToggleGroupItem value=\"split\">Split</ToggleGroupItem>\n          <ToggleGroupItem value=\"unified\">Unified</ToggleGroupItem>\n        </ToggleGroup>\n        <Toggle pressed={wrap} onPressedChange={setWrap} size=\"sm\" variant=\"outline\">\n          Wrap lines\n        </Toggle>\n      </div>\n      <DiffView\n        oldFile={oldFile}\n        newFile={newFile}\n        options={{ diffStyle: layout, overflow: wrap ? \"wrap\" : \"scroll\" }}\n      />\n    </div>\n  );\n}\n"
+    }
+  ]
+}

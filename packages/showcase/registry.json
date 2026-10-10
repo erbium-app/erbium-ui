@@ -8527,6 +8527,276 @@
       ]
     },
     {
+      "name": "diff-view-annotations",
+      "type": "registry:block",
+      "title": "Diff View: Annotations",
+      "description": "Render typed review comments and control selected line ranges.",
+      "registryDependencies": ["@erbium/button", "@erbium/diff-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/annotations.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/annotations.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-changing-source",
+      "type": "registry:block",
+      "title": "Diff View: Changing Source",
+      "description": "Swap file versions without remounting the viewer.",
+      "registryDependencies": ["@erbium/button", "@erbium/diff-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/changing-source.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/changing-source.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-composition",
+      "type": "registry:block",
+      "title": "Diff View: Composition",
+      "description": "Compose the header, preferences, stats, and copy actions for both versions.",
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/diff-view",
+        "@erbium/styles",
+        "@erbium/toggle"
+      ],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/composition.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-context",
+      "type": "registry:component",
+      "title": "Diff View: Context",
+      "description": "Expand unchanged context in ten-line steps using complete file contents.",
+      "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/diff-view/variants/context.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/context.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-examples",
+      "type": "registry:item",
+      "title": "Diff View examples",
+      "description": "All diff-view examples.",
+      "registryDependencies": [
+        "@erbium-examples/diff-view-overview",
+        "@erbium-examples/diff-view-layouts",
+        "@erbium-examples/diff-view-highlighting",
+        "@erbium-examples/diff-view-context",
+        "@erbium-examples/diff-view-annotations",
+        "@erbium-examples/diff-view-composition",
+        "@erbium-examples/diff-view-states",
+        "@erbium-examples/diff-view-changing-source",
+        "@erbium-examples/diff-view-patch"
+      ]
+    },
+    {
+      "name": "diff-view-highlighting",
+      "type": "registry:block",
+      "title": "Diff View: Highlighting",
+      "description": "Compare word and character emphasis, bars, and hidden line numbers.",
+      "registryDependencies": ["@erbium/diff-view", "@erbium/styles", "@erbium/toggle-group"],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/highlighting.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/highlighting.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-layouts",
+      "type": "registry:block",
+      "title": "Diff View: Layouts",
+      "description": "Switch between split and unified layouts, and enable line wrapping.",
+      "registryDependencies": [
+        "@erbium/diff-view",
+        "@erbium/styles",
+        "@erbium/toggle",
+        "@erbium/toggle-group"
+      ],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/layouts.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/layouts.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-overview",
+      "type": "registry:block",
+      "title": "Diff View: Overview",
+      "description": "A split diff with Vitesse syntax highlighting and exact-source copying.",
+      "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-patch",
+      "type": "registry:component",
+      "title": "Diff View: Patch",
+      "description": "Render prepared single-file patch metadata; copying is disabled for partial contents.",
+      "dependencies": ["@pierre/diffs@1.5.2"],
+      "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/diff-view/variants/patch.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/patch.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-states",
+      "type": "registry:block",
+      "title": "Diff View: States",
+      "description": "Added, deleted, renamed, unchanged, and empty files.",
+      "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/states.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/states.tsx"
+        }
+      ]
+    },
+    {
+      "name": "diff-view-stories",
+      "type": "registry:item",
+      "title": "Diff View stories",
+      "description": "All diff-view variants as portable React CSF stories.",
+      "dependencies": ["@pierre/diffs@1.5.2"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/csp-provider",
+        "@erbium/diff-view",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/toggle",
+        "@erbium/toggle-group"
+      ],
+      "files": [
+        {
+          "path": "src/diff-view/diff-view.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/diff-view/diff-view.stories.tsx"
+        },
+        {
+          "path": "src/diff-view/examples/files.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/examples/files.ts"
+        },
+        {
+          "path": "src/diff-view/variants/annotations.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/annotations.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/changing-source.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/changing-source.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/composition.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/context.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/context.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/highlighting.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/highlighting.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/layouts.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/layouts.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/overview.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/patch.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/patch.tsx"
+        },
+        {
+          "path": "src/diff-view/variants/states.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/diff-view/variants/states.tsx"
+        },
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        }
+      ]
+    },
+    {
       "name": "direction-demo",
       "type": "registry:component",
       "title": "direction demo",
