@@ -10769,6 +10769,127 @@
       ]
     },
     {
+      "name": "file-tree-changes",
+      "type": "registry:block",
+      "title": "File Tree: Changes",
+      "description": "",
+      "registryDependencies": ["@erbium/button", "@erbium/file-tree", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/file-tree/examples/paths.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/examples/paths.ts"
+        },
+        {
+          "path": "src/file-tree/variants/changes.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/variants/changes.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-tree-composition",
+      "type": "registry:block",
+      "title": "File Tree: Composition",
+      "description": "",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/file-tree",
+        "@erbium/sidebar",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/file-tree/examples/paths.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/examples/paths.ts"
+        },
+        {
+          "path": "src/file-tree/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/variants/composition.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-tree-examples",
+      "type": "registry:item",
+      "title": "File Tree examples",
+      "description": "All file-tree examples.",
+      "registryDependencies": [
+        "@erbium-examples/file-tree-overview",
+        "@erbium-examples/file-tree-composition",
+        "@erbium-examples/file-tree-changes"
+      ]
+    },
+    {
+      "name": "file-tree-overview",
+      "type": "registry:block",
+      "title": "File Tree: Overview",
+      "description": "",
+      "registryDependencies": ["@erbium/file-tree", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/file-tree/examples/paths.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/examples/paths.ts"
+        },
+        {
+          "path": "src/file-tree/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-tree-stories",
+      "type": "registry:item",
+      "title": "File Tree stories",
+      "description": "All file-tree variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/csp-provider",
+        "@erbium/file-tree",
+        "@erbium/overlay-provider",
+        "@erbium/sidebar",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/file-tree/examples/paths.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/examples/paths.ts"
+        },
+        {
+          "path": "src/file-tree/file-tree.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/file-tree/file-tree.stories.tsx"
+        },
+        {
+          "path": "src/file-tree/variants/changes.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/variants/changes.tsx"
+        },
+        {
+          "path": "src/file-tree/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/variants/composition.tsx"
+        },
+        {
+          "path": "src/file-tree/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-tree/variants/overview.tsx"
+        },
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        }
+      ]
+    },
+    {
       "name": "file-view-annotations",
       "type": "registry:block",
       "title": "File View: Annotations",

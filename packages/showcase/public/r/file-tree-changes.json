@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-tree-changes",
+  "type": "registry:block",
+  "title": "File Tree: Changes",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/file-tree", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/file-tree/examples/paths.ts",
+      "type": "registry:component",
+      "target": "@components/showcase/file-tree/examples/paths.ts",
+      "content": "export const paths = [\n  \"src/components/button.tsx\",\n  \"src/components/card.tsx\",\n  \"src/blocks/file-view.tsx\",\n  \"src/blocks/diff-view.tsx\",\n  \"src/styles/surfaces.css\",\n  \"docs/README.md\",\n  \"package.json\",\n  \"empty/\",\n];\n"
+    },
+    {
+      "path": "src/file-tree/variants/changes.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/file-tree/variants/changes.tsx",
+      "content": "import {\n  FileTree,\n  useFileTree,\n  FileTreeHeader,\n  FileTreeTitle,\n  FileTreeActions,\n  FileTreeContent,\n} from \"@/registry/erbium/blocks/file-tree\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { paths } from \"../examples/paths\";\nexport default function Example() {\n  const { model } = useFileTree({\n    paths,\n    initialExpansion: \"open\",\n    gitStatus: [\n      { path: \"src/blocks/file-view.tsx\", status: \"added\" },\n      { path: \"src/styles/surfaces.css\", status: \"modified\" },\n    ],\n  });\n  return (\n    <FileTree model={model} className=\"w-80\" aria-label=\"Changed project files\">\n      <FileTreeHeader>\n        <FileTreeTitle>Changes</FileTreeTitle>\n        <FileTreeActions>\n          <Button variant=\"ghost\" size=\"xs\" onClick={() => model.add(\"src/blocks/file-tree.tsx\")}>\n            Add file\n          </Button>\n        </FileTreeActions>\n      </FileTreeHeader>\n      <FileTreeContent />\n    </FileTree>\n  );\n}\n"
+    }
+  ]
+}

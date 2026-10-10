@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-tree-overview",
+  "type": "registry:block",
+  "title": "File Tree: Overview",
+  "description": "",
+  "registryDependencies": ["@erbium/file-tree", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/file-tree/examples/paths.ts",
+      "type": "registry:component",
+      "target": "@components/showcase/file-tree/examples/paths.ts",
+      "content": "export const paths = [\n  \"src/components/button.tsx\",\n  \"src/components/card.tsx\",\n  \"src/blocks/file-view.tsx\",\n  \"src/blocks/diff-view.tsx\",\n  \"src/styles/surfaces.css\",\n  \"docs/README.md\",\n  \"package.json\",\n  \"empty/\",\n];\n"
+    },
+    {
+      "path": "src/file-tree/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/file-tree/variants/overview.tsx",
+      "content": "import { useState } from \"react\";\nimport { FileTree, useFileTree } from \"@/registry/erbium/blocks/file-tree\";\nimport { paths } from \"../examples/paths\";\nexport default function Example() {\n  const [selected, setSelected] = useState<readonly string[]>([]);\n  const { model } = useFileTree({\n    paths,\n    initialExpansion: \"open\",\n    onSelectionChange: setSelected,\n  });\n  return (\n    <div className=\"grid w-80 gap-3\">\n      <FileTree model={model} aria-label=\"Workspace files\" />\n      <p className=\"text-caption text-muted-foreground\" aria-live=\"polite\">\n        {selected.length ? selected.join(\", \") : \"Select a file or directory.\"}\n      </p>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

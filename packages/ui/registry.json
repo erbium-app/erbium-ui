@@ -675,6 +675,21 @@
       ]
     },
     {
+      "name": "file-tree",
+      "type": "registry:block",
+      "title": "File Tree",
+      "description": "Erbium file tree block.",
+      "dependencies": ["@pierre/trees"],
+      "registryDependencies": ["@erbium/tree-theme", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/blocks/file-tree.tsx",
+          "type": "registry:block",
+          "target": "@components/blocks/file-tree.tsx"
+        }
+      ]
+    },
+    {
       "name": "file-view",
       "type": "registry:block",
       "title": "File View",
@@ -1552,6 +1567,19 @@
           "path": "src/components/tooltip.tsx",
           "type": "registry:ui",
           "target": "@ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tree-theme",
+      "type": "registry:lib",
+      "title": "Tree Theme",
+      "description": "Erbium tree theme lib.",
+      "files": [
+        {
+          "path": "src/lib/tree-theme.ts",
+          "type": "registry:lib",
+          "target": "@lib/tree-theme.ts"
         }
       ]
     },

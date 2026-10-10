@@ -2016,6 +2016,30 @@
     ]
   },
   {
+    "name": "file-tree",
+    "title": "Blocks/File Tree",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "title": "Overview",
+        "source": "src/file-tree/variants/overview.tsx"
+      },
+      {
+        "exportName": "Composition",
+        "slug": "composition",
+        "title": "Composition",
+        "source": "src/file-tree/variants/composition.tsx"
+      },
+      {
+        "exportName": "Changes",
+        "slug": "changes",
+        "title": "Changes",
+        "source": "src/file-tree/variants/changes.tsx"
+      }
+    ]
+  },
+  {
     "name": "file-view",
     "title": "Blocks/File View",
     "variants": [
