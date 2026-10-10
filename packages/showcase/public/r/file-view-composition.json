@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-view-composition",
+  "type": "registry:block",
+  "title": "File View: Composition",
+  "description": "",
+  "registryDependencies": ["@erbium/button", "@erbium/file-view", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/file-view/examples/file.ts",
+      "type": "registry:component",
+      "target": "@components/showcase/file-view/examples/file.ts",
+      "content": "export const file = {\n  name: \"greeting.ts\",\n  contents:\n    `export function greet(name: string = \"world\") {\\n  const greeting = ` +\n    \"`Welcome, ${name}!`\" +\n    `;\\n  return greeting;\\n}\\n`,\n};\n"
+    },
+    {
+      "path": "src/file-view/variants/composition.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/file-view/variants/composition.tsx",
+      "content": "import { useState } from \"react\";\nimport {\n  FileView,\n  FileViewHeader,\n  FileViewTitle,\n  FileViewActions,\n  FileViewContent,\n  FileViewCopyButton,\n} from \"@/registry/erbium/blocks/file-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { file } from \"../examples/file\";\nexport default function Example() {\n  const [wrap, setWrap] = useState(false);\n  return (\n    <FileView\n      file={file}\n      options={{ overflow: wrap ? \"wrap\" : \"scroll\" }}\n      className=\"w-full max-w-4xl\"\n    >\n      <FileViewHeader>\n        <FileViewTitle />\n        <FileViewActions>\n          <Button variant=\"ghost\" size=\"xs\" aria-pressed={wrap} onClick={() => setWrap(!wrap)}>\n            Wrap lines\n          </Button>\n          <FileViewCopyButton />\n        </FileViewActions>\n      </FileViewHeader>\n      <FileViewContent className=\"max-h-80\" />\n    </FileView>\n  );\n}\n"
+    }
+  ]
+}

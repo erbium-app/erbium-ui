@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "file-view-examples",
+  "type": "registry:item",
+  "title": "File View examples",
+  "description": "All file-view examples.",
+  "registryDependencies": [
+    "@erbium-examples/file-view-overview",
+    "@erbium-examples/file-view-composition",
+    "@erbium-examples/file-view-annotations",
+    "@erbium-examples/file-view-states"
+  ]
+}

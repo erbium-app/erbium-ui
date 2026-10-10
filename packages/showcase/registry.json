@@ -10769,6 +10769,146 @@
       ]
     },
     {
+      "name": "file-view-annotations",
+      "type": "registry:block",
+      "title": "File View: Annotations",
+      "description": "",
+      "registryDependencies": ["@erbium/button", "@erbium/file-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/file-view/examples/file.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/examples/file.ts"
+        },
+        {
+          "path": "src/file-view/variants/annotations.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/annotations.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-view-composition",
+      "type": "registry:block",
+      "title": "File View: Composition",
+      "description": "",
+      "registryDependencies": ["@erbium/button", "@erbium/file-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/file-view/examples/file.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/examples/file.ts"
+        },
+        {
+          "path": "src/file-view/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/composition.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-view-examples",
+      "type": "registry:item",
+      "title": "File View examples",
+      "description": "All file-view examples.",
+      "registryDependencies": [
+        "@erbium-examples/file-view-overview",
+        "@erbium-examples/file-view-composition",
+        "@erbium-examples/file-view-annotations",
+        "@erbium-examples/file-view-states"
+      ]
+    },
+    {
+      "name": "file-view-overview",
+      "type": "registry:block",
+      "title": "File View: Overview",
+      "description": "",
+      "registryDependencies": ["@erbium/file-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/file-view/examples/file.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/examples/file.ts"
+        },
+        {
+          "path": "src/file-view/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-view-states",
+      "type": "registry:block",
+      "title": "File View: States",
+      "description": "",
+      "registryDependencies": ["@erbium/button", "@erbium/file-view", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/file-view/examples/file.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/examples/file.ts"
+        },
+        {
+          "path": "src/file-view/variants/states.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/states.tsx"
+        }
+      ]
+    },
+    {
+      "name": "file-view-stories",
+      "type": "registry:item",
+      "title": "File View stories",
+      "description": "All file-view variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/csp-provider",
+        "@erbium/file-view",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/file-view/examples/file.ts",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/examples/file.ts"
+        },
+        {
+          "path": "src/file-view/file-view.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/file-view/file-view.stories.tsx"
+        },
+        {
+          "path": "src/file-view/variants/annotations.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/annotations.tsx"
+        },
+        {
+          "path": "src/file-view/variants/composition.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/composition.tsx"
+        },
+        {
+          "path": "src/file-view/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/overview.tsx"
+        },
+        {
+          "path": "src/file-view/variants/states.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/file-view/variants/states.tsx"
+        },
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        }
+      ]
+    },
+    {
       "name": "form-demo",
       "type": "registry:component",
       "title": "form demo",

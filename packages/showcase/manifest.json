@@ -2016,6 +2016,36 @@
     ]
   },
   {
+    "name": "file-view",
+    "title": "Blocks/File View",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "title": "Overview",
+        "source": "src/file-view/variants/overview.tsx"
+      },
+      {
+        "exportName": "Composition",
+        "slug": "composition",
+        "title": "Composition",
+        "source": "src/file-view/variants/composition.tsx"
+      },
+      {
+        "exportName": "Annotations",
+        "slug": "annotations",
+        "title": "Annotations",
+        "source": "src/file-view/variants/annotations.tsx"
+      },
+      {
+        "exportName": "States",
+        "slug": "states",
+        "title": "States",
+        "source": "src/file-view/variants/states.tsx"
+      }
+    ]
+  },
+  {
     "name": "form",
     "title": "Components/Form",
     "variants": [

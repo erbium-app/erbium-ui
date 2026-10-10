@@ -675,6 +675,26 @@
       ]
     },
     {
+      "name": "file-view",
+      "type": "registry:block",
+      "title": "File View",
+      "description": "Erbium file view block.",
+      "dependencies": ["@base-ui/react", "@pierre/diffs"],
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/diff-theme",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/file-view.tsx",
+          "type": "registry:block",
+          "target": "@components/blocks/file-view.tsx"
+        }
+      ]
+    },
+    {
       "name": "focus-search-input",
       "type": "registry:lib",
       "title": "Focus Search Input",
