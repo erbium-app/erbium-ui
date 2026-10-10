@@ -86,7 +86,7 @@ function CodeBlock({
           data-slot="code-block"
           data-surface={surface}
           className={cn(
-            "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl border surface-panel text-foreground",
+            "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl surface-panel text-foreground",
             className,
           )}
           value={active?.value ?? null}
