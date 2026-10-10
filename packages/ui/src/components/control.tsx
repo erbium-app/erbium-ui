@@ -763,7 +763,7 @@ function Select({
           </SelectPrimitive.Icon>
         </span>
       </SelectPrimitive.Trigger>
-      <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay text-control outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+      <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay text-control outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
         {options.map((option) => (
           <SelectPrimitive.Item
             key={option.value}
@@ -906,7 +906,7 @@ function Image({
               <RotatingChevron className="size-3.5" />
             </SelectPrimitive.Icon>
           </SelectPrimitive.Trigger>
-          <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg border surface-overlay outline-none">
+          <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col overflow-hidden rounded-lg surface-overlay outline-none">
             {options.map((option) => (
               <SelectPrimitive.Item
                 key={option.value}

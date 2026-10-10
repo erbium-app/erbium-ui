@@ -13,7 +13,7 @@ const itemGroupVariants = cva(
       variant: {
         default:
           "gap-group has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-related has-[>[data-slot=item-separator]]:gap-0",
-        panel: "gap-0 overflow-hidden rounded-xl border surface-panel text-card-foreground",
+        panel: "gap-0 overflow-hidden rounded-xl surface-panel text-card-foreground",
       },
     },
     defaultVariants: {

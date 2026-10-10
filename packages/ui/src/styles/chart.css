@@ -2,7 +2,7 @@
 .erbium-chart-tooltip {
   --ts-chart-tooltip-background: var(--surface-overlay);
   --ts-chart-tooltip-color: var(--popover-foreground);
-  --ts-chart-tooltip-border: 1px solid var(--surface-border);
+  --ts-chart-tooltip-border: none;
   --ts-chart-tooltip-border-radius: var(--radius-lg);
   /* The overlay surface recipe, resolved from theme tokens because the
      tooltip is rendered by the chart library rather than a surface class. */
@@ -29,4 +29,11 @@
 .erbium-chart-tooltip .ts-chart-tooltip__row {
   min-height: 1.375rem;
   padding: 0 0.25rem;
+}
+
+@media (forced-colors: active) {
+  .erbium-chart,
+  .erbium-chart-tooltip {
+    --ts-chart-tooltip-border: 1px solid CanvasText;
+  }
 }

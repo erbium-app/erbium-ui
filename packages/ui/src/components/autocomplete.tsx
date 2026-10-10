@@ -181,7 +181,7 @@ export function AutocompletePopup({
       >
         <span
           className={cn(
-            "relative flex min-h-0 max-h-full min-w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) overflow-hidden rounded-lg border surface-overlay transition-[scale,opacity]",
+            "relative flex min-h-0 max-h-full min-w-(--anchor-width) max-w-(--available-width) origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay transition-[scale,opacity]",
             className,
           )}
         >

@@ -11,7 +11,7 @@ function Toolbar({ className, ...props }: ToolbarPrimitive.Root.Props) {
     <ToolbarPrimitive.Root
       data-slot="toolbar"
       className={cn(
-        "flex w-fit items-center gap-1 rounded-lg border surface-panel p-1 text-foreground data-vertical:flex-col data-vertical:items-stretch",
+        "flex w-fit items-center gap-1 rounded-lg surface-panel p-1 text-foreground data-vertical:flex-col data-vertical:items-stretch",
         className,
       )}
       {...props}

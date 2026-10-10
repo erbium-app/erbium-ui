@@ -3,8 +3,8 @@
  *
  * Light falls from the top. Raised surfaces catch it on their top edge and
  * cast a short shadow below; pressed and selected controls sink into their
- * plane. An element takes one surface class for its role, plus `border` for
- * the transparent forced-colors frame. The class sets the face colour, the
+ * plane. An element takes one surface class for its role. Framed surfaces
+ * own their border and forced-colors fallback. The class sets the face colour, the
  * perimeter, the catchlight, the drop shadows, and every interaction state:
  *
  *   surface-panel          cards, frames, table containers, alerts
@@ -61,7 +61,6 @@
  *   --surface-tint-{state}       neutral hover and pressed overlays
  *   --surface-tint-selected      selection overlay for selected rows
  *   --surface-tag-alpha          translucent tag strength
- *   --surface-border             transparent CSS border / forced-colors fallback
  *
  * Element tokens are registered as non-inheriting properties, so a nested
  * surface never picks up its parent's face or state. Override one on an
@@ -99,7 +98,6 @@
 
   --surface-edge: oklch(34.541285% 0.01028535 114.61857 / 0.1);
   --surface-edge-well: oklch(34.541285% 0.01028535 114.61857 / 0.08);
-  --surface-border: transparent;
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
@@ -132,7 +130,6 @@
 
   --surface-edge: oklch(89.409654% 0.00970052 93.578683 / 0.03);
   --surface-edge-well: oklch(89.409654% 0.00970052 93.578683 / 0.04);
-  --surface-border: transparent;
   --surface-highlight: oklch(89.409654% 0.00970052 93.578683 / 0.06);
   --surface-highlight-strong: oklch(89.409654% 0.00970052 93.578683 / 0.09);
   --surface-highlight-divider: var(--surface-highlight);
@@ -256,7 +253,7 @@
     0 -1px 0 0 var(--surface-catchlight), 0 0 0 1px var(--surface-rim),
     0 0 0 1px var(--surface-backing), var(--surface-drop), inset var(--surface-recess),
     var(--surface-seam);
-  border-color: var(--surface-border);
+  border-color: transparent;
   background-color: var(--surface-face);
   background-image: linear-gradient(var(--surface-tint), var(--surface-tint));
   background-origin: border-box;
@@ -298,6 +295,18 @@
   @apply surface-flat;
 }
 
+/* Shared frame geometry. The shadow paints the rim in normal colour modes;
+ * a system-colour border replaces it when forced colours remove shadows.
+ * Keep this in the recipe so components need no border fallback classes. */
+@utility surface-framed {
+  @apply surface-flat;
+  border-width: 0;
+
+  @media (forced-colors: active) {
+    border: 1px solid CanvasText;
+  }
+}
+
 /* Neutral roles. Each one sets its face and elevation tokens, and runs the
    separators that divide it solid to its edges. */
 @utility surface-panel {
@@ -308,7 +317,7 @@
   --surface-backing: var(--surface-face);
   --surface-drop:
     0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
-  @apply surface-flat;
+  @apply surface-framed;
 
   :where(&) {
     --separator-fade: 0%;
@@ -382,7 +391,7 @@
   --surface-drop:
     0 2px 4px -1px var(--surface-shadow), 0 8px 16px -4px var(--surface-shadow),
     0 16px 32px -8px var(--surface-shadow-strong);
-  @apply surface-flat;
+  @apply surface-framed;
 
   :where(&) {
     --separator-fade: 0%;
@@ -398,7 +407,7 @@
   --surface-drop:
     0 4px 8px -2px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow),
     0 32px 64px -16px var(--surface-shadow-strong);
-  @apply surface-flat;
+  @apply surface-framed;
 
   :where(&) {
     --separator-fade: 0%;
@@ -420,7 +429,7 @@
 @utility surface-frame {
   --surface-face: color-mix(in srgb, var(--surface-panel) 50%, transparent);
   --surface-rim: var(--surface-edge);
-  @apply surface-flat;
+  @apply surface-framed;
 
   :where(&) {
     --separator-fade: 0%;
