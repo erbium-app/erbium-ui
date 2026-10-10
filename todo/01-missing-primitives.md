@@ -1,15 +1,14 @@
 # 01 — Component additions
 
-Reviewed 2026-10-04. Meter is implemented at `packages/ui/src/components/meter.tsx`; it is no longer a missing primitive.
+Reviewed 2026-10-11.
 
 ## Planned additions
 
-- [ ] CodeBlock: reusable source-code display with syntax highlighting, overflow handling, optional language/file labels, and shared CopyButton feedback. Keep source text and presentation composable.
 - [ ] TerminalCommand (working name): shell and CLI snippets for Bash, Zsh, PowerShell, and other terminal contexts; optional package-manager or platform selection, prompt presentation, and shared CopyButton. Copy the selected executable command without decorative prompts. Compose CodeBlock where useful. This is separate from the existing Command palette.
 - [ ] Lightbox: image viewing, navigation, focus management, and keyboard access.
 - [ ] Stepper: step navigation, validation, controlled state, and a step indicator.
 - [ ] Agent session compositions informed by OpenCode.
-- [ ] File tree and diff compositions using or adapting Pierre's reusable pieces; evaluate icons separately.
+- [ ] Compose changed-file navigation and multi-file review; track annotations, tool output, and session messages in [11](./11-files-and-session-ui.md). Evaluate additional Pierre packages separately.
 
 Command replacement is tracked in [07](./07-searchable-menus.md). Platform libraries and agent integrations are tracked in [09](./09-agent-tooling-and-platforms.md).
 

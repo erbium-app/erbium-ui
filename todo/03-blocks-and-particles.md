@@ -1,18 +1,14 @@
 # 03 — Blocks and stories
 
-Reviewed 2026-10-04.
-
-## Implemented foundation
-
-`packages/showcase/src` contains examples and composition stories. Its manifest, Storybook adapters, and registry are generated. `packages/showcase/scripts/build-registry.mjs` already emits installable examples and story items, including `registry:block` compositions. The registry infrastructure is not pending work.
+Reviewed 2026-10-11.
 
 ## Remaining work
 
-- [ ] Create CodeBlock and TerminalCommand stories once their APIs are agreed; replace the removed ad hoc CopyButton command-panel example with these shared abstractions. Track additions in [01](./01-missing-primitives.md).
+- [ ] Create TerminalCommand stories once its API is agreed; compose CodeBlock and CopyButton. Track the block in [01](./01-missing-primitives.md).
 - [ ] Review existing catalogs before adding or porting examples; add only compositions that demonstrate a recurring need.
 - [ ] Expand card, dialog, form, and selection stories where layout or behavior decisions need explanation.
 - [ ] Cover useful loading, empty, error, disabled, success, long-content, keyboard, and RTL cases in the relevant stories.
-- [ ] Add agent session, file tree, and diff compositions after their package/API boundaries are agreed.
+- [ ] Add combined file review and agent session compositions following [11](./11-files-and-session-ui.md).
 - [ ] Document source inspiration and intentional differences when adapting Coss, OpenCode, or Pierre examples.
 
 Keep workflows and network state in applications or dedicated packages. Stories should explain composition rather than turn every example into a new primitive. Remove redundant variants instead of seeking complete parity with another registry.

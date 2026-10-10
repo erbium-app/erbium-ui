@@ -2,12 +2,6 @@
 
 Reviewed 2026-10-04.
 
-## Implemented foundation
-
-`overlay-provider.tsx` wraps Base UI Drawer.Provider and coordinates drawer indentation direction. `drawer.tsx` exports DrawerIndent using Base UI Indent and IndentBackground, and requires OverlayProvider. Shared showcase previews use that provider. The original claim that these primitives are unused is obsolete.
-
-Dialog, Popover, and the other overlay wrappers have not been converted into a shared automatic Dialog-to-Drawer presentation system. Drawer coordination and responsive presentation are separate concerns.
-
 ## Remaining work
 
 - [ ] Record actual failures at phone and tablet sizes: clipping, scroll lock, keyboard overlap, safe areas, focus, and RTL.

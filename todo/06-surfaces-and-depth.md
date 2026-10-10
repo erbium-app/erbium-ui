@@ -1,14 +1,6 @@
 # 06 — Surfaces and depth
 
-Reviewed 2026-10-04. The surface migration is implemented across controls, panels, overlays, and many selection/data components. The old phase checklist is retired; source adoption does not imply that every visual state has been manually verified.
-
-## Current design
-
-- Shared tokens and lighting live in `packages/ui/src/styles/surfaces.css` and `theme.css`.
-- Roles include panel, control, input, overlay, modal, flat, frame, and well. Controls are raised; wells are reserved for recessed tracks.
-- Shared shadows and highlights provide edges and depth. Transparent borders preserve a forced-colors fallback.
-- Semantic state tokens use `error`. Native squircle corners are guarded by `@supports`; ordinary rounded corners remain the fallback. Circles and pills stay round.
-- Surface documentation and examples exist in `packages/content/components/surfaces` and `packages/showcase/src/surfaces`. The docs import shared styles rather than maintaining a second surface system.
+Reviewed 2026-10-11.
 
 ## Remaining work
 
