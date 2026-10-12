@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "surface-shadows",
+  "type": "registry:lib",
+  "title": "Surface Shadows",
+  "description": "Erbium surface shadows lib.",
+  "files": [
+    {
+      "path": "src/lib/surface-shadows.ts",
+      "type": "registry:lib",
+      "target": "@lib/surface-shadows.ts",
+      "content": "// Pierre renders into shadow roots where Tailwind's surface utilities do not\n// reach. These stacks restate the control and field rims from surfaces.css with\n// the same tokens, so the raised look has one definition outside that file.\nconst controlShadow = [\n  \"0 -1px 0 var(--surface-highlight)\",\n  \"0 0 0 1px var(--surface-edge)\",\n  \"0 1px 1px -0.5px var(--surface-shadow-strong)\",\n  \"0 2px 4px -1px var(--surface-shadow)\",\n].join(\", \");\n\nconst fieldShadow = [\n  \"0 -1px 0 var(--surface-highlight)\",\n  \"0 0 0 1px var(--surface-edge)\",\n  \"0 0 0 1px var(--surface-input)\",\n  \"0 1px 1px -0.5px var(--surface-shadow-strong)\",\n  \"0 2px 4px -1px var(--surface-shadow)\",\n].join(\", \");\n\nconst controlInsetShadow = \"inset 0 1px 2px var(--surface-shadow-inset)\";\n\nexport { controlInsetShadow, controlShadow, fieldShadow };\n"
+    }
+  ]
+}

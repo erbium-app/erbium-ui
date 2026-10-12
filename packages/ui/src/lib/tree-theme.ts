@@ -1,3 +1,5 @@
+import { fieldShadow } from "./surface-shadows";
+
 // Pierre renders into a shadow root; inherit Erbium's scheme and role tokens.
 const treeThemeCSS = `
 :host {
@@ -43,10 +45,7 @@ const treeThemeCSS = `
   background: var(--surface-input);
   font-size: var(--text-control);
   line-height: var(--text-control--line-height);
-  box-shadow: 0 -1px 0 var(--surface-highlight),
-    0 0 0 1px var(--surface-edge), 0 0 0 1px var(--surface-input),
-    0 1px 1px -0.5px var(--surface-shadow-strong),
-    0 2px 4px -1px var(--surface-shadow);
+  box-shadow: ${fieldShadow};
   transition: color 150ms, background-color 150ms, box-shadow 150ms;
 }
 [data-file-tree-search-input]::placeholder { color: var(--muted-foreground); }

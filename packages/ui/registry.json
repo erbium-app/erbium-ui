@@ -562,6 +562,7 @@
       "type": "registry:lib",
       "title": "Diff Theme",
       "description": "Erbium diff theme lib.",
+      "registryDependencies": ["@erbium/surface-shadows"],
       "files": [
         {
           "path": "src/lib/diff-theme.ts",
@@ -1438,6 +1439,19 @@
       ]
     },
     {
+      "name": "surface-shadows",
+      "type": "registry:lib",
+      "title": "Surface Shadows",
+      "description": "Erbium surface shadows lib.",
+      "files": [
+        {
+          "path": "src/lib/surface-shadows.ts",
+          "type": "registry:lib",
+          "target": "@lib/surface-shadows.ts"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
@@ -1625,6 +1639,7 @@
       "type": "registry:lib",
       "title": "Tree Theme",
       "description": "Erbium tree theme lib.",
+      "registryDependencies": ["@erbium/surface-shadows"],
       "files": [
         {
           "path": "src/lib/tree-theme.ts",

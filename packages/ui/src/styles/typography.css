@@ -73,9 +73,18 @@
   font-weight: 400;
 }
 
+/* One code size and leading for every surface that shows source: code blocks
+   and the Pierre-backed file and diff views, which read these in their shadow roots. */
+@layer base {
+  :root {
+    --code-font-size: var(--text-caption);
+    --code-line-height: 1.6;
+  }
+}
+
 @utility text-code-block {
-  font-size: var(--text-caption);
-  line-height: 1.6;
+  font-size: var(--code-font-size);
+  line-height: var(--code-line-height);
   font-weight: 400;
   font-family: var(--font-mono);
   font-variant-ligatures: none;
