@@ -9,7 +9,7 @@ depend on the directory where the CLI runs. Add future public surfaces to this
 stack and return their typed URLs alongside `docsUrl`. Extract resource modules
 when their configuration or bindings need to be shared with app code.
 
-Alchemy and its frontend integration are pinned to `2.0.0-beta.80`. Update them
+Alchemy and its frontend integration are pinned to `2.0.0-beta.81`. Update them
 together. This uses the Effect-based Alchemy v2 API, not v1's Astro adapter.
 
 ## Deploy
@@ -23,12 +23,10 @@ bun run infra plan
 bun run deploy
 ```
 
-The stack has one deployment: `prod` at `ui.erbium.app`. The root commands
+The production deployment is `prod` at `ui.erbium.app`. The root commands
 explicitly select the `default` Alchemy profile. Configure that profile with the
 Cloudflare account that owns the deployment domain.
-The profile command supports OAuth or an API token. There is no separate preview
-stage; use the local docs playground for development. Direct Alchemy commands
-must also pass `--stage prod --profile default`.
+The profile command supports OAuth or an API token. Direct production Alchemy commands must pass `--stage prod --profile default`.
 
 For CI, provide `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` through the
 runner's secret environment and run `bun run deploy:ci`. Use your deployment
@@ -126,3 +124,18 @@ Use `bun run infra <command>` for infrastructure operations: `profile`, `plan`,
 `deploy`, `deploy:ci`, `typecheck` or `destroy`. The root `deploy` and `deploy:ci`
 shortcuts remain available. `bun run infra destroy` removes the production docs
 resources; manage the Git connection separately in Cloudflare.
+
+## TanStack Start preview
+
+`bun run deploy:preview:plan` and `bun run deploy:preview` select the separate `preview` stage and existing `erbium` profile. Refresh credentials before deployment:
+
+```sh
+cd packages/infra
+bunx --no-install alchemy profile refresh --profile erbium --provider Cloudflare
+```
+
+Grant Workers Scripts write and Account Settings write for the Worker and Web Analytics site, together with the state backend permissions described above. Authentication is currently pending; no preview URL has been deployed.
+
+The preview uses `Cloudflare.Website.Vite` for `apps/docs-start`, the existing account workers.dev subdomain, and a separate analytics site. Deployment returns both origins for comparison. Markdown, example sources and social images compile in Node before deployment; documentation HTML renders in the Worker. Invocation logs and traces are enabled for the preview. Browser Web Analytics measures visits and Core Web Vitals; it does not report JavaScript exceptions.
+
+Preview robots and metadata disable indexing while canonical URLs retain the Astro production origin. The preview branch does not modify production Astro resources. Local Worker validation uses `bun run docs:start:cloudflare:build` followed by `bun run docs:start:cloudflare:preview`.

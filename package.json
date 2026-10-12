@@ -65,6 +65,8 @@
   "scripts": {
     "deploy": "bun run infra deploy",
     "deploy:ci": "bun run infra deploy:ci",
+    "deploy:preview": "bun run infra deploy:preview",
+    "deploy:preview:plan": "bun run infra plan:preview",
     "infra:typecheck": "bun run infra typecheck",
     "dev": "vp run --parallel --filter './apps/*' dev",
     "docs": "vp run --filter ./apps/docs --fail-if-no-match dev",
