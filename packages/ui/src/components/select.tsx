@@ -1,11 +1,8 @@
 import * as React from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { cn } from "../lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "./icon";
 import { RotatingChevron } from "./stateful-icon";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
-import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 
@@ -139,7 +136,7 @@ function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Prop
           <span className="pointer-events-none absolute inset-e-2 flex size-control-icon items-center justify-center" />
         }
       >
-        <HugeiconsIcon icon={CheckIcon} className="pointer-events-none" />
+        <Icon name="check" className="pointer-events-none" />
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
   );
@@ -169,7 +166,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <HugeiconsIcon icon={ChevronUpIcon} />
+      <Icon name="chevron-up" />
     </SelectPrimitive.ScrollUpArrow>
   );
 }
@@ -187,7 +184,7 @@ function SelectScrollDownButton({
       )}
       {...props}
     >
-      <HugeiconsIcon icon={ChevronDownIcon} />
+      <Icon name="chevron-down" />
     </SelectPrimitive.ScrollDownArrow>
   );
 }

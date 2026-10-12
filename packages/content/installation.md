@@ -69,6 +69,23 @@ Keep `import "./index.css"` in `src/main.tsx`. The shared stylesheet includes Ta
 
 In another framework, load the installed `src/styles/globals.css` from its global CSS entry, using the appropriate relative path. Keep one global Tailwind/theme entry; avoid retaining the starter’s conflicting theme definitions. The CLI copies the styles but does not wire this import for you.
 
+## Mount the icon sprite
+
+Components draw their icons from one shared sprite. Mount `IconSprite` once in your application shell, outside scrolling and hidden panels:
+
+```tsx
+import { IconSprite } from "@/components/ui/icon-sprite";
+
+createRoot(document.getElementById("root")!).render(
+  <>
+    <IconSprite />
+    <App />
+  </>,
+);
+```
+
+It renders the generated `@erbium/icons` symbols inline, so icons inherit the surrounding text color and need no network request. Until it is mounted, icons render empty.
+
 ## Use the component
 
 Replace `src/App.tsx` with:

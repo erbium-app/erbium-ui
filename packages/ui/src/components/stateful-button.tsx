@@ -1,6 +1,5 @@
 import { useDebouncer } from "@tanstack/react-pacer/debouncer";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "./icon";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
 import { cn } from "../lib/utils";
@@ -130,7 +129,7 @@ function StatefulButton({
           className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[state=success]/stateful-button:translate-y-0 group-data-[state=success]/stateful-button:opacity-100 motion-reduce:transition-none"
           role="status"
         >
-          <HugeiconsIcon icon={CheckIcon} aria-hidden />
+          <Icon name="check" aria-hidden />
           {successLabel ?? <span className="sr-only">Success</span>}
         </span>
       </span>

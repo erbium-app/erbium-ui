@@ -1,7 +1,5 @@
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "./icon";
 import { cn } from "../lib/utils";
 import { focusSearchInput } from "../lib/focus-search-input";
 import { Button } from "./button";
@@ -20,8 +18,8 @@ function MenuSearch({
         className="flex search-input-row items-center"
         onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
       >
-        <HugeiconsIcon
-          icon={Search01Icon}
+        <Icon
+          name="search-01"
           aria-hidden="true"
           className="size-control-icon shrink-0 text-muted-foreground"
         />
@@ -39,7 +37,7 @@ function MenuSearch({
           aria-label="Clear search"
           render={<Button variant="ghost" size="icon-xs" />}
         >
-          <HugeiconsIcon icon={XIcon} aria-hidden="true" />
+          <Icon name="x" aria-hidden="true" />
         </MenuPrimitive.Clear>
       </div>
       <Separator variant="full" />

@@ -4,8 +4,7 @@ import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
-import { HugeiconsIcon } from "@hugeicons/react";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "./icon";
 
 const DialogPanelContext = React.createContext(false);
 
@@ -66,7 +65,7 @@ function DialogPanel({
                 <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
               }
             >
-              <HugeiconsIcon icon={XIcon} />
+              <Icon name="x" />
               <span className="sr-only">Close</span>
             </DialogPrimitive.Close>
           )}

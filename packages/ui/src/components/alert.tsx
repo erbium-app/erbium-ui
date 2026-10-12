@@ -1,9 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
-import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
-import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
-import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
+import { Icon } from "./icon";
 import { cn } from "../lib/utils";
 
 type AlertVariant = "default" | "info" | "success" | "warning" | "error";
@@ -11,23 +7,23 @@ type AlertVariant = "default" | "info" | "success" | "warning" | "error";
 const alertVariants: Record<AlertVariant, { className: string; icon: React.ReactNode }> = {
   default: {
     className: "surface-panel text-card-foreground",
-    icon: <HugeiconsIcon icon={InfoIcon} aria-hidden="true" />,
+    icon: <Icon name="info" aria-hidden="true" />,
   },
   info: {
     className: "surface-tint-info-soft text-info-soft-foreground",
-    icon: <HugeiconsIcon icon={InfoIcon} className="text-info" aria-hidden="true" />,
+    icon: <Icon name="info" className="text-info" aria-hidden="true" />,
   },
   success: {
     className: "surface-tint-success-soft text-success-soft-foreground",
-    icon: <HugeiconsIcon icon={CircleCheckIcon} className="text-success" aria-hidden="true" />,
+    icon: <Icon name="circle-check" className="text-success" aria-hidden="true" />,
   },
   warning: {
     className: "surface-tint-warning-soft text-warning-soft-foreground",
-    icon: <HugeiconsIcon icon={TriangleAlertIcon} className="text-warning" aria-hidden="true" />,
+    icon: <Icon name="triangle-alert" className="text-warning" aria-hidden="true" />,
   },
   error: {
     className: "surface-tint-error-soft text-error-soft-foreground",
-    icon: <HugeiconsIcon icon={OctagonXIcon} className="text-error" aria-hidden="true" />,
+    icon: <Icon name="octagon-x" className="text-error" aria-hidden="true" />,
   },
 };
 

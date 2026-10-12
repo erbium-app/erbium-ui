@@ -1,9 +1,6 @@
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CopySvg from "@hugeicons/core-free-icons/CopyIcon";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
+import { Icon } from "../components/icon";
 import { createContext, use, useEffect, useRef } from "react";
 import type { ComponentProps } from "react";
 import { Button } from "../components/button";
@@ -110,9 +107,9 @@ function CopyButtonIcon(
       {...props}
       state={status}
       icons={{
-        idle: <HugeiconsIcon icon={CopySvg} />,
-        copied: <HugeiconsIcon icon={CheckIcon} />,
-        error: <HugeiconsIcon icon={Cancel01Icon} />,
+        idle: <Icon name="copy" />,
+        copied: <Icon name="check" />,
+        error: <Icon name="cancel-01" />,
       }}
     />
   );

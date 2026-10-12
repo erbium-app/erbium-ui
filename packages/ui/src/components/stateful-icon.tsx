@@ -1,11 +1,4 @@
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import MinusIcon from "@hugeicons/core-free-icons/MinusIcon";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
-import ChevronUpIcon from "@hugeicons/core-free-icons/ChevronUpIcon";
-import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
-import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
+import { Icon } from "./icon";
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "../lib/utils";
@@ -63,7 +56,7 @@ function StatefulIcon<State extends string>({
   );
 }
 
-type RotatingChevronProps = Omit<React.ComponentProps<typeof HugeiconsIcon>, "icon"> & {
+type RotatingChevronProps = Omit<React.ComponentProps<typeof Icon>, "name"> & {
   /** Closed direction: down for vertical content, inline-end for submenus. */
   direction?: "down" | "inline-end" | "inline-start" | "right" | "left";
   /** Use the nearest collapsible trigger's state in nested disclosures. */
@@ -71,7 +64,7 @@ type RotatingChevronProps = Omit<React.ComponentProps<typeof HugeiconsIcon>, "ic
 };
 
 function RotatingChevron({ direction = "down", scope, className, ...props }: RotatingChevronProps) {
-  const icon = direction === "down" ? ChevronDownIcon : ChevronRightIcon;
+  const name = direction === "down" ? "chevron-down" : "chevron-right";
   const rotation =
     direction === "down"
       ? scope === "collapsible"
@@ -82,8 +75,8 @@ function RotatingChevron({ direction = "down", scope, className, ...props }: Rot
         : "rotate-180 rtl:rotate-0 group-data-open:rotate-0 group-data-popup-open:rotate-0 group-data-panel-open:rotate-0 rtl:group-data-open:rotate-180 rtl:group-data-popup-open:rotate-180 rtl:group-data-panel-open:rotate-180";
 
   return (
-    <HugeiconsIcon
-      icon={icon}
+    <Icon
+      name={name}
       aria-hidden="true"
       className={cn(
         "shrink-0 transition-transform duration-200 ease-in-out motion-reduce:transition-none",
@@ -122,7 +115,7 @@ function ExpandableChevron({ isOpen, className }: ExpandableChevronProps) {
         initial={false}
         transition={transition}
       >
-        <HugeiconsIcon icon={ChevronUpIcon} className="size-full" strokeWidth={2} />
+        <Icon name="chevron-up" className="size-full [--icon-stroke-width:2]" />
       </motion.span>
       <motion.span
         animate={{ y: isOpen ? "-12.5%" : "25%" }}
@@ -130,7 +123,7 @@ function ExpandableChevron({ isOpen, className }: ExpandableChevronProps) {
         initial={false}
         transition={transition}
       >
-        <HugeiconsIcon icon={ChevronDownIcon} className="size-full" strokeWidth={2} />
+        <Icon name="chevron-down" className="size-full [--icon-stroke-width:2]" />
       </motion.span>
     </span>
   );
@@ -217,7 +210,7 @@ function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
         initial={false}
         transition={transition}
       >
-        <HugeiconsIcon icon={Sun03Icon} className="size-full" />
+        <Icon name="sun-03" className="size-full" />
       </motion.span>
       <motion.span
         animate={{ rotate: isDark ? 0 : 90, scale: isDark ? 1 : 0 }}
@@ -225,7 +218,7 @@ function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
         initial={false}
         transition={transition}
       >
-        <HugeiconsIcon icon={Moon02Icon} className="size-full" />
+        <Icon name="moon-02" className="size-full" />
       </motion.span>
     </span>
   );
@@ -239,17 +232,16 @@ function CheckboxStateIcon({ className }: { className?: string }) {
       data-slot="checkbox-state-icon"
       className={cn("inline-grid size-3.5 shrink-0", className)}
     >
-      <HugeiconsIcon
+      {/* Dash properties inherit into the sprite, so the draw-on runs on the svg itself. */}
+      <Icon
+        name="check"
         aria-hidden="true"
-        className="col-start-1 row-start-1 size-full opacity-0 transition-opacity duration-120 group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 [&>path]:[stroke-dasharray:32] [&>path]:[stroke-dashoffset:32] [&>path]:transition-[stroke-dashoffset] [&>path]:duration-120 group-data-checked/check-indicator:[&>path]:[stroke-dashoffset:0] group-data-checked/check-indicator:[&>path]:delay-75 motion-reduce:transition-none motion-reduce:[&>path]:transition-none"
-        icon={CheckIcon}
-        strokeWidth={3.5}
+        className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
       />
-      <HugeiconsIcon
+      <Icon
+        name="minus"
         aria-hidden="true"
-        className="col-start-1 row-start-1 size-full opacity-0 transition-opacity duration-120 group-data-indeterminate/check-indicator:opacity-100 [&>path]:[stroke-dasharray:24] [&>path]:[stroke-dashoffset:24] [&>path]:transition-[stroke-dashoffset] [&>path]:duration-120 group-data-indeterminate/check-indicator:[&>path]:[stroke-dashoffset:0] motion-reduce:transition-none motion-reduce:[&>path]:transition-none"
-        icon={MinusIcon}
-        strokeWidth={3.5}
+        className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:24] [stroke-dashoffset:24] group-data-indeterminate/check-indicator:opacity-100 group-data-indeterminate/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
       />
     </span>
   );

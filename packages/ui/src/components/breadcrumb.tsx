@@ -2,9 +2,7 @@ import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cn } from "../lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
-import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
+import { Icon } from "./icon";
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -73,7 +71,7 @@ function BreadcrumbSeparator({ children, className, ...props }: React.ComponentP
       className={cn("[&>svg]:size-3.5", className)}
       {...props}
     >
-      {children ?? <HugeiconsIcon icon={ChevronRightIcon} className="rtl:rotate-180" />}
+      {children ?? <Icon name="chevron-right" className="rtl:rotate-180" />}
     </li>
   );
 }
@@ -87,7 +85,7 @@ function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<"span"
       className={cn("flex size-5 items-center justify-center [&>svg]:size-4", className)}
       {...props}
     >
-      <HugeiconsIcon icon={MoreHorizontalIcon} />
+      <Icon name="more-horizontal" />
       <span className="sr-only">More</span>
     </span>
   );

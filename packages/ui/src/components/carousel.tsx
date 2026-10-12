@@ -3,9 +3,7 @@ import { cn } from "../lib/utils";
 import { cva } from "class-variance-authority";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { Button } from "./button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronLeftIcon from "@hugeicons/core-free-icons/ChevronLeftIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import { Icon } from "./icon";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -211,7 +209,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <HugeiconsIcon icon={ChevronLeftIcon} className="rtl:rotate-180" />
+      <Icon name="chevron-left" className="rtl:rotate-180" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -235,7 +233,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <HugeiconsIcon icon={ChevronRightIcon} className="rtl:rotate-180" />
+      <Icon name="chevron-right" className="rtl:rotate-180" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

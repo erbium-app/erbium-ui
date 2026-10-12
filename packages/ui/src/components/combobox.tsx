@@ -6,11 +6,8 @@ import { Button } from "./button";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "./input-group";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { Icon } from "./icon";
 import { RotatingChevron } from "./stateful-icon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
 
 const Combobox = ComboboxPrimitive.Root;
 
@@ -44,7 +41,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
       className={cn(className)}
       {...props}
     >
-      <HugeiconsIcon icon={XIcon} className="pointer-events-none" />
+      <Icon name="x" className="pointer-events-none" />
     </ComboboxPrimitive.Clear>
   );
 }
@@ -88,8 +85,8 @@ function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Pr
         className="flex search-input-row items-center"
         onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
       >
-        <HugeiconsIcon
-          icon={Search01Icon}
+        <Icon
+          name="search-01"
           aria-hidden="true"
           className="size-control-icon shrink-0 text-muted-foreground"
         />
@@ -179,7 +176,7 @@ function ComboboxItem({ className, children, ...props }: ComboboxPrimitive.Item.
           <span className="pointer-events-none absolute inset-e-2 flex size-control-icon items-center justify-center" />
         }
       >
-        <HugeiconsIcon icon={CheckIcon} className="pointer-events-none" />
+        <Icon name="check" className="pointer-events-none" />
       </ComboboxPrimitive.ItemIndicator>
     </ComboboxPrimitive.Item>
   );
@@ -283,7 +280,7 @@ function ComboboxChip({
           className="-ms-1 opacity-50 hover:opacity-100"
           data-slot="combobox-chip-remove"
         >
-          <HugeiconsIcon icon={XIcon} className="pointer-events-none" />
+          <Icon name="x" className="pointer-events-none" />
         </ComboboxPrimitive.ChipRemove>
       )}
     </ComboboxPrimitive.Chip>

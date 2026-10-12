@@ -11,12 +11,7 @@ import { Button } from "./button";
 import { useDirection } from "./direction";
 import { Spinner } from "./spinner";
 import { shake } from "../lib/shake";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
-import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
-import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
-import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "./icon";
 
 // `loading`, `success`, and `error` match the types Base UI assigns in `toast.promise`.
 type ToastType = "default" | "loading" | "success" | "info" | "warning" | "error";
@@ -42,19 +37,19 @@ const toastTypes: Record<ToastType, { className: string; icon?: React.ReactNode 
   },
   success: {
     className: "surface-tint-success-soft text-success-soft-foreground",
-    icon: <HugeiconsIcon icon={CircleCheckIcon} className="text-success" aria-hidden="true" />,
+    icon: <Icon name="circle-check" className="text-success" aria-hidden="true" />,
   },
   info: {
     className: "surface-tint-info-soft text-info-soft-foreground",
-    icon: <HugeiconsIcon icon={InfoIcon} className="text-info" aria-hidden="true" />,
+    icon: <Icon name="info" className="text-info" aria-hidden="true" />,
   },
   warning: {
     className: "surface-tint-warning-soft text-warning-soft-foreground",
-    icon: <HugeiconsIcon icon={TriangleAlertIcon} className="text-warning" aria-hidden="true" />,
+    icon: <Icon name="triangle-alert" className="text-warning" aria-hidden="true" />,
   },
   error: {
     className: "surface-tint-error-soft text-error-soft-foreground",
-    icon: <HugeiconsIcon icon={OctagonXIcon} className="text-error" aria-hidden="true" />,
+    icon: <Icon name="octagon-x" className="text-error" aria-hidden="true" />,
   },
 };
 
@@ -197,7 +192,7 @@ function ToastClose({
       )}
       {...props}
     >
-      {children ?? <HugeiconsIcon icon={XIcon} aria-hidden="true" />}
+      {children ?? <Icon name="x" aria-hidden="true" />}
     </ToastPrimitive.Close>
   );
 }

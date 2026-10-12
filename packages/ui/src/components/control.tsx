@@ -1,8 +1,6 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "./icon";
 import { RotatingChevron } from "./stateful-icon";
-import ImagePlusIcon from "@hugeicons/core-free-icons/ImagePlusIcon";
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Input as InputPrimitive } from "@base-ui/react/input";
@@ -772,7 +770,7 @@ function Select({
           >
             <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
             <SelectPrimitive.ItemIndicator>
-              <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
+              <Icon name="check" className="size-3.5" />
             </SelectPrimitive.ItemIndicator>
           </SelectPrimitive.Item>
         ))}
@@ -916,7 +914,7 @@ function Image({
                 <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
                 <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                 <SelectPrimitive.ItemIndicator className="ms-auto">
-                  <HugeiconsIcon icon={CheckIcon} className="size-3.5" />
+                  <Icon name="check" className="size-3.5" />
                 </SelectPrimitive.ItemIndicator>
               </SelectPrimitive.Item>
             ))}
@@ -936,7 +934,7 @@ function Image({
           {!options?.length && preview ? (
             <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
           ) : (
-            <HugeiconsIcon icon={ImagePlusIcon} className="size-4" />
+            <Icon name="image-plus" className="size-4" />
           )}
           {!options?.length ? <span>{preview ? "Change" : "Choose image"}</span> : null}
         </ButtonPrimitive>

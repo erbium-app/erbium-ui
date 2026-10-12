@@ -1,10 +1,7 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CircleCheckIcon from "@hugeicons/core-free-icons/CircleCheckIcon";
-import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
-import OctagonXIcon from "@hugeicons/core-free-icons/OctagonXIcon";
-import TriangleAlertIcon from "@hugeicons/core-free-icons/TriangleAlertIcon";
+import type { IconName } from "@erbium/icons";
+import { Icon } from "./icon";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { LoadingIndicator } from "./spinner";
@@ -45,15 +42,15 @@ const badgeVariants = cva(
 );
 
 const badgeStatusIcons = {
-  error: OctagonXIcon,
-  info: InfoIcon,
-  success: CircleCheckIcon,
-  warning: TriangleAlertIcon,
-  "ghost-error": OctagonXIcon,
-  "ghost-info": InfoIcon,
-  "ghost-success": CircleCheckIcon,
-  "ghost-warning": TriangleAlertIcon,
-};
+  error: "octagon-x",
+  info: "info",
+  success: "circle-check",
+  warning: "triangle-alert",
+  "ghost-error": "octagon-x",
+  "ghost-info": "info",
+  "ghost-success": "circle-check",
+  "ghost-warning": "triangle-alert",
+} as const satisfies Record<string, IconName>;
 
 type BadgeProps = useRender.ComponentProps<"span"> & { loading?: boolean } & (
     | { variant: keyof typeof badgeStatusIcons; statusIcon: true }
@@ -81,9 +78,7 @@ function Badge({
         children: (
           <>
             {loading && <LoadingIndicator inlineStart />}
-            {!loading && icon && (
-              <HugeiconsIcon icon={icon} data-icon="inline-start" aria-hidden="true" />
-            )}
+            {!loading && icon && <Icon name={icon} data-icon="inline-start" aria-hidden="true" />}
             {children}
           </>
         ),

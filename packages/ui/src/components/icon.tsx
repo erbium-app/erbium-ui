@@ -9,14 +9,18 @@ type IconProps = Omit<ComponentProps<"svg">, "children" | "dangerouslySetInnerHT
 
 function Icon({ name, className, ...props }: IconProps) {
   const { id, viewBox } = iconDefinitions[name];
+  // Size comes from width/height attributes so a parent's
+  // `[&_svg:not([class*='size-'])]:size-*` rule can resize the icon.
   return (
     <svg
       aria-hidden="true"
       focusable="false"
+      width={16}
+      height={16}
       data-slot="icon"
       {...props}
       viewBox={viewBox}
-      className={cn("size-4 shrink-0", className)}
+      className={cn("shrink-0", className)}
     >
       <use href={`#${id}`} />
     </svg>

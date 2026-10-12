@@ -3,8 +3,7 @@ import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
-import { HugeiconsIcon } from "@hugeicons/react";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "./icon";
 
 const SheetPanelContext = React.createContext(false);
 
@@ -68,7 +67,7 @@ function SheetPanel({
                 <Button variant="ghost" className="absolute top-3 inset-e-3" size="icon-sm" />
               }
             >
-              <HugeiconsIcon icon={XIcon} />
+              <Icon name="x" />
               <span className="sr-only">Close</span>
             </SheetPrimitive.Close>
           )}

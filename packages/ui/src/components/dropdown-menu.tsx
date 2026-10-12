@@ -4,8 +4,7 @@ import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Separator } from "./separator";
 
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "./icon";
 import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 
 function DropdownMenu({
@@ -250,7 +249,7 @@ function DropdownMenuRadioItem({
         data-slot="dropdown-menu-radio-item-indicator"
       >
         <MenuPrimitive.RadioItemIndicator>
-          <HugeiconsIcon icon={CheckIcon} />
+          <Icon name="check" />
         </MenuPrimitive.RadioItemIndicator>
       </span>
       {children}

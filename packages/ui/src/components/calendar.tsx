@@ -3,10 +3,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { DayPicker, getDefaultClassNames, type DayButton, type Locale } from "react-day-picker";
 import { Button, buttonVariants } from "./button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
-import ChevronLeftIcon from "@hugeicons/core-free-icons/ChevronLeftIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import { Icon } from "./icon";
 
 const calendarCaptionVariants = cva("font-medium select-none text-control", {
   variants: {
@@ -135,8 +132,8 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <HugeiconsIcon
-                icon={ChevronLeftIcon}
+              <Icon
+                name="chevron-left"
                 className={cn("rtl:rotate-180 size-4", className)}
                 {...props}
               />
@@ -145,17 +142,15 @@ function Calendar({
 
           if (orientation === "right") {
             return (
-              <HugeiconsIcon
-                icon={ChevronRightIcon}
+              <Icon
+                name="chevron-right"
                 className={cn("rtl:rotate-180 size-4", className)}
                 {...props}
               />
             );
           }
 
-          return (
-            <HugeiconsIcon icon={ChevronDownIcon} className={cn("size-4", className)} {...props} />
-          );
+          return <Icon name="chevron-down" className={cn("size-4", className)} {...props} />;
         },
         DayButton: ({ ...props }) => <CalendarDayButton locale={locale} {...props} />,
         WeekNumber: ({ children, ...props }) => {

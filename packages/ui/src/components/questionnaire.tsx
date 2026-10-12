@@ -3,8 +3,7 @@ import { Questionnaire as QuestionnairePrimitive } from "@shadcn/react/questionn
 import { cn } from "../lib/utils";
 import { buttonVariants, type Button } from "./button";
 import { Kbd } from "./kbd";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "./icon";
 
 function Questionnaire({
   className,
@@ -118,8 +117,8 @@ function QuestionnaireChoice({
           data-slot="questionnaire-choice-indicator-dot"
           className="hidden size-2 rounded-full bg-selection-foreground group-data-[type=checkbox]/questionnaire-choice:hidden group-data-checked/questionnaire-choice:block"
         />
-        <HugeiconsIcon
-          icon={CheckIcon}
+        <Icon
+          name="check"
           data-slot="questionnaire-choice-indicator-check"
           className="hidden size-3.5 group-data-[type=radio]/questionnaire-choice:hidden group-data-checked/questionnaire-choice:block"
         />

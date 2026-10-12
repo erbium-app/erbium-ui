@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
-import { HugeiconsIcon } from "@hugeicons/react";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "./icon";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { useOverlay } from "./overlay-provider";
@@ -214,7 +213,7 @@ function DrawerPanel({
                       <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
                     }
                   >
-                    <HugeiconsIcon icon={XIcon} />
+                    <Icon name="x" />
                     <span className="sr-only">Close</span>
                   </DrawerPrimitive.Close>
                 )}

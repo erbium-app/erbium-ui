@@ -6,8 +6,7 @@ import { Kbd } from "./kbd";
 import { Dialog, DialogPanel, DialogDescription, DialogTitle } from "./dialog";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { Icon } from "./icon";
 
 function Command<Items extends readonly { items: readonly unknown[] }[]>(
   props: Omit<CommandPrimitive.Root.Props<Items[number]["items"][number]>, "items"> & {
@@ -99,8 +98,8 @@ function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
         className="flex search-input-row items-center"
         onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
       >
-        <HugeiconsIcon
-          icon={Search01Icon}
+        <Icon
+          name="search-01"
           aria-hidden="true"
           className="size-control-icon shrink-0 text-muted-foreground"
         />

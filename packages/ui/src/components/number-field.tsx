@@ -1,7 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import MinusSignIcon from "@hugeicons/core-free-icons/MinusSignIcon";
-import PlusSignIcon from "@hugeicons/core-free-icons/PlusSignIcon";
+import { Icon } from "./icon";
 import { NumberField as NumberFieldPrimitive } from "@base-ui/react/number-field";
 import { useReducedMotion } from "motion/react";
 import { FieldLabel } from "./field";
@@ -180,7 +178,7 @@ function NumberFieldDecrement({
       className={cn(stepperClass, "rounded-s-[calc(var(--radius-lg)-1px)]", className)}
       {...props}
     >
-      {children ?? <HugeiconsIcon icon={MinusSignIcon} aria-hidden />}
+      {children ?? <Icon name="minus-sign" aria-hidden />}
     </NumberFieldPrimitive.Decrement>
   );
 }
@@ -196,7 +194,7 @@ function NumberFieldIncrement({
       className={cn(stepperClass, "rounded-e-[calc(var(--radius-lg)-1px)]", className)}
       {...props}
     >
-      {children ?? <HugeiconsIcon icon={PlusSignIcon} aria-hidden />}
+      {children ?? <Icon name="plus-sign" aria-hidden />}
     </NumberFieldPrimitive.Increment>
   );
 }

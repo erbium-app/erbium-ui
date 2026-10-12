@@ -5,8 +5,7 @@ import { cn } from "../lib/utils";
 import { Kbd } from "./kbd";
 import { Separator } from "./separator";
 
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "./icon";
 import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 
 function ContextMenu({
@@ -227,7 +226,7 @@ function ContextMenuRadioItem({
     >
       <span className="pointer-events-none absolute inset-e-2">
         <ContextMenuPrimitive.RadioItemIndicator>
-          <HugeiconsIcon icon={CheckIcon} />
+          <Icon name="check" />
         </ContextMenuPrimitive.RadioItemIndicator>
       </span>
       {children}

@@ -4,10 +4,7 @@ import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { cn } from "../lib/utils";
 import { cva } from "class-variance-authority";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArrowUpDownIcon from "@hugeicons/core-free-icons/ArrowUpDownIcon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { Icon } from "./icon";
 import { focusSearchInput } from "../lib/focus-search-input";
 
 import type React from "react";
@@ -26,8 +23,8 @@ export function AutocompleteSearchInput({
         className="flex search-input-row items-center"
         onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
       >
-        <HugeiconsIcon
-          icon={Search01Icon}
+        <Icon
+          name="search-01"
           aria-hidden="true"
           className="size-control-icon shrink-0 text-muted-foreground"
         />
@@ -134,7 +131,7 @@ export function AutocompleteInput({
           {...triggerProps}
         >
           <AutocompletePrimitive.Icon data-slot="autocomplete-icon">
-            <HugeiconsIcon icon={ArrowUpDownIcon} />
+            <Icon name="arrow-up-down" />
           </AutocompletePrimitive.Icon>
         </AutocompleteTrigger>
       )}
@@ -143,7 +140,7 @@ export function AutocompleteInput({
           className={cn(autocompleteActionVariants({ size: visualSize }))}
           {...clearProps}
         >
-          <HugeiconsIcon icon={XIcon} />
+          <Icon name="x" />
         </AutocompleteClear>
       )}
     </AutocompletePrimitive.InputGroup>
@@ -314,7 +311,7 @@ export function AutocompleteClear({
       data-slot="autocomplete-clear"
       {...props}
     >
-      <HugeiconsIcon icon={XIcon} />
+      <Icon name="x" />
     </AutocompletePrimitive.Clear>
   );
 }
