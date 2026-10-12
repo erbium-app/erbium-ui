@@ -199,22 +199,23 @@ function DiffViewStats({ className, ...props }: Omit<ComponentProps<"span">, "ch
 }
 function DiffViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
   const { content, fileDiff, loading } = useDiffView();
-  const empty = fileDiff.hunks.length === 0;
+  const blank = fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0;
+  const empty =
+    fileDiff.hunks.length > 0 ? undefined : blank ? (
+      <CodePanelEmpty title="Empty file" description="This file has no contents." />
+    ) : (
+      <CodePanelEmpty
+        title="No content changes"
+        description="The two versions have identical contents."
+      />
+    );
   return (
     <CodePanelContent
       aria-label={`Changes to ${fileDiff.name}`}
       {...props}
       data-slot="diff-view-content"
       loading={loading}
-      empty={
-        empty ? (
-          <CodePanelEmpty>
-            {fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0
-              ? "Empty file"
-              : "No content changes"}
-          </CodePanelEmpty>
-        ) : undefined
-      }
+      empty={empty}
     >
       {content}
     </CodePanelContent>

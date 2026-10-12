@@ -135,7 +135,11 @@ function FileViewContent(props: Omit<CodePanelContentProps, "children" | "empty"
       {...props}
       data-slot="file-view-content"
       loading={loading}
-      empty={file.contents.length === 0 ? <CodePanelEmpty>Empty file</CodePanelEmpty> : undefined}
+      empty={
+        file.contents.length === 0 ? (
+          <CodePanelEmpty title="Empty file" description="This file has no contents." />
+        ) : undefined
+      }
     >
       {content}
     </CodePanelContent>

@@ -11,7 +11,7 @@ import { FileView } from "@erbium/ui/blocks/file-view";
 <FileView file={{ name: "app.ts", contents: source }} />;
 ```
 
-FileView is a read-only source-file viewer. Use CodeBlock for message snippets and commands, FileView for opened source files, and DiffView for comparisons. The default layout shows the filename and an exact-source copy action. Empty files keep the same panel surface and display “Empty file.”
+FileView is a read-only source-file viewer. Use CodeBlock for message snippets and commands, FileView for opened source files, and DiffView for comparisons. The default layout shows the filename and an exact-source copy action. Empty files keep the same panel surface and show the shared `Empty` state with an “Empty file” title.
 
 Erbium owns Vitesse light/dark themes, typography, surfaces, and the header. The viewer inherits the app’s color scheme and uses LTR direction. Filenames infer the language; `file.lang` can override it. Keep file objects stable, and update `cacheKey` when contents change if using worker caching.
 

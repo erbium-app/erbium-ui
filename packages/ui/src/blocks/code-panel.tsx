@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import { DirectionProvider } from "../components/direction";
-import { Empty, EmptyHeader, EmptyTitle } from "../components/empty";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "../components/empty";
 import { Separator } from "../components/separator";
 import { Spinner } from "../components/spinner";
 import { cn } from "../lib/utils";
@@ -112,11 +112,12 @@ function CodePanelContent({
   );
 }
 
-function CodePanelEmpty({ children }: { children: ReactNode }) {
+function CodePanelEmpty({ title, description }: { title: ReactNode; description?: ReactNode }) {
   return (
     <Empty className="rounded-none border-0 p-panel sm:p-panel">
       <EmptyHeader>
-        <EmptyTitle className="text-muted-foreground">{children}</EmptyTitle>
+        <EmptyTitle>{title}</EmptyTitle>
+        {description ? <EmptyDescription>{description}</EmptyDescription> : null}
       </EmptyHeader>
     </Empty>
   );
