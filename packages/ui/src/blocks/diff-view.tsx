@@ -1,15 +1,22 @@
-import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { parseDiffFromFile } from "@pierre/diffs";
 import type { DiffFileInput, FileDiffMetadata } from "@pierre/diffs";
 import { FileDiff } from "@pierre/diffs/react";
 import type { FileDiffProps, FileDiffOptions } from "@pierre/diffs/react";
 import { createContext, use, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";
-import { Separator } from "../components/separator";
 import { enhanceDiffAccessibility } from "../lib/diff-accessibility";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
 import { cn } from "../lib/utils";
-import { CopyButton } from "./copy-button";
+import {
+  CodePanel,
+  CodePanelActions,
+  CodePanelContent,
+  CodePanelCopyButton,
+  CodePanelEmpty,
+  CodePanelHeader,
+  CodePanelTitle,
+} from "./code-panel";
+import type { CodePanelContentProps, CodePanelProps } from "./code-panel";
 import type { CopyButtonProps } from "./copy-button";
 
 type OwnedOptions =
@@ -29,7 +36,7 @@ type DiffViewSource =
   | (DiffFileInput & { fileDiff?: never })
   | { fileDiff: FileDiffMetadata; oldFile?: never; newFile?: never };
 type DiffViewProps<Annotation = undefined> = DiffViewSource &
-  Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir"> &
+  Omit<CodePanelProps, "children"> &
   Pick<
     FileDiffProps<Annotation, undefined>,
     | "lineAnnotations"
@@ -118,73 +125,43 @@ function DiffView<Annotation = undefined>({
     ),
   };
   return (
-    <DirectionProvider direction="ltr">
-      <DiffViewContext value={context}>
-        <div
-          {...props}
-          dir="ltr"
-          data-slot="diff-view"
-          className={cn(
-            "min-w-0 w-full overflow-hidden rounded-xl surface-panel text-foreground",
-            className,
-          )}
-        >
-          {children ?? (
-            <>
-              <DiffViewHeader>
-                <DiffViewTitle />
-                <DiffViewActions>
-                  <DiffViewStats />
-                  <DiffViewCopyButton />
-                </DiffViewActions>
-              </DiffViewHeader>
-              <DiffViewContent />
-            </>
-          )}
-        </div>
-      </DiffViewContext>
-    </DirectionProvider>
+    <DiffViewContext value={context}>
+      <CodePanel {...props} data-slot="diff-view" className={className}>
+        {children ?? (
+          <>
+            <DiffViewHeader>
+              <DiffViewTitle />
+              <DiffViewActions>
+                <DiffViewStats />
+                <DiffViewCopyButton />
+              </DiffViewActions>
+            </DiffViewHeader>
+            <DiffViewContent />
+          </>
+        )}
+      </CodePanel>
+    </DiffViewContext>
   );
 }
 
-function DiffViewHeader({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <>
-      <div
-        {...props}
-        data-slot="diff-view-header"
-        className={cn(
-          "flex min-h-10 flex-wrap items-center justify-between gap-related px-3 py-1.5",
-          className,
-        )}
-      />
-      <Separator variant="full" />
-    </>
-  );
+function DiffViewHeader(props: ComponentProps<typeof CodePanelHeader>) {
+  return <CodePanelHeader {...props} data-slot="diff-view-header" />;
 }
-function DiffViewTitle({ children, className, ...props }: ComponentProps<"span">) {
+function DiffViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTitle>) {
   const { fileDiff } = useDiffView();
   return (
-    <span
-      {...props}
-      data-slot="diff-view-title"
-      className={cn("min-w-0 truncate text-metadata font-medium text-muted-foreground", className)}
-    >
-      {children ??
-        (fileDiff.prevName && fileDiff.prevName !== fileDiff.name
-          ? `${fileDiff.prevName} → ${fileDiff.name}`
-          : fileDiff.name)}
-    </span>
+    <CodePanelTitle {...props} data-slot="diff-view-title">
+      <span className="truncate">
+        {children ??
+          (fileDiff.prevName && fileDiff.prevName !== fileDiff.name
+            ? `${fileDiff.prevName} → ${fileDiff.name}`
+            : fileDiff.name)}
+      </span>
+    </CodePanelTitle>
   );
 }
-function DiffViewActions({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      {...props}
-      data-slot="diff-view-actions"
-      className={cn("flex shrink-0 items-center gap-related", className)}
-    />
-  );
+function DiffViewActions(props: ComponentProps<typeof CodePanelActions>) {
+  return <CodePanelActions {...props} data-slot="diff-view-actions" />;
 }
 function DiffViewStats({ className, ...props }: Omit<ComponentProps<"span">, "children">) {
   const { fileDiff } = useDiffView();
@@ -207,34 +184,26 @@ function DiffViewStats({ className, ...props }: Omit<ComponentProps<"span">, "ch
     </span>
   );
 }
-function DiffViewContent({
-  className,
-  ...props
-}: Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir">) {
+function DiffViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
   const { content, fileDiff } = useDiffView();
+  const empty = fileDiff.hunks.length === 0;
   return (
-    <div
-      role="region"
+    <CodePanelContent
       aria-label={`Changes to ${fileDiff.name}`}
-      tabIndex={0}
       {...props}
-      dir="ltr"
       data-slot="diff-view-content"
-      className={cn(
-        "max-h-120 min-w-0 overflow-auto bg-surface-panel outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
-        className,
-      )}
+      empty={
+        empty ? (
+          <CodePanelEmpty>
+            {fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0
+              ? "Empty file"
+              : "No content changes"}
+          </CodePanelEmpty>
+        ) : undefined
+      }
     >
-      {fileDiff.hunks.length > 0 ? (
-        content
-      ) : (
-        <p className="p-panel text-caption text-muted-foreground">
-          {fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0
-            ? "Empty file."
-            : "No content changes."}
-        </p>
-      )}
-    </div>
+      {content}
+    </CodePanelContent>
   );
 }
 function DiffViewCopyButton({
@@ -244,9 +213,7 @@ function DiffViewCopyButton({
   const { oldContents, newContents } = useDiffView();
   const contents = side === "old" ? oldContents : newContents;
   return (
-    <CopyButton
-      variant="ghost"
-      size={props.children == null ? "icon-xs" : "xs"}
+    <CodePanelCopyButton
       aria-label={`Copy ${side} file`}
       {...props}
       value={contents ?? ""}

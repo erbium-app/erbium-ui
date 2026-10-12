@@ -1,15 +1,20 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
-import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { createContext, use, useEffect, useMemo, useState } from "react";
 import type { ComponentProps, CSSProperties } from "react";
 import type { TokensResult } from "shiki/core";
 import { TabsList, TabsTrigger } from "../components/tabs";
-import { Separator } from "../components/separator";
+import { DirectionProvider } from "../components/direction";
 import { Icon } from "../components/icon";
 import { codeLanguageIcon } from "../lib/code-language-icon";
 import { highlightCode } from "../lib/code-highlighter";
 import { cn } from "../lib/utils";
-import { CopyButton } from "./copy-button";
+import {
+  CodePanelCopyButton,
+  CodePanelHeader,
+  CodePanelTitle,
+  codePanelFocusRing,
+  codePanelSurface,
+} from "./code-panel";
 import type { CopyButtonProps } from "./copy-button";
 
 type CodeBlockItem = {
@@ -85,10 +90,7 @@ function CodeBlock({
           dir="ltr"
           data-slot="code-block"
           data-surface={surface}
-          className={cn(
-            "group/code-block relative min-w-0 w-full overflow-hidden rounded-xl surface-panel text-foreground",
-            className,
-          )}
+          className={cn("group/code-block relative", codePanelSurface, className)}
           value={active?.value ?? null}
           onValueChange={(next, details) => {
             if (typeof next !== "string") return;
@@ -125,31 +127,18 @@ function CodeBlock({
     </DirectionProvider>
   );
 }
-function CodeBlockHeader({ className, ...props }: ComponentProps<"div">) {
+function CodeBlockHeader({ className, ...props }: ComponentProps<typeof CodePanelHeader>) {
   return (
-    <>
-      <div
-        {...props}
-        data-slot="code-block-header"
-        className={cn(
-          "flex min-h-10 items-center justify-between gap-related px-3 py-1.5 pe-12 group-data-[surface=command]/code-block:min-h-9",
-          className,
-        )}
-      />
-      <Separator variant="full" />
-    </>
+    <CodePanelHeader
+      {...props}
+      data-slot="code-block-header"
+      className={cn("flex-nowrap pe-12 group-data-[surface=command]/code-block:min-h-9", className)}
+    />
   );
 }
-function CodeBlockTitle({ className, ...props }: ComponentProps<"span">) {
+function CodeBlockTitle({ className, ...props }: ComponentProps<typeof CodePanelTitle>) {
   return (
-    <span
-      {...props}
-      data-slot="code-block-title"
-      className={cn(
-        "inline-flex min-w-0 items-center gap-related truncate text-metadata font-medium text-muted-foreground",
-        className,
-      )}
-    />
+    <CodePanelTitle {...props} data-slot="code-block-title" className={cn("truncate", className)} />
   );
 }
 function CodeBlockActions({ className, ...props }: ComponentProps<"div">) {
@@ -216,11 +205,9 @@ function CodeBlockCopyButton({
 }: Omit<CopyButtonProps, "value"> & { value?: string }) {
   const { active, surface } = useCodeBlock();
   return (
-    <CopyButton
-      variant="ghost"
+    <CodePanelCopyButton
       value={value ?? active?.code ?? ""}
       aria-label={surface === "command" ? "Copy command" : "Copy code"}
-      size={props.children == null ? "icon-xs" : "xs"}
       disabled={!active}
       {...props}
     />
@@ -281,7 +268,8 @@ function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps)
       tabIndex={0}
       style={blockStyle}
       className={cn(
-        "m-0 max-h-120 overflow-auto p-panel text-code-block outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
+        "m-0 max-h-120 overflow-auto p-panel text-code-block [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
+        codePanelFocusRing,
         wrap ? "whitespace-pre-wrap break-words" : "whitespace-pre",
         surface === "command" && "px-3 py-3",
         "group-has-[[data-slot=code-block-actions]]/code-block:pe-12",

@@ -310,9 +310,10 @@
       "registryDependencies": [
         "@erbium/code-highlighter",
         "@erbium/code-language-icon",
+        "@erbium/code-panel",
         "@erbium/copy-button",
+        "@erbium/direction",
         "@erbium/icon",
-        "@erbium/separator",
         "@erbium/tabs",
         "@erbium/utils"
       ],
@@ -350,6 +351,27 @@
           "path": "src/lib/code-language-icon.ts",
           "type": "registry:lib",
           "target": "@lib/code-language-icon.ts"
+        }
+      ]
+    },
+    {
+      "name": "code-panel",
+      "type": "registry:block",
+      "title": "Code Panel",
+      "description": "Erbium code panel block.",
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/direction",
+        "@erbium/empty",
+        "@erbium/separator",
+        "@erbium/spinner",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/code-panel.tsx",
+          "type": "registry:block",
+          "target": "@components/blocks/code-panel.tsx"
         }
       ]
     },
@@ -558,12 +580,12 @@
       "type": "registry:block",
       "title": "Diff View",
       "description": "Erbium diff view block.",
-      "dependencies": ["@base-ui/react", "@pierre/diffs"],
+      "dependencies": ["@pierre/diffs"],
       "registryDependencies": [
+        "@erbium/code-panel",
         "@erbium/copy-button",
         "@erbium/diff-accessibility",
         "@erbium/diff-theme",
-        "@erbium/separator",
         "@erbium/utils"
       ],
       "files": [
@@ -694,13 +716,8 @@
       "type": "registry:block",
       "title": "File View",
       "description": "Erbium file view block.",
-      "dependencies": ["@base-ui/react", "@pierre/diffs"],
-      "registryDependencies": [
-        "@erbium/copy-button",
-        "@erbium/diff-theme",
-        "@erbium/separator",
-        "@erbium/utils"
-      ],
+      "dependencies": ["@pierre/diffs"],
+      "registryDependencies": ["@erbium/code-panel", "@erbium/copy-button", "@erbium/diff-theme"],
       "files": [
         {
           "path": "src/blocks/file-view.tsx",

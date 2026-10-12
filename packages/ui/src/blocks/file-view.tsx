@@ -1,13 +1,19 @@
-import { DirectionProvider } from "@base-ui/react/direction-provider";
 import { File as PierreFile } from "@pierre/diffs/react";
 import type { FileProps, FileOptions } from "@pierre/diffs/react";
 import type { FileContents } from "@pierre/diffs";
 import { createContext, use } from "react";
 import type { ComponentProps, ReactNode } from "react";
-import { Separator } from "../components/separator";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
-import { cn } from "../lib/utils";
-import { CopyButton } from "./copy-button";
+import {
+  CodePanel,
+  CodePanelActions,
+  CodePanelContent,
+  CodePanelCopyButton,
+  CodePanelEmpty,
+  CodePanelHeader,
+  CodePanelTitle,
+} from "./code-panel";
+import type { CodePanelContentProps, CodePanelProps } from "./code-panel";
 import type { CopyButtonProps } from "./copy-button";
 
 type FileViewOptions<Annotation = undefined> = Omit<
@@ -21,10 +27,7 @@ type FileViewOptions<Annotation = undefined> = Omit<
   | "renderHeaderFilenameSuffix"
   | "renderHeaderMetadata"
 >;
-type FileViewProps<Annotation = undefined> = Omit<
-  ComponentProps<"div">,
-  "children" | "dangerouslySetInnerHTML" | "dir"
-> &
+type FileViewProps<Annotation = undefined> = Omit<CodePanelProps, "children"> &
   Pick<
     FileProps<Annotation, undefined>,
     | "file"
@@ -79,106 +82,53 @@ function FileView<Annotation = undefined>({
     />
   );
   return (
-    <DirectionProvider direction="ltr">
-      <FileViewContext value={{ file, content }}>
-        <div
-          {...props}
-          dir="ltr"
-          data-slot="file-view"
-          className={cn(
-            "min-w-0 w-full overflow-hidden rounded-xl surface-panel text-foreground",
-            className,
-          )}
-        >
-          {children ?? (
-            <>
-              <FileViewHeader>
-                <FileViewTitle />
-                <FileViewActions>
-                  <FileViewCopyButton />
-                </FileViewActions>
-              </FileViewHeader>
-              <FileViewContent />
-            </>
-          )}
-        </div>
-      </FileViewContext>
-    </DirectionProvider>
-  );
-}
-function FileViewHeader({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <>
-      <div
-        {...props}
-        data-slot="file-view-header"
-        className={cn(
-          "flex min-h-10 flex-wrap items-center justify-between gap-related px-3 py-1.5",
-          className,
+    <FileViewContext value={{ file, content }}>
+      <CodePanel {...props} data-slot="file-view" className={className}>
+        {children ?? (
+          <>
+            <FileViewHeader>
+              <FileViewTitle />
+              <FileViewActions>
+                <FileViewCopyButton />
+              </FileViewActions>
+            </FileViewHeader>
+            <FileViewContent />
+          </>
         )}
-      />
-      <Separator variant="full" />
-    </>
+      </CodePanel>
+    </FileViewContext>
   );
 }
-function FileViewTitle({ children, className, ...props }: ComponentProps<"span">) {
+function FileViewHeader(props: ComponentProps<typeof CodePanelHeader>) {
+  return <CodePanelHeader {...props} data-slot="file-view-header" />;
+}
+function FileViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTitle>) {
   const { file } = useFileView();
   return (
-    <span
-      {...props}
-      data-slot="file-view-title"
-      className={cn("min-w-0 truncate text-metadata font-medium text-muted-foreground", className)}
-    >
-      {children ?? file.name}
-    </span>
+    <CodePanelTitle {...props} data-slot="file-view-title">
+      <span className="truncate">{children ?? file.name}</span>
+    </CodePanelTitle>
   );
 }
-function FileViewActions({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      {...props}
-      data-slot="file-view-actions"
-      className={cn("flex shrink-0 items-center gap-related", className)}
-    />
-  );
+function FileViewActions(props: ComponentProps<typeof CodePanelActions>) {
+  return <CodePanelActions {...props} data-slot="file-view-actions" />;
 }
-function FileViewContent({
-  className,
-  ...props
-}: Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir">) {
+function FileViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
   const { content, file } = useFileView();
   return (
-    <div
-      role="region"
+    <CodePanelContent
       aria-label={`Contents of ${file.name}`}
-      tabIndex={0}
       {...props}
-      dir="ltr"
       data-slot="file-view-content"
-      className={cn(
-        "max-h-120 min-w-0 overflow-auto bg-surface-panel outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
-        className,
-      )}
+      empty={file.contents.length === 0 ? <CodePanelEmpty>Empty file</CodePanelEmpty> : undefined}
     >
-      {file.contents.length > 0 ? (
-        content
-      ) : (
-        <p className="p-panel text-caption text-muted-foreground">Empty file.</p>
-      )}
-    </div>
+      {content}
+    </CodePanelContent>
   );
 }
 function FileViewCopyButton(props: Omit<CopyButtonProps, "value">) {
   const { file } = useFileView();
-  return (
-    <CopyButton
-      variant="ghost"
-      size={props.children == null ? "icon-xs" : "xs"}
-      aria-label="Copy file"
-      {...props}
-      value={file.contents}
-    />
-  );
+  return <CodePanelCopyButton aria-label="Copy file" {...props} value={file.contents} />;
 }
 export {
   FileView,
