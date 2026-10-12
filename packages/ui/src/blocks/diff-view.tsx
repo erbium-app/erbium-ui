@@ -4,7 +4,10 @@ import { FileDiff } from "@pierre/diffs/react";
 import type { FileDiffProps, FileDiffOptions } from "@pierre/diffs/react";
 import { createContext, use, useMemo, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
+import { Icon } from "../components/icon";
+import { applyDiffIcons } from "../lib/diff-icons";
 import { enhanceDiffAccessibility } from "../lib/diff-accessibility";
+import { fileIconName } from "../lib/file-icons";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
 import { cn } from "../lib/utils";
 import {
@@ -98,6 +101,7 @@ function DiffView<Annotation = undefined>({
     unsafeCSS: diffThemeCSS,
     onPostRender(node, instance, phase) {
       if (phase !== "unmount") {
+        applyDiffIcons(node);
         enhanceDiffAccessibility(node);
         setRendered(true);
       }
@@ -159,6 +163,7 @@ function DiffViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTi
   const { fileDiff } = useDiffView();
   return (
     <CodePanelTitle {...props} data-slot="diff-view-title">
+      <Icon name={fileIconName(fileDiff.name)} className="size-4.5" />
       <span className="truncate">
         {children ??
           (fileDiff.prevName && fileDiff.prevName !== fileDiff.name

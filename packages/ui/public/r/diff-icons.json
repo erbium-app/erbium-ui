@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "diff-icons",
+  "type": "registry:lib",
+  "title": "Diff Icons",
+  "description": "Erbium diff icons lib.",
+  "dependencies": ["@erbium/icons"],
+  "files": [
+    {
+      "path": "src/lib/diff-icons.ts",
+      "type": "registry:lib",
+      "target": "@lib/diff-icons.ts",
+      "content": "import { iconDefinitions } from \"@erbium/icons\";\nimport type { IconName } from \"@erbium/icons\";\nimport { spriteSheets } from \"@erbium/icons/sprite\";\n\n// Pierre draws its controls from a sprite inside the shadow root. Point the\n// icons Erbium renders at the shared set so a diff matches the rest of the UI.\nconst replacements: Record<string, IconName> = {\n  \"diffs-icon-expand\": \"chevron-down\",\n  \"diffs-icon-expand-all\": \"unfold-more\",\n  \"diffs-icon-plus\": \"plus\",\n};\nconst markup = `<svg data-icon-sprite data-erbium-icons aria-hidden=\"true\" width=\"0\" height=\"0\">${Object.values(\n  replacements,\n)\n  .map((name) => {\n    const match = new RegExp(\n      `<symbol[^>]*\\\\sid=\"${iconDefinitions[name].id}\"[\\\\s\\\\S]*?</symbol>`,\n    ).exec(spriteSheets.ui);\n    return match?.[0] ?? \"\";\n  })\n  .join(\"\")}</svg>`;\n\nfunction applyDiffIcons(host: HTMLElement) {\n  const root = host.shadowRoot;\n  if (!root) return;\n  if (!root.querySelector(\"[data-erbium-icons]\")) {\n    const template = document.createElement(\"template\");\n    template.innerHTML = markup;\n    root.prepend(template.content);\n  }\n  for (const use of root.querySelectorAll(\"use\")) {\n    const name = replacements[use.getAttribute(\"href\")?.replace(/^#/, \"\") ?? \"\"];\n    if (name) use.setAttribute(\"href\", `#${iconDefinitions[name].id}`);\n  }\n}\n\nexport { applyDiffIcons };\n"
+    }
+  ]
+}

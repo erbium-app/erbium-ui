@@ -3,7 +3,9 @@ import type { FileProps, FileOptions } from "@pierre/diffs/react";
 import type { FileContents } from "@pierre/diffs";
 import { createContext, use, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
+import { Icon } from "../components/icon";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
+import { fileIconName } from "../lib/file-icons";
 import {
   CodePanel,
   CodePanelActions,
@@ -117,6 +119,7 @@ function FileViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTi
   const { file } = useFileView();
   return (
     <CodePanelTitle {...props} data-slot="file-view-title">
+      <Icon name={fileIconName(file.name)} className="size-4.5" />
       <span className="truncate">{children ?? file.name}</span>
     </CodePanelTitle>
   );

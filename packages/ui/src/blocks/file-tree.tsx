@@ -5,6 +5,7 @@ import { createContext, use, useEffect, useRef, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { DirectionProvider } from "../components/direction";
 import { Spinner } from "../components/spinner";
+import { fileTreeIcons } from "../lib/file-icons";
 import { treeThemeCSS } from "../lib/tree-theme";
 import { cn } from "../lib/utils";
 
@@ -15,12 +16,19 @@ type FileTreeOptions = Omit<
   | "searchFakeFocus"
   | "density"
   | "itemHeight"
+  | "icons"
   | "paths"
   | "preparedInput"
 > & { paths: readonly string[] };
 function useFileTree(options: FileTreeOptions) {
   // Match the sidebar’s 1.75rem control height; Pierre needs pixels for virtualization.
-  return usePierreTree({ ...options, density: "default", itemHeight: 28, unsafeCSS: treeThemeCSS });
+  return usePierreTree({
+    ...options,
+    density: "default",
+    itemHeight: 28,
+    icons: fileTreeIcons,
+    unsafeCSS: treeThemeCSS,
+  });
 }
 type FileTreeProps = Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir"> &
   Pick<PierreTreeProps, "model" | "preloadedData" | "renderContextMenu"> & { children?: ReactNode };

@@ -563,6 +563,20 @@
       ]
     },
     {
+      "name": "diff-icons",
+      "type": "registry:lib",
+      "title": "Diff Icons",
+      "description": "Erbium diff icons lib.",
+      "dependencies": ["@erbium/icons"],
+      "files": [
+        {
+          "path": "src/lib/diff-icons.ts",
+          "type": "registry:lib",
+          "target": "@lib/diff-icons.ts"
+        }
+      ]
+    },
+    {
       "name": "diff-theme",
       "type": "registry:lib",
       "title": "Diff Theme",
@@ -585,7 +599,10 @@
         "@erbium/code-panel",
         "@erbium/copy-button",
         "@erbium/diff-accessibility",
+        "@erbium/diff-icons",
         "@erbium/diff-theme",
+        "@erbium/file-icons",
+        "@erbium/icon",
         "@erbium/utils"
       ],
       "files": [
@@ -697,6 +714,20 @@
       ]
     },
     {
+      "name": "file-icons",
+      "type": "registry:lib",
+      "title": "File Icons",
+      "description": "Erbium file icons lib.",
+      "dependencies": ["@erbium/icons"],
+      "files": [
+        {
+          "path": "src/lib/file-icons.ts",
+          "type": "registry:lib",
+          "target": "@lib/file-icons.ts"
+        }
+      ]
+    },
+    {
       "name": "file-tree",
       "type": "registry:block",
       "title": "File Tree",
@@ -704,6 +735,7 @@
       "dependencies": ["@pierre/trees"],
       "registryDependencies": [
         "@erbium/direction",
+        "@erbium/file-icons",
         "@erbium/spinner",
         "@erbium/tree-theme",
         "@erbium/utils"
@@ -722,7 +754,13 @@
       "title": "File View",
       "description": "Erbium file view block.",
       "dependencies": ["@pierre/diffs"],
-      "registryDependencies": ["@erbium/code-panel", "@erbium/copy-button", "@erbium/diff-theme"],
+      "registryDependencies": [
+        "@erbium/code-panel",
+        "@erbium/copy-button",
+        "@erbium/diff-theme",
+        "@erbium/file-icons",
+        "@erbium/icon"
+      ],
       "files": [
         {
           "path": "src/blocks/file-view.tsx",
