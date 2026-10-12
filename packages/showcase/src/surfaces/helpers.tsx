@@ -8,9 +8,9 @@ export const states = [
   ["disabled", { "aria-disabled": true }, "opacity-50"],
 ] as const;
 
-export function Canvas({ children }: { children: React.ReactNode }) {
+export function SurfaceStage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="@container grid w-full min-w-0 place-items-center bg-surface-canvas text-caption text-foreground">
+    <div className="@container grid w-full min-w-0 place-items-center bg-surface-panel text-caption text-foreground">
       {children}
     </div>
   );

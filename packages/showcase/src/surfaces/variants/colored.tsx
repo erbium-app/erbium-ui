@@ -1,7 +1,7 @@
-import { Canvas, coloredSurfaces, tagColors } from "../helpers";
+import { SurfaceStage, coloredSurfaces, tagColors } from "../helpers";
 
 const Example = () => (
-  <Canvas>
+  <SurfaceStage>
     <div className="grid w-full max-w-lg gap-group">
       {coloredSurfaces.map(([color, fill, tint]) => (
         <div key={color} className="grid grid-cols-2 gap-group">
@@ -20,7 +20,7 @@ const Example = () => (
         ))}
       </div>
     </div>
-  </Canvas>
+  </SurfaceStage>
 );
 
 export default Example;

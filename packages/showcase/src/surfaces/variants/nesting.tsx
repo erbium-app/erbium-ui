@@ -1,8 +1,8 @@
 import { Icon } from "@erbium/ui/components/icon";
-import { Canvas, control } from "../helpers";
+import { SurfaceStage, control } from "../helpers";
 
 const Example = () => (
-  <Canvas>
+  <SurfaceStage>
     <div className="grid w-full max-w-3xl items-start gap-8 @xl:grid-cols-2">
       <div className="grid gap-related">
         <span aria-expanded className={`${control} w-fit border surface-control`}>
@@ -33,7 +33,7 @@ const Example = () => (
         </div>
       </div>
     </div>
-  </Canvas>
+  </SurfaceStage>
 );
 
 export default Example;

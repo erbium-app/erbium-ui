@@ -1,7 +1,7 @@
-import { Canvas, ladder } from "../helpers";
+import { SurfaceStage, ladder } from "../helpers";
 
 const Example = () => (
-  <Canvas>
+  <SurfaceStage>
     <div className="flex w-full max-w-2xl flex-wrap justify-center gap-x-4 gap-y-8">
       {ladder.map(([name, classes, use]) => (
         <div key={name} className="grid w-32 content-start justify-items-center gap-3">
@@ -13,7 +13,7 @@ const Example = () => (
         </div>
       ))}
     </div>
-  </Canvas>
+  </SurfaceStage>
 );
 
 export default Example;

@@ -1,10 +1,10 @@
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
 import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
-import { Canvas } from "../helpers";
+import { SurfaceStage } from "../helpers";
 
 const Example = () => (
-  <Canvas>
+  <SurfaceStage>
     <div className="grid gap-8">
       {(["ltr", "rtl"] as const).map((direction) => (
         <section key={direction} dir={direction} className="grid justify-items-start gap-group">
@@ -54,7 +54,7 @@ const Example = () => (
         </section>
       ))}
     </div>
-  </Canvas>
+  </SurfaceStage>
 );
 
 export default Example;

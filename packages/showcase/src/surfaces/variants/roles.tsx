@@ -1,10 +1,10 @@
 import { Icon } from "@erbium/ui/components/icon";
 import type { IconProps } from "@erbium/ui/components/icon";
 import { Kbd } from "@erbium/ui/components/kbd";
-import { Canvas, control } from "../helpers";
+import { SurfaceStage, control } from "../helpers";
 
 const Example = () => (
-  <Canvas>
+  <SurfaceStage>
     <div className="grid w-full max-w-3xl gap-section">
       <div className="flex flex-wrap items-center gap-related">
         <div className="flex control-size control-adaptive w-full max-w-72 items-center rounded-lg border surface-field">
@@ -100,7 +100,7 @@ const Example = () => (
         <Kbd hotkey="Mod+K" />
       </div>
     </div>
-  </Canvas>
+  </SurfaceStage>
 );
 
 export default Example;

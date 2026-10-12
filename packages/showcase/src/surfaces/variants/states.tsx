@@ -1,7 +1,7 @@
-import { Canvas, control, sunk, stateRoles, states } from "../helpers";
+import { SurfaceStage, control, sunk, stateRoles, states } from "../helpers";
 
 const Example = () => (
-  <Canvas>
+  <SurfaceStage>
     <div className="grid w-full max-w-3xl gap-group rounded-xl border surface-panel p-6">
       {stateRoles.map(([role, raised]) => (
         <div key={role} className="flex flex-wrap gap-group">
@@ -17,7 +17,7 @@ const Example = () => (
         </div>
       ))}
     </div>
-  </Canvas>
+  </SurfaceStage>
 );
 
 export default Example;

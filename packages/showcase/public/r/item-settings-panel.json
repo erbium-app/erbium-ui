@@ -24,7 +24,7 @@
       "path": "src/item/variants/settings-panel.tsx",
       "type": "registry:component",
       "target": "@components/showcase/item/variants/settings-panel.tsx",
-      "content": "import ExampleItemSettingsPanel from \"../examples/item-settings-panel\";\n\nconst Example = () => (\n  <div className=\"flex w-full min-w-0 justify-center bg-surface-canvas text-foreground\">\n    <ExampleItemSettingsPanel />\n  </div>\n);\n\nexport default Example;\n"
+      "content": "import ExampleItemSettingsPanel from \"../examples/item-settings-panel\";\n\nconst Example = () => (\n  <div className=\"flex w-full min-w-0 justify-center bg-surface-panel text-foreground\">\n    <ExampleItemSettingsPanel />\n  </div>\n);\n\nexport default Example;\n"
     }
   ]
 }
