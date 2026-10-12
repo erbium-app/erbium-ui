@@ -13,8 +13,17 @@
 @import "./effects.css";
 @import "./typeset.css";
 @import "./base.css";
+@import "./scrollbar.css";
 
 @plugin "easing-gradients";
+
+/* Only suppress transitions for the palette swap; normal interaction motion resumes afterward. */
+html[data-theme-changing],
+html[data-theme-changing] *,
+html[data-theme-changing] *::before,
+html[data-theme-changing] *::after {
+  transition: none !important;
+}
 
 @utility animate-in {
   animation: var(--animate-in);

@@ -1,0 +1,77 @@
+/* Native document, code, table and textarea scrollers share ScrollArea's palette. */
+@theme {
+  --spacing-scrollbar-track: 0.5rem;
+  --spacing-scrollbar-thumb: 0.375rem;
+  --spacing-scrollbar-track-default: 0.625rem;
+  --spacing-scrollbar-thumb-default: 0.5rem;
+}
+
+@theme inline {
+  --color-scrollbar-thumb: var(--scrollbar-thumb);
+  --color-scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+  --color-scrollbar-thumb-active: var(--scrollbar-thumb-active);
+  --color-scrollbar-thumb-scrolling: var(--scrollbar-thumb-scrolling);
+}
+
+@layer base {
+  * {
+    --scrollbar-thumb: color-mix(in srgb, var(--muted-foreground) 35%, transparent);
+    --scrollbar-thumb-hover: color-mix(in srgb, var(--muted-foreground) 55%, transparent);
+    --scrollbar-thumb-active: color-mix(in srgb, var(--muted-foreground) 70%, transparent);
+    --scrollbar-thumb-scrolling: color-mix(in srgb, var(--muted-foreground) 60%, transparent);
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: var(--spacing-scrollbar-track);
+    height: var(--spacing-scrollbar-track);
+  }
+
+  *::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: var(--scrollbar-thumb);
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background-color: var(--scrollbar-thumb-active);
+  }
+
+  @media (forced-colors: active) {
+    * {
+      scrollbar-color: auto;
+    }
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+@utility scrollbar-gutter-stable {
+  scrollbar-gutter: stable;
+}
+
+@utility scrollbar-thumb-transparent {
+  scrollbar-color: transparent transparent;
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+}
+
+@utility scrollbar-track-transparent {
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

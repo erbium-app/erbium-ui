@@ -6,6 +6,7 @@ import type { ComponentProps } from "react";
 import { Button } from "../components/button";
 import { StatefulIcon } from "../components/stateful-icon";
 import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard";
+import type { CopyToClipboardValue } from "../hooks/use-copy-to-clipboard";
 
 type CopyButtonState = {
   copied: boolean;
@@ -22,7 +23,8 @@ function useCopyButtonState() {
 
 type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
   Pick<ComponentProps<typeof Button>, "variant" | "size" | "loading" | "focusableWhenDisabled"> & {
-    value: string;
+    /** Fetch content on demand while using the same pending, success and error lifecycle. */
+    value: CopyToClipboardValue;
     timeout?: number;
     onCopied?: () => void;
     onError?: (error: unknown) => void;
@@ -83,7 +85,7 @@ function CopyButton({
             size: props.size ?? (children == null ? "icon" : "default"),
           }
         : {}),
-      loading,
+      loading: loading || state.pending,
     },
   });
   return (

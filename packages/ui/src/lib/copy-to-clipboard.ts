@@ -10,6 +10,7 @@ type CopyToClipboardOptions = {
   onCopy?: () => void;
   onError?: (error: unknown) => void;
 };
+type CopyToClipboardValue = string | (() => Promise<string>);
 const idleState: CopyToClipboardState = {
   status: "idle",
   revision: 0,
@@ -38,7 +39,7 @@ function createCopyToClipboard() {
       };
     },
     async copyToClipboard(
-      value: string | (() => Promise<string>),
+      value: CopyToClipboardValue,
       { timeout = 2000, onCopy, onError }: CopyToClipboardOptions = {},
     ): Promise<boolean> {
       if (state.isPending) return false;
@@ -97,4 +98,4 @@ function createCopyToClipboard() {
   };
 }
 export { createCopyToClipboard };
-export type { CopyToClipboardOptions, CopyToClipboardState };
+export type { CopyToClipboardOptions, CopyToClipboardState, CopyToClipboardValue };

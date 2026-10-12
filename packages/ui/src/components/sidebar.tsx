@@ -364,7 +364,14 @@ function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof S
   );
 }
 
-function SidebarContent({ className, children, ...props }: React.ComponentProps<"div">) {
+function SidebarContent({
+  className,
+  children,
+  scrollbar = "thin",
+  ...props
+}: React.ComponentProps<"div"> & {
+  scrollbar?: React.ComponentProps<typeof ScrollArea>["scrollbar"];
+}) {
   return (
     <ScrollArea
       className="min-h-0 flex-1"
@@ -379,7 +386,7 @@ function SidebarContent({ className, children, ...props }: React.ComponentProps<
       }
       contentClassName="flex flex-col gap-0"
       fade="vertical"
-      scrollbar="none"
+      scrollbar={scrollbar}
     >
       {children}
     </ScrollArea>

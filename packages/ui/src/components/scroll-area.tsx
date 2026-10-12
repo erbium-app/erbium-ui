@@ -22,12 +22,12 @@ const scrollAreaViewportVariants = cva(
 );
 
 const scrollBarThumbVariants = cva(
-  "relative flex-1 rounded-full bg-muted-foreground/35 transition-[background-color,transform] duration-200 hover:bg-muted-foreground/55 active:bg-muted-foreground/70 data-scrolling:bg-muted-foreground/60",
+  "relative rounded-full bg-scrollbar-thumb transition-[background-color,transform] duration-200 hover:bg-scrollbar-thumb-hover active:bg-scrollbar-thumb-active data-scrolling:bg-scrollbar-thumb-scrolling forced-colors:bg-[ButtonText]",
   {
     variants: {
       orientation: {
-        vertical: "mx-auto w-1.5",
-        horizontal: "my-auto h-1.5",
+        vertical: "mx-auto w-scrollbar-thumb",
+        horizontal: "my-auto h-scrollbar-thumb",
       },
       size: {
         thin: "",
@@ -35,8 +35,8 @@ const scrollBarThumbVariants = cva(
       },
     },
     compoundVariants: [
-      { orientation: "vertical", size: "default", className: "w-2" },
-      { orientation: "horizontal", size: "default", className: "h-2" },
+      { orientation: "vertical", size: "default", className: "w-scrollbar-thumb-default" },
+      { orientation: "horizontal", size: "default", className: "h-scrollbar-thumb-default" },
     ],
   },
 );
@@ -156,9 +156,9 @@ function ScrollBar({
       data-visibility={visibility}
       orientation={orientation}
       className={cn(
-        "flex touch-none select-none transition-opacity duration-200 data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:flex-col data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+        "flex touch-none select-none transition-opacity duration-200 data-[orientation=horizontal]:h-scrollbar-track data-[orientation=horizontal]:flex-col data-[orientation=vertical]:h-full data-[orientation=vertical]:w-scrollbar-track",
         "data-[visibility=hover]:opacity-0 data-[visibility=hover]:data-hovering:opacity-100 data-[visibility=scroll]:opacity-0 data-[visibility=scroll]:data-scrolling:opacity-100",
-        "data-[size=default]:data-[orientation=horizontal]:h-2.5 data-[size=default]:data-[orientation=vertical]:w-2.5",
+        "data-[size=default]:data-[orientation=horizontal]:h-scrollbar-track-default data-[size=default]:data-[orientation=vertical]:w-scrollbar-track-default",
         className,
       )}
       {...props}

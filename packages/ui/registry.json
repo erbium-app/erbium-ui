@@ -252,6 +252,19 @@
       ]
     },
     {
+      "name": "change-theme",
+      "type": "registry:lib",
+      "title": "Change Theme",
+      "description": "Erbium change theme lib.",
+      "files": [
+        {
+          "path": "src/lib/change-theme.ts",
+          "type": "registry:lib",
+          "target": "@lib/change-theme.ts"
+        }
+      ]
+    },
+    {
       "name": "chart",
       "type": "registry:ui",
       "title": "Chart",
@@ -1390,6 +1403,11 @@
           "path": "src/styles/globals.css",
           "type": "registry:file",
           "target": "~/src/styles/globals.css"
+        },
+        {
+          "path": "src/styles/scrollbar.css",
+          "type": "registry:file",
+          "target": "~/src/styles/scrollbar.css"
         },
         {
           "path": "src/styles/sizing.css",
