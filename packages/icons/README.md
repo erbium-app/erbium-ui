@@ -7,10 +7,21 @@ policy, theme, or file/language resolver. Consumers own those concerns.
 ## Exports
 
 ```ts
-import { iconDefinitions, iconNames } from "@erbium/icons";
-import type { IconName, IconSymbolId } from "@erbium/icons";
-import { spriteSheet } from "@erbium/icons/sprite";
+import { iconDefinitions, iconGroups, iconNames } from "@erbium/icons";
+import type { IconGroup, IconName, IconSymbolId } from "@erbium/icons";
+import { spriteSheet, spriteSheets } from "@erbium/icons/sprite";
 ```
+
+Icons are organised in groups, one per directory under `svg/`:
+
+- `files`: file-type, language, and tooling artwork. Filled, multi-tone, and
+  colored by the artwork itself.
+- `ui`: interface glyphs. 24px stroke icons that follow `currentColor`; set
+  `--icon-stroke-width` (default `1.5`) to change the weight.
+
+`iconGroups[group]` lists the names in a group. `spriteSheet` contains every
+symbol; `spriteSheets[group]` contains only that group, for consumers such as
+Pierre's file tree that inject a sprite into a shadow root.
 
 `iconNames` lists all SVG basenames. `iconDefinitions[name]` contains the matching
 `id` and original `viewBox`. Symbol IDs use the stable `erbium-icon-` prefix.
@@ -27,8 +38,8 @@ The sprite contains no mounting attributes or application styles.
 
 ## Sources and generation
 
-Add SVGs under `svg/`. Filenames must be lowercase kebab case and globally unique,
-including across subdirectories. Each source needs a valid `viewBox`.
+Add SVGs under `svg/<group>/`. Filenames must be lowercase kebab case and globally
+unique, including across groups. Each source needs a valid `viewBox`.
 
 From the workspace root:
 
@@ -49,5 +60,6 @@ are added, edited, or deleted. Consumers watching generated files can then reloa
 them. The package's Vite+ build task declares source inputs and generated outputs
 for build caching; no custom Vite plugin is required.
 
-The initial 45 file, language, and tooling icons are Pierre SVG assets. See
-`NOTICE.md` and `LICENSE.pierre.md` for provenance and redistribution terms.
+The 45 file, language, and tooling icons are Pierre SVG assets, and the interface
+glyphs are converted from Hugeicons. See `NOTICE.md`, `LICENSE.pierre.md`, and
+`LICENSE.hugeicons.md` for provenance and redistribution terms.

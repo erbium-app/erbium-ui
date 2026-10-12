@@ -1,6 +1,6 @@
 import { watch } from "node:fs";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
-import { basename, join } from "node:path";
+import { basename, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { format } from "oxfmt";
 import { optimize } from "svgo";
@@ -39,8 +39,11 @@ async function generate() {
   if (files.length === 0) throw new Error("No SVG icons found.");
   const definitions = {};
   const symbols = [];
+  const groups = {};
   for (const path of files) {
     const name = basename(path, ".svg");
+    const group = relative(sourceDirectory, path).split(sep).slice(0, -1)[0];
+    if (!group) throw new Error(`Icons must live in a group directory: ${path}`);
     if (!namePattern.test(name)) throw new Error(`Invalid icon name: ${name}`);
     if (Object.hasOwn(definitions, name)) throw new Error(`Duplicate icon name: ${name}`);
     const id = `erbium-icon-${name}`;
@@ -84,24 +87,34 @@ async function generate() {
     });
     if (!viewBox) throw new Error(`Missing SVG root: ${path}`);
     definitions[name] = { id, viewBox };
+    (groups[group] ??= { names: [], symbols: [] }).names.push(name);
+    groups[group].symbols.push(result.data);
     symbols.push(result.data);
   }
   const names = Object.keys(definitions).sort(compareNames);
   const sortedDefinitions = Object.fromEntries(names.map((name) => [name, definitions[name]]));
-  const spriteSheet = `<svg xmlns="http://www.w3.org/2000/svg">\n${symbols.join("\n")}\n</svg>\n`;
+  const sheet = (list) => `<svg xmlns="http://www.w3.org/2000/svg">\n${list.join("\n")}\n</svg>\n`;
+  const spriteSheet = sheet(symbols);
+  const groupNames = Object.keys(groups).sort(compareNames);
+  const iconGroups = Object.fromEntries(
+    groupNames.map((group) => [group, groups[group].names.sort(compareNames)]),
+  );
+  const spriteSheets = Object.fromEntries(
+    groupNames.map((group) => [group, sheet(groups[group].symbols)]),
+  );
   const outputs = new Map([
     [
       "index.js",
       await formatSource(
         "index.js",
-        `export const iconNames = ${JSON.stringify(names)};\nexport const iconDefinitions = ${JSON.stringify(sortedDefinitions)};\n`,
+        `export const iconNames = ${JSON.stringify(names)};\nexport const iconGroups = ${JSON.stringify(iconGroups)};\nexport const iconDefinitions = ${JSON.stringify(sortedDefinitions)};\n`,
       ),
     ],
     [
       "index.d.ts",
       await formatSource(
         "index.d.ts",
-        `export declare const iconNames: readonly ${JSON.stringify(names)};\nexport type IconName = (typeof iconNames)[number];\nexport type IconSymbolId = \`erbium-icon-\${IconName}\`;\nexport declare const iconDefinitions: { readonly [Name in IconName]: { readonly id: \`erbium-icon-\${Name}\`; readonly viewBox: string } };\n`,
+        `export declare const iconNames: readonly ${JSON.stringify(names)};\nexport declare const iconGroups: { ${groupNames.map((group) => `readonly ${JSON.stringify(group)}: readonly ${JSON.stringify(iconGroups[group])}`).join("; ")} };\nexport type IconGroup = keyof typeof iconGroups;\nexport type IconName = (typeof iconNames)[number];\nexport type IconSymbolId = \`erbium-icon-\${IconName}\`;\nexport declare const iconDefinitions: { readonly [Name in IconName]: { readonly id: \`erbium-icon-\${Name}\`; readonly viewBox: string } };\n`,
       ),
     ],
     ["sprite.svg", spriteSheet],
@@ -109,12 +122,15 @@ async function generate() {
       "sprite.js",
       await formatSource(
         "sprite.js",
-        `export const spriteSheet = ${JSON.stringify(spriteSheet)};\n`,
+        `export const spriteSheet = ${JSON.stringify(spriteSheet)};\nexport const spriteSheets = ${JSON.stringify(spriteSheets)};\n`,
       ),
     ],
     [
       "sprite.d.ts",
-      await formatSource("sprite.d.ts", "export declare const spriteSheet: string;\n"),
+      await formatSource(
+        "sprite.d.ts",
+        `export declare const spriteSheet: string;\nexport declare const spriteSheets: { ${groupNames.map((group) => `readonly ${JSON.stringify(group)}: string`).join("; ")} };\n`,
+      ),
     ],
   ]);
   const stale = [];
