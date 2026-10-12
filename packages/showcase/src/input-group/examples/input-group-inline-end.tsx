@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import EyeOffIcon from "@hugeicons/core-free-icons/EyeOffIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
@@ -11,7 +10,7 @@ export function InputGroupInlineEnd() {
       <InputGroup>
         <InputGroupInput type="password" placeholder="Enter password" />
         <InputGroupAddon align="inline-end">
-          <HugeiconsIcon icon={EyeOffIcon} />
+          <Icon name="eye-off" />
         </InputGroupAddon>
       </InputGroup>
       <FieldDescription>Icon positioned at the end.</FieldDescription>

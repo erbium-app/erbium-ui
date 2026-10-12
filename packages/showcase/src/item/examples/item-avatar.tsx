@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 import { Button } from "@erbium/ui/components/button";
@@ -31,7 +30,7 @@ export default function ItemAvatar() {
         </ItemContent>
         <ItemActions>
           <Button size="icon-sm" variant="outline" className="rounded-full" aria-label="Invite">
-            <HugeiconsIcon icon={PlusIcon} />
+            <Icon name="plus" />
           </Button>
         </ItemActions>
       </Item>

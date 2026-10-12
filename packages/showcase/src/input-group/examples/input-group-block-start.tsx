@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@erbium/ui/components/field";
 import {
@@ -37,7 +36,7 @@ export function InputGroupBlockStart() {
             className="font-mono text-caption"
           />
           <InputGroupAddon align="block-start">
-            <HugeiconsIcon icon={FileCodeIcon} className="text-muted-foreground" />
+            <Icon name="file-code" className="text-muted-foreground" />
             <InputGroupText className="font-mono">script.js</InputGroupText>
             <CopyButton
               value={code}

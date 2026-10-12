@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Switch: Icons",
   "description": "Pass `startIcon` (shown while on), `endIcon` (shown while off) or `thumbIcon` (always shown). Icons scale in on the exposed side of the track.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+  "registryDependencies": ["@erbium/field", "@erbium/icon", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
       "path": "src/switch/examples/switch-icons.tsx",
       "type": "registry:component",
       "target": "@components/showcase/switch/examples/switch-icons.tsx",
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport { HugeiconsIcon } from \"@hugeicons/react\";\nimport CheckIcon from \"@hugeicons/core-free-icons/CheckIcon\";\nimport MoonIcon from \"@hugeicons/core-free-icons/MoonIcon\";\nimport Sun01Icon from \"@hugeicons/core-free-icons/Sun01Icon\";\nimport XIcon from \"@hugeicons/core-free-icons/XIcon\";\n\nexport default function SwitchIcons() {\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Switch\n          startIcon={<HugeiconsIcon icon={CheckIcon} />}\n          endIcon={<HugeiconsIcon icon={XIcon} />}\n          defaultChecked\n        />\n        <FieldLabel>Track icons</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch thumbIcon={<HugeiconsIcon icon={Sun01Icon} />} />\n        <FieldLabel>Thumb icon</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch\n          startIcon={<HugeiconsIcon icon={MoonIcon} />}\n          endIcon={<HugeiconsIcon icon={Sun01Icon} />}\n        />\n        <FieldLabel>Dark mode</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n"
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\n\nexport default function SwitchIcons() {\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Switch startIcon={<Icon name=\"check\" />} endIcon={<Icon name=\"x\" />} defaultChecked />\n        <FieldLabel>Track icons</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch thumbIcon={<Icon name=\"sun-01\" />} />\n        <FieldLabel>Thumb icon</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch startIcon={<Icon name=\"moon\" />} endIcon={<Icon name=\"sun-01\" />} />\n        <FieldLabel>Dark mode</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/switch/variants/icons.tsx",

@@ -1,6 +1,5 @@
 import { cn } from "@erbium/ui/lib/utils";
-import { HugeiconsIcon } from "@hugeicons/react";
-import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -57,7 +56,7 @@ const columns = columnHelper.columns([
     cell: ({ row }) => (
       <DropdownMenu>
         <DropdownMenuTrigger render={<Button variant="ghost" size="icon" />}>
-          <HugeiconsIcon icon={MoreHorizontalIcon} />
+          <Icon name="more-horizontal" />
           <span className="sr-only">Open menu for {row.original.name}</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">

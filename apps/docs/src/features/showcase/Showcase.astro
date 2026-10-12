@@ -3,8 +3,6 @@ import Prose from "@/components/content/Prose.astro";
 import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
 import ShowcaseControls from "@/features/showcase/ShowcaseControls.astro";
 import Icon from "@/components/primitives/Icon.astro";
-import Add01Icon from "@hugeicons/core-free-icons/Add01Icon";
-import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
 import CodeBlock from "@/features/code/CodeBlock.astro";
 import Separator from "@/components/primitives/Separator.astro";
 import ShowcaseTabs from "@/features/showcase/ShowcaseTabs.tsx";
@@ -36,7 +34,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
   <h2>
     <a href={`#${anchorId}`}
       >{title}<span class="heading-anchor inline-flex align-middle opacity-0 ms-2 text-muted-foreground font-normal" aria-hidden="true"
-        ><Icon icon={Link01Icon} size={14} /></span
+        ><Icon name="link-01" size={14} /></span
       ></a
     >
   </h2>
@@ -82,7 +80,7 @@ const command = `npx shadcn@latest add @erbium-examples/${name}-${slug}`;
   <details class="install-example mt-3 text-metadata text-muted-foreground [&_summary]:flex [&_summary]:w-fit [&_summary]:gap-3 [&_summary]:items-center [&_summary]:cursor-pointer [&_summary]:list-none [&_summary]:py-[0.3rem] [&_summary::-webkit-details-marker]:hidden [&[open]_summary_>_span]:[transform:rotate(45deg)] [&_summary:focus-visible]:[outline:2px_solid_var(--ring)] [&_summary:focus-visible]:[outline-offset:3px]">
     <summary
       >Install this example <span aria-hidden="true"
-        ><Icon icon={Add01Icon} size={14} /></span
+        ><Icon name="add-01" size={14} /></span
       ></summary
     ><div class="install-command surface-field [--surface-face:var(--surface-canvas)] flex items-center justify-between gap-3 p-[0.7rem_1rem] border border-transparent rounded-md mt-2 text-foreground [&_code]:flex-1 [&_code]:min-w-0 [&_code]:whitespace-nowrap [&_code]:overflow-auto [&_code]:text-metadata  [&_code]:font-mono">
       <code id={`${id}-install`}>{command}</code><CopyButton

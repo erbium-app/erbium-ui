@@ -1,12 +1,11 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ItalicIcon from "@hugeicons/core-free-icons/ItalicIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Toggle } from "@erbium/ui/components/toggle";
 
 export function ToggleText() {
   return (
     <Toggle aria-label="Toggle italic">
-      <HugeiconsIcon icon={ItalicIcon} />
+      <Icon name="italic" />
       Italic
     </Toggle>
   );

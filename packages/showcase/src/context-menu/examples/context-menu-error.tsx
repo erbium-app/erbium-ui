@@ -1,7 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PencilIcon from "@hugeicons/core-free-icons/PencilIcon";
-import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
-import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   ContextMenu,
@@ -24,18 +21,18 @@ export function ContextMenuError() {
         <ContextMenuList>
           <ContextMenuGroup>
             <ContextMenuItem>
-              <HugeiconsIcon icon={PencilIcon} />
+              <Icon name="pencil" />
               Edit
             </ContextMenuItem>
             <ContextMenuItem>
-              <HugeiconsIcon icon={Share01Icon} />
+              <Icon name="share-01" />
               Share
             </ContextMenuItem>
           </ContextMenuGroup>
           <ContextMenuSeparator />
           <ContextMenuGroup>
             <ContextMenuItem variant="error">
-              <HugeiconsIcon icon={TrashIcon} />
+              <Icon name="trash" />
               Delete
             </ContextMenuItem>
           </ContextMenuGroup>

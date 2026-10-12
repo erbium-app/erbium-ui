@@ -4,10 +4,10 @@
   "type": "registry:block",
   "title": "Button Group: Input",
   "description": "Wrap an `Input` component with buttons.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
   "registryDependencies": [
     "@erbium/button",
     "@erbium/button-group",
+    "@erbium/icon",
     "@erbium/input",
     "@erbium/styles"
   ],
@@ -16,7 +16,7 @@
       "path": "src/button-group/examples/button-group-input.tsx",
       "type": "registry:component",
       "target": "@components/showcase/button-group/examples/button-group-input.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function ButtonGroupInput() {\n  return (\n    <ButtonGroup>\n      <Input placeholder=\"Search...\" />\n      <Button variant=\"outline\" aria-label=\"Search\">\n        <HugeiconsIcon icon={Search01Icon} />\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function ButtonGroupInput() {\n  return (\n    <ButtonGroup>\n      <Input placeholder=\"Search...\" />\n      <Button variant=\"outline\" aria-label=\"Search\">\n        <Icon name=\"search-01\" />\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
     },
     {
       "path": "src/button-group/variants/input.tsx",

@@ -1,10 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import File01Icon from "@hugeicons/core-free-icons/File01Icon";
-import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
-import HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";
-import SaveIcon from "@hugeicons/core-free-icons/SaveIcon";
-import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
-import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Menubar,
@@ -26,16 +20,16 @@ export function MenubarIcons() {
         <MenubarContent>
           <MenubarList>
             <MenubarItem>
-              <HugeiconsIcon icon={File01Icon} />
+              <Icon name="file-01" />
               New File <MenubarShortcut hotkey="Mod+N" />
             </MenubarItem>
             <MenubarItem>
-              <HugeiconsIcon icon={Folder01Icon} />
+              <Icon name="folder-01" />
               Open Folder
             </MenubarItem>
             <MenubarSeparator />
             <MenubarItem>
-              <HugeiconsIcon icon={SaveIcon} />
+              <Icon name="save" />
               Save <MenubarShortcut hotkey="Mod+S" />
             </MenubarItem>
           </MenubarList>
@@ -47,16 +41,16 @@ export function MenubarIcons() {
           <MenubarList>
             <MenubarGroup>
               <MenubarItem>
-                <HugeiconsIcon icon={Settings01Icon} />
+                <Icon name="settings-01" />
                 Settings
               </MenubarItem>
               <MenubarItem>
-                <HugeiconsIcon icon={HelpCircleIcon} />
+                <Icon name="help-circle" />
                 Help
               </MenubarItem>
               <MenubarSeparator />
               <MenubarItem variant="error">
-                <HugeiconsIcon icon={TrashIcon} />
+                <Icon name="trash" />
                 Delete
               </MenubarItem>
             </MenubarGroup>

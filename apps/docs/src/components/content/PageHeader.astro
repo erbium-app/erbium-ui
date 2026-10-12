@@ -4,8 +4,6 @@ import CopyButton from "@/features/code/CopyButton.astro";
 import { markdownPath } from "@/build/agent/artifacts";
 import Button from "@/components/primitives/Button.astro";
 import Icon from "@/components/primitives/Icon.astro";
-import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
-import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
 interface Props {
   title: string;
   description?: string;
@@ -31,7 +29,7 @@ const { title, description, previous, next } = Astro.props;
             aria-label={`Previous: ${previous.title}`}
             title={previous.title}
           >
-            <Icon icon={ArrowLeft01Icon} />
+            <Icon name="arrow-left-01" />
           </Button>
         )
       }{
@@ -44,7 +42,7 @@ const { title, description, previous, next } = Astro.props;
             aria-label={`Next: ${next.title}`}
             title={next.title}
           >
-            <Icon icon={ArrowRight01Icon} />
+            <Icon name="arrow-right-01" />
           </Button>
         )
       }

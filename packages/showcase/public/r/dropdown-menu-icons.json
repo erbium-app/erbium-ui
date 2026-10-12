@@ -4,14 +4,18 @@
   "type": "registry:block",
   "title": "Dropdown Menu: Icons",
   "description": "Combine icons with labels for quick scanning.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/dropdown-menu",
+    "@erbium/icon",
+    "@erbium/styles"
+  ],
   "files": [
     {
       "path": "src/dropdown-menu/examples/dropdown-menu-icons.tsx",
       "type": "registry:component",
       "target": "@components/showcase/dropdown-menu/examples/dropdown-menu-icons.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport CreditCardIcon from \"@hugeicons/core-free-icons/CreditCardIcon\";\nimport LogOutIcon from \"@hugeicons/core-free-icons/LogOutIcon\";\nimport Settings01Icon from \"@hugeicons/core-free-icons/Settings01Icon\";\nimport UserIcon from \"@hugeicons/core-free-icons/UserIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n  DropdownMenuList,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuIcons() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuList>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={UserIcon} />\n            Profile\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={CreditCardIcon} />\n            Billing\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <HugeiconsIcon icon={Settings01Icon} />\n            Settings\n          </DropdownMenuItem>\n          <DropdownMenuSeparator />\n          <DropdownMenuItem variant=\"error\">\n            <HugeiconsIcon icon={LogOutIcon} />\n            Log out\n          </DropdownMenuItem>\n        </DropdownMenuList>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n  DropdownMenuList,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuIcons() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuList>\n          <DropdownMenuItem>\n            <Icon name=\"user\" />\n            Profile\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <Icon name=\"credit-card\" />\n            Billing\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <Icon name=\"settings-01\" />\n            Settings\n          </DropdownMenuItem>\n          <DropdownMenuSeparator />\n          <DropdownMenuItem variant=\"error\">\n            <Icon name=\"log-out\" />\n            Log out\n          </DropdownMenuItem>\n        </DropdownMenuList>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
     },
     {
       "path": "src/dropdown-menu/variants/icons.tsx",

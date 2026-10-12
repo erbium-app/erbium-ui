@@ -1,8 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
-import UserIcon from "@hugeicons/core-free-icons/UserIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -27,7 +24,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={UserIcon} />
+            <Icon name="user" />
             <span>Profile</span>
             <CommandShortcut hotkey="Mod+P" />
           </>
@@ -38,7 +35,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={CreditCardIcon} />
+            <Icon name="credit-card" />
             <span>Billing</span>
             <CommandShortcut hotkey="Mod+B" />
           </>
@@ -49,7 +46,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Settings01Icon} />
+            <Icon name="settings-01" />
             <span>Settings</span>
             <CommandShortcut hotkey="Mod+S" />
           </>

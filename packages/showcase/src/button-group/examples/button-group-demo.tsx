@@ -1,14 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArchiveIcon from "@hugeicons/core-free-icons/ArchiveIcon";
-import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
-import CalendarPlusIcon from "@hugeicons/core-free-icons/CalendarPlusIcon";
-import Clock01Icon from "@hugeicons/core-free-icons/Clock01Icon";
-import Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";
-import ListFilterIcon from "@hugeicons/core-free-icons/ListFilterIcon";
-import MailCheckIcon from "@hugeicons/core-free-icons/MailCheckIcon";
-import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
-import Tag01Icon from "@hugeicons/core-free-icons/Tag01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
@@ -34,7 +25,7 @@ export default function ButtonGroupDemo() {
     <ButtonGroup>
       <ButtonGroup className="hidden sm:flex">
         <Button variant="outline" size="icon" aria-label="Go Back">
-          <HugeiconsIcon icon={ArrowLeft01Icon} />
+          <Icon name="arrow-left-01" />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -47,7 +38,7 @@ export default function ButtonGroupDemo() {
           <DropdownMenuTrigger
             render={
               <Button variant="outline" size="icon" aria-label="More Options">
-                <HugeiconsIcon icon={MoreHorizontalIcon} />
+                <Icon name="more-horizontal" />
               </Button>
             }
           />
@@ -55,31 +46,31 @@ export default function ButtonGroupDemo() {
             <DropdownMenuList>
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <HugeiconsIcon icon={MailCheckIcon} />
+                  <Icon name="mail-check" />
                   Mark as Read
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <HugeiconsIcon icon={ArchiveIcon} />
+                  <Icon name="archive" />
                   Archive
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>
-                  <HugeiconsIcon icon={Clock01Icon} />
+                  <Icon name="clock-01" />
                   Snooze
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <HugeiconsIcon icon={CalendarPlusIcon} />
+                  <Icon name="calendar-plus" />
                   Add to Calendar
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <HugeiconsIcon icon={ListFilterIcon} />
+                  <Icon name="list-filter" />
                   Add to List
                 </DropdownMenuItem>
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>
-                    <HugeiconsIcon icon={Tag01Icon} />
+                    <Icon name="tag-01" />
                     Label As...
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
@@ -96,7 +87,7 @@ export default function ButtonGroupDemo() {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem variant="error">
-                  <HugeiconsIcon icon={Delete02Icon} />
+                  <Icon name="delete-02" />
                   Trash
                 </DropdownMenuItem>
               </DropdownMenuGroup>

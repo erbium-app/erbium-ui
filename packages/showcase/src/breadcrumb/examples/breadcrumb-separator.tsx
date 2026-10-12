@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import DotIcon from "@hugeicons/core-free-icons/DotIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Breadcrumb,
@@ -18,13 +17,13 @@ export function BreadcrumbSeparatorDemo() {
           <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <HugeiconsIcon icon={DotIcon} />
+          <Icon name="dot" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink render={<a href="/docs/installation" />}>Installation</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <HugeiconsIcon icon={DotIcon} />
+          <Icon name="dot" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>

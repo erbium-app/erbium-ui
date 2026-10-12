@@ -1,8 +1,7 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { FruitAutocomplete } from "../helpers";
 
-const Example = () => <FruitAutocomplete startAddon={<HugeiconsIcon icon={Search01Icon} />} />;
+const Example = () => <FruitAutocomplete startAddon={<Icon name="search-01" />} />;
 
 export default Example;

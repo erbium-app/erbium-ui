@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Empty,
@@ -25,7 +24,7 @@ export default function EmptyInputGroup() {
         <InputGroup className="sm:w-3/4">
           <InputGroupInput placeholder="Try searching for pages..." />
           <InputGroupAddon>
-            <HugeiconsIcon icon={Search01Icon} />
+            <Icon name="search-01" />
           </InputGroupAddon>
           <InputGroupAddon align="inline-end">
             <Kbd hotkey="/" />

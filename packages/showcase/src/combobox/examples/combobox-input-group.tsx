@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import GlobeIcon from "@hugeicons/core-free-icons/GlobeIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Combobox,
@@ -55,7 +54,7 @@ export function ComboxboxInputGroup() {
     <Combobox items={timezones}>
       <ComboboxInput placeholder="Select a timezone">
         <InputGroupAddon>
-          <HugeiconsIcon icon={GlobeIcon} />
+          <Icon name="globe" />
         </InputGroupAddon>
       </ComboboxInput>
       <ComboboxContent alignOffset={-28} className="w-60">

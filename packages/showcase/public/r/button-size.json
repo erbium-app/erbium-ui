@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Button: Size",
   "description": "Use the `size` prop to change the size of the button.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
       "path": "src/button/examples/button-size.tsx",
       "type": "registry:component",
       "target": "@components/showcase/button/examples/button-size.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUpRight01Icon from \"@hugeicons/core-free-icons/ArrowUpRight01Icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-section sm:flex-row\">\n      <div className=\"flex items-start gap-related\">\n        <Button size=\"sm\" variant=\"outline\">\n          Small\n        </Button>\n        <Button size=\"icon-sm\" aria-label=\"Submit\" variant=\"outline\">\n          <HugeiconsIcon icon={ArrowUpRight01Icon} />\n        </Button>\n      </div>\n      <div className=\"flex items-start gap-related\">\n        <Button variant=\"outline\">Default</Button>\n        <Button size=\"icon\" aria-label=\"Submit\" variant=\"outline\">\n          <HugeiconsIcon icon={ArrowUpRight01Icon} />\n        </Button>\n      </div>\n      <div className=\"flex items-start gap-related\">\n        <Button variant=\"outline\" size=\"lg\">\n          Large\n        </Button>\n        <Button size=\"icon-lg\" aria-label=\"Submit\" variant=\"outline\">\n          <HugeiconsIcon icon={ArrowUpRight01Icon} />\n        </Button>\n      </div>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-section sm:flex-row\">\n      <div className=\"flex items-start gap-related\">\n        <Button size=\"sm\" variant=\"outline\">\n          Small\n        </Button>\n        <Button size=\"icon-sm\" aria-label=\"Submit\" variant=\"outline\">\n          <Icon name=\"arrow-up-right-01\" />\n        </Button>\n      </div>\n      <div className=\"flex items-start gap-related\">\n        <Button variant=\"outline\">Default</Button>\n        <Button size=\"icon\" aria-label=\"Submit\" variant=\"outline\">\n          <Icon name=\"arrow-up-right-01\" />\n        </Button>\n      </div>\n      <div className=\"flex items-start gap-related\">\n        <Button variant=\"outline\" size=\"lg\">\n          Large\n        </Button>\n        <Button size=\"icon-lg\" aria-label=\"Submit\" variant=\"outline\">\n          <Icon name=\"arrow-up-right-01\" />\n        </Button>\n      </div>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/button/variants/size.tsx",

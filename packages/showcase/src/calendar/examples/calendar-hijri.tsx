@@ -1,7 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronLeftIcon from "@hugeicons/core-free-icons/ChevronLeftIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 
@@ -49,7 +47,7 @@ export default function CalendarHijri() {
           variant="ghost"
           onClick={() => first && setAnchor(moveDay(first, -10))}
         >
-          <HugeiconsIcon icon={ChevronRightIcon} />
+          <Icon name="chevron-right" />
         </Button>
         <span className="text-caption font-medium">{monthFormatter.format(anchor)}</span>
         <Button
@@ -58,7 +56,7 @@ export default function CalendarHijri() {
           variant="ghost"
           onClick={() => first && setAnchor(moveDay(first, 35))}
         >
-          <HugeiconsIcon icon={ChevronLeftIcon} />
+          <Icon name="chevron-left" />
         </Button>
       </div>
       <div className="grid grid-cols-7 text-center text-caption">

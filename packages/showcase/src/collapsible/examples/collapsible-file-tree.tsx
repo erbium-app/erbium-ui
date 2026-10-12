@@ -1,6 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import File01Icon from "@hugeicons/core-free-icons/File01Icon";
-import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Button } from "@erbium/ui/components/button";
@@ -77,11 +75,11 @@ export function CollapsibleFileTree() {
             }
           >
             <RotatingChevron scope="collapsible" />
-            <HugeiconsIcon icon={Folder01Icon} />
+            <Icon name="folder-01" />
             {fileItem.name}
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="mt-1 ms-5 flex flex-col gap-1 style-lyra:ms-4">
+            <div className="mt-1 ms-5 flex flex-col gap-1">
               {fileItem.items.map((child) => renderItem(child))}
             </div>
           </CollapsibleContent>
@@ -95,7 +93,7 @@ export function CollapsibleFileTree() {
         size="sm"
         className="w-full justify-start text-foreground"
       >
-        <HugeiconsIcon icon={File01Icon} />
+        <Icon name="file-01" />
         <span>{fileItem.name}</span>
       </Button>
     );

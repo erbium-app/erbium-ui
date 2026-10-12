@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CornerDownLeftIcon from "@hugeicons/core-free-icons/CornerDownLeftIcon";
-import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
-import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   InputGroup,
@@ -28,16 +25,16 @@ export default function InputGroupTextareaExample() {
         <InputGroupAddon align="block-end" className="border-t">
           <InputGroupText>Line 1, Column 1</InputGroupText>
           <InputGroupButton size="sm" className="ml-auto" variant="default">
-            Run <HugeiconsIcon icon={CornerDownLeftIcon} />
+            Run <Icon name="corner-down-left" />
           </InputGroupButton>
         </InputGroupAddon>
         <InputGroupAddon align="block-start" className="border-b">
           <InputGroupText className="font-mono font-medium">
-            <HugeiconsIcon icon={FileCodeIcon} />
+            <Icon name="file-code" />
             script.js
           </InputGroupText>
           <InputGroupButton className="ml-auto" size="icon-xs">
-            <HugeiconsIcon icon={RefreshCcwIcon} />
+            <Icon name="refresh-ccw" />
           </InputGroupButton>
           <CopyButton
             value={code}

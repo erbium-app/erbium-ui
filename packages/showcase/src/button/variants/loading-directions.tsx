@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 import { Button } from "@erbium/ui/components/button";
 import { DirectionProvider } from "@erbium/ui/components/direction";
 
@@ -13,7 +12,7 @@ const Example = () => (
             {direction === "rtl" ? "لطفاً صبر کنید" : "Please wait"}
           </Button>
           <Button aria-label={direction === "rtl" ? "تازه‌سازی" : "Refresh"} loading size="icon">
-            <HugeiconsIcon icon={ArrowUp01Icon} />
+            <Icon name="arrow-up-01" />
           </Button>
         </div>
       </DirectionProvider>

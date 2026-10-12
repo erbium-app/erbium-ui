@@ -1,7 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PencilIcon from "@hugeicons/core-free-icons/PencilIcon";
-import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
-import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -22,18 +19,18 @@ export function DropdownMenuError() {
         <DropdownMenuList>
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={PencilIcon} />
+              <Icon name="pencil" />
               Edit
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={Share01Icon} />
+              <Icon name="share-01" />
               Share
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem variant="error">
-              <HugeiconsIcon icon={TrashIcon} />
+              <Icon name="trash" />
               Delete
             </DropdownMenuItem>
           </DropdownMenuGroup>

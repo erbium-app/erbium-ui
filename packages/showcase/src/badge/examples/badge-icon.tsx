@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Bookmark01Icon from "@hugeicons/core-free-icons/Bookmark01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Badge } from "@erbium/ui/components/badge";
 
@@ -11,7 +10,7 @@ export function BadgeWithIconLeft() {
       </Badge>
       <Badge variant="outline">
         Bookmark
-        <HugeiconsIcon icon={Bookmark01Icon} data-icon="inline-end" />
+        <Icon name="bookmark-01" data-icon="inline-end" />
       </Badge>
     </div>
   );

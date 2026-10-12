@@ -1,8 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import LogOutIcon from "@hugeicons/core-free-icons/LogOutIcon";
-import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
-import UserIcon from "@hugeicons/core-free-icons/UserIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -21,20 +17,20 @@ export function DropdownMenuIcons() {
       <DropdownMenuContent>
         <DropdownMenuList>
           <DropdownMenuItem>
-            <HugeiconsIcon icon={UserIcon} />
+            <Icon name="user" />
             Profile
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <HugeiconsIcon icon={CreditCardIcon} />
+            <Icon name="credit-card" />
             Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <HugeiconsIcon icon={Settings01Icon} />
+            <Icon name="settings-01" />
             Settings
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="error">
-            <HugeiconsIcon icon={LogOutIcon} />
+            <Icon name="log-out" />
             Log out
           </DropdownMenuItem>
         </DropdownMenuList>

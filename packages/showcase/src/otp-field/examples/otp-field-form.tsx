@@ -1,7 +1,6 @@
 import { useId } from "react";
 import { useForm } from "@tanstack/react-form";
-import { HugeiconsIcon } from "@hugeicons/react";
-import RefreshCwIcon from "@hugeicons/core-free-icons/RefreshCwIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -32,7 +31,7 @@ export function OTPFieldForm() {
         </CardDescription>
         <CardAction>
           <Button type="button" variant="outline" size="xs" onClick={() => form.reset()}>
-            <HugeiconsIcon icon={RefreshCwIcon} />
+            <Icon name="refresh-cw" />
             Resend
           </Button>
         </CardAction>

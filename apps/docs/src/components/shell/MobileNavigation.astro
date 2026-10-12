@@ -2,9 +2,7 @@
 import Button from "@/components/primitives/Button.astro";
 import Icon from "@/components/primitives/Icon.astro";
 import SidebarToggleIcon from "@/components/primitives/SidebarToggleIcon.astro";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
 import ThemeToggle from "@/components/shell/ThemeToggle.astro";
-import GithubIcon from "@hugeicons/core-free-icons/GithubIcon";
 import DocsNavigation from "@/components/shell/DocsNavigation.astro";
 ---
 
@@ -36,7 +34,7 @@ import DocsNavigation from "@/components/shell/DocsNavigation.astro";
         class="mobile-navigation-search max-[959px]:w-full max-[959px]:justify-start max-[959px]:text-muted-foreground"
         data-navigation-search
       >
-        <Icon icon={Search01Icon} />
+        <Icon name="search-01" />
         <span>Search documentation…</span>
       </Button>
     </div>
@@ -52,7 +50,7 @@ import DocsNavigation from "@/components/shell/DocsNavigation.astro";
         size="icon"
         aria-label="Erbium UI on GitHub"
       >
-        <Icon icon={GithubIcon} />
+        <Icon name="github" />
       </Button>
       <ThemeToggle />
     </div>

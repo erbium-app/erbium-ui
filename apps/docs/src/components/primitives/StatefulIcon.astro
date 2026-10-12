@@ -1,11 +1,11 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import Icon from "@/components/primitives/Icon.astro";
-import { statefulIconRootStyles, statefulIconLayerStyles, type IconDefinition } from "@/components/primitives/stateful-icon";
+import { statefulIconRootStyles, statefulIconLayerStyles, type IconName } from "@/components/primitives/stateful-icon";
 
 type Props = HTMLAttributes<"span"> & {
   state: string;
-  icons: Readonly<Record<string, IconDefinition>>;
+  icons: Readonly<Record<string, IconName>>;
 };
 const { state, icons, class: className = "size-4", ...props } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { state, icons, class: className = "size-4", ...props } = Astro.props;
 <span {...props} class:list={[statefulIconRootStyles, className]} data-slot="stateful-icon" data-state={state} data-astro-icon aria-hidden="true">
   {Object.entries(icons).map(([key, icon]) => (
     <span class={statefulIconLayerStyles} data-state={key} data-active={key === state ? "true" : "false"}>
-      <Icon icon={icon} class="size-full" />
+      <Icon name={icon} class="size-full" />
     </span>
   ))}
 </span>

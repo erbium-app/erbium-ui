@@ -1,10 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
-import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
-import StarIcon from "@hugeicons/core-free-icons/StarIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
 
@@ -14,29 +8,29 @@ export default function InputGroupIcon() {
       <InputGroup>
         <InputGroupInput placeholder="Search..." />
         <InputGroupAddon>
-          <HugeiconsIcon icon={Search01Icon} />
+          <Icon name="search-01" />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
         <InputGroupInput type="email" placeholder="Enter your email" />
         <InputGroupAddon>
-          <HugeiconsIcon icon={Mail01Icon} />
+          <Icon name="mail-01" />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
         <InputGroupInput placeholder="Card number" />
         <InputGroupAddon>
-          <HugeiconsIcon icon={CreditCardIcon} />
+          <Icon name="credit-card" />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
-          <HugeiconsIcon icon={CheckIcon} />
+          <Icon name="check" />
         </InputGroupAddon>
       </InputGroup>
       <InputGroup>
         <InputGroupInput placeholder="Card number" />
         <InputGroupAddon align="inline-end">
-          <HugeiconsIcon icon={StarIcon} />
-          <HugeiconsIcon icon={InfoIcon} />
+          <Icon name="star" />
+          <Icon name="info" />
         </InputGroupAddon>
       </InputGroup>
     </div>

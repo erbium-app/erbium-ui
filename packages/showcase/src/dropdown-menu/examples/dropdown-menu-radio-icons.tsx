@@ -1,8 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Building02Icon from "@hugeicons/core-free-icons/Building02Icon";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import Wallet01Icon from "@hugeicons/core-free-icons/Wallet01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -30,15 +27,15 @@ export function DropdownMenuRadioIcons() {
             <DropdownMenuLabel>Select Payment Method</DropdownMenuLabel>
             <DropdownMenuRadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
               <DropdownMenuRadioItem value="card">
-                <HugeiconsIcon icon={CreditCardIcon} />
+                <Icon name="credit-card" />
                 Credit Card
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="paypal">
-                <HugeiconsIcon icon={Wallet01Icon} />
+                <Icon name="wallet-01" />
                 PayPal
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="bank">
-                <HugeiconsIcon icon={Building02Icon} />
+                <Icon name="building-02" />
                 Bank Transfer
               </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>

@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Avatar,
@@ -34,7 +33,7 @@ export function AvatarGroupCountIconExample() {
         <AvatarFallback>AS</AvatarFallback>
       </Avatar>
       <AvatarGroupCount>
-        <HugeiconsIcon icon={PlusIcon} />
+        <Icon name="plus" />
       </AvatarGroupCount>
     </AvatarGroup>
   );

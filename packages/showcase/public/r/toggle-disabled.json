@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Toggle: Disabled",
   "description": "Show a disabled toggle.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+  "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
       "path": "src/toggle/examples/toggle-disabled.tsx",
       "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-disabled.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport UnderlineIcon from \"@hugeicons/core-free-icons/UnderlineIcon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label=\"Toggle italic\" disabled>\n      <HugeiconsIcon icon={UnderlineIcon} className=\"h-4 w-4\" />\n    </Toggle>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label=\"Toggle italic\" disabled>\n      <Icon name=\"underline\" className=\"h-4 w-4\" />\n    </Toggle>\n  );\n}\n"
     },
     {
       "path": "src/toggle/variants/disabled.tsx",

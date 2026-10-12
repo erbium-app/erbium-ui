@@ -4,11 +4,11 @@
   "type": "registry:block",
   "title": "Autocomplete: With Start Addon",
   "description": "",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
   "registryDependencies": [
     "@erbium/autocomplete",
     "@erbium/button",
     "@erbium/field",
+    "@erbium/icon",
     "@erbium/spinner",
     "@erbium/styles"
   ],
@@ -23,7 +23,7 @@
       "path": "src/autocomplete/variants/with-start-addon.tsx",
       "type": "registry:component",
       "target": "@components/showcase/autocomplete/variants/with-start-addon.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete startAddon={<HugeiconsIcon icon={Search01Icon} />} />;\n\nexport default Example;\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete startAddon={<Icon name=\"search-01\" />} />;\n\nexport default Example;\n"
     }
   ]
 }

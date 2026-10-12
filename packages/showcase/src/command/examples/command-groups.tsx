@@ -1,11 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CalculatorIcon from "@hugeicons/core-free-icons/CalculatorIcon";
-import Calendar01Icon from "@hugeicons/core-free-icons/Calendar01Icon";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
-import SmileIcon from "@hugeicons/core-free-icons/SmileIcon";
-import UserIcon from "@hugeicons/core-free-icons/UserIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -30,7 +24,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Calendar01Icon} />
+            <Icon name="calendar-01" />
             <span>Calendar</span>
           </>
         ),
@@ -40,7 +34,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={SmileIcon} />
+            <Icon name="smile" />
             <span>Search Emoji</span>
           </>
         ),
@@ -50,7 +44,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={CalculatorIcon} />
+            <Icon name="calculator" />
             <span>Calculator</span>
           </>
         ),
@@ -65,7 +59,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={UserIcon} />
+            <Icon name="user" />
             <span>Profile</span>
             <CommandShortcut hotkey="Mod+P" />
           </>
@@ -76,7 +70,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={CreditCardIcon} />
+            <Icon name="credit-card" />
             <span>Billing</span>
             <CommandShortcut hotkey="Mod+B" />
           </>
@@ -87,7 +81,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Settings01Icon} />
+            <Icon name="settings-01" />
             <span>Settings</span>
             <CommandShortcut hotkey="Mod+S" />
           </>

@@ -1,6 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import BellIcon from "@hugeicons/core-free-icons/BellIcon";
-import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -17,7 +15,7 @@ export function EmptyMuted() {
     <Empty className="h-full bg-muted/30">
       <EmptyHeader>
         <EmptyMedia variant="icon">
-          <HugeiconsIcon icon={BellIcon} />
+          <Icon name="bell" />
         </EmptyMedia>
         <EmptyTitle>No Notifications</EmptyTitle>
         <EmptyDescription className="max-w-xs text-pretty">
@@ -26,7 +24,7 @@ export function EmptyMuted() {
       </EmptyHeader>
       <EmptyContent>
         <Button variant="outline">
-          <HugeiconsIcon icon={RefreshCcwIcon} data-icon="inline-start" />
+          <Icon name="refresh-ccw" data-icon="inline-start" />
           Refresh
         </Button>
       </EmptyContent>

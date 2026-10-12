@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Toggle: With Text",
   "description": "Pair a toggle icon with a text label.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+  "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
       "path": "src/toggle/examples/toggle-text.tsx",
       "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-text.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ItalicIcon from \"@hugeicons/core-free-icons/ItalicIcon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <HugeiconsIcon icon={ItalicIcon} />\n      Italic\n    </Toggle>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n      Italic\n    </Toggle>\n  );\n}\n"
     },
     {
       "path": "src/toggle/variants/with-text.tsx",

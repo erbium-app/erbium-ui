@@ -1,6 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import GitBranchIcon from "@hugeicons/core-free-icons/GitBranchIcon";
-import RotateCcwIcon from "@hugeicons/core-free-icons/RotateCcwIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { toast } from "@erbium/ui/components/toast";
 
@@ -11,7 +9,7 @@ export function MarkerLinkButtonDemo() {
     <div className="flex w-full max-w-sm flex-col gap-8 py-12">
       <Marker render={<a href="#links-and-buttons" />}>
         <MarkerIcon>
-          <HugeiconsIcon icon={GitBranchIcon} />
+          <Icon name="git-branch" />
         </MarkerIcon>
         <MarkerContent>View the pull request</MarkerContent>
       </Marker>
@@ -25,7 +23,7 @@ export function MarkerLinkButtonDemo() {
         }
       >
         <MarkerIcon>
-          <HugeiconsIcon icon={RotateCcwIcon} />
+          <Icon name="rotate-ccw" />
         </MarkerIcon>
         <MarkerContent>Revert this change</MarkerContent>
       </Marker>

@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import CircleFadingPlusIcon from "@hugeicons/core-free-icons/CircleFadingPlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   AlertDialog,
@@ -22,7 +21,7 @@ export function AlertDialogWithMedia() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogMedia>
-            <HugeiconsIcon icon={CircleFadingPlusIcon} />
+            <Icon name="circle-fading-plus" />
           </AlertDialogMedia>
           <AlertDialogTitle>Share this project?</AlertDialogTitle>
           <AlertDialogDescription>

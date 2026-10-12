@@ -1,11 +1,13 @@
+import type { IconProps } from "@erbium/ui/components/icon";
+
 export const statefulIconRootStyles = "inline-grid shrink-0 align-middle";
 export const statefulIconLayerStyles =
   "col-start-1 row-start-1 grid place-items-center rotate-90 scale-0 transition-transform duration-150 ease-in-out data-[active=true]:rotate-0 data-[active=true]:scale-100 data-[active=true]:delay-150 motion-reduce:transition-none";
 
-export type IconDefinition = readonly (readonly [string, Record<string, string | number>])[];
+export type IconName = IconProps["name"];
 
 // Client-created controls use the same layered markup as StatefulIcon.astro.
-export function createStatefulIcon(state: string, icons: Readonly<Record<string, IconDefinition>>) {
+export function createStatefulIcon(state: string, icons: Readonly<Record<string, IconName>>) {
   const root = document.createElement("span");
   root.dataset.slot = "stateful-icon";
   root.dataset.state = state;
@@ -19,21 +21,11 @@ export function createStatefulIcon(state: string, icons: Readonly<Record<string,
     layer.dataset.state = key;
     layer.dataset.active = String(key === state);
     const svg = document.createElementNS(namespace, "svg");
-    svg.setAttribute("viewBox", "0 0 24 24");
-    svg.setAttribute("fill", "none");
     svg.setAttribute("class", "size-full");
-    for (const [tag, attributes] of icon) {
-      const child = document.createElementNS(namespace, tag);
-      for (const [name, value] of Object.entries(attributes)) {
-        if (name !== "key") {
-          child.setAttribute(
-            name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`),
-            String(name === "strokeWidth" ? 1.5 : value),
-          );
-        }
-      }
-      svg.append(child);
-    }
+    svg.setAttribute("aria-hidden", "true");
+    const use = document.createElementNS(namespace, "use");
+    use.setAttribute("href", `#erbium-icon-${icon}`);
+    svg.append(use);
     layer.append(svg);
     root.append(layer);
   }

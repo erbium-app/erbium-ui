@@ -1,10 +1,8 @@
 ---
 import Icon from "@/components/primitives/Icon.astro";
-import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
-import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
 ---
 
 <span class="size-4 inline-grid shrink-0 align-middle [--theme-sun-rotation:0deg] [--theme-sun-scale:1] [--theme-moon-rotation:90deg] [--theme-moon-scale:0] dark:[--theme-sun-rotation:-90deg] dark:[--theme-sun-scale:0] dark:[--theme-moon-rotation:0deg] dark:[--theme-moon-scale:1]" data-slot="theme-toggle-icon" data-astro-icon aria-hidden="true">
-  <span class="col-start-1 row-start-1 grid place-items-center rotate-(--theme-sun-rotation) scale-(--theme-sun-scale) transition-transform duration-200 ease-in-out motion-reduce:transition-none" data-theme="light"><Icon icon={Sun03Icon} class="size-full" /></span>
-  <span class="col-start-1 row-start-1 grid place-items-center rotate-(--theme-moon-rotation) scale-(--theme-moon-scale) transition-transform duration-200 ease-in-out motion-reduce:transition-none" data-theme="dark"><Icon icon={Moon02Icon} class="size-full" /></span>
+  <span class="col-start-1 row-start-1 grid place-items-center rotate-(--theme-sun-rotation) scale-(--theme-sun-scale) transition-transform duration-200 ease-in-out motion-reduce:transition-none" data-theme="light"><Icon name="sun-03" class="size-full" /></span>
+  <span class="col-start-1 row-start-1 grid place-items-center rotate-(--theme-moon-rotation) scale-(--theme-moon-scale) transition-transform duration-200 ease-in-out motion-reduce:transition-none" data-theme="dark"><Icon name="moon-02" class="size-full" /></span>
 </span>

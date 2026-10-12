@@ -4,14 +4,19 @@
   "type": "registry:block",
   "title": "Bubble: Popover",
   "description": "Pair a bubble with a [`Popover`](https://ui.shadcn.com/docs/components/popover) to surface more information on demand, such as the full error message for a failed action.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/bubble", "@erbium/button", "@erbium/popover", "@erbium/styles"],
+  "registryDependencies": [
+    "@erbium/bubble",
+    "@erbium/button",
+    "@erbium/icon",
+    "@erbium/popover",
+    "@erbium/styles"
+  ],
   "files": [
     {
       "path": "src/bubble/examples/bubble-popover.tsx",
       "type": "registry:component",
       "target": "@components/showcase/bubble/examples/bubble-popover.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport InfoIcon from \"@hugeicons/core-free-icons/InfoIcon\";\n\nimport { Bubble, BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function BubblePopoverDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-group py-12\">\n      <Bubble align=\"end\">\n        <BubbleContent>Run the build script.</BubbleContent>\n      </Bubble>\n      <Bubble variant=\"error\">\n        <BubbleContent>Failed to run the command.</BubbleContent>\n        <BubbleReactions>\n          <Popover>\n            <PopoverTrigger\n              render={\n                <Button\n                  variant=\"ghost\"\n                  size=\"icon-xs\"\n                  aria-label=\"Show error details\"\n                  className=\"aria-expanded:text-error\"\n                />\n              }\n            >\n              <HugeiconsIcon icon={InfoIcon} />\n            </PopoverTrigger>\n            <PopoverContent>\n              <PopoverHeader>\n                <PopoverTitle className=\"text-caption\">\n                  Command failed with exit code 1\n                </PopoverTitle>\n                <PopoverDescription className=\"text-caption\">\n                  ENOENT: no such file or directory, open pnpm-lock.yaml\n                </PopoverDescription>\n              </PopoverHeader>\n            </PopoverContent>\n          </Popover>\n        </BubbleReactions>\n      </Bubble>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Bubble, BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function BubblePopoverDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-group py-12\">\n      <Bubble align=\"end\">\n        <BubbleContent>Run the build script.</BubbleContent>\n      </Bubble>\n      <Bubble variant=\"error\">\n        <BubbleContent>Failed to run the command.</BubbleContent>\n        <BubbleReactions>\n          <Popover>\n            <PopoverTrigger\n              render={\n                <Button\n                  variant=\"ghost\"\n                  size=\"icon-xs\"\n                  aria-label=\"Show error details\"\n                  className=\"aria-expanded:text-error\"\n                />\n              }\n            >\n              <Icon name=\"info\" />\n            </PopoverTrigger>\n            <PopoverContent>\n              <PopoverHeader>\n                <PopoverTitle className=\"text-caption\">\n                  Command failed with exit code 1\n                </PopoverTitle>\n                <PopoverDescription className=\"text-caption\">\n                  ENOENT: no such file or directory, open pnpm-lock.yaml\n                </PopoverDescription>\n              </PopoverHeader>\n            </PopoverContent>\n          </Popover>\n        </BubbleReactions>\n      </Bubble>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/bubble/variants/popover.tsx",

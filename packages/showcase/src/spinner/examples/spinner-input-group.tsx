@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   InputGroup,
@@ -24,7 +23,7 @@ export default function SpinnerInputGroup() {
         <InputGroupAddon align="block-end">
           <Spinner /> Validating...
           <InputGroupButton className="ml-auto" variant="default">
-            <HugeiconsIcon icon={ArrowUp01Icon} />
+            <Icon name="arrow-up-01" />
             <span className="sr-only">Send</span>
           </InputGroupButton>
         </InputGroupAddon>

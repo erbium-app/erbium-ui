@@ -1,6 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Download01Icon from "@hugeicons/core-free-icons/Download01Icon";
-import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Attachment,
@@ -43,7 +41,7 @@ export function MessageAttachmentDemo() {
           </Bubble>
           <Attachment>
             <AttachmentMedia>
-              <HugeiconsIcon icon={FileTextIcon} />
+              <Icon name="file-text" />
             </AttachmentMedia>
             <AttachmentContent>
               <AttachmentTitle>sales-dashboard.pdf</AttachmentTitle>
@@ -57,7 +55,7 @@ export function MessageAttachmentDemo() {
                 size="icon-sm"
                 variant="secondary"
               >
-                <HugeiconsIcon icon={Download01Icon} />
+                <Icon name="download-01" />
               </AttachmentAction>
             </AttachmentActions>
           </Attachment>

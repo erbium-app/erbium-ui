@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Delete02Icon from "@hugeicons/core-free-icons/Delete02Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   AlertDialog,
@@ -22,7 +21,7 @@ export function AlertDialogError() {
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
           <AlertDialogMedia className="bg-error/10 text-error dark:bg-error/20 dark:text-error">
-            <HugeiconsIcon icon={Delete02Icon} />
+            <Icon name="delete-02" />
           </AlertDialogMedia>
           <AlertDialogTitle>Delete chat?</AlertDialogTitle>
           <AlertDialogDescription>

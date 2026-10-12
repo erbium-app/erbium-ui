@@ -4,11 +4,11 @@
   "type": "registry:item",
   "title": "Tooltip stories",
   "description": "All tooltip variants as portable React CSF stories.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",
     "@erbium/csp-provider",
+    "@erbium/icon",
     "@erbium/kbd",
     "@erbium/overlay-provider",
     "@erbium/styles",
@@ -38,7 +38,7 @@
       "path": "src/tooltip/examples/tooltip-keyboard.tsx",
       "type": "registry:component",
       "target": "@components/showcase/tooltip/examples/tooltip-keyboard.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport SaveIcon from \"@hugeicons/core-free-icons/SaveIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function TooltipKeyboard() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\" size=\"icon-sm\" />}>\n        <HugeiconsIcon icon={SaveIcon} />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd hotkey=\"S\" />\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport function TooltipKeyboard() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\" size=\"icon-sm\" />}>\n        <Icon name=\"save\" />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd hotkey=\"S\" />\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n"
     },
     {
       "path": "src/tooltip/examples/tooltip-sides.tsx",

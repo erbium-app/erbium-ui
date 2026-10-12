@@ -1,28 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import BellIcon from "@hugeicons/core-free-icons/BellIcon";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import Download01Icon from "@hugeicons/core-free-icons/Download01Icon";
-import EyeIcon from "@hugeicons/core-free-icons/EyeIcon";
-import File01Icon from "@hugeicons/core-free-icons/File01Icon";
-import FileCodeIcon from "@hugeicons/core-free-icons/FileCodeIcon";
-import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
-import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
-import FolderOpenIcon from "@hugeicons/core-free-icons/FolderOpenIcon";
-import FolderSearchIcon from "@hugeicons/core-free-icons/FolderSearchIcon";
-import HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";
-import KeyboardIcon from "@hugeicons/core-free-icons/KeyboardIcon";
-import LanguagesIcon from "@hugeicons/core-free-icons/LanguagesIcon";
-import Layout01Icon from "@hugeicons/core-free-icons/Layout01Icon";
-import LogOutIcon from "@hugeicons/core-free-icons/LogOutIcon";
-import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
-import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
-import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
-import SaveIcon from "@hugeicons/core-free-icons/SaveIcon";
-import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
-import Shield01Icon from "@hugeicons/core-free-icons/Shield01Icon";
-import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
-import UserIcon from "@hugeicons/core-free-icons/UserIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -60,18 +37,18 @@ export function DropdownMenuComplex() {
           <DropdownMenuGroup>
             <DropdownMenuLabel>File</DropdownMenuLabel>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={File01Icon} />
+              <Icon name="file-01" />
               New File
               <DropdownMenuShortcut hotkey="Mod+N" />
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={Folder01Icon} />
+              <Icon name="folder-01" />
               New Folder
               <DropdownMenuShortcut hotkey="Shift+Mod+N" />
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
-                <HugeiconsIcon icon={FolderOpenIcon} />
+                <Icon name="folder-open" />
                 Open Recent
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
@@ -80,27 +57,27 @@ export function DropdownMenuComplex() {
                     <DropdownMenuGroup>
                       <DropdownMenuLabel>Recent Projects</DropdownMenuLabel>
                       <DropdownMenuItem>
-                        <HugeiconsIcon icon={FileCodeIcon} />
+                        <Icon name="file-code" />
                         Project Alpha
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <HugeiconsIcon icon={FileCodeIcon} />
+                        <Icon name="file-code" />
                         Project Beta
                       </DropdownMenuItem>
                       <DropdownMenuSub>
                         <DropdownMenuSubTrigger>
-                          <HugeiconsIcon icon={MoreHorizontalIcon} />
+                          <Icon name="more-horizontal" />
                           More Projects
                         </DropdownMenuSubTrigger>
                         <DropdownMenuPortal>
                           <DropdownMenuSubContent>
                             <DropdownMenuList>
                               <DropdownMenuItem>
-                                <HugeiconsIcon icon={FileCodeIcon} />
+                                <Icon name="file-code" />
                                 Project Gamma
                               </DropdownMenuItem>
                               <DropdownMenuItem>
-                                <HugeiconsIcon icon={FileCodeIcon} />
+                                <Icon name="file-code" />
                                 Project Delta
                               </DropdownMenuItem>
                             </DropdownMenuList>
@@ -111,7 +88,7 @@ export function DropdownMenuComplex() {
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
-                        <HugeiconsIcon icon={FolderSearchIcon} />
+                        <Icon name="folder-search" />
                         Browse...
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
@@ -121,12 +98,12 @@ export function DropdownMenuComplex() {
             </DropdownMenuSub>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <HugeiconsIcon icon={SaveIcon} />
+              <Icon name="save" />
               Save
               <DropdownMenuShortcut hotkey="Mod+S" />
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={Download01Icon} />
+              <Icon name="download-01" />
               Export
               <DropdownMenuShortcut hotkey="Shift+Mod+E" />
             </DropdownMenuItem>
@@ -140,7 +117,7 @@ export function DropdownMenuComplex() {
                 setNotifications({ ...notifications, email: checked === true })
               }
             >
-              <HugeiconsIcon icon={EyeIcon} />
+              <Icon name="eye" />
               Show Sidebar
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
@@ -149,7 +126,7 @@ export function DropdownMenuComplex() {
                 setNotifications({ ...notifications, sms: checked === true })
               }
             >
-              <HugeiconsIcon icon={Layout01Icon} />
+              <Icon name="layout-01" />
               Show Status Bar
             </DropdownMenuCheckboxItem>
           </DropdownMenuGroup>
@@ -158,11 +135,11 @@ export function DropdownMenuComplex() {
             <DropdownMenuLabel>Theme</DropdownMenuLabel>
             <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
               <DropdownMenuRadioItem value="light">
-                <HugeiconsIcon icon={Sun03Icon} />
+                <Icon name="sun-03" />
                 Light
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="dark">
-                <HugeiconsIcon icon={Moon02Icon} />
+                <Icon name="moon-02" />
                 Dark
               </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
@@ -171,17 +148,17 @@ export function DropdownMenuComplex() {
           <DropdownMenuGroup>
             <DropdownMenuLabel>Account</DropdownMenuLabel>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={UserIcon} />
+              <Icon name="user" />
               Profile
               <DropdownMenuShortcut hotkey="Shift+Mod+P" />
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={CreditCardIcon} />
+              <Icon name="credit-card" />
               Billing
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
-                <HugeiconsIcon icon={Settings01Icon} />
+                <Icon name="settings-01" />
                 Settings
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
@@ -190,16 +167,16 @@ export function DropdownMenuComplex() {
                     <DropdownMenuGroup>
                       <DropdownMenuLabel>Preferences</DropdownMenuLabel>
                       <DropdownMenuItem>
-                        <HugeiconsIcon icon={KeyboardIcon} />
+                        <Icon name="keyboard" />
                         Keyboard Shortcuts
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <HugeiconsIcon icon={LanguagesIcon} />
+                        <Icon name="languages" />
                         Language
                       </DropdownMenuItem>
                       <DropdownMenuSub>
                         <DropdownMenuSubTrigger>
-                          <HugeiconsIcon icon={BellIcon} />
+                          <Icon name="bell" />
                           Notifications
                         </DropdownMenuSubTrigger>
                         <DropdownMenuPortal>
@@ -216,7 +193,7 @@ export function DropdownMenuComplex() {
                                     })
                                   }
                                 >
-                                  <HugeiconsIcon icon={BellIcon} />
+                                  <Icon name="bell" />
                                   Push Notifications
                                 </DropdownMenuCheckboxItem>
                                 <DropdownMenuCheckboxItem
@@ -228,7 +205,7 @@ export function DropdownMenuComplex() {
                                     })
                                   }
                                 >
-                                  <HugeiconsIcon icon={Mail01Icon} />
+                                  <Icon name="mail-01" />
                                   Email Notifications
                                 </DropdownMenuCheckboxItem>
                               </DropdownMenuGroup>
@@ -240,7 +217,7 @@ export function DropdownMenuComplex() {
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
-                        <HugeiconsIcon icon={Shield01Icon} />
+                        <Icon name="shield-01" />
                         Privacy & Security
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
@@ -252,18 +229,18 @@ export function DropdownMenuComplex() {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={HelpCircleIcon} />
+              <Icon name="help-circle" />
               Help & Support
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <HugeiconsIcon icon={FileTextIcon} />
+              <Icon name="file-text" />
               Documentation
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem variant="error">
-              <HugeiconsIcon icon={LogOutIcon} />
+              <Icon name="log-out" />
               Sign Out
               <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
             </DropdownMenuItem>

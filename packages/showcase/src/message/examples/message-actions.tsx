@@ -1,8 +1,5 @@
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import RefreshCcwIcon from "@hugeicons/core-free-icons/RefreshCcwIcon";
-import ThumbsDownIcon from "@hugeicons/core-free-icons/ThumbsDownIcon";
-import ThumbsUpIcon from "@hugeicons/core-free-icons/ThumbsUpIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -22,10 +19,10 @@ export function MessageActionsDemo() {
               aria-label="Copy message"
             />
             <Button variant="ghost" size="icon" aria-label="Like" title="Like">
-              <HugeiconsIcon icon={ThumbsUpIcon} />
+              <Icon name="thumbs-up" />
             </Button>
             <Button variant="ghost" size="icon" aria-label="Dislike" title="Dislike">
-              <HugeiconsIcon icon={ThumbsDownIcon} />
+              <Icon name="thumbs-down" />
             </Button>
           </MessageFooter>
         </MessageContent>
@@ -38,7 +35,7 @@ export function MessageActionsDemo() {
           <MessageFooter className="gap-related">
             <span className="font-normal text-error">Failed to send</span>
             <Button variant="ghost" size="icon-xs" title="Retry" aria-label="Retry">
-              <HugeiconsIcon icon={RefreshCcwIcon} />
+              <Icon name="refresh-ccw" />
             </Button>
           </MessageFooter>
         </MessageContent>

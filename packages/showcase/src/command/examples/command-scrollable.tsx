@@ -1,27 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import BellIcon from "@hugeicons/core-free-icons/BellIcon";
-import CalculatorIcon from "@hugeicons/core-free-icons/CalculatorIcon";
-import Calendar01Icon from "@hugeicons/core-free-icons/Calendar01Icon";
-import ClipboardPasteIcon from "@hugeicons/core-free-icons/ClipboardPasteIcon";
-import CodeIcon from "@hugeicons/core-free-icons/CodeIcon";
-import CreditCardIcon from "@hugeicons/core-free-icons/CreditCardIcon";
-import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
-import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
-import FolderPlusIcon from "@hugeicons/core-free-icons/FolderPlusIcon";
-import HelpCircleIcon from "@hugeicons/core-free-icons/HelpCircleIcon";
-import Home01Icon from "@hugeicons/core-free-icons/Home01Icon";
-import Image01Icon from "@hugeicons/core-free-icons/Image01Icon";
-import InboxIcon from "@hugeicons/core-free-icons/InboxIcon";
-import LayoutGridIcon from "@hugeicons/core-free-icons/LayoutGridIcon";
-import ListIcon from "@hugeicons/core-free-icons/ListIcon";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
-import ScissorsIcon from "@hugeicons/core-free-icons/ScissorsIcon";
-import Settings01Icon from "@hugeicons/core-free-icons/Settings01Icon";
-import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
-import UserIcon from "@hugeicons/core-free-icons/UserIcon";
-import ZoomInIcon from "@hugeicons/core-free-icons/ZoomInIcon";
-import ZoomOutIcon from "@hugeicons/core-free-icons/ZoomOutIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -46,7 +24,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Home01Icon} />
+            <Icon name="home-01" />
             <span>Home</span>
             <CommandShortcut hotkey="Mod+H" />
           </>
@@ -57,7 +35,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={InboxIcon} />
+            <Icon name="inbox" />
             <span>Inbox</span>
             <CommandShortcut hotkey="Mod+I" />
           </>
@@ -68,7 +46,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={FileTextIcon} />
+            <Icon name="file-text" />
             <span>Documents</span>
             <CommandShortcut hotkey="Mod+D" />
           </>
@@ -79,7 +57,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Folder01Icon} />
+            <Icon name="folder-01" />
             <span>Folders</span>
             <CommandShortcut hotkey="Mod+F" />
           </>
@@ -95,7 +73,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={PlusIcon} />
+            <Icon name="plus" />
             <span>New File</span>
             <CommandShortcut hotkey="Mod+N" />
           </>
@@ -106,7 +84,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={FolderPlusIcon} />
+            <Icon name="folder-plus" />
             <span>New Folder</span>
             <CommandShortcut hotkey="Shift+Mod+N" />
           </>
@@ -117,7 +95,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={FileTextIcon} />
+            <Icon name="file-text" />
             <span>Duplicate file</span>
             <CommandShortcut hotkey="Mod+D" />
           </>
@@ -128,7 +106,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={ScissorsIcon} />
+            <Icon name="scissors" />
             <span>Cut</span>
             <CommandShortcut hotkey="Mod+X" />
           </>
@@ -139,7 +117,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={ClipboardPasteIcon} />
+            <Icon name="clipboard-paste" />
             <span>Paste</span>
             <CommandShortcut hotkey="Mod+V" />
           </>
@@ -150,7 +128,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={TrashIcon} />
+            <Icon name="trash" />
             <span>Delete</span>
             <CommandShortcut hotkey="Backspace" />
           </>
@@ -166,7 +144,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={LayoutGridIcon} />
+            <Icon name="layout-grid" />
             <span>Grid View</span>
           </>
         ),
@@ -176,7 +154,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={ListIcon} />
+            <Icon name="list" />
             <span>List View</span>
           </>
         ),
@@ -186,7 +164,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={ZoomInIcon} />
+            <Icon name="zoom-in" />
             <span>Zoom In</span>
             <CommandShortcut hotkey="Mod+Plus" />
           </>
@@ -197,7 +175,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={ZoomOutIcon} />
+            <Icon name="zoom-out" />
             <span>Zoom Out</span>
             <CommandShortcut hotkey="Mod+-" />
           </>
@@ -213,7 +191,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={UserIcon} />
+            <Icon name="user" />
             <span>Profile</span>
             <CommandShortcut hotkey="Mod+P" />
           </>
@@ -224,7 +202,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={CreditCardIcon} />
+            <Icon name="credit-card" />
             <span>Billing</span>
             <CommandShortcut hotkey="Mod+B" />
           </>
@@ -235,7 +213,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Settings01Icon} />
+            <Icon name="settings-01" />
             <span>Settings</span>
             <CommandShortcut hotkey="Mod+S" />
           </>
@@ -246,7 +224,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={BellIcon} />
+            <Icon name="bell" />
             <span>Notifications</span>
           </>
         ),
@@ -256,7 +234,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={HelpCircleIcon} />
+            <Icon name="help-circle" />
             <span>Help & Support</span>
           </>
         ),
@@ -271,7 +249,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={CalculatorIcon} />
+            <Icon name="calculator" />
             <span>Calculator</span>
           </>
         ),
@@ -281,7 +259,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Calendar01Icon} />
+            <Icon name="calendar-01" />
             <span>Calendar</span>
           </>
         ),
@@ -291,7 +269,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={Image01Icon} />
+            <Icon name="image-01" />
             <span>Image Editor</span>
           </>
         ),
@@ -301,7 +279,7 @@ const commandGroups = [
         disabled: false,
         content: (
           <>
-            <HugeiconsIcon icon={CodeIcon} />
+            <Icon name="code" />
             <span>Code Editor</span>
           </>
         ),

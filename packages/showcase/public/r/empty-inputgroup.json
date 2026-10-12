@@ -4,14 +4,19 @@
   "type": "registry:block",
   "title": "Empty: Inputgroup",
   "description": "You can add an `InputGroup` component to the `EmptyContent` component.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/empty", "@erbium/input-group", "@erbium/kbd", "@erbium/styles"],
+  "registryDependencies": [
+    "@erbium/empty",
+    "@erbium/icon",
+    "@erbium/input-group",
+    "@erbium/kbd",
+    "@erbium/styles"
+  ],
   "files": [
     {
       "path": "src/empty/examples/empty-input-group.tsx",
       "type": "registry:component",
       "target": "@components/showcase/empty/examples/empty-input-group.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function EmptyInputGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need\n          below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className=\"sm:w-3/4\">\n          <InputGroupInput placeholder=\"Try searching for pages...\" />\n          <InputGroupAddon>\n            <HugeiconsIcon icon={Search01Icon} />\n          </InputGroupAddon>\n          <InputGroupAddon align=\"inline-end\">\n            <Kbd hotkey=\"/\" />\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href=\"#\">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function EmptyInputGroup() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need\n          below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className=\"sm:w-3/4\">\n          <InputGroupInput placeholder=\"Try searching for pages...\" />\n          <InputGroupAddon>\n            <Icon name=\"search-01\" />\n          </InputGroupAddon>\n          <InputGroupAddon align=\"inline-end\">\n            <Kbd hotkey=\"/\" />\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href=\"#\">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
     },
     {
       "path": "src/empty/variants/inputgroup.tsx",

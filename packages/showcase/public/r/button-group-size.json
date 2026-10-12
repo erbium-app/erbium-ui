@@ -4,14 +4,18 @@
   "type": "registry:block",
   "title": "Button Group: Size",
   "description": "Control the size of buttons using the `size` prop on individual buttons.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/icon",
+    "@erbium/styles"
+  ],
   "files": [
     {
       "path": "src/button-group/examples/button-group-size.tsx",
       "type": "registry:component",
       "target": "@components/showcase/button-group/examples/button-group-size.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport PlusIcon from \"@hugeicons/core-free-icons/PlusIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-8\">\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          Small\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\">\n          <HugeiconsIcon icon={PlusIcon} />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\">Default</Button>\n        <Button variant=\"outline\">Button</Button>\n        <Button variant=\"outline\">Group</Button>\n        <Button variant=\"outline\" size=\"icon\">\n          <HugeiconsIcon icon={PlusIcon} />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"lg\">\n          Large\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-lg\">\n          <HugeiconsIcon icon={PlusIcon} />\n        </Button>\n      </ButtonGroup>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-8\">\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          Small\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\">Default</Button>\n        <Button variant=\"outline\">Button</Button>\n        <Button variant=\"outline\">Group</Button>\n        <Button variant=\"outline\" size=\"icon\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"lg\">\n          Large\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-lg\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/button-group/variants/size.tsx",

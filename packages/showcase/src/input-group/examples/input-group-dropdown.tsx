@@ -1,6 +1,5 @@
 import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import MoreHorizontalIcon from "@hugeicons/core-free-icons/MoreHorizontalIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import {
@@ -27,7 +26,7 @@ export default function InputGroupDropdown() {
             <DropdownMenuTrigger
               render={
                 <InputGroupButton variant="ghost" aria-label="More" size="icon-xs">
-                  <HugeiconsIcon icon={MoreHorizontalIcon} />
+                  <Icon name="more-horizontal" />
                 </InputGroupButton>
               }
             />

@@ -1,7 +1,5 @@
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import FileSearchIcon from "@hugeicons/core-free-icons/FileSearchIcon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Attachment,
@@ -29,7 +27,7 @@ export function AttachmentTriggerDemo() {
       <Dialog>
         <Attachment className="w-full">
           <AttachmentMedia>
-            <HugeiconsIcon icon={FileSearchIcon} />
+            <Icon name="file-search" />
           </AttachmentMedia>
           <AttachmentContent>
             <AttachmentTitle>research-summary.pdf</AttachmentTitle>
@@ -42,7 +40,7 @@ export function AttachmentTriggerDemo() {
               render={<AttachmentAction />}
             />
             <AttachmentAction aria-label="Remove research-summary.pdf">
-              <HugeiconsIcon icon={XIcon} />
+              <Icon name="x" />
             </AttachmentAction>
           </AttachmentActions>
           <DialogTrigger render={<AttachmentTrigger aria-label="Preview research-summary.pdf" />} />

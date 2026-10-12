@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import DotIcon from "@hugeicons/core-free-icons/DotIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import {
@@ -27,7 +26,7 @@ export function BreadcrumbDropdown() {
           <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <HugeiconsIcon icon={DotIcon} />
+          <Icon name="dot" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <DropdownMenu>
@@ -51,7 +50,7 @@ export function BreadcrumbDropdown() {
           </DropdownMenu>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
-          <HugeiconsIcon icon={DotIcon} />
+          <Icon name="dot" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbPage>Breadcrumb</BreadcrumbPage>

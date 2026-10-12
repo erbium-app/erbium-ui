@@ -1,8 +1,4 @@
-import BoldIcon from "@hugeicons/core-free-icons/BoldIcon";
-import ItalicIcon from "@hugeicons/core-free-icons/ItalicIcon";
-import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
-import UnderlineIcon from "@hugeicons/core-free-icons/UnderlineIcon";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { Icon } from "@erbium/ui/components/icon";
 import { Toggle } from "@erbium/ui/components/toggle";
 import {
   Toolbar,
@@ -15,18 +11,18 @@ const Example = () => (
   <Toolbar aria-label="Text formatting">
     <ToolbarGroup aria-label="Text style">
       <ToolbarButton render={<Toggle aria-label="Bold" />} size="icon-sm">
-        <HugeiconsIcon icon={BoldIcon} />
+        <Icon name="bold" />
       </ToolbarButton>
       <ToolbarButton render={<Toggle aria-label="Italic" />} size="icon-sm">
-        <HugeiconsIcon icon={ItalicIcon} />
+        <Icon name="italic" />
       </ToolbarButton>
       <ToolbarButton render={<Toggle aria-label="Underline" />} size="icon-sm">
-        <HugeiconsIcon icon={UnderlineIcon} />
+        <Icon name="underline" />
       </ToolbarButton>
     </ToolbarGroup>
     <ToolbarSeparator />
     <ToolbarButton aria-label="Insert link" size="icon-sm">
-      <HugeiconsIcon icon={Link01Icon} />
+      <Icon name="link-01" />
     </ToolbarButton>
   </Toolbar>
 );

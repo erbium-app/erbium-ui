@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Button: With Icon",
   "description": "Remember to add the `data-icon=\"inline-start\"` or `data-icon=\"inline-end\"` attribute to the icon for the correct spacing.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
       "path": "src/button/examples/button-with-icon.tsx",
       "type": "registry:component",
       "target": "@components/showcase/button/examples/button-with-icon.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport GitForkIcon from \"@hugeicons/core-free-icons/GitForkIcon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonWithIcon() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\">\n        <HugeiconsIcon icon={GitBranchIcon} data-icon=\"inline-start\" /> New Branch\n      </Button>\n      <Button variant=\"outline\">\n        Fork\n        <HugeiconsIcon icon={GitForkIcon} data-icon=\"inline-end\" />\n      </Button>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonWithIcon() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\">\n        <Icon name=\"git-branch\" data-icon=\"inline-start\" /> New Branch\n      </Button>\n      <Button variant=\"outline\">\n        Fork\n        <Icon name=\"git-fork\" data-icon=\"inline-end\" />\n      </Button>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/button/variants/with-icon.tsx",

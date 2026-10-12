@@ -4,14 +4,18 @@
   "type": "registry:block",
   "title": "Spinner: Input Group",
   "description": "Show progress inside an input group.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/input-group", "@erbium/spinner", "@erbium/styles"],
+  "registryDependencies": [
+    "@erbium/icon",
+    "@erbium/input-group",
+    "@erbium/spinner",
+    "@erbium/styles"
+  ],
   "files": [
     {
       "path": "src/spinner/examples/spinner-input-group.tsx",
       "type": "registry:component",
       "target": "@components/showcase/spinner/examples/spinner-input-group.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-group\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"block-end\">\n          <Spinner /> Validating...\n          <InputGroupButton className=\"ml-auto\" variant=\"default\">\n            <HugeiconsIcon icon={ArrowUp01Icon} />\n            <span className=\"sr-only\">Send</span>\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-group\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"block-end\">\n          <Spinner /> Validating...\n          <InputGroupButton className=\"ml-auto\" variant=\"default\">\n            <Icon name=\"arrow-up-01\" />\n            <span className=\"sr-only\">Send</span>\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/spinner/variants/input-group.tsx",

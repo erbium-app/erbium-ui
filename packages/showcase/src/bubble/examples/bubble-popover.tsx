@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Bubble, BubbleContent, BubbleReactions } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -32,7 +31,7 @@ export function BubblePopoverDemo() {
                 />
               }
             >
-              <HugeiconsIcon icon={InfoIcon} />
+              <Icon name="info" />
             </PopoverTrigger>
             <PopoverContent>
               <PopoverHeader>

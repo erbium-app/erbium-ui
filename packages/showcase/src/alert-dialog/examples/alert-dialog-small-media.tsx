@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import BluetoothIcon from "@hugeicons/core-free-icons/BluetoothIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   AlertDialog,
@@ -23,7 +22,7 @@ export function AlertDialogSmallWithMedia() {
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
           <AlertDialogMedia>
-            <HugeiconsIcon icon={BluetoothIcon} />
+            <Icon name="bluetooth" />
           </AlertDialogMedia>
           <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
           <AlertDialogDescription>

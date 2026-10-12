@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import SaveIcon from "@hugeicons/core-free-icons/SaveIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import { Kbd } from "@erbium/ui/components/kbd";
@@ -9,7 +8,7 @@ export function TooltipKeyboard() {
   return (
     <Tooltip>
       <TooltipTrigger render={<Button variant="outline" size="icon-sm" />}>
-        <HugeiconsIcon icon={SaveIcon} />
+        <Icon name="save" />
       </TooltipTrigger>
       <TooltipContent>
         Save Changes <Kbd hotkey="S" />

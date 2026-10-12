@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Toggle: Outline",
   "description": "Use `variant=\"outline\"` for an outline style.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+  "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
       "path": "src/toggle/examples/toggle-outline.tsx",
       "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-outline.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ItalicIcon from \"@hugeicons/core-free-icons/ItalicIcon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <HugeiconsIcon icon={ItalicIcon} />\n    </Toggle>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n    </Toggle>\n  );\n}\n"
     },
     {
       "path": "src/toggle/variants/outline.tsx",

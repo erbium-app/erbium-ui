@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
 import { Kbd } from "@erbium/ui/components/kbd";
@@ -10,7 +9,7 @@ export default function KbdInputGroup() {
       <InputGroup>
         <InputGroupInput placeholder="Search..." />
         <InputGroupAddon>
-          <HugeiconsIcon icon={Search01Icon} />
+          <Icon name="search-01" />
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
           <Kbd hotkey="Mod+K" />

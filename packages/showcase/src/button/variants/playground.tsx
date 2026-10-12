@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 import { Button } from "@erbium/ui/components/button";
 import type * as React from "react";
 
@@ -8,7 +7,7 @@ const Example = (args: React.ComponentProps<typeof Button>) => {
 
   return (
     <Button {...args} aria-label={iconOnly ? "Submit" : undefined}>
-      {iconOnly ? <HugeiconsIcon icon={ArrowUp01Icon} /> : "Button"}
+      {iconOnly ? <Icon name="arrow-up-01" /> : "Button"}
     </Button>
   );
 };

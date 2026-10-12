@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import BotIcon from "@hugeicons/core-free-icons/BotIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Button } from "@erbium/ui/components/button";
@@ -18,7 +17,7 @@ export default function ButtonGroupPopover() {
   return (
     <ButtonGroup>
       <Button variant="outline">
-        <HugeiconsIcon icon={BotIcon} /> Copilot
+        <Icon name="bot" /> Copilot
       </Button>
       <Popover>
         <PopoverTrigger

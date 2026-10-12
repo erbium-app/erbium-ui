@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 
@@ -12,7 +11,7 @@ export function AvatarBadgeIconExample() {
       />
       <AvatarFallback>ST</AvatarFallback>
       <AvatarBadge>
-        <HugeiconsIcon icon={PlusIcon} />
+        <Icon name="plus" />
       </AvatarBadge>
     </Avatar>
   );

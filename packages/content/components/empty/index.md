@@ -12,8 +12,7 @@ Use `Empty` for an absent item or an initial state. It includes a subtle dashed 
 ## Usage
 
 ```tsx
-import { HugeiconsIcon } from "@hugeicons/react";
-import Folder01Icon from "@hugeicons/core-free-icons/Folder01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 import { Button } from "@erbium/ui/components/button";
 import {
   Empty,
@@ -27,7 +26,7 @@ import {
 <Empty>
   <EmptyHeader>
     <EmptyMedia variant="icon">
-      <HugeiconsIcon icon={Folder01Icon} />
+      <Icon name="folder-01" />
     </EmptyMedia>
     <EmptyTitle>No projects yet</EmptyTitle>
     <EmptyDescription>Create a project to get started.</EmptyDescription>

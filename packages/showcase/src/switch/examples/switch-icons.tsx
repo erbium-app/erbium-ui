@@ -1,31 +1,20 @@
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { Switch } from "@erbium/ui/components/switch";
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import MoonIcon from "@hugeicons/core-free-icons/MoonIcon";
-import Sun01Icon from "@hugeicons/core-free-icons/Sun01Icon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 export default function SwitchIcons() {
   return (
     <div className="flex flex-col gap-group">
       <Field orientation="horizontal">
-        <Switch
-          startIcon={<HugeiconsIcon icon={CheckIcon} />}
-          endIcon={<HugeiconsIcon icon={XIcon} />}
-          defaultChecked
-        />
+        <Switch startIcon={<Icon name="check" />} endIcon={<Icon name="x" />} defaultChecked />
         <FieldLabel>Track icons</FieldLabel>
       </Field>
       <Field orientation="horizontal">
-        <Switch thumbIcon={<HugeiconsIcon icon={Sun01Icon} />} />
+        <Switch thumbIcon={<Icon name="sun-01" />} />
         <FieldLabel>Thumb icon</FieldLabel>
       </Field>
       <Field orientation="horizontal">
-        <Switch
-          startIcon={<HugeiconsIcon icon={MoonIcon} />}
-          endIcon={<HugeiconsIcon icon={Sun01Icon} />}
-        />
+        <Switch startIcon={<Icon name="moon" />} endIcon={<Icon name="sun-01" />} />
         <FieldLabel>Dark mode</FieldLabel>
       </Field>
     </div>

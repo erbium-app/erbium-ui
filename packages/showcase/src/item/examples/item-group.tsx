@@ -1,6 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 import { Button } from "@erbium/ui/components/button";
@@ -60,7 +59,7 @@ export default function ItemGroupExample() {
               </ItemContent>
               <ItemActions>
                 <Button variant="ghost" size="icon" className="rounded-full">
-                  <HugeiconsIcon icon={PlusIcon} />
+                  <Icon name="plus" />
                 </Button>
               </ItemActions>
             </Item>

@@ -1,7 +1,4 @@
-import Cancel01Icon from "@hugeicons/core-free-icons/Cancel01Icon";
-import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
-import Image01Icon from "@hugeicons/core-free-icons/Image01Icon";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { Icon } from "@erbium/ui/components/icon";
 import {
   AttachmentMedia,
   AttachmentContent,
@@ -30,10 +27,7 @@ const Example = (args: {
     className={args.className}
   >
     <AttachmentMedia variant={args.mediaVariant}>
-      <HugeiconsIcon
-        icon={args.mediaVariant === "icon" ? FileTextIcon : Image01Icon}
-        aria-hidden="true"
-      />
+      <Icon name={args.mediaVariant === "icon" ? "file-text" : "image-01"} aria-hidden="true" />
     </AttachmentMedia>
     <AttachmentContent>
       <AttachmentTitle>{args.title}</AttachmentTitle>
@@ -41,7 +35,7 @@ const Example = (args: {
     </AttachmentContent>
     <AttachmentActions>
       <AttachmentAction size={args.actionSize} aria-label="Remove attachment">
-        <HugeiconsIcon icon={Cancel01Icon} aria-hidden="true" />
+        <Icon name="cancel-01" aria-hidden="true" />
       </AttachmentAction>
     </AttachmentActions>
     <AttachmentTrigger

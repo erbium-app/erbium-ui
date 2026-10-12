@@ -1,11 +1,5 @@
 import { CopyButton, CopyButtonIcon } from "@erbium/ui/blocks/copy-button";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Alert01Icon from "@hugeicons/core-free-icons/Alert01Icon";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import Share01Icon from "@hugeicons/core-free-icons/Share01Icon";
-import TrashIcon from "@hugeicons/core-free-icons/TrashIcon";
-import UserRoundXIcon from "@hugeicons/core-free-icons/UserRoundXIcon";
-import VolumeOffIcon from "@hugeicons/core-free-icons/VolumeOffIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Button } from "@erbium/ui/components/button";
@@ -36,23 +30,23 @@ export default function ButtonGroupDropdown() {
           <DropdownMenuList>
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <HugeiconsIcon icon={VolumeOffIcon} />
+                <Icon name="volume-off" />
                 Mute Conversation
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <HugeiconsIcon icon={CheckIcon} />
+                <Icon name="check" />
                 Mark as Read
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <HugeiconsIcon icon={Alert01Icon} />
+                <Icon name="alert-01" />
                 Report Conversation
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <HugeiconsIcon icon={UserRoundXIcon} />
+                <Icon name="user-round-x" />
                 Block User
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <HugeiconsIcon icon={Share01Icon} />
+                <Icon name="share-01" />
                 Share Conversation
               </DropdownMenuItem>
               <CopyButton value="Conversation with Alex" render={<DropdownMenuItem />}>
@@ -63,7 +57,7 @@ export default function ButtonGroupDropdown() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem variant="error">
-                <HugeiconsIcon icon={TrashIcon} />
+                <Icon name="trash" />
                 Delete Conversation
               </DropdownMenuItem>
             </DropdownMenuGroup>

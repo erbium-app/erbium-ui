@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ShieldAlertIcon from "@hugeicons/core-free-icons/ShieldAlertIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -16,7 +15,7 @@ export default function ItemIcon() {
     <div className="flex w-full max-w-lg flex-col gap-section">
       <Item variant="card">
         <ItemMedia variant="icon">
-          <HugeiconsIcon icon={ShieldAlertIcon} />
+          <Icon name="shield-alert" />
         </ItemMedia>
         <ItemContent>
           <ItemTitle>Security Alert</ItemTitle>

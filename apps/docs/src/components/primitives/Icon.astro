@@ -1,34 +1,15 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { IconProps } from "@erbium/ui/components/icon";
+
 type Props = HTMLAttributes<"svg"> & {
-  icon: readonly (readonly [string, Record<string, string | number>])[];
+  name: IconProps["name"];
   size?: number;
-  strokeWidth?: number;
 };
-const { icon, size = 20, strokeWidth = 1.5, ...props } = Astro.props;
+const { name, size = 20, ...props } = Astro.props;
 ---
 
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width={size}
-  height={size}
-  viewBox="0 0 24 24"
-  fill="none"
-  aria-hidden="true"
-  {...props}
->
-  {
-    icon.map(([Tag, attributes]) => (
-      <Tag
-        {...Object.fromEntries(
-          Object.entries(attributes)
-            .filter(([key]) => key !== "key")
-            .map(([key, value]) => [
-              key.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`),
-              key === "strokeWidth" ? strokeWidth : value,
-            ]),
-        )}
-      />
-    ))
-  }
+<!-- Symbols come from the IconSprite mounted in DocumentLayout. -->
+<svg width={size} height={size} aria-hidden="true" focusable="false" {...props}>
+  <use href={`#erbium-icon-${name}`} />
 </svg>

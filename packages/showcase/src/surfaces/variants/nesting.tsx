@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ChevronDownIcon from "@hugeicons/core-free-icons/ChevronDownIcon";
+import { Icon } from "@erbium/ui/components/icon";
 import { Canvas, control } from "../helpers";
 
 const Example = () => (
@@ -7,7 +6,7 @@ const Example = () => (
     <div className="grid w-full max-w-3xl items-start gap-8 @xl:grid-cols-2">
       <div className="grid gap-related">
         <span aria-expanded className={`${control} w-fit border surface-control`}>
-          Workspace <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
+          Workspace <Icon name="chevron-down" className="size-3.5" />
         </span>
         <div className="w-full max-w-56 rounded-xl border surface-overlay p-1">
           {["Profile", "Settings", "Sign out"].map((item, index) => (
@@ -23,7 +22,7 @@ const Example = () => (
           <div className="text-muted-foreground">A menu opened in a dialog climbs above it.</div>
         </div>
         <span aria-expanded className={`${control} w-fit border surface-control`}>
-          Member <HugeiconsIcon icon={ChevronDownIcon} className="size-3.5" />
+          Member <Icon name="chevron-down" className="size-3.5" />
         </span>
         <div className="w-full max-w-48 rounded-xl border surface-overlay p-1 [--surface-face:var(--surface-top)]">
           {["Owner", "Member", "Restricted"].map((item, index) => (

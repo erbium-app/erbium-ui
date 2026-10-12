@@ -1,10 +1,6 @@
+import { Icon } from "@erbium/ui/components/icon";
+import type { IconProps } from "@erbium/ui/components/icon";
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import FrameIcon from "@hugeicons/core-free-icons/FrameIcon";
-import LifebuoyIcon from "@hugeicons/core-free-icons/LifebuoyIcon";
-import MapIcon from "@hugeicons/core-free-icons/MapIcon";
-import PieChartIcon from "@hugeicons/core-free-icons/PieChartIcon";
-import SendIcon from "@hugeicons/core-free-icons/SendIcon";
 
 import {
   Sidebar,
@@ -25,29 +21,29 @@ const projects = [
   {
     name: "Design Engineering",
     url: "#",
-    icon: FrameIcon,
+    icon: "frame",
   },
   {
     name: "Sales & Marketing",
     url: "#",
-    icon: PieChartIcon,
+    icon: "pie-chart",
   },
   {
     name: "Travel",
     url: "#",
-    icon: MapIcon,
+    icon: "map",
   },
   {
     name: "Support",
     url: "#",
-    icon: LifebuoyIcon,
+    icon: "lifebuoy",
   },
   {
     name: "Feedback",
     url: "#",
-    icon: SendIcon,
+    icon: "send",
   },
-];
+] satisfies ({ icon: IconProps["name"] } & Record<string, unknown>)[];
 
 function ControlledSidebarTrigger() {
   const { isMobile, open, openMobile } = useSidebar();
@@ -74,7 +70,7 @@ export default function AppSidebar() {
                 {projects.map((project) => (
                   <SidebarMenuItem key={project.name}>
                     <SidebarMenuButton render={<a href={project.url} />}>
-                      <HugeiconsIcon icon={project.icon} />
+                      <Icon name={project.icon} />
                       <span>{project.name}</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

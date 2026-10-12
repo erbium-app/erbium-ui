@@ -372,8 +372,12 @@
       "type": "registry:component",
       "title": "alert dialog error",
       "description": "Erbium alert dialog error example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/alert-dialog",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/alert-dialog/examples/alert-dialog-error.tsx",
@@ -387,8 +391,12 @@
       "type": "registry:block",
       "title": "Alert Dialog: Error",
       "description": "Use the `AlertDialogAction` component to add a error action button to the alert dialog.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/alert-dialog",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/alert-dialog/examples/alert-dialog-error.tsx",
@@ -422,8 +430,12 @@
       "type": "registry:block",
       "title": "Alert Dialog: Media",
       "description": "Use the `AlertDialogMedia` component to add a media element such as an icon or image to the alert dialog.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/alert-dialog",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/alert-dialog/examples/alert-dialog-media.tsx",
@@ -494,8 +506,12 @@
       "type": "registry:block",
       "title": "Alert Dialog: Small with Media",
       "description": "Use the `size=\"sm\"` prop to make the alert dialog smaller and the `AlertDialogMedia` component to add a media element such as an icon or image to the alert dialog.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/alert-dialog", "@erbium/button", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/alert-dialog",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/alert-dialog/examples/alert-dialog-small-media.tsx",
@@ -514,12 +530,12 @@
       "type": "registry:item",
       "title": "Alert Dialog stories",
       "description": "All alert-dialog variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/alert-dialog",
         "@erbium/button",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -995,8 +1011,7 @@
       "type": "registry:block",
       "title": "Attachment: Group",
       "description": "Wrap attachments in `AttachmentGroup` to lay them out in a horizontally scrollable, snapping row with an edge fade.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
+      "registryDependencies": ["@erbium/attachment", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/attachment/examples/attachment-group.tsx",
@@ -1015,8 +1030,7 @@
       "type": "registry:block",
       "title": "Attachment: Image",
       "description": "Set `variant=\"image\"` on `AttachmentMedia` and render an `<img>` inside it. Use `orientation=\"vertical\"` to stack the media above the content.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
+      "registryDependencies": ["@erbium/attachment", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/attachment/examples/attachment-image.tsx",
@@ -1054,8 +1068,7 @@
       "type": "registry:component",
       "title": "Attachment: Playground",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
+      "registryDependencies": ["@erbium/attachment", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/attachment/variants/playground.tsx",
@@ -1069,8 +1082,7 @@
       "type": "registry:block",
       "title": "Attachment: Sizes",
       "description": "Use `size` to switch between `default`, `sm`, and `xs`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
+      "registryDependencies": ["@erbium/attachment", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/attachment/examples/attachment-sizes.tsx",
@@ -1089,8 +1101,12 @@
       "type": "registry:block",
       "title": "Attachment: States",
       "description": "Set `state` to reflect the upload lifecycle. `uploading` and `processing` shimmer the title, and `error` switches to a error treatment.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/attachment", "@erbium/spinner", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/attachment",
+        "@erbium/icon",
+        "@erbium/spinner",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/attachment/examples/attachment-states.tsx",
@@ -1109,13 +1125,13 @@
       "type": "registry:item",
       "title": "Attachment stories",
       "description": "All attachment variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/attachment",
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dialog",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/spinner",
         "@erbium/styles",
@@ -1204,11 +1220,11 @@
       "type": "registry:block",
       "title": "Attachment: Trigger",
       "description": "Add an `AttachmentTrigger` to make the whole card open a link or dialog. It fills the card behind the actions, so the actions stay clickable.\n\n```tsx\n<Dialog>\n  <Attachment>\n    {/* media, content, actions */}\n    <DialogTrigger render={<AttachmentTrigger aria-label=\"Preview research-summary.pdf\" />} />\n  </Attachment>\n  <DialogPanel>{/* ... */}</DialogPanel>\n</Dialog>\n```",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/attachment",
         "@erbium/copy-button",
         "@erbium/dialog",
+        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -1500,13 +1516,13 @@
       "type": "registry:item",
       "title": "Autocomplete stories",
       "description": "All autocomplete variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/autocomplete",
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/spinner",
         "@erbium/styles",
@@ -1720,11 +1736,11 @@
       "type": "registry:block",
       "title": "Autocomplete: With Start Addon",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/autocomplete",
         "@erbium/button",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1809,8 +1825,7 @@
       "type": "registry:block",
       "title": "Avatar: Avatar Group With Icon",
       "description": "You can also use an icon inside `<AvatarGroupCount>`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/avatar", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/avatar/examples/avatar-group-count-icon.tsx",
@@ -1848,8 +1863,7 @@
       "type": "registry:component",
       "title": "avatar badge icon",
       "description": "Erbium avatar badge icon example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/avatar", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/avatar/examples/avatar-badge-icon.tsx",
@@ -1863,8 +1877,7 @@
       "type": "registry:block",
       "title": "Avatar: Badge With Icon",
       "description": "You can also use an icon inside `<AvatarBadge>`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/avatar", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/avatar/examples/avatar-badge-icon.tsx",
@@ -2002,8 +2015,7 @@
       "type": "registry:component",
       "title": "avatar group count icon",
       "description": "Erbium avatar group count icon example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/avatar", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/avatar/examples/avatar-group-count-icon.tsx",
@@ -2097,13 +2109,13 @@
       "type": "registry:item",
       "title": "Avatar stories",
       "description": "All avatar variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -2259,8 +2271,7 @@
       "type": "registry:component",
       "title": "badge icon",
       "description": "Erbium badge icon example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/badge", "@erbium/styles"],
+      "registryDependencies": ["@erbium/badge", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/badge/examples/badge-icon.tsx",
@@ -2274,8 +2285,7 @@
       "type": "registry:block",
       "title": "Badge: Link",
       "description": "Use the `render` prop to render a link as a badge.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/badge", "@erbium/styles"],
+      "registryDependencies": ["@erbium/badge", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/badge/examples/badge-link.tsx",
@@ -2341,11 +2351,11 @@
       "type": "registry:item",
       "title": "Badge stories",
       "description": "All badge variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/spinner",
         "@erbium/styles",
@@ -2433,8 +2443,7 @@
       "type": "registry:block",
       "title": "Badge: With Icon",
       "description": "You can render an icon inside the badge. Use `data-icon=\"inline-start\"` to render the icon on the left and `data-icon=\"inline-end\"` to render the icon on the right.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/badge", "@erbium/styles"],
+      "registryDependencies": ["@erbium/badge", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/badge/examples/badge-icon.tsx",
@@ -2491,8 +2500,7 @@
       "type": "registry:block",
       "title": "Breadcrumb: Custom Separator",
       "description": "Use a custom component as `children` for `<BreadcrumbSeparator />` to create a custom separator.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+      "registryDependencies": ["@erbium/breadcrumb", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/breadcrumb/examples/breadcrumb-separator.tsx",
@@ -2525,10 +2533,10 @@
       "type": "registry:block",
       "title": "Breadcrumb: Dropdown",
       "description": "You can compose `<BreadcrumbItem />` with a `<DropdownMenu />` to create a dropdown in the breadcrumb.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/breadcrumb",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/stateful-icon",
         "@erbium/styles"
       ],
@@ -2650,8 +2658,7 @@
       "type": "registry:component",
       "title": "breadcrumb separator",
       "description": "Erbium breadcrumb separator example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+      "registryDependencies": ["@erbium/breadcrumb", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/breadcrumb/examples/breadcrumb-separator.tsx",
@@ -2665,12 +2672,12 @@
       "type": "registry:item",
       "title": "Breadcrumb stories",
       "description": "All breadcrumb variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/breadcrumb",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/stateful-icon",
         "@erbium/styles",
@@ -2906,10 +2913,10 @@
       "type": "registry:block",
       "title": "Bubble: Popover",
       "description": "Pair a bubble with a [`Popover`](https://ui.shadcn.com/docs/components/popover) to surface more information on demand, such as the full error message for a failed action.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
+        "@erbium/icon",
         "@erbium/popover",
         "@erbium/styles"
       ],
@@ -2955,13 +2962,13 @@
       "type": "registry:item",
       "title": "Bubble stories",
       "description": "All bubble variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
         "@erbium/collapsible",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/popover",
         "@erbium/stateful-icon",
@@ -3082,10 +3089,10 @@
       "type": "registry:block",
       "title": "Bubble: Tooltip",
       "description": "Wrap a bubble in a [`Tooltip`](https://ui.shadcn.com/docs/components/tooltip) to reveal metadata on hover, such as when a message was read.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
+        "@erbium/icon",
         "@erbium/styles",
         "@erbium/tooltip"
       ],
@@ -3140,11 +3147,11 @@
       "type": "registry:block",
       "title": "Button: Button Group",
       "description": "To create a button group, use the `ButtonGroup` component. See the [Button Group](https://ui.shadcn.com/docs/components/base/button-group) documentation for more details.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -3184,8 +3191,7 @@
       "type": "registry:component",
       "title": "button demo",
       "description": "Erbium button demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/examples/button-demo.tsx",
@@ -3294,11 +3300,11 @@
       "type": "registry:component",
       "title": "button group demo",
       "description": "Erbium button group demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -3314,12 +3320,12 @@
       "type": "registry:component",
       "title": "button group dropdown",
       "description": "Erbium button group dropdown example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/copy-button",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/stateful-icon",
         "@erbium/styles"
       ],
@@ -3336,12 +3342,12 @@
       "type": "registry:block",
       "title": "Button Group: Dropdown Menu",
       "description": "Create a split button group with a `DropdownMenu` component.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/copy-button",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/stateful-icon",
         "@erbium/styles"
       ],
@@ -3383,10 +3389,10 @@
       "type": "registry:block",
       "title": "Button Group: Input",
       "description": "Wrap an `Input` component with buttons.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/icon",
         "@erbium/input",
         "@erbium/styles"
       ],
@@ -3408,10 +3414,10 @@
       "type": "registry:block",
       "title": "Button Group: Input Group",
       "description": "Wrap an `InputGroup` component to create complex input layouts.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/styles",
         "@erbium/tooltip"
@@ -3434,8 +3440,12 @@
       "type": "registry:block",
       "title": "Button Group: Nested",
       "description": "Nest `<ButtonGroup>` components to create button groups with spacing.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/button-group/examples/button-group-nested.tsx",
@@ -3454,8 +3464,12 @@
       "type": "registry:block",
       "title": "Button Group: Orientation",
       "description": "Set the `orientation` prop to change the button group layout.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/button-group/examples/button-group-orientation.tsx",
@@ -3474,11 +3488,11 @@
       "type": "registry:block",
       "title": "Button Group: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -3513,10 +3527,10 @@
       "type": "registry:block",
       "title": "Button Group: Popover",
       "description": "Use with a `Popover` component.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/icon",
         "@erbium/popover",
         "@erbium/separator",
         "@erbium/stateful-icon",
@@ -3541,10 +3555,10 @@
       "type": "registry:block",
       "title": "Button Group: Select",
       "description": "Pair with a `Select` component.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/icon",
         "@erbium/number-field",
         "@erbium/select",
         "@erbium/styles"
@@ -3591,8 +3605,12 @@
       "type": "registry:block",
       "title": "Button Group: Size",
       "description": "Control the size of buttons using the `size` prop on individual buttons.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/button-group/examples/button-group-size.tsx",
@@ -3611,8 +3629,12 @@
       "type": "registry:block",
       "title": "Button Group: Split",
       "description": "Create a split button group by adding two buttons separated by a `ButtonGroupSeparator`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/button-group/examples/button-group-split.tsx",
@@ -3631,7 +3653,6 @@
       "type": "registry:item",
       "title": "Button Group stories",
       "description": "All button-group variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -3639,6 +3660,7 @@
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/input",
         "@erbium/input-group",
         "@erbium/number-field",
@@ -3785,8 +3807,7 @@
       "type": "registry:block",
       "title": "Button: Icon",
       "description": "Pair an icon with a button label, or label an icon-only button for accessibility.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/examples/button-icon.tsx",
@@ -3838,8 +3859,12 @@
       "type": "registry:component",
       "title": "Button: Loading Directions",
       "description": "The loading spinner stays at the inline start in both LTR and RTL layouts.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/direction", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/direction",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/button/variants/loading-directions.tsx",
@@ -3872,8 +3897,7 @@
       "type": "registry:block",
       "title": "Button: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/examples/button-demo.tsx",
@@ -3892,8 +3916,7 @@
       "type": "registry:component",
       "title": "Button: Playground",
       "description": "Use the Controls panel to try every `variant` and `size` in the Button API reference.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/variants/playground.tsx",
@@ -3907,8 +3930,7 @@
       "type": "registry:block",
       "title": "Button: Rounded",
       "description": "Use the `rounded-full` class to make the button rounded.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/examples/button-rounded.tsx",
@@ -3965,8 +3987,7 @@
       "type": "registry:block",
       "title": "Button: Size",
       "description": "Use the `size` prop to change the size of the button.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/examples/button-size.tsx",
@@ -4013,7 +4034,6 @@
       "type": "registry:item",
       "title": "Button stories",
       "description": "All button variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -4021,6 +4041,7 @@
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -4232,8 +4253,7 @@
       "type": "registry:block",
       "title": "Button: With Icon",
       "description": "Remember to add the `data-icon=\"inline-start\"` or `data-icon=\"inline-end\"` attribute to the icon for the correct spacing.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/button/examples/button-with-icon.tsx",
@@ -4352,11 +4372,11 @@
       "type": "registry:block",
       "title": "Calendar: Date And Time Picker",
       "description": "Select both a date and a time.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/calendar",
         "@erbium/card",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/styles"
       ],
@@ -4412,8 +4432,7 @@
       "type": "registry:block",
       "title": "Calendar: Persian / Hijri / Jalali Calendar",
       "description": "To use the Persian calendar, edit `components/ui/calendar.tsx` and replace `react-day-picker` with `react-day-picker/persian`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/calendar/examples/calendar-hijri.tsx",
@@ -4563,12 +4582,7 @@
       "type": "registry:item",
       "title": "Calendar stories",
       "description": "All calendar variants as portable React CSF stories.",
-      "dependencies": [
-        "@hugeicons/core-free-icons@^4.3.5",
-        "@hugeicons/react@^1.1.10",
-        "date-fns@^4.4.0",
-        "react-day-picker@^10.0.2"
-      ],
+      "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -4576,6 +4590,7 @@
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -4709,11 +4724,11 @@
       "type": "registry:component",
       "title": "calendar time",
       "description": "Erbium calendar time example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/calendar",
         "@erbium/card",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/styles"
       ],
@@ -6237,10 +6252,10 @@
       "type": "registry:block",
       "title": "Collapsible: Controlled State",
       "description": "Use the `open` and `onOpenChange` props to control the state.\n\n```tsx\nimport * as React from \"react\";\n\nexport function Example() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <Collapsible open={open} onOpenChange={setOpen}>\n      <CollapsibleTrigger>Toggle</CollapsibleTrigger>\n      <CollapsibleContent>Content</CollapsibleContent>\n    </Collapsible>\n  );\n}\n```",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/collapsible",
+        "@erbium/icon",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/styles"
@@ -6263,10 +6278,10 @@
       "type": "registry:component",
       "title": "collapsible demo",
       "description": "Erbium collapsible demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/collapsible",
+        "@erbium/icon",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/styles"
@@ -6298,11 +6313,11 @@
       "type": "registry:block",
       "title": "Collapsible: File Tree",
       "description": "Use nested collapsibles to build a file tree.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/collapsible",
+        "@erbium/icon",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/tabs"
@@ -6325,10 +6340,10 @@
       "type": "registry:block",
       "title": "Collapsible: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/collapsible",
+        "@erbium/icon",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/styles"
@@ -6420,7 +6435,6 @@
       "type": "registry:item",
       "title": "Collapsible stories",
       "description": "All collapsible variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -6428,6 +6442,7 @@
         "@erbium/collapsible",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/number-field",
         "@erbium/overlay-provider",
         "@erbium/separator",
@@ -6696,8 +6711,12 @@
       "type": "registry:block",
       "title": "Combobox: Input Group",
       "description": "You can add an addon to the combobox by using the `InputGroupAddon` component inside the `ComboboxInput`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/combobox", "@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/combobox",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/combobox/examples/combobox-input-group.tsx",
@@ -6820,12 +6839,12 @@
       "type": "registry:item",
       "title": "Combobox stories",
       "description": "All combobox variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/combobox",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/item",
         "@erbium/overlay-provider",
@@ -7008,8 +7027,7 @@
       "type": "registry:component",
       "title": "command demo",
       "description": "Erbium command demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/command", "@erbium/styles"],
+      "registryDependencies": ["@erbium/command", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/command/examples/command-demo.tsx",
@@ -7038,8 +7056,12 @@
       "type": "registry:block",
       "title": "Command: Groups",
       "description": "A command menu with groups, icons and separators.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/command",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/command/examples/command-groups.tsx",
@@ -7058,8 +7080,7 @@
       "type": "registry:block",
       "title": "Command: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/command", "@erbium/styles"],
+      "registryDependencies": ["@erbium/command", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/command/examples/command-demo.tsx",
@@ -7092,8 +7113,12 @@
       "type": "registry:block",
       "title": "Command: Scrollable",
       "description": "Scrollable command menu with multiple items.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/command",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/command/examples/command-scrollable.tsx",
@@ -7112,8 +7137,12 @@
       "type": "registry:block",
       "title": "Command: Shortcuts",
       "description": "Display keyboard shortcuts alongside command items.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/command",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/command/examples/command-shortcuts.tsx",
@@ -7132,12 +7161,12 @@
       "type": "registry:item",
       "title": "Command stories",
       "description": "All command variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/command",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -7272,8 +7301,7 @@
       "type": "registry:component",
       "title": "context menu error",
       "description": "Erbium context menu error example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-error.tsx",
@@ -7287,8 +7315,7 @@
       "type": "registry:block",
       "title": "Context Menu: Error",
       "description": "Use `variant=\"error\"` to style the menu item as error.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-error.tsx",
@@ -7346,8 +7373,12 @@
       "type": "registry:block",
       "title": "Context Menu: Icons",
       "description": "Combine icons with labels for quick scanning.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/context-menu", "@erbium/copy-button", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/context-menu",
+        "@erbium/copy-button",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-icons.tsx",
@@ -7399,8 +7430,7 @@
       "type": "registry:block",
       "title": "Context Menu: Radio",
       "description": "Use `ContextMenuRadioItem` for exclusive choices.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/context-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/context-menu", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/context-menu/examples/context-menu-radio.tsx",
@@ -7471,12 +7501,12 @@
       "type": "registry:item",
       "title": "Context Menu stories",
       "description": "All context-menu variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/context-menu",
         "@erbium/copy-button",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -9313,11 +9343,11 @@
       "type": "registry:block",
       "title": "Dropdown Menu: Avatar",
       "description": "An account switcher dropdown triggered by an avatar.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -9376,8 +9406,12 @@
       "type": "registry:block",
       "title": "Dropdown Menu: Checkboxes Icons",
       "description": "Add icons to checkbox items.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/examples/dropdown-menu-checkboxes-icons.tsx",
@@ -9396,8 +9430,12 @@
       "type": "registry:block",
       "title": "Dropdown Menu: Complex",
       "description": "A richer example combining groups, icons, and submenus.\n\nTheme is a direct Light or Dark choice in the main menu. Keep this binary preference visible rather than placing it in a submenu or adding a System option. The sun and moon match the shared theme toggle.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/examples/dropdown-menu-complex.tsx",
@@ -9430,8 +9468,12 @@
       "type": "registry:component",
       "title": "dropdown menu error",
       "description": "Erbium dropdown menu error example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/examples/dropdown-menu-error.tsx",
@@ -9445,8 +9487,12 @@
       "type": "registry:block",
       "title": "Dropdown Menu: Error",
       "description": "Use `variant=\"error\"` for irreversible actions.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/examples/dropdown-menu-error.tsx",
@@ -9487,8 +9533,12 @@
       "type": "registry:block",
       "title": "Dropdown Menu: Icons",
       "description": "Combine icons with labels for quick scanning.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/examples/dropdown-menu-icons.tsx",
@@ -9559,8 +9609,12 @@
       "type": "registry:block",
       "title": "Dropdown Menu: Radio Icons",
       "description": "Show radio options with icons.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/dropdown-menu/examples/dropdown-menu-radio-icons.tsx",
@@ -9612,13 +9666,13 @@
       "type": "registry:item",
       "title": "Dropdown Menu stories",
       "description": "All dropdown-menu variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -9891,11 +9945,11 @@
       "type": "registry:block",
       "title": "Empty: Avatar Group",
       "description": "Use the `EmptyMedia` component to display an avatar group in the empty state.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
         "@erbium/empty",
+        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -9916,8 +9970,7 @@
       "type": "registry:block",
       "title": "Empty: Background",
       "description": "Use the `bg-*` and `bg-gradient-*` utilities to add a background to the empty state.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/empty/examples/empty-background.tsx",
@@ -9966,9 +10019,9 @@
       "type": "registry:block",
       "title": "Empty: Input Group",
       "description": "Use an input group as the action in an empty state.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/empty",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/styles"
@@ -9991,9 +10044,9 @@
       "type": "registry:block",
       "title": "Empty: Inputgroup",
       "description": "You can add an `InputGroup` component to the `EmptyContent` component.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/empty",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/styles"
@@ -10016,8 +10069,7 @@
       "type": "registry:block",
       "title": "Empty: Outline",
       "description": "The default empty state includes a dashed border.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/empty/examples/empty-outline.tsx",
@@ -10055,8 +10107,7 @@
       "type": "registry:component",
       "title": "Empty: Playground",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/empty", "@erbium/styles"],
+      "registryDependencies": ["@erbium/empty", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/empty/variants/playground.tsx",
@@ -10070,13 +10121,13 @@
       "type": "registry:item",
       "title": "Empty stories",
       "description": "All empty variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/empty",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/overlay-provider",
@@ -11646,10 +11697,10 @@
       "type": "registry:block",
       "title": "Input Group: Block Start",
       "description": "Position an addon above the input.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/copy-button",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/styles"
       ],
@@ -11671,9 +11722,9 @@
       "type": "registry:block",
       "title": "Input Group: Button",
       "description": "Place an action button inside an input group.\n\nCompose copy actions with `CopyButton` and `render={<InputGroupButton size=\"icon-xs\" />}`. The block owns clipboard state, animated feedback, and announcements.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/copy-button",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/popover",
         "@erbium/styles"
@@ -11730,10 +11781,10 @@
       "type": "registry:block",
       "title": "Input Group: Dropdown",
       "description": "Add a dropdown action inside an input group.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/copy-button",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/stateful-icon",
         "@erbium/styles"
@@ -11777,8 +11828,7 @@
       "type": "registry:block",
       "title": "Input Group: Icon",
       "description": "Place icons beside an input.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/styles"],
       "files": [
         {
           "path": "src/input-group/examples/input-group-icon.tsx",
@@ -11797,8 +11847,12 @@
       "type": "registry:block",
       "title": "Input Group: Inline End",
       "description": "Position an addon at the inline end of the input.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input-group/examples/input-group-inline-end.tsx",
@@ -11817,8 +11871,12 @@
       "type": "registry:block",
       "title": "Input Group: Inline Start",
       "description": "Position an addon at the inline start of the input.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input-group/examples/input-group-inline-start.tsx",
@@ -11837,8 +11895,12 @@
       "type": "registry:block",
       "title": "Input Group: Kbd",
       "description": "Show a keyboard shortcut inside an input group.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/kbd", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/kbd",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input-group/examples/input-group-kbd.tsx",
@@ -11876,8 +11938,7 @@
       "type": "registry:component",
       "title": "Input Group: Playground",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/styles"],
       "files": [
         {
           "path": "src/input-group/variants/playground.tsx",
@@ -11891,17 +11952,14 @@
       "type": "registry:item",
       "title": "Input Group stories",
       "description": "All input-group variants as portable React CSF stories.",
-      "dependencies": [
-        "@hugeicons/core-free-icons@^4.3.5",
-        "@hugeicons/react@^1.1.10",
-        "react-textarea-autosize@^8.5.9"
-      ],
+      "dependencies": ["react-textarea-autosize@^8.5.9"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/overlay-provider",
@@ -12072,8 +12130,12 @@
       "type": "registry:block",
       "title": "Input Group: Textarea",
       "description": "Compose a textarea with addons.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/copy-button", "@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/copy-button",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input-group/examples/input-group-textarea.tsx",
@@ -12116,8 +12178,12 @@
       "type": "registry:block",
       "title": "Input: Input Group",
       "description": "To add icons, text, or buttons inside an input, use the `InputGroup` component. See the [Input Group](https://ui.shadcn.com/docs/components/input-group) component for more examples.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/field", "@erbium/input-group", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/input/examples/input-input-group.tsx",
@@ -12202,7 +12268,6 @@
       "type": "registry:item",
       "title": "Input stories",
       "description": "All input variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/badge",
@@ -12210,6 +12275,7 @@
         "@erbium/button-group",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input",
         "@erbium/input-group",
         "@erbium/overlay-provider",
@@ -12385,10 +12451,10 @@
       "type": "registry:block",
       "title": "Item: Avatar",
       "description": "You can use `ItemMedia` with `variant=\"avatar\"` to display an avatar.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/styles"
       ],
@@ -12435,8 +12501,7 @@
       "type": "registry:component",
       "title": "item demo",
       "description": "Erbium item demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
           "path": "src/item/examples/item-demo.tsx",
@@ -12498,10 +12563,10 @@
       "type": "registry:block",
       "title": "Item: Group",
       "description": "Use `ItemGroup` to group related items together.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/styles"
       ],
@@ -12542,8 +12607,7 @@
       "type": "registry:block",
       "title": "Item: Icon",
       "description": "Use `ItemMedia` with `variant=\"icon\"` to display an icon.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
           "path": "src/item/examples/item-icon.tsx",
@@ -12581,10 +12645,10 @@
       "type": "registry:block",
       "title": "Item: Joined Selection",
       "description": "Mark direct `Item` children with `data-selected` and `ItemGroup` joins adjacent selected rows into one rounded surface automatically. The checkboxes own selection state; the item group owns the visual grouping.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/styles"
       ],
@@ -12606,8 +12670,7 @@
       "type": "registry:block",
       "title": "Item: Link",
       "description": "Use the `render` prop to render the item as a link. The hover and focus states will be applied to the anchor element.\n\n```tsx\n<Item render={<a href=\"/dashboard\" />}>\n  <ItemMedia variant=\"icon\">\n    <HomeIcon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Dashboard</ItemTitle>\n    <ItemDescription>Overview of your account and activity.</ItemDescription>\n  </ItemContent>\n</Item>\n```",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/item", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
           "path": "src/item/examples/item-link.tsx",
@@ -12626,8 +12689,7 @@
       "type": "registry:block",
       "title": "Item: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
           "path": "src/item/examples/item-demo.tsx",
@@ -12646,8 +12708,7 @@
       "type": "registry:component",
       "title": "Item: Playground",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/item", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
           "path": "src/item/variants/playground.tsx",
@@ -12688,8 +12749,7 @@
       "type": "registry:block",
       "title": "Item: Size",
       "description": "Use the `size` prop to change the size of the item. Available sizes are `default`, `sm`, and `xs`.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
+      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
           "path": "src/item/examples/item-size.tsx",
@@ -12708,7 +12768,6 @@
       "type": "registry:item",
       "title": "Item stories",
       "description": "All item variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/avatar",
@@ -12718,6 +12777,7 @@
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/kbd",
         "@erbium/overlay-provider",
@@ -12945,8 +13005,12 @@
       "type": "registry:block",
       "title": "Kbd: Input Group",
       "description": "You can use the `Kbd` component inside a `InputGroupAddon` component to display a keyboard key inside an input group.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/kbd", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/kbd",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/kbd/examples/kbd-input-group.tsx",
@@ -12998,13 +13062,13 @@
       "type": "registry:item",
       "title": "Kbd stories",
       "description": "All kbd variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/csp-provider",
         "@erbium/direction",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/overlay-provider",
@@ -13100,8 +13164,7 @@
       "type": "registry:block",
       "title": "Marker: Border",
       "description": "Use the `border` variant for status rows that should keep the default marker alignment while separating the next row.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles"],
       "files": [
         {
           "path": "src/marker/examples/marker-border.tsx",
@@ -13151,8 +13214,7 @@
       "type": "registry:block",
       "title": "Marker: With Icon",
       "description": "Use `MarkerIcon` to render an icon alongside the content. Use `flex-col` to stack the icon above the content.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles"],
       "files": [
         {
           "path": "src/marker/examples/marker-icon.tsx",
@@ -13171,8 +13233,7 @@
       "type": "registry:block",
       "title": "Marker: Links and Buttons",
       "description": "Turn a marker into a link or button with the `render` prop on `Marker`.\n\n```tsx\nimport { Marker, MarkerContent } from \"@erbium/ui/components/marker\";\n\nexport function MarkerLinkDemo() {\n  return (\n    <Marker render={<a href=\"#\" />}>\n      <MarkerContent>View the pull request</MarkerContent>\n    </Marker>\n  );\n}\n```",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/marker", "@erbium/styles", "@erbium/toast"],
+      "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
           "path": "src/marker/examples/marker-link-button.tsx",
@@ -13281,10 +13342,10 @@
       "type": "registry:item",
       "title": "Marker stories",
       "description": "All marker variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/marker",
         "@erbium/overlay-provider",
         "@erbium/spinner",
@@ -13461,8 +13522,7 @@
       "type": "registry:component",
       "title": "menubar icons",
       "description": "Erbium menubar icons example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/examples/menubar-icons.tsx",
@@ -13509,8 +13569,7 @@
       "type": "registry:block",
       "title": "Menubar: Radio",
       "description": "Use `MenubarRadioGroup` and `MenubarRadioItem` for single-select options.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/examples/menubar-radio.tsx",
@@ -13543,11 +13602,11 @@
       "type": "registry:item",
       "title": "Menubar stories",
       "description": "All menubar variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/copy-button",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/menubar",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -13650,8 +13709,7 @@
       "type": "registry:block",
       "title": "Menubar: With Icons",
       "description": "Add icons to menu items to make actions easier to scan.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/menubar", "@erbium/styles"],
       "files": [
         {
           "path": "src/menubar/examples/menubar-icons.tsx",
@@ -13670,11 +13728,11 @@
       "type": "registry:block",
       "title": "Message: Actions",
       "description": "Place message-level actions in `MessageFooter`, such as copy, retry, or feedback buttons.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
         "@erbium/copy-button",
+        "@erbium/icon",
         "@erbium/message",
         "@erbium/styles"
       ],
@@ -13696,10 +13754,10 @@
       "type": "registry:block",
       "title": "Message: Attachment",
       "description": "Display an attachment within a message.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/attachment",
         "@erbium/bubble",
+        "@erbium/icon",
         "@erbium/message",
         "@erbium/styles"
       ],
@@ -13922,11 +13980,11 @@
       "type": "registry:block",
       "title": "Message Scroller: Group Chat",
       "description": "Scroll through a conversation with multiple participants.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
         "@erbium/card",
+        "@erbium/icon",
         "@erbium/marker",
         "@erbium/message",
         "@erbium/message-scroller",
@@ -14086,13 +14144,13 @@
       "type": "registry:item",
       "title": "Message Scroller stories",
       "description": "All message-scroller variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/bubble",
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/marker",
         "@erbium/message",
         "@erbium/message-scroller",
@@ -14252,7 +14310,6 @@
       "type": "registry:item",
       "title": "Message stories",
       "description": "All message variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/attachment",
@@ -14261,6 +14318,7 @@
         "@erbium/button",
         "@erbium/copy-button",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/message",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -14885,15 +14943,12 @@
       "type": "registry:block",
       "title": "OTP Field: Form",
       "description": "A verification card owned by TanStack Form. The field validates on change, requires all\nsix digits on submit, and shows submission feedback from `form.Subscribe`. Resend resets\nthe demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
-      "dependencies": [
-        "@hugeicons/core-free-icons@^4.3.5",
-        "@hugeicons/react@^1.1.10",
-        "@tanstack/react-form@1.33.5"
-      ],
+      "dependencies": ["@tanstack/react-form@1.33.5"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/otp-field",
         "@erbium/styles"
       ],
@@ -15045,17 +15100,14 @@
       "type": "registry:item",
       "title": "OTP Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
-      "dependencies": [
-        "@hugeicons/core-free-icons@^4.3.5",
-        "@hugeicons/react@^1.1.10",
-        "@tanstack/react-form@1.33.5"
-      ],
+      "dependencies": ["@tanstack/react-form@1.33.5"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/otp-field",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -16254,7 +16306,7 @@
       "type": "registry:item",
       "title": "Questionnaire stories",
       "description": "All questionnaire variants as portable React CSF stories.",
-      "dependencies": ["@shadcn/react@^0.3.1", "zod@^4.6.5"],
+      "dependencies": ["@shadcn/react@^0.3.1", "zod@^4.6.6"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -16434,7 +16486,7 @@
       "type": "registry:block",
       "title": "Questionnaire: Custom Validation",
       "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.\n\nalign=\"end\"",
-      "dependencies": ["zod@^4.6.5"],
+      "dependencies": ["zod@^4.6.6"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/questionnaire",
@@ -18048,8 +18100,7 @@
       "type": "registry:component",
       "title": "sidebar controlled",
       "description": "Erbium sidebar controlled example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/sidebar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
       "files": [
         {
           "path": "src/sidebar/examples/sidebar-controlled.tsx",
@@ -18063,8 +18114,7 @@
       "type": "registry:block",
       "title": "Sidebar: Controlled Sidebar",
       "description": "Use the `open` and `onOpenChange` props to control the sidebar.\n\n```tsx\nexport function AppSidebar() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <SidebarProvider open={open} onOpenChange={setOpen}>\n      <Sidebar />\n    </SidebarProvider>\n  );\n}\n```",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/sidebar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
       "files": [
         {
           "path": "src/sidebar/examples/sidebar-controlled.tsx",
@@ -18153,11 +18203,11 @@
       "type": "registry:item",
       "title": "Sidebar stories",
       "description": "All sidebar variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/collapsible",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/sidebar",
@@ -18994,8 +19044,12 @@
       "type": "registry:block",
       "title": "Spinner: Input Group",
       "description": "Show progress inside an input group.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/input-group", "@erbium/spinner", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/spinner",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/spinner/examples/spinner-input-group.tsx",
@@ -19066,13 +19120,13 @@
       "type": "registry:item",
       "title": "Spinner stories",
       "description": "All spinner variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/empty",
+        "@erbium/icon",
         "@erbium/input-group",
         "@erbium/item",
         "@erbium/overlay-provider",
@@ -19628,8 +19682,7 @@
       "type": "registry:block",
       "title": "Surfaces: Nesting",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles"],
       "files": [
         {
           "path": "src/surfaces/helpers.tsx",
@@ -19648,8 +19701,7 @@
       "type": "registry:block",
       "title": "Surfaces: Roles",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/kbd", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/kbd", "@erbium/styles"],
       "files": [
         {
           "path": "src/surfaces/helpers.tsx",
@@ -19687,12 +19739,12 @@
       "type": "registry:item",
       "title": "Surfaces stories",
       "description": "All surfaces variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/kbd",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -19882,8 +19934,7 @@
       "type": "registry:block",
       "title": "Switch: Icons",
       "description": "Pass `startIcon` (shown while on), `endIcon` (shown while off) or `thumbIcon` (always shown). Icons scale in on the exposed side of the track.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
+      "registryDependencies": ["@erbium/field", "@erbium/icon", "@erbium/styles", "@erbium/switch"],
       "files": [
         {
           "path": "src/switch/examples/switch-icons.tsx",
@@ -20020,12 +20071,12 @@
       "type": "registry:item",
       "title": "Switch stories",
       "description": "All switch variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/stateful-button",
         "@erbium/styles",
@@ -20155,14 +20206,11 @@
       "type": "registry:block",
       "title": "Table: Actions",
       "description": "A display column (`columnHelper.display`) renders a `<DropdownMenu />` of actions for each row.",
-      "dependencies": [
-        "@hugeicons/core-free-icons@^4.3.5",
-        "@hugeicons/react@^1.1.10",
-        "@tanstack/react-table@9.2.8"
-      ],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/styles",
         "@erbium/table",
         "@erbium/utils"
@@ -20319,17 +20367,14 @@
       "type": "registry:item",
       "title": "Table stories",
       "description": "All table variants as portable React CSF stories.",
-      "dependencies": [
-        "@hugeicons/core-free-icons@^4.3.5",
-        "@hugeicons/react@^1.1.10",
-        "@tanstack/react-table@9.2.8"
-      ],
+      "dependencies": ["@tanstack/react-table@9.2.8"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/checkbox",
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/table",
@@ -20469,8 +20514,7 @@
       "type": "registry:block",
       "title": "Tabs: Icons",
       "description": "Add icons to tab triggers.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/tabs"],
       "files": [
         {
           "path": "src/tabs/examples/tabs-icons.tsx",
@@ -20543,13 +20587,13 @@
       "type": "registry:item",
       "title": "Tabs stories",
       "description": "All tabs variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -21168,8 +21212,7 @@
       "type": "registry:component",
       "title": "toggle demo",
       "description": "Erbium toggle demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
       "files": [
         {
           "path": "src/toggle/examples/toggle-demo.tsx",
@@ -21183,8 +21226,7 @@
       "type": "registry:block",
       "title": "Toggle: Disabled",
       "description": "Show a disabled toggle.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
       "files": [
         {
           "path": "src/toggle/examples/toggle-disabled.tsx",
@@ -21233,8 +21275,7 @@
       "type": "registry:component",
       "title": "toggle group demo",
       "description": "Erbium toggle group demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
       "files": [
         {
           "path": "src/toggle-group/examples/toggle-group-demo.tsx",
@@ -21248,8 +21289,7 @@
       "type": "registry:block",
       "title": "Toggle Group: Disabled",
       "description": "Disable a toggle group option.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
       "files": [
         {
           "path": "src/toggle-group/examples/toggle-group-disabled.tsx",
@@ -21303,8 +21343,7 @@
       "type": "registry:block",
       "title": "Toggle Group: Outline",
       "description": "Use `variant=\"outline\"` for an outline style.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
       "files": [
         {
           "path": "src/toggle-group/examples/toggle-group-outline.tsx",
@@ -21323,8 +21362,7 @@
       "type": "registry:block",
       "title": "Toggle Group: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
       "files": [
         {
           "path": "src/toggle-group/examples/toggle-group-demo.tsx",
@@ -21390,8 +21428,7 @@
       "type": "registry:block",
       "title": "Toggle Group: Spacing",
       "description": "Use `spacing` to add spacing between toggle group items.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
       "files": [
         {
           "path": "src/toggle-group/examples/toggle-group-spacing.tsx",
@@ -21410,11 +21447,11 @@
       "type": "registry:item",
       "title": "Toggle Group stories",
       "description": "All toggle-group variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast",
@@ -21513,8 +21550,7 @@
       "type": "registry:block",
       "title": "Toggle Group: Vertical",
       "description": "Use `orientation=\"vertical\"` for vertical toggle groups.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
       "files": [
         {
           "path": "src/toggle-group/examples/toggle-group-vertical.tsx",
@@ -21533,8 +21569,7 @@
       "type": "registry:block",
       "title": "Toggle: Outline",
       "description": "Use `variant=\"outline\"` for an outline style.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
       "files": [
         {
           "path": "src/toggle/examples/toggle-outline.tsx",
@@ -21553,8 +21588,7 @@
       "type": "registry:block",
       "title": "Toggle: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
       "files": [
         {
           "path": "src/toggle/examples/toggle-demo.tsx",
@@ -21634,10 +21668,10 @@
       "type": "registry:item",
       "title": "Toggle stories",
       "description": "All toggle variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast",
@@ -21726,8 +21760,7 @@
       "type": "registry:component",
       "title": "toggle text",
       "description": "Erbium toggle text example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
       "files": [
         {
           "path": "src/toggle/examples/toggle-text.tsx",
@@ -21741,8 +21774,7 @@
       "type": "registry:block",
       "title": "Toggle: With Text",
       "description": "Pair a toggle icon with a text label.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
       "files": [
         {
           "path": "src/toggle/examples/toggle-text.tsx",
@@ -21802,8 +21834,12 @@
       "type": "registry:component",
       "title": "Toolbar: Formatting",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toggle", "@erbium/toolbar"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/styles",
+        "@erbium/toggle",
+        "@erbium/toolbar"
+      ],
       "files": [
         {
           "path": "src/toolbar/variants/formatting.tsx",
@@ -21850,10 +21886,10 @@
       "type": "registry:item",
       "title": "Toolbar stories",
       "description": "All toolbar variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast",
@@ -21908,8 +21944,7 @@
       "type": "registry:component",
       "title": "Toolbar: Vertical",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-      "registryDependencies": ["@erbium/styles", "@erbium/toolbar"],
+      "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toolbar"],
       "files": [
         {
           "path": "src/toolbar/variants/vertical.tsx",
@@ -21983,9 +22018,9 @@
       "type": "registry:component",
       "title": "tooltip keyboard",
       "description": "Erbium tooltip keyboard example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/icon",
         "@erbium/kbd",
         "@erbium/styles",
         "@erbium/tooltip"
@@ -22069,11 +22104,11 @@
       "type": "registry:item",
       "title": "Tooltip stories",
       "description": "All tooltip variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/kbd",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -22143,9 +22178,9 @@
       "type": "registry:block",
       "title": "Tooltip: With Keyboard Shortcut",
       "description": "Show a keyboard shortcut in tooltip content.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/icon",
         "@erbium/kbd",
         "@erbium/styles",
         "@erbium/tooltip"
@@ -22419,10 +22454,10 @@
       "type": "registry:component",
       "title": "use drag select demo",
       "description": "Erbium use drag select demo example.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/styles"
       ],
@@ -22446,10 +22481,10 @@
       "type": "registry:block",
       "title": "Use Drag Select: Overview",
       "description": "",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/styles"
       ],
@@ -22471,12 +22506,12 @@
       "type": "registry:item",
       "title": "Use Drag Select stories",
       "description": "All use-drag-select variants as portable React CSF stories.",
-      "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/overlay-provider",
         "@erbium/styles",

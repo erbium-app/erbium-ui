@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Toggle Group: Spacing",
   "description": "Use `spacing` to add spacing between toggle group items.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+  "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
       "path": "src/toggle-group/examples/toggle-group-spacing.tsx",
       "type": "registry:component",
       "target": "@components/showcase/toggle-group/examples/toggle-group-spacing.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Bookmark01Icon from \"@hugeicons/core-free-icons/Bookmark01Icon\";\nimport HeartIcon from \"@hugeicons/core-free-icons/HeartIcon\";\nimport StarIcon from \"@hugeicons/core-free-icons/StarIcon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport default function ToggleGroupSpacing() {\n  return (\n    <ToggleGroup variant=\"outline\" spacing={2} size=\"sm\">\n      <ToggleGroupItem\n        value=\"star\"\n        aria-label=\"Toggle star\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning\"\n      >\n        <HugeiconsIcon icon={StarIcon} />\n        Star\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"heart\"\n        aria-label=\"Toggle heart\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-error data-[state=on]:*:[svg]:stroke-error\"\n      >\n        <HugeiconsIcon icon={HeartIcon} />\n        Heart\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"bookmark\"\n        aria-label=\"Toggle bookmark\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n      >\n        <HugeiconsIcon icon={Bookmark01Icon} />\n        Bookmark\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport default function ToggleGroupSpacing() {\n  return (\n    <ToggleGroup variant=\"outline\" spacing={2} size=\"sm\">\n      <ToggleGroupItem\n        value=\"star\"\n        aria-label=\"Toggle star\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning\"\n      >\n        <Icon name=\"star\" />\n        Star\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"heart\"\n        aria-label=\"Toggle heart\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-error data-[state=on]:*:[svg]:stroke-error\"\n      >\n        <Icon name=\"heart\" />\n        Heart\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"bookmark\"\n        aria-label=\"Toggle bookmark\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n      >\n        <Icon name=\"bookmark-01\" />\n        Bookmark\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
     },
     {
       "path": "src/toggle-group/variants/spacing.tsx",

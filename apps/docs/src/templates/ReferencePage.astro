@@ -3,7 +3,6 @@ import Prose from "@/components/content/Prose.astro";
 import PagePagination from "@/components/content/PagePagination.astro";
 import { referencePage } from "@/content/reference-page";
 import Icon from "@/components/primitives/Icon.astro";
-import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
 import DocsLayout from "@/layouts/DocsLayout.astro";
 import PageHeader from "@/components/content/PageHeader.astro";
 import Showcase from "@/features/showcase/Showcase.astro";
@@ -32,7 +31,7 @@ const { component, reference, Content, frontmatter, repeatedSummary, lead, remai
           variant="outline"
           size="xs"
         >
-          View source <Icon icon={ArrowUpRight01Icon} size={14} />
+          View source <Icon name="arrow-up-right-01" size={14} />
         </Button>
       )
     }
@@ -72,7 +71,7 @@ const { component, reference, Content, frontmatter, repeatedSummary, lead, remai
   {reference && <section class="component-reference mt-8 text-caption [&_h2]:text-subtitle [&_h2]:font-semibold [&_h2]:mb-4 [&_p]:mb-4" aria-labelledby="component-reference-title">
     <h2 id="component-reference-title">{reference.title}</h2>
     <p>{reference.description}</p>
-    <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] [&:empty]:hidden">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon icon={ArrowUpRight01Icon} size={14} /></Button>)}</div>
+    <div class="page-actions flex flex-wrap gap-2 mt-[1.15rem] [&:empty]:hidden">{reference.links.map((link) => <Button href={link.href} target="_blank" rel="noopener noreferrer" variant="outline" size="sm">{link.title}<Icon name="arrow-up-right-01" size={14} /></Button>)}</div>
   </section>}
   <PagePagination previous={neighbors[index - 1]} next={neighbors[index + 1]} />
 </DocsLayout>

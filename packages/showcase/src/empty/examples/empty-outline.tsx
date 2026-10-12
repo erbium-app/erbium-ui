@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import CloudIcon from "@hugeicons/core-free-icons/CloudIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -16,7 +15,7 @@ export default function EmptyOutline() {
     <Empty>
       <EmptyHeader>
         <EmptyMedia variant="icon">
-          <HugeiconsIcon icon={CloudIcon} />
+          <Icon name="cloud" />
         </EmptyMedia>
         <EmptyTitle>Cloud Storage Empty</EmptyTitle>
         <EmptyDescription>

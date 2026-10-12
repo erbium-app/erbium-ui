@@ -1,7 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import Bookmark01Icon from "@hugeicons/core-free-icons/Bookmark01Icon";
-import HeartIcon from "@hugeicons/core-free-icons/HeartIcon";
-import StarIcon from "@hugeicons/core-free-icons/StarIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
 
@@ -13,7 +10,7 @@ export default function ToggleGroupSpacing() {
         aria-label="Toggle star"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning"
       >
-        <HugeiconsIcon icon={StarIcon} />
+        <Icon name="star" />
         Star
       </ToggleGroupItem>
       <ToggleGroupItem
@@ -21,7 +18,7 @@ export default function ToggleGroupSpacing() {
         aria-label="Toggle heart"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-error data-[state=on]:*:[svg]:stroke-error"
       >
-        <HugeiconsIcon icon={HeartIcon} />
+        <Icon name="heart" />
         Heart
       </ToggleGroupItem>
       <ToggleGroupItem
@@ -29,7 +26,7 @@ export default function ToggleGroupSpacing() {
         aria-label="Toggle bookmark"
         className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info"
       >
-        <HugeiconsIcon icon={Bookmark01Icon} />
+        <Icon name="bookmark-01" />
         Bookmark
       </ToggleGroupItem>
     </ToggleGroup>

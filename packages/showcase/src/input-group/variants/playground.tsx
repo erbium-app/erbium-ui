@@ -1,5 +1,4 @@
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { Icon } from "@erbium/ui/components/icon";
 import {
   InputGroupAddon,
   InputGroupButton,
@@ -16,7 +15,7 @@ const Example = (args: {
 }) => (
   <InputGroup className={`w-72 ${args.className}`}>
     <InputGroupAddon align={args.align}>
-      <HugeiconsIcon icon={Search01Icon} aria-hidden="true" />
+      <Icon name="search-01" aria-hidden="true" />
     </InputGroupAddon>
     <InputGroupInput placeholder={args.placeholder} />
     <InputGroupAddon align="inline-end">

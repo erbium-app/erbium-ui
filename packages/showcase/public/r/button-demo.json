@@ -4,14 +4,13 @@
   "type": "registry:component",
   "title": "button demo",
   "description": "Erbium button demo example.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/button", "@erbium/styles"],
+  "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
       "path": "src/button/examples/button-demo.tsx",
       "type": "registry:component",
       "target": "@components/showcase/button/examples/button-demo.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport ArrowUp01Icon from \"@hugeicons/core-free-icons/ArrowUp01Icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-related md:flex-row\">\n      <Button variant=\"outline\">Button</Button>\n      <Button variant=\"outline\" size=\"icon\" aria-label=\"Submit\">\n        <HugeiconsIcon icon={ArrowUp01Icon} />\n      </Button>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-related md:flex-row\">\n      <Button variant=\"outline\">Button</Button>\n      <Button variant=\"outline\" size=\"icon\" aria-label=\"Submit\">\n        <Icon name=\"arrow-up-01\" />\n      </Button>\n    </div>\n  );\n}\n"
     }
   ]
 }

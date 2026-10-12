@@ -1,5 +1,4 @@
-import StarIcon from "@hugeicons/core-free-icons/StarIcon";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { Icon } from "@erbium/ui/components/icon";
 import { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from "@erbium/ui/components/empty";
 import { Empty } from "@erbium/ui/components/empty";
 
@@ -12,7 +11,7 @@ const Example = (args: {
   <Empty className={`w-80 ${args.className}`}>
     <EmptyHeader>
       <EmptyMedia variant={args.mediaVariant}>
-        <HugeiconsIcon icon={StarIcon} aria-hidden="true" />
+        <Icon name="star" aria-hidden="true" />
       </EmptyMedia>
       <EmptyTitle>{args.title}</EmptyTitle>
       <EmptyDescription>{args.description}</EmptyDescription>

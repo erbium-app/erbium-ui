@@ -1,12 +1,4 @@
-import CloudIcon from "@hugeicons/core-free-icons/CloudIcon";
-import CubeIcon from "@hugeicons/core-free-icons/CubeIcon";
-import BookOpen01Icon from "@hugeicons/core-free-icons/BookOpen01Icon";
-import Link01Icon from "@hugeicons/core-free-icons/Link01Icon";
-import DashboardSquare01Icon from "@hugeicons/core-free-icons/DashboardSquare01Icon";
-import Database01Icon from "@hugeicons/core-free-icons/Database01Icon";
-import MagicWand01Icon from "@hugeicons/core-free-icons/MagicWand01Icon";
-import Globe02Icon from "@hugeicons/core-free-icons/Globe02Icon";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { Icon } from "@erbium/ui/components/icon";
 import { useId, useState } from "react";
 import { Checkbox } from "@erbium/ui/components/checkbox";
 import {
@@ -20,38 +12,38 @@ import {
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 const projects = [
-  { id: "gateway", name: "Cloud gateway", icon: CloudIcon, color: "text-tag-orange", issues: 30 },
-  { id: "reader", name: "Read platform", icon: CubeIcon, color: "text-tag-blue", issues: 13 },
+  { id: "gateway", name: "Cloud gateway", icon: "cloud", color: "text-tag-orange", issues: 30 },
+  { id: "reader", name: "Read platform", icon: "cube", color: "text-tag-blue", issues: 13 },
   {
     id: "knowledge",
     name: "Knowledge hub",
-    icon: BookOpen01Icon,
+    icon: "book-open-01",
     color: "text-tag-red",
     issues: 9,
   },
   {
     id: "integrations",
     name: "Integrations",
-    icon: Link01Icon,
+    icon: "link-01",
     color: "text-tag-purple",
     issues: 27,
   },
   {
     id: "admin",
     name: "Admin panel",
-    icon: DashboardSquare01Icon,
+    icon: "dashboard-square-01",
     color: "text-tag-magenta",
     issues: 27,
   },
-  { id: "data", name: "Data layer", icon: Database01Icon, color: "text-tag-cyan", issues: 29 },
+  { id: "data", name: "Data layer", icon: "database-01", color: "text-tag-cyan", issues: 29 },
   {
     id: "generate",
     name: "Generate",
-    icon: MagicWand01Icon,
+    icon: "magic-wand-01",
     color: "text-tag-green",
     issues: 15,
   },
-  { id: "website", name: "Website", icon: Globe02Icon, color: "text-tag-blue", issues: 15 },
+  { id: "website", name: "Website", icon: "globe-02", color: "text-tag-blue", issues: 15 },
 ] as const;
 
 export default function ItemJoinedSelection() {
@@ -97,11 +89,9 @@ export default function ItemJoinedSelection() {
                 }
               />
               <ItemMedia variant="icon">
-                <HugeiconsIcon
-                  icon={project.icon}
-                  className={`size-4 ${project.color}`}
-                  aria-hidden="true"
-                />
+                <span className={project.color}>
+                  <Icon name={project.icon} className="size-4" aria-hidden="true" />
+                </span>
               </ItemMedia>
               <ItemContent>
                 <ItemTitle>

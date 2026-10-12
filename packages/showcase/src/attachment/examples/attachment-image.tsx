@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Attachment,
@@ -49,7 +48,7 @@ export function AttachmentImage() {
             </AttachmentContent>
             <AttachmentActions>
               <AttachmentAction aria-label={`Remove ${image.name}`}>
-                <HugeiconsIcon icon={XIcon} />
+                <Icon name="x" />
               </AttachmentAction>
             </AttachmentActions>
             <AttachmentTrigger

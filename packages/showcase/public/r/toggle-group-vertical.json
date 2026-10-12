@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Toggle Group: Vertical",
   "description": "Use `orientation=\"vertical\"` for vertical toggle groups.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
+  "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
       "path": "src/toggle-group/examples/toggle-group-vertical.tsx",
       "type": "registry:component",
       "target": "@components/showcase/toggle-group/examples/toggle-group-vertical.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport BoldIcon from \"@hugeicons/core-free-icons/BoldIcon\";\nimport ItalicIcon from \"@hugeicons/core-free-icons/ItalicIcon\";\nimport UnderlineIcon from \"@hugeicons/core-free-icons/UnderlineIcon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupVertical() {\n  return (\n    <ToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <HugeiconsIcon icon={BoldIcon} />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <HugeiconsIcon icon={ItalicIcon} />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <HugeiconsIcon icon={UnderlineIcon} />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupVertical() {\n  return (\n    <ToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Icon name=\"bold\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Icon name=\"italic\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Icon name=\"underline\" />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
     },
     {
       "path": "src/toggle-group/variants/vertical.tsx",

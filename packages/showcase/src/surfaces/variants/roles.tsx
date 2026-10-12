@@ -1,10 +1,6 @@
+import { Icon } from "@erbium/ui/components/icon";
+import type { IconProps } from "@erbium/ui/components/icon";
 import { Kbd } from "@erbium/ui/components/kbd";
-import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react";
-import BotIcon from "@hugeicons/core-free-icons/BotIcon";
-import Coins01Icon from "@hugeicons/core-free-icons/Coins01Icon";
-import CpuIcon from "@hugeicons/core-free-icons/CpuIcon";
-import Search01Icon from "@hugeicons/core-free-icons/Search01Icon";
-import SparklesIcon from "@hugeicons/core-free-icons/SparklesIcon";
 import { Canvas, control } from "../helpers";
 
 const Example = () => (
@@ -12,11 +8,11 @@ const Example = () => (
     <div className="grid w-full max-w-3xl gap-section">
       <div className="flex flex-wrap items-center gap-related">
         <div className="flex control-size control-adaptive w-full max-w-72 items-center rounded-lg border surface-field">
-          <HugeiconsIcon icon={Search01Icon} className="size-3.5 text-muted-foreground" />
+          <Icon name="search-01" className="size-3.5 text-muted-foreground" />
           <span className="text-muted-foreground">Search repositories and people…</span>
         </div>
         <button type="button" className={`${control} border surface-control text-foreground`}>
-          <HugeiconsIcon icon={SparklesIcon} className="size-3.5" />
+          <Icon name="sparkles" className="size-3.5" />
           Selected
         </button>
         <button
@@ -41,15 +37,15 @@ const Example = () => (
 
       <div className="grid gap-group @md:grid-cols-2">
         {[
-          ["Tokens", "0", Coins01Icon],
-          ["Total cost", "$0.00", SparklesIcon],
-        ].map(([label, value, Icon]) => {
+          ["Tokens", "0", "coins-01"],
+          ["Total cost", "$0.00", "sparkles"],
+        ].map(([label, value, icon]) => {
           return (
             <div key={label as string} className="rounded-xl border surface-panel p-5">
               <div className="flex items-center justify-between">
                 <span className="flex items-center gap-related">
-                  <HugeiconsIcon
-                    icon={Icon as IconSvgElement}
+                  <Icon
+                    name={icon as IconProps["name"]}
                     className="size-3.5 text-muted-foreground"
                   />
                   {label as string}
@@ -60,9 +56,9 @@ const Example = () => (
           );
         })}
         {[
-          ["Models", "No model yet", CpuIcon],
-          ["Agents", "No agent yet", BotIcon],
-        ].map(([label, empty, Icon]) => {
+          ["Models", "No model yet", "cpu"],
+          ["Agents", "No agent yet", "bot"],
+        ].map(([label, empty, icon]) => {
           return (
             <div
               key={label as string}
@@ -71,8 +67,8 @@ const Example = () => (
               <span className="font-medium">{label as string}</span>
               <div className="grid flex-1 place-content-center justify-items-center gap-3">
                 <span className="grid size-8 place-content-center rounded-lg border surface-control">
-                  <HugeiconsIcon
-                    icon={Icon as IconSvgElement}
+                  <Icon
+                    name={icon as IconProps["name"]}
                     className="size-3.5 text-muted-foreground"
                   />
                 </span>

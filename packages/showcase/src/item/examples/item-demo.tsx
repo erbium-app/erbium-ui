@@ -1,6 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import BadgeCheckIcon from "@hugeicons/core-free-icons/BadgeCheckIcon";
-import ChevronRightIcon from "@hugeicons/core-free-icons/ChevronRightIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -32,13 +30,13 @@ export default function ItemDemo() {
         render={
           <a href="#">
             <ItemMedia>
-              <HugeiconsIcon icon={BadgeCheckIcon} className="size-5" />
+              <Icon name="badge-check" className="size-5" />
             </ItemMedia>
             <ItemContent>
               <ItemTitle>Your profile has been verified.</ItemTitle>
             </ItemContent>
             <ItemActions>
-              <HugeiconsIcon icon={ChevronRightIcon} className="size-4" />
+              <Icon name="chevron-right" className="size-4" />
             </ItemActions>
           </a>
         }

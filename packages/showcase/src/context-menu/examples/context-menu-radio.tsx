@@ -1,7 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
-import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   ContextMenu,
@@ -39,11 +37,11 @@ export function ContextMenuRadio() {
             <ContextMenuLabel>Theme</ContextMenuLabel>
             <ContextMenuRadioGroup value={theme} onValueChange={setTheme}>
               <ContextMenuRadioItem value="light">
-                <HugeiconsIcon icon={Sun03Icon} />
+                <Icon name="sun-03" />
                 Light
               </ContextMenuRadioItem>
               <ContextMenuRadioItem value="dark">
-                <HugeiconsIcon icon={Moon02Icon} />
+                <Icon name="moon-02" />
                 Dark
               </ContextMenuRadioItem>
             </ContextMenuRadioGroup>

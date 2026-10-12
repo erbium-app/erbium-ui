@@ -1,7 +1,5 @@
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Sun03Icon from "@hugeicons/core-free-icons/Sun03Icon";
-import Moon02Icon from "@hugeicons/core-free-icons/Moon02Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Menubar,
@@ -42,11 +40,11 @@ export function MenubarRadio() {
           <MenubarList>
             <MenubarRadioGroup value={theme} onValueChange={setTheme}>
               <MenubarRadioItem value="light">
-                <HugeiconsIcon icon={Sun03Icon} />
+                <Icon name="sun-03" />
                 Light
               </MenubarRadioItem>
               <MenubarRadioItem value="dark">
-                <HugeiconsIcon icon={Moon02Icon} />
+                <Icon name="moon-02" />
                 Dark
               </MenubarRadioItem>
             </MenubarRadioGroup>

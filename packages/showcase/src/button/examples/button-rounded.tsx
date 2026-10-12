@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import ArrowUp01Icon from "@hugeicons/core-free-icons/ArrowUp01Icon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 
@@ -7,7 +6,7 @@ export default function ButtonRounded() {
   return (
     <div className="flex flex-col gap-section">
       <Button variant="outline" size="icon" className="rounded-full">
-        <HugeiconsIcon icon={ArrowUp01Icon} />
+        <Icon name="arrow-up-01" />
       </Button>
     </div>
   );

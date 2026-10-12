@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Badge: With Icon",
   "description": "You can render an icon inside the badge. Use `data-icon=\"inline-start\"` to render the icon on the left and `data-icon=\"inline-end\"` to render the icon on the right.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/badge", "@erbium/styles"],
+  "registryDependencies": ["@erbium/badge", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
       "path": "src/badge/examples/badge-icon.tsx",
       "type": "registry:component",
       "target": "@components/showcase/badge/examples/badge-icon.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport Bookmark01Icon from \"@hugeicons/core-free-icons/Bookmark01Icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport function BadgeWithIconLeft() {\n  return (\n    <div className=\"flex flex-wrap gap-related\">\n      <Badge variant=\"success\" statusIcon>\n        Verified\n      </Badge>\n      <Badge variant=\"outline\">\n        Bookmark\n        <HugeiconsIcon icon={Bookmark01Icon} data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport function BadgeWithIconLeft() {\n  return (\n    <div className=\"flex flex-wrap gap-related\">\n      <Badge variant=\"success\" statusIcon>\n        Verified\n      </Badge>\n      <Badge variant=\"outline\">\n        Bookmark\n        <Icon name=\"bookmark-01\" data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/badge/variants/with-icon.tsx",

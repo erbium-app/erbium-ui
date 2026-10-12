@@ -4,14 +4,13 @@
   "type": "registry:block",
   "title": "Marker: Border",
   "description": "Use the `border` variant for status rows that should keep the default marker alignment while separating the next row.",
-  "dependencies": ["@hugeicons/core-free-icons@^4.3.5", "@hugeicons/react@^1.1.10"],
-  "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+  "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles"],
   "files": [
     {
       "path": "src/marker/examples/marker-border.tsx",
       "type": "registry:component",
       "target": "@components/showcase/marker/examples/marker-border.tsx",
-      "content": "import { HugeiconsIcon } from \"@hugeicons/react\";\nimport FileTextIcon from \"@hugeicons/core-free-icons/FileTextIcon\";\nimport GitBranchIcon from \"@hugeicons/core-free-icons/GitBranchIcon\";\nimport Search01Icon from \"@hugeicons/core-free-icons/Search01Icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerBorderDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-3 py-12\">\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={GitBranchIcon} />\n        </MarkerIcon>\n        <MarkerContent>Switched to release-candidate</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={Search01Icon} />\n        </MarkerIcon>\n        <MarkerContent>Reviewed 8 related files</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <HugeiconsIcon icon={FileTextIcon} />\n        </MarkerIcon>\n        <MarkerContent>Opened implementation notes</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerBorderDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-3 py-12\">\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <Icon name=\"git-branch\" />\n        </MarkerIcon>\n        <MarkerContent>Switched to release-candidate</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <Icon name=\"search-01\" />\n        </MarkerIcon>\n        <MarkerContent>Reviewed 8 related files</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <Icon name=\"file-text\" />\n        </MarkerIcon>\n        <MarkerContent>Opened implementation notes</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
     },
     {
       "path": "src/marker/variants/border.tsx",

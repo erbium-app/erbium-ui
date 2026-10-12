@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Button } from "@erbium/ui/components/button";
 import { ButtonGroup } from "@erbium/ui/components/button-group";
@@ -18,7 +17,7 @@ export default function ButtonGroupSize() {
           Group
         </Button>
         <Button variant="outline" size="icon-sm">
-          <HugeiconsIcon icon={PlusIcon} />
+          <Icon name="plus" />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -26,7 +25,7 @@ export default function ButtonGroupSize() {
         <Button variant="outline">Button</Button>
         <Button variant="outline">Group</Button>
         <Button variant="outline" size="icon">
-          <HugeiconsIcon icon={PlusIcon} />
+          <Icon name="plus" />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -40,7 +39,7 @@ export default function ButtonGroupSize() {
           Group
         </Button>
         <Button variant="outline" size="icon-lg">
-          <HugeiconsIcon icon={PlusIcon} />
+          <Icon name="plus" />
         </Button>
       </ButtonGroup>
     </div>

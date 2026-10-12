@@ -1,10 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import AlertSquareIcon from "@hugeicons/core-free-icons/AlertSquareIcon";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
-import Clock01Icon from "@hugeicons/core-free-icons/Clock01Icon";
-import FileTextIcon from "@hugeicons/core-free-icons/FileTextIcon";
-import RefreshCwIcon from "@hugeicons/core-free-icons/RefreshCwIcon";
-import XIcon from "@hugeicons/core-free-icons/XIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   Attachment,
@@ -22,7 +16,7 @@ export function AttachmentStates() {
     <div className="mx-auto flex w-full max-w-sm flex-col gap-related py-12">
       <Attachment state="idle" className="w-full">
         <AttachmentMedia>
-          <HugeiconsIcon icon={Clock01Icon} />
+          <Icon name="clock-01" />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>selected-file.pdf</AttachmentTitle>
@@ -30,7 +24,7 @@ export function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove selected-file.pdf">
-            <HugeiconsIcon icon={XIcon} />
+            <Icon name="x" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
@@ -44,13 +38,13 @@ export function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Cancel upload">
-            <HugeiconsIcon icon={XIcon} />
+            <Icon name="x" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
       <Attachment state="processing" className="w-full">
         <AttachmentMedia>
-          <HugeiconsIcon icon={FileTextIcon} />
+          <Icon name="file-text" />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>market-research.pdf</AttachmentTitle>
@@ -58,13 +52,13 @@ export function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove market-research.pdf">
-            <HugeiconsIcon icon={XIcon} />
+            <Icon name="x" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
       <Attachment state="error" className="w-full">
         <AttachmentMedia>
-          <HugeiconsIcon icon={AlertSquareIcon} />
+          <Icon name="alert-square" />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>financial-model.xlsx</AttachmentTitle>
@@ -72,16 +66,16 @@ export function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Retry upload">
-            <HugeiconsIcon icon={RefreshCwIcon} />
+            <Icon name="refresh-cw" />
           </AttachmentAction>
           <AttachmentAction aria-label="Remove financial-model.xlsx">
-            <HugeiconsIcon icon={XIcon} />
+            <Icon name="x" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>
       <Attachment state="done" className="w-full">
         <AttachmentMedia>
-          <HugeiconsIcon icon={CheckIcon} />
+          <Icon name="check" />
         </AttachmentMedia>
         <AttachmentContent>
           <AttachmentTitle>uploaded-report.pdf</AttachmentTitle>
@@ -89,7 +83,7 @@ export function AttachmentStates() {
         </AttachmentContent>
         <AttachmentActions>
           <AttachmentAction aria-label="Remove uploaded-report.pdf">
-            <HugeiconsIcon icon={XIcon} />
+            <Icon name="x" />
           </AttachmentAction>
         </AttachmentActions>
       </Attachment>

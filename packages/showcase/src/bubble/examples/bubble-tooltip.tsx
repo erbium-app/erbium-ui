@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import CheckIcon from "@hugeicons/core-free-icons/CheckIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Bubble, BubbleContent, BubbleReactions } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
@@ -16,7 +15,7 @@ export function BubbleTooltipDemo() {
         <BubbleReactions>
           <Tooltip>
             <TooltipTrigger render={<Button variant="ghost" size="icon-xs" />}>
-              <HugeiconsIcon icon={CheckIcon} />
+              <Icon name="check" />
             </TooltipTrigger>
             <TooltipContent>Read on Jan 5, 2026 at 4:32 PM</TooltipContent>
           </Tooltip>

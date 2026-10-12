@@ -1,8 +1,6 @@
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import * as React from "react";
-import { HugeiconsIcon } from "@hugeicons/react";
-import InfoIcon from "@hugeicons/core-free-icons/InfoIcon";
-import StarIcon from "@hugeicons/core-free-icons/StarIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import {
   InputGroup,
@@ -37,7 +35,7 @@ export default function InputGroupButtonExample() {
                   variant="secondary"
                   size="icon-xs"
                 >
-                  <HugeiconsIcon icon={InfoIcon} />
+                  <Icon name="info" />
                 </InputGroupButton>
               }
             />
@@ -51,8 +49,8 @@ export default function InputGroupButtonExample() {
         <InputGroupInput id="input-secure-19" />
         <InputGroupAddon align="inline-end">
           <InputGroupButton onClick={() => setIsFavorite(!isFavorite)} size="icon-xs">
-            <HugeiconsIcon
-              icon={StarIcon}
+            <Icon
+              name="star"
               data-favorite={isFavorite}
               className="data-[favorite=true]:fill-info data-[favorite=true]:stroke-info"
             />

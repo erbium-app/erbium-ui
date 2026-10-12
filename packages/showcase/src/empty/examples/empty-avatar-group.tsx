@@ -1,5 +1,4 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import PlusIcon from "@hugeicons/core-free-icons/PlusIcon";
+import { Icon } from "@erbium/ui/components/icon";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
 import { Button } from "@erbium/ui/components/button";
@@ -46,7 +45,7 @@ export default function EmptyAvatarGroup() {
       </EmptyHeader>
       <EmptyContent>
         <Button size="sm">
-          <HugeiconsIcon icon={PlusIcon} />
+          <Icon name="plus" />
           Invite Members
         </Button>
       </EmptyContent>
