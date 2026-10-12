@@ -1,0 +1,44 @@
+{
+  "name": "@erbium/docs-start",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev --port 3001",
+    "build": "vp build",
+    "build:cloudflare": "bun build-cloudflare.ts",
+    "preview": "vp preview --port 3002",
+    "preview:cloudflare": "bun preview-cloudflare.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@erbium/content": "workspace:*",
+    "@erbium/showcase": "workspace:*",
+    "@erbium/ui": "workspace:*",
+    "@tanstack/react-router": "catalog:",
+    "@tanstack/react-start": "1.168.61",
+    "colorjs.io": "^0.7.1",
+    "gray-matter": "^4.0.3",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "satori": "^0.48.1",
+    "sharp": "^0.35.5",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@alchemy.run/cloudflare-runtime": "2.0.0-beta.81",
+    "@alchemy.run/frontend-frameworks": "2.0.0-beta.81",
+    "@tailwindcss/vite": "catalog:",
+    "@types/hast": "^3.0.5",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "catalog:typescript-stable",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

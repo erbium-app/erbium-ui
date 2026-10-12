@@ -1,0 +1,56 @@
+import {
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+  ScriptOnce,
+  Link,
+} from "@tanstack/react-router";
+import { IconSprite } from "@erbium/ui/components/icon-sprite";
+import { Shell } from "@/components/shell";
+import stylesheet from "@/styles.css?url";
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+    ],
+    links: [
+      { rel: "stylesheet", href: stylesheet },
+      { rel: "icon", href: "/favicon.svg" },
+    ],
+  }),
+  component: Root,
+  notFoundComponent: () => (
+    <main id="main-content" className="docs-page surface-panel rounded-xl">
+      <h1 className="text-display">Page not found</h1>
+      <Link to="/">Return to documentation</Link>
+    </main>
+  ),
+});
+function Root() {
+  return (
+    <html className="antialiased" lang="en" suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body className="font-sans">
+        <IconSprite />
+        <ScriptOnce>{`try { const theme = localStorage.getItem('erbium-theme'); document.documentElement.classList.toggle('dark', theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)); } catch {}`}</ScriptOnce>
+        <Shell>
+          <Outlet />
+        </Shell>
+        <Scripts />
+        {import.meta.env.PROD && import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({
+              token: import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN,
+            })}
+          />
+        )}
+      </body>
+    </html>
+  );
+}

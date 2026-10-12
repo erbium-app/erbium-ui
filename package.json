@@ -109,7 +109,14 @@
     "infra": "bun run --cwd packages/infra",
     "icons:generate": "vp run --filter ./packages/icons --fail-if-no-match generate",
     "icons:check": "vp run --filter ./packages/icons --fail-if-no-match check",
-    "icons:dev": "vp run --filter ./packages/icons --fail-if-no-match dev"
+    "icons:dev": "vp run --filter ./packages/icons --fail-if-no-match dev",
+    "docs:start": "vp run --filter ./apps/docs-start --fail-if-no-match dev",
+    "docs:start:build": "vp run --filter ./apps/docs-start --fail-if-no-match build",
+    "docs:start:cloudflare:build": "vp run --filter ./apps/docs-start --fail-if-no-match build:cloudflare",
+    "docs:start:cloudflare:preview": "vp run --filter ./apps/docs-start --fail-if-no-match preview:cloudflare",
+    "docs:start:preview": "vp run --filter ./apps/docs-start --fail-if-no-match preview",
+    "docs:start:typecheck": "vp run --filter ./apps/docs-start --fail-if-no-match typecheck",
+    "docs:compare": "node scripts/compare-docs.mjs"
   },
   "devDependencies": {
     "@intellectronica/ruler": "0.3.44",

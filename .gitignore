@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+dist-cloudflare
 .astro
 .alchemy
 storybook-static
@@ -35,3 +36,6 @@ packages/ui/.registry-build/
 
 # AI agent worktrees
 .claude/worktrees/
+
+# Generated TanStack docs theme
+apps/docs-start/.cache/
