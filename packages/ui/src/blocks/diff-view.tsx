@@ -2,7 +2,7 @@ import { parseDiffFromFile } from "@pierre/diffs";
 import type { DiffFileInput, FileDiffMetadata } from "@pierre/diffs";
 import { FileDiff } from "@pierre/diffs/react";
 import type { FileDiffProps, FileDiffOptions } from "@pierre/diffs/react";
-import { createContext, use, useMemo } from "react";
+import { createContext, use, useMemo, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { enhanceDiffAccessibility } from "../lib/diff-accessibility";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
@@ -55,6 +55,8 @@ type DiffViewContextValue = {
   oldContents: string | undefined;
   newContents: string | undefined;
   content: ReactNode;
+  /** True until Pierre has produced its first render. */
+  loading: boolean;
 };
 const DiffViewContext = createContext<DiffViewContextValue | null>(null);
 function useDiffView() {
@@ -85,6 +87,8 @@ function DiffView<Annotation = undefined>({
       parseDiffFromFile(oldFile ?? null, newFile ?? null, options?.parseDiffOptions),
     [providedDiff, oldFile, newFile, options?.parseDiffOptions],
   );
+  // Pierre highlights asynchronously, so its host stays empty until the first render.
+  const [rendered, setRendered] = useState(false);
   const rendererOptions: FileDiffOptions<Annotation, undefined> = {
     diffIndicators: "classic",
     ...options,
@@ -93,7 +97,10 @@ function DiffView<Annotation = undefined>({
     disableFileHeader: true,
     unsafeCSS: diffThemeCSS,
     onPostRender(node, instance, phase) {
-      if (phase !== "unmount") enhanceDiffAccessibility(node);
+      if (phase !== "unmount") {
+        enhanceDiffAccessibility(node);
+        setRendered(true);
+      }
       return options?.onPostRender?.(node, instance, phase);
     },
   };
@@ -110,6 +117,7 @@ function DiffView<Annotation = undefined>({
       (!fileDiff.isPartial && fileDiff.type !== "deleted"
         ? fileDiff.additionLines.join("")
         : undefined),
+    loading: !rendered && prerenderedHTML === undefined,
     content: (
       <FileDiff
         fileDiff={fileDiff}
@@ -185,13 +193,14 @@ function DiffViewStats({ className, ...props }: Omit<ComponentProps<"span">, "ch
   );
 }
 function DiffViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
-  const { content, fileDiff } = useDiffView();
+  const { content, fileDiff, loading } = useDiffView();
   const empty = fileDiff.hunks.length === 0;
   return (
     <CodePanelContent
       aria-label={`Changes to ${fileDiff.name}`}
       {...props}
       data-slot="diff-view-content"
+      loading={loading}
       empty={
         empty ? (
           <CodePanelEmpty>
