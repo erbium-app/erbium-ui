@@ -27,8 +27,8 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
   QuestionnaireSkip,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -71,7 +71,7 @@ const items = [
 
 ```tsx
 <Questionnaire items={items} onSubmit={handleSubmit}>
-  <QuestionnaireProgress />
+  <QuestionnaireStepIndicator />
   {items.map((question) => (
     <QuestionnaireItem key={question.name} name={question.name} required={question.required}>
       <QuestionnaireTitle>{question.prompt}</QuestionnaireTitle>
@@ -122,7 +122,7 @@ close and cancellation behavior, persistence, transport, and branching.
 
 ```text
 Questionnaire
-├── QuestionnaireProgress
+├── QuestionnaireStepIndicator
 ├── QuestionnaireItem
 │   ├── QuestionnaireTitle
 │   ├── QuestionnaireDescription

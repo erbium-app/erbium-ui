@@ -13,7 +13,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -56,7 +56,7 @@ export function QuestionnaireNavigationState() {
       onItemChange={(nextItem) => setItem(nextItem as ItemName)}
       onSubmit={handleSubmit}
     >
-      <QuestionnaireProgress />
+      <QuestionnaireStepIndicator />
 
       <QuestionnaireItem
         name="permission"

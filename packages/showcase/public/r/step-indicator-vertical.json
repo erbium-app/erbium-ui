@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-vertical",
+  "type": "registry:component",
+  "title": "Step Indicator: Vertical",
+  "description": "Set `orientation=\"vertical\"` for side rails and compact lists.",
+  "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/step-indicator/variants/vertical.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/step-indicator/variants/vertical.tsx",
+      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nexport default function Example() {\n  const [step, setStep] = useState(0);\n  return <StepIndicator orientation=\"vertical\" count={5} value={step} onValueChange={setStep} />;\n}\n"
+    }
+  ]
+}

@@ -4,6 +4,8 @@ import { cn } from "../lib/utils";
 import { buttonVariants, type Button } from "./button";
 import { Kbd } from "./kbd";
 import { Icon } from "./icon";
+import { StatefulButton, type StatefulButtonProps } from "./stateful-button";
+import { StepIndicator } from "../blocks/step-indicator";
 
 function Questionnaire({
   className,
@@ -18,16 +20,46 @@ function Questionnaire({
   );
 }
 
-function QuestionnaireProgress({
+function QuestionnaireStepIndicator({
   className,
+  onValueChange,
+  reach,
+  orientation,
+  "aria-label": ariaLabel,
   ...props
-}: React.ComponentProps<typeof QuestionnairePrimitive.Progress>) {
+}: Omit<React.ComponentProps<typeof QuestionnairePrimitive.Progress>, "render" | "children"> &
+  Pick<
+    React.ComponentProps<typeof StepIndicator>,
+    "aria-label" | "onValueChange" | "orientation" | "reach"
+  >) {
   return (
     <QuestionnairePrimitive.Progress
-      data-slot="questionnaire-progress"
-      className={cn(
-        "min-h-lh w-fit min-w-[14ch] text-metadata font-medium text-muted-foreground tabular-nums",
-        className,
+      data-slot="questionnaire-step-indicator"
+      className={cn("w-fit", className)}
+      render={(progressProps, state) => (
+        <div
+          {...progressProps}
+          // A progressbar hides its descendants from assistive tech, which would
+          // hide the step buttons. Interactive indicators are a plain group.
+          {...(onValueChange
+            ? {
+                role: "group",
+                "aria-valuemax": undefined,
+                "aria-valuemin": undefined,
+                "aria-valuenow": undefined,
+                "aria-valuetext": undefined,
+              }
+            : {})}
+        >
+          <StepIndicator
+            count={state.total}
+            value={state.current - 1}
+            onValueChange={onValueChange}
+            reach={reach}
+            orientation={orientation}
+            aria-label={ariaLabel ?? `Question ${state.current} of ${state.total}`}
+          />
+        </div>
       )}
       {...props}
     />
@@ -188,7 +220,7 @@ function QuestionnaireActions({ className, ...props }: React.ComponentProps<"div
     <div
       data-slot="questionnaire-actions"
       className={cn(
-        "grid min-h-control-touch w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-related pointer-fine:min-h-control",
+        "grid w-full grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-related",
         className,
       )}
       {...props}
@@ -211,7 +243,7 @@ function QuestionnairePrevious({
       data-variant={variant}
       className={cn(
         buttonVariants({ size, variant }),
-        "col-start-1 row-start-1 min-h-control-touch justify-self-start pointer-fine:min-h-control",
+        "col-start-1 row-start-1 justify-self-start",
         className,
       )}
       {...props}
@@ -236,7 +268,7 @@ function QuestionnaireSkip({
       data-variant={variant}
       className={cn(
         buttonVariants({ size, variant }),
-        "col-start-2 row-start-1 min-h-control-touch justify-self-end pointer-fine:min-h-control",
+        "col-start-2 row-start-1 justify-self-end",
         className,
       )}
       {...props}
@@ -261,7 +293,7 @@ function QuestionnaireNext({
       data-variant={variant}
       className={cn(
         buttonVariants({ size, variant }),
-        "col-start-3 row-start-1 min-h-control-touch justify-self-end pointer-fine:min-h-control",
+        "col-start-3 row-start-1 justify-self-end",
         className,
       )}
       {...props}
@@ -276,19 +308,30 @@ function QuestionnaireSubmit({
   className,
   size = "default",
   variant = "default",
+  state,
+  successLabel,
+  successDuration,
+  onStateChange,
   ...props
-}: React.ComponentProps<typeof QuestionnairePrimitive.Submit> &
-  Pick<React.ComponentProps<typeof Button>, "size" | "variant">) {
+}: Omit<React.ComponentProps<typeof QuestionnairePrimitive.Submit>, "render"> &
+  Pick<React.ComponentProps<typeof Button>, "size" | "variant"> &
+  Pick<StatefulButtonProps, "state" | "successLabel" | "successDuration" | "onStateChange">) {
   return (
     <QuestionnairePrimitive.Submit
       data-slot="questionnaire-submit"
-      data-size={size}
-      data-variant={variant}
-      className={cn(
-        buttonVariants({ size, variant }),
-        "col-start-3 row-start-1 min-h-control-touch justify-self-end pointer-fine:min-h-control",
-        className,
-      )}
+      className={cn("col-start-3 row-start-1 justify-self-end", className)}
+      render={
+        <StatefulButton
+          size={size}
+          variant={variant}
+          state={state}
+          successLabel={successLabel}
+          successDuration={successDuration}
+          onStateChange={onStateChange}
+        >
+          {children ?? "Submit"}
+        </StatefulButton>
+      }
       {...props}
     >
       {children ?? "Submit"}
@@ -308,8 +351,8 @@ export {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
   QuestionnaireSkip,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 };

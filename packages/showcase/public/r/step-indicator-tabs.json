@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-tabs",
+  "type": "registry:component",
+  "title": "Step Indicator: Tabs",
+  "description": "The indicator and Tabs share one index. Tabs own the content and keyboard behavior; the indicator is a second, compact control for the same state.",
+  "registryDependencies": ["@erbium/step-indicator", "@erbium/styles", "@erbium/tabs"],
+  "files": [
+    {
+      "path": "src/step-indicator/variants/tabs.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/step-indicator/variants/tabs.tsx",
+      "content": "import { useState } from \"react\";\nimport { StepIndicator, StepIndicatorItem } from \"@/registry/erbium/blocks/step-indicator\";\nimport { Tabs, TabsContent, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nconst tabs = [\"Source\", \"Build\", \"Deploy\"];\n\nexport default function Example() {\n  const [index, setIndex] = useState(0);\n  return (\n    <div className=\"flex w-80 flex-col items-center gap-4\">\n      <Tabs value={tabs[index]} onValueChange={(value) => setIndex(tabs.indexOf(String(value)))}>\n        <TabsList>\n          {tabs.map((tab) => (\n            <TabsTrigger key={tab} value={tab}>\n              {tab}\n            </TabsTrigger>\n          ))}\n        </TabsList>\n        {tabs.map((tab) => (\n          <TabsContent key={tab} value={tab} className=\"py-4 text-center text-muted-foreground\">\n            {tab} settings\n          </TabsContent>\n        ))}\n      </Tabs>\n      <StepIndicator value={index} onValueChange={setIndex} aria-label=\"Pipeline steps\">\n        {tabs.map((tab, i) => (\n          <StepIndicatorItem key={tab} index={i} label={tab} />\n        ))}\n      </StepIndicator>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

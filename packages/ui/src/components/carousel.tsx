@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
 import { Button } from "./button";
 import { Icon } from "./icon";
+import { StepIndicator, StepIndicatorItem } from "../blocks/step-indicator";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -239,12 +240,66 @@ function CarouselNext({
   );
 }
 
+/** One dot per slide, kept in sync with the carousel. Click a dot to scroll to it. */
+function CarouselIndicator({
+  className,
+  ...props
+}: Omit<
+  React.ComponentProps<typeof StepIndicator>,
+  "count" | "value" | "defaultValue" | "onValueChange" | "variant" | "orientation" | "children"
+>) {
+  const { api, orientation } = useCarousel();
+  const subscribe = React.useCallback(
+    (notify: () => void) => {
+      if (!api) return () => {};
+      api.on("reInit", notify);
+      api.on("select", notify);
+      return () => {
+        api.off("reInit", notify);
+        api.off("select", notify);
+      };
+    },
+    [api],
+  );
+  const selected = React.useSyncExternalStore(
+    subscribe,
+    () => api?.selectedScrollSnap() ?? 0,
+    () => 0,
+  );
+  const count = React.useSyncExternalStore(
+    subscribe,
+    () => api?.scrollSnapList().length ?? 0,
+    () => 0,
+  );
+  if (count < 2) return null;
+  return (
+    <StepIndicator
+      data-slot="carousel-indicator"
+      aria-label="Slides"
+      variant="dots"
+      orientation={orientation}
+      value={selected}
+      onValueChange={(index) => api?.scrollTo(index)}
+      className={cn(
+        orientation === "horizontal" ? "mx-auto mt-4" : "absolute -end-8 top-1/2 -translate-y-1/2",
+        className,
+      )}
+      {...props}
+    >
+      {Array.from({ length: count }, (_, index) => (
+        <StepIndicatorItem key={index} index={index} label={`Go to slide ${index + 1}`} />
+      ))}
+    </StepIndicator>
+  );
+}
+
 export {
   type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
+  CarouselIndicator,
   CarouselNext,
   useCarousel,
 };

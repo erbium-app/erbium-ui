@@ -14,7 +14,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSkip,
   QuestionnaireSubmit,
   QuestionnaireTitle,
@@ -56,7 +56,7 @@ export function QuestionnaireSkipExample() {
       items={items}
       onSubmit={handleSubmit}
     >
-      <QuestionnaireProgress />
+      <QuestionnaireStepIndicator />
 
       <QuestionnaireItem name="task" required>
         <QuestionnaireTitle>What kind of change is this?</QuestionnaireTitle>

@@ -4963,7 +4963,7 @@
       "name": "carousel-api",
       "type": "registry:block",
       "title": "Carousel: Api",
-      "description": "Use a state and the `setApi` prop to get an instance of the carousel API.\n\n```tsx\nimport { type CarouselApi } from \"@erbium/ui/components/carousel\";\n\nexport function Example() {\n  const [api, setApi] = React.useState<CarouselApi>();\n  const [current, setCurrent] = React.useState(0);\n  const [count, setCount] = React.useState(0);\n\n  React.useEffect(() => {\n    if (!api) {\n      return;\n    }\n\n    setCount(api.scrollSnapList().length);\n    setCurrent(api.selectedScrollSnap() + 1);\n\n    api.on(\"select\", () => {\n      setCurrent(api.selectedScrollSnap() + 1);\n    });\n  }, [api]);\n\n  return (\n    <Carousel setApi={setApi}>\n      <CarouselContent>\n        <CarouselItem>...</CarouselItem>\n        <CarouselItem>...</CarouselItem>\n        <CarouselItem>...</CarouselItem>\n      </CarouselContent>\n    </Carousel>\n  );\n}\n```",
+      "description": "Add `CarouselIndicator` for dots that follow the carousel and scroll to a slide when clicked. For anything custom, use a state and the `setApi` prop to get an instance of the carousel API.\n\n```tsx\n<Carousel>\n  <CarouselContent>...</CarouselContent>\n  <CarouselIndicator />\n</Carousel>\n```\n\n```tsx\nimport { type CarouselApi } from \"@erbium/ui/components/carousel\";\n\nexport function Example() {\n  const [api, setApi] = React.useState<CarouselApi>();\n\n  React.useEffect(() => {\n    if (!api) {\n      return;\n    }\n\n    api.scrollTo(2);\n  }, [api]);\n\n  return (\n    <Carousel setApi={setApi}>\n      <CarouselContent>\n        <CarouselItem>...</CarouselItem>\n        <CarouselItem>...</CarouselItem>\n        <CarouselItem>...</CarouselItem>\n      </CarouselContent>\n    </Carousel>\n  );\n}\n```",
       "registryDependencies": ["@erbium/card", "@erbium/carousel", "@erbium/styles"],
       "files": [
         {
@@ -16006,7 +16006,7 @@
       "name": "questionnaire-controlled",
       "type": "registry:block",
       "title": "Questionnaire: Controlled",
-      "description": "Control the active item from host state, such as returning to an invalid step.\n\nalign=\"end\"",
+      "description": "Control the active item from host state, such as returning to an invalid step. The step indicator is clickable here: `reach` blocks dots beyond the furthest checkpoint, while earlier dots stay free.\n\nalign=\"end\"",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16090,7 +16090,8 @@
         "@erbium-examples/questionnaire-card",
         "@erbium-examples/questionnaire-dialog",
         "@erbium-examples/questionnaire-skip",
-        "@erbium-examples/questionnaire-navigation-state"
+        "@erbium-examples/questionnaire-navigation-state",
+        "@erbium-examples/questionnaire-submit-state"
       ]
     },
     {
@@ -16202,8 +16203,8 @@
     {
       "name": "questionnaire-progress",
       "type": "registry:block",
-      "title": "Questionnaire: Custom Progress",
-      "description": "Use the Progress render state to build a custom progress indicator.\n\nalign=\"end\"",
+      "title": "Questionnaire: Step Indicator",
+      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. It is read-only by default; pass `onValueChange` (with `reach` to block skipping ahead) when the host controls the active item. The Progress primitive remains available for fully custom indicators.\n\nalign=\"end\"",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16315,6 +16316,7 @@
         "@erbium/dialog",
         "@erbium/overlay-provider",
         "@erbium/questionnaire",
+        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -16393,6 +16395,11 @@
           "path": "src/questionnaire/examples/questionnaire-skip.tsx",
           "type": "registry:component",
           "target": "@components/showcase/questionnaire/examples/questionnaire-skip.tsx"
+        },
+        {
+          "path": "src/questionnaire/examples/questionnaire-submit-state.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/questionnaire/examples/questionnaire-submit-state.tsx"
         },
         {
           "path": "src/questionnaire/examples/questionnaire-validation.tsx",
@@ -16475,9 +16482,38 @@
           "target": "@components/showcase/questionnaire/variants/skip.tsx"
         },
         {
+          "path": "src/questionnaire/variants/submit-state.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/questionnaire/variants/submit-state.tsx"
+        },
+        {
           "path": "src/questionnaire/variants/validation.tsx",
           "type": "registry:component",
           "target": "@components/showcase/questionnaire/variants/validation.tsx"
+        }
+      ]
+    },
+    {
+      "name": "questionnaire-submit-state",
+      "type": "registry:block",
+      "title": "Questionnaire: Submit State",
+      "description": "`QuestionnaireSubmit` is a Stateful Button. Own the request in `onSubmit` and pass `state` (`idle`, `loading`, `success`) with `onStateChange`; the button shows the spinner and success label, blocks repeat submits, and resets after `successDuration`. Omit `state` and it behaves like a normal button.\n\nalign=\"end\"",
+      "registryDependencies": [
+        "@erbium/questionnaire",
+        "@erbium/stateful-button",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/questionnaire/examples/questionnaire-submit-state.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/questionnaire/examples/questionnaire-submit-state.tsx"
+        },
+        {
+          "path": "src/questionnaire/variants/submit-state.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/questionnaire/variants/submit-state.tsx"
         }
       ]
     },
@@ -19598,6 +19634,213 @@
           "path": "src/stateful-icon/variants/theme-toggle-icon.tsx",
           "type": "registry:component",
           "target": "@components/showcase/stateful-icon/variants/theme-toggle-icon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-blocked",
+      "type": "registry:component",
+      "title": "Step Indicator: Blocked",
+      "description": "Set `reach` to the furthest step the user has earned. Dots after it are blocked while earlier dots stay clickable. Use `disabled` on an item for rules that are not linear, or refuse the change inside `onValueChange` when blocking depends on validation.",
+      "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/blocked.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/blocked.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-examples",
+      "type": "registry:item",
+      "title": "Step Indicator examples",
+      "description": "All step-indicator examples.",
+      "registryDependencies": [
+        "@erbium-examples/step-indicator-overview",
+        "@erbium-examples/step-indicator-read-only",
+        "@erbium-examples/step-indicator-blocked",
+        "@erbium-examples/step-indicator-status",
+        "@erbium-examples/step-indicator-progress",
+        "@erbium-examples/step-indicator-vertical",
+        "@erbium-examples/step-indicator-tabs",
+        "@erbium-examples/step-indicator-tanstack-form"
+      ]
+    },
+    {
+      "name": "step-indicator-overview",
+      "type": "registry:component",
+      "title": "Step Indicator: Overview",
+      "description": "Pass `count`, `value` and `onValueChange`. Earlier steps read as complete, the current step stretches into a pill.",
+      "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/overview.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-progress",
+      "type": "registry:component",
+      "title": "Step Indicator: Progress",
+      "description": "`progress` (0 to 1) fills the current pill. Drive it from anything: a timer for a carousel, upload progress, or the fraction of answered fields in the step.",
+      "registryDependencies": ["@erbium/slider", "@erbium/step-indicator", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/progress.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/progress.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-read-only",
+      "type": "registry:component",
+      "title": "Step Indicator: Read Only",
+      "description": "Omit `onValueChange` and the steps render as plain elements. Use it for questionnaires and wizards where only Next and Back move the user, and set an `aria-label` that names the position.",
+      "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/read-only.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/read-only.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-status",
+      "type": "registry:component",
+      "title": "Step Indicator: Status",
+      "description": "Render `StepIndicatorItem` children to give each step a `label`, mark it `invalid`, or `disabled`. Override `status` when completion is not simply \"everything before the current step\".",
+      "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/status.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/status.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-stories",
+      "type": "registry:item",
+      "title": "Step Indicator stories",
+      "description": "All step-indicator variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/overlay-provider",
+        "@erbium/slider",
+        "@erbium/step-indicator",
+        "@erbium/styles",
+        "@erbium/tabs",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/preview.tsx"
+        },
+        {
+          "path": "src/step-indicator/step-indicator.stories.tsx",
+          "type": "registry:file",
+          "target": "@components/showcase/step-indicator/step-indicator.stories.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/blocked.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/blocked.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/overview.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/overview.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/progress.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/progress.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/read-only.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/read-only.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/status.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/status.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/tabs.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/tabs.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/tanstack-form.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/tanstack-form.tsx"
+        },
+        {
+          "path": "src/step-indicator/variants/vertical.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/vertical.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-tabs",
+      "type": "registry:component",
+      "title": "Step Indicator: Tabs",
+      "description": "The indicator and Tabs share one index. Tabs own the content and keyboard behavior; the indicator is a second, compact control for the same state.",
+      "registryDependencies": ["@erbium/step-indicator", "@erbium/styles", "@erbium/tabs"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/tabs.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-tanstack-form",
+      "type": "registry:component",
+      "title": "Step Indicator: TanStack Form",
+      "description": "Keep the step in React state and the values in TanStack Form.\n\n- **Mount every field.** `form.validateField` only finds validators on mounted fields, so an unmounted step would pass validation unchecked. Render all steps and hide the inactive ones.\n- **Validate only what the user passes.** `goTo` validates each step on the way forward, which also marks it touched, and stops at the first invalid one. Steps ahead are never validated, so they never show an error before the user reaches them.\n- **Gate errors on `isTouched`.** Both the step's `invalid` and the field's error use `isTouched && !isValid`.\n- **Submit validates everything.** `onSubmitInvalid` sends the user to the first failing step.\n- Going back is always free.",
+      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/step-indicator",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/tanstack-form.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/tanstack-form.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator-vertical",
+      "type": "registry:component",
+      "title": "Step Indicator: Vertical",
+      "description": "Set `orientation=\"vertical\"` for side rails and compact lists.",
+      "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/vertical.tsx",
+          "type": "registry:component",
+          "target": "@components/showcase/step-indicator/variants/vertical.tsx"
         }
       ]
     },

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-examples",
+  "type": "registry:item",
+  "title": "Step Indicator examples",
+  "description": "All step-indicator examples.",
+  "registryDependencies": [
+    "@erbium-examples/step-indicator-overview",
+    "@erbium-examples/step-indicator-read-only",
+    "@erbium-examples/step-indicator-blocked",
+    "@erbium-examples/step-indicator-status",
+    "@erbium-examples/step-indicator-progress",
+    "@erbium-examples/step-indicator-vertical",
+    "@erbium-examples/step-indicator-tabs",
+    "@erbium-examples/step-indicator-tanstack-form"
+  ]
+}

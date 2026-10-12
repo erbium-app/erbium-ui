@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-read-only",
+  "type": "registry:component",
+  "title": "Step Indicator: Read Only",
+  "description": "Omit `onValueChange` and the steps render as plain elements. Use it for questionnaires and wizards where only Next and Back move the user, and set an `aria-label` that names the position.",
+  "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/step-indicator/variants/read-only.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/step-indicator/variants/read-only.tsx",
+      "content": "import { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nexport default function Example() {\n  return <StepIndicator count={5} value={2} aria-label=\"Question 3 of 5\" />;\n}\n"
+    }
+  ]
+}

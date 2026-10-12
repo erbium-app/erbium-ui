@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-overview",
+  "type": "registry:component",
+  "title": "Step Indicator: Overview",
+  "description": "Pass `count`, `value` and `onValueChange`. Earlier steps read as complete, the current step stretches into a pill.",
+  "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/step-indicator/variants/overview.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/step-indicator/variants/overview.tsx",
+      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Example() {\n  const [step, setStep] = useState(1);\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <StepIndicator count={4} value={step} onValueChange={setStep} aria-label=\"Setup progress\" />\n      <div className=\"flex gap-2\">\n        <Button variant=\"outline\" disabled={step === 0} onClick={() => setStep(step - 1)}>\n          Back\n        </Button>\n        <Button disabled={step === 3} onClick={() => setStep(step + 1)}>\n          Next\n        </Button>\n      </div>\n    </div>\n  );\n}\n"
+    }
+  ]
+}

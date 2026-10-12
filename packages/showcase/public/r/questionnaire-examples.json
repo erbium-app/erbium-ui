@@ -19,6 +19,7 @@
     "@erbium-examples/questionnaire-card",
     "@erbium-examples/questionnaire-dialog",
     "@erbium-examples/questionnaire-skip",
-    "@erbium-examples/questionnaire-navigation-state"
+    "@erbium-examples/questionnaire-navigation-state",
+    "@erbium-examples/questionnaire-submit-state"
   ]
 }

@@ -24,6 +24,10 @@ import ShortcutsExample from "./variants/shortcuts";
 
 import ShortcutsSource from "./variants/shortcuts.tsx?raw";
 
+import SubmitStateExample from "./variants/submit-state";
+
+import SubmitStateSource from "./variants/submit-state.tsx?raw";
+
 import ValidationExample from "./variants/validation";
 
 import ValidationSource from "./variants/validation.tsx?raw";
@@ -253,4 +257,14 @@ export const NavigationState: Story = {
     },
   },
   render: NavigationStateExample,
+};
+
+export const SubmitState: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("questionnaire", "submit-state") },
+      source: { code: SubmitStateSource },
+    },
+  },
+  render: SubmitStateExample,
 };

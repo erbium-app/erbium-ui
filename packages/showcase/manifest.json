@@ -3030,7 +3030,7 @@
       {
         "exportName": "Progress",
         "slug": "progress",
-        "title": "Custom Progress",
+        "title": "Step Indicator",
         "source": "src/questionnaire/variants/progress.tsx"
       },
       {
@@ -3062,6 +3062,12 @@
         "slug": "navigation-state",
         "title": "Navigation State",
         "source": "src/questionnaire/variants/navigation-state.tsx"
+      },
+      {
+        "exportName": "SubmitState",
+        "slug": "submit-state",
+        "title": "Submit State",
+        "source": "src/questionnaire/variants/submit-state.tsx"
       }
     ]
   },
@@ -3638,6 +3644,60 @@
         "slug": "checkbox-state",
         "title": "Checkbox state",
         "source": "src/stateful-icon/variants/checkbox-state.tsx"
+      }
+    ]
+  },
+  {
+    "name": "step-indicator",
+    "title": "Blocks/Step Indicator",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "title": "Overview",
+        "source": "src/step-indicator/variants/overview.tsx"
+      },
+      {
+        "exportName": "ReadOnly",
+        "slug": "read-only",
+        "title": "Read Only",
+        "source": "src/step-indicator/variants/read-only.tsx"
+      },
+      {
+        "exportName": "Blocked",
+        "slug": "blocked",
+        "title": "Blocked",
+        "source": "src/step-indicator/variants/blocked.tsx"
+      },
+      {
+        "exportName": "Status",
+        "slug": "status",
+        "title": "Status",
+        "source": "src/step-indicator/variants/status.tsx"
+      },
+      {
+        "exportName": "Progress",
+        "slug": "progress",
+        "title": "Progress",
+        "source": "src/step-indicator/variants/progress.tsx"
+      },
+      {
+        "exportName": "Vertical",
+        "slug": "vertical",
+        "title": "Vertical",
+        "source": "src/step-indicator/variants/vertical.tsx"
+      },
+      {
+        "exportName": "Tabs",
+        "slug": "tabs",
+        "title": "Tabs",
+        "source": "src/step-indicator/variants/tabs.tsx"
+      },
+      {
+        "exportName": "TanstackForm",
+        "slug": "tanstack-form",
+        "title": "TanStack Form",
+        "source": "src/step-indicator/variants/tanstack-form.tsx"
       }
     ]
   },

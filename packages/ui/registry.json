@@ -242,7 +242,12 @@
       "title": "Carousel",
       "description": "Erbium carousel component.",
       "dependencies": ["class-variance-authority", "embla-carousel-react"],
-      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/step-indicator",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/carousel.tsx",
@@ -1124,7 +1129,14 @@
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
       "dependencies": ["@shadcn/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/kbd", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/kbd",
+        "@erbium/stateful-button",
+        "@erbium/step-indicator",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/questionnaire.tsx",
@@ -1363,6 +1375,21 @@
           "path": "src/components/stateful-icon.tsx",
           "type": "registry:ui",
           "target": "@ui/stateful-icon.tsx"
+        }
+      ]
+    },
+    {
+      "name": "step-indicator",
+      "type": "registry:block",
+      "title": "Step Indicator",
+      "description": "Erbium step indicator block.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": ["@erbium/utils"],
+      "files": [
+        {
+          "path": "src/blocks/step-indicator.tsx",
+          "type": "registry:block",
+          "target": "@components/blocks/step-indicator.tsx"
         }
       ]
     },

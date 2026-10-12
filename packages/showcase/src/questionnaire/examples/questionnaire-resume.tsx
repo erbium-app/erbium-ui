@@ -14,7 +14,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -50,7 +50,7 @@ export function QuestionnaireResume() {
       onReset={() => toast.add({ title: "Saved answers restored" })}
       onSubmit={handleSubmit}
     >
-      <QuestionnaireProgress />
+      <QuestionnaireStepIndicator />
 
       <QuestionnaireItem name="change" required>
         <QuestionnaireTitle>What kind of migration is this?</QuestionnaireTitle>

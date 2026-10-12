@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-progress",
+  "type": "registry:component",
+  "title": "Step Indicator: Progress",
+  "description": "`progress` (0 to 1) fills the current pill. Drive it from anything: a timer for a carousel, upload progress, or the fraction of answered fields in the step.",
+  "registryDependencies": ["@erbium/slider", "@erbium/step-indicator", "@erbium/styles"],
+  "files": [
+    {
+      "path": "src/step-indicator/variants/progress.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/step-indicator/variants/progress.tsx",
+      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport default function Example() {\n  const [progress, setProgress] = useState(0.4);\n  return (\n    <div className=\"flex w-64 flex-col items-center gap-4\">\n      <StepIndicator count={4} value={1} progress={progress} aria-label=\"Upload progress\" />\n      <Slider\n        aria-label=\"Progress\"\n        min={0}\n        max={100}\n        value={progress * 100}\n        onValueChange={(next) => setProgress(Number(next) / 100)}\n      />\n    </div>\n  );\n}\n"
+    }
+  ]
+}

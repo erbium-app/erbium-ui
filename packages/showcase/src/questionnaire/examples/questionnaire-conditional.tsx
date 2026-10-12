@@ -12,7 +12,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -50,7 +50,7 @@ export function QuestionnaireConditional() {
       items={items}
       onSubmit={handleSubmit}
     >
-      <QuestionnaireProgress />
+      <QuestionnaireStepIndicator />
 
       <QuestionnaireItem name="runtime" required>
         <QuestionnaireTitle>Where should the agent run?</QuestionnaireTitle>

@@ -13,7 +13,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -42,16 +42,7 @@ type QuestionnaireItemName = keyof z.infer<typeof questionnaireSchema>;
 type QuestionnaireErrors = Partial<Record<QuestionnaireItemName, string>>;
 
 function ValidationProgress() {
-  return (
-    <QuestionnaireProgress
-      className="min-w-0"
-      render={(props, state) => (
-        <div {...props}>
-          {state.current} / {state.total}
-        </div>
-      )}
-    />
-  );
+  return <QuestionnaireStepIndicator className="min-w-0" />;
 }
 
 export function QuestionnaireValidation() {

@@ -12,7 +12,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -31,6 +31,14 @@ const itemLabels: Record<string, string> = {
 
 export function QuestionnaireControlled() {
   const [item, setItem] = React.useState("scope");
+  // Furthest checkpoint reached. Dots beyond it are blocked; earlier ones are free.
+  const [reach, setReach] = React.useState(0);
+  const names = items.map((entry) => entry.name);
+
+  function handleItemChange(next: string) {
+    setItem(next);
+    setReach((current) => Math.max(current, names.indexOf(next as (typeof names)[number])));
+  }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -53,10 +61,13 @@ export function QuestionnaireControlled() {
         className="mt-auto"
         item={item}
         items={items}
-        onItemChange={setItem}
+        onItemChange={handleItemChange}
         onSubmit={handleSubmit}
       >
-        <QuestionnaireProgress />
+        <QuestionnaireStepIndicator
+          reach={reach}
+          onValueChange={(index) => setItem(names[index])}
+        />
 
         <QuestionnaireItem name="scope" required>
           <QuestionnaireTitle>What may the agent change?</QuestionnaireTitle>

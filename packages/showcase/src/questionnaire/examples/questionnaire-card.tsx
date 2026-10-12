@@ -21,7 +21,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -72,7 +72,7 @@ export function QuestionnaireCard() {
               Choose the task that should be handled next.
             </QuestionnaireDescription>
             <CardAction>
-              <QuestionnaireProgress />
+              <QuestionnaireStepIndicator />
             </CardAction>
           </CardHeader>
           <CardContent>
@@ -94,7 +94,7 @@ export function QuestionnaireCard() {
               Pick the level of detail needed for review.
             </QuestionnaireDescription>
             <CardAction>
-              <QuestionnaireProgress />
+              <QuestionnaireStepIndicator />
             </CardAction>
           </CardHeader>
           <CardContent>

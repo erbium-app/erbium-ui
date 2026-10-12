@@ -11,7 +11,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -42,28 +42,7 @@ export function QuestionnaireProgressExample() {
       items={items}
       onSubmit={handleSubmit}
     >
-      <QuestionnaireProgress
-        className="w-full"
-        render={(props, state) => (
-          <div {...props}>
-            <div className="mb-2 flex gap-1.5" aria-hidden="true">
-              {Array.from({ length: state.total }, (_, index) => (
-                <span
-                  key={index}
-                  className={
-                    index < state.current
-                      ? "h-1.5 flex-1 rounded-full bg-primary"
-                      : "h-1.5 flex-1 rounded-full bg-muted"
-                  }
-                />
-              ))}
-            </div>
-            <span>
-              Checkpoint {state.current} of {state.total}
-            </span>
-          </div>
-        )}
-      />
+      <QuestionnaireStepIndicator />
 
       <QuestionnaireItem name="scope" required>
         <QuestionnaireTitle>How large is the change?</QuestionnaireTitle>

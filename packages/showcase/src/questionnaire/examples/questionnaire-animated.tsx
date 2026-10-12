@@ -12,7 +12,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -45,7 +45,7 @@ export function QuestionnaireAnimated() {
       items={items}
       onSubmit={handleSubmit}
     >
-      <QuestionnaireProgress />
+      <QuestionnaireStepIndicator />
 
       <QuestionnaireItem className={itemClassName} name="task" required>
         <QuestionnaireTitle>What should the agent do?</QuestionnaireTitle>

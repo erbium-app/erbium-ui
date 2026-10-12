@@ -24,7 +24,7 @@ import {
   QuestionnaireItem,
   QuestionnaireNext,
   QuestionnairePrevious,
-  QuestionnaireProgress,
+  QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
@@ -65,7 +65,7 @@ export function QuestionnaireDialog() {
         >
           <QuestionnaireItem name="scope" required className="min-h-0 flex-1 gap-0">
             <DialogHeader>
-              <QuestionnaireProgress />
+              <QuestionnaireStepIndicator />
               <QuestionnaireTitle>Which files are in scope?</QuestionnaireTitle>
               <QuestionnaireDescription>
                 Choose how broadly the agent can update the workspace.
@@ -87,7 +87,7 @@ export function QuestionnaireDialog() {
 
           <QuestionnaireItem name="tests" required className="min-h-0 flex-1 gap-0">
             <DialogHeader>
-              <QuestionnaireProgress />
+              <QuestionnaireStepIndicator />
               <QuestionnaireTitle>How much verification is needed?</QuestionnaireTitle>
               <QuestionnaireDescription>
                 Choose the checks the agent should run before handoff.

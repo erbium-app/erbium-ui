@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "questionnaire-submit-state",
+  "type": "registry:block",
+  "title": "Questionnaire: Submit State",
+  "description": "`QuestionnaireSubmit` is a Stateful Button. Own the request in `onSubmit` and pass `state` (`idle`, `loading`, `success`) with `onStateChange`; the button shows the spinner and success label, blocks repeat submits, and resets after `successDuration`. Omit `state` and it behaves like a normal button.\n\nalign=\"end\"",
+  "registryDependencies": [
+    "@erbium/questionnaire",
+    "@erbium/stateful-button",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "path": "src/questionnaire/examples/questionnaire-submit-state.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/questionnaire/examples/questionnaire-submit-state.tsx",
+      "content": "import * as React from \"react\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\nimport type { StatefulButtonState } from \"@/registry/erbium/ui/stateful-button\";\n\nimport {\n  Questionnaire,\n  QuestionnaireActions,\n  QuestionnaireChoice,\n  QuestionnaireChoices,\n  QuestionnaireError,\n  QuestionnaireItem,\n  QuestionnaireNext,\n  QuestionnairePrevious,\n  QuestionnaireStepIndicator,\n  QuestionnaireSubmit,\n  QuestionnaireTitle,\n} from \"@/registry/erbium/ui/questionnaire\";\n\nconst items = [\n  { name: \"environment\", required: true },\n  { name: \"rollout\", required: true },\n] as const;\n\nexport function QuestionnaireSubmitState() {\n  const [state, setState] = React.useState<StatefulButtonState>(\"idle\");\n\n  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {\n    event.preventDefault();\n    if (state !== \"idle\") return;\n\n    // The host owns the request; the button only reflects its state.\n    setState(\"loading\");\n    await new Promise((resolve) => setTimeout(resolve, 1200));\n    setState(\"success\");\n    toast.add({ title: \"Deployment queued\" });\n  }\n\n  return (\n    <Questionnaire className=\"mx-auto max-w-md\" items={items} onSubmit={handleSubmit}>\n      <QuestionnaireStepIndicator />\n\n      <QuestionnaireItem name=\"environment\" required>\n        <QuestionnaireTitle>Where should this deploy?</QuestionnaireTitle>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"preview\">Preview</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"staging\">Staging</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"production\">Production</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireError />\n      </QuestionnaireItem>\n\n      <QuestionnaireItem name=\"rollout\" required>\n        <QuestionnaireTitle>How should it roll out?</QuestionnaireTitle>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"all\">All at once</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"gradual\">Gradually</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireError />\n      </QuestionnaireItem>\n\n      <QuestionnaireActions>\n        <QuestionnairePrevious />\n        <QuestionnaireNext>Next</QuestionnaireNext>\n        <QuestionnaireSubmit state={state} onStateChange={setState} successLabel=\"Queued\">\n          Deploy\n        </QuestionnaireSubmit>\n      </QuestionnaireActions>\n    </Questionnaire>\n  );\n}\n"
+    },
+    {
+      "path": "src/questionnaire/variants/submit-state.tsx",
+      "type": "registry:component",
+      "target": "@components/showcase/questionnaire/variants/submit-state.tsx",
+      "content": "import { QuestionnaireSubmitState } from \"../examples/questionnaire-submit-state\";\n\nconst Example = () => <QuestionnaireSubmitState />;\n\nexport default Example;\n"
+    }
+  ]
+}

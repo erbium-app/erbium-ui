@@ -3,27 +3,27 @@ title: "Api"
 story: Api
 ---
 
-Use a state and the `setApi` prop to get an instance of the carousel API.
+Add `CarouselIndicator` for dots that follow the carousel and scroll to a slide when clicked. For anything custom, use a state and the `setApi` prop to get an instance of the carousel API.
+
+```tsx
+<Carousel>
+  <CarouselContent>...</CarouselContent>
+  <CarouselIndicator />
+</Carousel>
+```
 
 ```tsx
 import { type CarouselApi } from "@erbium/ui/components/carousel";
 
 export function Example() {
   const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
+    api.scrollTo(2);
   }, [api]);
 
   return (
