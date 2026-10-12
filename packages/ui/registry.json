@@ -680,7 +680,7 @@
       "title": "File Tree",
       "description": "Erbium file tree block.",
       "dependencies": ["@pierre/trees"],
-      "registryDependencies": ["@erbium/tree-theme", "@erbium/utils"],
+      "registryDependencies": ["@erbium/direction", "@erbium/tree-theme", "@erbium/utils"],
       "files": [
         {
           "path": "src/blocks/file-tree.tsx",

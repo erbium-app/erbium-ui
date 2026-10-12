@@ -3,6 +3,7 @@ import type { FileTreeProps as PierreTreeProps } from "@pierre/trees/react";
 import type { FileTreeOptions as PierreTreeOptions } from "@pierre/trees";
 import { createContext, use } from "react";
 import type { ComponentProps, ReactNode } from "react";
+import { DirectionProvider } from "../components/direction";
 import { treeThemeCSS } from "../lib/tree-theme";
 import { cn } from "../lib/utils";
 
@@ -20,7 +21,7 @@ function useFileTree(options: FileTreeOptions) {
   // Match the sidebar’s 1.75rem control height; Pierre needs pixels for virtualization.
   return usePierreTree({ ...options, density: "default", itemHeight: 28, unsafeCSS: treeThemeCSS });
 }
-type FileTreeProps = Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML"> &
+type FileTreeProps = Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir"> &
   Pick<PierreTreeProps, "model" | "preloadedData" | "renderContextMenu"> & { children?: ReactNode };
 const TreeContext = createContext<Pick<
   PierreTreeProps,
@@ -34,21 +35,25 @@ function FileTree({
   className,
   ...props
 }: FileTreeProps) {
+  // File names and paths are code; the tree stays LTR even on RTL pages.
   return (
-    <TreeContext value={{ model, preloadedData, renderContextMenu }}>
-      <div
-        role="region"
-        aria-label="Files"
-        {...props}
-        data-slot="file-tree"
-        className={cn(
-          "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
-          className,
-        )}
-      >
-        {children ?? <FileTreeContent />}
-      </div>
-    </TreeContext>
+    <DirectionProvider direction="ltr">
+      <TreeContext value={{ model, preloadedData, renderContextMenu }}>
+        <div
+          role="region"
+          aria-label="Files"
+          {...props}
+          dir="ltr"
+          data-slot="file-tree"
+          className={cn(
+            "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
+            className,
+          )}
+        >
+          {children ?? <FileTreeContent />}
+        </div>
+      </TreeContext>
+    </DirectionProvider>
   );
 }
 function FileTreeHeader({ className, ...props }: ComponentProps<"div">) {
