@@ -16,9 +16,9 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "10.6.1",
-    "@storybook/addon-themes": "^10.6.1",
-    "@storybook/tanstack-react": "10.6.1",
+    "@storybook/addon-docs": "10.6.2",
+    "@storybook/addon-themes": "^10.6.2",
+    "@storybook/tanstack-react": "10.6.2",
     "@tailwindcss/vite": "catalog:",
     "@tanstack/react-router": "catalog:storybook",
     "@tanstack/router-core": "1.171.29",

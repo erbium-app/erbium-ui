@@ -13,11 +13,11 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
-    "@distilled.cloud/cloudflare": "1.0.0-rc.13",
-    "@effect/platform-bun": "4.0.3",
-    "@effect/platform-node": "4.0.3",
-    "alchemy": "2.0.0-beta.81",
-    "effect": "4.0.2",
+    "@distilled.cloud/cloudflare": "1.0.0-rc.15",
+    "@effect/platform-bun": "4.0.4",
+    "@effect/platform-node": "4.0.4",
+    "alchemy": "2.0.0-beta.83",
+    "effect": "4.0.4",
     "typescript": "catalog:"
   }
 }
