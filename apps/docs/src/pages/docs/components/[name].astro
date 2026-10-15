@@ -1,7 +1,0 @@
----
-import { components } from "@/content/catalog";
-import ComponentPage from "@/templates/ReferencePage.astro";
-export function getStaticPaths() { return components.filter((component) => component.kind === "component").map((component) => ({ params: { name: component.name } })); }
-const { name } = Astro.params;
----
-<ComponentPage name={name!} />

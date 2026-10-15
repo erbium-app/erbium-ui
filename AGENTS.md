@@ -14,7 +14,7 @@
 # Erbium UI Monorepo
 
 - Bun workspaces + Vite+. Apps live in `apps/`; the shared component library lives in `packages/ui/`.
-- `apps/website` is the React + Vite playground, `apps/storybook` is the component workbench, and `apps/docs` is the Astro/Blume documentation site.
+- `apps/website` is the React + Vite playground, `apps/storybook` is the component workbench, and `apps/docs-start` is the TanStack Start documentation site.
 
 <!-- Source: .ruler/code-quality.md -->
 
@@ -39,7 +39,7 @@
 
 # Client directive policy
 
-- Do not add `"use client"` directives. This monorepo uses Vite, Astro, and native React runtimes rather than React Server Components.
+- Do not add `"use client"` directives. This monorepo uses Vite, TanStack Start, and native React runtimes rather than React Server Components.
 - Do not inject `"use client"` through bundler banners or generated output.
 - React hooks and browser APIs do not require a client directive in this repository.
 

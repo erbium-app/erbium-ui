@@ -2,7 +2,6 @@
   "recommendations": [
     "oxc.oxc-vscode",
     "VoidZero.vite-plus-extension-pack",
-    "bradlc.vscode-tailwindcss",
-    "astro-build.astro-vscode"
+    "bradlc.vscode-tailwindcss"
   ]
 }

@@ -74,11 +74,5 @@ export default defineConfig({
       },
     ],
   },
-  ignorePatterns: [
-    "**/.astro/**",
-    "**/.blume/**",
-    "**/dist/**",
-    "**/storybook-static/**",
-    "**/routeTree.gen.ts",
-  ],
+  ignorePatterns: ["**/dist/**", "**/storybook-static/**", "**/routeTree.gen.ts"],
 });

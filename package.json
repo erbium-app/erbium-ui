@@ -2,10 +2,9 @@
   "name": "erbium-ui",
   "version": "0.0.0",
   "private": true,
-  "description": "Agent-first, cross-platform UI primitives and components for React, Astro, and React Native.",
+  "description": "Agent-first, cross-platform UI primitives and components for React and React Native.",
   "keywords": [
     "accessibility",
-    "astro",
     "components",
     "design-system",
     "react",
@@ -55,9 +54,6 @@
       },
       "storybook": {
         "@tanstack/react-router": "1.170.35"
-      },
-      "astro": {
-        "typescript": "^6.0.3"
       }
     }
   },
@@ -69,10 +65,6 @@
     "deploy:preview:plan": "bun run infra plan:preview",
     "infra:typecheck": "bun run infra typecheck",
     "dev": "vp run --parallel --filter './apps/*' dev",
-    "docs": "vp run --filter ./apps/docs --fail-if-no-match dev",
-    "docs:build": "vp run --filter ./apps/docs --fail-if-no-match build",
-    "docs:preview": "vp run --filter ./apps/docs --fail-if-no-match preview",
-    "docs:typecheck": "vp run --filter ./apps/docs --fail-if-no-match typecheck",
     "website": "vp run --filter ./apps/website --fail-if-no-match dev",
     "website:build": "vp run --filter ./apps/website --fail-if-no-match build",
     "website:preview": "vp run --filter ./apps/website --fail-if-no-match preview",
@@ -102,8 +94,8 @@
     "ready": "vp run check && vp run build",
     "prepare": "vp config",
     "storybook:registry": "vp run --filter ./apps/storybook --fail-if-no-match registry:build",
-    "showcase": "vp run --parallel --filter docs --filter @erbium/storybook dev",
-    "showcase:check": "vp run showcase:generate --check && vp run showcase:registry --check && vp run check && vp run docs:build && vp run storybook:build",
+    "showcase": "vp run --parallel --filter ./apps/docs-start --filter @erbium/storybook dev",
+    "showcase:check": "vp run showcase:generate --check && vp run showcase:registry --check && vp run check && vp run docs:start:build && vp run storybook:build",
     "showcase:generate": "vp run --filter ./packages/showcase --fail-if-no-match generate",
     "showcase:registry": "vp run --filter ./packages/showcase --fail-if-no-match registry:build",
     "intent:list": "intent list",
@@ -117,8 +109,7 @@
     "docs:start:cloudflare:build": "vp run --filter ./apps/docs-start --fail-if-no-match build:cloudflare",
     "docs:start:cloudflare:preview": "vp run --filter ./apps/docs-start --fail-if-no-match preview:cloudflare",
     "docs:start:preview": "vp run --filter ./apps/docs-start --fail-if-no-match preview",
-    "docs:start:typecheck": "vp run --filter ./apps/docs-start --fail-if-no-match typecheck",
-    "docs:compare": "node scripts/compare-docs.mjs"
+    "docs:start:typecheck": "vp run --filter ./apps/docs-start --fail-if-no-match typecheck"
   },
   "devDependencies": {
     "@intellectronica/ruler": "0.3.44",

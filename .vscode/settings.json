@@ -48,14 +48,12 @@
   "npm.scriptRunner": "vp",
   "typescript.tsdk": "node_modules/typescript/lib",
   "files.exclude": {
-    "**/.astro": true,
     "**/dist": true,
     "**/node_modules": true
   },
   "cSpell.words": [
     "autodocs",
     "autoscrolling",
-    "Blume",
     "bunx",
     "cmdk",
     "Debouncer",
@@ -75,9 +73,6 @@
     "Vazirmatn",
     "wordmark"
   ],
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
-  },
   "oxc.disableNestedConfig": true,
   "oxc.fmt.disableNestedConfig": true
 }

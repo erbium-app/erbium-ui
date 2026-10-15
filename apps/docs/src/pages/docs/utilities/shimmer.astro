@@ -1,9 +1,0 @@
----
-import GuidePage from "@/templates/GuidePage.astro";
-import Prose from "@/components/content/Prose.astro";
-import { Content, frontmatter } from "@erbium/content/shimmer.md";
----
-<GuidePage title={frontmatter.title} description={frontmatter.description}>
-  <Prose class="shimmer-copy"><Content /></Prose>
-  <div class="grid min-h-32 place-items-center mt-8 border border-border rounded-lg bg-background" aria-label="Shimmer text preview"><p class="shimmer text-muted-foreground">Generating response…</p></div>
-</GuidePage>

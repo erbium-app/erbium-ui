@@ -1,6 +1,6 @@
 # Shared showcases
 
-`@erbium/showcase` owns the React compositions used by the Astro documentation and Storybook. `@erbium/ui` owns primitives and styles; `@erbium/content` owns Markdown and the semantic taxonomy in `src/sections.json`. Applications consume these packages without importing each other's source.
+`@erbium/showcase` owns the React compositions used by the documentation site and Storybook. `@erbium/ui` owns primitives and styles; `@erbium/content` owns Markdown and the semantic taxonomy in `src/sections.json`. Applications consume these packages without importing each other's source.
 
 ```text
 packages/showcase/

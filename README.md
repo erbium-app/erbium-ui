@@ -10,9 +10,9 @@ Erbium UI is developed by [erbium-app](https://github.com/erbium-app).
 - `packages/ui` — reusable components, hooks, styles, and the UI registry.
 - `apps/website` — React and Vite playground for application composition.
 - `apps/storybook` — component stories, examples, and the example registry.
-- `apps/docs` — Astro documentation site.
+- `apps/docs-start` — TanStack Start documentation site.
 
-React is the current component target. Astro can use the React components; React Native is a longer-term direction, not a current implementation.
+React is the current component target. React Native is a longer-term direction, not a current implementation.
 
 ## Development
 
@@ -37,7 +37,7 @@ Vite+ and its Vite core alias are pinned together in the root Bun catalog. Run
 `bunx --no-install vp migrate --no-interactive --no-agent --no-editor --no-hooks`
 from the workspace root to upgrade them together. Keep the direct `vite` catalog
 references and root override: Bun needs the core alias to resolve framework peers.
-Astro and Storybook keep their own CLIs; `vp run` schedules their workspace scripts.
+Storybook keeps its own CLI; `vp run` schedules workspace scripts.
 
 The root `vite.config.ts` imports the Ultracite policy from `oxlint.config.ts` and
 `oxfmt.config.ts`. The Oxc editor extension reads that same Vite+ config. Standalone

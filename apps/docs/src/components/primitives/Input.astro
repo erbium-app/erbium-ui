@@ -1,8 +1,0 @@
----
-import type { HTMLAttributes } from "astro/types";
-import { inputClassName } from "@erbium/ui/lib/form-control-styles";
-import { cn } from "@erbium/ui/lib/utils";
-type Props = HTMLAttributes<"input"> & { defaultValue?: string | number };
-const { class: className, value, defaultValue, ...props } = Astro.props;
----
-<input data-slot="input" class={cn(inputClassName, className)} {...props} value={value ?? defaultValue} />
