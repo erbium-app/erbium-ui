@@ -132,7 +132,7 @@
     "skills": "^1.7.2",
     "taze": "^21.3.0",
     "typescript": "catalog:",
-    "ultracite": "^8.0.0",
+    "ultracite": "^8.0.1",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   },
