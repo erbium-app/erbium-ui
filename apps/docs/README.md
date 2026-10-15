@@ -5,7 +5,7 @@ The TanStack Start documentation site. It reads the shared Markdown, UI tokens, 
 From the workspace root:
 
 ```sh
-bun run docs:start -- --host 127.0.0.1
+bun run docs -- --host 127.0.0.1
 ```
 
 Development runs at http://127.0.0.1:3001. Vite+ provides development, production builds, previews, and repository checks. TanStack Start and the React plugin follow the [official Vite setup](https://tanstack.com/start/latest/docs/framework/react/build-from-scratch).
@@ -13,13 +13,13 @@ Development runs at http://127.0.0.1:3001. Vite+ provides development, productio
 ## Validate production builds
 
 ```sh
-bun run docs:start:build
+bun run docs:build
 ```
 
 In another terminal:
 
 ```sh
-bun run docs:start:preview -- --host 127.0.0.1
+bun run docs:preview -- --host 127.0.0.1
 ```
 
 The Start site is available at http://127.0.0.1:3002.
@@ -34,7 +34,7 @@ Use the browser's performance and Lighthouse tools on the production origin with
 - `packages/showcase` supplies the same live examples and playground metadata. Examples load as they approach the viewport. Source tabs fetch source code when opened.
 - Local Node builds prerender documentation pages. Cloudflare builds render documentation HTML in the Worker. The production preview serves their generated HTML before the Start request handler. The handler provides server functions, agent resources, redirects, and 404 responses.
 - The layout uses a sidebar and inset content panel, with the same 959px mobile breakpoint. Mobile navigation uses a native Sheet with focus management and scroll locking. Search uses the native Command component and supports Mod+K.
-- Canonical URLs remain `https://ui.erbium.app` for comparison. Metadata, JSON-LD, sitemaps, Markdown pages, JSON documentation, `llms.txt`, OpenAPI, agent skills, social cards, fonts, and registry URLs are included.
+- Canonical URLs are `https://ui.erbium.app`. Metadata, JSON-LD, sitemaps, Markdown pages, JSON documentation, `llms.txt`, OpenAPI, agent skills, social cards, fonts, and registry URLs are included.
 
 Vite+'s Bun workspace can resolve multiple instances of its Vite runtime through peer dependencies. The SSR environment is explicitly created with the application's runnable environment factory and Start's development middleware is explicitly enabled, so its runtime identity checks work in this workspace. The preview dependency plugin prebundles dependencies from their owning UI/showcase workspaces, including CommonJS dependencies reached through lazy imports.
 
@@ -42,7 +42,7 @@ Vite+'s Bun workspace can resolve multiple instances of its Vite runtime through
 
 ## Cloudflare preview
 
-Run `bun run docs:start:cloudflare:build` and `bun run docs:start:cloudflare:preview` to validate the Worker locally at http://127.0.0.1:3003.
+Run `bun run docs:cloudflare:build` and `bun run docs:cloudflare:preview` to validate the Worker locally at http://127.0.0.1:3003.
 
 The separate Alchemy preview stage uses the `default` profile:
 

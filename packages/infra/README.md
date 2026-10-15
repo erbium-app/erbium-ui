@@ -1,7 +1,7 @@
 # Cloudflare infrastructure
 
 This workspace owns the `ErbiumUI` Alchemy stack. Its public surface
-is `Docs` (`apps/docs-start`, TanStack Start). The website playground and Storybook remain development
+is `Docs` (`apps/docs`, TanStack Start). The website playground and Storybook remain development
 tools. `packages/infra/alchemy.run.ts` composes deployable surfaces in one stack,
 following Alchemy's [single-stack monorepo example](https://alchemy.run/project-structure/monorepo-single-stack/).
 App paths are anchored to `import.meta.dirname`, so resource resolution does not
@@ -42,7 +42,7 @@ its managed resources explicitly, run `bun run infra destroy`.
 
 ## Start site
 
-`Cloudflare.Website.Vite` builds `apps/docs-start` (TanStack Start) and serves
+`Cloudflare.Website.Vite` builds `apps/docs` (TanStack Start) and serves
 `ui.erbium.app` from the Worker. Markdown, example sources and social images
 compile in Node before deployment; documentation HTML renders in the Worker.
 Cloudflare serves extensionless HTML with trailing slashes removed; unknown
@@ -50,13 +50,13 @@ paths are handled by the Start request handler, which returns 404 rather than
 falling back to the home page. The site keeps its production canonical URL.
 
 There is no Wrangler config to maintain. The
-frontend integration lives in the docs-start workspace where Alchemy resolves it.
+frontend integration lives in the docs workspace where Alchemy resolves it.
 Build memoization includes the app, all three shared source workspaces and the
 root lockfile, so shared component/content changes invalidate deployment builds.
 The explicit workspace list includes filesystem inputs from the docs content and
 registry plugins, which module-graph auto-detection alone cannot cover.
 
-Validate with `bun run check`, `bun run infra:typecheck` and `bun run docs:start:build`.
+Validate with `bun run check`, `bun run infra:typecheck` and `bun run docs:build`.
 Planning and deploying additionally require Cloudflare credentials.
 
 Reference: [Alchemy Vite resource](https://alchemy.run/cloudflare/frontend/vite/).
@@ -132,6 +132,6 @@ bunx --no-install alchemy profile refresh --profile default --provider Cloudflar
 
 Grant Workers Scripts write and Account Settings write for the Worker and Web Analytics site, together with the state backend permissions described above.
 
-The preview uses `Cloudflare.Website.Vite` for `apps/docs-start`, the existing account workers.dev subdomain, and a separate analytics site. Deployment returns both origins for comparison. Markdown, example sources and social images compile in Node before deployment; documentation HTML renders in the Worker. Invocation logs and traces are enabled for the preview. Browser Web Analytics measures visits and Core Web Vitals; it does not report JavaScript exceptions.
+The preview uses `Cloudflare.Website.Vite` for `apps/docs`, the existing account workers.dev subdomain, and a separate analytics site. Deployment returns both origins for comparison. Markdown, example sources and social images compile in Node before deployment; documentation HTML renders in the Worker. Invocation logs and traces are enabled for the preview. Browser Web Analytics measures visits and Core Web Vitals; it does not report JavaScript exceptions.
 
-Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `bun run docs:start:cloudflare:build` followed by `bun run docs:start:cloudflare:preview`.
+Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `bun run docs:cloudflare:build` followed by `bun run docs:cloudflare:preview`.

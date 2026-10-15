@@ -10,7 +10,7 @@ Erbium UI is developed by [erbium-app](https://github.com/erbium-app).
 - `packages/ui` — reusable components, hooks, styles, and the UI registry.
 - `apps/website` — React and Vite playground for application composition.
 - `apps/storybook` — component stories, examples, and the example registry.
-- `apps/docs-start` — TanStack Start documentation site.
+- `apps/docs` — TanStack Start documentation site.
 
 React is the current component target. React Native is a longer-term direction, not a current implementation.
 

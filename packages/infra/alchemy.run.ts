@@ -21,7 +21,7 @@ export default Alchemy.Stack(
       const analytics = yield* Cloudflare.Rum.Site("StartAnalytics", { host, autoInstall: false });
       const start = yield* Cloudflare.Website.Vite("DocsStart", {
         name,
-        rootDir: path.resolve(import.meta.dirname, "../../apps/docs-start"),
+        rootDir: path.resolve(import.meta.dirname, "../../apps/docs"),
         assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
         env: {
           VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken,
@@ -56,7 +56,7 @@ export default Alchemy.Stack(
       autoInstall: false,
     });
     const docs = yield* Cloudflare.Website.Vite("Docs", {
-      rootDir: path.resolve(import.meta.dirname, "../../apps/docs-start"),
+      rootDir: path.resolve(import.meta.dirname, "../../apps/docs"),
       domain: "ui.erbium.app",
       assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
       env: { VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },

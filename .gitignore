@@ -38,4 +38,4 @@ packages/ui/.registry-build/
 .claude/worktrees/
 
 # Generated TanStack docs theme
-apps/docs-start/.cache/
+apps/docs/.cache/
