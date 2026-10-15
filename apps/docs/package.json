@@ -22,7 +22,7 @@
     "class-variance-authority": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "satori": "^0.56.1",
+    "satori": "^0.56.2",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
