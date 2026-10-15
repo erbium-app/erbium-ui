@@ -52,11 +52,11 @@ Vite+'s Bun workspace can resolve multiple instances of its Vite runtime through
 
 Run `bun run docs:start:cloudflare:build` and `bun run docs:start:cloudflare:preview` to validate the Worker locally at http://127.0.0.1:3003.
 
-The separate Alchemy preview stage uses the existing `erbium` profile:
+The separate Alchemy preview stage uses the `default` profile:
 
 ```sh
 bun run deploy:preview:plan
 bun run deploy:preview
 ```
 
-Deployment prints the workers.dev URL alongside the Astro baseline. Preview pages retain production canonical URLs and disable indexing. Alchemy supplies the public Web Analytics token; Worker invocation logs and traces capture server rendering. The production Astro deployment remains unchanged. Deployment requires a refreshed Cloudflare profile with Workers Scripts write and Account Settings write permissions. See [infrastructure setup](../../packages/infra/README.md).
+Deployment prints the workers.dev URL alongside the production origin. Preview pages retain production canonical URLs and disable indexing. Alchemy supplies the public Web Analytics token; Worker invocation logs and traces capture server rendering. Production (`ui.erbium.app`) deploys this Start site from the `prod` stage. Deployment requires a refreshed Cloudflare profile with Workers Scripts write and Account Settings write permissions. See [infrastructure setup](../../packages/infra/README.md).

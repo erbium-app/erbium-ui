@@ -1,7 +1,7 @@
 # Cloudflare infrastructure
 
-This workspace owns the `ErbiumUI` Alchemy stack. Currently its only public surface
-is `Docs` (`apps/docs`). The website playground and Storybook remain development
+This workspace owns the `ErbiumUI` Alchemy stack. Its public surface
+is `Docs` (`apps/docs-start`, TanStack Start). The website playground and Storybook remain development
 tools. `packages/infra/alchemy.run.ts` composes deployable surfaces in one stack,
 following Alchemy's [single-stack monorepo example](https://alchemy.run/project-structure/monorepo-single-stack/).
 App paths are anchored to `import.meta.dirname`, so resource resolution does not
@@ -40,37 +40,34 @@ State is stored in Cloudflare through `Cloudflare.state()` so local and CI runs
 share the same production stack state. To remove the production deployment and
 its managed resources explicitly, run `bun run infra destroy`.
 
-## Astro assets
+## Start site
 
-`Cloudflare.Website.Astro` loads the existing Astro config and builds the docs.
-The explicit `astro.output: "static"` deploys only static assets, without a server
-bundle or session KV namespace (Alchemy skips sessions for static output).
-Node prerendering preserves the existing docs
-build's filesystem-based content and registry generation. Cloudflare serves
-extensionless HTML with trailing slashes removed; unknown paths return 404 rather
-than falling back to the home page. The site keeps its production canonical URL
-on all stages.
+`Cloudflare.Website.Vite` builds `apps/docs-start` (TanStack Start) and serves
+`ui.erbium.app` from the Worker. Markdown, example sources and social images
+compile in Node before deployment; documentation HTML renders in the Worker.
+Cloudflare serves extensionless HTML with trailing slashes removed; unknown
+paths are handled by the Start request handler, which returns 404 rather than
+falling back to the home page. The site keeps its production canonical URL.
 
-There is no Wrangler config or `@astrojs/cloudflare` adapter to maintain. The
-frontend integration lives in the docs workspace where Alchemy resolves it.
-Build memoization includes the docs, all three shared source workspaces and the
+There is no Wrangler config to maintain. The
+frontend integration lives in the docs-start workspace where Alchemy resolves it.
+Build memoization includes the app, all three shared source workspaces and the
 root lockfile, so shared component/content changes invalidate deployment builds.
 The explicit workspace list includes filesystem inputs from the docs content and
 registry plugins, which module-graph auto-detection alone cannot cover.
 
-Validate with `bun run check`, `bun run infra:typecheck` and `bun run docs:build`.
+Validate with `bun run check`, `bun run infra:typecheck` and `bun run docs:start:build`.
 Planning and deploying additionally require Cloudflare credentials.
 
-Reference: [Alchemy Astro resource](https://alchemy.run/cloudflare/frontend/astro/).
+Reference: [Alchemy Vite resource](https://alchemy.run/cloudflare/frontend/vite/).
 
 ## Static-site monitoring
 
 The stack manages a Cloudflare Web Analytics site for `ui.erbium.app` through
 `Cloudflare.Rum.Site("DocsAnalytics")`. Alchemy passes its public site token to
-the Astro build as `PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN`; the shared site layout
+the Start build as `VITE_CLOUDFLARE_ANALYTICS_TOKEN`; the root route
 embeds Cloudflare's deferred beacon in production HTML. Development and builds
-without a token omit the beacon. Standalone production builds can set the token
-using `apps/docs/.env.example` as a template. Keep automatic beacon injection
+without a token omit the beacon. Keep automatic beacon injection
 disabled for this hostname to avoid duplicate measurement.
 
 After deployment, view visits, page load performance and Core Web Vitals in
@@ -79,9 +76,8 @@ the account's **Account Settings Write** API permission (called **Account Settin
 Edit** in the dashboard). If this hostname already has an analytics site, review
 Alchemy's adoption plan before taking ownership of that existing resource.
 
-Worker logs and invocation logs are explicitly enabled; traces remain disabled.
-Because the docs deploy as assets only, ordinary page visits do not invoke a
-Worker and do not produce Worker logs. Astro build errors appear in build output.
+Worker logs, invocation logs and traces are explicitly enabled for the
+server-rendered Start site. Build errors appear in build output.
 
 `.github/workflows/quality.yml` runs `bun run ready` and infrastructure typechecks
 on pull requests and pushes to `main`. The `anti-slop` dependency uses a pinned
@@ -105,7 +101,7 @@ Use root directory `/` and these commands:
 # Build command
 bun install --frozen-lockfile
 
-# Deploy command (Alchemy builds Astro and deploys it)
+# Deploy command (Alchemy builds the Start site and deploys it)
 bun run deploy:ci
 ```
 
@@ -127,15 +123,15 @@ resources; manage the Git connection separately in Cloudflare.
 
 ## TanStack Start preview
 
-`bun run deploy:preview:plan` and `bun run deploy:preview` select the separate `preview` stage and existing `erbium` profile. Refresh credentials before deployment:
+`bun run deploy:preview:plan` and `bun run deploy:preview` select the separate `preview` stage and `default` profile. Refresh credentials before deployment:
 
 ```sh
 cd packages/infra
-bunx --no-install alchemy profile refresh --profile erbium --provider Cloudflare
+bunx --no-install alchemy profile refresh --profile default --provider Cloudflare
 ```
 
-Grant Workers Scripts write and Account Settings write for the Worker and Web Analytics site, together with the state backend permissions described above. Authentication is currently pending; no preview URL has been deployed.
+Grant Workers Scripts write and Account Settings write for the Worker and Web Analytics site, together with the state backend permissions described above.
 
 The preview uses `Cloudflare.Website.Vite` for `apps/docs-start`, the existing account workers.dev subdomain, and a separate analytics site. Deployment returns both origins for comparison. Markdown, example sources and social images compile in Node before deployment; documentation HTML renders in the Worker. Invocation logs and traces are enabled for the preview. Browser Web Analytics measures visits and Core Web Vitals; it does not report JavaScript exceptions.
 
-Preview robots and metadata disable indexing while canonical URLs retain the Astro production origin. The preview branch does not modify production Astro resources. Local Worker validation uses `bun run docs:start:cloudflare:build` followed by `bun run docs:start:cloudflare:preview`.
+Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `bun run docs:start:cloudflare:build` followed by `bun run docs:start:cloudflare:preview`.

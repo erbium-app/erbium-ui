@@ -41,7 +41,7 @@ export default Alchemy.Stack(
         },
       });
       return {
-        astroUrl: "https://ui.erbium.app",
+        prodUrl: "https://ui.erbium.app",
         startUrl: start.url.as<string>(),
         analyticsSiteId: analytics.siteTag,
       };
@@ -55,17 +55,15 @@ export default Alchemy.Stack(
       host: "ui.erbium.app",
       autoInstall: false,
     });
-    const docs = yield* Cloudflare.Website.Astro("Docs", {
-      rootDir: path.resolve(import.meta.dirname, "../../apps/docs"),
-      astro: { output: "static" },
-      prerenderEnvironment: "node",
-      assets: { htmlHandling: "drop-trailing-slash" },
+    const docs = yield* Cloudflare.Website.Vite("Docs", {
+      rootDir: path.resolve(import.meta.dirname, "../../apps/docs-start"),
       domain: "ui.erbium.app",
-      env: { PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },
+      assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
+      env: { VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },
       observability: {
         enabled: true,
         logs: { enabled: true, invocationLogs: true, headSamplingRate: 1, persist: true },
-        traces: { enabled: false },
+        traces: { enabled: true, headSamplingRate: 1, persist: true },
       },
       // Docs also reads content and registry sources from disk, outside the module graph.
       memo: {
