@@ -47,7 +47,7 @@
     "@pierre/trees": "1.0.0-beta.6",
     "@shadcn/react": "catalog:",
     "@tanstack/charts": "catalog:",
-    "@tanstack/hotkeys": "^0.12.1",
+    "@tanstack/hotkeys": "^0.15.1",
     "@tanstack/react-pacer": "catalog:",
     "@tanstack/react-table": "catalog:",
     "class-variance-authority": "catalog:",
