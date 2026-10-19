@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Table: Overview",
   "description": "",
-  "dependencies": ["@tanstack/react-table@9.2.8"],
+  "dependencies": ["@tanstack/react-table@9.3.1"],
   "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
   "files": [
     {
