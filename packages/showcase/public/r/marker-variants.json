@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/marker", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerVariantsDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker>\n        <MarkerContent>A default marker for inline notes.</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>A separator marker</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>A border marker for row boundaries.</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
       "path": "src/marker/examples/marker-variants.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/marker/examples/marker-variants.tsx",
-      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerVariantsDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker>\n        <MarkerContent>A default marker for inline notes.</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>A separator marker</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>A border marker for row boundaries.</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { MarkerVariantsDemo } from \"../examples/marker-variants\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerVariantsDemo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/marker/variants/variants.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/marker/variants/variants.tsx",
-      "content": "import { MarkerVariantsDemo } from \"../examples/marker-variants\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerVariantsDemo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

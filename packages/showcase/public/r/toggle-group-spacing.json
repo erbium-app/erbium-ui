@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport default function ToggleGroupSpacing() {\n  return (\n    <ToggleGroup variant=\"outline\" spacing={2} size=\"sm\">\n      <ToggleGroupItem\n        value=\"star\"\n        aria-label=\"Toggle star\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning\"\n      >\n        <Icon name=\"star\" />\n        Star\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"heart\"\n        aria-label=\"Toggle heart\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-error data-[state=on]:*:[svg]:stroke-error\"\n      >\n        <Icon name=\"heart\" />\n        Heart\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"bookmark\"\n        aria-label=\"Toggle bookmark\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n      >\n        <Icon name=\"bookmark-01\" />\n        Bookmark\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
       "path": "src/toggle-group/examples/toggle-group-spacing.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle-group/examples/toggle-group-spacing.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport default function ToggleGroupSpacing() {\n  return (\n    <ToggleGroup variant=\"outline\" spacing={2} size=\"sm\">\n      <ToggleGroupItem\n        value=\"star\"\n        aria-label=\"Toggle star\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-warning data-[state=on]:*:[svg]:stroke-warning\"\n      >\n        <Icon name=\"star\" />\n        Star\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"heart\"\n        aria-label=\"Toggle heart\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-error data-[state=on]:*:[svg]:stroke-error\"\n      >\n        <Icon name=\"heart\" />\n        Heart\n      </ToggleGroupItem>\n      <ToggleGroupItem\n        value=\"bookmark\"\n        aria-label=\"Toggle bookmark\"\n        className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n      >\n        <Icon name=\"bookmark-01\" />\n        Bookmark\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleToggleGroupSpacing from \"../examples/toggle-group-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupSpacing />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/spacing.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle-group/variants/spacing.tsx",
-      "content": "import ExampleToggleGroupSpacing from \"../examples/toggle-group-spacing\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupSpacing />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

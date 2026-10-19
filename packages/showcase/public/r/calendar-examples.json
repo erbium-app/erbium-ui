@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "calendar-examples",
-  "type": "registry:item",
-  "title": "Calendar examples",
   "description": "All calendar examples.",
+  "name": "calendar-examples",
   "registryDependencies": [
     "@erbium-examples/calendar-playground",
     "@erbium-examples/calendar-overview",
@@ -17,5 +15,7 @@
     "@erbium-examples/calendar-month-and-year-selector",
     "@erbium-examples/calendar-date-and-time-picker",
     "@erbium-examples/calendar-custom-cell-size"
-  ]
+  ],
+  "title": "Calendar examples",
+  "type": "registry:item"
 }

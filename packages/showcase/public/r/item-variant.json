@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/item", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemVariant() {\n  return (\n    <div className=\"flex flex-col gap-section\">\n      <Item>\n        <ItemContent>\n          <ItemTitle>Default Variant</ItemTitle>\n          <ItemDescription>Flat styling that inherits its surrounding surface.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant=\"card\">\n        <ItemContent>\n          <ItemTitle>Card Variant</ItemTitle>\n          <ItemDescription>Raised panel styling with a subtle edge and shadow.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  );\n}\n",
       "path": "src/item/examples/item-variant.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/item/examples/item-variant.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemVariant() {\n  return (\n    <div className=\"flex flex-col gap-section\">\n      <Item>\n        <ItemContent>\n          <ItemTitle>Default Variant</ItemTitle>\n          <ItemDescription>Flat styling that inherits its surrounding surface.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item variant=\"card\">\n        <ItemContent>\n          <ItemTitle>Card Variant</ItemTitle>\n          <ItemDescription>Raised panel styling with a subtle edge and shadow.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Open\n          </Button>\n        </ItemActions>\n      </Item>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleItemVariant from \"../examples/item-variant\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemVariant />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/item/variants/variant.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/item/variants/variant.tsx",
-      "content": "import ExampleItemVariant from \"../examples/item-variant\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemVariant />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

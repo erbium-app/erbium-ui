@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupVertical() {\n  return (\n    <ToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Icon name=\"bold\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Icon name=\"italic\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Icon name=\"underline\" />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
       "path": "src/toggle-group/examples/toggle-group-vertical.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle-group/examples/toggle-group-vertical.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupVertical() {\n  return (\n    <ToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Icon name=\"bold\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Icon name=\"italic\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Icon name=\"underline\" />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ToggleGroupVertical } from \"../examples/toggle-group-vertical\";\n\nconst Example = () => <ToggleGroupVertical />;\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/vertical.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle-group/variants/vertical.tsx",
-      "content": "import { ToggleGroupVertical } from \"../examples/toggle-group-vertical\";\n\nconst Example = () => <ToggleGroupVertical />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

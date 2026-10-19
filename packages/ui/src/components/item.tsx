@@ -1,7 +1,8 @@
 import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 import { Separator } from "./separator";
@@ -9,15 +10,15 @@ import { Separator } from "./separator";
 const itemGroupVariants = cva(
   "group/item-group flex w-full flex-col has-[>[data-slot=item][data-selected]]:gap-0 [&>[data-slot=item][data-selected=true]]:rounded-lg [&>[data-slot=item][data-selected=true]]:[--surface-tint:var(--surface-tint-selected)] [&>[data-slot=item][data-selected=true]:has(+[data-slot=item][data-selected=true])]:rounded-b-none [&>[data-slot=item][data-selected=true]+[data-slot=item][data-selected=true]]:rounded-t-none",
   {
+    defaultVariants: {
+      variant: "default",
+    },
     variants: {
       variant: {
         default:
           "gap-group has-data-[size=sm]:gap-2.5 has-data-[size=xs]:gap-related has-[>[data-slot=item-separator]]:gap-0",
         panel: "gap-0 overflow-hidden rounded-xl surface-panel text-card-foreground",
       },
-    },
-    defaultVariants: {
-      variant: "default",
     },
   },
 );
@@ -32,7 +33,7 @@ function ItemGroup({
       role="list"
       data-slot="item-group"
       data-variant={variant}
-      className={cn(itemGroupVariants({ variant, className }))}
+      className={cn(itemGroupVariants({ className, variant }))}
       {...props}
     />
   );
@@ -56,20 +57,20 @@ function ItemSeparator({ className, ...props }: React.ComponentProps<typeof Sepa
 const itemVariants = cva(
   "group/item flex w-full flex-wrap items-center rounded-lg border border-transparent text-caption transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none [a]:focus-visible:border-ring [a]:focus-visible:ring-2 [a]:focus-visible:ring-focus-halo group-data-[variant=panel]/item-group:rounded-none group-data-[variant=panel]/item-group:border-0 group-data-[variant=panel]/item-group:bg-transparent group-data-[variant=panel]/item-group:px-panel group-data-[variant=panel]/item-group:py-panel group-data-[variant=panel]/item-group:shadow-none",
   {
+    defaultVariants: {
+      size: "default",
+      variant: "default",
+    },
     variants: {
-      variant: {
-        default: "surface-flat",
-        card: "surface-panel text-card-foreground",
-      },
       size: {
         default: "gap-group p-panel",
         sm: "gap-related p-panel-sm",
         xs: "gap-related px-2.5 py-2 in-data-[slot=dropdown-menu-content]:p-0",
       },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: {
+        card: "surface-panel text-card-foreground",
+        default: "surface-flat",
+      },
     },
   },
 );
@@ -85,15 +86,15 @@ function Item({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
-        className: cn(itemVariants({ variant, size, className })),
+        className: cn(itemVariants({ className, size, variant })),
       },
       props,
     ),
     render,
     state: {
+      size,
       slot: "item",
       variant,
-      size,
     },
   });
 }
@@ -101,6 +102,9 @@ function Item({
 const itemMediaVariants = cva(
   "flex shrink-0 items-center justify-center gap-related group-has-data-[slot=item-description]/item:translate-y-0.5 group-has-data-[slot=item-description]/item:self-start [&_svg]:pointer-events-none",
   {
+    defaultVariants: {
+      variant: "default",
+    },
     variants: {
       variant: {
         default: "bg-transparent",
@@ -108,9 +112,6 @@ const itemMediaVariants = cva(
         image:
           "size-10 overflow-hidden rounded-sm group-data-[size=sm]/item:size-8 group-data-[size=xs]/item:size-6 [&_img]:size-full [&_img]:object-cover",
       },
-    },
-    defaultVariants: {
-      variant: "default",
     },
   },
 );
@@ -124,7 +125,7 @@ function ItemMedia({
     <div
       data-slot="item-media"
       data-variant={variant}
-      className={cn(itemMediaVariants({ variant, className }))}
+      className={cn(itemMediaVariants({ className, variant }))}
       {...props}
     />
   );

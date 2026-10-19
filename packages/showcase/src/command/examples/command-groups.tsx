@@ -17,46 +17,43 @@ import {
 
 const commandGroups = [
   {
-    label: "Suggestions",
     items: [
       {
-        label: "Calendar",
-        disabled: false,
         content: (
           <>
             <Icon name="calendar-01" />
             <span>Calendar</span>
           </>
         ),
+        disabled: false,
+        label: "Calendar",
       },
       {
-        label: "Search Emoji",
-        disabled: false,
         content: (
           <>
             <Icon name="smile" />
             <span>Search Emoji</span>
           </>
         ),
+        disabled: false,
+        label: "Search Emoji",
       },
       {
-        label: "Calculator",
-        disabled: false,
         content: (
           <>
             <Icon name="calculator" />
             <span>Calculator</span>
           </>
         ),
+        disabled: false,
+        label: "Calculator",
       },
     ],
+    label: "Suggestions",
   },
   {
-    label: "Settings",
     items: [
       {
-        label: "Profile",
-        disabled: false,
         content: (
           <>
             <Icon name="user" />
@@ -64,10 +61,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+P" />
           </>
         ),
+        disabled: false,
+        label: "Profile",
       },
       {
-        label: "Billing",
-        disabled: false,
         content: (
           <>
             <Icon name="credit-card" />
@@ -75,10 +72,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+B" />
           </>
         ),
+        disabled: false,
+        label: "Billing",
       },
       {
-        label: "Settings",
-        disabled: false,
         content: (
           <>
             <Icon name="settings-01" />
@@ -86,8 +83,11 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+S" />
           </>
         ),
+        disabled: false,
+        label: "Settings",
       },
     ],
+    label: "Settings",
   },
 ];
 
@@ -96,7 +96,13 @@ export function CommandWithGroups() {
 
   return (
     <div className="flex flex-col gap-group">
-      <Button onClick={() => setOpen(true)} variant="outline" className="w-fit">
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+        variant="outline"
+        className="w-fit"
+      >
         Open Menu
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -113,7 +119,9 @@ export function CommandWithGroups() {
                       key={item.label}
                       value={item}
                       disabled={item.disabled}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                      }}
                     >
                       {item.content}
                     </CommandItem>

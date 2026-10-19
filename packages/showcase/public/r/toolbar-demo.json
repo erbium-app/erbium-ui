@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle", "@erbium/toolbar"],
   "files": [
     {
+      "content": "import { Toolbar, ToolbarButton, ToolbarGroup } from \"@/registry/erbium/ui/toolbar\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function Demo() {\n  return (\n    <Toolbar aria-label=\"Text formatting\">\n      <ToolbarGroup aria-label=\"Text style\">\n        <ToolbarButton render={<Toggle aria-label=\"Bold\" />}>Bold</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Italic\" />}>Italic</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Underline\" />}>Underline</ToolbarButton>\n      </ToolbarGroup>\n    </Toolbar>\n  );\n}\n",
       "path": "src/toolbar/examples/toolbar-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toolbar/examples/toolbar-demo.tsx",
-      "content": "import { Toolbar, ToolbarButton, ToolbarGroup } from \"@/registry/erbium/ui/toolbar\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nexport default function Demo() {\n  return (\n    <Toolbar aria-label=\"Text formatting\">\n      <ToolbarGroup aria-label=\"Text style\">\n        <ToolbarButton render={<Toggle aria-label=\"Bold\" />}>Bold</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Italic\" />}>Italic</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Underline\" />}>Underline</ToolbarButton>\n      </ToolbarGroup>\n    </Toolbar>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

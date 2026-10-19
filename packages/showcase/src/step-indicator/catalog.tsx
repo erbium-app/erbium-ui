@@ -16,14 +16,18 @@ import TabsExample from "./variants/tabs";
 import TabsSource from "./variants/tabs.tsx?raw";
 import TanstackFormExample from "./variants/tanstack-form";
 import TanstackFormSource from "./variants/tanstack-form.tsx?raw";
+
 const meta = {
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("step-indicator") } },
+    layout: "centered",
   },
 } satisfies Meta;
+
 export default meta;
+
 type Story = StoryObj<typeof meta>;
+
 export const Overview: Story = {
   parameters: {
     docs: {
@@ -33,6 +37,7 @@ export const Overview: Story = {
   },
   render: OverviewExample,
 };
+
 export const ReadOnly: Story = {
   parameters: {
     docs: {
@@ -42,6 +47,7 @@ export const ReadOnly: Story = {
   },
   render: ReadOnlyExample,
 };
+
 export const Blocked: Story = {
   parameters: {
     docs: {
@@ -51,6 +57,7 @@ export const Blocked: Story = {
   },
   render: BlockedExample,
 };
+
 export const Status: Story = {
   parameters: {
     docs: {
@@ -60,6 +67,7 @@ export const Status: Story = {
   },
   render: StatusExample,
 };
+
 export const Progress: Story = {
   parameters: {
     docs: {
@@ -69,6 +77,7 @@ export const Progress: Story = {
   },
   render: ProgressExample,
 };
+
 export const Vertical: Story = {
   parameters: {
     docs: {
@@ -78,6 +87,7 @@ export const Vertical: Story = {
   },
   render: VerticalExample,
 };
+
 export const Tabs: Story = {
   parameters: {
     docs: {
@@ -87,6 +97,7 @@ export const Tabs: Story = {
   },
   render: TabsExample,
 };
+
 export const TanstackForm: Story = {
   parameters: {
     docs: {

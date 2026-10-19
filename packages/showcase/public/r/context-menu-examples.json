@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "context-menu-examples",
-  "type": "registry:item",
-  "title": "Context Menu examples",
   "description": "All context-menu examples.",
+  "name": "context-menu-examples",
   "registryDependencies": [
     "@erbium-examples/context-menu-playground",
     "@erbium-examples/context-menu-overview",
@@ -17,5 +15,7 @@
     "@erbium-examples/context-menu-error-variant",
     "@erbium-examples/context-menu-sides",
     "@erbium-examples/context-menu-searchable"
-  ]
+  ],
+  "title": "Context Menu examples",
+  "type": "registry:item"
 }

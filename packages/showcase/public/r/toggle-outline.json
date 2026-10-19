@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-outline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-outline.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n    </Toggle>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleToggleOutline from \"../examples/toggle-outline\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleOutline />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/outline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/outline.tsx",
-      "content": "import ExampleToggleOutline from \"../examples/toggle-outline\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleOutline />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

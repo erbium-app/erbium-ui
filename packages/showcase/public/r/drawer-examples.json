@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "drawer-examples",
-  "type": "registry:item",
-  "title": "Drawer examples",
   "description": "All drawer examples.",
+  "name": "drawer-examples",
   "registryDependencies": [
     "@erbium-examples/drawer-playground",
     "@erbium-examples/drawer-overview",
@@ -16,5 +14,7 @@
     "@erbium-examples/drawer-styling",
     "@erbium-examples/drawer-responsive",
     "@erbium-examples/drawer-search-and-controls"
-  ]
+  ],
+  "title": "Drawer examples",
+  "type": "registry:item"
 }

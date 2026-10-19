@@ -5,6 +5,7 @@ import { Slider } from "@erbium/ui/components/slider";
 
 export default function FieldSlider() {
   const [value, setValue] = useState([200, 800]);
+
   return (
     <div className="w-full max-w-md">
       <Field>
@@ -16,7 +17,9 @@ export default function FieldSlider() {
         </FieldDescription>
         <Slider
           value={value}
-          onValueChange={(next) => setValue(Array.isArray(next) ? [...next] : [next])}
+          onValueChange={(next) => {
+            setValue(Array.isArray(next) ? [...next] : [next]);
+          }}
           max={1000}
           min={0}
           step={10}

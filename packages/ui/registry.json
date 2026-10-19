@@ -1,6 +1,5 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "erbium",
   "homepage": "https://github.com/erbium-app/erbium-ui",
   "items": [
     {
@@ -13,8 +12,8 @@
       "files": [
         {
           "path": "src/components/accordion.tsx",
-          "type": "registry:ui",
-          "target": "@ui/accordion.tsx"
+          "target": "@ui/accordion.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -27,8 +26,8 @@
       "files": [
         {
           "path": "src/components/alert.tsx",
-          "type": "registry:ui",
-          "target": "@ui/alert.tsx"
+          "target": "@ui/alert.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -42,8 +41,8 @@
       "files": [
         {
           "path": "src/components/alert-dialog.tsx",
-          "type": "registry:ui",
-          "target": "@ui/alert-dialog.tsx"
+          "target": "@ui/alert-dialog.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -56,8 +55,8 @@
       "files": [
         {
           "path": "src/components/aspect-ratio.tsx",
-          "type": "registry:ui",
-          "target": "@ui/aspect-ratio.tsx"
+          "target": "@ui/aspect-ratio.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -71,8 +70,8 @@
       "files": [
         {
           "path": "src/components/attachment.tsx",
-          "type": "registry:ui",
-          "target": "@ui/attachment.tsx"
+          "target": "@ui/attachment.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -93,8 +92,8 @@
       "files": [
         {
           "path": "src/components/autocomplete.tsx",
-          "type": "registry:ui",
-          "target": "@ui/autocomplete.tsx"
+          "target": "@ui/autocomplete.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -108,8 +107,8 @@
       "files": [
         {
           "path": "src/components/avatar.tsx",
-          "type": "registry:ui",
-          "target": "@ui/avatar.tsx"
+          "target": "@ui/avatar.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -123,8 +122,8 @@
       "files": [
         {
           "path": "src/components/badge.tsx",
-          "type": "registry:ui",
-          "target": "@ui/badge.tsx"
+          "target": "@ui/badge.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -138,8 +137,8 @@
       "files": [
         {
           "path": "src/components/breadcrumb.tsx",
-          "type": "registry:ui",
-          "target": "@ui/breadcrumb.tsx"
+          "target": "@ui/breadcrumb.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -153,8 +152,8 @@
       "files": [
         {
           "path": "src/components/bubble.tsx",
-          "type": "registry:ui",
-          "target": "@ui/bubble.tsx"
+          "target": "@ui/bubble.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -173,8 +172,8 @@
       "files": [
         {
           "path": "src/components/button.tsx",
-          "type": "registry:ui",
-          "target": "@ui/button.tsx"
+          "target": "@ui/button.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -188,8 +187,8 @@
       "files": [
         {
           "path": "src/components/button-group.tsx",
-          "type": "registry:ui",
-          "target": "@ui/button-group.tsx"
+          "target": "@ui/button-group.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -202,8 +201,8 @@
       "files": [
         {
           "path": "src/lib/button-variants.ts",
-          "type": "registry:lib",
-          "target": "@lib/button-variants.ts"
+          "target": "@lib/button-variants.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -217,8 +216,8 @@
       "files": [
         {
           "path": "src/components/calendar.tsx",
-          "type": "registry:ui",
-          "target": "@ui/calendar.tsx"
+          "target": "@ui/calendar.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -231,8 +230,8 @@
       "files": [
         {
           "path": "src/components/card.tsx",
-          "type": "registry:ui",
-          "target": "@ui/card.tsx"
+          "target": "@ui/card.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -251,8 +250,8 @@
       "files": [
         {
           "path": "src/components/carousel.tsx",
-          "type": "registry:ui",
-          "target": "@ui/carousel.tsx"
+          "target": "@ui/carousel.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -264,8 +263,8 @@
       "files": [
         {
           "path": "src/lib/change-theme.ts",
-          "type": "registry:lib",
-          "target": "@lib/change-theme.ts"
+          "target": "@lib/change-theme.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -279,8 +278,8 @@
       "files": [
         {
           "path": "src/components/chart.tsx",
-          "type": "registry:ui",
-          "target": "@ui/chart.tsx"
+          "target": "@ui/chart.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -294,8 +293,8 @@
       "files": [
         {
           "path": "src/components/checkbox.tsx",
-          "type": "registry:ui",
-          "target": "@ui/checkbox.tsx"
+          "target": "@ui/checkbox.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -318,8 +317,8 @@
       "files": [
         {
           "path": "src/blocks/code-block.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/code-block.tsx"
+          "target": "@components/blocks/code-block.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -332,8 +331,8 @@
       "files": [
         {
           "path": "src/lib/code-highlighter.ts",
-          "type": "registry:lib",
-          "target": "@lib/code-highlighter.ts"
+          "target": "@lib/code-highlighter.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -347,8 +346,8 @@
       "files": [
         {
           "path": "src/lib/code-language-icon.ts",
-          "type": "registry:lib",
-          "target": "@lib/code-language-icon.ts"
+          "target": "@lib/code-language-icon.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -368,8 +367,8 @@
       "files": [
         {
           "path": "src/blocks/code-panel.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/code-panel.tsx"
+          "target": "@components/blocks/code-panel.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -383,8 +382,8 @@
       "files": [
         {
           "path": "src/components/collapsible.tsx",
-          "type": "registry:ui",
-          "target": "@ui/collapsible.tsx"
+          "target": "@ui/collapsible.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -407,8 +406,8 @@
       "files": [
         {
           "path": "src/components/combobox.tsx",
-          "type": "registry:ui",
-          "target": "@ui/combobox.tsx"
+          "target": "@ui/combobox.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -430,8 +429,8 @@
       "files": [
         {
           "path": "src/components/command.tsx",
-          "type": "registry:ui",
-          "target": "@ui/command.tsx"
+          "target": "@ui/command.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -452,8 +451,8 @@
       "files": [
         {
           "path": "src/components/context-menu.tsx",
-          "type": "registry:ui",
-          "target": "@ui/context-menu.tsx"
+          "target": "@ui/context-menu.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -475,8 +474,8 @@
       "files": [
         {
           "path": "src/components/control.tsx",
-          "type": "registry:ui",
-          "target": "@ui/control.tsx"
+          "target": "@ui/control.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -495,8 +494,8 @@
       "files": [
         {
           "path": "src/blocks/copy-button.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/copy-button.tsx"
+          "target": "@components/blocks/copy-button.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -508,8 +507,8 @@
       "files": [
         {
           "path": "src/lib/copy-to-clipboard.ts",
-          "type": "registry:lib",
-          "target": "@lib/copy-to-clipboard.ts"
+          "target": "@lib/copy-to-clipboard.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -522,8 +521,8 @@
       "files": [
         {
           "path": "src/components/csp-provider.tsx",
-          "type": "registry:ui",
-          "target": "@ui/csp-provider.tsx"
+          "target": "@ui/csp-provider.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -543,8 +542,8 @@
       "files": [
         {
           "path": "src/components/dialog.tsx",
-          "type": "registry:ui",
-          "target": "@ui/dialog.tsx"
+          "target": "@ui/dialog.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -556,8 +555,8 @@
       "files": [
         {
           "path": "src/lib/diff-accessibility.ts",
-          "type": "registry:lib",
-          "target": "@lib/diff-accessibility.ts"
+          "target": "@lib/diff-accessibility.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -570,8 +569,8 @@
       "files": [
         {
           "path": "src/lib/diff-icons.ts",
-          "type": "registry:lib",
-          "target": "@lib/diff-icons.ts"
+          "target": "@lib/diff-icons.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -584,8 +583,8 @@
       "files": [
         {
           "path": "src/lib/diff-theme.ts",
-          "type": "registry:lib",
-          "target": "@lib/diff-theme.ts"
+          "target": "@lib/diff-theme.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -608,8 +607,8 @@
       "files": [
         {
           "path": "src/blocks/diff-view.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/diff-view.tsx"
+          "target": "@components/blocks/diff-view.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -622,8 +621,8 @@
       "files": [
         {
           "path": "src/components/direction.tsx",
-          "type": "registry:ui",
-          "target": "@ui/direction.tsx"
+          "target": "@ui/direction.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -643,8 +642,8 @@
       "files": [
         {
           "path": "src/components/drawer.tsx",
-          "type": "registry:ui",
-          "target": "@ui/drawer.tsx"
+          "target": "@ui/drawer.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -665,8 +664,8 @@
       "files": [
         {
           "path": "src/components/dropdown-menu.tsx",
-          "type": "registry:ui",
-          "target": "@ui/dropdown-menu.tsx"
+          "target": "@ui/dropdown-menu.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -680,8 +679,8 @@
       "files": [
         {
           "path": "src/components/editable.tsx",
-          "type": "registry:ui",
-          "target": "@ui/editable.tsx"
+          "target": "@ui/editable.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -695,8 +694,8 @@
       "files": [
         {
           "path": "src/components/empty.tsx",
-          "type": "registry:ui",
-          "target": "@ui/empty.tsx"
+          "target": "@ui/empty.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -710,8 +709,8 @@
       "files": [
         {
           "path": "src/components/field.tsx",
-          "type": "registry:ui",
-          "target": "@ui/field.tsx"
+          "target": "@ui/field.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -724,8 +723,8 @@
       "files": [
         {
           "path": "src/lib/file-icons.ts",
-          "type": "registry:lib",
-          "target": "@lib/file-icons.ts"
+          "target": "@lib/file-icons.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -745,8 +744,8 @@
       "files": [
         {
           "path": "src/blocks/file-tree.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/file-tree.tsx"
+          "target": "@components/blocks/file-tree.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -766,8 +765,8 @@
       "files": [
         {
           "path": "src/blocks/file-view.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/file-view.tsx"
+          "target": "@components/blocks/file-view.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -779,8 +778,8 @@
       "files": [
         {
           "path": "src/lib/focus-search-input.ts",
-          "type": "registry:lib",
-          "target": "@lib/focus-search-input.ts"
+          "target": "@lib/focus-search-input.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -792,8 +791,8 @@
       "files": [
         {
           "path": "src/lib/form-control-styles.ts",
-          "type": "registry:lib",
-          "target": "@lib/form-control-styles.ts"
+          "target": "@lib/form-control-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -807,8 +806,8 @@
       "files": [
         {
           "path": "src/components/hover-card.tsx",
-          "type": "registry:ui",
-          "target": "@ui/hover-card.tsx"
+          "target": "@ui/hover-card.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -822,8 +821,8 @@
       "files": [
         {
           "path": "src/components/icon.tsx",
-          "type": "registry:ui",
-          "target": "@ui/icon.tsx"
+          "target": "@ui/icon.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -836,8 +835,8 @@
       "files": [
         {
           "path": "src/components/icon-sprite.tsx",
-          "type": "registry:ui",
-          "target": "@ui/icon-sprite.tsx"
+          "target": "@ui/icon-sprite.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -851,8 +850,8 @@
       "files": [
         {
           "path": "src/components/input.tsx",
-          "type": "registry:ui",
-          "target": "@ui/input.tsx"
+          "target": "@ui/input.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -871,8 +870,8 @@
       "files": [
         {
           "path": "src/components/input-group.tsx",
-          "type": "registry:ui",
-          "target": "@ui/input-group.tsx"
+          "target": "@ui/input-group.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -886,8 +885,8 @@
       "files": [
         {
           "path": "src/components/item.tsx",
-          "type": "registry:ui",
-          "target": "@ui/item.tsx"
+          "target": "@ui/item.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -901,8 +900,8 @@
       "files": [
         {
           "path": "src/components/kbd.tsx",
-          "type": "registry:ui",
-          "target": "@ui/kbd.tsx"
+          "target": "@ui/kbd.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -914,8 +913,8 @@
       "files": [
         {
           "path": "src/lib/kbd-styles.ts",
-          "type": "registry:lib",
-          "target": "@lib/kbd-styles.ts"
+          "target": "@lib/kbd-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -929,8 +928,8 @@
       "files": [
         {
           "path": "src/components/marker.tsx",
-          "type": "registry:ui",
-          "target": "@ui/marker.tsx"
+          "target": "@ui/marker.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -951,8 +950,8 @@
       "files": [
         {
           "path": "src/components/menu-search.tsx",
-          "type": "registry:ui",
-          "target": "@ui/menu-search.tsx"
+          "target": "@ui/menu-search.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -966,8 +965,8 @@
       "files": [
         {
           "path": "src/components/menubar.tsx",
-          "type": "registry:ui",
-          "target": "@ui/menubar.tsx"
+          "target": "@ui/menubar.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -980,8 +979,8 @@
       "files": [
         {
           "path": "src/components/message.tsx",
-          "type": "registry:ui",
-          "target": "@ui/message.tsx"
+          "target": "@ui/message.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -995,8 +994,8 @@
       "files": [
         {
           "path": "src/components/message-scroller.tsx",
-          "type": "registry:ui",
-          "target": "@ui/message-scroller.tsx"
+          "target": "@ui/message-scroller.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1010,8 +1009,8 @@
       "files": [
         {
           "path": "src/components/meter.tsx",
-          "type": "registry:ui",
-          "target": "@ui/meter.tsx"
+          "target": "@ui/meter.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1025,8 +1024,8 @@
       "files": [
         {
           "path": "src/components/navigation-menu.tsx",
-          "type": "registry:ui",
-          "target": "@ui/navigation-menu.tsx"
+          "target": "@ui/navigation-menu.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1045,8 +1044,8 @@
       "files": [
         {
           "path": "src/components/number-field.tsx",
-          "type": "registry:ui",
-          "target": "@ui/number-field.tsx"
+          "target": "@ui/number-field.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1060,8 +1059,8 @@
       "files": [
         {
           "path": "src/components/otp-field.tsx",
-          "type": "registry:ui",
-          "target": "@ui/otp-field.tsx"
+          "target": "@ui/otp-field.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1074,8 +1073,8 @@
       "files": [
         {
           "path": "src/components/overlay-provider.tsx",
-          "type": "registry:ui",
-          "target": "@ui/overlay-provider.tsx"
+          "target": "@ui/overlay-provider.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1088,8 +1087,8 @@
       "files": [
         {
           "path": "src/components/pagination.tsx",
-          "type": "registry:ui",
-          "target": "@ui/pagination.tsx"
+          "target": "@ui/pagination.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1103,8 +1102,8 @@
       "files": [
         {
           "path": "src/components/popover.tsx",
-          "type": "registry:ui",
-          "target": "@ui/popover.tsx"
+          "target": "@ui/popover.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1118,8 +1117,8 @@
       "files": [
         {
           "path": "src/components/progress.tsx",
-          "type": "registry:ui",
-          "target": "@ui/progress.tsx"
+          "target": "@ui/progress.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1140,8 +1139,8 @@
       "files": [
         {
           "path": "src/components/questionnaire.tsx",
-          "type": "registry:ui",
-          "target": "@ui/questionnaire.tsx"
+          "target": "@ui/questionnaire.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1155,8 +1154,8 @@
       "files": [
         {
           "path": "src/components/radio-group.tsx",
-          "type": "registry:ui",
-          "target": "@ui/radio-group.tsx"
+          "target": "@ui/radio-group.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1170,8 +1169,8 @@
       "files": [
         {
           "path": "src/components/resizable.tsx",
-          "type": "registry:ui",
-          "target": "@ui/resizable.tsx"
+          "target": "@ui/resizable.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1185,8 +1184,8 @@
       "files": [
         {
           "path": "src/components/scroll-area.tsx",
-          "type": "registry:ui",
-          "target": "@ui/scroll-area.tsx"
+          "target": "@ui/scroll-area.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1206,8 +1205,8 @@
       "files": [
         {
           "path": "src/components/select.tsx",
-          "type": "registry:ui",
-          "target": "@ui/select.tsx"
+          "target": "@ui/select.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1221,8 +1220,8 @@
       "files": [
         {
           "path": "src/components/separator.tsx",
-          "type": "registry:ui",
-          "target": "@ui/separator.tsx"
+          "target": "@ui/separator.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1234,8 +1233,8 @@
       "files": [
         {
           "path": "src/lib/shake.ts",
-          "type": "registry:lib",
-          "target": "@lib/shake.ts"
+          "target": "@lib/shake.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1254,8 +1253,8 @@
       "files": [
         {
           "path": "src/components/sheet.tsx",
-          "type": "registry:ui",
-          "target": "@ui/sheet.tsx"
+          "target": "@ui/sheet.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1281,8 +1280,8 @@
       "files": [
         {
           "path": "src/components/sidebar.tsx",
-          "type": "registry:ui",
-          "target": "@ui/sidebar.tsx"
+          "target": "@ui/sidebar.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1295,8 +1294,8 @@
       "files": [
         {
           "path": "src/lib/sidebar-styles.ts",
-          "type": "registry:lib",
-          "target": "@lib/sidebar-styles.ts"
+          "target": "@lib/sidebar-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1309,8 +1308,8 @@
       "files": [
         {
           "path": "src/components/skeleton.tsx",
-          "type": "registry:ui",
-          "target": "@ui/skeleton.tsx"
+          "target": "@ui/skeleton.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1324,8 +1323,8 @@
       "files": [
         {
           "path": "src/components/slider.tsx",
-          "type": "registry:ui",
-          "target": "@ui/slider.tsx"
+          "target": "@ui/slider.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1338,8 +1337,8 @@
       "files": [
         {
           "path": "src/components/spinner.tsx",
-          "type": "registry:ui",
-          "target": "@ui/spinner.tsx"
+          "target": "@ui/spinner.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1358,8 +1357,8 @@
       "files": [
         {
           "path": "src/components/stateful-button.tsx",
-          "type": "registry:ui",
-          "target": "@ui/stateful-button.tsx"
+          "target": "@ui/stateful-button.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1373,8 +1372,8 @@
       "files": [
         {
           "path": "src/components/stateful-icon.tsx",
-          "type": "registry:ui",
-          "target": "@ui/stateful-icon.tsx"
+          "target": "@ui/stateful-icon.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1388,16 +1387,12 @@
       "files": [
         {
           "path": "src/blocks/step-indicator.tsx",
-          "type": "registry:block",
-          "target": "@components/blocks/step-indicator.tsx"
+          "target": "@components/blocks/step-indicator.tsx",
+          "type": "registry:block"
         }
       ]
     },
     {
-      "name": "styles",
-      "type": "registry:item",
-      "title": "Erbium styles",
-      "description": "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
       "dependencies": [
         "easing-gradients",
         "shadcn",
@@ -1405,83 +1400,87 @@
         "tailwindcss",
         "tw-animate-css"
       ],
+      "description": "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
       "files": [
         {
           "path": "src/styles/base.css",
-          "type": "registry:file",
-          "target": "~/src/styles/base.css"
+          "target": "~/src/styles/base.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/chart.css",
-          "type": "registry:file",
-          "target": "~/src/styles/chart.css"
+          "target": "~/src/styles/chart.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/effects.css",
-          "type": "registry:file",
-          "target": "~/src/styles/effects.css"
+          "target": "~/src/styles/effects.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/fonts.css",
-          "type": "registry:file",
-          "target": "~/src/styles/fonts.css"
+          "target": "~/src/styles/fonts.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/globals.css",
-          "type": "registry:file",
-          "target": "~/src/styles/globals.css"
+          "target": "~/src/styles/globals.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/scrollbar.css",
-          "type": "registry:file",
-          "target": "~/src/styles/scrollbar.css"
+          "target": "~/src/styles/scrollbar.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/sizing.css",
-          "type": "registry:file",
-          "target": "~/src/styles/sizing.css"
+          "target": "~/src/styles/sizing.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/surfaces.css",
-          "type": "registry:file",
-          "target": "~/src/styles/surfaces.css"
+          "target": "~/src/styles/surfaces.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/theme.css",
-          "type": "registry:file",
-          "target": "~/src/styles/theme.css"
+          "target": "~/src/styles/theme.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/typeset.css",
-          "type": "registry:file",
-          "target": "~/src/styles/typeset.css"
+          "target": "~/src/styles/typeset.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/typography.css",
-          "type": "registry:file",
-          "target": "~/src/styles/typography.css"
+          "target": "~/src/styles/typography.css",
+          "type": "registry:file"
         },
         {
           "path": "src/styles/variants.css",
-          "type": "registry:file",
-          "target": "~/src/styles/variants.css"
+          "target": "~/src/styles/variants.css",
+          "type": "registry:file"
         },
         {
           "path": "src/assets/fonts/OFL.txt",
-          "type": "registry:file",
-          "target": "~/src/assets/fonts/OFL.txt"
+          "target": "~/src/assets/fonts/OFL.txt",
+          "type": "registry:file"
         },
         {
           "path": "src/assets/fonts/Vazirmatn-OFL.txt",
-          "type": "registry:file",
-          "target": "~/src/assets/fonts/Vazirmatn-OFL.txt"
+          "target": "~/src/assets/fonts/Vazirmatn-OFL.txt",
+          "type": "registry:file"
         },
         {
           "path": "src/assets/fonts/PaperMono-OFL.txt",
-          "type": "registry:file",
-          "target": "~/src/assets/fonts/PaperMono-OFL.txt"
+          "target": "~/src/assets/fonts/PaperMono-OFL.txt",
+          "type": "registry:file"
         }
-      ]
+      ],
+      "name": "styles",
+      "title": "Erbium styles",
+      "type": "registry:item"
     },
     {
       "name": "surface-shadows",
@@ -1491,8 +1490,8 @@
       "files": [
         {
           "path": "src/lib/surface-shadows.ts",
-          "type": "registry:lib",
-          "target": "@lib/surface-shadows.ts"
+          "target": "@lib/surface-shadows.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1506,8 +1505,8 @@
       "files": [
         {
           "path": "src/components/switch.tsx",
-          "type": "registry:ui",
-          "target": "@ui/switch.tsx"
+          "target": "@ui/switch.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1519,8 +1518,8 @@
       "files": [
         {
           "path": "src/lib/switch-styles.ts",
-          "type": "registry:lib",
-          "target": "@lib/switch-styles.ts"
+          "target": "@lib/switch-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1534,8 +1533,8 @@
       "files": [
         {
           "path": "src/components/table.tsx",
-          "type": "registry:ui",
-          "target": "@ui/table.tsx"
+          "target": "@ui/table.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1547,8 +1546,8 @@
       "files": [
         {
           "path": "src/lib/table-styles.ts",
-          "type": "registry:lib",
-          "target": "@lib/table-styles.ts"
+          "target": "@lib/table-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1562,8 +1561,8 @@
       "files": [
         {
           "path": "src/components/tabs.tsx",
-          "type": "registry:ui",
-          "target": "@ui/tabs.tsx"
+          "target": "@ui/tabs.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1577,8 +1576,8 @@
       "files": [
         {
           "path": "src/components/text-morph.tsx",
-          "type": "registry:ui",
-          "target": "@ui/text-morph.tsx"
+          "target": "@ui/text-morph.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1592,8 +1591,8 @@
       "files": [
         {
           "path": "src/components/textarea.tsx",
-          "type": "registry:ui",
-          "target": "@ui/textarea.tsx"
+          "target": "@ui/textarea.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1614,8 +1613,8 @@
       "files": [
         {
           "path": "src/components/toast.tsx",
-          "type": "registry:ui",
-          "target": "@ui/toast.tsx"
+          "target": "@ui/toast.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1629,8 +1628,8 @@
       "files": [
         {
           "path": "src/components/toggle.tsx",
-          "type": "registry:ui",
-          "target": "@ui/toggle.tsx"
+          "target": "@ui/toggle.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1644,8 +1643,8 @@
       "files": [
         {
           "path": "src/components/toggle-group.tsx",
-          "type": "registry:ui",
-          "target": "@ui/toggle-group.tsx"
+          "target": "@ui/toggle-group.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1659,8 +1658,8 @@
       "files": [
         {
           "path": "src/components/toolbar.tsx",
-          "type": "registry:ui",
-          "target": "@ui/toolbar.tsx"
+          "target": "@ui/toolbar.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1674,8 +1673,8 @@
       "files": [
         {
           "path": "src/components/tooltip.tsx",
-          "type": "registry:ui",
-          "target": "@ui/tooltip.tsx"
+          "target": "@ui/tooltip.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1688,8 +1687,8 @@
       "files": [
         {
           "path": "src/lib/tree-theme.ts",
-          "type": "registry:lib",
-          "target": "@lib/tree-theme.ts"
+          "target": "@lib/tree-theme.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1701,8 +1700,8 @@
       "files": [
         {
           "path": "src/lib/typography.ts",
-          "type": "registry:lib",
-          "target": "@lib/typography.ts"
+          "target": "@lib/typography.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1715,8 +1714,8 @@
       "files": [
         {
           "path": "src/hooks/use-copy-to-clipboard.ts",
-          "type": "registry:hook",
-          "target": "@hooks/use-copy-to-clipboard.ts"
+          "target": "@hooks/use-copy-to-clipboard.ts",
+          "type": "registry:hook"
         }
       ]
     },
@@ -1728,8 +1727,8 @@
       "files": [
         {
           "path": "src/hooks/use-drag-select.ts",
-          "type": "registry:hook",
-          "target": "@hooks/use-drag-select.ts"
+          "target": "@hooks/use-drag-select.ts",
+          "type": "registry:hook"
         }
       ]
     },
@@ -1742,8 +1741,8 @@
       "files": [
         {
           "path": "src/hooks/use-is-mobile.ts",
-          "type": "registry:hook",
-          "target": "@hooks/use-is-mobile.ts"
+          "target": "@hooks/use-is-mobile.ts",
+          "type": "registry:hook"
         }
       ]
     },
@@ -1756,8 +1755,8 @@
       "files": [
         {
           "path": "src/hooks/use-media-query.ts",
-          "type": "registry:hook",
-          "target": "@hooks/use-media-query.ts"
+          "target": "@hooks/use-media-query.ts",
+          "type": "registry:hook"
         }
       ]
     },
@@ -1770,10 +1769,11 @@
       "files": [
         {
           "path": "src/lib/utils.ts",
-          "type": "registry:lib",
-          "target": "@lib/erbium-utils.ts"
+          "target": "@lib/erbium-utils.ts",
+          "type": "registry:lib"
         }
       ]
     }
-  ]
+  ],
+  "name": "erbium"
 }

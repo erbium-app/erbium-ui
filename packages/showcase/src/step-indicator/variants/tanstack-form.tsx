@@ -6,9 +6,9 @@ import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
 import { Input } from "@erbium/ui/components/input";
 
 const steps = [
-  { label: "Name", field: "name" },
-  { label: "Email", field: "email" },
-  { label: "Company", field: "company" },
+  { field: "name", label: "Name" },
+  { field: "email", label: "Email" },
+  { field: "company", label: "Company" },
 ] as const;
 
 const required = ({ value }: { value: string }) => (value.trim() ? undefined : "Required");
@@ -16,15 +16,22 @@ const required = ({ value }: { value: string }) => (value.trim() ? undefined : "
 export default function Example() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
+
   const form = useForm({
-    defaultValues: { name: "", email: "", company: "" },
-    onSubmit: () => setDone(true),
+    defaultValues: { company: "", email: "", name: "" },
+    onSubmit: () => {
+      setDone(true);
+    },
     // Submit validates every step. Send the user to the first one that failed.
     onSubmitInvalid: ({ formApi }) => {
       const first = steps.findIndex((item) => !formApi.getFieldMeta(item.field)?.isValid);
-      if (first !== -1) setStep(first);
+
+      if (first !== -1) {
+        setStep(first);
+      }
     },
   });
+
   const fieldMeta = useStore(form.store, (state) => state.fieldMeta);
 
   // A step shows an error only after the user has touched it: by typing and
@@ -38,8 +45,14 @@ export default function Example() {
   async function goTo(target: number) {
     for (let index = step; index < target; index++) {
       const errors = await form.validateField(steps[index].field, "change");
-      if (errors.length) return setStep(index);
+
+      if (errors.length) {
+        setStep(index);
+
+        return;
+      }
     }
+
     setStep(target);
   }
 
@@ -67,12 +80,15 @@ export default function Example() {
         <form.Field key={item.field} name={item.field} validators={{ onChange: required }}>
           {(field) => {
             const invalid = field.state.meta.isTouched && !field.state.meta.isValid;
+
             return (
               <Field className="w-full" name={field.name} invalid={invalid} hidden={index !== step}>
                 <FieldLabel>{item.label}</FieldLabel>
                 <Input
                   value={field.state.value}
-                  onChange={(event) => field.handleChange(event.target.value)}
+                  onChange={(event) => {
+                    field.handleChange(event.target.value);
+                  }}
                   onBlur={field.handleBlur}
                 />
                 <FieldError errors={invalid ? field.state.meta.errors : []} />
@@ -86,12 +102,19 @@ export default function Example() {
           type="button"
           variant="outline"
           disabled={step === 0}
-          onClick={() => goTo(step - 1)}
+          onClick={async () => {
+            await goTo(step - 1);
+          }}
         >
           Back
         </Button>
         {step < steps.length - 1 ? (
-          <Button type="button" onClick={() => goTo(step + 1)}>
+          <Button
+            type="button"
+            onClick={async () => {
+              await goTo(step + 1);
+            }}
+          >
             Next
           </Button>
         ) : (

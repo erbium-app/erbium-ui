@@ -1,5 +1,6 @@
 import { Toolbar, ToolbarButton, ToolbarGroup } from "@erbium/ui/components/toolbar";
 import { Toggle } from "@erbium/ui/components/toggle";
+
 export default function Demo() {
   return (
     <Toolbar aria-label="Text formatting">

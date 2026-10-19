@@ -20,22 +20,26 @@ type FileTreeOptions = Omit<
   | "paths"
   | "preparedInput"
 > & { paths: readonly string[] };
+
 function useFileTree(options: FileTreeOptions) {
   // Match the sidebar’s 1.75rem control height; Pierre needs pixels for virtualization.
   return usePierreTree({
     ...options,
     density: "default",
-    itemHeight: 28,
     icons: fileTreeIcons,
+    itemHeight: 28,
     unsafeCSS: treeThemeCSS,
   });
 }
+
 type FileTreeProps = Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir"> &
   Pick<PierreTreeProps, "model" | "preloadedData" | "renderContextMenu"> & { children?: ReactNode };
+
 const TreeContext = createContext<Pick<
   PierreTreeProps,
   "model" | "preloadedData" | "renderContextMenu"
 > | null>(null);
+
 function FileTree({
   model,
   preloadedData,
@@ -65,6 +69,7 @@ function FileTree({
     </DirectionProvider>
   );
 }
+
 function FileTreeHeader({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
@@ -77,6 +82,7 @@ function FileTreeHeader({ className, ...props }: ComponentProps<"div">) {
     />
   );
 }
+
 function FileTreeTitle({ className, ...props }: ComponentProps<"span">) {
   return (
     <span
@@ -89,6 +95,7 @@ function FileTreeTitle({ className, ...props }: ComponentProps<"span">) {
     />
   );
 }
+
 function FileTreeActions({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
@@ -98,27 +105,45 @@ function FileTreeActions({ className, ...props }: ComponentProps<"div">) {
     />
   );
 }
+
 function FileTreeContent({
   className,
   ...props
 }: Omit<PierreTreeProps, "model" | "header" | "preloadedData" | "renderContextMenu">) {
   const context = use(TreeContext);
-  if (!context) throw new Error("File tree content must be inside FileTree.");
+
+  if (!context) {
+    throw new Error("File tree content must be inside FileTree.");
+  }
+
   const frame = useRef<HTMLDivElement>(null);
   const [rendered, setRendered] = useState(context.preloadedData !== undefined);
   // Pierre mounts the tree into a shadow root after the host attaches; until
   // its first row list exists the host is an empty box, so show progress.
   useEffect(() => {
-    if (rendered) return;
+    if (rendered) {
+      return;
+    }
+
     let handle = 0;
+
     const poll = () => {
       const host = frame.current?.querySelector("file-tree-container");
-      if (host?.shadowRoot?.querySelector('[role="tree"]')) setRendered(true);
-      else handle = requestAnimationFrame(poll);
+
+      if (host?.shadowRoot?.querySelector('[role="tree"]')) {
+        setRendered(true);
+      } else {
+        handle = requestAnimationFrame(poll);
+      }
     };
+
     poll();
-    return () => cancelAnimationFrame(handle);
+
+    return () => {
+      cancelAnimationFrame(handle);
+    };
   }, [rendered]);
+
   return (
     <div ref={frame} data-slot="file-tree-frame" className="relative">
       <PierreTree
@@ -138,5 +163,7 @@ function FileTreeContent({
     </div>
   );
 }
+
 export { FileTree, useFileTree, FileTreeHeader, FileTreeTitle, FileTreeActions, FileTreeContent };
+
 export type { FileTreeProps, FileTreeOptions };

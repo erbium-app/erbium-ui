@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "questionnaire-examples",
-  "type": "registry:item",
-  "title": "Questionnaire examples",
   "description": "All questionnaire examples.",
+  "name": "questionnaire-examples",
   "registryDependencies": [
     "@erbium-examples/questionnaire-playground",
     "@erbium-examples/questionnaire-overview",
@@ -21,5 +19,7 @@
     "@erbium-examples/questionnaire-skip",
     "@erbium-examples/questionnaire-navigation-state",
     "@erbium-examples/questionnaire-submit-state"
-  ]
+  ],
+  "title": "Questionnaire examples",
+  "type": "registry:item"
 }

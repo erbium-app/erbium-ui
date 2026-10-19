@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "combobox-examples",
-  "type": "registry:item",
-  "title": "Combobox examples",
   "description": "All combobox examples.",
+  "name": "combobox-examples",
   "registryDependencies": [
     "@erbium-examples/combobox-playground",
     "@erbium-examples/combobox-overview",
@@ -19,5 +17,7 @@
     "@erbium-examples/combobox-clear-button",
     "@erbium-examples/combobox-item-collection",
     "@erbium-examples/combobox-async-search"
-  ]
+  ],
+  "title": "Combobox examples",
+  "type": "registry:item"
 }

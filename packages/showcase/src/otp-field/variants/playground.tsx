@@ -14,10 +14,10 @@ const Example = (args: {
     value={args.isValidating ? "12345678".slice(0, args.length) : undefined}
     validationType={args.validationType}
     validation={{
-      isValidating: args.isValidating,
-      isValid: true,
-      isTouched: false,
       isDirty: false,
+      isTouched: false,
+      isValid: true,
+      isValidating: args.isValidating,
     }}
   />
 );

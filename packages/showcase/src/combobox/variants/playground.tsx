@@ -4,8 +4,8 @@ import {
   ComboboxEmpty,
   ComboboxList,
   ComboboxItem,
+  Combobox,
 } from "@erbium/ui/components/combobox";
-import { Combobox } from "@erbium/ui/components/combobox";
 
 const Example = (args: {
   placeholder: string;

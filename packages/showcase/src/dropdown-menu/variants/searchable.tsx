@@ -18,6 +18,7 @@ import {
 
 export default function SearchableExample() {
   const [action, setAction] = useState("No action selected.");
+
   return (
     <div className="grid gap-related">
       <DropdownMenu searchable>
@@ -32,7 +33,13 @@ export default function SearchableExample() {
               <DropdownMenuLabel>Project</DropdownMenuLabel>
               {["Open project", "Rename project", "Duplicate project", "Copy project link"].map(
                 (label) => (
-                  <DropdownMenuItem key={label} label={label} onClick={() => setAction(label)}>
+                  <DropdownMenuItem
+                    key={label}
+                    label={label}
+                    onClick={() => {
+                      setAction(label);
+                    }}
+                  >
                     {label}
                   </DropdownMenuItem>
                 ),
@@ -48,7 +55,9 @@ export default function SearchableExample() {
                     <DropdownMenuItem
                       key={folder}
                       label={folder}
-                      onClick={() => setAction(`Move to ${folder}`)}
+                      onClick={() => {
+                        setAction(`Move to ${folder}`);
+                      }}
                     >
                       {folder}
                     </DropdownMenuItem>
@@ -62,7 +71,13 @@ export default function SearchableExample() {
             <DropdownMenuGroup>
               <DropdownMenuLabel>Export</DropdownMenuLabel>
               {["Export PDF", "Export Markdown", "Export CSV", "Download archive"].map((label) => (
-                <DropdownMenuItem key={label} label={label} onClick={() => setAction(label)}>
+                <DropdownMenuItem
+                  key={label}
+                  label={label}
+                  onClick={() => {
+                    setAction(label);
+                  }}
+                >
                   {label}
                 </DropdownMenuItem>
               ))}

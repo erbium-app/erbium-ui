@@ -1,5 +1,4 @@
-import { AvatarFallback, AvatarImage } from "@erbium/ui/components/avatar";
-import { Avatar } from "@erbium/ui/components/avatar";
+import { AvatarFallback, AvatarImage, Avatar } from "@erbium/ui/components/avatar";
 
 const Example = (args: {
   size: "default" | "sm" | "lg";

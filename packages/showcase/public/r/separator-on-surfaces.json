@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
+      "content": "export const surfaceSamples = [\n  [\"Canvas\", \"bg-surface-canvas\"],\n  [\"Panel\", \"bg-surface-panel\"],\n  [\"Control\", \"bg-surface-control\"],\n  [\"Input\", \"bg-surface-input\"],\n  [\"Overlay\", \"bg-surface-overlay\"],\n  [\"Modal\", \"bg-surface-modal\"],\n  [\"Top\", \"bg-surface-top\"],\n  [\"Well\", \"bg-surface-well\"],\n  [\"Muted\", \"bg-muted\"],\n  [\"Secondary\", \"bg-secondary text-secondary-foreground\"],\n  [\"Accent\", \"bg-accent text-accent-foreground\"],\n  [\"Primary\", \"bg-primary text-primary-foreground\"],\n  [\"Error\", \"bg-error text-error-foreground\"],\n  [\"Success\", \"bg-success text-success-foreground\"],\n  [\"Warning\", \"bg-warning text-warning-foreground\"],\n  [\"Info\", \"bg-info text-info-foreground\"],\n  [\"Error soft\", \"bg-error-soft text-error-soft-foreground\"],\n  [\"Success soft\", \"bg-success-soft text-success-soft-foreground\"],\n  [\"Warning soft\", \"bg-warning-soft text-warning-soft-foreground\"],\n  [\"Info soft\", \"bg-info-soft text-info-soft-foreground\"],\n] as const;\n",
       "path": "src/separator/helpers.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/separator/helpers.tsx",
-      "content": "export const surfaceSamples = [\n  [\"Canvas\", \"bg-surface-canvas\"],\n  [\"Panel\", \"bg-surface-panel\"],\n  [\"Control\", \"bg-surface-control\"],\n  [\"Input\", \"bg-surface-input\"],\n  [\"Overlay\", \"bg-surface-overlay\"],\n  [\"Modal\", \"bg-surface-modal\"],\n  [\"Top\", \"bg-surface-top\"],\n  [\"Well\", \"bg-surface-well\"],\n  [\"Muted\", \"bg-muted\"],\n  [\"Secondary\", \"bg-secondary text-secondary-foreground\"],\n  [\"Accent\", \"bg-accent text-accent-foreground\"],\n  [\"Primary\", \"bg-primary text-primary-foreground\"],\n  [\"Error\", \"bg-error text-error-foreground\"],\n  [\"Success\", \"bg-success text-success-foreground\"],\n  [\"Warning\", \"bg-warning text-warning-foreground\"],\n  [\"Info\", \"bg-info text-info-foreground\"],\n  [\"Error soft\", \"bg-error-soft text-error-soft-foreground\"],\n  [\"Success soft\", \"bg-success-soft text-success-soft-foreground\"],\n  [\"Warning soft\", \"bg-warning-soft text-warning-soft-foreground\"],\n  [\"Info soft\", \"bg-info-soft text-info-soft-foreground\"],\n] as const;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport { surfaceSamples } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"grid w-160 max-w-[calc(100vw-2rem)] grid-cols-2 gap-3 p-4 sm:grid-cols-3\">\n    {surfaceSamples.map(([name, surface]) => (\n      <div\n        key={name}\n        className={`flex min-h-24 flex-col justify-center gap-related rounded-lg border border-transparent p-3 ${surface}`}\n      >\n        <span className=\"text-metadata font-medium\">{name}</span>\n        <Separator />\n        <Separator className=\"text-metadata\">or</Separator>\n      </div>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/separator/variants/on-surfaces.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/separator/variants/on-surfaces.tsx",
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport { surfaceSamples } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"grid w-160 max-w-[calc(100vw-2rem)] grid-cols-2 gap-3 p-4 sm:grid-cols-3\">\n    {surfaceSamples.map(([name, surface]) => (\n      <div\n        key={name}\n        className={`flex min-h-24 flex-col justify-center gap-related rounded-lg border border-transparent p-3 ${surface}`}\n      >\n        <span className=\"text-metadata font-medium\">{name}</span>\n        <Separator />\n        <Separator className=\"text-metadata\">or</Separator>\n      </div>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

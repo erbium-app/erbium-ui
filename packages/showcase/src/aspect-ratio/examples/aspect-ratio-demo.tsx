@@ -1,4 +1,5 @@
 import { AspectRatio } from "@erbium/ui/components/aspect-ratio";
+
 export default function Demo() {
   return (
     <div className="w-80">

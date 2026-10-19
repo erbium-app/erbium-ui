@@ -1,12 +1,16 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
 const buttonGroupVariants = cva(
   "flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-related has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-e-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>[data-slot=input-control]]:flex-1",
   {
+    defaultVariants: {
+      orientation: "horizontal",
+    },
     variants: {
       orientation: {
         horizontal:
@@ -14,9 +18,6 @@ const buttonGroupVariants = cva(
         vertical:
           "flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg! [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:-mt-px",
       },
-    },
-    defaultVariants: {
-      orientation: "horizontal",
     },
   },
 );

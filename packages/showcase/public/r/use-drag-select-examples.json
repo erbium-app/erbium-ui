@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "use-drag-select-examples",
-  "type": "registry:item",
-  "title": "Use Drag Select examples",
   "description": "All use-drag-select examples.",
-  "registryDependencies": ["@erbium-examples/use-drag-select-overview"]
+  "name": "use-drag-select-examples",
+  "registryDependencies": ["@erbium-examples/use-drag-select-overview"],
+  "title": "Use Drag Select examples",
+  "type": "registry:item"
 }

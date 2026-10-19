@@ -6,18 +6,28 @@ import { OTPField } from "@erbium/ui/components/otp-field";
 export function OTPFieldStatusDemo() {
   const [verifiedValue, setVerifiedValue] = useState<string>();
   const form = useForm({ defaultValues: { code: "" } });
+
   return (
     <form.Field
       name="code"
       validators={{
         onChangeAsync: async ({ value, signal, fieldApi }) => {
-          if (value.length !== 6) return undefined;
+          if (value.length !== 6) {
+            return;
+          }
+
           await new Promise((resolve) => setTimeout(resolve, 1500));
-          if (signal.aborted || fieldApi.state.value !== value) return undefined;
+
+          if (signal.aborted || fieldApi.state.value !== value) {
+            return;
+          }
+
           if (value === "123456") {
             setVerifiedValue(value);
-            return undefined;
+
+            return;
           }
+
           return "Incorrect code. Try 123456.";
         },
       }}
@@ -43,7 +53,9 @@ export function OTPFieldStatusDemo() {
               field.handleChange(value);
             }}
             onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) field.handleBlur();
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                field.handleBlur();
+              }
             }}
           />
           <FieldError errors={field.state.meta.isTouched ? field.state.meta.errors : []} />

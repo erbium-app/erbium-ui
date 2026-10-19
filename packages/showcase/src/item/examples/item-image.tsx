@@ -9,22 +9,22 @@ import {
 
 const music = [
   {
-    title: "Midnight City Lights",
-    artist: "Neon Dreams",
     album: "Electric Nights",
+    artist: "Neon Dreams",
     duration: "3:45",
+    title: "Midnight City Lights",
   },
   {
-    title: "Coffee Shop Conversations",
-    artist: "The Morning Brew",
     album: "Urban Stories",
+    artist: "The Morning Brew",
     duration: "4:05",
+    title: "Coffee Shop Conversations",
   },
   {
-    title: "Digital Rain",
-    artist: "Cyber Symphony",
     album: "Binary Beats",
+    artist: "Cyber Symphony",
     duration: "3:30",
+    title: "Digital Rain",
   },
 ];
 

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/styles", "@erbium/use-media-query"],
   "files": [
     {
+      "content": "import { useMediaQuery } from \"@/registry/erbium/hooks/use-media-query\";\n\nexport default function Demo() {\n  const reducedMotion = useMediaQuery(\"(prefers-reduced-motion: reduce)\", {});\n\n  return (\n    <p aria-live=\"polite\">\n      Reduced motion: {reducedMotion ? \"enabled\" : \"disabled\"}. Change your system preference to\n      update.\n    </p>\n  );\n}\n",
       "path": "src/use-media-query/examples/use-media-query-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/use-media-query/examples/use-media-query-demo.tsx",
-      "content": "import { useMediaQuery } from \"@/registry/erbium/hooks/use-media-query\";\nexport default function Demo() {\n  const reducedMotion = useMediaQuery(\"(prefers-reduced-motion: reduce)\", {});\n  return (\n    <p aria-live=\"polite\">\n      Reduced motion: {reducedMotion ? \"enabled\" : \"disabled\"}. Change your system preference to\n      update.\n    </p>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,6 +1,9 @@
-import { CollapsibleTrigger, CollapsibleContent } from "@erbium/ui/components/collapsible";
+import {
+  CollapsibleTrigger,
+  CollapsibleContent,
+  Collapsible,
+} from "@erbium/ui/components/collapsible";
 import { Card } from "@erbium/ui/components/card";
-import { Collapsible } from "@erbium/ui/components/collapsible";
 import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 import { Separator } from "@erbium/ui/components/separator";
 import type * as React from "react";

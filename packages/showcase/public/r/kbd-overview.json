@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/kbd", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center justify-center gap-related\">\n      <Kbd hotkey=\"Mod+Shift+K\" />\n      <Kbd hotkey=\"Mod+B\" />\n      <Kbd hotkey=\"Escape\" />\n    </div>\n  );\n}\n",
       "path": "src/kbd/examples/kbd-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/kbd/examples/kbd-demo.tsx",
-      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center justify-center gap-related\">\n      <Kbd hotkey=\"Mod+Shift+K\" />\n      <Kbd hotkey=\"Mod+B\" />\n      <Kbd hotkey=\"Escape\" />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/kbd-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/kbd/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/kbd/variants/overview.tsx",
-      "content": "import Demo from \"../examples/kbd-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

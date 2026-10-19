@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@erbium/ui/components/breadcrumb";
+
 export default function Demo() {
   return (
     <Breadcrumb>

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
   "files": [
     {
+      "content": "const oldFile = {\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n  name: \"greeting.ts\",\n};\n\nconst newFile = {\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n  name: \"greeting.ts\",\n};\n\nexport { oldFile, newFile };\n",
       "path": "src/diff-view/examples/files.ts",
-      "type": "registry:component",
       "target": "@components/showcase/diff-view/examples/files.ts",
-      "content": "const oldFile = {\n  name: \"greeting.ts\",\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n};\nconst newFile = {\n  name: \"greeting.ts\",\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n};\nexport { oldFile, newFile };\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function Example() {\n  return <DiffView className=\"w-full max-w-4xl\" oldFile={oldFile} newFile={newFile} />;\n}\n",
       "path": "src/diff-view/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/diff-view/variants/overview.tsx",
-      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function Example() {\n  return <DiffView className=\"w-full max-w-4xl\" oldFile={oldFile} newFile={newFile} />;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

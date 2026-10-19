@@ -8,16 +8,22 @@ import { StatefulIcon } from "../components/stateful-icon";
 import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard";
 import type { CopyToClipboardValue } from "../hooks/use-copy-to-clipboard";
 
-type CopyButtonState = {
+interface CopyButtonState {
   copied: boolean;
   pending: boolean;
   status: "idle" | "copied" | "error";
   revision: number;
-};
+}
+
 const CopyButtonContext = createContext<CopyButtonState | null>(null);
+
 function useCopyButtonState() {
   const state = use(CopyButtonContext);
-  if (!state) throw new Error("Copy button content must be inside CopyButton.");
+
+  if (!state) {
+    throw new Error("Copy button content must be inside CopyButton.");
+  }
+
   return state;
 }
 
@@ -32,6 +38,7 @@ type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
     errorMessage?: string;
     render?: useRender.RenderProp<CopyButtonState>;
   };
+
 function CopyButton({
   value,
   timeout,
@@ -46,7 +53,7 @@ function CopyButton({
   loading,
   ...props
 }: CopyButtonProps) {
-  const clipboard = useCopyToClipboard({ timeout, onCopy: onCopied, onError });
+  const clipboard = useCopyToClipboard({ onCopy: onCopied, onError, timeout });
   const { reset } = clipboard;
   const previousValue = useRef(value);
   useEffect(() => {
@@ -55,39 +62,43 @@ function CopyButton({
       reset();
     }
   }, [value, reset]);
+
   const state = {
     copied: clipboard.isCopied,
     pending: clipboard.isPending,
-    status: clipboard.status,
     revision: clipboard.revision,
+    status: clipboard.status,
   };
+
   const element = useRender({
     defaultTagName: "button",
-    render: render ?? <Button />,
-    state,
     props: {
       ...mergeProps<"button">(
         {
-          type: "button",
-          "aria-label": children == null ? "Copy" : undefined,
           "aria-busy": state.pending,
+          "aria-label": children == null ? "Copy" : undefined,
           children: children ?? <CopyButtonIcon />,
           onClick(event) {
-            if (!event.defaultPrevented && !disabled && !loading)
+            if (!event.defaultPrevented && !disabled && !loading) {
               void clipboard.copyToClipboard(value);
+            }
           },
+          type: "button",
         },
         { ...props, disabled, onClick },
       ),
-      ...(!render
-        ? {
-            variant: props.variant ?? "ghost",
+      ...(render
+        ? {}
+        : {
             size: props.size ?? (children == null ? "icon" : "default"),
-          }
-        : {}),
+            variant: props.variant ?? "ghost",
+          }),
       loading: loading || state.pending,
     },
+    render: render ?? <Button />,
+    state,
   });
+
   return (
     <CopyButtonContext value={state}>
       {element}
@@ -104,18 +115,20 @@ function CopyButtonIcon(
   props: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">,
 ) {
   const { status } = useCopyButtonState();
+
   return (
     <StatefulIcon
       {...props}
       state={status}
       icons={{
-        idle: <Icon name="copy" />,
         copied: <Icon name="check" />,
         error: <Icon name="cancel-01" />,
+        idle: <Icon name="copy" />,
       }}
     />
   );
 }
+
 function CopyButtonLabel({ children, className, ...props }: ComponentProps<"span">) {
   return (
     <span
@@ -135,6 +148,7 @@ function CopyButtonLabel({ children, className, ...props }: ComponentProps<"span
     </span>
   );
 }
+
 function CopyLabelState({
   state,
   children,
@@ -142,6 +156,7 @@ function CopyLabelState({
   ...props
 }: ComponentProps<"span"> & { state: CopyButtonState["status"] }) {
   const active = useCopyButtonState().status === state;
+
   return (
     <span
       {...props}
@@ -159,6 +174,7 @@ function CopyLabelState({
     </span>
   );
 }
+
 function CopyButtonLabelIdle({ children = "Copy", ...props }: ComponentProps<"span">) {
   return (
     <CopyLabelState {...props} state="idle">
@@ -166,6 +182,7 @@ function CopyButtonLabelIdle({ children = "Copy", ...props }: ComponentProps<"sp
     </CopyLabelState>
   );
 }
+
 function CopyButtonLabelCopied({ children = "Copied", ...props }: ComponentProps<"span">) {
   return (
     <CopyLabelState {...props} state="copied">
@@ -173,6 +190,7 @@ function CopyButtonLabelCopied({ children = "Copied", ...props }: ComponentProps
     </CopyLabelState>
   );
 }
+
 function CopyButtonLabelError({ children = "Failed", ...props }: ComponentProps<"span">) {
   return (
     <CopyLabelState {...props} state="error">
@@ -180,6 +198,7 @@ function CopyButtonLabelError({ children = "Failed", ...props }: ComponentProps<
     </CopyLabelState>
   );
 }
+
 export {
   CopyButton,
   CopyButtonIcon,
@@ -188,4 +207,5 @@ export {
   CopyButtonLabelCopied,
   CopyButtonLabelError,
 };
+
 export type { CopyButtonProps, CopyButtonState };

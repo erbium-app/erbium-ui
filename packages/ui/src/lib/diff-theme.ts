@@ -2,7 +2,8 @@
 // rather than letting the operating system choose light-dark() colors.
 import { controlInsetShadow, controlShadow } from "./surface-shadows";
 
-const diffTheme = { light: "vitesse-light", dark: "vitesse-dark" };
+const diffTheme = { dark: "vitesse-dark", light: "vitesse-light" };
+
 const diffThemeCSS = `
 :host {
   color-scheme: inherit;

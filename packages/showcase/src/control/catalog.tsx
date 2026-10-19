@@ -78,15 +78,15 @@ import RowSource from "./variants/row.tsx?raw";
 
 const meta = {
   component: Control.Number,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("control"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Control.Number>;
 
 export default meta;

@@ -15,6 +15,7 @@ import {
 
 export default function SearchableExample() {
   const [action, setAction] = useState("No action selected.");
+
   return (
     <div className="grid gap-related">
       <Menubar>
@@ -28,7 +29,13 @@ export default function SearchableExample() {
                 <MenubarLabel>Project</MenubarLabel>
                 {["Open project", "Rename project", "Duplicate project", "Copy project link"].map(
                   (label) => (
-                    <MenubarItem key={label} label={label} onClick={() => setAction(label)}>
+                    <MenubarItem
+                      key={label}
+                      label={label}
+                      onClick={() => {
+                        setAction(label);
+                      }}
+                    >
                       {label}
                     </MenubarItem>
                   ),
@@ -39,7 +46,13 @@ export default function SearchableExample() {
                 <MenubarLabel>Export</MenubarLabel>
                 {["Export PDF", "Export Markdown", "Export CSV", "Download archive"].map(
                   (label) => (
-                    <MenubarItem key={label} label={label} onClick={() => setAction(label)}>
+                    <MenubarItem
+                      key={label}
+                      label={label}
+                      onClick={() => {
+                        setAction(label);
+                      }}
+                    >
                       {label}
                     </MenubarItem>
                   ),

@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "@erbium/ui/components/sidebar";
+
 export default function Demo() {
   return (
     <SidebarProvider defaultOpen>

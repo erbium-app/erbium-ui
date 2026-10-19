@@ -6,14 +6,15 @@ import { oldFile, newFile } from "../examples/files";
 
 const annotations: DiffLineAnnotation<{ author: string; message: string }>[] = [
   {
-    side: "additions",
     lineNumber: 2,
     metadata: { author: "Alex", message: "The default greeting reads well. Let's keep this." },
+    side: "additions",
   },
 ];
 
 export default function Example() {
   const [selection, setSelection] = useState<SelectedLineRange | null>(null);
+
   return (
     <div className="grid w-full max-w-4xl gap-4">
       <div className="flex items-center justify-between gap-3">
@@ -26,7 +27,9 @@ export default function Example() {
           size="sm"
           variant="outline"
           disabled={!selection}
-          onClick={() => setSelection(null)}
+          onClick={() => {
+            setSelection(null);
+          }}
         >
           Clear selection
         </Button>

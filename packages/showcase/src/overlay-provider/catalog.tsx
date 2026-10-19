@@ -8,8 +8,8 @@ import OverviewSource from "./variants/overview.tsx?raw";
 
 const meta = {
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("overlay-provider") } },
+    layout: "centered",
   },
 } satisfies Meta;
 

@@ -58,15 +58,15 @@ import InvalidStateSource from "./variants/invalid-state.tsx?raw";
 
 const meta = {
   component: Checkbox,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("checkbox"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
@@ -74,20 +74,20 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Checkbox> = {
-  args: {
-    defaultChecked: false,
-    indeterminate: false,
-    disabled: false,
-    readOnly: false,
-    required: false,
-  },
   argTypes: {
     defaultChecked: { control: "boolean", description: "Initial checked state (uncontrolled)." },
-    indeterminate: { control: "boolean", description: "Mixed state; shows a minus icon." },
     disabled: { control: "boolean", description: "Ignores interaction and dims the control." },
+    indeterminate: { control: "boolean", description: "Mixed state; shows a minus icon." },
+    onCheckedChange: { action: "onCheckedChange" },
     readOnly: { control: "boolean", description: "Focusable, but the state cannot change." },
     required: { control: "boolean", description: "Must be checked before the form submits." },
-    onCheckedChange: { action: "onCheckedChange" },
+  },
+  args: {
+    defaultChecked: false,
+    disabled: false,
+    indeterminate: false,
+    readOnly: false,
+    required: false,
   },
   parameters: {
     docs: {

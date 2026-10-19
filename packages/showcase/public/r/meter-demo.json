@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/meter", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Meter,\n  MeterIndicator,\n  MeterLabel,\n  MeterTrack,\n  MeterValue,\n} from \"@/registry/erbium/ui/meter\";\n\nexport default function MeterDemo() {\n  return (\n    <Meter value={24} className=\"w-72\">\n      <MeterLabel>Storage used</MeterLabel>\n      <MeterValue />\n      <MeterTrack>\n        <MeterIndicator />\n      </MeterTrack>\n    </Meter>\n  );\n}\n",
       "path": "src/meter/examples/meter-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/meter/examples/meter-demo.tsx",
-      "content": "import {\n  Meter,\n  MeterIndicator,\n  MeterLabel,\n  MeterTrack,\n  MeterValue,\n} from \"@/registry/erbium/ui/meter\";\n\nexport default function MeterDemo() {\n  return (\n    <Meter value={24} className=\"w-72\">\n      <MeterLabel>Storage used</MeterLabel>\n      <MeterValue />\n      <MeterTrack>\n        <MeterIndicator />\n      </MeterTrack>\n    </Meter>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

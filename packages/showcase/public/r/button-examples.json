@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "button-examples",
-  "type": "registry:item",
-  "title": "Button examples",
   "description": "All button examples.",
+  "name": "button-examples",
   "registryDependencies": [
     "@erbium-examples/button-playground",
     "@erbium-examples/button-overview",
@@ -26,5 +24,7 @@
     "@erbium-examples/button-with-spinner",
     "@erbium-examples/button-with-icon",
     "@erbium-examples/button-as-link"
-  ]
+  ],
+  "title": "Button examples",
+  "type": "registry:item"
 }

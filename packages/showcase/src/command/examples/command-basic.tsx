@@ -16,12 +16,12 @@ import {
 
 const commandGroups = [
   {
-    label: "Suggestions",
     items: [
-      { label: "Calendar", disabled: false, content: <> Calendar </> },
-      { label: "Search Emoji", disabled: false, content: <> Search Emoji </> },
-      { label: "Calculator", disabled: false, content: <> Calculator </> },
+      { content: <> Calendar </>, disabled: false, label: "Calendar" },
+      { content: <> Search Emoji </>, disabled: false, label: "Search Emoji" },
+      { content: <> Calculator </>, disabled: false, label: "Calculator" },
     ],
+    label: "Suggestions",
   },
 ];
 
@@ -31,14 +31,26 @@ export function CommandBasic() {
   // Toggle the palette with Mod+K, but keep the shortcut from firing while
   // typing in an editable control. `allow` avoids a duplicate-registration
   // warning when the example renders beside an app that already owns Mod+K.
-  useHotkey("Mod+K", () => setOpen((current) => !current), {
-    conflictBehavior: "allow",
-    ignoreInputs: true,
-  });
+  useHotkey(
+    "Mod+K",
+    () => {
+      setOpen((current) => !current);
+    },
+    {
+      conflictBehavior: "allow",
+      ignoreInputs: true,
+    },
+  );
 
   return (
     <div className="flex flex-col gap-group">
-      <Button onClick={() => setOpen(true)} variant="outline" className="w-fit">
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+        variant="outline"
+        className="w-fit"
+      >
         Open Command Palette
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -55,7 +67,9 @@ export function CommandBasic() {
                       key={item.label}
                       value={item}
                       disabled={item.disabled}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                      }}
                     >
                       {item.content}
                     </CommandItem>

@@ -30,15 +30,15 @@ import ControlledSource from "./variants/controlled.tsx?raw";
 
 const meta = {
   component: Progress,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("progress"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Progress>;
 
 export default meta;
@@ -46,8 +46,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Progress> = {
-  args: { value: 45, className: "" },
-  argTypes: { value: { control: { type: "range", min: 0, max: 100, step: 1 } } },
+  argTypes: { value: { control: { max: 100, min: 0, step: 1, type: "range" } } },
+  args: { className: "", value: 45 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("progress", "playground") },

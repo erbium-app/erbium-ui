@@ -5,9 +5,9 @@ const Example = () => (
   <Button
     variant="outline"
     onClick={() => {
-      const id = toast.add({ title: "Syncing changes…", type: "loading", timeout: 0 });
+      const id = toast.add({ timeout: 0, title: "Syncing changes…", type: "loading" });
       window.setTimeout(() => {
-        toast.update(id, { title: "Changes synced", type: "success", timeout: 4000 });
+        toast.update(id, { timeout: 4000, title: "Changes synced", type: "success" });
       }, 1200);
     }}
   >

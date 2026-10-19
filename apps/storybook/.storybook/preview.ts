@@ -9,18 +9,18 @@ import type { Preview } from "@storybook/tanstack-react";
 import { ThemeAwareDocsContainer } from "./docs-container";
 
 const preview: Preview = {
-  tags: ["autodocs"],
   decorators: [
     withThemeByClassName({
-      themes: {
-        light: "",
-        dark: "dark",
-      },
       defaultTheme: "light",
+      themes: {
+        dark: "dark",
+        light: "",
+      },
     }),
     (Story, context) => {
       const isDocs = context.viewMode === "docs";
       const isCentered = context.parameters.layout === "centered";
+
       return createElement(
         ShowcaseProviders,
         { toast: !isDocs },
@@ -36,14 +36,16 @@ const preview: Preview = {
     },
   ],
   parameters: {
+    controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
+    docs: { container: ThemeAwareDocsContainer },
     options: {
       storySort: {
         method: "alphabetical",
         order: ["Foundations", "Components", "Hooks", "Utilities", "Providers"],
       },
     },
-    controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
-    docs: { container: ThemeAwareDocsContainer },
   },
+  tags: ["autodocs"],
 };
+
 export default preview;

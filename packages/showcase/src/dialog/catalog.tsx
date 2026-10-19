@@ -32,15 +32,15 @@ import ScrollableContentSource from "./variants/scrollable-content.tsx?raw";
 
 const meta = {
   component: Dialog,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("dialog"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
@@ -48,8 +48,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{ defaultOpen: boolean; showCloseButton: boolean }> = {
-  args: { defaultOpen: false, showCloseButton: true },
   argTypes: { defaultOpen: { control: "boolean" }, showCloseButton: { control: "boolean" } },
+  args: { defaultOpen: false, showCloseButton: true },
   parameters: {
     docs: {
       description: { story: variantDocumentation("dialog", "playground") },

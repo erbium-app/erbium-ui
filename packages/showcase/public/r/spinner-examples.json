@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "spinner-examples",
-  "type": "registry:item",
-  "title": "Spinner examples",
   "description": "All spinner examples.",
+  "name": "spinner-examples",
   "registryDependencies": [
     "@erbium-examples/spinner-playground",
     "@erbium-examples/spinner-overview",
@@ -12,5 +10,7 @@
     "@erbium-examples/spinner-badge",
     "@erbium-examples/spinner-input-group",
     "@erbium-examples/spinner-empty"
-  ]
+  ],
+  "title": "Spinner examples",
+  "type": "registry:item"
 }

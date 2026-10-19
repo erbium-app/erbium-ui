@@ -18,15 +18,15 @@ import RangeSource from "./variants/range.tsx?raw";
 
 const meta = {
   component: Meter,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("meter"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Meter>;
 
 export default meta;
@@ -34,12 +34,12 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Meter> = {
-  args: { value: 24, min: 0, max: 100 },
   argTypes: {
-    value: { control: { type: "range", min: 0, max: 100, step: 1 } },
-    min: { control: "number" },
     max: { control: "number" },
+    min: { control: "number" },
+    value: { control: { max: 100, min: 0, step: 1, type: "range" } },
   },
+  args: { max: 100, min: 0, value: 24 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("meter", "playground") },

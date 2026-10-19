@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "radio-group-examples",
-  "type": "registry:item",
-  "title": "Radio Group examples",
   "description": "All radio-group examples.",
+  "name": "radio-group-examples",
   "registryDependencies": [
     "@erbium-examples/radio-group-playground",
     "@erbium-examples/radio-group-overview",
@@ -15,5 +13,7 @@
     "@erbium-examples/radio-group-fieldset",
     "@erbium-examples/radio-group-disabled",
     "@erbium-examples/radio-group-invalid"
-  ]
+  ],
+  "title": "Radio Group examples",
+  "type": "registry:item"
 }

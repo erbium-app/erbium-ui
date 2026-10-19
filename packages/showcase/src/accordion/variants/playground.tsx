@@ -1,5 +1,9 @@
-import { AccordionContent, AccordionItem, AccordionTrigger } from "@erbium/ui/components/accordion";
-import { Accordion } from "@erbium/ui/components/accordion";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Accordion,
+} from "@erbium/ui/components/accordion";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Accordion>) => (

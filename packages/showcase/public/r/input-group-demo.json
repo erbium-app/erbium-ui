@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/input-group", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport default function Demo() {\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupAddon>\n        <InputGroupText>https://</InputGroupText>\n      </InputGroupAddon>\n      <InputGroupInput aria-label=\"Website\" placeholder=\"example.com\" />\n    </InputGroup>\n  );\n}\n",
       "path": "src/input-group/examples/input-group-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input-group/examples/input-group-demo.tsx",
-      "content": "import {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\nexport default function Demo() {\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupAddon>\n        <InputGroupText>https://</InputGroupText>\n      </InputGroupAddon>\n      <InputGroupInput aria-label=\"Website\" placeholder=\"example.com\" />\n    </InputGroup>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

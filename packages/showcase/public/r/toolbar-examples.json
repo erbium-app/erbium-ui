@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "toolbar-examples",
-  "type": "registry:item",
-  "title": "Toolbar examples",
   "description": "All toolbar examples.",
+  "name": "toolbar-examples",
   "registryDependencies": [
     "@erbium-examples/toolbar-formatting",
     "@erbium-examples/toolbar-vertical",
     "@erbium-examples/toolbar-search-and-link",
     "@erbium-examples/toolbar-disabled",
     "@erbium-examples/toolbar-showcase"
-  ]
+  ],
+  "title": "Toolbar examples",
+  "type": "registry:item"
 }

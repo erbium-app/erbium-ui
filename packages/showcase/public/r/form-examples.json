@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "form-examples",
-  "type": "registry:item",
-  "title": "Form examples",
   "description": "All form examples.",
-  "registryDependencies": ["@erbium-examples/form-playground", "@erbium-examples/form-validation"]
+  "name": "form-examples",
+  "registryDependencies": ["@erbium-examples/form-playground", "@erbium-examples/form-validation"],
+  "title": "Form examples",
+  "type": "registry:item"
 }

@@ -16,6 +16,7 @@ function ContextMenu({
   searchable?: boolean;
 }) {
   const menu = <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
+
   return searchable ? (
     <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
   ) : (
@@ -128,6 +129,7 @@ function ContextMenuSub({
   searchable?: boolean;
 }) {
   const menu = <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />;
+
   return searchable ? (
     <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
   ) : (

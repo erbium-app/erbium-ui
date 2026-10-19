@@ -58,15 +58,15 @@ import CustomSource from "./variants/custom.tsx?raw";
 
 const meta = {
   component: InputGroup,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("input-group"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof InputGroup>;
 
 export default meta;
@@ -80,25 +80,25 @@ export const Playground: StoryObj<{
   buttonVariant: "default" | "secondary" | "outline" | "ghost" | "error" | "link";
   className: string;
 }> = {
-  args: {
-    align: "inline-start",
-    placeholder: "Search",
-    buttonSize: "xs",
-    buttonVariant: "ghost",
-    className: "",
-  },
   argTypes: {
     align: {
       control: "select",
       options: ["inline-start", "inline-end", "block-start", "block-end"],
     },
-    placeholder: { control: "text" },
     buttonSize: { control: "select", options: ["xs", "sm", "icon-xs", "icon-sm"] },
     buttonVariant: {
       control: "select",
       options: ["default", "secondary", "outline", "ghost", "error", "link"],
     },
     className: { control: "text" },
+    placeholder: { control: "text" },
+  },
+  args: {
+    align: "inline-start",
+    buttonSize: "xs",
+    buttonVariant: "ghost",
+    className: "",
+    placeholder: "Search",
   },
   parameters: {
     docs: {
@@ -171,22 +171,22 @@ export const InlineEnd: Story = {
 
 export const BlockStart: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("input-group", "block-start") },
       source: { code: BlockStartSource },
     },
+    layout: "padded",
   },
   render: BlockStartExample,
 };
 
 export const BlockEnd: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("input-group", "block-end") },
       source: { code: BlockEndSource },
     },
+    layout: "padded",
   },
   render: BlockEndExample,
 };

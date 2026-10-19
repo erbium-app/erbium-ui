@@ -9,6 +9,7 @@ export function CalendarWithPresets() {
   const [date, setDate] = React.useState<Date | undefined>(
     () => new Date(new Date().getFullYear(), 1, 12),
   );
+
   const [currentMonth, setCurrentMonth] = React.useState<Date>(
     () => new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   );

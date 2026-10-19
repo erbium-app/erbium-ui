@@ -15,10 +15,8 @@ type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] };
 export function CollapsibleFileTree() {
   const fileTree: FileTreeItem[] = [
     {
-      name: "components",
       items: [
         {
-          name: "ui",
           items: [
             { name: "button.tsx" },
             { name: "card.tsx" },
@@ -27,30 +25,32 @@ export function CollapsibleFileTree() {
             { name: "select.tsx" },
             { name: "table.tsx" },
           ],
+          name: "ui",
         },
         { name: "login-form.tsx" },
         { name: "register-form.tsx" },
       ],
+      name: "components",
     },
     {
-      name: "lib",
       items: [{ name: "utils.ts" }, { name: "cn.ts" }, { name: "api.ts" }],
+      name: "lib",
     },
     {
-      name: "hooks",
       items: [
         { name: "use-media-query.ts" },
         { name: "use-debounce.ts" },
         { name: "use-local-storage.ts" },
       ],
+      name: "hooks",
     },
     {
-      name: "types",
       items: [{ name: "index.d.ts" }, { name: "api.d.ts" }],
+      name: "types",
     },
     {
-      name: "public",
       items: [{ name: "favicon.ico" }, { name: "logo.svg" }, { name: "images" }],
+      name: "public",
     },
     { name: "app.tsx" },
     { name: "layout.tsx" },
@@ -86,6 +86,7 @@ export function CollapsibleFileTree() {
         </Collapsible>
       );
     }
+
     return (
       <Button
         key={fileItem.name}

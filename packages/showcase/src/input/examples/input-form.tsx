@@ -16,6 +16,7 @@ export function InputForm() {
     { label: "United Kingdom", value: "uk" },
     { label: "Canada", value: "ca" },
   ];
+
   return (
     <form className="w-full max-w-sm">
       <FieldGroup>

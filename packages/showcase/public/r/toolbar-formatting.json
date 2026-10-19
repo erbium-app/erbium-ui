@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle", "@erbium/toolbar"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Text formatting\">\n    <ToolbarGroup aria-label=\"Text style\">\n      <ToolbarButton render={<Toggle aria-label=\"Bold\" />} size=\"icon-sm\">\n        <Icon name=\"bold\" />\n      </ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Italic\" />} size=\"icon-sm\">\n        <Icon name=\"italic\" />\n      </ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Underline\" />} size=\"icon-sm\">\n        <Icon name=\"underline\" />\n      </ToolbarButton>\n    </ToolbarGroup>\n    <ToolbarSeparator />\n    <ToolbarButton aria-label=\"Insert link\" size=\"icon-sm\">\n      <Icon name=\"link-01\" />\n    </ToolbarButton>\n  </Toolbar>\n);\n\nexport default Example;\n",
       "path": "src/toolbar/variants/formatting.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toolbar/variants/formatting.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Text formatting\">\n    <ToolbarGroup aria-label=\"Text style\">\n      <ToolbarButton render={<Toggle aria-label=\"Bold\" />} size=\"icon-sm\">\n        <Icon name=\"bold\" />\n      </ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Italic\" />} size=\"icon-sm\">\n        <Icon name=\"italic\" />\n      </ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Underline\" />} size=\"icon-sm\">\n        <Icon name=\"underline\" />\n      </ToolbarButton>\n    </ToolbarGroup>\n    <ToolbarSeparator />\n    <ToolbarButton aria-label=\"Insert link\" size=\"icon-sm\">\n      <Icon name=\"link-01\" />\n    </ToolbarButton>\n  </Toolbar>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

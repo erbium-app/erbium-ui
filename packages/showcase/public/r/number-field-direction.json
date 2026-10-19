@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/direction", "@erbium/number-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nconst Example = () => (\n  <DirectionProvider direction=\"rtl\">\n    <div dir=\"rtl\" className=\"w-48\">\n      <NumberField defaultValue={98_765} locale=\"ar-EG\">\n        <NumberFieldGroup>\n          <NumberFieldDecrement />\n          <NumberFieldInput aria-label=\"الكمية\" />\n          <NumberFieldIncrement />\n        </NumberFieldGroup>\n      </NumberField>\n    </div>\n  </DirectionProvider>\n);\n\nexport default Example;\n",
       "path": "src/number-field/variants/direction.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/number-field/variants/direction.tsx",
-      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nconst Example = () => (\n  <DirectionProvider direction=\"rtl\">\n    <div dir=\"rtl\" className=\"w-48\">\n      <NumberField defaultValue={98765} locale=\"ar-EG\">\n        <NumberFieldGroup>\n          <NumberFieldDecrement />\n          <NumberFieldInput aria-label=\"الكمية\" />\n          <NumberFieldIncrement />\n        </NumberFieldGroup>\n      </NumberField>\n    </div>\n  </DirectionProvider>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

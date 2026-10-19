@@ -68,4 +68,5 @@ const treeThemeCSS = `
 [data-type="item"]:hover { color: var(--sidebar-accent-foreground); }
 [data-file-tree-virtualized-scroll] { overscroll-behavior: contain; scrollbar-width: thin; }
 `;
+
 export { treeThemeCSS };

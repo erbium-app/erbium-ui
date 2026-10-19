@@ -22,7 +22,7 @@ export default function Example() {
       </div>
       <div className="grid gap-2">
         <p className="text-caption text-muted-foreground">Empty file</p>
-        <DiffView oldFile={null} newFile={{ name: "empty.txt", contents: "" }} />
+        <DiffView oldFile={null} newFile={{ contents: "", name: "empty.txt" }} />
       </div>
     </div>
   );

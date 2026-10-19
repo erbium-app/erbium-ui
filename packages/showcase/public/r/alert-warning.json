@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/alert", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertColors() {\n  return (\n    <Alert variant=\"warning\" className=\"max-w-md\">\n      <AlertTitle>Context window nearly full</AlertTitle>\n      <AlertDescription>\n        The agent may need to summarize this conversation before continuing the task.\n      </AlertDescription>\n    </Alert>\n  );\n}\n",
       "path": "src/alert/examples/alert-colors.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/alert/examples/alert-colors.tsx",
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertColors() {\n  return (\n    <Alert variant=\"warning\" className=\"max-w-md\">\n      <AlertTitle>Context window nearly full</AlertTitle>\n      <AlertDescription>\n        The agent may need to summarize this conversation before continuing the task.\n      </AlertDescription>\n    </Alert>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import AlertColors from \"../examples/alert-colors\";\n\nconst Example = () => <AlertColors />;\n\nexport default Example;\n",
       "path": "src/alert/variants/warning.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/alert/variants/warning.tsx",
-      "content": "import AlertColors from \"../examples/alert-colors\";\n\nconst Example = () => <AlertColors />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

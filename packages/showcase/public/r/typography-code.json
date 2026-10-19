@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function CodeExample() {\n  return (\n    <div className=\"flex w-full max-w-lg flex-col gap-group\">\n      <CodeBlock surface=\"command\" language=\"shell\" code=\"bunx shadcn@latest add @erbium/button\" />\n      <CodeBlock title=\"button.tsx\" language=\"tsx\" code=\"<Button>Continue</Button>\" />\n    </div>\n  );\n}\n",
       "path": "src/typography/variants/code.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/typography/variants/code.tsx",
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function CodeExample() {\n  return (\n    <div className=\"flex w-full max-w-lg flex-col gap-group\">\n      <CodeBlock surface=\"command\" language=\"shell\" code=\"bunx shadcn@latest add @erbium/button\" />\n      <CodeBlock title=\"button.tsx\" language=\"tsx\" code=\"<Button>Continue</Button>\" />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

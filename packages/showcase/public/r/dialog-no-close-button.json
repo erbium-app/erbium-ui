@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Dialog,\n  DialogPanel,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\n\nexport function DialogNoCloseButton() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\" />}>No Close Button</DialogTrigger>\n      <DialogPanel showCloseButton={false}>\n        <DialogHeader>\n          <DialogTitle>No Close Button</DialogTitle>\n          <DialogDescription>\n            This dialog doesn&apos;t have a close button in the top-right corner.\n          </DialogDescription>\n        </DialogHeader>\n        <DialogContent>Use the escape key or click outside to close.</DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n",
       "path": "src/dialog/examples/dialog-no-close-button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/dialog/examples/dialog-no-close-button.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Dialog,\n  DialogPanel,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\n\nexport function DialogNoCloseButton() {\n  return (\n    <Dialog>\n      <DialogTrigger render={<Button variant=\"outline\" />}>No Close Button</DialogTrigger>\n      <DialogPanel showCloseButton={false}>\n        <DialogHeader>\n          <DialogTitle>No Close Button</DialogTitle>\n          <DialogDescription>\n            This dialog doesn&apos;t have a close button in the top-right corner.\n          </DialogDescription>\n        </DialogHeader>\n        <DialogContent>Use the escape key or click outside to close.</DialogContent>\n      </DialogPanel>\n    </Dialog>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { DialogNoCloseButton } from \"../examples/dialog-no-close-button\";\n\nconst Example = () => <DialogNoCloseButton />;\n\nexport default Example;\n",
       "path": "src/dialog/variants/no-close-button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/dialog/variants/no-close-button.tsx",
-      "content": "import { DialogNoCloseButton } from \"../examples/dialog-no-close-button\";\n\nconst Example = () => <DialogNoCloseButton />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/badge", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nconst Example = () => (\n  <div className=\"flex gap-related\">\n    {(\n      [\n        \"default\",\n        \"secondary\",\n        \"info\",\n        \"success\",\n        \"warning\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"tag-gray\",\n        \"tag-red\",\n        \"tag-orange\",\n        \"tag-yellow\",\n        \"tag-green\",\n        \"tag-cyan\",\n        \"tag-blue\",\n        \"tag-purple\",\n        \"tag-magenta\",\n        \"outline\",\n      ] as const\n    ).map((variant) => (\n      <Badge key={variant} variant={variant}>\n        {variant}\n      </Badge>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/badge/variants/variants.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/badge/variants/variants.tsx",
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nconst Example = () => (\n  <div className=\"flex gap-related\">\n    {(\n      [\n        \"default\",\n        \"secondary\",\n        \"info\",\n        \"success\",\n        \"warning\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"tag-gray\",\n        \"tag-red\",\n        \"tag-orange\",\n        \"tag-yellow\",\n        \"tag-green\",\n        \"tag-cyan\",\n        \"tag-blue\",\n        \"tag-purple\",\n        \"tag-magenta\",\n        \"outline\",\n      ] as const\n    ).map((variant) => (\n      <Badge key={variant} variant={variant}>\n        {variant}\n      </Badge>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

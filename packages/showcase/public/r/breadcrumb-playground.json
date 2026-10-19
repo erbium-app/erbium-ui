@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbSeparator,\n  BreadcrumbPage,\n  Breadcrumb,\n} from \"@/registry/erbium/ui/breadcrumb\";\n\nconst Example = (args: { separator: string; currentPage: string }) => (\n  <Breadcrumb>\n    <BreadcrumbList>\n      <BreadcrumbItem>\n        <BreadcrumbLink href=\"#\">Home</BreadcrumbLink>\n      </BreadcrumbItem>\n      <BreadcrumbSeparator>{args.separator}</BreadcrumbSeparator>\n      <BreadcrumbItem>\n        <BreadcrumbPage>{args.currentPage}</BreadcrumbPage>\n      </BreadcrumbItem>\n    </BreadcrumbList>\n  </Breadcrumb>\n);\n\nexport default Example;\n",
       "path": "src/breadcrumb/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/breadcrumb/variants/playground.tsx",
-      "content": "import {\n  BreadcrumbList,\n  BreadcrumbItem,\n  BreadcrumbLink,\n  BreadcrumbSeparator,\n  BreadcrumbPage,\n} from \"@/registry/erbium/ui/breadcrumb\";\nimport { Breadcrumb } from \"@/registry/erbium/ui/breadcrumb\";\n\nconst Example = (args: { separator: string; currentPage: string }) => (\n  <Breadcrumb>\n    <BreadcrumbList>\n      <BreadcrumbItem>\n        <BreadcrumbLink href=\"#\">Home</BreadcrumbLink>\n      </BreadcrumbItem>\n      <BreadcrumbSeparator>{args.separator}</BreadcrumbSeparator>\n      <BreadcrumbItem>\n        <BreadcrumbPage>{args.currentPage}</BreadcrumbPage>\n      </BreadcrumbItem>\n    </BreadcrumbList>\n  </Breadcrumb>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

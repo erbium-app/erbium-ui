@@ -1,6 +1,11 @@
 import { Icon } from "@erbium/ui/components/icon";
-import { ItemContent, ItemTitle, ItemDescription, ItemMedia } from "@erbium/ui/components/item";
-import { Item } from "@erbium/ui/components/item";
+import {
+  ItemContent,
+  ItemTitle,
+  ItemDescription,
+  ItemMedia,
+  Item,
+} from "@erbium/ui/components/item";
 
 const Example = (args: {
   variant: "default" | "card";

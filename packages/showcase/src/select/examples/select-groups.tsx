@@ -15,12 +15,15 @@ export function SelectGroups() {
     { label: "Banana", value: "banana" },
     { label: "Blueberry", value: "blueberry" },
   ];
+
   const vegetables = [
     { label: "Carrot", value: "carrot" },
     { label: "Broccoli", value: "broccoli" },
     { label: "Spinach", value: "spinach" },
   ];
+
   const allItems = [{ label: "Select a fruit", value: null }, ...fruits, ...vegetables];
+
   return (
     <Select items={allItems}>
       <SelectTrigger className="w-full max-w-48">

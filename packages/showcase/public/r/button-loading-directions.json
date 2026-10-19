@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/direction", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nconst Example = () => (\n  <div className=\"flex gap-section\">\n    {([\"ltr\", \"rtl\"] as const).map((direction) => (\n      <DirectionProvider direction={direction} key={direction}>\n        <div dir={direction} className=\"flex flex-col items-start gap-related\">\n          <Button loading>{direction === \"rtl\" ? \"در حال ذخیره\" : \"Saving\"}</Button>\n          <Button loading size=\"sm\" variant=\"outline\">\n            {direction === \"rtl\" ? \"لطفاً صبر کنید\" : \"Please wait\"}\n          </Button>\n          <Button aria-label={direction === \"rtl\" ? \"تازه‌سازی\" : \"Refresh\"} loading size=\"icon\">\n            <Icon name=\"arrow-up-01\" />\n          </Button>\n        </div>\n      </DirectionProvider>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button/variants/loading-directions.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/loading-directions.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nconst Example = () => (\n  <div className=\"flex gap-section\">\n    {([\"ltr\", \"rtl\"] as const).map((direction) => (\n      <DirectionProvider direction={direction} key={direction}>\n        <div dir={direction} className=\"flex flex-col items-start gap-related\">\n          <Button loading>{direction === \"rtl\" ? \"در حال ذخیره\" : \"Saving\"}</Button>\n          <Button loading size=\"sm\" variant=\"outline\">\n            {direction === \"rtl\" ? \"لطفاً صبر کنید\" : \"Please wait\"}\n          </Button>\n          <Button aria-label={direction === \"rtl\" ? \"تازه‌سازی\" : \"Refresh\"} loading size=\"icon\">\n            <Icon name=\"arrow-up-01\" />\n          </Button>\n        </div>\n      </DirectionProvider>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "number-field-examples",
-  "type": "registry:item",
-  "title": "Number Field examples",
   "description": "All number-field examples.",
+  "name": "number-field-examples",
   "registryDependencies": [
     "@erbium-examples/number-field-default",
     "@erbium-examples/number-field-sizes",
@@ -12,5 +10,7 @@
     "@erbium-examples/number-field-controlled",
     "@erbium-examples/number-field-direction",
     "@erbium-examples/number-field-showcase"
-  ]
+  ],
+  "title": "Number Field examples",
+  "type": "registry:item"
 }

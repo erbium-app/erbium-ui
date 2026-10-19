@@ -24,9 +24,10 @@ import {
 export function DropdownMenuComplex() {
   const [notifications, setNotifications] = React.useState({
     email: true,
-    sms: false,
     push: true,
+    sms: false,
   });
+
   const [theme, setTheme] = React.useState("light");
 
   return (
@@ -113,18 +114,18 @@ export function DropdownMenuComplex() {
             <DropdownMenuLabel>View</DropdownMenuLabel>
             <DropdownMenuCheckboxItem
               checked={notifications.email}
-              onCheckedChange={(checked) =>
-                setNotifications({ ...notifications, email: checked === true })
-              }
+              onCheckedChange={(checked) => {
+                setNotifications({ ...notifications, email: checked });
+              }}
             >
               <Icon name="eye" />
               Show Sidebar
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={notifications.sms}
-              onCheckedChange={(checked) =>
-                setNotifications({ ...notifications, sms: checked === true })
-              }
+              onCheckedChange={(checked) => {
+                setNotifications({ ...notifications, sms: checked });
+              }}
             >
               <Icon name="layout-01" />
               Show Status Bar
@@ -186,24 +187,24 @@ export function DropdownMenuComplex() {
                                 <DropdownMenuLabel>Notification Types</DropdownMenuLabel>
                                 <DropdownMenuCheckboxItem
                                   checked={notifications.push}
-                                  onCheckedChange={(checked) =>
+                                  onCheckedChange={(checked) => {
                                     setNotifications({
                                       ...notifications,
-                                      push: checked === true,
-                                    })
-                                  }
+                                      push: checked,
+                                    });
+                                  }}
                                 >
                                   <Icon name="bell" />
                                   Push Notifications
                                 </DropdownMenuCheckboxItem>
                                 <DropdownMenuCheckboxItem
                                   checked={notifications.email}
-                                  onCheckedChange={(checked) =>
+                                  onCheckedChange={(checked) => {
                                     setNotifications({
                                       ...notifications,
-                                      email: checked === true,
-                                    })
-                                  }
+                                      email: checked,
+                                    });
+                                  }}
                                 >
                                   <Icon name="mail-01" />
                                   Email Notifications

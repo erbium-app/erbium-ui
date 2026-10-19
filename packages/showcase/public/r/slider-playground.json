@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Slider>) => (\n  <Slider key={JSON.stringify(args.defaultValue)} {...args} className=\"w-64\" aria-label=\"Value\" />\n);\n\nexport default Example;\n",
       "path": "src/slider/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/slider/variants/playground.tsx",
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Slider>) => (\n  <Slider key={JSON.stringify(args.defaultValue)} {...args} className=\"w-64\" aria-label=\"Value\" />\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "code-block-examples",
-  "type": "registry:item",
-  "title": "Code Block examples",
   "description": "All code-block examples.",
+  "name": "code-block-examples",
   "registryDependencies": [
     "@erbium-examples/code-block-languages",
     "@erbium-examples/code-block-overview",
@@ -14,5 +12,7 @@
     "@erbium-examples/code-block-overflow",
     "@erbium-examples/code-block-states",
     "@erbium-examples/code-block-changing-source"
-  ]
+  ],
+  "title": "Code Block examples",
+  "type": "registry:item"
 }

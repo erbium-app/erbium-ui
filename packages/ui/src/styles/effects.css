@@ -9,6 +9,7 @@
 @theme inline {
   --animate-skeleton: skeleton var(--skeleton-duration, var(--shimmer-duration, 2s)) -1s infinite
     linear;
+
   @keyframes skeleton {
     to {
       background-position: -200% 0;
@@ -17,7 +18,10 @@
 }
 
 @utility skeleton {
+  animation: var(--animate-skeleton);
+  background-attachment: fixed;
   background-color: var(--color-skeleton);
+
   /* Highlight band eased with an ease-in-out curve (cubic-bezier(.42, 0, .58, 1)). */
   background-image: linear-gradient(
     calc(90deg + var(--shimmer-angle)),
@@ -35,11 +39,9 @@
     color-mix(in oklab, var(--color-skeleton-highlight) 7.4%, transparent) 66.2%,
     transparent 70%
   );
-  background-size: 200% 100%;
   background-position: 0 0;
   background-repeat: repeat;
-  background-attachment: fixed;
-  animation: var(--animate-skeleton);
+  background-size: 200% 100%;
 
   &:where([dir="rtl"], [dir="rtl"] *) {
     animation-direction: reverse;

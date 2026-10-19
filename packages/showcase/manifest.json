@@ -6,56 +6,56 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/accordion/variants/playground.tsx"
+        "source": "src/accordion/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/accordion/variants/overview.tsx"
+        "source": "src/accordion/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/accordion/variants/basic.tsx"
+        "source": "src/accordion/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
-        "title": "Multiple",
-        "source": "src/accordion/variants/multiple.tsx"
+        "source": "src/accordion/variants/multiple.tsx",
+        "title": "Multiple"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/accordion/variants/controlled.tsx"
+        "source": "src/accordion/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/accordion/variants/disabled.tsx"
+        "source": "src/accordion/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Borders",
         "slug": "borders",
-        "title": "Borders",
-        "source": "src/accordion/variants/borders.tsx"
+        "source": "src/accordion/variants/borders.tsx",
+        "title": "Borders"
       },
       {
         "exportName": "Card",
         "slug": "card",
-        "title": "Card",
-        "source": "src/accordion/variants/card.tsx"
+        "source": "src/accordion/variants/card.tsx",
+        "title": "Card"
       },
       {
         "exportName": "FindInPage",
         "slug": "find-in-page",
-        "title": "Find in page",
-        "source": "src/accordion/variants/find-in-page.tsx"
+        "source": "src/accordion/variants/find-in-page.tsx",
+        "title": "Find in page"
       }
     ]
   },
@@ -66,50 +66,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/alert/variants/playground.tsx"
+        "source": "src/alert/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/alert/variants/overview.tsx"
+        "source": "src/alert/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
-        "title": "Error",
-        "source": "src/alert/variants/error-variant.tsx"
+        "source": "src/alert/variants/error-variant.tsx",
+        "title": "Error"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/alert/variants/basic.tsx"
+        "source": "src/alert/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Info",
         "slug": "info",
-        "title": "Info",
-        "source": "src/alert/variants/info.tsx"
+        "source": "src/alert/variants/info.tsx",
+        "title": "Info"
       },
       {
         "exportName": "Success",
         "slug": "success",
-        "title": "Success",
-        "source": "src/alert/variants/success.tsx"
+        "source": "src/alert/variants/success.tsx",
+        "title": "Success"
       },
       {
         "exportName": "Action",
         "slug": "action",
-        "title": "Action",
-        "source": "src/alert/variants/action.tsx"
+        "source": "src/alert/variants/action.tsx",
+        "title": "Action"
       },
       {
         "exportName": "Warning",
         "slug": "warning",
-        "title": "Warning",
-        "source": "src/alert/variants/warning.tsx"
+        "source": "src/alert/variants/warning.tsx",
+        "title": "Warning"
       }
     ]
   },
@@ -120,44 +120,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/alert-dialog/variants/playground.tsx"
+        "source": "src/alert-dialog/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/alert-dialog/variants/overview.tsx"
+        "source": "src/alert-dialog/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/alert-dialog/variants/basic.tsx"
+        "source": "src/alert-dialog/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Small",
         "slug": "small",
-        "title": "Small",
-        "source": "src/alert-dialog/variants/small.tsx"
+        "source": "src/alert-dialog/variants/small.tsx",
+        "title": "Small"
       },
       {
         "exportName": "Media",
         "slug": "media",
-        "title": "Media",
-        "source": "src/alert-dialog/variants/media.tsx"
+        "source": "src/alert-dialog/variants/media.tsx",
+        "title": "Media"
       },
       {
         "exportName": "SmallMedia",
         "slug": "small-media",
-        "title": "Small with Media",
-        "source": "src/alert-dialog/variants/small-media.tsx"
+        "source": "src/alert-dialog/variants/small-media.tsx",
+        "title": "Small with Media"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
-        "title": "Error",
-        "source": "src/alert-dialog/variants/error-variant.tsx"
+        "source": "src/alert-dialog/variants/error-variant.tsx",
+        "title": "Error"
       }
     ]
   },
@@ -168,26 +168,26 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/aspect-ratio/variants/playground.tsx"
+        "source": "src/aspect-ratio/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/aspect-ratio/variants/overview.tsx"
+        "source": "src/aspect-ratio/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Square",
         "slug": "square",
-        "title": "Square",
-        "source": "src/aspect-ratio/variants/square.tsx"
+        "source": "src/aspect-ratio/variants/square.tsx",
+        "title": "Square"
       },
       {
         "exportName": "Portrait",
         "slug": "portrait",
-        "title": "Portrait",
-        "source": "src/aspect-ratio/variants/portrait.tsx"
+        "source": "src/aspect-ratio/variants/portrait.tsx",
+        "title": "Portrait"
       }
     ]
   },
@@ -198,44 +198,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/attachment/variants/playground.tsx"
+        "source": "src/attachment/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/attachment/variants/overview.tsx"
+        "source": "src/attachment/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Image",
         "slug": "image",
-        "title": "Image",
-        "source": "src/attachment/variants/image.tsx"
+        "source": "src/attachment/variants/image.tsx",
+        "title": "Image"
       },
       {
         "exportName": "States",
         "slug": "states",
-        "title": "States",
-        "source": "src/attachment/variants/states.tsx"
+        "source": "src/attachment/variants/states.tsx",
+        "title": "States"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
-        "title": "Sizes",
-        "source": "src/attachment/variants/sizes.tsx"
+        "source": "src/attachment/variants/sizes.tsx",
+        "title": "Sizes"
       },
       {
         "exportName": "Group",
         "slug": "group",
-        "title": "Group",
-        "source": "src/attachment/variants/group.tsx"
+        "source": "src/attachment/variants/group.tsx",
+        "title": "Group"
       },
       {
         "exportName": "Trigger",
         "slug": "trigger",
-        "title": "Trigger",
-        "source": "src/attachment/variants/trigger.tsx"
+        "source": "src/attachment/variants/trigger.tsx",
+        "title": "Trigger"
       }
     ]
   },
@@ -246,98 +246,98 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/autocomplete/variants/overview.tsx"
+        "source": "src/autocomplete/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/autocomplete/variants/disabled.tsx"
+        "source": "src/autocomplete/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "SmallSize",
         "slug": "small-size",
-        "title": "Small Size",
-        "source": "src/autocomplete/variants/small-size.tsx"
+        "source": "src/autocomplete/variants/small-size.tsx",
+        "title": "Small Size"
       },
       {
         "exportName": "LargeSize",
         "slug": "large-size",
-        "title": "Large Size",
-        "source": "src/autocomplete/variants/large-size.tsx"
+        "source": "src/autocomplete/variants/large-size.tsx",
+        "title": "Large Size"
       },
       {
         "exportName": "WithLabel",
         "slug": "with-label",
-        "title": "With Label",
-        "source": "src/autocomplete/variants/with-label.tsx"
+        "source": "src/autocomplete/variants/with-label.tsx",
+        "title": "With Label"
       },
       {
         "exportName": "InlineAutocomplete",
         "slug": "inline-autocomplete",
-        "title": "Inline Autocomplete",
-        "source": "src/autocomplete/variants/inline-autocomplete.tsx"
+        "source": "src/autocomplete/variants/inline-autocomplete.tsx",
+        "title": "Inline Autocomplete"
       },
       {
         "exportName": "AutoHighlight",
         "slug": "auto-highlight",
-        "title": "Auto Highlight",
-        "source": "src/autocomplete/variants/auto-highlight.tsx"
+        "source": "src/autocomplete/variants/auto-highlight.tsx",
+        "title": "Auto Highlight"
       },
       {
         "exportName": "WithClearButton",
         "slug": "with-clear-button",
-        "title": "With Clear Button",
-        "source": "src/autocomplete/variants/with-clear-button.tsx"
+        "source": "src/autocomplete/variants/with-clear-button.tsx",
+        "title": "With Clear Button"
       },
       {
         "exportName": "WithTriggerAndClear",
         "slug": "with-trigger-and-clear",
-        "title": "With Trigger And Clear",
-        "source": "src/autocomplete/variants/with-trigger-and-clear.tsx"
+        "source": "src/autocomplete/variants/with-trigger-and-clear.tsx",
+        "title": "With Trigger And Clear"
       },
       {
         "exportName": "WithStartAddon",
         "slug": "with-start-addon",
-        "title": "With Start Addon",
-        "source": "src/autocomplete/variants/with-start-addon.tsx"
+        "source": "src/autocomplete/variants/with-start-addon.tsx",
+        "title": "With Start Addon"
       },
       {
         "exportName": "WithGroups",
         "slug": "with-groups",
-        "title": "With Groups",
-        "source": "src/autocomplete/variants/with-groups.tsx"
+        "source": "src/autocomplete/variants/with-groups.tsx",
+        "title": "With Groups"
       },
       {
         "exportName": "WithLimitResults",
         "slug": "with-limit-results",
-        "title": "With Limit Results",
-        "source": "src/autocomplete/variants/with-limit-results.tsx"
+        "source": "src/autocomplete/variants/with-limit-results.tsx",
+        "title": "With Limit Results"
       },
       {
         "exportName": "AsyncSearch",
         "slug": "async-search",
-        "title": "Async Search",
-        "source": "src/autocomplete/variants/async-search.tsx"
+        "source": "src/autocomplete/variants/async-search.tsx",
+        "title": "Async Search"
       },
       {
         "exportName": "FormIntegration",
         "slug": "form-integration",
-        "title": "Form Integration",
-        "source": "src/autocomplete/variants/form-integration.tsx"
+        "source": "src/autocomplete/variants/form-integration.tsx",
+        "title": "Form Integration"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
-        "title": "Showcase",
-        "source": "src/autocomplete/variants/showcase.tsx"
+        "source": "src/autocomplete/variants/showcase.tsx",
+        "title": "Showcase"
       },
       {
         "exportName": "SearchSurface",
         "slug": "search-surface",
-        "title": "Search surface",
-        "source": "src/autocomplete/variants/search-surface.tsx"
+        "source": "src/autocomplete/variants/search-surface.tsx",
+        "title": "Search surface"
       }
     ]
   },
@@ -348,74 +348,74 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/avatar/variants/playground.tsx"
+        "source": "src/avatar/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/avatar/variants/overview.tsx"
+        "source": "src/avatar/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Fallback",
         "slug": "fallback",
-        "title": "Fallback",
-        "source": "src/avatar/variants/fallback.tsx"
+        "source": "src/avatar/variants/fallback.tsx",
+        "title": "Fallback"
       },
       {
         "exportName": "Image",
         "slug": "image",
-        "title": "Image",
-        "source": "src/avatar/variants/image.tsx"
+        "source": "src/avatar/variants/image.tsx",
+        "title": "Image"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/avatar/variants/basic.tsx"
+        "source": "src/avatar/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Badge",
         "slug": "badge",
-        "title": "Badge",
-        "source": "src/avatar/variants/badge.tsx"
+        "source": "src/avatar/variants/badge.tsx",
+        "title": "Badge"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
-        "title": "Dropdown",
-        "source": "src/avatar/variants/dropdown.tsx"
+        "source": "src/avatar/variants/dropdown.tsx",
+        "title": "Dropdown"
       },
       {
         "exportName": "BadgeWithIcon",
         "slug": "badge-with-icon",
-        "title": "Badge With Icon",
-        "source": "src/avatar/variants/badge-with-icon.tsx"
+        "source": "src/avatar/variants/badge-with-icon.tsx",
+        "title": "Badge With Icon"
       },
       {
         "exportName": "AvatarGroup",
         "slug": "avatar-group",
-        "title": "Avatar Group",
-        "source": "src/avatar/variants/avatar-group.tsx"
+        "source": "src/avatar/variants/avatar-group.tsx",
+        "title": "Avatar Group"
       },
       {
         "exportName": "AvatarGroupCount",
         "slug": "avatar-group-count",
-        "title": "Avatar Group Count",
-        "source": "src/avatar/variants/avatar-group-count.tsx"
+        "source": "src/avatar/variants/avatar-group-count.tsx",
+        "title": "Avatar Group Count"
       },
       {
         "exportName": "AvatarGroupWithIcon",
         "slug": "avatar-group-with-icon",
-        "title": "Avatar Group With Icon",
-        "source": "src/avatar/variants/avatar-group-with-icon.tsx"
+        "source": "src/avatar/variants/avatar-group-with-icon.tsx",
+        "title": "Avatar Group With Icon"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
-        "title": "Sizes",
-        "source": "src/avatar/variants/sizes.tsx"
+        "source": "src/avatar/variants/sizes.tsx",
+        "title": "Sizes"
       }
     ]
   },
@@ -426,38 +426,38 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/badge/variants/playground.tsx"
+        "source": "src/badge/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/badge/variants/overview.tsx"
+        "source": "src/badge/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
-        "title": "Variants",
-        "source": "src/badge/variants/variants.tsx"
+        "source": "src/badge/variants/variants.tsx",
+        "title": "Variants"
       },
       {
         "exportName": "Link",
         "slug": "link",
-        "title": "Link",
-        "source": "src/badge/variants/link.tsx"
+        "source": "src/badge/variants/link.tsx",
+        "title": "Link"
       },
       {
         "exportName": "WithIcon",
         "slug": "with-icon",
-        "title": "With Icon",
-        "source": "src/badge/variants/with-icon.tsx"
+        "source": "src/badge/variants/with-icon.tsx",
+        "title": "With Icon"
       },
       {
         "exportName": "WithSpinner",
         "slug": "with-spinner",
-        "title": "With Spinner",
-        "source": "src/badge/variants/with-spinner.tsx"
+        "source": "src/badge/variants/with-spinner.tsx",
+        "title": "With Spinner"
       }
     ]
   },
@@ -468,44 +468,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/breadcrumb/variants/playground.tsx"
+        "source": "src/breadcrumb/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/breadcrumb/variants/overview.tsx"
+        "source": "src/breadcrumb/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Ellipsis",
         "slug": "ellipsis",
-        "title": "Collapsed",
-        "source": "src/breadcrumb/variants/ellipsis.tsx"
+        "source": "src/breadcrumb/variants/ellipsis.tsx",
+        "title": "Collapsed"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/breadcrumb/variants/basic.tsx"
+        "source": "src/breadcrumb/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
-        "title": "Dropdown",
-        "source": "src/breadcrumb/variants/dropdown.tsx"
+        "source": "src/breadcrumb/variants/dropdown.tsx",
+        "title": "Dropdown"
       },
       {
         "exportName": "CustomSeparator",
         "slug": "custom-separator",
-        "title": "Custom Separator",
-        "source": "src/breadcrumb/variants/custom-separator.tsx"
+        "source": "src/breadcrumb/variants/custom-separator.tsx",
+        "title": "Custom Separator"
       },
       {
         "exportName": "LinkComponent",
         "slug": "link-component",
-        "title": "Link Component",
-        "source": "src/breadcrumb/variants/link-component.tsx"
+        "source": "src/breadcrumb/variants/link-component.tsx",
+        "title": "Link Component"
       }
     ]
   },
@@ -516,62 +516,62 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/bubble/variants/playground.tsx"
+        "source": "src/bubble/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/bubble/variants/overview.tsx"
+        "source": "src/bubble/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Alignment",
         "slug": "alignment",
-        "title": "Alignment",
-        "source": "src/bubble/variants/alignment.tsx"
+        "source": "src/bubble/variants/alignment.tsx",
+        "title": "Alignment"
       },
       {
         "exportName": "GroupDemo",
         "slug": "group-demo",
-        "title": "Bubble Group",
-        "source": "src/bubble/variants/group-demo.tsx"
+        "source": "src/bubble/variants/group-demo.tsx",
+        "title": "Bubble Group"
       },
       {
         "exportName": "Collapsible",
         "slug": "collapsible",
-        "title": "Show More / Collapsible",
-        "source": "src/bubble/variants/collapsible.tsx"
+        "source": "src/bubble/variants/collapsible.tsx",
+        "title": "Show More / Collapsible"
       },
       {
         "exportName": "Tooltip",
         "slug": "tooltip",
-        "title": "Tooltip",
-        "source": "src/bubble/variants/tooltip.tsx"
+        "source": "src/bubble/variants/tooltip.tsx",
+        "title": "Tooltip"
       },
       {
         "exportName": "Popover",
         "slug": "popover",
-        "title": "Popover",
-        "source": "src/bubble/variants/popover.tsx"
+        "source": "src/bubble/variants/popover.tsx",
+        "title": "Popover"
       },
       {
         "exportName": "LinkButton",
         "slug": "link-button",
-        "title": "Links and Buttons",
-        "source": "src/bubble/variants/link-button.tsx"
+        "source": "src/bubble/variants/link-button.tsx",
+        "title": "Links and Buttons"
       },
       {
         "exportName": "Reactions",
         "slug": "reactions",
-        "title": "Reactions",
-        "source": "src/bubble/variants/reactions.tsx"
+        "source": "src/bubble/variants/reactions.tsx",
+        "title": "Reactions"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
-        "title": "Variants",
-        "source": "src/bubble/variants/variants.tsx"
+        "source": "src/bubble/variants/variants.tsx",
+        "title": "Variants"
       }
     ]
   },
@@ -582,128 +582,128 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/button/variants/playground.tsx"
+        "source": "src/button/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/button/variants/overview.tsx"
+        "source": "src/button/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
-        "title": "Variants",
-        "source": "src/button/variants/variants.tsx"
+        "source": "src/button/variants/variants.tsx",
+        "title": "Variants"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
-        "title": "Sizes",
-        "source": "src/button/variants/sizes.tsx"
+        "source": "src/button/variants/sizes.tsx",
+        "title": "Sizes"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
-        "title": "Shortcuts",
-        "source": "src/button/variants/shortcuts.tsx"
+        "source": "src/button/variants/shortcuts.tsx",
+        "title": "Shortcuts"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/button/variants/disabled.tsx"
+        "source": "src/button/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Loading",
         "slug": "loading",
-        "title": "Loading",
-        "source": "src/button/variants/loading.tsx"
+        "source": "src/button/variants/loading.tsx",
+        "title": "Loading"
       },
       {
         "exportName": "LoadingDirections",
         "slug": "loading-directions",
-        "title": "Loading Directions",
-        "source": "src/button/variants/loading-directions.tsx"
+        "source": "src/button/variants/loading-directions.tsx",
+        "title": "Loading Directions"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/button/variants/size.tsx"
+        "source": "src/button/variants/size.tsx",
+        "title": "Size"
       },
       {
         "exportName": "Default",
         "slug": "default",
-        "title": "Default",
-        "source": "src/button/variants/default.tsx"
+        "source": "src/button/variants/default.tsx",
+        "title": "Default"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
-        "title": "Outline",
-        "source": "src/button/variants/outline.tsx"
+        "source": "src/button/variants/outline.tsx",
+        "title": "Outline"
       },
       {
         "exportName": "Secondary",
         "slug": "secondary",
-        "title": "Secondary",
-        "source": "src/button/variants/secondary.tsx"
+        "source": "src/button/variants/secondary.tsx",
+        "title": "Secondary"
       },
       {
         "exportName": "Ghost",
         "slug": "ghost",
-        "title": "Ghost",
-        "source": "src/button/variants/ghost.tsx"
+        "source": "src/button/variants/ghost.tsx",
+        "title": "Ghost"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
-        "title": "Error",
-        "source": "src/button/variants/error-variant.tsx"
+        "source": "src/button/variants/error-variant.tsx",
+        "title": "Error"
       },
       {
         "exportName": "Link",
         "slug": "link",
-        "title": "Link",
-        "source": "src/button/variants/link.tsx"
+        "source": "src/button/variants/link.tsx",
+        "title": "Link"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
-        "title": "Icon",
-        "source": "src/button/variants/icon.tsx"
+        "source": "src/button/variants/icon.tsx",
+        "title": "Icon"
       },
       {
         "exportName": "Rounded",
         "slug": "rounded",
-        "title": "Rounded",
-        "source": "src/button/variants/rounded.tsx"
+        "source": "src/button/variants/rounded.tsx",
+        "title": "Rounded"
       },
       {
         "exportName": "ButtonGroup",
         "slug": "button-group",
-        "title": "Button Group",
-        "source": "src/button/variants/button-group.tsx"
+        "source": "src/button/variants/button-group.tsx",
+        "title": "Button Group"
       },
       {
         "exportName": "WithSpinner",
         "slug": "with-spinner",
-        "title": "Spinner",
-        "source": "src/button/variants/with-spinner.tsx"
+        "source": "src/button/variants/with-spinner.tsx",
+        "title": "Spinner"
       },
       {
         "exportName": "WithIcon",
         "slug": "with-icon",
-        "title": "With Icon",
-        "source": "src/button/variants/with-icon.tsx"
+        "source": "src/button/variants/with-icon.tsx",
+        "title": "With Icon"
       },
       {
         "exportName": "AsLink",
         "slug": "as-link",
-        "title": "As Link",
-        "source": "src/button/variants/as-link.tsx"
+        "source": "src/button/variants/as-link.tsx",
+        "title": "As Link"
       }
     ]
   },
@@ -714,74 +714,74 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/button-group/variants/playground.tsx"
+        "source": "src/button-group/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/button-group/variants/overview.tsx"
+        "source": "src/button-group/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Orientation",
         "slug": "orientation",
-        "title": "Orientation",
-        "source": "src/button-group/variants/orientation.tsx"
+        "source": "src/button-group/variants/orientation.tsx",
+        "title": "Orientation"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/button-group/variants/size.tsx"
+        "source": "src/button-group/variants/size.tsx",
+        "title": "Size"
       },
       {
         "exportName": "Nested",
         "slug": "nested",
-        "title": "Nested",
-        "source": "src/button-group/variants/nested.tsx"
+        "source": "src/button-group/variants/nested.tsx",
+        "title": "Nested"
       },
       {
         "exportName": "Separator",
         "slug": "separator",
-        "title": "Separator",
-        "source": "src/button-group/variants/separator.tsx"
+        "source": "src/button-group/variants/separator.tsx",
+        "title": "Separator"
       },
       {
         "exportName": "Input",
         "slug": "input",
-        "title": "Input",
-        "source": "src/button-group/variants/input.tsx"
+        "source": "src/button-group/variants/input.tsx",
+        "title": "Input"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
-        "title": "Input Group",
-        "source": "src/button-group/variants/input-group.tsx"
+        "source": "src/button-group/variants/input-group.tsx",
+        "title": "Input Group"
       },
       {
         "exportName": "DropdownMenu",
         "slug": "dropdown-menu",
-        "title": "Dropdown Menu",
-        "source": "src/button-group/variants/dropdown-menu.tsx"
+        "source": "src/button-group/variants/dropdown-menu.tsx",
+        "title": "Dropdown Menu"
       },
       {
         "exportName": "Select",
         "slug": "select",
-        "title": "Select",
-        "source": "src/button-group/variants/select.tsx"
+        "source": "src/button-group/variants/select.tsx",
+        "title": "Select"
       },
       {
         "exportName": "Popover",
         "slug": "popover",
-        "title": "Popover",
-        "source": "src/button-group/variants/popover.tsx"
+        "source": "src/button-group/variants/popover.tsx",
+        "title": "Popover"
       },
       {
         "exportName": "Split",
         "slug": "split",
-        "title": "Split",
-        "source": "src/button-group/variants/split.tsx"
+        "source": "src/button-group/variants/split.tsx",
+        "title": "Split"
       }
     ]
   },
@@ -792,74 +792,74 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/calendar/variants/playground.tsx"
+        "source": "src/calendar/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/calendar/variants/overview.tsx"
+        "source": "src/calendar/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/calendar/variants/basic.tsx"
+        "source": "src/calendar/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "BookedDates",
         "slug": "booked-dates",
-        "title": "Booked Dates",
-        "source": "src/calendar/variants/booked-dates.tsx"
+        "source": "src/calendar/variants/booked-dates.tsx",
+        "title": "Booked Dates"
       },
       {
         "exportName": "WeekNumbers",
         "slug": "week-numbers",
-        "title": "Week Numbers",
-        "source": "src/calendar/variants/week-numbers.tsx"
+        "source": "src/calendar/variants/week-numbers.tsx",
+        "title": "Week Numbers"
       },
       {
         "exportName": "Presets",
         "slug": "presets",
-        "title": "Presets",
-        "source": "src/calendar/variants/presets.tsx"
+        "source": "src/calendar/variants/presets.tsx",
+        "title": "Presets"
       },
       {
         "exportName": "Hijri",
         "slug": "hijri",
-        "title": "Persian / Hijri / Jalali Calendar",
-        "source": "src/calendar/variants/hijri.tsx"
+        "source": "src/calendar/variants/hijri.tsx",
+        "title": "Persian / Hijri / Jalali Calendar"
       },
       {
         "exportName": "SelectedDateWithTimezone",
         "slug": "selected-date-with-timezone",
-        "title": "Selected Date (With TimeZone)",
-        "source": "src/calendar/variants/selected-date-with-timezone.tsx"
+        "source": "src/calendar/variants/selected-date-with-timezone.tsx",
+        "title": "Selected Date (With TimeZone)"
       },
       {
         "exportName": "RangeCalendar",
         "slug": "range-calendar",
-        "title": "Range Calendar",
-        "source": "src/calendar/variants/range-calendar.tsx"
+        "source": "src/calendar/variants/range-calendar.tsx",
+        "title": "Range Calendar"
       },
       {
         "exportName": "MonthAndYearSelector",
         "slug": "month-and-year-selector",
-        "title": "Month And Year Selector",
-        "source": "src/calendar/variants/month-and-year-selector.tsx"
+        "source": "src/calendar/variants/month-and-year-selector.tsx",
+        "title": "Month And Year Selector"
       },
       {
         "exportName": "DateAndTimePicker",
         "slug": "date-and-time-picker",
-        "title": "Date And Time Picker",
-        "source": "src/calendar/variants/date-and-time-picker.tsx"
+        "source": "src/calendar/variants/date-and-time-picker.tsx",
+        "title": "Date And Time Picker"
       },
       {
         "exportName": "CustomCellSize",
         "slug": "custom-cell-size",
-        "title": "Custom Cell Size",
-        "source": "src/calendar/variants/custom-cell-size.tsx"
+        "source": "src/calendar/variants/custom-cell-size.tsx",
+        "title": "Custom Cell Size"
       }
     ]
   },
@@ -870,32 +870,32 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/card/variants/playground.tsx"
+        "source": "src/card/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/card/variants/overview.tsx"
+        "source": "src/card/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Small",
         "slug": "small",
-        "title": "Size",
-        "source": "src/card/variants/small.tsx"
+        "source": "src/card/variants/small.tsx",
+        "title": "Size"
       },
       {
         "exportName": "EdgeToEdge",
         "slug": "edge-to-edge",
-        "title": "Edge To Edge",
-        "source": "src/card/variants/edge-to-edge.tsx"
+        "source": "src/card/variants/edge-to-edge.tsx",
+        "title": "Edge To Edge"
       },
       {
         "exportName": "Image",
         "slug": "image",
-        "title": "Image",
-        "source": "src/card/variants/image.tsx"
+        "source": "src/card/variants/image.tsx",
+        "title": "Image"
       }
     ]
   },
@@ -906,50 +906,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/carousel/variants/playground.tsx"
+        "source": "src/carousel/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/carousel/variants/overview.tsx"
+        "source": "src/carousel/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
-        "title": "Sizes",
-        "source": "src/carousel/variants/sizes.tsx"
+        "source": "src/carousel/variants/sizes.tsx",
+        "title": "Sizes"
       },
       {
         "exportName": "Spacing",
         "slug": "spacing",
-        "title": "Spacing",
-        "source": "src/carousel/variants/spacing.tsx"
+        "source": "src/carousel/variants/spacing.tsx",
+        "title": "Spacing"
       },
       {
         "exportName": "Orientation",
         "slug": "orientation",
-        "title": "Orientation",
-        "source": "src/carousel/variants/orientation.tsx"
+        "source": "src/carousel/variants/orientation.tsx",
+        "title": "Orientation"
       },
       {
         "exportName": "Api",
         "slug": "api",
-        "title": "Api",
-        "source": "src/carousel/variants/api.tsx"
+        "source": "src/carousel/variants/api.tsx",
+        "title": "Api"
       },
       {
         "exportName": "Plugin",
         "slug": "plugin",
-        "title": "Plugins",
-        "source": "src/carousel/variants/plugin.tsx"
+        "source": "src/carousel/variants/plugin.tsx",
+        "title": "Plugins"
       },
       {
         "exportName": "Events",
         "slug": "events",
-        "title": "Events",
-        "source": "src/carousel/variants/events.tsx"
+        "source": "src/carousel/variants/events.tsx",
+        "title": "Events"
       }
     ]
   },
@@ -960,44 +960,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/chart/variants/playground.tsx"
+        "source": "src/chart/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/chart/variants/overview.tsx"
+        "source": "src/chart/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Example",
         "slug": "example",
-        "title": "Example",
-        "source": "src/chart/variants/example.tsx"
+        "source": "src/chart/variants/example.tsx",
+        "title": "Example"
       },
       {
         "exportName": "ExampleGrid",
         "slug": "example-grid",
-        "title": "Example Grid",
-        "source": "src/chart/variants/example-grid.tsx"
+        "source": "src/chart/variants/example-grid.tsx",
+        "title": "Example Grid"
       },
       {
         "exportName": "ExampleAxis",
         "slug": "example-axis",
-        "title": "Example Axis",
-        "source": "src/chart/variants/example-axis.tsx"
+        "source": "src/chart/variants/example-axis.tsx",
+        "title": "Example Axis"
       },
       {
         "exportName": "ExampleTooltip",
         "slug": "example-tooltip",
-        "title": "Tooltip",
-        "source": "src/chart/variants/example-tooltip.tsx"
+        "source": "src/chart/variants/example-tooltip.tsx",
+        "title": "Tooltip"
       },
       {
         "exportName": "ExampleLegend",
         "slug": "example-legend",
-        "title": "Legend",
-        "source": "src/chart/variants/example-legend.tsx"
+        "source": "src/chart/variants/example-legend.tsx",
+        "title": "Legend"
       }
     ]
   },
@@ -1008,80 +1008,80 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/checkbox/variants/playground.tsx"
+        "source": "src/checkbox/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/checkbox/variants/overview.tsx"
+        "source": "src/checkbox/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Checked",
         "slug": "checked",
-        "title": "Checked State",
-        "source": "src/checkbox/variants/checked.tsx"
+        "source": "src/checkbox/variants/checked.tsx",
+        "title": "Checked State"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/checkbox/variants/controlled.tsx"
+        "source": "src/checkbox/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "Indeterminate",
         "slug": "indeterminate",
-        "title": "Indeterminate",
-        "source": "src/checkbox/variants/indeterminate.tsx"
+        "source": "src/checkbox/variants/indeterminate.tsx",
+        "title": "Indeterminate"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
-        "title": "Read Only",
-        "source": "src/checkbox/variants/read-only.tsx"
+        "source": "src/checkbox/variants/read-only.tsx",
+        "title": "Read Only"
       },
       {
         "exportName": "Form",
         "slug": "form",
-        "title": "Form",
-        "source": "src/checkbox/variants/form.tsx"
+        "source": "src/checkbox/variants/form.tsx",
+        "title": "Form"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/checkbox/variants/disabled.tsx"
+        "source": "src/checkbox/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Table",
         "slug": "table",
-        "title": "Table",
-        "source": "src/checkbox/variants/table.tsx"
+        "source": "src/checkbox/variants/table.tsx",
+        "title": "Table"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/checkbox/variants/basic.tsx"
+        "source": "src/checkbox/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Description",
         "slug": "description",
-        "title": "Description",
-        "source": "src/checkbox/variants/description.tsx"
+        "source": "src/checkbox/variants/description.tsx",
+        "title": "Description"
       },
       {
         "exportName": "Group",
         "slug": "group",
-        "title": "Group",
-        "source": "src/checkbox/variants/group.tsx"
+        "source": "src/checkbox/variants/group.tsx",
+        "title": "Group"
       },
       {
         "exportName": "InvalidState",
         "slug": "invalid-state",
-        "title": "Invalid State",
-        "source": "src/checkbox/variants/invalid-state.tsx"
+        "source": "src/checkbox/variants/invalid-state.tsx",
+        "title": "Invalid State"
       }
     ]
   },
@@ -1092,56 +1092,56 @@
       {
         "exportName": "Languages",
         "slug": "languages",
-        "title": "Languages",
-        "source": "src/code-block/variants/languages.tsx"
+        "source": "src/code-block/variants/languages.tsx",
+        "title": "Languages"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/code-block/variants/overview.tsx"
+        "source": "src/code-block/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Commands",
         "slug": "commands",
-        "title": "Commands",
-        "source": "src/code-block/variants/commands.tsx"
+        "source": "src/code-block/variants/commands.tsx",
+        "title": "Commands"
       },
       {
         "exportName": "Files",
         "slug": "files",
-        "title": "Files",
-        "source": "src/code-block/variants/files.tsx"
+        "source": "src/code-block/variants/files.tsx",
+        "title": "Files"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/code-block/variants/controlled.tsx"
+        "source": "src/code-block/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
-        "title": "Composition",
-        "source": "src/code-block/variants/composition.tsx"
+        "source": "src/code-block/variants/composition.tsx",
+        "title": "Composition"
       },
       {
         "exportName": "Overflow",
         "slug": "overflow",
-        "title": "Overflow",
-        "source": "src/code-block/variants/overflow.tsx"
+        "source": "src/code-block/variants/overflow.tsx",
+        "title": "Overflow"
       },
       {
         "exportName": "States",
         "slug": "states",
-        "title": "States",
-        "source": "src/code-block/variants/states.tsx"
+        "source": "src/code-block/variants/states.tsx",
+        "title": "States"
       },
       {
         "exportName": "ChangingSource",
         "slug": "changing-source",
-        "title": "Changing Source",
-        "source": "src/code-block/variants/changing-source.tsx"
+        "source": "src/code-block/variants/changing-source.tsx",
+        "title": "Changing Source"
       }
     ]
   },
@@ -1152,38 +1152,38 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/collapsible/variants/playground.tsx"
+        "source": "src/collapsible/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/collapsible/variants/overview.tsx"
+        "source": "src/collapsible/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "FileTree",
         "slug": "file-tree",
-        "title": "File Tree",
-        "source": "src/collapsible/variants/file-tree.tsx"
+        "source": "src/collapsible/variants/file-tree.tsx",
+        "title": "File Tree"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/collapsible/variants/basic.tsx"
+        "source": "src/collapsible/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "SettingsPanel",
         "slug": "settings-panel",
-        "title": "Settings Panel",
-        "source": "src/collapsible/variants/settings-panel.tsx"
+        "source": "src/collapsible/variants/settings-panel.tsx",
+        "title": "Settings Panel"
       },
       {
         "exportName": "ControlledState",
         "slug": "controlled-state",
-        "title": "Controlled State",
-        "source": "src/collapsible/variants/controlled-state.tsx"
+        "source": "src/collapsible/variants/controlled-state.tsx",
+        "title": "Controlled State"
       }
     ]
   },
@@ -1194,86 +1194,86 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/combobox/variants/playground.tsx"
+        "source": "src/combobox/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/combobox/variants/overview.tsx"
+        "source": "src/combobox/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/combobox/variants/basic.tsx"
+        "source": "src/combobox/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
-        "title": "Multiple Selection",
-        "source": "src/combobox/variants/multiple.tsx"
+        "source": "src/combobox/variants/multiple.tsx",
+        "title": "Multiple Selection"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
-        "title": "Groups",
-        "source": "src/combobox/variants/groups.tsx"
+        "source": "src/combobox/variants/groups.tsx",
+        "title": "Groups"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/combobox/variants/invalid.tsx"
+        "source": "src/combobox/variants/invalid.tsx",
+        "title": "Invalid"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/combobox/variants/disabled.tsx"
+        "source": "src/combobox/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "AutoHighlight",
         "slug": "auto-highlight",
-        "title": "Auto Highlight",
-        "source": "src/combobox/variants/auto-highlight.tsx"
+        "source": "src/combobox/variants/auto-highlight.tsx",
+        "title": "Auto Highlight"
       },
       {
         "exportName": "Popup",
         "slug": "popup",
-        "title": "Popup",
-        "source": "src/combobox/variants/popup.tsx"
+        "source": "src/combobox/variants/popup.tsx",
+        "title": "Popup"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
-        "title": "Input Group",
-        "source": "src/combobox/variants/input-group.tsx"
+        "source": "src/combobox/variants/input-group.tsx",
+        "title": "Input Group"
       },
       {
         "exportName": "CustomItems",
         "slug": "custom-items",
-        "title": "Custom Items",
-        "source": "src/combobox/variants/custom-items.tsx"
+        "source": "src/combobox/variants/custom-items.tsx",
+        "title": "Custom Items"
       },
       {
         "exportName": "ClearButton",
         "slug": "clear-button",
-        "title": "Clear Button",
-        "source": "src/combobox/variants/clear-button.tsx"
+        "source": "src/combobox/variants/clear-button.tsx",
+        "title": "Clear Button"
       },
       {
         "exportName": "ItemCollection",
         "slug": "item-collection",
-        "title": "Item collection",
-        "source": "src/combobox/variants/item-collection.tsx"
+        "source": "src/combobox/variants/item-collection.tsx",
+        "title": "Item collection"
       },
       {
         "exportName": "AsyncSearch",
         "slug": "async-search",
-        "title": "Async search",
-        "source": "src/combobox/variants/async-search.tsx"
+        "source": "src/combobox/variants/async-search.tsx",
+        "title": "Async search"
       }
     ]
   },
@@ -1284,44 +1284,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/command/variants/playground.tsx"
+        "source": "src/command/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/command/variants/overview.tsx"
+        "source": "src/command/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/command/variants/basic.tsx"
+        "source": "src/command/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
-        "title": "Shortcuts",
-        "source": "src/command/variants/shortcuts.tsx"
+        "source": "src/command/variants/shortcuts.tsx",
+        "title": "Shortcuts"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
-        "title": "Groups",
-        "source": "src/command/variants/groups.tsx"
+        "source": "src/command/variants/groups.tsx",
+        "title": "Groups"
       },
       {
         "exportName": "Scrollable",
         "slug": "scrollable",
-        "title": "Scrollable",
-        "source": "src/command/variants/scrollable.tsx"
+        "source": "src/command/variants/scrollable.tsx",
+        "title": "Scrollable"
       },
       {
         "exportName": "AsyncResults",
         "slug": "async-results",
-        "title": "Async results",
-        "source": "src/command/variants/async-results.tsx"
+        "source": "src/command/variants/async-results.tsx",
+        "title": "Async results"
       }
     ]
   },
@@ -1332,74 +1332,74 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/context-menu/variants/playground.tsx"
+        "source": "src/context-menu/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/context-menu/variants/overview.tsx"
+        "source": "src/context-menu/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/context-menu/variants/basic.tsx"
+        "source": "src/context-menu/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Submenu",
         "slug": "submenu",
-        "title": "Submenu",
-        "source": "src/context-menu/variants/submenu.tsx"
+        "source": "src/context-menu/variants/submenu.tsx",
+        "title": "Submenu"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
-        "title": "Shortcuts",
-        "source": "src/context-menu/variants/shortcuts.tsx"
+        "source": "src/context-menu/variants/shortcuts.tsx",
+        "title": "Shortcuts"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
-        "title": "Groups",
-        "source": "src/context-menu/variants/groups.tsx"
+        "source": "src/context-menu/variants/groups.tsx",
+        "title": "Groups"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
-        "title": "Icons",
-        "source": "src/context-menu/variants/icons.tsx"
+        "source": "src/context-menu/variants/icons.tsx",
+        "title": "Icons"
       },
       {
         "exportName": "Checkboxes",
         "slug": "checkboxes",
-        "title": "Checkboxes",
-        "source": "src/context-menu/variants/checkboxes.tsx"
+        "source": "src/context-menu/variants/checkboxes.tsx",
+        "title": "Checkboxes"
       },
       {
         "exportName": "Radio",
         "slug": "radio",
-        "title": "Radio",
-        "source": "src/context-menu/variants/radio.tsx"
+        "source": "src/context-menu/variants/radio.tsx",
+        "title": "Radio"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
-        "title": "Error",
-        "source": "src/context-menu/variants/error-variant.tsx"
+        "source": "src/context-menu/variants/error-variant.tsx",
+        "title": "Error"
       },
       {
         "exportName": "Sides",
         "slug": "sides",
-        "title": "Sides",
-        "source": "src/context-menu/variants/sides.tsx"
+        "source": "src/context-menu/variants/sides.tsx",
+        "title": "Sides"
       },
       {
         "exportName": "Searchable",
         "slug": "searchable",
-        "title": "Searchable",
-        "source": "src/context-menu/variants/searchable.tsx"
+        "source": "src/context-menu/variants/searchable.tsx",
+        "title": "Searchable"
       }
     ]
   },
@@ -1410,110 +1410,110 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/control/variants/overview.tsx"
+        "source": "src/control/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Number",
         "slug": "number",
-        "title": "Number",
-        "source": "src/control/variants/number.tsx"
+        "source": "src/control/variants/number.tsx",
+        "title": "Number"
       },
       {
         "exportName": "ContinuousNumber",
         "slug": "continuous-number",
-        "title": "Continuous Number",
-        "source": "src/control/variants/continuous-number.tsx"
+        "source": "src/control/variants/continuous-number.tsx",
+        "title": "Continuous Number"
       },
       {
         "exportName": "DiscreteNumber",
         "slug": "discrete-number",
-        "title": "Discrete Number",
-        "source": "src/control/variants/discrete-number.tsx"
+        "source": "src/control/variants/discrete-number.tsx",
+        "title": "Discrete Number"
       },
       {
         "exportName": "Text",
         "slug": "text",
-        "title": "Text",
-        "source": "src/control/variants/text.tsx"
+        "source": "src/control/variants/text.tsx",
+        "title": "Text"
       },
       {
         "exportName": "Textarea",
         "slug": "textarea",
-        "title": "Textarea",
-        "source": "src/control/variants/textarea.tsx"
+        "source": "src/control/variants/textarea.tsx",
+        "title": "Textarea"
       },
       {
         "exportName": "Boolean",
         "slug": "boolean",
-        "title": "Boolean",
-        "source": "src/control/variants/boolean.tsx"
+        "source": "src/control/variants/boolean.tsx",
+        "title": "Boolean"
       },
       {
         "exportName": "Segmented",
         "slug": "segmented",
-        "title": "Segmented",
-        "source": "src/control/variants/segmented.tsx"
+        "source": "src/control/variants/segmented.tsx",
+        "title": "Segmented"
       },
       {
         "exportName": "Select",
         "slug": "select",
-        "title": "Select",
-        "source": "src/control/variants/select.tsx"
+        "source": "src/control/variants/select.tsx",
+        "title": "Select"
       },
       {
         "exportName": "Color",
         "slug": "color",
-        "title": "Color",
-        "source": "src/control/variants/color.tsx"
+        "source": "src/control/variants/color.tsx",
+        "title": "Color"
       },
       {
         "exportName": "Image",
         "slug": "image",
-        "title": "Image",
-        "source": "src/control/variants/image.tsx"
+        "source": "src/control/variants/image.tsx",
+        "title": "Image"
       },
       {
         "exportName": "Pad",
         "slug": "pad",
-        "title": "Pad",
-        "source": "src/control/variants/pad.tsx"
+        "source": "src/control/variants/pad.tsx",
+        "title": "Pad"
       },
       {
         "exportName": "Spring",
         "slug": "spring",
-        "title": "Spring",
-        "source": "src/control/variants/spring.tsx"
+        "source": "src/control/variants/spring.tsx",
+        "title": "Spring"
       },
       {
         "exportName": "Transition",
         "slug": "transition",
-        "title": "Transition",
-        "source": "src/control/variants/transition.tsx"
+        "source": "src/control/variants/transition.tsx",
+        "title": "Transition"
       },
       {
         "exportName": "Action",
         "slug": "action",
-        "title": "Action",
-        "source": "src/control/variants/action.tsx"
+        "source": "src/control/variants/action.tsx",
+        "title": "Action"
       },
       {
         "exportName": "Section",
         "slug": "section",
-        "title": "Section",
-        "source": "src/control/variants/section.tsx"
+        "source": "src/control/variants/section.tsx",
+        "title": "Section"
       },
       {
         "exportName": "Group",
         "slug": "group",
-        "title": "Group",
-        "source": "src/control/variants/group.tsx"
+        "source": "src/control/variants/group.tsx",
+        "title": "Group"
       },
       {
         "exportName": "Row",
         "slug": "row",
-        "title": "Row",
-        "source": "src/control/variants/row.tsx"
+        "source": "src/control/variants/row.tsx",
+        "title": "Row"
       }
     ]
   },
@@ -1524,20 +1524,20 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/copy-button/variants/overview.tsx"
+        "source": "src/copy-button/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Buttons",
         "slug": "buttons",
-        "title": "Buttons",
-        "source": "src/copy-button/variants/buttons.tsx"
+        "source": "src/copy-button/variants/buttons.tsx",
+        "title": "Buttons"
       },
       {
         "exportName": "Input",
         "slug": "input",
-        "title": "Input",
-        "source": "src/copy-button/variants/input.tsx"
+        "source": "src/copy-button/variants/input.tsx",
+        "title": "Input"
       }
     ]
   },
@@ -1548,14 +1548,14 @@
       {
         "exportName": "ExternalStyles",
         "slug": "external-styles",
-        "title": "External Styles",
-        "source": "src/csp-provider/variants/external-styles.tsx"
+        "source": "src/csp-provider/variants/external-styles.tsx",
+        "title": "External Styles"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
-        "title": "Showcase",
-        "source": "src/csp-provider/variants/showcase.tsx"
+        "source": "src/csp-provider/variants/showcase.tsx",
+        "title": "Showcase"
       }
     ]
   },
@@ -1566,44 +1566,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/dialog/variants/playground.tsx"
+        "source": "src/dialog/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/dialog/variants/overview.tsx"
+        "source": "src/dialog/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "CustomCloseButton",
         "slug": "custom-close-button",
-        "title": "Custom Close Button",
-        "source": "src/dialog/variants/custom-close-button.tsx"
+        "source": "src/dialog/variants/custom-close-button.tsx",
+        "title": "Custom Close Button"
       },
       {
         "exportName": "NoCloseButton",
         "slug": "no-close-button",
-        "title": "No Close Button",
-        "source": "src/dialog/variants/no-close-button.tsx"
+        "source": "src/dialog/variants/no-close-button.tsx",
+        "title": "No Close Button"
       },
       {
         "exportName": "StickyFooter",
         "slug": "sticky-footer",
-        "title": "Sticky Footer",
-        "source": "src/dialog/variants/sticky-footer.tsx"
+        "source": "src/dialog/variants/sticky-footer.tsx",
+        "title": "Sticky Footer"
       },
       {
         "exportName": "ScrollableContent",
         "slug": "scrollable-content",
-        "title": "Scrollable Content",
-        "source": "src/dialog/variants/scrollable-content.tsx"
+        "source": "src/dialog/variants/scrollable-content.tsx",
+        "title": "Scrollable Content"
       },
       {
         "exportName": "Programmatic",
         "slug": "programmatic",
-        "title": "Programmatic opening",
-        "source": "src/dialog/variants/programmatic.tsx"
+        "source": "src/dialog/variants/programmatic.tsx",
+        "title": "Programmatic opening"
       }
     ]
   },
@@ -1614,56 +1614,56 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/diff-view/variants/overview.tsx"
+        "source": "src/diff-view/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Layouts",
         "slug": "layouts",
-        "title": "Layouts",
-        "source": "src/diff-view/variants/layouts.tsx"
+        "source": "src/diff-view/variants/layouts.tsx",
+        "title": "Layouts"
       },
       {
         "exportName": "Highlighting",
         "slug": "highlighting",
-        "title": "Highlighting",
-        "source": "src/diff-view/variants/highlighting.tsx"
+        "source": "src/diff-view/variants/highlighting.tsx",
+        "title": "Highlighting"
       },
       {
         "exportName": "Context",
         "slug": "context",
-        "title": "Context",
-        "source": "src/diff-view/variants/context.tsx"
+        "source": "src/diff-view/variants/context.tsx",
+        "title": "Context"
       },
       {
         "exportName": "Annotations",
         "slug": "annotations",
-        "title": "Annotations",
-        "source": "src/diff-view/variants/annotations.tsx"
+        "source": "src/diff-view/variants/annotations.tsx",
+        "title": "Annotations"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
-        "title": "Composition",
-        "source": "src/diff-view/variants/composition.tsx"
+        "source": "src/diff-view/variants/composition.tsx",
+        "title": "Composition"
       },
       {
         "exportName": "States",
         "slug": "states",
-        "title": "States",
-        "source": "src/diff-view/variants/states.tsx"
+        "source": "src/diff-view/variants/states.tsx",
+        "title": "States"
       },
       {
         "exportName": "ChangingSource",
         "slug": "changing-source",
-        "title": "Changing Source",
-        "source": "src/diff-view/variants/changing-source.tsx"
+        "source": "src/diff-view/variants/changing-source.tsx",
+        "title": "Changing Source"
       },
       {
         "exportName": "Patch",
         "slug": "patch",
-        "title": "Patch",
-        "source": "src/diff-view/variants/patch.tsx"
+        "source": "src/diff-view/variants/patch.tsx",
+        "title": "Patch"
       }
     ]
   },
@@ -1674,14 +1674,14 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/direction/variants/playground.tsx"
+        "source": "src/direction/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/direction/variants/overview.tsx"
+        "source": "src/direction/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   },
@@ -1692,68 +1692,68 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/drawer/variants/playground.tsx"
+        "source": "src/drawer/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/drawer/variants/overview.tsx"
+        "source": "src/drawer/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "SwipeHandle",
         "slug": "swipe-handle",
-        "title": "Swipe Handle",
-        "source": "src/drawer/variants/swipe-handle.tsx"
+        "source": "src/drawer/variants/swipe-handle.tsx",
+        "title": "Swipe Handle"
       },
       {
         "exportName": "NonModal",
         "slug": "non-modal",
-        "title": "Non Modal",
-        "source": "src/drawer/variants/non-modal.tsx"
+        "source": "src/drawer/variants/non-modal.tsx",
+        "title": "Non Modal"
       },
       {
         "exportName": "SnapPoints",
         "slug": "snap-points",
-        "title": "Snap Points",
-        "source": "src/drawer/variants/snap-points.tsx"
+        "source": "src/drawer/variants/snap-points.tsx",
+        "title": "Snap Points"
       },
       {
         "exportName": "Position",
         "slug": "position",
-        "title": "Position",
-        "source": "src/drawer/variants/position.tsx"
+        "source": "src/drawer/variants/position.tsx",
+        "title": "Position"
       },
       {
         "exportName": "Nested",
         "slug": "nested",
-        "title": "Nested",
-        "source": "src/drawer/variants/nested.tsx"
+        "source": "src/drawer/variants/nested.tsx",
+        "title": "Nested"
       },
       {
         "exportName": "CustomSizes",
         "slug": "custom-sizes",
-        "title": "Custom Sizes",
-        "source": "src/drawer/variants/custom-sizes.tsx"
+        "source": "src/drawer/variants/custom-sizes.tsx",
+        "title": "Custom Sizes"
       },
       {
         "exportName": "Styling",
         "slug": "styling",
-        "title": "Styling",
-        "source": "src/drawer/variants/styling.tsx"
+        "source": "src/drawer/variants/styling.tsx",
+        "title": "Styling"
       },
       {
         "exportName": "Responsive",
         "slug": "responsive",
-        "title": "Responsive",
-        "source": "src/drawer/variants/responsive.tsx"
+        "source": "src/drawer/variants/responsive.tsx",
+        "title": "Responsive"
       },
       {
         "exportName": "SearchAndControls",
         "slug": "search-and-controls",
-        "title": "Search and controls",
-        "source": "src/drawer/variants/search-and-controls.tsx"
+        "source": "src/drawer/variants/search-and-controls.tsx",
+        "title": "Search and controls"
       }
     ]
   },
@@ -1764,86 +1764,86 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/dropdown-menu/variants/playground.tsx"
+        "source": "src/dropdown-menu/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/dropdown-menu/variants/overview.tsx"
+        "source": "src/dropdown-menu/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "RadioGroup",
         "slug": "radio-group",
-        "title": "Radio Group",
-        "source": "src/dropdown-menu/variants/radio-group.tsx"
+        "source": "src/dropdown-menu/variants/radio-group.tsx",
+        "title": "Radio Group"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/dropdown-menu/variants/basic.tsx"
+        "source": "src/dropdown-menu/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Submenu",
         "slug": "submenu",
-        "title": "Submenu",
-        "source": "src/dropdown-menu/variants/submenu.tsx"
+        "source": "src/dropdown-menu/variants/submenu.tsx",
+        "title": "Submenu"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
-        "title": "Shortcuts",
-        "source": "src/dropdown-menu/variants/shortcuts.tsx"
+        "source": "src/dropdown-menu/variants/shortcuts.tsx",
+        "title": "Shortcuts"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
-        "title": "Icons",
-        "source": "src/dropdown-menu/variants/icons.tsx"
+        "source": "src/dropdown-menu/variants/icons.tsx",
+        "title": "Icons"
       },
       {
         "exportName": "Checkboxes",
         "slug": "checkboxes",
-        "title": "Checkboxes",
-        "source": "src/dropdown-menu/variants/checkboxes.tsx"
+        "source": "src/dropdown-menu/variants/checkboxes.tsx",
+        "title": "Checkboxes"
       },
       {
         "exportName": "CheckboxesIcons",
         "slug": "checkboxes-icons",
-        "title": "Checkboxes Icons",
-        "source": "src/dropdown-menu/variants/checkboxes-icons.tsx"
+        "source": "src/dropdown-menu/variants/checkboxes-icons.tsx",
+        "title": "Checkboxes Icons"
       },
       {
         "exportName": "RadioIcons",
         "slug": "radio-icons",
-        "title": "Radio Icons",
-        "source": "src/dropdown-menu/variants/radio-icons.tsx"
+        "source": "src/dropdown-menu/variants/radio-icons.tsx",
+        "title": "Radio Icons"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
-        "title": "Error",
-        "source": "src/dropdown-menu/variants/error-variant.tsx"
+        "source": "src/dropdown-menu/variants/error-variant.tsx",
+        "title": "Error"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
-        "title": "Avatar",
-        "source": "src/dropdown-menu/variants/avatar.tsx"
+        "source": "src/dropdown-menu/variants/avatar.tsx",
+        "title": "Avatar"
       },
       {
         "exportName": "Complex",
         "slug": "complex",
-        "title": "Complex",
-        "source": "src/dropdown-menu/variants/complex.tsx"
+        "source": "src/dropdown-menu/variants/complex.tsx",
+        "title": "Complex"
       },
       {
         "exportName": "Searchable",
         "slug": "searchable",
-        "title": "Searchable",
-        "source": "src/dropdown-menu/variants/searchable.tsx"
+        "source": "src/dropdown-menu/variants/searchable.tsx",
+        "title": "Searchable"
       }
     ]
   },
@@ -1854,8 +1854,8 @@
       {
         "exportName": "RenameTab",
         "slug": "rename-tab",
-        "title": "Rename Tab",
-        "source": "src/editable/variants/rename-tab.tsx"
+        "source": "src/editable/variants/rename-tab.tsx",
+        "title": "Rename Tab"
       }
     ]
   },
@@ -1866,50 +1866,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/empty/variants/playground.tsx"
+        "source": "src/empty/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/empty/variants/overview.tsx"
+        "source": "src/empty/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
-        "title": "Avatar",
-        "source": "src/empty/variants/avatar.tsx"
+        "source": "src/empty/variants/avatar.tsx",
+        "title": "Avatar"
       },
       {
         "exportName": "AvatarGroup",
         "slug": "avatar-group",
-        "title": "Avatar Group",
-        "source": "src/empty/variants/avatar-group.tsx"
+        "source": "src/empty/variants/avatar-group.tsx",
+        "title": "Avatar Group"
       },
       {
         "exportName": "Inputgroup",
         "slug": "inputgroup",
-        "title": "Inputgroup",
-        "source": "src/empty/variants/inputgroup.tsx"
+        "source": "src/empty/variants/inputgroup.tsx",
+        "title": "Inputgroup"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
-        "title": "Input Group",
-        "source": "src/empty/variants/input-group.tsx"
+        "source": "src/empty/variants/input-group.tsx",
+        "title": "Input Group"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
-        "title": "Outline",
-        "source": "src/empty/variants/outline.tsx"
+        "source": "src/empty/variants/outline.tsx",
+        "title": "Outline"
       },
       {
         "exportName": "Background",
         "slug": "background",
-        "title": "Background",
-        "source": "src/empty/variants/background.tsx"
+        "source": "src/empty/variants/background.tsx",
+        "title": "Background"
       }
     ]
   },
@@ -1920,98 +1920,98 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/field/variants/playground.tsx"
+        "source": "src/field/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/field/variants/overview.tsx"
+        "source": "src/field/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Input",
         "slug": "input",
-        "title": "Input",
-        "source": "src/field/variants/input.tsx"
+        "source": "src/field/variants/input.tsx",
+        "title": "Input"
       },
       {
         "exportName": "Textarea",
         "slug": "textarea",
-        "title": "Textarea",
-        "source": "src/field/variants/textarea.tsx"
+        "source": "src/field/variants/textarea.tsx",
+        "title": "Textarea"
       },
       {
         "exportName": "Select",
         "slug": "select",
-        "title": "Select",
-        "source": "src/field/variants/select.tsx"
+        "source": "src/field/variants/select.tsx",
+        "title": "Select"
       },
       {
         "exportName": "Slider",
         "slug": "slider",
-        "title": "Slider",
-        "source": "src/field/variants/slider.tsx"
+        "source": "src/field/variants/slider.tsx",
+        "title": "Slider"
       },
       {
         "exportName": "Fieldset",
         "slug": "fieldset",
-        "title": "Fieldset",
-        "source": "src/field/variants/fieldset.tsx"
+        "source": "src/field/variants/fieldset.tsx",
+        "title": "Fieldset"
       },
       {
         "exportName": "Checkbox",
         "slug": "checkbox",
-        "title": "Checkbox",
-        "source": "src/field/variants/checkbox.tsx"
+        "source": "src/field/variants/checkbox.tsx",
+        "title": "Checkbox"
       },
       {
         "exportName": "Radio",
         "slug": "radio",
-        "title": "Radio",
-        "source": "src/field/variants/radio.tsx"
+        "source": "src/field/variants/radio.tsx",
+        "title": "Radio"
       },
       {
         "exportName": "Switch",
         "slug": "switch",
-        "title": "Switch",
-        "source": "src/field/variants/switch.tsx"
+        "source": "src/field/variants/switch.tsx",
+        "title": "Switch"
       },
       {
         "exportName": "ChoiceCard",
         "slug": "choice-card",
-        "title": "Choice Card",
-        "source": "src/field/variants/choice-card.tsx"
+        "source": "src/field/variants/choice-card.tsx",
+        "title": "Choice Card"
       },
       {
         "exportName": "FieldGroup",
         "slug": "field-group",
-        "title": "Field Group",
-        "source": "src/field/variants/field-group.tsx"
+        "source": "src/field/variants/field-group.tsx",
+        "title": "Field Group"
       },
       {
         "exportName": "ResponsiveLayout",
         "slug": "responsive-layout",
-        "title": "Responsive Layout",
-        "source": "src/field/variants/responsive-layout.tsx"
+        "source": "src/field/variants/responsive-layout.tsx",
+        "title": "Responsive Layout"
       },
       {
         "exportName": "Group",
         "slug": "group",
-        "title": "Group",
-        "source": "src/field/variants/group.tsx"
+        "source": "src/field/variants/group.tsx",
+        "title": "Group"
       },
       {
         "exportName": "Responsive",
         "slug": "responsive",
-        "title": "Responsive",
-        "source": "src/field/variants/responsive.tsx"
+        "source": "src/field/variants/responsive.tsx",
+        "title": "Responsive"
       },
       {
         "exportName": "ValidationAndErrors",
         "slug": "validation-and-errors",
-        "title": "Validation And Errors",
-        "source": "src/field/variants/validation-and-errors.tsx"
+        "source": "src/field/variants/validation-and-errors.tsx",
+        "title": "Validation And Errors"
       }
     ]
   },
@@ -2022,20 +2022,20 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/file-tree/variants/overview.tsx"
+        "source": "src/file-tree/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
-        "title": "Composition",
-        "source": "src/file-tree/variants/composition.tsx"
+        "source": "src/file-tree/variants/composition.tsx",
+        "title": "Composition"
       },
       {
         "exportName": "Changes",
         "slug": "changes",
-        "title": "Changes",
-        "source": "src/file-tree/variants/changes.tsx"
+        "source": "src/file-tree/variants/changes.tsx",
+        "title": "Changes"
       }
     ]
   },
@@ -2046,26 +2046,26 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/file-view/variants/overview.tsx"
+        "source": "src/file-view/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
-        "title": "Composition",
-        "source": "src/file-view/variants/composition.tsx"
+        "source": "src/file-view/variants/composition.tsx",
+        "title": "Composition"
       },
       {
         "exportName": "Annotations",
         "slug": "annotations",
-        "title": "Annotations",
-        "source": "src/file-view/variants/annotations.tsx"
+        "source": "src/file-view/variants/annotations.tsx",
+        "title": "Annotations"
       },
       {
         "exportName": "States",
         "slug": "states",
-        "title": "States",
-        "source": "src/file-view/variants/states.tsx"
+        "source": "src/file-view/variants/states.tsx",
+        "title": "States"
       }
     ]
   },
@@ -2076,14 +2076,14 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/form/variants/playground.tsx"
+        "source": "src/form/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Validation",
         "slug": "validation",
-        "title": "Validation",
-        "source": "src/form/variants/validation.tsx"
+        "source": "src/form/variants/validation.tsx",
+        "title": "Validation"
       }
     ]
   },
@@ -2094,38 +2094,38 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/hover-card/variants/playground.tsx"
+        "source": "src/hover-card/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/hover-card/variants/overview.tsx"
+        "source": "src/hover-card/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/hover-card/variants/basic.tsx"
+        "source": "src/hover-card/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Sides",
         "slug": "sides",
-        "title": "Sides",
-        "source": "src/hover-card/variants/sides.tsx"
+        "source": "src/hover-card/variants/sides.tsx",
+        "title": "Sides"
       },
       {
         "exportName": "TriggerDelays",
         "slug": "trigger-delays",
-        "title": "Trigger Delays",
-        "source": "src/hover-card/variants/trigger-delays.tsx"
+        "source": "src/hover-card/variants/trigger-delays.tsx",
+        "title": "Trigger Delays"
       },
       {
         "exportName": "Positioning",
         "slug": "positioning",
-        "title": "Positioning",
-        "source": "src/hover-card/variants/positioning.tsx"
+        "source": "src/hover-card/variants/positioning.tsx",
+        "title": "Positioning"
       }
     ]
   },
@@ -2136,104 +2136,104 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/input/variants/playground.tsx"
+        "source": "src/input/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/input/variants/overview.tsx"
+        "source": "src/input/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "DisabledControl",
         "slug": "disabled-control",
-        "title": "Disabled Control",
-        "source": "src/input/variants/disabled-control.tsx"
+        "source": "src/input/variants/disabled-control.tsx",
+        "title": "Disabled Control"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/input/variants/invalid.tsx"
+        "source": "src/input/variants/invalid.tsx",
+        "title": "Invalid"
       },
       {
         "exportName": "FileControl",
         "slug": "file-control",
-        "title": "File Control",
-        "source": "src/input/variants/file-control.tsx"
+        "source": "src/input/variants/file-control.tsx",
+        "title": "File Control"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/input/variants/disabled.tsx"
+        "source": "src/input/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "File",
         "slug": "file",
-        "title": "File",
-        "source": "src/input/variants/file.tsx"
+        "source": "src/input/variants/file.tsx",
+        "title": "File"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/input/variants/basic.tsx"
+        "source": "src/input/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Field",
         "slug": "field",
-        "title": "Field",
-        "source": "src/input/variants/field.tsx"
+        "source": "src/input/variants/field.tsx",
+        "title": "Field"
       },
       {
         "exportName": "Fieldgroup",
         "slug": "fieldgroup",
-        "title": "Field Group",
-        "source": "src/input/variants/fieldgroup.tsx"
+        "source": "src/input/variants/fieldgroup.tsx",
+        "title": "Field Group"
       },
       {
         "exportName": "Inline",
         "slug": "inline",
-        "title": "Inline",
-        "source": "src/input/variants/inline.tsx"
+        "source": "src/input/variants/inline.tsx",
+        "title": "Inline"
       },
       {
         "exportName": "Grid",
         "slug": "grid",
-        "title": "Grid",
-        "source": "src/input/variants/grid.tsx"
+        "source": "src/input/variants/grid.tsx",
+        "title": "Grid"
       },
       {
         "exportName": "Required",
         "slug": "required",
-        "title": "Required",
-        "source": "src/input/variants/required.tsx"
+        "source": "src/input/variants/required.tsx",
+        "title": "Required"
       },
       {
         "exportName": "Badge",
         "slug": "badge",
-        "title": "Badge",
-        "source": "src/input/variants/badge.tsx"
+        "source": "src/input/variants/badge.tsx",
+        "title": "Badge"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
-        "title": "Input Group",
-        "source": "src/input/variants/input-group.tsx"
+        "source": "src/input/variants/input-group.tsx",
+        "title": "Input Group"
       },
       {
         "exportName": "ButtonGroup",
         "slug": "button-group",
-        "title": "Button Group",
-        "source": "src/input/variants/button-group.tsx"
+        "source": "src/input/variants/button-group.tsx",
+        "title": "Button Group"
       },
       {
         "exportName": "Form",
         "slug": "form",
-        "title": "Form",
-        "source": "src/input/variants/form.tsx"
+        "source": "src/input/variants/form.tsx",
+        "title": "Form"
       }
     ]
   },
@@ -2244,80 +2244,80 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/input-group/variants/playground.tsx"
+        "source": "src/input-group/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/input-group/variants/overview.tsx"
+        "source": "src/input-group/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
-        "title": "Icon",
-        "source": "src/input-group/variants/icon.tsx"
+        "source": "src/input-group/variants/icon.tsx",
+        "title": "Icon"
       },
       {
         "exportName": "Text",
         "slug": "text",
-        "title": "Text",
-        "source": "src/input-group/variants/text.tsx"
+        "source": "src/input-group/variants/text.tsx",
+        "title": "Text"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
-        "title": "Dropdown",
-        "source": "src/input-group/variants/dropdown.tsx"
+        "source": "src/input-group/variants/dropdown.tsx",
+        "title": "Dropdown"
       },
       {
         "exportName": "InlineStart",
         "slug": "inline-start",
-        "title": "Inline Start",
-        "source": "src/input-group/variants/inline-start.tsx"
+        "source": "src/input-group/variants/inline-start.tsx",
+        "title": "Inline Start"
       },
       {
         "exportName": "InlineEnd",
         "slug": "inline-end",
-        "title": "Inline End",
-        "source": "src/input-group/variants/inline-end.tsx"
+        "source": "src/input-group/variants/inline-end.tsx",
+        "title": "Inline End"
       },
       {
         "exportName": "BlockStart",
         "slug": "block-start",
-        "title": "Block Start",
-        "source": "src/input-group/variants/block-start.tsx"
+        "source": "src/input-group/variants/block-start.tsx",
+        "title": "Block Start"
       },
       {
         "exportName": "BlockEnd",
         "slug": "block-end",
-        "title": "Block End",
-        "source": "src/input-group/variants/block-end.tsx"
+        "source": "src/input-group/variants/block-end.tsx",
+        "title": "Block End"
       },
       {
         "exportName": "Kbd",
         "slug": "kbd",
-        "title": "Kbd",
-        "source": "src/input-group/variants/kbd.tsx"
+        "source": "src/input-group/variants/kbd.tsx",
+        "title": "Kbd"
       },
       {
         "exportName": "Textarea",
         "slug": "textarea",
-        "title": "Textarea",
-        "source": "src/input-group/variants/textarea.tsx"
+        "source": "src/input-group/variants/textarea.tsx",
+        "title": "Textarea"
       },
       {
         "exportName": "Button",
         "slug": "button",
-        "title": "Button",
-        "source": "src/input-group/variants/button.tsx"
+        "source": "src/input-group/variants/button.tsx",
+        "title": "Button"
       },
       {
         "exportName": "Custom",
         "slug": "custom",
-        "title": "Custom Input",
-        "source": "src/input-group/variants/custom.tsx"
+        "source": "src/input-group/variants/custom.tsx",
+        "title": "Custom Input"
       }
     ]
   },
@@ -2328,86 +2328,86 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/item/variants/playground.tsx"
+        "source": "src/item/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/item/variants/overview.tsx"
+        "source": "src/item/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Variant",
         "slug": "variant",
-        "title": "Variant",
-        "source": "src/item/variants/variant.tsx"
+        "source": "src/item/variants/variant.tsx",
+        "title": "Variant"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/item/variants/size.tsx"
+        "source": "src/item/variants/size.tsx",
+        "title": "Size"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
-        "title": "Icon",
-        "source": "src/item/variants/icon.tsx"
+        "source": "src/item/variants/icon.tsx",
+        "title": "Icon"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
-        "title": "Avatar",
-        "source": "src/item/variants/avatar.tsx"
+        "source": "src/item/variants/avatar.tsx",
+        "title": "Avatar"
       },
       {
         "exportName": "Group",
         "slug": "group",
-        "title": "Group",
-        "source": "src/item/variants/group.tsx"
+        "source": "src/item/variants/group.tsx",
+        "title": "Group"
       },
       {
         "exportName": "SettingsPanel",
         "slug": "settings-panel",
-        "title": "Settings Panel",
-        "source": "src/item/variants/settings-panel.tsx"
+        "source": "src/item/variants/settings-panel.tsx",
+        "title": "Settings Panel"
       },
       {
         "exportName": "BookLibrary",
         "slug": "book-library",
-        "title": "Book Library",
-        "source": "src/item/variants/book-library.tsx"
+        "source": "src/item/variants/book-library.tsx",
+        "title": "Book Library"
       },
       {
         "exportName": "JoinedSelection",
         "slug": "joined-selection",
-        "title": "Joined Selection",
-        "source": "src/item/variants/joined-selection.tsx"
+        "source": "src/item/variants/joined-selection.tsx",
+        "title": "Joined Selection"
       },
       {
         "exportName": "Link",
         "slug": "link",
-        "title": "Link",
-        "source": "src/item/variants/link.tsx"
+        "source": "src/item/variants/link.tsx",
+        "title": "Link"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
-        "title": "Dropdown",
-        "source": "src/item/variants/dropdown.tsx"
+        "source": "src/item/variants/dropdown.tsx",
+        "title": "Dropdown"
       },
       {
         "exportName": "Header",
         "slug": "header",
-        "title": "Header",
-        "source": "src/item/variants/header.tsx"
+        "source": "src/item/variants/header.tsx",
+        "title": "Header"
       },
       {
         "exportName": "Image",
         "slug": "image",
-        "title": "Image",
-        "source": "src/item/variants/image.tsx"
+        "source": "src/item/variants/image.tsx",
+        "title": "Image"
       }
     ]
   },
@@ -2418,32 +2418,32 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/kbd/variants/playground.tsx"
+        "source": "src/kbd/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/kbd/variants/overview.tsx"
+        "source": "src/kbd/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Button",
         "slug": "button",
-        "title": "Button",
-        "source": "src/kbd/variants/button.tsx"
+        "source": "src/kbd/variants/button.tsx",
+        "title": "Button"
       },
       {
         "exportName": "Tooltip",
         "slug": "tooltip",
-        "title": "Tooltip",
-        "source": "src/kbd/variants/tooltip.tsx"
+        "source": "src/kbd/variants/tooltip.tsx",
+        "title": "Tooltip"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
-        "title": "Input Group",
-        "source": "src/kbd/variants/input-group.tsx"
+        "source": "src/kbd/variants/input-group.tsx",
+        "title": "Input Group"
       }
     ]
   },
@@ -2454,56 +2454,56 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/marker/variants/playground.tsx"
+        "source": "src/marker/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/marker/variants/overview.tsx"
+        "source": "src/marker/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
-        "title": "Variants",
-        "source": "src/marker/variants/variants.tsx"
+        "source": "src/marker/variants/variants.tsx",
+        "title": "Variants"
       },
       {
         "exportName": "Status",
         "slug": "status",
-        "title": "Status",
-        "source": "src/marker/variants/status.tsx"
+        "source": "src/marker/variants/status.tsx",
+        "title": "Status"
       },
       {
         "exportName": "Shimmer",
         "slug": "shimmer",
-        "title": "Shimmer",
-        "source": "src/marker/variants/shimmer.tsx"
+        "source": "src/marker/variants/shimmer.tsx",
+        "title": "Shimmer"
       },
       {
         "exportName": "Separator",
         "slug": "separator",
-        "title": "Separator",
-        "source": "src/marker/variants/separator.tsx"
+        "source": "src/marker/variants/separator.tsx",
+        "title": "Separator"
       },
       {
         "exportName": "Border",
         "slug": "border",
-        "title": "Border",
-        "source": "src/marker/variants/border.tsx"
+        "source": "src/marker/variants/border.tsx",
+        "title": "Border"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
-        "title": "With Icon",
-        "source": "src/marker/variants/icon.tsx"
+        "source": "src/marker/variants/icon.tsx",
+        "title": "With Icon"
       },
       {
         "exportName": "LinkButton",
         "slug": "link-button",
-        "title": "Links and Buttons",
-        "source": "src/marker/variants/link-button.tsx"
+        "source": "src/marker/variants/link-button.tsx",
+        "title": "Links and Buttons"
       }
     ]
   },
@@ -2514,44 +2514,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/menubar/variants/playground.tsx"
+        "source": "src/menubar/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/menubar/variants/overview.tsx"
+        "source": "src/menubar/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Checkbox",
         "slug": "checkbox",
-        "title": "Checkbox",
-        "source": "src/menubar/variants/checkbox.tsx"
+        "source": "src/menubar/variants/checkbox.tsx",
+        "title": "Checkbox"
       },
       {
         "exportName": "Radio",
         "slug": "radio",
-        "title": "Radio",
-        "source": "src/menubar/variants/radio.tsx"
+        "source": "src/menubar/variants/radio.tsx",
+        "title": "Radio"
       },
       {
         "exportName": "Submenu",
         "slug": "submenu",
-        "title": "Submenu",
-        "source": "src/menubar/variants/submenu.tsx"
+        "source": "src/menubar/variants/submenu.tsx",
+        "title": "Submenu"
       },
       {
         "exportName": "WithIcons",
         "slug": "with-icons",
-        "title": "With Icons",
-        "source": "src/menubar/variants/with-icons.tsx"
+        "source": "src/menubar/variants/with-icons.tsx",
+        "title": "With Icons"
       },
       {
         "exportName": "Searchable",
         "slug": "searchable",
-        "title": "Searchable",
-        "source": "src/menubar/variants/searchable.tsx"
+        "source": "src/menubar/variants/searchable.tsx",
+        "title": "Searchable"
       }
     ]
   },
@@ -2562,44 +2562,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/message/variants/playground.tsx"
+        "source": "src/message/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/message/variants/overview.tsx"
+        "source": "src/message/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
-        "title": "Avatar",
-        "source": "src/message/variants/avatar.tsx"
+        "source": "src/message/variants/avatar.tsx",
+        "title": "Avatar"
       },
       {
         "exportName": "Group",
         "slug": "group",
-        "title": "Group",
-        "source": "src/message/variants/group.tsx"
+        "source": "src/message/variants/group.tsx",
+        "title": "Group"
       },
       {
         "exportName": "HeaderFooter",
         "slug": "header-footer",
-        "title": "Header and Footer",
-        "source": "src/message/variants/header-footer.tsx"
+        "source": "src/message/variants/header-footer.tsx",
+        "title": "Header and Footer"
       },
       {
         "exportName": "Actions",
         "slug": "actions",
-        "title": "Actions",
-        "source": "src/message/variants/actions.tsx"
+        "source": "src/message/variants/actions.tsx",
+        "title": "Actions"
       },
       {
         "exportName": "Attachment",
         "slug": "attachment",
-        "title": "Attachment",
-        "source": "src/message/variants/attachment.tsx"
+        "source": "src/message/variants/attachment.tsx",
+        "title": "Attachment"
       }
     ]
   },
@@ -2610,74 +2610,74 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/message-scroller/variants/playground.tsx"
+        "source": "src/message-scroller/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/message-scroller/variants/overview.tsx"
+        "source": "src/message-scroller/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "GroupChat",
         "slug": "group-chat",
-        "title": "Group Chat",
-        "source": "src/message-scroller/variants/group-chat.tsx"
+        "source": "src/message-scroller/variants/group-chat.tsx",
+        "title": "Group Chat"
       },
       {
         "exportName": "OpeningPosition",
         "slug": "opening-position",
-        "title": "Opening Position",
-        "source": "src/message-scroller/variants/opening-position.tsx"
+        "source": "src/message-scroller/variants/opening-position.tsx",
+        "title": "Opening Position"
       },
       {
         "exportName": "AnchoredTurns",
         "slug": "anchored-turns",
-        "title": "Anchored Turns",
-        "source": "src/message-scroller/variants/anchored-turns.tsx"
+        "source": "src/message-scroller/variants/anchored-turns.tsx",
+        "title": "Anchored Turns"
       },
       {
         "exportName": "PreviousTurnContext",
         "slug": "previous-turn-context",
-        "title": "Previous Turn Context",
-        "source": "src/message-scroller/variants/previous-turn-context.tsx"
+        "source": "src/message-scroller/variants/previous-turn-context.tsx",
+        "title": "Previous Turn Context"
       },
       {
         "exportName": "StreamingReply",
         "slug": "streaming-reply",
-        "title": "Streaming Reply",
-        "source": "src/message-scroller/variants/streaming-reply.tsx"
+        "source": "src/message-scroller/variants/streaming-reply.tsx",
+        "title": "Streaming Reply"
       },
       {
         "exportName": "LoadEarlierHistory",
         "slug": "load-earlier-history",
-        "title": "Load Earlier History",
-        "source": "src/message-scroller/variants/load-earlier-history.tsx"
+        "source": "src/message-scroller/variants/load-earlier-history.tsx",
+        "title": "Load Earlier History"
       },
       {
         "exportName": "AnimatedReply",
         "slug": "animated-reply",
-        "title": "Animated Reply",
-        "source": "src/message-scroller/variants/animated-reply.tsx"
+        "source": "src/message-scroller/variants/animated-reply.tsx",
+        "title": "Animated Reply"
       },
       {
         "exportName": "ScrollCommands",
         "slug": "scroll-commands",
-        "title": "Scroll Commands",
-        "source": "src/message-scroller/variants/scroll-commands.tsx"
+        "source": "src/message-scroller/variants/scroll-commands.tsx",
+        "title": "Scroll Commands"
       },
       {
         "exportName": "Visibility",
         "slug": "visibility",
-        "title": "Visibility",
-        "source": "src/message-scroller/variants/visibility.tsx"
+        "source": "src/message-scroller/variants/visibility.tsx",
+        "title": "Visibility"
       },
       {
         "exportName": "Scrollable",
         "slug": "scrollable",
-        "title": "Scrollable",
-        "source": "src/message-scroller/variants/scrollable.tsx"
+        "source": "src/message-scroller/variants/scrollable.tsx",
+        "title": "Scrollable"
       }
     ]
   },
@@ -2688,20 +2688,20 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/meter/variants/playground.tsx"
+        "source": "src/meter/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/meter/variants/overview.tsx"
+        "source": "src/meter/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Range",
         "slug": "range",
-        "title": "Range",
-        "source": "src/meter/variants/range.tsx"
+        "source": "src/meter/variants/range.tsx",
+        "title": "Range"
       }
     ]
   },
@@ -2712,20 +2712,20 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/navigation-menu/variants/playground.tsx"
+        "source": "src/navigation-menu/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/navigation-menu/variants/overview.tsx"
+        "source": "src/navigation-menu/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "LinkComponent",
         "slug": "link-component",
-        "title": "Link Component",
-        "source": "src/navigation-menu/variants/link-component.tsx"
+        "source": "src/navigation-menu/variants/link-component.tsx",
+        "title": "Link Component"
       }
     ]
   },
@@ -2736,44 +2736,44 @@
       {
         "exportName": "Default",
         "slug": "default",
-        "title": "Default",
-        "source": "src/number-field/variants/default.tsx"
+        "source": "src/number-field/variants/default.tsx",
+        "title": "Default"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
-        "title": "Sizes",
-        "source": "src/number-field/variants/sizes.tsx"
+        "source": "src/number-field/variants/sizes.tsx",
+        "title": "Sizes"
       },
       {
         "exportName": "ScrubLabel",
         "slug": "scrub-label",
-        "title": "Scrub Label",
-        "source": "src/number-field/variants/scrub-label.tsx"
+        "source": "src/number-field/variants/scrub-label.tsx",
+        "title": "Scrub Label"
       },
       {
         "exportName": "Formats",
         "slug": "formats",
-        "title": "Formats",
-        "source": "src/number-field/variants/formats.tsx"
+        "source": "src/number-field/variants/formats.tsx",
+        "title": "Formats"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/number-field/variants/controlled.tsx"
+        "source": "src/number-field/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "Direction",
         "slug": "direction",
-        "title": "Direction",
-        "source": "src/number-field/variants/direction.tsx"
+        "source": "src/number-field/variants/direction.tsx",
+        "title": "Direction"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
-        "title": "Showcase",
-        "source": "src/number-field/variants/showcase.tsx"
+        "source": "src/number-field/variants/showcase.tsx",
+        "title": "Showcase"
       }
     ]
   },
@@ -2784,68 +2784,68 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/otp-field/variants/playground.tsx"
+        "source": "src/otp-field/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/otp-field/variants/overview.tsx"
+        "source": "src/otp-field/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Separator",
         "slug": "separator",
-        "title": "Separator",
-        "source": "src/otp-field/variants/separator.tsx"
+        "source": "src/otp-field/variants/separator.tsx",
+        "title": "Separator"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/otp-field/variants/controlled.tsx"
+        "source": "src/otp-field/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "Form",
         "slug": "form",
-        "title": "Form",
-        "source": "src/otp-field/variants/form.tsx"
+        "source": "src/otp-field/variants/form.tsx",
+        "title": "Form"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/otp-field/variants/disabled.tsx"
+        "source": "src/otp-field/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/otp-field/variants/invalid.tsx"
+        "source": "src/otp-field/variants/invalid.tsx",
+        "title": "Invalid"
       },
       {
         "exportName": "Status",
         "slug": "status",
-        "title": "Status",
-        "source": "src/otp-field/variants/status.tsx"
+        "source": "src/otp-field/variants/status.tsx",
+        "title": "Status"
       },
       {
         "exportName": "Pattern",
         "slug": "pattern",
-        "title": "Pattern",
-        "source": "src/otp-field/variants/pattern.tsx"
+        "source": "src/otp-field/variants/pattern.tsx",
+        "title": "Pattern"
       },
       {
         "exportName": "FourDigits",
         "slug": "four-digits",
-        "title": "Four Digits",
-        "source": "src/otp-field/variants/four-digits.tsx"
+        "source": "src/otp-field/variants/four-digits.tsx",
+        "title": "Four Digits"
       },
       {
         "exportName": "Alphanumeric",
         "slug": "alphanumeric",
-        "title": "Alphanumeric",
-        "source": "src/otp-field/variants/alphanumeric.tsx"
+        "source": "src/otp-field/variants/alphanumeric.tsx",
+        "title": "Alphanumeric"
       }
     ]
   },
@@ -2856,8 +2856,8 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/overlay-provider/variants/overview.tsx"
+        "source": "src/overlay-provider/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   },
@@ -2868,26 +2868,26 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/pagination/variants/playground.tsx"
+        "source": "src/pagination/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/pagination/variants/overview.tsx"
+        "source": "src/pagination/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Simple",
         "slug": "simple",
-        "title": "Simple",
-        "source": "src/pagination/variants/simple.tsx"
+        "source": "src/pagination/variants/simple.tsx",
+        "title": "Simple"
       },
       {
         "exportName": "IconsOnly",
         "slug": "icons-only",
-        "title": "Icons Only",
-        "source": "src/pagination/variants/icons-only.tsx"
+        "source": "src/pagination/variants/icons-only.tsx",
+        "title": "Icons Only"
       }
     ]
   },
@@ -2898,32 +2898,32 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/popover/variants/playground.tsx"
+        "source": "src/popover/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/popover/variants/overview.tsx"
+        "source": "src/popover/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
-        "title": "Basic",
-        "source": "src/popover/variants/basic.tsx"
+        "source": "src/popover/variants/basic.tsx",
+        "title": "Basic"
       },
       {
         "exportName": "Align",
         "slug": "align",
-        "title": "Align",
-        "source": "src/popover/variants/align.tsx"
+        "source": "src/popover/variants/align.tsx",
+        "title": "Align"
       },
       {
         "exportName": "WithForm",
         "slug": "with-form",
-        "title": "With Form",
-        "source": "src/popover/variants/with-form.tsx"
+        "source": "src/popover/variants/with-form.tsx",
+        "title": "With Form"
       }
     ]
   },
@@ -2934,38 +2934,38 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/progress/variants/playground.tsx"
+        "source": "src/progress/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/progress/variants/overview.tsx"
+        "source": "src/progress/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Partial",
         "slug": "partial",
-        "title": "Partial",
-        "source": "src/progress/variants/partial.tsx"
+        "source": "src/progress/variants/partial.tsx",
+        "title": "Partial"
       },
       {
         "exportName": "Complete",
         "slug": "complete",
-        "title": "Complete",
-        "source": "src/progress/variants/complete.tsx"
+        "source": "src/progress/variants/complete.tsx",
+        "title": "Complete"
       },
       {
         "exportName": "Label",
         "slug": "label",
-        "title": "Label",
-        "source": "src/progress/variants/label.tsx"
+        "source": "src/progress/variants/label.tsx",
+        "title": "Label"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/progress/variants/controlled.tsx"
+        "source": "src/progress/variants/controlled.tsx",
+        "title": "Controlled"
       }
     ]
   },
@@ -2976,98 +2976,98 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/questionnaire/variants/playground.tsx"
+        "source": "src/questionnaire/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/questionnaire/variants/overview.tsx"
+        "source": "src/questionnaire/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
-        "title": "Multiple Selection",
-        "source": "src/questionnaire/variants/multiple.tsx"
+        "source": "src/questionnaire/variants/multiple.tsx",
+        "title": "Multiple Selection"
       },
       {
         "exportName": "Freeform",
         "slug": "freeform",
-        "title": "Freeform Answer",
-        "source": "src/questionnaire/variants/freeform.tsx"
+        "source": "src/questionnaire/variants/freeform.tsx",
+        "title": "Freeform Answer"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
-        "title": "Shortcuts",
-        "source": "src/questionnaire/variants/shortcuts.tsx"
+        "source": "src/questionnaire/variants/shortcuts.tsx",
+        "title": "Shortcuts"
       },
       {
         "exportName": "Validation",
         "slug": "validation",
-        "title": "Custom Validation",
-        "source": "src/questionnaire/variants/validation.tsx"
+        "source": "src/questionnaire/variants/validation.tsx",
+        "title": "Custom Validation"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/questionnaire/variants/controlled.tsx"
+        "source": "src/questionnaire/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "Resume",
         "slug": "resume",
-        "title": "Resume",
-        "source": "src/questionnaire/variants/resume.tsx"
+        "source": "src/questionnaire/variants/resume.tsx",
+        "title": "Resume"
       },
       {
         "exportName": "Conditional",
         "slug": "conditional",
-        "title": "Conditional Items",
-        "source": "src/questionnaire/variants/conditional.tsx"
+        "source": "src/questionnaire/variants/conditional.tsx",
+        "title": "Conditional Items"
       },
       {
         "exportName": "Progress",
         "slug": "progress",
-        "title": "Step Indicator",
-        "source": "src/questionnaire/variants/progress.tsx"
+        "source": "src/questionnaire/variants/progress.tsx",
+        "title": "Step Indicator"
       },
       {
         "exportName": "Animated",
         "slug": "animated",
-        "title": "Animated Items",
-        "source": "src/questionnaire/variants/animated.tsx"
+        "source": "src/questionnaire/variants/animated.tsx",
+        "title": "Animated Items"
       },
       {
         "exportName": "Card",
         "slug": "card",
-        "title": "Card",
-        "source": "src/questionnaire/variants/card.tsx"
+        "source": "src/questionnaire/variants/card.tsx",
+        "title": "Card"
       },
       {
         "exportName": "Dialog",
         "slug": "dialog",
-        "title": "Dialog",
-        "source": "src/questionnaire/variants/dialog.tsx"
+        "source": "src/questionnaire/variants/dialog.tsx",
+        "title": "Dialog"
       },
       {
         "exportName": "Skip",
         "slug": "skip",
-        "title": "Explicit Skip",
-        "source": "src/questionnaire/variants/skip.tsx"
+        "source": "src/questionnaire/variants/skip.tsx",
+        "title": "Explicit Skip"
       },
       {
         "exportName": "NavigationState",
         "slug": "navigation-state",
-        "title": "Navigation State",
-        "source": "src/questionnaire/variants/navigation-state.tsx"
+        "source": "src/questionnaire/variants/navigation-state.tsx",
+        "title": "Navigation State"
       },
       {
         "exportName": "SubmitState",
         "slug": "submit-state",
-        "title": "Submit State",
-        "source": "src/questionnaire/variants/submit-state.tsx"
+        "source": "src/questionnaire/variants/submit-state.tsx",
+        "title": "Submit State"
       }
     ]
   },
@@ -3078,62 +3078,62 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/radio-group/variants/playground.tsx"
+        "source": "src/radio-group/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/radio-group/variants/overview.tsx"
+        "source": "src/radio-group/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/radio-group/variants/controlled.tsx"
+        "source": "src/radio-group/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
-        "title": "Read Only",
-        "source": "src/radio-group/variants/read-only.tsx"
+        "source": "src/radio-group/variants/read-only.tsx",
+        "title": "Read Only"
       },
       {
         "exportName": "Form",
         "slug": "form",
-        "title": "Form",
-        "source": "src/radio-group/variants/form.tsx"
+        "source": "src/radio-group/variants/form.tsx",
+        "title": "Form"
       },
       {
         "exportName": "Description",
         "slug": "description",
-        "title": "Description",
-        "source": "src/radio-group/variants/description.tsx"
+        "source": "src/radio-group/variants/description.tsx",
+        "title": "Description"
       },
       {
         "exportName": "ChoiceCard",
         "slug": "choice-card",
-        "title": "Choice Card",
-        "source": "src/radio-group/variants/choice-card.tsx"
+        "source": "src/radio-group/variants/choice-card.tsx",
+        "title": "Choice Card"
       },
       {
         "exportName": "Fieldset",
         "slug": "fieldset",
-        "title": "Fieldset",
-        "source": "src/radio-group/variants/fieldset.tsx"
+        "source": "src/radio-group/variants/fieldset.tsx",
+        "title": "Fieldset"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/radio-group/variants/disabled.tsx"
+        "source": "src/radio-group/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/radio-group/variants/invalid.tsx"
+        "source": "src/radio-group/variants/invalid.tsx",
+        "title": "Invalid"
       }
     ]
   },
@@ -3144,26 +3144,26 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/resizable/variants/playground.tsx"
+        "source": "src/resizable/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/resizable/variants/overview.tsx"
+        "source": "src/resizable/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/resizable/variants/vertical.tsx"
+        "source": "src/resizable/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "Handle",
         "slug": "handle",
-        "title": "Handle",
-        "source": "src/resizable/variants/handle.tsx"
+        "source": "src/resizable/variants/handle.tsx",
+        "title": "Handle"
       }
     ]
   },
@@ -3174,20 +3174,20 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/scroll-area/variants/playground.tsx"
+        "source": "src/scroll-area/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/scroll-area/variants/overview.tsx"
+        "source": "src/scroll-area/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Horizontal",
         "slug": "horizontal",
-        "title": "Horizontal",
-        "source": "src/scroll-area/variants/horizontal.tsx"
+        "source": "src/scroll-area/variants/horizontal.tsx",
+        "title": "Horizontal"
       }
     ]
   },
@@ -3198,20 +3198,20 @@
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/scroll-fade/variants/vertical.tsx"
+        "source": "src/scroll-fade/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "HorizontalRTL",
         "slug": "horizontal-rtl",
-        "title": "Horizontal RTL",
-        "source": "src/scroll-fade/variants/horizontal-rtl.tsx"
+        "source": "src/scroll-fade/variants/horizontal-rtl.tsx",
+        "title": "Horizontal RTL"
       },
       {
         "exportName": "SingleEdgeAndCustomDepth",
         "slug": "single-edge-and-custom-depth",
-        "title": "Single Edge And Custom Depth",
-        "source": "src/scroll-fade/variants/single-edge-and-custom-depth.tsx"
+        "source": "src/scroll-fade/variants/single-edge-and-custom-depth.tsx",
+        "title": "Single Edge And Custom Depth"
       }
     ]
   },
@@ -3222,50 +3222,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/select/variants/playground.tsx"
+        "source": "src/select/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/select/variants/overview.tsx"
+        "source": "src/select/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Scrollable",
         "slug": "scrollable",
-        "title": "Scrollable",
-        "source": "src/select/variants/scrollable.tsx"
+        "source": "src/select/variants/scrollable.tsx",
+        "title": "Scrollable"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
-        "title": "Groups",
-        "source": "src/select/variants/groups.tsx"
+        "source": "src/select/variants/groups.tsx",
+        "title": "Groups"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/select/variants/disabled.tsx"
+        "source": "src/select/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/select/variants/invalid.tsx"
+        "source": "src/select/variants/invalid.tsx",
+        "title": "Invalid"
       },
       {
         "exportName": "AlignItemWithTrigger",
         "slug": "align-item-with-trigger",
-        "title": "Align Item With Trigger",
-        "source": "src/select/variants/align-item-with-trigger.tsx"
+        "source": "src/select/variants/align-item-with-trigger.tsx",
+        "title": "Align Item With Trigger"
       },
       {
         "exportName": "ReadonlySelection",
         "slug": "readonly-selection",
-        "title": "Readonly selection",
-        "source": "src/select/variants/readonly-selection.tsx"
+        "source": "src/select/variants/readonly-selection.tsx",
+        "title": "Readonly selection"
       }
     ]
   },
@@ -3276,56 +3276,56 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/separator/variants/playground.tsx"
+        "source": "src/separator/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/separator/variants/overview.tsx"
+        "source": "src/separator/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/separator/variants/vertical.tsx"
+        "source": "src/separator/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "Labeled",
         "slug": "labeled",
-        "title": "Labeled",
-        "source": "src/separator/variants/labeled.tsx"
+        "source": "src/separator/variants/labeled.tsx",
+        "title": "Labeled"
       },
       {
         "exportName": "FullWidth",
         "slug": "full-width",
-        "title": "Full Width",
-        "source": "src/separator/variants/full-width.tsx"
+        "source": "src/separator/variants/full-width.tsx",
+        "title": "Full Width"
       },
       {
         "exportName": "OnSurfaces",
         "slug": "on-surfaces",
-        "title": "On Surfaces",
-        "source": "src/separator/variants/on-surfaces.tsx"
+        "source": "src/separator/variants/on-surfaces.tsx",
+        "title": "On Surfaces"
       },
       {
         "exportName": "Menu",
         "slug": "menu",
-        "title": "Menu",
-        "source": "src/separator/variants/menu.tsx"
+        "source": "src/separator/variants/menu.tsx",
+        "title": "Menu"
       },
       {
         "exportName": "List",
         "slug": "list",
-        "title": "List",
-        "source": "src/separator/variants/list.tsx"
+        "source": "src/separator/variants/list.tsx",
+        "title": "List"
       },
       {
         "exportName": "MarginSizing",
         "slug": "margin-sizing",
-        "title": "Margin Sizing",
-        "source": "src/separator/variants/margin-sizing.tsx"
+        "source": "src/separator/variants/margin-sizing.tsx",
+        "title": "Margin Sizing"
       }
     ]
   },
@@ -3336,8 +3336,8 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/shake/variants/overview.tsx"
+        "source": "src/shake/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   },
@@ -3348,26 +3348,26 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/sheet/variants/playground.tsx"
+        "source": "src/sheet/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/sheet/variants/overview.tsx"
+        "source": "src/sheet/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Side",
         "slug": "side",
-        "title": "Side",
-        "source": "src/sheet/variants/side.tsx"
+        "source": "src/sheet/variants/side.tsx",
+        "title": "Side"
       },
       {
         "exportName": "NoCloseButton",
         "slug": "no-close-button",
-        "title": "No Close Button",
-        "source": "src/sheet/variants/no-close-button.tsx"
+        "source": "src/sheet/variants/no-close-button.tsx",
+        "title": "No Close Button"
       }
     ]
   },
@@ -3378,20 +3378,20 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/sidebar/variants/playground.tsx"
+        "source": "src/sidebar/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/sidebar/variants/overview.tsx"
+        "source": "src/sidebar/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "ControlledSidebar",
         "slug": "controlled-sidebar",
-        "title": "Controlled Sidebar",
-        "source": "src/sidebar/variants/controlled-sidebar.tsx"
+        "source": "src/sidebar/variants/controlled-sidebar.tsx",
+        "title": "Controlled Sidebar"
       }
     ]
   },
@@ -3402,20 +3402,20 @@
       {
         "exportName": "Controls",
         "slug": "controls",
-        "title": "Controls",
-        "source": "src/sizing/variants/controls.tsx"
+        "source": "src/sizing/variants/controls.tsx",
+        "title": "Controls"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
-        "title": "Composition",
-        "source": "src/sizing/variants/composition.tsx"
+        "source": "src/sizing/variants/composition.tsx",
+        "title": "Composition"
       },
       {
         "exportName": "Workflow",
         "slug": "workflow",
-        "title": "Workflow",
-        "source": "src/sizing/variants/workflow.tsx"
+        "source": "src/sizing/variants/workflow.tsx",
+        "title": "Workflow"
       }
     ]
   },
@@ -3426,56 +3426,56 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/skeleton/variants/playground.tsx"
+        "source": "src/skeleton/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/skeleton/variants/overview.tsx"
+        "source": "src/skeleton/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "LoadingCard",
         "slug": "loading-card",
-        "title": "Loading Card",
-        "source": "src/skeleton/variants/loading-card.tsx"
+        "source": "src/skeleton/variants/loading-card.tsx",
+        "title": "Loading Card"
       },
       {
         "exportName": "Card",
         "slug": "card",
-        "title": "Card",
-        "source": "src/skeleton/variants/card.tsx"
+        "source": "src/skeleton/variants/card.tsx",
+        "title": "Card"
       },
       {
         "exportName": "Staggered",
         "slug": "staggered",
-        "title": "Staggered",
-        "source": "src/skeleton/variants/staggered.tsx"
+        "source": "src/skeleton/variants/staggered.tsx",
+        "title": "Staggered"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
-        "title": "Avatar",
-        "source": "src/skeleton/variants/avatar.tsx"
+        "source": "src/skeleton/variants/avatar.tsx",
+        "title": "Avatar"
       },
       {
         "exportName": "Text",
         "slug": "text",
-        "title": "Text",
-        "source": "src/skeleton/variants/text.tsx"
+        "source": "src/skeleton/variants/text.tsx",
+        "title": "Text"
       },
       {
         "exportName": "Form",
         "slug": "form",
-        "title": "Form",
-        "source": "src/skeleton/variants/form.tsx"
+        "source": "src/skeleton/variants/form.tsx",
+        "title": "Form"
       },
       {
         "exportName": "Table",
         "slug": "table",
-        "title": "Table",
-        "source": "src/skeleton/variants/table.tsx"
+        "source": "src/skeleton/variants/table.tsx",
+        "title": "Table"
       }
     ]
   },
@@ -3486,50 +3486,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/slider/variants/playground.tsx"
+        "source": "src/slider/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/slider/variants/overview.tsx"
+        "source": "src/slider/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Midpoint",
         "slug": "midpoint",
-        "title": "Midpoint",
-        "source": "src/slider/variants/midpoint.tsx"
+        "source": "src/slider/variants/midpoint.tsx",
+        "title": "Midpoint"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/slider/variants/disabled.tsx"
+        "source": "src/slider/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Range",
         "slug": "range",
-        "title": "Range",
-        "source": "src/slider/variants/range.tsx"
+        "source": "src/slider/variants/range.tsx",
+        "title": "Range"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/slider/variants/vertical.tsx"
+        "source": "src/slider/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/slider/variants/controlled.tsx"
+        "source": "src/slider/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "MultipleThumbs",
         "slug": "multiple-thumbs",
-        "title": "Multiple Thumbs",
-        "source": "src/slider/variants/multiple-thumbs.tsx"
+        "source": "src/slider/variants/multiple-thumbs.tsx",
+        "title": "Multiple Thumbs"
       }
     ]
   },
@@ -3540,44 +3540,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/spinner/variants/playground.tsx"
+        "source": "src/spinner/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/spinner/variants/overview.tsx"
+        "source": "src/spinner/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/spinner/variants/size.tsx"
+        "source": "src/spinner/variants/size.tsx",
+        "title": "Size"
       },
       {
         "exportName": "Button",
         "slug": "button",
-        "title": "Button",
-        "source": "src/spinner/variants/button.tsx"
+        "source": "src/spinner/variants/button.tsx",
+        "title": "Button"
       },
       {
         "exportName": "Badge",
         "slug": "badge",
-        "title": "Badge",
-        "source": "src/spinner/variants/badge.tsx"
+        "source": "src/spinner/variants/badge.tsx",
+        "title": "Badge"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
-        "title": "Input Group",
-        "source": "src/spinner/variants/input-group.tsx"
+        "source": "src/spinner/variants/input-group.tsx",
+        "title": "Input Group"
       },
       {
         "exportName": "Empty",
         "slug": "empty",
-        "title": "Empty",
-        "source": "src/spinner/variants/empty.tsx"
+        "source": "src/spinner/variants/empty.tsx",
+        "title": "Empty"
       }
     ]
   },
@@ -3588,20 +3588,20 @@
       {
         "exportName": "AsyncAction",
         "slug": "async-action",
-        "title": "Async Action",
-        "source": "src/stateful-button/variants/async-action.tsx"
+        "source": "src/stateful-button/variants/async-action.tsx",
+        "title": "Async Action"
       },
       {
         "exportName": "TanStackForm",
         "slug": "tan-stack-form",
-        "title": "Tan Stack Form",
-        "source": "src/stateful-button/variants/tan-stack-form.tsx"
+        "source": "src/stateful-button/variants/tan-stack-form.tsx",
+        "title": "Tan Stack Form"
       },
       {
         "exportName": "Directions",
         "slug": "directions",
-        "title": "Directions",
-        "source": "src/stateful-button/variants/directions.tsx"
+        "source": "src/stateful-button/variants/directions.tsx",
+        "title": "Directions"
       }
     ]
   },
@@ -3612,38 +3612,38 @@
       {
         "exportName": "CopyFeedback",
         "slug": "copy-feedback",
-        "title": "Copy Feedback",
-        "source": "src/stateful-icon/variants/copy-feedback.tsx"
+        "source": "src/stateful-icon/variants/copy-feedback.tsx",
+        "title": "Copy Feedback"
       },
       {
         "exportName": "RotatingChevron",
         "slug": "rotating-chevron",
-        "title": "Rotating Chevron",
-        "source": "src/stateful-icon/variants/rotating-chevron.tsx"
+        "source": "src/stateful-icon/variants/rotating-chevron.tsx",
+        "title": "Rotating Chevron"
       },
       {
         "exportName": "ExpandableChevron",
         "slug": "expandable-chevron",
-        "title": "Expandable Chevron",
-        "source": "src/stateful-icon/variants/expandable-chevron.tsx"
+        "source": "src/stateful-icon/variants/expandable-chevron.tsx",
+        "title": "Expandable Chevron"
       },
       {
         "exportName": "SidebarToggleIcon",
         "slug": "sidebar-toggle-icon",
-        "title": "Sidebar Toggle Icon",
-        "source": "src/stateful-icon/variants/sidebar-toggle-icon.tsx"
+        "source": "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
+        "title": "Sidebar Toggle Icon"
       },
       {
         "exportName": "ThemeToggleIcon",
         "slug": "theme-toggle-icon",
-        "title": "Theme Toggle Icon",
-        "source": "src/stateful-icon/variants/theme-toggle-icon.tsx"
+        "source": "src/stateful-icon/variants/theme-toggle-icon.tsx",
+        "title": "Theme Toggle Icon"
       },
       {
         "exportName": "CheckboxState",
         "slug": "checkbox-state",
-        "title": "Checkbox state",
-        "source": "src/stateful-icon/variants/checkbox-state.tsx"
+        "source": "src/stateful-icon/variants/checkbox-state.tsx",
+        "title": "Checkbox state"
       }
     ]
   },
@@ -3654,50 +3654,50 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/step-indicator/variants/overview.tsx"
+        "source": "src/step-indicator/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
-        "title": "Read Only",
-        "source": "src/step-indicator/variants/read-only.tsx"
+        "source": "src/step-indicator/variants/read-only.tsx",
+        "title": "Read Only"
       },
       {
         "exportName": "Blocked",
         "slug": "blocked",
-        "title": "Blocked",
-        "source": "src/step-indicator/variants/blocked.tsx"
+        "source": "src/step-indicator/variants/blocked.tsx",
+        "title": "Blocked"
       },
       {
         "exportName": "Status",
         "slug": "status",
-        "title": "Status",
-        "source": "src/step-indicator/variants/status.tsx"
+        "source": "src/step-indicator/variants/status.tsx",
+        "title": "Status"
       },
       {
         "exportName": "Progress",
         "slug": "progress",
-        "title": "Progress",
-        "source": "src/step-indicator/variants/progress.tsx"
+        "source": "src/step-indicator/variants/progress.tsx",
+        "title": "Progress"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/step-indicator/variants/vertical.tsx"
+        "source": "src/step-indicator/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "Tabs",
         "slug": "tabs",
-        "title": "Tabs",
-        "source": "src/step-indicator/variants/tabs.tsx"
+        "source": "src/step-indicator/variants/tabs.tsx",
+        "title": "Tabs"
       },
       {
         "exportName": "TanstackForm",
         "slug": "tanstack-form",
-        "title": "TanStack Form",
-        "source": "src/step-indicator/variants/tanstack-form.tsx"
+        "source": "src/step-indicator/variants/tanstack-form.tsx",
+        "title": "TanStack Form"
       }
     ]
   },
@@ -3708,38 +3708,38 @@
       {
         "exportName": "Ladder",
         "slug": "ladder",
-        "title": "Ladder",
-        "source": "src/surfaces/variants/ladder.tsx"
+        "source": "src/surfaces/variants/ladder.tsx",
+        "title": "Ladder"
       },
       {
         "exportName": "Colored",
         "slug": "colored",
-        "title": "Colored",
-        "source": "src/surfaces/variants/colored.tsx"
+        "source": "src/surfaces/variants/colored.tsx",
+        "title": "Colored"
       },
       {
         "exportName": "Roles",
         "slug": "roles",
-        "title": "Roles",
-        "source": "src/surfaces/variants/roles.tsx"
+        "source": "src/surfaces/variants/roles.tsx",
+        "title": "Roles"
       },
       {
         "exportName": "Nesting",
         "slug": "nesting",
-        "title": "Nesting",
-        "source": "src/surfaces/variants/nesting.tsx"
+        "source": "src/surfaces/variants/nesting.tsx",
+        "title": "Nesting"
       },
       {
         "exportName": "States",
         "slug": "states",
-        "title": "States",
-        "source": "src/surfaces/variants/states.tsx"
+        "source": "src/surfaces/variants/states.tsx",
+        "title": "States"
       },
       {
         "exportName": "ControlStates",
         "slug": "control-states",
-        "title": "Control States",
-        "source": "src/surfaces/variants/control-states.tsx"
+        "source": "src/surfaces/variants/control-states.tsx",
+        "title": "Control States"
       }
     ]
   },
@@ -3750,74 +3750,74 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/switch/variants/playground.tsx"
+        "source": "src/switch/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/switch/variants/overview.tsx"
+        "source": "src/switch/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "On",
         "slug": "on",
-        "title": "On",
-        "source": "src/switch/variants/on.tsx"
+        "source": "src/switch/variants/on.tsx",
+        "title": "On"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/switch/variants/disabled.tsx"
+        "source": "src/switch/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Description",
         "slug": "description",
-        "title": "Description",
-        "source": "src/switch/variants/description.tsx"
+        "source": "src/switch/variants/description.tsx",
+        "title": "Description"
       },
       {
         "exportName": "ChoiceCard",
         "slug": "choice-card",
-        "title": "Choice Card",
-        "source": "src/switch/variants/choice-card.tsx"
+        "source": "src/switch/variants/choice-card.tsx",
+        "title": "Choice Card"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/switch/variants/invalid.tsx"
+        "source": "src/switch/variants/invalid.tsx",
+        "title": "Invalid"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/switch/variants/size.tsx"
+        "source": "src/switch/variants/size.tsx",
+        "title": "Size"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
-        "title": "Icons",
-        "source": "src/switch/variants/icons.tsx"
+        "source": "src/switch/variants/icons.tsx",
+        "title": "Icons"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
-        "title": "Controlled",
-        "source": "src/switch/variants/controlled.tsx"
+        "source": "src/switch/variants/controlled.tsx",
+        "title": "Controlled"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
-        "title": "Read Only",
-        "source": "src/switch/variants/read-only.tsx"
+        "source": "src/switch/variants/read-only.tsx",
+        "title": "Read Only"
       },
       {
         "exportName": "Form",
         "slug": "form",
-        "title": "Form",
-        "source": "src/switch/variants/form.tsx"
+        "source": "src/switch/variants/form.tsx",
+        "title": "Form"
       }
     ]
   },
@@ -3828,38 +3828,38 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/table/variants/playground.tsx"
+        "source": "src/table/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/table/variants/overview.tsx"
+        "source": "src/table/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Footer",
         "slug": "footer",
-        "title": "Footer",
-        "source": "src/table/variants/footer.tsx"
+        "source": "src/table/variants/footer.tsx",
+        "title": "Footer"
       },
       {
         "exportName": "Actions",
         "slug": "actions",
-        "title": "Actions",
-        "source": "src/table/variants/actions.tsx"
+        "source": "src/table/variants/actions.tsx",
+        "title": "Actions"
       },
       {
         "exportName": "RowSelection",
         "slug": "row-selection",
-        "title": "Row Selection",
-        "source": "src/table/variants/row-selection.tsx"
+        "source": "src/table/variants/row-selection.tsx",
+        "title": "Row Selection"
       },
       {
         "exportName": "RTL",
         "slug": "rtl",
-        "title": "RTL",
-        "source": "src/table/variants/rtl.tsx"
+        "source": "src/table/variants/rtl.tsx",
+        "title": "RTL"
       }
     ]
   },
@@ -3870,38 +3870,38 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/tabs/variants/playground.tsx"
+        "source": "src/tabs/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/tabs/variants/overview.tsx"
+        "source": "src/tabs/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Selection",
         "slug": "selection",
-        "title": "Selection",
-        "source": "src/tabs/variants/selection.tsx"
+        "source": "src/tabs/variants/selection.tsx",
+        "title": "Selection"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/tabs/variants/vertical.tsx"
+        "source": "src/tabs/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/tabs/variants/disabled.tsx"
+        "source": "src/tabs/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
-        "title": "Icons",
-        "source": "src/tabs/variants/icons.tsx"
+        "source": "src/tabs/variants/icons.tsx",
+        "title": "Icons"
       }
     ]
   },
@@ -3912,8 +3912,8 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/text-morph/variants/overview.tsx"
+        "source": "src/text-morph/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   },
@@ -3924,44 +3924,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/textarea/variants/playground.tsx"
+        "source": "src/textarea/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/textarea/variants/overview.tsx"
+        "source": "src/textarea/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "DisabledControl",
         "slug": "disabled-control",
-        "title": "Disabled Control",
-        "source": "src/textarea/variants/disabled-control.tsx"
+        "source": "src/textarea/variants/disabled-control.tsx",
+        "title": "Disabled Control"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
-        "title": "Invalid",
-        "source": "src/textarea/variants/invalid.tsx"
+        "source": "src/textarea/variants/invalid.tsx",
+        "title": "Invalid"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/textarea/variants/disabled.tsx"
+        "source": "src/textarea/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Field",
         "slug": "field",
-        "title": "Field",
-        "source": "src/textarea/variants/field.tsx"
+        "source": "src/textarea/variants/field.tsx",
+        "title": "Field"
       },
       {
         "exportName": "Button",
         "slug": "button",
-        "title": "Button",
-        "source": "src/textarea/variants/button.tsx"
+        "source": "src/textarea/variants/button.tsx",
+        "title": "Button"
       }
     ]
   },
@@ -3972,44 +3972,44 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/toast/variants/playground.tsx"
+        "source": "src/toast/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/toast/variants/overview.tsx"
+        "source": "src/toast/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Types",
         "slug": "types",
-        "title": "Types",
-        "source": "src/toast/variants/types.tsx"
+        "source": "src/toast/variants/types.tsx",
+        "title": "Types"
       },
       {
         "exportName": "Promise",
         "slug": "promise",
-        "title": "Promise",
-        "source": "src/toast/variants/promise.tsx"
+        "source": "src/toast/variants/promise.tsx",
+        "title": "Promise"
       },
       {
         "exportName": "Action",
         "slug": "action",
-        "title": "Action",
-        "source": "src/toast/variants/action.tsx"
+        "source": "src/toast/variants/action.tsx",
+        "title": "Action"
       },
       {
         "exportName": "Progress",
         "slug": "progress",
-        "title": "Progress",
-        "source": "src/toast/variants/progress.tsx"
+        "source": "src/toast/variants/progress.tsx",
+        "title": "Progress"
       },
       {
         "exportName": "Queue",
         "slug": "queue",
-        "title": "Queue",
-        "source": "src/toast/variants/queue.tsx"
+        "source": "src/toast/variants/queue.tsx",
+        "title": "Queue"
       }
     ]
   },
@@ -4020,50 +4020,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/toggle/variants/playground.tsx"
+        "source": "src/toggle/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/toggle/variants/overview.tsx"
+        "source": "src/toggle/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Pressed",
         "slug": "pressed",
-        "title": "Pressed",
-        "source": "src/toggle/variants/pressed.tsx"
+        "source": "src/toggle/variants/pressed.tsx",
+        "title": "Pressed"
       },
       {
         "exportName": "DisabledControl",
         "slug": "disabled-control",
-        "title": "Disabled Control",
-        "source": "src/toggle/variants/disabled-control.tsx"
+        "source": "src/toggle/variants/disabled-control.tsx",
+        "title": "Disabled Control"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
-        "title": "Outline",
-        "source": "src/toggle/variants/outline.tsx"
+        "source": "src/toggle/variants/outline.tsx",
+        "title": "Outline"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/toggle/variants/disabled.tsx"
+        "source": "src/toggle/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "WithText",
         "slug": "with-text",
-        "title": "With Text",
-        "source": "src/toggle/variants/with-text.tsx"
+        "source": "src/toggle/variants/with-text.tsx",
+        "title": "With Text"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/toggle/variants/size.tsx"
+        "source": "src/toggle/variants/size.tsx",
+        "title": "Size"
       }
     ]
   },
@@ -4074,50 +4074,50 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/toggle-group/variants/playground.tsx"
+        "source": "src/toggle-group/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/toggle-group/variants/overview.tsx"
+        "source": "src/toggle-group/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
-        "title": "Outline",
-        "source": "src/toggle-group/variants/outline.tsx"
+        "source": "src/toggle-group/variants/outline.tsx",
+        "title": "Outline"
       },
       {
         "exportName": "Spacing",
         "slug": "spacing",
-        "title": "Spacing",
-        "source": "src/toggle-group/variants/spacing.tsx"
+        "source": "src/toggle-group/variants/spacing.tsx",
+        "title": "Spacing"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/toggle-group/variants/disabled.tsx"
+        "source": "src/toggle-group/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "FontWeightSelector",
         "slug": "font-weight-selector",
-        "title": "Custom",
-        "source": "src/toggle-group/variants/font-weight-selector.tsx"
+        "source": "src/toggle-group/variants/font-weight-selector.tsx",
+        "title": "Custom"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/toggle-group/variants/vertical.tsx"
+        "source": "src/toggle-group/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "Size",
         "slug": "size",
-        "title": "Size",
-        "source": "src/toggle-group/variants/size.tsx"
+        "source": "src/toggle-group/variants/size.tsx",
+        "title": "Size"
       }
     ]
   },
@@ -4128,32 +4128,32 @@
       {
         "exportName": "Formatting",
         "slug": "formatting",
-        "title": "Formatting",
-        "source": "src/toolbar/variants/formatting.tsx"
+        "source": "src/toolbar/variants/formatting.tsx",
+        "title": "Formatting"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
-        "title": "Vertical",
-        "source": "src/toolbar/variants/vertical.tsx"
+        "source": "src/toolbar/variants/vertical.tsx",
+        "title": "Vertical"
       },
       {
         "exportName": "SearchAndLink",
         "slug": "search-and-link",
-        "title": "Search And Link",
-        "source": "src/toolbar/variants/search-and-link.tsx"
+        "source": "src/toolbar/variants/search-and-link.tsx",
+        "title": "Search And Link"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
-        "title": "Disabled",
-        "source": "src/toolbar/variants/disabled.tsx"
+        "source": "src/toolbar/variants/disabled.tsx",
+        "title": "Disabled"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
-        "title": "Showcase",
-        "source": "src/toolbar/variants/showcase.tsx"
+        "source": "src/toolbar/variants/showcase.tsx",
+        "title": "Showcase"
       }
     ]
   },
@@ -4164,32 +4164,32 @@
       {
         "exportName": "Playground",
         "slug": "playground",
-        "title": "Playground",
-        "source": "src/tooltip/variants/playground.tsx"
+        "source": "src/tooltip/variants/playground.tsx",
+        "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/tooltip/variants/overview.tsx"
+        "source": "src/tooltip/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "Side",
         "slug": "side",
-        "title": "Side",
-        "source": "src/tooltip/variants/side.tsx"
+        "source": "src/tooltip/variants/side.tsx",
+        "title": "Side"
       },
       {
         "exportName": "WithKeyboardShortcut",
         "slug": "with-keyboard-shortcut",
-        "title": "With Keyboard Shortcut",
-        "source": "src/tooltip/variants/with-keyboard-shortcut.tsx"
+        "source": "src/tooltip/variants/with-keyboard-shortcut.tsx",
+        "title": "With Keyboard Shortcut"
       },
       {
         "exportName": "DisabledButton",
         "slug": "disabled-button",
-        "title": "Disabled Button",
-        "source": "src/tooltip/variants/disabled-button.tsx"
+        "source": "src/tooltip/variants/disabled-button.tsx",
+        "title": "Disabled Button"
       }
     ]
   },
@@ -4200,32 +4200,32 @@
       {
         "exportName": "Typefaces",
         "slug": "typefaces",
-        "title": "Typefaces",
-        "source": "src/typography/variants/typefaces.tsx"
+        "source": "src/typography/variants/typefaces.tsx",
+        "title": "Typefaces"
       },
       {
         "exportName": "Interface",
         "slug": "interface",
-        "title": "Interface",
-        "source": "src/typography/variants/interface.tsx"
+        "source": "src/typography/variants/interface.tsx",
+        "title": "Interface"
       },
       {
         "exportName": "Code",
         "slug": "code",
-        "title": "Code",
-        "source": "src/typography/variants/code.tsx"
+        "source": "src/typography/variants/code.tsx",
+        "title": "Code"
       },
       {
         "exportName": "Reading",
         "slug": "reading",
-        "title": "Reading",
-        "source": "src/typography/variants/reading.tsx"
+        "source": "src/typography/variants/reading.tsx",
+        "title": "Reading"
       },
       {
         "exportName": "Multilingual",
         "slug": "multilingual",
-        "title": "Multilingual",
-        "source": "src/typography/variants/multilingual.tsx"
+        "source": "src/typography/variants/multilingual.tsx",
+        "title": "Multilingual"
       }
     ]
   },
@@ -4236,14 +4236,14 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/use-copy-to-clipboard/variants/overview.tsx"
+        "source": "src/use-copy-to-clipboard/variants/overview.tsx",
+        "title": "Overview"
       },
       {
         "exportName": "CustomButton",
         "slug": "custom-button",
-        "title": "Custom Button",
-        "source": "src/use-copy-to-clipboard/variants/custom-button.tsx"
+        "source": "src/use-copy-to-clipboard/variants/custom-button.tsx",
+        "title": "Custom Button"
       }
     ]
   },
@@ -4254,8 +4254,8 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/use-drag-select/variants/overview.tsx"
+        "source": "src/use-drag-select/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   },
@@ -4266,8 +4266,8 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/use-is-mobile/variants/overview.tsx"
+        "source": "src/use-is-mobile/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   },
@@ -4278,8 +4278,8 @@
       {
         "exportName": "Overview",
         "slug": "overview",
-        "title": "Overview",
-        "source": "src/use-media-query/variants/overview.tsx"
+        "source": "src/use-media-query/variants/overview.tsx",
+        "title": "Overview"
       }
     ]
   }

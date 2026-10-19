@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function Example() {\n  return <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" />;\n}\n",
       "path": "src/copy-button/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/copy-button/variants/overview.tsx",
-      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nexport default function Example() {\n  return <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" />;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

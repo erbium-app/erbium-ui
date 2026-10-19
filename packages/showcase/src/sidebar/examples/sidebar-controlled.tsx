@@ -19,29 +19,29 @@ import {
 
 const projects = [
   {
+    icon: "frame",
     name: "Design Engineering",
     url: "#",
-    icon: "frame",
   },
   {
+    icon: "pie-chart",
     name: "Sales & Marketing",
     url: "#",
-    icon: "pie-chart",
   },
   {
+    icon: "map",
     name: "Travel",
     url: "#",
-    icon: "map",
   },
   {
+    icon: "lifebuoy",
     name: "Support",
     url: "#",
-    icon: "lifebuoy",
   },
   {
+    icon: "send",
     name: "Feedback",
     url: "#",
-    icon: "send",
   },
 ] satisfies ({ icon: IconProps["name"] } & Record<string, unknown>)[];
 

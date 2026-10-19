@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "message-examples",
-  "type": "registry:item",
-  "title": "Message examples",
   "description": "All message examples.",
+  "name": "message-examples",
   "registryDependencies": [
     "@erbium-examples/message-playground",
     "@erbium-examples/message-overview",
@@ -12,5 +10,7 @@
     "@erbium-examples/message-header-footer",
     "@erbium-examples/message-actions",
     "@erbium-examples/message-attachment"
-  ]
+  ],
+  "title": "Message examples",
+  "type": "registry:item"
 }

@@ -5,12 +5,14 @@ export function ToastPromise() {
   function showToast() {
     void toast.promise(
       new Promise<{ name: string }>((resolve) => {
-        window.setTimeout(() => resolve({ name: "Event" }), 2000);
+        window.setTimeout(() => {
+          resolve({ name: "Event" });
+        }, 2000);
       }),
       {
+        error: "Could not create event.",
         loading: "Creating event…",
         success: (data) => `${data.name} created.`,
-        error: "Could not create event.",
       },
     );
   }

@@ -18,15 +18,15 @@ import HorizontalSource from "./variants/horizontal.tsx?raw";
 
 const meta = {
   component: ScrollArea,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("scroll-area"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof ScrollArea>;
 
 export default meta;
@@ -34,12 +34,12 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof ScrollArea> = {
-  args: { fade: "vertical", scrollbar: "thin", scrollbarVisibility: "always" },
   argTypes: {
     fade: { control: "select", options: ["vertical", "horizontal", false] },
     scrollbar: { control: "select", options: ["thin", "default", "none"] },
     scrollbarVisibility: { control: "select", options: ["always", "hover", "scroll"] },
   },
+  args: { fade: "vertical", scrollbar: "thin", scrollbarVisibility: "always" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("scroll-area", "playground") },

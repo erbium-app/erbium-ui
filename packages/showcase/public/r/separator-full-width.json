@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"grid w-72 gap-section\">\n    <div className=\"overflow-hidden rounded-lg surface-panel py-3\">\n      <div className=\"px-3 pb-3 text-caption\">Card header</div>\n      <Separator />\n      <div className=\"separator-inset grid gap-3 p-3 text-caption text-muted-foreground\">\n        Card content\n        <Separator />\n        Inset content divider\n      </div>\n    </div>\n    <div className=\"grid gap-3 text-caption text-muted-foreground\">\n      Canvas\n      <Separator />\n      <Separator variant=\"full\" />\n    </div>\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/separator/variants/full-width.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/separator/variants/full-width.tsx",
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"grid w-72 gap-section\">\n    <div className=\"overflow-hidden rounded-lg surface-panel py-3\">\n      <div className=\"px-3 pb-3 text-caption\">Card header</div>\n      <Separator />\n      <div className=\"separator-inset grid gap-3 p-3 text-caption text-muted-foreground\">\n        Card content\n        <Separator />\n        Inset content divider\n      </div>\n    </div>\n    <div className=\"grid gap-3 text-caption text-muted-foreground\">\n      Canvas\n      <Separator />\n      <Separator variant=\"full\" />\n    </div>\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

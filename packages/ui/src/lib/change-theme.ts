@@ -4,7 +4,8 @@ let transitionFrame = 0;
 export function changeTheme(update: () => void) {
   const root = document.documentElement;
   cancelAnimationFrame(transitionFrame);
-  root.setAttribute("data-theme-changing", "");
+  root.dataset.themeChanging = "";
+
   try {
     update();
   } finally {
@@ -12,7 +13,7 @@ export function changeTheme(update: () => void) {
     getComputedStyle(root).getPropertyValue("--background");
     transitionFrame = requestAnimationFrame(() => {
       transitionFrame = requestAnimationFrame(() => {
-        root.removeAttribute("data-theme-changing");
+        delete root.dataset.themeChanging;
       });
     });
   }

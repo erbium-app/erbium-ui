@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "message-scroller-examples",
-  "type": "registry:item",
-  "title": "Message Scroller examples",
   "description": "All message-scroller examples.",
+  "name": "message-scroller-examples",
   "registryDependencies": [
     "@erbium-examples/message-scroller-playground",
     "@erbium-examples/message-scroller-overview",
@@ -17,5 +15,7 @@
     "@erbium-examples/message-scroller-scroll-commands",
     "@erbium-examples/message-scroller-visibility",
     "@erbium-examples/message-scroller-scrollable"
-  ]
+  ],
+  "title": "Message Scroller examples",
+  "type": "registry:item"
 }

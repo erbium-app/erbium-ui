@@ -1,5 +1,9 @@
-import { AccordionContent, AccordionItem, AccordionTrigger } from "@erbium/ui/components/accordion";
-import { Accordion } from "@erbium/ui/components/accordion";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Accordion,
+} from "@erbium/ui/components/accordion";
 
 const Example = () => (
   <Accordion className="w-80">

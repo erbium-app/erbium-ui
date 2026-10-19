@@ -8,8 +8,8 @@
   "files": [
     {
       "path": "src/components/direction.tsx",
-      "type": "registry:ui",
       "target": "@ui/direction.tsx",
+      "type": "registry:ui",
       "content": "export { DirectionProvider, useDirection } from \"@base-ui/react/direction-provider\";\n"
     }
   ]

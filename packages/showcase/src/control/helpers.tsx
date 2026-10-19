@@ -4,6 +4,7 @@ import { Control } from "@erbium/ui/components/control";
 
 export function NumberExample() {
   const [value, setValue] = useState(0.7);
+
   return (
     <Control.Number
       label="Scale"

@@ -6,17 +6,17 @@ const Example = () => (
       label="Cover Photo"
       options={[
         {
-          value: "warm",
           label: "Warm",
           src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23d4976c'/%3E%3C/svg%3E",
+          value: "warm",
         },
         {
-          value: "cool",
           label: "Cool",
           src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%236394bf'/%3E%3C/svg%3E",
+          value: "cool",
         },
       ]}
-      onFileChange={() => undefined}
+      onFileChange={() => {}}
     />
   </Control.Group>
 );

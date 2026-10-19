@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "control-examples",
-  "type": "registry:item",
-  "title": "Control examples",
   "description": "All control examples.",
+  "name": "control-examples",
   "registryDependencies": [
     "@erbium-examples/control-overview",
     "@erbium-examples/control-number",
@@ -23,5 +21,7 @@
     "@erbium-examples/control-section",
     "@erbium-examples/control-group",
     "@erbium-examples/control-row"
-  ]
+  ],
+  "title": "Control examples",
+  "type": "registry:item"
 }

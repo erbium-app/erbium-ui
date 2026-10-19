@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\nimport { useState } from \"react\";\n\nconst options = [\n  { label: \"Light\", value: \"light\" },\n  { label: \"Dark\", value: \"dark\" },\n];\n\nexport default function RadioGroupControlled() {\n  const [value, setValue] = useState(\"light\");\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field>\n        <RadioGroup value={value} onValueChange={setValue}>\n          {options.map((option) => (\n            <FieldItem orientation=\"horizontal\" key={option.value}>\n              <RadioGroupItem value={option.value} />\n              <FieldLabel>{option.label}</FieldLabel>\n            </FieldItem>\n          ))}\n        </RadioGroup>\n      </Field>\n      <p className=\"text-caption text-muted-foreground\">\n        value: <code>{value}</code>\n      </p>\n    </div>\n  );\n}\n",
       "path": "src/radio-group/examples/radio-group-controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/radio-group/examples/radio-group-controlled.tsx",
-      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\nimport { useState } from \"react\";\n\nconst options = [\n  { value: \"light\", label: \"Light\" },\n  { value: \"dark\", label: \"Dark\" },\n];\n\nexport default function RadioGroupControlled() {\n  const [value, setValue] = useState(\"light\");\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field>\n        <RadioGroup value={value} onValueChange={setValue}>\n          {options.map((option) => (\n            <FieldItem orientation=\"horizontal\" key={option.value}>\n              <RadioGroupItem value={option.value} />\n              <FieldLabel>{option.label}</FieldLabel>\n            </FieldItem>\n          ))}\n        </RadioGroup>\n      </Field>\n      <p className=\"text-caption text-muted-foreground\">\n        value: <code>{value}</code>\n      </p>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleRadioGroupControlled from \"../examples/radio-group-controlled\";\n\nconst Example = () => <ExampleRadioGroupControlled />;\n\nexport default Example;\n",
       "path": "src/radio-group/variants/controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/radio-group/variants/controlled.tsx",
-      "content": "import ExampleRadioGroupControlled from \"../examples/radio-group-controlled\";\n\nconst Example = () => <ExampleRadioGroupControlled />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

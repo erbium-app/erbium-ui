@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import * as React from \"react\";\n\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldControlled() {\n  const [value, setValue] = React.useState(\"\");\n\n  return (\n    <div className=\"space-y-2\">\n      <OTPField aria-label=\"One-time password\" length={6} value={value} onValueChange={setValue} />\n      <div className=\"text-center text-caption\">\n        {value === \"\" ? <>Enter your one-time password.</> : <>You entered: {value}</>}\n      </div>\n    </div>\n  );\n}\n",
       "path": "src/otp-field/examples/otp-field-controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/examples/otp-field-controlled.tsx",
-      "content": "import * as React from \"react\";\n\nimport { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldControlled() {\n  const [value, setValue] = React.useState(\"\");\n\n  return (\n    <div className=\"space-y-2\">\n      <OTPField aria-label=\"One-time password\" length={6} value={value} onValueChange={setValue} />\n      <div className=\"text-center text-caption\">\n        {value === \"\" ? <>Enter your one-time password.</> : <>You entered: {value}</>}\n      </div>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleOTPFieldControlled from \"../examples/otp-field-controlled\";\n\nconst Example = () => <ExampleOTPFieldControlled />;\n\nexport default Example;\n",
       "path": "src/otp-field/variants/controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/variants/controlled.tsx",
-      "content": "import ExampleOTPFieldControlled from \"../examples/otp-field-controlled\";\n\nconst Example = () => <ExampleOTPFieldControlled />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

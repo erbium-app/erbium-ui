@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst Example = () => <Slider defaultValue={[50]} max={100} className=\"w-64\" aria-label=\"Volume\" />;\n\nexport default Example;\n",
       "path": "src/slider/variants/midpoint.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/slider/variants/midpoint.tsx",
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst Example = () => <Slider defaultValue={[50]} max={100} className=\"w-64\" aria-label=\"Volume\" />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

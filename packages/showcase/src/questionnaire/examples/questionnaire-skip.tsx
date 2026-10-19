@@ -34,18 +34,19 @@ export function QuestionnaireSkipExample() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+
     const answers = {
-      task: getFormValue(formData, "task"),
-      constraints: getFormValue(formData, "constraints"),
       constraintStatus,
+      constraints: getFormValue(formData, "constraints"),
       review: getFormValue(formData, "review"),
+      task: getFormValue(formData, "task"),
     };
 
     toast.add({
-      title: "Agent brief submitted",
       description: `Task: ${answers.task ?? "None"} · Constraints: ${
         answers.constraintStatus === "skipped" ? "Skipped" : (answers.constraints ?? "None")
       } · Review: ${answers.review ?? "None"}`,
+      title: "Agent brief submitted",
     });
   }
 

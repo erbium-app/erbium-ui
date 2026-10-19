@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport default function RadioGroupDemo() {\n  return (\n    <Field>\n      <RadioGroup defaultValue=\"comfortable\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"default\" />\n          <FieldLabel>Default</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"comfortable\" />\n          <FieldLabel>Comfortable</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"compact\" />\n          <FieldLabel>Compact</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n",
       "path": "src/radio-group/examples/radio-group-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/radio-group/examples/radio-group-demo.tsx",
-      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport default function RadioGroupDemo() {\n  return (\n    <Field>\n      <RadioGroup defaultValue=\"comfortable\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"default\" />\n          <FieldLabel>Default</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"comfortable\" />\n          <FieldLabel>Comfortable</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"compact\" />\n          <FieldLabel>Compact</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

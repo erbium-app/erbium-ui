@@ -6,7 +6,7 @@ const Example = () => (
     variant="outline"
     onClick={() => {
       for (let index = 1; index <= 5; index += 1) {
-        toast.add({ title: `Queue item ${index}`, timeout: 0 });
+        toast.add({ timeout: 0, title: `Queue item ${index}` });
       }
     }}
   >

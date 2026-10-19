@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Checkbox, CheckboxGroup } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nconst permissions = [\n  { id: \"read\", label: \"Read\" },\n  { id: \"write\", label: \"Write\" },\n  { id: \"delete\", label: \"Delete\" },\n];\n\nexport default function CheckboxIndeterminate() {\n  const [selected, setSelected] = useState<string[]>([\"read\"]);\n\n  return (\n    <CheckboxGroup\n      aria-labelledby=\"permissions-all-label\"\n      allValues={permissions.map((permission) => permission.id)}\n      value={selected}\n      onValueChange={setSelected}\n    >\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"permissions-all\" parent />\n        <FieldLabel id=\"permissions-all-label\" htmlFor=\"permissions-all\">\n          All permissions\n        </FieldLabel>\n      </Field>\n      {permissions.map((permission) => (\n        <Field orientation=\"horizontal\" className=\"ps-6\" key={permission.id}>\n          <Checkbox id={`permissions-${permission.id}`} value={permission.id} />\n          <FieldLabel className=\"font-normal\" htmlFor={`permissions-${permission.id}`}>\n            {permission.label}\n          </FieldLabel>\n        </Field>\n      ))}\n    </CheckboxGroup>\n  );\n}\n",
       "path": "src/checkbox/examples/checkbox-indeterminate.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/checkbox/examples/checkbox-indeterminate.tsx",
-      "content": "import { Checkbox, CheckboxGroup } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nconst permissions = [\n  { id: \"read\", label: \"Read\" },\n  { id: \"write\", label: \"Write\" },\n  { id: \"delete\", label: \"Delete\" },\n];\n\nexport default function CheckboxIndeterminate() {\n  const [selected, setSelected] = useState<string[]>([\"read\"]);\n\n  return (\n    <CheckboxGroup\n      aria-labelledby=\"permissions-all-label\"\n      allValues={permissions.map((permission) => permission.id)}\n      value={selected}\n      onValueChange={setSelected}\n    >\n      <Field orientation=\"horizontal\">\n        <Checkbox id=\"permissions-all\" parent />\n        <FieldLabel id=\"permissions-all-label\" htmlFor=\"permissions-all\">\n          All permissions\n        </FieldLabel>\n      </Field>\n      {permissions.map((permission) => (\n        <Field orientation=\"horizontal\" className=\"ps-6\" key={permission.id}>\n          <Checkbox id={`permissions-${permission.id}`} value={permission.id} />\n          <FieldLabel className=\"font-normal\" htmlFor={`permissions-${permission.id}`}>\n            {permission.label}\n          </FieldLabel>\n        </Field>\n      ))}\n    </CheckboxGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleCheckboxIndeterminate from \"../examples/checkbox-indeterminate\";\n\nconst Example = () => <ExampleCheckboxIndeterminate />;\n\nexport default Example;\n",
       "path": "src/checkbox/variants/indeterminate.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/checkbox/variants/indeterminate.tsx",
-      "content": "import ExampleCheckboxIndeterminate from \"../examples/checkbox-indeterminate\";\n\nconst Example = () => <ExampleCheckboxIndeterminate />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonLoading() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\" loading>\n        Generating\n      </Button>\n      <Button variant=\"secondary\" loading>\n        Downloading\n      </Button>\n    </div>\n  );\n}\n",
       "path": "src/button/examples/button-spinner.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/examples/button-spinner.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonLoading() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\" loading>\n        Generating\n      </Button>\n      <Button variant=\"secondary\" loading>\n        Downloading\n      </Button>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ButtonLoading from \"../examples/button-spinner\";\n\nconst Example = () => <ButtonLoading />;\n\nexport default Example;\n",
       "path": "src/button/variants/with-spinner.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/with-spinner.tsx",
-      "content": "import ButtonLoading from \"../examples/button-spinner\";\n\nconst Example = () => <ButtonLoading />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

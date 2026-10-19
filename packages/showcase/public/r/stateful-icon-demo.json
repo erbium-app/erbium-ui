@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function StatefulIconDemo() {\n  return (\n    <CopyButton\n      value=\"Stateful icons animate between states.\"\n      aria-label=\"Copy example text\"\n      variant=\"outline\"\n      timeout={1200}\n    />\n  );\n}\n",
       "path": "src/stateful-icon/examples/stateful-icon-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/stateful-icon/examples/stateful-icon-demo.tsx",
-      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function StatefulIconDemo() {\n  return (\n    <CopyButton\n      value=\"Stateful icons animate between states.\"\n      aria-label=\"Copy example text\"\n      variant=\"outline\"\n      timeout={1200}\n    />\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

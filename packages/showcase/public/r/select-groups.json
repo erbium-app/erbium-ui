@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/select", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport function SelectGroups() {\n  const fruits = [\n    { label: \"Apple\", value: \"apple\" },\n    { label: \"Banana\", value: \"banana\" },\n    { label: \"Blueberry\", value: \"blueberry\" },\n  ];\n\n  const vegetables = [\n    { label: \"Carrot\", value: \"carrot\" },\n    { label: \"Broccoli\", value: \"broccoli\" },\n    { label: \"Spinach\", value: \"spinach\" },\n  ];\n\n  const allItems = [{ label: \"Select a fruit\", value: null }, ...fruits, ...vegetables];\n\n  return (\n    <Select items={allItems}>\n      <SelectTrigger className=\"w-full max-w-48\">\n        <SelectValue />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectGroup>\n          <SelectLabel>Fruits</SelectLabel>\n          {fruits.map((item) => (\n            <SelectItem key={item.value} value={item.value}>\n              {item.label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n        <SelectSeparator />\n        <SelectGroup>\n          <SelectLabel>Vegetables</SelectLabel>\n          {vegetables.map((item) => (\n            <SelectItem key={item.value} value={item.value}>\n              {item.label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n      </SelectContent>\n    </Select>\n  );\n}\n",
       "path": "src/select/examples/select-groups.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/select/examples/select-groups.tsx",
-      "content": "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n  SelectSeparator,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport function SelectGroups() {\n  const fruits = [\n    { label: \"Apple\", value: \"apple\" },\n    { label: \"Banana\", value: \"banana\" },\n    { label: \"Blueberry\", value: \"blueberry\" },\n  ];\n  const vegetables = [\n    { label: \"Carrot\", value: \"carrot\" },\n    { label: \"Broccoli\", value: \"broccoli\" },\n    { label: \"Spinach\", value: \"spinach\" },\n  ];\n  const allItems = [{ label: \"Select a fruit\", value: null }, ...fruits, ...vegetables];\n  return (\n    <Select items={allItems}>\n      <SelectTrigger className=\"w-full max-w-48\">\n        <SelectValue />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectGroup>\n          <SelectLabel>Fruits</SelectLabel>\n          {fruits.map((item) => (\n            <SelectItem key={item.value} value={item.value}>\n              {item.label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n        <SelectSeparator />\n        <SelectGroup>\n          <SelectLabel>Vegetables</SelectLabel>\n          {vegetables.map((item) => (\n            <SelectItem key={item.value} value={item.value}>\n              {item.label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n      </SelectContent>\n    </Select>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { SelectGroups } from \"../examples/select-groups\";\n\nconst Example = () => <SelectGroups />;\n\nexport default Example;\n",
       "path": "src/select/variants/groups.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/select/variants/groups.tsx",
-      "content": "import { SelectGroups } from \"../examples/select-groups\";\n\nconst Example = () => <SelectGroups />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

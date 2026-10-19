@@ -3,9 +3,6 @@ import lint from "./oxlint.config.ts";
 import fmt from "./oxfmt.config.ts";
 
 export default defineConfig({
-  staged: {
-    "*": "vp check --fix",
-  },
   fmt,
   lint: {
     ...lint,
@@ -15,5 +12,8 @@ export default defineConfig({
     // Checks, generators, dev servers, and infrastructure commands must execute.
     // Opt into build caching with bun run build:cached.
     cache: { scripts: false, tasks: true },
+  },
+  staged: {
+    "*": "vp check --fix",
   },
 });

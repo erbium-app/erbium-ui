@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Spinner>) => <Spinner {...args} />;\n\nexport default Example;\n",
       "path": "src/spinner/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/spinner/variants/playground.tsx",
-      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Spinner>) => <Spinner {...args} />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -18,15 +18,17 @@ const rootRoute = createRootRoute({
 });
 
 const indexRoute = createRoute({
+  component: () => createElement("h1", null, "Erbium UI"),
   getParentRoute: () => rootRoute,
   path: "/",
-  component: () => createElement("h1", null, "Erbium UI"),
 });
+
 const aboutRoute = createRoute({
+  component: () => createElement("h1", null, "About"),
   getParentRoute: () => rootRoute,
   path: "/about",
-  component: () => createElement("h1", null, "About"),
 });
+
 const routeTree = rootRoute.addChildren([indexRoute, aboutRoute]);
 
 export const router = createRouter({ routeTree });

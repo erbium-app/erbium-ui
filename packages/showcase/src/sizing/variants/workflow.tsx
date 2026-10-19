@@ -30,6 +30,7 @@ export default function WorkflowExample() {
   const [error, setError] = useState(false);
   const [projects, setProjects] = useState(["Design system", "Documentation"]);
   const [query, setQuery] = useState("");
+
   return (
     <div className="p-panel">
       <Card>
@@ -45,7 +46,9 @@ export default function WorkflowExample() {
               aria-label="Filter projects"
               placeholder="Filter projects"
               value={query}
-              onChange={(event) => setQuery(event.currentTarget.value)}
+              onChange={(event) => {
+                setQuery(event.currentTarget.value);
+              }}
               className="w-full sm:w-48"
             />
             <DropdownMenu>
@@ -54,7 +57,11 @@ export default function WorkflowExample() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuList>
-                  <DropdownMenuItem onClick={() => setQuery("")}>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      setQuery("");
+                    }}
+                  >
                     Show all projects
                   </DropdownMenuItem>
                   <DropdownMenuItem disabled>Archive workspace</DropdownMenuItem>
@@ -67,10 +74,13 @@ export default function WorkflowExample() {
             noValidate
             onSubmit={(event) => {
               event.preventDefault();
+
               if (!name.trim()) {
                 setError(true);
+
                 return;
               }
+
               setProjects((current) => [...current, name.trim()]);
               setName("");
               setError(false);
@@ -80,7 +90,9 @@ export default function WorkflowExample() {
               <FieldLabel>Project name</FieldLabel>
               <Input
                 value={name}
-                onChange={(event) => setName(event.currentTarget.value)}
+                onChange={(event) => {
+                  setName(event.currentTarget.value);
+                }}
                 placeholder="Name your project"
               />
               <FieldError match={error}>
@@ -117,7 +129,11 @@ export default function WorkflowExample() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
                           <DropdownMenuList>
-                            <DropdownMenuItem onClick={() => setQuery(project)}>
+                            <DropdownMenuItem
+                              onClick={() => {
+                                setQuery(project);
+                              }}
+                            >
                               Show this project
                             </DropdownMenuItem>
                             <DropdownMenuItem disabled>Archive project</DropdownMenuItem>

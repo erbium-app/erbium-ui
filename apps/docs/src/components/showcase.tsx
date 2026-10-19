@@ -1,4 +1,5 @@
-import { Component, useEffect, useState, useRef, useMemo, type ReactNode } from "react";
+import { Component, useEffect, useState, useRef, useMemo } from "react";
+import type { ReactNode } from "react";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Button } from "@erbium/ui/components/button";
@@ -40,6 +41,7 @@ class PreviewBoundary extends Component<{ children: ReactNode }, { failed: boole
     );
   }
 }
+
 export function Showcase({
   name,
   variant,
@@ -50,18 +52,20 @@ export function Showcase({
   separator?: boolean;
 }) {
   const container = useRef<HTMLElement>(null);
+
   const story = useMemo(
     () => ({
-      args: JSON.parse(variant.args) as Record<string, unknown>,
       argTypes: JSON.parse(variant.argTypes) as ShowcaseStory["argTypes"],
+      args: JSON.parse(variant.args) as Record<string, unknown>,
     }),
     [variant.args, variant.argTypes],
   );
+
   const [Example, setExample] = useState<ShowcaseStory["render"]>();
   const [error, setError] = useState(false);
   const [args, setArgs] = useState<Record<string, unknown>>(story.args);
   const [code, setCode] = useState(false);
-  const [files, setFiles] = useState<Array<{ path: string; source: string }>>();
+  const [files, setFiles] = useState<{ path: string; source: string }[]>();
   const [sourceError, setSourceError] = useState(false);
   const siteDark = useTheme();
   const [appearance, setAppearance] = useState<"light" | "dark">();
@@ -69,14 +73,21 @@ export function Showcase({
   const [revision, setRevision] = useState(0);
   useEffect(() => {
     let active = true;
+
     async function load() {
       try {
         const entry = await exampleResource(name, variant.slug);
-        if (active) setExample(() => entry.default);
+
+        if (active) {
+          setExample(() => entry.default);
+        }
       } catch {
-        if (active) setError(true);
+        if (active) {
+          setError(true);
+        }
       }
     }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
@@ -86,32 +97,46 @@ export function Showcase({
       },
       { rootMargin: "200px" },
     );
-    if (container.current) observer.observe(container.current);
+
+    if (container.current) {
+      observer.observe(container.current);
+    }
+
     return () => {
       active = false;
       observer.disconnect();
     };
   }, [name, variant.slug]);
   useEffect(() => {
-    if (!code || files) return;
+    if (!code || files) {
+      return;
+    }
+
     let active = true;
+
     async function load() {
       try {
         const result = await loadExampleSource({ data: { name, slug: variant.slug } });
+
         if (active) {
           setFiles(result);
           setSourceError(false);
         }
       } catch {
-        if (active) setSourceError(true);
+        if (active) {
+          setSourceError(true);
+        }
       }
     }
+
     void load();
+
     return () => {
       active = false;
     };
   }, [code, files, name, variant.slug]);
   const command = `npx shadcn@latest add @erbium-examples/${name}-${variant.slug}`;
+
   return (
     <section ref={container} id={variant.anchor} className="demo-section my-10 scroll-mt-8">
       {separator && <Separator className="mb-4" variant="full" role="presentation" />}
@@ -119,7 +144,9 @@ export function Showcase({
       <Prose tree={variant.tree} />
       <Tabs
         value={code ? "code" : "preview"}
-        onValueChange={(value) => setCode(value === "code")}
+        onValueChange={(value) => {
+          setCode(value === "code");
+        }}
         className="mt-4"
       >
         <TabsList aria-label={`${variant.title} example`}>
@@ -160,7 +187,9 @@ export function Showcase({
                 }
                 onClick={() => {
                   changeTheme(() => {
-                    flushSync(() => setAppearance(dark ? "light" : "dark"));
+                    flushSync(() => {
+                      setAppearance(dark ? "light" : "dark");
+                    });
                   });
                 }}
               >
@@ -215,6 +244,7 @@ export function Showcase({
     </section>
   );
 }
+
 export function ShowcaseToaster() {
   return (
     <ShowcaseProviders>

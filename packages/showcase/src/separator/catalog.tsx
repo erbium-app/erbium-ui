@@ -42,15 +42,15 @@ import MarginSizingSource from "./variants/margin-sizing.tsx?raw";
 
 const meta = {
   component: Separator,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("separator"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Separator>;
 
 export default meta;
@@ -58,11 +58,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Separator> = {
-  args: { orientation: "horizontal", className: "" },
   argTypes: {
     orientation: { control: "select", options: ["horizontal", "vertical"] },
     variant: { control: "select", options: [undefined, "full", "inset"] },
   },
+  args: { className: "", orientation: "horizontal" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("separator", "playground") },

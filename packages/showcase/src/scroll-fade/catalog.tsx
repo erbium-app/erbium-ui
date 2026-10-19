@@ -15,15 +15,15 @@ import SingleEdgeAndCustomDepthExample from "./variants/single-edge-and-custom-d
 import SingleEdgeAndCustomDepthSource from "./variants/single-edge-and-custom-depth.tsx?raw";
 
 const meta = {
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("scroll-fade"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta;
 
 export default meta;

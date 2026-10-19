@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/file-view", "@erbium/styles"],
   "files": [
     {
+      "content": "export const file = {\n  contents:\n    `export function greet(name: string = \"world\") {\\n  const greeting = ` +\n    \"`Welcome, ${name}!`\" +\n    `;\\n  return greeting;\\n}\\n`,\n  name: \"greeting.ts\",\n};\n",
       "path": "src/file-view/examples/file.ts",
-      "type": "registry:component",
       "target": "@components/showcase/file-view/examples/file.ts",
-      "content": "export const file = {\n  name: \"greeting.ts\",\n  contents:\n    `export function greet(name: string = \"world\") {\\n  const greeting = ` +\n    \"`Welcome, ${name}!`\" +\n    `;\\n  return greeting;\\n}\\n`,\n};\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { useState } from \"react\";\nimport { FileView } from \"@/registry/erbium/blocks/file-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { file } from \"../examples/file\";\n\nexport default function Example() {\n  const [empty, setEmpty] = useState(false);\n\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        onClick={() => {\n          setEmpty(!empty);\n        }}\n      >\n        Toggle empty source\n      </Button>\n      <FileView file={{ ...file, contents: empty ? \"\" : file.contents }} />\n      <FileView\n        file={{ contents: \"Plaintext remains readable and copyable.\", name: \"notes.txt\" }}\n      />\n    </div>\n  );\n}\n",
       "path": "src/file-view/variants/states.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/file-view/variants/states.tsx",
-      "content": "import { useState } from \"react\";\nimport { FileView } from \"@/registry/erbium/blocks/file-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { file } from \"../examples/file\";\nexport default function Example() {\n  const [empty, setEmpty] = useState(false);\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <Button variant=\"outline\" size=\"sm\" onClick={() => setEmpty(!empty)}>\n        Toggle empty source\n      </Button>\n      <FileView file={{ ...file, contents: empty ? \"\" : file.contents }} />\n      <FileView\n        file={{ name: \"notes.txt\", contents: \"Plaintext remains readable and copyable.\" }}\n      />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

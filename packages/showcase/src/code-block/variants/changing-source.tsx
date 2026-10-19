@@ -4,13 +4,16 @@ import { Textarea } from "@erbium/ui/components/textarea";
 
 export default function Example() {
   const [code, setCode] = useState('const greeting = "Hello, Erbium.";\n');
+
   return (
     <div className="grid w-full max-w-xl gap-group">
       <label className="grid gap-related text-caption">
         Source
         <Textarea
           value={code}
-          onChange={(event) => setCode(event.target.value)}
+          onChange={(event) => {
+            setCode(event.target.value);
+          }}
           className="font-mono"
         />
       </label>

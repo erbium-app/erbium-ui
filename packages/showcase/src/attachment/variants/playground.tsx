@@ -7,8 +7,8 @@ import {
   AttachmentActions,
   AttachmentAction,
   AttachmentTrigger,
+  Attachment,
 } from "@erbium/ui/components/attachment";
-import { Attachment } from "@erbium/ui/components/attachment";
 
 const Example = (args: {
   state: "idle" | "uploading" | "processing" | "error" | "done";

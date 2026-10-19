@@ -33,8 +33,8 @@ export function QuestionnaireShortcuts() {
     const action = getFormValue(new FormData(event.currentTarget), "action");
 
     toast.add({
-      title: "Next action selected",
       description: `Action: ${action ?? "None"} · Shortcuts: ${shortcuts ?? "none"}`,
+      title: "Next action selected",
     });
   }
 
@@ -45,7 +45,7 @@ export function QuestionnaireShortcuts() {
         className="absolute end-0 top-0"
         value={shortcuts ?? "none"}
         onChange={(event) => {
-          const value = event.target.value;
+          const { value } = event.target;
           setShortcuts(value === "letters" || value === "numbers" ? value : undefined);
         }}
       >

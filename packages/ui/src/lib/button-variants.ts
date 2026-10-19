@@ -5,44 +5,44 @@ import { cva } from "class-variance-authority";
 const buttonVariants = cva(
   "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent text-control font-medium whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-invalid-halo dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
   {
+    defaultVariants: {
+      size: "default",
+      variant: "default",
+    },
     variants: {
+      size: {
+        default:
+          "control-size control-adaptive text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
+        icon: "size-control control-adaptive [&_svg:not([class*='size-'])]:size-control-icon",
+        "icon-lg":
+          "size-control-lg control-adaptive [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        "icon-sm":
+          "size-control-sm control-adaptive rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        "icon-xs":
+          "size-control-xs rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        lg: "control-size-lg control-adaptive text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        sm: "control-size-sm control-adaptive text-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        xs: "control-size-xs text-control-sm rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
+      },
       variant: {
         default: "surface-fill-primary text-primary-foreground",
-        outline: "surface-control text-foreground",
-        secondary: "surface-flat bg-secondary text-secondary-foreground",
-        ghost: "surface-flat hover:text-foreground engaged:text-foreground",
         error: "surface-fill-error text-error-foreground focus-visible:border-error-focus",
-        success: "surface-fill-success text-success-foreground focus-visible:border-success-focus",
-        warning: "surface-fill-warning text-warning-foreground focus-visible:border-warning-focus",
-        info: "surface-fill-info text-info-foreground focus-visible:border-info-focus",
+        ghost: "surface-flat hover:text-foreground engaged:text-foreground",
         "ghost-error":
           "surface-ghost-error-soft text-error-soft-foreground focus-visible:border-error-focus",
+        "ghost-info":
+          "surface-ghost-info-soft text-info-soft-foreground focus-visible:border-info-focus",
         "ghost-success":
           "surface-ghost-success-soft text-success-soft-foreground focus-visible:border-success-focus",
         "ghost-warning":
           "surface-ghost-warning-soft text-warning-soft-foreground focus-visible:border-warning-focus",
-        "ghost-info":
-          "surface-ghost-info-soft text-info-soft-foreground focus-visible:border-info-focus",
+        info: "surface-fill-info text-info-foreground focus-visible:border-info-focus",
         link: "text-link underline-offset-4 hover:underline",
+        outline: "surface-control text-foreground",
+        secondary: "surface-flat bg-secondary text-secondary-foreground",
+        success: "surface-fill-success text-success-foreground focus-visible:border-success-focus",
+        warning: "surface-fill-warning text-warning-foreground focus-visible:border-warning-focus",
       },
-      size: {
-        default:
-          "control-size control-adaptive text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
-        xs: "control-size-xs text-control-sm rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
-        sm: "control-size-sm control-adaptive text-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
-        lg: "control-size-lg control-adaptive text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
-        icon: "size-control control-adaptive [&_svg:not([class*='size-'])]:size-control-icon",
-        "icon-xs":
-          "size-control-xs rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
-        "icon-sm":
-          "size-control-sm control-adaptive rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
-        "icon-lg":
-          "size-control-lg control-adaptive [&_svg:not([class*='size-'])]:size-control-icon-lg",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
     },
   },
 );

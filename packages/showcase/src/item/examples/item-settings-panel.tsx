@@ -22,38 +22,38 @@ import { Switch } from "@erbium/ui/components/switch";
 
 const preferenceSelects = [
   {
-    title: "Default home view",
     description: "Select which view to display when launching Linear",
     options: ["Linear Agent (default)", "Inbox", "My issues"],
+    title: "Default home view",
   },
   {
-    title: "Display names",
     description: "Select how names are displayed in the Linear interface",
     options: ["Username", "Full name"],
+    title: "Display names",
   },
   {
-    title: "First day of the week",
     description: "Used for date pickers",
     options: ["Sunday", "Monday"],
+    title: "First day of the week",
   },
 ] as const;
 
 const interfaceSwitches = [
   {
+    description: "Change the cursor to a pointer when hovering over any interactive elements",
     id: "pointer-cursors",
     title: "Use pointer cursors",
-    description: "Change the cursor to a pointer when hovering over any interactive elements",
   },
   {
+    description: "Always underline links in text content",
     id: "underline-links",
     title: "Underline links",
-    description: "Always underline links in text content",
   },
   {
-    id: "disable-animation",
-    title: "Disable animated images & emoji",
     description:
       "When enabled, GIFs and animated emojis will be static by default and animate only on hover.",
+    id: "disable-animation",
+    title: "Disable animated images & emoji",
   },
 ] as const;
 

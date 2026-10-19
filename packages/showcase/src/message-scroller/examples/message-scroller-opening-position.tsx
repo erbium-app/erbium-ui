@@ -42,20 +42,20 @@ const messages = [
     role: "assistant",
     text: "Start with the invite step. Teams are creating workspaces but waiting to add collaborators.\n\nRecommended follow-up:\n\n1. Compare invite drop-off by account size.\n2. Check whether users who skip invites still return within 24 hours.\n3. Review the empty-state copy on the first project screen.\n4. Segment activation by template, since template users may not need invites right away.\n\nIf that pattern holds, the next experiment should make collaboration useful earlier instead of prompting for invites harder.",
   },
-] satisfies Array<{
+] satisfies {
   id: string;
   role: "user" | "assistant";
   text: string;
-}>;
+}[];
 
 const positions = [
-  { value: "start", label: "start" },
-  { value: "end", label: "end" },
-  { value: "last-anchor", label: "last-anchor" },
-] satisfies Array<{
+  { label: "start", value: "start" },
+  { label: "end", value: "end" },
+  { label: "last-anchor", value: "last-anchor" },
+] satisfies {
   value: "start" | "end" | "last-anchor";
   label: string;
-}>;
+}[];
 
 export function MessageScrollerOpeningPosition() {
   const [positionKey, setPositionKey] = React.useState(0);
@@ -115,11 +115,13 @@ function OpeningPositionScroller({
     const frame = requestAnimationFrame(() => {
       if (position === "start") {
         scrollToStart({ behavior: "auto" });
+
         return;
       }
 
       if (position === "end") {
         scrollToEnd({ behavior: "auto" });
+
         return;
       }
 

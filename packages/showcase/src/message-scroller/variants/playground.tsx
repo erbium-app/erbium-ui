@@ -4,8 +4,8 @@ import {
   MessageScrollerContent,
   MessageScrollerItem,
   MessageScrollerButton,
+  MessageScroller,
 } from "@erbium/ui/components/message-scroller";
-import { MessageScroller } from "@erbium/ui/components/message-scroller";
 
 const Example = (args: {
   autoScroll: boolean;

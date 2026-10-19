@@ -9,8 +9,8 @@
   "files": [
     {
       "path": "src/components/textarea.tsx",
-      "type": "registry:ui",
       "target": "@ui/textarea.tsx",
+      "type": "registry:ui",
       "content": "import * as React from \"react\";\nimport { Field as FieldPrimitive } from \"@base-ui/react/field\";\nimport { mergeProps } from \"@base-ui/react/merge-props\";\nimport { textareaClassName } from \"@/registry/erbium/lib/form-control-styles\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\n/**\n * Base UI has no textarea part: `Field.Control` is the primitive, rendered as a\n * `<textarea>`. The value, disabled, name and id props go to the control so the\n * surrounding `Field` tracks `filled`, `dirty`, `touched` and `disabled`; the\n * rest merge onto the element.\n */\nfunction Textarea({ className, ref, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <FieldPrimitive.Control\n      ref={ref}\n      value={props.value}\n      defaultValue={props.defaultValue}\n      disabled={props.disabled}\n      id={props.id}\n      name={props.name}\n      render={(defaultProps: React.ComponentProps<\"textarea\">) => (\n        <textarea\n          data-slot=\"textarea\"\n          className={cn(textareaClassName, className)}\n          {...mergeProps(defaultProps, props)}\n        />\n      )}\n    />\n  );\n}\n\nexport { Textarea };\n"
     }
   ]

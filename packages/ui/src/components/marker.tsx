@@ -1,7 +1,8 @@
 import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const markerVariants = cva(
@@ -9,9 +10,9 @@ const markerVariants = cva(
   {
     variants: {
       variant: {
+        border: "carve-bottom pb-2",
         default: "",
         separator: "before:me-1 after:ms-1",
-        border: "carve-bottom pb-2",
       },
     },
   },
@@ -27,7 +28,7 @@ function Marker({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
-        className: cn(markerVariants({ variant, className })),
+        className: cn(markerVariants({ className, variant })),
       },
       props,
     ),

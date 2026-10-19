@@ -19,15 +19,15 @@ import HandleExample from "./variants/handle";
 import HandleSource from "./variants/handle.tsx?raw";
 
 const meta = {
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("resizable"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta;
 
 export default meta;
@@ -39,12 +39,12 @@ export const Playground: StoryObj<{
   firstPanelSize: number;
   showHandle: boolean;
 }> = {
-  args: { orientation: "horizontal", firstPanelSize: 50, showHandle: true },
   argTypes: {
+    firstPanelSize: { control: { max: 90, min: 10, step: 5, type: "range" } },
     orientation: { control: "select", options: ["horizontal", "vertical"] },
-    firstPanelSize: { control: { type: "range", min: 10, max: 90, step: 5 } },
     showHandle: { control: "boolean" },
   },
+  args: { firstPanelSize: 50, orientation: "horizontal", showHandle: true },
   parameters: {
     docs: {
       description: { story: variantDocumentation("resizable", "playground") },

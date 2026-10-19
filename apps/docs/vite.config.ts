@@ -7,14 +7,18 @@ import { showcaseVitePlugin } from "./preview-plugin.mjs";
 import { registryPlugin } from "./registry-plugin.mjs";
 import { contentPlugin, navigationMetadata } from "./content-plugin";
 import { staticContentPlugin } from "./static-content-plugin.mjs";
+
 const cloudflare = process.env.ALCHEMY_CLOUDFLARE_VITE_INJECTED === "1";
 const root = new URL("./", import.meta.url).pathname;
+
 const aliases = {
-  "@": new URL("./src", import.meta.url).pathname,
+  "@": new URL("src", import.meta.url).pathname,
+  "@public": new URL("public", import.meta.url).pathname,
   "@ui": new URL("../../packages/ui", import.meta.url).pathname,
-  "@public": new URL("./public", import.meta.url).pathname,
 };
+
 const previewPlugin = showcaseVitePlugin();
+
 const pagePaths = [
   "/",
   "/docs/roadmap",
@@ -25,6 +29,7 @@ const pagePaths = [
 ];
 
 export default defineConfig({
+  build: { cssMinify: "esbuild" },
   environments: cloudflare
     ? undefined
     : {
@@ -32,25 +37,23 @@ export default defineConfig({
           dev: { createEnvironment: (name, config) => createRunnableDevEnvironment(name, config) },
         },
       },
-  server: { host: "127.0.0.1", port: 3001, strictPort: true },
-  preview: { host: "127.0.0.1", port: 3002, strictPort: true },
-  publicDir: "./public",
-  resolve: {
-    alias: aliases,
-  },
   plugins: [
     contentPlugin(),
     staticContentPlugin({
-      root,
       aliases,
       pagePaths,
+      root,
       toolingPlugins: () => [contentPlugin(), showcaseVitePlugin()],
     }),
     {
       ...previewPlugin,
       configEnvironment(name) {
         const config = previewPlugin.configEnvironment(name);
-        if (!config) return;
+
+        if (!config) {
+          return;
+        }
+
         return {
           optimizeDeps: {
             ...config.optimizeDeps,
@@ -62,17 +65,28 @@ export default defineConfig({
     tailwindcss({ optimize: { minify: false } }),
     registryPlugin(),
     {
-      name: "erbium:start-prerender-preview",
       configurePreviewServer(server) {
-        if (cloudflare) return;
+        if (cloudflare) {
+          return;
+        }
+
         server.middlewares.use(async (request, response, next) => {
           const path = request.url?.split("?")[0] ?? "";
-          if ((request.method !== "GET" && request.method !== "HEAD") || !pagePaths.includes(path))
-            return next();
+
+          if (
+            (request.method !== "GET" && request.method !== "HEAD") ||
+            !pagePaths.includes(path)
+          ) {
+            next();
+
+            return;
+          }
+
           try {
             const html = await readFile(
               new URL(`./dist/client${path === "/" ? "" : path}/index.html`, import.meta.url),
             );
+
             response.setHeader("Content-Type", "text/html; charset=utf-8");
             response.setHeader("Cache-Control", "public, max-age=60, must-revalidate");
             response.end(request.method === "HEAD" ? undefined : html);
@@ -81,18 +95,21 @@ export default defineConfig({
           }
         });
       },
+      name: "erbium:start-prerender-preview",
     },
     tanstackStart({
-      vite: { installDevServerMiddleware: !cloudflare },
-      prerender: { enabled: !cloudflare, crawlLinks: false, failOnError: true },
       pages: pagePaths.map((path) => ({ path })),
+      prerender: { crawlLinks: false, enabled: !cloudflare, failOnError: true },
       sitemap: { host: "https://ui.erbium.app" },
+      vite: { installDevServerMiddleware: !cloudflare },
     }),
     react(),
     {
-      name: "erbium:start-assets",
       async closeBundle() {
-        if (this.environment.name !== "client") return;
+        if (this.environment.name !== "client") {
+          return;
+        }
+
         for (const [source, target] of [
           ["../../packages/ui/public/r", "r/ui"],
           ["../../packages/showcase/public/r", "r/examples"],
@@ -105,7 +122,13 @@ export default defineConfig({
           );
         }
       },
+      name: "erbium:start-assets",
     },
   ],
-  build: { cssMinify: "esbuild" },
+  preview: { host: "127.0.0.1", port: 3002, strictPort: true },
+  publicDir: "./public",
+  resolve: {
+    alias: aliases,
+  },
+  server: { host: "127.0.0.1", port: 3001, strictPort: true },
 });

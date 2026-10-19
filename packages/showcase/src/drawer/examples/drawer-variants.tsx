@@ -55,7 +55,11 @@ export function Styling() {
 
 export function Responsive() {
   const isMobile = useIsMobile();
-  if (isMobile) return <DrawerExample label="Edit profile" />;
+
+  if (isMobile) {
+    return <DrawerExample label="Edit profile" />;
+  }
+
   return (
     <Dialog>
       <DialogTrigger render={<Button variant="outline" />}>Edit profile</DialogTrigger>

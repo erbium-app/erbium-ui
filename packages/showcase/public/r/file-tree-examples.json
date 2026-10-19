@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "file-tree-examples",
-  "type": "registry:item",
-  "title": "File Tree examples",
   "description": "All file-tree examples.",
+  "name": "file-tree-examples",
   "registryDependencies": [
     "@erbium-examples/file-tree-overview",
     "@erbium-examples/file-tree-composition",
     "@erbium-examples/file-tree-changes"
-  ]
+  ],
+  "title": "File Tree examples",
+  "type": "registry:item"
 }

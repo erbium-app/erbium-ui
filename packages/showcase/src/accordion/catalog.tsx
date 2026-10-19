@@ -41,12 +41,12 @@ import CardSource from "./variants/card.tsx?raw";
 const meta = {
   component: Accordion,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("accordion"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof Accordion>;
 
@@ -55,8 +55,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Accordion> = {
-  args: { defaultValue: ["one"], multiple: false },
   argTypes: { multiple: { control: "boolean" } },
+  args: { defaultValue: ["one"], multiple: false },
   parameters: {
     docs: {
       description: { story: variantDocumentation("accordion", "playground") },

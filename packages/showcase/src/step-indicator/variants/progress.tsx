@@ -4,6 +4,7 @@ import { Slider } from "@erbium/ui/components/slider";
 
 export default function Example() {
   const [progress, setProgress] = useState(0.4);
+
   return (
     <div className="flex w-64 flex-col items-center gap-4">
       <StepIndicator count={4} value={1} progress={progress} aria-label="Upload progress" />
@@ -12,7 +13,9 @@ export default function Example() {
         min={0}
         max={100}
         value={progress * 100}
-        onValueChange={(next) => setProgress(Number(next) / 100)}
+        onValueChange={(next) => {
+          setProgress(Number(next) / 100);
+        }}
       />
     </div>
   );

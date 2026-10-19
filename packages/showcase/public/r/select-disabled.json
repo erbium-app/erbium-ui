@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/select", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport function SelectDisabled() {\n  const items = [\n    { label: \"Select a fruit\", value: null },\n    { label: \"Apple\", value: \"apple\" },\n    { label: \"Banana\", value: \"banana\" },\n    { label: \"Blueberry\", value: \"blueberry\" },\n    { disabled: true, label: \"Grapes\", value: \"grapes\" },\n    { label: \"Pineapple\", value: \"pineapple\" },\n  ];\n\n  return (\n    <Select items={items} disabled>\n      <SelectTrigger className=\"w-full max-w-48\">\n        <SelectValue />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectGroup>\n          {items.map((item) => (\n            <SelectItem key={item.value} value={item.value} disabled={item.disabled}>\n              {item.label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n      </SelectContent>\n    </Select>\n  );\n}\n",
       "path": "src/select/examples/select-disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/select/examples/select-disabled.tsx",
-      "content": "import {\n  Select,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport function SelectDisabled() {\n  const items = [\n    { label: \"Select a fruit\", value: null },\n    { label: \"Apple\", value: \"apple\" },\n    { label: \"Banana\", value: \"banana\" },\n    { label: \"Blueberry\", value: \"blueberry\" },\n    { label: \"Grapes\", value: \"grapes\", disabled: true },\n    { label: \"Pineapple\", value: \"pineapple\" },\n  ];\n  return (\n    <Select items={items} disabled>\n      <SelectTrigger className=\"w-full max-w-48\">\n        <SelectValue />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectGroup>\n          {items.map((item) => (\n            <SelectItem key={item.value} value={item.value} disabled={item.disabled}>\n              {item.label}\n            </SelectItem>\n          ))}\n        </SelectGroup>\n      </SelectContent>\n    </Select>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { SelectDisabled } from \"../examples/select-disabled\";\n\nconst Example = () => <SelectDisabled />;\n\nexport default Example;\n",
       "path": "src/select/variants/disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/select/variants/disabled.tsx",
-      "content": "import { SelectDisabled } from \"../examples/select-disabled\";\n\nconst Example = () => <SelectDisabled />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

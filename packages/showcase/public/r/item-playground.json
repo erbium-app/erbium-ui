@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/icon", "@erbium/item", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport {\n  ItemContent,\n  ItemTitle,\n  ItemDescription,\n  ItemMedia,\n  Item,\n} from \"@/registry/erbium/ui/item\";\n\nconst Example = (args: {\n  variant: \"default\" | \"card\";\n  size: \"default\" | \"sm\" | \"xs\";\n  mediaVariant: \"default\" | \"icon\" | \"image\";\n  asLink: boolean;\n  className: string;\n}) => (\n  <Item\n    variant={args.variant}\n    size={args.size}\n    render={args.asLink ? <a href=\"#\" /> : undefined}\n    className={`w-80 ${args.className}`}\n  >\n    <ItemMedia variant={args.mediaVariant}>\n      <Icon name=\"star\" aria-hidden=\"true\" />\n    </ItemMedia>\n    <ItemContent>\n      <ItemTitle>Item title</ItemTitle>\n      <ItemDescription>Item description</ItemDescription>\n    </ItemContent>\n  </Item>\n);\n\nexport default Example;\n",
       "path": "src/item/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/item/variants/playground.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { ItemContent, ItemTitle, ItemDescription, ItemMedia } from \"@/registry/erbium/ui/item\";\nimport { Item } from \"@/registry/erbium/ui/item\";\n\nconst Example = (args: {\n  variant: \"default\" | \"card\";\n  size: \"default\" | \"sm\" | \"xs\";\n  mediaVariant: \"default\" | \"icon\" | \"image\";\n  asLink: boolean;\n  className: string;\n}) => (\n  <Item\n    variant={args.variant}\n    size={args.size}\n    render={args.asLink ? <a href=\"#\" /> : undefined}\n    className={`w-80 ${args.className}`}\n  >\n    <ItemMedia variant={args.mediaVariant}>\n      <Icon name=\"star\" aria-hidden=\"true\" />\n    </ItemMedia>\n    <ItemContent>\n      <ItemTitle>Item title</ItemTitle>\n      <ItemDescription>Item description</ItemDescription>\n    </ItemContent>\n  </Item>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

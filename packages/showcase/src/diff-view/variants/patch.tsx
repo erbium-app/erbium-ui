@@ -11,10 +11,14 @@ const patch = `diff --git a/settings.json b/settings.json
 +  "wrap": true
  }
 `;
+
 const fileDiff = parsePatchFiles(patch, "settings-patch", true)[0]?.files[0];
 
 export default function Example() {
-  if (!fileDiff) return null;
+  if (!fileDiff) {
+    return null;
+  }
+
   return (
     <DiffView className="w-full max-w-4xl" fileDiff={fileDiff} options={{ diffStyle: "unified" }} />
   );

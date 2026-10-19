@@ -25,8 +25,8 @@ const items = [
 
 const questionnaireSchema = z
   .object({
-    detail: z.enum(["summary", "complete"]),
     audience: z.enum(["team", "public"]),
+    detail: z.enum(["summary", "complete"]),
   })
   .superRefine((answers, context) => {
     if (answers.audience === "public" && answers.detail === "summary") {
@@ -39,6 +39,7 @@ const questionnaireSchema = z
   });
 
 type QuestionnaireItemName = keyof z.infer<typeof questionnaireSchema>;
+
 type QuestionnaireErrors = Partial<Record<QuestionnaireItemName, string>>;
 
 function ValidationProgress() {
@@ -57,6 +58,7 @@ export function QuestionnaireValidation() {
 
       const nextErrors = { ...currentErrors };
       delete nextErrors[name];
+
       return nextErrors;
     });
   }
@@ -71,9 +73,10 @@ export function QuestionnaireValidation() {
     if (result.success) {
       setErrors({});
       toast.add({
-        title: "Agent response configured",
         description: `Detail: ${result.data.detail} · Audience: ${result.data.audience}`,
+        title: "Agent response configured",
       });
+
       return;
     }
 
@@ -115,10 +118,20 @@ export function QuestionnaireValidation() {
           </CardHeader>
           <CardContent>
             <QuestionnaireChoices>
-              <QuestionnaireChoice value="summary" onChange={() => clearError("detail")}>
+              <QuestionnaireChoice
+                value="summary"
+                onChange={() => {
+                  clearError("detail");
+                }}
+              >
                 Concise summary
               </QuestionnaireChoice>
-              <QuestionnaireChoice value="complete" onChange={() => clearError("detail")}>
+              <QuestionnaireChoice
+                value="complete"
+                onChange={() => {
+                  clearError("detail");
+                }}
+              >
                 Complete answer
               </QuestionnaireChoice>
             </QuestionnaireChoices>
@@ -138,10 +151,20 @@ export function QuestionnaireValidation() {
           </CardHeader>
           <CardContent>
             <QuestionnaireChoices>
-              <QuestionnaireChoice value="team" onChange={() => clearError("audience")}>
+              <QuestionnaireChoice
+                value="team"
+                onChange={() => {
+                  clearError("audience");
+                }}
+              >
                 My team
               </QuestionnaireChoice>
-              <QuestionnaireChoice value="public" onChange={() => clearError("audience")}>
+              <QuestionnaireChoice
+                value="public"
+                onChange={() => {
+                  clearError("audience");
+                }}
+              >
                 Public audience
               </QuestionnaireChoice>
             </QuestionnaireChoices>

@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "kbd-examples",
-  "type": "registry:item",
-  "title": "Kbd examples",
   "description": "All kbd examples.",
+  "name": "kbd-examples",
   "registryDependencies": [
     "@erbium-examples/kbd-playground",
     "@erbium-examples/kbd-overview",
     "@erbium-examples/kbd-button",
     "@erbium-examples/kbd-tooltip",
     "@erbium-examples/kbd-input-group"
-  ]
+  ],
+  "title": "Kbd examples",
+  "type": "registry:item"
 }

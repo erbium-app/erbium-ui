@@ -19,15 +19,18 @@ import ChangingSourceExample from "./variants/changing-source";
 import ChangingSourceSource from "./variants/changing-source.tsx?raw";
 import PatchExample from "./variants/patch";
 import PatchSource from "./variants/patch.tsx?raw";
+
 const meta = {
   component: DiffView,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("diff-view") } },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof DiffView>;
+
 export default meta;
+
 type Story = StoryObj;
 
 export const Overview: Story = {

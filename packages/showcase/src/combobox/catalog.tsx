@@ -58,15 +58,15 @@ import ClearButtonSource from "./variants/clear-button.tsx?raw";
 
 const meta = {
   component: Combobox,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("combobox"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Combobox>;
 
 export default meta;
@@ -80,19 +80,19 @@ export const Playground: StoryObj<{
   showClear: boolean;
   autoHighlight: boolean;
 }> = {
-  args: {
-    placeholder: "Select a framework",
-    disabled: false,
-    showTrigger: true,
-    showClear: false,
-    autoHighlight: false,
-  },
   argTypes: {
-    placeholder: { control: "text" },
-    disabled: { control: "boolean" },
-    showTrigger: { control: "boolean" },
-    showClear: { control: "boolean" },
     autoHighlight: { control: "boolean" },
+    disabled: { control: "boolean" },
+    placeholder: { control: "text" },
+    showClear: { control: "boolean" },
+    showTrigger: { control: "boolean" },
+  },
+  args: {
+    autoHighlight: false,
+    disabled: false,
+    placeholder: "Select a framework",
+    showClear: false,
+    showTrigger: true,
   },
   parameters: {
     docs: {

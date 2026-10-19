@@ -5,14 +5,24 @@ import type { CopyToClipboardOptions, CopyToClipboardValue } from "../lib/copy-t
 /** React adapter for the shared clipboard lifecycle. */
 export function useCopyToClipboard(options: CopyToClipboardOptions = {}) {
   const [clipboard] = React.useState(createCopyToClipboard);
+
   const state = React.useSyncExternalStore(
     clipboard.subscribe,
     clipboard.getSnapshot,
     clipboard.getServerSnapshot,
   );
-  React.useEffect(() => () => clipboard.dispose(), [clipboard]);
-  const copyToClipboard = (value: CopyToClipboardValue): Promise<boolean> =>
-    clipboard.copyToClipboard(value, options);
+
+  React.useEffect(
+    () => () => {
+      clipboard.dispose();
+    },
+    [clipboard],
+  );
+
+  const copyToClipboard = async (value: CopyToClipboardValue): Promise<boolean> =>
+    await clipboard.copyToClipboard(value, options);
+
   return { ...state, copyToClipboard, reset: clipboard.reset };
 }
+
 export type { CopyToClipboardOptions, CopyToClipboardValue };

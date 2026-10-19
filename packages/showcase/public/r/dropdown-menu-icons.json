@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n  DropdownMenuList,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuIcons() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuList>\n          <DropdownMenuItem>\n            <Icon name=\"user\" />\n            Profile\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <Icon name=\"credit-card\" />\n            Billing\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <Icon name=\"settings-01\" />\n            Settings\n          </DropdownMenuItem>\n          <DropdownMenuSeparator />\n          <DropdownMenuItem variant=\"error\">\n            <Icon name=\"log-out\" />\n            Log out\n          </DropdownMenuItem>\n        </DropdownMenuList>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n",
       "path": "src/dropdown-menu/examples/dropdown-menu-icons.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/dropdown-menu/examples/dropdown-menu-icons.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n  DropdownMenuList,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport function DropdownMenuIcons() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuList>\n          <DropdownMenuItem>\n            <Icon name=\"user\" />\n            Profile\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <Icon name=\"credit-card\" />\n            Billing\n          </DropdownMenuItem>\n          <DropdownMenuItem>\n            <Icon name=\"settings-01\" />\n            Settings\n          </DropdownMenuItem>\n          <DropdownMenuSeparator />\n          <DropdownMenuItem variant=\"error\">\n            <Icon name=\"log-out\" />\n            Log out\n          </DropdownMenuItem>\n        </DropdownMenuList>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { DropdownMenuIcons } from \"../examples/dropdown-menu-icons\";\n\nconst Example = () => <DropdownMenuIcons />;\n\nexport default Example;\n",
       "path": "src/dropdown-menu/variants/icons.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/dropdown-menu/variants/icons.tsx",
-      "content": "import { DropdownMenuIcons } from \"../examples/dropdown-menu-icons\";\n\nconst Example = () => <DropdownMenuIcons />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -26,15 +26,15 @@ import DisabledButtonSource from "./variants/disabled-button.tsx?raw";
 
 const meta = {
   component: Tooltip,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("tooltip"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;
@@ -47,13 +47,13 @@ export const Playground: StoryObj<{
   sideOffset: number;
   defaultOpen: boolean;
 }> = {
-  args: { side: "top", align: "center", sideOffset: 4, defaultOpen: false },
   argTypes: {
-    side: { control: "select", options: ["top", "right", "bottom", "left"] },
     align: { control: "select", options: ["start", "center", "end"] },
-    sideOffset: { control: "number" },
     defaultOpen: { control: "boolean" },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    sideOffset: { control: "number" },
   },
+  args: { align: "center", defaultOpen: false, side: "top", sideOffset: 4 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("tooltip", "playground") },

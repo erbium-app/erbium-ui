@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "export const paths = [\n  \"src/components/button.tsx\",\n  \"src/components/card.tsx\",\n  \"src/blocks/file-view.tsx\",\n  \"src/blocks/diff-view.tsx\",\n  \"src/styles/surfaces.css\",\n  \"docs/README.md\",\n  \"package.json\",\n  \"empty/\",\n];\n",
       "path": "src/file-tree/examples/paths.ts",
-      "type": "registry:component",
       "target": "@components/showcase/file-tree/examples/paths.ts",
-      "content": "export const paths = [\n  \"src/components/button.tsx\",\n  \"src/components/card.tsx\",\n  \"src/blocks/file-view.tsx\",\n  \"src/blocks/diff-view.tsx\",\n  \"src/styles/surfaces.css\",\n  \"docs/README.md\",\n  \"package.json\",\n  \"empty/\",\n];\n"
+      "type": "registry:component"
     },
     {
+      "content": "import {\n  FileTree,\n  useFileTree,\n  FileTreeHeader,\n  FileTreeTitle,\n  FileTreeActions,\n  FileTreeContent,\n} from \"@/registry/erbium/blocks/file-tree\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Sidebar,\n  SidebarProvider,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupContent,\n} from \"@/registry/erbium/ui/sidebar\";\nimport { paths } from \"../examples/paths\";\n\nexport default function Example() {\n  const { model } = useFileTree({ initialExpansion: 1, paths, search: true });\n\n  return (\n    <SidebarProvider className=\"min-h-0 w-80\">\n      <Sidebar collapsible=\"none\" className=\"w-full\">\n        <SidebarContent>\n          <SidebarGroup>\n            <SidebarGroupContent>\n              <FileTree model={model} aria-label=\"Project files\">\n                <FileTreeHeader>\n                  <FileTreeTitle>Project files</FileTreeTitle>\n                  <FileTreeActions>\n                    <Button\n                      variant=\"ghost\"\n                      size=\"xs\"\n                      onClick={() => {\n                        model.openSearch();\n                      }}\n                    >\n                      Find file\n                    </Button>\n                  </FileTreeActions>\n                </FileTreeHeader>\n                <FileTreeContent className=\"h-96\" />\n              </FileTree>\n            </SidebarGroupContent>\n          </SidebarGroup>\n        </SidebarContent>\n      </Sidebar>\n    </SidebarProvider>\n  );\n}\n",
       "path": "src/file-tree/variants/composition.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/file-tree/variants/composition.tsx",
-      "content": "import {\n  FileTree,\n  useFileTree,\n  FileTreeHeader,\n  FileTreeTitle,\n  FileTreeActions,\n  FileTreeContent,\n} from \"@/registry/erbium/blocks/file-tree\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Sidebar,\n  SidebarProvider,\n  SidebarContent,\n  SidebarGroup,\n  SidebarGroupContent,\n} from \"@/registry/erbium/ui/sidebar\";\nimport { paths } from \"../examples/paths\";\nexport default function Example() {\n  const { model } = useFileTree({ paths, initialExpansion: 1, search: true });\n  return (\n    <SidebarProvider className=\"min-h-0 w-80\">\n      <Sidebar collapsible=\"none\" className=\"w-full\">\n        <SidebarContent>\n          <SidebarGroup>\n            <SidebarGroupContent>\n              <FileTree model={model} aria-label=\"Project files\">\n                <FileTreeHeader>\n                  <FileTreeTitle>Project files</FileTreeTitle>\n                  <FileTreeActions>\n                    <Button variant=\"ghost\" size=\"xs\" onClick={() => model.openSearch()}>\n                      Find file\n                    </Button>\n                  </FileTreeActions>\n                </FileTreeHeader>\n                <FileTreeContent className=\"h-96\" />\n              </FileTree>\n            </SidebarGroupContent>\n          </SidebarGroup>\n        </SidebarContent>\n      </Sidebar>\n    </SidebarProvider>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

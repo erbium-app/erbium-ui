@@ -39,12 +39,12 @@ import WarningSource from "./variants/warning.tsx?raw";
 const meta = {
   component: Alert,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("alert"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof Alert>;
 
@@ -53,13 +53,13 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Alert> = {
-  args: { variant: "default", className: "" },
   argTypes: {
     variant: {
       control: "select",
       options: ["default", "error", "info", "success", "warning"],
     },
   },
+  args: { className: "", variant: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("alert", "playground") },

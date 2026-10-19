@@ -1,5 +1,4 @@
-import { BubbleContent, BubbleReactions } from "@erbium/ui/components/bubble";
-import { Bubble } from "@erbium/ui/components/bubble";
+import { BubbleContent, BubbleReactions, Bubble } from "@erbium/ui/components/bubble";
 
 const Example = (args: {
   variant: "default" | "secondary" | "muted" | "tinted" | "outline" | "ghost" | "error";

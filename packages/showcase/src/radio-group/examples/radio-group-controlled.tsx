@@ -3,8 +3,8 @@ import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import { useState } from "react";
 
 const options = [
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
+  { label: "Light", value: "light" },
+  { label: "Dark", value: "dark" },
 ];
 
 export default function RadioGroupControlled() {

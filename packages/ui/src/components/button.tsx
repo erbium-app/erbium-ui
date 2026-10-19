@@ -1,5 +1,5 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
-import { type VariantProps } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "../lib/button-variants";
 import { Kbd } from "./kbd";
@@ -27,7 +27,7 @@ function Button({
       aria-busy={loading || ariaBusy}
       disabled={disabled || loading}
       focusableWhenDisabled={loading || focusableWhenDisabled}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ className, size, variant }))}
       {...props}
     >
       {loading && <LoadingIndicator inlineStart={!iconOnly} />}

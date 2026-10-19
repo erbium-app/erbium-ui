@@ -9,18 +9,19 @@ import {
 import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { Shell } from "@/components/shell";
 import stylesheet from "@/styles.css?url";
+
 export const Route = createRootRoute({
+  component: Root,
   head: () => ({
+    links: [
+      { href: stylesheet, rel: "stylesheet" },
+      { href: "/favicon.svg", rel: "icon" },
+    ],
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-    ],
-    links: [
-      { rel: "stylesheet", href: stylesheet },
-      { rel: "icon", href: "/favicon.svg" },
+      { content: "width=device-width, initial-scale=1", name: "viewport" },
     ],
   }),
-  component: Root,
   notFoundComponent: () => (
     <main id="main-content" className="docs-page surface-panel rounded-xl">
       <h1 className="text-display">Page not found</h1>
@@ -28,6 +29,7 @@ export const Route = createRootRoute({
     </main>
   ),
 });
+
 function Root() {
   return (
     <html className="antialiased" lang="en" suppressHydrationWarning>

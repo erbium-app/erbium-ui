@@ -1,5 +1,6 @@
 export function getFormValue(formData: FormData, name: string, fallback = "None") {
   const value = formData.get(name);
+
   return typeof value === "string" && value.length > 0 ? value : fallback;
 }
 

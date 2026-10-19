@@ -94,21 +94,19 @@
   --surface-overlay: oklch(100% 0 none);
   --surface-modal: oklch(100% 0 none);
   --surface-top: oklch(100% 0 none);
-  --surface-well: oklch(34.541285% 0.01028535 114.61857 / 0.05);
-
-  --surface-edge: oklch(34.541285% 0.01028535 114.61857 / 0.1);
-  --surface-edge-well: oklch(34.541285% 0.01028535 114.61857 / 0.08);
+  --surface-well: oklch(34.541285% 0.01028535 114.61857deg / 5%);
+  --surface-edge: oklch(34.541285% 0.01028535 114.61857deg / 10%);
+  --surface-edge-well: oklch(34.541285% 0.01028535 114.61857deg / 8%);
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
   --surface-catchlight-lift: 0%;
-  --surface-shadow: oklch(34.541285% 0.01028535 114.61857 / 0.06);
-  --surface-shadow-strong: oklch(34.541285% 0.01028535 114.61857 / 0.1);
-  --surface-shadow-inset: oklch(34.541285% 0.01028535 114.61857 / 0.1);
+  --surface-shadow: oklch(34.541285% 0.01028535 114.61857deg / 6%);
+  --surface-shadow-strong: oklch(34.541285% 0.01028535 114.61857deg / 10%);
+  --surface-shadow-inset: oklch(34.541285% 0.01028535 114.61857deg / 10%);
   --surface-shadow-divider: color-mix(in srgb, var(--foreground) 8%, transparent);
-
-  --surface-tint-hover: oklch(34.541285% 0.01028535 114.61857 / 0.04);
-  --surface-tint-pressed: oklch(34.541285% 0.01028535 114.61857 / 0.07);
+  --surface-tint-hover: oklch(34.541285% 0.01028535 114.61857deg / 4%);
+  --surface-tint-pressed: oklch(34.541285% 0.01028535 114.61857deg / 7%);
   --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 10%;
 
@@ -126,21 +124,19 @@
   --surface-overlay: oklch(25.196475% 0 none);
   --surface-modal: oklch(26.861828% 0 none);
   --surface-top: oklch(28.908005% 0 none);
-  --surface-well: oklch(0% 0 none / 0.25);
-
-  --surface-edge: oklch(89.409654% 0.00970052 93.578683 / 0.03);
-  --surface-edge-well: oklch(89.409654% 0.00970052 93.578683 / 0.04);
-  --surface-highlight: oklch(89.409654% 0.00970052 93.578683 / 0.06);
-  --surface-highlight-strong: oklch(89.409654% 0.00970052 93.578683 / 0.09);
+  --surface-well: oklch(0% 0 none / 25%);
+  --surface-edge: oklch(89.409654% 0.00970052 93.578683deg / 3%);
+  --surface-edge-well: oklch(89.409654% 0.00970052 93.578683deg / 4%);
+  --surface-highlight: oklch(89.409654% 0.00970052 93.578683deg / 6%);
+  --surface-highlight-strong: oklch(89.409654% 0.00970052 93.578683deg / 9%);
   --surface-highlight-divider: var(--surface-highlight);
   --surface-catchlight-lift: 100%;
-  --surface-shadow: oklch(0% 0 none / 0.3);
-  --surface-shadow-strong: oklch(0% 0 none / 0.5);
-  --surface-shadow-inset: oklch(0% 0 none / 0.35);
+  --surface-shadow: oklch(0% 0 none / 30%);
+  --surface-shadow-strong: oklch(0% 0 none / 50%);
+  --surface-shadow-inset: oklch(0% 0 none / 35%);
   --surface-shadow-divider: var(--surface-shadow);
-
-  --surface-tint-hover: oklch(89.409654% 0.00970052 93.578683 / 0.025);
-  --surface-tint-pressed: oklch(0% 0 none / 0.12);
+  --surface-tint-hover: oklch(89.409654% 0.00970052 93.578683deg / 2.5%);
+  --surface-tint-pressed: oklch(0% 0 none / 12%);
   --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 15%;
 }
@@ -159,68 +155,68 @@
 /* Element tokens: non-inheriting, so their initial values are the defaults
    of every surface and nested surfaces start clean. */
 @property --surface-face {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 @property --surface-rim {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 @property --surface-catchlight {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 @property --surface-backing {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 @property --surface-drop {
-  syntax: "*";
   inherits: false;
   initial-value:
     0 0 0 0 transparent,
     0 0 0 0 transparent,
     0 0 0 0 transparent;
+  syntax: "*";
 }
 
 @property --surface-recess {
-  syntax: "*";
   inherits: false;
   initial-value: 0 0 0 0 transparent;
+  syntax: "*";
 }
 
 @property --surface-seam {
-  syntax: "*";
   inherits: false;
   initial-value:
     0 0 0 0 transparent,
     0 0 0 0 transparent;
+  syntax: "*";
 }
 
 @property --surface-tint {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 @property --surface-hover-tint {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 @property --surface-press-tint {
-  syntax: "*";
   inherits: false;
   initial-value: transparent;
+  syntax: "*";
 }
 
 /* Elements that react to pointer hover and press. Composite-widget items
@@ -253,10 +249,12 @@
     0 -1px 0 0 var(--surface-catchlight), 0 0 0 1px var(--surface-rim),
     0 0 0 1px var(--surface-backing), var(--surface-drop), inset var(--surface-recess),
     var(--surface-seam);
+
   border-color: transparent;
   background-color: var(--surface-face);
   background-image: linear-gradient(var(--surface-tint), var(--surface-tint));
   background-origin: border-box;
+
   @apply shadow-(--surface-elevation);
 
   :where(&) {
@@ -291,7 +289,8 @@
    surface-ghost-error-soft. Press deepens the colour toward the text. */
 @utility surface-ghost-* {
   --surface-hover-tint: --value(--color, [color]);
-  --surface-press-tint: color-mix(in oklab, var(--surface-hover-tint), currentColor 10%);
+  --surface-press-tint: color-mix(in oklab, var(--surface-hover-tint), currentcolor 10%);
+
   @apply surface-flat;
 }
 
@@ -300,6 +299,7 @@
  * Keep this in the recipe so components need no border fallback classes. */
 @utility surface-framed {
   @apply surface-flat;
+
   border-width: 0;
 
   @media (forced-colors: active) {
@@ -317,6 +317,7 @@
   --surface-backing: var(--surface-face);
   --surface-drop:
     0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+
   @apply surface-framed;
 
   :where(&) {
@@ -380,6 +381,7 @@
 
 @utility surface-field {
   --surface-face: var(--surface-input);
+
   @apply surface-control;
 }
 
@@ -391,6 +393,7 @@
   --surface-drop:
     0 2px 4px -1px var(--surface-shadow), 0 8px 16px -4px var(--surface-shadow),
     0 16px 32px -8px var(--surface-shadow-strong);
+
   @apply surface-framed;
 
   :where(&) {
@@ -407,6 +410,7 @@
   --surface-drop:
     0 4px 8px -2px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow),
     0 32px 64px -16px var(--surface-shadow-strong);
+
   @apply surface-framed;
 
   :where(&) {
@@ -422,6 +426,7 @@
     var(--surface-container-face, var(--surface-panel)) 96%,
     var(--surface-footer-mix)
   );
+
   @apply carve-top;
 }
 
@@ -429,6 +434,7 @@
 @utility surface-frame {
   --surface-face: color-mix(in srgb, var(--surface-panel) 50%, transparent);
   --surface-rim: var(--surface-edge);
+
   @apply surface-framed;
 
   :where(&) {
@@ -444,6 +450,7 @@
   --surface-drop:
     0 1px 2px 0 var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
     0 0 0 0 transparent;
+
   @apply surface-flat;
 }
 
@@ -451,7 +458,9 @@
 @utility surface-well {
   --surface-elevation:
     inset 0 1px 2px 0 var(--surface-shadow-inset), inset 0 0 0 1px var(--surface-edge-well);
+
   background-color: var(--surface-well);
+
   @apply shadow-(--surface-elevation);
 
   :where(&) {
@@ -464,21 +473,23 @@
   --surface-face: --value(--color, [color]);
   --surface-rim: color-mix(in srgb, var(--surface-face) 88%, var(--surface-dark-source));
   --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, var(--surface-light-source));
+
   @apply surface-control;
 }
 
 @utility surface-tint-* {
   --surface-face: --value(--color, [color]);
-  --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
+  --surface-rim: color-mix(in oklab, currentcolor 10%, transparent);
   --surface-catchlight: color-mix(
     in srgb,
     color-mix(in srgb, var(--surface-face) 80%, var(--surface-light-source))
       var(--surface-catchlight-lift),
-    color-mix(in oklab, currentColor 5%, var(--surface-face))
+    color-mix(in oklab, currentcolor 5%, var(--surface-face))
   );
   --surface-backing: var(--surface-face);
   --surface-drop:
     0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+
   @apply surface-flat;
 }
 
@@ -494,14 +505,15 @@
     var(--surface-tag-color) var(--surface-tag-strength),
     transparent
   );
-  --surface-rim: color-mix(in oklab, currentColor 10%, transparent);
+  --surface-rim: color-mix(in oklab, currentcolor 10%, transparent);
   --surface-catchlight: color-mix(
     in srgb,
     color-mix(in srgb, transparent 80%, var(--surface-light-source)) var(--surface-catchlight-lift),
-    color-mix(in oklab, currentColor 5%, transparent)
+    color-mix(in oklab, currentcolor 5%, transparent)
   );
   --surface-drop:
     0 1px 2px -1px var(--surface-shadow), 0 2px 6px -2px var(--surface-shadow), 0 0 0 0 transparent;
+
   @apply surface-flat;
 }
 
@@ -516,24 +528,28 @@
 
 @utility carve-top {
   @apply carve-rule;
-  background-size: 100% 2px;
+
   background-position: top;
   background-repeat: no-repeat;
+  background-size: 100% 2px;
 }
 
 @utility carve-bottom {
   @apply carve-rule;
-  background-size: 100% 2px;
+
   background-position: bottom;
   background-repeat: no-repeat;
+  background-size: 100% 2px;
 }
 
 @utility carve-start {
   --separator-direction: to right;
+
   @apply carve-rule;
-  background-size: 2px 100%;
+
   background-position: left;
   background-repeat: no-repeat;
+  background-size: 2px 100%;
 
   &:dir(rtl) {
     background-position: right;
@@ -612,17 +628,17 @@
 [data-separator][data-labeled]::after,
 [data-slot="marker"][data-variant="separator"]::before,
 [data-slot="marker"][data-variant="separator"]::after {
-  content: "";
   min-width: 0;
   height: 2px;
   flex: 1;
+  content: "";
 }
 
 [data-separator][data-labeled][data-orientation="vertical"]::before,
 [data-separator][data-labeled][data-orientation="vertical"]::after {
-  min-height: 0;
   width: 2px;
   height: auto;
+  min-height: 0;
 }
 
 /* Every control in a group is a segment of one surface: the group owns the
@@ -637,14 +653,15 @@
   ):has(> [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"])) {
     @apply rounded-lg surface-control;
 
-    > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
+    & > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
       --surface-rim: transparent;
       --surface-catchlight: transparent;
       --surface-backing: transparent;
       --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
+
       border-width: 0;
-      margin-inline-start: 0;
       margin-block-start: 0;
+      margin-inline-start: 0;
 
       &[aria-invalid="true"],
       &:has([aria-invalid="true"]) {

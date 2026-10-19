@@ -18,15 +18,15 @@ import LinkComponentSource from "./variants/link-component.tsx?raw";
 
 const meta = {
   component: NavigationMenu,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("navigation-menu"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof NavigationMenu>;
 
 export default meta;
@@ -37,11 +37,11 @@ export const Playground: StoryObj<{
   orientation: "horizontal" | "vertical";
   align: "start" | "center" | "end";
 }> = {
-  args: { orientation: "horizontal", align: "start" },
   argTypes: {
-    orientation: { control: "select", options: ["horizontal", "vertical"] },
     align: { control: "select", options: ["start", "center", "end"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
   },
+  args: { align: "start", orientation: "horizontal" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("navigation-menu", "playground") },

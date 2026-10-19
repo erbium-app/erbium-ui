@@ -15,8 +15,10 @@ import {
   SidebarGroupContent,
 } from "@erbium/ui/components/sidebar";
 import { paths } from "../examples/paths";
+
 export default function Example() {
-  const { model } = useFileTree({ paths, initialExpansion: 1, search: true });
+  const { model } = useFileTree({ initialExpansion: 1, paths, search: true });
+
   return (
     <SidebarProvider className="min-h-0 w-80">
       <Sidebar collapsible="none" className="w-full">
@@ -27,7 +29,13 @@ export default function Example() {
                 <FileTreeHeader>
                   <FileTreeTitle>Project files</FileTreeTitle>
                   <FileTreeActions>
-                    <Button variant="ghost" size="xs" onClick={() => model.openSearch()}>
+                    <Button
+                      variant="ghost"
+                      size="xs"
+                      onClick={() => {
+                        model.openSearch();
+                      }}
+                    >
                       Find file
                     </Button>
                   </FileTreeActions>

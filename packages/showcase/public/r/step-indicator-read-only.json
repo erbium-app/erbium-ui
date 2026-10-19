@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
   "files": [
     {
+      "content": "import { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nexport default function Example() {\n  return <StepIndicator count={5} value={2} aria-label=\"Question 3 of 5\" />;\n}\n",
       "path": "src/step-indicator/variants/read-only.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/step-indicator/variants/read-only.tsx",
-      "content": "import { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nexport default function Example() {\n  return <StepIndicator count={5} value={2} aria-label=\"Question 3 of 5\" />;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -70,15 +70,15 @@ import ValidationAndErrorsSource from "./variants/validation-and-errors.tsx?raw"
 
 const meta = {
   component: Field,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("field"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Field>;
 
 export default meta;
@@ -92,19 +92,19 @@ export const Playground: StoryObj<{
   className: string;
   legendVariant: "legend" | "label";
 }> = {
-  args: {
-    orientation: "vertical",
-    invalid: false,
-    error: "Enter a valid email.",
-    className: "",
-    legendVariant: "legend",
-  },
   argTypes: {
-    orientation: { control: "select", options: ["vertical", "horizontal", "responsive"] },
-    invalid: { control: "boolean" },
-    error: { control: "text" },
     className: { control: "text" },
+    error: { control: "text" },
+    invalid: { control: "boolean" },
     legendVariant: { control: "select", options: ["legend", "label"] },
+    orientation: { control: "select", options: ["vertical", "horizontal", "responsive"] },
+  },
+  args: {
+    className: "",
+    error: "Enter a valid email.",
+    invalid: false,
+    legendVariant: "legend",
+    orientation: "vertical",
   },
   parameters: {
     docs: {
@@ -237,11 +237,11 @@ export const ResponsiveLayout: Story = {
 
 export const Group: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("field", "group") },
       source: { code: GroupSource },
     },
+    layout: "padded",
   },
   render: GroupExample,
 };

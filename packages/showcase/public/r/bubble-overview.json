@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Bubble, BubbleContent, BubbleGroup } from \"@/registry/erbium/ui/bubble\";\n\nexport default function Demo() {\n  return (\n    <BubbleGroup>\n      <Bubble>\n        <BubbleContent>Hello! How can I help?</BubbleContent>\n      </Bubble>\n      <Bubble>\n        <BubbleContent>Show me the latest update.</BubbleContent>\n      </Bubble>\n    </BubbleGroup>\n  );\n}\n",
       "path": "src/bubble/examples/bubble-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/bubble/examples/bubble-demo.tsx",
-      "content": "import { Bubble, BubbleContent, BubbleGroup } from \"@/registry/erbium/ui/bubble\";\nexport default function Demo() {\n  return (\n    <BubbleGroup>\n      <Bubble>\n        <BubbleContent>Hello! How can I help?</BubbleContent>\n      </Bubble>\n      <Bubble>\n        <BubbleContent>Show me the latest update.</BubbleContent>\n      </Bubble>\n    </BubbleGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/bubble-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/bubble/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/bubble/variants/overview.tsx",
-      "content": "import Demo from \"../examples/bubble-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

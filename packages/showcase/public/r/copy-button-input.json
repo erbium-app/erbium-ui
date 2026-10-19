@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/copy-button", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
+      "content": "import { useState } from \"react\";\nimport { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  InputGroup,\n  InputGroupInput,\n  InputGroupAddon,\n  InputGroupButton,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport default function Example() {\n  const [value, setValue] = useState(\"https://erbium.dev\");\n\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupInput\n        value={value}\n        onChange={(event) => {\n          setValue(event.target.value);\n        }}\n      />\n      <InputGroupAddon align=\"inline-end\">\n        <CopyButton\n          value={value}\n          aria-label=\"Copy URL\"\n          render={<InputGroupButton size=\"icon-xs\" />}\n        />\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
       "path": "src/copy-button/variants/input.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/copy-button/variants/input.tsx",
-      "content": "import { useState } from \"react\";\nimport { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  InputGroup,\n  InputGroupInput,\n  InputGroupAddon,\n  InputGroupButton,\n} from \"@/registry/erbium/ui/input-group\";\nexport default function Example() {\n  const [value, setValue] = useState(\"https://erbium.dev\");\n  return (\n    <InputGroup className=\"w-80\">\n      <InputGroupInput value={value} onChange={(event) => setValue(event.target.value)} />\n      <InputGroupAddon align=\"inline-end\">\n        <CopyButton\n          value={value}\n          aria-label=\"Copy URL\"\n          render={<InputGroupButton size=\"icon-xs\" />}\n        />\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

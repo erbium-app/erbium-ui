@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "sidebar-examples",
-  "type": "registry:item",
-  "title": "Sidebar examples",
   "description": "All sidebar examples.",
+  "name": "sidebar-examples",
   "registryDependencies": [
     "@erbium-examples/sidebar-playground",
     "@erbium-examples/sidebar-overview",
     "@erbium-examples/sidebar-controlled-sidebar"
-  ]
+  ],
+  "title": "Sidebar examples",
+  "type": "registry:item"
 }

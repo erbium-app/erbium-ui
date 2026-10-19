@@ -17,8 +17,11 @@ import { Icon } from "./icon";
 type ToastType = "default" | "loading" | "success" | "info" | "warning" | "error";
 
 type WithToastType<T> = Omit<T, "type"> & { type?: ToastType | undefined };
+
 type ToastItem = WithToastType<ToastPrimitive.Root.ToastObject<object>>;
+
 type ToastAddOptions = WithToastType<ToastManagerAddOptions<object>>;
+
 type ToastUpdateOptions = WithToastType<ToastManagerUpdateOptions<object>>;
 
 interface ToastManager extends Omit<BaseToastManager, "add" | "update"> {
@@ -31,6 +34,14 @@ interface ToastManager extends Omit<BaseToastManager, "add" | "update"> {
 
 const toastTypes: Record<ToastType, { className: string; icon?: React.ReactNode }> = {
   default: { className: "surface-overlay text-popover-foreground" },
+  error: {
+    className: "surface-tint-error-soft text-error-soft-foreground",
+    icon: <Icon name="octagon-x" className="text-error" aria-hidden="true" />,
+  },
+  info: {
+    className: "surface-tint-info-soft text-info-soft-foreground",
+    icon: <Icon name="info" className="text-info" aria-hidden="true" />,
+  },
   loading: {
     className: "surface-overlay text-popover-foreground",
     icon: <Spinner aria-hidden="true" />,
@@ -39,17 +50,9 @@ const toastTypes: Record<ToastType, { className: string; icon?: React.ReactNode 
     className: "surface-tint-success-soft text-success-soft-foreground",
     icon: <Icon name="circle-check" className="text-success" aria-hidden="true" />,
   },
-  info: {
-    className: "surface-tint-info-soft text-info-soft-foreground",
-    icon: <Icon name="info" className="text-info" aria-hidden="true" />,
-  },
   warning: {
     className: "surface-tint-warning-soft text-warning-soft-foreground",
     icon: <Icon name="triangle-alert" className="text-warning" aria-hidden="true" />,
-  },
-  error: {
-    className: "surface-tint-error-soft text-error-soft-foreground",
-    icon: <Icon name="octagon-x" className="text-error" aria-hidden="true" />,
   },
 };
 
@@ -211,7 +214,8 @@ function collapseStack(viewport: HTMLElement) {
 }
 
 function revealStack(viewport: HTMLElement) {
-  const opened = !viewport.hasAttribute("data-expanded");
+  const opened = !Object.hasOwn(viewport.dataset, "expanded");
+
   if (opened) {
     viewport.dispatchEvent(new MouseEvent("mousemove", { bubbles: true }));
   }
@@ -237,10 +241,18 @@ function ToasterItem({
 }) {
   const rootRef = React.useRef<HTMLDivElement>(null);
   const previous = React.useRef(item);
+  // React 19's useRef has no zero-argument overload; the explicit initial
+  // value must stay.
+  // oxlint-disable-next-line unicorn/no-useless-undefined
   const shakeTimer = React.useRef<number | undefined>(undefined);
   const { icon } = toastTypes[item.type ?? "default"];
 
-  React.useEffect(() => () => window.clearTimeout(shakeTimer.current), []);
+  React.useEffect(
+    () => () => {
+      window.clearTimeout(shakeTimer.current);
+    },
+    [],
+  );
 
   // Base UI bumps `updateKey` on every upsert; shake only when nothing visible changed.
   React.useEffect(() => {
@@ -263,6 +275,7 @@ function ToasterItem({
     // A toast tucked behind a newer one would shake out of sight, so fan the stack out first.
     if (!root || !viewport || !buried) {
       shake(root ?? null);
+
       return;
     }
 
@@ -270,7 +283,7 @@ function ToasterItem({
     const opened = revealStack(viewport);
     shakeTimer.current = window.setTimeout(
       () => {
-        root.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+        root.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
         shake(root);
         collapse.maybeExecute(viewport);
       },
@@ -361,4 +374,5 @@ export {
   toast,
   useToastManager,
 };
+
 export type { ToastItem, ToastManager, ToastType };

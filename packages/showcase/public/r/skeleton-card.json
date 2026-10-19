@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport default function SkeletonCard() {\n  return (\n    <div className=\"flex flex-col space-y-3\">\n      <Skeleton className=\"h-[125px] w-[250px] rounded-xl\" />\n      <div className=\"space-y-2\">\n        <Skeleton className=\"h-4 w-[250px]\" />\n        <Skeleton className=\"h-4 w-[200px]\" />\n      </div>\n    </div>\n  );\n}\n",
       "path": "src/skeleton/examples/skeleton-card.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/examples/skeleton-card.tsx",
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport default function SkeletonCard() {\n  return (\n    <div className=\"flex flex-col space-y-3\">\n      <Skeleton className=\"h-[125px] w-[250px] rounded-xl\" />\n      <div className=\"space-y-2\">\n        <Skeleton className=\"h-4 w-[250px]\" />\n        <Skeleton className=\"h-4 w-[200px]\" />\n      </div>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleSkeletonCard from \"../examples/skeleton-card\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSkeletonCard />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/skeleton/variants/card.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/variants/card.tsx",
-      "content": "import ExampleSkeletonCard from \"../examples/skeleton-card\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSkeletonCard />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

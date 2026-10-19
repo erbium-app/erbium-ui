@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/diff-view", "@erbium/styles"],
   "files": [
     {
+      "content": "const oldFile = {\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n  name: \"greeting.ts\",\n};\n\nconst newFile = {\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n  name: \"greeting.ts\",\n};\n\nexport { oldFile, newFile };\n",
       "path": "src/diff-view/examples/files.ts",
-      "type": "registry:component",
       "target": "@components/showcase/diff-view/examples/files.ts",
-      "content": "const oldFile = {\n  name: \"greeting.ts\",\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n};\nconst newFile = {\n  name: \"greeting.ts\",\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n};\nexport { oldFile, newFile };\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { useState } from \"react\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function Example() {\n  const [reversed, setReversed] = useState(false);\n\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <Button\n        className=\"w-fit\"\n        size=\"sm\"\n        variant=\"outline\"\n        onClick={() => {\n          setReversed(!reversed);\n        }}\n      >\n        Swap file versions\n      </Button>\n      <DiffView oldFile={reversed ? newFile : oldFile} newFile={reversed ? oldFile : newFile} />\n    </div>\n  );\n}\n",
       "path": "src/diff-view/variants/changing-source.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/diff-view/variants/changing-source.tsx",
-      "content": "import { useState } from \"react\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function Example() {\n  const [reversed, setReversed] = useState(false);\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <Button className=\"w-fit\" size=\"sm\" variant=\"outline\" onClick={() => setReversed(!reversed)}>\n        Swap file versions\n      </Button>\n      <DiffView oldFile={reversed ? newFile : oldFile} newFile={reversed ? oldFile : newFile} />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "sheet-examples",
-  "type": "registry:item",
-  "title": "Sheet examples",
   "description": "All sheet examples.",
+  "name": "sheet-examples",
   "registryDependencies": [
     "@erbium-examples/sheet-playground",
     "@erbium-examples/sheet-overview",
     "@erbium-examples/sheet-side",
     "@erbium-examples/sheet-no-close-button"
-  ]
+  ],
+  "title": "Sheet examples",
+  "type": "registry:item"
 }

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/sheet", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Sheet,\n  SheetPanel,\n  SheetContent,\n  SheetDescription,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/registry/erbium/ui/sheet\";\n\nexport default function SheetNoCloseButton() {\n  return (\n    <Sheet>\n      <SheetTrigger render={<Button variant=\"outline\" />}>Open Sheet</SheetTrigger>\n      <SheetPanel showCloseButton={false}>\n        <SheetHeader>\n          <SheetTitle>No Close Button</SheetTitle>\n          <SheetDescription>\n            This sheet doesn&apos;t have a close button in the top-right corner. Click outside to\n            close.\n          </SheetDescription>\n        </SheetHeader>\n        <SheetContent>Review your changes here.</SheetContent>\n      </SheetPanel>\n    </Sheet>\n  );\n}\n",
       "path": "src/sheet/examples/sheet-no-close-button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/sheet/examples/sheet-no-close-button.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Sheet,\n  SheetPanel,\n  SheetContent,\n  SheetDescription,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n} from \"@/registry/erbium/ui/sheet\";\n\nexport default function SheetNoCloseButton() {\n  return (\n    <Sheet>\n      <SheetTrigger render={<Button variant=\"outline\" />}>Open Sheet</SheetTrigger>\n      <SheetPanel showCloseButton={false}>\n        <SheetHeader>\n          <SheetTitle>No Close Button</SheetTitle>\n          <SheetDescription>\n            This sheet doesn&apos;t have a close button in the top-right corner. Click outside to\n            close.\n          </SheetDescription>\n        </SheetHeader>\n        <SheetContent>Review your changes here.</SheetContent>\n      </SheetPanel>\n    </Sheet>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import SheetNoCloseButton from \"../examples/sheet-no-close-button\";\n\nconst Example = () => <SheetNoCloseButton />;\n\nexport default Example;\n",
       "path": "src/sheet/variants/no-close-button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/sheet/variants/no-close-button.tsx",
-      "content": "import SheetNoCloseButton from \"../examples/sheet-no-close-button\";\n\nconst Example = () => <SheetNoCloseButton />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

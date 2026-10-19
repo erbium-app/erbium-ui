@@ -1,13 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "pagination-examples",
-  "type": "registry:item",
-  "title": "Pagination examples",
   "description": "All pagination examples.",
+  "name": "pagination-examples",
   "registryDependencies": [
     "@erbium-examples/pagination-playground",
     "@erbium-examples/pagination-overview",
     "@erbium-examples/pagination-simple",
     "@erbium-examples/pagination-icons-only"
-  ]
+  ],
+  "title": "Pagination examples",
+  "type": "registry:item"
 }

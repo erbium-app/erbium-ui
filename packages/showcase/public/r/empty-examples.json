@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "empty-examples",
-  "type": "registry:item",
-  "title": "Empty examples",
   "description": "All empty examples.",
+  "name": "empty-examples",
   "registryDependencies": [
     "@erbium-examples/empty-playground",
     "@erbium-examples/empty-overview",
@@ -13,5 +11,7 @@
     "@erbium-examples/empty-input-group",
     "@erbium-examples/empty-outline",
     "@erbium-examples/empty-background"
-  ]
+  ],
+  "title": "Empty examples",
+  "type": "registry:item"
 }

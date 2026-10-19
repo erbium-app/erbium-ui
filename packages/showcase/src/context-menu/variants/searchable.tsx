@@ -14,6 +14,7 @@ import {
 
 export default function SearchableExample() {
   const [action, setAction] = useState("No action selected.");
+
   return (
     <div className="grid gap-related">
       <ContextMenu searchable>
@@ -28,7 +29,13 @@ export default function SearchableExample() {
               <ContextMenuLabel>Project</ContextMenuLabel>
               {["Open project", "Rename project", "Duplicate project", "Copy project link"].map(
                 (label) => (
-                  <ContextMenuItem key={label} label={label} onClick={() => setAction(label)}>
+                  <ContextMenuItem
+                    key={label}
+                    label={label}
+                    onClick={() => {
+                      setAction(label);
+                    }}
+                  >
                     {label}
                   </ContextMenuItem>
                 ),
@@ -38,7 +45,13 @@ export default function SearchableExample() {
             <ContextMenuGroup>
               <ContextMenuLabel>Export</ContextMenuLabel>
               {["Export PDF", "Export Markdown", "Export CSV", "Download archive"].map((label) => (
-                <ContextMenuItem key={label} label={label} onClick={() => setAction(label)}>
+                <ContextMenuItem
+                  key={label}
+                  label={label}
+                  onClick={() => {
+                    setAction(label);
+                  }}
+                >
                   {label}
                 </ContextMenuItem>
               ))}

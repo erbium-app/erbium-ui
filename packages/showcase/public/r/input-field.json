@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputField() {\n  return (\n    <Field>\n      <FieldLabel>Username</FieldLabel>\n      <Input type=\"text\" placeholder=\"Enter your username\" />\n      <FieldDescription>Choose a unique username for your account.</FieldDescription>\n    </Field>\n  );\n}\n",
       "path": "src/input/examples/input-field.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/examples/input-field.tsx",
-      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputField() {\n  return (\n    <Field>\n      <FieldLabel>Username</FieldLabel>\n      <Input type=\"text\" placeholder=\"Enter your username\" />\n      <FieldDescription>Choose a unique username for your account.</FieldDescription>\n    </Field>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { InputField } from \"../examples/input-field\";\n\nconst Example = () => <InputField />;\n\nexport default Example;\n",
       "path": "src/input/variants/field.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/variants/field.tsx",
-      "content": "import { InputField } from \"../examples/input-field\";\n\nconst Example = () => <InputField />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

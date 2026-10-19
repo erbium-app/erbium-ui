@@ -29,7 +29,7 @@ export function QuestionnaireFreeform() {
 
     const approach = getFormValue(new FormData(event.currentTarget), "approach");
 
-    toast.add({ title: "Approach selected", description: `Approach: ${approach ?? "None"}` });
+    toast.add({ description: `Approach: ${approach ?? "None"}`, title: "Approach selected" });
   }
 
   return (

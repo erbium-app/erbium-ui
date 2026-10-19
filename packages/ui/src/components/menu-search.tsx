@@ -16,7 +16,9 @@ function MenuSearch({
     <div data-slot="menu-search" className="shrink-0">
       <div
         className="flex search-input-row items-center"
-        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+        onPointerDown={(event) => {
+          focusSearchInput(event.currentTarget, event);
+        }}
       >
         <Icon
           name="search-01"

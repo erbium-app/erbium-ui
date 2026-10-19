@@ -1,5 +1,6 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Input } from "./input";
@@ -22,18 +23,18 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 const inputGroupAddonVariants = cva(
   "flex h-auto cursor-text items-center justify-center gap-related py-1.5 text-control-sm font-medium text-muted-foreground select-none [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
   {
-    variants: {
-      align: {
-        "inline-start": "order-first ps-2 has-[>button]:ms-[-0.3rem] has-[>kbd]:ms-[-0.15rem]",
-        "inline-end": "order-last pe-2 has-[>button]:me-[-0.3rem] has-[>kbd]:me-[-0.15rem]",
-        "block-start":
-          "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2",
-        "block-end":
-          "order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2",
-      },
-    },
     defaultVariants: {
       align: "inline-start",
+    },
+    variants: {
+      align: {
+        "block-end":
+          "order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2",
+        "block-start":
+          "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2",
+        "inline-end": "order-last pe-2 has-[>button]:me-[-0.3rem] has-[>kbd]:me-[-0.15rem]",
+        "inline-start": "order-first ps-2 has-[>button]:ms-[-0.3rem] has-[>kbd]:ms-[-0.15rem]",
+      },
     },
   },
 );
@@ -57,9 +58,11 @@ function InputGroupAddon({
       onMouseDown={(event) => {
         onMouseDown?.(event);
         const interactive = (event.target as Element).closest(interactiveSelector);
+
         if (event.defaultPrevented || (interactive && event.currentTarget.contains(interactive))) {
           return;
         }
+
         // Keep focus in the control: focusing on mousedown, not click, avoids a
         // blur that would flash the ring and mark a Field as touched.
         event.preventDefault();
@@ -75,16 +78,16 @@ function InputGroupAddon({
 const inputGroupButtonVariants = cva(
   "flex control-embedded items-center gap-control-gap text-control-sm shadow-none",
   {
-    variants: {
-      size: {
-        xs: "min-h-control-xs gap-1 rounded-[calc(var(--radius)-3px)] px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
-        sm: "",
-        "icon-xs": "size-control-xs rounded-[calc(var(--radius)-3px)] p-0 has-[>svg]:p-0",
-        "icon-sm": "size-control-sm p-0 has-[>svg]:p-0",
-      },
-    },
     defaultVariants: {
       size: "xs",
+    },
+    variants: {
+      size: {
+        "icon-sm": "size-control-sm p-0 has-[>svg]:p-0",
+        "icon-xs": "size-control-xs rounded-[calc(var(--radius)-3px)] p-0 has-[>svg]:p-0",
+        sm: "",
+        xs: "min-h-control-xs gap-1 rounded-[calc(var(--radius)-3px)] px-1.5 [&>svg:not([class*='size-'])]:size-3.5",
+      },
     },
   },
 );

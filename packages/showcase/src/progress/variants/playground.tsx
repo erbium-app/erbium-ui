@@ -1,5 +1,4 @@
-import { ProgressTrack, ProgressIndicator } from "@erbium/ui/components/progress";
-import { Progress } from "@erbium/ui/components/progress";
+import { ProgressTrack, ProgressIndicator, Progress } from "@erbium/ui/components/progress";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Progress>) => (

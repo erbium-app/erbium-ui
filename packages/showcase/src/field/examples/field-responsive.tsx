@@ -16,7 +16,11 @@ import { StatefulButton } from "@erbium/ui/components/stateful-button";
 export default function FieldResponsive() {
   return (
     <div className="w-full max-w-4xl">
-      <form onSubmit={(event) => event.preventDefault()}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <FieldSet>
           <FieldLegend>Profile</FieldLegend>
           <FieldDescription>Fill in your profile information.</FieldDescription>

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/resizable", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  ResizablePanel,\n  ResizableHandle,\n  ResizablePanelGroup,\n} from \"@/registry/erbium/ui/resizable\";\n\nconst Example = (args: {\n  orientation: \"horizontal\" | \"vertical\";\n  firstPanelSize: number;\n  showHandle: boolean;\n}) => (\n  <ResizablePanelGroup\n    key={`${args.orientation}-${args.firstPanelSize}`}\n    orientation={args.orientation}\n    className=\"h-48 w-80 rounded-xl border surface-panel\"\n  >\n    <ResizablePanel\n      defaultSize={`${args.firstPanelSize}%`}\n      className=\"flex items-center justify-center\"\n    >\n      First\n    </ResizablePanel>\n    <ResizableHandle withHandle={args.showHandle} />\n    <ResizablePanel\n      defaultSize={`${100 - args.firstPanelSize}%`}\n      className=\"flex items-center justify-center\"\n    >\n      Second\n    </ResizablePanel>\n  </ResizablePanelGroup>\n);\n\nexport default Example;\n",
       "path": "src/resizable/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/resizable/variants/playground.tsx",
-      "content": "import {\n  ResizablePanel,\n  ResizableHandle,\n  ResizablePanelGroup,\n} from \"@/registry/erbium/ui/resizable\";\n\nconst Example = (args: {\n  orientation: \"horizontal\" | \"vertical\";\n  firstPanelSize: number;\n  showHandle: boolean;\n}) => (\n  <ResizablePanelGroup\n    key={`${args.orientation}-${args.firstPanelSize}`}\n    orientation={args.orientation}\n    className=\"h-48 w-80 rounded-xl border surface-panel\"\n  >\n    <ResizablePanel\n      defaultSize={`${args.firstPanelSize}%`}\n      className=\"flex items-center justify-center\"\n    >\n      First\n    </ResizablePanel>\n    <ResizableHandle withHandle={args.showHandle} />\n    <ResizablePanel\n      defaultSize={`${100 - args.firstPanelSize}%`}\n      className=\"flex items-center justify-center\"\n    >\n      Second\n    </ResizablePanel>\n  </ResizablePanelGroup>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

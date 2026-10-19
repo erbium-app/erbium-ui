@@ -83,7 +83,9 @@ function ComboboxSearchInput({ className, ...props }: ComboboxPrimitive.Input.Pr
     <div data-slot="combobox-search-input-wrapper">
       <div
         className="flex search-input-row items-center"
-        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+        onPointerDown={(event) => {
+          focusSearchInput(event.currentTarget, event);
+        }}
       >
         <Icon
           name="search-01"

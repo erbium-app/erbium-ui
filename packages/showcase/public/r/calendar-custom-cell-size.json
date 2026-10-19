@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst Example = () => (\n  <Calendar mode=\"single\" className=\"[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]\" />\n);\n\nexport default Example;\n",
       "path": "src/calendar/variants/custom-cell-size.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/calendar/variants/custom-cell-size.tsx",
-      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst Example = () => (\n  <Calendar mode=\"single\" className=\"[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]\" />\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,4 +1,5 @@
-import { DocsContainer, type DocsContainerProps } from "@storybook/addon-docs/blocks";
+import { DocsContainer } from "@storybook/addon-docs/blocks";
+import type { DocsContainerProps } from "@storybook/addon-docs/blocks";
 import { useEffect, useState } from "react";
 import { GLOBALS_UPDATED } from "storybook/internal/core-events";
 import { themes } from "storybook/theming";
@@ -19,7 +20,10 @@ function ThemeAwareDocsContainer({
     };
 
     context.channel.on(GLOBALS_UPDATED, onGlobalsUpdated);
-    return () => context.channel.off(GLOBALS_UPDATED, onGlobalsUpdated);
+
+    return () => {
+      context.channel.off(GLOBALS_UPDATED, onGlobalsUpdated);
+    };
   }, [context.channel]);
 
   return (

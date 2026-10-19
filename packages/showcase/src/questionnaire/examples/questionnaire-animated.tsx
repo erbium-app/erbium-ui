@@ -33,8 +33,8 @@ export function QuestionnaireAnimated() {
     const formData = new FormData(event.currentTarget);
 
     toast.add({
-      title: "Agent workflow saved",
       description: `Task: ${getFormValue(formData, "task", "None")} · Review: ${getFormValue(formData, "review", "None")} · Delivery: ${getFormValue(formData, "delivery", "None")}`,
+      title: "Agent workflow saved",
     });
   }
 

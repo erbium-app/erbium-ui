@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\n\nexport default function DrawerDemo() {\n  return (\n    <Drawer showSwipeHandle>\n      <DrawerTrigger render={<Button variant=\"outline\">Open drawer</Button>} />\n      <DrawerPanel>\n        <DrawerHeader>\n          <DrawerTitle>Edit profile</DrawerTitle>\n          <DrawerDescription>Make changes and close when finished.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>Review your profile details here.</DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button>Done</Button>} />\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n",
       "path": "src/drawer/examples/drawer-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/drawer/examples/drawer-demo.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Drawer,\n  DrawerClose,\n  DrawerPanel,\n  DrawerContent,\n  DrawerDescription,\n  DrawerFooter,\n  DrawerHeader,\n  DrawerTitle,\n  DrawerTrigger,\n} from \"@/registry/erbium/ui/drawer\";\nexport default function DrawerDemo() {\n  return (\n    <Drawer showSwipeHandle>\n      <DrawerTrigger render={<Button variant=\"outline\">Open drawer</Button>} />\n      <DrawerPanel>\n        <DrawerHeader>\n          <DrawerTitle>Edit profile</DrawerTitle>\n          <DrawerDescription>Make changes and close when finished.</DrawerDescription>\n        </DrawerHeader>\n        <DrawerContent>Review your profile details here.</DrawerContent>\n        <DrawerFooter>\n          <DrawerClose render={<Button>Done</Button>} />\n        </DrawerFooter>\n      </DrawerPanel>\n    </Drawer>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

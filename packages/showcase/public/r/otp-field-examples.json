@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "otp-field-examples",
-  "type": "registry:item",
-  "title": "OTP Field examples",
   "description": "All otp-field examples.",
+  "name": "otp-field-examples",
   "registryDependencies": [
     "@erbium-examples/otp-field-playground",
     "@erbium-examples/otp-field-overview",
@@ -16,5 +14,7 @@
     "@erbium-examples/otp-field-pattern",
     "@erbium-examples/otp-field-four-digits",
     "@erbium-examples/otp-field-alphanumeric"
-  ]
+  ],
+  "title": "OTP Field examples",
+  "type": "registry:item"
 }

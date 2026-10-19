@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function Example() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <CodeBlock title=\"TypeScript\" language=\"typescript\" code='const name: string = \"Erbium\";' />\n      <CodeBlock title=\"Python\" language=\"py\" code='print(\"Hello, Erbium.\")' />\n      <CodeBlock\n        title=\"Plain text\"\n        language=\"text\"\n        code=\"A readable source without highlighting.\"\n      />\n      <CodeBlock\n        title=\"Unknown language\"\n        language=\"unknown-language\"\n        code=\"Unknown languages use the generic file icon.\"\n      />\n    </div>\n  );\n}\n",
       "path": "src/code-block/variants/languages.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/code-block/variants/languages.tsx",
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nexport default function Example() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <CodeBlock title=\"TypeScript\" language=\"typescript\" code={'const name: string = \"Erbium\";'} />\n      <CodeBlock title=\"Python\" language=\"py\" code={'print(\"Hello, Erbium.\")'} />\n      <CodeBlock\n        title=\"Plain text\"\n        language=\"text\"\n        code=\"A readable source without highlighting.\"\n      />\n      <CodeBlock\n        title=\"Unknown language\"\n        language=\"unknown-language\"\n        code=\"Unknown languages use the generic file icon.\"\n      />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

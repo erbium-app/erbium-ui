@@ -6,8 +6,8 @@ import {
   QuestionnaireChoice,
   QuestionnaireActions,
   QuestionnaireNext,
+  Questionnaire,
 } from "@erbium/ui/components/questionnaire";
-import { Questionnaire } from "@erbium/ui/components/questionnaire";
 
 const Example = (args: {
   prompt: string;

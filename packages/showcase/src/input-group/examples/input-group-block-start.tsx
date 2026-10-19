@@ -14,6 +14,7 @@ import {
 
 export function InputGroupBlockStart() {
   const [code, setCode] = useState("console.log('Hello, world!');");
+
   return (
     <FieldGroup className="max-w-sm">
       <Field>
@@ -31,7 +32,9 @@ export function InputGroupBlockStart() {
         <InputGroup>
           <InputGroupTextarea
             value={code}
-            onChange={(event) => setCode(event.target.value)}
+            onChange={(event) => {
+              setCode(event.target.value);
+            }}
             placeholder="console.log('Hello, world!');"
             className="font-mono text-caption"
           />

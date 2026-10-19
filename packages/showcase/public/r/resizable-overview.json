@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/resizable", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from \"@/registry/erbium/ui/resizable\";\n\nexport default function ResizableDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation=\"horizontal\"\n      className=\"max-w-md rounded-xl border surface-panel md:min-w-[450px]\"\n    >\n      <ResizablePanel defaultSize=\"50%\">\n        <div className=\"flex h-[200px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">One</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle />\n      <ResizablePanel defaultSize=\"50%\">\n        <ResizablePanelGroup orientation=\"vertical\">\n          <ResizablePanel defaultSize=\"25%\">\n            <div className=\"flex h-full items-center justify-center p-6\">\n              <span className=\"font-semibold\">Two</span>\n            </div>\n          </ResizablePanel>\n          <ResizableHandle />\n          <ResizablePanel defaultSize=\"75%\">\n            <div className=\"flex h-full items-center justify-center p-6\">\n              <span className=\"font-semibold\">Three</span>\n            </div>\n          </ResizablePanel>\n        </ResizablePanelGroup>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  );\n}\n",
       "path": "src/resizable/examples/resizable-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/resizable/examples/resizable-demo.tsx",
-      "content": "import {\n  ResizableHandle,\n  ResizablePanel,\n  ResizablePanelGroup,\n} from \"@/registry/erbium/ui/resizable\";\n\nexport default function ResizableDemo() {\n  return (\n    <ResizablePanelGroup\n      orientation=\"horizontal\"\n      className=\"max-w-md rounded-xl border surface-panel md:min-w-[450px]\"\n    >\n      <ResizablePanel defaultSize=\"50%\">\n        <div className=\"flex h-[200px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">One</span>\n        </div>\n      </ResizablePanel>\n      <ResizableHandle />\n      <ResizablePanel defaultSize=\"50%\">\n        <ResizablePanelGroup orientation=\"vertical\">\n          <ResizablePanel defaultSize=\"25%\">\n            <div className=\"flex h-full items-center justify-center p-6\">\n              <span className=\"font-semibold\">Two</span>\n            </div>\n          </ResizablePanel>\n          <ResizableHandle />\n          <ResizablePanel defaultSize=\"75%\">\n            <div className=\"flex h-full items-center justify-center p-6\">\n              <span className=\"font-semibold\">Three</span>\n            </div>\n          </ResizablePanel>\n        </ResizablePanelGroup>\n      </ResizablePanel>\n    </ResizablePanelGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/resizable-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/resizable/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/resizable/variants/overview.tsx",
-      "content": "import Demo from \"../examples/resizable-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "marker-examples",
-  "type": "registry:item",
-  "title": "Marker examples",
   "description": "All marker examples.",
+  "name": "marker-examples",
   "registryDependencies": [
     "@erbium-examples/marker-playground",
     "@erbium-examples/marker-overview",
@@ -14,5 +12,7 @@
     "@erbium-examples/marker-border",
     "@erbium-examples/marker-icon",
     "@erbium-examples/marker-link-button"
-  ]
+  ],
+  "title": "Marker examples",
+  "type": "registry:item"
 }

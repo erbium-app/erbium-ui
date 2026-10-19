@@ -6,9 +6,15 @@ const tabs = ["Source", "Build", "Deploy"];
 
 export default function Example() {
   const [index, setIndex] = useState(0);
+
   return (
     <div className="flex w-80 flex-col items-center gap-4">
-      <Tabs value={tabs[index]} onValueChange={(value) => setIndex(tabs.indexOf(String(value)))}>
+      <Tabs
+        value={tabs[index]}
+        onValueChange={(value) => {
+          setIndex(tabs.indexOf(String(value)));
+        }}
+      >
         <TabsList>
           {tabs.map((tab) => (
             <TabsTrigger key={tab} value={tab}>

@@ -23,7 +23,11 @@ import { StatefulButton } from "@erbium/ui/components/stateful-button";
 export default function FieldDemo() {
   return (
     <div className="w-full max-w-md">
-      <form onSubmit={(event) => event.preventDefault()}>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <FieldGroup>
           <FieldSet>
             <FieldLegend>Payment Method</FieldLegend>

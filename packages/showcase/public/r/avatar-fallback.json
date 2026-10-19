@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
   "files": [
     {
+      "content": "import { AvatarFallback, Avatar } from \"@/registry/erbium/ui/avatar\";\n\nconst Example = () => (\n  <Avatar>\n    <AvatarFallback>AN</AvatarFallback>\n  </Avatar>\n);\n\nexport default Example;\n",
       "path": "src/avatar/variants/fallback.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/avatar/variants/fallback.tsx",
-      "content": "import { AvatarFallback } from \"@/registry/erbium/ui/avatar\";\nimport { Avatar } from \"@/registry/erbium/ui/avatar\";\n\nconst Example = () => (\n  <Avatar>\n    <AvatarFallback>AN</AvatarFallback>\n  </Avatar>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

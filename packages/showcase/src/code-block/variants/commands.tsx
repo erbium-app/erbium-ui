@@ -8,28 +8,28 @@ export default function Example() {
       defaultValue="bun"
       items={[
         {
-          value: "bun",
+          code: "bunx shadcn@latest add @erbium/button",
           label: "Bun",
           language: "shell",
-          code: "bunx shadcn@latest add @erbium/button",
+          value: "bun",
         },
         {
-          value: "npm",
+          code: "npx shadcn@latest add @erbium/button",
           label: "npm",
           language: "shell",
-          code: "npx shadcn@latest add @erbium/button",
+          value: "npm",
         },
         {
-          value: "pnpm",
+          code: "pnpm dlx shadcn@latest add @erbium/button",
           label: "pnpm",
           language: "shell",
-          code: "pnpm dlx shadcn@latest add @erbium/button",
+          value: "pnpm",
         },
         {
-          value: "yarn",
+          code: "yarn dlx shadcn@latest add @erbium/button",
           label: "Yarn",
           language: "shell",
-          code: "yarn dlx shadcn@latest add @erbium/button",
+          value: "yarn",
         },
       ]}
     />

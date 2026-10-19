@@ -8,7 +8,7 @@ import {
 
 const Example = () => (
   <div className="flex w-56 flex-col gap-related">
-    <NumberField defaultValue={1499.5} step={0.5} format={{ style: "currency", currency: "USD" }}>
+    <NumberField defaultValue={1499.5} step={0.5} format={{ currency: "USD", style: "currency" }}>
       <NumberFieldGroup>
         <NumberFieldDecrement />
         <NumberFieldInput aria-label="Price" />
@@ -22,13 +22,13 @@ const Example = () => (
         <NumberFieldIncrement />
       </NumberFieldGroup>
     </NumberField>
-    <NumberField defaultValue={1234567}>
+    <NumberField defaultValue={1_234_567}>
       <span className="text-metadata text-muted-foreground">Western grouping (en)</span>
       <NumberFieldGroup>
         <NumberFieldInput aria-label="Western grouping" className="text-start" />
       </NumberFieldGroup>
     </NumberField>
-    <NumberField defaultValue={1234567} locale="en-IN">
+    <NumberField defaultValue={1_234_567} locale="en-IN">
       <span className="text-metadata text-muted-foreground">Indian lakh grouping (en-IN)</span>
       <NumberFieldGroup>
         <NumberFieldInput aria-label="Indian lakh grouping" className="text-start" />

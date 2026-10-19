@@ -15,44 +15,44 @@ import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 const books = [
   {
-    id: "left-hand-of-darkness",
-    title: "The Left Hand of Darkness",
     author: "Ursula K. Le Guin",
-    year: 1969,
-    status: "Reading",
     badgeVariant: "info",
     cover: "bg-info text-info-foreground",
+    id: "left-hand-of-darkness",
     monogram: "LH",
+    status: "Reading",
+    title: "The Left Hand of Darkness",
+    year: 1969,
   },
   {
-    id: "a-room-of-ones-own",
-    title: "A Room of One’s Own",
     author: "Virginia Woolf",
-    year: 1929,
-    status: "Finished",
     badgeVariant: "success",
     cover: "bg-warning text-warning-foreground",
+    id: "a-room-of-ones-own",
     monogram: "AR",
+    status: "Finished",
+    title: "A Room of One’s Own",
+    year: 1929,
   },
   {
-    id: "the-dispossessed",
-    title: "The Dispossessed",
     author: "Ursula K. Le Guin",
-    year: 1974,
-    status: "To read",
     badgeVariant: "secondary",
     cover: "bg-error text-error-foreground",
+    id: "the-dispossessed",
     monogram: "TD",
+    status: "To read",
+    title: "The Dispossessed",
+    year: 1974,
   },
   {
-    id: "braiding-sweetgrass",
-    title: "Braiding Sweetgrass",
     author: "Robin Wall Kimmerer",
-    year: 2013,
-    status: "To read",
     badgeVariant: "secondary",
     cover: "bg-success text-success-foreground",
+    id: "braiding-sweetgrass",
     monogram: "BS",
+    status: "To read",
+    title: "Braiding Sweetgrass",
+    year: 2013,
   },
 ] as const;
 
@@ -79,7 +79,9 @@ export default function ItemBookLibrary() {
           id={`${idPrefix}-all`}
           checked={allSelected}
           indeterminate={someSelected}
-          onCheckedChange={(checked) => setSelected(checked ? books.map((book) => book.id) : [])}
+          onCheckedChange={(checked) => {
+            setSelected(checked ? books.map((book) => book.id) : []);
+          }}
         />
         <FieldLabel htmlFor={`${idPrefix}-all`}>Select all books</FieldLabel>
       </Field>
@@ -104,13 +106,13 @@ export default function ItemBookLibrary() {
                 id={checkboxId}
                 checked={checked}
                 aria-label={`Select ${book.title}`}
-                onCheckedChange={(nextChecked) =>
+                onCheckedChange={(nextChecked) => {
                   setSelected((current) =>
                     nextChecked
                       ? [...current, book.id]
                       : current.filter((selectedId) => selectedId !== book.id),
-                  )
-                }
+                  );
+                }}
               />
               <ItemMedia variant="image" className="h-14 w-10 rounded-sm shadow-sm">
                 <span

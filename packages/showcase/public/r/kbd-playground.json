@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/kbd", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Kbd>) => <Kbd {...args} />;\n\nexport default Example;\n",
       "path": "src/kbd/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/kbd/variants/playground.tsx",
-      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Kbd>) => <Kbd {...args} />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

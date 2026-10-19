@@ -12,8 +12,10 @@ import type { CopyButtonProps } from "./copy-button";
 // stays LTR even on RTL pages.
 const codePanelSurface = "min-w-0 w-full overflow-hidden rounded-xl surface-panel text-foreground";
 const codePanelHeader = "flex min-h-10 items-center justify-between gap-related px-3 py-1.5";
+
 const codePanelTitle =
   "inline-flex min-w-0 items-center gap-related text-metadata font-medium text-muted-foreground";
+
 const codePanelFocusRing =
   "outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring";
 
@@ -82,6 +84,7 @@ function CodePanelContent({
   ...props
 }: CodePanelContentProps) {
   const showEmpty = empty != null && empty !== false;
+
   return (
     <div
       role="region"
@@ -136,4 +139,5 @@ export {
   codePanelSurface,
   codePanelTitle,
 };
+
 export type { CodePanelProps, CodePanelContentProps };

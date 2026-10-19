@@ -7,7 +7,7 @@ export function ToastTypes() {
       <Button
         variant="outline"
         onClick={() =>
-          toast.add({ id: "toast-type-default", description: "Event has been created." })
+          toast.add({ description: "Event has been created.", id: "toast-type-default" })
         }
       >
         Default
@@ -16,9 +16,9 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
+            description: "Event has been created.",
             id: "toast-type-success",
             type: "success",
-            description: "Event has been created.",
           })
         }
       >
@@ -28,9 +28,9 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
+            description: "Arrive 10 minutes before the event.",
             id: "toast-type-info",
             type: "info",
-            description: "Arrive 10 minutes before the event.",
           })
         }
       >
@@ -40,9 +40,9 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
+            description: "The event cannot start before 8:00 AM.",
             id: "toast-type-warning",
             type: "warning",
-            description: "The event cannot start before 8:00 AM.",
           })
         }
       >
@@ -52,10 +52,10 @@ export function ToastTypes() {
         variant="outline"
         onClick={() =>
           toast.add({
-            id: "toast-type-error",
-            type: "error",
             description: "The event could not be created.",
+            id: "toast-type-error",
             priority: "high",
+            type: "error",
           })
         }
       >

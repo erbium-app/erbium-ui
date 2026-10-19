@@ -10,14 +10,18 @@ import ReadingExample from "./variants/reading";
 import ReadingSource from "./variants/reading.tsx?raw";
 import MultilingualExample from "./variants/multilingual";
 import MultilingualSource from "./variants/multilingual.tsx?raw";
+
 const meta = {
   parameters: {
     docs: { description: { component: componentDocumentation("typography") } },
     layout: "fullscreen",
   },
 } satisfies Meta;
+
 export default meta;
+
 type Story = StoryObj;
+
 export const Typefaces: Story = {
   parameters: {
     docs: {
@@ -27,6 +31,7 @@ export const Typefaces: Story = {
   },
   render: TypefacesExample,
 };
+
 export const Interface: Story = {
   parameters: {
     docs: {
@@ -36,6 +41,7 @@ export const Interface: Story = {
   },
   render: InterfaceExample,
 };
+
 export const Code: Story = {
   parameters: {
     docs: {
@@ -45,6 +51,7 @@ export const Code: Story = {
   },
   render: CodeExample,
 };
+
 export const Reading: Story = {
   parameters: {
     docs: {
@@ -54,6 +61,7 @@ export const Reading: Story = {
   },
   render: ReadingExample,
 };
+
 export const Multilingual: Story = {
   parameters: {
     docs: {

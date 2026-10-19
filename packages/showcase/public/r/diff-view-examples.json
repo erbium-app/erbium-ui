@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "diff-view-examples",
-  "type": "registry:item",
-  "title": "Diff View examples",
   "description": "All diff-view examples.",
+  "name": "diff-view-examples",
   "registryDependencies": [
     "@erbium-examples/diff-view-overview",
     "@erbium-examples/diff-view-layouts",
@@ -14,5 +12,7 @@
     "@erbium-examples/diff-view-states",
     "@erbium-examples/diff-view-changing-source",
     "@erbium-examples/diff-view-patch"
-  ]
+  ],
+  "title": "Diff View examples",
+  "type": "registry:item"
 }

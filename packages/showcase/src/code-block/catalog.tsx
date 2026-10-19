@@ -19,15 +19,18 @@ import ChangingSourceExample from "./variants/changing-source";
 import ChangingSourceSource from "./variants/changing-source.tsx?raw";
 import LanguagesExample from "./variants/languages";
 import LanguagesSource from "./variants/languages.tsx?raw";
+
 const meta = {
   component: CodeBlock,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("code-block") } },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof CodeBlock>;
+
 export default meta;
+
 type Story = StoryObj;
 
 export const Languages: Story = {

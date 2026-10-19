@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/file-view", "@erbium/styles"],
   "files": [
     {
+      "content": "export const file = {\n  contents:\n    `export function greet(name: string = \"world\") {\\n  const greeting = ` +\n    \"`Welcome, ${name}!`\" +\n    `;\\n  return greeting;\\n}\\n`,\n  name: \"greeting.ts\",\n};\n",
       "path": "src/file-view/examples/file.ts",
-      "type": "registry:component",
       "target": "@components/showcase/file-view/examples/file.ts",
-      "content": "export const file = {\n  name: \"greeting.ts\",\n  contents:\n    `export function greet(name: string = \"world\") {\\n  const greeting = ` +\n    \"`Welcome, ${name}!`\" +\n    `;\\n  return greeting;\\n}\\n`,\n};\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { FileView } from \"@/registry/erbium/blocks/file-view\";\nimport { file } from \"../examples/file\";\n\nexport default function Example() {\n  return <FileView file={file} className=\"w-full max-w-4xl\" />;\n}\n",
       "path": "src/file-view/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/file-view/variants/overview.tsx",
-      "content": "import { FileView } from \"@/registry/erbium/blocks/file-view\";\nimport { file } from \"../examples/file\";\nexport default function Example() {\n  return <FileView file={file} className=\"w-full max-w-4xl\" />;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

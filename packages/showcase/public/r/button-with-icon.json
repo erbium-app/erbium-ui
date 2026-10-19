@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonWithIcon() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\">\n        <Icon name=\"git-branch\" data-icon=\"inline-start\" /> New Branch\n      </Button>\n      <Button variant=\"outline\">\n        Fork\n        <Icon name=\"git-fork\" data-icon=\"inline-end\" />\n      </Button>\n    </div>\n  );\n}\n",
       "path": "src/button/examples/button-with-icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/examples/button-with-icon.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonWithIcon() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\">\n        <Icon name=\"git-branch\" data-icon=\"inline-start\" /> New Branch\n      </Button>\n      <Button variant=\"outline\">\n        Fork\n        <Icon name=\"git-fork\" data-icon=\"inline-end\" />\n      </Button>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ButtonWithIcon from \"../examples/button-with-icon\";\n\nconst Example = () => <ButtonWithIcon />;\n\nexport default Example;\n",
       "path": "src/button/variants/with-icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/with-icon.tsx",
-      "content": "import ButtonWithIcon from \"../examples/button-with-icon\";\n\nconst Example = () => <ButtonWithIcon />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { Toolbar as ToolbarPrimitive } from "@base-ui/react/toolbar";
-import { type VariantProps } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "./button";
 import { Separator } from "./separator";
@@ -43,7 +43,7 @@ function ToolbarButton({
       data-slot="toolbar-button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size }), className)}
+      className={cn(buttonVariants({ size, variant }), className)}
       {...props}
     />
   );
@@ -60,7 +60,7 @@ function ToolbarLink({
       data-slot="toolbar-link"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size }), className)}
+      className={cn(buttonVariants({ size, variant }), className)}
       {...props}
     />
   );

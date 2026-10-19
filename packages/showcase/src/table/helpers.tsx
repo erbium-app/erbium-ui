@@ -10,9 +10,15 @@ import {
 
 import { createColumnHelper, tableFeatures, useTable } from "@tanstack/react-table";
 
-export type PlaygroundArgs = { rows: number; caption: string };
+export interface PlaygroundArgs {
+  rows: number;
+  caption: string;
+}
 
-type PlaygroundRow = { item: string; value: number };
+interface PlaygroundRow {
+  item: string;
+  value: number;
+}
 
 const playgroundFeatures = tableFeatures({});
 
@@ -28,7 +34,8 @@ export function PlaygroundTable({ rows, caption }: PlaygroundArgs) {
     item: `Item ${index + 1}`,
     value: index + 1,
   }));
-  const table = useTable({ features: playgroundFeatures, columns: playgroundColumns, data });
+
+  const table = useTable({ columns: playgroundColumns, data, features: playgroundFeatures });
 
   return (
     <Table className="w-80">

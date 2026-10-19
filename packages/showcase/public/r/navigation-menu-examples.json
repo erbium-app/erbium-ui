@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "navigation-menu-examples",
-  "type": "registry:item",
-  "title": "Navigation Menu examples",
   "description": "All navigation-menu examples.",
+  "name": "navigation-menu-examples",
   "registryDependencies": [
     "@erbium-examples/navigation-menu-playground",
     "@erbium-examples/navigation-menu-overview",
     "@erbium-examples/navigation-menu-link-component"
-  ]
+  ],
+  "title": "Navigation Menu examples",
+  "type": "registry:item"
 }

@@ -11,10 +11,10 @@ const Example = (args: {
 }) => (
   <Chart
     definition={visitorChart({
-      grid: args.grid,
       axis: args.axis,
-      tooltip: args.tooltip,
+      grid: args.grid,
       legend: args.legend,
+      tooltip: args.tooltip,
     })}
     height={args.height}
     initialWidth={args.initialWidth}

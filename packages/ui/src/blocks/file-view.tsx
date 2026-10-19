@@ -29,6 +29,7 @@ type FileViewOptions<Annotation = undefined> = Omit<
   | "renderHeaderFilenameSuffix"
   | "renderHeaderMetadata"
 >;
+
 type FileViewProps<Annotation = undefined> = Omit<CodePanelProps, "children"> &
   Pick<
     FileProps<Annotation, undefined>,
@@ -44,17 +45,24 @@ type FileViewProps<Annotation = undefined> = Omit<CodePanelProps, "children"> &
     options?: FileViewOptions<Annotation>;
     children?: ReactNode;
   };
+
 const FileViewContext = createContext<{
   file: FileContents;
   content: ReactNode;
   /** True until Pierre has produced its first render. */
   loading: boolean;
 } | null>(null);
+
 function useFileView() {
   const context = use(FileViewContext);
-  if (!context) throw new Error("File view parts must be inside FileView.");
+
+  if (!context) {
+    throw new Error("File view parts must be inside FileView.");
+  }
+
   return context;
 }
+
 function FileView<Annotation = undefined>({
   file,
   options,
@@ -71,19 +79,23 @@ function FileView<Annotation = undefined>({
 }: FileViewProps<Annotation>) {
   // Pierre highlights asynchronously, so its host stays empty until the first render.
   const [rendered, setRendered] = useState(false);
+
   const content = (
     <PierreFile
       file={file}
       options={{
         ...options,
-        theme: diffTheme,
-        themeType: "system",
         disableFileHeader: true,
-        unsafeCSS: diffThemeCSS,
         onPostRender(node, instance, phase) {
-          if (phase !== "unmount") setRendered(true);
+          if (phase !== "unmount") {
+            setRendered(true);
+          }
+
           return options?.onPostRender?.(node, instance, phase);
         },
+        theme: diffTheme,
+        themeType: "system",
+        unsafeCSS: diffThemeCSS,
       }}
       lineAnnotations={lineAnnotations}
       selectedLines={selectedLines}
@@ -94,8 +106,9 @@ function FileView<Annotation = undefined>({
       disableWorkerPool={disableWorkerPool}
     />
   );
+
   return (
-    <FileViewContext value={{ file, content, loading: !rendered && prerenderedHTML === undefined }}>
+    <FileViewContext value={{ content, file, loading: !rendered && prerenderedHTML === undefined }}>
       <CodePanel {...props} data-slot="file-view" className={className}>
         {children ?? (
           <>
@@ -112,11 +125,14 @@ function FileView<Annotation = undefined>({
     </FileViewContext>
   );
 }
+
 function FileViewHeader(props: ComponentProps<typeof CodePanelHeader>) {
   return <CodePanelHeader {...props} data-slot="file-view-header" />;
 }
+
 function FileViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTitle>) {
   const { file } = useFileView();
+
   return (
     <CodePanelTitle {...props} data-slot="file-view-title">
       <Icon name={fileIconName(file.name)} className="size-4.5" />
@@ -124,11 +140,14 @@ function FileViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTi
     </CodePanelTitle>
   );
 }
+
 function FileViewActions(props: ComponentProps<typeof CodePanelActions>) {
   return <CodePanelActions {...props} data-slot="file-view-actions" />;
 }
+
 function FileViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
   const { content, file, loading } = useFileView();
+
   return (
     <CodePanelContent
       aria-label={`Contents of ${file.name}`}
@@ -145,10 +164,13 @@ function FileViewContent(props: Omit<CodePanelContentProps, "children" | "empty"
     </CodePanelContent>
   );
 }
+
 function FileViewCopyButton(props: Omit<CopyButtonProps, "value">) {
   const { file } = useFileView();
+
   return <CodePanelCopyButton aria-label="Copy file" {...props} value={file.contents} />;
 }
+
 export {
   FileView,
   FileViewHeader,
@@ -157,5 +179,7 @@ export {
   FileViewContent,
   FileViewCopyButton,
 };
+
 export type { FileViewProps, FileViewOptions };
+
 export type { FileContents, LineAnnotation, SelectedLineRange } from "@pierre/diffs";

@@ -6,12 +6,12 @@ import { Button } from "./button";
 import { useOverlay } from "./overlay-provider";
 import { ScrollArea } from "./scroll-area";
 
-type DrawerContextProps = {
+interface DrawerContextProps {
   hasSnapPoints: boolean;
   modal: DrawerPrimitive.Root.Props["modal"];
   showSwipeHandle: boolean;
   swipeDirection: NonNullable<DrawerPrimitive.Root.Props["swipeDirection"]>;
-};
+}
 
 const DrawerContext = React.createContext<DrawerContextProps | null>(null);
 const DrawerPanelContext = React.createContext(false);
@@ -73,6 +73,7 @@ function Drawer({
 }) {
   useOverlay("Drawer");
   const hasSnapPoints = snapPoints != null && snapPoints.length > 0;
+
   const contextValue = React.useMemo(
     () => ({ hasSnapPoints, modal, showSwipeHandle, swipeDirection }),
     [hasSnapPoints, modal, showSwipeHandle, swipeDirection],
@@ -149,7 +150,10 @@ function DrawerPanel({
 
   React.useLayoutEffect(() => {
     setIndentDirection(swipeDirection);
-    return () => setIndentDirection((current) => (current === swipeDirection ? null : current));
+
+    return () => {
+      setIndentDirection((current) => (current === swipeDirection ? null : current));
+    };
   }, [setIndentDirection, swipeDirection]);
 
   const KeyboardProvider =
@@ -230,6 +234,7 @@ function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(DrawerPanelContext)) {
     throw new Error("DrawerHeader must be used inside DrawerPanel.");
   }
+
   return (
     <div
       data-slot="drawer-header"
@@ -273,6 +278,7 @@ function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(DrawerPanelContext)) {
     throw new Error("DrawerFooter must be used inside DrawerPanel.");
   }
+
   return (
     <div
       data-slot="drawer-footer"

@@ -4,6 +4,7 @@
   --ts-chart-tooltip-color: var(--popover-foreground);
   --ts-chart-tooltip-border: none;
   --ts-chart-tooltip-border-radius: var(--radius-lg);
+
   /* The overlay surface recipe, resolved from theme tokens because the
      tooltip is rendered by the chart library rather than a surface class. */
   --ts-chart-tooltip-shadow:

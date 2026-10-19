@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Skeleton>) => <Skeleton {...args} />;\n\nexport default Example;\n",
       "path": "src/skeleton/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/variants/playground.tsx",
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Skeleton>) => <Skeleton {...args} />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

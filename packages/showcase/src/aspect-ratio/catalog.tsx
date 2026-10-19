@@ -22,15 +22,15 @@ import PortraitSource from "./variants/portrait.tsx?raw";
 
 const meta = {
   component: AspectRatio,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("aspect-ratio"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof AspectRatio>;
 
 export default meta;
@@ -38,8 +38,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof AspectRatio> = {
-  args: { ratio: 16 / 9, className: "" },
-  argTypes: { ratio: { control: { type: "number", min: 0.25, max: 4, step: 0.25 } } },
+  argTypes: { ratio: { control: { max: 4, min: 0.25, step: 0.25, type: "number" } } },
+  args: { className: "", ratio: 16 / 9 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("aspect-ratio", "playground") },

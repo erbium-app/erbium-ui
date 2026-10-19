@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "import { CopyButton, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSeparatorDemo() {\n  return (\n    <ButtonGroup>\n      <CopyButton value=\"Erbium UI\" variant=\"secondary\" size=\"sm\">\n        <CopyButtonLabel />\n      </CopyButton>\n      <ButtonGroupSeparator />\n      <Button variant=\"secondary\" size=\"sm\">\n        Paste\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
       "path": "src/button-group/examples/button-group-separator.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/examples/button-group-separator.tsx",
-      "content": "import { CopyButton, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSeparatorDemo() {\n  return (\n    <ButtonGroup>\n      <CopyButton value=\"Erbium UI\" variant=\"secondary\" size=\"sm\">\n        <CopyButtonLabel />\n      </CopyButton>\n      <ButtonGroupSeparator />\n      <Button variant=\"secondary\" size=\"sm\">\n        Paste\n      </Button>\n    </ButtonGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleButtonGroupSeparator from \"../examples/button-group-separator\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSeparator />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/separator.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/variants/separator.tsx",
-      "content": "import ExampleButtonGroupSeparator from \"../examples/button-group-separator\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSeparator />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

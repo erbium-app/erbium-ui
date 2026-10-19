@@ -22,15 +22,15 @@ import IconsOnlySource from "./variants/icons-only.tsx?raw";
 
 const meta = {
   component: Pagination,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("pagination"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
@@ -38,8 +38,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Pagination> = {
-  args: { className: "" },
   argTypes: { className: { control: "text" } },
+  args: { className: "" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("pagination", "playground") },

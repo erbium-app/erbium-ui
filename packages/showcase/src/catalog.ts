@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type ShowcaseStory = {
+export interface ShowcaseStory {
   name?: string;
   args?: Record<string, unknown>;
   argTypes?: Record<
@@ -16,14 +16,21 @@ export type ShowcaseStory = {
     docs?: { description?: { story?: string }; source?: { code?: string } };
   };
   render: (args: Record<string, unknown>) => ReactNode;
-};
-export type ShowcaseCatalog = {
+}
+
+export interface ShowcaseCatalog {
   default: { parameters?: { layout?: string } };
   [name: string]: unknown;
-};
+}
+
 const catalogs = import.meta.glob<ShowcaseCatalog>("./*/catalog.tsx");
+
 export async function loadShowcase(name: string) {
   const load = catalogs[`./${name}/catalog.tsx`];
-  if (!load) throw new Error(`Missing showcase: ${name}`);
-  return load();
+
+  if (!load) {
+    throw new Error(`Missing showcase: ${name}`);
+  }
+
+  return await load();
 }

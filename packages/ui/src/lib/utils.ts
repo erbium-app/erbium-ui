@@ -9,10 +9,8 @@ const anySurfaceColor = () => true;
 export const cn = createCn({
   extend: {
     classGroups: {
-      p: [{ p: ["panel", "panel-sm"] }],
-      px: [{ px: ["panel", "related", "control-inset"] }],
-      py: [{ py: ["panel", "related", "control-gap"] }],
-      gap: [{ gap: ["related", "group", "section", "control-gap"] }],
+      "control-adaptation": ["control-adaptive", "control-embedded"],
+      "control-geometry": ["control-size", "control-size-sm", "control-size-xs", "control-size-lg"],
       "font-size": [
         {
           text: [
@@ -31,8 +29,10 @@ export const cn = createCn({
           ],
         },
       ],
-      "control-adaptation": ["control-adaptive", "control-embedded"],
-      "control-geometry": ["control-size", "control-size-sm", "control-size-xs", "control-size-lg"],
+      gap: [{ gap: ["related", "group", "section", "control-gap"] }],
+      p: [{ p: ["panel", "panel-sm"] }],
+      px: [{ px: ["panel", "related", "control-inset"] }],
+      py: [{ py: ["panel", "related", "control-gap"] }],
       surface: [
         {
           "control-adaptation": ["control-adaptive", "control-embedded"],
@@ -55,8 +55,8 @@ export const cn = createCn({
             {
               fill: [anySurfaceColor],
               ghost: [anySurfaceColor],
-              tint: [anySurfaceColor],
               tag: [anySurfaceColor],
+              tint: [anySurfaceColor],
             },
           ],
         },

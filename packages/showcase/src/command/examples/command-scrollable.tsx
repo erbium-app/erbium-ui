@@ -17,11 +17,8 @@ import {
 
 const commandGroups = [
   {
-    label: "Navigation",
     items: [
       {
-        label: "Home",
-        disabled: false,
         content: (
           <>
             <Icon name="home-01" />
@@ -29,10 +26,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+H" />
           </>
         ),
+        disabled: false,
+        label: "Home",
       },
       {
-        label: "Inbox",
-        disabled: false,
         content: (
           <>
             <Icon name="inbox" />
@@ -40,10 +37,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+I" />
           </>
         ),
+        disabled: false,
+        label: "Inbox",
       },
       {
-        label: "Documents",
-        disabled: false,
         content: (
           <>
             <Icon name="file-text" />
@@ -51,10 +48,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+D" />
           </>
         ),
+        disabled: false,
+        label: "Documents",
       },
       {
-        label: "Folders",
-        disabled: false,
         content: (
           <>
             <Icon name="folder-01" />
@@ -62,15 +59,15 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+F" />
           </>
         ),
+        disabled: false,
+        label: "Folders",
       },
     ],
+    label: "Navigation",
   },
   {
-    label: "Actions",
     items: [
       {
-        label: "New File",
-        disabled: false,
         content: (
           <>
             <Icon name="plus" />
@@ -78,10 +75,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+N" />
           </>
         ),
+        disabled: false,
+        label: "New File",
       },
       {
-        label: "New Folder",
-        disabled: false,
         content: (
           <>
             <Icon name="folder-plus" />
@@ -89,10 +86,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Shift+Mod+N" />
           </>
         ),
+        disabled: false,
+        label: "New Folder",
       },
       {
-        label: "Duplicate file",
-        disabled: false,
         content: (
           <>
             <Icon name="file-text" />
@@ -100,10 +97,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+D" />
           </>
         ),
+        disabled: false,
+        label: "Duplicate file",
       },
       {
-        label: "Cut",
-        disabled: false,
         content: (
           <>
             <Icon name="scissors" />
@@ -111,10 +108,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+X" />
           </>
         ),
+        disabled: false,
+        label: "Cut",
       },
       {
-        label: "Paste",
-        disabled: false,
         content: (
           <>
             <Icon name="clipboard-paste" />
@@ -122,10 +119,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+V" />
           </>
         ),
+        disabled: false,
+        label: "Paste",
       },
       {
-        label: "Delete",
-        disabled: false,
         content: (
           <>
             <Icon name="trash" />
@@ -133,35 +130,35 @@ const commandGroups = [
             <CommandShortcut hotkey="Backspace" />
           </>
         ),
+        disabled: false,
+        label: "Delete",
       },
     ],
+    label: "Actions",
   },
   {
-    label: "View",
     items: [
       {
-        label: "Grid View",
-        disabled: false,
         content: (
           <>
             <Icon name="layout-grid" />
             <span>Grid View</span>
           </>
         ),
+        disabled: false,
+        label: "Grid View",
       },
       {
-        label: "List View",
-        disabled: false,
         content: (
           <>
             <Icon name="list" />
             <span>List View</span>
           </>
         ),
+        disabled: false,
+        label: "List View",
       },
       {
-        label: "Zoom In",
-        disabled: false,
         content: (
           <>
             <Icon name="zoom-in" />
@@ -169,10 +166,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+Plus" />
           </>
         ),
+        disabled: false,
+        label: "Zoom In",
       },
       {
-        label: "Zoom Out",
-        disabled: false,
         content: (
           <>
             <Icon name="zoom-out" />
@@ -180,15 +177,15 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+-" />
           </>
         ),
+        disabled: false,
+        label: "Zoom Out",
       },
     ],
+    label: "View",
   },
   {
-    label: "Account",
     items: [
       {
-        label: "Profile",
-        disabled: false,
         content: (
           <>
             <Icon name="user" />
@@ -196,10 +193,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+P" />
           </>
         ),
+        disabled: false,
+        label: "Profile",
       },
       {
-        label: "Billing",
-        disabled: false,
         content: (
           <>
             <Icon name="credit-card" />
@@ -207,10 +204,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+B" />
           </>
         ),
+        disabled: false,
+        label: "Billing",
       },
       {
-        label: "Settings",
-        disabled: false,
         content: (
           <>
             <Icon name="settings-01" />
@@ -218,73 +215,76 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+S" />
           </>
         ),
+        disabled: false,
+        label: "Settings",
       },
       {
-        label: "Notifications",
-        disabled: false,
         content: (
           <>
             <Icon name="bell" />
             <span>Notifications</span>
           </>
         ),
+        disabled: false,
+        label: "Notifications",
       },
       {
-        label: "Help & Support",
-        disabled: false,
         content: (
           <>
             <Icon name="help-circle" />
             <span>Help & Support</span>
           </>
         ),
+        disabled: false,
+        label: "Help & Support",
       },
     ],
+    label: "Account",
   },
   {
-    label: "Tools",
     items: [
       {
-        label: "Calculator",
-        disabled: false,
         content: (
           <>
             <Icon name="calculator" />
             <span>Calculator</span>
           </>
         ),
+        disabled: false,
+        label: "Calculator",
       },
       {
-        label: "Calendar",
-        disabled: false,
         content: (
           <>
             <Icon name="calendar-01" />
             <span>Calendar</span>
           </>
         ),
+        disabled: false,
+        label: "Calendar",
       },
       {
-        label: "Image Editor",
-        disabled: false,
         content: (
           <>
             <Icon name="image-01" />
             <span>Image Editor</span>
           </>
         ),
+        disabled: false,
+        label: "Image Editor",
       },
       {
-        label: "Code Editor",
-        disabled: false,
         content: (
           <>
             <Icon name="code" />
             <span>Code Editor</span>
           </>
         ),
+        disabled: false,
+        label: "Code Editor",
       },
     ],
+    label: "Tools",
   },
 ];
 
@@ -293,7 +293,13 @@ export function CommandManyItems() {
 
   return (
     <div className="flex flex-col gap-group">
-      <Button onClick={() => setOpen(true)} variant="outline" className="w-fit">
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+        variant="outline"
+        className="w-fit"
+      >
         Open Menu
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -310,7 +316,9 @@ export function CommandManyItems() {
                       key={item.label}
                       value={item}
                       disabled={item.disabled}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                      }}
                     >
                       {item.content}
                     </CommandItem>

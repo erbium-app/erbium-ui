@@ -26,7 +26,10 @@ export function QuestionnaireSubmitState() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (state !== "idle") return;
+
+    if (state !== "idle") {
+      return;
+    }
 
     // The host owns the request; the button only reflects its state.
     setState("loading");

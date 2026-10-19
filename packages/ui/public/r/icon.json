@@ -9,9 +9,9 @@
   "files": [
     {
       "path": "src/components/icon.tsx",
-      "type": "registry:ui",
       "target": "@ui/icon.tsx",
-      "content": "import { iconDefinitions } from \"@erbium/icons\";\nimport type { IconName } from \"@erbium/icons\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\ntype IconProps = Omit<ComponentProps<\"svg\">, \"children\" | \"dangerouslySetInnerHTML\"> & {\n  name: IconName;\n};\n\nfunction Icon({ name, className, ...props }: IconProps) {\n  const { id, viewBox } = iconDefinitions[name];\n  // Size comes from width/height attributes so a parent's\n  // `[&_svg:not([class*='size-'])]:size-*` rule can resize the icon.\n  return (\n    <svg\n      aria-hidden=\"true\"\n      focusable=\"false\"\n      width={16}\n      height={16}\n      data-slot=\"icon\"\n      {...props}\n      viewBox={viewBox}\n      className={cn(\"shrink-0\", className)}\n    >\n      <use href={`#${id}`} />\n    </svg>\n  );\n}\n\nexport { Icon };\nexport type { IconProps };\n"
+      "type": "registry:ui",
+      "content": "import { iconDefinitions } from \"@erbium/icons\";\nimport type { IconName } from \"@erbium/icons\";\nimport type { ComponentProps } from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\ntype IconProps = Omit<ComponentProps<\"svg\">, \"children\" | \"dangerouslySetInnerHTML\"> & {\n  name: IconName;\n};\n\nfunction Icon({ name, className, ...props }: IconProps) {\n  const { id, viewBox } = iconDefinitions[name];\n\n  // Size comes from width/height attributes so a parent's\n  // `[&_svg:not([class*='size-'])]:size-*` rule can resize the icon.\n  return (\n    <svg\n      aria-hidden=\"true\"\n      focusable=\"false\"\n      width={16}\n      height={16}\n      data-slot=\"icon\"\n      {...props}\n      viewBox={viewBox}\n      className={cn(\"shrink-0\", className)}\n    >\n      <use href={`#${id}`} />\n    </svg>\n  );\n}\n\nexport { Icon };\n\nexport type { IconProps };\n"
     }
   ]
 }

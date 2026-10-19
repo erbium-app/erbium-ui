@@ -54,15 +54,15 @@ import CustomCellSizeSource from "./variants/custom-cell-size.tsx?raw";
 
 const meta = {
   component: Calendar,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("calendar"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Calendar>;
 
 export default meta;
@@ -77,27 +77,27 @@ export const Playground: StoryObj<{
   captionLayout: "label" | "dropdown" | "dropdown-months" | "dropdown-years";
   buttonVariant: "default" | "outline" | "secondary" | "ghost" | "error" | "link";
 }> = {
-  args: {
-    showOutsideDays: true,
-    fixedWeeks: false,
-    numberOfMonths: 1,
-    weekStartsOn: 0,
-    captionLayout: "label",
-    buttonVariant: "ghost",
-  },
   argTypes: {
-    showOutsideDays: { control: "boolean" },
-    fixedWeeks: { control: "boolean" },
-    numberOfMonths: { control: { type: "number", min: 1, max: 3 } },
-    weekStartsOn: { control: "select", options: [0, 1, 2, 3, 4, 5, 6] },
-    captionLayout: {
-      control: "select",
-      options: ["label", "dropdown", "dropdown-months", "dropdown-years"],
-    },
     buttonVariant: {
       control: "select",
       options: ["default", "outline", "secondary", "ghost", "error", "link"],
     },
+    captionLayout: {
+      control: "select",
+      options: ["label", "dropdown", "dropdown-months", "dropdown-years"],
+    },
+    fixedWeeks: { control: "boolean" },
+    numberOfMonths: { control: { max: 3, min: 1, type: "number" } },
+    showOutsideDays: { control: "boolean" },
+    weekStartsOn: { control: "select", options: [0, 1, 2, 3, 4, 5, 6] },
+  },
+  args: {
+    buttonVariant: "ghost",
+    captionLayout: "label",
+    fixedWeeks: false,
+    numberOfMonths: 1,
+    showOutsideDays: true,
+    weekStartsOn: 0,
   },
   parameters: {
     docs: {

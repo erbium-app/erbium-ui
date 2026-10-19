@@ -6,16 +6,16 @@ import {
   CommandGroupLabel,
   CommandCollection,
   CommandItem,
+  Command,
 } from "@erbium/ui/components/command";
-import { Command } from "@erbium/ui/components/command";
 
 const commandGroups = [
   {
-    label: "Actions",
     items: [
-      { label: "Open file", disabled: false, content: <> Open file </> },
-      { label: "Open settings", disabled: false, content: <> Open settings </> },
+      { content: <> Open file </>, disabled: false, label: "Open file" },
+      { content: <> Open settings </>, disabled: false, label: "Open settings" },
     ],
+    label: "Actions",
   },
 ];
 

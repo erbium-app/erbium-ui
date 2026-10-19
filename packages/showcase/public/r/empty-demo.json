@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Demo() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>No projects yet</EmptyTitle>\n        <EmptyDescription>Create a project to get started.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button>Create project</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n",
       "path": "src/empty/examples/empty-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/empty/examples/empty-demo.tsx",
-      "content": "import {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>No projects yet</EmptyTitle>\n        <EmptyDescription>Create a project to get started.</EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button>Create project</Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/carousel", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  CarouselContent,\n  CarouselItem,\n  CarouselPrevious,\n  CarouselNext,\n  Carousel,\n} from \"@/registry/erbium/ui/carousel\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Carousel>) => (\n  <Carousel {...args} className={args.orientation === \"vertical\" ? \"h-64 w-72\" : \"w-72\"}>\n    <CarouselContent>\n      {[1, 2, 3].map((item) => (\n        <CarouselItem key={item}>\n          <div className=\"flex h-32 items-center justify-center rounded border\">Slide {item}</div>\n        </CarouselItem>\n      ))}\n    </CarouselContent>\n    <CarouselPrevious />\n    <CarouselNext />\n  </Carousel>\n);\n\nexport default Example;\n",
       "path": "src/carousel/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/carousel/variants/playground.tsx",
-      "content": "import {\n  CarouselContent,\n  CarouselItem,\n  CarouselPrevious,\n  CarouselNext,\n} from \"@/registry/erbium/ui/carousel\";\nimport { Carousel } from \"@/registry/erbium/ui/carousel\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Carousel>) => (\n  <Carousel {...args} className={args.orientation === \"vertical\" ? \"h-64 w-72\" : \"w-72\"}>\n    <CarouselContent>\n      {[1, 2, 3].map((item) => (\n        <CarouselItem key={item}>\n          <div className=\"flex h-32 items-center justify-center rounded border\">Slide {item}</div>\n        </CarouselItem>\n      ))}\n    </CarouselContent>\n    <CarouselPrevious />\n    <CarouselNext />\n  </Carousel>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

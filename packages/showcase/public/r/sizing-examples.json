@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "sizing-examples",
-  "type": "registry:item",
-  "title": "Sizing examples",
   "description": "All sizing examples.",
+  "name": "sizing-examples",
   "registryDependencies": [
     "@erbium-examples/sizing-controls",
     "@erbium-examples/sizing-composition",
     "@erbium-examples/sizing-workflow"
-  ]
+  ],
+  "title": "Sizing examples",
+  "type": "registry:item"
 }

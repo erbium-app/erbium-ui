@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "autocomplete-examples",
-  "type": "registry:item",
-  "title": "Autocomplete examples",
   "description": "All autocomplete examples.",
+  "name": "autocomplete-examples",
   "registryDependencies": [
     "@erbium-examples/autocomplete-overview",
     "@erbium-examples/autocomplete-disabled",
@@ -21,5 +19,7 @@
     "@erbium-examples/autocomplete-form-integration",
     "@erbium-examples/autocomplete-showcase",
     "@erbium-examples/autocomplete-search-surface"
-  ]
+  ],
+  "title": "Autocomplete examples",
+  "type": "registry:item"
 }

@@ -46,15 +46,15 @@ import VariantsSource from "./variants/variants.tsx?raw";
 
 const meta = {
   component: Bubble,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("bubble"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Bubble>;
 
 export default meta;
@@ -69,24 +69,24 @@ export const Playground: StoryObj<{
   contentAs: "text" | "button" | "link";
   className: string;
 }> = {
-  args: {
-    variant: "default",
-    align: "start",
-    reactionSide: "bottom",
-    reactionAlign: "end",
-    contentAs: "text",
-    className: "",
-  },
   argTypes: {
+    align: { control: "select", options: ["start", "end"] },
+    className: { control: "text" },
+    contentAs: { control: "select", options: ["text", "button", "link"] },
+    reactionAlign: { control: "select", options: ["start", "end"] },
+    reactionSide: { control: "select", options: ["top", "bottom"] },
     variant: {
       control: "select",
       options: ["default", "secondary", "muted", "tinted", "outline", "ghost", "error"],
     },
-    align: { control: "select", options: ["start", "end"] },
-    reactionSide: { control: "select", options: ["top", "bottom"] },
-    reactionAlign: { control: "select", options: ["start", "end"] },
-    contentAs: { control: "select", options: ["text", "button", "link"] },
-    className: { control: "text" },
+  },
+  args: {
+    align: "start",
+    className: "",
+    contentAs: "text",
+    reactionAlign: "end",
+    reactionSide: "bottom",
+    variant: "default",
   },
   parameters: {
     docs: {

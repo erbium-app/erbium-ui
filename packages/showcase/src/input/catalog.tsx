@@ -74,15 +74,15 @@ import FormSource from "./variants/form.tsx?raw";
 
 const meta = {
   component: Input,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("input"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -90,14 +90,14 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Input> = {
-  args: { type: "text", placeholder: "Type here", disabled: false, className: "" },
   argTypes: {
+    disabled: { control: "boolean" },
     type: {
       control: "select",
       options: ["text", "email", "password", "number", "search", "date", "file"],
     },
-    disabled: { control: "boolean" },
   },
+  args: { className: "", disabled: false, placeholder: "Type here", type: "text" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("input", "playground") },
@@ -190,11 +190,11 @@ export const Field: Story = {
 export const Fieldgroup: Story = {
   name: "Field Group",
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("input", "fieldgroup") },
       source: { code: FieldgroupSource },
     },
+    layout: "padded",
   },
   render: FieldgroupExample,
 };
@@ -211,11 +211,11 @@ export const Inline: Story = {
 
 export const Grid: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("input", "grid") },
       source: { code: GridSource },
     },
+    layout: "padded",
   },
   render: GridExample,
 };
@@ -262,11 +262,11 @@ export const ButtonGroup: Story = {
 
 export const Form: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("input", "form") },
       source: { code: FormSource },
     },
+    layout: "padded",
   },
   render: FormExample,
 };

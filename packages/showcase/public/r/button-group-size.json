@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-8\">\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          Small\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\">Default</Button>\n        <Button variant=\"outline\">Button</Button>\n        <Button variant=\"outline\">Group</Button>\n        <Button variant=\"outline\" size=\"icon\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"lg\">\n          Large\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-lg\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n    </div>\n  );\n}\n",
       "path": "src/button-group/examples/button-group-size.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/examples/button-group-size.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-8\">\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          Small\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\">Default</Button>\n        <Button variant=\"outline\">Button</Button>\n        <Button variant=\"outline\">Group</Button>\n        <Button variant=\"outline\" size=\"icon\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"lg\">\n          Large\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Button\n        </Button>\n        <Button variant=\"outline\" size=\"lg\">\n          Group\n        </Button>\n        <Button variant=\"outline\" size=\"icon-lg\">\n          <Icon name=\"plus\" />\n        </Button>\n      </ButtonGroup>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleButtonGroupSize from \"../examples/button-group-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSize />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/size.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/variants/size.tsx",
-      "content": "import ExampleButtonGroupSize from \"../examples/button-group-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupSize />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

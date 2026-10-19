@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = () => (\n  <Button\n    variant=\"outline\"\n    onClick={() => {\n      const id = toast.add({ timeout: 0, title: \"Syncing changes…\", type: \"loading\" });\n      window.setTimeout(() => {\n        toast.update(id, { timeout: 4000, title: \"Changes synced\", type: \"success\" });\n      }, 1200);\n    }}\n  >\n    Show progress toast\n  </Button>\n);\n\nexport default Example;\n",
       "path": "src/toast/variants/progress.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toast/variants/progress.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = () => (\n  <Button\n    variant=\"outline\"\n    onClick={() => {\n      const id = toast.add({ title: \"Syncing changes…\", type: \"loading\", timeout: 0 });\n      window.setTimeout(() => {\n        toast.update(id, { title: \"Changes synced\", type: \"success\", timeout: 4000 });\n      }, 1200);\n    }}\n  >\n    Show progress toast\n  </Button>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

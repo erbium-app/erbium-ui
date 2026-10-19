@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupNested() {\n  return (\n    <ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          1\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          2\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          3\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          4\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          5\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Previous\">\n          <Icon name=\"arrow-left-01\" />\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Next\">\n          <Icon name=\"arrow-right-01\" />\n        </Button>\n      </ButtonGroup>\n    </ButtonGroup>\n  );\n}\n",
       "path": "src/button-group/examples/button-group-nested.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/examples/button-group-nested.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupNested() {\n  return (\n    <ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"sm\">\n          1\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          2\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          3\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          4\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          5\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Previous\">\n          <Icon name=\"arrow-left-01\" />\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Next\">\n          <Icon name=\"arrow-right-01\" />\n        </Button>\n      </ButtonGroup>\n    </ButtonGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleButtonGroupNested from \"../examples/button-group-nested\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupNested />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/nested.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/variants/nested.tsx",
-      "content": "import ExampleButtonGroupNested from \"../examples/button-group-nested\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleButtonGroupNested />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/shake", "@erbium/styles"],
   "files": [
     {
+      "content": "import { useRef } from \"react\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Demo() {\n  const ref = useRef<HTMLButtonElement>(null);\n\n  return (\n    <Button\n      ref={ref}\n      variant=\"error\"\n      onClick={() => {\n        shake(ref.current);\n      }}\n    >\n      Replay error feedback\n    </Button>\n  );\n}\n",
       "path": "src/shake/examples/shake-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/shake/examples/shake-demo.tsx",
-      "content": "import { useRef } from \"react\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nexport default function Demo() {\n  const ref = useRef<HTMLButtonElement>(null);\n  return (\n    <Button ref={ref} variant=\"error\" onClick={() => shake(ref.current)}>\n      Replay error feedback\n    </Button>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/shake-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n",
       "path": "src/shake/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/shake/variants/overview.tsx",
-      "content": "import Demo from \"../examples/shake-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

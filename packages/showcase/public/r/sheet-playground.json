@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/sheet", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Sheet,\n  SheetTrigger,\n  SheetPanel,\n  SheetHeader,\n  SheetContent,\n  SheetTitle,\n  SheetDescription,\n} from \"@/registry/erbium/ui/sheet\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  showCloseButton: boolean;\n  defaultOpen: boolean;\n}) => (\n  <Sheet key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <SheetTrigger render={<Button variant=\"outline\">Open sheet</Button>} />\n    <SheetPanel side={args.side} showCloseButton={args.showCloseButton}>\n      <SheetHeader>\n        <SheetTitle>Sheet title</SheetTitle>\n        <SheetDescription>Sheet description.</SheetDescription>\n      </SheetHeader>\n      <SheetContent>Sheet content.</SheetContent>\n    </SheetPanel>\n  </Sheet>\n);\n\nexport default Example;\n",
       "path": "src/sheet/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/sheet/variants/playground.tsx",
-      "content": "import {\n  Sheet,\n  SheetTrigger,\n  SheetPanel,\n  SheetHeader,\n  SheetContent,\n  SheetTitle,\n  SheetDescription,\n} from \"@/registry/erbium/ui/sheet\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  side: \"top\" | \"right\" | \"bottom\" | \"left\";\n  showCloseButton: boolean;\n  defaultOpen: boolean;\n}) => (\n  <Sheet key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <SheetTrigger render={<Button variant=\"outline\">Open sheet</Button>} />\n    <SheetPanel side={args.side} showCloseButton={args.showCloseButton}>\n      <SheetHeader>\n        <SheetTitle>Sheet title</SheetTitle>\n        <SheetDescription>Sheet description.</SheetDescription>\n      </SheetHeader>\n      <SheetContent>Sheet content.</SheetContent>\n    </SheetPanel>\n  </Sheet>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -30,15 +30,16 @@ export function QuestionnaireResume() {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
+
     const answers = {
       change: getFormValue(formData, "change"),
-      verification: getFormValues(formData, "verification"),
       notes: getFormValue(formData, "notes"),
+      verification: getFormValues(formData, "verification"),
     };
 
     toast.add({
-      title: "Draft updated",
       description: `Migration: ${answers.change ?? "None"} · Verification: ${answers.verification.join(", ") || "None"} · Notes: ${answers.notes || "None"}`,
+      title: "Draft updated",
     });
   }
 

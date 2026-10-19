@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
+      "content": "import { useState } from \"react\";\nimport { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst items = [\n  { code: \"bun install\", label: \"Bun\", language: \"shell\", value: \"bun\" },\n  { code: \"npm install\", label: \"npm\", language: \"shell\", value: \"npm\" },\n];\n\nconst runItems = [\n  { code: \"bun run dev\", label: \"Bun\", language: \"shell\", value: \"bun\" },\n  { code: \"npm run dev\", label: \"npm\", language: \"shell\", value: \"npm\" },\n];\n\nexport default function Example() {\n  const [manager, setManager] = useState(\"bun\");\n\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <p className=\"text-caption text-muted-foreground\">\n        Choose once. Both commands follow your preference.\n      </p>\n      <CodeBlock surface=\"command\" items={items} value={manager} onValueChange={setManager} />\n      <CodeBlock surface=\"command\" items={runItems} value={manager} onValueChange={setManager} />\n    </div>\n  );\n}\n",
       "path": "src/code-block/variants/controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/code-block/variants/controlled.tsx",
-      "content": "import { useState } from \"react\";\nimport { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst items = [\n  { value: \"bun\", label: \"Bun\", language: \"shell\", code: \"bun install\" },\n  { value: \"npm\", label: \"npm\", language: \"shell\", code: \"npm install\" },\n];\nconst runItems = [\n  { value: \"bun\", label: \"Bun\", language: \"shell\", code: \"bun run dev\" },\n  { value: \"npm\", label: \"npm\", language: \"shell\", code: \"npm run dev\" },\n];\n\nexport default function Example() {\n  const [manager, setManager] = useState(\"bun\");\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <p className=\"text-caption text-muted-foreground\">\n        Choose once. Both commands follow your preference.\n      </p>\n      <CodeBlock surface=\"command\" items={items} value={manager} onValueChange={setManager} />\n      <CodeBlock surface=\"command\" items={runItems} value={manager} onValueChange={setManager} />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

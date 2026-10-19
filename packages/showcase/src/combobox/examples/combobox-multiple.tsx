@@ -23,12 +23,12 @@ export function ComboboxMultiple() {
       <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
           {(values) => (
-            <React.Fragment>
+            <>
               {values.map((value: string) => (
                 <ComboboxChip key={value}>{value}</ComboboxChip>
               ))}
               <ComboboxChipsInput />
-            </React.Fragment>
+            </>
           )}
         </ComboboxValue>
       </ComboboxChips>

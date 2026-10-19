@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Attachment,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentGroup,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\n\nexport default function Demo() {\n  return (\n    <AttachmentGroup>\n      <Attachment>\n        <AttachmentContent>\n          <AttachmentTitle>report.pdf</AttachmentTitle>\n          <AttachmentDescription>PDF document · 2.4 MB</AttachmentDescription>\n        </AttachmentContent>\n      </Attachment>\n    </AttachmentGroup>\n  );\n}\n",
       "path": "src/attachment/examples/attachment-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/attachment/examples/attachment-demo.tsx",
-      "content": "import {\n  Attachment,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentGroup,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\nexport default function Demo() {\n  return (\n    <AttachmentGroup>\n      <Attachment>\n        <AttachmentContent>\n          <AttachmentTitle>report.pdf</AttachmentTitle>\n          <AttachmentDescription>PDF document · 2.4 MB</AttachmentDescription>\n        </AttachmentContent>\n      </Attachment>\n    </AttachmentGroup>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

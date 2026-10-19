@@ -7,44 +7,44 @@ import { colorLegend } from "@tanstack/charts/legend";
 import { Chart } from "@erbium/ui/components/chart";
 
 const monthlyVisitors = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { desktop: 186, mobile: 80, month: "January" },
+  { desktop: 305, mobile: 200, month: "February" },
+  { desktop: 237, mobile: 120, month: "March" },
+  { desktop: 73, mobile: 190, month: "April" },
+  { desktop: 209, mobile: 130, month: "May" },
+  { desktop: 214, mobile: 140, month: "June" },
 ];
 
 const visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [
-  { month, device: "Desktop", visitors: desktop },
-  { month, device: "Mobile", visitors: mobile },
+  { device: "Desktop", month, visitors: desktop },
+  { device: "Mobile", month, visitors: mobile },
 ]);
 
 export function visitorChart(
   options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},
 ) {
   return defineChart({
+    color: {
+      scale: scaleOrdinal(["Desktop", "Mobile"], ["var(--chart-1)", "var(--chart-2)"]),
+      ...(options.legend ? { legend: colorLegend({ label: "Device" }) } : {}),
+    },
     marks: [
       barY(visitors, {
+        color: "device",
+        inset: 1,
+        layout: group({ padding: 0.12 }),
+        radius: 4,
         x: "month",
         y: "visitors",
         z: "device",
-        color: "device",
-        layout: group({ padding: 0.12 }),
-        radius: 4,
-        inset: 1,
       }),
     ],
     scales: {
       x: {
-        scale: scaleBand,
         axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,
+        scale: scaleBand,
       },
-      y: { scale: scaleLinear, nice: true, grid: options.grid },
-    },
-    color: {
-      scale: scaleOrdinal(["Desktop", "Mobile"], ["var(--chart-1)", "var(--chart-2)"]),
-      ...(options.legend ? { legend: colorLegend({ label: "Device" }) } : {}),
+      y: { grid: options.grid, nice: true, scale: scaleLinear },
     },
     ...(options.tooltip ? { focus: "group-x" as const, tooltip: { use: tooltip } } : {}),
   });
@@ -53,7 +53,7 @@ export function visitorChart(
 export default function Demo() {
   return (
     <Chart
-      definition={visitorChart({ grid: true, axis: true, tooltip: true, legend: true })}
+      definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}
       height={240}
       initialWidth={640}
       ariaLabel="Desktop and mobile visitors by month"

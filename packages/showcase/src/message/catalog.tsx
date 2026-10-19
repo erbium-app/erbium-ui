@@ -34,15 +34,15 @@ import AttachmentSource from "./variants/attachment.tsx?raw";
 
 const meta = {
   component: Message,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("message"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Message>;
 
 export default meta;
@@ -50,8 +50,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Message> = {
-  args: { align: "start", className: "" },
   argTypes: { align: { control: "select", options: ["start", "end"] } },
+  args: { align: "start", className: "" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("message", "playground") },

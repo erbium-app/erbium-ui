@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
   "files": [
     {
+      "content": "import { AvatarFallback, AvatarImage, Avatar } from \"@/registry/erbium/ui/avatar\";\n\nconst Example = (args: {\n  size: \"default\" | \"sm\" | \"lg\";\n  src: string;\n  alt: string;\n  fallback: string;\n  className: string;\n}) => (\n  <Avatar size={args.size} className={args.className}>\n    {args.src && <AvatarImage src={args.src} alt={args.alt} />}\n    <AvatarFallback>{args.fallback}</AvatarFallback>\n  </Avatar>\n);\n\nexport default Example;\n",
       "path": "src/avatar/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/avatar/variants/playground.tsx",
-      "content": "import { AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\nimport { Avatar } from \"@/registry/erbium/ui/avatar\";\n\nconst Example = (args: {\n  size: \"default\" | \"sm\" | \"lg\";\n  src: string;\n  alt: string;\n  fallback: string;\n  className: string;\n}) => (\n  <Avatar size={args.size} className={args.className}>\n    {args.src && <AvatarImage src={args.src} alt={args.alt} />}\n    <AvatarFallback>{args.fallback}</AvatarFallback>\n  </Avatar>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

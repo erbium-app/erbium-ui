@@ -13,6 +13,7 @@ import {
 
 export default function InputGroupTextareaExample() {
   const [code, setCode] = useState("console.log('Hello, world!');");
+
   return (
     <div className="grid w-full max-w-md gap-group">
       <InputGroup>
@@ -33,7 +34,9 @@ export default function InputGroupTextareaExample() {
         <Separator variant="full" />
         <InputGroupTextarea
           value={code}
-          onChange={(event) => setCode(event.target.value)}
+          onChange={(event) => {
+            setCode(event.target.value);
+          }}
           id="textarea-code-32"
           placeholder="console.log('Hello, world!');"
           className="min-h-[200px]"

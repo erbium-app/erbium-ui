@@ -1,26 +1,29 @@
-import { AccordionContent, AccordionItem, AccordionTrigger } from "@erbium/ui/components/accordion";
+import {
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Accordion,
+} from "@erbium/ui/components/accordion";
 
 import { Button } from "@erbium/ui/components/button";
 
 import { useState } from "react";
 
-import { Accordion } from "@erbium/ui/components/accordion";
-
 const accordionItems = [
   {
-    value: "item-1",
-    question: "Is it accessible?",
     answer: "Yes. It follows the WAI-ARIA accordion pattern.",
+    question: "Is it accessible?",
+    value: "item-1",
   },
   {
-    value: "item-2",
-    question: "Can I customize it?",
     answer: "Yes. You can style each part of the accordion.",
+    question: "Can I customize it?",
+    value: "item-2",
   },
   {
-    value: "item-3",
-    question: "Can I open multiple items?",
     answer: "Yes. Enable the multiple prop to open several items.",
+    question: "Can I open multiple items?",
+    value: "item-3",
   },
 ];
 
@@ -61,10 +64,20 @@ export function ControlledAccordionExample() {
         ))}
       </Accordion>
       <div className="flex flex-wrap gap-related">
-        <Button onClick={() => setValue(["item-1", "item-2"])} variant="outline">
+        <Button
+          onClick={() => {
+            setValue(["item-1", "item-2"]);
+          }}
+          variant="outline"
+        >
           Open first two
         </Button>
-        <Button onClick={() => setValue([])} variant="outline">
+        <Button
+          onClick={() => {
+            setValue([]);
+          }}
+          variant="outline"
+        >
           Close all
         </Button>
       </div>

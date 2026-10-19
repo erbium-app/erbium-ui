@@ -23,7 +23,12 @@ export default function CardDemo() {
         </CardAction>
       </CardHeader>
       <CardContent>
-        <form id="card-login-form" onSubmit={(event) => event.preventDefault()}>
+        <form
+          id="card-login-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}
+        >
           <div className="flex flex-col gap-section">
             <Field>
               <FieldLabel>Email</FieldLabel>

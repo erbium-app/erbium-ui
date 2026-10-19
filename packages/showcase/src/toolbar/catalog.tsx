@@ -26,15 +26,15 @@ import ShowcaseSource from "./variants/showcase.tsx?raw";
 
 const meta = {
   component: Toolbar,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("toolbar"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Toolbar>;
 
 export default meta;

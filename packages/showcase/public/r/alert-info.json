@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/alert", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert variant=\"info\" className=\"w-96\">\n    <AlertTitle>Plan ready</AlertTitle>\n    <AlertDescription>\n      The agent identified three files to update before writing code.\n    </AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n",
       "path": "src/alert/variants/info.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/alert/variants/info.tsx",
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert variant=\"info\" className=\"w-96\">\n    <AlertTitle>Plan ready</AlertTitle>\n    <AlertDescription>\n      The agent identified three files to update before writing code.\n    </AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

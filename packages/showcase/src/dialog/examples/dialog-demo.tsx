@@ -18,6 +18,7 @@ import { StatefulButton } from "@erbium/ui/components/stateful-button";
 export default function DialogDemo() {
   const [open, setOpen] = useState(false);
   const [savedName, setSavedName] = useState<string | null>(null);
+
   return (
     <div className="flex flex-col items-center gap-3">
       <Dialog open={open} onOpenChange={setOpen}>

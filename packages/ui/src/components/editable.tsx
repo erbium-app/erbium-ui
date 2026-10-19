@@ -3,7 +3,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import { cn } from "../lib/utils";
 
-type EditableContextValue = {
+interface EditableContextValue {
   value: string;
   draft: string;
   editing: boolean;
@@ -16,13 +16,17 @@ type EditableContextValue = {
   setDraft: (value: string) => void;
   beginEdit: () => void;
   finishEdit: (commit: boolean, restoreFocus?: boolean) => void;
-};
+}
 
 const EditableContext = React.createContext<EditableContextValue | null>(null);
 
 function useEditableContext(part: string) {
   const context = React.useContext(EditableContext);
-  if (!context) throw new Error(`${part} must be used within Editable`);
+
+  if (!context) {
+    throw new Error(`${part} must be used within Editable`);
+  }
+
   return context;
 }
 
@@ -67,29 +71,44 @@ function Editable({
   const previewRef = React.useRef<HTMLButtonElement>(null);
 
   function setEditing(next: boolean) {
-    if (editingProp === undefined) setLocalEditing(next);
+    if (editingProp === undefined) {
+      setLocalEditing(next);
+    }
+
     onEditingChange?.(next);
   }
 
   function beginEdit() {
-    if (disabled || readOnly || editing) return;
+    if (disabled || readOnly || editing) {
+      return;
+    }
+
     setDraft(value);
     setEditing(true);
   }
 
   function finishEdit(commit: boolean, restoreFocus = false) {
-    if (!editing) return;
+    if (!editing) {
+      return;
+    }
+
     if (commit) {
       if (draft !== value) {
-        if (valueProp === undefined) setLocalValue(draft);
+        if (valueProp === undefined) {
+          setLocalValue(draft);
+        }
+
         onValueChange?.(draft);
       }
+
       onSubmit?.(draft);
     } else {
       setDraft(value);
       onCancel?.();
     }
+
     setEditing(false);
+
     if (restoreFocus) {
       queueMicrotask(() => previewRef.current?.focus());
     }
@@ -98,18 +117,18 @@ function Editable({
   return (
     <EditableContext.Provider
       value={{
-        value,
+        beginEdit,
+        disabled,
         draft,
         editing,
-        disabled,
-        readOnly,
-        placeholder,
-        triggerMode,
-        inputId,
-        previewRef,
-        setDraft,
-        beginEdit,
         finishEdit,
+        inputId,
+        placeholder,
+        previewRef,
+        readOnly,
+        setDraft,
+        triggerMode,
+        value,
       }}
     >
       <span
@@ -136,13 +155,14 @@ function EditablePreview({
   ...props
 }: ButtonPrimitive.Props) {
   const { previewRef, ...context } = useEditableContext("EditablePreview");
+
   return (
     <ButtonPrimitive
       {...props}
       type="button"
       ref={previewRef}
       data-slot="editable-preview"
-      data-empty={!context.value ? "" : undefined}
+      data-empty={context.value ? undefined : ""}
       data-interactive={!context.disabled && !context.readOnly ? "" : undefined}
       disabled={context.disabled || context.readOnly}
       aria-hidden={context.editing || undefined}
@@ -154,14 +174,20 @@ function EditablePreview({
       )}
       onClick={(event) => {
         onClick?.(event);
-        if (!event.defaultPrevented && context.triggerMode === "click") context.beginEdit();
+
+        if (!event.defaultPrevented && context.triggerMode === "click") {
+          context.beginEdit();
+        }
       }}
       onDoubleClick={(event) => {
         onDoubleClick?.(event);
-        if (!event.defaultPrevented && context.triggerMode === "doubleClick") context.beginEdit();
+
+        if (!event.defaultPrevented && context.triggerMode === "doubleClick") {
+          context.beginEdit();
+        }
       }}
     >
-      {children ?? (context.value || context.placeholder || "\u00a0")}
+      {children ?? (context.value || context.placeholder || "\u00A0")}
     </ButtonPrimitive>
   );
 }
@@ -203,15 +229,25 @@ function EditableInput({
       )}
       onChange={(event) => {
         onChange?.(event);
-        if (!event.defaultPrevented) context.setDraft(event.currentTarget.value);
+
+        if (!event.defaultPrevented) {
+          context.setDraft(event.currentTarget.value);
+        }
       }}
       onBlur={(event) => {
         onBlur?.(event);
-        if (!event.defaultPrevented) context.finishEdit(true);
+
+        if (!event.defaultPrevented) {
+          context.finishEdit(true);
+        }
       }}
       onKeyDown={(event) => {
         onKeyDown?.(event);
-        if (event.defaultPrevented || event.nativeEvent.isComposing) return;
+
+        if (event.defaultPrevented || event.nativeEvent.isComposing) {
+          return;
+        }
+
         if (event.key === "Enter") {
           event.preventDefault();
           context.finishEdit(true, true);
@@ -225,4 +261,5 @@ function EditableInput({
 }
 
 export { Editable, EditablePreview, EditableInput };
+
 export type { EditableProps };

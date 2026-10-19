@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "bubble-examples",
-  "type": "registry:item",
-  "title": "Bubble examples",
   "description": "All bubble examples.",
+  "name": "bubble-examples",
   "registryDependencies": [
     "@erbium-examples/bubble-playground",
     "@erbium-examples/bubble-overview",
@@ -15,5 +13,7 @@
     "@erbium-examples/bubble-link-button",
     "@erbium-examples/bubble-reactions",
     "@erbium-examples/bubble-variants"
-  ]
+  ],
+  "title": "Bubble examples",
+  "type": "registry:item"
 }

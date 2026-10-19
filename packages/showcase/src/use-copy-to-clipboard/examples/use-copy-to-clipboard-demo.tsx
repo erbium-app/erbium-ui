@@ -1,4 +1,5 @@
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
+
 export default function Demo() {
   return (
     <div className="flex items-center gap-3">

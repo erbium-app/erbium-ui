@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "item-examples",
-  "type": "registry:item",
-  "title": "Item examples",
   "description": "All item examples.",
+  "name": "item-examples",
   "registryDependencies": [
     "@erbium-examples/item-playground",
     "@erbium-examples/item-overview",
@@ -19,5 +17,7 @@
     "@erbium-examples/item-dropdown",
     "@erbium-examples/item-header",
     "@erbium-examples/item-image"
-  ]
+  ],
+  "title": "Item examples",
+  "type": "registry:item"
 }

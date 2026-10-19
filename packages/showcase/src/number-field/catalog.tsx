@@ -35,12 +35,12 @@ import ShowcaseSource from "./variants/showcase.tsx?raw";
 const meta = {
   component: NumberField,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("number-field"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof NumberField>;
 

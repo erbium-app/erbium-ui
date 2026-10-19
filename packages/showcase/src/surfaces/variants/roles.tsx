@@ -39,44 +39,31 @@ const Example = () => (
         {[
           ["Tokens", "0", "coins-01"],
           ["Total cost", "$0.00", "sparkles"],
-        ].map(([label, value, icon]) => {
-          return (
-            <div key={label as string} className="rounded-xl border surface-panel p-5">
-              <div className="flex items-center justify-between">
-                <span className="flex items-center gap-related">
-                  <Icon
-                    name={icon as IconProps["name"]}
-                    className="size-3.5 text-muted-foreground"
-                  />
-                  {label as string}
-                </span>
-                <span className="tabular-nums">{value as string}</span>
-              </div>
+        ].map(([label, value, icon]) => (
+          <div key={label} className="rounded-xl border surface-panel p-5">
+            <div className="flex items-center justify-between">
+              <span className="flex items-center gap-related">
+                <Icon name={icon as IconProps["name"]} className="size-3.5 text-muted-foreground" />
+                {label}
+              </span>
+              <span className="tabular-nums">{value}</span>
             </div>
-          );
-        })}
+          </div>
+        ))}
         {[
           ["Models", "No model yet", "cpu"],
           ["Agents", "No agent yet", "bot"],
-        ].map(([label, empty, icon]) => {
-          return (
-            <div
-              key={label as string}
-              className="flex h-56 flex-col rounded-xl border surface-panel p-5"
-            >
-              <span className="font-medium">{label as string}</span>
-              <div className="grid flex-1 place-content-center justify-items-center gap-3">
-                <span className="grid size-8 place-content-center rounded-lg border surface-control">
-                  <Icon
-                    name={icon as IconProps["name"]}
-                    className="size-3.5 text-muted-foreground"
-                  />
-                </span>
-                <span>{empty as string}</span>
-              </div>
+        ].map(([label, empty, icon]) => (
+          <div key={label} className="flex h-56 flex-col rounded-xl border surface-panel p-5">
+            <span className="font-medium">{label}</span>
+            <div className="grid flex-1 place-content-center justify-items-center gap-3">
+              <span className="grid size-8 place-content-center rounded-lg border surface-control">
+                <Icon name={icon as IconProps["name"]} className="size-3.5 text-muted-foreground" />
+              </span>
+              <span>{empty}</span>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       <div className="flex flex-wrap items-center gap-group rounded-xl border surface-panel p-5">

@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "use-media-query-examples",
-  "type": "registry:item",
-  "title": "Use Media Query examples",
   "description": "All use-media-query examples.",
-  "registryDependencies": ["@erbium-examples/use-media-query-overview"]
+  "name": "use-media-query-examples",
+  "registryDependencies": ["@erbium-examples/use-media-query-overview"],
+  "title": "Use Media Query examples",
+  "type": "registry:item"
 }

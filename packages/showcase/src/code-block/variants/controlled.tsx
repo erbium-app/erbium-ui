@@ -2,16 +2,18 @@ import { useState } from "react";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 
 const items = [
-  { value: "bun", label: "Bun", language: "shell", code: "bun install" },
-  { value: "npm", label: "npm", language: "shell", code: "npm install" },
+  { code: "bun install", label: "Bun", language: "shell", value: "bun" },
+  { code: "npm install", label: "npm", language: "shell", value: "npm" },
 ];
+
 const runItems = [
-  { value: "bun", label: "Bun", language: "shell", code: "bun run dev" },
-  { value: "npm", label: "npm", language: "shell", code: "npm run dev" },
+  { code: "bun run dev", label: "Bun", language: "shell", value: "bun" },
+  { code: "npm run dev", label: "npm", language: "shell", value: "npm" },
 ];
 
 export default function Example() {
   const [manager, setManager] = useState("bun");
+
   return (
     <div className="grid w-full max-w-xl gap-group">
       <p className="text-caption text-muted-foreground">

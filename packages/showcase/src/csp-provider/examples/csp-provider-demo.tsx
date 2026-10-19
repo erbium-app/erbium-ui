@@ -1,5 +1,6 @@
 import { CSPProvider } from "@erbium/ui/components/csp-provider";
 import { ScrollArea } from "@erbium/ui/components/scroll-area";
+
 export default function Demo() {
   return (
     <CSPProvider disableStyleElements>

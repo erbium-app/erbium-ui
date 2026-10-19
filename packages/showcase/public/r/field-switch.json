@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
+      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function FieldSwitch() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Field orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Multi-factor authentication</FieldLabel>\n          <FieldDescription>\n            Enable multi-factor authentication. If you do not have a two-factor device, you can use\n            a one-time code sent to your email.\n          </FieldDescription>\n        </FieldContent>\n        <Switch />\n      </Field>\n    </div>\n  );\n}\n",
       "path": "src/field/examples/field-switch.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/field/examples/field-switch.tsx",
-      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function FieldSwitch() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Field orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Multi-factor authentication</FieldLabel>\n          <FieldDescription>\n            Enable multi-factor authentication. If you do not have a two-factor device, you can use\n            a one-time code sent to your email.\n          </FieldDescription>\n        </FieldContent>\n        <Switch />\n      </Field>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleFieldSwitch from \"../examples/field-switch\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSwitch />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/switch.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/field/variants/switch.tsx",
-      "content": "import ExampleFieldSwitch from \"../examples/field-switch\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSwitch />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -34,15 +34,15 @@ import ButtonSource from "./variants/button.tsx?raw";
 
 const meta = {
   component: Textarea,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("textarea"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Textarea>;
 
 export default meta;
@@ -50,11 +50,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Textarea> = {
-  args: { placeholder: "Type here", disabled: false, rows: 3, className: "" },
   argTypes: {
     disabled: { control: "boolean" },
-    rows: { control: { type: "number", min: 1, max: 12 } },
+    rows: { control: { max: 12, min: 1, type: "number" } },
   },
+  args: { className: "", disabled: false, placeholder: "Type here", rows: 3 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("textarea", "playground") },

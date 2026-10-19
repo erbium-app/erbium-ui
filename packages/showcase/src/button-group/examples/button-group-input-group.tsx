@@ -32,7 +32,9 @@ export default function ButtonGroupInputGroup() {
               <TooltipTrigger
                 render={
                   <InputGroupButton
-                    onClick={() => setVoiceEnabled(!voiceEnabled)}
+                    onClick={() => {
+                      setVoiceEnabled(!voiceEnabled);
+                    }}
                     size="icon-xs"
                     data-active={voiceEnabled}
                     className="data-[active=true]:bg-warning-soft data-[active=true]:text-warning-soft-foreground"

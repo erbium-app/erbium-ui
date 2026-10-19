@@ -15,12 +15,12 @@ import ShowcaseSource from "./variants/showcase.tsx?raw";
 const meta = {
   component: CSPProvider,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("csp-provider"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof CSPProvider>;
 

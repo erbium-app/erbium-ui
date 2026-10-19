@@ -26,15 +26,15 @@ import WithFormSource from "./variants/with-form.tsx?raw";
 
 const meta = {
   component: Popover,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("popover"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Popover>;
 
 export default meta;
@@ -46,12 +46,12 @@ export const Playground: StoryObj<{
   align: "start" | "center" | "end";
   defaultOpen: boolean;
 }> = {
-  args: { side: "bottom", align: "center", defaultOpen: false },
   argTypes: {
-    side: { control: "select", options: ["top", "right", "bottom", "left"] },
     align: { control: "select", options: ["start", "center", "end"] },
     defaultOpen: { control: "boolean" },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
+  args: { align: "center", defaultOpen: false, side: "bottom" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("popover", "playground") },

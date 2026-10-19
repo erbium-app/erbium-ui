@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-group\">\n      <Button loading size=\"sm\">\n        Loading...\n      </Button>\n      <Button variant=\"outline\" loading size=\"sm\">\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" loading size=\"sm\">\n        Processing\n      </Button>\n    </div>\n  );\n}\n",
       "path": "src/spinner/examples/spinner-button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/spinner/examples/spinner-button.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function SpinnerButton() {\n  return (\n    <div className=\"flex flex-col items-center gap-group\">\n      <Button loading size=\"sm\">\n        Loading...\n      </Button>\n      <Button variant=\"outline\" loading size=\"sm\">\n        Please wait\n      </Button>\n      <Button variant=\"secondary\" loading size=\"sm\">\n        Processing\n      </Button>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleSpinnerButton from \"../examples/spinner-button\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerButton />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/spinner/variants/button.tsx",
-      "content": "import ExampleSpinnerButton from \"../examples/spinner-button\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerButton />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

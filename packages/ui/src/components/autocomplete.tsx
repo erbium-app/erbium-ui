@@ -21,7 +21,9 @@ export function AutocompleteSearchInput({
     <div data-slot="autocomplete-search" className="shrink-0">
       <div
         className="flex search-input-row items-center"
-        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+        onPointerDown={(event) => {
+          focusSearchInput(event.currentTarget, event);
+        }}
       >
         <Icon
           name="search-01"
@@ -47,14 +49,14 @@ export function AutocompleteSearchInput({
 const autocompleteInputVariants = cva("", {
   variants: {
     size: {
-      sm: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-6.5",
       default:
         "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
       lg: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
+      sm: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-6.5",
     },
     startAddon: {
-      true: "data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7.5)-1px)] *:data-[slot=autocomplete-input]:ps-[calc(--spacing(8.5)-1px)] sm:data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7)-1px)] sm:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(8)-1px)]",
       false: "",
+      true: "data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7.5)-1px)] *:data-[slot=autocomplete-input]:ps-[calc(--spacing(8.5)-1px)] sm:data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7)-1px)] sm:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(8)-1px)]",
     },
   },
 });
@@ -62,9 +64,9 @@ const autocompleteInputVariants = cva("", {
 const autocompleteFieldVariants = cva("", {
   variants: {
     size: {
-      sm: "control-size-sm text-field",
       default: "",
       lg: "control-size-lg text-field",
+      sm: "control-size-sm text-field",
     },
   },
 });
@@ -74,9 +76,9 @@ const autocompleteActionVariants = cva(
   {
     variants: {
       size: {
-        sm: "inset-e-0",
         default: "inset-e-0.5",
         lg: "inset-e-0.5",
+        sm: "inset-e-0",
       },
     },
   },
@@ -100,7 +102,7 @@ export function AutocompleteInput({
   triggerProps?: AutocompletePrimitive.Trigger.Props;
   clearProps?: AutocompletePrimitive.Clear.Props;
 }): React.ReactElement {
-  const sizeValue = (size ?? "default") as "sm" | "default" | "lg" | number;
+  const sizeValue = size ?? "default";
   const visualSize = typeof sizeValue === "number" ? "default" : sizeValue;
 
   return (
@@ -119,7 +121,7 @@ export function AutocompleteInput({
       )}
       <AutocompletePrimitive.Input
         className={cn(
-          autocompleteInputVariants({ size: visualSize, startAddon: !!startAddon, className }),
+          autocompleteInputVariants({ className, size: visualSize, startAddon: !!startAddon }),
         )}
         data-slot="autocomplete-input"
         render={<Input className={cn(autocompleteFieldVariants({ size: visualSize }))} />}

@@ -46,15 +46,15 @@ import InvalidSource from "./variants/invalid.tsx?raw";
 
 const meta = {
   component: RadioGroup,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("radio-group"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof RadioGroup>;
 
 export default meta;
@@ -62,18 +62,18 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof RadioGroup> = {
-  args: { defaultValue: "one", disabled: false, readOnly: false, required: false },
   argTypes: {
     defaultValue: {
       control: "select",
-      options: ["one", "two", "three"],
       description: "Initially selected value (uncontrolled).",
+      options: ["one", "two", "three"],
     },
     disabled: { control: "boolean", description: "Disables every item in the group." },
+    onValueChange: { action: "onValueChange" },
     readOnly: { control: "boolean", description: "Focusable, but the selection cannot change." },
     required: { control: "boolean", description: "A value must be chosen before submitting." },
-    onValueChange: { action: "onValueChange" },
   },
+  args: { defaultValue: "one", disabled: false, readOnly: false, required: false },
   parameters: {
     docs: {
       description: { story: variantDocumentation("radio-group", "playground") },

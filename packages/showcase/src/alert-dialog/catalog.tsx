@@ -34,15 +34,15 @@ import ErrorVariantSource from "./variants/error-variant.tsx?raw";
 
 const meta = {
   component: AlertDialog,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("alert-dialog"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof AlertDialog>;
 
 export default meta;
@@ -50,11 +50,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{ size: "default" | "sm"; defaultOpen: boolean }> = {
-  args: { size: "default", defaultOpen: false },
   argTypes: {
-    size: { control: "select", options: ["default", "sm"] },
     defaultOpen: { control: "boolean" },
+    size: { control: "select", options: ["default", "sm"] },
   },
+  args: { defaultOpen: false, size: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("alert-dialog", "playground") },

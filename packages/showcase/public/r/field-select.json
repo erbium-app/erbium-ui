@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/select", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport default function FieldSelect() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Field>\n        <FieldLabel>Department</FieldLabel>\n        <Select>\n          <SelectTrigger>\n            <SelectValue placeholder=\"Choose department\" />\n          </SelectTrigger>\n          <SelectContent>\n            <SelectItem value=\"engineering\">Engineering</SelectItem>\n            <SelectItem value=\"design\">Design</SelectItem>\n            <SelectItem value=\"marketing\">Marketing</SelectItem>\n            <SelectItem value=\"sales\">Sales</SelectItem>\n            <SelectItem value=\"support\">Customer Support</SelectItem>\n            <SelectItem value=\"hr\">Human Resources</SelectItem>\n            <SelectItem value=\"finance\">Finance</SelectItem>\n            <SelectItem value=\"operations\">Operations</SelectItem>\n          </SelectContent>\n        </Select>\n        <FieldDescription>Select your department or area of work.</FieldDescription>\n      </Field>\n    </div>\n  );\n}\n",
       "path": "src/field/examples/field-select.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/field/examples/field-select.tsx",
-      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  Select,\n  SelectContent,\n  SelectItem,\n  SelectTrigger,\n  SelectValue,\n} from \"@/registry/erbium/ui/select\";\n\nexport default function FieldSelect() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Field>\n        <FieldLabel>Department</FieldLabel>\n        <Select>\n          <SelectTrigger>\n            <SelectValue placeholder=\"Choose department\" />\n          </SelectTrigger>\n          <SelectContent>\n            <SelectItem value=\"engineering\">Engineering</SelectItem>\n            <SelectItem value=\"design\">Design</SelectItem>\n            <SelectItem value=\"marketing\">Marketing</SelectItem>\n            <SelectItem value=\"sales\">Sales</SelectItem>\n            <SelectItem value=\"support\">Customer Support</SelectItem>\n            <SelectItem value=\"hr\">Human Resources</SelectItem>\n            <SelectItem value=\"finance\">Finance</SelectItem>\n            <SelectItem value=\"operations\">Operations</SelectItem>\n          </SelectContent>\n        </Select>\n        <FieldDescription>Select your department or area of work.</FieldDescription>\n      </Field>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleFieldSelect from \"../examples/field-select\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSelect />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/select.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/field/variants/select.tsx",
-      "content": "import ExampleFieldSelect from \"../examples/field-select\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldSelect />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/input", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputDemo() {\n  return <Input type=\"email\" placeholder=\"Email\" />;\n}\n",
       "path": "src/input/examples/input-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/examples/input-demo.tsx",
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputDemo() {\n  return <Input type=\"email\" placeholder=\"Email\" />;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

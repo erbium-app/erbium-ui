@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarDemo() {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n}\n",
       "path": "src/calendar/examples/calendar-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/calendar/examples/calendar-demo.tsx",
-      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarDemo() {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/calendar-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/calendar/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/calendar/variants/overview.tsx",
-      "content": "import Demo from \"../examples/calendar-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

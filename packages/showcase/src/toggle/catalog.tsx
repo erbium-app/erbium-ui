@@ -38,15 +38,15 @@ import SizeSource from "./variants/size.tsx?raw";
 
 const meta = {
   component: Toggle,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("toggle"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Toggle>;
 
 export default meta;
@@ -54,12 +54,12 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Toggle> = {
-  args: { variant: "default", size: "default", defaultPressed: false, className: "" },
   argTypes: {
-    variant: { control: "select", options: ["default", "outline"] },
-    size: { control: "select", options: ["default", "sm", "lg"] },
     defaultPressed: { control: "boolean" },
+    size: { control: "select", options: ["default", "sm", "lg"] },
+    variant: { control: "select", options: ["default", "outline"] },
   },
+  args: { className: "", defaultPressed: false, size: "default", variant: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("toggle", "playground") },

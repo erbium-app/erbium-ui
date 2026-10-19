@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = () => (\n  <Button\n    variant=\"outline\"\n    onClick={() => {\n      for (let index = 1; index <= 5; index += 1) {\n        toast.add({ timeout: 0, title: `Queue item ${index}` });\n      }\n    }}\n  >\n    Show five toasts\n  </Button>\n);\n\nexport default Example;\n",
       "path": "src/toast/variants/queue.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toast/variants/queue.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = () => (\n  <Button\n    variant=\"outline\"\n    onClick={() => {\n      for (let index = 1; index <= 5; index += 1) {\n        toast.add({ title: `Queue item ${index}`, timeout: 0 });\n      }\n    }}\n  >\n    Show five toasts\n  </Button>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

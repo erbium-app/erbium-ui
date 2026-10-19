@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "shadcn/tailwind.css";
+
 @source "../";
+
 @import "shadow-plugin";
 @import "tw-animate-css";
 @import "./fonts.css";

@@ -8,27 +8,29 @@ export type DocumentationKind =
   | "utility"
   | "hook";
 
-type DocumentationSection = {
+interface DocumentationSection {
   title: string;
   slug: string;
   kind: DocumentationKind;
   names: string[];
-};
+}
 
 export const documentationSections = sections as DocumentationSection[];
+
 export const kindPaths: Record<DocumentationKind, string> = {
   block: "blocks",
-  foundation: "foundations",
   component: "components",
+  foundation: "foundations",
+  hook: "hooks",
   provider: "providers",
   utility: "utilities",
-  hook: "hooks",
 };
+
 export const kindTitles: Record<DocumentationKind, string> = {
   block: "Blocks",
-  foundation: "Foundations",
   component: "Components",
+  foundation: "Foundations",
+  hook: "Hooks",
   provider: "Providers",
   utility: "Utilities",
-  hook: "Hooks",
 };

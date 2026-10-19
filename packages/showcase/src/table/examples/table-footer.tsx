@@ -11,24 +11,24 @@ import {
 } from "@erbium/ui/components/table";
 import { createColumnHelper, metaHelper, tableFeatures, useTable } from "@tanstack/react-table";
 
-type Invoice = {
+interface Invoice {
   invoice: string;
   paymentStatus: string;
   paymentMethod: string;
   totalAmount: number;
-};
+}
 
 const invoices: Invoice[] = [
-  { invoice: "INV001", paymentStatus: "Paid", paymentMethod: "Credit Card", totalAmount: 250 },
-  { invoice: "INV002", paymentStatus: "Pending", paymentMethod: "PayPal", totalAmount: 150 },
-  { invoice: "INV003", paymentStatus: "Unpaid", paymentMethod: "Bank Transfer", totalAmount: 350 },
-  { invoice: "INV004", paymentStatus: "Paid", paymentMethod: "Credit Card", totalAmount: 450 },
-  { invoice: "INV005", paymentStatus: "Paid", paymentMethod: "PayPal", totalAmount: 550 },
-  { invoice: "INV006", paymentStatus: "Pending", paymentMethod: "Bank Transfer", totalAmount: 200 },
-  { invoice: "INV007", paymentStatus: "Unpaid", paymentMethod: "Credit Card", totalAmount: 300 },
+  { invoice: "INV001", paymentMethod: "Credit Card", paymentStatus: "Paid", totalAmount: 250 },
+  { invoice: "INV002", paymentMethod: "PayPal", paymentStatus: "Pending", totalAmount: 150 },
+  { invoice: "INV003", paymentMethod: "Bank Transfer", paymentStatus: "Unpaid", totalAmount: 350 },
+  { invoice: "INV004", paymentMethod: "Credit Card", paymentStatus: "Paid", totalAmount: 450 },
+  { invoice: "INV005", paymentMethod: "PayPal", paymentStatus: "Paid", totalAmount: 550 },
+  { invoice: "INV006", paymentMethod: "Bank Transfer", paymentStatus: "Pending", totalAmount: 200 },
+  { invoice: "INV007", paymentMethod: "Credit Card", paymentStatus: "Unpaid", totalAmount: 300 },
 ];
 
-const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+const currency = new Intl.NumberFormat("en-US", { currency: "USD", style: "currency" });
 
 // Column metadata describes alignment and width shared by the head, cells and footer.
 const features = tableFeatures({
@@ -39,26 +39,26 @@ const columnHelper = createColumnHelper<typeof features, Invoice>();
 
 const columns = columnHelper.columns([
   columnHelper.accessor("invoice", {
-    header: "Invoice",
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
     footer: "Total",
+    header: "Invoice",
     meta: { narrow: true },
   }),
   columnHelper.accessor("paymentStatus", { header: "Status" }),
   columnHelper.accessor("paymentMethod", { header: "Method" }),
   columnHelper.accessor("totalAmount", {
-    header: "Amount",
     cell: (info) => currency.format(info.getValue()),
     footer: ({ table }) =>
       currency.format(
         table.getRowModel().rows.reduce((sum, row) => sum + row.original.totalAmount, 0),
       ),
+    header: "Amount",
     meta: { alignment: "end" },
   }),
 ]);
 
 export function TableFooterExample() {
-  const table = useTable({ features, columns, data: invoices.slice(0, 3) });
+  const table = useTable({ columns, data: invoices.slice(0, 3), features });
 
   return (
     <Table>

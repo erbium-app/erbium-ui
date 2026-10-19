@@ -16,52 +16,56 @@ import {
   useTable,
 } from "@tanstack/react-table";
 
-type User = {
+interface User {
   id: string;
   name: string;
   email: string;
   role: string;
-};
+}
 
 const tableData: User[] = [
-  { id: "1", name: "Sarah Chen", email: "sarah.chen@example.com", role: "Admin" },
-  { id: "2", name: "Marcus Rodriguez", email: "marcus.rodriguez@example.com", role: "User" },
-  { id: "3", name: "Priya Patel", email: "priya.patel@example.com", role: "User" },
-  { id: "4", name: "David Kim", email: "david.kim@example.com", role: "Editor" },
+  { email: "sarah.chen@example.com", id: "1", name: "Sarah Chen", role: "Admin" },
+  { email: "marcus.rodriguez@example.com", id: "2", name: "Marcus Rodriguez", role: "User" },
+  { email: "priya.patel@example.com", id: "3", name: "Priya Patel", role: "User" },
+  { email: "david.kim@example.com", id: "4", name: "David Kim", role: "Editor" },
 ];
 
 const features = tableFeatures({
-  rowSelectionFeature,
   columnMeta: metaHelper<{ selection?: boolean }>(),
+  rowSelectionFeature,
 });
 
 const columnHelper = createColumnHelper<typeof features, User>();
 
 const columns = columnHelper.columns([
   columnHelper.display({
-    id: "select",
+    cell: ({ row }) => (
+      <Checkbox
+        aria-label={`Select ${row.original.name}`}
+        checked={row.getIsSelected()}
+        disabled={!row.getCanSelect()}
+        onCheckedChange={(checked) => {
+          row.toggleSelected(checked);
+        }}
+      />
+    ),
     header: ({ table }) => (
       <Checkbox
         aria-label="Select all rows"
         checked={table.getIsAllRowsSelected()}
         // v9's getIsSomeRowsSelected() is also true when every row is selected.
         indeterminate={table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()}
-        onCheckedChange={(checked) => table.toggleAllRowsSelected(checked)}
+        onCheckedChange={(checked) => {
+          table.toggleAllRowsSelected(checked);
+        }}
       />
     ),
-    cell: ({ row }) => (
-      <Checkbox
-        aria-label={`Select ${row.original.name}`}
-        checked={row.getIsSelected()}
-        disabled={!row.getCanSelect()}
-        onCheckedChange={(checked) => row.toggleSelected(checked)}
-      />
-    ),
+    id: "select",
     meta: { selection: true },
   }),
   columnHelper.accessor("name", {
-    header: "Name",
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
+    header: "Name",
   }),
   columnHelper.accessor("email", { header: "Email" }),
   columnHelper.accessor("role", { header: "Role" }),
@@ -69,17 +73,20 @@ const columns = columnHelper.columns([
 
 export function CheckboxInTable() {
   const table = useTable({
-    features,
     columns,
     data: tableData,
+    features,
     getRowId: (row) => row.id,
     initialState: { rowSelection: { "1": true } },
   });
-  const rows = table.getRowModel().rows;
+
+  const { rows } = table.getRowModel();
+
   const dragSelect = useDragSelect({
     resolve(target) {
       const index = target.closest("tr")?.sectionRowIndex ?? -1;
       const row = rows[index];
+
       return row?.getCanSelect() ? { index, selected: row.getIsSelected() } : null;
     },
     selectRange(start, end, selected) {

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/menubar", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarContent,\n  MenubarItem,\n  MenubarList,\n} from \"@/registry/erbium/ui/menubar\";\n\nconst Example = (args: {\n  className: string;\n  align: \"start\" | \"center\" | \"end\";\n  itemVariant: \"default\" | \"error\";\n  disabled: boolean;\n}) => (\n  <Menubar className={args.className}>\n    <MenubarMenu>\n      <MenubarTrigger disabled={args.disabled}>File</MenubarTrigger>\n      <MenubarContent align={args.align}>\n        <MenubarList>\n          <MenubarItem variant={args.itemVariant}>New</MenubarItem>\n          <MenubarItem>Open</MenubarItem>\n        </MenubarList>\n      </MenubarContent>\n    </MenubarMenu>\n  </Menubar>\n);\n\nexport default Example;\n",
       "path": "src/menubar/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/menubar/variants/playground.tsx",
-      "content": "import {\n  Menubar,\n  MenubarMenu,\n  MenubarTrigger,\n  MenubarContent,\n  MenubarItem,\n  MenubarList,\n} from \"@/registry/erbium/ui/menubar\";\n\nconst Example = (args: {\n  className: string;\n  align: \"start\" | \"center\" | \"end\";\n  itemVariant: \"default\" | \"error\";\n  disabled: boolean;\n}) => (\n  <Menubar className={args.className}>\n    <MenubarMenu>\n      <MenubarTrigger disabled={args.disabled}>File</MenubarTrigger>\n      <MenubarContent align={args.align}>\n        <MenubarList>\n          <MenubarItem variant={args.itemVariant}>New</MenubarItem>\n          <MenubarItem>Open</MenubarItem>\n        </MenubarList>\n      </MenubarContent>\n    </MenubarMenu>\n  </Menubar>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

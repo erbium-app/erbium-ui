@@ -12,8 +12,13 @@ function StaggeredRow({ delay }: { delay: number }) {
   const [mounted, setMounted] = useState(delay === 0);
 
   useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), delay);
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [delay]);
 
   if (!mounted) {

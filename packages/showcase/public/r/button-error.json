@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonError() {\n  return <Button variant=\"error\">Error</Button>;\n}\n",
       "path": "src/button/examples/button-error.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/examples/button-error.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonError() {\n  return <Button variant=\"error\">Error</Button>;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

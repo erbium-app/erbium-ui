@@ -3,8 +3,8 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  Carousel,
 } from "@erbium/ui/components/carousel";
-import { Carousel } from "@erbium/ui/components/carousel";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Carousel>) => (

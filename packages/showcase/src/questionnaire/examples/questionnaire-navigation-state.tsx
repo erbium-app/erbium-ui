@@ -27,10 +27,12 @@ type ItemName = "permission" | "verification";
 
 export function QuestionnaireNavigationState() {
   const [item, setItem] = React.useState<ItemName>("permission");
+
   const [statuses, setStatuses] = React.useState<Record<ItemName, QuestionnaireItemStatus>>({
     permission: "unanswered",
     verification: "unanswered",
   });
+
   const unanswered = statuses[item] === "unanswered";
 
   function setStatus(name: ItemName, status: QuestionnaireItemStatus) {
@@ -43,8 +45,8 @@ export function QuestionnaireNavigationState() {
     const formData = new FormData(event.currentTarget);
 
     toast.add({
-      title: "Permissions saved",
       description: `Permission: ${getFormValue(formData, "permission")} · Verification: ${getFormValue(formData, "verification")}`,
+      title: "Permissions saved",
     });
   }
 
@@ -53,7 +55,9 @@ export function QuestionnaireNavigationState() {
       className="mx-auto max-w-md"
       item={item}
       items={items}
-      onItemChange={(nextItem) => setItem(nextItem as ItemName)}
+      onItemChange={(nextItem) => {
+        setItem(nextItem as ItemName);
+      }}
       onSubmit={handleSubmit}
     >
       <QuestionnaireStepIndicator />
@@ -61,7 +65,9 @@ export function QuestionnaireNavigationState() {
       <QuestionnaireItem
         name="permission"
         required
-        onStatusChange={(status) => setStatus("permission", status)}
+        onStatusChange={(status) => {
+          setStatus("permission", status);
+        }}
       >
         <QuestionnaireTitle>What may the agent modify?</QuestionnaireTitle>
         <QuestionnaireDescription>
@@ -78,7 +84,9 @@ export function QuestionnaireNavigationState() {
       <QuestionnaireItem
         name="verification"
         required
-        onStatusChange={(status) => setStatus("verification", status)}
+        onStatusChange={(status) => {
+          setStatus("verification", status);
+        }}
       >
         <QuestionnaireTitle>What must pass before completion?</QuestionnaireTitle>
         <QuestionnaireChoices>

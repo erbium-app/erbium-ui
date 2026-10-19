@@ -4,6 +4,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@erbium/ui/components/navigation-menu";
+
 export default function Demo() {
   return (
     <NavigationMenu>

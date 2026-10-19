@@ -48,15 +48,15 @@ import ResponsiveSource from "./variants/responsive.tsx?raw";
 
 const meta = {
   component: Drawer,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("drawer"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Drawer>;
 
 export default meta;
@@ -69,13 +69,13 @@ export const Playground: StoryObj<{
   showSwipeHandle: boolean;
   showCloseButton: boolean;
 }> = {
-  args: { swipeDirection: "down", modal: true, showSwipeHandle: true, showCloseButton: false },
   argTypes: {
-    swipeDirection: { control: "select", options: ["up", "down", "left", "right"] },
     modal: { control: "boolean" },
-    showSwipeHandle: { control: "boolean" },
     showCloseButton: { control: "boolean" },
+    showSwipeHandle: { control: "boolean" },
+    swipeDirection: { control: "select", options: ["up", "down", "left", "right"] },
   },
+  args: { modal: true, showCloseButton: false, showSwipeHandle: true, swipeDirection: "down" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("drawer", "playground") },

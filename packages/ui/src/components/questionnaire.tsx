@@ -1,10 +1,12 @@
 import * as React from "react";
 import { Questionnaire as QuestionnairePrimitive } from "@shadcn/react/questionnaire";
 import { cn } from "../lib/utils";
-import { buttonVariants, type Button } from "./button";
+import { buttonVariants } from "./button";
+import type { Button } from "./button";
 import { Kbd } from "./kbd";
 import { Icon } from "./icon";
-import { StatefulButton, type StatefulButtonProps } from "./stateful-button";
+import { StatefulButton } from "./stateful-button";
+import type { StatefulButtonProps } from "./stateful-button";
 import { StepIndicator } from "../blocks/step-indicator";
 
 function Questionnaire({
@@ -43,11 +45,11 @@ function QuestionnaireStepIndicator({
           // hide the step buttons. Interactive indicators are a plain group.
           {...(onValueChange
             ? {
-                role: "group",
                 "aria-valuemax": undefined,
                 "aria-valuemin": undefined,
                 "aria-valuenow": undefined,
                 "aria-valuetext": undefined,
+                role: "group",
               }
             : {})}
         >

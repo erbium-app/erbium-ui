@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/kbd", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center justify-center gap-related\">\n      <Kbd hotkey=\"Mod+Shift+K\" />\n      <Kbd hotkey=\"Mod+B\" />\n      <Kbd hotkey=\"Escape\" />\n    </div>\n  );\n}\n",
       "path": "src/kbd/examples/kbd-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/kbd/examples/kbd-demo.tsx",
-      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center justify-center gap-related\">\n      <Kbd hotkey=\"Mod+Shift+K\" />\n      <Kbd hotkey=\"Mod+B\" />\n      <Kbd hotkey=\"Escape\" />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

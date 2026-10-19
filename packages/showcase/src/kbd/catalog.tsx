@@ -26,15 +26,15 @@ import InputGroupSource from "./variants/input-group.tsx?raw";
 
 const meta = {
   component: Kbd,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("kbd"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Kbd>;
 
 export default meta;
@@ -42,8 +42,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Kbd> = {
-  args: { hotkey: "Mod+K", className: "" },
   argTypes: {},
+  args: { className: "", hotkey: "Mod+K" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("kbd", "playground") },

@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "stateful-icon-examples",
-  "type": "registry:item",
-  "title": "Stateful Icon examples",
   "description": "All stateful-icon examples.",
+  "name": "stateful-icon-examples",
   "registryDependencies": [
     "@erbium-examples/stateful-icon-copy-feedback",
     "@erbium-examples/stateful-icon-rotating-chevron",
@@ -11,5 +9,7 @@
     "@erbium-examples/stateful-icon-sidebar-toggle-icon",
     "@erbium-examples/stateful-icon-theme-toggle-icon",
     "@erbium-examples/stateful-icon-checkbox-state"
-  ]
+  ],
+  "title": "Stateful Icon examples",
+  "type": "registry:item"
 }

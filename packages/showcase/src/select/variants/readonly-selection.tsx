@@ -8,14 +8,16 @@ import {
 } from "@erbium/ui/components/select";
 
 const options = [
-  { value: "design", label: "Design" },
-  { value: "engineering", label: "Engineering" },
-  { value: "research", label: "Research" },
+  { label: "Design", value: "design" },
+  { label: "Engineering", value: "engineering" },
+  { label: "Research", value: "research" },
 ];
+
 const initialValues: readonly string[] = ["design"];
 
 export default function ReadonlySelectionExample() {
   const [value, setValue] = useState<readonly string[]>(initialValues);
+
   return (
     <div className="grid gap-related">
       <Select multiple items={options} value={value} onValueChange={setValue}>

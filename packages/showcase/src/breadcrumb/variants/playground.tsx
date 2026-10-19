@@ -4,8 +4,8 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
   BreadcrumbPage,
+  Breadcrumb,
 } from "@erbium/ui/components/breadcrumb";
-import { Breadcrumb } from "@erbium/ui/components/breadcrumb";
 
 const Example = (args: { separator: string; currentPage: string }) => (
   <Breadcrumb>

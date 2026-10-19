@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/scroll-area", "@erbium/styles"],
   "files": [
     {
+      "content": "import { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof ScrollArea>) => (\n  <ScrollArea {...args} className=\"h-40 w-72 rounded-xl border surface-panel\">\n    <div className=\"space-y-2 p-4\">\n      {Array.from({ length: 12 }, (_, index) => (\n        <p key={index}>Scrollable row {index + 1}</p>\n      ))}\n    </div>\n  </ScrollArea>\n);\n\nexport default Example;\n",
       "path": "src/scroll-area/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/scroll-area/variants/playground.tsx",
-      "content": "import { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof ScrollArea>) => (\n  <ScrollArea {...args} className=\"h-40 w-72 rounded-xl border surface-panel\">\n    <div className=\"space-y-2 p-4\">\n      {Array.from({ length: 12 }, (_, index) => (\n        <p key={index}>Scrollable row {index + 1}</p>\n      ))}\n    </div>\n  </ScrollArea>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -15,6 +15,7 @@ function DropdownMenu({
   searchable?: boolean;
 }) {
   const menu = <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
+
   return searchable ? (
     <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
   ) : (
@@ -125,6 +126,7 @@ function DropdownMenuSub({
   searchable?: boolean;
 }) {
   const menu = <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />;
+
   return searchable ? (
     <MenuPrimitive.FilterProvider autoHighlight>{menu}</MenuPrimitive.FilterProvider>
   ) : (

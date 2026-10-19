@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n      Italic\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-text.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-text.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n      Italic\n    </Toggle>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ToggleText } from \"../examples/toggle-text\";\n\nconst Example = () => <ToggleText />;\n\nexport default Example;\n",
       "path": "src/toggle/variants/with-text.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/with-text.tsx",
-      "content": "import { ToggleText } from \"../examples/toggle-text\";\n\nconst Example = () => <ToggleText />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

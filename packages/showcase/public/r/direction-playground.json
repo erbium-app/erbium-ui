@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/direction", "@erbium/styles"],
   "files": [
     {
+      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nconst Example = (args: { direction: \"ltr\" | \"rtl\" }) => (\n  <DirectionProvider direction={args.direction}>\n    <div dir={args.direction} className=\"w-72 rounded border p-4\">\n      Direction: {args.direction}\n      <div className=\"mt-2 flex gap-related\">\n        <button className=\"rounded border p-2\">First</button>\n        <button className=\"rounded border p-2\">Second</button>\n      </div>\n    </div>\n  </DirectionProvider>\n);\n\nexport default Example;\n",
       "path": "src/direction/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/direction/variants/playground.tsx",
-      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\n\nconst Example = (args: { direction: \"ltr\" | \"rtl\" }) => (\n  <DirectionProvider direction={args.direction}>\n    <div dir={args.direction} className=\"w-72 rounded border p-4\">\n      Direction: {args.direction}\n      <div className=\"mt-2 flex gap-related\">\n        <button className=\"rounded border p-2\">First</button>\n        <button className=\"rounded border p-2\">Second</button>\n      </div>\n    </div>\n  </DirectionProvider>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

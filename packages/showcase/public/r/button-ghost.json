@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonGhost() {\n  return <Button variant=\"ghost\">Ghost</Button>;\n}\n",
       "path": "src/button/examples/button-ghost.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/examples/button-ghost.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonGhost() {\n  return <Button variant=\"ghost\">Ghost</Button>;\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleButtonGhost from \"../examples/button-ghost\";\n\nconst Example = () => <ExampleButtonGhost />;\n\nexport default Example;\n",
       "path": "src/button/variants/ghost.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/ghost.tsx",
-      "content": "import ExampleButtonGhost from \"../examples/button-ghost\";\n\nconst Example = () => <ExampleButtonGhost />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

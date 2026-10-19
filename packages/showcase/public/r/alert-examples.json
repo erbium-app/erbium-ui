@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "alert-examples",
-  "type": "registry:item",
-  "title": "Alert examples",
   "description": "All alert examples.",
+  "name": "alert-examples",
   "registryDependencies": [
     "@erbium-examples/alert-playground",
     "@erbium-examples/alert-overview",
@@ -13,5 +11,7 @@
     "@erbium-examples/alert-success",
     "@erbium-examples/alert-action",
     "@erbium-examples/alert-warning"
-  ]
+  ],
+  "title": "Alert examples",
+  "type": "registry:item"
 }

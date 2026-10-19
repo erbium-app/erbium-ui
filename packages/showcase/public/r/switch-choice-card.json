@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
+      "content": "import {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchChoiceCard() {\n  return (\n    <FieldGroup className=\"w-full max-w-sm\">\n      <Field variant=\"card\" orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Share across devices</FieldLabel>\n          <FieldDescription>\n            Focus is shared across devices, and turns off when you leave the app.\n          </FieldDescription>\n        </FieldContent>\n        <Switch />\n      </Field>\n      <Field variant=\"card\" orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Enable notifications</FieldLabel>\n          <FieldDescription>\n            Receive notifications when focus mode is enabled or disabled.\n          </FieldDescription>\n        </FieldContent>\n        <Switch defaultChecked />\n      </Field>\n    </FieldGroup>\n  );\n}\n",
       "path": "src/switch/examples/switch-choice-card.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/switch/examples/switch-choice-card.tsx",
-      "content": "import {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchChoiceCard() {\n  return (\n    <FieldGroup className=\"w-full max-w-sm\">\n      <Field variant=\"card\" orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Share across devices</FieldLabel>\n          <FieldDescription>\n            Focus is shared across devices, and turns off when you leave the app.\n          </FieldDescription>\n        </FieldContent>\n        <Switch />\n      </Field>\n      <Field variant=\"card\" orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Enable notifications</FieldLabel>\n          <FieldDescription>\n            Receive notifications when focus mode is enabled or disabled.\n          </FieldDescription>\n        </FieldContent>\n        <Switch defaultChecked />\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { SwitchChoiceCard } from \"../examples/switch-choice-card\";\n\nconst Example = () => <SwitchChoiceCard />;\n\nexport default Example;\n",
       "path": "src/switch/variants/choice-card.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/switch/variants/choice-card.tsx",
-      "content": "import { SwitchChoiceCard } from \"../examples/switch-choice-card\";\n\nconst Example = () => <SwitchChoiceCard />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

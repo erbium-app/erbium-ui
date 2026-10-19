@@ -5,12 +5,12 @@ import { shake } from "../lib/shake";
 import { Separator } from "./separator";
 
 /** Structural subset of TanStack Form's field.state.meta. */
-type OTPFieldValidation = {
+interface OTPFieldValidation {
   isValid: boolean;
   isValidating: boolean;
   isTouched: boolean;
   isDirty: boolean;
-};
+}
 
 type OTPFieldStatus = "idle" | "loading" | "success" | "error";
 
@@ -30,6 +30,7 @@ function OTPFieldSlots({ groups, length }: { groups?: number[]; length: number }
         <OTPFieldGroup>
           {Array.from({ length: size }, (_, offset) => {
             const slot = start + offset;
+
             return (
               <OTPFieldInput
                 key={slot}
@@ -68,6 +69,7 @@ function OTPField({
   ...props
 }: OTPFieldProps) {
   const rootRef = React.useRef<HTMLDivElement | null>(null);
+
   const status: OTPFieldStatus =
     validation?.isValidating && value?.length === length
       ? "loading"
@@ -94,6 +96,7 @@ function OTPField({
         value={value}
         ref={(node) => {
           rootRef.current = node;
+
           if (typeof ref === "function") {
             ref(node);
           } else if (ref) {
@@ -171,4 +174,5 @@ function OTPFieldSeparator({ className, ...props }: OTPFieldPrimitive.Separator.
 }
 
 export type { OTPFieldProps, OTPFieldValidation };
+
 export { OTPField, OTPFieldGroup, OTPFieldInput, OTPFieldSeparator };

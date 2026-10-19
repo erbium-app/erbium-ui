@@ -55,12 +55,12 @@ import SizesSource from "./variants/sizes.tsx?raw";
 const meta = {
   component: Avatar,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("avatar"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof Avatar>;
 
@@ -75,14 +75,14 @@ export const Playground: StoryObj<{
   fallback: string;
   className: string;
 }> = {
-  args: { size: "default", src: "", alt: "Profile photo", fallback: "AN", className: "" },
   argTypes: {
+    alt: { control: "text" },
+    className: { control: "text" },
+    fallback: { control: "text" },
     size: { control: "select", options: ["default", "sm", "lg"] },
     src: { control: "text" },
-    alt: { control: "text" },
-    fallback: { control: "text" },
-    className: { control: "text" },
   },
+  args: { alt: "Profile photo", className: "", fallback: "AN", size: "default", src: "" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("avatar", "playground") },

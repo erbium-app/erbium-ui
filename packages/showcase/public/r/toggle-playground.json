@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
   "files": [
     {
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\n\nexport default Example;\n",
       "path": "src/toggle/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/playground.tsx",
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -18,6 +18,7 @@ function SubmitStatefulButton({
 }) {
   const [dismissedAttempt, setDismissedAttempt] = useState(0);
   let state: StatefulButtonState = "idle";
+
   if (isSubmitting) {
     state = "loading";
   } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {
@@ -43,6 +44,7 @@ function SubmitStatefulButton({
 export default function StatefulButtonForm() {
   const emailRef = useRef<HTMLInputElement>(null);
   const request = useAsyncDebouncer(async () => {}, { wait: 1200 });
+
   const form = useForm({
     defaultValues: { email: "" },
     onSubmit: async () => {
@@ -82,9 +84,13 @@ export default function StatefulButtonForm() {
               ref={emailRef}
               type="email"
               value={field.state.value}
-              onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}
+              onFocus={() => {
+                field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined });
+              }}
               onBlur={field.handleBlur}
-              onChange={(event) => field.handleChange(event.target.value)}
+              onChange={(event) => {
+                field.handleChange(event.target.value);
+              }}
             />
             <FieldError errors={field.state.meta.errors} />
           </Field>

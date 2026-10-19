@@ -12,16 +12,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "@erbium/ui/com
 
 const CURRENCIES = [
   {
-    value: "$",
     label: "US Dollar",
+    value: "$",
   },
   {
-    value: "€",
     label: "Euro",
+    value: "€",
   },
   {
-    value: "£",
     label: "British Pound",
+    value: "£",
   },
 ];
 
@@ -31,7 +31,12 @@ export default function ButtonGroupSelect() {
   return (
     <ButtonGroup>
       <ButtonGroup>
-        <Select value={currency} onValueChange={(value) => setCurrency(value ?? "$")}>
+        <Select
+          value={currency}
+          onValueChange={(value) => {
+            setCurrency(value ?? "$");
+          }}
+        >
           <SelectTrigger className="font-mono">{currency}</SelectTrigger>
           <SelectContent className="min-w-24">
             {CURRENCIES.map((currency) => (
@@ -43,7 +48,7 @@ export default function ButtonGroupSelect() {
         </Select>
         <NumberField
           className="w-36"
-          format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+          format={{ maximumFractionDigits: 2, minimumFractionDigits: 2 }}
         >
           <NumberFieldGroup className="rounded-s-none">
             <NumberFieldInput aria-label="Amount" placeholder="10.00" />

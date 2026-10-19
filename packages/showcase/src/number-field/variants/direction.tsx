@@ -10,7 +10,7 @@ import {
 const Example = () => (
   <DirectionProvider direction="rtl">
     <div dir="rtl" className="w-48">
-      <NumberField defaultValue={98765} locale="ar-EG">
+      <NumberField defaultValue={98_765} locale="ar-EG">
         <NumberFieldGroup>
           <NumberFieldDecrement />
           <NumberFieldInput aria-label="الكمية" />

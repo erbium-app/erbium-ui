@@ -3,10 +3,10 @@ import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 
 type OverlaySwipeDirection = NonNullable<DrawerPrimitive.Root.Props["swipeDirection"]>;
 
-type OverlayContextProps = {
+interface OverlayContextProps {
   indentDirection: OverlaySwipeDirection | null;
   setIndentDirection: React.Dispatch<React.SetStateAction<OverlaySwipeDirection | null>>;
-};
+}
 
 const OverlayContext = React.createContext<OverlayContextProps | null>(null);
 
@@ -28,6 +28,7 @@ function useOverlay(consumer = "useOverlay") {
  */
 function OverlayProvider({ children }: DrawerPrimitive.Provider.Props) {
   const [indentDirection, setIndentDirection] = React.useState<OverlaySwipeDirection | null>(null);
+
   const contextValue = React.useMemo(
     () => ({ indentDirection, setIndentDirection }),
     [indentDirection],
@@ -41,4 +42,5 @@ function OverlayProvider({ children }: DrawerPrimitive.Provider.Props) {
 }
 
 export { OverlayProvider, useOverlay };
+
 export type { OverlaySwipeDirection };

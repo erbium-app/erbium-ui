@@ -49,8 +49,8 @@ export function QuestionnaireCard() {
     const formData = new FormData(event.currentTarget);
 
     toast.add({
-      title: "Agent task created",
       description: `Task: ${getFormValue(formData, "task", "None")} · Handoff: ${getFormValue(formData, "output", "None")}`,
+      title: "Agent task created",
     });
   }
 

@@ -8,8 +8,8 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  Sidebar,
 } from "@erbium/ui/components/sidebar";
-import { Sidebar } from "@erbium/ui/components/sidebar";
 
 const Example = (args: {
   side: "left" | "right";

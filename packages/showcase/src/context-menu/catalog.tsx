@@ -52,15 +52,15 @@ import SidesSource from "./variants/sides.tsx?raw";
 
 const meta = {
   component: ContextMenu,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("context-menu"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof ContextMenu>;
 
 export default meta;
@@ -71,11 +71,11 @@ export const Playground: StoryObj<{
   side: "top" | "right" | "bottom" | "left";
   align: "start" | "center" | "end";
 }> = {
-  args: { side: "bottom", align: "start" },
   argTypes: {
-    side: { control: "select", options: ["top", "right", "bottom", "left"] },
     align: { control: "select", options: ["start", "center", "end"] },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
+  args: { align: "start", side: "bottom" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("context-menu", "playground") },

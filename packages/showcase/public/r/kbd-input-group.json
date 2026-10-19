@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/kbd", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-section\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon>\n          <Icon name=\"search-01\" />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Kbd hotkey=\"Mod+K\" />\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n",
       "path": "src/kbd/examples/kbd-input-group.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/kbd/examples/kbd-input-group.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function KbdInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-section\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon>\n          <Icon name=\"search-01\" />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Kbd hotkey=\"Mod+K\" />\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleKbdInputGroup from \"../examples/kbd-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdInputGroup />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/kbd/variants/input-group.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/kbd/variants/input-group.tsx",
-      "content": "import ExampleKbdInputGroup from \"../examples/kbd-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleKbdInputGroup />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

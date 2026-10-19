@@ -8,8 +8,8 @@ import OverviewSource from "./variants/overview.tsx?raw";
 
 const meta = {
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("use-is-mobile") } },
+    layout: "centered",
   },
 } satisfies Meta;
 

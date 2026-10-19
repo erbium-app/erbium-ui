@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputInline() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Input type=\"search\" placeholder=\"Search...\" />\n      <Button>Search</Button>\n    </Field>\n  );\n}\n",
       "path": "src/input/examples/input-inline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/examples/input-inline.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputInline() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Input type=\"search\" placeholder=\"Search...\" />\n      <Button>Search</Button>\n    </Field>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { InputInline } from \"../examples/input-inline\";\n\nconst Example = () => <InputInline />;\n\nexport default Example;\n",
       "path": "src/input/variants/inline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/variants/inline.tsx",
-      "content": "import { InputInline } from \"../examples/input-inline\";\n\nconst Example = () => <InputInline />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

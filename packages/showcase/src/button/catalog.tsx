@@ -91,12 +91,12 @@ import AsLinkSource from "./variants/as-link.tsx?raw";
 const meta = {
   component: Button,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("button"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof Button>;
 
@@ -105,14 +105,20 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Button> = {
-  args: {
-    variant: "default",
-    size: "default",
-    loading: false,
-  },
   argTypes: {
+    loading: {
+      control: "boolean",
+      description: "Show a spinner and block activation while an action runs.",
+    },
+    size: {
+      control: "select",
+      description: "Button size, including icon-only sizes.",
+      options: ["default", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
+      table: { defaultValue: { summary: "default" } },
+    },
     variant: {
       control: "select",
+      description: "Visual style of the button.",
       options: [
         "default",
         "outline",
@@ -125,19 +131,13 @@ export const Playground: StoryObj<typeof Button> = {
         "secondary",
         "link",
       ],
-      description: "Visual style of the button.",
       table: { defaultValue: { summary: "default" } },
     },
-    size: {
-      control: "select",
-      options: ["default", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
-      description: "Button size, including icon-only sizes.",
-      table: { defaultValue: { summary: "default" } },
-    },
-    loading: {
-      control: "boolean",
-      description: "Show a spinner and block activation while an action runs.",
-    },
+  },
+  args: {
+    loading: false,
+    size: "default",
+    variant: "default",
   },
   parameters: {
     docs: {

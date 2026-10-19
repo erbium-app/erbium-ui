@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles", "@erbium/utils"],
   "files": [
     {
+      "content": "import { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\ntype SliderProps = React.ComponentProps<typeof Slider>;\n\nexport default function SliderDemo({ className, ...props }: SliderProps) {\n  return (\n    <Slider\n      defaultValue={[50]}\n      max={100}\n      step={1}\n      className={cn(\"w-[60%]\", className)}\n      {...props}\n    />\n  );\n}\n",
       "path": "src/slider/examples/slider-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/slider/examples/slider-demo.tsx",
-      "content": "import { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\ntype SliderProps = React.ComponentProps<typeof Slider>;\n\nexport default function SliderDemo({ className, ...props }: SliderProps) {\n  return (\n    <Slider\n      defaultValue={[50]}\n      max={100}\n      step={1}\n      className={cn(\"w-[60%]\", className)}\n      {...props}\n    />\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/slider-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/slider/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/slider/variants/overview.tsx",
-      "content": "import Demo from \"../examples/slider-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

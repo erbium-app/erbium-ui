@@ -36,15 +36,15 @@ import AlignItemWithTriggerSource from "./variants/align-item-with-trigger.tsx?r
 
 const meta = {
   component: Select,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("select"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Select>;
 
 export default meta;
@@ -58,19 +58,19 @@ export const Playground: StoryObj<{
   side: "top" | "right" | "bottom" | "left";
   align: "start" | "center" | "end";
 }> = {
-  args: {
-    size: "default",
-    disabled: false,
-    placeholder: "Select a fruit",
-    side: "bottom",
-    align: "start",
-  },
   argTypes: {
-    size: { control: "select", options: ["default", "sm"] },
+    align: { control: "select", options: ["start", "center", "end"] },
     disabled: { control: "boolean" },
     placeholder: { control: "text" },
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
-    align: { control: "select", options: ["start", "center", "end"] },
+    size: { control: "select", options: ["default", "sm"] },
+  },
+  args: {
+    align: "start",
+    disabled: false,
+    placeholder: "Select a fruit",
+    side: "bottom",
+    size: "default",
   },
   parameters: {
     docs: {
@@ -133,11 +133,11 @@ export const Invalid: Story = {
 
 export const AlignItemWithTrigger: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("select", "align-item-with-trigger") },
       source: { code: AlignItemWithTriggerSource },
     },
+    layout: "padded",
   },
   render: AlignItemWithTriggerExample,
 };

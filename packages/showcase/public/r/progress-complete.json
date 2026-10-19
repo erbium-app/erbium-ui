@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/progress", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\n\nconst Example = () => <Progress value={100} className=\"w-64\" aria-label=\"Upload complete\" />;\n\nexport default Example;\n",
       "path": "src/progress/variants/complete.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/progress/variants/complete.tsx",
-      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\n\nconst Example = () => <Progress value={100} className=\"w-64\" aria-label=\"Upload complete\" />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

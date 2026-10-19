@@ -62,15 +62,15 @@ import ImageSource from "./variants/image.tsx?raw";
 
 const meta = {
   component: Item,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("item"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Item>;
 
 export default meta;
@@ -84,19 +84,19 @@ export const Playground: StoryObj<{
   asLink: boolean;
   className: string;
 }> = {
-  args: {
-    variant: "default",
-    size: "default",
-    mediaVariant: "icon",
-    asLink: false,
-    className: "",
-  },
   argTypes: {
-    variant: { control: "select", options: ["default", "card"] },
-    size: { control: "select", options: ["default", "sm", "xs"] },
-    mediaVariant: { control: "select", options: ["default", "icon", "image"] },
     asLink: { control: "boolean" },
     className: { control: "text" },
+    mediaVariant: { control: "select", options: ["default", "icon", "image"] },
+    size: { control: "select", options: ["default", "sm", "xs"] },
+    variant: { control: "select", options: ["default", "card"] },
+  },
+  args: {
+    asLink: false,
+    className: "",
+    mediaVariant: "icon",
+    size: "default",
+    variant: "default",
   },
   parameters: {
     docs: {
@@ -169,11 +169,11 @@ export const Group: Story = {
 
 export const SettingsPanel: Story = {
   parameters: {
-    layout: "fullscreen",
     docs: {
       description: { story: variantDocumentation("item", "settings-panel") },
       source: { code: SettingsPanelSource },
     },
+    layout: "fullscreen",
   },
   render: SettingsPanelExample,
 };

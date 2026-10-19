@@ -13,17 +13,19 @@ import {
 } from "@erbium/ui/components/combobox";
 
 const projects = [
-  { id: "design", name: "Design system", description: "Shared components and foundations" },
-  { id: "docs", name: "Documentation", description: "Guides and examples" },
-  { id: "website", name: "Website", description: "Product experience" },
+  { description: "Shared components and foundations", id: "design", name: "Design system" },
+  { description: "Guides and examples", id: "docs", name: "Documentation" },
+  { description: "Product experience", id: "website", name: "Website" },
 ] as const;
+
 const items = createComboboxItems(projects, {
-  getValue: (project) => project.id,
   getLabel: (project) => project.name,
+  getValue: (project) => project.id,
 });
 
 export default function ItemCollectionExample() {
   const [value, setValue] = useState<(typeof projects)[number]["id"] | null>("design");
+
   return (
     <div className="grid gap-related">
       <Combobox items={items} value={value} onValueChange={setValue} autoHighlight>

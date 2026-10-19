@@ -9,8 +9,8 @@
   "files": [
     {
       "path": "src/components/input.tsx",
-      "type": "registry:ui",
       "target": "@ui/input.tsx",
+      "type": "registry:ui",
       "content": "import * as React from \"react\";\nimport { Input as InputPrimitive } from \"@base-ui/react/input\";\nimport { inputClassName } from \"@/registry/erbium/lib/form-control-styles\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nfunction Input({ className, ...props }: React.ComponentProps<\"input\">) {\n  return (\n    <InputPrimitive\n      data-slot=\"input\"\n      className={cn(\n        inputClassName,\n        // Defer the browser's autofill background while preserving field transitions.\n        \"autofill:caret-foreground autofill:[-webkit-text-fill-color:var(--foreground)] autofill:[transition:color_150ms,box-shadow_150ms,background-color_999999s_ease-in-out] motion-reduce:autofill:[transition:background-color_999999s_ease-in-out]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Input };\n"
     }
   ]

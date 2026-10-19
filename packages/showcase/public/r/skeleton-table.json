@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonTable() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-related\">\n      {Array.from({ length: 5 }).map((_, index) => (\n        <div className=\"flex gap-group\" key={index}>\n          <Skeleton className=\"h-4 flex-1\" />\n          <Skeleton className=\"h-4 w-24\" />\n          <Skeleton className=\"h-4 w-20\" />\n        </div>\n      ))}\n    </div>\n  );\n}\n",
       "path": "src/skeleton/examples/skeleton-table.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/examples/skeleton-table.tsx",
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonTable() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-related\">\n      {Array.from({ length: 5 }).map((_, index) => (\n        <div className=\"flex gap-group\" key={index}>\n          <Skeleton className=\"h-4 flex-1\" />\n          <Skeleton className=\"h-4 w-24\" />\n          <Skeleton className=\"h-4 w-20\" />\n        </div>\n      ))}\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { SkeletonTable } from \"../examples/skeleton-table\";\n\nconst Example = () => <SkeletonTable />;\n\nexport default Example;\n",
       "path": "src/skeleton/variants/table.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/variants/table.tsx",
-      "content": "import { SkeletonTable } from \"../examples/skeleton-table\";\n\nconst Example = () => <SkeletonTable />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

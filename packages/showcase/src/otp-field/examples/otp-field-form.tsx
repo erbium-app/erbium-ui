@@ -17,10 +17,12 @@ import { OTPField } from "@erbium/ui/components/otp-field";
 
 export function OTPFieldForm() {
   const formId = useId();
+
   const form = useForm({
     defaultValues: { code: "" },
-    onSubmit: () => undefined,
+    onSubmit: () => {},
   });
+
   return (
     <Card className="mx-auto w-full max-w-sm">
       <CardHeader>
@@ -30,7 +32,14 @@ export function OTPFieldForm() {
           <span className="font-medium text-foreground">m@example.com</span>.
         </CardDescription>
         <CardAction>
-          <Button type="button" variant="outline" size="xs" onClick={() => form.reset()}>
+          <Button
+            type="button"
+            variant="outline"
+            size="xs"
+            onClick={() => {
+              form.reset();
+            }}
+          >
             <Icon name="refresh-cw" />
             Resend
           </Button>
@@ -52,7 +61,7 @@ export function OTPFieldForm() {
                 value.length === 6 && value !== "123456"
                   ? "Incorrect code. Try 123456."
                   : undefined,
-              onSubmit: ({ value }) => (value.length !== 6 ? "Enter all 6 digits." : undefined),
+              onSubmit: ({ value }) => (value.length === 6 ? undefined : "Enter all 6 digits."),
             }}
           >
             {(field) => (
@@ -76,7 +85,9 @@ export function OTPFieldForm() {
                   }
                   onValueChange={field.handleChange}
                   onBlur={(event) => {
-                    if (!event.currentTarget.contains(event.relatedTarget)) field.handleBlur();
+                    if (!event.currentTarget.contains(event.relatedTarget)) {
+                      field.handleBlur();
+                    }
                   }}
                 />
                 <FieldDescription>Demo code: 123456</FieldDescription>

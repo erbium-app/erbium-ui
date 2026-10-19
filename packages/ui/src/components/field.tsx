@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
@@ -64,22 +65,22 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
  * the card, so the whole card toggles its control.
  */
 const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text-error", {
+  defaultVariants: {
+    orientation: "vertical",
+    variant: "default",
+  },
   variants: {
-    variant: {
-      default: "",
-      card: "group/field-card relative rounded-lg border surface-frame p-panel-sm transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--selection)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
-    },
     orientation: {
-      vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
       horizontal:
         "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
       responsive:
         "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+      vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
     },
-  },
-  defaultVariants: {
-    orientation: "vertical",
-    variant: "default",
+    variant: {
+      card: "group/field-card relative rounded-lg border surface-frame p-panel-sm transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--selection)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
+      default: "",
+    },
   },
 });
 
@@ -181,7 +182,7 @@ type FieldErrorProps = FieldPrimitive.Error.Props & {
    * (strings or Standard Schema issues). When set, the error shows exactly while
    * there is at least one message; otherwise Base UI's `match` rules apply.
    */
-  errors?: Array<string | { message?: string } | undefined>;
+  errors?: (string | { message?: string } | undefined)[];
 };
 
 function FieldError({ className, children, errors, match, ...props }: FieldErrorProps) {
@@ -195,15 +196,19 @@ function FieldError({ className, children, errors, match, ...props }: FieldError
     ],
     [errors],
   );
+
   const key = messages.join("\n");
   // Keep the last message mounted while Base UI plays the exit transition.
   const [shownKey, setShownKey] = useState(key);
+
   if (key && key !== shownKey) {
     setShownKey(key);
   }
+
   const shown = key || shownKey ? (key || shownKey).split("\n") : [];
 
   let content = children;
+
   if (errors) {
     content =
       shown.length > 1 ? (
@@ -254,6 +259,7 @@ function FieldItem({
     />
   );
 }
+
 const FieldControl = FieldPrimitive.Control;
 const FieldValidity = FieldPrimitive.Validity;
 

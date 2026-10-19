@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/styles"],
   "files": [
     {
+      "content": "import { BubbleContent, BubbleReactions, Bubble } from \"@/registry/erbium/ui/bubble\";\n\nconst Example = (args: {\n  variant: \"default\" | \"secondary\" | \"muted\" | \"tinted\" | \"outline\" | \"ghost\" | \"error\";\n  align: \"start\" | \"end\";\n  reactionSide: \"top\" | \"bottom\";\n  reactionAlign: \"start\" | \"end\";\n  contentAs: \"text\" | \"button\" | \"link\";\n  className: string;\n}) => (\n  <div className=\"flex w-80 flex-col\">\n    <Bubble variant={args.variant} align={args.align} className={args.className}>\n      <BubbleContent\n        render={\n          args.contentAs === \"button\" ? (\n            <button type=\"button\" />\n          ) : args.contentAs === \"link\" ? (\n            <a href=\"#\" />\n          ) : undefined\n        }\n      >\n        How can I help you?\n      </BubbleContent>\n      <BubbleReactions\n        side={args.reactionSide}\n        align={args.reactionAlign}\n        role=\"img\"\n        aria-label=\"Thumbs up reaction\"\n      >\n        👍\n      </BubbleReactions>\n    </Bubble>\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/bubble/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/bubble/variants/playground.tsx",
-      "content": "import { BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Bubble } from \"@/registry/erbium/ui/bubble\";\n\nconst Example = (args: {\n  variant: \"default\" | \"secondary\" | \"muted\" | \"tinted\" | \"outline\" | \"ghost\" | \"error\";\n  align: \"start\" | \"end\";\n  reactionSide: \"top\" | \"bottom\";\n  reactionAlign: \"start\" | \"end\";\n  contentAs: \"text\" | \"button\" | \"link\";\n  className: string;\n}) => (\n  <div className=\"flex w-80 flex-col\">\n    <Bubble variant={args.variant} align={args.align} className={args.className}>\n      <BubbleContent\n        render={\n          args.contentAs === \"button\" ? (\n            <button type=\"button\" />\n          ) : args.contentAs === \"link\" ? (\n            <a href=\"#\" />\n          ) : undefined\n        }\n      >\n        How can I help you?\n      </BubbleContent>\n      <BubbleReactions\n        side={args.reactionSide}\n        align={args.reactionAlign}\n        role=\"img\"\n        aria-label=\"Thumbs up reaction\"\n      >\n        👍\n      </BubbleReactions>\n    </Bubble>\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

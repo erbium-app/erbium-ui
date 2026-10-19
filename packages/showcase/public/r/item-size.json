@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/item", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemSizeDemo() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-section\">\n      <Item variant=\"card\">\n        <ItemContent>\n          <ItemTitle>Basic Item</ItemTitle>\n          <ItemDescription>A simple item with title and description.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Action\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item\n        variant=\"card\"\n        size=\"sm\"\n        render={\n          <a href=\"#\">\n            <ItemMedia>\n              <Icon name=\"badge-check\" className=\"size-5\" />\n            </ItemMedia>\n            <ItemContent>\n              <ItemTitle>Your profile has been verified.</ItemTitle>\n            </ItemContent>\n            <ItemActions>\n              <Icon name=\"chevron-right\" className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n    </div>\n  );\n}\n",
       "path": "src/item/examples/item-size.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/item/examples/item-size.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Item,\n  ItemActions,\n  ItemContent,\n  ItemDescription,\n  ItemMedia,\n  ItemTitle,\n} from \"@/registry/erbium/ui/item\";\n\nexport default function ItemSizeDemo() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-section\">\n      <Item variant=\"card\">\n        <ItemContent>\n          <ItemTitle>Basic Item</ItemTitle>\n          <ItemDescription>A simple item with title and description.</ItemDescription>\n        </ItemContent>\n        <ItemActions>\n          <Button variant=\"outline\" size=\"sm\">\n            Action\n          </Button>\n        </ItemActions>\n      </Item>\n      <Item\n        variant=\"card\"\n        size=\"sm\"\n        render={\n          <a href=\"#\">\n            <ItemMedia>\n              <Icon name=\"badge-check\" className=\"size-5\" />\n            </ItemMedia>\n            <ItemContent>\n              <ItemTitle>Your profile has been verified.</ItemTitle>\n            </ItemContent>\n            <ItemActions>\n              <Icon name=\"chevron-right\" className=\"size-4\" />\n            </ItemActions>\n          </a>\n        }\n      />\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleItemSize from \"../examples/item-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemSize />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/item/variants/size.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/item/variants/size.tsx",
-      "content": "import ExampleItemSize from \"../examples/item-size\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleItemSize />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

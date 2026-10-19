@@ -7,6 +7,7 @@ function syncToDocumentTimeline(node: HTMLElement) {
   if (typeof node.getAnimations !== "function") {
     return;
   }
+
   for (const animation of node.getAnimations()) {
     animation.startTime = 0;
   }
@@ -18,9 +19,11 @@ function Skeleton({ className, ref, ...props }: React.ComponentProps<"div">) {
       if (node) {
         syncToDocumentTimeline(node);
       }
+
       if (typeof ref === "function") {
         return ref(node);
       }
+
       if (ref) {
         ref.current = node;
       }

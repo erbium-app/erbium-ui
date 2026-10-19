@@ -1,4 +1,5 @@
-import { detectPlatform, formatForDisplay, type DisplayHotkey } from "@tanstack/hotkeys";
+import { detectPlatform, formatForDisplay } from "@tanstack/hotkeys";
+import type { DisplayHotkey } from "@tanstack/hotkeys";
 import { useSyncExternalStore } from "react";
 import { kbdClassName } from "../lib/kbd-styles";
 import { cn } from "../lib/utils";

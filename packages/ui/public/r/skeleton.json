@@ -8,9 +8,9 @@
   "files": [
     {
       "path": "src/components/skeleton.tsx",
-      "type": "registry:ui",
       "target": "@ui/skeleton.tsx",
-      "content": "import * as React from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\n// Aligns the sweep with the document timeline so skeletons that mount at\n// different times share one phase instead of running staggered bands.\nfunction syncToDocumentTimeline(node: HTMLElement) {\n  if (typeof node.getAnimations !== \"function\") {\n    return;\n  }\n  for (const animation of node.getAnimations()) {\n    animation.startTime = 0;\n  }\n}\n\nfunction Skeleton({ className, ref, ...props }: React.ComponentProps<\"div\">) {\n  const setRef = React.useCallback(\n    (node: HTMLDivElement | null) => {\n      if (node) {\n        syncToDocumentTimeline(node);\n      }\n      if (typeof ref === \"function\") {\n        return ref(node);\n      }\n      if (ref) {\n        ref.current = node;\n      }\n    },\n    [ref],\n  );\n\n  return (\n    <div\n      aria-hidden\n      data-slot=\"skeleton\"\n      ref={setRef}\n      className={cn(\"skeleton rounded-md\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n"
+      "type": "registry:ui",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\n// Aligns the sweep with the document timeline so skeletons that mount at\n// different times share one phase instead of running staggered bands.\nfunction syncToDocumentTimeline(node: HTMLElement) {\n  if (typeof node.getAnimations !== \"function\") {\n    return;\n  }\n\n  for (const animation of node.getAnimations()) {\n    animation.startTime = 0;\n  }\n}\n\nfunction Skeleton({ className, ref, ...props }: React.ComponentProps<\"div\">) {\n  const setRef = React.useCallback(\n    (node: HTMLDivElement | null) => {\n      if (node) {\n        syncToDocumentTimeline(node);\n      }\n\n      if (typeof ref === \"function\") {\n        return ref(node);\n      }\n\n      if (ref) {\n        ref.current = node;\n      }\n    },\n    [ref],\n  );\n\n  return (\n    <div\n      aria-hidden\n      data-slot=\"skeleton\"\n      ref={setRef}\n      className={cn(\"skeleton rounded-md\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Skeleton };\n"
     }
   ]
 }

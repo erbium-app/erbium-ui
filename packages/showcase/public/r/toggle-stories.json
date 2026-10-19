@@ -15,94 +15,94 @@
   ],
   "files": [
     {
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div\n      data-slot=\"component-preview\"\n      className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n    >\n      {children}\n    </div>\n  );\n}\n",
       "path": "src/preview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/preview.tsx",
-      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div\n      data-slot=\"component-preview\"\n      className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n    >\n      {children}\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <Icon name=\"bookmark-01\" />\n      Bookmark\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-demo.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <Icon name=\"bookmark-01\" />\n      Bookmark\n    </Toggle>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label=\"Toggle italic\" disabled>\n      <Icon name=\"underline\" className=\"h-4 w-4\" />\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-disabled.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDisabled() {\n  return (\n    <Toggle aria-label=\"Toggle italic\" disabled>\n      <Icon name=\"underline\" className=\"h-4 w-4\" />\n    </Toggle>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-outline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-outline.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleOutline() {\n  return (\n    <Toggle variant=\"outline\" aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n    </Toggle>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleSizes() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-related\">\n      <Toggle variant=\"outline\" aria-label=\"Toggle small\" size=\"sm\">\n        Small\n      </Toggle>\n      <Toggle variant=\"outline\" aria-label=\"Toggle default\" size=\"default\">\n        Default\n      </Toggle>\n      <Toggle variant=\"outline\" aria-label=\"Toggle large\" size=\"lg\">\n        Large\n      </Toggle>\n    </div>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-sizes.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-sizes.tsx",
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleSizes() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-related\">\n      <Toggle variant=\"outline\" aria-label=\"Toggle small\" size=\"sm\">\n        Small\n      </Toggle>\n      <Toggle variant=\"outline\" aria-label=\"Toggle default\" size=\"default\">\n        Default\n      </Toggle>\n      <Toggle variant=\"outline\" aria-label=\"Toggle large\" size=\"lg\">\n        Large\n      </Toggle>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n      Italic\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-text.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/examples/toggle-text.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport function ToggleText() {\n  return (\n    <Toggle aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n      Italic\n    </Toggle>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/toggle-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport PressedExample from \"./variants/pressed\";\n\nconst PressedSource = \"import { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\n\\nconst Example = () => (\\n  <Toggle defaultPressed aria-label=\\\"Bold\\\">\\n    Bold\\n  </Toggle>\\n);\\n\\nexport default Example;\\n\";\n\nimport DisabledControlExample from \"./variants/disabled-control\";\n\nconst DisabledControlSource = \"import { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\n\\nconst Example = () => (\\n  <Toggle disabled aria-label=\\\"Unavailable\\\">\\n    Disabled\\n  </Toggle>\\n);\\n\\nexport default Example;\\n\";\n\nimport OutlineExample from \"./variants/outline\";\n\nconst OutlineSource = \"import ExampleToggleOutline from \\\"../examples/toggle-outline\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleToggleOutline />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import ExampleToggleDisabled from \\\"../examples/toggle-disabled\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleToggleDisabled />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport WithTextExample from \"./variants/with-text\";\n\nconst WithTextSource = \"import { ToggleText } from \\\"../examples/toggle-text\\\";\\n\\nconst Example = () => <ToggleText />;\\n\\nexport default Example;\\n\";\n\nimport SizeExample from \"./variants/size\";\n\nconst SizeSource = \"import { ToggleSizes } from \\\"../examples/toggle-sizes\\\";\\n\\nconst Example = () => <ToggleSizes />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: Toggle,\n  parameters: {\n    docs: {\n      description: {\n        component: \"A button with an on or off state.\\n\\n**Import:** `@/registry/erbium/ui/toggle`\\n\\n## Usage\\n\\n```tsx\\nimport { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\n```\\n\\n```tsx\\n<Toggle>Toggle</Toggle>\\n```\\n\\n## Base UI documentation\\n\\nExplore the underlying primitives and their API reference.\\n\\n- [Toggle](https://base-ui.com/react/components/toggle)\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof Toggle>;\n\nexport default { ...meta, title: \"Components/Toggle\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Toggle> = {\n  argTypes: {\n    defaultPressed: { control: \"boolean\" },\n    size: { control: \"select\", options: [\"default\", \"sm\", \"lg\"] },\n    variant: { control: \"select\", options: [\"default\", \"outline\"] },\n  },\n  args: { className: \"\", defaultPressed: false, size: \"default\", variant: \"default\" },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Pressed: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Start a toggle in the pressed state.\" },\n      source: { code: PressedSource },\n    },\n  },\n  render: PressedExample,\n};\n\nexport const DisabledControl: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Disable a toggle to prevent interaction.\" },\n      source: { code: DisabledControlSource },\n    },\n  },\n  render: DisabledControlExample,\n};\n\nexport const Outline: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant=\\\"outline\\\"` for an outline style.\" },\n      source: { code: OutlineSource },\n    },\n  },\n  render: OutlineExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show a disabled toggle.\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const WithText: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Pair a toggle icon with a text label.\" },\n      source: { code: WithTextSource },\n    },\n  },\n  render: WithTextExample,\n};\n\nexport const Size: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `size` prop to change the size of the toggle.\" },\n      source: { code: SizeSource },\n    },\n  },\n  render: SizeExample,\n};\n",
       "path": "src/toggle/toggle.stories.tsx",
-      "type": "registry:file",
       "target": "@components/showcase/toggle/toggle.stories.tsx",
-      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\nimport type * as React from \\\"react\\\";\\n\\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/toggle-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport PressedExample from \"./variants/pressed\";\n\nconst PressedSource = \"import { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\n\\nconst Example = () => (\\n  <Toggle defaultPressed aria-label=\\\"Bold\\\">\\n    Bold\\n  </Toggle>\\n);\\n\\nexport default Example;\\n\";\n\nimport DisabledControlExample from \"./variants/disabled-control\";\n\nconst DisabledControlSource = \"import { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\n\\nconst Example = () => (\\n  <Toggle disabled aria-label=\\\"Unavailable\\\">\\n    Disabled\\n  </Toggle>\\n);\\n\\nexport default Example;\\n\";\n\nimport OutlineExample from \"./variants/outline\";\n\nconst OutlineSource = \"import ExampleToggleOutline from \\\"../examples/toggle-outline\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleToggleOutline />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport DisabledExample from \"./variants/disabled\";\n\nconst DisabledSource = \"import ExampleToggleDisabled from \\\"../examples/toggle-disabled\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <ExampleToggleDisabled />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport WithTextExample from \"./variants/with-text\";\n\nconst WithTextSource = \"import { ToggleText } from \\\"../examples/toggle-text\\\";\\n\\nconst Example = () => <ToggleText />;\\n\\nexport default Example;\\n\";\n\nimport SizeExample from \"./variants/size\";\n\nconst SizeSource = \"import { ToggleSizes } from \\\"../examples/toggle-sizes\\\";\\n\\nconst Example = () => <ToggleSizes />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: Toggle,\n  tags: [\"autodocs\"],\n  parameters: {\n    layout: \"centered\",\n    docs: {\n      description: {\n        component: \"A button with an on or off state.\\n\\n**Import:** `@/registry/erbium/ui/toggle`\\n\\n## Usage\\n\\n```tsx\\nimport { Toggle } from \\\"@/registry/erbium/ui/toggle\\\";\\n```\\n\\n```tsx\\n<Toggle>Toggle</Toggle>\\n```\\n\\n## Base UI documentation\\n\\nExplore the underlying primitives and their API reference.\\n\\n- [Toggle](https://base-ui.com/react/components/toggle)\",\n      },\n    },\n  },\n} satisfies Meta<typeof Toggle>;\n\nexport default { ...meta, title: \"Components/Toggle\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<typeof Toggle> = {\n  args: { variant: \"default\", size: \"default\", defaultPressed: false, className: \"\" },\n  argTypes: {\n    variant: { control: \"select\", options: [\"default\", \"outline\"] },\n    size: { control: \"select\", options: [\"default\", \"sm\", \"lg\"] },\n    defaultPressed: { control: \"boolean\" },\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Pressed: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Start a toggle in the pressed state.\" },\n      source: { code: PressedSource },\n    },\n  },\n  render: PressedExample,\n};\n\nexport const DisabledControl: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Disable a toggle to prevent interaction.\" },\n      source: { code: DisabledControlSource },\n    },\n  },\n  render: DisabledControlExample,\n};\n\nexport const Outline: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use `variant=\\\"outline\\\"` for an outline style.\" },\n      source: { code: OutlineSource },\n    },\n  },\n  render: OutlineExample,\n};\n\nexport const Disabled: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show a disabled toggle.\" },\n      source: { code: DisabledSource },\n    },\n  },\n  render: DisabledExample,\n};\n\nexport const WithText: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Pair a toggle icon with a text label.\" },\n      source: { code: WithTextSource },\n    },\n  },\n  render: WithTextExample,\n};\n\nexport const Size: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Use the `size` prop to change the size of the toggle.\" },\n      source: { code: SizeSource },\n    },\n  },\n  render: SizeExample,\n};\n"
+      "type": "registry:file"
     },
     {
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle disabled aria-label=\"Unavailable\">\n    Disabled\n  </Toggle>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/disabled-control.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/disabled-control.tsx",
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle disabled aria-label=\"Unavailable\">\n    Disabled\n  </Toggle>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleToggleDisabled from \"../examples/toggle-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/disabled.tsx",
-      "content": "import ExampleToggleDisabled from \"../examples/toggle-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleDisabled />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleToggleOutline from \"../examples/toggle-outline\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleOutline />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/outline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/outline.tsx",
-      "content": "import ExampleToggleOutline from \"../examples/toggle-outline\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleOutline />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/overview.tsx",
-      "content": "import Demo from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\n\nexport default Example;\n",
       "path": "src/toggle/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/playground.tsx",
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle defaultPressed aria-label=\"Bold\">\n    Bold\n  </Toggle>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/pressed.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/pressed.tsx",
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle defaultPressed aria-label=\"Bold\">\n    Bold\n  </Toggle>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ToggleSizes } from \"../examples/toggle-sizes\";\n\nconst Example = () => <ToggleSizes />;\n\nexport default Example;\n",
       "path": "src/toggle/variants/size.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/size.tsx",
-      "content": "import { ToggleSizes } from \"../examples/toggle-sizes\";\n\nconst Example = () => <ToggleSizes />;\n\nexport default Example;\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ToggleText } from \"../examples/toggle-text\";\n\nconst Example = () => <ToggleText />;\n\nexport default Example;\n",
       "path": "src/toggle/variants/with-text.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle/variants/with-text.tsx",
-      "content": "import { ToggleText } from \"../examples/toggle-text\";\n\nconst Example = () => <ToggleText />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

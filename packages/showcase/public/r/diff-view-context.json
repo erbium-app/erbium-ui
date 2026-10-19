@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
   "files": [
     {
+      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst before = `${Array.from(\n  { length: 80 },\n  (_, index) => `export const value${index + 1} = ${index + 1};`,\n).join(\"\\n\")}\\n`;\n\nconst after = before.replace(\"value40 = 40\", \"value40 = 400\");\nconst oldFile = { contents: before, name: \"values.ts\" };\nconst newFile = { contents: after, name: \"values.ts\" };\n\nexport default function Example() {\n  return (\n    <DiffView\n      className=\"w-full max-w-4xl\"\n      oldFile={oldFile}\n      newFile={newFile}\n      options={{ expansionLineCount: 10, parseDiffOptions: { context: 3 } }}\n    />\n  );\n}\n",
       "path": "src/diff-view/variants/context.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/diff-view/variants/context.tsx",
-      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst before =\n  Array.from({ length: 80 }, (_, index) => `export const value${index + 1} = ${index + 1};`).join(\n    \"\\n\",\n  ) + \"\\n\";\nconst after = before.replace(\"value40 = 40\", \"value40 = 400\");\nconst oldFile = { name: \"values.ts\", contents: before };\nconst newFile = { name: \"values.ts\", contents: after };\n\nexport default function Example() {\n  return (\n    <DiffView\n      className=\"w-full max-w-4xl\"\n      oldFile={oldFile}\n      newFile={newFile}\n      options={{ expansionLineCount: 10, parseDiffOptions: { context: 3 } }}\n    />\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

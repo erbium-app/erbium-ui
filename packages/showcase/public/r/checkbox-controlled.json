@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Receive marketing emails</FieldLabel>\n      </Field>\n      <p className=\"text-caption text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n",
       "path": "src/checkbox/examples/checkbox-controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/checkbox/examples/checkbox-controlled.tsx",
-      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { useState } from \"react\";\n\nexport default function CheckboxControlled() {\n  const [checked, setChecked] = useState(false);\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Checkbox checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Receive marketing emails</FieldLabel>\n      </Field>\n      <p className=\"text-caption text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleCheckboxControlled from \"../examples/checkbox-controlled\";\n\nconst Example = () => <ExampleCheckboxControlled />;\n\nexport default Example;\n",
       "path": "src/checkbox/variants/controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/checkbox/variants/controlled.tsx",
-      "content": "import ExampleCheckboxControlled from \"../examples/checkbox-controlled\";\n\nconst Example = () => <ExampleCheckboxControlled />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

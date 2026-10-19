@@ -9,9 +9,9 @@
   "files": [
     {
       "path": "src/components/kbd.tsx",
-      "type": "registry:ui",
       "target": "@ui/kbd.tsx",
-      "content": "import { detectPlatform, formatForDisplay, type DisplayHotkey } from \"@tanstack/hotkeys\";\nimport { useSyncExternalStore } from \"react\";\nimport { kbdClassName } from \"@/registry/erbium/lib/kbd-styles\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\ntype KbdProps = React.ComponentProps<\"kbd\"> & {\n  hotkey?: DisplayHotkey;\n  useSymbols?: boolean;\n};\n\nconst subscribeToPlatform = () => () => {};\nconst getServerPlatform = () => \"linux\" as const;\n\nfunction Kbd({ className, hotkey, useSymbols = true, children, ...props }: KbdProps) {\n  const platform = useSyncExternalStore(subscribeToPlatform, detectPlatform, getServerPlatform);\n  const binding = hotkey ?? (typeof children === \"string\" ? children : undefined);\n\n  return (\n    <kbd data-slot=\"kbd\" dir=\"ltr\" className={cn(kbdClassName, className)} {...props}>\n      {binding === undefined ? children : formatForDisplay(binding, { platform, useSymbols })}\n    </kbd>\n  );\n}\n\nexport { Kbd };\n"
+      "type": "registry:ui",
+      "content": "import { detectPlatform, formatForDisplay } from \"@tanstack/hotkeys\";\nimport type { DisplayHotkey } from \"@tanstack/hotkeys\";\nimport { useSyncExternalStore } from \"react\";\nimport { kbdClassName } from \"@/registry/erbium/lib/kbd-styles\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\ntype KbdProps = React.ComponentProps<\"kbd\"> & {\n  hotkey?: DisplayHotkey;\n  useSymbols?: boolean;\n};\n\nconst subscribeToPlatform = () => () => {};\nconst getServerPlatform = () => \"linux\" as const;\n\nfunction Kbd({ className, hotkey, useSymbols = true, children, ...props }: KbdProps) {\n  const platform = useSyncExternalStore(subscribeToPlatform, detectPlatform, getServerPlatform);\n  const binding = hotkey ?? (typeof children === \"string\" ? children : undefined);\n\n  return (\n    <kbd data-slot=\"kbd\" dir=\"ltr\" className={cn(kbdClassName, className)} {...props}>\n      {binding === undefined ? children : formatForDisplay(binding, { platform, useSymbols })}\n    </kbd>\n  );\n}\n\nexport { Kbd };\n"
     }
   ]
 }

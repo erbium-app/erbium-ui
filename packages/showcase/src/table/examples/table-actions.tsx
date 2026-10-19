@@ -20,11 +20,11 @@ import {
 } from "@erbium/ui/components/table";
 import { createColumnHelper, metaHelper, tableFeatures, useTable } from "@tanstack/react-table";
 
-type Product = {
+interface Product {
   id: string;
   name: string;
   price: number;
-};
+}
 
 const products: Product[] = [
   { id: "mouse", name: "Wireless Mouse", price: 29.99 },
@@ -32,7 +32,7 @@ const products: Product[] = [
   { id: "hub", name: "USB-C Hub", price: 49.99 },
 ];
 
-const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+const currency = new Intl.NumberFormat("en-US", { currency: "USD", style: "currency" });
 
 const features = tableFeatures({
   columnMeta: metaHelper<{ alignment?: "end"; narrow?: boolean }>(),
@@ -42,17 +42,15 @@ const columnHelper = createColumnHelper<typeof features, Product>();
 
 const columns = columnHelper.columns([
   columnHelper.accessor("name", {
-    header: "Product",
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
+    header: "Product",
   }),
   columnHelper.accessor("price", {
-    header: "Price",
     cell: (info) => currency.format(info.getValue()),
+    header: "Price",
   }),
   // Display columns have no accessor; they render UI for each row.
   columnHelper.display({
-    id: "actions",
-    header: "Actions",
     cell: ({ row }) => (
       <DropdownMenu>
         <DropdownMenuTrigger render={<Button variant="ghost" size="icon" />}>
@@ -69,12 +67,14 @@ const columns = columnHelper.columns([
         </DropdownMenuContent>
       </DropdownMenu>
     ),
+    header: "Actions",
+    id: "actions",
     meta: { alignment: "end" },
   }),
 ]);
 
 export function TableActions() {
-  const table = useTable({ features, columns, data: products, getRowId: (row) => row.id });
+  const table = useTable({ columns, data: products, features, getRowId: (row) => row.id });
 
   return (
     <Table>

@@ -81,6 +81,7 @@ function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(SheetPanelContext)) {
     throw new Error("SheetHeader must be used inside SheetPanel.");
   }
+
   return (
     <div
       data-slot="sheet-header"
@@ -94,6 +95,7 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(SheetPanelContext)) {
     throw new Error("SheetFooter must be used inside SheetPanel.");
   }
+
   return (
     <div
       data-slot="sheet-footer"

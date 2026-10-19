@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport function InputGroupInlineStart() {\n  return (\n    <Field className=\"max-w-sm\">\n      <FieldLabel>Input</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon align=\"inline-start\">\n          <Icon name=\"search-01\" className=\"text-muted-foreground\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <FieldDescription>Icon positioned at the start.</FieldDescription>\n    </Field>\n  );\n}\n",
       "path": "src/input-group/examples/input-group-inline-start.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input-group/examples/input-group-inline-start.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport function InputGroupInlineStart() {\n  return (\n    <Field className=\"max-w-sm\">\n      <FieldLabel>Input</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon align=\"inline-start\">\n          <Icon name=\"search-01\" className=\"text-muted-foreground\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <FieldDescription>Icon positioned at the start.</FieldDescription>\n    </Field>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { InputGroupInlineStart } from \"../examples/input-group-inline-start\";\n\nconst Example = () => <InputGroupInlineStart />;\n\nexport default Example;\n",
       "path": "src/input-group/variants/inline-start.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input-group/variants/inline-start.tsx",
-      "content": "import { InputGroupInlineStart } from \"../examples/input-group-inline-start\";\n\nconst Example = () => <InputGroupInlineStart />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

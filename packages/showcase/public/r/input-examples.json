@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "input-examples",
-  "type": "registry:item",
-  "title": "Input examples",
   "description": "All input examples.",
+  "name": "input-examples",
   "registryDependencies": [
     "@erbium-examples/input-playground",
     "@erbium-examples/input-overview",
@@ -22,5 +20,7 @@
     "@erbium-examples/input-input-group",
     "@erbium-examples/input-button-group",
     "@erbium-examples/input-form"
-  ]
+  ],
+  "title": "Input examples",
+  "type": "registry:item"
 }

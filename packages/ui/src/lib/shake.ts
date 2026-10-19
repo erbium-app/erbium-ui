@@ -22,11 +22,11 @@ function shake(element: Element | null) {
     element,
     element.animate(
       [
-        { translate: "0 0", offset: 0, easing },
-        { translate: `${6 * direction}px 0`, offset: 80 / 280, easing },
-        { translate: `${-6 * direction}px 0`, offset: 160 / 280, easing },
-        { translate: `${4 * direction}px 0`, offset: 220 / 280, easing },
-        { translate: "0 0", offset: 1 },
+        { easing, offset: 0, translate: "0 0" },
+        { easing, offset: 80 / 280, translate: `${6 * direction}px 0` },
+        { easing, offset: 160 / 280, translate: `${-6 * direction}px 0` },
+        { easing, offset: 220 / 280, translate: `${4 * direction}px 0` },
+        { offset: 1, translate: "0 0" },
       ],
       { duration: 280 },
     ),

@@ -2,8 +2,8 @@ import {
   PaginationContent,
   PaginationItem,
   PaginationLink,
+  Pagination,
 } from "@erbium/ui/components/pagination";
-import { Pagination } from "@erbium/ui/components/pagination";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Pagination>) => (

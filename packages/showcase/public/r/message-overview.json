@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/message", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Message, MessageContent, MessageGroup } from \"@/registry/erbium/ui/message\";\n\nexport default function Demo() {\n  return (\n    <MessageGroup className=\"w-80\">\n      <Message>\n        <MessageContent>Hello, how can I help?</MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>Please show me an example.</MessageContent>\n      </Message>\n    </MessageGroup>\n  );\n}\n",
       "path": "src/message/examples/message-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/message/examples/message-demo.tsx",
-      "content": "import { Message, MessageContent, MessageGroup } from \"@/registry/erbium/ui/message\";\nexport default function Demo() {\n  return (\n    <MessageGroup className=\"w-80\">\n      <Message>\n        <MessageContent>Hello, how can I help?</MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>Please show me an example.</MessageContent>\n      </Message>\n    </MessageGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/message-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/message/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/message/variants/overview.tsx",
-      "content": "import Demo from \"../examples/message-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

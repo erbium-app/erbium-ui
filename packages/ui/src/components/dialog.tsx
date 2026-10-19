@@ -79,6 +79,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   if (!React.useContext(DialogPanelContext)) {
     throw new Error("DialogHeader must be used inside DialogPanel.");
   }
+
   return (
     <>
       <div
@@ -124,6 +125,7 @@ function DialogFooter({
   if (!React.useContext(DialogPanelContext)) {
     throw new Error("DialogFooter must be used inside DialogPanel.");
   }
+
   return (
     <>
       <div

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldAlphanumeric() {\n  return (\n    <OTPField\n      aria-label=\"Recovery code\"\n      length={6}\n      groups={[3, 3]}\n      validationType=\"alphanumeric\"\n      normalizeValue={(value) => value.toUpperCase()}\n    />\n  );\n}\n",
       "path": "src/otp-field/examples/otp-field-alphanumeric.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/examples/otp-field-alphanumeric.tsx",
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldAlphanumeric() {\n  return (\n    <OTPField\n      aria-label=\"Recovery code\"\n      length={6}\n      groups={[3, 3]}\n      validationType=\"alphanumeric\"\n      normalizeValue={(value) => value.toUpperCase()}\n    />\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { OTPFieldAlphanumeric } from \"../examples/otp-field-alphanumeric\";\n\nconst Example = () => <OTPFieldAlphanumeric />;\n\nexport default Example;\n",
       "path": "src/otp-field/variants/alphanumeric.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/variants/alphanumeric.tsx",
-      "content": "import { OTPFieldAlphanumeric } from \"../examples/otp-field-alphanumeric\";\n\nconst Example = () => <OTPFieldAlphanumeric />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

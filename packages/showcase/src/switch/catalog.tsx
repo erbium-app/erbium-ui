@@ -54,15 +54,15 @@ import FormSource from "./variants/form.tsx?raw";
 
 const meta = {
   component: Switch,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("switch"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Switch>;
 
 export default meta;
@@ -70,20 +70,20 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Switch> = {
+  argTypes: {
+    defaultChecked: { control: "boolean", description: "Initial state (uncontrolled)." },
+    disabled: { control: "boolean", description: "Ignores user interaction." },
+    onCheckedChange: { action: "onCheckedChange" },
+    readOnly: { control: "boolean", description: "Focusable, but the state cannot change." },
+    required: { control: "boolean", description: "Must be on before the form submits." },
+    size: { control: "inline-radio", options: ["sm", "default"] },
+  },
   args: {
     defaultChecked: false,
     disabled: false,
     readOnly: false,
     required: false,
     size: "default",
-  },
-  argTypes: {
-    defaultChecked: { control: "boolean", description: "Initial state (uncontrolled)." },
-    disabled: { control: "boolean", description: "Ignores user interaction." },
-    readOnly: { control: "boolean", description: "Focusable, but the state cannot change." },
-    required: { control: "boolean", description: "Must be on before the form submits." },
-    size: { control: "inline-radio", options: ["sm", "default"] },
-    onCheckedChange: { action: "onCheckedChange" },
   },
   parameters: {
     docs: {
@@ -136,11 +136,11 @@ export const Description: Story = {
 
 export const ChoiceCard: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("switch", "choice-card") },
       source: { code: ChoiceCardSource },
     },
+    layout: "padded",
   },
   render: ChoiceCardExample,
 };
@@ -157,11 +157,11 @@ export const Invalid: Story = {
 
 export const Size: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("switch", "size") },
       source: { code: SizeSource },
     },
+    layout: "padded",
   },
   render: SizeExample,
 };

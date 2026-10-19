@@ -14,6 +14,7 @@ import { pages } from "@/content/catalog";
 export function DocPageView({ page }: { page: DocPage }) {
   const leadHeading =
     page.variants.find((variant) => variant.exportName === "Overview") ?? page.variants[0];
+
   const headings = [
     ...(leadHeading ? [{ id: leadHeading.anchor, title: leadHeading.title }] : []),
     ...page.headings,
@@ -22,10 +23,13 @@ export function DocPageView({ page }: { page: DocPage }) {
       .filter((variant) => variant !== leadHeading)
       .map((variant) => ({ id: variant.anchor, title: variant.title })),
   ];
+
   const neighbors = page.name ? pages.filter((item) => item.section === page.section) : pages;
   const index = neighbors.findIndex((item) => item.href === page.path);
+
   const lead =
     page.variants.find((variant) => variant.exportName === "Overview") ?? page.variants[0];
+
   return (
     <main
       id="main-content"
@@ -41,7 +45,7 @@ export function DocPageView({ page }: { page: DocPage }) {
                 {neighbors[index - 1] && (
                   <Link
                     to={neighbors[index - 1].href}
-                    className={buttonVariants({ variant: "outline", size: "icon-sm" })}
+                    className={buttonVariants({ size: "icon-sm", variant: "outline" })}
                     aria-label={`Previous: ${neighbors[index - 1].title}`}
                     title={neighbors[index - 1].title}
                   >
@@ -51,7 +55,7 @@ export function DocPageView({ page }: { page: DocPage }) {
                 {neighbors[index + 1] && (
                   <Link
                     to={neighbors[index + 1].href}
-                    className={buttonVariants({ variant: "outline", size: "icon-sm" })}
+                    className={buttonVariants({ size: "icon-sm", variant: "outline" })}
                     aria-label={`Next: ${neighbors[index + 1].title}`}
                     title={neighbors[index + 1].title}
                   >
@@ -69,7 +73,7 @@ export function DocPageView({ page }: { page: DocPage }) {
                   href={page.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={buttonVariants({ variant: "outline", size: "xs" })}
+                  className={buttonVariants({ size: "xs", variant: "outline" })}
                 >
                   View source <Icon name="arrow-up-right-01" />
                 </a>

@@ -14,11 +14,11 @@ import {
   animate,
   LayoutGroup,
   motion,
-  type MotionStyle,
   useMotionValue,
   useReducedMotion,
   useTransform,
 } from "motion/react";
+import type { MotionStyle } from "motion/react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
@@ -27,16 +27,19 @@ import { cn } from "../lib/utils";
 
 const rowClass =
   "group/control relative flex control-size control-adaptive w-full min-w-0 items-center rounded-lg border surface-control text-control-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+
 const labelClass = "min-w-0 shrink-0 truncate text-control font-medium text-muted-foreground";
+
 const valueClass =
   "ms-auto min-w-0 flex-1 text-end text-field text-foreground outline-none placeholder:text-muted-foreground";
+
 const monoClass = "font-mono tabular-nums";
 
-type CommonProps = {
+interface CommonProps {
   label: string;
   disabled?: boolean;
   className?: string;
-};
+}
 
 function Group({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -77,6 +80,7 @@ type NumberProps = CommonProps & {
 
 function decimalPlaces(step: number) {
   const text = String(step);
+
   return text.includes("e-") ? Number(text.split("e-")[1]) : (text.split(".")[1]?.length ?? 0);
 }
 
@@ -110,6 +114,7 @@ function ControlNumber({
   const fillAnimationRef = React.useRef<ReturnType<typeof animate> | null>(null);
   const id = React.useId();
   const safeStep = step > 0 ? step : 1;
+
   const allowedValues = React.useMemo(
     () =>
       mode === "discrete" && steps
@@ -117,25 +122,28 @@ function ControlNumber({
         : [],
     [mode, steps],
   );
+
   const hasSteps = allowedValues.length > 1;
   const lower = hasSteps ? allowedValues[0] : min;
-  const upper = hasSteps
-    ? allowedValues[allowedValues.length - 1]
-    : max > min
-      ? max
-      : min + safeStep;
+  // `.at(-1) ?? …` rather than an index read; the fallback absorbs the
+  // optional so the step math below stays non-nullable.
+  const stepCandidates = hasSteps ? allowedValues : [];
+  const upper = stepCandidates.at(-1) ?? (max > min ? max : min + safeStep);
+
   const nearestIndex = (number: number) =>
     allowedValues.reduce(
       (best, candidate, index) =>
         Math.abs(candidate - number) < Math.abs(allowedValues[best] - number) ? index : best,
       0,
     );
+
   const toValue = (number: number) => (hasSteps ? allowedValues[nearestIndex(number)] : number);
   // Base UI uses a step for pointer and keyboard input. A fine step makes the
   // pointer feel free while preserving native slider semantics. Uneven discrete
   // values stay on the real numeric axis, then snap through onValueChange.
   const rootStep = hasSteps || mode === "continuous" ? 0.0001 : safeStep;
   const pct = Math.max(0, Math.min(100, ((current - lower) / (upper - lower)) * 100));
+
   const markValues =
     showSteps && mode === "discrete"
       ? hasSteps
@@ -147,12 +155,15 @@ function ControlNumber({
             ).concat(upper)
           : []
       : [];
+
   const visualPct = useMotionValue(pct);
   const fillWidth = useTransform(visualPct, (percent) => `${percent}%`);
+
   const handleStart = useTransform(
     visualPct,
     (percent) => `clamp(4px, ${percent}%, calc(100% - 4px))`,
   );
+
   const shown =
     formatValue?.(current) ??
     (hasSteps
@@ -162,30 +173,38 @@ function ControlNumber({
         : current.toFixed(decimalPlaces(safeStep)));
 
   React.useEffect(() => {
-    if (editing) inputRef.current?.select();
+    if (editing) {
+      inputRef.current?.select();
+    }
   }, [editing]);
 
   React.useEffect(() => {
     fillAnimationRef.current?.stop();
+
     if (
       dragging ||
       pointerRef.current ||
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
     ) {
       visualPct.jump(pct);
+
       return;
     }
+
     fillAnimationRef.current = animate(visualPct, pct, {
-      type: "spring",
-      stiffness: 300,
       damping: 25,
       mass: 0.8,
+      stiffness: 300,
+      type: "spring",
     });
   }, [pct, dragging, visualPct]);
 
   React.useEffect(
     () => () => {
-      if (springFrameRef.current !== null) cancelAnimationFrame(springFrameRef.current);
+      if (springFrameRef.current !== null) {
+        cancelAnimationFrame(springFrameRef.current);
+      }
+
       fillAnimationRef.current?.stop();
     },
     [],
@@ -193,29 +212,44 @@ function ControlNumber({
 
   const setSurfaceStretch = (pixels: number) => {
     stretchRef.current = pixels;
-    if (!surfaceRef.current) return;
+
+    if (!surfaceRef.current) {
+      return;
+    }
+
     surfaceRef.current.style.left = `${Math.min(pixels, 0)}px`;
     surfaceRef.current.style.right = `${Math.min(-pixels, 0)}px`;
   };
 
   const finishStretch = () => {
-    if (!pointerRef.current) return;
+    if (!pointerRef.current) {
+      return;
+    }
+
     pointerRef.current = null;
     setDragging(false);
     const start = stretchRef.current;
-    if (start === 0) return;
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setSurfaceStretch(0);
+
+    if (start === 0) {
       return;
     }
+
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      setSurfaceStretch(0);
+
+      return;
+    }
+
     let position = start;
     let velocity = 0;
     let previousTime = performance.now();
+
     const tick = (time: number) => {
       const delta = Math.min((time - previousTime) / 1000, 0.032);
       previousTime = time;
       velocity += (-360 * position - 26 * velocity) * delta;
       position += velocity * delta;
+
       if (Math.abs(position) < 0.02 && Math.abs(velocity) < 0.2) {
         setSurfaceStretch(0);
         springFrameRef.current = null;
@@ -224,6 +258,7 @@ function ControlNumber({
         springFrameRef.current = requestAnimationFrame(tick);
       }
     };
+
     springFrameRef.current = requestAnimationFrame(tick);
   };
 
@@ -232,11 +267,17 @@ function ControlNumber({
     setLocalValue(actual);
     onValueChange?.(actual);
   };
+
   const commit = () => {
-    if (!editing) return;
+    if (!editing) {
+      return;
+    }
+
     const parsed = Number(draft.trim());
+
     if (draft.trim() && Number.isFinite(parsed)) {
       const clamped = Math.max(lower, Math.min(upper, parsed));
+
       const next = hasSteps
         ? allowedValues[nearestIndex(clamped)]
         : mode === "continuous"
@@ -252,10 +293,12 @@ function ControlNumber({
                 ),
               ),
             );
+
       setLocalValue(next);
       onValueChange?.(next);
       onValueCommitted?.(next);
     }
+
     setEditing(false);
   };
 
@@ -277,8 +320,12 @@ function ControlNumber({
       onValueChange={change}
       onValueCommitted={(next) => onValueCommitted?.(toValue(next))}
       onKeyDownCapture={(event) => {
-        if (!hasSteps || disabled || editing) return;
+        if (!hasSteps || disabled || editing) {
+          return;
+        }
+
         const rtl = getComputedStyle(event.currentTarget).direction === "rtl";
+
         const direction =
           event.key === "ArrowRight"
             ? rtl
@@ -293,6 +340,7 @@ function ControlNumber({
                 : event.key === "ArrowDown" || event.key === "PageDown"
                   ? -1
                   : 0;
+
         const targetIndex =
           event.key === "Home"
             ? 0
@@ -307,11 +355,19 @@ function ControlNumber({
                     ),
                   )
                 : null;
-        if (targetIndex === null) return;
+
+        if (targetIndex === null) {
+          return;
+        }
+
         event.preventDefault();
         event.stopPropagation();
         const next = allowedValues[targetIndex];
-        if (next === current) return;
+
+        if (next === current) {
+          return;
+        }
+
         setLocalValue(next);
         onValueChange?.(next);
         onValueCommitted?.(next);
@@ -350,27 +406,41 @@ function ControlNumber({
       <SliderPrimitive.Control
         className="group/slider-control absolute inset-0 z-10 flex cursor-ew-resize touch-none items-center rounded-lg outline-none select-none"
         onPointerDown={(event) => {
-          if (event.button !== 0 || disabled || editing) return;
-          if (springFrameRef.current !== null) cancelAnimationFrame(springFrameRef.current);
+          if (event.button !== 0 || disabled || editing) {
+            return;
+          }
+
+          if (springFrameRef.current !== null) {
+            cancelAnimationFrame(springFrameRef.current);
+          }
+
           springFrameRef.current = null;
           pointerRef.current = {
+            bounds: event.currentTarget.getBoundingClientRect(),
             x: event.clientX,
             y: event.clientY,
-            bounds: event.currentTarget.getBoundingClientRect(),
           };
         }}
         onPointerMove={(event) => {
           const pointer = pointerRef.current;
-          if (!pointer || Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) <= 3)
+
+          if (!pointer || Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) <= 3) {
             return;
-          if (!dragging) setDragging(true);
+          }
+
+          if (!dragging) {
+            setDragging(true);
+          }
+
           const rect = pointer.bounds;
+
           const overflow =
             event.clientX < rect.left
               ? event.clientX - rect.left
               : event.clientX > rect.right
                 ? event.clientX - rect.right
                 : 0;
+
           const distance = Math.max(0, Math.abs(overflow) - 32);
           setSurfaceStretch(
             window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
@@ -418,6 +488,7 @@ function ControlNumber({
               event.preventDefault();
               commit();
             }
+
             if (event.key === "Escape") {
               event.preventDefault();
               setEditing(false);
@@ -544,7 +615,10 @@ type BooleanProps = CommonProps & {
   name?: string;
 };
 
-type Option = { value: string; label: string };
+interface Option {
+  value: string;
+  label: string;
+}
 
 function SegmentedTrack({
   id,
@@ -594,7 +668,7 @@ function SegmentedTrack({
                 transition={
                   shouldReduceMotion
                     ? { duration: 0 }
-                    : { type: "spring", stiffness: 400, damping: 35 }
+                    : { damping: 35, stiffness: 400, type: "spring" }
                 }
                 className="pointer-events-none absolute inset-0 z-0 rounded-md border surface-control"
               />
@@ -620,10 +694,12 @@ function Boolean({
   const [local, setLocal] = React.useState(defaultChecked ?? false);
   const current = checked ?? local;
   const id = React.useId();
+
   const change = (next: boolean) => {
     setLocal(next);
     onCheckedChange?.(next);
   };
+
   return (
     <div className={cn(rowClass, className)} data-slot="control-boolean">
       <span id={id} className={labelClass}>
@@ -633,11 +709,13 @@ function Boolean({
         <SegmentedTrack
           id={id}
           options={[
-            { value: "off", label: "Off" },
-            { value: "on", label: "On" },
+            { label: "Off", value: "off" },
+            { label: "On", value: "on" },
           ]}
           value={current ? "on" : "off"}
-          onValueChange={(next) => change(next === "on")}
+          onValueChange={(next) => {
+            change(next === "on");
+          }}
           disabled={disabled}
           name={name}
           className="shrink-0 **:[[role=radio]]:min-w-9"
@@ -679,10 +757,12 @@ function Segmented({
   const id = React.useId();
   const [local, setLocal] = React.useState(defaultValue);
   const current = value ?? local;
+
   const change = (next: string) => {
     setLocal(next);
     onValueChange?.(next);
   };
+
   return (
     <div data-slot="control-segmented" className={cn(rowClass, className)}>
       <span id={id} className={labelClass}>
@@ -738,7 +818,9 @@ function Select({
       value={value}
       defaultValue={defaultValue}
       onValueChange={(next) => {
-        if (next !== null) onValueChange?.(next);
+        if (next !== null) {
+          onValueChange?.(next);
+        }
       }}
       disabled={disabled}
       name={name}
@@ -799,16 +881,20 @@ function Color({
   const [draft, setDraft] = React.useState(value ?? defaultValue);
   const current = value ?? local;
   const [previous, setPrevious] = React.useState(current);
+
   if (previous !== current) {
     setPrevious(current);
     setDraft(current);
   }
+
   const valid = /^#[\da-fA-F]{6}$/.test(current);
+
   const change = (next: string) => {
     setLocal(next);
     setDraft(next);
     onValueChange?.(next);
   };
+
   // The hex input is the Field control (the label targets it); the native color
   // input has no Base UI part, so it carries the form name and always holds a
   // valid hex, which replaces the old hidden input.
@@ -826,7 +912,10 @@ function Color({
         value={draft}
         onValueChange={(next) => {
           setDraft(next);
-          if (/^#[\da-fA-F]{6}$/.test(next)) change(next);
+
+          if (/^#[\da-fA-F]{6}$/.test(next)) {
+            change(next);
+          }
         }}
         className={cn(valueClass, monoClass, "w-20 bg-transparent")}
       />
@@ -840,7 +929,9 @@ function Color({
           name={name}
           disabled={disabled}
           value={valid ? current : ""}
-          onChange={(event) => change(event.target.value)}
+          onChange={(event) => {
+            change(event.target.value);
+          }}
           className="absolute inset-0 size-full cursor-pointer opacity-0"
         />
       </span>
@@ -876,6 +967,7 @@ function Image({
   const [selectedValue, setSelectedValue] = React.useState(defaultValue ?? options?.[0]?.value);
   const selected = options?.find((option) => option.value === (value ?? selectedValue));
   const preview = selected?.src ?? src;
+
   return (
     <div data-slot="control-image" className={cn(rowClass, className)}>
       <span className={labelClass}>{label}</span>
@@ -926,7 +1018,7 @@ function Image({
           disabled={disabled}
           aria-label={`Upload ${label}`}
           onClick={() => ref.current?.click()}
-          data-no-options={!options?.length ? "" : undefined}
+          data-no-options={options?.length ? undefined : ""}
           className={cn(
             "flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto",
           )}
@@ -936,7 +1028,7 @@ function Image({
           ) : (
             <Icon name="image-plus" className="size-4" />
           )}
-          {!options?.length ? <span>{preview ? "Change" : "Choose image"}</span> : null}
+          {options?.length ? null : <span>{preview ? "Change" : "Choose image"}</span>}
         </ButtonPrimitive>
       ) : null}
       <input
@@ -953,7 +1045,11 @@ function Image({
   );
 }
 
-type PadValue = { x: number; y: number };
+interface PadValue {
+  x: number;
+  y: number;
+}
+
 type PadProps = CommonProps & {
   value?: PadValue;
   defaultValue?: PadValue;
@@ -979,20 +1075,28 @@ function Pad({
   const ref = React.useRef<HTMLDivElement>(null);
   const span = max > min ? max - min : 1;
   const safeStep = step > 0 ? step : 1;
+
   const change = (next: PadValue) => {
     setLocal(next);
     onValueChange?.(next);
   };
+
   const fromPointer = (event: React.PointerEvent<HTMLDivElement>) => {
     const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
+
+    if (!rect) {
+      return;
+    }
+
     const snap = (fraction: number) =>
       Math.max(min, Math.min(max, min + Math.round((span * fraction) / safeStep) * safeStep));
+
     change({
       x: snap((event.clientX - rect.left) / rect.width),
       y: snap(1 - (event.clientY - rect.top) / rect.height),
     });
   };
+
   return (
     <div data-slot="control-pad" className={cn("rounded-lg border surface-control p-3", className)}>
       <div className={cn(labelClass, "mb-2")}>{label}</div>
@@ -1001,12 +1105,17 @@ function Pad({
         aria-hidden="true"
         className="relative h-24 w-full touch-none rounded-md surface-well"
         onPointerDown={(event) => {
-          if (disabled) return;
+          if (disabled) {
+            return;
+          }
+
           event.currentTarget.setPointerCapture(event.pointerId);
           fromPointer(event);
         }}
         onPointerMove={(event) => {
-          if (event.currentTarget.hasPointerCapture(event.pointerId)) fromPointer(event);
+          if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+            fromPointer(event);
+          }
         }}
       >
         <span
@@ -1023,7 +1132,9 @@ function Pad({
         <ControlNumber
           label="X"
           value={current.x}
-          onValueChange={(x) => change({ ...current, x })}
+          onValueChange={(x) => {
+            change({ ...current, x });
+          }}
           min={min}
           max={max}
           step={step}
@@ -1032,7 +1143,9 @@ function Pad({
         <ControlNumber
           label="Y"
           value={current.y}
-          onValueChange={(y) => change({ ...current, y })}
+          onValueChange={(y) => {
+            change({ ...current, y });
+          }}
           min={min}
           max={max}
           step={step}
@@ -1046,22 +1159,30 @@ function Pad({
 type SpringValue =
   | { type: "spring"; visualDuration: number; bounce: number }
   | { type: "spring"; stiffness: number; damping: number; mass: number };
-type EasingValue = { type: "easing"; duration: number; ease: [number, number, number, number] };
+
+interface EasingValue {
+  type: "easing";
+  duration: number;
+  ease: [number, number, number, number];
+}
+
 type TransitionValue = SpringValue | EasingValue;
+
 type SpringProps = CommonProps & {
   value?: SpringValue;
   defaultValue?: SpringValue;
   onValueChange?: (value: SpringValue) => void;
 };
+
 type TransitionProps = CommonProps & {
   value?: TransitionValue;
   defaultValue?: TransitionValue;
   onValueChange?: (value: TransitionValue) => void;
 };
 
-const defaultTimeSpring: SpringValue = { type: "spring", visualDuration: 0.3, bounce: 0.2 };
-const defaultPhysicsSpring: SpringValue = { type: "spring", stiffness: 200, damping: 25, mass: 1 };
-const defaultEasing: EasingValue = { type: "easing", duration: 0.3, ease: [0.25, 0.1, 0.25, 1] };
+const defaultTimeSpring: SpringValue = { bounce: 0.2, type: "spring", visualDuration: 0.3 };
+const defaultPhysicsSpring: SpringValue = { damping: 25, mass: 1, stiffness: 200, type: "spring" };
+const defaultEasing: EasingValue = { duration: 0.3, ease: [0.25, 0.1, 0.25, 1], type: "easing" };
 
 function springIsTime(
   value: SpringValue,
@@ -1073,14 +1194,18 @@ function SpringCurve({ value }: { value: SpringValue }) {
   const time = springIsTime(value);
   const stiffness = time ? 200 : value.stiffness;
   const mass = time ? 1 : value.mass;
+
   const damping = time
     ? 2 * Math.sqrt(stiffness * mass) * (1 - value.bounce * 0.75)
     : value.damping;
+
   const omega = Math.sqrt(stiffness / mass);
   const ratio = damping / (2 * Math.sqrt(stiffness * mass));
   const duration = time ? Math.max(0.1, value.visualDuration) * 2 : 1.5;
+
   const points = Array.from({ length: 65 }, (_, index) => {
     const t = (index / 64) * duration;
+
     const response =
       ratio < 1
         ? 1 -
@@ -1089,8 +1214,10 @@ function SpringCurve({ value }: { value: SpringValue }) {
               (ratio / Math.sqrt(1 - ratio * ratio)) *
                 Math.sin(omega * Math.sqrt(1 - ratio * ratio) * t))
         : 1 - (1 + omega * t) * Math.exp(-omega * t);
+
     return `${index === 0 ? "M" : "L"}${(index / 64) * 100} ${80 - response * 60}`;
   });
+
   return <CurveFrame path={points.join(" ")} />;
 }
 
@@ -1127,14 +1254,16 @@ function Spring({
 }: SpringProps) {
   const [local, setLocal] = React.useState<SpringValue>(defaultValue);
   const current = value ?? local;
-  const cache = React.useRef({ time: defaultTimeSpring, physics: defaultPhysicsSpring });
+  const cache = React.useRef({ physics: defaultPhysicsSpring, time: defaultTimeSpring });
   React.useLayoutEffect(() => {
     cache.current[springIsTime(current) ? "time" : "physics"] = current;
   }, [current]);
+
   const change = (next: SpringValue) => {
     setLocal(next);
     onValueChange?.(next);
   };
+
   return (
     <Section title={label} className={className}>
       <SpringCurve value={current} />
@@ -1142,10 +1271,12 @@ function Spring({
         label="Type"
         value={springIsTime(current) ? "time" : "physics"}
         options={[
-          { value: "time", label: "Time" },
-          { value: "physics", label: "Physics" },
+          { label: "Time", value: "time" },
+          { label: "Physics", value: "physics" },
         ]}
-        onValueChange={(mode) => change(cache.current[mode === "time" ? "time" : "physics"])}
+        onValueChange={(mode) => {
+          change(cache.current[mode === "time" ? "time" : "physics"]);
+        }}
         disabled={disabled}
       />
       {springIsTime(current) ? (
@@ -1153,7 +1284,9 @@ function Spring({
           <ControlNumber
             label="Duration"
             value={current.visualDuration}
-            onValueChange={(visualDuration) => change({ ...current, visualDuration })}
+            onValueChange={(visualDuration) => {
+              change({ ...current, visualDuration });
+            }}
             min={0.1}
             max={2}
             step={0.01}
@@ -1163,7 +1296,9 @@ function Spring({
           <ControlNumber
             label="Bounce"
             value={current.bounce}
-            onValueChange={(bounce) => change({ ...current, bounce })}
+            onValueChange={(bounce) => {
+              change({ ...current, bounce });
+            }}
             min={0}
             max={1}
             step={0.01}
@@ -1175,7 +1310,9 @@ function Spring({
           <ControlNumber
             label="Stiffness"
             value={current.stiffness}
-            onValueChange={(stiffness) => change({ ...current, stiffness })}
+            onValueChange={(stiffness) => {
+              change({ ...current, stiffness });
+            }}
             min={1}
             max={1000}
             step={1}
@@ -1184,7 +1321,9 @@ function Spring({
           <ControlNumber
             label="Damping"
             value={current.damping}
-            onValueChange={(damping) => change({ ...current, damping })}
+            onValueChange={(damping) => {
+              change({ ...current, damping });
+            }}
             min={1}
             max={100}
             step={1}
@@ -1193,7 +1332,9 @@ function Spring({
           <ControlNumber
             label="Mass"
             value={current.mass}
-            onValueChange={(mass) => change({ ...current, mass })}
+            onValueChange={(mass) => {
+              change({ ...current, mass });
+            }}
             min={0.1}
             max={10}
             step={0.1}
@@ -1215,27 +1356,39 @@ function Transition({
 }: TransitionProps) {
   const [local, setLocal] = React.useState<TransitionValue>(defaultValue);
   const current = value ?? local;
+
   const cache = React.useRef<{ easing: EasingValue; time: SpringValue; physics: SpringValue }>({
     easing: defaultEasing,
-    time: defaultTimeSpring,
     physics: defaultPhysicsSpring,
+    time: defaultTimeSpring,
   });
+
   const mode = current.type === "easing" ? "easing" : springIsTime(current) ? "time" : "physics";
   React.useLayoutEffect(() => {
-    if (current.type === "easing") cache.current.easing = current;
-    else if (springIsTime(current)) cache.current.time = current;
-    else cache.current.physics = current;
+    if (current.type === "easing") {
+      cache.current.easing = current;
+    } else if (springIsTime(current)) {
+      cache.current.time = current;
+    } else {
+      cache.current.physics = current;
+    }
   }, [current]);
+
   const change = (next: TransitionValue) => {
     setLocal(next);
     onValueChange?.(next);
   };
+
   const updateEase = (index: number, next: number) => {
-    if (current.type !== "easing") return;
+    if (current.type !== "easing") {
+      return;
+    }
+
     const ease = [...current.ease] as [number, number, number, number];
     ease[index] = next;
     change({ ...current, ease });
   };
+
   return (
     <Section title={label} className={className}>
       {current.type === "easing" ? (
@@ -1249,11 +1402,13 @@ function Transition({
         label="Type"
         value={mode}
         options={[
-          { value: "easing", label: "Easing" },
-          { value: "time", label: "Time" },
-          { value: "physics", label: "Physics" },
+          { label: "Easing", value: "easing" },
+          { label: "Time", value: "time" },
+          { label: "Physics", value: "physics" },
         ]}
-        onValueChange={(next) => change(cache.current[next as keyof typeof cache.current])}
+        onValueChange={(next) => {
+          change(cache.current[next as keyof typeof cache.current]);
+        }}
         disabled={disabled}
       />
       {current.type === "easing" ? (
@@ -1261,7 +1416,9 @@ function Transition({
           <ControlNumber
             label="Duration"
             value={current.duration}
-            onValueChange={(duration) => change({ ...current, duration })}
+            onValueChange={(duration) => {
+              change({ ...current, duration });
+            }}
             min={0.1}
             max={2}
             step={0.01}
@@ -1274,7 +1431,9 @@ function Transition({
                 key={axis}
                 label={axis}
                 value={current.ease[index]}
-                onValueChange={(next) => updateEase(index, next)}
+                onValueChange={(next) => {
+                  updateEase(index, next);
+                }}
                 min={index % 2 === 0 ? 0 : -1}
                 max={index % 2 === 0 ? 1 : 2}
                 step={0.01}
@@ -1288,7 +1447,9 @@ function Transition({
           <ControlNumber
             label="Duration"
             value={current.visualDuration}
-            onValueChange={(visualDuration) => change({ ...current, visualDuration })}
+            onValueChange={(visualDuration) => {
+              change({ ...current, visualDuration });
+            }}
             min={0.1}
             max={2}
             step={0.01}
@@ -1297,7 +1458,9 @@ function Transition({
           <ControlNumber
             label="Bounce"
             value={current.bounce}
-            onValueChange={(bounce) => change({ ...current, bounce })}
+            onValueChange={(bounce) => {
+              change({ ...current, bounce });
+            }}
             min={0}
             max={1}
             step={0.01}
@@ -1309,7 +1472,9 @@ function Transition({
           <ControlNumber
             label="Stiffness"
             value={current.stiffness}
-            onValueChange={(stiffness) => change({ ...current, stiffness })}
+            onValueChange={(stiffness) => {
+              change({ ...current, stiffness });
+            }}
             min={1}
             max={1000}
             step={1}
@@ -1318,7 +1483,9 @@ function Transition({
           <ControlNumber
             label="Damping"
             value={current.damping}
-            onValueChange={(damping) => change({ ...current, damping })}
+            onValueChange={(damping) => {
+              change({ ...current, damping });
+            }}
             min={1}
             max={100}
             step={1}
@@ -1327,7 +1494,9 @@ function Transition({
           <ControlNumber
             label="Mass"
             value={current.mass}
-            onValueChange={(mass) => change({ ...current, mass })}
+            onValueChange={(mass) => {
+              change({ ...current, mass });
+            }}
             min={0.1}
             max={10}
             step={0.1}
@@ -1340,6 +1509,7 @@ function Transition({
 }
 
 type ActionProps = CommonProps & Omit<React.ComponentProps<"button">, "children" | "disabled">;
+
 function Action({ label, disabled, className, ...props }: ActionProps) {
   return (
     <ButtonPrimitive
@@ -1353,14 +1523,15 @@ function Action({ label, disabled, className, ...props }: ActionProps) {
   );
 }
 
-type SectionProps = {
+interface SectionProps {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   className?: string;
-};
+}
+
 function Section({
   title,
   children,
@@ -1390,24 +1561,25 @@ function Section({
 }
 
 const Control = {
-  Group,
-  Row,
-  Number: ControlNumber,
-  Text,
-  Textarea,
+  Action,
   Boolean,
+  Color,
+  Group,
+  Image,
+  Number: ControlNumber,
+  Pad,
+  Row,
+  Section,
   Segmented,
   Select,
-  Color,
-  Image,
-  Pad,
   Spring,
+  Text,
+  Textarea,
   Transition,
-  Action,
-  Section,
 };
 
 export { Control };
+
 export type {
   NumberProps,
   TextProps,

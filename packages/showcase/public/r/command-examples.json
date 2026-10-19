@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "command-examples",
-  "type": "registry:item",
-  "title": "Command examples",
   "description": "All command examples.",
+  "name": "command-examples",
   "registryDependencies": [
     "@erbium-examples/command-playground",
     "@erbium-examples/command-overview",
@@ -12,5 +10,7 @@
     "@erbium-examples/command-groups",
     "@erbium-examples/command-scrollable",
     "@erbium-examples/command-async-results"
-  ]
+  ],
+  "title": "Command examples",
+  "type": "registry:item"
 }

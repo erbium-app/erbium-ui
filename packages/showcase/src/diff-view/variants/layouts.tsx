@@ -7,6 +7,7 @@ import { oldFile, newFile } from "../examples/files";
 export default function Example() {
   const [layout, setLayout] = useState<"split" | "unified">("split");
   const [wrap, setWrap] = useState(false);
+
   return (
     <div className="grid w-full max-w-4xl gap-4">
       <div className="flex flex-wrap items-center gap-3">
@@ -15,7 +16,10 @@ export default function Example() {
           value={[layout]}
           onValueChange={(values) => {
             const value = values[0];
-            if (value === "split" || value === "unified") setLayout(value);
+
+            if (value === "split" || value === "unified") {
+              setLayout(value);
+            }
           }}
           size="sm"
           variant="outline"

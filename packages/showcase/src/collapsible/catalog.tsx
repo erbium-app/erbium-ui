@@ -31,12 +31,12 @@ import ControlledStateSource from "./variants/controlled-state.tsx?raw";
 const meta = {
   component: Collapsible,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("collapsible"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof Collapsible>;
 
@@ -45,8 +45,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: StoryObj<typeof Collapsible> = {
-  args: { defaultOpen: true, disabled: false },
   argTypes: { defaultOpen: { control: "boolean" }, disabled: { control: "boolean" } },
+  args: { defaultOpen: true, disabled: false },
   parameters: {
     docs: {
       description: { story: variantDocumentation("collapsible", "playground") },
@@ -88,11 +88,11 @@ export const Basic: Story = {
 
 export const SettingsPanel: Story = {
   parameters: {
-    layout: "padded",
     docs: {
       description: { story: variantDocumentation("collapsible", "settings-panel") },
       source: { code: SettingsPanelSource },
     },
+    layout: "padded",
   },
   render: SettingsPanelExample,
 };

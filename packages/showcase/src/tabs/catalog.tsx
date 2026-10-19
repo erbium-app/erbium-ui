@@ -30,15 +30,15 @@ import IconsSource from "./variants/icons.tsx?raw";
 
 const meta = {
   component: Tabs,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("tabs"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -46,11 +46,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Tabs> = {
-  args: { defaultValue: "one", orientation: "horizontal" },
   argTypes: {
     defaultValue: { control: "select", options: ["one", "two"] },
     orientation: { control: "select", options: ["horizontal", "vertical"] },
   },
+  args: { defaultValue: "one", orientation: "horizontal" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("tabs", "playground") },

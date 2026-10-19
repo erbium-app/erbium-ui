@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nconst Example = (args: {\n  length: number;\n  disabled: boolean;\n  validationType: \"numeric\" | \"alphanumeric\" | \"none\";\n  isValidating: boolean;\n}) => (\n  <OTPField\n    key={`${args.length}-${args.validationType}`}\n    aria-label=\"One-time password\"\n    length={args.length}\n    disabled={args.disabled}\n    value={args.isValidating ? \"12345678\".slice(0, args.length) : undefined}\n    validationType={args.validationType}\n    validation={{\n      isDirty: false,\n      isTouched: false,\n      isValid: true,\n      isValidating: args.isValidating,\n    }}\n  />\n);\n\nexport default Example;\n",
       "path": "src/otp-field/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/variants/playground.tsx",
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nconst Example = (args: {\n  length: number;\n  disabled: boolean;\n  validationType: \"numeric\" | \"alphanumeric\" | \"none\";\n  isValidating: boolean;\n}) => (\n  <OTPField\n    key={`${args.length}-${args.validationType}`}\n    aria-label=\"One-time password\"\n    length={args.length}\n    disabled={args.disabled}\n    value={args.isValidating ? \"12345678\".slice(0, args.length) : undefined}\n    validationType={args.validationType}\n    validation={{\n      isValidating: args.isValidating,\n      isValid: true,\n      isTouched: false,\n      isDirty: false,\n    }}\n  />\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

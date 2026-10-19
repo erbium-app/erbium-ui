@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function FieldInput() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldSet>\n        <FieldGroup>\n          <Field>\n            <FieldLabel>Username</FieldLabel>\n            <Input type=\"text\" placeholder=\"Jane Doe\" />\n            <FieldDescription>Choose a unique username for your account.</FieldDescription>\n          </Field>\n          <Field>\n            <FieldLabel>Password</FieldLabel>\n            <FieldDescription>Must be at least 8 characters long.</FieldDescription>\n            <Input type=\"password\" placeholder=\"••••••••\" />\n          </Field>\n        </FieldGroup>\n      </FieldSet>\n    </div>\n  );\n}\n",
       "path": "src/field/examples/field-input.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/field/examples/field-input.tsx",
-      "content": "import {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function FieldInput() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldSet>\n        <FieldGroup>\n          <Field>\n            <FieldLabel>Username</FieldLabel>\n            <Input type=\"text\" placeholder=\"Jane Doe\" />\n            <FieldDescription>Choose a unique username for your account.</FieldDescription>\n          </Field>\n          <Field>\n            <FieldLabel>Password</FieldLabel>\n            <FieldDescription>Must be at least 8 characters long.</FieldDescription>\n            <Input type=\"password\" placeholder=\"••••••••\" />\n          </Field>\n        </FieldGroup>\n      </FieldSet>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleFieldInput from \"../examples/field-input\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldInput />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/field/variants/input.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/field/variants/input.tsx",
-      "content": "import ExampleFieldInput from \"../examples/field-input\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleFieldInput />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

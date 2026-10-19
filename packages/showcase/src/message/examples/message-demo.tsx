@@ -1,4 +1,5 @@
 import { Message, MessageContent, MessageGroup } from "@erbium/ui/components/message";
+
 export default function Demo() {
   return (
     <MessageGroup className="w-80">

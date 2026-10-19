@@ -19,6 +19,7 @@ import {
 
 export function QuestionnaireConditional() {
   const [runtime, setRuntime] = React.useState("local");
+
   const items = React.useMemo(
     () => [
       { name: "runtime", required: true },
@@ -38,8 +39,8 @@ export function QuestionnaireConditional() {
     const formData = new FormData(event.currentTarget);
 
     toast.add({
-      title: "Execution plan saved",
       description: `Runtime: ${getFormValue(formData, "runtime", "None")} · Environment: ${getFormValue(formData, "environment", "Not applicable")} · Approval: ${getFormValue(formData, "approval", "None")}`,
+      title: "Execution plan saved",
     });
   }
 
@@ -61,14 +62,18 @@ export function QuestionnaireConditional() {
           <QuestionnaireChoice
             checked={runtime === "local"}
             value="local"
-            onChange={() => setRuntime("local")}
+            onChange={() => {
+              setRuntime("local");
+            }}
           >
             Local workspace
           </QuestionnaireChoice>
           <QuestionnaireChoice
             checked={runtime === "cloud"}
             value="cloud"
-            onChange={() => setRuntime("cloud")}
+            onChange={() => {
+              setRuntime("cloud");
+            }}
           >
             Cloud workspace
           </QuestionnaireChoice>

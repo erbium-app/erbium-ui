@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
   "files": [
     {
+      "content": "import { useState } from \"react\";\nimport { StepIndicator, StepIndicatorItem } from \"@/registry/erbium/blocks/step-indicator\";\n\nconst steps = [\n  { disabled: false, invalid: false, label: \"Account\" },\n  { disabled: false, invalid: true, label: \"Profile\" },\n  { disabled: false, invalid: false, label: \"Billing\" },\n  { disabled: true, invalid: false, label: \"Review\" },\n];\n\nexport default function Example() {\n  const [step, setStep] = useState(2);\n\n  return (\n    <StepIndicator value={step} onValueChange={setStep}>\n      {steps.map((item, index) => (\n        <StepIndicatorItem\n          key={item.label}\n          index={index}\n          label={item.label}\n          invalid={item.invalid}\n          disabled={item.disabled}\n        />\n      ))}\n    </StepIndicator>\n  );\n}\n",
       "path": "src/step-indicator/variants/status.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/step-indicator/variants/status.tsx",
-      "content": "import { useState } from \"react\";\nimport { StepIndicator, StepIndicatorItem } from \"@/registry/erbium/blocks/step-indicator\";\n\nconst steps = [\n  { label: \"Account\", invalid: false, disabled: false },\n  { label: \"Profile\", invalid: true, disabled: false },\n  { label: \"Billing\", invalid: false, disabled: false },\n  { label: \"Review\", invalid: false, disabled: true },\n];\n\nexport default function Example() {\n  const [step, setStep] = useState(2);\n  return (\n    <StepIndicator value={step} onValueChange={setStep}>\n      {steps.map((item, index) => (\n        <StepIndicatorItem\n          key={item.label}\n          index={index}\n          label={item.label}\n          invalid={item.invalid}\n          disabled={item.disabled}\n        />\n      ))}\n    </StepIndicator>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

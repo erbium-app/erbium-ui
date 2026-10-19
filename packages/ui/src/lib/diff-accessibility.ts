@@ -4,27 +4,45 @@ const initializedRoots = new WeakSet<ShadowRoot>();
 // focusability, and native button keyboard behavior after each render.
 function enhanceDiffAccessibility(host: HTMLElement) {
   const root = host.shadowRoot;
-  if (!root) return;
+
+  if (!root) {
+    return;
+  }
+
   for (const button of root.querySelectorAll<HTMLElement>("[data-expand-button]")) {
     button.tabIndex = 0;
     button.setAttribute(
       "aria-label",
-      button.hasAttribute("data-expand-all-button")
+      Object.hasOwn(button.dataset, "expandAllButton")
         ? "Expand all unchanged lines"
-        : button.hasAttribute("data-expand-up")
+        : Object.hasOwn(button.dataset, "expandUp")
           ? "Expand unchanged lines above"
-          : button.hasAttribute("data-expand-down")
+          : Object.hasOwn(button.dataset, "expandDown")
             ? "Expand unchanged lines below"
             : "Expand unchanged lines",
     );
   }
-  if (initializedRoots.has(root)) return;
+
+  if (initializedRoots.has(root)) {
+    return;
+  }
+
   initializedRoots.add(root);
   root.addEventListener("keydown", (event) => {
-    if (!(event instanceof KeyboardEvent)) return;
-    const target = event.target;
-    if (!(target instanceof HTMLElement) || !target.matches("[data-expand-button]")) return;
-    if (event.key !== "Enter" && event.key !== " ") return;
+    if (!(event instanceof KeyboardEvent)) {
+      return;
+    }
+
+    const { target } = event;
+
+    if (!(target instanceof HTMLElement) || !target.matches("[data-expand-button]")) {
+      return;
+    }
+
+    if (event.key !== "Enter" && event.key !== " ") {
+      return;
+    }
+
     event.preventDefault();
     target.click();
   });

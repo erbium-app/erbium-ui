@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Text label=\"Title\" defaultValue=\"Japan\" />\n    <Control.Number label=\"Opacity\" defaultValue={0.6} min={0} max={1} step={0.01} />\n  </Control.Group>\n);\n\nexport default Example;\n",
       "path": "src/control/variants/group.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/control/variants/group.tsx",
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Text label=\"Title\" defaultValue=\"Japan\" />\n    <Control.Number label=\"Opacity\" defaultValue={0.6} min={0} max={1} step={0.01} />\n  </Control.Group>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "card-examples",
-  "type": "registry:item",
-  "title": "Card examples",
   "description": "All card examples.",
+  "name": "card-examples",
   "registryDependencies": [
     "@erbium-examples/card-playground",
     "@erbium-examples/card-overview",
     "@erbium-examples/card-small",
     "@erbium-examples/card-edge-to-edge",
     "@erbium-examples/card-image"
-  ]
+  ],
+  "title": "Card examples",
+  "type": "registry:item"
 }

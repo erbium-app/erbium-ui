@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonAvatar() {\n  return (\n    <div className=\"flex w-fit items-center gap-group\">\n      <Skeleton className=\"size-10 shrink-0 rounded-avatar\" />\n      <div className=\"grid gap-related\">\n        <Skeleton className=\"h-4 w-[150px]\" />\n        <Skeleton className=\"h-4 w-[100px]\" />\n      </div>\n    </div>\n  );\n}\n",
       "path": "src/skeleton/examples/skeleton-avatar.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/examples/skeleton-avatar.tsx",
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonAvatar() {\n  return (\n    <div className=\"flex w-fit items-center gap-group\">\n      <Skeleton className=\"size-10 shrink-0 rounded-avatar\" />\n      <div className=\"grid gap-related\">\n        <Skeleton className=\"h-4 w-[150px]\" />\n        <Skeleton className=\"h-4 w-[100px]\" />\n      </div>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { SkeletonAvatar } from \"../examples/skeleton-avatar\";\n\nconst Example = () => <SkeletonAvatar />;\n\nexport default Example;\n",
       "path": "src/skeleton/variants/avatar.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/skeleton/variants/avatar.tsx",
-      "content": "import { SkeletonAvatar } from \"../examples/skeleton-avatar\";\n\nconst Example = () => <SkeletonAvatar />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

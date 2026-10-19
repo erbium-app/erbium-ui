@@ -42,7 +42,7 @@ export function BubbleReactionsDemo() {
             variant="ghost"
             size="xs"
             onClick={() =>
-              toast.add({ type: "success", title: "You clicked yes, running command..." })
+              toast.add({ title: "You clicked yes, running command...", type: "success" })
             }
           >
             Yes, run it

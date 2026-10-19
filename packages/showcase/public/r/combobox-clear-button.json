@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/combobox", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/erbium/ui/combobox\";\n\nconst frameworks = [\"TanStack Start\", \"SvelteKit\", \"Nuxt.js\", \"Remix\", \"Astro\"] as const;\n\nexport function ComboboxWithClear() {\n  return (\n    <Combobox items={frameworks} defaultValue={frameworks[0]}>\n      <ComboboxInput placeholder=\"Select a framework\" showClear />\n      <ComboboxContent>\n        <ComboboxEmpty>No items found.</ComboboxEmpty>\n        <ComboboxList>\n          {(item) => (\n            <ComboboxItem key={item} value={item}>\n              {item}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxContent>\n    </Combobox>\n  );\n}\n",
       "path": "src/combobox/examples/combobox-clear.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/combobox/examples/combobox-clear.tsx",
-      "content": "import {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/erbium/ui/combobox\";\n\nconst frameworks = [\"TanStack Start\", \"SvelteKit\", \"Nuxt.js\", \"Remix\", \"Astro\"] as const;\n\nexport function ComboboxWithClear() {\n  return (\n    <Combobox items={frameworks} defaultValue={frameworks[0]}>\n      <ComboboxInput placeholder=\"Select a framework\" showClear />\n      <ComboboxContent>\n        <ComboboxEmpty>No items found.</ComboboxEmpty>\n        <ComboboxList>\n          {(item) => (\n            <ComboboxItem key={item} value={item}>\n              {item}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxContent>\n    </Combobox>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ComboboxWithClear } from \"../examples/combobox-clear\";\n\nconst Example = () => <ComboboxWithClear />;\n\nexport default Example;\n",
       "path": "src/combobox/variants/clear-button.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/combobox/variants/clear-button.tsx",
-      "content": "import { ComboboxWithClear } from \"../examples/combobox-clear\";\n\nconst Example = () => <ComboboxWithClear />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

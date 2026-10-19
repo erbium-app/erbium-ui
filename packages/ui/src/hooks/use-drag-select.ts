@@ -4,12 +4,12 @@ import type { MouseEvent, PointerEvent } from "react";
 const INTERACTIVE =
   'a, button:not([data-slot="checkbox"]), input, select, textarea, [contenteditable]';
 
-type DragSelectOptions = {
+interface DragSelectOptions {
   /** Returns the index and selected state of the item under the pointer, or `null` when it is not selectable. */
   resolve: (target: Element, container: HTMLElement) => { index: number; selected: boolean } | null;
   /** Applies `selected` to every selectable item from `start` to `end`, inclusive. */
   selectRange: (start: number, end: number, selected: boolean, container: HTMLElement) => void;
-};
+}
 
 /**
  * Press on an item and drag across its siblings to select or clear them in one gesture.
@@ -23,15 +23,26 @@ export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
   useEffect(() => () => stopDrag.current?.(), []);
 
   return {
+    onClickCapture(event: MouseEvent<HTMLElement>) {
+      if (suppressClick.current) {
+        suppressClick.current = false;
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
     onPointerDown(event: PointerEvent<HTMLElement>) {
       const { target } = event;
+
       if (event.button !== 0 || event.pointerType === "touch" || !(target instanceof Element)) {
         return;
       }
+
       if (target.closest(INTERACTIVE)) {
         return;
       }
+
       const item = resolve(target, event.currentTarget);
+
       if (!item) {
         return;
       }
@@ -40,7 +51,10 @@ export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
       suppressClick.current = false;
       drag.current = { index: item.index, selected: !item.selected };
 
-      const preventTextSelection = (selectEvent: Event) => selectEvent.preventDefault();
+      const preventTextSelection = (selectEvent: Event) => {
+        selectEvent.preventDefault();
+      };
+
       const stop = () => {
         drag.current = null;
         stopDrag.current = null;
@@ -51,8 +65,9 @@ export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
         // The click that follows pointerup fires after this; release the guard once it has.
         window.setTimeout(() => {
           suppressClick.current = false;
-        });
+        }, 0);
       };
+
       window.addEventListener("pointerup", stop);
       window.addEventListener("pointercancel", stop);
       window.addEventListener("blur", stop);
@@ -60,14 +75,18 @@ export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
       stopDrag.current = stop;
     },
     onPointerOver(event: PointerEvent<HTMLElement>) {
-      const current = drag.current;
+      const { current } = drag;
+
       if (!current || !(event.buttons & 1) || !(event.target instanceof Element)) {
         return;
       }
+
       const item = resolve(event.target, event.currentTarget);
+
       if (!item || item.index === current.index) {
         return;
       }
+
       // Let clicks that `selectRange` dispatches through.
       suppressClick.current = false;
       selectRange(
@@ -79,13 +98,6 @@ export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
       current.index = item.index;
       // The drag already toggled the item it started on; swallow the click released over it.
       suppressClick.current = true;
-    },
-    onClickCapture(event: MouseEvent<HTMLElement>) {
-      if (suppressClick.current) {
-        suppressClick.current = false;
-        event.preventDefault();
-        event.stopPropagation();
-      }
     },
   };
 }

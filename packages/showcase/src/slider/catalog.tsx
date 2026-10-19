@@ -38,15 +38,15 @@ import MultipleThumbsSource from "./variants/multiple-thumbs.tsx?raw";
 
 const meta = {
   component: Slider,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("slider"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Slider>;
 
 export default meta;
@@ -54,14 +54,14 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Slider> = {
-  args: { defaultValue: [50], min: 0, max: 100, step: 1, disabled: false },
   argTypes: {
-    min: { control: "number" },
-    max: { control: "number" },
-    step: { control: "number" },
-    disabled: { control: "boolean" },
     defaultValue: { control: "object" },
+    disabled: { control: "boolean" },
+    max: { control: "number" },
+    min: { control: "number" },
+    step: { control: "number" },
   },
+  args: { defaultValue: [50], disabled: false, max: 100, min: 0, step: 1 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("slider", "playground") },

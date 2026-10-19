@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/dialog", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Dialog,\n  DialogTrigger,\n  DialogPanel,\n  DialogHeader,\n  DialogContent,\n  DialogTitle,\n  DialogDescription,\n} from \"@/registry/erbium/ui/dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: { defaultOpen: boolean; showCloseButton: boolean }) => (\n  <Dialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <DialogTrigger render={<Button variant=\"outline\">Open dialog</Button>} />\n    <DialogPanel showCloseButton={args.showCloseButton}>\n      <DialogHeader>\n        <DialogTitle>Dialog title</DialogTitle>\n        <DialogDescription>Dialog description.</DialogDescription>\n      </DialogHeader>\n      <DialogContent>Dialog content.</DialogContent>\n    </DialogPanel>\n  </Dialog>\n);\n\nexport default Example;\n",
       "path": "src/dialog/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/dialog/variants/playground.tsx",
-      "content": "import {\n  Dialog,\n  DialogTrigger,\n  DialogPanel,\n  DialogHeader,\n  DialogContent,\n  DialogTitle,\n  DialogDescription,\n} from \"@/registry/erbium/ui/dialog\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: { defaultOpen: boolean; showCloseButton: boolean }) => (\n  <Dialog key={String(args.defaultOpen)} defaultOpen={args.defaultOpen}>\n    <DialogTrigger render={<Button variant=\"outline\">Open dialog</Button>} />\n    <DialogPanel showCloseButton={args.showCloseButton}>\n      <DialogHeader>\n        <DialogTitle>Dialog title</DialogTitle>\n        <DialogDescription>Dialog description.</DialogDescription>\n      </DialogHeader>\n      <DialogContent>Dialog content.</DialogContent>\n    </DialogPanel>\n  </Dialog>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

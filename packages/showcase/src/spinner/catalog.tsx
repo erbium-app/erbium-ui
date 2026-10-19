@@ -34,15 +34,15 @@ import EmptySource from "./variants/empty.tsx?raw";
 
 const meta = {
   component: Spinner,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("spinner"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Spinner>;
 
 export default meta;
@@ -50,8 +50,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Spinner> = {
-  args: { className: "size-6" },
   argTypes: {},
+  args: { className: "size-6" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("spinner", "playground") },

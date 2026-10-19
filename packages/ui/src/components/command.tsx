@@ -96,7 +96,9 @@ function CommandInput({ className, ...props }: CommandPrimitive.Input.Props) {
     <div data-slot="command-input-wrapper">
       <div
         className="flex search-input-row items-center"
-        onPointerDown={(event) => focusSearchInput(event.currentTarget, event)}
+        onPointerDown={(event) => {
+          focusSearchInput(event.currentTarget, event);
+        }}
       >
         <Icon
           name="search-01"

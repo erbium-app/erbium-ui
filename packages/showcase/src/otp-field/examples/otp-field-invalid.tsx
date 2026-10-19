@@ -4,13 +4,14 @@ import { OTPField } from "@erbium/ui/components/otp-field";
 
 export function OTPFieldInvalid() {
   const form = useForm({ defaultValues: { code: "" } });
+
   return (
     <form.Field
       name="code"
       validators={{
         onChange: ({ value }) =>
           value.length === 6 && value !== "123456" ? "Incorrect code. Try 123456." : undefined,
-        onSubmit: ({ value }) => (value.length !== 6 ? "Enter all 6 digits." : undefined),
+        onSubmit: ({ value }) => (value.length === 6 ? undefined : "Enter all 6 digits."),
       }}
     >
       {(field) => (
@@ -33,7 +34,9 @@ export function OTPFieldInvalid() {
             }
             onValueChange={field.handleChange}
             onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) field.handleBlur();
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                field.handleBlur();
+              }
             }}
           />
           <FieldError errors={field.state.meta.isTouched ? field.state.meta.errors : []} />

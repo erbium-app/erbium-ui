@@ -6,6 +6,7 @@ import { oldFile, newFile } from "../examples/files";
 
 export default function Example() {
   const [highlight, setHighlight] = useState<DiffViewOptions["lineDiffType"]>("word-alt");
+
   return (
     <div className="grid w-full max-w-4xl gap-4">
       <ToggleGroup
@@ -13,7 +14,10 @@ export default function Example() {
         value={[highlight ?? "word-alt"]}
         onValueChange={(values) => {
           const value = values[0];
-          if (value === "word-alt" || value === "char" || value === "none") setHighlight(value);
+
+          if (value === "word-alt" || value === "char" || value === "none") {
+            setHighlight(value);
+          }
         }}
         size="sm"
         variant="outline"
@@ -26,7 +30,7 @@ export default function Example() {
       <DiffView
         oldFile={oldFile}
         newFile={newFile}
-        options={{ diffStyle: "unified", diffIndicators: "bars", disableLineNumbers: true }}
+        options={{ diffIndicators: "bars", diffStyle: "unified", disableLineNumbers: true }}
       />
     </div>
   );

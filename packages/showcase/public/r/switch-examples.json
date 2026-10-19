@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "switch-examples",
-  "type": "registry:item",
-  "title": "Switch examples",
   "description": "All switch examples.",
+  "name": "switch-examples",
   "registryDependencies": [
     "@erbium-examples/switch-playground",
     "@erbium-examples/switch-overview",
@@ -17,5 +15,7 @@
     "@erbium-examples/switch-controlled",
     "@erbium-examples/switch-read-only",
     "@erbium-examples/switch-form"
-  ]
+  ],
+  "title": "Switch examples",
+  "type": "registry:item"
 }

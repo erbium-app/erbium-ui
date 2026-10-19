@@ -38,15 +38,15 @@ import EventsSource from "./variants/events.tsx?raw";
 
 const meta = {
   component: Carousel,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("carousel"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Carousel>;
 
 export default meta;
@@ -54,8 +54,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Carousel> = {
-  args: { orientation: "horizontal" },
   argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
+  args: { orientation: "horizontal" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("carousel", "playground") },

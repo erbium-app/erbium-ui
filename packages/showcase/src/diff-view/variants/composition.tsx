@@ -14,6 +14,7 @@ import { oldFile, newFile } from "../examples/files";
 
 export default function Example() {
   const [unified, setUnified] = useState(false);
+
   return (
     <DiffView
       className="w-full max-w-4xl"

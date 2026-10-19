@@ -32,15 +32,15 @@ import ScrollableSource from "./variants/scrollable.tsx?raw";
 
 const meta = {
   component: Command,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("command"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Command>;
 
 export default meta;
@@ -48,8 +48,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{ placeholder: string; disabled: boolean }> = {
-  args: { placeholder: "Search commands", disabled: false },
-  argTypes: { placeholder: { control: "text" }, disabled: { control: "boolean" } },
+  argTypes: { disabled: { control: "boolean" }, placeholder: { control: "text" } },
+  args: { disabled: false, placeholder: "Search commands" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("command", "playground") },

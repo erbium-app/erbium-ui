@@ -1,6 +1,6 @@
 import * as React from "react";
 import { addDays } from "date-fns";
-import { type DateRange } from "react-day-picker";
+import type { DateRange } from "react-day-picker";
 
 import { Calendar } from "@erbium/ui/components/calendar";
 

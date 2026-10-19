@@ -9,6 +9,10 @@ const alertVariants: Record<AlertVariant, { className: string; icon: React.React
     className: "surface-panel text-card-foreground",
     icon: <Icon name="info" aria-hidden="true" />,
   },
+  error: {
+    className: "surface-tint-error-soft text-error-soft-foreground",
+    icon: <Icon name="octagon-x" className="text-error" aria-hidden="true" />,
+  },
   info: {
     className: "surface-tint-info-soft text-info-soft-foreground",
     icon: <Icon name="info" className="text-info" aria-hidden="true" />,
@@ -20,10 +24,6 @@ const alertVariants: Record<AlertVariant, { className: string; icon: React.React
   warning: {
     className: "surface-tint-warning-soft text-warning-soft-foreground",
     icon: <Icon name="triangle-alert" className="text-warning" aria-hidden="true" />,
-  },
-  error: {
-    className: "surface-tint-error-soft text-error-soft-foreground",
-    icon: <Icon name="octagon-x" className="text-error" aria-hidden="true" />,
   },
 };
 
@@ -87,4 +87,5 @@ function AlertAction({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export { Alert, AlertTitle, AlertDescription, AlertAction };
+
 export type { AlertVariant };

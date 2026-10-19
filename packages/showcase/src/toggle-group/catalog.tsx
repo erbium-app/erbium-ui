@@ -38,15 +38,15 @@ import SizeSource from "./variants/size.tsx?raw";
 
 const meta = {
   component: ToggleGroup,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("toggle-group"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof ToggleGroup>;
 
 export default meta;
@@ -54,19 +54,19 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof ToggleGroup> = {
+  argTypes: {
+    multiple: { control: "boolean" },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    size: { control: "select", options: ["default", "sm", "lg"] },
+    spacing: { control: { max: 8, min: 0, step: 1, type: "range" } },
+    variant: { control: "select", options: ["default", "outline"] },
+  },
   args: {
-    variant: "default",
+    multiple: false,
+    orientation: "horizontal",
     size: "default",
     spacing: 2,
-    orientation: "horizontal",
-    multiple: false,
-  },
-  argTypes: {
-    variant: { control: "select", options: ["default", "outline"] },
-    size: { control: "select", options: ["default", "sm", "lg"] },
-    spacing: { control: { type: "range", min: 0, max: 8, step: 1 } },
-    orientation: { control: "select", options: ["horizontal", "vertical"] },
-    multiple: { control: "boolean" },
+    variant: "default",
   },
   parameters: {
     docs: {

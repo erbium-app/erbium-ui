@@ -34,15 +34,15 @@ import TriggerSource from "./variants/trigger.tsx?raw";
 
 const meta = {
   component: Attachment,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("attachment"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Attachment>;
 
 export default meta;
@@ -59,25 +59,25 @@ export const Playground: StoryObj<{
   actionSize: "icon-xs" | "icon-sm" | "icon";
   triggerAsLink: boolean;
 }> = {
-  args: {
-    state: "done",
-    size: "default",
-    orientation: "horizontal",
-    mediaVariant: "icon",
-    className: "",
-    title: "document.pdf",
-    actionSize: "icon-xs",
-    triggerAsLink: false,
-  },
   argTypes: {
-    state: { control: "select", options: ["idle", "uploading", "processing", "error", "done"] },
-    size: { control: "select", options: ["default", "sm", "xs"] },
-    orientation: { control: "select", options: ["horizontal", "vertical"] },
-    mediaVariant: { control: "select", options: ["icon", "image"] },
-    className: { control: "text" },
-    title: { control: "text" },
     actionSize: { control: "select", options: ["icon-xs", "icon-sm", "icon"] },
+    className: { control: "text" },
+    mediaVariant: { control: "select", options: ["icon", "image"] },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+    size: { control: "select", options: ["default", "sm", "xs"] },
+    state: { control: "select", options: ["idle", "uploading", "processing", "error", "done"] },
+    title: { control: "text" },
     triggerAsLink: { control: "boolean" },
+  },
+  args: {
+    actionSize: "icon-xs",
+    className: "",
+    mediaVariant: "icon",
+    orientation: "horizontal",
+    size: "default",
+    state: "done",
+    title: "document.pdf",
+    triggerAsLink: false,
   },
   parameters: {
     docs: {

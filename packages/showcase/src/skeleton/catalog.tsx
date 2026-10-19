@@ -42,15 +42,15 @@ import TableSource from "./variants/table.tsx?raw";
 
 const meta = {
   component: Skeleton,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("skeleton"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
@@ -58,8 +58,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Skeleton> = {
-  args: { className: "min-h-control control-adaptive w-48" },
   argTypes: {},
+  args: { className: "min-h-control control-adaptive w-48" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("skeleton", "playground") },

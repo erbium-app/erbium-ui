@@ -12,38 +12,38 @@ import {
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 
 const projects = [
-  { id: "gateway", name: "Cloud gateway", icon: "cloud", color: "text-tag-orange", issues: 30 },
-  { id: "reader", name: "Read platform", icon: "cube", color: "text-tag-blue", issues: 13 },
+  { color: "text-tag-orange", icon: "cloud", id: "gateway", issues: 30, name: "Cloud gateway" },
+  { color: "text-tag-blue", icon: "cube", id: "reader", issues: 13, name: "Read platform" },
   {
-    id: "knowledge",
-    name: "Knowledge hub",
-    icon: "book-open-01",
     color: "text-tag-red",
+    icon: "book-open-01",
+    id: "knowledge",
     issues: 9,
+    name: "Knowledge hub",
   },
   {
-    id: "integrations",
-    name: "Integrations",
-    icon: "link-01",
     color: "text-tag-purple",
+    icon: "link-01",
+    id: "integrations",
     issues: 27,
+    name: "Integrations",
   },
   {
-    id: "admin",
-    name: "Admin panel",
-    icon: "dashboard-square-01",
     color: "text-tag-magenta",
+    icon: "dashboard-square-01",
+    id: "admin",
     issues: 27,
+    name: "Admin panel",
   },
-  { id: "data", name: "Data layer", icon: "database-01", color: "text-tag-cyan", issues: 29 },
+  { color: "text-tag-cyan", icon: "database-01", id: "data", issues: 29, name: "Data layer" },
   {
-    id: "generate",
-    name: "Generate",
-    icon: "magic-wand-01",
     color: "text-tag-green",
+    icon: "magic-wand-01",
+    id: "generate",
     issues: 15,
+    name: "Generate",
   },
-  { id: "website", name: "Website", icon: "globe-02", color: "text-tag-blue", issues: 15 },
+  { color: "text-tag-blue", icon: "globe-02", id: "website", issues: 15, name: "Website" },
 ] as const;
 
 export default function ItemJoinedSelection() {
@@ -55,6 +55,7 @@ export default function ItemJoinedSelection() {
     "generate",
     "website",
   ]);
+
   const idPrefix = useId();
 
   return (
@@ -80,13 +81,13 @@ export default function ItemJoinedSelection() {
                 id={checkboxId}
                 checked={selected.includes(project.id)}
                 aria-label={`Select ${project.name}`}
-                onCheckedChange={(checked) =>
+                onCheckedChange={(checked) => {
                   setSelected((current) =>
                     checked
                       ? [...current, project.id]
                       : current.filter((selectedId) => selectedId !== project.id),
-                  )
-                }
+                  );
+                }}
               />
               <ItemMedia variant="icon">
                 <span className={project.color}>

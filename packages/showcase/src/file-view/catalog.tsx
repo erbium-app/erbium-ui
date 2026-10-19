@@ -9,16 +9,20 @@ import AnnotationsExample from "./variants/annotations";
 import AnnotationsSource from "./variants/annotations.tsx?raw";
 import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
+
 const meta = {
   component: FileView,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("file-view") } },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof FileView>;
+
 export default meta;
+
 type Story = StoryObj;
+
 export const Overview: Story = {
   parameters: {
     docs: {
@@ -28,6 +32,7 @@ export const Overview: Story = {
   },
   render: OverviewExample,
 };
+
 export const Composition: Story = {
   parameters: {
     docs: {
@@ -37,6 +42,7 @@ export const Composition: Story = {
   },
   render: CompositionExample,
 };
+
 export const Annotations: Story = {
   parameters: {
     docs: {
@@ -46,6 +52,7 @@ export const Annotations: Story = {
   },
   render: AnnotationsExample,
 };
+
 export const States: Story = {
   parameters: {
     docs: {

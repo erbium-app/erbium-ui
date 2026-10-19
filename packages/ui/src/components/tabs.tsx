@@ -1,5 +1,6 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
-import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
+import type { HTMLMotionProps } from "motion/react";
 import { cn } from "../lib/utils";
 
 function Tabs({ className, orientation = "horizontal", ...props }: TabsPrimitive.Root.Props) {
@@ -43,15 +44,15 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
               {...(indicatorProps as HTMLMotionProps<"span">)}
               initial={false}
               animate={{
+                height: size.height,
+                width: size.width,
                 x: position.left,
                 y: position.top,
-                width: size.width,
-                height: size.height,
               }}
               transition={
                 shouldReduceMotion
                   ? { duration: 0 }
-                  : { type: "spring", stiffness: 400, damping: 35 }
+                  : { damping: 35, stiffness: 400, type: "spring" }
               }
             />
           );

@@ -11,12 +11,14 @@ import {
 
 export default function PaginationDemo() {
   const [page, setPage] = useState(2);
+
   function navigate(nextPage: number) {
     return (event: MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault();
       setPage(Math.min(3, Math.max(1, nextPage)));
     };
   }
+
   return (
     <div className="flex flex-col gap-group">
       <Pagination>

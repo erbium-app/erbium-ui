@@ -11,22 +11,22 @@ import {
   AttachmentTitle,
 } from "@erbium/ui/components/attachment";
 
-type Item = {
+interface Item {
   name: string;
   meta: string;
   icon?: IconProps["name"];
   src?: string;
-};
+}
 
 const items: Item[] = [
-  { name: "briefing-notes.pdf", meta: "PDF · 1.4 MB", icon: "file-text" },
+  { icon: "file-text", meta: "PDF · 1.4 MB", name: "briefing-notes.pdf" },
   {
-    name: "workspace.png",
     meta: "PNG · 820 KB",
+    name: "workspace.png",
     src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop&q=80",
   },
-  { name: "customers.csv", meta: "CSV · 18 KB", icon: "table" },
-  { name: "renderer.tsx", meta: "TSX · 12 KB", icon: "file-code" },
+  { icon: "table", meta: "CSV · 18 KB", name: "customers.csv" },
+  { icon: "file-code", meta: "TSX · 12 KB", name: "renderer.tsx" },
 ];
 
 export function AttachmentGroupDemo() {
@@ -34,7 +34,7 @@ export function AttachmentGroupDemo() {
     <div className="mx-auto w-full max-w-sm py-12">
       <AttachmentGroup className="w-full">
         {items.map((item) => {
-          const icon = item.icon;
+          const { icon } = item;
 
           return (
             <Attachment key={item.name} className="w-64">

@@ -34,15 +34,15 @@ import QueueSource from "./variants/queue.tsx?raw";
 
 const meta = {
   component: Toast,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("toast"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Toast>;
 
 export default meta;
@@ -53,11 +53,11 @@ export const Playground: StoryObj<{
   type: "success" | "info" | "warning" | "error";
   description: string;
 }> = {
-  args: { type: "success", description: "Saved successfully" },
   argTypes: {
-    type: { control: "select", options: ["success", "info", "warning", "error"] },
     description: { control: "text" },
+    type: { control: "select", options: ["success", "info", "warning", "error"] },
   },
+  args: { description: "Saved successfully", type: "success" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("toast", "playground") },

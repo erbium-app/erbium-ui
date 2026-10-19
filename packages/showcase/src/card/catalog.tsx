@@ -26,15 +26,15 @@ import ImageSource from "./variants/image.tsx?raw";
 
 const meta = {
   component: Card,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("card"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -42,11 +42,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Card> = {
-  args: { size: "default" },
   argTypes: {
-    size: { control: "select", options: ["default", "sm"] },
     className: { table: { disable: true } },
+    size: { control: "select", options: ["default", "sm"] },
   },
+  args: { size: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("card", "playground") },

@@ -28,6 +28,7 @@ const documents = [
 
 export default function SearchSurfaceExample() {
   const [selected, setSelected] = useState("");
+
   return (
     <div className="grid w-80 max-w-full gap-related">
       <Autocomplete items={documents} inline open autoHighlight="always" keepHighlight>
@@ -39,7 +40,9 @@ export default function SearchSurfaceExample() {
               <AutocompleteItem
                 key={document}
                 value={document}
-                onClick={() => setSelected(document)}
+                onClick={() => {
+                  setSelected(document);
+                }}
               >
                 {document}
               </AutocompleteItem>

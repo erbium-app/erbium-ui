@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
   "files": [
     {
+      "content": "import { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nconst Example = () => (\n  <Tabs defaultValue=\"overview\">\n    <TabsList>\n      <TabsTrigger value=\"overview\">Overview</TabsTrigger>\n      <TabsTrigger value=\"analytics\">Analytics</TabsTrigger>\n      <TabsTrigger value=\"reports\">Reports</TabsTrigger>\n    </TabsList>\n  </Tabs>\n);\n\nexport default Example;\n",
       "path": "src/tabs/variants/selection.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/tabs/variants/selection.tsx",
-      "content": "import { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nconst Example = () => (\n  <Tabs defaultValue=\"overview\">\n    <TabsList>\n      <TabsTrigger value=\"overview\">Overview</TabsTrigger>\n      <TabsTrigger value=\"analytics\">Analytics</TabsTrigger>\n      <TabsTrigger value=\"reports\">Reports</TabsTrigger>\n    </TabsList>\n  </Tabs>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

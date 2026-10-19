@@ -32,15 +32,15 @@ import WithIconsSource from "./variants/with-icons.tsx?raw";
 
 const meta = {
   component: Menubar,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("menubar"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Menubar>;
 
 export default meta;
@@ -53,13 +53,13 @@ export const Playground: StoryObj<{
   itemVariant: "default" | "error";
   disabled: boolean;
 }> = {
-  args: { className: "", align: "start", itemVariant: "default", disabled: false },
   argTypes: {
-    className: { control: "text" },
     align: { control: "select", options: ["start", "center", "end"] },
-    itemVariant: { control: "select", options: ["default", "error"] },
+    className: { control: "text" },
     disabled: { control: "boolean" },
+    itemVariant: { control: "select", options: ["default", "error"] },
   },
+  args: { align: "start", className: "", disabled: false, itemVariant: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("menubar", "playground") },

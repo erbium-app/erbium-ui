@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonIcon() {\n  return (\n    <Button variant=\"outline\" size=\"icon\">\n      <Icon name=\"circle-fading-arrow-up\" />\n    </Button>\n  );\n}\n",
       "path": "src/button/examples/button-icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/examples/button-icon.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonIcon() {\n  return (\n    <Button variant=\"outline\" size=\"icon\">\n      <Icon name=\"circle-fading-arrow-up\" />\n    </Button>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleButtonIcon from \"../examples/button-icon\";\n\nconst Example = () => <ExampleButtonIcon />;\n\nexport default Example;\n",
       "path": "src/button/variants/icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/icon.tsx",
-      "content": "import ExampleButtonIcon from \"../examples/button-icon\";\n\nconst Example = () => <ExampleButtonIcon />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

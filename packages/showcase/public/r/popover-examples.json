@@ -1,14 +1,14 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "popover-examples",
-  "type": "registry:item",
-  "title": "Popover examples",
   "description": "All popover examples.",
+  "name": "popover-examples",
   "registryDependencies": [
     "@erbium-examples/popover-playground",
     "@erbium-examples/popover-overview",
     "@erbium-examples/popover-basic",
     "@erbium-examples/popover-align",
     "@erbium-examples/popover-with-form"
-  ]
+  ],
+  "title": "Popover examples",
+  "type": "registry:item"
 }

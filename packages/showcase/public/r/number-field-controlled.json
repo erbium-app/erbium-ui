@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/number-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { useState } from \"react\";\n\nimport {\n  NumberField,\n  NumberFieldGroup,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState<number | null>(2500);\n\n  return (\n    <div className=\"flex w-56 flex-col gap-related\">\n      <NumberField value={value} onValueChange={setValue} min={0} largeStep={1000}>\n        <NumberFieldGroup>\n          <NumberFieldInput aria-label=\"Budget\" className=\"text-end\" />\n        </NumberFieldGroup>\n      </NumberField>\n      <div className=\"flex gap-related\">\n        {[-1000, 1000, 10_000].map((delta) => (\n          <button\n            key={delta}\n            type=\"button\"\n            className=\"rounded-md border px-2 py-1 text-metadata\"\n            onClick={() => {\n              setValue((current) => Math.max(0, (current ?? 0) + delta));\n            }}\n          >\n            {delta > 0 ? `+${delta}` : delta}\n          </button>\n        ))}\n      </div>\n      <p className=\"text-metadata text-muted-foreground\">Value: {value ?? \"—\"}</p>\n    </div>\n  );\n}\n",
       "path": "src/number-field/helpers.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/number-field/helpers.tsx",
-      "content": "import { useState } from \"react\";\n\nimport {\n  NumberField,\n  NumberFieldGroup,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nexport function ControlledExample() {\n  const [value, setValue] = useState<number | null>(2500);\n  return (\n    <div className=\"flex w-56 flex-col gap-related\">\n      <NumberField value={value} onValueChange={setValue} min={0} largeStep={1000}>\n        <NumberFieldGroup>\n          <NumberFieldInput aria-label=\"Budget\" className=\"text-end\" />\n        </NumberFieldGroup>\n      </NumberField>\n      <div className=\"flex gap-related\">\n        {[-1000, 1000, 10_000].map((delta) => (\n          <button\n            key={delta}\n            type=\"button\"\n            className=\"rounded-md border px-2 py-1 text-metadata\"\n            onClick={() => setValue((current) => Math.max(0, (current ?? 0) + delta))}\n          >\n            {delta > 0 ? `+${delta}` : delta}\n          </button>\n        ))}\n      </div>\n      <p className=\"text-metadata text-muted-foreground\">Value: {value ?? \"—\"}</p>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ControlledExample } from \"../helpers\";\n\nconst Example = () => <ControlledExample />;\n\nexport default Example;\n",
       "path": "src/number-field/variants/controlled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/number-field/variants/controlled.tsx",
-      "content": "import { ControlledExample } from \"../helpers\";\n\nconst Example = () => <ControlledExample />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

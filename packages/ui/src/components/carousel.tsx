@@ -1,22 +1,26 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { cva } from "class-variance-authority";
-import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
+import type { UseEmblaCarouselType } from "embla-carousel-react";
 import { Button } from "./button";
 import { Icon } from "./icon";
 import { StepIndicator, StepIndicatorItem } from "../blocks/step-indicator";
 
 type CarouselApi = UseEmblaCarouselType[1];
+
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+
 type CarouselOptions = UseCarouselParameters[0];
+
 type CarouselPlugin = UseCarouselParameters[1];
 
-type CarouselProps = {
+interface CarouselProps {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
-};
+}
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0];
@@ -48,22 +52,22 @@ const carouselItemVariants = cva("min-w-0 shrink-0 grow-0 basis-full", {
 });
 
 const carouselControlVariants = cva("absolute touch-manipulation rounded-full", {
+  compoundVariants: [
+    { className: "-inset-s-12", direction: "previous", orientation: "horizontal" },
+    { className: "-inset-e-12", direction: "next", orientation: "horizontal" },
+    { className: "-top-12", direction: "previous", orientation: "vertical" },
+    { className: "-bottom-12", direction: "next", orientation: "vertical" },
+  ],
   variants: {
+    direction: {
+      next: "",
+      previous: "",
+    },
     orientation: {
       horizontal: "inset-y-0 my-auto",
       vertical: "inset-s-1/2 -translate-x-1/2 rotate-90 rtl:translate-x-1/2",
     },
-    direction: {
-      previous: "",
-      next: "",
-    },
   },
-  compoundVariants: [
-    { orientation: "horizontal", direction: "previous", className: "-inset-s-12" },
-    { orientation: "horizontal", direction: "next", className: "-inset-e-12" },
-    { orientation: "vertical", direction: "previous", className: "-top-12" },
-    { orientation: "vertical", direction: "next", className: "-bottom-12" },
-  ],
 });
 
 function useCarousel() {
@@ -92,11 +96,16 @@ function Carousel({
     },
     plugins,
   );
+
   const subscribe = React.useCallback(
     (notify: () => void) => {
-      if (!api) return () => {};
+      if (!api) {
+        return () => {};
+      }
+
       api.on("reInit", notify);
       api.on("select", notify);
+
       return () => {
         api.off("reInit", notify);
         api.off("select", notify);
@@ -104,11 +113,13 @@ function Carousel({
     },
     [api],
   );
+
   const canScrollPrev = React.useSyncExternalStore(
     subscribe,
     () => api?.canScrollPrev() ?? false,
     () => false,
   );
+
   const canScrollNext = React.useSyncExternalStore(
     subscribe,
     () => api?.canScrollNext() ?? false,
@@ -137,21 +148,24 @@ function Carousel({
   );
 
   React.useEffect(() => {
-    if (!api || !setApi) return;
+    if (!api || !setApi) {
+      return;
+    }
+
     setApi(api);
   }, [api, setApi]);
 
   return (
     <CarouselContext.Provider
       value={{
+        api,
+        canScrollNext,
+        canScrollPrev,
         carouselRef,
-        api: api,
         opts,
         orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
-        scrollPrev,
         scrollNext,
-        canScrollPrev,
-        canScrollNext,
+        scrollPrev,
       }}
     >
       <div
@@ -173,7 +187,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
 
   return (
     <div ref={carouselRef} className="overflow-hidden" data-slot="carousel-content">
-      <div className={cn(carouselContentVariants({ orientation, className }))} {...props} />
+      <div className={cn(carouselContentVariants({ className, orientation }))} {...props} />
     </div>
   );
 }
@@ -186,7 +200,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       role="group"
       aria-roledescription="slide"
       data-slot="carousel-item"
-      className={cn(carouselItemVariants({ orientation, className }))}
+      className={cn(carouselItemVariants({ className, orientation }))}
       {...props}
     />
   );
@@ -205,7 +219,7 @@ function CarouselPrevious({
       data-slot="carousel-previous"
       variant={variant}
       size={size}
-      className={cn(carouselControlVariants({ orientation, direction: "previous", className }))}
+      className={cn(carouselControlVariants({ className, direction: "previous", orientation }))}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
@@ -229,7 +243,7 @@ function CarouselNext({
       data-slot="carousel-next"
       variant={variant}
       size={size}
-      className={cn(carouselControlVariants({ orientation, direction: "next", className }))}
+      className={cn(carouselControlVariants({ className, direction: "next", orientation }))}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
@@ -249,11 +263,16 @@ function CarouselIndicator({
   "count" | "value" | "defaultValue" | "onValueChange" | "variant" | "orientation" | "children"
 >) {
   const { api, orientation } = useCarousel();
+
   const subscribe = React.useCallback(
     (notify: () => void) => {
-      if (!api) return () => {};
+      if (!api) {
+        return () => {};
+      }
+
       api.on("reInit", notify);
       api.on("select", notify);
+
       return () => {
         api.off("reInit", notify);
         api.off("select", notify);
@@ -261,17 +280,23 @@ function CarouselIndicator({
     },
     [api],
   );
+
   const selected = React.useSyncExternalStore(
     subscribe,
     () => api?.selectedScrollSnap() ?? 0,
     () => 0,
   );
+
   const count = React.useSyncExternalStore(
     subscribe,
     () => api?.scrollSnapList().length ?? 0,
     () => 0,
   );
-  if (count < 2) return null;
+
+  if (count < 2) {
+    return null;
+  }
+
   return (
     <StepIndicator
       data-slot="carousel-indicator"

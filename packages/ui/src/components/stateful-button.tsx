@@ -45,12 +45,18 @@ function StatefulButton({
       if (controlledState === undefined) {
         setInternalState(nextState);
       }
+
       onStateChange?.(nextState);
     },
     [controlledState, onStateChange],
   );
 
-  const successReset = useDebouncer(() => changeState("idle"), { wait: successDuration });
+  const successReset = useDebouncer(
+    () => {
+      changeState("idle");
+    },
+    { wait: successDuration },
+  );
 
   useEffect(() => {
     if (state === "success") {
@@ -59,12 +65,15 @@ function StatefulButton({
       successReset.cancel();
     }
 
-    return () => successReset.cancel();
+    return () => {
+      successReset.cancel();
+    };
   }, [state, successReset]);
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     if (state !== "idle" || inFlight.current) {
       event.preventDefault();
+
       return;
     }
 
@@ -73,6 +82,7 @@ function StatefulButton({
     }
 
     const result = onClick(event);
+
     if (controlledState !== undefined || !result || typeof result.then !== "function") {
       return;
     }
@@ -138,4 +148,5 @@ function StatefulButton({
 }
 
 export { StatefulButton };
+
 export type { StatefulButtonProps, StatefulButtonState };

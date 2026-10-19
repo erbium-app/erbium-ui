@@ -34,17 +34,19 @@ const DRAGGABLE = '[data-slot="checkbox"]:not([data-parent])';
 const checkboxesIn = (group: HTMLElement) => [...group.querySelectorAll<HTMLElement>(DRAGGABLE)];
 
 const isEditable = (checkbox: HTMLElement) =>
-  !checkbox.hasAttribute("data-disabled") && !checkbox.hasAttribute("data-readonly");
+  !Object.hasOwn(checkbox.dataset, "disabled") && !Object.hasOwn(checkbox.dataset, "readonly");
 
 // The row under the pointer is its closest ancestor holding exactly one checkbox,
 // so labels, `Field`s, and plain wrappers all work as rows.
 function checkboxAt(target: Element, group: HTMLElement) {
   for (let node: Element | null = target; node && node !== group; node = node.parentElement) {
     const found = node.matches(DRAGGABLE) ? [node] : node.querySelectorAll(DRAGGABLE);
+
     if (found.length > 0) {
       return found.length === 1 ? (found[0] as HTMLElement) : null;
     }
   }
+
   return null;
 }
 
@@ -53,20 +55,24 @@ function CheckboxGroup({ className, ...props }: CheckboxGroupPrimitive.Props) {
   const dragSelect = useDragSelect({
     resolve(target, group) {
       const checkbox = checkboxAt(target, group);
+
       if (!checkbox || !isEditable(checkbox)) {
         return null;
       }
+
       return {
         index: checkboxesIn(group).indexOf(checkbox),
-        selected: checkbox.hasAttribute("data-checked"),
+        selected: Object.hasOwn(checkbox.dataset, "checked"),
       };
     },
     selectRange(start, end, selected, group) {
       for (const checkbox of checkboxesIn(group).slice(start, end + 1)) {
-        if (isEditable(checkbox) && checkbox.hasAttribute("data-checked") !== selected) {
+        if (isEditable(checkbox) && Object.hasOwn(checkbox.dataset, "checked") !== selected) {
           // A real click keeps Base UI's value, form state, and callbacks in charge. Flush each one
           // because a group with a `parent` checkbox computes the next value from the last render.
-          flushSync(() => checkbox.click());
+          flushSync(() => {
+            checkbox.click();
+          });
         }
       }
     },

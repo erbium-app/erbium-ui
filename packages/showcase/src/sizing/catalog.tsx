@@ -6,14 +6,18 @@ import CompositionExample from "./variants/composition";
 import CompositionSource from "./variants/composition.tsx?raw";
 import WorkflowExample from "./variants/workflow";
 import WorkflowSource from "./variants/workflow.tsx?raw";
+
 const meta = {
   parameters: {
     docs: { description: { component: componentDocumentation("sizing") } },
     layout: "fullscreen",
   },
 } satisfies Meta;
+
 export default meta;
+
 type Story = StoryObj;
+
 export const Controls: Story = {
   parameters: {
     docs: {
@@ -23,6 +27,7 @@ export const Controls: Story = {
   },
   render: ControlsExample,
 };
+
 export const Composition: Story = {
   parameters: {
     docs: {

@@ -18,15 +18,15 @@ import ControlledSidebarSource from "./variants/controlled-sidebar.tsx?raw";
 
 const meta = {
   component: Sidebar,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("sidebar"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Sidebar>;
 
 export default meta;
@@ -39,13 +39,13 @@ export const Playground: StoryObj<{
   collapsible: "offcanvas" | "icon" | "none";
   defaultOpen: boolean;
 }> = {
-  args: { side: "left", variant: "sidebar", collapsible: "none", defaultOpen: true },
   argTypes: {
-    side: { control: "select", options: ["left", "right"] },
-    variant: { control: "select", options: ["sidebar", "floating", "inset"] },
     collapsible: { control: "select", options: ["offcanvas", "icon", "none"] },
     defaultOpen: { control: "boolean" },
+    side: { control: "select", options: ["left", "right"] },
+    variant: { control: "select", options: ["sidebar", "floating", "inset"] },
   },
+  args: { collapsible: "none", defaultOpen: true, side: "left", variant: "sidebar" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("sidebar", "playground") },

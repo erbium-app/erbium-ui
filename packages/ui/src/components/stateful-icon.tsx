@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "../lib/utils";
 
-type StatefulIconProps<State extends string> = {
+interface StatefulIconProps<State extends string> {
   /** The key of the icon or content to show. */
   state: State;
   /** Content to render for each state, such as Hugeicons or a Spinner. */
@@ -13,7 +13,7 @@ type StatefulIconProps<State extends string> = {
   className?: string;
   /** Placement hint for button spacing. */
   "data-icon"?: "inline-start" | "inline-end";
-};
+}
 
 function StatefulIcon<State extends string>({
   state,
@@ -37,6 +37,7 @@ function StatefulIcon<State extends string>({
     >
       {Object.entries<ReactNode>(icons).map(([key, icon]) => {
         const active = key === state;
+
         return (
           <motion.span
             animate={{ rotate: active || reduceMotion ? 0 : 90, scale: active ? 1 : 0 }}
@@ -65,6 +66,7 @@ type RotatingChevronProps = Omit<React.ComponentProps<typeof Icon>, "name"> & {
 
 function RotatingChevron({ direction = "down", scope, className, ...props }: RotatingChevronProps) {
   const name = direction === "down" ? "chevron-down" : "chevron-right";
+
   const rotation =
     direction === "down"
       ? scope === "collapsible"
@@ -89,10 +91,10 @@ function RotatingChevron({ direction = "down", scope, className, ...props }: Rot
   );
 }
 
-type ExpandableChevronProps = {
+interface ExpandableChevronProps {
   isOpen: boolean;
   className?: string;
-};
+}
 
 /** Two chevrons exchange positions to indicate an open or closed state. */
 function ExpandableChevron({ isOpen, className }: ExpandableChevronProps) {
@@ -186,10 +188,10 @@ function SidebarToggleIcon({
   );
 }
 
-type ThemeToggleIconProps = {
+interface ThemeToggleIconProps {
   theme: "light" | "dark";
   className?: string;
-};
+}
 
 /** Sun and moon icons rotate and scale as the active theme changes. */
 function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
@@ -255,6 +257,7 @@ export {
   StatefulIcon,
   ThemeToggleIcon,
 };
+
 export type {
   ExpandableChevronProps,
   RotatingChevronProps,

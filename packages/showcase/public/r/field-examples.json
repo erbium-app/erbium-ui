@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "field-examples",
-  "type": "registry:item",
-  "title": "Field examples",
   "description": "All field examples.",
+  "name": "field-examples",
   "registryDependencies": [
     "@erbium-examples/field-playground",
     "@erbium-examples/field-overview",
@@ -21,5 +19,7 @@
     "@erbium-examples/field-group",
     "@erbium-examples/field-responsive",
     "@erbium-examples/field-validation-and-errors"
-  ]
+  ],
+  "title": "Field examples",
+  "type": "registry:item"
 }

@@ -12,24 +12,24 @@ import {
 
 const frameworks = [
   {
-    value: "tanstack-start",
     label: "TanStack Start",
+    value: "tanstack-start",
   },
   {
-    value: "sveltekit",
     label: "SvelteKit",
+    value: "sveltekit",
   },
   {
-    value: "nuxt.js",
     label: "Nuxt.js",
+    value: "nuxt.js",
   },
   {
-    value: "remix",
     label: "Remix",
+    value: "remix",
   },
   {
-    value: "astro",
     label: "Astro",
+    value: "astro",
   },
 ];
 

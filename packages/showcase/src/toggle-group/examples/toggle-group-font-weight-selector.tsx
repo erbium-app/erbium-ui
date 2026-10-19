@@ -5,13 +5,16 @@ import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group
 
 export function ToggleGroupFontWeightSelector() {
   const [fontWeight, setFontWeight] = React.useState("normal");
+
   return (
     <Field>
       <FieldLabel>Font Weight</FieldLabel>
       <ToggleGroup
         className="flex-wrap"
         value={[fontWeight]}
-        onValueChange={(value) => setFontWeight(value[0])}
+        onValueChange={(value) => {
+          setFontWeight(value[0]);
+        }}
         variant="outline"
         spacing={2}
         size="lg"

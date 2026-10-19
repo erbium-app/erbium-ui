@@ -1,6 +1,11 @@
 import { Icon } from "@erbium/ui/components/icon";
-import { EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from "@erbium/ui/components/empty";
-import { Empty } from "@erbium/ui/components/empty";
+import {
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  EmptyDescription,
+  Empty,
+} from "@erbium/ui/components/empty";
 
 const Example = (args: {
   className: string;

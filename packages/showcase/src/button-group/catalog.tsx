@@ -54,15 +54,15 @@ import SplitSource from "./variants/split.tsx?raw";
 
 const meta = {
   component: ButtonGroup,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("button-group"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof ButtonGroup>;
 
 export default meta;
@@ -73,11 +73,11 @@ export const Playground: StoryObj<{
   orientation: "horizontal" | "vertical";
   size: "default" | "xs" | "sm" | "lg";
 }> = {
-  args: { orientation: "horizontal", size: "default" },
   argTypes: {
     orientation: { control: "select", options: ["horizontal", "vertical"] },
     size: { control: "select", options: ["default", "xs", "sm", "lg"] },
   },
+  args: { orientation: "horizontal", size: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("button-group", "playground") },

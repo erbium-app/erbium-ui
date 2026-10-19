@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/alert", "@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Alert, AlertAction, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <Alert variant=\"warning\" className=\"w-96\">\n    <AlertTitle>Approval required</AlertTitle>\n    <AlertDescription>The agent needs permission to install a new dependency.</AlertDescription>\n    <AlertAction>\n      <Button size=\"sm\" variant=\"outline\">\n        Review\n      </Button>\n    </AlertAction>\n  </Alert>\n);\n\nexport default Example;\n",
       "path": "src/alert/variants/action.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/alert/variants/action.tsx",
-      "content": "import { Alert, AlertAction, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <Alert variant=\"warning\" className=\"w-96\">\n    <AlertTitle>Approval required</AlertTitle>\n    <AlertDescription>The agent needs permission to install a new dependency.</AlertDescription>\n    <AlertAction>\n      <Button size=\"sm\" variant=\"outline\">\n        Review\n      </Button>\n    </AlertAction>\n  </Alert>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

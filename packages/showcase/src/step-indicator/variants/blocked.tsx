@@ -7,10 +7,12 @@ const COUNT = 5;
 export default function Example() {
   const [step, setStep] = useState(0);
   const [reach, setReach] = useState(0);
+
   const goTo = (next: number) => {
     setStep(next);
     setReach((current) => Math.max(current, next));
   };
+
   return (
     <div className="flex flex-col items-center gap-4">
       <StepIndicator
@@ -21,10 +23,21 @@ export default function Example() {
         aria-label="Onboarding"
       />
       <div className="flex gap-2">
-        <Button variant="outline" disabled={step === 0} onClick={() => setStep(step - 1)}>
+        <Button
+          variant="outline"
+          disabled={step === 0}
+          onClick={() => {
+            setStep(step - 1);
+          }}
+        >
           Back
         </Button>
-        <Button disabled={step === COUNT - 1} onClick={() => goTo(step + 1)}>
+        <Button
+          disabled={step === COUNT - 1}
+          onClick={() => {
+            goTo(step + 1);
+          }}
+        >
           Continue
         </Button>
       </div>

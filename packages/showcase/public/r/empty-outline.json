@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/button", "@erbium/empty", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <Icon name=\"cloud\" />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\" size=\"sm\">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n",
       "path": "src/empty/examples/empty-outline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/empty/examples/empty-outline.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyMedia,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\n\nexport default function EmptyOutline() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyMedia variant=\"icon\">\n          <Icon name=\"cloud\" />\n        </EmptyMedia>\n        <EmptyTitle>Cloud Storage Empty</EmptyTitle>\n        <EmptyDescription>\n          Upload files to your cloud storage to access them anywhere.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <Button variant=\"outline\" size=\"sm\">\n          Upload Files\n        </Button>\n      </EmptyContent>\n    </Empty>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import EmptyOutline from \"../examples/empty-outline\";\n\nconst Example = () => <EmptyOutline />;\n\nexport default Example;\n",
       "path": "src/empty/variants/outline.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/empty/variants/outline.tsx",
-      "content": "import EmptyOutline from \"../examples/empty-outline\";\n\nconst Example = () => <EmptyOutline />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

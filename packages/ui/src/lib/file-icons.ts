@@ -13,6 +13,7 @@ const byFileName: Record<string, IconName> = {
   "package-lock.json": "npm-duo",
   "package.json": "npm-duo",
 };
+
 // Matched against the basename, so tool configs resolve to their tool.
 const byFileNameContains: Record<string, IconName> = {
   ".eslintrc": "eslint",
@@ -28,6 +29,7 @@ const byFileNameContains: Record<string, IconName> = {
   "vite.config": "vite",
   "webpack.config": "webpack",
 };
+
 const byFileExtension: Record<string, IconName> = {
   astro: "astro",
   avif: "image-duo",
@@ -74,8 +76,8 @@ const byFileExtension: Record<string, IconName> = {
   swift: "lang-swift",
   tar: "file-zip-duo",
   tf: "terraform",
-  tsv: "file-table-duo",
   ts: "lang-typescript-duo",
+  tsv: "file-table-duo",
   tsx: "react",
   ttf: "font",
   txt: "file-text-duo",
@@ -90,10 +92,12 @@ const byFileExtension: Record<string, IconName> = {
   zip: "file-zip-duo",
   zsh: "bash-duo",
 };
+
 const fallback: IconName = "file-duo";
 
 function extensionCandidates(fileName: string) {
   const segments = fileName.split(".");
+
   // `a.spec.ts` tries `spec.ts` and then `ts`; a leading dot is not an extension.
   return segments.slice(1).map((_, index) => segments.slice(index + 1).join("."));
 }
@@ -102,14 +106,25 @@ function extensionCandidates(fileName: string) {
 function fileIconName(path: string): IconName {
   const fileName = (path.split("/").at(-1) ?? path).toLowerCase();
   const exact = byFileName[fileName];
-  if (exact) return exact;
-  for (const [needle, icon] of Object.entries(byFileNameContains)) {
-    if (fileName.includes(needle)) return icon;
+
+  if (exact) {
+    return exact;
   }
+
+  for (const [needle, icon] of Object.entries(byFileNameContains)) {
+    if (fileName.includes(needle)) {
+      return icon;
+    }
+  }
+
   for (const extension of extensionCandidates(fileName)) {
     const icon = byFileExtension[extension];
-    if (icon) return icon;
+
+    if (icon) {
+      return icon;
+    }
   }
+
   return fallback;
 }
 
@@ -121,38 +136,44 @@ const treeInterfaceIcons = [
   "lock",
   "more-horizontal",
 ] as const satisfies IconName[];
+
 function symbolMarkup(sheet: string, name: IconName) {
   const match = new RegExp(
     `<symbol[^>]*\\sid="${iconDefinitions[name].id}"[\\s\\S]*?</symbol>`,
   ).exec(sheet);
+
   return match?.[0] ?? "";
 }
-const files = spriteSheets.files;
+
+const { files } = spriteSheets;
+
 const treeSpriteSheet = `${files.slice(0, files.lastIndexOf("</svg>"))}${treeInterfaceIcons
   .map((name) => symbolMarkup(spriteSheets.ui, name))
   .join("\n")}\n</svg>\n`;
 
 function treeIcon(name: IconName) {
   const { id, viewBox } = iconDefinitions[name];
+
   return { name: id, viewBox };
 }
+
 function treeIcons<Rules extends Record<string, IconName>>(rules: Rules) {
   return Object.fromEntries(Object.entries(rules).map(([key, name]) => [key, treeIcon(name)]));
 }
 
 const fileTreeIcons = {
-  set: "none",
-  colored: false,
-  spriteSheet: treeSpriteSheet,
-  remap: {
-    "file-tree-icon-chevron": treeIcon("chevron-down"),
-    "file-tree-icon-file": treeIcon(fallback),
-    "file-tree-icon-lock": treeIcon("lock"),
-    "file-tree-icon-ellipsis": treeIcon("more-horizontal"),
-  },
+  byFileExtension: treeIcons(byFileExtension),
   byFileName: treeIcons(byFileName),
   byFileNameContains: treeIcons(byFileNameContains),
-  byFileExtension: treeIcons(byFileExtension),
+  colored: false,
+  remap: {
+    "file-tree-icon-chevron": treeIcon("chevron-down"),
+    "file-tree-icon-ellipsis": treeIcon("more-horizontal"),
+    "file-tree-icon-file": treeIcon(fallback),
+    "file-tree-icon-lock": treeIcon("lock"),
+  },
+  set: "none",
+  spriteSheet: treeSpriteSheet,
 } as const;
 
 export { fileIconName, fileTreeIcons };

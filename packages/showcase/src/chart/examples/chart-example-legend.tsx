@@ -4,7 +4,7 @@ import { visitorChart } from "./chart-example";
 export function ChartBarDemoLegend() {
   return (
     <Chart
-      definition={visitorChart({ grid: true, axis: true, tooltip: true, legend: true })}
+      definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}
       height={240}
       initialWidth={640}
       ariaLabel="Desktop and mobile visitors by month"

@@ -3,7 +3,8 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { useHotkey } from "@tanstack/react-hotkeys";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { useIsMobile } from "../hooks/use-is-mobile";
 import { cn } from "../lib/utils";
 import { sidebarMenuButtonVariants, sidebarStyles } from "../lib/sidebar-styles";
@@ -28,10 +29,10 @@ const sidebarGapVariants = cva(
   {
     variants: {
       variant: {
-        sidebar: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
         floating:
           "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]",
         inset: "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]",
+        sidebar: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
       },
     },
   },
@@ -42,18 +43,18 @@ const sidebarContainerVariants = cva(
   {
     variants: {
       variant: {
-        sidebar:
-          "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
         floating:
           "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]",
         inset:
           "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]",
+        sidebar:
+          "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
       },
     },
   },
 );
 
-type SidebarContextProps = {
+interface SidebarContextProps {
   state: "expanded" | "collapsed";
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -61,12 +62,13 @@ type SidebarContextProps = {
   setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
   toggleSidebar: () => void;
-};
+}
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
 
 function useSidebar() {
   const context = React.useContext(SidebarContext);
+
   if (!context) {
     throw new Error("useSidebar must be used within a SidebarProvider.");
   }
@@ -94,9 +96,11 @@ function SidebarProvider({
   // We use openProp and setOpenProp for control from outside the component.
   const [_open, _setOpen] = React.useState(defaultOpen);
   const open = openProp ?? _open;
+
   const setOpen = React.useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
       const openState = typeof value === "function" ? value(open) : value;
+
       if (setOpenProp) {
         setOpenProp(openState);
       } else {
@@ -111,7 +115,7 @@ function SidebarProvider({
 
   // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
+    isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
   }, [isMobile, setOpen, setOpenMobile]);
 
   // Toggle the sidebar with Mod+B (Cmd+B on macOS, Ctrl+B elsewhere).
@@ -124,12 +128,12 @@ function SidebarProvider({
 
   const contextValue = React.useMemo<SidebarContextProps>(
     () => ({
-      state,
-      open,
-      setOpen,
       isMobile,
+      open,
       openMobile,
+      setOpen,
       setOpenMobile,
+      state,
       toggleSidebar,
     }),
     [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
@@ -228,7 +232,7 @@ function Sidebar({
       <div
         data-slot="sidebar-container"
         data-side={side}
-        className={cn(sidebarContainerVariants({ variant, className }))}
+        className={cn(sidebarContainerVariants({ className, variant }))}
         {...props}
       >
         <div
@@ -411,8 +415,8 @@ function SidebarGroupLabel({
     ),
     render,
     state: {
-      slot: "sidebar-group-label",
       sidebar: "group-label",
+      slot: "sidebar-group-label",
     },
   });
 }
@@ -435,8 +439,8 @@ function SidebarGroupAction({
     ),
     render,
     state: {
-      slot: "sidebar-group-action",
       sidebar: "group-action",
+      slot: "sidebar-group-action",
     },
   });
 }
@@ -488,20 +492,21 @@ function SidebarMenuButton({
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
   } & VariantProps<typeof sidebarMenuButtonVariants>) {
   const { isMobile, state } = useSidebar();
+
   const comp = useRender({
     defaultTagName: "button",
     props: mergeProps<"button">(
       {
-        className: cn(sidebarMenuButtonVariants({ variant, size }), className),
+        className: cn(sidebarMenuButtonVariants({ size, variant }), className),
       },
       props,
     ),
-    render: !tooltip ? render : <TooltipTrigger render={render} />,
+    render: tooltip ? <TooltipTrigger render={render} /> : render,
     state: {
-      slot: "sidebar-menu-button",
+      active: isActive,
       sidebar: "menu-button",
       size,
-      active: isActive,
+      slot: "sidebar-menu-button",
     },
   });
 
@@ -552,8 +557,8 @@ function SidebarMenuAction({
     ),
     render,
     state: {
-      slot: "sidebar-menu-action",
       sidebar: "menu-action",
+      slot: "sidebar-menu-action",
     },
   });
 }
@@ -580,9 +585,7 @@ function SidebarMenuSkeleton({
   showIcon?: boolean;
 }) {
   // Random width between 50 to 90%.
-  const [width] = React.useState(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`;
-  });
+  const [width] = React.useState(() => `${Math.floor(Math.random() * 40) + 50}%`);
 
   return (
     <div
@@ -654,10 +657,10 @@ function SidebarMenuSubButton({
     ),
     render,
     state: {
-      slot: "sidebar-menu-sub-button",
+      active: isActive,
       sidebar: "menu-sub-button",
       size,
-      active: isActive,
+      slot: "sidebar-menu-sub-button",
     },
   });
 }

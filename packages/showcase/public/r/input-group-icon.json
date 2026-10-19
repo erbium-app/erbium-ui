@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport default function InputGroupIcon() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-section\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon>\n          <Icon name=\"search-01\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput type=\"email\" placeholder=\"Enter your email\" />\n        <InputGroupAddon>\n          <Icon name=\"mail-01\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Card number\" />\n        <InputGroupAddon>\n          <Icon name=\"credit-card\" />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Icon name=\"check\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Card number\" />\n        <InputGroupAddon align=\"inline-end\">\n          <Icon name=\"star\" />\n          <Icon name=\"info\" />\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n",
       "path": "src/input-group/examples/input-group-icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input-group/examples/input-group-icon.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport default function InputGroupIcon() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-section\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupAddon>\n          <Icon name=\"search-01\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput type=\"email\" placeholder=\"Enter your email\" />\n        <InputGroupAddon>\n          <Icon name=\"mail-01\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Card number\" />\n        <InputGroupAddon>\n          <Icon name=\"credit-card\" />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Icon name=\"check\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupInput placeholder=\"Card number\" />\n        <InputGroupAddon align=\"inline-end\">\n          <Icon name=\"star\" />\n          <Icon name=\"info\" />\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleInputGroupIcon from \"../examples/input-group-icon\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputGroupIcon />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/input-group/variants/icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input-group/variants/icon.tsx",
-      "content": "import ExampleInputGroupIcon from \"../examples/input-group-icon\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleInputGroupIcon />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

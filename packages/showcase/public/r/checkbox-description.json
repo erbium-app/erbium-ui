@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxDescription() {\n  return (\n    <FieldGroup className=\"mx-auto w-72\">\n      <Field orientation=\"horizontal\">\n        <Checkbox name=\"terms-checkbox-desc\" defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n    </FieldGroup>\n  );\n}\n",
       "path": "src/checkbox/examples/checkbox-description.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/checkbox/examples/checkbox-description.tsx",
-      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n} from \"@/registry/erbium/ui/field\";\n\nexport function CheckboxDescription() {\n  return (\n    <FieldGroup className=\"mx-auto w-72\">\n      <Field orientation=\"horizontal\">\n        <Checkbox name=\"terms-checkbox-desc\" defaultChecked />\n        <FieldContent>\n          <FieldLabel>Accept terms and conditions</FieldLabel>\n          <FieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </FieldDescription>\n        </FieldContent>\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { CheckboxDescription } from \"../examples/checkbox-description\";\n\nconst Example = () => <CheckboxDescription />;\n\nexport default Example;\n",
       "path": "src/checkbox/variants/description.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/checkbox/variants/description.tsx",
-      "content": "import { CheckboxDescription } from \"../examples/checkbox-description\";\n\nconst Example = () => <CheckboxDescription />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

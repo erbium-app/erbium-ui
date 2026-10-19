@@ -8,8 +8,8 @@
   "files": [
     {
       "path": "src/components/csp-provider.tsx",
-      "type": "registry:ui",
       "target": "@ui/csp-provider.tsx",
+      "type": "registry:ui",
       "content": "export { CSPProvider } from \"@base-ui/react/csp-provider\";\n"
     }
   ]

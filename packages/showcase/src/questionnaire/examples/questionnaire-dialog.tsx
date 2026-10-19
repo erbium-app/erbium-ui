@@ -44,8 +44,8 @@ export function QuestionnaireDialog() {
 
     setOpen(false);
     toast.add({
-      title: "Clarification sent",
       description: `Scope: ${getFormValue(formData, "scope", "None")} · Verification: ${getFormValue(formData, "tests", "None")}`,
+      title: "Clarification sent",
     });
   }
 

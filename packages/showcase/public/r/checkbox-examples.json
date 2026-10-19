@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "checkbox-examples",
-  "type": "registry:item",
-  "title": "Checkbox examples",
   "description": "All checkbox examples.",
+  "name": "checkbox-examples",
   "registryDependencies": [
     "@erbium-examples/checkbox-playground",
     "@erbium-examples/checkbox-overview",
@@ -18,5 +16,7 @@
     "@erbium-examples/checkbox-description",
     "@erbium-examples/checkbox-group",
     "@erbium-examples/checkbox-invalid-state"
-  ]
+  ],
+  "title": "Checkbox examples",
+  "type": "registry:item"
 }

@@ -68,15 +68,15 @@ import ShowcaseSource from "./variants/showcase.tsx?raw";
 
 const meta = {
   component: Autocomplete,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("autocomplete"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Autocomplete>;
 
 export default meta;

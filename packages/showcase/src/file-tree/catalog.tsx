@@ -7,16 +7,20 @@ import CompositionExample from "./variants/composition";
 import CompositionSource from "./variants/composition.tsx?raw";
 import ChangesExample from "./variants/changes";
 import ChangesSource from "./variants/changes.tsx?raw";
+
 const meta = {
   component: FileTree,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("file-tree") } },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof FileTree>;
+
 export default meta;
+
 type Story = StoryObj;
+
 export const Overview: Story = {
   parameters: {
     docs: {
@@ -26,6 +30,7 @@ export const Overview: Story = {
   },
   render: OverviewExample,
 };
+
 export const Composition: Story = {
   parameters: {
     docs: {
@@ -35,6 +40,7 @@ export const Composition: Story = {
   },
   render: CompositionExample,
 };
+
 export const Changes: Story = {
   parameters: {
     docs: {

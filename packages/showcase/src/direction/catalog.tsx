@@ -14,15 +14,15 @@ import OverviewSource from "./variants/overview.tsx?raw";
 
 const meta = {
   component: DirectionProvider,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("direction"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof DirectionProvider>;
 
 export default meta;
@@ -30,8 +30,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{ direction: "ltr" | "rtl" }> = {
-  args: { direction: "ltr" },
   argTypes: { direction: { control: "select", options: ["ltr", "rtl"] } },
+  args: { direction: "ltr" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("direction", "playground") },

@@ -1,9 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "toggle-examples",
-  "type": "registry:item",
-  "title": "Toggle examples",
   "description": "All toggle examples.",
+  "name": "toggle-examples",
   "registryDependencies": [
     "@erbium-examples/toggle-playground",
     "@erbium-examples/toggle-overview",
@@ -13,5 +11,7 @@
     "@erbium-examples/toggle-disabled",
     "@erbium-examples/toggle-with-text",
     "@erbium-examples/toggle-size"
-  ]
+  ],
+  "title": "Toggle examples",
+  "type": "registry:item"
 }

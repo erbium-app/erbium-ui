@@ -3,8 +3,8 @@ import {
   SelectValue,
   SelectContent,
   SelectItem,
+  Select,
 } from "@erbium/ui/components/select";
-import { Select } from "@erbium/ui/components/select";
 
 const Example = (args: {
   size: "default" | "sm";

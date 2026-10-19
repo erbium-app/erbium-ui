@@ -42,15 +42,15 @@ import LinkButtonSource from "./variants/link-button.tsx?raw";
 
 const meta = {
   component: Marker,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("marker"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Marker>;
 
 export default meta;
@@ -62,15 +62,15 @@ export const Playground: StoryObj<{
   asSpan: boolean;
   className: string;
 }> = {
-  args: { variant: "default", asSpan: false, className: "" },
   argTypes: {
+    asSpan: { control: "boolean" },
+    className: { control: "text" },
     variant: {
       control: "select",
       options: ["default", "separator", "border"],
     },
-    asSpan: { control: "boolean" },
-    className: { control: "text" },
   },
+  args: { asSpan: false, className: "", variant: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("marker", "playground") },

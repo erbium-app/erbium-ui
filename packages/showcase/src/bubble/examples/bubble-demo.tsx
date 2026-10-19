@@ -1,4 +1,5 @@
 import { Bubble, BubbleContent, BubbleGroup } from "@erbium/ui/components/bubble";
+
 export default function Demo() {
   return (
     <BubbleGroup>

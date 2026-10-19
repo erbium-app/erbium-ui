@@ -30,27 +30,30 @@ const projects = [
   "Design templates",
   "Design archive",
 ].map((name, id) => ({ id, name }));
+
 type Project = (typeof projects)[number];
 
 export default function AsyncSearchExample() {
   const [query, setQuery] = useState("");
-  const [response, setResponse] = useState({ query: "", items: projects });
+  const [response, setResponse] = useState({ items: projects, query: "" });
   const [selected, setSelected] = useState<Project | null>(null);
   const [preview, setPreview] = useState("");
   const loading = response.query !== query;
   useEffect(() => {
-    const timer = setTimeout(
-      () =>
-        setResponse({
-          query,
-          items: projects.filter((project) =>
-            project.name.toLowerCase().includes(query.toLowerCase()),
-          ),
-        }),
-      350,
-    );
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setResponse({
+        items: projects.filter((project) =>
+          project.name.toLowerCase().includes(query.toLowerCase()),
+        ),
+        query,
+      });
+    }, 350);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [query]);
+
   return (
     <div className="grid gap-related">
       <Combobox
@@ -61,7 +64,9 @@ export default function AsyncSearchExample() {
         onValueChange={setSelected}
         onInputValueChange={setQuery}
         itemToStringLabel={(project) => project.name}
-        onItemHighlighted={(project) => setPreview(project?.name ?? "")}
+        onItemHighlighted={(project) => {
+          setPreview(project?.name ?? "");
+        }}
       >
         <ComboboxTrigger render={<Button variant="outline" className="w-72 justify-between" />}>
           <ComboboxValue placeholder="Find a project" />

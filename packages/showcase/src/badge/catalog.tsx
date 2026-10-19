@@ -31,12 +31,12 @@ import WithSpinnerSource from "./variants/with-spinner.tsx?raw";
 const meta = {
   component: Badge,
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("badge"),
       },
     },
+    layout: "centered",
   },
 } satisfies Meta<typeof Badge>;
 
@@ -45,7 +45,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Badge> = {
-  args: { variant: "default", children: "Badge", className: "" },
   argTypes: {
     variant: {
       control: "select",
@@ -75,6 +74,7 @@ export const Playground: StoryObj<typeof Badge> = {
       ],
     },
   },
+  args: { children: "Badge", className: "", variant: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("badge", "playground") },

@@ -50,15 +50,15 @@ import AlphanumericSource from "./variants/alphanumeric.tsx?raw";
 
 const meta = {
   component: OTPField,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("otp-field"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof OTPField>;
 
 export default meta;
@@ -71,13 +71,13 @@ export const Playground: StoryObj<{
   validationType: "numeric" | "alphanumeric" | "none";
   isValidating: boolean;
 }> = {
-  args: { length: 6, disabled: false, validationType: "numeric", isValidating: false },
   argTypes: {
-    length: { control: { type: "number", min: 1, max: 8 } },
     disabled: { control: "boolean" },
-    validationType: { control: "select", options: ["numeric", "alphanumeric", "none"] },
     isValidating: { control: "boolean" },
+    length: { control: { max: 8, min: 1, type: "number" } },
+    validationType: { control: "select", options: ["numeric", "alphanumeric", "none"] },
   },
+  args: { disabled: false, isValidating: false, length: 6, validationType: "numeric" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("otp-field", "playground") },

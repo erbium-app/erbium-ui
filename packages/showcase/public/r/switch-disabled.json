@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/styles", "@erbium/switch"],
   "files": [
     {
+      "content": "import { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst Example = () => <Switch disabled aria-label=\"Unavailable\" />;\n\nexport default Example;\n",
       "path": "src/switch/variants/disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/switch/variants/disabled.tsx",
-      "content": "import { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst Example = () => <Switch disabled aria-label=\"Unavailable\" />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

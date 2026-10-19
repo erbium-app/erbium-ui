@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/scroll-area", "@erbium/separator", "@erbium/styles"],
   "files": [
     {
+      "content": "import * as React from \"react\";\n\nimport { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);\n\nexport default function ScrollAreaDemo() {\n  return (\n    <ScrollArea className=\"h-72 w-48 rounded-xl border surface-panel\">\n      <div className=\"p-4\">\n        <h4 className=\"mb-4 text-subtitle\">Tags</h4>\n        {tags.map((tag) => (\n          <React.Fragment key={tag}>\n            <div className=\"text-caption\">{tag}</div>\n            <Separator className=\"my-2\" />\n          </React.Fragment>\n        ))}\n      </div>\n    </ScrollArea>\n  );\n}\n",
       "path": "src/scroll-area/examples/scroll-area-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/scroll-area/examples/scroll-area-demo.tsx",
-      "content": "import * as React from \"react\";\n\nimport { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);\n\nexport default function ScrollAreaDemo() {\n  return (\n    <ScrollArea className=\"h-72 w-48 rounded-xl border surface-panel\">\n      <div className=\"p-4\">\n        <h4 className=\"mb-4 text-subtitle\">Tags</h4>\n        {tags.map((tag) => (\n          <React.Fragment key={tag}>\n            <div className=\"text-caption\">{tag}</div>\n            <Separator className=\"my-2\" />\n          </React.Fragment>\n        ))}\n      </div>\n    </ScrollArea>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import Demo from \"../examples/scroll-area-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/scroll-area/variants/overview.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/scroll-area/variants/overview.tsx",
-      "content": "import Demo from \"../examples/scroll-area-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

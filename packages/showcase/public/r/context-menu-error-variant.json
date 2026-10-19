@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/context-menu", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n  ContextMenuList,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuError() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuList>\n          <ContextMenuGroup>\n            <ContextMenuItem>\n              <Icon name=\"pencil\" />\n              Edit\n            </ContextMenuItem>\n            <ContextMenuItem>\n              <Icon name=\"share-01\" />\n              Share\n            </ContextMenuItem>\n          </ContextMenuGroup>\n          <ContextMenuSeparator />\n          <ContextMenuGroup>\n            <ContextMenuItem variant=\"error\">\n              <Icon name=\"trash\" />\n              Delete\n            </ContextMenuItem>\n          </ContextMenuGroup>\n        </ContextMenuList>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n",
       "path": "src/context-menu/examples/context-menu-error.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/context-menu/examples/context-menu-error.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  ContextMenu,\n  ContextMenuContent,\n  ContextMenuGroup,\n  ContextMenuItem,\n  ContextMenuSeparator,\n  ContextMenuTrigger,\n  ContextMenuList,\n} from \"@/registry/erbium/ui/context-menu\";\n\nexport function ContextMenuError() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption\">\n        <span className=\"hidden pointer-fine:inline-block\">Right click here</span>\n        <span className=\"hidden pointer-coarse:inline-block\">Long press here</span>\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuList>\n          <ContextMenuGroup>\n            <ContextMenuItem>\n              <Icon name=\"pencil\" />\n              Edit\n            </ContextMenuItem>\n            <ContextMenuItem>\n              <Icon name=\"share-01\" />\n              Share\n            </ContextMenuItem>\n          </ContextMenuGroup>\n          <ContextMenuSeparator />\n          <ContextMenuGroup>\n            <ContextMenuItem variant=\"error\">\n              <Icon name=\"trash\" />\n              Delete\n            </ContextMenuItem>\n          </ContextMenuGroup>\n        </ContextMenuList>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { ContextMenuError } from \"../examples/context-menu-error\";\n\nconst Example = () => <ContextMenuError />;\n\nexport default Example;\n",
       "path": "src/context-menu/variants/error-variant.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/context-menu/variants/error-variant.tsx",
-      "content": "import { ContextMenuError } from \"../examples/context-menu-error\";\n\nconst Example = () => <ContextMenuError />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

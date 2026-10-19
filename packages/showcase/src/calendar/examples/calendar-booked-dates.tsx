@@ -7,8 +7,10 @@ export function CalendarBookedDates() {
   const [date, setDate] = React.useState<Date | undefined>(
     () => new Date(new Date().getFullYear(), 0, 6),
   );
+
   const [bookedDates] = React.useState(() => {
     const year = new Date().getFullYear();
+
     return Array.from({ length: 15 }, (_, i) => new Date(year, 0, 12 + i));
   });
 

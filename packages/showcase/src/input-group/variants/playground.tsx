@@ -3,8 +3,8 @@ import {
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
+  InputGroup,
 } from "@erbium/ui/components/input-group";
-import { InputGroup } from "@erbium/ui/components/input-group";
 
 const Example = (args: {
   align: "inline-start" | "inline-end" | "block-start" | "block-end";

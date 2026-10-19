@@ -30,15 +30,15 @@ import PositioningSource from "./variants/positioning.tsx?raw";
 
 const meta = {
   component: HoverCard,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("hover-card"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof HoverCard>;
 
 export default meta;
@@ -51,13 +51,13 @@ export const Playground: StoryObj<{
   sideOffset: number;
   defaultOpen: boolean;
 }> = {
-  args: { side: "bottom", align: "center", sideOffset: 4, defaultOpen: false },
   argTypes: {
-    side: { control: "select", options: ["top", "right", "bottom", "left"] },
     align: { control: "select", options: ["start", "center", "end"] },
-    sideOffset: { control: "number" },
     defaultOpen: { control: "boolean" },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
+    sideOffset: { control: "number" },
   },
+  args: { align: "center", defaultOpen: false, side: "bottom", sideOffset: 4 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("hover-card", "playground") },

@@ -4,8 +4,11 @@ import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 type ScrollAreaFade = "vertical" | "horizontal" | false;
+
 type ScrollAreaOrientation = "vertical" | "horizontal" | "both";
+
 type ScrollBarSize = "thin" | "default";
+
 type ScrollBarVisibility = "always" | "hover" | "scroll";
 
 const scrollAreaViewportVariants = cva(
@@ -13,9 +16,9 @@ const scrollAreaViewportVariants = cva(
   {
     variants: {
       fade: {
-        vertical: "data-has-overflow-y:scroll-fade-y",
         horizontal: "data-has-overflow-x:scroll-fade-x",
         none: "",
+        vertical: "data-has-overflow-y:scroll-fade-y",
       },
     },
   },
@@ -24,20 +27,20 @@ const scrollAreaViewportVariants = cva(
 const scrollBarThumbVariants = cva(
   "relative rounded-full bg-scrollbar-thumb transition-[background-color,transform] duration-200 hover:bg-scrollbar-thumb-hover active:bg-scrollbar-thumb-active data-scrolling:bg-scrollbar-thumb-scrolling forced-colors:bg-[ButtonText]",
   {
+    compoundVariants: [
+      { className: "w-scrollbar-thumb-default", orientation: "vertical", size: "default" },
+      { className: "h-scrollbar-thumb-default", orientation: "horizontal", size: "default" },
+    ],
     variants: {
       orientation: {
-        vertical: "mx-auto w-scrollbar-thumb",
         horizontal: "my-auto h-scrollbar-thumb",
+        vertical: "mx-auto w-scrollbar-thumb",
       },
       size: {
-        thin: "",
         default: "",
+        thin: "",
       },
     },
-    compoundVariants: [
-      { orientation: "vertical", size: "default", className: "w-scrollbar-thumb-default" },
-      { orientation: "horizontal", size: "default", className: "h-scrollbar-thumb-default" },
-    ],
   },
 );
 
@@ -92,8 +95,8 @@ function ScrollArea({
         role={viewportRole}
         render={viewportRender}
         className={scrollAreaViewportVariants({
-          fade: fade || "none",
           className: viewportClassName,
+          fade: fade || "none",
         })}
       >
         <ScrollAreaContent className={contentClassName}>{children}</ScrollAreaContent>
@@ -165,7 +168,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.Thumb
         data-slot="scroll-area-thumb"
-        className={cn(scrollBarThumbVariants({ orientation, size, className: thumbClassName }))}
+        className={cn(scrollBarThumbVariants({ className: thumbClassName, orientation, size }))}
       />
     </ScrollAreaPrimitive.Scrollbar>
   );

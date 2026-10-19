@@ -5,6 +5,7 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from "@erbium/ui/components/message-scroller";
+
 export default function Demo() {
   return (
     <MessageScrollerProvider>

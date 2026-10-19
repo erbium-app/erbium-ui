@@ -3,27 +3,29 @@ import { useTextMorph as useTextMorphPrimitive } from "torph/react";
 import { cn } from "../lib/utils";
 
 /** Critically damped, so digits land without overshooting their slot. */
-const textMorphSpring = { stiffness: 400, damping: 30 } as const;
+const textMorphSpring = { damping: 30, stiffness: 400 } as const;
 
 type TextMorphOptions = Parameters<typeof useTextMorphPrimitive>[0];
 
 /** Drives a morph imperatively, for text that changes outside React's render. */
 function useTextMorph({ ease = textMorphSpring, ...options }: TextMorphOptions = {}) {
   const { ref, update } = useTextMorphPrimitive({ ease, ...options });
+
   const setRef = React.useCallback(
     (element: HTMLElement | null) => {
       ref.current = element;
     },
     [ref],
   );
+
   return { ref: setRef, update };
 }
 
 const escapeHtml = (value: string) =>
-  value.replace(
+  value.replaceAll(
     /[&<>"']/g,
     (character) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character] ??
+      ({ '"': "&quot;", "&": "&amp;", "'": "&#39;", "<": "&lt;", ">": "&gt;" })[character] ??
       character,
   );
 
@@ -67,20 +69,22 @@ function TextMorph({
     respectReducedMotion,
     scale,
   });
+
   const cursorRef = React.useRef(cursorIndex);
   React.useLayoutEffect(() => {
     cursorRef.current = cursorIndex;
   }, [cursorIndex]);
+
   // torph owns the DOM after mount; a stable object keeps React from rewriting it.
   const [initialHtml] = React.useState(() => ({
     __html: escapeHtml(
       typeof children === "number"
         ? children.toLocaleString(locale, {
-            minimumFractionDigits: decimals,
             maximumFractionDigits: decimals,
+            minimumFractionDigits: decimals,
           })
         : children,
-    ).replace(/\n/g, "<br>"),
+    ).replaceAll("\n", "<br>"),
   }));
 
   React.useEffect(() => {
@@ -99,4 +103,5 @@ function TextMorph({
 }
 
 export { TextMorph, textMorphSpring, useTextMorph };
+
 export type { TextMorphOptions, TextMorphProps };

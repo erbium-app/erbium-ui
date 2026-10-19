@@ -1,26 +1,30 @@
 import { documentationSections } from "@erbium/content/taxonomy";
 import components from "virtual:docs-navigation";
+
 export { components };
+
 export const guides = [
-  { href: "/", file: "introduction", title: "Introduction", section: "Overview" },
-  { href: "/docs/roadmap", file: "roadmap", title: "Roadmap", section: "Overview" },
-  { href: "/docs/installation", file: "installation", title: "Installation", section: "Guides" },
+  { file: "introduction", href: "/", section: "Overview", title: "Introduction" },
+  { file: "roadmap", href: "/docs/roadmap", section: "Overview", title: "Roadmap" },
+  { file: "installation", href: "/docs/installation", section: "Guides", title: "Installation" },
   {
-    href: "/docs/getting-started",
     file: "getting-started",
-    title: "Using components",
+    href: "/docs/getting-started",
     section: "Guides",
+    title: "Using components",
   },
-  { href: "/docs/utilities/shimmer", file: "shimmer", title: "Shimmer", section: "Utilities" },
+  { file: "shimmer", href: "/docs/utilities/shimmer", section: "Utilities", title: "Shimmer" },
 ];
+
 export const pages = [...guides, ...components];
+
 export const navigationGroups = [
   "Overview",
   "Guides",
   ...documentationSections.map((section) => section.title),
 ].map((title) => ({
-  title,
   items: pages
     .filter((page) => page.section === title)
     .sort((a, b) => a.title.localeCompare(b.title)),
+  title,
 }));

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
   "files": [
     {
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nconst Example = () => (\n  <div className=\"w-60\">\n    <AspectRatio ratio={1}>\n      <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n        Square 1:1\n      </div>\n    </AspectRatio>\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/aspect-ratio/variants/square.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/aspect-ratio/variants/square.tsx",
-      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nconst Example = () => (\n  <div className=\"w-60\">\n    <AspectRatio ratio={1}>\n      <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n        Square 1:1\n      </div>\n    </AspectRatio>\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

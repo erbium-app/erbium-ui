@@ -8,67 +8,67 @@ import { Chart } from "@erbium/ui/components/chart";
 import { chartTextRole } from "@erbium/ui/lib/typography";
 
 const monthlyVisitors = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { desktop: 186, mobile: 80, month: "January" },
+  { desktop: 305, mobile: 200, month: "February" },
+  { desktop: 237, mobile: 120, month: "March" },
+  { desktop: 73, mobile: 190, month: "April" },
+  { desktop: 209, mobile: 130, month: "May" },
+  { desktop: 214, mobile: 140, month: "June" },
 ];
 
 const visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [
-  { month, device: "Desktop", visitors: desktop },
-  { month, device: "Mobile", visitors: mobile },
+  { device: "Desktop", month, visitors: desktop },
+  { device: "Mobile", month, visitors: mobile },
 ]);
 
 export function visitorChart(
   options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},
 ) {
   return defineChart({
-    theme: {
-      foreground: "var(--foreground)",
-      muted: "var(--muted-foreground)",
-      grid: "var(--border)",
-    },
-    marks: [
-      barY(visitors, {
-        x: "month",
-        y: "visitors",
-        z: "device",
-        color: "device",
-        layout: group({ padding: 0.12 }),
-        radius: 4,
-        inset: 1,
-      }),
-    ],
-    scales: {
-      x: {
-        scale: scaleBand,
-        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,
-      },
-      y: { scale: scaleLinear, nice: true, grid: options.grid },
-    },
     color: {
       scale: scaleOrdinal(["Desktop", "Mobile"], ["var(--chart-1)", "var(--chart-2)"]),
       ...(options.legend
         ? {
             legend: colorLegend({
-              label: "Device",
               items: colorLegendItems<"Desktop" | "Mobile">({
-                justify: "start",
                 gap: 16,
-                rowGap: 8,
-                indicator: { shape: "dot", width: 8, height: 8, gap: 7 },
+                indicator: { gap: 7, height: 8, shape: "dot", width: 8 },
+                justify: "start",
                 label: { ...chartTextRole("metadata"), fill: "var(--muted-foreground)" },
+                rowGap: 8,
               }),
+              label: "Device",
             }),
           }
         : {}),
     },
+    marks: [
+      barY(visitors, {
+        color: "device",
+        inset: 1,
+        layout: group({ padding: 0.12 }),
+        radius: 4,
+        x: "month",
+        y: "visitors",
+        z: "device",
+      }),
+    ],
+    scales: {
+      x: {
+        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,
+        scale: scaleBand,
+      },
+      y: { grid: options.grid, nice: true, scale: scaleLinear },
+    },
+    theme: {
+      foreground: "var(--foreground)",
+      grid: "var(--border)",
+      muted: "var(--muted-foreground)",
+    },
     ...(options.tooltip
       ? {
           focus: "group-x" as const,
-          tooltip: { use: tooltip, className: "erbium-chart-tooltip" },
+          tooltip: { className: "erbium-chart-tooltip", use: tooltip },
         }
       : {}),
   });

@@ -8,8 +8,8 @@
   "files": [
     {
       "path": "src/hooks/use-media-query.ts",
-      "type": "registry:hook",
       "target": "@hooks/use-media-query.ts",
+      "type": "registry:hook",
       "content": "export { useMediaQuery } from \"@base-ui/react/unstable-use-media-query\";\n"
     }
   ]

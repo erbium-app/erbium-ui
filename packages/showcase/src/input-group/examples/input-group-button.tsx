@@ -48,7 +48,12 @@ export default function InputGroupButtonExample() {
         <InputGroupAddon className="pl-1.5 text-muted-foreground">https://</InputGroupAddon>
         <InputGroupInput id="input-secure-19" />
         <InputGroupAddon align="inline-end">
-          <InputGroupButton onClick={() => setIsFavorite(!isFavorite)} size="icon-xs">
+          <InputGroupButton
+            onClick={() => {
+              setIsFavorite(!isFavorite);
+            }}
+            size="icon-xs"
+          >
             <Icon
               name="star"
               data-favorite={isFavorite}

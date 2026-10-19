@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "use-is-mobile-examples",
-  "type": "registry:item",
-  "title": "Use Is Mobile examples",
   "description": "All use-is-mobile examples.",
-  "registryDependencies": ["@erbium-examples/use-is-mobile-overview"]
+  "name": "use-is-mobile-examples",
+  "registryDependencies": ["@erbium-examples/use-is-mobile-overview"],
+  "title": "Use Is Mobile examples",
+  "type": "registry:item"
 }

@@ -5,10 +5,14 @@ import type { ComponentProps, CSSProperties } from "react";
 import { cn } from "../lib/utils";
 
 type StepIndicatorOrientation = "horizontal" | "vertical";
+
 type StepIndicatorStatus = "complete" | "current" | "upcoming";
 
 type StepIndicatorVariant = "steps" | "dots";
 
+// An interface has no implicit index signature, so this alias must stay a
+// `type` to remain assignable to Base UI's `Record<string, unknown>` bounds.
+// oxlint-disable-next-line typescript/consistent-type-definitions
 type StepIndicatorState = {
   value: number;
   variant: StepIndicatorVariant;
@@ -23,12 +27,17 @@ type StepIndicatorContextValue = StepIndicatorState & {
 };
 
 const StepIndicatorContext = createContext<StepIndicatorContextValue | null>(null);
+
 /** Base UI's prop types do not admit data-* keys in object literals. */
 const dataAttributes = (attributes: Record<string, string | undefined>) => attributes;
 
 function useStepIndicator() {
   const context = use(StepIndicatorContext);
-  if (!context) throw new Error("StepIndicatorItem must be inside StepIndicator.");
+
+  if (!context) {
+    throw new Error("StepIndicatorItem must be inside StepIndicator.");
+  }
+
   return context;
 }
 
@@ -72,22 +81,26 @@ function StepIndicator({
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
   const value = valueProp ?? uncontrolled;
   const interactive = onValueChange != null;
+
   const select = useCallback(
     (index: number) => {
-      if (valueProp === undefined) setUncontrolled(index);
+      if (valueProp === undefined) {
+        setUncontrolled(index);
+      }
+
       onValueChange?.(index);
     },
     [valueProp, onValueChange],
   );
-  const state: StepIndicatorState = { value, variant, count, orientation, interactive };
+
+  const state: StepIndicatorState = { count, interactive, orientation, value, variant };
+
   const element = useRender({
     defaultTagName: "ol",
-    render,
-    state,
     props: mergeProps<"ol">(
       {
         "aria-label": "Progress",
-        ...dataAttributes({ "data-slot": "step-indicator", "data-orientation": orientation }),
+        ...dataAttributes({ "data-orientation": orientation, "data-slot": "step-indicator" }),
         className: cn(
           "m-0 flex w-fit list-none p-0 [--step-direction:1] rtl:[--step-direction:-1]",
           orientation === "horizontal" ? "flex-row items-center" : "flex-col items-center",
@@ -105,10 +118,15 @@ function StepIndicator({
       },
       props,
     ),
+    render,
+    state,
   });
+
   return <StepIndicatorContext value={{ ...state, reach, select }}>{element}</StepIndicatorContext>;
 }
 
+// Same index-signature constraint as StepIndicatorState above.
+// oxlint-disable-next-line typescript/consistent-type-definitions
 type StepIndicatorItemState = {
   index: number;
   status: StepIndicatorStatus;
@@ -133,7 +151,10 @@ function derivedStatus(
   value: number,
   variant: StepIndicatorVariant,
 ): StepIndicatorStatus {
-  if (index < value && variant === "steps") return "complete";
+  if (index < value && variant === "steps") {
+    return "complete";
+  }
+
   return index === value ? "current" : "upcoming";
 }
 
@@ -152,7 +173,8 @@ function StepIndicatorItem({
   // Blocked by `reach` or by the item's own `disabled`. The current step stays selectable.
   const disabled = disabledProp || (index > reach && index !== value);
   const status = statusProp ?? derivedStatus(index, value, variant);
-  const state: StepIndicatorItemState = { index, status, invalid, disabled };
+  const state: StepIndicatorItemState = { disabled, index, invalid, status };
+
   const name = [
     label ?? `Step ${index + 1}`,
     status === "complete" ? "completed" : null,
@@ -160,27 +182,28 @@ function StepIndicatorItem({
   ]
     .filter(Boolean)
     .join(", ");
+
   const control = useRender({
     defaultTagName: interactive ? "button" : "span",
-    render,
-    state,
     props: mergeProps<"button">(
       {
         "aria-label": name,
         "aria-current": status === "current" ? "step" : undefined,
         ...dataAttributes({
+          "data-disabled": disabled ? "" : undefined,
+          "data-invalid": invalid ? "" : undefined,
           "data-slot": "step-indicator-control",
           "data-status": status,
-          "data-invalid": invalid ? "" : undefined,
-          "data-disabled": disabled ? "" : undefined,
         }),
         ...(interactive
           ? {
-              type: "button" as const,
               disabled,
               onClick(event) {
-                if (!event.defaultPrevented) select(index);
+                if (!event.defaultPrevented) {
+                  select(index);
+                }
               },
+              type: "button" as const,
             }
           : {}),
         className: cn(
@@ -195,7 +218,10 @@ function StepIndicatorItem({
       },
       { ...props, onClick },
     ),
+    render,
+    state,
   });
+
   return (
     <li data-slot="step-indicator-item" data-orientation={orientation} className="flex">
       {control}
@@ -205,6 +231,7 @@ function StepIndicatorItem({
 
 function StepIndicatorDot({ orientation }: { orientation: StepIndicatorOrientation }) {
   const horizontal = orientation === "horizontal";
+
   return (
     <span
       aria-hidden="true"
@@ -238,6 +265,7 @@ function StepIndicatorDot({ orientation }: { orientation: StepIndicatorOrientati
 }
 
 export { StepIndicator, StepIndicatorItem };
+
 export type {
   StepIndicatorItemProps,
   StepIndicatorItemState,

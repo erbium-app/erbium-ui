@@ -1,22 +1,22 @@
 export const alertContent = {
   default: {
-    title: "Workspace connected",
     description: "The agent can read the app and package files for this task.",
+    title: "Workspace connected",
   },
   error: {
-    title: "Tool call failed",
     description: "The agent could not run the test suite. Check the workspace process.",
+    title: "Tool call failed",
   },
   info: {
-    title: "Plan ready",
     description: "The agent identified three files to update before writing code.",
+    title: "Plan ready",
   },
   success: {
-    title: "Verification passed",
     description: "Type checks and 42 tests passed after the changes.",
+    title: "Verification passed",
   },
   warning: {
-    title: "Approval required",
     description: "The agent needs permission to install a new dependency.",
+    title: "Approval required",
   },
 };

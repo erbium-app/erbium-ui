@@ -34,15 +34,15 @@ import ExampleLegendSource from "./variants/example-legend.tsx?raw";
 
 const meta = {
   component: Chart,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("chart"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Chart>;
 
 export default meta;
@@ -57,15 +57,15 @@ export const Playground: StoryObj<{
   tooltip: boolean;
   legend: boolean;
 }> = {
-  args: { height: 240, initialWidth: 640, grid: false, axis: false, tooltip: false, legend: false },
   argTypes: {
-    height: { control: { type: "number", min: 120, max: 600 } },
-    initialWidth: { control: { type: "number", min: 320, max: 960 } },
-    grid: { control: "boolean" },
     axis: { control: "boolean" },
-    tooltip: { control: "boolean" },
+    grid: { control: "boolean" },
+    height: { control: { max: 600, min: 120, type: "number" } },
+    initialWidth: { control: { max: 960, min: 320, type: "number" } },
     legend: { control: "boolean" },
+    tooltip: { control: "boolean" },
   },
+  args: { axis: false, grid: false, height: 240, initialWidth: 640, legend: false, tooltip: false },
   parameters: {
     docs: {
       description: { story: variantDocumentation("chart", "playground") },

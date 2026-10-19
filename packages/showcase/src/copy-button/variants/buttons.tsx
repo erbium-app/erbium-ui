@@ -6,6 +6,7 @@ import {
   CopyButtonLabelCopied,
   CopyButtonLabelError,
 } from "@erbium/ui/blocks/copy-button";
+
 export default function Example() {
   return (
     <div className="flex flex-wrap items-center gap-3">

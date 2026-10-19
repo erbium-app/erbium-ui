@@ -6,11 +6,18 @@ import {
   InputGroupAddon,
   InputGroupButton,
 } from "@erbium/ui/components/input-group";
+
 export default function Example() {
   const [value, setValue] = useState("https://erbium.dev");
+
   return (
     <InputGroup className="w-80">
-      <InputGroupInput value={value} onChange={(event) => setValue(event.target.value)} />
+      <InputGroupInput
+        value={value}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+      />
       <InputGroupAddon align="inline-end">
         <CopyButton
           value={value}

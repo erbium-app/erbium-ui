@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles"],
   "files": [
     {
+      "content": "import {\n  Questionnaire,\n  QuestionnaireItem,\n  QuestionnaireTitle,\n  QuestionnaireDescription,\n  QuestionnaireChoices,\n  QuestionnaireChoice,\n  QuestionnaireActions,\n  QuestionnaireNext,\n} from \"@/registry/erbium/ui/questionnaire\";\n\nexport default function Demo() {\n  return (\n    <Questionnaire>\n      <QuestionnaireItem name=\"plan\">\n        <QuestionnaireTitle>What is your preferred plan?</QuestionnaireTitle>\n        <QuestionnaireDescription>Choose one option to continue.</QuestionnaireDescription>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"starter\">Starter</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"pro\">Pro</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireActions>\n          <QuestionnaireNext>Continue</QuestionnaireNext>\n        </QuestionnaireActions>\n      </QuestionnaireItem>\n    </Questionnaire>\n  );\n}\n",
       "path": "src/questionnaire/examples/questionnaire-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/questionnaire/examples/questionnaire-demo.tsx",
-      "content": "import {\n  Questionnaire,\n  QuestionnaireItem,\n  QuestionnaireTitle,\n  QuestionnaireDescription,\n  QuestionnaireChoices,\n  QuestionnaireChoice,\n  QuestionnaireActions,\n  QuestionnaireNext,\n} from \"@/registry/erbium/ui/questionnaire\";\nexport default function Demo() {\n  return (\n    <Questionnaire>\n      <QuestionnaireItem name=\"plan\">\n        <QuestionnaireTitle>What is your preferred plan?</QuestionnaireTitle>\n        <QuestionnaireDescription>Choose one option to continue.</QuestionnaireDescription>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"starter\">Starter</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"pro\">Pro</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireActions>\n          <QuestionnaireNext>Continue</QuestionnaireNext>\n        </QuestionnaireActions>\n      </QuestionnaireItem>\n    </Questionnaire>\n  );\n}\n"
+      "type": "registry:component"
     }
   ]
 }

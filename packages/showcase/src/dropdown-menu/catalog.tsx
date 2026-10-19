@@ -60,15 +60,15 @@ import ComplexSource from "./variants/complex.tsx?raw";
 
 const meta = {
   component: DropdownMenu,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("dropdown-menu"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof DropdownMenu>;
 
 export default meta;
@@ -80,12 +80,12 @@ export const Playground: StoryObj<{
   align: "start" | "center" | "end";
   defaultOpen: boolean;
 }> = {
-  args: { side: "bottom", align: "start", defaultOpen: false },
   argTypes: {
-    side: { control: "select", options: ["top", "right", "bottom", "left"] },
     align: { control: "select", options: ["start", "center", "end"] },
     defaultOpen: { control: "boolean" },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
+  args: { align: "start", defaultOpen: false, side: "bottom" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("dropdown-menu", "playground") },

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <div className=\"flex flex-wrap gap-related\">\n    {(\n      [\n        \"default\",\n        \"secondary\",\n        \"outline\",\n        \"ghost\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"link\",\n      ] as const\n    ).map((variant) => (\n      <Button key={variant} variant={variant}>\n        {variant}\n      </Button>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/button/variants/variants.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/variants.tsx",
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <div className=\"flex flex-wrap gap-related\">\n    {(\n      [\n        \"default\",\n        \"secondary\",\n        \"outline\",\n        \"ghost\",\n        \"error\",\n        \"ghost-error\",\n        \"ghost-success\",\n        \"ghost-warning\",\n        \"ghost-info\",\n        \"link\",\n      ] as const\n    ).map((variant) => (\n      <Button key={variant} variant={variant}>\n        {variant}\n      </Button>\n    ))}\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

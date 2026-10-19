@@ -37,6 +37,7 @@ const projects = [
 export default function SearchAndControlsExample() {
   const [selected, setSelected] = useState("Design system");
   const [zoom, setZoom] = useState(50);
+
   return (
     <Drawer showSwipeHandle>
       <DrawerTrigger render={<Button variant="outline" />}>Choose workspace project</DrawerTrigger>
@@ -50,7 +51,13 @@ export default function SearchAndControlsExample() {
           <CommandEmpty>No projects found.</CommandEmpty>
           <CommandList>
             {(project) => (
-              <CommandItem key={project} value={project} onClick={() => setSelected(project)}>
+              <CommandItem
+                key={project}
+                value={project}
+                onClick={() => {
+                  setSelected(project);
+                }}
+              >
                 {project}
               </CommandItem>
             )}
@@ -62,7 +69,9 @@ export default function SearchAndControlsExample() {
             <Slider
               data-base-ui-swipe-ignore="x"
               value={zoom}
-              onValueChange={(value) => setZoom(typeof value === "number" ? value : value[0])}
+              onValueChange={(value) => {
+                setZoom(typeof value === "number" ? value : value[0]);
+              }}
               aria-label="Preview scale"
             />
           </Field>

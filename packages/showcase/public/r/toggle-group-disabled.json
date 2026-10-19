@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport default function ToggleGroupDemo() {\n  return (\n    <ToggleGroup disabled>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Icon name=\"bold\" className=\"h-4 w-4\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Icon name=\"italic\" className=\"h-4 w-4\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"strikethrough\" aria-label=\"Toggle strikethrough\">\n        <Icon name=\"underline\" className=\"h-4 w-4\" />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
       "path": "src/toggle-group/examples/toggle-group-disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle-group/examples/toggle-group-disabled.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport default function ToggleGroupDemo() {\n  return (\n    <ToggleGroup disabled>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Icon name=\"bold\" className=\"h-4 w-4\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Icon name=\"italic\" className=\"h-4 w-4\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"strikethrough\" aria-label=\"Toggle strikethrough\">\n        <Icon name=\"underline\" className=\"h-4 w-4\" />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleToggleGroupDisabled from \"../examples/toggle-group-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupDisabled />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle-group/variants/disabled.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/toggle-group/variants/disabled.tsx",
-      "content": "import ExampleToggleGroupDisabled from \"../examples/toggle-group-disabled\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleToggleGroupDisabled />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

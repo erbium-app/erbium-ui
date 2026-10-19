@@ -14,46 +14,43 @@ import {
 
 const commandGroups = [
   {
-    label: "Suggestions",
     items: [
       {
-        label: "Calendar",
-        disabled: false,
         content: (
           <>
             <Icon name="calendar-01" />
             <span>Calendar</span>
           </>
         ),
+        disabled: false,
+        label: "Calendar",
       },
       {
-        label: "Search Emoji",
-        disabled: false,
         content: (
           <>
             <Icon name="smile" />
             <span>Search Emoji</span>
           </>
         ),
+        disabled: false,
+        label: "Search Emoji",
       },
       {
-        label: "Calculator",
-        disabled: true,
         content: (
           <>
             <Icon name="calculator" />
             <span>Calculator</span>
           </>
         ),
+        disabled: true,
+        label: "Calculator",
       },
     ],
+    label: "Suggestions",
   },
   {
-    label: "Settings",
     items: [
       {
-        label: "Profile",
-        disabled: false,
         content: (
           <>
             <Icon name="user" />
@@ -61,10 +58,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+P" />
           </>
         ),
+        disabled: false,
+        label: "Profile",
       },
       {
-        label: "Billing",
-        disabled: false,
         content: (
           <>
             <Icon name="credit-card" />
@@ -72,10 +69,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+B" />
           </>
         ),
+        disabled: false,
+        label: "Billing",
       },
       {
-        label: "Settings",
-        disabled: false,
         content: (
           <>
             <Icon name="settings-01" />
@@ -83,8 +80,11 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+S" />
           </>
         ),
+        disabled: false,
+        label: "Settings",
       },
     ],
+    label: "Settings",
   },
 ];
 

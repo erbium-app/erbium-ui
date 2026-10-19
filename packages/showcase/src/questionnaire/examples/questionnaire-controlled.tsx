@@ -24,9 +24,9 @@ const items = [
 ] as const;
 
 const itemLabels: Record<string, string> = {
-  scope: "Change scope",
   checks: "Verification",
   output: "Final output",
+  scope: "Change scope",
 };
 
 export function QuestionnaireControlled() {
@@ -46,8 +46,8 @@ export function QuestionnaireControlled() {
     const formData = new FormData(event.currentTarget);
 
     toast.add({
-      title: "Agent workflow configured",
       description: `Scope: ${getFormValue(formData, "scope", "None")} · Verification: ${getFormValue(formData, "checks", "None")} · Output: ${getFormValue(formData, "output", "None")}`,
+      title: "Agent workflow configured",
     });
   }
 
@@ -66,7 +66,9 @@ export function QuestionnaireControlled() {
       >
         <QuestionnaireStepIndicator
           reach={reach}
-          onValueChange={(index) => setItem(names[index])}
+          onValueChange={(index) => {
+            setItem(names[index]);
+          }}
         />
 
         <QuestionnaireItem name="scope" required>

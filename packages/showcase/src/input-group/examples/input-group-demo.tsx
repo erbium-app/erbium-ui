@@ -4,6 +4,7 @@ import {
   InputGroupInput,
   InputGroupText,
 } from "@erbium/ui/components/input-group";
+
 export default function Demo() {
   return (
     <InputGroup className="w-80">

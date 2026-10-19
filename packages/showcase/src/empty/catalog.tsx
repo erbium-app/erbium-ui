@@ -38,15 +38,15 @@ import BackgroundSource from "./variants/background.tsx?raw";
 
 const meta = {
   component: Empty,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("empty"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Empty>;
 
 export default meta;
@@ -59,17 +59,17 @@ export const Playground: StoryObj<{
   title: string;
   description: string;
 }> = {
-  args: {
-    className: "",
-    mediaVariant: "icon",
-    title: "No results",
-    description: "Try another search.",
-  },
   argTypes: {
     className: { control: "text" },
+    description: { control: "text" },
     mediaVariant: { control: "select", options: ["default", "icon"] },
     title: { control: "text" },
-    description: { control: "text" },
+  },
+  args: {
+    className: "",
+    description: "Try another search.",
+    mediaVariant: "icon",
+    title: "No results",
   },
   parameters: {
     docs: {

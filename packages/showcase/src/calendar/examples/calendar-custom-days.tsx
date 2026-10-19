@@ -1,6 +1,6 @@
 import * as React from "react";
 import { addDays } from "date-fns";
-import { type DateRange } from "react-day-picker";
+import type { DateRange } from "react-day-picker";
 
 import { Calendar, CalendarDayButton } from "@erbium/ui/components/calendar";
 import { Card } from "@erbium/ui/components/card";
@@ -22,9 +22,7 @@ export function CalendarCustomDays() {
         captionLayout="dropdown"
         className="[--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)]"
         formatters={{
-          formatMonthDropdown: (date) => {
-            return date.toLocaleString("default", { month: "long" });
-          },
+          formatMonthDropdown: (date) => date.toLocaleString("default", { month: "long" }),
         }}
         components={{
           DayButton: ({ children, modifiers, day, ...props }) => {

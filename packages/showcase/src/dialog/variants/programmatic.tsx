@@ -14,9 +14,15 @@ import {
 
 export default function ProgrammaticExample() {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="flex flex-wrap gap-related">
-      <Button variant="outline" onClick={() => setOpen(true)}>
+      <Button
+        variant="outline"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
         Open from application state
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>

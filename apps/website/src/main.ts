@@ -7,7 +7,9 @@ import { router } from "@/router";
 
 const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const syncTheme = () => document.documentElement.classList.toggle("dark", colorScheme.matches);
+
 syncTheme();
+
 colorScheme.addEventListener("change", syncTheme);
 
 createRoot(document.querySelector<HTMLDivElement>("#app")!).render(

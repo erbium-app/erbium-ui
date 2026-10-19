@@ -20,6 +20,7 @@ function SubmitButton({
 }) {
   const [dismissedAttempt, setDismissedAttempt] = useState(0);
   let state: StatefulButtonState = "idle";
+
   if (isSubmitting) {
     state = "loading";
   } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {
@@ -54,6 +55,7 @@ export default function FormDemo({
   const [submitted, setSubmitted] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const request = useAsyncDebouncer(async () => {}, { wait: 450 });
+
   const form = useForm({
     defaultValues: { email: defaultEmail },
     onSubmit: async ({ value }) => {
@@ -66,6 +68,7 @@ export default function FormDemo({
       }
     },
   });
+
   return (
     <form
       noValidate
@@ -94,9 +97,13 @@ export default function FormDemo({
               ref={emailRef}
               type="email"
               value={field.state.value}
-              onFocus={() => field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined })}
+              onFocus={() => {
+                field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined });
+              }}
               onBlur={field.handleBlur}
-              onChange={(event) => field.handleChange(event.target.value)}
+              onChange={(event) => {
+                field.handleChange(event.target.value);
+              }}
             />
             <FieldDescription>We will use this to contact you.</FieldDescription>
             <FieldError errors={field.state.meta.errors} />

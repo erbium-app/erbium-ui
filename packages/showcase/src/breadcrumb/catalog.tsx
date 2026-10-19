@@ -34,15 +34,15 @@ import LinkComponentSource from "./variants/link-component.tsx?raw";
 
 const meta = {
   component: Breadcrumb,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("breadcrumb"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Breadcrumb>;
 
 export default meta;
@@ -50,8 +50,8 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{ separator: string; currentPage: string }> = {
-  args: { separator: "/", currentPage: "Current page" },
-  argTypes: { separator: { control: "text" }, currentPage: { control: "text" } },
+  argTypes: { currentPage: { control: "text" }, separator: { control: "text" } },
+  args: { currentPage: "Current page", separator: "/" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("breadcrumb", "playground") },

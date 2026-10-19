@@ -7,6 +7,7 @@ import {
   NumberFieldDecrement,
   NumberFieldScrubArea,
 } from "@erbium/ui/components/number-field";
+
 export default function Demo() {
   return (
     <Field>

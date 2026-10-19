@@ -54,15 +54,15 @@ import ScrollableSource from "./variants/scrollable.tsx?raw";
 
 const meta = {
   component: MessageScroller,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("message-scroller"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof MessageScroller>;
 
 export default meta;
@@ -75,13 +75,13 @@ export const Playground: StoryObj<{
   messageCount: number;
   busy: boolean;
 }> = {
-  args: { autoScroll: false, scrollPreviousItemPeek: 0, messageCount: 12, busy: false },
   argTypes: {
     autoScroll: { control: "boolean" },
-    scrollPreviousItemPeek: { control: { type: "number", min: 0, max: 200 } },
-    messageCount: { control: { type: "number", min: 1, max: 40 } },
     busy: { control: "boolean" },
+    messageCount: { control: { max: 40, min: 1, type: "number" } },
+    scrollPreviousItemPeek: { control: { max: 200, min: 0, type: "number" } },
   },
+  args: { autoScroll: false, busy: false, messageCount: 12, scrollPreviousItemPeek: 0 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("message-scroller", "playground") },

@@ -70,15 +70,15 @@ import NavigationStateSource from "./variants/navigation-state.tsx?raw";
 
 const meta = {
   component: Questionnaire,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("questionnaire"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Questionnaire>;
 
 export default meta;
@@ -91,17 +91,17 @@ export const Playground: StoryObj<{
   required: boolean;
   choices: number;
 }> = {
-  args: {
-    prompt: "Which plan works best?",
-    description: "Choose one option.",
-    required: true,
-    choices: 2,
-  },
   argTypes: {
-    prompt: { control: "text" },
+    choices: { control: { max: 5, min: 1, type: "number" } },
     description: { control: "text" },
+    prompt: { control: "text" },
     required: { control: "boolean" },
-    choices: { control: { type: "number", min: 1, max: 5 } },
+  },
+  args: {
+    choices: 2,
+    description: "Choose one option.",
+    prompt: "Which plan works best?",
+    required: true,
   },
   parameters: {
     docs: {

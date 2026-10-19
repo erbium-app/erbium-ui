@@ -22,15 +22,15 @@ import NoCloseButtonSource from "./variants/no-close-button.tsx?raw";
 
 const meta = {
   component: Sheet,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("sheet"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Sheet>;
 
 export default meta;
@@ -42,12 +42,12 @@ export const Playground: StoryObj<{
   showCloseButton: boolean;
   defaultOpen: boolean;
 }> = {
-  args: { side: "right", showCloseButton: true, defaultOpen: false },
   argTypes: {
-    side: { control: "select", options: ["top", "right", "bottom", "left"] },
-    showCloseButton: { control: "boolean" },
     defaultOpen: { control: "boolean" },
+    showCloseButton: { control: "boolean" },
+    side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
+  args: { defaultOpen: false, showCloseButton: true, side: "right" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("sheet", "playground") },

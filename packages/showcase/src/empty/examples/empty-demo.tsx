@@ -6,6 +6,7 @@ import {
   EmptyTitle,
 } from "@erbium/ui/components/empty";
 import { Button } from "@erbium/ui/components/button";
+
 export default function Demo() {
   return (
     <Empty>

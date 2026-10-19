@@ -10,15 +10,15 @@ import RenameTabSource from "./variants/rename-tab.tsx?raw";
 
 const meta = {
   component: Editable,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("editable"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Editable>;
 
 export default meta;

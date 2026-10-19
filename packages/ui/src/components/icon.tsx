@@ -9,6 +9,7 @@ type IconProps = Omit<ComponentProps<"svg">, "children" | "dangerouslySetInnerHT
 
 function Icon({ name, className, ...props }: IconProps) {
   const { id, viewBox } = iconDefinitions[name];
+
   // Size comes from width/height attributes so a parent's
   // `[&_svg:not([class*='size-'])]:size-*` rule can resize the icon.
   return (
@@ -28,4 +29,5 @@ function Icon({ name, className, ...props }: IconProps) {
 }
 
 export { Icon };
+
 export type { IconProps };

@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerIconDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-12 py-12\">\n      <Marker>\n        <MarkerIcon>\n          <Icon name=\"git-branch\" />\n        </MarkerIcon>\n        <MarkerContent>Switched to a new branch</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerIcon>\n          <Icon name=\"search-01\" />\n        </MarkerIcon>\n        <MarkerContent>Explored 4 files</MarkerContent>\n      </Marker>\n      <Marker className=\"flex-col\">\n        <MarkerIcon>\n          <Icon name=\"book-open-check\" />\n        </MarkerIcon>\n        <MarkerContent>Syncing completed</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
       "path": "src/marker/examples/marker-icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/marker/examples/marker-icon.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerIconDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-12 py-12\">\n      <Marker>\n        <MarkerIcon>\n          <Icon name=\"git-branch\" />\n        </MarkerIcon>\n        <MarkerContent>Switched to a new branch</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerIcon>\n          <Icon name=\"search-01\" />\n        </MarkerIcon>\n        <MarkerContent>Explored 4 files</MarkerContent>\n      </Marker>\n      <Marker className=\"flex-col\">\n        <MarkerIcon>\n          <Icon name=\"book-open-check\" />\n        </MarkerIcon>\n        <MarkerContent>Syncing completed</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { MarkerIconDemo } from \"../examples/marker-icon\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerIconDemo />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/marker/variants/icon.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/marker/variants/icon.tsx",
-      "content": "import { MarkerIconDemo } from \"../examples/marker-icon\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerIconDemo />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

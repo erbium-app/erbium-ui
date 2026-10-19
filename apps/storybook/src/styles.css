@@ -1,4 +1,5 @@
 @import "@erbium/ui/globals.css";
+
 @source "../../../packages/showcase/src";
 
 /* The shared preview owns spacing in both Canvas and Docs. */
@@ -8,8 +9,8 @@
 }
 
 .sb-show-main.sb-main-centered #storybook-root {
-  box-sizing: border-box;
   width: 100%;
   max-width: none;
+  box-sizing: border-box;
   padding: 0;
 }

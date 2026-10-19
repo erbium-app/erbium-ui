@@ -1,4 +1,5 @@
-import { useEffect, useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useState } from "react";
+import type { ReactNode } from "react";
 
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 
@@ -77,6 +78,7 @@ export function FruitAutocomplete({
 
 export function LabeledAutocomplete() {
   const id = useId();
+
   return (
     <Autocomplete items={items}>
       <Field className="w-64 items-start">
@@ -98,14 +100,14 @@ export function LabeledAutocomplete() {
 }
 
 const tags = [
-  { label: "Open", group: "Status" },
-  { label: "In progress", group: "Status" },
-  { label: "Blocked", group: "Status" },
-  { label: "Low", group: "Priority" },
-  { label: "High", group: "Priority" },
-  { label: "Design", group: "Team" },
-  { label: "Frontend", group: "Team" },
-  { label: "Platform", group: "Team" },
+  { group: "Status", label: "Open" },
+  { group: "Status", label: "In progress" },
+  { group: "Status", label: "Blocked" },
+  { group: "Priority", label: "Low" },
+  { group: "Priority", label: "High" },
+  { group: "Team", label: "Design" },
+  { group: "Team", label: "Frontend" },
+  { group: "Team", label: "Platform" },
 ];
 
 const tagGroups = ["Status", "Priority", "Team"].map((group) => ({
@@ -156,6 +158,7 @@ export function LimitedAutocomplete() {
   const [value, setValue] = useState("");
   const { contains } = useAutocompleteFilter({ sensitivity: "base" });
   const matches = languages.filter((language) => !value || contains(language, value));
+
   return (
     <Autocomplete items={languages} limit={4} value={value} onValueChange={setValue}>
       <AutocompleteInput aria-label="Search languages" placeholder="Search languages…" />
@@ -195,7 +198,10 @@ export function AsyncAutocomplete() {
   const loading = Boolean(query && response.request !== request);
   const { contains } = useAutocompleteFilter({ sensitivity: "base" });
   useEffect(() => {
-    if (!query) return;
+    if (!query) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       setResponse({
         request,
@@ -204,8 +210,12 @@ export function AsyncAutocomplete() {
         ),
       });
     }, 450);
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [request, query, contains]);
+
   return (
     <Autocomplete
       items={results}
@@ -215,7 +225,10 @@ export function AsyncAutocomplete() {
       onValueChange={(query) => {
         const next = { query };
         setRequest(next);
-        if (!query) setResponse({ request: next, results: [] });
+
+        if (!query) {
+          setResponse({ request: next, results: [] });
+        }
       }}
       itemToStringValue={(movie) => movie.title}
     >
@@ -250,6 +263,7 @@ export function AsyncAutocomplete() {
 
 export function FormAutocomplete() {
   const [submitted, setSubmitted] = useState(false);
+
   return (
     <form
       className="flex w-64 flex-col gap-3"

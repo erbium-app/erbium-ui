@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldDemo() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[3, 3]} />;\n}\n",
       "path": "src/otp-field/examples/otp-field-demo.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/examples/otp-field-demo.tsx",
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldDemo() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[3, 3]} />;\n}\n"
+      "type": "registry:component"
     }
   ]
 }

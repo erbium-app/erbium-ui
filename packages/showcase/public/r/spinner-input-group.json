@@ -12,16 +12,16 @@
   ],
   "files": [
     {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-group\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"block-end\">\n          <Spinner /> Validating...\n          <InputGroupButton className=\"ml-auto\" variant=\"default\">\n            <Icon name=\"arrow-up-01\" />\n            <span className=\"sr-only\">Send</span>\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n",
       "path": "src/spinner/examples/spinner-input-group.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/spinner/examples/spinner-input-group.tsx",
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-group\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"inline-end\">\n          <Spinner />\n        </InputGroupAddon>\n      </InputGroup>\n      <InputGroup>\n        <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n        <InputGroupAddon align=\"block-end\">\n          <Spinner /> Validating...\n          <InputGroupButton className=\"ml-auto\" variant=\"default\">\n            <Icon name=\"arrow-up-01\" />\n            <span className=\"sr-only\">Send</span>\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/spinner/variants/input-group.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/spinner/variants/input-group.tsx",
-      "content": "import ExampleSpinnerInputGroup from \"../examples/spinner-input-group\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleSpinnerInputGroup />\n  </div>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

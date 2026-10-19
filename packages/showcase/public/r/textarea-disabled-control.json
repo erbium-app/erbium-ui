@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
   "files": [
     {
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nconst Example = () => <Textarea disabled placeholder=\"Unavailable\" />;\n\nexport default Example;\n",
       "path": "src/textarea/variants/disabled-control.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/textarea/variants/disabled-control.tsx",
-      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nconst Example = () => <Textarea disabled placeholder=\"Unavailable\" />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

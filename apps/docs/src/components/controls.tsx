@@ -31,6 +31,7 @@ import {
 } from "@erbium/ui/components/table";
 
 type Row = ReturnType<typeof controlRows>[number];
+
 function ObjectControl({
   value,
   onChange,
@@ -42,6 +43,7 @@ function ObjectControl({
 }) {
   const [draft, setDraft] = useState(value === undefined ? "" : JSON.stringify(value, null, 2));
   const [error, setError] = useState(false);
+
   return (
     <Field invalid={error}>
       <Textarea
@@ -51,6 +53,7 @@ function ObjectControl({
         rows={2}
         onChange={(event) => {
           setDraft(event.target.value);
+
           try {
             onChange(event.target.value ? JSON.parse(event.target.value) : undefined);
             setError(false);
@@ -63,6 +66,7 @@ function ObjectControl({
     </Field>
   );
 }
+
 function ControlInput({
   row,
   value,
@@ -72,18 +76,20 @@ function ControlInput({
   value: unknown;
   onChange: (value: unknown) => void;
 }) {
-  if (row.options)
+  if (row.options) {
     return (
       <Select
         items={[
-          { value: "", label: "Unset" },
+          { label: "Unset", value: "" },
           ...row.options.map((option) => ({
-            value: JSON.stringify(option),
             label: typeof option === "string" ? option : displayValue(option),
+            value: JSON.stringify(option),
           })),
         ]}
         value={value === undefined ? "" : JSON.stringify(value)}
-        onValueChange={(value) => onChange(value ? JSON.parse(value) : undefined)}
+        onValueChange={(value) => {
+          onChange(value ? JSON.parse(value) : undefined);
+        }}
       >
         <SelectTrigger aria-label={row.name}>
           <SelectValue placeholder="Unset" />
@@ -98,19 +104,27 @@ function ControlInput({
         </SelectContent>
       </Select>
     );
-  if (row.control === "boolean")
+  }
+
+  if (row.control === "boolean") {
     return <Switch aria-label={row.name} checked={Boolean(value)} onCheckedChange={onChange} />;
-  if (row.control === "object")
+  }
+
+  if (row.control === "object") {
     return <ObjectControl label={row.name} value={value} onChange={onChange} />;
-  if (row.control === "number")
+  }
+
+  if (row.control === "number") {
     return (
       <NumberField
         value={typeof value === "number" ? value : null}
         min={row.constraints?.min}
         max={row.constraints?.max}
         step={row.constraints?.step}
-        format={{ useGrouping: false, maximumFractionDigits: 20 }}
-        onValueChange={(next) => onChange(next ?? undefined)}
+        format={{ maximumFractionDigits: 20, useGrouping: false }}
+        onValueChange={(next) => {
+          onChange(next ?? undefined);
+        }}
       >
         <NumberFieldGroup>
           <NumberFieldDecrement aria-label={`Decrease ${row.name}`} />
@@ -119,7 +133,9 @@ function ControlInput({
         </NumberFieldGroup>
       </NumberField>
     );
-  if (row.control === "range")
+  }
+
+  if (row.control === "range") {
     return (
       <Slider
         aria-label={row.name}
@@ -127,24 +143,33 @@ function ControlInput({
         min={row.constraints?.min}
         max={row.constraints?.max}
         step={row.constraints?.step}
-        onValueChange={(next) => onChange(Array.isArray(next) ? next[0] : next)}
+        onValueChange={(next) => {
+          onChange(Array.isArray(next) ? next[0] : next);
+        }}
       />
     );
-  if (row.control === "text")
+  }
+
+  if (row.control === "text") {
     return (
       <Input
         aria-label={row.name}
         type="text"
         value={typeof value === "string" || typeof value === "number" ? value : ""}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => {
+          onChange(event.target.value);
+        }}
       />
     );
+  }
+
   return (
     <span className="text-muted-foreground">
       {row.type === "callback" ? "Event callback" : "Read only"}
     </span>
   );
 }
+
 export function Controls({
   args,
   defaults,
@@ -158,8 +183,12 @@ export function Controls({
   onChange: (args: Record<string, unknown>) => void;
   onReset: () => void;
 }) {
-  const rows = controlRows({ args: defaults, argTypes, render: () => null });
-  if (!rows.length) return null;
+  const rows = controlRows({ argTypes, args: defaults, render: () => null });
+
+  if (!rows.length) {
+    return null;
+  }
+
   return (
     <section className="mt-4 surface-panel rounded-xl overflow-hidden">
       <div className="flex items-center justify-between gap-group p-4 carve-bottom">
@@ -200,8 +229,13 @@ export function Controls({
                   value={args[row.name]}
                   onChange={(value) => {
                     const next = { ...args };
-                    if (value === undefined) delete next[row.name];
-                    else next[row.name] = value;
+
+                    if (value === undefined) {
+                      delete next[row.name];
+                    } else {
+                      next[row.name] = value;
+                    }
+
                     onChange(next);
                   }}
                 />

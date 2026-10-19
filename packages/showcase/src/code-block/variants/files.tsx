@@ -7,29 +7,29 @@ export default function Example() {
       lineNumbers
       items={[
         {
-          value: "component",
-          label: "app.tsx",
-          language: "tsx",
           code: `export function App() {
   return <main className="app">Hello, Erbium.</main>;
 }`,
+          label: "app.tsx",
+          language: "tsx",
+          value: "component",
         },
         {
-          value: "styles",
-          label: "styles.css",
-          language: "css",
           code: `.app {
   display: grid;
   place-items: center;
   min-height: 100dvh;
 }`,
+          label: "styles.css",
+          language: "css",
+          value: "styles",
         },
         {
-          value: "config",
-          label: "config.json",
-          language: "json",
           code: '{ "theme": "system" }',
           disabled: true,
+          label: "config.json",
+          language: "json",
+          value: "config",
         },
       ]}
     />

@@ -11,21 +11,21 @@ import {
 } from "@erbium/ui/components/table";
 import { createColumnHelper, metaHelper, tableFeatures, useTable } from "@tanstack/react-table";
 
-type Invoice = {
+interface Invoice {
   invoice: string;
   paymentStatus: string;
   paymentMethod: string;
   totalAmount: number;
-};
+}
 
 const invoices: Invoice[] = [
-  { invoice: "INV001", paymentStatus: "مدفوع", paymentMethod: "بطاقة ائتمانية", totalAmount: 250 },
-  { invoice: "INV002", paymentStatus: "قيد الانتظار", paymentMethod: "PayPal", totalAmount: 150 },
-  { invoice: "INV003", paymentStatus: "غير مدفوع", paymentMethod: "تحويل بنكي", totalAmount: 350 },
-  { invoice: "INV004", paymentStatus: "مدفوع", paymentMethod: "بطاقة ائتمانية", totalAmount: 450 },
+  { invoice: "INV001", paymentMethod: "بطاقة ائتمانية", paymentStatus: "مدفوع", totalAmount: 250 },
+  { invoice: "INV002", paymentMethod: "PayPal", paymentStatus: "قيد الانتظار", totalAmount: 150 },
+  { invoice: "INV003", paymentMethod: "تحويل بنكي", paymentStatus: "غير مدفوع", totalAmount: 350 },
+  { invoice: "INV004", paymentMethod: "بطاقة ائتمانية", paymentStatus: "مدفوع", totalAmount: 450 },
 ];
 
-const currency = new Intl.NumberFormat("ar", { style: "currency", currency: "USD" });
+const currency = new Intl.NumberFormat("ar", { currency: "USD", style: "currency" });
 
 const features = tableFeatures({
   columnMeta: metaHelper<{ alignment?: "end"; narrow?: boolean }>(),
@@ -37,26 +37,26 @@ const columnHelper = createColumnHelper<typeof features, Invoice>();
 // columns lay out correctly in both LTR and RTL.
 const columns = columnHelper.columns([
   columnHelper.accessor("invoice", {
-    header: "الفاتورة",
     cell: (info) => <span className="font-medium">{info.getValue()}</span>,
     footer: "المجموع",
+    header: "الفاتورة",
     meta: { narrow: true },
   }),
   columnHelper.accessor("paymentStatus", { header: "الحالة" }),
   columnHelper.accessor("paymentMethod", { header: "الطريقة" }),
   columnHelper.accessor("totalAmount", {
-    header: "المبلغ",
     cell: (info) => currency.format(info.getValue()),
     footer: ({ table }) =>
       currency.format(
         table.getRowModel().rows.reduce((sum, row) => sum + row.original.totalAmount, 0),
       ),
+    header: "المبلغ",
     meta: { alignment: "end" },
   }),
 ]);
 
 export default function TableRtl() {
-  const table = useTable({ features, columns, data: invoices });
+  const table = useTable({ columns, data: invoices, features });
 
   return (
     <Table dir="rtl">

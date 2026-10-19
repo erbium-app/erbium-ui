@@ -15,8 +15,8 @@ import {
 export function DropdownMenuCheckboxesIcons() {
   const [notifications, setNotifications] = React.useState({
     email: true,
-    sms: false,
     push: true,
+    sms: false,
   });
 
   return (
@@ -28,27 +28,27 @@ export function DropdownMenuCheckboxesIcons() {
             <DropdownMenuLabel>Notification Preferences</DropdownMenuLabel>
             <DropdownMenuCheckboxItem
               checked={notifications.email}
-              onCheckedChange={(checked) =>
-                setNotifications({ ...notifications, email: checked === true })
-              }
+              onCheckedChange={(checked) => {
+                setNotifications({ ...notifications, email: checked });
+              }}
             >
               <Icon name="mail-01" />
               Email notifications
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={notifications.sms}
-              onCheckedChange={(checked) =>
-                setNotifications({ ...notifications, sms: checked === true })
-              }
+              onCheckedChange={(checked) => {
+                setNotifications({ ...notifications, sms: checked });
+              }}
             >
               <Icon name="message-square" />
               SMS notifications
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
               checked={notifications.push}
-              onCheckedChange={(checked) =>
-                setNotifications({ ...notifications, push: checked === true })
-              }
+              onCheckedChange={(checked) => {
+                setNotifications({ ...notifications, push: checked });
+              }}
             >
               <Icon name="bell" />
               Push notifications

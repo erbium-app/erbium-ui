@@ -8,30 +8,30 @@ import {
 } from "@erbium/ui/components/command";
 
 const actions = [
-  { id: "open", label: "Open project", description: "Continue working in this workspace" },
-  { id: "invite", label: "Invite teammate", description: "Share access to this workspace" },
-  { id: "export", label: "Export project", description: "Download a copy of your work" },
+  { description: "Continue working in this workspace", id: "open", label: "Open project" },
+  { description: "Share access to this workspace", id: "invite", label: "Invite teammate" },
+  { description: "Download a copy of your work", id: "export", label: "Export project" },
 ];
 
 export default function AsyncResultsExample() {
   const [query, setQuery] = useState("");
-  const [response, setResponse] = useState({ query: "", items: actions });
+  const [response, setResponse] = useState({ items: actions, query: "" });
   const [preview, setPreview] = useState<(typeof actions)[number] | undefined>();
   const [selected, setSelected] = useState("No command selected.");
   const loading = response.query !== query;
   useEffect(() => {
-    const timer = setTimeout(
-      () =>
-        setResponse({
-          query,
-          items: actions.filter((action) =>
-            action.label.toLowerCase().includes(query.toLowerCase()),
-          ),
-        }),
-      300,
-    );
-    return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setResponse({
+        items: actions.filter((action) => action.label.toLowerCase().includes(query.toLowerCase())),
+        query,
+      });
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [query]);
+
   return (
     <div className="grid w-80 max-w-full gap-related">
       <Command
@@ -50,7 +50,13 @@ export default function AsyncResultsExample() {
         <CommandEmpty>{loading ? "Searching…" : "No commands found."}</CommandEmpty>
         <CommandList>
           {(action) => (
-            <CommandItem key={action.id} value={action} onClick={() => setSelected(action.label)}>
+            <CommandItem
+              key={action.id}
+              value={action}
+              onClick={() => {
+                setSelected(action.label);
+              }}
+            >
               {action.label}
             </CommandItem>
           )}

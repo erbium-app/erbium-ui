@@ -27,6 +27,7 @@ import {
 
 export default function CheckboxStateExample() {
   const [checked, setChecked] = useState(false);
+
   return (
     <div className="grid gap-group">
       <Field orientation="horizontal">

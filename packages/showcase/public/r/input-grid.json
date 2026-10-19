@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputGrid() {\n  return (\n    <FieldGroup className=\"grid max-w-sm grid-cols-2\">\n      <Field>\n        <FieldLabel>First Name</FieldLabel>\n        <Input placeholder=\"Jordan\" />\n      </Field>\n      <Field>\n        <FieldLabel>Last Name</FieldLabel>\n        <Input placeholder=\"Lee\" />\n      </Field>\n    </FieldGroup>\n  );\n}\n",
       "path": "src/input/examples/input-grid.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/examples/input-grid.tsx",
-      "content": "import { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputGrid() {\n  return (\n    <FieldGroup className=\"grid max-w-sm grid-cols-2\">\n      <Field>\n        <FieldLabel>First Name</FieldLabel>\n        <Input placeholder=\"Jordan\" />\n      </Field>\n      <Field>\n        <FieldLabel>Last Name</FieldLabel>\n        <Input placeholder=\"Lee\" />\n      </Field>\n    </FieldGroup>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import { InputGrid } from \"../examples/input-grid\";\n\nconst Example = () => <InputGrid />;\n\nexport default Example;\n",
       "path": "src/input/variants/grid.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/input/variants/grid.tsx",
-      "content": "import { InputGrid } from \"../examples/input-grid\";\n\nconst Example = () => <InputGrid />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

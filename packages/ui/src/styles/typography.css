@@ -15,6 +15,7 @@
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.571429;
   --text-caption--font-weight: 400;
+
   /* Density roles: controls and supporting text are not article paragraphs. */
   --text-control: 0.875rem;
   --text-control--line-height: 1.428571;
@@ -69,8 +70,8 @@
 /* Supporting roles reuse the scale; they do not expose another size ladder. */
 @utility text-metadata {
   font-size: var(--text-control-sm);
-  line-height: var(--text-control-sm--line-height);
   font-weight: 400;
+  line-height: var(--text-control-sm--line-height);
 }
 
 /* One code size and leading for every surface that shows source: code blocks
@@ -83,19 +84,19 @@
 }
 
 @utility text-code-block {
-  font-size: var(--code-font-size);
-  line-height: var(--code-line-height);
-  font-weight: 400;
   font-family: var(--font-mono);
+  font-size: var(--code-font-size);
   font-variant-ligatures: none;
+  font-weight: 400;
+  line-height: var(--code-line-height);
 }
 
 @utility text-inline-code {
-  font-size: 0.875em;
-  line-height: inherit;
-  font-weight: 400;
   font-family: var(--font-mono);
+  font-size: 0.875em;
   font-variant-ligatures: none;
+  font-weight: 400;
+  line-height: inherit;
   overflow-wrap: anywhere;
 }
 
@@ -108,10 +109,10 @@
 /* Touch inputs stay at 16px, even on tablets with a wide viewport. */
 @utility text-field {
   font-size: var(--text-body);
-  line-height: var(--text-body--line-height);
   font-weight: 400;
+  line-height: var(--text-body--line-height);
 
-  @media (min-width: 48rem) and (pointer: fine) {
+  @media (width >= 48rem) and (pointer: fine) {
     font-size: var(--text-control);
     line-height: var(--text-control--line-height);
   }

@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
+      "content": "import { buttonVariants } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <a className={buttonVariants({ variant: \"outline\" })} href=\"#button-as-link\">\n    Open section\n  </a>\n);\n\nexport default Example;\n",
       "path": "src/button/variants/as-link.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button/variants/as-link.tsx",
-      "content": "import { buttonVariants } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <a className={buttonVariants({ variant: \"outline\" })} href=\"#button-as-link\">\n    Open section\n  </a>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

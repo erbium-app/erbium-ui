@@ -6,14 +6,18 @@ import ButtonsExample from "./variants/buttons";
 import ButtonsSource from "./variants/buttons.tsx?raw";
 import InputExample from "./variants/input";
 import InputSource from "./variants/input.tsx?raw";
+
 const meta = {
   parameters: {
-    layout: "centered",
     docs: { description: { component: componentDocumentation("copy-button") } },
+    layout: "centered",
   },
 } satisfies Meta;
+
 export default meta;
+
 type Story = StoryObj<typeof meta>;
+
 export const Overview: Story = {
   parameters: {
     docs: {
@@ -23,6 +27,7 @@ export const Overview: Story = {
   },
   render: OverviewExample,
 };
+
 export const Buttons: Story = {
   parameters: {
     docs: {
@@ -32,6 +37,7 @@ export const Buttons: Story = {
   },
   render: ButtonsExample,
 };
+
 export const Input: Story = {
   parameters: {
     docs: {

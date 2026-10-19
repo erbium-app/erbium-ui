@@ -31,15 +31,15 @@ import RTLSource from "./variants/rtl.tsx?raw";
 
 const meta = {
   component: Table,
-  tags: ["autodocs"],
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component: componentDocumentation("table"),
       },
     },
+    layout: "centered",
   },
+  tags: ["autodocs"],
 } satisfies Meta<typeof Table>;
 
 export default meta;
@@ -47,11 +47,11 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<PlaygroundArgs> = {
-  args: { rows: 3, caption: "Example data" },
   argTypes: {
-    rows: { control: { type: "number", min: 1, max: 10 } },
     caption: { control: "text" },
+    rows: { control: { max: 10, min: 1, type: "number" } },
   },
+  args: { caption: "Example data", rows: 3 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("table", "playground") },

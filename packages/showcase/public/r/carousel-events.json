@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/card", "@erbium/carousel", "@erbium/styles"],
   "files": [
     {
+      "content": "import { Card, CardContent } from \"@/registry/erbium/ui/card\";\nimport {\n  Carousel,\n  CarouselContent,\n  CarouselIndicator,\n  CarouselItem,\n  CarouselNext,\n  CarouselPrevious,\n} from \"@/registry/erbium/ui/carousel\";\n\nexport default function CarouselDApiDemo() {\n  return (\n    <div className=\"mx-auto max-w-[10rem] sm:max-w-xs\">\n      <Carousel className=\"w-full max-w-xs\">\n        <CarouselContent>\n          {Array.from({ length: 5 }).map((_, index) => (\n            <CarouselItem key={index}>\n              <Card className=\"m-px aspect-square\">\n                <CardContent className=\"flex min-h-0 flex-1 items-center justify-center\">\n                  <span className=\"text-display font-semibold\">{index + 1}</span>\n                </CardContent>\n              </Card>\n            </CarouselItem>\n          ))}\n        </CarouselContent>\n        <CarouselPrevious />\n        <CarouselNext />\n        <CarouselIndicator />\n      </Carousel>\n    </div>\n  );\n}\n",
       "path": "src/carousel/examples/carousel-slide-counter.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/carousel/examples/carousel-slide-counter.tsx",
-      "content": "import { Card, CardContent } from \"@/registry/erbium/ui/card\";\nimport {\n  Carousel,\n  CarouselContent,\n  CarouselIndicator,\n  CarouselItem,\n  CarouselNext,\n  CarouselPrevious,\n} from \"@/registry/erbium/ui/carousel\";\n\nexport default function CarouselDApiDemo() {\n  return (\n    <div className=\"mx-auto max-w-[10rem] sm:max-w-xs\">\n      <Carousel className=\"w-full max-w-xs\">\n        <CarouselContent>\n          {Array.from({ length: 5 }).map((_, index) => (\n            <CarouselItem key={index}>\n              <Card className=\"m-px aspect-square\">\n                <CardContent className=\"flex min-h-0 flex-1 items-center justify-center\">\n                  <span className=\"text-display font-semibold\">{index + 1}</span>\n                </CardContent>\n              </Card>\n            </CarouselItem>\n          ))}\n        </CarouselContent>\n        <CarouselPrevious />\n        <CarouselNext />\n        <CarouselIndicator />\n      </Carousel>\n    </div>\n  );\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import CarouselDApiDemo from \"../examples/carousel-slide-counter\";\n\nconst Example = () => <CarouselDApiDemo />;\n\nexport default Example;\n",
       "path": "src/carousel/variants/events.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/carousel/variants/events.tsx",
-      "content": "import CarouselDApiDemo from \"../examples/carousel-slide-counter\";\n\nconst Example = () => <CarouselDApiDemo />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

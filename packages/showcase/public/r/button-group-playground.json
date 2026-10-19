@@ -7,10 +7,10 @@
   "registryDependencies": ["@erbium/button", "@erbium/button-group", "@erbium/styles"],
   "files": [
     {
+      "content": "import { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  orientation: \"horizontal\" | \"vertical\";\n  size: \"default\" | \"xs\" | \"sm\" | \"lg\";\n}) => (\n  <ButtonGroup aria-label=\"Example actions\" orientation={args.orientation}>\n    <Button variant=\"outline\" size={args.size}>\n      First\n    </Button>\n    <Button variant=\"outline\" size={args.size}>\n      Second\n    </Button>\n    <Button variant=\"outline\" size={args.size}>\n      Third\n    </Button>\n  </ButtonGroup>\n);\n\nexport default Example;\n",
       "path": "src/button-group/variants/playground.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/button-group/variants/playground.tsx",
-      "content": "import { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = (args: {\n  orientation: \"horizontal\" | \"vertical\";\n  size: \"default\" | \"xs\" | \"sm\" | \"lg\";\n}) => (\n  <ButtonGroup aria-label=\"Example actions\" orientation={args.orientation}>\n    <Button variant=\"outline\" size={args.size}>\n      First\n    </Button>\n    <Button variant=\"outline\" size={args.size}>\n      Second\n    </Button>\n    <Button variant=\"outline\" size={args.size}>\n      Third\n    </Button>\n  </ButtonGroup>\n);\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

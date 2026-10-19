@@ -1,6 +1,7 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
-import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
 import { Icon } from "@erbium/ui/components/icon";
@@ -71,12 +72,14 @@ function Brand() {
     </Link>
   );
 }
+
 function Navigation({ onNavigate }: { onNavigate?: () => void }) {
   const path = useLocation({ select: (location) => location.pathname });
   const nav = useRef<HTMLElement>(null);
   useEffect(() => {
     nav.current?.querySelector("[aria-current=page]")?.scrollIntoView({ block: "nearest" });
   }, [path]);
+
   return (
     <nav ref={nav} aria-label="Documentation">
       {navigationGroups.map((group, index) => (
@@ -113,8 +116,10 @@ function Navigation({ onNavigate }: { onNavigate?: () => void }) {
     </nav>
   );
 }
+
 function ThemeToggle() {
   const dark = useTheme();
+
   return (
     <Button
       variant="ghost"
@@ -127,6 +132,7 @@ function ThemeToggle() {
     </Button>
   );
 }
+
 function SidebarActions() {
   return (
     <SidebarFooter className="flex-row items-center justify-between py-3 ps-0 pe-(--docs-sidebar-inset)">
@@ -134,7 +140,7 @@ function SidebarActions() {
         href="https://github.com/erbium-app/erbium-ui"
         target="_blank"
         rel="noopener noreferrer"
-        className={buttonVariants({ variant: "ghost", size: "icon" })}
+        className={buttonVariants({ size: "icon", variant: "ghost" })}
         aria-label="Erbium UI on GitHub"
       >
         <Icon name="github" />
@@ -143,6 +149,7 @@ function SidebarActions() {
     </SidebarFooter>
   );
 }
+
 function SearchTrigger({ onClick, mobile = false }: { onClick: () => void; mobile?: boolean }) {
   return (
     <Button
@@ -156,12 +163,15 @@ function SearchTrigger({ onClick, mobile = false }: { onClick: () => void; mobil
     </Button>
   );
 }
+
 const searchGroups = navigationGroups.map((group) => ({
-  label: group.title,
   items: group.items.map((page) => ({ ...page, label: page.title })),
+  label: group.title,
 }));
+
 function Search({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const router = useRouter();
+
   return (
     <CommandDialog
       open={open}
@@ -203,6 +213,7 @@ function Search({ open, onOpenChange }: { open: boolean; onOpenChange: (open: bo
     </CommandDialog>
   );
 }
+
 export function Shell({ children }: { children: ReactNode }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -210,10 +221,12 @@ export function Shell({ children }: { children: ReactNode }) {
     setMobileOpen(false);
     setSearchOpen((open) => !open);
   });
+
   const openSearch = () => {
     setMobileOpen(false);
     setSearchOpen(true);
   };
+
   return (
     <>
       <a href="#main-content" className="skip-link">
@@ -241,7 +254,11 @@ export function Shell({ children }: { children: ReactNode }) {
                   <SearchTrigger onClick={openSearch} mobile />
                 </div>
                 <SidebarContent className="px-3 pb-4 overscroll-contain">
-                  <Navigation onNavigate={() => setMobileOpen(false)} />
+                  <Navigation
+                    onNavigate={() => {
+                      setMobileOpen(false);
+                    }}
+                  />
                 </SidebarContent>
                 <div className="mobile-sidebar-footer">
                   <SidebarActions />

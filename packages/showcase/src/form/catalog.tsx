@@ -11,7 +11,6 @@ import ValidationExample from "./variants/validation";
 import ValidationSource from "./variants/validation.tsx?raw";
 
 const meta = {
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
@@ -19,6 +18,7 @@ const meta = {
       },
     },
   },
+  tags: ["autodocs"],
 } satisfies Meta;
 
 export default meta;
@@ -30,12 +30,12 @@ export const Playground: StoryObj<{
   required: boolean;
   submitLabel: string;
 }> = {
-  args: { defaultEmail: "", required: true, submitLabel: "Submit" },
   argTypes: {
     defaultEmail: { control: "text" },
     required: { control: "boolean" },
     submitLabel: { control: "text" },
   },
+  args: { defaultEmail: "", required: true, submitLabel: "Submit" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("form", "playground") },

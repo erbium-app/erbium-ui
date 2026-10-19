@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { FileTree, useFileTree } from "@erbium/ui/blocks/file-tree";
 import { paths } from "../examples/paths";
+
 export default function Example() {
   const [selected, setSelected] = useState<readonly string[]>([]);
+
   const { model } = useFileTree({
-    paths,
     initialExpansion: "open",
     onSelectionChange: setSelected,
+    paths,
   });
+
   return (
     <div className="grid w-80 gap-3">
       <FileTree model={model} aria-label="Workspace files" />

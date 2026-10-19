@@ -1,12 +1,12 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "copy-button-examples",
-  "type": "registry:item",
-  "title": "Copy Button examples",
   "description": "All copy-button examples.",
+  "name": "copy-button-examples",
   "registryDependencies": [
     "@erbium-examples/copy-button-overview",
     "@erbium-examples/copy-button-buttons",
     "@erbium-examples/copy-button-input"
-  ]
+  ],
+  "title": "Copy Button examples",
+  "type": "registry:item"
 }

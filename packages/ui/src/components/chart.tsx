@@ -10,4 +10,5 @@ export function Chart<
 >({ className, ...props }: TanStackChartProps<TDatum, TXValue, TYValue>) {
   return <TanStackChart className={cn("erbium-chart text-metadata", className)} {...props} />;
 }
+
 export type ChartProps = TanStackChartProps;

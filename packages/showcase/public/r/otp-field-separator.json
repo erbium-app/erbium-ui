@@ -7,16 +7,16 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldWithSeparator() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[2, 2, 2]} />;\n}\n",
       "path": "src/otp-field/examples/otp-field-separator.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/examples/otp-field-separator.tsx",
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldWithSeparator() {\n  return <OTPField aria-label=\"One-time password\" length={6} groups={[2, 2, 2]} />;\n}\n"
+      "type": "registry:component"
     },
     {
+      "content": "import ExampleOTPFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOTPFieldSeparator />;\n\nexport default Example;\n",
       "path": "src/otp-field/variants/separator.tsx",
-      "type": "registry:component",
       "target": "@components/showcase/otp-field/variants/separator.tsx",
-      "content": "import ExampleOTPFieldSeparator from \"../examples/otp-field-separator\";\n\nconst Example = () => <ExampleOTPFieldSeparator />;\n\nexport default Example;\n"
+      "type": "registry:component"
     }
   ]
 }

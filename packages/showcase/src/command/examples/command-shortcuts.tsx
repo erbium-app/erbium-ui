@@ -17,11 +17,8 @@ import {
 
 const commandGroups = [
   {
-    label: "Settings",
     items: [
       {
-        label: "Profile",
-        disabled: false,
         content: (
           <>
             <Icon name="user" />
@@ -29,10 +26,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+P" />
           </>
         ),
+        disabled: false,
+        label: "Profile",
       },
       {
-        label: "Billing",
-        disabled: false,
         content: (
           <>
             <Icon name="credit-card" />
@@ -40,10 +37,10 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+B" />
           </>
         ),
+        disabled: false,
+        label: "Billing",
       },
       {
-        label: "Settings",
-        disabled: false,
         content: (
           <>
             <Icon name="settings-01" />
@@ -51,8 +48,11 @@ const commandGroups = [
             <CommandShortcut hotkey="Mod+S" />
           </>
         ),
+        disabled: false,
+        label: "Settings",
       },
     ],
+    label: "Settings",
   },
 ];
 
@@ -61,7 +61,13 @@ export function CommandWithShortcuts() {
 
   return (
     <div className="flex flex-col gap-group">
-      <Button onClick={() => setOpen(true)} variant="outline" className="w-fit">
+      <Button
+        onClick={() => {
+          setOpen(true);
+        }}
+        variant="outline"
+        className="w-fit"
+      >
         Open Menu
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
@@ -78,7 +84,9 @@ export function CommandWithShortcuts() {
                       key={item.label}
                       value={item}
                       disabled={item.disabled}
-                      onClick={() => setOpen(false)}
+                      onClick={() => {
+                        setOpen(false);
+                      }}
                     >
                       {item.content}
                     </CommandItem>
