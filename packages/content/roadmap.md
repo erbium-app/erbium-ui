@@ -35,4 +35,4 @@ A [Paper](https://paper.design/) canvas will connect components, states, and pag
 
 ## Consistent across platforms
 
-Astro and React Native libraries will share Erbium’s design and public APIs wherever the platforms allow, with behavior suited to each runtime. Keyboard access, RTL, reduced motion, and meaningful state coverage will remain part of the system as it grows.
+The React Native library will share Erbium’s design and public APIs wherever the platform allows, with behavior suited to its runtime. Keyboard access, RTL, reduced motion, and meaningful state coverage will remain part of the system as it grows.

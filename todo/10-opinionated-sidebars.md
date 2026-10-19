@@ -4,7 +4,7 @@ Reviewed 2026-10-05. This document records the proposed direction and implementa
 
 ## Goal
 
-Provide consistent, polished sidebars through a constrained abstraction over shadcn compositions and Base UI behavior. Erbium owns layout, spacing, typography, states, and responsive behavior. Applications supply navigation, routing, and product content. React and Astro should share the same visual contract.
+Provide consistent, polished sidebars through a constrained abstraction over shadcn compositions and Base UI behavior. Erbium owns layout, spacing, typography, states, and responsive behavior. Applications supply navigation, routing, and product content. The visual contract should live entirely in `packages/ui`.
 
 ## Source comparison
 
@@ -26,11 +26,9 @@ Current source:
 
 - `packages/ui/src/components/sidebar.tsx`
 - `packages/ui/src/lib/sidebar-styles.ts`
-- `apps/docs/src/components/primitives/sidebar/`
-- `apps/docs/src/components/shell/DocsNavigation.astro`
-- `apps/docs/src/styles/docs.css`
+- `apps/docs/src/components/shell.tsx`
 
-Astro already imports shared menu styles, but docs CSS overrides group spacing, label weight, row padding, font size, radius, and active weight. Shared variants alone do not currently guarantee visual parity.
+The docs app already imports shared menu styles, but its own CSS overrides group spacing, label weight, row padding, font size, radius, and active weight. Shared variants alone do not currently guarantee visual parity.
 
 ## Proposed boundaries
 
@@ -79,13 +77,13 @@ Illustrative composition:
 </SidebarLayout>
 ```
 
-## React and Astro parity
+## React and docs-site parity
 
 - [ ] Move the complete visual contract into `packages/ui`: region spacing, row geometry, typography, nested navigation, scroll fades, and state styles.
-- [ ] Have React and Astro adapters consume that contract while implementing platform-appropriate markup and behavior.
+- [ ] Have the docs app consume that contract while keeping markup and behavior appropriate for the web.
 - [ ] Remove docs overrides for component-owned styling; retain page-layout responsibilities in docs CSS.
 - [ ] Document necessary platform differences without introducing independent visual defaults.
-- [ ] Preserve Astro navigation scroll restoration and active-link updates during page transitions.
+- [ ] Preserve docs navigation scroll restoration and active-link updates during navigation.
 
 ## Implementation sequence and acceptance
 
@@ -93,7 +91,7 @@ Illustrative composition:
 2. [ ] Establish shared styling and compare both rendered implementations with Elavie's reference. Choose final density and inset styling based on these examples.
 3. [ ] Manually verify desktop expanded/collapsed states, mobile opening/dismissal, long labels, nested sections, active links, disabled actions, and scrolling.
 4. [ ] Verify keyboard access, focus restoration, accessible labels, RTL placement/tooltips, reduced motion, and SSR/hydration behavior.
-5. [ ] Migrate existing showcase examples and Astro docs, document intentional restrictions, and remove redundant options after the replacement covers existing needs.
+5. [ ] Migrate existing showcase examples and docs pages, document intentional restrictions, and remove redundant options after the replacement covers existing needs.
 6. [ ] Rebuild affected UI/showcase registries and generated adapters. Follow [validation and release gates](./04-validation.md), including `bun run check` and `bun run ready` for release readiness.
 
 Keep reusable components and styles in `packages/ui`, composition examples in `packages/showcase`, and application-specific content and routing in apps.

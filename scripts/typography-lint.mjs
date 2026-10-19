@@ -125,7 +125,6 @@ export default {
             const file =
               context.physicalFilename ?? context.filename ?? context.getFilename?.() ?? "";
             if (
-              !file.endsWith(".astro") &&
               parents.some(
                 (parent) => parent.type === "JSXAttribute" && parent.name?.name === "style",
               )
@@ -136,24 +135,11 @@ export default {
             context.report({ node, messageId: "useToken", data: { property } });
           },
           JSXAttribute(node) {
-            const file =
-              context.physicalFilename ?? context.filename ?? context.getFilename?.() ?? "";
             const property = node.name?.name;
             const value =
               node.value?.type === "JSXExpressionContainer" ? node.value.expression : node.value;
             if (fontProperties.has(property) && value?.type === "Literal")
               context.report({ node, messageId: "useToken", data: { property } });
-            if (
-              !file.endsWith(".astro") ||
-              node.name?.name !== "style" ||
-              typeof node.value?.value !== "string"
-            )
-              return;
-            for (const match of node.value.value.matchAll(
-              /(?:^|;)\s*(font(?:-size|-family|-weight|-variation-settings)?|line-height|letter-spacing)\s*:/g,
-            )) {
-              context.report({ node, messageId: "useToken", data: { property: match[1] } });
-            }
           },
           Literal(node) {
             inspect(node, node.value);

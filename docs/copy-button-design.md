@@ -238,7 +238,7 @@ The repository has no automated test suite. Run bun run fix when mechanical chan
 
 ## Stable label presentation
 
-Astro copy labels and the labeled React examples keep idle and success labels mounted in the same grid cell. Both contribute to layout, so the button reserves space for the longest label. Only the active label is visible; a 150ms opacity/vertical transition matches StatefulButton and is disabled for reduced motion. Astro label visuals are decorative because the button already has an accessible name and a separate live status region.
+The labeled copy examples keep idle and success labels mounted in the same grid cell. Both contribute to layout, so the button reserves space for the longest label. Only the active label is visible; a 150ms opacity/vertical transition matches StatefulButton and is disabled for reduced motion. Label visuals are decorative because the button already has an accessible name and a separate live status region.
 
 This follows Interior's copy button and Erbium's StatefulButton approach. Avoid replacing a single text node, display:none, or conditional mounting when stable intrinsic width is required. No fixed width or runtime measurement is necessary.
 

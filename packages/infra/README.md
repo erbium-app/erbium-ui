@@ -10,7 +10,7 @@ stack and return their typed URLs alongside `docsUrl`. Extract resource modules
 when their configuration or bindings need to be shared with app code.
 
 Alchemy and its frontend integration are pinned to `2.0.0-beta.81`. Update them
-together. This uses the Effect-based Alchemy v2 API, not v1's Astro adapter.
+together. This uses the Effect-based Alchemy v2 API.
 
 ## Deploy
 

@@ -1,10 +1,9 @@
 {
   "name": "@erbium/ui",
   "version": "0.0.0",
-  "description": "Composable, accessible, RTL-ready UI components with consistent styling and behavior across React, Astro, and React Native.",
+  "description": "Composable, accessible, RTL-ready UI components with consistent styling and behavior across React and React Native.",
   "keywords": [
     "accessibility",
-    "astro",
     "components",
     "design-system",
     "react",

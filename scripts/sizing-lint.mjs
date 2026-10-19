@@ -293,13 +293,6 @@ export default {
             inspectDescendantOverrides(node, node.value.raw);
           },
           ImportDeclaration(node) {
-            const primitive = node.source.value.match(
-              /primitives\/(?:sidebar\/)?(Button|Input|Textarea|Select|SidebarMenuButton)\.astro$/,
-            )?.[1];
-            if (primitive) {
-              for (const specifier of node.specifiers) controls.add(specifier.local.name);
-              return;
-            }
             if (!node.source.value.startsWith("@erbium/ui/components/")) return;
             for (const specifier of node.specifiers)
               if (sized.has(specifier.imported?.name)) controls.add(specifier.local.name);

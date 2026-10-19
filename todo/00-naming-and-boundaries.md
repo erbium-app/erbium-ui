@@ -15,5 +15,5 @@ Base UI owns primitive behavior; Erbium owns design, composition, and documented
 ## Remaining decisions
 
 - [ ] Define package boundaries for agent sessions, file trees, and diffs before implementation.
-- [ ] Define shared API contracts for Astro and React Native, documenting necessary platform differences.
+- [ ] Define shared API contracts for React Native alongside React, documenting necessary platform differences.
 - [ ] Review proposed Menu, Frame, and Group abstractions against actual compositions before exposing them.

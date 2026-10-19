@@ -29,10 +29,10 @@ const { copyToClipboard, isCopied, isPending, error } = useCopyToClipboard({
 
 The block supplies an accessible name, animated stateful icon, and a live status region. Clipboard access requires a secure browser context. Unsupported access is reported through `error` and `onError`.
 
-## Astro and plain JavaScript
+## Plain JavaScript
 
-A React hook requires React. Astro browser scripts use `createCopyToClipboard` from `@erbium/ui/lib/copy-to-clipboard`, the same controller that powers this hook. There is one clipboard implementation shared by both adapters. Astro copy actions use the shared `CopyButton.astro` control; pages do not wire their own clipboard handlers or feedback.
+A React hook requires React. Code outside React can use `createCopyToClipboard` from `@erbium/ui/lib/copy-to-clipboard`, the same controller that powers this hook, so there is one clipboard implementation for both.
 
-The controller also accepts an async text resolver, allowing Astro to fetch Markdown within the same pending and error lifecycle. Content fetching stays with the adapter. The docs' Astro copy controls subscribe to this controller and dispose it on disconnect.
+The controller also accepts an async text resolver, allowing callers to resolve text within the same pending and error lifecycle. Text resolution stays with the caller.
 
 Registry installation of the hook includes the shared controller. Installing CopyButton includes both automatically.

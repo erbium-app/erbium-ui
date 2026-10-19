@@ -9,11 +9,11 @@ components/
     playground.md   # Named variant title and explanation
     controlled.md
 src/
-  documents.ts      # Compiled Markdown entries for Astro
+  documents.ts      # Compiled Markdown entries
   markdown.ts       # Markdown bodies for Storybook
 ```
 
-Astro renders compiled Markdown with its normal renderer. Storybook receives the same Markdown bodies as component and story descriptions. React examples, controls and provider composition belong in `@erbium/showcase`; Markdown stays free of framework-specific JSX.
+The docs site renders compiled Markdown with its normal renderer. Storybook receives the same Markdown bodies as component and story descriptions. React examples, controls and provider composition belong in `@erbium/showcase`; Markdown stays free of framework-specific JSX.
 
 Variant frontmatter uses `title: "Display title"` and `story: ExportName`. Component frontmatter supplies `title` and `description`. The showcase generator reads variant titles from Markdown; preserve export names to keep Storybook IDs stable.
 
