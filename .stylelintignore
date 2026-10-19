@@ -1,0 +1,5 @@
+# Build outputs from .gitignore that Ultracite's preset ignoreFiles
+# (dist, build, out, …) does not name.
+dist-cloudflare/
+dist-ssr/
+packages/ui/.registry-build/

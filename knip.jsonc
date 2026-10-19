@@ -15,12 +15,9 @@
   },
   "ignore": ["apps/website/src/counter.ts"],
   "ignoreDependencies": [
-    "@erbium/ui",
-    "@oxlint/plugins",
-    "@shadcn/lint",
-    "anti-slop",
-    "es-module-lexer",
-    "react",
-    "react-dom",
+    // Referenced by Ultracite's Stylelint preset for its .scss/.less
+    // overrides; this repo has neither, so they stay uninstalled.
+    "postcss-less",
+    "postcss-scss",
   ],
 }

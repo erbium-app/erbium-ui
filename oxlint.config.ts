@@ -1,16 +1,37 @@
 import { defineConfig } from "oxlint";
+import antiSlop from "ultracite/oxlint/anti-slop";
+import core from "ultracite/oxlint/core";
+import react from "ultracite/oxlint/react";
 import shadcn from "ultracite/oxlint/shadcn";
 
+// Ultracite's full preset stack, in the documented order:
+// core (the ESLint-equivalent rule floor), react (react, react-perf, and
+// jsx-a11y), anti-slop, and shadcn (@shadcn/lint design-system rules).
+// Later presets win conflicts — anti-slop turns off the core rules whose
+// autofixes loop against its own. The anti-slop plugin is vendored inside
+// Ultracite (`ultracite/oxlint/anti-slop`), so no separate `anti-slop`
+// dependency is needed.
 export default defineConfig({
-  extends: [shadcn],
+  extends: [core, react, antiSlop, shadcn],
+  // Core's canonical ignore list already covers node_modules, dist,
+  // storybook-static, and generated files (`**/*.gen.*` matches
+  // routeTree.gen.ts). The Cloudflare/SSR build outputs and the registry
+  // build dir come from this repo's .gitignore.
+  ignorePatterns: [
+    ...(core.ignorePatterns ?? []),
+    "**/dist-cloudflare",
+    "**/dist-ssr",
+    "packages/ui/.registry-build",
+  ],
   jsPlugins: [
+    // Re-declared on the root config so dependency analyzers (Knip) can see
+    // the `@shadcn/lint` package; oxlint loads it from the extended preset
+    // either way.
+    ...shadcn.jsPlugins,
     { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
     { name: "erbium-typography", specifier: "./scripts/typography-lint.mjs" },
     { name: "erbium-sizing", specifier: "./scripts/sizing-lint.mjs" },
   ],
-  settings: {
-    shadcn: { ui: ["@erbium/ui/components", "@erbium/ui/blocks"] },
-  },
   overrides: [
     {
       files: [
@@ -28,9 +49,9 @@ export default defineConfig({
         "apps/docs/src/{components,features}/**/*.{ts,tsx}",
       ],
       rules: {
-        "erbium-typography/use-roles": "error",
         "erbium-sizing/use-component-geometry": "error",
         "erbium-sizing/use-overlay-layout": "error",
+        "erbium-typography/use-roles": "error",
         "shadcn/no-inline-styles": [
           "error",
           {
@@ -60,10 +81,29 @@ export default defineConfig({
         "shadcn/require-static-classes": "off",
       },
     },
+    {
+      // Ultracite's react preset configures this rule for shadcn-style
+      // design systems after 8.0.1; mirror those options until the release
+      // carries them. Count the design-system Label and control components
+      // as a label/control pair, and look one level deeper than the default
+      // depth of 2 so a control wrapped in two elements inside its label is
+      // still found.
+      files: ["**/*.{ts,tsx}"],
+      rules: {
+        "jsx-a11y/label-has-associated-control": [
+          "error",
+          {
+            controlComponents: ["Input", "Select", "Textarea", "Checkbox", "Radio"],
+            depth: 3,
+            labelComponents: ["Label"],
+          },
+        ],
+      },
+    },
   ],
-  plugins: ["react", "typescript", "unicorn"],
   rules: {
-    "vite-plus/prefer-vite-plus-imports": "error",
+    // Core leaves no-console off; Erbium keeps the warning so stray logging
+    // surfaces in review without failing the gate.
     "no-console": "warn",
     "no-debugger": "error",
     "shadcn/no-restyle": [
@@ -73,6 +113,9 @@ export default defineConfig({
         deny: ["[--surface-face:*]", "*:[--surface-face:*]"],
       },
     ],
+    "vite-plus/prefer-vite-plus-imports": "error",
   },
-  ignorePatterns: ["**/dist/**", "**/storybook-static/**", "**/routeTree.gen.ts"],
+  settings: {
+    shadcn: { ui: ["@erbium/ui/components", "@erbium/ui/blocks"] },
+  },
 });

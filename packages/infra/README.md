@@ -80,8 +80,9 @@ Worker logs, invocation logs and traces are explicitly enabled for the
 server-rendered Start site. Build errors appear in build output.
 
 `.github/workflows/quality.yml` runs `bun run ready` and infrastructure typechecks
-on pull requests and pushes to `main`. The `anti-slop` dependency uses a pinned
-GitHub commit so remote installations do not require an adjacent local checkout.
+on pull requests and pushes to `main`. The oxlint anti-slop rules come vendored
+inside Ultracite (`ultracite/oxlint/anti-slop`), so remote installations need no
+separate plugin checkout or pinned commit.
 
 Browser error reporting requires an error-reporting service project and its
 public DSN, plus upload credentials for private source maps. Web Analytics does

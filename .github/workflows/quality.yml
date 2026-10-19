@@ -25,13 +25,6 @@ jobs:
         with:
           path: project/erbium-ui
           persist-credentials: false
-      # Preserve the root package's ../../Packages/anti-slop file dependency.
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          repository: dmmulroy/anti-slop
-          ref: c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b
-          path: Packages/anti-slop
-          persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version-file: project/erbium-ui/.node-version
