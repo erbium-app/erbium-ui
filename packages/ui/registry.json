@@ -1264,7 +1264,7 @@
       "type": "registry:ui",
       "title": "Sidebar",
       "description": "Erbium sidebar component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "dependencies": ["@base-ui/react", "@tanstack/react-hotkeys", "class-variance-authority"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input",

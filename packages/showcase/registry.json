@@ -5830,7 +5830,7 @@
       "type": "registry:item",
       "title": "Checkbox stories",
       "description": "All checkbox variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/checkbox",
@@ -5983,7 +5983,7 @@
       "type": "registry:block",
       "title": "Checkbox: Table",
       "description": "Click a checkbox to toggle one row, or drag across rows to select or clear a range. The header checkbox reflects partial selection and selects all rows.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/styles",
@@ -7008,6 +7008,7 @@
       "type": "registry:block",
       "title": "Command: Basic",
       "description": "A simple command menu in a dialog.",
+      "dependencies": ["@tanstack/react-hotkeys@^0.15.0"],
       "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
       "files": [
         {
@@ -7161,6 +7162,7 @@
       "type": "registry:item",
       "title": "Command stories",
       "description": "All command variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-hotkeys@^0.15.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -16307,7 +16309,7 @@
       "type": "registry:item",
       "title": "Questionnaire stories",
       "description": "All questionnaire variants as portable React CSF stories.",
-      "dependencies": ["@shadcn/react@^0.3.1", "zod@^4.6.6"],
+      "dependencies": ["@shadcn/react@^0.3.1", "zod@^4.6.7"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -16522,7 +16524,7 @@
       "type": "registry:block",
       "title": "Questionnaire: Custom Validation",
       "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.\n\nalign=\"end\"",
-      "dependencies": ["zod@^4.6.6"],
+      "dependencies": ["zod@^4.6.7"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/questionnaire",
@@ -20449,7 +20451,7 @@
       "type": "registry:block",
       "title": "Table: Actions",
       "description": "A display column (`columnHelper.display`) renders a `<DropdownMenu />` of actions for each row.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dropdown-menu",
@@ -20476,7 +20478,7 @@
       "type": "registry:component",
       "title": "table demo",
       "description": "Erbium table demo example.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -20505,7 +20507,7 @@
       "type": "registry:block",
       "title": "Table: Footer",
       "description": "Define `footer` on a column and render `getFooterGroups()` inside `<TableFooter />`. The total is computed from the row model, so it stays correct as rows change.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -20525,7 +20527,7 @@
       "type": "registry:block",
       "title": "Table: Overview",
       "description": "",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -20545,7 +20547,7 @@
       "type": "registry:block",
       "title": "Table: Playground",
       "description": "",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": ["@erbium/styles", "@erbium/table"],
       "files": [
         {
@@ -20565,7 +20567,7 @@
       "type": "registry:block",
       "title": "Table: Row Selection",
       "description": "Register `rowSelectionFeature` and add a display column of checkboxes. Click a row checkbox or drag across rows to select or clear a range. Selected `TableRow` elements use `data-state=selected`, and the header checkbox reflects partial or full selection.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/styles",
@@ -20590,7 +20592,7 @@
       "type": "registry:block",
       "title": "Table: RTL",
       "description": "Set `dir=\"rtl\"` on the table. Columns use logical classes such as `text-end`, so alignment follows the reading direction.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": ["@erbium/styles", "@erbium/table", "@erbium/utils"],
       "files": [
         {
@@ -20610,7 +20612,7 @@
       "type": "registry:item",
       "title": "Table stories",
       "description": "All table variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-table@9.2.8"],
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",

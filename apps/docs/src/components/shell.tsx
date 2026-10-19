@@ -1,3 +1,4 @@
+import { useHotkey } from "@tanstack/react-hotkeys";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
@@ -205,17 +206,10 @@ function Search({ open, onOpenChange }: { open: boolean; onOpenChange: (open: bo
 export function Shell({ children }: { children: ReactNode }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  useEffect(() => {
-    const key = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setMobileOpen(false);
-        setSearchOpen((open) => !open);
-      }
-    };
-    window.addEventListener("keydown", key);
-    return () => window.removeEventListener("keydown", key);
-  }, []);
+  useHotkey("Mod+K", () => {
+    setMobileOpen(false);
+    setSearchOpen((open) => !open);
+  });
   const openSearch = () => {
     setMobileOpen(false);
     setSearchOpen(true);

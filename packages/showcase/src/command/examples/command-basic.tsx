@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHotkey } from "@tanstack/react-hotkeys";
 
 import { Button } from "@erbium/ui/components/button";
 import {
@@ -27,26 +28,13 @@ const commandGroups = [
 export function CommandBasic() {
   const [open, setOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (
-        event.isComposing ||
-        event.repeat ||
-        !(event.metaKey || event.ctrlKey) ||
-        event.key.toLowerCase() !== "k"
-      )
-        return;
-      if (
-        event.target instanceof HTMLElement &&
-        event.target.closest("input, textarea, select, [contenteditable=true]")
-      )
-        return;
-      event.preventDefault();
-      setOpen((current) => !current);
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  // Toggle the palette with Mod+K, but keep the shortcut from firing while
+  // typing in an editable control. `allow` avoids a duplicate-registration
+  // warning when the example renders beside an app that already owns Mod+K.
+  useHotkey("Mod+K", () => setOpen((current) => !current), {
+    conflictBehavior: "allow",
+    ignoreInputs: true,
+  });
 
   return (
     <div className="flex flex-col gap-group">

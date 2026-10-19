@@ -144,7 +144,7 @@ If you have a single sidebar in your application, you can use the `SIDEBAR_WIDTH
 
 For multiple sidebars in your application, you can use the `--sidebar-width` and `--sidebar-width-mobile` CSS variables in the `style` prop.
 
-To trigger the sidebar, you use the `cmd+b` keyboard shortcut on Mac and `ctrl+b` on Windows.
+To toggle the sidebar, `SidebarProvider` registers the `Mod+B` shortcut through TanStack Hotkeys — `Cmd+B` on macOS and `Ctrl+B` on Windows and Linux.
 
 ```tsx
 const SIDEBAR_WIDTH = "16rem";
@@ -165,8 +165,10 @@ const SIDEBAR_WIDTH_MOBILE = "18rem";
 ```
 
 ```tsx
-const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+const SIDEBAR_KEYBOARD_SHORTCUT = "Mod+B";
 ```
+
+The provider wires the shortcut up with `useHotkey` from `@tanstack/react-hotkeys`, so the binding adapts to the platform and cleans itself up on unmount.
 
 ## Sidebar
 
