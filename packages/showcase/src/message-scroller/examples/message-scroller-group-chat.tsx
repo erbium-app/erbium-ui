@@ -21,6 +21,7 @@ import {
   MessageScrollerProvider,
   MessageScrollerViewport,
 } from "@erbium/ui/components/message-scroller";
+import { Separator } from "@erbium/ui/components/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";
 
 const currentUser = "Grace";
@@ -96,8 +97,8 @@ export function MessageScrollerGroupChat() {
   return (
     <MessageScrollerProvider>
       <div className="relative flex flex-col gap-group">
-        <Card className="mx-auto h-140 w-full max-w-sm gap-0">
-          <CardHeader className="gap-1 border-b">
+        <Card className="mx-auto h-140 w-full max-w-sm">
+          <CardHeader className="gap-1">
             <CardTitle>Group Chat</CardTitle>
             <CardDescription>
               A group chat with several participants and an assistant. The Marker is marked as a
@@ -128,6 +129,7 @@ export function MessageScrollerGroupChat() {
               </Tooltip>
             </CardAction>
           </CardHeader>
+          <Separator variant="full" />
           <div className="min-h-0 flex-1 overflow-hidden">
             <MessageScrollerProvider>
               <MessageScroller key={demoKey}>

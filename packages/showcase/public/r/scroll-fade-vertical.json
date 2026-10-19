@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Scroll Fade: Vertical",
   "description": "",
-  "registryDependencies": ["@erbium/styles"],
+  "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
       "path": "src/scroll-fade/helpers.tsx",
@@ -16,7 +16,7 @@
       "path": "src/scroll-fade/variants/vertical.tsx",
       "type": "registry:component",
       "target": "@components/showcase/scroll-fade/variants/vertical.tsx",
-      "content": "import { rows } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"w-72 overflow-hidden rounded-lg border surface-panel\">\n    <div className=\"scroll-fade h-56 overflow-y-auto px-4\">\n      {rows.map((row) => (\n        <div key={row} className=\"border-b py-4 text-caption\">\n          Scrollable row {row}\n        </div>\n      ))}\n    </div>\n  </div>\n);\n\nexport default Example;\n"
+      "content": "import { Fragment } from \"react\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nimport { rows } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"w-72 overflow-hidden rounded-lg border surface-panel\">\n    <div className=\"scroll-fade h-56 overflow-y-auto px-4\">\n      {rows.map((row, index) => (\n        <Fragment key={row}>\n          {index > 0 ? <Separator /> : null}\n          <div className=\"py-4 text-caption\">Scrollable row {row}</div>\n        </Fragment>\n      ))}\n    </div>\n  </div>\n);\n\nexport default Example;\n"
     }
   ]
 }

@@ -4,13 +4,13 @@
   "type": "registry:component",
   "title": "Card: Edge To Edge",
   "description": "Place media flush with the card edges.",
-  "registryDependencies": ["@erbium/card", "@erbium/styles"],
+  "registryDependencies": ["@erbium/card", "@erbium/separator", "@erbium/styles"],
   "files": [
     {
       "path": "src/card/variants/edge-to-edge.tsx",
       "type": "registry:component",
       "target": "@components/showcase/card/variants/edge-to-edge.tsx",
-      "content": "import { Card, CardFooter, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Recent activity</CardTitle>\n    </CardHeader>\n    <div className=\"border-t bg-muted p-panel\">Content runs to the card edges.</div>\n    <CardFooter>View all activity</CardFooter>\n  </Card>\n);\n\nexport default Example;\n"
+      "content": "import { Card, CardFooter, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Recent activity</CardTitle>\n    </CardHeader>\n    <Separator variant=\"full\" />\n    <div className=\"bg-muted p-panel\">Content runs to the card edges.</div>\n    <CardFooter>View all activity</CardFooter>\n  </Card>\n);\n\nexport default Example;\n"
     }
   ]
 }

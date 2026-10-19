@@ -18,6 +18,7 @@ import {
   MessageScrollerViewport,
   useMessageScroller,
 } from "@erbium/ui/components/message-scroller";
+import { Separator } from "@erbium/ui/components/separator";
 import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";
 
 const messages = [
@@ -62,11 +63,12 @@ export function MessageScrollerOpeningPosition() {
 
   return (
     <div className="relative flex flex-col gap-group">
-      <Card className="mx-auto h-140 w-full max-w-sm gap-0">
-        <CardHeader className="gap-1 border-b">
+      <Card className="mx-auto h-140 w-full max-w-sm">
+        <CardHeader className="gap-1">
           <CardTitle>Opening Position</CardTitle>
           <CardDescription>Choose where a saved transcript opens.</CardDescription>
         </CardHeader>
+        <Separator variant="full" />
         <div className="min-h-0 flex-1 overflow-hidden">
           <MessageScrollerProvider>
             <OpeningPositionScroller position={position} positionKey={positionKey} />
