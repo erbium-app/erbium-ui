@@ -14,6 +14,7 @@ dist-cloudflare
 storybook-static
 dist-ssr
 *.local
+*.bak
 packages/ui/.registry-build/
 
 # dotenv environment variable files
