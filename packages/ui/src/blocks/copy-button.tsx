@@ -17,7 +17,7 @@ interface CopyButtonState {
 
 const CopyButtonContext = createContext<CopyButtonState | null>(null);
 
-function useCopyButtonState() {
+const useCopyButtonState = () => {
   const state = use(CopyButtonContext);
 
   if (!state) {
@@ -25,7 +25,7 @@ function useCopyButtonState() {
   }
 
   return state;
-}
+};
 
 type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
   Pick<ComponentProps<typeof Button>, "variant" | "size" | "loading" | "focusableWhenDisabled"> & {
@@ -39,7 +39,7 @@ type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
     render?: useRender.RenderProp<CopyButtonState>;
   };
 
-function CopyButton({
+const CopyButton = ({
   value,
   timeout,
   onCopied,
@@ -52,7 +52,7 @@ function CopyButton({
   disabled,
   loading,
   ...props
-}: CopyButtonProps) {
+}: CopyButtonProps) => {
   const clipboard = useCopyToClipboard({ onCopy: onCopied, onError, timeout });
   const { reset } = clipboard;
   const previousValue = useRef(value);
@@ -109,11 +109,11 @@ function CopyButton({
       </span>
     </CopyButtonContext>
   );
-}
+};
 
-function CopyButtonIcon(
+const CopyButtonIcon = (
   props: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">,
-) {
+) => {
   const { status } = useCopyButtonState();
 
   return (
@@ -127,34 +127,32 @@ function CopyButtonIcon(
       }}
     />
   );
-}
+};
 
-function CopyButtonLabel({ children, className, ...props }: ComponentProps<"span">) {
-  return (
-    <span
-      {...props}
-      data-slot="copy-button-label"
-      className={["inline-grid items-center justify-items-center", className]
-        .filter(Boolean)
-        .join(" ")}
-    >
-      {children ?? (
-        <>
-          <CopyButtonLabelIdle />
-          <CopyButtonLabelCopied />
-          <CopyButtonLabelError />
-        </>
-      )}
-    </span>
-  );
-}
+const CopyButtonLabel = ({ children, className, ...props }: ComponentProps<"span">) => (
+  <span
+    {...props}
+    data-slot="copy-button-label"
+    className={["inline-grid items-center justify-items-center", className]
+      .filter(Boolean)
+      .join(" ")}
+  >
+    {children ?? (
+      <>
+        <CopyButtonLabelIdle />
+        <CopyButtonLabelCopied />
+        <CopyButtonLabelError />
+      </>
+    )}
+  </span>
+);
 
-function CopyLabelState({
+const CopyLabelState = ({
   state,
   children,
   className,
   ...props
-}: ComponentProps<"span"> & { state: CopyButtonState["status"] }) {
+}: ComponentProps<"span"> & { state: CopyButtonState["status"] }) => {
   const active = useCopyButtonState().status === state;
 
   return (
@@ -173,31 +171,25 @@ function CopyLabelState({
       {children}
     </span>
   );
-}
+};
 
-function CopyButtonLabelIdle({ children = "Copy", ...props }: ComponentProps<"span">) {
-  return (
-    <CopyLabelState {...props} state="idle">
-      {children}
-    </CopyLabelState>
-  );
-}
+const CopyButtonLabelIdle = ({ children = "Copy", ...props }: ComponentProps<"span">) => (
+  <CopyLabelState {...props} state="idle">
+    {children}
+  </CopyLabelState>
+);
 
-function CopyButtonLabelCopied({ children = "Copied", ...props }: ComponentProps<"span">) {
-  return (
-    <CopyLabelState {...props} state="copied">
-      {children}
-    </CopyLabelState>
-  );
-}
+const CopyButtonLabelCopied = ({ children = "Copied", ...props }: ComponentProps<"span">) => (
+  <CopyLabelState {...props} state="copied">
+    {children}
+  </CopyLabelState>
+);
 
-function CopyButtonLabelError({ children = "Failed", ...props }: ComponentProps<"span">) {
-  return (
-    <CopyLabelState {...props} state="error">
-      {children}
-    </CopyLabelState>
-  );
-}
+const CopyButtonLabelError = ({ children = "Failed", ...props }: ComponentProps<"span">) => (
+  <CopyLabelState {...props} state="error">
+    {children}
+  </CopyLabelState>
+);
 
 export {
   CopyButton,

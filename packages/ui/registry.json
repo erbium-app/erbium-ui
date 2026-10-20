@@ -418,6 +418,7 @@
       "description": "Erbium command component.",
       "dependencies": ["@base-ui/react"],
       "registryDependencies": [
+        "@erbium/button",
         "@erbium/dialog",
         "@erbium/focus-search-input",
         "@erbium/icon",

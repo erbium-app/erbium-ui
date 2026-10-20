@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/marker", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerShimmerDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker role=\"status\">\n        <MarkerContent className=\"shimmer\">Thinking...</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\" role=\"status\">\n        <MarkerContent className=\"shimmer\">Reading 4 files</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport const MarkerShimmerDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Marker role=\"status\">\n      <MarkerContent className=\"shimmer\">Thinking...</MarkerContent>\n    </Marker>\n    <Marker variant=\"separator\" role=\"status\">\n      <MarkerContent className=\"shimmer\">Reading 4 files</MarkerContent>\n    </Marker>\n  </div>\n);\n",
       "path": "src/marker/examples/marker-shimmer.tsx",
       "target": "@components/showcase/marker/examples/marker-shimmer.tsx",
       "type": "registry:component"

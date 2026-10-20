@@ -63,27 +63,25 @@ const countries = [
   },
 ];
 
-export function ComboboxPopup() {
-  return (
-    <>
-      <Combobox items={countries} defaultValue={countries[0]}>
-        <ComboboxTrigger
-          render={<Button variant="outline" className="w-64 justify-between font-normal" />}
-        >
-          <ComboboxValue />
-        </ComboboxTrigger>
-        <ComboboxContent>
-          <ComboboxSearchInput placeholder="Search" aria-label="Search countries" />
-          <ComboboxEmpty>No items found.</ComboboxEmpty>
-          <ComboboxList>
-            {(item) => (
-              <ComboboxItem key={item.code} value={item}>
-                {item.label}
-              </ComboboxItem>
-            )}
-          </ComboboxList>
-        </ComboboxContent>
-      </Combobox>
-    </>
-  );
-}
+export const ComboboxPopup = () => (
+  <>
+    <Combobox items={countries} defaultValue={countries[0]}>
+      <ComboboxTrigger
+        render={<Button variant="outline" className="w-64 justify-between font-normal" />}
+      >
+        <ComboboxValue />
+      </ComboboxTrigger>
+      <ComboboxContent>
+        <ComboboxSearchInput placeholder="Search" aria-label="Search countries" />
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item.code} value={item}>
+              {item.label}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  </>
+);

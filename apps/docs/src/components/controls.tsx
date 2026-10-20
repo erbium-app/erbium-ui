@@ -32,7 +32,7 @@ import {
 
 type Row = ReturnType<typeof controlRows>[number];
 
-function ObjectControl({
+const ObjectControl = ({
   value,
   onChange,
   label,
@@ -40,7 +40,7 @@ function ObjectControl({
   value: unknown;
   onChange: (value: unknown) => void;
   label: string;
-}) {
+}) => {
   const [draft, setDraft] = useState(value === undefined ? "" : JSON.stringify(value, null, 2));
   const [error, setError] = useState(false);
 
@@ -65,9 +65,9 @@ function ObjectControl({
       <FieldError errors={error ? ["Enter valid JSON."] : []} />
     </Field>
   );
-}
+};
 
-function ControlInput({
+const ControlInput = ({
   row,
   value,
   onChange,
@@ -75,7 +75,7 @@ function ControlInput({
   row: Row;
   value: unknown;
   onChange: (value: unknown) => void;
-}) {
+}) => {
   if (row.options) {
     return (
       <Select
@@ -168,9 +168,9 @@ function ControlInput({
       {row.type === "callback" ? "Event callback" : "Read only"}
     </span>
   );
-}
+};
 
-export function Controls({
+export const Controls = ({
   args,
   defaults,
   argTypes,
@@ -182,7 +182,7 @@ export function Controls({
   argTypes: ShowcaseStory["argTypes"];
   onChange: (args: Record<string, unknown>) => void;
   onReset: () => void;
-}) {
+}) => {
   const rows = controlRows({ argTypes, args: defaults, render: () => null });
 
   if (!rows.length) {
@@ -246,4 +246,4 @@ export function Controls({
       </Table>
     </section>
   );
-}
+};

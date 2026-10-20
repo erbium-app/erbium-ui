@@ -21,53 +21,40 @@ const codePanelFocusRing =
 
 type CodePanelProps = Omit<ComponentProps<"div">, "dir" | "dangerouslySetInnerHTML">;
 
-function CodePanel({ className, ...props }: CodePanelProps) {
-  return (
-    <DirectionProvider direction="ltr">
-      <div
-        data-slot="code-panel"
-        {...props}
-        dir="ltr"
-        className={cn(codePanelSurface, className)}
-      />
-    </DirectionProvider>
-  );
-}
+const CodePanel = ({ className, ...props }: CodePanelProps) => (
+  <DirectionProvider direction="ltr">
+    <div data-slot="code-panel" {...props} dir="ltr" className={cn(codePanelSurface, className)} />
+  </DirectionProvider>
+);
 
-function CodePanelHeader({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <>
-      <div
-        data-slot="code-panel-header"
-        {...props}
-        className={cn(codePanelHeader, "flex-wrap", className)}
-      />
-      <Separator variant="full" />
-    </>
-  );
-}
-
-function CodePanelTitle({ className, ...props }: ComponentProps<"span">) {
-  return <span data-slot="code-panel-title" {...props} className={cn(codePanelTitle, className)} />;
-}
-
-function CodePanelActions({ className, ...props }: ComponentProps<"div">) {
-  return (
+const CodePanelHeader = ({ className, ...props }: ComponentProps<"div">) => (
+  <>
     <div
-      data-slot="code-panel-actions"
+      data-slot="code-panel-header"
       {...props}
-      className={cn("flex shrink-0 items-center gap-related", className)}
+      className={cn(codePanelHeader, "flex-wrap", className)}
     />
-  );
-}
+    <Separator variant="full" />
+  </>
+);
 
-function CodePanelCopyButton({ children, ...props }: CopyButtonProps) {
-  return (
-    <CopyButton variant="ghost" size={children == null ? "icon-xs" : "xs"} {...props}>
-      {children}
-    </CopyButton>
-  );
-}
+const CodePanelTitle = ({ className, ...props }: ComponentProps<"span">) => (
+  <span data-slot="code-panel-title" {...props} className={cn(codePanelTitle, className)} />
+);
+
+const CodePanelActions = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    data-slot="code-panel-actions"
+    {...props}
+    className={cn("flex shrink-0 items-center gap-related", className)}
+  />
+);
+
+const CodePanelCopyButton = ({ children, ...props }: CopyButtonProps) => (
+  <CopyButton variant="ghost" size={children == null ? "icon-xs" : "xs"} {...props}>
+    {children}
+  </CopyButton>
+);
 
 type CodePanelContentProps = Omit<ComponentProps<"div">, "dir" | "dangerouslySetInnerHTML"> & {
   /** Shown above the rendered code until the renderer has produced output. */
@@ -76,13 +63,13 @@ type CodePanelContentProps = Omit<ComponentProps<"div">, "dir" | "dangerouslySet
   empty?: ReactNode;
 };
 
-function CodePanelContent({
+const CodePanelContent = ({
   loading,
   empty,
   children,
   className,
   ...props
-}: CodePanelContentProps) {
+}: CodePanelContentProps) => {
   const showEmpty = empty != null && empty !== false;
 
   return (
@@ -113,18 +100,16 @@ function CodePanelContent({
       )}
     </div>
   );
-}
+};
 
-function CodePanelEmpty({ title, description }: { title: ReactNode; description?: ReactNode }) {
-  return (
-    <Empty className="rounded-none border-0 p-panel sm:p-panel">
-      <EmptyHeader>
-        <EmptyTitle>{title}</EmptyTitle>
-        {description ? <EmptyDescription>{description}</EmptyDescription> : null}
-      </EmptyHeader>
-    </Empty>
-  );
-}
+const CodePanelEmpty = ({ title, description }: { title: ReactNode; description?: ReactNode }) => (
+  <Empty className="rounded-none border-0 p-panel sm:p-panel">
+    <EmptyHeader>
+      <EmptyTitle>{title}</EmptyTitle>
+      {description ? <EmptyDescription>{description}</EmptyDescription> : null}
+    </EmptyHeader>
+  </Empty>
+);
 
 export {
   CodePanel,

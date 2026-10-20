@@ -1,7 +1,7 @@
 import { site } from "@/config/site";
 import { pages } from "./catalog";
 
-export async function resourceResponse(request: Request) {
+export const resourceResponse = async (request: Request) => {
   const path = new URL(request.url).pathname;
 
   if (path === "/robots.txt") {
@@ -28,4 +28,4 @@ export async function resourceResponse(request: Request) {
   }
 
   return null;
-}
+};

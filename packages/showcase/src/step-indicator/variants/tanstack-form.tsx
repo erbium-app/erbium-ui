@@ -13,7 +13,7 @@ const steps = [
 
 const required = ({ value }: { value: string }) => (value.trim() ? undefined : "Required");
 
-export default function Example() {
+const Example = () => {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
 
@@ -42,7 +42,7 @@ export default function Example() {
   // Going back is free. Going forward validates each step on the way, which
   // touches it, and stops at the first invalid one. Later steps are never
   // validated, so they never show an error before the user reaches them.
-  async function goTo(target: number) {
+  const goTo = async (target: number) => {
     for (let index = step; index < target; index++) {
       const errors = await form.validateField(steps[index].field, "change");
 
@@ -54,7 +54,7 @@ export default function Example() {
     }
 
     setStep(target);
-  }
+  };
 
   return (
     <form
@@ -123,4 +123,6 @@ export default function Example() {
       </div>
     </form>
   );
-}
+};
+
+export default Example;

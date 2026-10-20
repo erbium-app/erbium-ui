@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/message", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Message, MessageContent, MessageGroup } from \"@/registry/erbium/ui/message\";\n\nexport default function Demo() {\n  return (\n    <MessageGroup className=\"w-80\">\n      <Message>\n        <MessageContent>Hello, how can I help?</MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>Please show me an example.</MessageContent>\n      </Message>\n    </MessageGroup>\n  );\n}\n",
+      "content": "import { Message, MessageContent, MessageGroup } from \"@/registry/erbium/ui/message\";\n\nconst Demo = () => (\n  <MessageGroup className=\"w-80\">\n    <Message>\n      <MessageContent>Hello, how can I help?</MessageContent>\n    </Message>\n    <Message align=\"end\">\n      <MessageContent>Please show me an example.</MessageContent>\n    </Message>\n  </MessageGroup>\n);\n\nexport default Demo;\n",
       "path": "src/message/examples/message-demo.tsx",
       "target": "@components/showcase/message/examples/message-demo.tsx",
       "type": "registry:component"

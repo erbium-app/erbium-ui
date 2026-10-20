@@ -22,8 +22,8 @@ const registry: { items: { name: string; files?: { path: string }[] }[] } = JSON
   readFileSync(new URL("ui/registry.json", root), "utf-8"),
 );
 
-export function navigationMetadata() {
-  return sections.flatMap((section) =>
+export const navigationMetadata = () =>
+  sections.flatMap((section) =>
     section.names.map((name) => {
       const { data } = matter(
         readFileSync(new URL(`content/components/${name}/index.md`, root), "utf-8"),
@@ -42,9 +42,8 @@ export function navigationMetadata() {
       };
     }),
   );
-}
 
-export function contentPlugin(): Plugin {
+export const contentPlugin = (): Plugin => {
   const light = ["theme", "surfaces"]
     .map((name) => {
       const source = readFileSync(new URL(`ui/src/styles/${name}.css`, root), "utf-8");
@@ -84,4 +83,4 @@ export function contentPlugin(): Plugin {
       }
     },
   };
-}
+};

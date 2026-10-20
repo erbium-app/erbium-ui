@@ -42,38 +42,36 @@ import {
 import { navigationGroups } from "@/content/catalog";
 import { useTheme, toggleTheme } from "./theme";
 
-function Brand() {
-  return (
-    <Link
-      to="/"
-      className="inline-flex items-center gap-related text-body font-semibold text-foreground"
-      aria-label="Erbium UI home"
+const Brand = () => (
+  <Link
+    to="/"
+    className="inline-flex items-center gap-related text-body font-semibold text-foreground"
+    aria-label="Erbium UI home"
+  >
+    <img
+      src="/brand/erbium-logo-light.svg"
+      width={32}
+      height={32}
+      alt=""
+      className="block shrink-0 dark:hidden"
+    />
+    <img
+      src="/brand/erbium-logo-dark.svg"
+      width={32}
+      height={32}
+      alt=""
+      className="hidden shrink-0 dark:block"
+    />
+    <span
+      className="inline-flex items-baseline gap-(--docs-tight-gap) text-subtitle whitespace-nowrap"
+      aria-hidden="true"
     >
-      <img
-        src="/brand/erbium-logo-light.svg"
-        width={32}
-        height={32}
-        alt=""
-        className="block shrink-0 dark:hidden"
-      />
-      <img
-        src="/brand/erbium-logo-dark.svg"
-        width={32}
-        height={32}
-        alt=""
-        className="hidden shrink-0 dark:block"
-      />
-      <span
-        className="inline-flex items-baseline gap-(--docs-tight-gap) text-subtitle whitespace-nowrap"
-        aria-hidden="true"
-      >
-        Erbium <span className="text-link font-medium">UI</span>
-      </span>
-    </Link>
-  );
-}
+      Erbium <span className="text-link font-medium">UI</span>
+    </span>
+  </Link>
+);
 
-function Navigation({ onNavigate }: { onNavigate?: () => void }) {
+const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
   const path = useLocation({ select: (location) => location.pathname });
   const nav = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -115,9 +113,9 @@ function Navigation({ onNavigate }: { onNavigate?: () => void }) {
       ))}
     </nav>
   );
-}
+};
 
-function ThemeToggle() {
+const ThemeToggle = () => {
   const dark = useTheme();
 
   return (
@@ -131,45 +129,47 @@ function ThemeToggle() {
       <ThemeToggleIcon theme={dark ? "dark" : "light"} />
     </Button>
   );
-}
+};
 
-function SidebarActions() {
-  return (
-    <SidebarFooter className="flex-row items-center justify-between py-3 ps-0 pe-(--docs-sidebar-inset)">
-      <a
-        href="https://github.com/erbium-app/erbium-ui"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={buttonVariants({ size: "icon", variant: "ghost" })}
-        aria-label="Erbium UI on GitHub"
-      >
-        <Icon name="github" />
-      </a>
-      <ThemeToggle />
-    </SidebarFooter>
-  );
-}
-
-function SearchTrigger({ onClick, mobile = false }: { onClick: () => void; mobile?: boolean }) {
-  return (
-    <Button
-      variant="outline"
-      onClick={onClick}
-      className="w-full justify-start text-muted-foreground"
+const SidebarActions = () => (
+  <SidebarFooter className="flex-row items-center justify-between py-3 ps-0 pe-(--docs-sidebar-inset)">
+    <a
+      href="https://github.com/erbium-app/erbium-ui"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={buttonVariants({ size: "icon", variant: "ghost" })}
+      aria-label="Erbium UI on GitHub"
     >
-      <Icon name="search-01" />
-      <span className="min-w-0 flex-1 truncate text-start">Search documentation…</span>
-      {!mobile && <Kbd hotkey="Mod+K" />}
-    </Button>
-  );
-}
+      <Icon name="github" />
+    </a>
+    <ThemeToggle />
+  </SidebarFooter>
+);
+
+const SearchTrigger = ({ onClick, mobile = false }: { onClick: () => void; mobile?: boolean }) => (
+  <Button
+    variant="outline"
+    onClick={onClick}
+    className="w-full justify-start text-muted-foreground"
+  >
+    <Icon name="search-01" />
+    <span className="min-w-0 flex-1 truncate text-start">Search documentation…</span>
+    {!mobile && <Kbd hotkey="Mod+K" />}
+  </Button>
+);
 
 const searchGroups = navigationGroups.map((group) => ({
   items: group.items.map((page) => ({ ...page, label: page.title })),
   label: group.title,
 }));
 
-function Search({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+const Search = ({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) => {
   const router = useRouter();
 
   return (
@@ -212,9 +212,9 @@ function Search({ open, onOpenChange }: { open: boolean; onOpenChange: (open: bo
       </Command>
     </CommandDialog>
   );
-}
+};
 
-export function Shell({ children }: { children: ReactNode }) {
+export const Shell = ({ children }: { children: ReactNode }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   useHotkey("Mod+K", () => {
@@ -284,4 +284,4 @@ export function Shell({ children }: { children: ReactNode }) {
       <Search open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );
-}
+};

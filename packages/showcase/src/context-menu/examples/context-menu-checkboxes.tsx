@@ -7,22 +7,20 @@ import {
   ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
-export function ContextMenuCheckboxes() {
-  return (
-    <ContextMenu>
-      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
-        <span className="hidden pointer-fine:inline-block">Right click here</span>
-        <span className="hidden pointer-coarse:inline-block">Long press here</span>
-      </ContextMenuTrigger>
-      <ContextMenuContent>
-        <ContextMenuList>
-          <ContextMenuGroup>
-            <ContextMenuCheckboxItem defaultChecked>Show Bookmarks Bar</ContextMenuCheckboxItem>
-            <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
-            <ContextMenuCheckboxItem defaultChecked>Show Developer Tools</ContextMenuCheckboxItem>
-          </ContextMenuGroup>
-        </ContextMenuList>
-      </ContextMenuContent>
-    </ContextMenu>
-  );
-}
+export const ContextMenuCheckboxes = () => (
+  <ContextMenu>
+    <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed bg-surface-panel text-caption">
+      <span className="hidden pointer-fine:inline-block">Right click here</span>
+      <span className="hidden pointer-coarse:inline-block">Long press here</span>
+    </ContextMenuTrigger>
+    <ContextMenuContent>
+      <ContextMenuList>
+        <ContextMenuGroup>
+          <ContextMenuCheckboxItem defaultChecked>Show Bookmarks Bar</ContextMenuCheckboxItem>
+          <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
+          <ContextMenuCheckboxItem defaultChecked>Show Developer Tools</ContextMenuCheckboxItem>
+        </ContextMenuGroup>
+      </ContextMenuList>
+    </ContextMenuContent>
+  </ContextMenu>
+);

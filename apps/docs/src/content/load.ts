@@ -8,7 +8,7 @@ export const loadPage = createServerFn({ method: "GET" })
     return getPage(data);
   });
 
-export async function loadExampleSource({ data }: { data: { name: string; slug: string } }) {
+export const loadExampleSource = async ({ data }: { data: { name: string; slug: string } }) => {
   const response = await fetch(
     `/examples/${encodeURIComponent(data.name)}-${encodeURIComponent(data.slug)}.json`,
   );
@@ -18,4 +18,4 @@ export async function loadExampleSource({ data }: { data: { name: string; slug: 
   }
 
   return await (response.json() as Promise<{ path: string; source: string }[]>);
-}
+};

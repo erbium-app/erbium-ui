@@ -25,7 +25,7 @@ const commandGroups = [
   },
 ];
 
-export function CommandBasic() {
+export const CommandBasic = () => {
   const [open, setOpen] = React.useState(false);
 
   // Toggle the palette with Mod+K, but keep the shortcut from firing while
@@ -82,4 +82,4 @@ export function CommandBasic() {
       </CommandDialog>
     </div>
   );
-}
+};

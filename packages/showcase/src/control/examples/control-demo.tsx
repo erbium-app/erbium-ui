@@ -7,7 +7,7 @@ const shapes = [
   { label: "Landscape", value: "landscape" },
 ];
 
-export default function ControlDemo() {
+const ControlDemo = () => {
   const [title, setTitle] = useState("Japan");
   const [opacity, setOpacity] = useState(0.6);
   const [scale, setScale] = useState(1.03);
@@ -51,4 +51,6 @@ export default function ControlDemo() {
       </Control.Group>
     </div>
   );
-}
+};
+
+export default ControlDemo;

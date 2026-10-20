@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/marker", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport function MarkerSeparatorDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker variant=\"separator\">\n        <MarkerContent>Today</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>Worked for 42s</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\">\n        <MarkerContent>Conversation compacted</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport const MarkerSeparatorDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Marker variant=\"separator\">\n      <MarkerContent>Today</MarkerContent>\n    </Marker>\n    <Marker variant=\"separator\">\n      <MarkerContent>Worked for 42s</MarkerContent>\n    </Marker>\n    <Marker variant=\"separator\">\n      <MarkerContent>Conversation compacted</MarkerContent>\n    </Marker>\n  </div>\n);\n",
       "path": "src/marker/examples/marker-separator.tsx",
       "target": "@components/showcase/marker/examples/marker-separator.tsx",
       "type": "registry:component"

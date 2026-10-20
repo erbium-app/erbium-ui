@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
 import { Slider } from "@erbium/ui/components/slider";
 
-export default function FieldSlider() {
+const FieldSlider = () => {
   const [value, setValue] = useState([200, 800]);
 
   return (
@@ -29,4 +29,6 @@ export default function FieldSlider() {
       </Field>
     </div>
   );
-}
+};
+
+export default FieldSlider;

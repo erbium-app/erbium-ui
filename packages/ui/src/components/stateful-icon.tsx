@@ -15,13 +15,13 @@ interface StatefulIconProps<State extends string> {
   "data-icon"?: "inline-start" | "inline-end";
 }
 
-function StatefulIcon<State extends string>({
+const StatefulIcon = <State extends string>({
   state,
   icons,
   labels,
   className,
   "data-icon": placement,
-}: StatefulIconProps<State>) {
+}: StatefulIconProps<State>) => {
   const reduceMotion = useReducedMotion();
   const label = labels?.[state];
 
@@ -55,7 +55,7 @@ function StatefulIcon<State extends string>({
       })}
     </span>
   );
-}
+};
 
 type RotatingChevronProps = Omit<React.ComponentProps<typeof Icon>, "name"> & {
   /** Closed direction: down for vertical content, inline-end for submenus. */
@@ -64,7 +64,12 @@ type RotatingChevronProps = Omit<React.ComponentProps<typeof Icon>, "name"> & {
   scope?: "collapsible";
 };
 
-function RotatingChevron({ direction = "down", scope, className, ...props }: RotatingChevronProps) {
+const RotatingChevron = ({
+  direction = "down",
+  scope,
+  className,
+  ...props
+}: RotatingChevronProps) => {
   const name = direction === "down" ? "chevron-down" : "chevron-right";
 
   const rotation =
@@ -89,7 +94,7 @@ function RotatingChevron({ direction = "down", scope, className, ...props }: Rot
       {...props}
     />
   );
-}
+};
 
 interface ExpandableChevronProps {
   isOpen: boolean;
@@ -97,7 +102,7 @@ interface ExpandableChevronProps {
 }
 
 /** Two chevrons exchange positions to indicate an open or closed state. */
-function ExpandableChevron({ isOpen, className }: ExpandableChevronProps) {
+const ExpandableChevron = ({ isOpen, className }: ExpandableChevronProps) => {
   const reduceMotion = useReducedMotion();
   const transition = reduceMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" as const };
 
@@ -129,7 +134,7 @@ function ExpandableChevron({ isOpen, className }: ExpandableChevronProps) {
       </motion.span>
     </span>
   );
-}
+};
 
 type SidebarToggleIconProps = Omit<React.ComponentPropsWithoutRef<"svg">, "children"> & {
   isOpen: boolean;
@@ -138,13 +143,13 @@ type SidebarToggleIconProps = Omit<React.ComponentPropsWithoutRef<"svg">, "child
 };
 
 /** Sidebar frame whose inner panel grows when the sidebar opens. */
-function SidebarToggleIcon({
+const SidebarToggleIcon = ({
   isOpen,
   side = "left",
   duration = 0.3,
   className,
   ...props
-}: SidebarToggleIconProps) {
+}: SidebarToggleIconProps) => {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -186,7 +191,7 @@ function SidebarToggleIcon({
       />
     </svg>
   );
-}
+};
 
 interface ThemeToggleIconProps {
   theme: "light" | "dark";
@@ -194,7 +199,7 @@ interface ThemeToggleIconProps {
 }
 
 /** Sun and moon icons rotate and scale as the active theme changes. */
-function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
+const ThemeToggleIcon = ({ theme, className }: ThemeToggleIconProps) => {
   const reduceMotion = useReducedMotion();
   const transition = { duration: reduceMotion ? 0 : 0.2 };
   const isDark = theme === "dark";
@@ -224,30 +229,28 @@ function ThemeToggleIcon({ theme, className }: ThemeToggleIconProps) {
       </motion.span>
     </span>
   );
-}
+};
 
 /** Shared draw-on check and mixed mark. Place inside a keepMounted indicator with group/check-indicator. */
-function CheckboxStateIcon({ className }: { className?: string }) {
-  return (
-    <span
+const CheckboxStateIcon = ({ className }: { className?: string }) => (
+  <span
+    aria-hidden="true"
+    data-slot="checkbox-state-icon"
+    className={cn("inline-grid size-3.5 shrink-0", className)}
+  >
+    {/* Dash properties inherit into the sprite, so the draw-on runs on the svg itself. */}
+    <Icon
+      name="check"
       aria-hidden="true"
-      data-slot="checkbox-state-icon"
-      className={cn("inline-grid size-3.5 shrink-0", className)}
-    >
-      {/* Dash properties inherit into the sprite, so the draw-on runs on the svg itself. */}
-      <Icon
-        name="check"
-        aria-hidden="true"
-        className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
-      />
-      <Icon
-        name="minus"
-        aria-hidden="true"
-        className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:24] [stroke-dashoffset:24] group-data-indeterminate/check-indicator:opacity-100 group-data-indeterminate/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
-      />
-    </span>
-  );
-}
+      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
+    />
+    <Icon
+      name="minus"
+      aria-hidden="true"
+      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:24] [stroke-dashoffset:24] group-data-indeterminate/check-indicator:opacity-100 group-data-indeterminate/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
+    />
+  </span>
+);
 
 export {
   CheckboxStateIcon,

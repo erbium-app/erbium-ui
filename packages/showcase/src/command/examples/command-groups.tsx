@@ -91,7 +91,7 @@ const commandGroups = [
   },
 ];
 
-export function CommandWithGroups() {
+export const CommandWithGroups = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -134,4 +134,4 @@ export function CommandWithGroups() {
       </CommandDialog>
     </div>
   );
-}
+};

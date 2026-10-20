@@ -4,7 +4,7 @@ const sources = import.meta.glob<string>("./**/*.{tsx,ts}", {
   query: "?raw",
 });
 
-export function showcaseSource(path: string) {
+export const showcaseSource = (path: string) => {
   const source = sources[`./${path.replace(/^src\//, "")}`];
 
   if (!source) {
@@ -12,4 +12,4 @@ export function showcaseSource(path: string) {
   }
 
   return source;
-}
+};

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/shake", "@erbium/styles"],
   "files": [
     {
-      "content": "import { useRef } from \"react\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Demo() {\n  const ref = useRef<HTMLButtonElement>(null);\n\n  return (\n    <Button\n      ref={ref}\n      variant=\"error\"\n      onClick={() => {\n        shake(ref.current);\n      }}\n    >\n      Replay error feedback\n    </Button>\n  );\n}\n",
+      "content": "import { useRef } from \"react\";\nimport { shake } from \"@/registry/erbium/lib/shake\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Demo = () => {\n  const ref = useRef<HTMLButtonElement>(null);\n\n  return (\n    <Button\n      ref={ref}\n      variant=\"error\"\n      onClick={() => {\n        shake(ref.current);\n      }}\n    >\n      Replay error feedback\n    </Button>\n  );\n};\n\nexport default Demo;\n",
       "path": "src/shake/examples/shake-demo.tsx",
       "target": "@components/showcase/shake/examples/shake-demo.tsx",
       "type": "registry:component"

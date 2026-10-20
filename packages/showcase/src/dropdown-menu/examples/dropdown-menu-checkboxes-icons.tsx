@@ -12,7 +12,7 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export function DropdownMenuCheckboxesIcons() {
+export const DropdownMenuCheckboxesIcons = () => {
   const [notifications, setNotifications] = React.useState({
     email: true,
     push: true,
@@ -58,4 +58,4 @@ export function DropdownMenuCheckboxesIcons() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};

@@ -47,28 +47,26 @@ const timezones = [
   },
 ] as const;
 
-export function ComboboxWithGroupsAndSeparator() {
-  return (
-    <Combobox items={timezones}>
-      <ComboboxInput placeholder="Select a timezone" />
-      <ComboboxContent>
-        <ComboboxEmpty>No timezones found.</ComboboxEmpty>
-        <ComboboxList>
-          {(group, index) => (
-            <ComboboxGroup key={group.value} items={group.items}>
-              <ComboboxLabel>{group.value}</ComboboxLabel>
-              <ComboboxCollection>
-                {(item) => (
-                  <ComboboxItem key={item} value={item}>
-                    {item}
-                  </ComboboxItem>
-                )}
-              </ComboboxCollection>
-              {index < timezones.length - 1 && <ComboboxSeparator />}
-            </ComboboxGroup>
-          )}
-        </ComboboxList>
-      </ComboboxContent>
-    </Combobox>
-  );
-}
+export const ComboboxWithGroupsAndSeparator = () => (
+  <Combobox items={timezones}>
+    <ComboboxInput placeholder="Select a timezone" />
+    <ComboboxContent>
+      <ComboboxEmpty>No timezones found.</ComboboxEmpty>
+      <ComboboxList>
+        {(group, index) => (
+          <ComboboxGroup key={group.value} items={group.items}>
+            <ComboboxLabel>{group.value}</ComboboxLabel>
+            <ComboboxCollection>
+              {(item) => (
+                <ComboboxItem key={item} value={item}>
+                  {item}
+                </ComboboxItem>
+              )}
+            </ComboboxCollection>
+            {index < timezones.length - 1 && <ComboboxSeparator />}
+          </ComboboxGroup>
+        )}
+      </ComboboxList>
+    </ComboboxContent>
+  </Combobox>
+);

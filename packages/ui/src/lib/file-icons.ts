@@ -95,15 +95,15 @@ const byFileExtension: Record<string, IconName> = {
 
 const fallback: IconName = "file-duo";
 
-function extensionCandidates(fileName: string) {
+const extensionCandidates = (fileName: string) => {
   const segments = fileName.split(".");
 
   // `a.spec.ts` tries `spec.ts` and then `ts`; a leading dot is not an extension.
   return segments.slice(1).map((_, index) => segments.slice(index + 1).join("."));
-}
+};
 
 /** The icon for a file path: exact name, then tool-config name, then extension. */
-function fileIconName(path: string): IconName {
+const fileIconName = (path: string): IconName => {
   const fileName = (path.split("/").at(-1) ?? path).toLowerCase();
   const exact = byFileName[fileName];
 
@@ -126,7 +126,7 @@ function fileIconName(path: string): IconName {
   }
 
   return fallback;
-}
+};
 
 // Pierre's tree renders icons through a sprite injected into its shadow root.
 // Give it the file-type group plus the few interface glyphs its slots need, so
@@ -137,13 +137,13 @@ const treeInterfaceIcons = [
   "more-horizontal",
 ] as const satisfies IconName[];
 
-function symbolMarkup(sheet: string, name: IconName) {
+const symbolMarkup = (sheet: string, name: IconName) => {
   const match = new RegExp(
     `<symbol[^>]*\\sid="${iconDefinitions[name].id}"[\\s\\S]*?</symbol>`,
   ).exec(sheet);
 
   return match?.[0] ?? "";
-}
+};
 
 const { files } = spriteSheets;
 
@@ -151,15 +151,14 @@ const treeSpriteSheet = `${files.slice(0, files.lastIndexOf("</svg>"))}${treeInt
   .map((name) => symbolMarkup(spriteSheets.ui, name))
   .join("\n")}\n</svg>\n`;
 
-function treeIcon(name: IconName) {
+const treeIcon = (name: IconName) => {
   const { id, viewBox } = iconDefinitions[name];
 
   return { name: id, viewBox };
-}
+};
 
-function treeIcons<Rules extends Record<string, IconName>>(rules: Rules) {
-  return Object.fromEntries(Object.entries(rules).map(([key, name]) => [key, treeIcon(name)]));
-}
+const treeIcons = <Rules extends Record<string, IconName>>(rules: Rules) =>
+  Object.fromEntries(Object.entries(rules).map(([key, name]) => [key, treeIcon(name)]));
 
 const fileTreeIcons = {
   byFileExtension: treeIcons(byFileExtension),

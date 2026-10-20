@@ -2,24 +2,20 @@ import { useSyncExternalStore } from "react";
 import { changeTheme } from "@erbium/ui/lib/change-theme";
 import { flushSync } from "react-dom";
 
-function snapshot() {
-  return document.documentElement.classList.contains("dark");
-}
+const snapshot = () => document.documentElement.classList.contains("dark");
 
-function subscribe(callback: () => void) {
+const subscribe = (callback: () => void) => {
   const observer = new MutationObserver(callback);
   observer.observe(document.documentElement, { attributeFilter: ["class"], attributes: true });
 
   return () => {
     observer.disconnect();
   };
-}
+};
 
-export function useTheme() {
-  return useSyncExternalStore(subscribe, snapshot, () => false);
-}
+export const useTheme = () => useSyncExternalStore(subscribe, snapshot, () => false);
 
-export function toggleTheme() {
+export const toggleTheme = () => {
   const dark = !snapshot();
   changeTheme(() => {
     flushSync(() => document.documentElement.classList.toggle("dark", dark));
@@ -30,4 +26,4 @@ export function toggleTheme() {
   } catch {
     /* Retain the theme for this visit. */
   }
-}
+};

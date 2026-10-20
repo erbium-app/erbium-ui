@@ -20,32 +20,30 @@ const initialMessages = Array.from({ length: 12 }, (_, index) => ({
       : `Answer ${Math.ceil(index / 2)}: The scroller preserves your place as messages arrive.`,
 }));
 
-function Transcript({ messages }: { messages: typeof initialMessages }) {
-  return (
-    <MessageScroller className="h-72 w-96 rounded-lg border">
-      <MessageScrollerViewport>
-        <MessageScrollerContent className="gap-3 p-4">
-          {messages.map((message, index) => (
-            <MessageScrollerItem
-              key={message.id}
-              messageId={message.id}
-              scrollAnchor={index % 2 === 0}
+const Transcript = ({ messages }: { messages: typeof initialMessages }) => (
+  <MessageScroller className="h-72 w-96 rounded-lg border">
+    <MessageScrollerViewport>
+      <MessageScrollerContent className="gap-3 p-4">
+        {messages.map((message, index) => (
+          <MessageScrollerItem
+            key={message.id}
+            messageId={message.id}
+            scrollAnchor={index % 2 === 0}
+          >
+            <div
+              className={`max-w-72 rounded-lg p-3 text-caption ${index % 2 === 0 ? "ms-auto bg-primary text-primary-foreground" : "bg-muted"}`}
             >
-              <div
-                className={`max-w-72 rounded-lg p-3 text-caption ${index % 2 === 0 ? "ms-auto bg-primary text-primary-foreground" : "bg-muted"}`}
-              >
-                {message.text}
-              </div>
-            </MessageScrollerItem>
-          ))}
-        </MessageScrollerContent>
-      </MessageScrollerViewport>
-      <MessageScrollerButton />
-    </MessageScroller>
-  );
-}
+              {message.text}
+            </div>
+          </MessageScrollerItem>
+        ))}
+      </MessageScrollerContent>
+    </MessageScrollerViewport>
+    <MessageScrollerButton />
+  </MessageScroller>
+);
 
-function Commands() {
+const Commands = () => {
   const { scrollToStart, scrollToEnd, scrollToMessage } = useMessageScroller();
 
   return (
@@ -61,9 +59,9 @@ function Commands() {
       </Button>
     </div>
   );
-}
+};
 
-function Visibility() {
+const Visibility = () => {
   const { currentAnchorId, visibleMessageIds } = useMessageScrollerVisibility();
 
   return (
@@ -71,9 +69,9 @@ function Visibility() {
       Current turn: {currentAnchorId ?? "none"} · Visible: {visibleMessageIds.length}
     </p>
   );
-}
+};
 
-function Scrollable() {
+const Scrollable = () => {
   const { start, end } = useMessageScrollerScrollable();
 
   return (
@@ -81,9 +79,9 @@ function Scrollable() {
       Can scroll up: {start ? "yes" : "no"} · down: {end ? "yes" : "no"}
     </p>
   );
-}
+};
 
-export function Anchoring() {
+export const Anchoring = () => {
   const [messages, setMessages] = React.useState(initialMessages);
 
   return (
@@ -104,17 +102,15 @@ export function Anchoring() {
       </div>
     </MessageScrollerProvider>
   );
-}
+};
 
-export function PreviousContext() {
-  return (
-    <MessageScrollerProvider scrollPreviousItemPeek={64}>
-      <Transcript messages={initialMessages} />
-    </MessageScrollerProvider>
-  );
-}
+export const PreviousContext = () => (
+  <MessageScrollerProvider scrollPreviousItemPeek={64}>
+    <Transcript messages={initialMessages} />
+  </MessageScrollerProvider>
+);
 
-export function Streaming() {
+export const Streaming = () => {
   const reply = "The reply grows while the reader can choose whether to follow the live edge.";
   const [text, setText] = React.useState("");
   React.useEffect(() => {
@@ -147,9 +143,9 @@ export function Streaming() {
       </div>
     </MessageScrollerProvider>
   );
-}
+};
 
-export function LoadHistory() {
+export const LoadHistory = () => {
   const [messages, setMessages] = React.useState(initialMessages);
 
   return (
@@ -173,9 +169,9 @@ export function LoadHistory() {
       </div>
     </MessageScrollerProvider>
   );
-}
+};
 
-export function Animation() {
+export const Animation = () => {
   const [active, setActive] = React.useState(true);
 
   return (
@@ -196,37 +192,31 @@ export function Animation() {
       </div>
     </MessageScrollerProvider>
   );
-}
+};
 
-export function CommandControls() {
-  return (
-    <MessageScrollerProvider>
-      <div className="space-y-3">
-        <Commands />
-        <Transcript messages={initialMessages} />
-      </div>
-    </MessageScrollerProvider>
-  );
-}
+export const CommandControls = () => (
+  <MessageScrollerProvider>
+    <div className="space-y-3">
+      <Commands />
+      <Transcript messages={initialMessages} />
+    </div>
+  </MessageScrollerProvider>
+);
 
-export function VisibilityState() {
-  return (
-    <MessageScrollerProvider>
-      <div className="space-y-3">
-        <Visibility />
-        <Transcript messages={initialMessages} />
-      </div>
-    </MessageScrollerProvider>
-  );
-}
+export const VisibilityState = () => (
+  <MessageScrollerProvider>
+    <div className="space-y-3">
+      <Visibility />
+      <Transcript messages={initialMessages} />
+    </div>
+  </MessageScrollerProvider>
+);
 
-export function ScrollableState() {
-  return (
-    <MessageScrollerProvider>
-      <div className="space-y-3">
-        <Scrollable />
-        <Transcript messages={initialMessages} />
-      </div>
-    </MessageScrollerProvider>
-  );
-}
+export const ScrollableState = () => (
+  <MessageScrollerProvider>
+    <div className="space-y-3">
+      <Scrollable />
+      <Transcript messages={initialMessages} />
+    </div>
+  </MessageScrollerProvider>
+);

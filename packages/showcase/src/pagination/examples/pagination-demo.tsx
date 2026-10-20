@@ -9,15 +9,13 @@ import {
   PaginationPrevious,
 } from "@erbium/ui/components/pagination";
 
-export default function PaginationDemo() {
+const PaginationDemo = () => {
   const [page, setPage] = useState(2);
 
-  function navigate(nextPage: number) {
-    return (event: MouseEvent<HTMLAnchorElement>) => {
-      event.preventDefault();
-      setPage(Math.min(3, Math.max(1, nextPage)));
-    };
-  }
+  const navigate = (nextPage: number) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setPage(Math.min(3, Math.max(1, nextPage)));
+  };
 
   return (
     <div className="flex flex-col gap-group">
@@ -55,4 +53,6 @@ export default function PaginationDemo() {
       </p>
     </div>
   );
-}
+};
+
+export default PaginationDemo;

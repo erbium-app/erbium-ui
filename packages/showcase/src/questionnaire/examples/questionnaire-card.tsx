@@ -39,11 +39,11 @@ const items = [
   },
 ] as const;
 
-export function QuestionnaireCard() {
+export const QuestionnaireCard = () => {
   const taskTitleId = React.useId();
   const outputTitleId = React.useId();
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -52,7 +52,7 @@ export function QuestionnaireCard() {
       description: `Task: ${getFormValue(formData, "task", "None")} · Handoff: ${getFormValue(formData, "output", "None")}`,
       title: "Agent task created",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -117,4 +117,4 @@ export function QuestionnaireCard() {
       </Card>
     </Questionnaire>
   );
-}
+};

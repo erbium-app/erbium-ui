@@ -13,7 +13,7 @@ const actions = [
   { description: "Download a copy of your work", id: "export", label: "Export project" },
 ];
 
-export default function AsyncResultsExample() {
+const AsyncResultsExample = () => {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState({ items: actions, query: "" });
   const [preview, setPreview] = useState<(typeof actions)[number] | undefined>();
@@ -70,4 +70,6 @@ export default function AsyncResultsExample() {
       </p>
     </div>
   );
-}
+};
+
+export default AsyncResultsExample;

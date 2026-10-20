@@ -5,7 +5,7 @@ import { buttonVariants } from "../lib/button-variants";
 import { Kbd } from "./kbd";
 import { LoadingIndicator } from "./spinner";
 
-function Button({
+const Button = ({
   children,
   className,
   disabled,
@@ -15,7 +15,7 @@ function Button({
   size = "default",
   "aria-busy": ariaBusy,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean }) {
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants> & { loading?: boolean }) => {
   const iconOnly = typeof size === "string" && size.startsWith("icon");
 
   return (
@@ -34,24 +34,22 @@ function Button({
       {loading && iconOnly ? null : children}
     </ButtonPrimitive>
   );
-}
+};
 
-function ButtonShortcut({ className, ...props }: React.ComponentProps<typeof Kbd>) {
-  return (
-    <span
-      data-slot="button-shortcut"
-      className="ms-1.5 -me-(--button-shortcut-inset) inline-flex shrink-0"
-    >
-      <Kbd
-        aria-hidden
-        className={cn(
-          "group-data-[size=xs]/button:h-4 group-data-[size=xs]/button:min-w-4 group-data-[size=xs]/button:text-control-sm",
-          className,
-        )}
-        {...props}
-      />
-    </span>
-  );
-}
+const ButtonShortcut = ({ className, ...props }: React.ComponentProps<typeof Kbd>) => (
+  <span
+    data-slot="button-shortcut"
+    className="ms-1.5 -me-(--button-shortcut-inset) inline-flex shrink-0"
+  >
+    <Kbd
+      aria-hidden
+      className={cn(
+        "group-data-[size=xs]/button:h-4 group-data-[size=xs]/button:min-w-4 group-data-[size=xs]/button:text-control-sm",
+        className,
+      )}
+      {...props}
+    />
+  </span>
+);
 
 export { Button, ButtonShortcut, buttonVariants };

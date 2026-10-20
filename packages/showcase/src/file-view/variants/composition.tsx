@@ -10,7 +10,7 @@ import {
 import { Button } from "@erbium/ui/components/button";
 import { file } from "../examples/file";
 
-export default function Example() {
+const Example = () => {
   const [wrap, setWrap] = useState(false);
 
   return (
@@ -38,4 +38,6 @@ export default function Example() {
       <FileViewContent className="max-h-80" />
     </FileView>
   );
-}
+};
+
+export default Example;

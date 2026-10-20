@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "content": "import {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function FieldTextarea() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <FieldSet>\n        <FieldGroup>\n          <Field>\n            <FieldLabel>Feedback</FieldLabel>\n            <Textarea placeholder=\"Your feedback helps us improve...\" rows={4} />\n            <FieldDescription>Share your thoughts about our service.</FieldDescription>\n          </Field>\n        </FieldGroup>\n      </FieldSet>\n    </div>\n  );\n}\n",
+      "content": "import {\n  Field,\n  FieldDescription,\n  FieldGroup,\n  FieldLabel,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nconst FieldTextarea = () => (\n  <div className=\"w-full max-w-md\">\n    <FieldSet>\n      <FieldGroup>\n        <Field>\n          <FieldLabel>Feedback</FieldLabel>\n          <Textarea placeholder=\"Your feedback helps us improve...\" rows={4} />\n          <FieldDescription>Share your thoughts about our service.</FieldDescription>\n        </Field>\n      </FieldGroup>\n    </FieldSet>\n  </div>\n);\n\nexport default FieldTextarea;\n",
       "path": "src/field/examples/field-textarea.tsx",
       "target": "@components/showcase/field/examples/field-textarea.tsx",
       "type": "registry:component"

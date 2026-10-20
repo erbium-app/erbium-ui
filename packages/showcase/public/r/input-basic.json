@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputBasic() {\n  return <Input placeholder=\"Enter text\" />;\n}\n",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport const InputBasic = () => <Input placeholder=\"Enter text\" />;\n",
       "path": "src/input/examples/input-basic.tsx",
       "target": "@components/showcase/input/examples/input-basic.tsx",
       "type": "registry:component"

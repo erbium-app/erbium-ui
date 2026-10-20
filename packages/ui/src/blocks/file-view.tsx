@@ -53,7 +53,7 @@ const FileViewContext = createContext<{
   loading: boolean;
 } | null>(null);
 
-function useFileView() {
+const useFileView = () => {
   const context = use(FileViewContext);
 
   if (!context) {
@@ -61,9 +61,9 @@ function useFileView() {
   }
 
   return context;
-}
+};
 
-function FileView<Annotation = undefined>({
+const FileView = <Annotation = undefined,>({
   file,
   options,
   lineAnnotations,
@@ -76,7 +76,7 @@ function FileView<Annotation = undefined>({
   children,
   className,
   ...props
-}: FileViewProps<Annotation>) {
+}: FileViewProps<Annotation>) => {
   // Pierre highlights asynchronously, so its host stays empty until the first render.
   const [rendered, setRendered] = useState(false);
 
@@ -124,13 +124,13 @@ function FileView<Annotation = undefined>({
       </CodePanel>
     </FileViewContext>
   );
-}
+};
 
-function FileViewHeader(props: ComponentProps<typeof CodePanelHeader>) {
-  return <CodePanelHeader {...props} data-slot="file-view-header" />;
-}
+const FileViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
+  <CodePanelHeader {...props} data-slot="file-view-header" />
+);
 
-function FileViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTitle>) {
+const FileViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
   const { file } = useFileView();
 
   return (
@@ -139,13 +139,13 @@ function FileViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTi
       <span className="truncate">{children ?? file.name}</span>
     </CodePanelTitle>
   );
-}
+};
 
-function FileViewActions(props: ComponentProps<typeof CodePanelActions>) {
-  return <CodePanelActions {...props} data-slot="file-view-actions" />;
-}
+const FileViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
+  <CodePanelActions {...props} data-slot="file-view-actions" />
+);
 
-function FileViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
+const FileViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
   const { content, file, loading } = useFileView();
 
   return (
@@ -163,13 +163,13 @@ function FileViewContent(props: Omit<CodePanelContentProps, "children" | "empty"
       {content}
     </CodePanelContent>
   );
-}
+};
 
-function FileViewCopyButton(props: Omit<CopyButtonProps, "value">) {
+const FileViewCopyButton = (props: Omit<CopyButtonProps, "value">) => {
   const { file } = useFileView();
 
   return <CodePanelCopyButton aria-label="Copy file" {...props} value={file.contents} />;
-}
+};
 
 export {
   FileView,

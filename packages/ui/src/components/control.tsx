@@ -41,24 +41,25 @@ interface CommonProps {
   className?: string;
 }
 
-function Group({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="control-group"
-      className={cn("flex w-full min-w-0 flex-col gap-1.5", className)}
-      {...props}
-    />
-  );
-}
+const Group = ({ className, ...props }: React.ComponentProps<"div">) => (
+  <div
+    data-slot="control-group"
+    className={cn("flex w-full min-w-0 flex-col gap-1.5", className)}
+    {...props}
+  />
+);
 
-function Row({ label, className, children, ...props }: CommonProps & React.ComponentProps<"div">) {
-  return (
-    <div data-slot="control-row" className={cn(rowClass, className)} {...props}>
-      <span className={labelClass}>{label}</span>
-      {children}
-    </div>
-  );
-}
+const Row = ({
+  label,
+  className,
+  children,
+  ...props
+}: CommonProps & React.ComponentProps<"div">) => (
+  <div data-slot="control-row" className={cn(rowClass, className)} {...props}>
+    <span className={labelClass}>{label}</span>
+    {children}
+  </div>
+);
 
 type NumberProps = CommonProps & {
   value?: number;
@@ -78,13 +79,13 @@ type NumberProps = CommonProps & {
   name?: string;
 };
 
-function decimalPlaces(step: number) {
+const decimalPlaces = (step: number) => {
   const text = String(step);
 
   return text.includes("e-") ? Number(text.split("e-")[1]) : (text.split(".")[1]?.length ?? 0);
-}
+};
 
-function ControlNumber({
+const ControlNumber = ({
   label,
   value,
   defaultValue,
@@ -100,7 +101,7 @@ function ControlNumber({
   disabled,
   className,
   name,
-}: NumberProps) {
+}: NumberProps) => {
   const [localValue, setLocalValue] = React.useState(defaultValue ?? min);
   const current = value ?? localValue;
   const [editing, setEditing] = React.useState(false);
@@ -515,7 +516,7 @@ function ControlNumber({
       </ButtonPrimitive>
     </SliderPrimitive.Root>
   );
-}
+};
 
 type TextProps = CommonProps &
   Omit<
@@ -527,7 +528,7 @@ type TextProps = CommonProps &
     onValueChange?: (value: string) => void;
   };
 
-function Text({
+const Text = ({
   label,
   value,
   defaultValue,
@@ -535,27 +536,25 @@ function Text({
   disabled,
   className,
   ...props
-}: TextProps) {
+}: TextProps) => (
   // The row is the label, so a click anywhere on it focuses the input; Field
   // tracks the control's dirty, touched and invalid state.
-  return (
-    <FieldPrimitive.Root
-      data-slot="control-text"
-      render={<label />}
-      disabled={disabled}
-      className={cn(rowClass, className)}
-    >
-      <span className={labelClass}>{label}</span>
-      <InputPrimitive
-        value={value}
-        defaultValue={defaultValue}
-        onValueChange={onValueChange}
-        className={cn(valueClass, "min-h-control-sm bg-transparent")}
-        {...props}
-      />
-    </FieldPrimitive.Root>
-  );
-}
+  <FieldPrimitive.Root
+    data-slot="control-text"
+    render={<label />}
+    disabled={disabled}
+    className={cn(rowClass, className)}
+  >
+    <span className={labelClass}>{label}</span>
+    <InputPrimitive
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
+      className={cn(valueClass, "min-h-control-sm bg-transparent")}
+      {...props}
+    />
+  </FieldPrimitive.Root>
+);
 
 type TextareaProps = CommonProps &
   Omit<React.ComponentProps<"textarea">, "onChange" | "value" | "defaultValue" | "disabled"> & {
@@ -569,7 +568,7 @@ type TextareaProps = CommonProps &
  * same pattern as the shared `Textarea`): value, disabled, name and id go to the
  * control so the Field tracks it, the rest merge onto the element.
  */
-function Textarea({
+const Textarea = ({
   label,
   value,
   defaultValue,
@@ -577,35 +576,33 @@ function Textarea({
   disabled,
   className,
   ...props
-}: TextareaProps) {
-  return (
-    <FieldPrimitive.Root
-      data-slot="control-textarea"
-      render={<label />}
-      disabled={disabled}
-      className={cn(rowClass, "items-start py-1.5", className)}
-    >
-      <span className={cn(labelClass, "pt-0.5")}>{label}</span>
-      <FieldPrimitive.Control
-        value={value}
-        defaultValue={defaultValue}
-        onValueChange={onValueChange}
-        id={props.id}
-        name={props.name}
-        render={(defaultProps: React.ComponentProps<"textarea">) => (
-          <textarea
-            rows={1}
-            className={cn(
-              valueClass,
-              "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent ",
-            )}
-            {...mergeProps(defaultProps, props)}
-          />
-        )}
-      />
-    </FieldPrimitive.Root>
-  );
-}
+}: TextareaProps) => (
+  <FieldPrimitive.Root
+    data-slot="control-textarea"
+    render={<label />}
+    disabled={disabled}
+    className={cn(rowClass, "items-start py-1.5", className)}
+  >
+    <span className={cn(labelClass, "pt-0.5")}>{label}</span>
+    <FieldPrimitive.Control
+      value={value}
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
+      id={props.id}
+      name={props.name}
+      render={(defaultProps: React.ComponentProps<"textarea">) => (
+        <textarea
+          rows={1}
+          className={cn(
+            valueClass,
+            "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent ",
+          )}
+          {...mergeProps(defaultProps, props)}
+        />
+      )}
+    />
+  </FieldPrimitive.Root>
+);
 
 type BooleanProps = CommonProps & {
   checked?: boolean;
@@ -620,7 +617,7 @@ interface Option {
   label: string;
 }
 
-function SegmentedTrack({
+const SegmentedTrack = ({
   id,
   options,
   value,
@@ -636,7 +633,7 @@ function SegmentedTrack({
   disabled?: boolean;
   name?: string;
   className?: string;
-}) {
+}) => {
   const layoutId = React.useId();
   const shouldReduceMotion = useReducedMotion();
 
@@ -679,9 +676,9 @@ function SegmentedTrack({
       </RadioGroupPrimitive>
     </LayoutGroup>
   );
-}
+};
 
-function Boolean({
+const Boolean = ({
   label,
   checked,
   defaultChecked,
@@ -690,7 +687,7 @@ function Boolean({
   disabled,
   className,
   name,
-}: BooleanProps) {
+}: BooleanProps) => {
   const [local, setLocal] = React.useState(defaultChecked ?? false);
   const current = checked ?? local;
   const id = React.useId();
@@ -734,7 +731,7 @@ function Boolean({
       )}
     </div>
   );
-}
+};
 
 type ChoiceProps = CommonProps & {
   options: readonly Option[];
@@ -744,7 +741,7 @@ type ChoiceProps = CommonProps & {
   name?: string;
 };
 
-function Segmented({
+const Segmented = ({
   label,
   options,
   value,
@@ -753,7 +750,7 @@ function Segmented({
   disabled,
   className,
   name,
-}: ChoiceProps) {
+}: ChoiceProps) => {
   const id = React.useId();
   const [local, setLocal] = React.useState(defaultValue);
   const current = value ?? local;
@@ -779,31 +776,35 @@ function Segmented({
       />
     </div>
   );
-}
+};
 
 /** The shared popup for Select and Image: portal, positioner, and scrollable list. */
-function OptionsPopup({ className, children }: { className: string; children: React.ReactNode }) {
-  return (
-    <SelectPrimitive.Portal>
-      <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
-        <SelectPrimitive.Popup className={className}>
-          <ScrollArea
-            className="min-h-0 overscroll-contain"
-            fade="vertical"
-            scrollbar="thin"
-            viewportRole="listbox"
-            viewportRender={<SelectPrimitive.List />}
-            contentClassName="p-1 in-data-has-overflow-y:pe-3"
-          >
-            {children}
-          </ScrollArea>
-        </SelectPrimitive.Popup>
-      </SelectPrimitive.Positioner>
-    </SelectPrimitive.Portal>
-  );
-}
+const OptionsPopup = ({
+  className,
+  children,
+}: {
+  className: string;
+  children: React.ReactNode;
+}) => (
+  <SelectPrimitive.Portal>
+    <SelectPrimitive.Positioner sideOffset={5} align="end" className="z-50">
+      <SelectPrimitive.Popup className={className}>
+        <ScrollArea
+          className="min-h-0 overscroll-contain"
+          fade="vertical"
+          scrollbar="thin"
+          viewportRole="listbox"
+          viewportRender={<SelectPrimitive.List />}
+          contentClassName="p-1 in-data-has-overflow-y:pe-3"
+        >
+          {children}
+        </ScrollArea>
+      </SelectPrimitive.Popup>
+    </SelectPrimitive.Positioner>
+  </SelectPrimitive.Portal>
+);
 
-function Select({
+const Select = ({
   label,
   options,
   value,
@@ -812,54 +813,48 @@ function Select({
   disabled,
   className,
   name,
-}: ChoiceProps) {
-  return (
-    <SelectPrimitive.Root
-      value={value}
-      defaultValue={defaultValue}
-      onValueChange={(next) => {
-        if (next !== null) {
-          onValueChange?.(next);
-        }
-      }}
-      disabled={disabled}
-      name={name}
-      items={options}
+}: ChoiceProps) => (
+  <SelectPrimitive.Root
+    value={value}
+    defaultValue={defaultValue}
+    onValueChange={(next) => {
+      if (next !== null) {
+        onValueChange?.(next);
+      }
+    }}
+    disabled={disabled}
+    name={name}
+    items={options}
+  >
+    <SelectPrimitive.Trigger
+      data-slot="control-select"
+      aria-label={label}
+      className={cn(rowClass, "group group/control-select justify-between outline-none", className)}
     >
-      <SelectPrimitive.Trigger
-        data-slot="control-select"
-        aria-label={label}
-        className={cn(
-          rowClass,
-          "group group/control-select justify-between outline-none",
-          className,
-        )}
-      >
-        <span className={labelClass}>{label}</span>
-        <span className="ms-auto flex min-w-0 items-center gap-related text-muted-foreground">
-          <SelectPrimitive.Value className="truncate text-end text-foreground" />
-          <SelectPrimitive.Icon>
-            <RotatingChevron className="size-3.5" />
-          </SelectPrimitive.Icon>
-        </span>
-      </SelectPrimitive.Trigger>
-      <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay text-control outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
-        {options.map((option) => (
-          <SelectPrimitive.Item
-            key={option.value}
-            value={option.value}
-            className="flex cursor-default items-center justify-between gap-3 rounded-md px-2.5 py-1.5 outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
-          >
-            <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
-            <SelectPrimitive.ItemIndicator>
-              <Icon name="check" className="size-3.5" />
-            </SelectPrimitive.ItemIndicator>
-          </SelectPrimitive.Item>
-        ))}
-      </OptionsPopup>
-    </SelectPrimitive.Root>
-  );
-}
+      <span className={labelClass}>{label}</span>
+      <span className="ms-auto flex min-w-0 items-center gap-related text-muted-foreground">
+        <SelectPrimitive.Value className="truncate text-end text-foreground" />
+        <SelectPrimitive.Icon>
+          <RotatingChevron className="size-3.5" />
+        </SelectPrimitive.Icon>
+      </span>
+    </SelectPrimitive.Trigger>
+    <OptionsPopup className="flex max-h-(--available-height) min-w-(--anchor-width) flex-col origin-(--transform-origin) overflow-hidden rounded-lg surface-overlay text-control outline-none transition-[opacity,transform] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+      {options.map((option) => (
+        <SelectPrimitive.Item
+          key={option.value}
+          value={option.value}
+          className="flex cursor-default items-center justify-between gap-3 rounded-md px-2.5 py-1.5 outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+        >
+          <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+          <SelectPrimitive.ItemIndicator>
+            <Icon name="check" className="size-3.5" />
+          </SelectPrimitive.ItemIndicator>
+        </SelectPrimitive.Item>
+      ))}
+    </OptionsPopup>
+  </SelectPrimitive.Root>
+);
 
 type ColorProps = CommonProps & {
   value?: string;
@@ -868,7 +863,7 @@ type ColorProps = CommonProps & {
   name?: string;
 };
 
-function Color({
+const Color = ({
   label,
   value,
   defaultValue = "",
@@ -876,7 +871,7 @@ function Color({
   disabled,
   className,
   name,
-}: ColorProps) {
+}: ColorProps) => {
   const [local, setLocal] = React.useState(defaultValue);
   const [draft, setDraft] = React.useState(value ?? defaultValue);
   const current = value ?? local;
@@ -937,7 +932,7 @@ function Color({
       </span>
     </FieldPrimitive.Root>
   );
-}
+};
 
 type ImageProps = CommonProps & {
   src?: string;
@@ -950,7 +945,7 @@ type ImageProps = CommonProps & {
   name?: string;
 };
 
-function Image({
+const Image = ({
   label,
   src,
   options,
@@ -962,7 +957,7 @@ function Image({
   disabled,
   className,
   name,
-}: ImageProps) {
+}: ImageProps) => {
   const ref = React.useRef<HTMLInputElement>(null);
   const [selectedValue, setSelectedValue] = React.useState(defaultValue ?? options?.[0]?.value);
   const selected = options?.find((option) => option.value === (value ?? selectedValue));
@@ -1043,7 +1038,7 @@ function Image({
       />
     </div>
   );
-}
+};
 
 interface PadValue {
   x: number;
@@ -1059,7 +1054,7 @@ type PadProps = CommonProps & {
   step?: number;
 };
 
-function Pad({
+const Pad = ({
   label,
   value,
   defaultValue = { x: 0, y: 0 },
@@ -1069,7 +1064,7 @@ function Pad({
   step = 1,
   disabled,
   className,
-}: PadProps) {
+}: PadProps) => {
   const [local, setLocal] = React.useState(defaultValue);
   const current = value ?? local;
   const ref = React.useRef<HTMLDivElement>(null);
@@ -1154,7 +1149,7 @@ function Pad({
       </div>
     </div>
   );
-}
+};
 
 type SpringValue =
   | { type: "spring"; visualDuration: number; bounce: number }
@@ -1184,13 +1179,11 @@ const defaultTimeSpring: SpringValue = { bounce: 0.2, type: "spring", visualDura
 const defaultPhysicsSpring: SpringValue = { damping: 25, mass: 1, stiffness: 200, type: "spring" };
 const defaultEasing: EasingValue = { duration: 0.3, ease: [0.25, 0.1, 0.25, 1], type: "easing" };
 
-function springIsTime(
+const springIsTime = (
   value: SpringValue,
-): value is Extract<SpringValue, { visualDuration: number }> {
-  return "visualDuration" in value;
-}
+): value is Extract<SpringValue, { visualDuration: number }> => "visualDuration" in value;
 
-function SpringCurve({ value }: { value: SpringValue }) {
+const SpringCurve = ({ value }: { value: SpringValue }) => {
   const time = springIsTime(value);
   const stiffness = time ? 200 : value.stiffness;
   const mass = time ? 1 : value.mass;
@@ -1219,42 +1212,45 @@ function SpringCurve({ value }: { value: SpringValue }) {
   });
 
   return <CurveFrame path={points.join(" ")} />;
-}
+};
 
-function CurveFrame({ path }: { path: string }) {
-  return (
-    <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-foreground">
-        <path
-          d="M0 20 H100 M0 80 H100"
-          stroke="currentColor"
-          strokeOpacity="0.12"
-          strokeWidth="0.5"
-          strokeDasharray="2 2"
-        />
-        <path
-          d={path}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-    </div>
-  );
-}
+const CurveFrame = ({ path }: { path: string }) => (
+  <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-foreground">
+      <path
+        d="M0 20 H100 M0 80 H100"
+        stroke="currentColor"
+        strokeOpacity="0.12"
+        strokeWidth="0.5"
+        strokeDasharray="2 2"
+      />
+      <path
+        d={path}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  </div>
+);
 
-function Spring({
+const Spring = ({
   label,
   value,
   defaultValue = defaultTimeSpring,
   onValueChange,
   disabled,
   className,
-}: SpringProps) {
+}: SpringProps) => {
   const [local, setLocal] = React.useState<SpringValue>(defaultValue);
   const current = value ?? local;
-  const cache = React.useRef({ physics: defaultPhysicsSpring, time: defaultTimeSpring });
+
+  const cache = React.useRef<{ physics: SpringValue; time: SpringValue }>({
+    physics: defaultPhysicsSpring,
+    time: defaultTimeSpring,
+  });
+
   React.useLayoutEffect(() => {
     cache.current[springIsTime(current) ? "time" : "physics"] = current;
   }, [current]);
@@ -1344,16 +1340,16 @@ function Spring({
       )}
     </Section>
   );
-}
+};
 
-function Transition({
+const Transition = ({
   label,
   value,
   defaultValue = defaultEasing,
   onValueChange,
   disabled,
   className,
-}: TransitionProps) {
+}: TransitionProps) => {
   const [local, setLocal] = React.useState<TransitionValue>(defaultValue);
   const current = value ?? local;
 
@@ -1506,22 +1502,20 @@ function Transition({
       )}
     </Section>
   );
-}
+};
 
 type ActionProps = CommonProps & Omit<React.ComponentProps<"button">, "children" | "disabled">;
 
-function Action({ label, disabled, className, ...props }: ActionProps) {
-  return (
-    <ButtonPrimitive
-      data-slot="control-action"
-      disabled={disabled}
-      className={cn(rowClass, "justify-center font-medium outline-none", className)}
-      {...props}
-    >
-      {label}
-    </ButtonPrimitive>
-  );
-}
+const Action = ({ label, disabled, className, ...props }: ActionProps) => (
+  <ButtonPrimitive
+    data-slot="control-action"
+    disabled={disabled}
+    className={cn(rowClass, "justify-center font-medium outline-none", className)}
+    {...props}
+  >
+    {label}
+  </ButtonPrimitive>
+);
 
 interface SectionProps {
   title: string;
@@ -1532,33 +1526,31 @@ interface SectionProps {
   className?: string;
 }
 
-function Section({
+const Section = ({
   title,
   children,
   defaultOpen = true,
   open,
   onOpenChange,
   className,
-}: SectionProps) {
-  return (
-    <Collapsible
-      data-slot="control-section"
-      defaultOpen={defaultOpen}
-      open={open}
-      onOpenChange={onOpenChange}
-      className={cn("w-full min-w-0", className)}
-    >
-      <Separator className="mb-2" />
-      <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control font-medium text-muted-foreground outline-none hover:text-foreground">
-        {title}
-        <RotatingChevron scope="collapsible" className="size-4" />
-      </CollapsibleTrigger>
-      <CollapsibleContent className="data-open:overflow-visible">
-        <Group className="py-2">{children}</Group>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-}
+}: SectionProps) => (
+  <Collapsible
+    data-slot="control-section"
+    defaultOpen={defaultOpen}
+    open={open}
+    onOpenChange={onOpenChange}
+    className={cn("w-full min-w-0", className)}
+  >
+    <Separator className="mb-2" />
+    <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control font-medium text-muted-foreground outline-none hover:text-foreground">
+      {title}
+      <RotatingChevron scope="collapsible" className="size-4" />
+    </CollapsibleTrigger>
+    <CollapsibleContent className="data-open:overflow-visible">
+      <Group className="py-2">{children}</Group>
+    </CollapsibleContent>
+  </Collapsible>
+);
 
 const Control = {
   Action,

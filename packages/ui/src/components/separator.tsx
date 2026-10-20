@@ -24,13 +24,13 @@ type SeparatorProps = SeparatorPrimitive.Props & {
   variant?: "full" | "inset";
 };
 
-function Separator({
+const Separator = ({
   children,
   className,
   orientation = "horizontal",
   variant,
   ...props
-}: SeparatorProps) {
+}: SeparatorProps) => {
   const labeled = children != null && children !== false && children !== "";
 
   return (
@@ -47,7 +47,7 @@ function Separator({
       {children}
     </SeparatorPrimitive>
   );
-}
+};
 
 export { Separator };
 

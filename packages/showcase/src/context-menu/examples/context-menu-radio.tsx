@@ -13,7 +13,7 @@ import {
   ContextMenuList,
 } from "@erbium/ui/components/context-menu";
 
-export function ContextMenuRadio() {
+export const ContextMenuRadio = () => {
   const [user, setUser] = React.useState("pedro");
   const [theme, setTheme] = React.useState("light");
 
@@ -50,4 +50,4 @@ export function ContextMenuRadio() {
       </ContextMenuContent>
     </ContextMenu>
   );
-}
+};

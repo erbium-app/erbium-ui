@@ -7,7 +7,7 @@ import {
   InputGroupButton,
 } from "@erbium/ui/components/input-group";
 
-export default function Example() {
+const Example = () => {
   const [value, setValue] = useState("https://erbium.dev");
 
   return (
@@ -27,4 +27,6 @@ export default function Example() {
       </InputGroupAddon>
     </InputGroup>
   );
-}
+};
+
+export default Example;

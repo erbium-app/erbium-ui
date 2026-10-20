@@ -23,8 +23,8 @@ const items = [
   { name: "delivery", required: true },
 ] as const;
 
-export function QuestionnaireProgressExample() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export const QuestionnaireProgressExample = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -33,7 +33,7 @@ export function QuestionnaireProgressExample() {
       description: `Scope: ${getFormValue(formData, "scope", "None")} · Commits: ${getFormValue(formData, "strategy", "None")} · Tests: ${getFormValue(formData, "tests", "None")} · Delivery: ${getFormValue(formData, "delivery", "None")}`,
       title: "Pull request plan ready",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -91,4 +91,4 @@ export function QuestionnaireProgressExample() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDemo() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <Icon name=\"bookmark-01\" />\n      Bookmark\n    </Toggle>\n  );\n}\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst ToggleDemo = () => (\n  <Toggle\n    aria-label=\"Toggle bookmark\"\n    size=\"sm\"\n    variant=\"outline\"\n    className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n  >\n    <Icon name=\"bookmark-01\" />\n    Bookmark\n  </Toggle>\n);\n\nexport default ToggleDemo;\n",
       "path": "src/toggle/examples/toggle-demo.tsx",
       "target": "@components/showcase/toggle/examples/toggle-demo.tsx",
       "type": "registry:component"

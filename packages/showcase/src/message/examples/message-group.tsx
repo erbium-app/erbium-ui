@@ -7,34 +7,32 @@ import {
   MessageGroup,
 } from "@erbium/ui/components/message";
 
-export function MessageGroupDemo() {
-  return (
-    <div className="flex w-full max-w-sm flex-col gap-section py-12">
-      <MessageGroup>
-        <Message>
-          <MessageAvatar />
-          <MessageContent>
-            <Bubble variant="muted">
-              <BubbleContent>I checked the registry addresses.</BubbleContent>
-            </Bubble>
-          </MessageContent>
-        </Message>
-        <Message>
-          <MessageAvatar>
-            <Avatar>
-              <AvatarImage src="/avatars/02.png" alt="@avatar" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-          </MessageAvatar>
-          <MessageContent>
-            <Bubble variant="muted">
-              <BubbleContent>
-                The component and example JSON now live under the UI registry.
-              </BubbleContent>
-            </Bubble>
-          </MessageContent>
-        </Message>
-      </MessageGroup>
-    </div>
-  );
-}
+export const MessageGroupDemo = () => (
+  <div className="flex w-full max-w-sm flex-col gap-section py-12">
+    <MessageGroup>
+      <Message>
+        <MessageAvatar />
+        <MessageContent>
+          <Bubble variant="muted">
+            <BubbleContent>I checked the registry addresses.</BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+      <Message>
+        <MessageAvatar>
+          <Avatar>
+            <AvatarImage src="/avatars/02.png" alt="@avatar" />
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+        <MessageContent>
+          <Bubble variant="muted">
+            <BubbleContent>
+              The component and example JSON now live under the UI registry.
+            </BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+    </MessageGroup>
+  </div>
+);

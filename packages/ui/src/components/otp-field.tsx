@@ -16,7 +16,7 @@ type OTPFieldStatus = "idle" | "loading" | "success" | "error";
 
 const OTPFieldStatusContext = React.createContext<OTPFieldStatus>("idle");
 
-function OTPFieldSlots({ groups, length }: { groups?: number[]; length: number }) {
+const OTPFieldSlots = ({ groups, length }: { groups?: number[]; length: number }) => {
   const sizes = groups ?? [length];
   let index = 0;
 
@@ -42,7 +42,7 @@ function OTPFieldSlots({ groups, length }: { groups?: number[]; length: number }
       </React.Fragment>
     );
   });
-}
+};
 
 type OTPFieldProps = OTPFieldPrimitive.Root.Props & {
   /** Validation metadata owned by the form library. Does not lock editing. */
@@ -56,7 +56,7 @@ type OTPFieldProps = OTPFieldPrimitive.Root.Props & {
   groups?: number[];
 };
 
-function OTPField({
+const OTPField = ({
   className,
   children,
   groups,
@@ -67,7 +67,7 @@ function OTPField({
   verifiedValue,
   value,
   ...props
-}: OTPFieldProps) {
+}: OTPFieldProps) => {
   const rootRef = React.useRef<HTMLDivElement | null>(null);
 
   const status: OTPFieldStatus =
@@ -110,19 +110,17 @@ function OTPField({
       </OTPFieldPrimitive.Root>
     </OTPFieldStatusContext>
   );
-}
+};
 
-function OTPFieldGroup({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="otp-field-group"
-      className={cn("flex items-center gap-related", className)}
-      {...props}
-    />
-  );
-}
+const OTPFieldGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
+  <div
+    data-slot="otp-field-group"
+    className={cn("flex items-center gap-related", className)}
+    {...props}
+  />
+);
 
-function OTPFieldInput({ className, render, ...props }: OTPFieldPrimitive.Input.Props) {
+const OTPFieldInput = ({ className, render, ...props }: OTPFieldPrimitive.Input.Props) => {
   const status = React.useContext(OTPFieldStatusContext);
 
   return (
@@ -155,23 +153,21 @@ function OTPFieldInput({ className, render, ...props }: OTPFieldPrimitive.Input.
       {...props}
     />
   );
-}
+};
 
-function OTPFieldSeparator({ className, ...props }: OTPFieldPrimitive.Separator.Props) {
-  return (
-    <OTPFieldPrimitive.Separator
-      render={
-        <Separator
-          data-slot="otp-field-separator"
-          orientation="horizontal"
-          variant="full"
-          className={cn("rounded-full data-horizontal:w-3 data-horizontal:self-auto", className)}
-        />
-      }
-      {...props}
-    />
-  );
-}
+const OTPFieldSeparator = ({ className, ...props }: OTPFieldPrimitive.Separator.Props) => (
+  <OTPFieldPrimitive.Separator
+    render={
+      <Separator
+        data-slot="otp-field-separator"
+        orientation="horizontal"
+        variant="full"
+        className={cn("rounded-full data-horizontal:w-3 data-horizontal:self-auto", className)}
+      />
+    }
+    {...props}
+  />
+);
 
 export type { OTPFieldProps, OTPFieldValidation };
 

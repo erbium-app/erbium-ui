@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Control } from "@erbium/ui/components/control";
 
-export function NumberExample() {
+export const NumberExample = () => {
   const [value, setValue] = useState(0.7);
 
   return (
@@ -16,4 +16,4 @@ export function NumberExample() {
       className="w-72"
     />
   );
-}
+};

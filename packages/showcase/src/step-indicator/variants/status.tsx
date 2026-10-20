@@ -8,7 +8,7 @@ const steps = [
   { disabled: true, invalid: false, label: "Review" },
 ];
 
-export default function Example() {
+const Example = () => {
   const [step, setStep] = useState(2);
 
   return (
@@ -24,4 +24,6 @@ export default function Example() {
       ))}
     </StepIndicator>
   );
-}
+};
+
+export default Example;

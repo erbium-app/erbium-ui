@@ -4,7 +4,7 @@ import surfacesCss from "@ui/src/styles/surfaces.css?raw";
 
 // Build-time renderers cannot read browser CSS variables. Resolve only the
 // shared semantic colors needed by metadata and social preview images.
-function colorsFor(selector: ":root" | ".dark") {
+const colorsFor = (selector: ":root" | ".dark") => {
   const declarations = new Map<string, string>();
   for (const css of [themeCss, surfacesCss]) {
     const block = css.slice(css.indexOf(`${selector} {`)).split("}")[0];
@@ -12,21 +12,21 @@ function colorsFor(selector: ":root" | ".dark") {
       declarations.set(match[1], match[2].trim());
     }
   }
-  function resolve(name: string): string {
+  const resolve = (name: string): string => {
     const value = declarations.get(name);
     if (!value) throw new Error(`Missing shared color token: ${name}`);
     const alias = /^var\(--([\w-]+)\)$/.exec(value);
     if (alias) return resolve(alias[1]);
     const color = new Color(value).to("srgb");
     return color.toString({ format: color.alpha < 1 ? "rgba_number" : "rgb_number", precision: 8 });
-  }
+  };
   return {
     background: resolve("background"),
     foreground: resolve("foreground"),
     mutedForeground: resolve("muted-foreground"),
     border: resolve("border"),
   };
-}
+};
 
 export const lightColors = colorsFor(":root");
 export const darkColors = colorsFor(".dark");

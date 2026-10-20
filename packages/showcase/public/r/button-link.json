@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonLink() {\n  return <Button variant=\"link\">Link</Button>;\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonLink = () => <Button variant=\"link\">Link</Button>;\n\nexport default ButtonLink;\n",
       "path": "src/button/examples/button-link.tsx",
       "target": "@components/showcase/button/examples/button-link.tsx",
       "type": "registry:component"

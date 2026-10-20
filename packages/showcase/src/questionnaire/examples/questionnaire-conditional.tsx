@@ -17,7 +17,7 @@ import {
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
 
-export function QuestionnaireConditional() {
+export const QuestionnaireConditional = () => {
   const [runtime, setRuntime] = React.useState("local");
 
   const items = React.useMemo(
@@ -33,7 +33,7 @@ export function QuestionnaireConditional() {
     [runtime],
   );
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -42,7 +42,7 @@ export function QuestionnaireConditional() {
       description: `Runtime: ${getFormValue(formData, "runtime", "None")} · Environment: ${getFormValue(formData, "environment", "Not applicable")} · Approval: ${getFormValue(formData, "approval", "None")}`,
       title: "Execution plan saved",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -108,4 +108,4 @@ export function QuestionnaireConditional() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

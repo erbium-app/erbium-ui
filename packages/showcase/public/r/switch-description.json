@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport function SwitchDescription() {\n  return (\n    <Field orientation=\"horizontal\" className=\"max-w-sm\">\n      <FieldContent>\n        <FieldLabel>Share across devices</FieldLabel>\n        <FieldDescription>\n          Focus is shared across devices, and turns off when you leave the app.\n        </FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  );\n}\n",
+      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport const SwitchDescription = () => (\n  <Field orientation=\"horizontal\" className=\"max-w-sm\">\n    <FieldContent>\n      <FieldLabel>Share across devices</FieldLabel>\n      <FieldDescription>\n        Focus is shared across devices, and turns off when you leave the app.\n      </FieldDescription>\n    </FieldContent>\n    <Switch />\n  </Field>\n);\n",
       "path": "src/switch/examples/switch-description.tsx",
       "target": "@components/showcase/switch/examples/switch-description.tsx",
       "type": "registry:component"

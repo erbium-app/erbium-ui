@@ -12,7 +12,7 @@ type KbdProps = React.ComponentProps<"kbd"> & {
 const subscribeToPlatform = () => () => {};
 const getServerPlatform = () => "linux" as const;
 
-function Kbd({ className, hotkey, useSymbols = true, children, ...props }: KbdProps) {
+const Kbd = ({ className, hotkey, useSymbols = true, children, ...props }: KbdProps) => {
   const platform = useSyncExternalStore(subscribeToPlatform, detectPlatform, getServerPlatform);
   const binding = hotkey ?? (typeof children === "string" ? children : undefined);
 
@@ -21,6 +21,6 @@ function Kbd({ className, hotkey, useSymbols = true, children, ...props }: KbdPr
       {binding === undefined ? children : formatForDisplay(binding, { platform, useSymbols })}
     </kbd>
   );
-}
+};
 
 export { Kbd };

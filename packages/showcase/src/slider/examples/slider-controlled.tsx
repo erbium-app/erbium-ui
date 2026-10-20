@@ -3,7 +3,7 @@ import * as React from "react";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { Slider } from "@erbium/ui/components/slider";
 
-export function SliderControlled() {
+export const SliderControlled = () => {
   const [value, setValue] = React.useState([0.3, 0.7]);
 
   return (
@@ -23,4 +23,4 @@ export function SliderControlled() {
       />
     </Field>
   );
-}
+};

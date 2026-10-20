@@ -15,7 +15,7 @@ const documents = import.meta.glob<string>("../../../../../packages/content/**/*
   query: "?raw",
   import: "default",
 });
-function document(file: string) {
+const document = (file: string) => {
   const raw = documents[`../../../../../packages/content/${file}.md`];
   if (!raw) throw new Error(`Missing content: ${file}`);
   const { data, content } = matter(raw);
@@ -25,8 +25,8 @@ function document(file: string) {
     markdown: content,
     tree: compileMarkdown(content),
   };
-}
-export async function getPage(path: string) {
+};
+export const getPage = async (path: string) => {
   const component = components.find((item) => item.href === path);
   const guide = guides.find((item) => item.href === path);
   if (!component && !guide) return null;
@@ -63,10 +63,10 @@ export async function getPage(path: string) {
           tree: document(`components/${component!.name}/${variant.slug}`).tree,
         })) ?? [],
   };
-}
+};
 export type DocPage = NonNullable<Awaited<ReturnType<typeof getPage>>>;
 
-export function getExampleSource(name: string, slug: string) {
+export const getExampleSource = (name: string, slug: string) => {
   const variant = manifest
     .find((entry) => entry.name === name)
     ?.variants.find((entry) => entry.slug === slug);
@@ -78,13 +78,13 @@ export function getExampleSource(name: string, slug: string) {
     path: file.path,
     source: showcaseSource(file.path),
   }));
-}
+};
 
-function colorExamples() {
-  function block(source: string, selector: string) {
+const colorExamples = () => {
+  const block = (source: string, selector: string) => {
     const start = source.indexOf(`${selector} {`);
     return source.slice(start, source.indexOf("\n}", start) + 2);
-  }
+  };
   return [
     {
       id: "light-colors",
@@ -109,4 +109,4 @@ function colorExamples() {
     ...entry,
     colors: [...new Set(entry.source.match(/oklch\([^)]+\)/g) ?? [])],
   }));
-}
+};

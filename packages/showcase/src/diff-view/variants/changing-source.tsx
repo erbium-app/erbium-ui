@@ -3,7 +3,7 @@ import { DiffView } from "@erbium/ui/blocks/diff-view";
 import { Button } from "@erbium/ui/components/button";
 import { oldFile, newFile } from "../examples/files";
 
-export default function Example() {
+const Example = () => {
   const [reversed, setReversed] = useState(false);
 
   return (
@@ -21,4 +21,6 @@ export default function Example() {
       <DiffView oldFile={reversed ? newFile : oldFile} newFile={reversed ? oldFile : newFile} />
     </div>
   );
-}
+};
+
+export default Example;

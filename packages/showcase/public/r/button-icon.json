@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonIcon() {\n  return (\n    <Button variant=\"outline\" size=\"icon\">\n      <Icon name=\"circle-fading-arrow-up\" />\n    </Button>\n  );\n}\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonIcon = () => (\n  <Button variant=\"outline\" size=\"icon\">\n    <Icon name=\"circle-fading-arrow-up\" />\n  </Button>\n);\n\nexport default ButtonIcon;\n",
       "path": "src/button/examples/button-icon.tsx",
       "target": "@components/showcase/button/examples/button-icon.tsx",
       "type": "registry:component"

@@ -56,7 +56,7 @@ const commandGroups = [
   },
 ];
 
-export function CommandWithShortcuts() {
+export const CommandWithShortcuts = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -99,4 +99,4 @@ export function CommandWithShortcuts() {
       </CommandDialog>
     </div>
   );
-}
+};

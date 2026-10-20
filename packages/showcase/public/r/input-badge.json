@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/badge", "@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputBadge() {\n  return (\n    <Field>\n      <FieldLabel>\n        Webhook URL{\" \"}\n        <Badge variant=\"secondary\" className=\"ml-auto\">\n          Beta\n        </Badge>\n      </FieldLabel>\n      <Input type=\"url\" placeholder=\"https://api.example.com/webhook\" />\n    </Field>\n  );\n}\n",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport const InputBadge = () => (\n  <Field>\n    <FieldLabel>\n      Webhook URL{\" \"}\n      <Badge variant=\"secondary\" className=\"ml-auto\">\n        Beta\n      </Badge>\n    </FieldLabel>\n    <Input type=\"url\" placeholder=\"https://api.example.com/webhook\" />\n  </Field>\n);\n",
       "path": "src/input/examples/input-badge.tsx",
       "target": "@components/showcase/input/examples/input-badge.tsx",
       "type": "registry:component"

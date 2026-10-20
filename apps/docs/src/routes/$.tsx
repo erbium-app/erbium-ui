@@ -1,7 +1,11 @@
-import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
+import { createFileRoute, getRouteApi, notFound, redirect } from "@tanstack/react-router";
 import { loadPage } from "@/content/load";
 import { pageHead } from "@/content/head";
 import { DocPageView } from "@/components/doc-page";
+
+const routeApi = getRouteApi("/$");
+
+const Page = () => <DocPageView page={routeApi.useLoaderData()} />;
 
 export const Route = createFileRoute("/$")({
   component: Page,
@@ -31,7 +35,3 @@ export const Route = createFileRoute("/$")({
     },
   },
 });
-
-function Page() {
-  return <DocPageView page={Route.useLoaderData()} />;
-}

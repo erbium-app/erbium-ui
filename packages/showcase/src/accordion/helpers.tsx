@@ -27,30 +27,28 @@ const accordionItems = [
   },
 ];
 
-export function AccordionExample({
+export const AccordionExample = ({
   multiple = false,
   bordered = false,
 }: {
   multiple?: boolean;
   bordered?: boolean;
-}) {
-  return (
-    <Accordion
-      className={bordered ? "w-80 rounded-lg border px-4" : "w-80"}
-      defaultValue={["item-1"]}
-      multiple={multiple}
-    >
-      {accordionItems.map((item) => (
-        <AccordionItem key={item.value} value={item.value}>
-          <AccordionTrigger>{item.question}</AccordionTrigger>
-          <AccordionContent>{item.answer}</AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
-  );
-}
+}) => (
+  <Accordion
+    className={bordered ? "w-80 rounded-lg border px-4" : "w-80"}
+    defaultValue={["item-1"]}
+    multiple={multiple}
+  >
+    {accordionItems.map((item) => (
+      <AccordionItem key={item.value} value={item.value}>
+        <AccordionTrigger>{item.question}</AccordionTrigger>
+        <AccordionContent>{item.answer}</AccordionContent>
+      </AccordionItem>
+    ))}
+  </Accordion>
+);
 
-export function ControlledAccordionExample() {
+export const ControlledAccordionExample = () => {
   const [value, setValue] = useState<string[]>(["item-1"]);
 
   return (
@@ -86,4 +84,4 @@ export function ControlledAccordionExample() {
       </p>
     </div>
   );
-}
+};

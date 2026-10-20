@@ -11,8 +11,8 @@ const serverOnlyDependencies = new Set(["satori", "sharp", "gray-matter"]);
 // Start must compile these modules before their client/server boundaries are resolved.
 const compilerDependencies = new Set(["@tanstack/react-start", "@tanstack/react-router"]);
 
-function sourceFiles(directory) {
-  return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+const sourceFiles = (directory) =>
+  readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const path = join(directory, entry.name);
 
     if (entry.isDirectory()) {
@@ -23,11 +23,10 @@ function sourceFiles(directory) {
       ? [path]
       : [];
   });
-}
 
 // Explicit nested dependency IDs resolve from their owning workspace, even when
 // Bun has not hoisted that dependency into the docs app's node_modules.
-function showcaseDependencies() {
+const showcaseDependencies = () => {
   const imports = new Map();
 
   for (const relative of ["./", "../../packages/ui/", "../../packages/showcase/"]) {
@@ -60,9 +59,9 @@ function showcaseDependencies() {
   }
 
   return [...imports.values()].sort((a, b) => a.localeCompare(b));
-}
+};
 
-export function showcaseVitePlugin() {
+export const showcaseVitePlugin = () => {
   const previewPrefix = "virtual:docs-preview/";
   const showcaseRoot = fileURLToPath(new URL("../../packages/showcase/src/", import.meta.url));
 
@@ -114,4 +113,4 @@ export function showcaseVitePlugin() {
       }
     },
   };
-}
+};

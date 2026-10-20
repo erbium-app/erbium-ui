@@ -9,8 +9,6 @@ const MOBILE_QUERY = "(width < 48rem)";
  * It is `false` on the server; pass `{ defaultMatches: true }` to change that, or
  * `{ noSsr: true }` in client-only apps to resolve on the first render.
  */
-function useIsMobile(options: useMediaQuery.Options = {}) {
-  return useMediaQuery(MOBILE_QUERY, options);
-}
+const useIsMobile = (options: useMediaQuery.Options = {}) => useMediaQuery(MOBILE_QUERY, options);
 
 export { MOBILE_QUERY, useIsMobile };

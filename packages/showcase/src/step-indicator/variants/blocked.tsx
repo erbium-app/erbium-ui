@@ -4,7 +4,7 @@ import { Button } from "@erbium/ui/components/button";
 
 const COUNT = 5;
 
-export default function Example() {
+const Example = () => {
   const [step, setStep] = useState(0);
   const [reach, setReach] = useState(0);
 
@@ -46,4 +46,6 @@ export default function Example() {
       </p>
     </div>
   );
-}
+};
+
+export default Example;

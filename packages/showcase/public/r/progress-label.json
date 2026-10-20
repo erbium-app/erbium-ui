@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/progress", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Progress, ProgressLabel, ProgressValue } from \"@/registry/erbium/ui/progress\";\n\nexport function ProgressWithLabel() {\n  return (\n    <Progress value={56} className=\"w-full max-w-sm\">\n      <ProgressLabel>Upload progress</ProgressLabel>\n      <ProgressValue />\n    </Progress>\n  );\n}\n",
+      "content": "import { Progress, ProgressLabel, ProgressValue } from \"@/registry/erbium/ui/progress\";\n\nexport const ProgressWithLabel = () => (\n  <Progress value={56} className=\"w-full max-w-sm\">\n    <ProgressLabel>Upload progress</ProgressLabel>\n    <ProgressValue />\n  </Progress>\n);\n",
       "path": "src/progress/examples/progress-label.tsx",
       "target": "@components/showcase/progress/examples/progress-label.tsx",
       "type": "registry:component"

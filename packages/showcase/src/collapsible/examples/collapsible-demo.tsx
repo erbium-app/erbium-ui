@@ -12,7 +12,7 @@ import { Separator } from "@erbium/ui/components/separator";
 
 const files = ["README.md", "package.json", "tsconfig.json"];
 
-export default function CollapsibleDemo() {
+const CollapsibleDemo = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -50,4 +50,6 @@ export default function CollapsibleDemo() {
       </Collapsible>
     </Card>
   );
-}
+};
+
+export default CollapsibleDemo;

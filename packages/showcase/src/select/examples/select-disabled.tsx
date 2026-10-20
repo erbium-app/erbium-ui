@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 
-export function SelectDisabled() {
+export const SelectDisabled = () => {
   const items = [
     { label: "Select a fruit", value: null },
     { label: "Apple", value: "apple" },
@@ -33,4 +33,4 @@ export function SelectDisabled() {
       </SelectContent>
     </Select>
   );
-}
+};

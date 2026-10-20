@@ -34,10 +34,10 @@ const items = [
   { name: "tests", required: true },
 ] as const;
 
-export function QuestionnaireDialog() {
+export const QuestionnaireDialog = () => {
   const [open, setOpen] = React.useState(false);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -47,7 +47,7 @@ export function QuestionnaireDialog() {
       description: `Scope: ${getFormValue(formData, "scope", "None")} · Verification: ${getFormValue(formData, "tests", "None")}`,
       title: "Clarification sent",
     });
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -115,4 +115,4 @@ export function QuestionnaireDialog() {
       </DialogPanel>
     </Dialog>
   );
-}
+};

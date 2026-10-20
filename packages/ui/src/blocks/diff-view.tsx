@@ -68,7 +68,7 @@ interface DiffViewContextValue {
 
 const DiffViewContext = createContext<DiffViewContextValue | null>(null);
 
-function useDiffView() {
+const useDiffView = () => {
   const context = use(DiffViewContext);
 
   if (!context) {
@@ -76,9 +76,9 @@ function useDiffView() {
   }
 
   return context;
-}
+};
 
-function DiffView<Annotation = undefined>({
+const DiffView = <Annotation = undefined,>({
   oldFile,
   newFile,
   fileDiff: providedDiff,
@@ -93,7 +93,7 @@ function DiffView<Annotation = undefined>({
   children,
   className,
   ...props
-}: DiffViewProps<Annotation>) {
+}: DiffViewProps<Annotation>) => {
   const fileDiff = useMemo(
     () =>
       providedDiff ??
@@ -169,13 +169,13 @@ function DiffView<Annotation = undefined>({
       </CodePanel>
     </DiffViewContext>
   );
-}
+};
 
-function DiffViewHeader(props: ComponentProps<typeof CodePanelHeader>) {
-  return <CodePanelHeader {...props} data-slot="diff-view-header" />;
-}
+const DiffViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
+  <CodePanelHeader {...props} data-slot="diff-view-header" />
+);
 
-function DiffViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTitle>) {
+const DiffViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
   const { fileDiff } = useDiffView();
 
   return (
@@ -189,13 +189,13 @@ function DiffViewTitle({ children, ...props }: ComponentProps<typeof CodePanelTi
       </span>
     </CodePanelTitle>
   );
-}
+};
 
-function DiffViewActions(props: ComponentProps<typeof CodePanelActions>) {
-  return <CodePanelActions {...props} data-slot="diff-view-actions" />;
-}
+const DiffViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
+  <CodePanelActions {...props} data-slot="diff-view-actions" />
+);
 
-function DiffViewStats({ className, ...props }: Omit<ComponentProps<"span">, "children">) {
+const DiffViewStats = ({ className, ...props }: Omit<ComponentProps<"span">, "children">) => {
   const { fileDiff } = useDiffView();
   const additions = fileDiff.hunks.reduce((total, hunk) => total + hunk.additionLines, 0);
   const deletions = fileDiff.hunks.reduce((total, hunk) => total + hunk.deletionLines, 0);
@@ -216,9 +216,9 @@ function DiffViewStats({ className, ...props }: Omit<ComponentProps<"span">, "ch
       </span>
     </span>
   );
-}
+};
 
-function DiffViewContent(props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) {
+const DiffViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
   const { content, fileDiff, loading } = useDiffView();
   const blank = fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0;
 
@@ -243,12 +243,12 @@ function DiffViewContent(props: Omit<CodePanelContentProps, "children" | "empty"
       {content}
     </CodePanelContent>
   );
-}
+};
 
-function DiffViewCopyButton({
+const DiffViewCopyButton = ({
   side = "new",
   ...props
-}: Omit<CopyButtonProps, "value"> & { side?: "old" | "new" }) {
+}: Omit<CopyButtonProps, "value"> & { side?: "old" | "new" }) => {
   const { oldContents, newContents } = useDiffView();
   const contents = side === "old" ? oldContents : newContents;
 
@@ -260,7 +260,7 @@ function DiffViewCopyButton({
       disabled={contents === undefined || props.disabled}
     />
   );
-}
+};
 
 export {
   DiffView,

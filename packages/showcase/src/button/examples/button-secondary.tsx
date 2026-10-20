@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
 
-export default function ButtonSecondary() {
-  return <Button variant="secondary">Secondary</Button>;
-}
+const ButtonSecondary = () => <Button variant="secondary">Secondary</Button>;
+
+export default ButtonSecondary;

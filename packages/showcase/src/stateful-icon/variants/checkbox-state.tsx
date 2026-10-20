@@ -25,7 +25,7 @@ import {
   MenubarCheckboxItem,
 } from "@erbium/ui/components/menubar";
 
-export default function CheckboxStateExample() {
+const CheckboxStateExample = () => {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -76,4 +76,6 @@ export default function CheckboxStateExample() {
       </ContextMenu>
     </div>
   );
-}
+};
+
+export default CheckboxStateExample;

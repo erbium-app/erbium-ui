@@ -31,30 +31,30 @@ export const markdownPath = (route: string) => (route === "/" ? "/index.md" : `$
 
 const absolute = (path: string) => `${site}${path}`;
 
-function document(path: string) {
+const document = (path: string) => {
   const raw = documents[`${contentRoot}${path}`];
   if (!raw) throw new Error(`Missing agent documentation: ${path}`);
   const parsed = matter(raw);
   return { frontmatter: parsed.data, content: parsed.content };
-}
+};
 
-function body(path: string) {
+const body = (path: string) => {
   return rewriteLinks(document(path).content.trim());
-}
+};
 
-function code(path: string, source: string) {
+const code = (path: string, source: string) => {
   const runs = source.match(/`+/g) ?? [];
   const fence = "`".repeat(Math.max(3, ...runs.map((run) => run.length + 1)));
   const language = path.split(".").at(-1) ?? "text";
   return `### ${path}\n\n${fence}${language}\n${source}\n${fence}`;
-}
+};
 
-function rewriteLinks(markdown: string) {
+const rewriteLinks = (markdown: string) => {
   return markdown.replace(
     /\]\(\/(?!\/)([^)]+)\)/g,
     (_, path: string) => `](${absolute(`/${path}`)})`,
   );
-}
+};
 
 export interface AgentPage {
   route: string;
@@ -64,13 +64,13 @@ export interface AgentPage {
   markdown: string;
 }
 
-function page(
+const page = (
   route: string,
   title: string,
   description: string,
   section: string,
   content: string,
-): AgentPage {
+): AgentPage => {
   return {
     route,
     title,
@@ -78,7 +78,7 @@ function page(
     section,
     markdown: `# ${title}\n\n> ${description}\n\nSource: ${absolute(route)}\n\n${content}\n`,
   };
-}
+};
 
 const guides = [
   ["/", "introduction.md", "Overview"],

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nexport function ToastPromise() {\n  function showToast() {\n    void toast.promise(\n      new Promise<{ name: string }>((resolve) => {\n        window.setTimeout(() => {\n          resolve({ name: \"Event\" });\n        }, 2000);\n      }),\n      {\n        error: \"Could not create event.\",\n        loading: \"Creating event…\",\n        success: (data) => `${data.name} created.`,\n      },\n    );\n  }\n\n  return (\n    <Button variant=\"outline\" onClick={showToast}>\n      Create Event\n    </Button>\n  );\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nexport const ToastPromise = () => {\n  const showToast = () => {\n    void toast.promise(\n      new Promise<{ name: string }>((resolve) => {\n        window.setTimeout(() => {\n          resolve({ name: \"Event\" });\n        }, 2000);\n      }),\n      {\n        error: \"Could not create event.\",\n        loading: \"Creating event…\",\n        success: (data) => `${data.name} created.`,\n      },\n    );\n  };\n\n  return (\n    <Button variant=\"outline\" onClick={showToast}>\n      Create Event\n    </Button>\n  );\n};\n",
       "path": "src/toast/examples/toast-promise.tsx",
       "target": "@components/showcase/toast/examples/toast-promise.tsx",
       "type": "registry:component"

@@ -23,14 +23,14 @@ const items = [
   },
 ] as const;
 
-export function QuestionnaireFreeform() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export const QuestionnaireFreeform = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const approach = getFormValue(new FormData(event.currentTarget), "approach");
 
     toast.add({ description: `Approach: ${approach ?? "None"}`, title: "Approach selected" });
-  }
+  };
 
   return (
     <Questionnaire
@@ -65,4 +65,4 @@ export function QuestionnaireFreeform() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

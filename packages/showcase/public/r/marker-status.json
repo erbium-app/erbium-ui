@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/marker", "@erbium/spinner", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport function MarkerStatusDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker role=\"status\">\n        <MarkerIcon>\n          <Spinner />\n        </MarkerIcon>\n        <MarkerContent>Compacting conversation</MarkerContent>\n      </Marker>\n      <Marker variant=\"separator\" role=\"status\">\n        <MarkerIcon>\n          <Spinner />\n        </MarkerIcon>\n        <MarkerContent>Running tests</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
+      "content": "import { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport const MarkerStatusDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Marker role=\"status\">\n      <MarkerIcon>\n        <Spinner />\n      </MarkerIcon>\n      <MarkerContent>Compacting conversation</MarkerContent>\n    </Marker>\n    <Marker variant=\"separator\" role=\"status\">\n      <MarkerIcon>\n        <Spinner />\n      </MarkerIcon>\n      <MarkerContent>Running tests</MarkerContent>\n    </Marker>\n  </div>\n);\n",
       "path": "src/marker/examples/marker-status.tsx",
       "target": "@components/showcase/marker/examples/marker-status.tsx",
       "type": "registry:component"

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <code className=\"text-caption\">Erbium UI</code>\n      <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" variant=\"outline\" />\n    </div>\n  );\n}\n",
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nconst Demo = () => (\n  <div className=\"flex items-center gap-3\">\n    <code className=\"text-caption\">Erbium UI</code>\n    <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" variant=\"outline\" />\n  </div>\n);\n\nexport default Demo;\n",
       "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "target": "@components/showcase/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "type": "registry:component"

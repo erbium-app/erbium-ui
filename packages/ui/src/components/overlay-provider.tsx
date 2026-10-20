@@ -10,7 +10,7 @@ interface OverlayContextProps {
 
 const OverlayContext = React.createContext<OverlayContextProps | null>(null);
 
-function useOverlay(consumer = "useOverlay") {
+const useOverlay = (consumer = "useOverlay") => {
   const context = React.useContext(OverlayContext);
 
   if (!context) {
@@ -20,13 +20,13 @@ function useOverlay(consumer = "useOverlay") {
   }
 
   return context;
-}
+};
 
 /**
  * Coordinates every drawer in the tree so `DrawerIndent` can inset the page. Mount once at the
  * app root. Drawers throw when it is missing.
  */
-function OverlayProvider({ children }: DrawerPrimitive.Provider.Props) {
+const OverlayProvider = ({ children }: DrawerPrimitive.Provider.Props) => {
   const [indentDirection, setIndentDirection] = React.useState<OverlaySwipeDirection | null>(null);
 
   const contextValue = React.useMemo(
@@ -39,7 +39,7 @@ function OverlayProvider({ children }: DrawerPrimitive.Provider.Props) {
       <DrawerPrimitive.Provider>{children}</DrawerPrimitive.Provider>
     </OverlayContext.Provider>
   );
-}
+};
 
 export { OverlayProvider, useOverlay };
 

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchReadOnly() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch readOnly defaultChecked />\n      <FieldLabel>Managed by your organization</FieldLabel>\n    </Field>\n  );\n}\n",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst SwitchReadOnly = () => (\n  <Field orientation=\"horizontal\">\n    <Switch readOnly defaultChecked />\n    <FieldLabel>Managed by your organization</FieldLabel>\n  </Field>\n);\n\nexport default SwitchReadOnly;\n",
       "path": "src/switch/examples/switch-read-only.tsx",
       "target": "@components/showcase/switch/examples/switch-read-only.tsx",
       "type": "registry:component"

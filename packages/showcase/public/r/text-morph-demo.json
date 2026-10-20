@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/text-morph"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\nimport { TextMorph } from \"@/registry/erbium/ui/text-morph\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Demo() {\n  const [count, setCount] = useState(10);\n\n  return (\n    <div className=\"flex items-center gap-group\">\n      <TextMorph aria-live=\"polite\">{count}</TextMorph>\n      <Button\n        onClick={() => {\n          setCount(count + 1);\n        }}\n      >\n        Increment\n      </Button>\n    </div>\n  );\n}\n",
+      "content": "import { useState } from \"react\";\nimport { TextMorph } from \"@/registry/erbium/ui/text-morph\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Demo = () => {\n  const [count, setCount] = useState(10);\n\n  return (\n    <div className=\"flex items-center gap-group\">\n      <TextMorph aria-live=\"polite\">{count}</TextMorph>\n      <Button\n        onClick={() => {\n          setCount(count + 1);\n        }}\n      >\n        Increment\n      </Button>\n    </div>\n  );\n};\n\nexport default Demo;\n",
       "path": "src/text-morph/examples/text-morph-demo.tsx",
       "target": "@components/showcase/text-morph/examples/text-morph-demo.tsx",
       "type": "registry:component"

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/direction", "@erbium/styles"],
   "files": [
     {
-      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex gap-8\">\n      <DirectionProvider direction=\"ltr\">\n        <Button>Left to right</Button>\n      </DirectionProvider>\n      <DirectionProvider direction=\"rtl\">\n        <Button>من اليمين إلى اليسار</Button>\n      </DirectionProvider>\n    </div>\n  );\n}\n",
+      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Demo = () => (\n  <div className=\"flex gap-8\">\n    <DirectionProvider direction=\"ltr\">\n      <Button>Left to right</Button>\n    </DirectionProvider>\n    <DirectionProvider direction=\"rtl\">\n      <Button>من اليمين إلى اليسار</Button>\n    </DirectionProvider>\n  </div>\n);\n\nexport default Demo;\n",
       "path": "src/direction/examples/direction-demo.tsx",
       "target": "@components/showcase/direction/examples/direction-demo.tsx",
       "type": "registry:component"

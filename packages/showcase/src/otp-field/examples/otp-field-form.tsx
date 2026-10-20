@@ -15,7 +15,7 @@ import {
 import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
 import { OTPField } from "@erbium/ui/components/otp-field";
 
-export function OTPFieldForm() {
+export const OTPFieldForm = () => {
   const formId = useId();
 
   const form = useForm({
@@ -130,4 +130,4 @@ export function OTPFieldForm() {
       </CardFooter>
     </Card>
   );
-}
+};

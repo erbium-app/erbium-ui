@@ -7,7 +7,7 @@ const options = [
   { label: "Dark", value: "dark" },
 ];
 
-export default function RadioGroupControlled() {
+const RadioGroupControlled = () => {
   const [value, setValue] = useState("light");
 
   return (
@@ -27,4 +27,6 @@ export default function RadioGroupControlled() {
       </p>
     </div>
   );
-}
+};
+
+export default RadioGroupControlled;

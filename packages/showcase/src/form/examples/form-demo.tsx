@@ -7,7 +7,7 @@ import { shake } from "@erbium/ui/lib/shake";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import type { StatefulButtonState } from "@erbium/ui/components/stateful-button";
 
-function SubmitButton({
+const SubmitButton = ({
   isSubmitting,
   isSubmitSuccessful,
   submissionAttempts,
@@ -17,7 +17,7 @@ function SubmitButton({
   isSubmitSuccessful: boolean;
   submissionAttempts: number;
   label: string;
-}) {
+}) => {
   const [dismissedAttempt, setDismissedAttempt] = useState(0);
   let state: StatefulButtonState = "idle";
 
@@ -41,9 +41,9 @@ function SubmitButton({
       {label}
     </StatefulButton>
   );
-}
+};
 
-export default function FormDemo({
+const FormDemo = ({
   defaultEmail = "",
   required = true,
   submitLabel = "Submit",
@@ -51,7 +51,7 @@ export default function FormDemo({
   defaultEmail?: string;
   required?: boolean;
   submitLabel?: string;
-}) {
+}) => {
   const [submitted, setSubmitted] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const request = useAsyncDebouncer(async () => {}, { wait: 450 });
@@ -127,4 +127,6 @@ export default function FormDemo({
       {submitted && <p role="status">Submitted: {submitted}</p>}
     </form>
   );
-}
+};
+
+export default FormDemo;

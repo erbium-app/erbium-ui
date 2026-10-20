@@ -22,7 +22,7 @@ const markup = `<svg data-icon-sprite data-erbium-icons aria-hidden="true" width
   })
   .join("")}</svg>`;
 
-function applyDiffIcons(host: HTMLElement) {
+const applyDiffIcons = (host: HTMLElement) => {
   const root = host.shadowRoot;
 
   if (!root) {
@@ -42,6 +42,6 @@ function applyDiffIcons(host: HTMLElement) {
       use.setAttribute("href", `#${iconDefinitions[name].id}`);
     }
   }
-}
+};
 
 export { applyDiffIcons };

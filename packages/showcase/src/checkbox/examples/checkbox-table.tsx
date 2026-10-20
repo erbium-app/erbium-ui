@@ -71,7 +71,7 @@ const columns = columnHelper.columns([
   columnHelper.accessor("role", { header: "Role" }),
 ]);
 
-export function CheckboxInTable() {
+export const CheckboxInTable = () => {
   const table = useTable({
     columns,
     data: tableData,
@@ -130,4 +130,4 @@ export function CheckboxInTable() {
       </TableBody>
     </Table>
   );
-}
+};

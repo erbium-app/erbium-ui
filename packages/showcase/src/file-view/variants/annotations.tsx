@@ -11,7 +11,7 @@ const annotations: LineAnnotation<{ author: string; message: string }>[] = [
   },
 ];
 
-export default function Example() {
+const Example = () => {
   const [selection, setSelection] = useState<SelectedLineRange | null>(null);
 
   return (
@@ -47,4 +47,6 @@ export default function Example() {
       />
     </div>
   );
-}
+};
+
+export default Example;

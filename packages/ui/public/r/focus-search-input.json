@@ -9,7 +9,7 @@
       "path": "src/lib/focus-search-input.ts",
       "target": "@lib/focus-search-input.ts",
       "type": "registry:lib",
-      "content": "/** Search-row padding belongs to the field; nested actions retain their behavior. */\nexport function focusSearchInput(\n  container: HTMLElement,\n  event: Pick<PointerEvent, \"button\" | \"target\" | \"defaultPrevented\" | \"preventDefault\">,\n) {\n  if (event.button !== 0 || event.defaultPrevented) {\n    return;\n  }\n\n  if (\n    event.target instanceof Element &&\n    event.target.closest(\"input, button, a, select, textarea\")\n  ) {\n    return;\n  }\n\n  const input = container.querySelector(\"input\");\n\n  if (!input || input.disabled) {\n    return;\n  }\n\n  event.preventDefault();\n  input.focus();\n}\n"
+      "content": "/** Search-row padding belongs to the field; nested actions retain their behavior. */\nexport const focusSearchInput = (\n  container: HTMLElement,\n  event: Pick<PointerEvent, \"button\" | \"target\" | \"defaultPrevented\" | \"preventDefault\">,\n) => {\n  if (event.button !== 0 || event.defaultPrevented) {\n    return;\n  }\n\n  if (\n    event.target instanceof Element &&\n    event.target.closest(\"input, button, a, select, textarea\")\n  ) {\n    return;\n  }\n\n  const input = container.querySelector(\"input\");\n\n  if (!input || input.disabled) {\n    return;\n  }\n\n  event.preventDefault();\n  input.focus();\n};\n"
     }
   ]
 }

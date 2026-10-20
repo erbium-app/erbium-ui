@@ -21,16 +21,15 @@ type FileTreeOptions = Omit<
   | "preparedInput"
 > & { paths: readonly string[] };
 
-function useFileTree(options: FileTreeOptions) {
+const useFileTree = (options: FileTreeOptions) =>
   // Match the sidebar’s 1.75rem control height; Pierre needs pixels for virtualization.
-  return usePierreTree({
+  usePierreTree({
     ...options,
     density: "default",
     icons: fileTreeIcons,
     itemHeight: 28,
     unsafeCSS: treeThemeCSS,
   });
-}
 
 type FileTreeProps = Omit<ComponentProps<"div">, "children" | "dangerouslySetInnerHTML" | "dir"> &
   Pick<PierreTreeProps, "model" | "preloadedData" | "renderContextMenu"> & { children?: ReactNode };
@@ -40,76 +39,68 @@ const TreeContext = createContext<Pick<
   "model" | "preloadedData" | "renderContextMenu"
 > | null>(null);
 
-function FileTree({
+const FileTree = ({
   model,
   preloadedData,
   renderContextMenu,
   children,
   className,
   ...props
-}: FileTreeProps) {
+}: FileTreeProps) => (
   // File names and paths are code; the tree stays LTR even on RTL pages.
-  return (
-    <DirectionProvider direction="ltr">
-      <TreeContext value={{ model, preloadedData, renderContextMenu }}>
-        <div
-          role="region"
-          aria-label="Files"
-          {...props}
-          dir="ltr"
-          data-slot="file-tree"
-          className={cn(
-            "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
-            className,
-          )}
-        >
-          {children ?? <FileTreeContent />}
-        </div>
-      </TreeContext>
-    </DirectionProvider>
-  );
-}
+  <DirectionProvider direction="ltr">
+    <TreeContext value={{ model, preloadedData, renderContextMenu }}>
+      <div
+        role="region"
+        aria-label="Files"
+        {...props}
+        dir="ltr"
+        data-slot="file-tree"
+        className={cn(
+          "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
+          className,
+        )}
+      >
+        {children ?? <FileTreeContent />}
+      </div>
+    </TreeContext>
+  </DirectionProvider>
+);
 
-function FileTreeHeader({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      {...props}
-      data-slot="file-tree-header"
-      className={cn(
-        "flex min-h-control items-center justify-between gap-related px-2 py-1",
-        className,
-      )}
-    />
-  );
-}
+const FileTreeHeader = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    {...props}
+    data-slot="file-tree-header"
+    className={cn(
+      "flex min-h-control items-center justify-between gap-related px-2 py-1",
+      className,
+    )}
+  />
+);
 
-function FileTreeTitle({ className, ...props }: ComponentProps<"span">) {
-  return (
-    <span
-      {...props}
-      data-slot="file-tree-title"
-      className={cn(
-        "min-w-0 truncate text-control-sm font-medium text-sidebar-foreground/70",
-        className,
-      )}
-    />
-  );
-}
+const FileTreeTitle = ({ className, ...props }: ComponentProps<"span">) => (
+  <span
+    {...props}
+    data-slot="file-tree-title"
+    className={cn(
+      "min-w-0 truncate text-control-sm font-medium text-sidebar-foreground/70",
+      className,
+    )}
+  />
+);
 
-function FileTreeActions({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      {...props}
-      data-slot="file-tree-actions"
-      className={cn("flex shrink-0 items-center gap-related", className)}
-    />
-  );
-}
+const FileTreeActions = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    {...props}
+    data-slot="file-tree-actions"
+    className={cn("flex shrink-0 items-center gap-related", className)}
+  />
+);
 
-function FileTreeContent({
+const FileTreeContent = ({
   className,
   ...props
-}: Omit<PierreTreeProps, "model" | "header" | "preloadedData" | "renderContextMenu">) {
+}: Omit<PierreTreeProps, "model" | "header" | "preloadedData" | "renderContextMenu">) => {
   const context = use(TreeContext);
 
   if (!context) {
@@ -162,7 +153,7 @@ function FileTreeContent({
       )}
     </div>
   );
-}
+};
 
 export { FileTree, useFileTree, FileTreeHeader, FileTreeTitle, FileTreeActions, FileTreeContent };
 

@@ -13,7 +13,7 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function ButtonGroupInput() {\n  return (\n    <ButtonGroup>\n      <Input placeholder=\"Search...\" />\n      <Button variant=\"outline\" aria-label=\"Search\">\n        <Icon name=\"search-01\" />\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nconst ButtonGroupInput = () => (\n  <ButtonGroup>\n    <Input placeholder=\"Search...\" />\n    <Button variant=\"outline\" aria-label=\"Search\">\n      <Icon name=\"search-01\" />\n    </Button>\n  </ButtonGroup>\n);\n\nexport default ButtonGroupInput;\n",
       "path": "src/button-group/examples/button-group-input.tsx",
       "target": "@components/showcase/button-group/examples/button-group-input.tsx",
       "type": "registry:component"

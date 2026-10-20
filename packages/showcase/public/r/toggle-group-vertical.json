@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport function ToggleGroupVertical() {\n  return (\n    <ToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n      <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Icon name=\"bold\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Icon name=\"italic\" />\n      </ToggleGroupItem>\n      <ToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Icon name=\"underline\" />\n      </ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\n\nexport const ToggleGroupVertical = () => (\n  <ToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n    <ToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n      <Icon name=\"bold\" />\n    </ToggleGroupItem>\n    <ToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n      <Icon name=\"italic\" />\n    </ToggleGroupItem>\n    <ToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n      <Icon name=\"underline\" />\n    </ToggleGroupItem>\n  </ToggleGroup>\n);\n",
       "path": "src/toggle-group/examples/toggle-group-vertical.tsx",
       "target": "@components/showcase/toggle-group/examples/toggle-group-vertical.tsx",
       "type": "registry:component"

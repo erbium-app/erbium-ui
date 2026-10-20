@@ -11,7 +11,7 @@ import {
 } from "@erbium/ui/components/input-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";
 
-export default function ButtonGroupInputGroup() {
+const ButtonGroupInputGroup = () => {
   const [voiceEnabled, setVoiceEnabled] = React.useState(false);
 
   return (
@@ -51,4 +51,6 @@ export default function ButtonGroupInputGroup() {
       </ButtonGroup>
     </ButtonGroup>
   );
-}
+};
+
+export default ButtonGroupInputGroup;

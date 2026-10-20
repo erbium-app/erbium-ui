@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport function SkeletonAvatar() {\n  return (\n    <div className=\"flex w-fit items-center gap-group\">\n      <Skeleton className=\"size-10 shrink-0 rounded-avatar\" />\n      <div className=\"grid gap-related\">\n        <Skeleton className=\"h-4 w-[150px]\" />\n        <Skeleton className=\"h-4 w-[100px]\" />\n      </div>\n    </div>\n  );\n}\n",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport const SkeletonAvatar = () => (\n  <div className=\"flex w-fit items-center gap-group\">\n    <Skeleton className=\"size-10 shrink-0 rounded-avatar\" />\n    <div className=\"grid gap-related\">\n      <Skeleton className=\"h-4 w-[150px]\" />\n      <Skeleton className=\"h-4 w-[100px]\" />\n    </div>\n  </div>\n);\n",
       "path": "src/skeleton/examples/skeleton-avatar.tsx",
       "target": "@components/showcase/skeleton/examples/skeleton-avatar.tsx",
       "type": "registry:component"

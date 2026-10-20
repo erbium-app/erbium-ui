@@ -26,7 +26,7 @@ const items = [
   { label: "Pineapple", value: "pineapple" },
 ];
 
-export function SelectAlignItem() {
+export const SelectAlignItem = () => {
   const [alignItemWithTrigger, setAlignItemWithTrigger] = React.useState(true);
 
   return (
@@ -56,4 +56,4 @@ export function SelectAlignItem() {
       </Field>
     </FieldGroup>
   );
-}
+};

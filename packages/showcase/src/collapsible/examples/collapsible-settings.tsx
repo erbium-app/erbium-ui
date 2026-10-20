@@ -15,7 +15,7 @@ import {
 } from "@erbium/ui/components/number-field";
 import { Separator } from "@erbium/ui/components/separator";
 
-export function CollapsibleSettings() {
+export const CollapsibleSettings = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -56,4 +56,4 @@ export function CollapsibleSettings() {
       </Collapsible>
     </Card>
   );
-}
+};

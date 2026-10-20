@@ -11,7 +11,7 @@ import { Showcase, ShowcaseToaster } from "./showcase";
 import type { DocPage } from "@/content/pages.server";
 import { pages } from "@/content/catalog";
 
-export function DocPageView({ page }: { page: DocPage }) {
+export const DocPageView = ({ page }: { page: DocPage }) => {
   const leadHeading =
     page.variants.find((variant) => variant.exportName === "Overview") ?? page.variants[0];
 
@@ -178,4 +178,4 @@ export function DocPageView({ page }: { page: DocPage }) {
       </div>
     </main>
   );
-}
+};

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderVertical() {\n  return (\n    <div className=\"mx-auto flex w-full max-w-xs items-center justify-center gap-section\">\n      <Slider defaultValue={[50]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n      <Slider defaultValue={[25]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n    </div>\n  );\n}\n",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const SliderVertical = () => (\n  <div className=\"mx-auto flex w-full max-w-xs items-center justify-center gap-section\">\n    <Slider defaultValue={[50]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n    <Slider defaultValue={[25]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n  </div>\n);\n",
       "path": "src/slider/examples/slider-vertical.tsx",
       "target": "@components/showcase/slider/examples/slider-vertical.tsx",
       "type": "registry:component"

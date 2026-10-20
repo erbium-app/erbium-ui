@@ -8,13 +8,11 @@ export const states = [
   ["disabled", { "aria-disabled": true }, "opacity-50"],
 ] as const;
 
-export function SurfaceStage({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="@container grid w-full min-w-0 place-items-center bg-surface-panel text-caption text-foreground">
-      {children}
-    </div>
-  );
-}
+export const SurfaceStage = ({ children }: { children: React.ReactNode }) => (
+  <div className="@container grid w-full min-w-0 place-items-center bg-surface-panel text-caption text-foreground">
+    {children}
+  </div>
+);
 
 export const ladder = [
   ["canvas", "bg-surface-canvas", "page"],

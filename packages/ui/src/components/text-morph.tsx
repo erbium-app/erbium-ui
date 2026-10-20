@@ -8,7 +8,7 @@ const textMorphSpring = { damping: 30, stiffness: 400 } as const;
 type TextMorphOptions = Parameters<typeof useTextMorphPrimitive>[0];
 
 /** Drives a morph imperatively, for text that changes outside React's render. */
-function useTextMorph({ ease = textMorphSpring, ...options }: TextMorphOptions = {}) {
+const useTextMorph = ({ ease = textMorphSpring, ...options }: TextMorphOptions = {}) => {
   const { ref, update } = useTextMorphPrimitive({ ease, ...options });
 
   const setRef = React.useCallback(
@@ -19,7 +19,7 @@ function useTextMorph({ ease = textMorphSpring, ...options }: TextMorphOptions =
   );
 
   return { ref: setRef, update };
-}
+};
 
 const escapeHtml = (value: string) =>
   value.replaceAll(
@@ -36,7 +36,7 @@ type TextMorphProps = TextMorphOptions &
     cursorIndex?: number;
   };
 
-function TextMorph({
+const TextMorph = ({
   children,
   cursorIndex,
   className,
@@ -54,7 +54,7 @@ function TextMorph({
   respectReducedMotion,
   scale,
   ...props
-}: TextMorphProps) {
+}: TextMorphProps) => {
   const { ref, update } = useTextMorph({
     debug,
     decimals,
@@ -100,7 +100,7 @@ function TextMorph({
       {...props}
     />
   );
-}
+};
 
 export { TextMorph, textMorphSpring, useTextMorph };
 

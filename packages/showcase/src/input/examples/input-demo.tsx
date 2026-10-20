@@ -1,5 +1,5 @@
 import { Input } from "@erbium/ui/components/input";
 
-export default function InputDemo() {
-  return <Input type="email" placeholder="Email" />;
-}
+const InputDemo = () => <Input type="email" placeholder="Email" />;
+
+export default InputDemo;

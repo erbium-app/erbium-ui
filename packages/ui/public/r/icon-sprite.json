@@ -10,7 +10,7 @@
       "path": "src/components/icon-sprite.tsx",
       "target": "@ui/icon-sprite.tsx",
       "type": "registry:ui",
-      "content": "import { spriteSheet } from \"@erbium/icons/sprite\";\n\nfunction IconSprite() {\n  return (\n    <div\n      data-slot=\"icon-sprite\"\n      aria-hidden=\"true\"\n      className=\"pointer-events-none absolute size-0 overflow-hidden\"\n      // This markup is generated from the package's authored SVG assets.\n      dangerouslySetInnerHTML={{ __html: spriteSheet }}\n    />\n  );\n}\n\nexport { IconSprite };\n"
+      "content": "import { spriteSheet } from \"@erbium/icons/sprite\";\n\nconst IconSprite = () => (\n  <div\n    data-slot=\"icon-sprite\"\n    aria-hidden=\"true\"\n    className=\"pointer-events-none absolute size-0 overflow-hidden\"\n    // This markup is generated from the package's authored SVG assets.\n    dangerouslySetInnerHTML={{ __html: spriteSheet }}\n  />\n);\n\nexport { IconSprite };\n"
     }
   ]
 }

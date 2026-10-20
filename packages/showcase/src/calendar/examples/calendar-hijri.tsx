@@ -16,14 +16,14 @@ const monthKeyFormatter = new Intl.DateTimeFormat("en-US-u-ca-persian", {
 const dayFormatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", { day: "numeric" });
 const weekDays = ["ش", "ی", "د", "س", "چ", "پ", "ج"];
 
-function moveDay(date: Date, amount: number) {
+const moveDay = (date: Date, amount: number) => {
   const next = new Date(date);
   next.setDate(next.getDate() + amount);
 
   return next;
-}
+};
 
-function getMonthDays(anchor: Date) {
+const getMonthDays = (anchor: Date) => {
   const key = monthKeyFormatter.format(anchor);
   let first = new Date(anchor);
 
@@ -38,9 +38,9 @@ function getMonthDays(anchor: Date) {
   }
 
   return days;
-}
+};
 
-export default function CalendarHijri() {
+const CalendarHijri = () => {
   const [anchor, setAnchor] = React.useState(() => new Date());
   const [selected, setSelected] = React.useState<Date>();
   const days = getMonthDays(anchor);
@@ -105,4 +105,6 @@ export default function CalendarHijri() {
       </div>
     </div>
   );
-}
+};
+
+export default CalendarHijri;

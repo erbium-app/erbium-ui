@@ -10,7 +10,7 @@ const manifest = JSON.parse(await readFile(join(root, "manifest.json"), "utf-8")
 const packageJson = JSON.parse(await readFile(join(root, "package.json"), "utf-8"));
 const workspaceJson = JSON.parse(await readFile(join(root, "../../package.json"), "utf-8"));
 
-function dependencyVersion(name) {
+const dependencyVersion = (name) => {
   const version = packageJson.dependencies[name];
 
   if (!version) {
@@ -34,7 +34,7 @@ function dependencyVersion(name) {
   }
 
   return resolved;
-}
+};
 
 const uiRegistry = JSON.parse(await readFile(join(root, "../ui/registry.json"), "utf-8"));
 const uiNames = new Set(uiRegistry.items.map((item) => item.name));
@@ -43,7 +43,7 @@ const virtual = new Map();
 const imports = (source) =>
   [...source.matchAll(/(?:from\s*|import\s*(?:\(\s*)?)["']([^"']+)["']/g)].map((match) => match[1]);
 
-async function output(path, value) {
+const output = async (path, value) => {
   const content = `${JSON.stringify(value, null, 2)}\n`;
 
   if (check) {
@@ -56,13 +56,11 @@ async function output(path, value) {
     await mkdir(dirname(path), { recursive: true });
     await writeFile(path, content);
   }
-}
+};
 
-async function sourceAt(path) {
-  return virtual.get(path) ?? (await readFile(path, "utf-8"));
-}
+const sourceAt = async (path) => virtual.get(path) ?? (await readFile(path, "utf-8"));
 
-async function localImport(specifier, from) {
+const localImport = async (specifier, from) => {
   const base = resolve(dirname(from), specifier.split("?")[0]);
 
   for (const suffix of ["", ".tsx", ".ts", ".json", "/index.tsx", "/index.ts"]) {
@@ -82,22 +80,22 @@ async function localImport(specifier, from) {
   }
 
   throw new Error(`Unresolved registry dependency ${specifier} in ${from}`);
-}
+};
 
-function uiImport(directory, name) {
+const uiImport = (directory, name) => {
   if (!uiNames.has(name)) {
     throw new Error(`Unknown UI registry item: ${name}`);
   }
 
   return `@/registry/erbium/${directory === "components" ? "ui" : directory}/${name === "utils" && directory === "lib" ? "erbium-utils" : name}`;
-}
+};
 
-async function itemFor(name, entry, title, description, story = false) {
+const itemFor = async (name, entry, title, description, story = false) => {
   const files = new Map();
   const dependencies = new Set();
   const registryDependencies = new Set(["@erbium/styles"]);
 
-  async function collect(path) {
+  const collect = async (path) => {
     if (files.has(path)) {
       return;
     }
@@ -140,7 +138,7 @@ async function itemFor(name, entry, title, description, story = false) {
         }
       }
     }
-  }
+  };
 
   await collect(entry);
 
@@ -170,11 +168,9 @@ async function itemFor(name, entry, title, description, story = false) {
         type: story && path.endsWith(".stories.tsx") ? "registry:file" : "registry:component",
       })),
   };
-}
+};
 
-function markdownBody(text) {
-  return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").trim();
-}
+const markdownBody = (text) => text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "").trim();
 
 const items = new Map();
 
@@ -290,7 +286,7 @@ for (const catalog of manifest) {
   });
 }
 
-async function walk(directory) {
+const walk = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true });
 
   return (
@@ -300,7 +296,7 @@ async function walk(directory) {
       ),
     )
   ).flat();
-}
+};
 
 // Standalone examples use globally unique component/scenario names.
 const standaloneSources = new Map();

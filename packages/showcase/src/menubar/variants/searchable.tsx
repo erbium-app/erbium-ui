@@ -13,7 +13,7 @@ import {
   MenubarItem,
 } from "@erbium/ui/components/menubar";
 
-export default function SearchableExample() {
+const SearchableExample = () => {
   const [action, setAction] = useState("No action selected.");
 
   return (
@@ -67,4 +67,6 @@ export default function SearchableExample() {
       </p>
     </div>
   );
-}
+};
+
+export default SearchableExample;

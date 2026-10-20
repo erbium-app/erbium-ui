@@ -15,7 +15,7 @@ const options = [
 
 const initialValues: readonly string[] = ["design"];
 
-export default function ReadonlySelectionExample() {
+const ReadonlySelectionExample = () => {
   const [value, setValue] = useState<readonly string[]>(initialValues);
 
   return (
@@ -37,4 +37,6 @@ export default function ReadonlySelectionExample() {
       </p>
     </div>
   );
-}
+};
+
+export default ReadonlySelectionExample;

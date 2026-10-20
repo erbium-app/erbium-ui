@@ -9,7 +9,7 @@
       "path": "src/lib/change-theme.ts",
       "target": "@lib/change-theme.ts",
       "type": "registry:lib",
-      "content": "let transitionFrame = 0;\n\n/** Apply a synchronous theme update without interpolating component colors or shadows. */\nexport function changeTheme(update: () => void) {\n  const root = document.documentElement;\n  cancelAnimationFrame(transitionFrame);\n  root.dataset.themeChanging = \"\";\n\n  try {\n    update();\n  } finally {\n    // Commit the new palette while transitions are disabled, including portal content.\n    getComputedStyle(root).getPropertyValue(\"--background\");\n    transitionFrame = requestAnimationFrame(() => {\n      transitionFrame = requestAnimationFrame(() => {\n        delete root.dataset.themeChanging;\n      });\n    });\n  }\n}\n"
+      "content": "let transitionFrame = 0;\n\n/** Apply a synchronous theme update without interpolating component colors or shadows. */\nexport const changeTheme = (update: () => void) => {\n  const root = document.documentElement;\n  cancelAnimationFrame(transitionFrame);\n  root.dataset.themeChanging = \"\";\n\n  try {\n    update();\n  } finally {\n    // Commit the new palette while transitions are disabled, including portal content.\n    getComputedStyle(root).getPropertyValue(\"--background\");\n    transitionFrame = requestAnimationFrame(() => {\n      transitionFrame = requestAnimationFrame(() => {\n        delete root.dataset.themeChanging;\n      });\n    });\n  }\n};\n"
     }
   ]
 }

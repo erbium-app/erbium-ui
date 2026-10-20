@@ -35,38 +35,38 @@ const people = [
   },
 ];
 
-export default function ItemGroupExample() {
-  return (
-    <div className="flex w-full max-w-md flex-col gap-section">
-      <ItemGroup>
-        {people.map((person, index) => (
-          <React.Fragment key={person.username}>
-            <Item>
-              <ItemMedia>
-                <Avatar>
-                  <AvatarImage alt={person.username} src={person.avatar} className="grayscale" />
-                  <AvatarFallback>
-                    {person.username
-                      .split(" ")
-                      .map((part) => part[0])
-                      .join("")}
-                  </AvatarFallback>
-                </Avatar>
-              </ItemMedia>
-              <ItemContent className="gap-1">
-                <ItemTitle>{person.username}</ItemTitle>
-                <ItemDescription>{person.email}</ItemDescription>
-              </ItemContent>
-              <ItemActions>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <Icon name="plus" />
-                </Button>
-              </ItemActions>
-            </Item>
-            {index !== people.length - 1 && <ItemSeparator />}
-          </React.Fragment>
-        ))}
-      </ItemGroup>
-    </div>
-  );
-}
+const ItemGroupExample = () => (
+  <div className="flex w-full max-w-md flex-col gap-section">
+    <ItemGroup>
+      {people.map((person, index) => (
+        <React.Fragment key={person.username}>
+          <Item>
+            <ItemMedia>
+              <Avatar>
+                <AvatarImage alt={person.username} src={person.avatar} className="grayscale" />
+                <AvatarFallback>
+                  {person.username
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("")}
+                </AvatarFallback>
+              </Avatar>
+            </ItemMedia>
+            <ItemContent className="gap-1">
+              <ItemTitle>{person.username}</ItemTitle>
+              <ItemDescription>{person.email}</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Icon name="plus" />
+              </Button>
+            </ItemActions>
+          </Item>
+          {index !== people.length - 1 && <ItemSeparator />}
+        </React.Fragment>
+      ))}
+    </ItemGroup>
+  </div>
+);
+
+export default ItemGroupExample;

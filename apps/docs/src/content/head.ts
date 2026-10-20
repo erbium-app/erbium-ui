@@ -2,7 +2,7 @@ import type { DocPage } from "./pages.server";
 import { site, siteName } from "@/config/site";
 import { structuredData } from "@/build/seo/structured-data";
 
-export function pageHead(page: DocPage | null | undefined) {
+export const pageHead = (page: DocPage | null | undefined) => {
   if (!page) {
     return {
       meta: [{ title: "Page not found | Erbium UI" }, { content: "noindex", name: "robots" }],
@@ -45,4 +45,4 @@ export function pageHead(page: DocPage | null | undefined) {
       },
     ],
   };
-}
+};

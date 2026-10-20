@@ -13,7 +13,7 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export function DropdownMenuRadioIcons() {
+export const DropdownMenuRadioIcons = () => {
   const [paymentMethod, setPaymentMethod] = React.useState("card");
 
   return (
@@ -44,4 +44,4 @@ export function DropdownMenuRadioIcons() {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-}
+};

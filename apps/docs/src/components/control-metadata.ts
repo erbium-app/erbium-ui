@@ -1,6 +1,6 @@
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
 
-export function displayValue(value: unknown): string {
+export const displayValue = (value: unknown): string => {
   if (value === undefined) {
     return "—";
   }
@@ -10,10 +10,10 @@ export function displayValue(value: unknown): string {
   }
 
   return JSON.stringify(value) ?? "—";
-}
+};
 
-export function controlRows(story: ShowcaseStory) {
-  return [...new Set([...Object.keys(story.argTypes ?? {}), ...Object.keys(story.args ?? {})])].map(
+export const controlRows = (story: ShowcaseStory) =>
+  [...new Set([...Object.keys(story.argTypes ?? {}), ...Object.keys(story.args ?? {})])].map(
     (name) => {
       const settings = story.argTypes?.[name];
       const value = story.args?.[name];
@@ -46,4 +46,3 @@ export function controlRows(story: ShowcaseStory) {
       };
     },
   );
-}

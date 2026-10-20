@@ -10,6 +10,31 @@ import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { Shell } from "@/components/shell";
 import stylesheet from "@/styles.css?url";
 
+const Root = () => (
+  <html className="antialiased" lang="en" suppressHydrationWarning>
+    <head>
+      <HeadContent />
+    </head>
+    <body className="font-sans">
+      <IconSprite />
+      <ScriptOnce>{`try { const theme = localStorage.getItem('erbium-theme'); document.documentElement.classList.toggle('dark', theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)); } catch {}`}</ScriptOnce>
+      <Shell>
+        <Outlet />
+      </Shell>
+      <Scripts />
+      {import.meta.env.PROD && import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN && (
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({
+            token: import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN,
+          })}
+        />
+      )}
+    </body>
+  </html>
+);
+
 export const Route = createRootRoute({
   component: Root,
   head: () => ({
@@ -29,30 +54,3 @@ export const Route = createRootRoute({
     </main>
   ),
 });
-
-function Root() {
-  return (
-    <html className="antialiased" lang="en" suppressHydrationWarning>
-      <head>
-        <HeadContent />
-      </head>
-      <body className="font-sans">
-        <IconSprite />
-        <ScriptOnce>{`try { const theme = localStorage.getItem('erbium-theme'); document.documentElement.classList.toggle('dark', theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)); } catch {}`}</ScriptOnce>
-        <Shell>
-          <Outlet />
-        </Shell>
-        <Scripts />
-        {import.meta.env.PROD && import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN && (
-          <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={JSON.stringify({
-              token: import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN,
-            })}
-          />
-        )}
-      </body>
-    </html>
-  );
-}

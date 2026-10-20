@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarTimezone() {\n  const [date, setDate] = React.useState<Date>();\n\n  const timeZone = React.useSyncExternalStore(\n    () => () => {},\n    () => Intl.DateTimeFormat().resolvedOptions().timeZone,\n    // The server snapshot must return the string type, not void.\n    // oxlint-disable-next-line unicorn/no-useless-undefined\n    () => undefined,\n  );\n\n  return <Calendar mode=\"single\" onSelect={setDate} selected={date} timeZone={timeZone} />;\n}\n",
+      "content": "import * as React from \"react\";\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst CalendarTimezone = () => {\n  const [date, setDate] = React.useState<Date>();\n\n  const timeZone = React.useSyncExternalStore(\n    () => () => {},\n    () => Intl.DateTimeFormat().resolvedOptions().timeZone,\n    // The server snapshot must return the string type, not void.\n    // oxlint-disable-next-line unicorn/no-useless-undefined\n    () => undefined,\n  );\n\n  return <Calendar mode=\"single\" onSelect={setDate} selected={date} timeZone={timeZone} />;\n};\n\nexport default CalendarTimezone;\n",
       "path": "src/calendar/examples/calendar-timezone.tsx",
       "target": "@components/showcase/calendar/examples/calendar-timezone.tsx",
       "type": "registry:component"

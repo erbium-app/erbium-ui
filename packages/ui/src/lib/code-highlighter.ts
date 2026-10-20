@@ -46,13 +46,13 @@ const names: Record<Language, string> = {
 let highlighter: Promise<HighlighterCore> | undefined;
 const languageRequests = new Map<Language, Promise<void>>();
 
-export function normalizeCodeLanguage(language: string) {
+export const normalizeCodeLanguage = (language: string) => {
   const name = language.trim().toLowerCase();
 
   return aliases[name] ?? name;
-}
+};
 
-async function getHighlighter() {
+const getHighlighter = async () => {
   highlighter ??= Promise.all([
     import("shiki/core"),
     import("shiki/engine/javascript"),
@@ -73,10 +73,10 @@ async function getHighlighter() {
     });
 
   return await highlighter;
-}
+};
 
 // One runtime and one in-flight grammar load per language, shared by every block.
-async function tokenizeCode(code: string, language: string) {
+const tokenizeCode = async (code: string, language: string) => {
   const instance = await getHighlighter();
   const normalized = normalizeCodeLanguage(language);
   let lang = "text";
@@ -106,14 +106,14 @@ async function tokenizeCode(code: string, language: string) {
     lang,
     themes: { dark: "vitesse-dark", light: "vitesse-light" },
   });
-}
+};
 
 const cache = new Map<string, { result: TokensResult; size: number }>();
 const requests = new Map<string, Promise<TokensResult>>();
 let cacheSize = 0;
 const maxCacheSize = 2 * 1024 * 1024;
 
-export async function highlightCode(code: string, language: string): Promise<TokensResult> {
+export const highlightCode = async (code: string, language: string): Promise<TokensResult> => {
   const normalized = normalizeCodeLanguage(language);
   const key = `${normalized}\u0000${code}`;
   const cached = cache.get(key);
@@ -158,4 +158,4 @@ export async function highlightCode(code: string, language: string): Promise<Tok
   requests.set(key, request);
 
   return await request;
-}
+};

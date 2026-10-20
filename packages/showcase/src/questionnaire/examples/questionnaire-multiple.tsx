@@ -22,8 +22,8 @@ const items = [
   },
 ] as const;
 
-export function QuestionnaireMultiple() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export const QuestionnaireMultiple = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const context = getFormValues(new FormData(event.currentTarget), "context");
@@ -32,7 +32,7 @@ export function QuestionnaireMultiple() {
       description: `Context: ${context.join(", ") || "None"}`,
       title: "Context selected",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -60,4 +60,4 @@ export function QuestionnaireMultiple() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

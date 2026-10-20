@@ -33,7 +33,7 @@ const frameworks = [
   },
 ];
 
-export default function ComboboxDemo() {
+const ComboboxDemo = () => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState<(typeof frameworks)[number] | null>(null);
   const anchor = React.useRef<HTMLButtonElement | null>(null);
@@ -64,4 +64,6 @@ export default function ComboboxDemo() {
       </ComboboxContent>
     </Combobox>
   );
-}
+};
+
+export default ComboboxDemo;

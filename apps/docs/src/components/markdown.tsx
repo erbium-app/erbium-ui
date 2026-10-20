@@ -24,8 +24,8 @@ import {
   TableCaption,
 } from "@erbium/ui/components/table";
 
-function textContent(children: ReactNode): string {
-  return Children.toArray(children)
+const textContent = (children: ReactNode): string =>
+  Children.toArray(children)
     .map((child) =>
       isValidElement<{ children?: ReactNode }>(child)
         ? textContent(child.props.children)
@@ -34,10 +34,9 @@ function textContent(children: ReactNode): string {
           : "",
     )
     .join("");
-}
 
-function MarkdownLink({ href, children }: ComponentProps<"a">) {
-  return href?.startsWith("/") && !/\.(md|json|txt|xml)$/.test(href) ? (
+const MarkdownLink = ({ href, children }: ComponentProps<"a">) =>
+  href?.startsWith("/") && !/\.(md|json|txt|xml)$/.test(href) ? (
     <Link to={href}>{children}</Link>
   ) : (
     <a
@@ -48,9 +47,8 @@ function MarkdownLink({ href, children }: ComponentProps<"a">) {
       {children}
     </a>
   );
-}
 
-function MarkdownPre({ children }: ComponentProps<"pre">) {
+const MarkdownPre = ({ children }: ComponentProps<"pre">) => {
   const code = Children.toArray(children).find(isValidElement<{ className?: string }>);
 
   const language = isValidElement<{ className?: string }>(code)
@@ -67,48 +65,44 @@ function MarkdownPre({ children }: ComponentProps<"pre">) {
       className="not-typeset my-4"
     />
   );
-}
+};
 
-function MarkdownTable(props: ComponentProps<"table">) {
-  return (
-    <Table
-      {...props}
-      className="[&_td]:whitespace-normal [&_th]:whitespace-normal"
-      containerProps={{
-        "aria-label": "Documentation table",
-        className: "not-typeset my-4",
-        role: "region",
-        tabIndex: 0,
-      }}
-    />
-  );
-}
+const MarkdownTable = (props: ComponentProps<"table">) => (
+  <Table
+    {...props}
+    className="[&_td]:whitespace-normal [&_th]:whitespace-normal"
+    containerProps={{
+      "aria-label": "Documentation table",
+      className: "not-typeset my-4",
+      role: "region",
+      tabIndex: 0,
+    }}
+  />
+);
 
-export function Prose({ tree }: { tree: string }) {
-  return (
-    <div className="typeset markdown-copy">
-      {toJsxRuntime(JSON.parse(tree) as Root, {
-        Fragment,
-        components: {
-          a: MarkdownLink,
-          caption: TableCaption,
-          pre: MarkdownPre,
-          table: MarkdownTable,
-          tbody: TableBody,
-          td: TableCell,
-          tfoot: TableFooter,
-          th: TableHead,
-          thead: TableHeader,
-          tr: TableRow,
-        },
-        jsx,
-        jsxs,
-      })}
-    </div>
-  );
-}
+export const Prose = ({ tree }: { tree: string }) => (
+  <div className="typeset markdown-copy">
+    {toJsxRuntime(JSON.parse(tree) as Root, {
+      Fragment,
+      components: {
+        a: MarkdownLink,
+        caption: TableCaption,
+        pre: MarkdownPre,
+        table: MarkdownTable,
+        tbody: TableBody,
+        td: TableCell,
+        tfoot: TableFooter,
+        th: TableHead,
+        thead: TableHeader,
+        tr: TableRow,
+      },
+      jsx,
+      jsxs,
+    })}
+  </div>
+);
 
-export function CopyPageButton({ path }: { path: string }) {
+export const CopyPageButton = ({ path }: { path: string }) => {
   const markdown = useCallback(async () => {
     const response = await fetch(path === "/" ? "/index.md" : `${path}.md`);
 
@@ -129,4 +123,4 @@ export function CopyPageButton({ path }: { path: string }) {
       </CopyButtonLabel>
     </CopyButton>
   );
-}
+};

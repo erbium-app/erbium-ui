@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldAlphanumeric() {\n  return (\n    <OTPField\n      aria-label=\"Recovery code\"\n      length={6}\n      groups={[3, 3]}\n      validationType=\"alphanumeric\"\n      normalizeValue={(value) => value.toUpperCase()}\n    />\n  );\n}\n",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport const OTPFieldAlphanumeric = () => (\n  <OTPField\n    aria-label=\"Recovery code\"\n    length={6}\n    groups={[3, 3]}\n    validationType=\"alphanumeric\"\n    normalizeValue={(value) => value.toUpperCase()}\n  />\n);\n",
       "path": "src/otp-field/examples/otp-field-alphanumeric.tsx",
       "target": "@components/showcase/otp-field/examples/otp-field-alphanumeric.tsx",
       "type": "registry:component"

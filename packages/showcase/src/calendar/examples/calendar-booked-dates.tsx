@@ -3,7 +3,7 @@ import * as React from "react";
 import { Calendar } from "@erbium/ui/components/calendar";
 import { Card } from "@erbium/ui/components/card";
 
-export function CalendarBookedDates() {
+export const CalendarBookedDates = () => {
   const [date, setDate] = React.useState<Date | undefined>(
     () => new Date(new Date().getFullYear(), 0, 6),
   );
@@ -31,4 +31,4 @@ export function CalendarBookedDates() {
       />
     </Card>
   );
-}
+};

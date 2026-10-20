@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
-export function TableOfContents({
+export const TableOfContents = ({
   headings,
   path,
 }: {
   headings: { id: string; title: string; depth?: number }[];
   path: string;
-}) {
+}) => {
   const nav = useRef<HTMLElement>(null);
   useEffect(() => {
     let frame = 0;
@@ -83,4 +83,4 @@ export function TableOfContents({
       </nav>
     </aside>
   );
-}
+};

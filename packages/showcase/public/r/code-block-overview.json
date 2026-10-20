@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/code-block", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst code = `import { Button } from \"@/registry/erbium/ui/button\";\n\nexport function SaveButton() {\n  return <Button>Save changes</Button>;\n}\n`;\n\nexport default function Example() {\n  return (\n    <CodeBlock className=\"w-full max-w-xl\" code={code} language=\"tsx\" title=\"save-button.tsx\" />\n  );\n}\n",
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst code = `import { Button } from \"@/registry/erbium/ui/button\";\n\nexport function SaveButton() {\n  return <Button>Save changes</Button>;\n}\n`;\n\nconst Example = () => (\n  <CodeBlock className=\"w-full max-w-xl\" code={code} language=\"tsx\" title=\"save-button.tsx\" />\n);\n\nexport default Example;\n",
       "path": "src/code-block/variants/overview.tsx",
       "target": "@components/showcase/code-block/variants/overview.tsx",
       "type": "registry:component"

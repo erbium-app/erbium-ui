@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StepIndicator } from "@erbium/ui/blocks/step-indicator";
 import { Button } from "@erbium/ui/components/button";
 
-export default function Example() {
+const Example = () => {
   const [step, setStep] = useState(1);
 
   return (
@@ -29,4 +29,6 @@ export default function Example() {
       </div>
     </div>
   );
-}
+};
+
+export default Example;

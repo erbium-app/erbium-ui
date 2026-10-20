@@ -64,21 +64,20 @@ const toastManager = ToastPrimitive.createToastManager();
 // Base UI types `type` as `string`; this is the one place it is narrowed to `ToastType`.
 const toast = toastManager as ToastManager;
 
-function useToastManager() {
-  return ToastPrimitive.useToastManager() as Omit<ToastManager, " subscribe"> & {
+const useToastManager = () =>
+  ToastPrimitive.useToastManager() as Omit<ToastManager, " subscribe"> & {
     toasts: ToastItem[];
   };
-}
 
-function ToastProvider(props: ToastPrimitive.Provider.Props) {
-  return <ToastPrimitive.Provider {...props} />;
-}
+const ToastProvider = (props: ToastPrimitive.Provider.Props) => (
+  <ToastPrimitive.Provider {...props} />
+);
 
-function ToastPortal(props: ToastPrimitive.Portal.Props) {
-  return <ToastPrimitive.Portal data-slot="toast-portal" {...props} />;
-}
+const ToastPortal = (props: ToastPrimitive.Portal.Props) => (
+  <ToastPrimitive.Portal data-slot="toast-portal" {...props} />
+);
 
-function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
+const ToastViewport = ({ className, ...props }: ToastPrimitive.Viewport.Props) => {
   const direction = useDirection();
 
   return (
@@ -93,13 +92,13 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
       {...props}
     />
   );
-}
+};
 
-function Toast({
+const Toast = ({
   className,
   toast,
   ...props
-}: Omit<ToastPrimitive.Root.Props, "swipeDirection" | "toast"> & { toast: ToastItem }) {
+}: Omit<ToastPrimitive.Root.Props, "swipeDirection" | "toast"> & { toast: ToastItem }) => {
   // Toasts sit at the inline end of the page, so that is the side they swipe away to.
   const swipeDirection = useDirection() === "rtl" ? "left" : "right";
 
@@ -128,77 +127,67 @@ function Toast({
       {...props}
     />
   );
-}
+};
 
-function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
-  return (
-    <ToastPrimitive.Content
-      data-slot="toast-content"
-      className={cn(
-        "flex items-center gap-3 overflow-hidden p-panel transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const ToastContent = ({ className, ...props }: ToastPrimitive.Content.Props) => (
+  <ToastPrimitive.Content
+    data-slot="toast-content"
+    className={cn(
+      "flex items-center gap-3 overflow-hidden p-panel transition-opacity duration-250 ease-[cubic-bezier(0.22,1,0.36,1)] data-behind:opacity-0 data-expanded:opacity-100",
+      className,
+    )}
+    {...props}
+  />
+);
 
-function ToastTitle({ className, ...props }: ToastPrimitive.Title.Props) {
-  return (
-    <ToastPrimitive.Title
-      data-slot="toast-title"
-      className={cn("text-control", className)}
-      {...props}
-    />
-  );
-}
+const ToastTitle = ({ className, ...props }: ToastPrimitive.Title.Props) => (
+  <ToastPrimitive.Title
+    data-slot="toast-title"
+    className={cn("text-control", className)}
+    {...props}
+  />
+);
 
-function ToastDescription({ className, ...props }: ToastPrimitive.Description.Props) {
-  return (
-    <ToastPrimitive.Description
-      data-slot="toast-description"
-      className={cn("text-caption text-muted-foreground", className)}
-      {...props}
-    />
-  );
-}
+const ToastDescription = ({ className, ...props }: ToastPrimitive.Description.Props) => (
+  <ToastPrimitive.Description
+    data-slot="toast-description"
+    className={cn("text-caption text-muted-foreground", className)}
+    {...props}
+  />
+);
 
-function ToastAction({
+const ToastAction = ({
   className,
   render = <Button variant="outline" size="sm" />,
   ...props
-}: ToastPrimitive.Action.Props) {
-  return (
-    <ToastPrimitive.Action
-      data-slot="toast-action"
-      render={render}
-      className={cn("shrink-0", className)}
-      {...props}
-    />
-  );
-}
+}: ToastPrimitive.Action.Props) => (
+  <ToastPrimitive.Action
+    data-slot="toast-action"
+    render={render}
+    className={cn("shrink-0", className)}
+    {...props}
+  />
+);
 
-function ToastClose({
+const ToastClose = ({
   className,
   children,
   render = <Button variant="ghost" size="icon-sm" />,
   ...props
-}: ToastPrimitive.Close.Props) {
-  return (
-    <ToastPrimitive.Close
-      data-slot="toast-close"
-      aria-label="Close toast"
-      render={render}
-      className={cn(
-        "relative shrink-0 text-muted-foreground after:absolute after:-inset-2 after:content-[''] hover:text-foreground",
-        className,
-      )}
-      {...props}
-    >
-      {children ?? <Icon name="x" aria-hidden="true" />}
-    </ToastPrimitive.Close>
-  );
-}
+}: ToastPrimitive.Close.Props) => (
+  <ToastPrimitive.Close
+    data-slot="toast-close"
+    aria-label="Close toast"
+    render={render}
+    className={cn(
+      "relative shrink-0 text-muted-foreground after:absolute after:-inset-2 after:content-[''] hover:text-foreground",
+      className,
+    )}
+    {...props}
+  >
+    {children ?? <Icon name="x" aria-hidden="true" />}
+  </ToastPrimitive.Close>
+);
 
 // Base UI only exposes the expanded state through hover and focus on the viewport, so the stack
 // is revealed by replaying the pointer events it already listens for. Timers pause while it is open.
@@ -207,13 +196,13 @@ const REVEAL_HOLD = 1400;
 
 // Closes a stack that was fanned out for a repeat, unless a real pointer is over it.
 // Base UI collapses it itself when that pointer leaves.
-function collapseStack(viewport: HTMLElement) {
+const collapseStack = (viewport: HTMLElement) => {
   if (!viewport.matches(":hover")) {
     viewport.dispatchEvent(new MouseEvent("mouseout", { bubbles: true }));
   }
-}
+};
 
-function revealStack(viewport: HTMLElement) {
+const revealStack = (viewport: HTMLElement) => {
   const opened = !Object.hasOwn(viewport.dataset, "expanded");
 
   if (opened) {
@@ -221,14 +210,14 @@ function revealStack(viewport: HTMLElement) {
   }
 
   return opened;
-}
+};
 
 interface StackCollapse {
   maybeExecute: (viewport: HTMLElement) => void;
   cancel: () => void;
 }
 
-function ToasterItem({
+const ToasterItem = ({
   item,
   index,
   buried,
@@ -238,7 +227,7 @@ function ToasterItem({
   index: number;
   buried: boolean;
   collapse: StackCollapse;
-}) {
+}) => {
   const rootRef = React.useRef<HTMLDivElement>(null);
   const previous = React.useRef(item);
   // React 19's useRef has no zero-argument overload; the explicit initial
@@ -315,9 +304,9 @@ function ToasterItem({
       </ToastContent>
     </Toast>
   );
-}
+};
 
-function ToasterStack() {
+const ToasterStack = () => {
   const { toasts } = useToastManager();
   // Each repeat restarts the hold, so the stack closes once the last shake has had its moment.
   const collapse = useDebouncer(collapseStack, { wait: REVEAL_HOLD });
@@ -346,19 +335,17 @@ function ToasterStack() {
       ))}
     </div>
   );
-}
+};
 
-function Toaster() {
-  return (
-    <ToastProvider toastManager={toastManager} limit={Number.POSITIVE_INFINITY}>
-      <ToastPortal>
-        <ToastViewport>
-          <ToasterStack />
-        </ToastViewport>
-      </ToastPortal>
-    </ToastProvider>
-  );
-}
+const Toaster = () => (
+  <ToastProvider toastManager={toastManager} limit={Number.POSITIVE_INFINITY}>
+    <ToastPortal>
+      <ToastViewport>
+        <ToasterStack />
+      </ToastViewport>
+    </ToastPortal>
+  </ToastProvider>
+);
 
 export {
   Toaster,

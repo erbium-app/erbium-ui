@@ -6,94 +6,82 @@ import { Separator } from "./separator";
 
 type ToolbarActionProps = VariantProps<typeof buttonVariants>;
 
-function Toolbar({ className, ...props }: ToolbarPrimitive.Root.Props) {
-  return (
-    <ToolbarPrimitive.Root
-      data-slot="toolbar"
-      className={cn(
-        "flex w-fit items-center gap-1 rounded-lg surface-panel p-1 text-foreground data-vertical:flex-col data-vertical:items-stretch",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const Toolbar = ({ className, ...props }: ToolbarPrimitive.Root.Props) => (
+  <ToolbarPrimitive.Root
+    data-slot="toolbar"
+    className={cn(
+      "flex w-fit items-center gap-1 rounded-lg surface-panel p-1 text-foreground data-vertical:flex-col data-vertical:items-stretch",
+      className,
+    )}
+    {...props}
+  />
+);
 
-function ToolbarGroup({ className, ...props }: ToolbarPrimitive.Group.Props) {
-  return (
-    <ToolbarPrimitive.Group
-      data-slot="toolbar-group"
-      className={cn(
-        "flex items-center gap-0.5 data-vertical:flex-col data-vertical:items-stretch",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const ToolbarGroup = ({ className, ...props }: ToolbarPrimitive.Group.Props) => (
+  <ToolbarPrimitive.Group
+    data-slot="toolbar-group"
+    className={cn(
+      "flex items-center gap-0.5 data-vertical:flex-col data-vertical:items-stretch",
+      className,
+    )}
+    {...props}
+  />
+);
 
-function ToolbarButton({
+const ToolbarButton = ({
   className,
   variant = "ghost",
   size = "sm",
   ...props
-}: ToolbarPrimitive.Button.Props & ToolbarActionProps) {
-  return (
-    <ToolbarPrimitive.Button
-      data-slot="toolbar-button"
-      data-variant={variant}
-      data-size={size}
-      className={cn(buttonVariants({ size, variant }), className)}
-      {...props}
-    />
-  );
-}
+}: ToolbarPrimitive.Button.Props & ToolbarActionProps) => (
+  <ToolbarPrimitive.Button
+    data-slot="toolbar-button"
+    data-variant={variant}
+    data-size={size}
+    className={cn(buttonVariants({ size, variant }), className)}
+    {...props}
+  />
+);
 
-function ToolbarLink({
+const ToolbarLink = ({
   className,
   variant = "ghost",
   size = "sm",
   ...props
-}: ToolbarPrimitive.Link.Props & ToolbarActionProps) {
-  return (
-    <ToolbarPrimitive.Link
-      data-slot="toolbar-link"
-      data-variant={variant}
-      data-size={size}
-      className={cn(buttonVariants({ size, variant }), className)}
-      {...props}
-    />
-  );
-}
+}: ToolbarPrimitive.Link.Props & ToolbarActionProps) => (
+  <ToolbarPrimitive.Link
+    data-slot="toolbar-link"
+    data-variant={variant}
+    data-size={size}
+    className={cn(buttonVariants({ size, variant }), className)}
+    {...props}
+  />
+);
 
-function ToolbarInput({ className, ...props }: ToolbarPrimitive.Input.Props) {
-  return (
-    <ToolbarPrimitive.Input
-      data-slot="toolbar-input"
-      className={cn(
-        "control-size control-adaptive min-w-0 rounded-lg border surface-field text-field outline-none data-disabled:opacity-50",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const ToolbarInput = ({ className, ...props }: ToolbarPrimitive.Input.Props) => (
+  <ToolbarPrimitive.Input
+    data-slot="toolbar-input"
+    className={cn(
+      "control-size control-adaptive min-w-0 rounded-lg border surface-field text-field outline-none data-disabled:opacity-50",
+      className,
+    )}
+    {...props}
+  />
+);
 
-function ToolbarSeparator({
+const ToolbarSeparator = ({
   className,
   variant = "full",
   ...props
 }: Omit<ToolbarPrimitive.Separator.Props, "render"> & {
   variant?: React.ComponentProps<typeof Separator>["variant"];
-}) {
-  return (
-    <ToolbarPrimitive.Separator
-      data-slot="toolbar-separator"
-      className={cn("self-stretch data-horizontal:my-1 data-vertical:mx-1", className)}
-      render={<Separator variant={variant} />}
-      {...props}
-    />
-  );
-}
+}) => (
+  <ToolbarPrimitive.Separator
+    data-slot="toolbar-separator"
+    className={cn("self-stretch data-horizontal:my-1 data-vertical:mx-1", className)}
+    render={<Separator variant={variant} />}
+    {...props}
+  />
+);
 
 export { Toolbar, ToolbarButton, ToolbarGroup, ToolbarInput, ToolbarLink, ToolbarSeparator };

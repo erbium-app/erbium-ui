@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/message-scroller", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  MessageScroller,\n  MessageScrollerContent,\n  MessageScrollerItem,\n  MessageScrollerProvider,\n  MessageScrollerViewport,\n} from \"@/registry/erbium/ui/message-scroller\";\n\nexport default function Demo() {\n  return (\n    <MessageScrollerProvider>\n      <MessageScroller className=\"h-40 w-80\">\n        <MessageScrollerViewport>\n          <MessageScrollerContent>\n            {Array.from({ length: 8 }, (_, i) => (\n              <MessageScrollerItem key={i}>Message {i + 1}</MessageScrollerItem>\n            ))}\n          </MessageScrollerContent>\n        </MessageScrollerViewport>\n      </MessageScroller>\n    </MessageScrollerProvider>\n  );\n}\n",
+      "content": "import {\n  MessageScroller,\n  MessageScrollerContent,\n  MessageScrollerItem,\n  MessageScrollerProvider,\n  MessageScrollerViewport,\n} from \"@/registry/erbium/ui/message-scroller\";\n\nconst Demo = () => (\n  <MessageScrollerProvider>\n    <MessageScroller className=\"h-40 w-80\">\n      <MessageScrollerViewport>\n        <MessageScrollerContent>\n          {Array.from({ length: 8 }, (_, i) => (\n            <MessageScrollerItem key={i}>Message {i + 1}</MessageScrollerItem>\n          ))}\n        </MessageScrollerContent>\n      </MessageScrollerViewport>\n    </MessageScroller>\n  </MessageScrollerProvider>\n);\n\nexport default Demo;\n",
       "path": "src/message-scroller/examples/message-scroller-demo.tsx",
       "target": "@components/showcase/message-scroller/examples/message-scroller-demo.tsx",
       "type": "registry:component"

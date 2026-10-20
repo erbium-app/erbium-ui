@@ -22,7 +22,7 @@ type StatefulButtonProps = Omit<
   successLabel?: ReactNode;
 };
 
-function StatefulButton({
+const StatefulButton = ({
   children,
   className,
   disabled,
@@ -34,7 +34,7 @@ function StatefulButton({
   successDuration = 1500,
   successLabel,
   ...props
-}: StatefulButtonProps) {
+}: StatefulButtonProps) => {
   const [internalState, setInternalState] = useState<StatefulButtonState>("idle");
   const controlledState = stateProp;
   const state = controlledState ?? internalState;
@@ -145,7 +145,7 @@ function StatefulButton({
       </span>
     </Button>
   );
-}
+};
 
 export { StatefulButton };
 

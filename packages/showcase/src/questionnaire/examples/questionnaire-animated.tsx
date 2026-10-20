@@ -26,8 +26,8 @@ const items = [
 const itemClassName =
   "data-active:animate-in data-active:fade-in-0 data-active:slide-in-from-bottom-2 data-active:duration-300 motion-reduce:animate-none";
 
-export function QuestionnaireAnimated() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export const QuestionnaireAnimated = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -36,7 +36,7 @@ export function QuestionnaireAnimated() {
       description: `Task: ${getFormValue(formData, "task", "None")} · Review: ${getFormValue(formData, "review", "None")} · Delivery: ${getFormValue(formData, "delivery", "None")}`,
       title: "Agent workflow saved",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -89,4 +89,4 @@ export function QuestionnaireAnimated() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

@@ -8,7 +8,7 @@ const rows = [
   { delay: 1350, id: "fourth" },
 ];
 
-function StaggeredRow({ delay }: { delay: number }) {
+const StaggeredRow = ({ delay }: { delay: number }) => {
   const [mounted, setMounted] = useState(delay === 0);
 
   useEffect(() => {
@@ -35,14 +35,14 @@ function StaggeredRow({ delay }: { delay: number }) {
       <Skeleton className="min-h-control-sm w-18" />
     </div>
   );
-}
+};
 
-export default function SkeletonStaggered() {
-  return (
-    <div className="flex w-full max-w-sm flex-col gap-section">
-      {rows.map((row) => (
-        <StaggeredRow delay={row.delay} key={row.id} />
-      ))}
-    </div>
-  );
-}
+const SkeletonStaggered = () => (
+  <div className="flex w-full max-w-sm flex-col gap-section">
+    {rows.map((row) => (
+      <StaggeredRow delay={row.delay} key={row.id} />
+    ))}
+  </div>
+);
+
+export default SkeletonStaggered;

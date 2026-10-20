@@ -5,7 +5,7 @@ import { Button } from "@erbium/ui/components/button";
 import { Calendar } from "@erbium/ui/components/calendar";
 import { Card, CardContent, CardFooter } from "@erbium/ui/components/card";
 
-export function CalendarWithPresets() {
+export const CalendarWithPresets = () => {
   const [date, setDate] = React.useState<Date | undefined>(
     () => new Date(new Date().getFullYear(), 1, 12),
   );
@@ -52,4 +52,4 @@ export function CalendarWithPresets() {
       </CardFooter>
     </Card>
   );
-}
+};

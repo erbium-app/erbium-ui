@@ -26,7 +26,7 @@ const documents = [
   "Internationalization",
 ];
 
-export default function SearchSurfaceExample() {
+const SearchSurfaceExample = () => {
   const [selected, setSelected] = useState("");
 
   return (
@@ -55,4 +55,6 @@ export default function SearchSurfaceExample() {
       </p>
     </div>
   );
-}
+};
+
+export default SearchSurfaceExample;

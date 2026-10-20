@@ -2,7 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
 import { OTPField } from "@erbium/ui/components/otp-field";
 
-export function OTPFieldInvalid() {
+export const OTPFieldInvalid = () => {
   const form = useForm({ defaultValues: { code: "" } });
 
   return (
@@ -44,4 +44,4 @@ export function OTPFieldInvalid() {
       )}
     </form.Field>
   );
-}
+};

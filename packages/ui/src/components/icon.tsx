@@ -7,7 +7,7 @@ type IconProps = Omit<ComponentProps<"svg">, "children" | "dangerouslySetInnerHT
   name: IconName;
 };
 
-function Icon({ name, className, ...props }: IconProps) {
+const Icon = ({ name, className, ...props }: IconProps) => {
   const { id, viewBox } = iconDefinitions[name];
 
   // Size comes from width/height attributes so a parent's
@@ -26,7 +26,7 @@ function Icon({ name, className, ...props }: IconProps) {
       <use href={`#${id}`} />
     </svg>
   );
-}
+};
 
 export { Icon };
 

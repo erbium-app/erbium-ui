@@ -42,7 +42,7 @@ class PreviewBoundary extends Component<{ children: ReactNode }, { failed: boole
   }
 }
 
-export function Showcase({
+export const Showcase = ({
   name,
   variant,
   separator = true,
@@ -50,7 +50,7 @@ export function Showcase({
   name: string;
   variant: DocPage["variants"][number];
   separator?: boolean;
-}) {
+}) => {
   const container = useRef<HTMLElement>(null);
 
   const story = useMemo(
@@ -74,7 +74,7 @@ export function Showcase({
   useEffect(() => {
     let active = true;
 
-    async function load() {
+    const load = async () => {
       try {
         const entry = await exampleResource(name, variant.slug);
 
@@ -86,7 +86,7 @@ export function Showcase({
           setError(true);
         }
       }
-    }
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -114,7 +114,7 @@ export function Showcase({
 
     let active = true;
 
-    async function load() {
+    const load = async () => {
       try {
         const result = await loadExampleSource({ data: { name, slug: variant.slug } });
 
@@ -127,7 +127,7 @@ export function Showcase({
           setSourceError(true);
         }
       }
-    }
+    };
 
     void load();
 
@@ -243,12 +243,10 @@ export function Showcase({
       </Collapsible>
     </section>
   );
-}
+};
 
-export function ShowcaseToaster() {
-  return (
-    <ShowcaseProviders>
-      <Toaster />
-    </ShowcaseProviders>
-  );
-}
+export const ShowcaseToaster = () => (
+  <ShowcaseProviders>
+    <Toaster />
+  </ShowcaseProviders>
+);

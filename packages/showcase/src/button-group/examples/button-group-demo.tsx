@@ -18,7 +18,7 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export default function ButtonGroupDemo() {
+const ButtonGroupDemo = () => {
   const [label, setLabel] = React.useState("personal");
 
   return (
@@ -97,4 +97,6 @@ export default function ButtonGroupDemo() {
       </ButtonGroup>
     </ButtonGroup>
   );
-}
+};
+
+export default ButtonGroupDemo;

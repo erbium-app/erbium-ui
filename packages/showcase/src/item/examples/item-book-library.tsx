@@ -56,7 +56,7 @@ const books = [
   },
 ] as const;
 
-export default function ItemBookLibrary() {
+const ItemBookLibrary = () => {
   const [selected, setSelected] = useState<string[]>([books[0].id, books[1].id]);
   const idPrefix = useId();
   const allSelected = selected.length === books.length;
@@ -141,4 +141,6 @@ export default function ItemBookLibrary() {
       </ItemGroup>
     </section>
   );
-}
+};
+
+export default ItemBookLibrary;

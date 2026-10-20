@@ -15,7 +15,7 @@ interface DragSelectOptions {
  * Press on an item and drag across its siblings to select or clear them in one gesture.
  * Spread the returned handlers on the element that contains the items.
  */
-export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
+export const useDragSelect = ({ resolve, selectRange }: DragSelectOptions) => {
   const drag = useRef<{ index: number; selected: boolean } | null>(null);
   const suppressClick = useRef(false);
   const stopDrag = useRef<() => void>(null);
@@ -100,4 +100,4 @@ export function useDragSelect({ resolve, selectRange }: DragSelectOptions) {
       suppressClick.current = true;
     },
   };
-}
+};

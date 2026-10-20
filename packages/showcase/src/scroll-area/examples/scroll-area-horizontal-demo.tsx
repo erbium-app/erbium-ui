@@ -20,31 +20,29 @@ export const works: Artwork[] = [
   },
 ];
 
-export function ScrollAreaHorizontalDemo() {
-  return (
-    <ScrollArea
-      fade="horizontal"
-      orientation="horizontal"
-      className="w-96 rounded-xl border surface-panel whitespace-nowrap"
-    >
-      <div className="flex w-max space-x-4 p-4">
-        {works.map((artwork) => (
-          <figure key={artwork.artist} className="shrink-0">
-            <div className="overflow-hidden rounded-md">
-              <img
-                src={artwork.art}
-                alt={`Photo by ${artwork.artist}`}
-                className="aspect-[3/4] h-fit w-fit object-cover"
-                width={300}
-                height={400}
-              />
-            </div>
-            <figcaption className="pt-2 text-metadata text-muted-foreground">
-              Photo by <span className="font-semibold text-foreground">{artwork.artist}</span>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </ScrollArea>
-  );
-}
+export const ScrollAreaHorizontalDemo = () => (
+  <ScrollArea
+    fade="horizontal"
+    orientation="horizontal"
+    className="w-96 rounded-xl border surface-panel whitespace-nowrap"
+  >
+    <div className="flex w-max space-x-4 p-4">
+      {works.map((artwork) => (
+        <figure key={artwork.artist} className="shrink-0">
+          <div className="overflow-hidden rounded-md">
+            <img
+              src={artwork.art}
+              alt={`Photo by ${artwork.artist}`}
+              className="aspect-[3/4] h-fit w-fit object-cover"
+              width={300}
+              height={400}
+            />
+          </div>
+          <figcaption className="pt-2 text-metadata text-muted-foreground">
+            Photo by <span className="font-semibold text-foreground">{artwork.artist}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </ScrollArea>
+);

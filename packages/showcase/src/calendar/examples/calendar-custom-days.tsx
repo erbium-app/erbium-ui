@@ -5,7 +5,7 @@ import type { DateRange } from "react-day-picker";
 import { Calendar, CalendarDayButton } from "@erbium/ui/components/calendar";
 import { Card } from "@erbium/ui/components/card";
 
-export function CalendarCustomDays() {
+export const CalendarCustomDays = () => {
   const [range, setRange] = React.useState<DateRange | undefined>(() => ({
     from: new Date(new Date().getFullYear(), 11, 8),
     to: addDays(new Date(new Date().getFullYear(), 11, 8), 10),
@@ -39,4 +39,4 @@ export function CalendarCustomDays() {
       />
     </Card>
   );
-}
+};

@@ -6,11 +6,11 @@ const virtualId = "virtual:docs-pages";
 const resolvedId = `\0${virtualId}`;
 
 /** Compile content and native image dependencies on Node, never in the Worker. */
-export function staticContentPlugin({ root, aliases, pagePaths, toolingPlugins }) {
+export const staticContentPlugin = ({ root, aliases, pagePaths, toolingPlugins }) => {
   let tooling;
   let documents;
 
-  async function server() {
+  const server = async () => {
     tooling ??= createServer({
       root,
       configFile: false,
@@ -25,13 +25,11 @@ export function staticContentPlugin({ root, aliases, pagePaths, toolingPlugins }
     });
 
     return tooling;
-  }
+  };
 
-  async function load(path) {
-    return (await server()).ssrLoadModule(path);
-  }
+  const load = async (path) => (await server()).ssrLoadModule(path);
 
-  async function pages() {
+  const pages = async () => {
     documents ??= (async () => {
       const { getPage } = await load("/src/build/content/pages.ts");
 
@@ -51,13 +49,11 @@ export function staticContentPlugin({ root, aliases, pagePaths, toolingPlugins }
     })();
 
     return documents;
-  }
+  };
 
-  async function resources() {
-    return (await load("/src/build/agent/resources.ts")).artifacts;
-  }
+  const resources = async () => (await load("/src/build/agent/resources.ts")).artifacts;
 
-  async function image(path) {
+  const image = async (path) => {
     const { ogPages } = await load("/src/build/seo/og-pages.ts");
     const page = ogPages.find((entry) => entry.imagePath === path);
 
@@ -66,18 +62,18 @@ export function staticContentPlugin({ root, aliases, pagePaths, toolingPlugins }
     }
 
     return (await load("/src/build/seo/og-image.ts")).createOgImage(page);
-  }
+  };
 
   return {
     async closeBundle() {
       if (this.environment?.name === "client") {
         const output = resolve(root, this.environment.config.build.outDir);
 
-        async function write(path, body) {
+        const write = async (path, body) => {
           const target = resolve(output, `.${path}`);
           await mkdir(dirname(target), { recursive: true });
           await writeFile(target, body);
-        }
+        };
 
         for (const artifact of await resources()) {
           await write(artifact.path, artifact.body);
@@ -206,4 +202,4 @@ export function staticContentPlugin({ root, aliases, pagePaths, toolingPlugins }
       }
     },
   };
-}
+};

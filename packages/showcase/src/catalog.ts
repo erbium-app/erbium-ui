@@ -25,7 +25,7 @@ export interface ShowcaseCatalog {
 
 const catalogs = import.meta.glob<ShowcaseCatalog>("./*/catalog.tsx");
 
-export async function loadShowcase(name: string) {
+export const loadShowcase = async (name: string) => {
   const load = catalogs[`./${name}/catalog.tsx`];
 
   if (!load) {
@@ -33,4 +33,4 @@ export async function loadShowcase(name: string) {
   }
 
   return await load();
-}
+};

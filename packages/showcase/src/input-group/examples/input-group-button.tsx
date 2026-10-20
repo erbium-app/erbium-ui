@@ -10,7 +10,7 @@ import {
 } from "@erbium/ui/components/input-group";
 import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/popover";
 
-export default function InputGroupButtonExample() {
+const InputGroupButtonExample = () => {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   return (
@@ -70,4 +70,6 @@ export default function InputGroupButtonExample() {
       </InputGroup>
     </div>
   );
-}
+};
+
+export default InputGroupButtonExample;

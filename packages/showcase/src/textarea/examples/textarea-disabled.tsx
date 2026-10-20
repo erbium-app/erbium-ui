@@ -1,5 +1,5 @@
 import { Textarea } from "@erbium/ui/components/textarea";
 
-export default function TextareaDisabled() {
-  return <Textarea placeholder="Type your message here." disabled />;
-}
+const TextareaDisabled = () => <Textarea placeholder="Type your message here." disabled />;
+
+export default TextareaDisabled;

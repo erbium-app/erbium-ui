@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TextMorph } from "@erbium/ui/components/text-morph";
 import { Button } from "@erbium/ui/components/button";
 
-export default function Demo() {
+const Demo = () => {
   const [count, setCount] = useState(10);
 
   return (
@@ -17,4 +17,6 @@ export default function Demo() {
       </Button>
     </div>
   );
-}
+};
+
+export default Demo;

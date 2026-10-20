@@ -1,8 +1,8 @@
 /** Search-row padding belongs to the field; nested actions retain their behavior. */
-export function focusSearchInput(
+export const focusSearchInput = (
   container: HTMLElement,
   event: Pick<PointerEvent, "button" | "target" | "defaultPrevented" | "preventDefault">,
-) {
+) => {
   if (event.button !== 0 || event.defaultPrevented) {
     return;
   }
@@ -22,4 +22,4 @@ export function focusSearchInput(
 
   event.preventDefault();
   input.focus();
-}
+};

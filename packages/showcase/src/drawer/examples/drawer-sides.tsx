@@ -11,22 +11,20 @@ import {
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
 
-export function DrawerWithSides() {
-  return (
-    <Drawer swipeDirection="left">
-      <DrawerTrigger render={<Button variant="secondary" />}>Open Left Drawer</DrawerTrigger>
-      <DrawerPanel>
-        <DrawerHeader>
-          <DrawerTitle>Move Goal</DrawerTitle>
-          <DrawerDescription>Set your daily activity goal.</DrawerDescription>
-        </DrawerHeader>
-        <DrawerContent>
-          <div className="size-full rounded-2xl bg-muted" />
-        </DrawerContent>
-        <DrawerFooter>
-          <DrawerClose render={<Button />}>Close</DrawerClose>
-        </DrawerFooter>
-      </DrawerPanel>
-    </Drawer>
-  );
-}
+export const DrawerWithSides = () => (
+  <Drawer swipeDirection="left">
+    <DrawerTrigger render={<Button variant="secondary" />}>Open Left Drawer</DrawerTrigger>
+    <DrawerPanel>
+      <DrawerHeader>
+        <DrawerTitle>Move Goal</DrawerTitle>
+        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+      </DrawerHeader>
+      <DrawerContent>
+        <div className="size-full rounded-2xl bg-muted" />
+      </DrawerContent>
+      <DrawerFooter>
+        <DrawerClose render={<Button />}>Close</DrawerClose>
+      </DrawerFooter>
+    </DrawerPanel>
+  </Drawer>
+);

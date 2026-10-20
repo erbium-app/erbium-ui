@@ -17,7 +17,7 @@ if (new Set(classifiedNames).size !== classifiedNames.length) {
 const root = dirname(import.meta.dirname);
 const check = process.argv.includes("--check");
 
-export async function output(path, content, json = false) {
+export const output = async (path, content, json = false) => {
   if (check) {
     const actual = await readFile(path, "utf-8").catch(() => "");
 
@@ -32,7 +32,7 @@ export async function output(path, content, json = false) {
   } else {
     await writeFile(path, content);
   }
-}
+};
 
 const manifest = [];
 

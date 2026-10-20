@@ -54,7 +54,7 @@ interface CodeBlockContextValue {
 
 const CodeBlockContext = createContext<CodeBlockContextValue | null>(null);
 
-function useCodeBlock() {
+const useCodeBlock = () => {
   const context = use(CodeBlockContext);
 
   if (!context) {
@@ -62,9 +62,9 @@ function useCodeBlock() {
   }
 
   return context;
-}
+};
 
-function CodeBlock({
+const CodeBlock = ({
   code,
   language,
   items: providedItems,
@@ -78,7 +78,7 @@ function CodeBlock({
   children,
   className,
   ...props
-}: CodeBlockProps) {
+}: CodeBlockProps) => {
   const items = useMemo(
     () =>
       providedItems ?? [
@@ -144,48 +144,42 @@ function CodeBlock({
       </CodeBlockContext>
     </DirectionProvider>
   );
-}
+};
 
-function CodeBlockHeader({ className, ...props }: ComponentProps<typeof CodePanelHeader>) {
-  return (
-    <CodePanelHeader
-      {...props}
-      data-slot="code-block-header"
-      className={cn("flex-nowrap pe-12 group-data-[surface=command]/code-block:min-h-9", className)}
-    />
-  );
-}
+const CodeBlockHeader = ({ className, ...props }: ComponentProps<typeof CodePanelHeader>) => (
+  <CodePanelHeader
+    {...props}
+    data-slot="code-block-header"
+    className={cn("flex-nowrap pe-12 group-data-[surface=command]/code-block:min-h-9", className)}
+  />
+);
 
-function CodeBlockTitle({ className, ...props }: ComponentProps<typeof CodePanelTitle>) {
-  return (
-    <CodePanelTitle {...props} data-slot="code-block-title" className={cn("truncate", className)} />
-  );
-}
+const CodeBlockTitle = ({ className, ...props }: ComponentProps<typeof CodePanelTitle>) => (
+  <CodePanelTitle {...props} data-slot="code-block-title" className={cn("truncate", className)} />
+);
 
-function CodeBlockActions({ className, ...props }: ComponentProps<"div">) {
-  return (
-    <div
-      {...props}
-      data-slot="code-block-actions"
-      className={cn(
-        "absolute end-2 top-2 z-10 flex items-center gap-1 rounded-md bg-surface-panel",
-        className,
-      )}
-    />
-  );
-}
+const CodeBlockActions = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    {...props}
+    data-slot="code-block-actions"
+    className={cn(
+      "absolute end-2 top-2 z-10 flex items-center gap-1 rounded-md bg-surface-panel",
+      className,
+    )}
+  />
+);
 
-function CodeBlockLanguage({ children, ...props }: ComponentProps<typeof CodeBlockTitle>) {
+const CodeBlockLanguage = ({ children, ...props }: ComponentProps<typeof CodeBlockTitle>) => {
   const { active } = useCodeBlock();
 
   return <CodeBlockTitle {...props}>{children ?? active?.language ?? "text"}</CodeBlockTitle>;
-}
+};
 
-function CodeBlockIcon({
+const CodeBlockIcon = ({
   value,
   className,
   ...props
-}: Omit<ComponentProps<typeof Icon>, "name"> & { value?: string }) {
+}: Omit<ComponentProps<typeof Icon>, "name"> & { value?: string }) => {
   const { active, items, surface } = useCodeBlock();
   const item = value === undefined ? active : items.find((entry) => entry.value === value);
 
@@ -197,14 +191,14 @@ function CodeBlockIcon({
       data-slot="code-block-icon"
     />
   );
-}
+};
 
-function CodeBlockTabs({
+const CodeBlockTabs = ({
   children,
   className,
   "aria-label": label = "Code examples",
   ...props
-}: ComponentProps<typeof TabsList>) {
+}: ComponentProps<typeof TabsList>) => {
   const { items } = useCodeBlock();
 
   return (
@@ -222,16 +216,14 @@ function CodeBlockTabs({
         ))}
     </TabsList>
   );
-}
+};
 
-function CodeBlockTab(props: ComponentProps<typeof TabsTrigger>) {
-  return <TabsTrigger {...props} />;
-}
+const CodeBlockTab = (props: ComponentProps<typeof TabsTrigger>) => <TabsTrigger {...props} />;
 
-function CodeBlockCopyButton({
+const CodeBlockCopyButton = ({
   value,
   ...props
-}: Omit<CopyButtonProps, "value"> & { value?: string }) {
+}: Omit<CopyButtonProps, "value"> & { value?: string }) => {
   const { active, surface } = useCodeBlock();
 
   return (
@@ -242,14 +234,14 @@ function CodeBlockCopyButton({
       {...props}
     />
   );
-}
+};
 
 type CodeBlockContentProps = Omit<
   ComponentProps<"pre">,
   "children" | "dangerouslySetInnerHTML" | "dir"
 >;
 
-function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps) {
+const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps) => {
   const { active, lineNumbers, wrap, surface } = useCodeBlock();
   const code = active?.code ?? "";
   const language = active?.language ?? "text";
@@ -288,13 +280,13 @@ function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps)
   const rows: TokensResult["tokens"] =
     result?.tokens ?? code.split(/\r\n|\n|\r/).map((content) => [{ content, offset: 0 }]);
 
-  function themeColor(name: string) {
+  const themeColor = (name: string) => {
     const declaration = (result?.rootStyle || "")
       .split(";")
       .find((entry) => entry.startsWith(`${name}:`));
 
     return declaration?.slice(name.length + 1);
-  }
+  };
 
   const blockStyle = {
     "--shiki-dark": themeColor("--shiki-dark"),
@@ -362,12 +354,12 @@ function CodeBlockContent({ className, style, ...props }: CodeBlockContentProps)
       </code>
     </pre>
   );
-}
+};
 
-function CodeBlockPanel({
+const CodeBlockPanel = ({
   value,
   ...props
-}: Omit<TabsPrimitive.Panel.Props, "children"> & { value: string }) {
+}: Omit<TabsPrimitive.Panel.Props, "children"> & { value: string }) => {
   const context = useCodeBlock();
   const item = context.items.find((entry) => entry.value === value);
 
@@ -378,7 +370,7 @@ function CodeBlockPanel({
       </CodeBlockContext>
     </TabsPrimitive.Panel>
   );
-}
+};
 
 export {
   CodeBlock,

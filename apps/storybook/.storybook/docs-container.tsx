@@ -6,10 +6,10 @@ import { themes } from "storybook/theming";
 import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { Toaster } from "@erbium/ui/components/toast";
 
-function ThemeAwareDocsContainer({
+const ThemeAwareDocsContainer = ({
   context,
   children,
-}: React.PropsWithChildren<DocsContainerProps>) {
+}: React.PropsWithChildren<DocsContainerProps>) => {
   const [isDark, setIsDark] = useState(
     () => context.getStoryContext(context.componentStories()[0]).globals.theme === "dark",
   );
@@ -33,6 +33,6 @@ function ThemeAwareDocsContainer({
       <Toaster />
     </DocsContainer>
   );
-}
+};
 
 export { ThemeAwareDocsContainer };

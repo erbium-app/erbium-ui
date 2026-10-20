@@ -3,19 +3,17 @@ import { motion, useReducedMotion } from "motion/react";
 import type { HTMLMotionProps } from "motion/react";
 import { cn } from "../lib/utils";
 
-function Tabs({ className, orientation = "horizontal", ...props }: TabsPrimitive.Root.Props) {
-  return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
-      data-orientation={orientation}
-      orientation={orientation}
-      className={cn("group/tabs flex gap-related data-horizontal:flex-col", className)}
-      {...props}
-    />
-  );
-}
+const Tabs = ({ className, orientation = "horizontal", ...props }: TabsPrimitive.Root.Props) => (
+  <TabsPrimitive.Root
+    data-slot="tabs"
+    data-orientation={orientation}
+    orientation={orientation}
+    className={cn("group/tabs flex gap-related data-horizontal:flex-col", className)}
+    {...props}
+  />
+);
 
-function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
+const TabsList = ({ className, children, ...props }: TabsPrimitive.List.Props) => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -60,29 +58,25 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
       />
     </TabsPrimitive.List>
   );
-}
+};
 
-function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
-  return (
-    <TabsPrimitive.Tab
-      data-slot="tabs-trigger"
-      className={cn(
-        "relative z-10 inline-flex segmented-size flex-1 items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring data-active:text-foreground has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const TabsTrigger = ({ className, ...props }: TabsPrimitive.Tab.Props) => (
+  <TabsPrimitive.Tab
+    data-slot="tabs-trigger"
+    className={cn(
+      "relative z-10 inline-flex segmented-size flex-1 items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring data-active:text-foreground has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+      className,
+    )}
+    {...props}
+  />
+);
 
-function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
-  return (
-    <TabsPrimitive.Panel
-      data-slot="tabs-content"
-      className={cn("flex-1 text-control outline-none", className)}
-      {...props}
-    />
-  );
-}
+const TabsContent = ({ className, ...props }: TabsPrimitive.Panel.Props) => (
+  <TabsPrimitive.Panel
+    data-slot="tabs-content"
+    className={cn("flex-1 text-control outline-none", className)}
+    {...props}
+  />
+);
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

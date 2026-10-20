@@ -33,7 +33,7 @@ const fontUtilities = new Set([
   "font-bold",
 ]);
 
-export function classContext(node, context, seen = new Set()) {
+export const classContext = (node, context, seen = new Set()) => {
   if (seen.has(node)) {
     return false;
   }
@@ -105,10 +105,10 @@ export function classContext(node, context, seen = new Set()) {
   }
 
   return false;
-}
+};
 
-export function typographyViolations(value) {
-  return value.split(/\s+/).filter((token) => {
+export const typographyViolations = (value) =>
+  value.split(/\s+/).filter((token) => {
     const font = token.match(/(?:^|:)!?(font-[^\s!]+)!?$/)?.[1];
 
     return (
@@ -120,14 +120,13 @@ export function typographyViolations(value) {
       (font !== undefined && !fontUtilities.has(font))
     );
   });
-}
 
 export default {
   meta: { name: "erbium-typography" },
   rules: {
     "use-roles": {
       create(context) {
-        function inspect(node, value) {
+        const inspect = (node, value) => {
           if (typeof value !== "string" || !classContext(node, context)) {
             return;
           }
@@ -141,7 +140,7 @@ export default {
               context.report({ data: { token }, messageId: "useRole", node });
             }
           }
-        }
+        };
 
         return {
           JSXAttribute(node) {

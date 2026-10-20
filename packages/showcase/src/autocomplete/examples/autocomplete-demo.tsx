@@ -14,22 +14,22 @@ const autocompleteItems = [
   { label: "Orange", value: "orange" },
 ];
 
-export default function Demo() {
-  return (
-    <div className="w-full max-w-72">
-      <Autocomplete items={autocompleteItems}>
-        <AutocompleteInput aria-label="Search fruits" placeholder="Search fruits…" />
-        <AutocompletePopup>
-          <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
-          <AutocompleteList>
-            {(item) => (
-              <AutocompleteItem key={item.value} value={item}>
-                {item.label}
-              </AutocompleteItem>
-            )}
-          </AutocompleteList>
-        </AutocompletePopup>
-      </Autocomplete>
-    </div>
-  );
-}
+const Demo = () => (
+  <div className="w-full max-w-72">
+    <Autocomplete items={autocompleteItems}>
+      <AutocompleteInput aria-label="Search fruits" placeholder="Search fruits…" />
+      <AutocompletePopup>
+        <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
+        <AutocompleteList>
+          {(item) => (
+            <AutocompleteItem key={item.value} value={item}>
+              {item.label}
+            </AutocompleteItem>
+          )}
+        </AutocompleteList>
+      </AutocompletePopup>
+    </Autocomplete>
+  </div>
+);
+
+export default Demo;

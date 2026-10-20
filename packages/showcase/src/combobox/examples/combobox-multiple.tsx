@@ -15,7 +15,7 @@ import {
 
 const frameworks = ["TanStack Start", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
-export function ComboboxMultiple() {
+export const ComboboxMultiple = () => {
   const anchor = useComboboxAnchor();
 
   return (
@@ -44,4 +44,4 @@ export function ComboboxMultiple() {
       </ComboboxContent>
     </Combobox>
   );
-}
+};

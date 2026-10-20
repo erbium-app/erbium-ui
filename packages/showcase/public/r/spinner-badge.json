@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/badge", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function SpinnerBadge() {\n  return (\n    <div className=\"flex items-center gap-group [--radius:1.2rem]\">\n      <Badge loading>Syncing</Badge>\n      <Badge variant=\"secondary\" loading>\n        Updating\n      </Badge>\n      <Badge variant=\"outline\" loading>\n        Processing\n      </Badge>\n    </div>\n  );\n}\n",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nconst SpinnerBadge = () => (\n  <div className=\"flex items-center gap-group [--radius:1.2rem]\">\n    <Badge loading>Syncing</Badge>\n    <Badge variant=\"secondary\" loading>\n      Updating\n    </Badge>\n    <Badge variant=\"outline\" loading>\n      Processing\n    </Badge>\n  </div>\n);\n\nexport default SpinnerBadge;\n",
       "path": "src/spinner/examples/spinner-badge.tsx",
       "target": "@components/showcase/spinner/examples/spinner-badge.tsx",
       "type": "registry:component"

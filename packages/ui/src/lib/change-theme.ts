@@ -1,7 +1,7 @@
 let transitionFrame = 0;
 
 /** Apply a synchronous theme update without interpolating component colors or shadows. */
-export function changeTheme(update: () => void) {
+export const changeTheme = (update: () => void) => {
   const root = document.documentElement;
   cancelAnimationFrame(transitionFrame);
   root.dataset.themeChanging = "";
@@ -17,4 +17,4 @@ export function changeTheme(update: () => void) {
       });
     });
   }
-}
+};

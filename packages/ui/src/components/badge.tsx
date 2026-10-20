@@ -58,7 +58,7 @@ type BadgeProps = useRender.ComponentProps<"span"> & { loading?: boolean } & (
     | (VariantProps<typeof badgeVariants> & { statusIcon?: false })
   );
 
-function Badge({
+const Badge = ({
   children,
   className,
   loading = false,
@@ -67,7 +67,7 @@ function Badge({
   render,
   "aria-busy": ariaBusy,
   ...props
-}: BadgeProps) {
+}: BadgeProps) => {
   const icon = statusIcon ? badgeStatusIcons[variant as keyof typeof badgeStatusIcons] : null;
 
   return useRender({
@@ -92,6 +92,6 @@ function Badge({
       variant,
     },
   });
-}
+};
 
 export { Badge, badgeVariants };

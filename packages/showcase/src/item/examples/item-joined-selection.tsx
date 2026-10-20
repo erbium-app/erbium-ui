@@ -46,7 +46,7 @@ const projects = [
   { color: "text-tag-blue", icon: "globe-02", id: "website", issues: 15, name: "Website" },
 ] as const;
 
-export default function ItemJoinedSelection() {
+const ItemJoinedSelection = () => {
   const [selected, setSelected] = useState<string[]>([
     "gateway",
     "reader",
@@ -110,4 +110,6 @@ export default function ItemJoinedSelection() {
       </ItemGroup>
     </section>
   );
-}
+};
+
+export default ItemJoinedSelection;

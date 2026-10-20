@@ -8,25 +8,25 @@ import {
   CarouselPrevious,
 } from "@erbium/ui/components/carousel";
 
-export default function CarouselDApiDemo() {
-  return (
-    <div className="mx-auto max-w-[10rem] sm:max-w-xs">
-      <Carousel className="w-full max-w-xs">
-        <CarouselContent>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index}>
-              <Card className="m-px aspect-square">
-                <CardContent className="flex min-h-0 flex-1 items-center justify-center">
-                  <span className="text-display font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-        <CarouselIndicator />
-      </Carousel>
-    </div>
-  );
-}
+const CarouselDApiDemo = () => (
+  <div className="mx-auto max-w-[10rem] sm:max-w-xs">
+    <Carousel className="w-full max-w-xs">
+      <CarouselContent>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index}>
+            <Card className="m-px aspect-square">
+              <CardContent className="flex min-h-0 flex-1 items-center justify-center">
+                <span className="text-display font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicator />
+    </Carousel>
+  </div>
+);
+
+export default CarouselDApiDemo;

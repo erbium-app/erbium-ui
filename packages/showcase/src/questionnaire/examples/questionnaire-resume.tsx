@@ -25,8 +25,8 @@ const items = [
   { name: "notes" },
 ] as const;
 
-export function QuestionnaireResume() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+export const QuestionnaireResume = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -41,7 +41,7 @@ export function QuestionnaireResume() {
       description: `Migration: ${answers.change ?? "None"} · Verification: ${answers.verification.join(", ") || "None"} · Notes: ${answers.notes || "None"}`,
       title: "Draft updated",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -103,4 +103,4 @@ export function QuestionnaireResume() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

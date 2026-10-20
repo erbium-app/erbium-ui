@@ -9,13 +9,13 @@ const after = before.replace("value40 = 40", "value40 = 400");
 const oldFile = { contents: before, name: "values.ts" };
 const newFile = { contents: after, name: "values.ts" };
 
-export default function Example() {
-  return (
-    <DiffView
-      className="w-full max-w-4xl"
-      oldFile={oldFile}
-      newFile={newFile}
-      options={{ expansionLineCount: 10, parseDiffOptions: { context: 3 } }}
-    />
-  );
-}
+const Example = () => (
+  <DiffView
+    className="w-full max-w-4xl"
+    oldFile={oldFile}
+    newFile={newFile}
+    options={{ expansionLineCount: 10, parseDiffOptions: { context: 3 } }}
+  />
+);
+
+export default Example;

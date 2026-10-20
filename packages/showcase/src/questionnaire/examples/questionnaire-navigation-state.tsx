@@ -25,7 +25,7 @@ const items = [
 
 type ItemName = "permission" | "verification";
 
-export function QuestionnaireNavigationState() {
+export const QuestionnaireNavigationState = () => {
   const [item, setItem] = React.useState<ItemName>("permission");
 
   const [statuses, setStatuses] = React.useState<Record<ItemName, QuestionnaireItemStatus>>({
@@ -35,11 +35,11 @@ export function QuestionnaireNavigationState() {
 
   const unanswered = statuses[item] === "unanswered";
 
-  function setStatus(name: ItemName, status: QuestionnaireItemStatus) {
+  const setStatus = (name: ItemName, status: QuestionnaireItemStatus) => {
     setStatuses((current) => ({ ...current, [name]: status }));
-  }
+  };
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -48,7 +48,7 @@ export function QuestionnaireNavigationState() {
       description: `Permission: ${getFormValue(formData, "permission")} · Verification: ${getFormValue(formData, "verification")}`,
       title: "Permissions saved",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -110,4 +110,4 @@ export function QuestionnaireNavigationState() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

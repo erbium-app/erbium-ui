@@ -20,7 +20,7 @@ interface EditableContextValue {
 
 const EditableContext = React.createContext<EditableContextValue | null>(null);
 
-function useEditableContext(part: string) {
+const useEditableContext = (part: string) => {
   const context = React.useContext(EditableContext);
 
   if (!context) {
@@ -28,7 +28,7 @@ function useEditableContext(part: string) {
   }
 
   return context;
-}
+};
 
 type EditableProps = Omit<React.ComponentProps<"span">, "onSubmit"> & {
   value?: string;
@@ -45,7 +45,7 @@ type EditableProps = Omit<React.ComponentProps<"span">, "onSubmit"> & {
   readOnly?: boolean;
 };
 
-function Editable({
+const Editable = ({
   value: valueProp,
   defaultValue = "",
   onValueChange,
@@ -61,7 +61,7 @@ function Editable({
   className,
   children,
   ...props
-}: EditableProps) {
+}: EditableProps) => {
   const [localValue, setLocalValue] = React.useState(defaultValue);
   const [localEditing, setLocalEditing] = React.useState(defaultEditing);
   const value = valueProp ?? localValue;
@@ -70,24 +70,24 @@ function Editable({
   const inputId = React.useId();
   const previewRef = React.useRef<HTMLButtonElement>(null);
 
-  function setEditing(next: boolean) {
+  const setEditing = (next: boolean) => {
     if (editingProp === undefined) {
       setLocalEditing(next);
     }
 
     onEditingChange?.(next);
-  }
+  };
 
-  function beginEdit() {
+  const beginEdit = () => {
     if (disabled || readOnly || editing) {
       return;
     }
 
     setDraft(value);
     setEditing(true);
-  }
+  };
 
-  function finishEdit(commit: boolean, restoreFocus = false) {
+  const finishEdit = (commit: boolean, restoreFocus = false) => {
     if (!editing) {
       return;
     }
@@ -112,7 +112,7 @@ function Editable({
     if (restoreFocus) {
       queueMicrotask(() => previewRef.current?.focus());
     }
-  }
+  };
 
   return (
     <EditableContext.Provider
@@ -145,15 +145,15 @@ function Editable({
       </span>
     </EditableContext.Provider>
   );
-}
+};
 
-function EditablePreview({
+const EditablePreview = ({
   className,
   onClick,
   onDoubleClick,
   children,
   ...props
-}: ButtonPrimitive.Props) {
+}: ButtonPrimitive.Props) => {
   const { previewRef, ...context } = useEditableContext("EditablePreview");
 
   return (
@@ -190,15 +190,15 @@ function EditablePreview({
       {children ?? (context.value || context.placeholder || "\u00A0")}
     </ButtonPrimitive>
   );
-}
+};
 
-function EditableInput({
+const EditableInput = ({
   className,
   onBlur,
   onChange,
   onKeyDown,
   ...props
-}: Omit<InputPrimitive.Props, "value" | "defaultValue">) {
+}: Omit<InputPrimitive.Props, "value" | "defaultValue">) => {
   const context = useEditableContext("EditableInput");
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -258,7 +258,7 @@ function EditableInput({
       }}
     />
   );
-}
+};
 
 export { Editable, EditablePreview, EditableInput };
 

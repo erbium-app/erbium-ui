@@ -1,6 +1,11 @@
 import { repositoryUrl, site, siteName } from "@/config/site";
 
-export function structuredData(route: string, title: string, description: string, image: string) {
+export const structuredData = (
+  route: string,
+  title: string,
+  description: string,
+  image: string,
+) => {
   const url = new URL(route, site).href;
   const websiteId = `${site}/#website`;
   const softwareId = `${site}/#software`;
@@ -51,4 +56,4 @@ export function structuredData(route: string, title: string, description: string
     "<",
     "\\u003c",
   );
-}
+};

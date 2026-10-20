@@ -2,7 +2,7 @@ type ChartTextRole = "metadata" | "control";
 
 // Chart legends require pixel numbers, not CSS lengths. Read the same tokens
 // used by HTML; defaults also make definitions safe to construct during SSR.
-export function chartTextRole(role: ChartTextRole) {
+export const chartTextRole = (role: ChartTextRole) => {
   const fallback =
     role === "metadata" ? { fontSize: 12, fontWeight: 400 } : { fontSize: 14, fontWeight: 500 };
 
@@ -27,4 +27,4 @@ export function chartTextRole(role: ChartTextRole) {
     fontSize: Number.isFinite(pixels) ? pixels : fallback.fontSize,
     fontWeight: Number.isFinite(weight) ? weight : fallback.fontWeight,
   };
-}
+};

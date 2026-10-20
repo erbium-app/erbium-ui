@@ -11,41 +11,37 @@ import {
   PopoverTrigger,
 } from "@erbium/ui/components/popover";
 
-export function BubblePopoverDemo() {
-  return (
-    <div className="flex w-full max-w-sm flex-col gap-group py-12">
-      <Bubble align="end">
-        <BubbleContent>Run the build script.</BubbleContent>
-      </Bubble>
-      <Bubble variant="error">
-        <BubbleContent>Failed to run the command.</BubbleContent>
-        <BubbleReactions>
-          <Popover>
-            <PopoverTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  size="icon-xs"
-                  aria-label="Show error details"
-                  className="aria-expanded:text-error"
-                />
-              }
-            >
-              <Icon name="info" />
-            </PopoverTrigger>
-            <PopoverContent>
-              <PopoverHeader>
-                <PopoverTitle className="text-caption">
-                  Command failed with exit code 1
-                </PopoverTitle>
-                <PopoverDescription className="text-caption">
-                  ENOENT: no such file or directory, open pnpm-lock.yaml
-                </PopoverDescription>
-              </PopoverHeader>
-            </PopoverContent>
-          </Popover>
-        </BubbleReactions>
-      </Bubble>
-    </div>
-  );
-}
+export const BubblePopoverDemo = () => (
+  <div className="flex w-full max-w-sm flex-col gap-group py-12">
+    <Bubble align="end">
+      <BubbleContent>Run the build script.</BubbleContent>
+    </Bubble>
+    <Bubble variant="error">
+      <BubbleContent>Failed to run the command.</BubbleContent>
+      <BubbleReactions>
+        <Popover>
+          <PopoverTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                aria-label="Show error details"
+                className="aria-expanded:text-error"
+              />
+            }
+          >
+            <Icon name="info" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>
+              <PopoverTitle className="text-caption">Command failed with exit code 1</PopoverTitle>
+              <PopoverDescription className="text-caption">
+                ENOENT: no such file or directory, open pnpm-lock.yaml
+              </PopoverDescription>
+            </PopoverHeader>
+          </PopoverContent>
+        </Popover>
+      </BubbleReactions>
+    </Bubble>
+  </div>
+);

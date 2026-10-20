@@ -46,95 +46,95 @@ const years = [
   { label: "2029", value: "2029" },
 ];
 
-export default function FieldDemo() {
-  return (
-    <div className="w-full max-w-md">
-      <form>
-        <FieldGroup>
-          <FieldSet>
-            <FieldLegend>Payment Method</FieldLegend>
-            <FieldDescription>All transactions are secure and encrypted</FieldDescription>
-            <FieldGroup>
+const FieldDemo = () => (
+  <div className="w-full max-w-md">
+    <form>
+      <FieldGroup>
+        <FieldSet>
+          <FieldLegend>Payment Method</FieldLegend>
+          <FieldDescription>All transactions are secure and encrypted</FieldDescription>
+          <FieldGroup>
+            <Field>
+              <FieldLabel>Name on Card</FieldLabel>
+              <Input placeholder="Alex Smith" required />
+            </Field>
+            <Field>
+              <FieldLabel>Card Number</FieldLabel>
+              <Input placeholder="1234 5678 9012 3456" required />
+              <FieldDescription>Enter your 16-digit card number</FieldDescription>
+            </Field>
+            <div className="grid grid-cols-3 gap-group">
               <Field>
-                <FieldLabel>Name on Card</FieldLabel>
-                <Input placeholder="Alex Smith" required />
+                <FieldLabel htmlFor="checkout-exp-month-ts6">Month</FieldLabel>
+                <Select items={months}>
+                  <SelectTrigger id="checkout-exp-month-ts6">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {months.map((item) => (
+                        <SelectItem key={item.value} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </Field>
               <Field>
-                <FieldLabel>Card Number</FieldLabel>
-                <Input placeholder="1234 5678 9012 3456" required />
-                <FieldDescription>Enter your 16-digit card number</FieldDescription>
+                <FieldLabel htmlFor="checkout-7j9-exp-year-f59">Year</FieldLabel>
+                <Select items={years}>
+                  <SelectTrigger id="checkout-7j9-exp-year-f59">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      {years.map((item) => (
+                        <SelectItem key={item.value} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </Field>
-              <div className="grid grid-cols-3 gap-group">
-                <Field>
-                  <FieldLabel htmlFor="checkout-exp-month-ts6">Month</FieldLabel>
-                  <Select items={months}>
-                    <SelectTrigger id="checkout-exp-month-ts6">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {months.map((item) => (
-                          <SelectItem key={item.value} value={item.value}>
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </Field>
-                <Field>
-                  <FieldLabel htmlFor="checkout-7j9-exp-year-f59">Year</FieldLabel>
-                  <Select items={years}>
-                    <SelectTrigger id="checkout-7j9-exp-year-f59">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {years.map((item) => (
-                          <SelectItem key={item.value} value={item.value}>
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                </Field>
-                <Field>
-                  <FieldLabel>CVV</FieldLabel>
-                  <Input placeholder="123" required />
-                </Field>
-              </div>
-            </FieldGroup>
-          </FieldSet>
-          <FieldSeparator />
-          <FieldSet>
-            <FieldLegend>Billing Address</FieldLegend>
-            <FieldDescription>
-              The billing address associated with your payment method
-            </FieldDescription>
-            <FieldGroup>
-              <Field orientation="horizontal">
-                <Checkbox defaultChecked />
-                <FieldLabel className="font-normal">Same as shipping address</FieldLabel>
-              </Field>
-            </FieldGroup>
-          </FieldSet>
-          <FieldSet>
-            <FieldGroup>
               <Field>
-                <FieldLabel>Comments</FieldLabel>
-                <Textarea placeholder="Add any additional comments" className="resize-none" />
+                <FieldLabel>CVV</FieldLabel>
+                <Input placeholder="123" required />
               </Field>
-            </FieldGroup>
-          </FieldSet>
-          <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
-            <Button variant="outline" type="button">
-              Cancel
-            </Button>
-          </Field>
-        </FieldGroup>
-      </form>
-    </div>
-  );
-}
+            </div>
+          </FieldGroup>
+        </FieldSet>
+        <FieldSeparator />
+        <FieldSet>
+          <FieldLegend>Billing Address</FieldLegend>
+          <FieldDescription>
+            The billing address associated with your payment method
+          </FieldDescription>
+          <FieldGroup>
+            <Field orientation="horizontal">
+              <Checkbox defaultChecked />
+              <FieldLabel className="font-normal">Same as shipping address</FieldLabel>
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+        <FieldSet>
+          <FieldGroup>
+            <Field>
+              <FieldLabel>Comments</FieldLabel>
+              <Textarea placeholder="Add any additional comments" className="resize-none" />
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+        <Field orientation="horizontal">
+          <Button type="submit">Submit</Button>
+          <Button variant="outline" type="button">
+            Cancel
+          </Button>
+        </Field>
+      </FieldGroup>
+    </form>
+  </div>
+);
+
+export default FieldDemo;

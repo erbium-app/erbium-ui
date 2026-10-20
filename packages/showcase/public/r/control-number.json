@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\n\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nexport function NumberExample() {\n  const [value, setValue] = useState(0.7);\n\n  return (\n    <Control.Number\n      label=\"Scale\"\n      value={value}\n      onValueChange={setValue}\n      min={0}\n      max={1}\n      step={0.01}\n      className=\"w-72\"\n    />\n  );\n}\n",
+      "content": "import { useState } from \"react\";\n\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nexport const NumberExample = () => {\n  const [value, setValue] = useState(0.7);\n\n  return (\n    <Control.Number\n      label=\"Scale\"\n      value={value}\n      onValueChange={setValue}\n      min={0}\n      max={1}\n      step={0.01}\n      className=\"w-72\"\n    />\n  );\n};\n",
       "path": "src/control/helpers.tsx",
       "target": "@components/showcase/control/helpers.tsx",
       "type": "registry:component"

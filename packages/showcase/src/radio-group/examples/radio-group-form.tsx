@@ -4,7 +4,7 @@ import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { useState } from "react";
 
-export default function RadioGroupForm() {
+const RadioGroupForm = () => {
   const [submitted, setSubmitted] = useState<string>();
 
   return (
@@ -34,4 +34,6 @@ export default function RadioGroupForm() {
       {submitted ? <CodeBlock code={submitted} language="json" title="Submitted values" /> : null}
     </form>
   );
-}
+};
+
+export default RadioGroupForm;

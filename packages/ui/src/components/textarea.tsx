@@ -10,24 +10,22 @@ import { cn } from "../lib/utils";
  * surrounding `Field` tracks `filled`, `dirty`, `touched` and `disabled`; the
  * rest merge onto the element.
  */
-function Textarea({ className, ref, ...props }: React.ComponentProps<"textarea">) {
-  return (
-    <FieldPrimitive.Control
-      ref={ref}
-      value={props.value}
-      defaultValue={props.defaultValue}
-      disabled={props.disabled}
-      id={props.id}
-      name={props.name}
-      render={(defaultProps: React.ComponentProps<"textarea">) => (
-        <textarea
-          data-slot="textarea"
-          className={cn(textareaClassName, className)}
-          {...mergeProps(defaultProps, props)}
-        />
-      )}
-    />
-  );
-}
+const Textarea = ({ className, ref, ...props }: React.ComponentProps<"textarea">) => (
+  <FieldPrimitive.Control
+    ref={ref}
+    value={props.value}
+    defaultValue={props.defaultValue}
+    disabled={props.disabled}
+    id={props.id}
+    name={props.name}
+    render={(defaultProps: React.ComponentProps<"textarea">) => (
+      <textarea
+        data-slot="textarea"
+        className={cn(textareaClassName, className)}
+        {...mergeProps(defaultProps, props)}
+      />
+    )}
+  />
+);
 
 export { Textarea };

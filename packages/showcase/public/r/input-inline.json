@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport function InputInline() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Input type=\"search\" placeholder=\"Search...\" />\n      <Button>Search</Button>\n    </Field>\n  );\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Field } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport const InputInline = () => (\n  <Field orientation=\"horizontal\">\n    <Input type=\"search\" placeholder=\"Search...\" />\n    <Button>Search</Button>\n  </Field>\n);\n",
       "path": "src/input/examples/input-inline.tsx",
       "target": "@components/showcase/input/examples/input-inline.tsx",
       "type": "registry:component"

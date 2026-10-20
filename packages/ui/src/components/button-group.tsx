@@ -22,24 +22,22 @@ const buttonGroupVariants = cva(
   },
 );
 
-function ButtonGroup({
+const ButtonGroup = ({
   className,
   orientation = "horizontal",
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) {
-  return (
-    <div
-      role="group"
-      data-slot="button-group"
-      data-orientation={orientation}
-      className={cn(buttonGroupVariants({ orientation }), className)}
-      {...props}
-    />
-  );
-}
+}: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) => (
+  <div
+    role="group"
+    data-slot="button-group"
+    data-orientation={orientation}
+    className={cn(buttonGroupVariants({ orientation }), className)}
+    {...props}
+  />
+);
 
-function ButtonGroupText({ className, render, ...props }: useRender.ComponentProps<"div">) {
-  return useRender({
+const ButtonGroupText = ({ className, render, ...props }: useRender.ComponentProps<"div">) =>
+  useRender({
     defaultTagName: "div",
     props: mergeProps<"div">(
       {
@@ -55,25 +53,22 @@ function ButtonGroupText({ className, render, ...props }: useRender.ComponentPro
       slot: "button-group-text",
     },
   });
-}
 
-function ButtonGroupSeparator({
+const ButtonGroupSeparator = ({
   className,
   orientation = "vertical",
   ...props
-}: React.ComponentProps<typeof Separator>) {
-  return (
-    <Separator
-      data-slot="button-group-separator"
-      orientation={orientation}
-      variant="full"
-      className={cn(
-        "relative self-stretch data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+}: React.ComponentProps<typeof Separator>) => (
+  <Separator
+    data-slot="button-group-separator"
+    orientation={orientation}
+    variant="full"
+    className={cn(
+      "relative self-stretch data-horizontal:mx-px data-horizontal:w-auto data-vertical:my-px data-vertical:h-auto",
+      className,
+    )}
+    {...props}
+  />
+);
 
 export { ButtonGroup, ButtonGroupSeparator, ButtonGroupText, buttonGroupVariants };

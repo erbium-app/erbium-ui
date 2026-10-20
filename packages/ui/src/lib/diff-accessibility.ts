@@ -2,7 +2,7 @@ const initializedRoots = new WeakSet<ShadowRoot>();
 
 // Pierre 1.5 renders expansion controls as div[role=button]. Supply names,
 // focusability, and native button keyboard behavior after each render.
-function enhanceDiffAccessibility(host: HTMLElement) {
+const enhanceDiffAccessibility = (host: HTMLElement) => {
   const root = host.shadowRoot;
 
   if (!root) {
@@ -46,6 +46,6 @@ function enhanceDiffAccessibility(host: HTMLElement) {
     event.preventDefault();
     target.click();
   });
-}
+};
 
 export { enhanceDiffAccessibility };

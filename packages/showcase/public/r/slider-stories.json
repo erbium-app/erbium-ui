@@ -16,37 +16,37 @@
   ],
   "files": [
     {
-      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport function ShowcaseProviders({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) {\n  return (\n    <CSPProvider disableStyleElements>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </CSPProvider>\n  );\n}\n\nexport function ShowcaseSurface({ children }: { children?: ReactNode }) {\n  return (\n    <div\n      data-slot=\"component-preview\"\n      className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n    >\n      {children}\n    </div>\n  );\n}\n",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <OverlayProvider>\n      {children}\n      {toast && <Toaster />}\n    </OverlayProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
       "path": "src/preview.tsx",
       "target": "@components/showcase/preview.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import * as React from \"react\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderControlled() {\n  const [value, setValue] = React.useState([0.3, 0.7]);\n\n  return (\n    <Field className=\"mx-auto max-w-xs gap-related\">\n      <div className=\"flex items-center justify-between gap-related\">\n        <FieldLabel>Temperature</FieldLabel>\n        <span className=\"text-caption text-muted-foreground\">{value.join(\", \")}</span>\n      </div>\n      <Slider\n        value={value}\n        onValueChange={(value) => {\n          setValue(value as number[]);\n        }}\n        min={0}\n        max={1}\n        step={0.1}\n      />\n    </Field>\n  );\n}\n",
+      "content": "import * as React from \"react\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const SliderControlled = () => {\n  const [value, setValue] = React.useState([0.3, 0.7]);\n\n  return (\n    <Field className=\"mx-auto max-w-xs gap-related\">\n      <div className=\"flex items-center justify-between gap-related\">\n        <FieldLabel>Temperature</FieldLabel>\n        <span className=\"text-caption text-muted-foreground\">{value.join(\", \")}</span>\n      </div>\n      <Slider\n        value={value}\n        onValueChange={(value) => {\n          setValue(value as number[]);\n        }}\n        min={0}\n        max={1}\n        step={0.1}\n      />\n    </Field>\n  );\n};\n",
       "path": "src/slider/examples/slider-controlled.tsx",
       "target": "@components/showcase/slider/examples/slider-controlled.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\ntype SliderProps = React.ComponentProps<typeof Slider>;\n\nexport default function SliderDemo({ className, ...props }: SliderProps) {\n  return (\n    <Slider\n      defaultValue={[50]}\n      max={100}\n      step={1}\n      className={cn(\"w-[60%]\", className)}\n      {...props}\n    />\n  );\n}\n",
+      "content": "import { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\ntype SliderProps = React.ComponentProps<typeof Slider>;\n\nconst SliderDemo = ({ className, ...props }: SliderProps) => (\n  <Slider defaultValue={[50]} max={100} step={1} className={cn(\"w-[60%]\", className)} {...props} />\n);\n\nexport default SliderDemo;\n",
       "path": "src/slider/examples/slider-demo.tsx",
       "target": "@components/showcase/slider/examples/slider-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderMultiple() {\n  return (\n    <Slider defaultValue={[10, 20, 70]} max={100} step={10} className=\"mx-auto w-full max-w-xs\" />\n  );\n}\n",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const SliderMultiple = () => (\n  <Slider defaultValue={[10, 20, 70]} max={100} step={10} className=\"mx-auto w-full max-w-xs\" />\n);\n",
       "path": "src/slider/examples/slider-multiple.tsx",
       "target": "@components/showcase/slider/examples/slider-multiple.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderRange() {\n  return <Slider defaultValue={[25, 50]} max={100} step={5} className=\"mx-auto w-full max-w-xs\" />;\n}\n",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const SliderRange = () => (\n  <Slider defaultValue={[25, 50]} max={100} step={5} className=\"mx-auto w-full max-w-xs\" />\n);\n",
       "path": "src/slider/examples/slider-range.tsx",
       "target": "@components/showcase/slider/examples/slider-range.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport function SliderVertical() {\n  return (\n    <div className=\"mx-auto flex w-full max-w-xs items-center justify-center gap-section\">\n      <Slider defaultValue={[50]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n      <Slider defaultValue={[25]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n    </div>\n  );\n}\n",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const SliderVertical = () => (\n  <div className=\"mx-auto flex w-full max-w-xs items-center justify-center gap-section\">\n    <Slider defaultValue={[50]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n    <Slider defaultValue={[25]} max={100} step={1} orientation=\"vertical\" className=\"h-40\" />\n  </div>\n);\n",
       "path": "src/slider/examples/slider-vertical.tsx",
       "target": "@components/showcase/slider/examples/slider-vertical.tsx",
       "type": "registry:component"

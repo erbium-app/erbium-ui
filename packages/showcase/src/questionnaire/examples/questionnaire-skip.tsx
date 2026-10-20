@@ -26,11 +26,11 @@ const items = [
   { name: "review", required: true },
 ] as const;
 
-export function QuestionnaireSkipExample() {
+export const QuestionnaireSkipExample = () => {
   const [constraintStatus, setConstraintStatus] =
     React.useState<QuestionnaireItemStatus>("unanswered");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -48,7 +48,7 @@ export function QuestionnaireSkipExample() {
       } · Review: ${answers.review ?? "None"}`,
       title: "Agent brief submitted",
     });
-  }
+  };
 
   return (
     <Questionnaire
@@ -111,4 +111,4 @@ export function QuestionnaireSkipExample() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

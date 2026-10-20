@@ -3,7 +3,7 @@ import { cn } from "../lib/utils";
 
 // Aligns the sweep with the document timeline so skeletons that mount at
 // different times share one phase instead of running staggered bands.
-function syncToDocumentTimeline(node: HTMLElement) {
+const syncToDocumentTimeline = (node: HTMLElement) => {
   if (typeof node.getAnimations !== "function") {
     return;
   }
@@ -11,9 +11,9 @@ function syncToDocumentTimeline(node: HTMLElement) {
   for (const animation of node.getAnimations()) {
     animation.startTime = 0;
   }
-}
+};
 
-function Skeleton({ className, ref, ...props }: React.ComponentProps<"div">) {
+const Skeleton = ({ className, ref, ...props }: React.ComponentProps<"div">) => {
   const setRef = React.useCallback(
     (node: HTMLDivElement | null) => {
       if (node) {
@@ -40,6 +40,6 @@ function Skeleton({ className, ref, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   );
-}
+};
 
 export { Skeleton };

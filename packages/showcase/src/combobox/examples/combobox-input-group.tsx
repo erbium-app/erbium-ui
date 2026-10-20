@@ -49,31 +49,29 @@ const timezones = [
   },
 ] as const;
 
-export function ComboxboxInputGroup() {
-  return (
-    <Combobox items={timezones}>
-      <ComboboxInput placeholder="Select a timezone">
-        <InputGroupAddon>
-          <Icon name="globe" />
-        </InputGroupAddon>
-      </ComboboxInput>
-      <ComboboxContent alignOffset={-28} className="w-60">
-        <ComboboxEmpty>No timezones found.</ComboboxEmpty>
-        <ComboboxList>
-          {(group) => (
-            <ComboboxGroup key={group.value} items={group.items}>
-              <ComboboxLabel>{group.value}</ComboboxLabel>
-              <ComboboxCollection>
-                {(item) => (
-                  <ComboboxItem key={item} value={item}>
-                    {item}
-                  </ComboboxItem>
-                )}
-              </ComboboxCollection>
-            </ComboboxGroup>
-          )}
-        </ComboboxList>
-      </ComboboxContent>
-    </Combobox>
-  );
-}
+export const ComboxboxInputGroup = () => (
+  <Combobox items={timezones}>
+    <ComboboxInput placeholder="Select a timezone">
+      <InputGroupAddon>
+        <Icon name="globe" />
+      </InputGroupAddon>
+    </ComboboxInput>
+    <ComboboxContent alignOffset={-28} className="w-60">
+      <ComboboxEmpty>No timezones found.</ComboboxEmpty>
+      <ComboboxList>
+        {(group) => (
+          <ComboboxGroup key={group.value} items={group.items}>
+            <ComboboxLabel>{group.value}</ComboboxLabel>
+            <ComboboxCollection>
+              {(item) => (
+                <ComboboxItem key={item} value={item}>
+                  {item}
+                </ComboboxItem>
+              )}
+            </ComboboxCollection>
+          </ComboboxGroup>
+        )}
+      </ComboboxList>
+    </ComboboxContent>
+  </Combobox>
+);

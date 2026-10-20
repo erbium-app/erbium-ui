@@ -31,7 +31,7 @@ const StepIndicatorContext = createContext<StepIndicatorContextValue | null>(nul
 /** Base UI's prop types do not admit data-* keys in object literals. */
 const dataAttributes = (attributes: Record<string, string | undefined>) => attributes;
 
-function useStepIndicator() {
+const useStepIndicator = () => {
   const context = use(StepIndicatorContext);
 
   if (!context) {
@@ -39,7 +39,7 @@ function useStepIndicator() {
   }
 
   return context;
-}
+};
 
 type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   /** Zero-based index of the current step. Controlled. */
@@ -63,7 +63,7 @@ type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   render?: useRender.RenderProp<StepIndicatorState>;
 };
 
-function StepIndicator({
+const StepIndicator = ({
   value: valueProp,
   defaultValue = 0,
   onValueChange,
@@ -77,7 +77,7 @@ function StepIndicator({
   className,
   style,
   ...props
-}: StepIndicatorProps) {
+}: StepIndicatorProps) => {
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
   const value = valueProp ?? uncontrolled;
   const interactive = onValueChange != null;
@@ -123,7 +123,7 @@ function StepIndicator({
   });
 
   return <StepIndicatorContext value={{ ...state, reach, select }}>{element}</StepIndicatorContext>;
-}
+};
 
 // Same index-signature constraint as StepIndicatorState above.
 // oxlint-disable-next-line typescript/consistent-type-definitions
@@ -146,19 +146,19 @@ type StepIndicatorItemProps = Omit<ComponentProps<"button">, "children"> & {
   render?: useRender.RenderProp<StepIndicatorItemState>;
 };
 
-function derivedStatus(
+const derivedStatus = (
   index: number,
   value: number,
   variant: StepIndicatorVariant,
-): StepIndicatorStatus {
+): StepIndicatorStatus => {
   if (index < value && variant === "steps") {
     return "complete";
   }
 
   return index === value ? "current" : "upcoming";
-}
+};
 
-function StepIndicatorItem({
+const StepIndicatorItem = ({
   index,
   status: statusProp,
   invalid = false,
@@ -168,7 +168,7 @@ function StepIndicatorItem({
   className,
   onClick,
   ...props
-}: StepIndicatorItemProps) {
+}: StepIndicatorItemProps) => {
   const { value, variant, interactive, orientation, reach, select } = useStepIndicator();
   // Blocked by `reach` or by the item's own `disabled`. The current step stays selectable.
   const disabled = disabledProp || (index > reach && index !== value);
@@ -227,9 +227,9 @@ function StepIndicatorItem({
       {control}
     </li>
   );
-}
+};
 
-function StepIndicatorDot({ orientation }: { orientation: StepIndicatorOrientation }) {
+const StepIndicatorDot = ({ orientation }: { orientation: StepIndicatorOrientation }) => {
   const horizontal = orientation === "horizontal";
 
   return (
@@ -262,7 +262,7 @@ function StepIndicatorDot({ orientation }: { orientation: StepIndicatorOrientati
       />
     </span>
   );
-}
+};
 
 export { StepIndicator, StepIndicatorItem };
 

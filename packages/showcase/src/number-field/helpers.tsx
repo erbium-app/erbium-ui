@@ -6,7 +6,7 @@ import {
   NumberFieldInput,
 } from "@erbium/ui/components/number-field";
 
-export function ControlledExample() {
+export const ControlledExample = () => {
   const [value, setValue] = useState<number | null>(2500);
 
   return (
@@ -33,4 +33,4 @@ export function ControlledExample() {
       <p className="text-metadata text-muted-foreground">Value: {value ?? "—"}</p>
     </div>
   );
-}
+};

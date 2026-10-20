@@ -20,7 +20,7 @@ const title = (name) =>
 const readImports = (source) =>
   [...source.matchAll(/(?:from\s*|import\s*)["']([^"']+)["']/g)].map((match) => match[1]);
 
-async function getInternalItem(specifier, sourceFile) {
+const getInternalItem = async (specifier, sourceFile) => {
   if (!specifier.startsWith(".")) {
     return null;
   }
@@ -40,7 +40,7 @@ async function getInternalItem(specifier, sourceFile) {
   }
 
   return null;
-}
+};
 
 const filesIn = async (directory) =>
   (await readdir(directory, { withFileTypes: true })).flatMap((entry) =>
@@ -101,7 +101,7 @@ for (const file of await filesIn(join(sourceRoot, "lib"))) {
   }
 }
 
-async function itemFor(sourceFile, name, type) {
+const itemFor = async (sourceFile, name, type) => {
   const source = await readFile(sourceFile, "utf-8");
   const registryDependencies = new Set();
   const npmDependencies = new Set();
@@ -140,7 +140,7 @@ async function itemFor(sourceFile, name, type) {
       },
     ],
   };
-}
+};
 
 const items = [];
 

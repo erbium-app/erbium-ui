@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function TextareaDemo() {\n  return <Textarea placeholder=\"Type your message here.\" />;\n}\n",
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nconst TextareaDemo = () => <Textarea placeholder=\"Type your message here.\" />;\n\nexport default TextareaDemo;\n",
       "path": "src/textarea/examples/textarea-demo.tsx",
       "target": "@components/showcase/textarea/examples/textarea-demo.tsx",
       "type": "registry:component"

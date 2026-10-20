@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/hover-card", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\n\nexport default function HoverCardDemo() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger delay={10} closeDelay={100} render={<Button variant=\"link\" />}>\n        Hover Here\n      </HoverCardTrigger>\n      <HoverCardContent className=\"flex w-64 flex-col gap-0.5\">\n        <div className=\"font-semibold\">@erbium</div>\n        <div>Accessible components for building your next interface.</div>\n        <div className=\"mt-1 text-metadata text-muted-foreground\">Joined December 2021</div>\n      </HoverCardContent>\n    </HoverCard>\n  );\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\n\nconst HoverCardDemo = () => (\n  <HoverCard>\n    <HoverCardTrigger delay={10} closeDelay={100} render={<Button variant=\"link\" />}>\n      Hover Here\n    </HoverCardTrigger>\n    <HoverCardContent className=\"flex w-64 flex-col gap-0.5\">\n      <div className=\"font-semibold\">@erbium</div>\n      <div>Accessible components for building your next interface.</div>\n      <div className=\"mt-1 text-metadata text-muted-foreground\">Joined December 2021</div>\n    </HoverCardContent>\n  </HoverCard>\n);\n\nexport default HoverCardDemo;\n",
       "path": "src/hover-card/examples/hover-card-basic.tsx",
       "target": "@components/showcase/hover-card/examples/hover-card-basic.tsx",
       "type": "registry:component"

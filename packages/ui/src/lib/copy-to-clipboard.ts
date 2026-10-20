@@ -23,7 +23,7 @@ const idleState: CopyToClipboardState = {
 };
 
 /** Framework-independent clipboard lifecycle. Dispose when the owner unmounts. */
-function createCopyToClipboard() {
+const createCopyToClipboard = () => {
   let state = idleState;
   let timer: ReturnType<typeof setTimeout> | undefined;
   let generation = 0;
@@ -130,7 +130,7 @@ function createCopyToClipboard() {
       };
     },
   };
-}
+};
 
 export { createCopyToClipboard };
 

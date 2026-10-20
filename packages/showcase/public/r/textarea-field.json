@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport function TextareaField() {\n  return (\n    <Field>\n      <FieldLabel>Message</FieldLabel>\n      <FieldDescription>Enter your message below.</FieldDescription>\n      <Textarea placeholder=\"Type your message here.\" />\n    </Field>\n  );\n}\n",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport const TextareaField = () => (\n  <Field>\n    <FieldLabel>Message</FieldLabel>\n    <FieldDescription>Enter your message below.</FieldDescription>\n    <Textarea placeholder=\"Type your message here.\" />\n  </Field>\n);\n",
       "path": "src/textarea/examples/textarea-field.tsx",
       "target": "@components/showcase/textarea/examples/textarea-field.tsx",
       "type": "registry:component"

@@ -24,10 +24,10 @@ const items = [
 
 type ShortcutMode = React.ComponentProps<typeof Questionnaire>["shortcuts"];
 
-export function QuestionnaireShortcuts() {
+export const QuestionnaireShortcuts = () => {
   const [shortcuts, setShortcuts] = React.useState<ShortcutMode>("letters");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const action = getFormValue(new FormData(event.currentTarget), "action");
@@ -36,7 +36,7 @@ export function QuestionnaireShortcuts() {
       description: `Action: ${action ?? "None"} · Shortcuts: ${shortcuts ?? "none"}`,
       title: "Next action selected",
     });
-  }
+  };
 
   return (
     <div className="relative mx-auto flex h-full w-full max-w-md flex-col">
@@ -79,4 +79,4 @@ export function QuestionnaireShortcuts() {
       </Questionnaire>
     </div>
   );
-}
+};

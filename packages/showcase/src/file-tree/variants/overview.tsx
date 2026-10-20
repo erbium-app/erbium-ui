@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FileTree, useFileTree } from "@erbium/ui/blocks/file-tree";
 import { paths } from "../examples/paths";
 
-export default function Example() {
+const Example = () => {
   const [selected, setSelected] = useState<readonly string[]>([]);
 
   const { model } = useFileTree({
@@ -19,4 +19,6 @@ export default function Example() {
       </p>
     </div>
   );
-}
+};
+
+export default Example;

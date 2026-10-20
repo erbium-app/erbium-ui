@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 
-export function SelectGroups() {
+export const SelectGroups = () => {
   const fruits = [
     { label: "Apple", value: "apple" },
     { label: "Banana", value: "banana" },
@@ -50,4 +50,4 @@ export function SelectGroups() {
       </SelectContent>
     </Select>
   );
-}
+};

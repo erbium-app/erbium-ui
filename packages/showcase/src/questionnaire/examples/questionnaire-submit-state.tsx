@@ -21,10 +21,10 @@ const items = [
   { name: "rollout", required: true },
 ] as const;
 
-export function QuestionnaireSubmitState() {
+export const QuestionnaireSubmitState = () => {
   const [state, setState] = React.useState<StatefulButtonState>("idle");
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (state !== "idle") {
@@ -36,7 +36,7 @@ export function QuestionnaireSubmitState() {
     await new Promise((resolve) => setTimeout(resolve, 1200));
     setState("success");
     toast.add({ title: "Deployment queued" });
-  }
+  };
 
   return (
     <Questionnaire className="mx-auto max-w-md" items={items} onSubmit={handleSubmit}>
@@ -70,4 +70,4 @@ export function QuestionnaireSubmitState() {
       </QuestionnaireActions>
     </Questionnaire>
   );
-}
+};

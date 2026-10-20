@@ -2,7 +2,7 @@ import { Checkbox } from "@erbium/ui/components/checkbox";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { useState } from "react";
 
-export default function CheckboxControlled() {
+const CheckboxControlled = () => {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -16,4 +16,6 @@ export default function CheckboxControlled() {
       </p>
     </div>
   );
-}
+};
+
+export default CheckboxControlled;

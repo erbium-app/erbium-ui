@@ -12,7 +12,7 @@ import {
 
 import { useState } from "react";
 
-export function ExpandableChevronExample() {
+export const ExpandableChevronExample = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -26,9 +26,9 @@ export function ExpandableChevronExample() {
       </CollapsibleContent>
     </Collapsible>
   );
-}
+};
 
-export function SidebarToggleIconExample({ side }: { side: "left" | "right" }) {
+export const SidebarToggleIconExample = ({ side }: { side: "left" | "right" }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -45,9 +45,9 @@ export function SidebarToggleIconExample({ side }: { side: "left" | "right" }) {
       {side === "left" ? "Left" : "Right"} sidebar
     </button>
   );
-}
+};
 
-export function ThemeToggleIconExample() {
+export const ThemeToggleIconExample = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   return (
@@ -63,4 +63,4 @@ export function ThemeToggleIconExample() {
       {theme === "light" ? "Light" : "Dark"} theme
     </button>
   );
-}
+};

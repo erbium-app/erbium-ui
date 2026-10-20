@@ -57,136 +57,134 @@ const interfaceSwitches = [
   },
 ] as const;
 
-export default function ItemSettingsPanel() {
-  return (
-    <div className="w-full max-w-2xl space-y-12">
+const ItemSettingsPanel = () => (
+  <div className="w-full max-w-2xl space-y-12">
+    <ItemGroup variant="panel">
+      {preferenceSelects.map((preference, index) => (
+        <Fragment key={preference.title}>
+          {index > 0 && <ItemSeparator />}
+          <Item role="listitem">
+            <ItemContent>
+              <ItemTitle>{preference.title}</ItemTitle>
+              <ItemDescription>{preference.description}</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <Select defaultValue={preference.options[0]}>
+                <SelectTrigger size="sm" aria-label={preference.title}>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {preference.options.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </ItemActions>
+          </Item>
+        </Fragment>
+      ))}
+      <ItemSeparator />
+      <Item render={<Field orientation="horizontal" />} role="listitem">
+        <ItemContent>
+          <ItemTitle>
+            <FieldLabel>Convert text emoticons into emojis</FieldLabel>
+          </ItemTitle>
+          <ItemDescription>Strings like :) will be converted to 🙂</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Switch defaultChecked />
+        </ItemActions>
+      </Item>
+      <ItemSeparator />
+      <Item role="listitem">
+        <ItemContent>
+          <ItemTitle>Send comments on...</ItemTitle>
+          <ItemDescription>Choose which key press is used to submit comments</ItemDescription>
+        </ItemContent>
+        <ItemActions>
+          <Select defaultValue="Mod+Enter">
+            <SelectTrigger size="sm" aria-label="Send comments on">
+              <SelectValue>
+                {(value) => (
+                  <Kbd hotkey={value === "Enter" ? "Enter" : "Mod+Enter"} useSymbols={false} />
+                )}
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Mod+Enter">
+                <Kbd hotkey="Mod+Enter" useSymbols={false} />
+              </SelectItem>
+              <SelectItem value="Enter">
+                <Kbd hotkey="Enter" useSymbols={false} />
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </ItemActions>
+      </Item>
+    </ItemGroup>
+
+    <section className="space-y-4" aria-labelledby="interface-heading">
+      <h2 id="interface-heading" className="px-4 text-subtitle">
+        Interface and theme
+      </h2>
       <ItemGroup variant="panel">
-        {preferenceSelects.map((preference, index) => (
-          <Fragment key={preference.title}>
-            {index > 0 && <ItemSeparator />}
-            <Item role="listitem">
-              <ItemContent>
-                <ItemTitle>{preference.title}</ItemTitle>
-                <ItemDescription>{preference.description}</ItemDescription>
-              </ItemContent>
-              <ItemActions>
-                <Select defaultValue={preference.options[0]}>
-                  <SelectTrigger size="sm" aria-label={preference.title}>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {preference.options.map((option) => (
-                      <SelectItem key={option} value={option}>
-                        {option}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </ItemActions>
-            </Item>
-          </Fragment>
-        ))}
-        <ItemSeparator />
-        <Item render={<Field orientation="horizontal" />} role="listitem">
+        <Item role="listitem">
           <ItemContent>
-            <ItemTitle>
-              <FieldLabel>Convert text emoticons into emojis</FieldLabel>
-            </ItemTitle>
-            <ItemDescription>Strings like :) will be converted to 🙂</ItemDescription>
+            <ItemTitle>App sidebar</ItemTitle>
+            <ItemDescription>
+              Customize sidebar item visibility, ordering, and badge style
+            </ItemDescription>
           </ItemContent>
           <ItemActions>
-            <Switch defaultChecked />
+            <Button variant="ghost" size="sm">
+              Customize
+            </Button>
           </ItemActions>
         </Item>
         <ItemSeparator />
         <Item role="listitem">
           <ItemContent>
-            <ItemTitle>Send comments on...</ItemTitle>
-            <ItemDescription>Choose which key press is used to submit comments</ItemDescription>
+            <ItemTitle>Font size</ItemTitle>
+            <ItemDescription>Adjust the size of text across the app</ItemDescription>
           </ItemContent>
           <ItemActions>
-            <Select defaultValue="Mod+Enter">
-              <SelectTrigger size="sm" aria-label="Send comments on">
-                <SelectValue>
-                  {(value) => (
-                    <Kbd hotkey={value === "Enter" ? "Enter" : "Mod+Enter"} useSymbols={false} />
-                  )}
-                </SelectValue>
+            <Select defaultValue="Default">
+              <SelectTrigger size="sm" aria-label="Font size">
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Mod+Enter">
-                  <Kbd hotkey="Mod+Enter" useSymbols={false} />
-                </SelectItem>
-                <SelectItem value="Enter">
-                  <Kbd hotkey="Enter" useSymbols={false} />
-                </SelectItem>
+                <SelectItem value="Default">Default</SelectItem>
+                <SelectItem value="Small">Small</SelectItem>
+                <SelectItem value="Large">Large</SelectItem>
               </SelectContent>
             </Select>
           </ItemActions>
         </Item>
+        {interfaceSwitches.map((preference) => (
+          <ItemGroupSection key={preference.id} {...preference} />
+        ))}
       </ItemGroup>
+    </section>
+  </div>
+);
 
-      <section className="space-y-4" aria-labelledby="interface-heading">
-        <h2 id="interface-heading" className="px-4 text-subtitle">
-          Interface and theme
-        </h2>
-        <ItemGroup variant="panel">
-          <Item role="listitem">
-            <ItemContent>
-              <ItemTitle>App sidebar</ItemTitle>
-              <ItemDescription>
-                Customize sidebar item visibility, ordering, and badge style
-              </ItemDescription>
-            </ItemContent>
-            <ItemActions>
-              <Button variant="ghost" size="sm">
-                Customize
-              </Button>
-            </ItemActions>
-          </Item>
-          <ItemSeparator />
-          <Item role="listitem">
-            <ItemContent>
-              <ItemTitle>Font size</ItemTitle>
-              <ItemDescription>Adjust the size of text across the app</ItemDescription>
-            </ItemContent>
-            <ItemActions>
-              <Select defaultValue="Default">
-                <SelectTrigger size="sm" aria-label="Font size">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Default">Default</SelectItem>
-                  <SelectItem value="Small">Small</SelectItem>
-                  <SelectItem value="Large">Large</SelectItem>
-                </SelectContent>
-              </Select>
-            </ItemActions>
-          </Item>
-          {interfaceSwitches.map((preference) => (
-            <ItemGroupSection key={preference.id} {...preference} />
-          ))}
-        </ItemGroup>
-      </section>
-    </div>
-  );
-}
+export default ItemSettingsPanel;
 
-function ItemGroupSection({ title, description }: (typeof interfaceSwitches)[number]) {
-  return (
-    <>
-      <ItemSeparator />
-      <Item render={<Field orientation="horizontal" />} role="listitem">
-        <ItemContent>
-          <ItemTitle>
-            <FieldLabel>{title}</FieldLabel>
-          </ItemTitle>
-          <ItemDescription>{description}</ItemDescription>
-        </ItemContent>
-        <ItemActions>
-          <Switch />
-        </ItemActions>
-      </Item>
-    </>
-  );
-}
+const ItemGroupSection = ({ title, description }: (typeof interfaceSwitches)[number]) => (
+  <>
+    <ItemSeparator />
+    <Item render={<Field orientation="horizontal" />} role="listitem">
+      <ItemContent>
+        <ItemTitle>
+          <FieldLabel>{title}</FieldLabel>
+        </ItemTitle>
+        <ItemDescription>{description}</ItemDescription>
+      </ItemContent>
+      <ItemActions>
+        <Switch />
+      </ItemActions>
+    </Item>
+  </>
+);

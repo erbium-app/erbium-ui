@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport function SeparatorList() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-related text-caption\">\n      <dl className=\"flex items-center justify-between\">\n        <dt>Item 1</dt>\n        <dd className=\"text-muted-foreground\">Value 1</dd>\n      </dl>\n      <Separator />\n      <dl className=\"flex items-center justify-between\">\n        <dt>Item 2</dt>\n        <dd className=\"text-muted-foreground\">Value 2</dd>\n      </dl>\n      <Separator />\n      <dl className=\"flex items-center justify-between\">\n        <dt>Item 3</dt>\n        <dd className=\"text-muted-foreground\">Value 3</dd>\n      </dl>\n    </div>\n  );\n}\n",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport const SeparatorList = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-related text-caption\">\n    <dl className=\"flex items-center justify-between\">\n      <dt>Item 1</dt>\n      <dd className=\"text-muted-foreground\">Value 1</dd>\n    </dl>\n    <Separator />\n    <dl className=\"flex items-center justify-between\">\n      <dt>Item 2</dt>\n      <dd className=\"text-muted-foreground\">Value 2</dd>\n    </dl>\n    <Separator />\n    <dl className=\"flex items-center justify-between\">\n      <dt>Item 3</dt>\n      <dd className=\"text-muted-foreground\">Value 3</dd>\n    </dl>\n  </div>\n);\n",
       "path": "src/separator/examples/separator-list.tsx",
       "target": "@components/showcase/separator/examples/separator-list.tsx",
       "type": "registry:component"

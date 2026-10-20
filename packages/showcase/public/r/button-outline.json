@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonOutline() {\n  return <Button variant=\"outline\">Outline</Button>;\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonOutline = () => <Button variant=\"outline\">Outline</Button>;\n\nexport default ButtonOutline;\n",
       "path": "src/button/examples/button-outline.tsx",
       "target": "@components/showcase/button/examples/button-outline.tsx",
       "type": "registry:component"

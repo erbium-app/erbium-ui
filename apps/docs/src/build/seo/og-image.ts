@@ -19,23 +19,23 @@ const fonts = [
 ];
 const logoSource = `data:image/svg+xml;base64,${Buffer.from(logo).toString("base64")}`;
 
-function excerpt(value: string, limit: number) {
+const excerpt = (value: string, limit: number) => {
   if (value.length <= limit) return value;
   return `${value
     .slice(0, limit)
     .replace(/\s+\S*$/, "")
     .trimEnd()}…`;
-}
+};
 
 // Satori consumes a stateless element tree and inline layout data, not browser CSS.
-function imageBlock(
+const imageBlock = (
   style: import("react").CSSProperties,
   children: import("react").ReactNode,
-): import("react").ReactElement {
+): import("react").ReactElement => {
   return { type: "div", key: null, props: { style, children } };
-}
+};
 
-export async function createOgImage(page: OgPage) {
+export const createOgImage = async (page: OgPage) => {
   const image = imageBlock(
     {
       display: "flex",
@@ -105,4 +105,4 @@ export async function createOgImage(page: OgPage) {
   );
   const svg = await satori(image, { ...ogSize, fonts });
   return sharp(Buffer.from(svg)).jpeg({ mozjpeg: true, quality: 88 }).toBuffer();
-}
+};

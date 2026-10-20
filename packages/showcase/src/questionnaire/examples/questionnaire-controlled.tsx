@@ -29,18 +29,18 @@ const itemLabels: Record<string, string> = {
   scope: "Change scope",
 };
 
-export function QuestionnaireControlled() {
+export const QuestionnaireControlled = () => {
   const [item, setItem] = React.useState("scope");
   // Furthest checkpoint reached. Dots beyond it are blocked; earlier ones are free.
   const [reach, setReach] = React.useState(0);
   const names = items.map((entry) => entry.name);
 
-  function handleItemChange(next: string) {
+  const handleItemChange = (next: string) => {
     setItem(next);
     setReach((current) => Math.max(current, names.indexOf(next as (typeof names)[number])));
-  }
+  };
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -49,7 +49,7 @@ export function QuestionnaireControlled() {
       description: `Scope: ${getFormValue(formData, "scope", "None")} · Verification: ${getFormValue(formData, "checks", "None")} · Output: ${getFormValue(formData, "output", "None")}`,
       title: "Agent workflow configured",
     });
-  }
+  };
 
   return (
     <div className="relative mx-auto flex h-full w-full max-w-md flex-col">
@@ -114,4 +114,4 @@ export function QuestionnaireControlled() {
       </Questionnaire>
     </div>
   );
-}
+};

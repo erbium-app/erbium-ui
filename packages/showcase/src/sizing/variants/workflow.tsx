@@ -25,7 +25,7 @@ import {
   TableCell,
 } from "@erbium/ui/components/table";
 
-export default function WorkflowExample() {
+const WorkflowExample = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [projects, setProjects] = useState(["Design system", "Documentation"]);
@@ -149,4 +149,6 @@ export default function WorkflowExample() {
       </Card>
     </div>
   );
-}
+};
+
+export default WorkflowExample;

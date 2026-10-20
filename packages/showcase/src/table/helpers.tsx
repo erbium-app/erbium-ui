@@ -29,7 +29,7 @@ const playgroundColumns = playgroundColumnHelper.columns([
   playgroundColumnHelper.accessor("value", { header: "Value" }),
 ]);
 
-export function PlaygroundTable({ rows, caption }: PlaygroundArgs) {
+export const PlaygroundTable = ({ rows, caption }: PlaygroundArgs) => {
   const data = Array.from({ length: rows }, (_, index) => ({
     item: `Item ${index + 1}`,
     value: index + 1,
@@ -64,4 +64,4 @@ export function PlaygroundTable({ rows, caption }: PlaygroundArgs) {
       </TableBody>
     </Table>
   );
-}
+};

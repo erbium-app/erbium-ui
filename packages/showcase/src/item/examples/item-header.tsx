@@ -31,28 +31,26 @@ const models = [
   },
 ];
 
-export function ItemHeaderDemo() {
-  return (
-    <div className="flex w-full max-w-xl flex-col gap-section">
-      <ItemGroup className="grid grid-cols-3 gap-group">
-        {models.map((model) => (
-          <Item key={model.name} variant="card">
-            <ItemHeader>
-              <img
-                src={model.image}
-                alt={model.name}
-                width={128}
-                height={128}
-                className="aspect-square w-full rounded-sm object-cover"
-              />
-            </ItemHeader>
-            <ItemContent>
-              <ItemTitle>{model.name}</ItemTitle>
-              <ItemDescription>{model.description}</ItemDescription>
-            </ItemContent>
-          </Item>
-        ))}
-      </ItemGroup>
-    </div>
-  );
-}
+export const ItemHeaderDemo = () => (
+  <div className="flex w-full max-w-xl flex-col gap-section">
+    <ItemGroup className="grid grid-cols-3 gap-group">
+      {models.map((model) => (
+        <Item key={model.name} variant="card">
+          <ItemHeader>
+            <img
+              src={model.image}
+              alt={model.name}
+              width={128}
+              height={128}
+              className="aspect-square w-full rounded-sm object-cover"
+            />
+          </ItemHeader>
+          <ItemContent>
+            <ItemTitle>{model.name}</ItemTitle>
+            <ItemDescription>{model.description}</ItemDescription>
+          </ItemContent>
+        </Item>
+      ))}
+    </ItemGroup>
+  </div>
+);

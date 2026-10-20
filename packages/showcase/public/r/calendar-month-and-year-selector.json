@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport function CalendarCaption() {\n  return <Calendar mode=\"single\" captionLayout=\"dropdown\" />;\n}\n",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport const CalendarCaption = () => <Calendar mode=\"single\" captionLayout=\"dropdown\" />;\n",
       "path": "src/calendar/examples/calendar-caption.tsx",
       "target": "@components/showcase/calendar/examples/calendar-caption.tsx",
       "type": "registry:component"

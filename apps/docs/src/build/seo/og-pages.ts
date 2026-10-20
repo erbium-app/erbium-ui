@@ -11,13 +11,13 @@ export interface OgPage {
   imagePath: string;
 }
 
-export function plainText(value: string) {
+export const plainText = (value: string) => {
   return value
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/[`*_]/g, "")
     .replace(/\s+/g, " ")
     .trim();
-}
+};
 
 export const ogPages: OgPage[] = pageIndex.map((entry) => {
   const title = entry.route === "/" ? "Introduction" : entry.title;
@@ -38,8 +38,8 @@ export const ogPages: OgPage[] = pageIndex.map((entry) => {
 
 const byRoute = new Map(ogPages.map((page) => [page.route, page]));
 
-export function ogPageForRoute(route: string) {
+export const ogPageForRoute = (route: string) => {
   const page = byRoute.get(route.replace(/\/+$/, "") || "/");
   if (!page) throw new Error(`Missing social image metadata for ${route}`);
   return page;
-}
+};

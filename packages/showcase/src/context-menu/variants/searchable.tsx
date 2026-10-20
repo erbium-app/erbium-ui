@@ -12,7 +12,7 @@ import {
   ContextMenuItem,
 } from "@erbium/ui/components/context-menu";
 
-export default function SearchableExample() {
+const SearchableExample = () => {
   const [action, setAction] = useState("No action selected.");
 
   return (
@@ -64,4 +64,6 @@ export default function SearchableExample() {
       </p>
     </div>
   );
-}
+};
+
+export default SearchableExample;

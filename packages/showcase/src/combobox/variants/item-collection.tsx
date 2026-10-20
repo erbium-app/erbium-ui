@@ -23,7 +23,7 @@ const items = createComboboxItems(projects, {
   getValue: (project) => project.id,
 });
 
-export default function ItemCollectionExample() {
+const ItemCollectionExample = () => {
   const [value, setValue] = useState<(typeof projects)[number]["id"] | null>("design");
 
   return (
@@ -52,4 +52,6 @@ export default function ItemCollectionExample() {
       </p>
     </div>
   );
-}
+};
+
+export default ItemCollectionExample;

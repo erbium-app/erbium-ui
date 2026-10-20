@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/popover", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport function PopoverBasic() {\n  return (\n    <>\n      <Popover>\n        <PopoverTrigger render={<Button variant=\"outline\" className=\"w-fit\" />}>\n          Open Popover\n        </PopoverTrigger>\n        <PopoverContent align=\"start\">\n          <PopoverHeader>\n            <PopoverTitle>Dimensions</PopoverTitle>\n            <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>\n          </PopoverHeader>\n        </PopoverContent>\n      </Popover>\n    </>\n  );\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n} from \"@/registry/erbium/ui/popover\";\n\nexport const PopoverBasic = () => (\n  <>\n    <Popover>\n      <PopoverTrigger render={<Button variant=\"outline\" className=\"w-fit\" />}>\n        Open Popover\n      </PopoverTrigger>\n      <PopoverContent align=\"start\">\n        <PopoverHeader>\n          <PopoverTitle>Dimensions</PopoverTitle>\n          <PopoverDescription>Set the dimensions for the layer.</PopoverDescription>\n        </PopoverHeader>\n      </PopoverContent>\n    </Popover>\n  </>\n);\n",
       "path": "src/popover/examples/popover-basic.tsx",
       "target": "@components/showcase/popover/examples/popover-basic.tsx",
       "type": "registry:component"

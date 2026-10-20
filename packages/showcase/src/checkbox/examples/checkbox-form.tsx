@@ -5,7 +5,7 @@ import { shake } from "@erbium/ui/lib/shake";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { useRef, useState } from "react";
 
-export default function CheckboxForm() {
+const CheckboxForm = () => {
   const [submitted, setSubmitted] = useState<string>();
   const [termsInvalid, setTermsInvalid] = useState(false);
   const termsInputRef = useRef<HTMLInputElement>(null);
@@ -49,4 +49,6 @@ export default function CheckboxForm() {
       {submitted ? <CodeBlock code={submitted} language="json" title="Submitted values" /> : null}
     </form>
   );
-}
+};
+
+export default CheckboxForm;

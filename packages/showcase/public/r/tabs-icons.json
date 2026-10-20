@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/tabs"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport function TabsIcons() {\n  return (\n    <Tabs defaultValue=\"preview\">\n      <TabsList>\n        <TabsTrigger value=\"preview\">\n          <Icon name=\"app-window\" />\n          Preview\n        </TabsTrigger>\n        <TabsTrigger value=\"code\">\n          <Icon name=\"code\" />\n          Code\n        </TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport const TabsIcons = () => (\n  <Tabs defaultValue=\"preview\">\n    <TabsList>\n      <TabsTrigger value=\"preview\">\n        <Icon name=\"app-window\" />\n        Preview\n      </TabsTrigger>\n      <TabsTrigger value=\"code\">\n        <Icon name=\"code\" />\n        Code\n      </TabsTrigger>\n    </TabsList>\n  </Tabs>\n);\n",
       "path": "src/tabs/examples/tabs-icons.tsx",
       "target": "@components/showcase/tabs/examples/tabs-icons.tsx",
       "type": "registry:component"

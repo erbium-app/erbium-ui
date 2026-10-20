@@ -3,7 +3,7 @@ import { useForm } from "@tanstack/react-form";
 import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
 import { OTPField } from "@erbium/ui/components/otp-field";
 
-export function OTPFieldStatusDemo() {
+export const OTPFieldStatusDemo = () => {
   const [verifiedValue, setVerifiedValue] = useState<string>();
   const form = useForm({ defaultValues: { code: "" } });
 
@@ -63,4 +63,4 @@ export function OTPFieldStatusDemo() {
       )}
     </form.Field>
   );
-}
+};

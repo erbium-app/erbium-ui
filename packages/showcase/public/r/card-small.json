@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/card", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\n\nexport function SampleCard({ size }: { size?: \"sm\" }) {\n  return (\n    <Card className=\"w-80\" size={size}>\n      <CardHeader>\n        <CardTitle>Project update</CardTitle>\n        <CardDescription>Everything you need to know at a glance.</CardDescription>\n      </CardHeader>\n      <CardContent>Review the latest changes and share your feedback.</CardContent>\n      <CardFooter>Updated today</CardFooter>\n    </Card>\n  );\n}\n",
+      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\n\nexport const SampleCard = ({ size }: { size?: \"sm\" }) => (\n  <Card className=\"w-80\" size={size}>\n    <CardHeader>\n      <CardTitle>Project update</CardTitle>\n      <CardDescription>Everything you need to know at a glance.</CardDescription>\n    </CardHeader>\n    <CardContent>Review the latest changes and share your feedback.</CardContent>\n    <CardFooter>Updated today</CardFooter>\n  </Card>\n);\n",
       "path": "src/card/helpers.tsx",
       "target": "@components/showcase/card/helpers.tsx",
       "type": "registry:component"

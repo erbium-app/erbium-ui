@@ -33,7 +33,7 @@ const projects = [
 
 type Project = (typeof projects)[number];
 
-export default function AsyncSearchExample() {
+const AsyncSearchExample = () => {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState({ items: projects, query: "" });
   const [selected, setSelected] = useState<Project | null>(null);
@@ -90,4 +90,6 @@ export default function AsyncSearchExample() {
       </p>
     </div>
   );
-}
+};
+
+export default AsyncSearchExample;

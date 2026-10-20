@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { cn } from "../lib/utils";
 
-function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
+const Spinner = ({ className, ...props }: React.ComponentProps<"svg">) => {
   const id = useId();
   const leadingId = `${id}-leading`;
   const trailingId = `${id}-trailing`;
@@ -54,10 +54,10 @@ function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
       </defs>
     </svg>
   );
-}
+};
 
-function LoadingIndicator({ inlineStart = false }: { inlineStart?: boolean }) {
-  return <Spinner aria-hidden data-icon={inlineStart ? "inline-start" : undefined} />;
-}
+const LoadingIndicator = ({ inlineStart = false }: { inlineStart?: boolean }) => (
+  <Spinner aria-hidden data-icon={inlineStart ? "inline-start" : undefined} />
+);
 
 export { Spinner, LoadingIndicator };

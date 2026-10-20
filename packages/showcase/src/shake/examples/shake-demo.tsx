@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { shake } from "@erbium/ui/lib/shake";
 import { Button } from "@erbium/ui/components/button";
 
-export default function Demo() {
+const Demo = () => {
   const ref = useRef<HTMLButtonElement>(null);
 
   return (
@@ -16,4 +16,6 @@ export default function Demo() {
       Replay error feedback
     </Button>
   );
-}
+};
+
+export default Demo;

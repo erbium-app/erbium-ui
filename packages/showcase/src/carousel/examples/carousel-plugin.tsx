@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "@erbium/ui/components/carousel";
 
-export default function CarouselPlugin() {
+const CarouselPlugin = () => {
   const [plugin] = React.useState(() => Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
@@ -37,4 +37,6 @@ export default function CarouselPlugin() {
       <CarouselNext />
     </Carousel>
   );
-}
+};
+
+export default CarouselPlugin;

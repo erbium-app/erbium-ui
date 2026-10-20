@@ -23,10 +23,10 @@ interface Grouping {
 }
 
 /** The locale's group separator and digits, and a formatter that groups whole numbers. */
-function createGrouping(
+const createGrouping = (
   locale: Intl.LocalesArgument,
   format: Intl.NumberFormatOptions | undefined,
-): Grouping | null {
+): Grouping | null => {
   if (format?.useGrouping === false || format?.notation) {
     return null;
   }
@@ -45,14 +45,14 @@ function createGrouping(
   const digits = Array.from({ length: 10 }, (_, digit) => formatter.format(digit));
 
   return { digits, format: (value) => formatter.format(value), group };
-}
+};
 
 /**
  * Regroups the integer digits of typed text, the way Base UI would on blur, and
  * keeps the caret after the same digit. Prefixes, suffixes, and the fraction are
  * left as typed. Returns null when there is nothing to change.
  */
-function regroup(text: string, caret: number, grouping: Grouping) {
+const regroup = (text: string, caret: number, grouping: Grouping) => {
   const digitOf = (character: string) => {
     const localeDigit = grouping.digits.indexOf(character);
 
@@ -105,7 +105,7 @@ function regroup(text: string, caret: number, grouping: Grouping) {
   }
 
   return { caret: position, text: next };
-}
+};
 
 interface NumberFieldContextValue {
   fieldId: string;
@@ -119,7 +119,7 @@ interface NumberFieldContextValue {
 
 const NumberFieldContext = React.createContext<NumberFieldContextValue | null>(null);
 
-function useNumberFieldContext(part: string) {
+const useNumberFieldContext = (part: string) => {
   const context = React.useContext(NumberFieldContext);
 
   if (!context) {
@@ -127,7 +127,7 @@ function useNumberFieldContext(part: string) {
   }
 
   return context;
-}
+};
 
 type NumberFieldProps = NumberFieldPrimitive.Root.Props & {
   size?: "sm" | "default" | "lg";
@@ -136,7 +136,7 @@ type NumberFieldProps = NumberFieldPrimitive.Root.Props & {
   groupWhileTyping?: boolean;
 };
 
-function NumberField({
+const NumberField = ({
   id,
   className,
   size = "default",
@@ -146,7 +146,7 @@ function NumberField({
   locale,
   onValueChange,
   ...props
-}: NumberFieldProps) {
+}: NumberFieldProps) => {
   const generatedId = React.useId();
   const fieldId = id ?? generatedId;
   const [typing, setTyping] = React.useState(false);
@@ -186,55 +186,49 @@ function NumberField({
       />
     </NumberFieldContext.Provider>
   );
-}
+};
 
-function NumberFieldGroup({ className, ...props }: NumberFieldPrimitive.Group.Props) {
-  return (
-    <NumberFieldPrimitive.Group
-      data-slot="number-field-group"
-      className={cn(
-        "relative flex min-h-control control-adaptive w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const NumberFieldGroup = ({ className, ...props }: NumberFieldPrimitive.Group.Props) => (
+  <NumberFieldPrimitive.Group
+    data-slot="number-field-group"
+    className={cn(
+      "relative flex min-h-control control-adaptive w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      className,
+    )}
+    {...props}
+  />
+);
 
 const stepperClass =
   "relative flex shrink-0 cursor-pointer items-center justify-center px-2 text-muted-foreground transition-colors duration-150 outline-none group-data-[size=sm]/number-field:px-1.5 hover:bg-foreground/5 hover:text-foreground focus-visible:bg-foreground/5 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11";
 
-function NumberFieldDecrement({
+const NumberFieldDecrement = ({
   className,
   children,
   ...props
-}: NumberFieldPrimitive.Decrement.Props) {
-  return (
-    <NumberFieldPrimitive.Decrement
-      data-slot="number-field-decrement"
-      className={cn(stepperClass, "rounded-s-[calc(var(--radius-lg)-1px)]", className)}
-      {...props}
-    >
-      {children ?? <Icon name="minus-sign" aria-hidden />}
-    </NumberFieldPrimitive.Decrement>
-  );
-}
+}: NumberFieldPrimitive.Decrement.Props) => (
+  <NumberFieldPrimitive.Decrement
+    data-slot="number-field-decrement"
+    className={cn(stepperClass, "rounded-s-[calc(var(--radius-lg)-1px)]", className)}
+    {...props}
+  >
+    {children ?? <Icon name="minus-sign" aria-hidden />}
+  </NumberFieldPrimitive.Decrement>
+);
 
-function NumberFieldIncrement({
+const NumberFieldIncrement = ({
   className,
   children,
   ...props
-}: NumberFieldPrimitive.Increment.Props) {
-  return (
-    <NumberFieldPrimitive.Increment
-      data-slot="number-field-increment"
-      className={cn(stepperClass, "rounded-e-[calc(var(--radius-lg)-1px)]", className)}
-      {...props}
-    >
-      {children ?? <Icon name="plus-sign" aria-hidden />}
-    </NumberFieldPrimitive.Increment>
-  );
-}
+}: NumberFieldPrimitive.Increment.Props) => (
+  <NumberFieldPrimitive.Increment
+    data-slot="number-field-increment"
+    className={cn(stepperClass, "rounded-e-[calc(var(--radius-lg)-1px)]", className)}
+    {...props}
+  >
+    {children ?? <Icon name="plus-sign" aria-hidden />}
+  </NumberFieldPrimitive.Increment>
+);
 
 const layerClass =
   "pointer-events-none absolute inset-0 content-center overflow-hidden px-2.5 whitespace-pre group-data-[size=sm]/number-field:px-2";
@@ -244,7 +238,7 @@ type NumberFieldInputProps = Omit<NumberFieldPrimitive.Input.Props, "className" 
   className?: string;
 };
 
-function NumberFieldInput({
+const NumberFieldInput = ({
   className,
   onBlur,
   onChange,
@@ -254,7 +248,7 @@ function NumberFieldInput({
   onPointerDown,
   onScroll,
   ...props
-}: NumberFieldInputProps) {
+}: NumberFieldInputProps) => {
   const { typing, setTyping, animated, grouping } = useNumberFieldContext("NumberFieldInput");
   const [composing, setComposing] = React.useState(false);
   const textRef = React.useRef<HTMLSpanElement>(null);
@@ -328,7 +322,7 @@ function NumberFieldInput({
       {...props}
     />
   );
-}
+};
 
 /**
  * An <input> places its text about a pixel off from the same text in any other
@@ -337,7 +331,7 @@ function NumberFieldInput({
  * while typing; the morph layer takes over only while a value animates, where
  * its slightly different glyph spacing is lost in the motion.
  */
-function NumberFieldInputLayers({
+const NumberFieldInputLayers = ({
   inputProps,
   value,
   typing,
@@ -355,7 +349,7 @@ function NumberFieldInputLayers({
   className?: string;
   textRef: React.Ref<HTMLSpanElement>;
   morphRef: React.Ref<HTMLSpanElement>;
-}) {
+}) => {
   const reducedMotion = useReducedMotion();
   const [shownValue, setShownValue] = React.useState(value);
   const [morphing, setMorphing] = React.useState(false);
@@ -428,13 +422,13 @@ function NumberFieldInputLayers({
       />
     </span>
   );
-}
+};
 
-function NumberFieldScrubArea({
+const NumberFieldScrubArea = ({
   className,
   label,
   ...props
-}: NumberFieldPrimitive.ScrubArea.Props & { label: string }) {
+}: NumberFieldPrimitive.ScrubArea.Props & { label: string }) => {
   const { fieldId } = useNumberFieldContext("NumberFieldScrubArea");
 
   return (
@@ -460,7 +454,7 @@ function NumberFieldScrubArea({
       </NumberFieldPrimitive.ScrubAreaCursor>
     </NumberFieldPrimitive.ScrubArea>
   );
-}
+};
 
 export {
   NumberField,

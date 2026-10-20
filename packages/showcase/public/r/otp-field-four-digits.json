@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport function OTPFieldFourDigits() {\n  return <OTPField aria-label=\"PIN\" length={4} />;\n}\n",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport const OTPFieldFourDigits = () => <OTPField aria-label=\"PIN\" length={4} />;\n",
       "path": "src/otp-field/examples/otp-field-four-digits.tsx",
       "target": "@components/showcase/otp-field/examples/otp-field-four-digits.tsx",
       "type": "registry:component"

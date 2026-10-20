@@ -35,6 +35,5 @@ const languageIcons: Record<string, IconName> = {
   zsh: "bash-duo",
 };
 
-export function codeLanguageIcon(language?: string): IconName {
-  return languageIcons[normalizeCodeLanguage(language ?? "text")] ?? "file-duo";
-}
+export const codeLanguageIcon = (language?: string): IconName =>
+  languageIcons[normalizeCodeLanguage(language ?? "text")] ?? "file-duo";

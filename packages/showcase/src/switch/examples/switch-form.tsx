@@ -4,7 +4,7 @@ import { StatefulButton } from "@erbium/ui/components/stateful-button";
 import { Switch } from "@erbium/ui/components/switch";
 import { useState } from "react";
 
-export default function SwitchForm() {
+const SwitchForm = () => {
   const [submitted, setSubmitted] = useState<string>();
 
   return (
@@ -30,4 +30,6 @@ export default function SwitchForm() {
       {submitted ? <CodeBlock code={submitted} language="json" title="Submitted values" /> : null}
     </form>
   );
-}
+};
+
+export default SwitchForm;

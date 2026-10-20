@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
   "files": [
     {
-      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nexport default function Demo() {\n  return (\n    <div className=\"w-80\">\n      <AspectRatio ratio={16 / 9}>\n        <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n          16:9 media area\n        </div>\n      </AspectRatio>\n    </div>\n  );\n}\n",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\n\nconst Demo = () => (\n  <div className=\"w-80\">\n    <AspectRatio ratio={16 / 9}>\n      <div className=\"flex size-full items-center justify-center rounded-lg bg-muted\">\n        16:9 media area\n      </div>\n    </AspectRatio>\n  </div>\n);\n\nexport default Demo;\n",
       "path": "src/aspect-ratio/examples/aspect-ratio-demo.tsx",
       "target": "@components/showcase/aspect-ratio/examples/aspect-ratio-demo.tsx",
       "type": "registry:component"

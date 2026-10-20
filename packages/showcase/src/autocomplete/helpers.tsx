@@ -35,7 +35,7 @@ const items = [
   { label: "Pear", value: "pear" },
 ];
 
-export function FruitAutocomplete({
+export const FruitAutocomplete = ({
   disabled,
   size,
   mode,
@@ -51,32 +51,30 @@ export function FruitAutocomplete({
   showClear?: boolean;
   showTrigger?: boolean;
   startAddon?: ReactNode;
-}) {
-  return (
-    <Autocomplete items={items} disabled={disabled} mode={mode} autoHighlight={autoHighlight}>
-      <AutocompleteInput
-        aria-label="Search fruits"
-        placeholder="Search fruits…"
-        size={size}
-        showClear={showClear}
-        showTrigger={showTrigger}
-        startAddon={startAddon}
-      />
-      <AutocompletePopup>
-        <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
-        <AutocompleteList>
-          {(item) => (
-            <AutocompleteItem key={item.value} value={item}>
-              {item.label}
-            </AutocompleteItem>
-          )}
-        </AutocompleteList>
-      </AutocompletePopup>
-    </Autocomplete>
-  );
-}
+}) => (
+  <Autocomplete items={items} disabled={disabled} mode={mode} autoHighlight={autoHighlight}>
+    <AutocompleteInput
+      aria-label="Search fruits"
+      placeholder="Search fruits…"
+      size={size}
+      showClear={showClear}
+      showTrigger={showTrigger}
+      startAddon={startAddon}
+    />
+    <AutocompletePopup>
+      <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
+      <AutocompleteList>
+        {(item) => (
+          <AutocompleteItem key={item.value} value={item}>
+            {item.label}
+          </AutocompleteItem>
+        )}
+      </AutocompleteList>
+    </AutocompletePopup>
+  </Autocomplete>
+);
 
-export function LabeledAutocomplete() {
+export const LabeledAutocomplete = () => {
   const id = useId();
 
   return (
@@ -97,7 +95,7 @@ export function LabeledAutocomplete() {
       </AutocompletePopup>
     </Autocomplete>
   );
-}
+};
 
 const tags = [
   { group: "Status", label: "Open" },
@@ -115,31 +113,29 @@ const tagGroups = ["Status", "Priority", "Team"].map((group) => ({
   items: tags.filter((tag) => tag.group === group),
 }));
 
-export function GroupedAutocomplete() {
-  return (
-    <Autocomplete items={tagGroups} itemToStringValue={(group) => group.group}>
-      <AutocompleteInput aria-label="Search tags" placeholder="Search tags…" />
-      <AutocompletePopup>
-        <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
-        <AutocompleteList>
-          {(group) => (
-            <AutocompleteGroup key={group.group} items={group.items}>
-              <AutocompleteGroupLabel>{group.group}</AutocompleteGroupLabel>
-              <AutocompleteCollection>
-                {(tag) => (
-                  <AutocompleteItem key={tag.label} value={tag}>
-                    {tag.label}
-                  </AutocompleteItem>
-                )}
-              </AutocompleteCollection>
-              {group.group !== "Team" && <AutocompleteSeparator />}
-            </AutocompleteGroup>
-          )}
-        </AutocompleteList>
-      </AutocompletePopup>
-    </Autocomplete>
-  );
-}
+export const GroupedAutocomplete = () => (
+  <Autocomplete items={tagGroups} itemToStringValue={(group) => group.group}>
+    <AutocompleteInput aria-label="Search tags" placeholder="Search tags…" />
+    <AutocompletePopup>
+      <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
+      <AutocompleteList>
+        {(group) => (
+          <AutocompleteGroup key={group.group} items={group.items}>
+            <AutocompleteGroupLabel>{group.group}</AutocompleteGroupLabel>
+            <AutocompleteCollection>
+              {(tag) => (
+                <AutocompleteItem key={tag.label} value={tag}>
+                  {tag.label}
+                </AutocompleteItem>
+              )}
+            </AutocompleteCollection>
+            {group.group !== "Team" && <AutocompleteSeparator />}
+          </AutocompleteGroup>
+        )}
+      </AutocompleteList>
+    </AutocompletePopup>
+  </Autocomplete>
+);
 
 const languages = [
   "JavaScript",
@@ -154,7 +150,7 @@ const languages = [
   "Swift",
 ];
 
-export function LimitedAutocomplete() {
+export const LimitedAutocomplete = () => {
   const [value, setValue] = useState("");
   const { contains } = useAutocompleteFilter({ sensitivity: "base" });
   const matches = languages.filter((language) => !value || contains(language, value));
@@ -179,7 +175,7 @@ export function LimitedAutocomplete() {
       </AutocompletePopup>
     </Autocomplete>
   );
-}
+};
 
 export const movies = [
   { id: "1", title: "The Shawshank Redemption", year: 1994 },
@@ -190,7 +186,7 @@ export const movies = [
   { id: "6", title: "Inception", year: 2010 },
 ];
 
-export function AsyncAutocomplete() {
+export const AsyncAutocomplete = () => {
   const [request, setRequest] = useState({ query: "" });
   const { query } = request;
   const [response, setResponse] = useState({ request, results: [] as typeof movies });
@@ -259,9 +255,9 @@ export function AsyncAutocomplete() {
       )}
     </Autocomplete>
   );
-}
+};
 
-export function FormAutocomplete() {
+export const FormAutocomplete = () => {
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -292,4 +288,4 @@ export function FormAutocomplete() {
       {submitted && <p className="text-caption text-muted-foreground">Form submitted.</p>}
     </form>
   );
-}
+};

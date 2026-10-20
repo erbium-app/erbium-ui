@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/marker", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport default function Demo() {\n  return (\n    <div className=\"flex gap-3\">\n      <Marker>\n        <MarkerContent>New</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerContent>Updated</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
+      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nconst Demo = () => (\n  <div className=\"flex gap-3\">\n    <Marker>\n      <MarkerContent>New</MarkerContent>\n    </Marker>\n    <Marker variant=\"border\">\n      <MarkerContent>Updated</MarkerContent>\n    </Marker>\n  </div>\n);\n\nexport default Demo;\n",
       "path": "src/marker/examples/marker-demo.tsx",
       "target": "@components/showcase/marker/examples/marker-demo.tsx",
       "type": "registry:component"

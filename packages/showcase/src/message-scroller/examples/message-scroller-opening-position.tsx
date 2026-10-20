@@ -57,7 +57,7 @@ const positions = [
   label: string;
 }[];
 
-export function MessageScrollerOpeningPosition() {
+export const MessageScrollerOpeningPosition = () => {
   const [positionKey, setPositionKey] = React.useState(0);
   const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
 
@@ -100,15 +100,15 @@ export function MessageScrollerOpeningPosition() {
       </div>
     </div>
   );
-}
+};
 
-function OpeningPositionScroller({
+const OpeningPositionScroller = ({
   position,
   positionKey,
 }: {
   position: "start" | "end" | "last-anchor";
   positionKey: number;
-}) {
+}) => {
   const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
 
   React.useLayoutEffect(() => {
@@ -175,4 +175,4 @@ function OpeningPositionScroller({
       <MessageScrollerButton />
     </MessageScroller>
   );
-}
+};

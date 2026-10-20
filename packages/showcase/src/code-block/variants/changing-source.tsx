@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { Textarea } from "@erbium/ui/components/textarea";
 
-export default function Example() {
+const Example = () => {
   const [code, setCode] = useState('const greeting = "Hello, Erbium.";\n');
 
   return (
@@ -23,4 +23,6 @@ export default function Example() {
       </p>
     </div>
   );
-}
+};
+
+export default Example;

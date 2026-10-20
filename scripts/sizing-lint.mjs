@@ -4,9 +4,8 @@ import { classContext } from "./typography-lint.mjs";
 // widths, and component-specific tracks remain free to own their dimensions.
 const rawControlHeight = /(?:^|:)!?(?:h|min-h|size)-(?:5|6|7|8|9)(?:!)?$/;
 
-export function sizingViolations(classes) {
-  return classes.split(/\s+/).filter((token) => rawControlHeight.test(token));
-}
+export const sizingViolations = (classes) =>
+  classes.split(/\s+/).filter((token) => rawControlHeight.test(token));
 
 export default {
   meta: { name: "erbium-sizing" },
@@ -35,7 +34,7 @@ export default {
           "Badge",
         ]);
 
-        function strings(node, seen = new Set()) {
+        const strings = (node, seen = new Set()) => {
           if (!node || seen.has(node)) {
             return [];
           }
@@ -75,9 +74,9 @@ export default {
           }
 
           return [];
-        }
+        };
 
-        function inspectDescendantOverrides(node, value) {
+        const inspectDescendantOverrides = (node, value) => {
           if (typeof value !== "string" || !classContext(node, context)) {
             return;
           }
@@ -109,7 +108,7 @@ export default {
               context.report({ data: { token }, messageId: "useSize", node });
             }
           }
-        }
+        };
 
         return {
           ImportDeclaration(node) {
@@ -203,7 +202,7 @@ export default {
     },
     "use-geometry": {
       create(context) {
-        function inspect(node, value) {
+        const inspect = (node, value) => {
           if (typeof value !== "string" || !classContext(node, context)) {
             return;
           }
@@ -211,7 +210,7 @@ export default {
           for (const token of sizingViolations(value)) {
             context.report({ data: { token }, messageId: "useGeometry", node });
           }
-        }
+        };
 
         return {
           Literal(node) {
@@ -294,7 +293,7 @@ export default {
           "TooltipContent",
         ]);
 
-        function name(element) {
+        const name = (element) => {
           const tag = element?.openingElement.name;
 
           if (tag?.type === "JSXMemberExpression" && namespaces.has(tag.object.name)) {
@@ -302,9 +301,9 @@ export default {
           }
 
           return imports.get(tag?.name);
-        }
+        };
 
-        function strings(node, seen = new Set()) {
+        const strings = (node, seen = new Set()) => {
           if (!node || seen.has(node)) {
             return [];
           }
@@ -348,9 +347,9 @@ export default {
           }
 
           return [];
-        }
+        };
 
-        function owner(ancestors, owners) {
+        const owner = (ancestors, owners) => {
           for (const ancestor of ancestors) {
             const component = name(ancestor);
 
@@ -392,7 +391,7 @@ export default {
           }
 
           return null;
-        }
+        };
 
         return {
           ImportDeclaration(node) {

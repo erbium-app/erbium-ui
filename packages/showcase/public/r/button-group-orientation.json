@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupOrientation() {\n  return (\n    <ButtonGroup orientation=\"vertical\" aria-label=\"Media controls\" className=\"h-fit\">\n      <Button variant=\"outline\" size=\"icon\">\n        <Icon name=\"plus\" />\n      </Button>\n      <Button variant=\"outline\" size=\"icon\">\n        <Icon name=\"minus\" />\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\n\nconst ButtonGroupOrientation = () => (\n  <ButtonGroup orientation=\"vertical\" aria-label=\"Media controls\" className=\"h-fit\">\n    <Button variant=\"outline\" size=\"icon\">\n      <Icon name=\"plus\" />\n    </Button>\n    <Button variant=\"outline\" size=\"icon\">\n      <Icon name=\"minus\" />\n    </Button>\n  </ButtonGroup>\n);\n\nexport default ButtonGroupOrientation;\n",
       "path": "src/button-group/examples/button-group-orientation.tsx",
       "target": "@components/showcase/button-group/examples/button-group-orientation.tsx",
       "type": "registry:component"

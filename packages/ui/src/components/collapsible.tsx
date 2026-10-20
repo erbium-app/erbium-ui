@@ -1,31 +1,27 @@
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { cn } from "../lib/utils";
 
-function Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {
-  return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
-}
+const Collapsible = ({ ...props }: CollapsiblePrimitive.Root.Props) => (
+  <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
+);
 
-function CollapsibleTrigger({ className, ...props }: CollapsiblePrimitive.Trigger.Props) {
-  return (
-    <CollapsiblePrimitive.Trigger
-      data-slot="collapsible-trigger"
-      className={cn("group/collapsible-trigger", className)}
-      {...props}
-    />
-  );
-}
+const CollapsibleTrigger = ({ className, ...props }: CollapsiblePrimitive.Trigger.Props) => (
+  <CollapsiblePrimitive.Trigger
+    data-slot="collapsible-trigger"
+    className={cn("group/collapsible-trigger", className)}
+    {...props}
+  />
+);
 
-function CollapsibleContent({ className, ...props }: CollapsiblePrimitive.Panel.Props) {
-  return (
-    <CollapsiblePrimitive.Panel
-      data-slot="collapsible-content"
-      className={cn(
-        "h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none",
-        className,
-      )}
-      {...props}
-    />
-  );
-}
+const CollapsibleContent = ({ className, ...props }: CollapsiblePrimitive.Panel.Props) => (
+  <CollapsiblePrimitive.Panel
+    data-slot="collapsible-content"
+    className={cn(
+      "h-(--collapsible-panel-height) overflow-hidden transition-[height] duration-200 data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none",
+      className,
+    )}
+    {...props}
+  />
+);
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };

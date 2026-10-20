@@ -45,7 +45,7 @@ const projects = [
   },
 ] satisfies ({ icon: IconProps["name"] } & Record<string, unknown>)[];
 
-function ControlledSidebarTrigger() {
+const ControlledSidebarTrigger = () => {
   const { isMobile, open, openMobile } = useSidebar();
   const isOpen = isMobile ? openMobile : open;
 
@@ -54,9 +54,9 @@ function ControlledSidebarTrigger() {
       <span>{isOpen ? "Close" : "Open"} Sidebar</span>
     </SidebarTrigger>
   );
-}
+};
 
-export default function AppSidebar() {
+const AppSidebar = () => {
   const [open, setOpen] = React.useState(true);
 
   return (
@@ -87,4 +87,6 @@ export default function AppSidebar() {
       </SidebarInset>
     </SidebarProvider>
   );
-}
+};
+
+export default AppSidebar;

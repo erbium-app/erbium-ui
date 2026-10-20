@@ -1,7 +1,7 @@
 const activeShakes = new WeakMap<Element, Animation>();
 
 /** Replays the error shake without changing the element's validation state. */
-function shake(element: Element | null) {
+const shake = (element: Element | null) => {
   if (!element) {
     return;
   }
@@ -31,6 +31,6 @@ function shake(element: Element | null) {
       { duration: 280 },
     ),
   );
-}
+};
 
 export { shake };

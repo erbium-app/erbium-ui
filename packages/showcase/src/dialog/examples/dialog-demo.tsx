@@ -15,7 +15,7 @@ import { Input } from "@erbium/ui/components/input";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
 
-export default function DialogDemo() {
+const DialogDemo = () => {
   const [open, setOpen] = useState(false);
   const [savedName, setSavedName] = useState<string | null>(null);
 
@@ -66,4 +66,6 @@ export default function DialogDemo() {
       )}
     </div>
   );
-}
+};
+
+export default DialogDemo;

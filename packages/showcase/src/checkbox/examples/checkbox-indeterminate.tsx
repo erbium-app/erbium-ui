@@ -8,7 +8,7 @@ const permissions = [
   { id: "delete", label: "Delete" },
 ];
 
-export default function CheckboxIndeterminate() {
+const CheckboxIndeterminate = () => {
   const [selected, setSelected] = useState<string[]>(["read"]);
 
   return (
@@ -34,4 +34,6 @@ export default function CheckboxIndeterminate() {
       ))}
     </CheckboxGroup>
   );
-}
+};
+
+export default CheckboxIndeterminate;

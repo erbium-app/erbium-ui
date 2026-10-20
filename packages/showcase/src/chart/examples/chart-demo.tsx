@@ -20,10 +20,10 @@ const visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [
   { device: "Mobile", month, visitors: mobile },
 ]);
 
-export function visitorChart(
+export const visitorChart = (
   options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},
-) {
-  return defineChart({
+) =>
+  defineChart({
     color: {
       scale: scaleOrdinal(["Desktop", "Mobile"], ["var(--chart-1)", "var(--chart-2)"]),
       ...(options.legend ? { legend: colorLegend({ label: "Device" }) } : {}),
@@ -48,15 +48,14 @@ export function visitorChart(
     },
     ...(options.tooltip ? { focus: "group-x" as const, tooltip: { use: tooltip } } : {}),
   });
-}
 
-export default function Demo() {
-  return (
-    <Chart
-      definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}
-      height={240}
-      initialWidth={640}
-      ariaLabel="Desktop and mobile visitors by month"
-    />
-  );
-}
+const Demo = () => (
+  <Chart
+    definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}
+    height={240}
+    initialWidth={640}
+    ariaLabel="Desktop and mobile visitors by month"
+  />
+);
+
+export default Demo;

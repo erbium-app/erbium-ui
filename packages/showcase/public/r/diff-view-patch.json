@@ -8,7 +8,7 @@
   "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
   "files": [
     {
-      "content": "import { parsePatchFiles } from \"@pierre/diffs\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst patch = `diff --git a/settings.json b/settings.json\n--- a/settings.json\n+++ b/settings.json\n@@ -1,3 +1,4 @@\n {\n-  \"theme\": \"light\"\n+  \"theme\": \"system\",\n+  \"wrap\": true\n }\n`;\n\nconst fileDiff = parsePatchFiles(patch, \"settings-patch\", true)[0]?.files[0];\n\nexport default function Example() {\n  if (!fileDiff) {\n    return null;\n  }\n\n  return (\n    <DiffView className=\"w-full max-w-4xl\" fileDiff={fileDiff} options={{ diffStyle: \"unified\" }} />\n  );\n}\n",
+      "content": "import { parsePatchFiles } from \"@pierre/diffs\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst patch = `diff --git a/settings.json b/settings.json\n--- a/settings.json\n+++ b/settings.json\n@@ -1,3 +1,4 @@\n {\n-  \"theme\": \"light\"\n+  \"theme\": \"system\",\n+  \"wrap\": true\n }\n`;\n\nconst fileDiff = parsePatchFiles(patch, \"settings-patch\", true)[0]?.files[0];\n\nconst Example = () => {\n  if (!fileDiff) {\n    return null;\n  }\n\n  return (\n    <DiffView className=\"w-full max-w-4xl\" fileDiff={fileDiff} options={{ diffStyle: \"unified\" }} />\n  );\n};\n\nexport default Example;\n",
       "path": "src/diff-view/variants/patch.tsx",
       "target": "@components/showcase/diff-view/variants/patch.tsx",
       "type": "registry:component"

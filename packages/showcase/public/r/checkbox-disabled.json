@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxDisabled() {\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled />\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled defaultChecked />\n        <FieldLabel>Enable notifications</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Checkbox disabled indeterminate />\n        <FieldLabel>Sync some folders</FieldLabel>\n      </Field>\n    </div>\n  );\n}\n",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst CheckboxDisabled = () => (\n  <div className=\"flex flex-col gap-group\">\n    <Field orientation=\"horizontal\">\n      <Checkbox disabled />\n      <FieldLabel>Accept terms and conditions</FieldLabel>\n    </Field>\n    <Field orientation=\"horizontal\">\n      <Checkbox disabled defaultChecked />\n      <FieldLabel>Enable notifications</FieldLabel>\n    </Field>\n    <Field orientation=\"horizontal\">\n      <Checkbox disabled indeterminate />\n      <FieldLabel>Sync some folders</FieldLabel>\n    </Field>\n  </div>\n);\n\nexport default CheckboxDisabled;\n",
       "path": "src/checkbox/examples/checkbox-disabled.tsx",
       "target": "@components/showcase/checkbox/examples/checkbox-disabled.tsx",
       "type": "registry:component"

@@ -34,7 +34,7 @@ const projects = [
   "Team workspace",
 ];
 
-export default function SearchAndControlsExample() {
+const SearchAndControlsExample = () => {
   const [selected, setSelected] = useState("Design system");
   const [zoom, setZoom] = useState(50);
 
@@ -85,4 +85,6 @@ export default function SearchAndControlsExample() {
       </DrawerPanel>
     </Drawer>
   );
-}
+};
+
+export default SearchAndControlsExample;

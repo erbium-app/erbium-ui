@@ -12,7 +12,7 @@ import { CopyButtonIcon, CopyButtonLabel } from "@erbium/ui/blocks/copy-button";
 import { Toggle } from "@erbium/ui/components/toggle";
 import { oldFile, newFile } from "../examples/files";
 
-export default function Example() {
+const Example = () => {
   const [unified, setUnified] = useState(false);
 
   return (
@@ -44,4 +44,6 @@ export default function Example() {
       <DiffViewContent className="max-h-80" />
     </DiffView>
   );
-}
+};
+
+export default Example;

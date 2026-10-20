@@ -42,15 +42,13 @@ type QuestionnaireItemName = keyof z.infer<typeof questionnaireSchema>;
 
 type QuestionnaireErrors = Partial<Record<QuestionnaireItemName, string>>;
 
-function ValidationProgress() {
-  return <QuestionnaireStepIndicator className="min-w-0" />;
-}
+const ValidationProgress = () => <QuestionnaireStepIndicator className="min-w-0" />;
 
-export function QuestionnaireValidation() {
+export const QuestionnaireValidation = () => {
   const [item, setItem] = React.useState("detail");
   const [errors, setErrors] = React.useState<QuestionnaireErrors>({});
 
-  function clearError(name: QuestionnaireItemName) {
+  const clearError = (name: QuestionnaireItemName) => {
     setErrors((currentErrors) => {
       if (!currentErrors[name]) {
         return currentErrors;
@@ -61,9 +59,9 @@ export function QuestionnaireValidation() {
 
       return nextErrors;
     });
-  }
+  };
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const result = questionnaireSchema.safeParse(
@@ -97,7 +95,7 @@ export function QuestionnaireValidation() {
     if (firstInvalidItem === "detail" || firstInvalidItem === "audience") {
       setItem(firstInvalidItem);
     }
-  }
+  };
 
   return (
     <Questionnaire
@@ -182,4 +180,4 @@ export function QuestionnaireValidation() {
       </Card>
     </Questionnaire>
   );
-}
+};

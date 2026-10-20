@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StepIndicator } from "@erbium/ui/blocks/step-indicator";
 import { Slider } from "@erbium/ui/components/slider";
 
-export default function Example() {
+const Example = () => {
   const [progress, setProgress] = useState(0.4);
 
   return (
@@ -19,4 +19,6 @@ export default function Example() {
       />
     </div>
   );
-}
+};
+
+export default Example;
