@@ -1,21 +1,17 @@
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";
 import { Button } from "@erbium/ui/components/button";
-import { Skeleton } from "@erbium/ui/components/skeleton";
+import { Spinner } from "@erbium/ui/components/spinner";
 
 export const DocPagePending = () => (
   <main
     id="main-content"
     aria-busy="true"
-    aria-live="polite"
     className="docs-page surface-panel border border-transparent rounded-xl"
   >
     <div className="docs-page-body">
-      <div className="docs-page-inner">
-        <span className="sr-only">Loading documentation page</span>
-        <Skeleton className="h-10 w-1/2" />
-        <Skeleton className="mt-3 h-5 w-3/4" />
-        <Skeleton className="mt-6 h-64 w-full" />
+      <div className="docs-page-inner grid min-h-64 place-items-center">
+        <Spinner className="size-6 text-muted-foreground" />
       </div>
     </div>
   </main>
