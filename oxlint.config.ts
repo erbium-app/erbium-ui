@@ -82,6 +82,15 @@ export default defineConfig({
       },
     },
     {
+      // TanStack Router models not-found and redirect results as plain
+      // control-flow objects rather than Error instances, and loaders are
+      // expected to `throw notFound()` / `throw redirect()`. The rule only
+      // understands Error subclasses, so it rejects every route loader that
+      // guards a missing record or performs a redirect.
+      files: ["apps/docs/src/routes/**/*.{ts,tsx}"],
+      rules: { "typescript/only-throw-error": "off" },
+    },
+    {
       // Ultracite's react preset configures this rule for shadcn-style
       // design systems after 8.0.1; mirror those options until the release
       // carries them. Count the design-system Label and control components
