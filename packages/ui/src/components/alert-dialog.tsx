@@ -28,6 +28,19 @@ function AlertDialogOverlay({ className, ...props }: AlertDialogPrimitive.Backdr
   );
 }
 
+function AlertDialogViewport({ className, ...props }: AlertDialogPrimitive.Viewport.Props) {
+  return (
+    <AlertDialogPrimitive.Viewport
+      data-slot="alert-dialog-viewport"
+      className={cn(
+        "fixed inset-0 z-50 grid grid-rows-[1fr_auto_3fr] justify-items-center p-4",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 function AlertDialogContent({
   className,
   size = "default",
@@ -38,15 +51,17 @@ function AlertDialogContent({
   return (
     <AlertDialogPortal>
       <AlertDialogOverlay />
-      <AlertDialogPrimitive.Popup
-        data-slot="alert-dialog-content"
-        data-size={size}
-        className={cn(
-          "group/alert-dialog-content fixed top-1/2 inset-s-1/2 z-50 grid w-full -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 gap-group overflow-hidden rounded-xl surface-modal separator-inset p-panel text-popover-foreground duration-100 outline-none data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-          className,
-        )}
-        {...props}
-      />
+      <AlertDialogViewport>
+        <AlertDialogPrimitive.Popup
+          data-slot="alert-dialog-content"
+          data-size={size}
+          className={cn(
+            "group/alert-dialog-content row-start-2 grid max-h-[calc(100dvh-2rem)] w-full gap-group overflow-hidden rounded-xl surface-modal separator-inset p-panel text-popover-foreground duration-100 outline-none data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            className,
+          )}
+          {...props}
+        />
+      </AlertDialogViewport>
     </AlertDialogPortal>
   );
 }

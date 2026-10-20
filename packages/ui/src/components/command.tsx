@@ -80,7 +80,10 @@ function CommandDialog({
   return (
     <Dialog {...props}>
       <DialogPanel
-        className={cn("top-1/3 translate-y-0 overflow-hidden p-0", className)}
+        className={cn(
+          "row-start-1 mt-[max(--spacing(4),4vh)] max-h-105 max-w-xl self-start overflow-hidden p-0 sm:mt-[10vh] sm:max-w-xl",
+          className,
+        )}
         showCloseButton={showCloseButton}
       >
         <DialogTitle className="sr-only">{title}</DialogTitle>

@@ -41,17 +41,17 @@ function ContextMenuTrigger({ className, ...props }: ContextMenuPrimitive.Trigge
 function ContextMenuContent({
   className,
   children,
-  align = "start",
-  alignOffset = 4,
-  side = "inline-end",
-  sideOffset = 0,
+  align = "center",
+  alignOffset,
+  side = "bottom",
+  sideOffset = 4,
   ...props
 }: ContextMenuPrimitive.Popup.Props &
   Pick<ContextMenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) {
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Positioner
-        className="isolate z-50 outline-none"
+        className="isolate z-50 max-w-(--available-width) outline-none"
         align={align}
         alignOffset={alignOffset}
         side={side}
@@ -161,8 +161,30 @@ function ContextMenuSubTrigger({
   );
 }
 
-function ContextMenuSubContent({ ...props }: React.ComponentProps<typeof ContextMenuContent>) {
-  return <ContextMenuContent data-slot="context-menu-sub-content" side="inline-end" {...props} />;
+function ContextMenuSubContent({
+  className,
+  sideOffset = 0,
+  alignOffset,
+  align = "start",
+  ...props
+}: ContextMenuPrimitive.Popup.Props & {
+  align?: ContextMenuPrimitive.Positioner.Props["align"];
+  sideOffset?: ContextMenuPrimitive.Positioner.Props["sideOffset"];
+  alignOffset?: ContextMenuPrimitive.Positioner.Props["alignOffset"];
+}) {
+  const defaultAlignOffset = align === "center" ? undefined : -5;
+
+  return (
+    <ContextMenuContent
+      align={align}
+      alignOffset={alignOffset ?? defaultAlignOffset}
+      className={className}
+      data-slot="context-menu-sub-content"
+      side="inline-end"
+      sideOffset={sideOffset}
+      {...props}
+    />
+  );
 }
 
 function ContextMenuCheckboxItem({

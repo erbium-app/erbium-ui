@@ -37,6 +37,19 @@ function DialogOverlay({ className, ...props }: DialogPrimitive.Backdrop.Props) 
   );
 }
 
+function DialogViewport({ className, ...props }: DialogPrimitive.Viewport.Props) {
+  return (
+    <DialogPrimitive.Viewport
+      data-slot="dialog-viewport"
+      className={cn(
+        "fixed inset-0 z-50 grid grid-rows-[1fr_auto_3fr] justify-items-center p-4",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
 function DialogPanel({
   className,
   children,
@@ -49,27 +62,29 @@ function DialogPanel({
     <DialogPanelContext.Provider value={true}>
       <DialogPortal>
         <DialogOverlay />
-        <DialogPrimitive.Popup
-          data-slot="dialog-panel"
-          className={cn(
-            "group/dialog-panel fixed top-1/2 inset-s-1/2 z-50 flex max-h-[calc(100dvh-2rem)] min-h-0 w-full max-w-[calc(100%-2rem)] -translate-x-1/2 rtl:translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl surface-modal text-caption text-popover-foreground duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-            className,
-          )}
-          {...props}
-        >
-          {children}
-          {showCloseButton && (
-            <DialogPrimitive.Close
-              data-slot="dialog-close"
-              render={
-                <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
-              }
-            >
-              <Icon name="x" />
-              <span className="sr-only">Close</span>
-            </DialogPrimitive.Close>
-          )}
-        </DialogPrimitive.Popup>
+        <DialogViewport>
+          <DialogPrimitive.Popup
+            data-slot="dialog-panel"
+            className={cn(
+              "group/dialog-panel row-start-2 flex max-h-[calc(100dvh-2rem)] min-h-0 w-full max-w-full flex-col overflow-hidden rounded-xl surface-modal text-caption text-popover-foreground duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+              className,
+            )}
+            {...props}
+          >
+            {children}
+            {showCloseButton && (
+              <DialogPrimitive.Close
+                data-slot="dialog-close"
+                render={
+                  <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
+                }
+              >
+                <Icon name="x" />
+                <span className="sr-only">Close</span>
+              </DialogPrimitive.Close>
+            )}
+          </DialogPrimitive.Popup>
+        </DialogViewport>
       </DialogPortal>
     </DialogPanelContext.Provider>
   );

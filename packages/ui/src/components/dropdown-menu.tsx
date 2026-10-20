@@ -38,8 +38,8 @@ function DropdownMenuTrigger({ className, ...props }: MenuPrimitive.Trigger.Prop
 }
 
 function DropdownMenuContent({
-  align = "start",
-  alignOffset = 0,
+  align = "center",
+  alignOffset,
   side = "bottom",
   sideOffset = 4,
   className,
@@ -50,7 +50,7 @@ function DropdownMenuContent({
   return (
     <MenuPrimitive.Portal>
       <MenuPrimitive.Positioner
-        className="isolate z-50 outline-none"
+        className="isolate z-50 max-w-(--available-width) outline-none"
         align={align}
         alignOffset={alignOffset}
         side={side}
@@ -160,7 +160,7 @@ function DropdownMenuSubTrigger({
 
 function DropdownMenuSubContent({
   align = "start",
-  alignOffset = -3,
+  alignOffset = -5,
   side = "inline-end",
   sideOffset = 0,
   className,
