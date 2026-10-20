@@ -5,7 +5,7 @@ import { Icon } from "./icon";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import { LoadingIndicator } from "./spinner";
+import { Spinner } from "./spinner";
 
 const badgeVariants = cva(
   "group/badge inline-flex min-h-badge w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0 text-control-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] focus-visible:border-ring has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid [&>svg]:pointer-events-none [&>svg]:size-3!",
@@ -77,7 +77,7 @@ const Badge = ({
         "aria-busy": loading || ariaBusy,
         children: (
           <>
-            {loading && <LoadingIndicator inlineStart />}
+            {loading && <Spinner aria-hidden data-icon="inline-start" />}
             {!loading && icon && <Icon name={icon} data-icon="inline-start" aria-hidden="true" />}
             {children}
           </>

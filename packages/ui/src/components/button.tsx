@@ -3,7 +3,7 @@ import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "../lib/button-variants";
 import { Kbd } from "./kbd";
-import { LoadingIndicator } from "./spinner";
+import { Spinner } from "./spinner";
 
 const Button = ({
   children,
@@ -30,7 +30,7 @@ const Button = ({
       className={cn(buttonVariants({ className, size, variant }))}
       {...props}
     >
-      {loading && <LoadingIndicator inlineStart={!iconOnly} />}
+      {loading && <Spinner aria-hidden data-icon={iconOnly ? undefined : "inline-start"} />}
       {loading && iconOnly ? null : children}
     </ButtonPrimitive>
   );

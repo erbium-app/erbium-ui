@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent, ReactNode } from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
-import { LoadingIndicator } from "./spinner";
+import { Spinner } from "./spinner";
 
 type StatefulButtonState = "idle" | "loading" | "success";
 
@@ -130,7 +130,7 @@ const StatefulButton = ({
           className="pointer-events-none translate-y-1 opacity-0 transition-[opacity,translate] duration-150 group-data-[state=loading]/stateful-button:translate-y-0 group-data-[state=loading]/stateful-button:opacity-100 motion-reduce:transition-none"
           role="status"
         >
-          <LoadingIndicator />
+          <Spinner aria-hidden />
           <span className="sr-only">Loading</span>
         </span>
         <span
