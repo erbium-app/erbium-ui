@@ -3,7 +3,7 @@
   "name": "avatar-avatar-group-count",
   "type": "registry:block",
   "title": "Avatar: Avatar Group Count",
-  "description": "Use `<AvatarGroupCount>` to add a count to the group.",
+  "description": "Use `<AvatarGroupCount>` to add a count to the group. It renders an avatar with a fallback, so it follows the group's size and uses the same clipped silhouette as the other members.",
   "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
   "files": [
     {

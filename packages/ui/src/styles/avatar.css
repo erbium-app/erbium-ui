@@ -1,0 +1,139 @@
+/*
+ * Avatar geometry.
+ *
+ * One inherited `--avatar-size` token drives the silhouette, the fallback
+ * type, and the badge. Both the badge notch and the group separation use
+ * composited mask cutouts rather than background-colored rings, so avatars
+ * can sit on any surface without painting over it.
+ */
+
+@layer components {
+  :is([data-slot="avatar"], [data-slot="avatar-group-count"]) {
+    --avatar-resolved-size: var(--avatar-size, 2rem);
+    --avatar-badge-size: max(0.5rem, calc(var(--avatar-resolved-size) * 0.3125));
+    --avatar-badge-gap: calc(var(--avatar-resolved-size) * 0.0625);
+    --avatar-badge-cut-radius: calc(var(--avatar-badge-size) / 2 + var(--avatar-badge-gap));
+    --avatar-badge-cut-size: calc(var(--avatar-badge-cut-radius) * 2);
+    --avatar-badge-cut-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2'%3E%3Ccircle cx='1' cy='1' r='1'/%3E%3C/svg%3E");
+    --avatar-badge-cut-x: calc(
+      var(--avatar-resolved-size) - var(--avatar-badge-size) / 2 - var(--avatar-badge-cut-radius)
+    );
+    --avatar-badge-cut-y: calc(
+      var(--avatar-resolved-size) - var(--avatar-badge-size) / 2 - var(--avatar-badge-cut-radius)
+    );
+
+    /* Inner parts follow the root so `.rounded-full` avatars stay circular. */
+    &::after,
+    & > :is([data-slot="avatar-image"], [data-slot="avatar-fallback"]) {
+      corner-shape: inherit;
+    }
+  }
+
+  /* The fallback label scales with the avatar instead of a fixed text role. */
+  :is([data-slot="avatar"], [data-slot="avatar-group-count"]) > [data-slot="avatar-fallback"] {
+    font-size: clamp(0.625rem, calc(var(--avatar-resolved-size) * 0.375), 0.9375rem);
+    line-height: 1;
+  }
+
+  :is([data-slot="avatar"], [data-slot="avatar-group-count"]):dir(rtl) {
+    --avatar-badge-cut-x: calc(var(--avatar-badge-size) / 2 - var(--avatar-badge-cut-radius));
+  }
+
+  @supports (mask-composite: subtract) {
+    :is([data-slot="avatar"], [data-slot="avatar-group-count"]):has(> [data-slot="avatar-badge"])
+      > :is([data-slot="avatar-image"], [data-slot="avatar-fallback"]),
+    :is([data-slot="avatar"], [data-slot="avatar-group-count"]):has(
+        > [data-slot="avatar-badge"]
+      )::after {
+      mask-composite: subtract;
+      mask-image: linear-gradient(#000, #000), var(--avatar-badge-cut-image);
+      mask-position:
+        0 0,
+        var(--avatar-badge-cut-x) var(--avatar-badge-cut-y);
+      mask-repeat: no-repeat;
+      mask-size:
+        100% 100%,
+        var(--avatar-badge-cut-size) var(--avatar-badge-cut-size);
+    }
+  }
+
+  [data-slot="avatar-group"] {
+    --avatar-group-size: var(--avatar-size, 2rem);
+    --avatar-group-gap: var(--avatar-gap, calc(var(--avatar-group-size) / 16));
+    --avatar-group-overlap: var(--avatar-overlap, calc(var(--avatar-group-size) * 0.25));
+    --avatar-group-cut-size: calc(var(--avatar-group-size) + var(--avatar-group-gap) * 2);
+    --avatar-group-cut-x: calc(
+      var(--avatar-group-size) - var(--avatar-group-overlap) - var(--avatar-group-gap)
+    );
+    --avatar-group-cut-y: calc(var(--avatar-group-gap) * -1);
+
+    /* Inflated squircle: 35% corner + gap, as a fraction of the cutout box. */
+    --avatar-group-cut-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2'%3E%3Cpath d='M0.733 0L1.267 0L1.591 0.007L1.72 0.028L1.813 0.065L1.883 0.117L1.935 0.187L1.972 0.28L1.993 0.409L2 0.733L2 1.267L1.993 1.591L1.972 1.72L1.935 1.813L1.883 1.883L1.813 1.935L1.72 1.972L1.591 1.993L1.267 2L0.409 1.993L0.28 1.972L0.187 1.935L0.117 1.883L0.065 1.813L0.028 1.72L0.007 1.591L0 1.267L0 0.733L0.007 0.409L0.028 0.28L0.065 0.187L0.117 0.117L0.187 0.065L0.28 0.028L0.409 0.007L0.733 0Z'/%3E%3C/svg%3E");
+  }
+
+  [data-slot="avatar-group"]:has(
+    > :is([data-slot="avatar"], [data-slot="avatar-group-count"])[data-size="sm"]
+  ) {
+    --avatar-group-size: 1.5rem;
+  }
+
+  [data-slot="avatar-group"]:has(
+    > :is([data-slot="avatar"], [data-slot="avatar-group-count"])[data-size="lg"]
+  ) {
+    --avatar-group-size: 2.5rem;
+  }
+
+  [data-slot="avatar-group"]
+    > :is([data-slot="avatar"], [data-slot="avatar-group-count"]):not(:first-child) {
+    margin-inline-start: calc(var(--avatar-group-overlap) * -1);
+  }
+
+  [data-slot="avatar-group-count"] {
+    --avatar-size: var(--avatar-group-size, 2rem);
+  }
+
+  [data-slot="avatar-group"][data-topmost="first"] {
+    --avatar-group-cut-x: calc(
+      var(--avatar-group-overlap) - var(--avatar-group-size) - var(--avatar-group-gap)
+    );
+  }
+
+  [data-slot="avatar-group"][data-topmost="last"]:dir(rtl) {
+    --avatar-group-cut-x: calc(
+      var(--avatar-group-overlap) - var(--avatar-group-size) - var(--avatar-group-gap)
+    );
+  }
+
+  [data-slot="avatar-group"][data-topmost="first"]:dir(rtl) {
+    --avatar-group-cut-x: calc(
+      var(--avatar-group-size) - var(--avatar-group-overlap) - var(--avatar-group-gap)
+    );
+  }
+
+  @supports (mask-composite: subtract) {
+    [data-slot="avatar-group"][data-topmost="first"]
+      > :is([data-slot="avatar"], [data-slot="avatar-group-count"]):not(:first-child),
+    [data-slot="avatar-group"][data-topmost="last"]
+      > :is([data-slot="avatar"], [data-slot="avatar-group-count"]):not(:last-child) {
+      mask-composite: subtract;
+      mask-image: linear-gradient(#000, #000), var(--avatar-group-cut-image);
+      mask-position:
+        0 0,
+        var(--avatar-group-cut-x) var(--avatar-group-cut-y);
+      mask-repeat: no-repeat;
+      mask-size:
+        100% 100%,
+        var(--avatar-group-cut-size) var(--avatar-group-cut-size);
+    }
+  }
+
+  @supports not (mask-composite: subtract) {
+    [data-slot="avatar-group"] > :is([data-slot="avatar"], [data-slot="avatar-group-count"]) {
+      box-shadow: 0 0 0 2px var(--background);
+    }
+
+    [data-slot="avatar-badge"] {
+      box-shadow: 0 0 0 2px var(--background);
+    }
+  }
+}

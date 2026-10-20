@@ -27,14 +27,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@erbium/ui/components/avata
 
 Use the following composition to build an `Avatar`:
 
-Use the following composition to build an `AvatarGroup`:
-
 ```text
 Avatar
 ├── AvatarImage
 ├── AvatarFallback
 └── AvatarBadge
 ```
+
+Use the following composition to build an `AvatarGroup`:
 
 ```text
 AvatarGroup
@@ -47,4 +47,7 @@ AvatarGroup
 │   ├── AvatarFallback
 │   └── AvatarBadge
 └── AvatarGroupCount
+    └── AvatarFallback
 ```
+
+`AvatarGroupCount` renders an avatar with a fallback, so it accepts the same `size` prop as `Avatar`. `AvatarGroup` uses `topmost="last"` by default, keeping a trailing count whole.

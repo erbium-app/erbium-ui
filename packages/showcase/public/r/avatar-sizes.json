@@ -3,7 +3,7 @@
   "name": "avatar-sizes",
   "type": "registry:block",
   "title": "Avatar: Sizes",
-  "description": "Use the `size` prop to change the size of the avatar.",
+  "description": "Use the `size` prop to change the size of the avatar. The fallback type and badge scale with it.\n\nFor a custom size, set `--avatar-size` instead of a `size-*` utility. The size token keeps the fallback and badge in sync:\n\n```tsx\n<Avatar className=\"[--avatar-size:3rem]\">\n  <AvatarImage src=\"/avatar.png\" alt=\"John Doe\" />\n  <AvatarFallback>JD</AvatarFallback>\n</Avatar>\n```",
   "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
   "files": [
     {

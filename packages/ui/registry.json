@@ -1403,6 +1403,11 @@
       "description": "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
       "files": [
         {
+          "path": "src/styles/avatar.css",
+          "target": "~/src/styles/avatar.css",
+          "type": "registry:file"
+        },
+        {
           "path": "src/styles/base.css",
           "target": "~/src/styles/base.css",
           "type": "registry:file"

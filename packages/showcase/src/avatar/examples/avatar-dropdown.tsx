@@ -14,7 +14,7 @@ export function AvatarDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="ghost" size="icon" className="rounded-avatar" />}
+        render={<Button variant="ghost" size="icon-lg" className="rounded-avatar" />}
       >
         <Avatar>
           <AvatarImage

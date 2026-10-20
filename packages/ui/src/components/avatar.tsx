@@ -14,7 +14,7 @@ function Avatar({
       data-slot="avatar"
       data-size={size}
       className={cn(
-        "group/avatar relative flex size-8 shrink-0 rounded-[35%] select-none after:absolute after:inset-0 after:rounded-[inherit] after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten",
+        "group/avatar relative isolate inline-flex size-(--avatar-size,2rem) shrink-0 items-center justify-center rounded-[35%] align-middle select-none after:absolute after:inset-0 after:z-20 after:rounded-[inherit] after:border after:border-border after:mix-blend-darken data-[size=lg]:[--avatar-size:2.5rem] data-[size=sm]:[--avatar-size:1.5rem] dark:after:mix-blend-lighten",
         className,
       )}
       {...props}
@@ -26,7 +26,10 @@ function AvatarImage({ className, ...props }: AvatarPrimitive.Image.Props) {
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
-      className={cn("aspect-square size-full rounded-[inherit] object-cover", className)}
+      className={cn(
+        "absolute inset-0 z-10 size-full rounded-[inherit] object-cover data-error:invisible data-loading:invisible",
+        className,
+      )}
       {...props}
     />
   );
@@ -37,7 +40,7 @@ function AvatarFallback({ className, ...props }: AvatarPrimitive.Fallback.Props)
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "flex size-full items-center justify-center rounded-[inherit] bg-muted text-caption text-muted-foreground group-data-[size=sm]/avatar:text-metadata",
+        "absolute inset-0 flex size-full items-center justify-center rounded-[inherit] bg-muted font-medium text-muted-foreground select-none [&>svg]:size-[calc(var(--avatar-size,2rem)*0.5)]",
         className,
       )}
       {...props}
@@ -50,10 +53,7 @@ function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
     <span
       data-slot="avatar-badge"
       className={cn(
-        "absolute inset-e-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground bg-blend-color ring-2 ring-background select-none",
-        "group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden",
-        "group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2",
-        "group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2",
+        "absolute inset-e-0 bottom-0 z-30 inline-flex size-[max(0.5rem,calc(var(--avatar-size,2rem)*0.3125))] items-center justify-center rounded-full bg-primary bg-blend-color text-primary-foreground select-none [&>svg]:size-[calc(var(--avatar-size,2rem)*0.25)]",
         className,
       )}
       {...props}
@@ -61,29 +61,30 @@ function AvatarBadge({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-function AvatarGroup({ className, ...props }: React.ComponentProps<"div">) {
+function AvatarGroup({
+  className,
+  topmost = "last",
+  ...props
+}: React.ComponentProps<"div"> & { topmost?: "first" | "last" }) {
   return (
     <div
       data-slot="avatar-group"
-      className={cn(
-        "group/avatar-group flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background",
-        className,
-      )}
+      data-topmost={topmost}
+      className={cn("group/avatar-group flex w-fit items-center", className)}
       {...props}
     />
   );
 }
 
-function AvatarGroupCount({ className, ...props }: React.ComponentProps<"div">) {
+function AvatarGroupCount({ className, children, ...props }: React.ComponentProps<typeof Avatar>) {
   return (
-    <div
+    <Avatar
       data-slot="avatar-group-count"
-      className={cn(
-        "relative flex size-8 shrink-0 items-center justify-center rounded-[35%] bg-muted text-caption text-muted-foreground ring-2 ring-background group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 [&>svg]:size-4 group-has-data-[size=lg]/avatar-group:[&>svg]:size-5 group-has-data-[size=sm]/avatar-group:[&>svg]:size-3",
-        className,
-      )}
+      className={cn("text-muted-foreground", className)}
       {...props}
-    />
+    >
+      <AvatarFallback>{children}</AvatarFallback>
+    </Avatar>
   );
 }
 

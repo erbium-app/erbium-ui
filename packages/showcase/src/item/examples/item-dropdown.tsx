@@ -54,7 +54,7 @@ export default function ItemDropdown() {
               <DropdownMenuItem key={person.username} className="p-0">
                 <Item size="sm" className="w-full p-2">
                   <ItemMedia>
-                    <Avatar className="size-8">
+                    <Avatar>
                       <AvatarImage
                         alt={person.username}
                         src={person.avatar}
