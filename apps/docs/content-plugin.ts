@@ -60,15 +60,17 @@ export const contentPlugin = (): Plugin => {
   writeFileSync(new URL("theme.css", cache), light);
 
   return {
-    handleHotUpdate(context) {
-      if (context.file.includes("packages/content/")) {
-        const module = context.server.moduleGraph.getModuleById("\0virtual:docs-navigation");
+    hotUpdate({ file }) {
+      if (!file.includes("packages/content/")) {
+        return;
+      }
 
-        if (module) {
-          context.server.moduleGraph.invalidateModule(module);
+      const module = this.environment.moduleGraph.getModuleById("\0virtual:docs-navigation");
 
-          return [module];
-        }
+      if (module) {
+        this.environment.moduleGraph.invalidateModule(module);
+
+        return [module];
       }
     },
     load(id) {

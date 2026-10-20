@@ -22,8 +22,8 @@ import { flushSync } from "react-dom";
 import { useTheme } from "./theme";
 import { Controls } from "./controls";
 import { exampleResource } from "./preview-resources";
-import { loadExampleSource } from "@/content/load";
-import type { DocPage } from "@/content/pages.server";
+import { fetchExampleSource } from "@/content/example-source";
+import type { DocPage } from "@/content/types";
 
 class PreviewBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -116,7 +116,7 @@ export const Showcase = ({
 
     const load = async () => {
       try {
-        const result = await loadExampleSource({ data: { name, slug: variant.slug } });
+        const result = await fetchExampleSource({ name, slug: variant.slug });
 
         if (active) {
           setFiles(result);

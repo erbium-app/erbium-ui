@@ -11,12 +11,6 @@ import { staticContentPlugin } from "./static-content-plugin.mjs";
 const cloudflare = process.env.ALCHEMY_CLOUDFLARE_VITE_INJECTED === "1";
 const root = new URL("./", import.meta.url).pathname;
 
-const aliases = {
-  "@": new URL("src", import.meta.url).pathname,
-  "@public": new URL("public", import.meta.url).pathname,
-  "@ui": new URL("../../packages/ui", import.meta.url).pathname,
-};
-
 const previewPlugin = showcaseVitePlugin();
 
 const pagePaths = [
@@ -40,7 +34,6 @@ export default defineConfig({
   plugins: [
     contentPlugin(),
     staticContentPlugin({
-      aliases,
       pagePaths,
       root,
       toolingPlugins: () => [contentPlugin(), showcaseVitePlugin()],
@@ -128,7 +121,7 @@ export default defineConfig({
   preview: { host: "127.0.0.1", port: 3002, strictPort: true },
   publicDir: "./public",
   resolve: {
-    alias: aliases,
+    tsconfigPaths: true,
   },
   server: { host: "127.0.0.1", port: 3001, strictPort: true },
 });

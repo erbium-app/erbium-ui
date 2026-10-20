@@ -8,7 +8,7 @@ import { CopyPageButton, Prose } from "./markdown";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
 import { Showcase, ShowcaseToaster } from "./showcase";
-import type { DocPage } from "@/content/pages.server";
+import type { DocPage } from "@/content/types";
 import { pages } from "@/content/catalog";
 
 export const DocPageView = ({ page }: { page: DocPage }) => {

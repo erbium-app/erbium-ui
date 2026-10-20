@@ -6,7 +6,7 @@ const virtualId = "virtual:docs-pages";
 const resolvedId = `\0${virtualId}`;
 
 /** Compile content and native image dependencies on Node, never in the Worker. */
-export const staticContentPlugin = ({ root, aliases, pagePaths, toolingPlugins }) => {
+export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }) => {
   let tooling;
   let documents;
 
@@ -17,7 +17,7 @@ export const staticContentPlugin = ({ root, aliases, pagePaths, toolingPlugins }
       // Tooling has a different dependency graph; sharing the app's optimizer
       // cache invalidates browser modules with 504 "Outdated Optimize Dep".
       cacheDir: resolve(root, ".cache/tooling-vite"),
-      resolve: { alias: aliases },
+      resolve: { tsconfigPaths: true },
       plugins: toolingPlugins(),
       server: { middlewareMode: true },
       appType: "custom",

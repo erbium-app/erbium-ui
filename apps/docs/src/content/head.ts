@@ -1,4 +1,4 @@
-import type { DocPage } from "./pages.server";
+import type { DocPage } from "./types";
 import { site, siteName } from "@/config/site";
 import { structuredData } from "@/build/seo/structured-data";
 

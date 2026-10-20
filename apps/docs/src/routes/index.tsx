@@ -1,17 +1,17 @@
-import { createFileRoute, getRouteApi, notFound } from "@tanstack/react-router";
-import { loadPage } from "@/content/load";
-import { pageHead } from "@/content/head";
+import { createFileRoute, notFound, useLoaderData } from "@tanstack/react-router";
 import { DocPageView } from "@/components/doc-page";
+import { DocPageError, DocPagePending } from "@/components/doc-page-state";
+import { pageHead } from "@/content/head";
+import { getDocPage } from "@/content/pages.functions";
 
-const routeApi = getRouteApi("/");
-
-const Home = () => <DocPageView page={routeApi.useLoaderData()} />;
+const Home = () => <DocPageView page={useLoaderData({ from: "/" })} />;
 
 export const Route = createFileRoute("/")({
   component: Home,
+  errorComponent: DocPageError,
   head: ({ loaderData }) => pageHead(loaderData),
   loader: async () => {
-    const page = await loadPage({ data: "/" });
+    const page = await getDocPage({ data: { path: "/" } });
 
     if (!page) {
       throw notFound();
@@ -19,4 +19,5 @@ export const Route = createFileRoute("/")({
 
     return page;
   },
+  pendingComponent: DocPagePending,
 });
