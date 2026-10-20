@@ -64,88 +64,6 @@ const useCodeBlock = () => {
   return context;
 };
 
-const CodeBlock = ({
-  code,
-  language,
-  items: providedItems,
-  value,
-  defaultValue,
-  onValueChange,
-  surface = "code",
-  lineNumbers = false,
-  wrap = false,
-  title,
-  children,
-  className,
-  ...props
-}: CodeBlockProps) => {
-  const items = useMemo(
-    () =>
-      providedItems ?? [
-        { code: code ?? "", label: title ?? language ?? "Code", language, value: "code" },
-      ],
-    [providedItems, code, language, title],
-  );
-
-  const [selection, setSelection] = useState(defaultValue);
-  const requested = value ?? selection;
-
-  const active =
-    items.find((item) => item.value === requested && !item.disabled) ??
-    items.find((item) => !item.disabled);
-
-  return (
-    <DirectionProvider direction="ltr">
-      <CodeBlockContext value={{ active, items, lineNumbers, surface, wrap }}>
-        <TabsPrimitive.Root
-          {...props}
-          dir="ltr"
-          data-slot="code-block"
-          data-surface={surface}
-          className={cn("group/code-block relative", codePanelSurface, className)}
-          value={active?.value ?? null}
-          onValueChange={(next, details) => {
-            if (typeof next !== "string") {
-              return;
-            }
-
-            onValueChange?.(next, details);
-
-            if (!details.isCanceled && value === undefined) {
-              setSelection(next);
-            }
-          }}
-        >
-          {children ?? (
-            <>
-              {(providedItems && items.length > 0) || title ? (
-                <CodeBlockHeader>
-                  {providedItems && items.length > 0 ? (
-                    <CodeBlockTabs />
-                  ) : (
-                    <CodeBlockTitle>
-                      <CodeBlockIcon />
-                      <span className="truncate">{title}</span>
-                    </CodeBlockTitle>
-                  )}
-                </CodeBlockHeader>
-              ) : null}
-              <CodeBlockActions>
-                <CodeBlockCopyButton />
-              </CodeBlockActions>
-              {providedItems ? (
-                items.map((item) => <CodeBlockPanel key={item.value} value={item.value} />)
-              ) : (
-                <CodeBlockContent />
-              )}
-            </>
-          )}
-        </TabsPrimitive.Root>
-      </CodeBlockContext>
-    </DirectionProvider>
-  );
-};
-
 const CodeBlockHeader = ({ className, ...props }: ComponentProps<typeof CodePanelHeader>) => (
   <CodePanelHeader
     {...props}
@@ -193,6 +111,8 @@ const CodeBlockIcon = ({
   );
 };
 
+const CodeBlockTab = (props: ComponentProps<typeof TabsTrigger>) => <TabsTrigger {...props} />;
+
 const CodeBlockTabs = ({
   children,
   className,
@@ -217,8 +137,6 @@ const CodeBlockTabs = ({
     </TabsList>
   );
 };
-
-const CodeBlockTab = (props: ComponentProps<typeof TabsTrigger>) => <TabsTrigger {...props} />;
 
 const CodeBlockCopyButton = ({
   value,
@@ -369,6 +287,88 @@ const CodeBlockPanel = ({
         <CodeBlockContent />
       </CodeBlockContext>
     </TabsPrimitive.Panel>
+  );
+};
+
+const CodeBlock = ({
+  code,
+  language,
+  items: providedItems,
+  value,
+  defaultValue,
+  onValueChange,
+  surface = "code",
+  lineNumbers = false,
+  wrap = false,
+  title,
+  children,
+  className,
+  ...props
+}: CodeBlockProps) => {
+  const items = useMemo(
+    () =>
+      providedItems ?? [
+        { code: code ?? "", label: title ?? language ?? "Code", language, value: "code" },
+      ],
+    [providedItems, code, language, title],
+  );
+
+  const [selection, setSelection] = useState(defaultValue);
+  const requested = value ?? selection;
+
+  const active =
+    items.find((item) => item.value === requested && !item.disabled) ??
+    items.find((item) => !item.disabled);
+
+  return (
+    <DirectionProvider direction="ltr">
+      <CodeBlockContext value={{ active, items, lineNumbers, surface, wrap }}>
+        <TabsPrimitive.Root
+          {...props}
+          dir="ltr"
+          data-slot="code-block"
+          data-surface={surface}
+          className={cn("group/code-block relative", codePanelSurface, className)}
+          value={active?.value ?? null}
+          onValueChange={(next, details) => {
+            if (typeof next !== "string") {
+              return;
+            }
+
+            onValueChange?.(next, details);
+
+            if (!details.isCanceled && value === undefined) {
+              setSelection(next);
+            }
+          }}
+        >
+          {children ?? (
+            <>
+              {(providedItems && items.length > 0) || title ? (
+                <CodeBlockHeader>
+                  {providedItems && items.length > 0 ? (
+                    <CodeBlockTabs />
+                  ) : (
+                    <CodeBlockTitle>
+                      <CodeBlockIcon />
+                      <span className="truncate">{title}</span>
+                    </CodeBlockTitle>
+                  )}
+                </CodeBlockHeader>
+              ) : null}
+              <CodeBlockActions>
+                <CodeBlockCopyButton />
+              </CodeBlockActions>
+              {providedItems ? (
+                items.map((item) => <CodeBlockPanel key={item.value} value={item.value} />)
+              ) : (
+                <CodeBlockContent />
+              )}
+            </>
+          )}
+        </TabsPrimitive.Root>
+      </CodeBlockContext>
+    </DirectionProvider>
   );
 };
 

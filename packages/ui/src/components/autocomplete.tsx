@@ -82,6 +82,32 @@ const autocompleteActionVariants = cva(
   },
 );
 
+export const AutocompleteTrigger = ({
+  className,
+  children,
+  ...props
+}: AutocompletePrimitive.Trigger.Props): React.ReactElement => (
+  <AutocompletePrimitive.Trigger className={className} data-slot="autocomplete-trigger" {...props}>
+    {children}
+  </AutocompletePrimitive.Trigger>
+);
+
+export const AutocompleteClear = ({
+  className,
+  ...props
+}: AutocompletePrimitive.Clear.Props): React.ReactElement => (
+  <AutocompletePrimitive.Clear
+    className={cn(
+      "absolute inset-e-0.5 top-1/2 inline-flex size-control shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-[color,background-color,box-shadow,opacity] pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 sm:size-control-sm [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
+      className,
+    )}
+    data-slot="autocomplete-clear"
+    {...props}
+  >
+    <Icon name="x" />
+  </AutocompletePrimitive.Clear>
+);
+
 export const AutocompleteInput = ({
   className,
   showTrigger = false,
@@ -282,22 +308,6 @@ export const AutocompleteList = ({
   </ScrollArea>
 );
 
-export const AutocompleteClear = ({
-  className,
-  ...props
-}: AutocompletePrimitive.Clear.Props): React.ReactElement => (
-  <AutocompletePrimitive.Clear
-    className={cn(
-      "absolute inset-e-0.5 top-1/2 inline-flex size-control shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-[color,background-color,box-shadow,opacity] pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 sm:size-control-sm [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
-      className,
-    )}
-    data-slot="autocomplete-clear"
-    {...props}
-  >
-    <Icon name="x" />
-  </AutocompletePrimitive.Clear>
-);
-
 export const AutocompleteStatus = ({
   className,
   ...props
@@ -314,16 +324,6 @@ export const AutocompleteStatus = ({
 
 export const AutocompleteCollection: typeof AutocompletePrimitive.Collection =
   AutocompletePrimitive.Collection;
-
-export const AutocompleteTrigger = ({
-  className,
-  children,
-  ...props
-}: AutocompletePrimitive.Trigger.Props): React.ReactElement => (
-  <AutocompletePrimitive.Trigger className={className} data-slot="autocomplete-trigger" {...props}>
-    {children}
-  </AutocompletePrimitive.Trigger>
-);
 
 export const useAutocompleteFilter: typeof AutocompletePrimitive.useFilter =
   AutocompletePrimitive.useFilter;

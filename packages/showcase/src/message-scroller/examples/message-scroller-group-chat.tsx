@@ -82,6 +82,38 @@ type GroupChatItem =
       scrollAnchor?: boolean;
     };
 
+const GroupChatMessage = ({ item }: { item: Extract<GroupChatItem, { type: "message" }> }) => {
+  const isCurrentUser = item.sender === currentUser;
+  const variant = isCurrentUser ? "muted" : item.role === "assistant" ? "ghost" : "tinted";
+
+  return (
+    <MessageScrollerItem messageId={item.id} scrollAnchor={item.scrollAnchor}>
+      <Message align={isCurrentUser ? "end" : "start"}>
+        <MessageContent>
+          {!isCurrentUser && <MessageHeader>{item.sender}</MessageHeader>}
+          <Bubble variant={variant}>
+            <BubbleContent>{item.text}</BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+    </MessageScrollerItem>
+  );
+};
+
+const GroupChatMarker = ({
+  item,
+  scrollAnchor = false,
+}: {
+  item: Extract<GroupChatItem, { type: "event" }>;
+  scrollAnchor?: boolean;
+}) => (
+  <MessageScrollerItem scrollAnchor={scrollAnchor}>
+    <Marker variant="separator">
+      <MarkerContent>{item.text}</MarkerContent>
+    </Marker>
+  </MessageScrollerItem>
+);
+
 export const MessageScrollerGroupChat = () => {
   const [demoKey, setDemoKey] = React.useState(0);
   const [rockyTurn, setRockyTurn] = React.useState<"idle" | "marker" | "message">("idle");
@@ -181,35 +213,3 @@ export const MessageScrollerGroupChat = () => {
     </MessageScrollerProvider>
   );
 };
-
-const GroupChatMessage = ({ item }: { item: Extract<GroupChatItem, { type: "message" }> }) => {
-  const isCurrentUser = item.sender === currentUser;
-  const variant = isCurrentUser ? "muted" : item.role === "assistant" ? "ghost" : "tinted";
-
-  return (
-    <MessageScrollerItem messageId={item.id} scrollAnchor={item.scrollAnchor}>
-      <Message align={isCurrentUser ? "end" : "start"}>
-        <MessageContent>
-          {!isCurrentUser && <MessageHeader>{item.sender}</MessageHeader>}
-          <Bubble variant={variant}>
-            <BubbleContent>{item.text}</BubbleContent>
-          </Bubble>
-        </MessageContent>
-      </Message>
-    </MessageScrollerItem>
-  );
-};
-
-const GroupChatMarker = ({
-  item,
-  scrollAnchor = false,
-}: {
-  item: Extract<GroupChatItem, { type: "event" }>;
-  scrollAnchor?: boolean;
-}) => (
-  <MessageScrollerItem scrollAnchor={scrollAnchor}>
-    <Marker variant="separator">
-      <MarkerContent>{item.text}</MarkerContent>
-    </Marker>
-  </MessageScrollerItem>
-);

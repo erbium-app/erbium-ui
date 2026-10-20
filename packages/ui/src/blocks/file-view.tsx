@@ -63,6 +63,51 @@ const useFileView = () => {
   return context;
 };
 
+const FileViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
+  <CodePanelHeader {...props} data-slot="file-view-header" />
+);
+
+const FileViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
+  const { file } = useFileView();
+
+  return (
+    <CodePanelTitle {...props} data-slot="file-view-title">
+      <Icon name={fileIconName(file.name)} className="size-4.5" />
+      <span className="truncate">{children ?? file.name}</span>
+    </CodePanelTitle>
+  );
+};
+
+const FileViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
+  <CodePanelActions {...props} data-slot="file-view-actions" />
+);
+
+const FileViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
+  const { content, file, loading } = useFileView();
+
+  return (
+    <CodePanelContent
+      aria-label={`Contents of ${file.name}`}
+      {...props}
+      data-slot="file-view-content"
+      loading={loading}
+      empty={
+        file.contents.length === 0 ? (
+          <CodePanelEmpty title="Empty file" description="This file has no contents." />
+        ) : undefined
+      }
+    >
+      {content}
+    </CodePanelContent>
+  );
+};
+
+const FileViewCopyButton = (props: Omit<CopyButtonProps, "value">) => {
+  const { file } = useFileView();
+
+  return <CodePanelCopyButton aria-label="Copy file" {...props} value={file.contents} />;
+};
+
 const FileView = <Annotation = undefined,>({
   file,
   options,
@@ -124,51 +169,6 @@ const FileView = <Annotation = undefined,>({
       </CodePanel>
     </FileViewContext>
   );
-};
-
-const FileViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
-  <CodePanelHeader {...props} data-slot="file-view-header" />
-);
-
-const FileViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
-  const { file } = useFileView();
-
-  return (
-    <CodePanelTitle {...props} data-slot="file-view-title">
-      <Icon name={fileIconName(file.name)} className="size-4.5" />
-      <span className="truncate">{children ?? file.name}</span>
-    </CodePanelTitle>
-  );
-};
-
-const FileViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
-  <CodePanelActions {...props} data-slot="file-view-actions" />
-);
-
-const FileViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
-  const { content, file, loading } = useFileView();
-
-  return (
-    <CodePanelContent
-      aria-label={`Contents of ${file.name}`}
-      {...props}
-      data-slot="file-view-content"
-      loading={loading}
-      empty={
-        file.contents.length === 0 ? (
-          <CodePanelEmpty title="Empty file" description="This file has no contents." />
-        ) : undefined
-      }
-    >
-      {content}
-    </CodePanelContent>
-  );
-};
-
-const FileViewCopyButton = (props: Omit<CopyButtonProps, "value">) => {
-  const { file } = useFileView();
-
-  return <CodePanelCopyButton aria-label="Copy file" {...props} value={file.contents} />;
 };
 
 export {

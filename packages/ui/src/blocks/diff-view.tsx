@@ -78,6 +78,97 @@ const useDiffView = () => {
   return context;
 };
 
+const DiffViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
+  <CodePanelHeader {...props} data-slot="diff-view-header" />
+);
+
+const DiffViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
+  const { fileDiff } = useDiffView();
+
+  return (
+    <CodePanelTitle {...props} data-slot="diff-view-title">
+      <Icon name={fileIconName(fileDiff.name)} className="size-4.5" />
+      <span className="truncate">
+        {children ??
+          (fileDiff.prevName && fileDiff.prevName !== fileDiff.name
+            ? `${fileDiff.prevName} → ${fileDiff.name}`
+            : fileDiff.name)}
+      </span>
+    </CodePanelTitle>
+  );
+};
+
+const DiffViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
+  <CodePanelActions {...props} data-slot="diff-view-actions" />
+);
+
+const DiffViewStats = ({ className, ...props }: Omit<ComponentProps<"span">, "children">) => {
+  const { fileDiff } = useDiffView();
+  const additions = fileDiff.hunks.reduce((total, hunk) => total + hunk.additionLines, 0);
+  const deletions = fileDiff.hunks.reduce((total, hunk) => total + hunk.deletionLines, 0);
+
+  return (
+    <span
+      {...props}
+      data-slot="diff-view-stats"
+      className={cn("inline-flex items-center gap-2 text-metadata tabular-nums", className)}
+    >
+      <span className="text-success">
+        +{additions}
+        <span className="sr-only"> added lines</span>
+      </span>
+      <span className="text-error">
+        −{deletions}
+        <span className="sr-only"> deleted lines</span>
+      </span>
+    </span>
+  );
+};
+
+const DiffViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
+  const { content, fileDiff, loading } = useDiffView();
+  const blank = fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0;
+
+  const empty =
+    fileDiff.hunks.length > 0 ? undefined : blank ? (
+      <CodePanelEmpty title="Empty file" description="This file has no contents." />
+    ) : (
+      <CodePanelEmpty
+        title="No content changes"
+        description="The two versions have identical contents."
+      />
+    );
+
+  return (
+    <CodePanelContent
+      aria-label={`Changes to ${fileDiff.name}`}
+      {...props}
+      data-slot="diff-view-content"
+      loading={loading}
+      empty={empty}
+    >
+      {content}
+    </CodePanelContent>
+  );
+};
+
+const DiffViewCopyButton = ({
+  side = "new",
+  ...props
+}: Omit<CopyButtonProps, "value"> & { side?: "old" | "new" }) => {
+  const { oldContents, newContents } = useDiffView();
+  const contents = side === "old" ? oldContents : newContents;
+
+  return (
+    <CodePanelCopyButton
+      aria-label={`Copy ${side} file`}
+      {...props}
+      value={contents ?? ""}
+      disabled={contents === undefined || props.disabled}
+    />
+  );
+};
+
 const DiffView = <Annotation = undefined,>({
   oldFile,
   newFile,
@@ -168,97 +259,6 @@ const DiffView = <Annotation = undefined,>({
         )}
       </CodePanel>
     </DiffViewContext>
-  );
-};
-
-const DiffViewHeader = (props: ComponentProps<typeof CodePanelHeader>) => (
-  <CodePanelHeader {...props} data-slot="diff-view-header" />
-);
-
-const DiffViewTitle = ({ children, ...props }: ComponentProps<typeof CodePanelTitle>) => {
-  const { fileDiff } = useDiffView();
-
-  return (
-    <CodePanelTitle {...props} data-slot="diff-view-title">
-      <Icon name={fileIconName(fileDiff.name)} className="size-4.5" />
-      <span className="truncate">
-        {children ??
-          (fileDiff.prevName && fileDiff.prevName !== fileDiff.name
-            ? `${fileDiff.prevName} → ${fileDiff.name}`
-            : fileDiff.name)}
-      </span>
-    </CodePanelTitle>
-  );
-};
-
-const DiffViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
-  <CodePanelActions {...props} data-slot="diff-view-actions" />
-);
-
-const DiffViewStats = ({ className, ...props }: Omit<ComponentProps<"span">, "children">) => {
-  const { fileDiff } = useDiffView();
-  const additions = fileDiff.hunks.reduce((total, hunk) => total + hunk.additionLines, 0);
-  const deletions = fileDiff.hunks.reduce((total, hunk) => total + hunk.deletionLines, 0);
-
-  return (
-    <span
-      {...props}
-      data-slot="diff-view-stats"
-      className={cn("inline-flex items-center gap-2 text-metadata tabular-nums", className)}
-    >
-      <span className="text-success">
-        +{additions}
-        <span className="sr-only"> added lines</span>
-      </span>
-      <span className="text-error">
-        −{deletions}
-        <span className="sr-only"> deleted lines</span>
-      </span>
-    </span>
-  );
-};
-
-const DiffViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
-  const { content, fileDiff, loading } = useDiffView();
-  const blank = fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0;
-
-  const empty =
-    fileDiff.hunks.length > 0 ? undefined : blank ? (
-      <CodePanelEmpty title="Empty file" description="This file has no contents." />
-    ) : (
-      <CodePanelEmpty
-        title="No content changes"
-        description="The two versions have identical contents."
-      />
-    );
-
-  return (
-    <CodePanelContent
-      aria-label={`Changes to ${fileDiff.name}`}
-      {...props}
-      data-slot="diff-view-content"
-      loading={loading}
-      empty={empty}
-    >
-      {content}
-    </CodePanelContent>
-  );
-};
-
-const DiffViewCopyButton = ({
-  side = "new",
-  ...props
-}: Omit<CopyButtonProps, "value"> & { side?: "old" | "new" }) => {
-  const { oldContents, newContents } = useDiffView();
-  const contents = side === "old" ? oldContents : newContents;
-
-  return (
-    <CodePanelCopyButton
-      aria-label={`Copy ${side} file`}
-      {...props}
-      value={contents ?? ""}
-      disabled={contents === undefined || props.disabled}
-    />
   );
 };
 

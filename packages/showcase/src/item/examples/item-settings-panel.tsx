@@ -57,6 +57,23 @@ const interfaceSwitches = [
   },
 ] as const;
 
+const ItemGroupSection = ({ title, description }: (typeof interfaceSwitches)[number]) => (
+  <>
+    <ItemSeparator />
+    <Item render={<Field orientation="horizontal" />} role="listitem">
+      <ItemContent>
+        <ItemTitle>
+          <FieldLabel>{title}</FieldLabel>
+        </ItemTitle>
+        <ItemDescription>{description}</ItemDescription>
+      </ItemContent>
+      <ItemActions>
+        <Switch />
+      </ItemActions>
+    </Item>
+  </>
+);
+
 const ItemSettingsPanel = () => (
   <div className="w-full max-w-2xl space-y-12">
     <ItemGroup variant="panel">
@@ -171,20 +188,3 @@ const ItemSettingsPanel = () => (
 );
 
 export default ItemSettingsPanel;
-
-const ItemGroupSection = ({ title, description }: (typeof interfaceSwitches)[number]) => (
-  <>
-    <ItemSeparator />
-    <Item render={<Field orientation="horizontal" />} role="listitem">
-      <ItemContent>
-        <ItemTitle>
-          <FieldLabel>{title}</FieldLabel>
-        </ItemTitle>
-        <ItemDescription>{description}</ItemDescription>
-      </ItemContent>
-      <ItemActions>
-        <Switch />
-      </ItemActions>
-    </Item>
-  </>
-);

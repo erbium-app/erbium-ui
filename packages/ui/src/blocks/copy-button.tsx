@@ -39,6 +39,24 @@ type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
     render?: useRender.RenderProp<CopyButtonState>;
   };
 
+const CopyButtonIcon = (
+  props: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">,
+) => {
+  const { status } = useCopyButtonState();
+
+  return (
+    <StatefulIcon
+      {...props}
+      state={status}
+      icons={{
+        copied: <Icon name="check" />,
+        error: <Icon name="cancel-01" />,
+        idle: <Icon name="copy" />,
+      }}
+    />
+  );
+};
+
 const CopyButton = ({
   value,
   timeout,
@@ -111,42 +129,6 @@ const CopyButton = ({
   );
 };
 
-const CopyButtonIcon = (
-  props: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">,
-) => {
-  const { status } = useCopyButtonState();
-
-  return (
-    <StatefulIcon
-      {...props}
-      state={status}
-      icons={{
-        copied: <Icon name="check" />,
-        error: <Icon name="cancel-01" />,
-        idle: <Icon name="copy" />,
-      }}
-    />
-  );
-};
-
-const CopyButtonLabel = ({ children, className, ...props }: ComponentProps<"span">) => (
-  <span
-    {...props}
-    data-slot="copy-button-label"
-    className={["inline-grid items-center justify-items-center", className]
-      .filter(Boolean)
-      .join(" ")}
-  >
-    {children ?? (
-      <>
-        <CopyButtonLabelIdle />
-        <CopyButtonLabelCopied />
-        <CopyButtonLabelError />
-      </>
-    )}
-  </span>
-);
-
 const CopyLabelState = ({
   state,
   children,
@@ -189,6 +171,24 @@ const CopyButtonLabelError = ({ children = "Failed", ...props }: ComponentProps<
   <CopyLabelState {...props} state="error">
     {children}
   </CopyLabelState>
+);
+
+const CopyButtonLabel = ({ children, className, ...props }: ComponentProps<"span">) => (
+  <span
+    {...props}
+    data-slot="copy-button-label"
+    className={["inline-grid items-center justify-items-center", className]
+      .filter(Boolean)
+      .join(" ")}
+  >
+    {children ?? (
+      <>
+        <CopyButtonLabelIdle />
+        <CopyButtonLabelCopied />
+        <CopyButtonLabelError />
+      </>
+    )}
+  </span>
 );
 
 export {

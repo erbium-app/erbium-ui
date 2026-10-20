@@ -238,92 +238,6 @@ type NumberFieldInputProps = Omit<NumberFieldPrimitive.Input.Props, "className" 
   className?: string;
 };
 
-const NumberFieldInput = ({
-  className,
-  onBlur,
-  onChange,
-  onCompositionEnd,
-  onCompositionStart,
-  onKeyDown,
-  onPointerDown,
-  onScroll,
-  ...props
-}: NumberFieldInputProps) => {
-  const { typing, setTyping, animated, grouping } = useNumberFieldContext("NumberFieldInput");
-  const [composing, setComposing] = React.useState(false);
-  const textRef = React.useRef<HTMLSpanElement>(null);
-  const morphRef = React.useRef<HTMLSpanElement>(null);
-
-  return (
-    <NumberFieldPrimitive.Input
-      data-slot="number-field-input"
-      onChange={(event) => {
-        // Runs before Base UI's own handler, which then reads the regrouped text.
-        const input = event.currentTarget;
-        const composing = (event.nativeEvent as InputEvent).isComposing;
-
-        const next =
-          grouping && !composing && input.selectionStart !== null
-            ? regroup(input.value, input.selectionStart, grouping)
-            : null;
-
-        if (next) {
-          input.value = next.text;
-          input.setSelectionRange(next.caret, next.caret);
-        }
-
-        // Also covers partial text, like a lone "-", that Base UI can't parse yet.
-        setTyping(true);
-        onChange?.(event);
-      }}
-      onPointerDown={(event) => {
-        // Placing the caret or selecting needs the real glyphs under the pointer.
-        setTyping(true);
-        onPointerDown?.(event);
-      }}
-      onKeyDown={(event) => {
-        setTyping(!stepKeys.has(event.key));
-        onKeyDown?.(event);
-      }}
-      onBlur={(event) => {
-        setTyping(false);
-        onBlur?.(event);
-      }}
-      onCompositionStart={(event) => {
-        setComposing(true);
-        onCompositionStart?.(event);
-      }}
-      onCompositionEnd={(event) => {
-        setComposing(false);
-        onCompositionEnd?.(event);
-      }}
-      onScroll={(event) => {
-        // Each layer is its own clipped scroller; mirroring keeps it on the caret.
-        for (const layer of [textRef.current, morphRef.current]) {
-          if (layer) {
-            layer.scrollLeft = event.currentTarget.scrollLeft;
-          }
-        }
-
-        onScroll?.(event);
-      }}
-      render={(inputProps, state) => (
-        <NumberFieldInputLayers
-          inputProps={inputProps}
-          value={state.inputValue}
-          typing={typing}
-          composing={composing}
-          animated={animated}
-          className={className}
-          textRef={textRef}
-          morphRef={morphRef}
-        />
-      )}
-      {...props}
-    />
-  );
-};
-
 /**
  * An <input> places its text about a pixel off from the same text in any other
  * element, so the visible text is always drawn by these layers and the input
@@ -421,6 +335,92 @@ const NumberFieldInputLayers = ({
         )}
       />
     </span>
+  );
+};
+
+const NumberFieldInput = ({
+  className,
+  onBlur,
+  onChange,
+  onCompositionEnd,
+  onCompositionStart,
+  onKeyDown,
+  onPointerDown,
+  onScroll,
+  ...props
+}: NumberFieldInputProps) => {
+  const { typing, setTyping, animated, grouping } = useNumberFieldContext("NumberFieldInput");
+  const [composing, setComposing] = React.useState(false);
+  const textRef = React.useRef<HTMLSpanElement>(null);
+  const morphRef = React.useRef<HTMLSpanElement>(null);
+
+  return (
+    <NumberFieldPrimitive.Input
+      data-slot="number-field-input"
+      onChange={(event) => {
+        // Runs before Base UI's own handler, which then reads the regrouped text.
+        const input = event.currentTarget;
+        const composing = (event.nativeEvent as InputEvent).isComposing;
+
+        const next =
+          grouping && !composing && input.selectionStart !== null
+            ? regroup(input.value, input.selectionStart, grouping)
+            : null;
+
+        if (next) {
+          input.value = next.text;
+          input.setSelectionRange(next.caret, next.caret);
+        }
+
+        // Also covers partial text, like a lone "-", that Base UI can't parse yet.
+        setTyping(true);
+        onChange?.(event);
+      }}
+      onPointerDown={(event) => {
+        // Placing the caret or selecting needs the real glyphs under the pointer.
+        setTyping(true);
+        onPointerDown?.(event);
+      }}
+      onKeyDown={(event) => {
+        setTyping(!stepKeys.has(event.key));
+        onKeyDown?.(event);
+      }}
+      onBlur={(event) => {
+        setTyping(false);
+        onBlur?.(event);
+      }}
+      onCompositionStart={(event) => {
+        setComposing(true);
+        onCompositionStart?.(event);
+      }}
+      onCompositionEnd={(event) => {
+        setComposing(false);
+        onCompositionEnd?.(event);
+      }}
+      onScroll={(event) => {
+        // Each layer is its own clipped scroller; mirroring keeps it on the caret.
+        for (const layer of [textRef.current, morphRef.current]) {
+          if (layer) {
+            layer.scrollLeft = event.currentTarget.scrollLeft;
+          }
+        }
+
+        onScroll?.(event);
+      }}
+      render={(inputProps, state) => (
+        <NumberFieldInputLayers
+          inputProps={inputProps}
+          value={state.inputValue}
+          typing={typing}
+          composing={composing}
+          animated={animated}
+          className={className}
+          textRef={textRef}
+          morphRef={morphRef}
+        />
+      )}
+      {...props}
+    />
   );
 };
 

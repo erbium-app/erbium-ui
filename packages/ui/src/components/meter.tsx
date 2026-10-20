@@ -1,24 +1,6 @@
 import { Meter as MeterPrimitive } from "@base-ui/react/meter";
 import { cn } from "../lib/utils";
 
-/**
- * A scalar value within a known range, such as disk usage or a score. For work
- * that is moving toward completion use `Progress` instead.
- */
-const Meter = ({ className, children, ...props }: MeterPrimitive.Root.Props) => (
-  <MeterPrimitive.Root
-    data-slot="meter"
-    className={cn("flex w-full flex-wrap gap-3", className)}
-    {...props}
-  >
-    {children ?? (
-      <MeterTrack>
-        <MeterIndicator />
-      </MeterTrack>
-    )}
-  </MeterPrimitive.Root>
-);
-
 const MeterTrack = ({ className, ...props }: MeterPrimitive.Track.Props) => (
   <MeterPrimitive.Track
     data-slot="meter-track"
@@ -36,6 +18,24 @@ const MeterIndicator = ({ className, ...props }: MeterPrimitive.Indicator.Props)
     className={cn("h-full bg-primary transition-all motion-reduce:transition-none", className)}
     {...props}
   />
+);
+
+/**
+ * A scalar value within a known range, such as disk usage or a score. For work
+ * that is moving toward completion use `Progress` instead.
+ */
+const Meter = ({ className, children, ...props }: MeterPrimitive.Root.Props) => (
+  <MeterPrimitive.Root
+    data-slot="meter"
+    className={cn("flex w-full flex-wrap gap-3", className)}
+    {...props}
+  >
+    {children ?? (
+      <MeterTrack>
+        <MeterIndicator />
+      </MeterTrack>
+    )}
+  </MeterPrimitive.Root>
 );
 
 const MeterLabel = ({ className, ...props }: MeterPrimitive.Label.Props) => (

@@ -3,6 +3,33 @@ import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { RotatingChevron } from "./stateful-icon";
 
+const NavigationMenuPositioner = ({
+  className,
+  side = "bottom",
+  sideOffset = 8,
+  align = "start",
+  alignOffset = 0,
+  ...props
+}: NavigationMenuPrimitive.Positioner.Props) => (
+  <NavigationMenuPrimitive.Portal>
+    <NavigationMenuPrimitive.Positioner
+      side={side}
+      sideOffset={sideOffset}
+      align={align}
+      alignOffset={alignOffset}
+      className={cn(
+        "isolate z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] data-instant:transition-none data-[side=bottom]:before:-top-2.5 data-[side=bottom]:before:inset-e-0 data-[side=bottom]:before:inset-s-0",
+        className,
+      )}
+      {...props}
+    >
+      <NavigationMenuPrimitive.Popup className="relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-lg surface-overlay text-popover-foreground transition-[opacity,transform,width,height,scale,translate] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] outline-none data-ending-style:scale-90 data-ending-style:opacity-0 data-ending-style:duration-150 data-starting-style:scale-90 data-starting-style:opacity-0">
+        <NavigationMenuPrimitive.Viewport className="relative size-full overflow-hidden" />
+      </NavigationMenuPrimitive.Popup>
+    </NavigationMenuPrimitive.Positioner>
+  </NavigationMenuPrimitive.Portal>
+);
+
 const NavigationMenu = ({
   align = "start",
   className,
@@ -72,33 +99,6 @@ const NavigationMenuContent = ({ className, ...props }: NavigationMenuPrimitive.
     )}
     {...props}
   />
-);
-
-const NavigationMenuPositioner = ({
-  className,
-  side = "bottom",
-  sideOffset = 8,
-  align = "start",
-  alignOffset = 0,
-  ...props
-}: NavigationMenuPrimitive.Positioner.Props) => (
-  <NavigationMenuPrimitive.Portal>
-    <NavigationMenuPrimitive.Positioner
-      side={side}
-      sideOffset={sideOffset}
-      align={align}
-      alignOffset={alignOffset}
-      className={cn(
-        "isolate z-50 h-(--positioner-height) w-(--positioner-width) max-w-(--available-width) transition-[top,left,right,bottom] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] data-instant:transition-none data-[side=bottom]:before:-top-2.5 data-[side=bottom]:before:inset-e-0 data-[side=bottom]:before:inset-s-0",
-        className,
-      )}
-      {...props}
-    >
-      <NavigationMenuPrimitive.Popup className="relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-lg surface-overlay text-popover-foreground transition-[opacity,transform,width,height,scale,translate] duration-[0.35s] ease-[cubic-bezier(0.22,1,0.36,1)] outline-none data-ending-style:scale-90 data-ending-style:opacity-0 data-ending-style:duration-150 data-starting-style:scale-90 data-starting-style:opacity-0">
-        <NavigationMenuPrimitive.Viewport className="relative size-full overflow-hidden" />
-      </NavigationMenuPrimitive.Popup>
-    </NavigationMenuPrimitive.Positioner>
-  </NavigationMenuPrimitive.Portal>
 );
 
 const NavigationMenuLink = ({ className, ...props }: NavigationMenuPrimitive.Link.Props) => (

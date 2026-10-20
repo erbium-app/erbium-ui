@@ -1183,6 +1183,27 @@ const springIsTime = (
   value: SpringValue,
 ): value is Extract<SpringValue, { visualDuration: number }> => "visualDuration" in value;
 
+const CurveFrame = ({ path }: { path: string }) => (
+  <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-foreground">
+      <path
+        d="M0 20 H100 M0 80 H100"
+        stroke="currentColor"
+        strokeOpacity="0.12"
+        strokeWidth="0.5"
+        strokeDasharray="2 2"
+      />
+      <path
+        d={path}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  </div>
+);
+
 const SpringCurve = ({ value }: { value: SpringValue }) => {
   const time = springIsTime(value);
   const stiffness = time ? 200 : value.stiffness;
@@ -1214,25 +1235,39 @@ const SpringCurve = ({ value }: { value: SpringValue }) => {
   return <CurveFrame path={points.join(" ")} />;
 };
 
-const CurveFrame = ({ path }: { path: string }) => (
-  <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-foreground">
-      <path
-        d="M0 20 H100 M0 80 H100"
-        stroke="currentColor"
-        strokeOpacity="0.12"
-        strokeWidth="0.5"
-        strokeDasharray="2 2"
-      />
-      <path
-        d={path}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-  </div>
+interface SectionProps {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+}
+
+const Section = ({
+  title,
+  children,
+  defaultOpen = true,
+  open,
+  onOpenChange,
+  className,
+}: SectionProps) => (
+  <Collapsible
+    data-slot="control-section"
+    defaultOpen={defaultOpen}
+    open={open}
+    onOpenChange={onOpenChange}
+    className={cn("w-full min-w-0", className)}
+  >
+    <Separator className="mb-2" />
+    <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control font-medium text-muted-foreground outline-none hover:text-foreground">
+      {title}
+      <RotatingChevron scope="collapsible" className="size-4" />
+    </CollapsibleTrigger>
+    <CollapsibleContent className="data-open:overflow-visible">
+      <Group className="py-2">{children}</Group>
+    </CollapsibleContent>
+  </Collapsible>
 );
 
 const Spring = ({
@@ -1515,41 +1550,6 @@ const Action = ({ label, disabled, className, ...props }: ActionProps) => (
   >
     {label}
   </ButtonPrimitive>
-);
-
-interface SectionProps {
-  title: string;
-  children: React.ReactNode;
-  defaultOpen?: boolean;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
-  className?: string;
-}
-
-const Section = ({
-  title,
-  children,
-  defaultOpen = true,
-  open,
-  onOpenChange,
-  className,
-}: SectionProps) => (
-  <Collapsible
-    data-slot="control-section"
-    defaultOpen={defaultOpen}
-    open={open}
-    onOpenChange={onOpenChange}
-    className={cn("w-full min-w-0", className)}
-  >
-    <Separator className="mb-2" />
-    <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control font-medium text-muted-foreground outline-none hover:text-foreground">
-      {title}
-      <RotatingChevron scope="collapsible" className="size-4" />
-    </CollapsibleTrigger>
-    <CollapsibleContent className="data-open:overflow-visible">
-      <Group className="py-2">{children}</Group>
-    </CollapsibleContent>
-  </Collapsible>
 );
 
 const Control = {

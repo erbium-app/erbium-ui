@@ -39,64 +39,6 @@ const TreeContext = createContext<Pick<
   "model" | "preloadedData" | "renderContextMenu"
 > | null>(null);
 
-const FileTree = ({
-  model,
-  preloadedData,
-  renderContextMenu,
-  children,
-  className,
-  ...props
-}: FileTreeProps) => (
-  // File names and paths are code; the tree stays LTR even on RTL pages.
-  <DirectionProvider direction="ltr">
-    <TreeContext value={{ model, preloadedData, renderContextMenu }}>
-      <div
-        role="region"
-        aria-label="Files"
-        {...props}
-        dir="ltr"
-        data-slot="file-tree"
-        className={cn(
-          "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
-          className,
-        )}
-      >
-        {children ?? <FileTreeContent />}
-      </div>
-    </TreeContext>
-  </DirectionProvider>
-);
-
-const FileTreeHeader = ({ className, ...props }: ComponentProps<"div">) => (
-  <div
-    {...props}
-    data-slot="file-tree-header"
-    className={cn(
-      "flex min-h-control items-center justify-between gap-related px-2 py-1",
-      className,
-    )}
-  />
-);
-
-const FileTreeTitle = ({ className, ...props }: ComponentProps<"span">) => (
-  <span
-    {...props}
-    data-slot="file-tree-title"
-    className={cn(
-      "min-w-0 truncate text-control-sm font-medium text-sidebar-foreground/70",
-      className,
-    )}
-  />
-);
-
-const FileTreeActions = ({ className, ...props }: ComponentProps<"div">) => (
-  <div
-    {...props}
-    data-slot="file-tree-actions"
-    className={cn("flex shrink-0 items-center gap-related", className)}
-  />
-);
-
 const FileTreeContent = ({
   className,
   ...props
@@ -154,6 +96,64 @@ const FileTreeContent = ({
     </div>
   );
 };
+
+const FileTree = ({
+  model,
+  preloadedData,
+  renderContextMenu,
+  children,
+  className,
+  ...props
+}: FileTreeProps) => (
+  // File names and paths are code; the tree stays LTR even on RTL pages.
+  <DirectionProvider direction="ltr">
+    <TreeContext value={{ model, preloadedData, renderContextMenu }}>
+      <div
+        role="region"
+        aria-label="Files"
+        {...props}
+        dir="ltr"
+        data-slot="file-tree"
+        className={cn(
+          "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
+          className,
+        )}
+      >
+        {children ?? <FileTreeContent />}
+      </div>
+    </TreeContext>
+  </DirectionProvider>
+);
+
+const FileTreeHeader = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    {...props}
+    data-slot="file-tree-header"
+    className={cn(
+      "flex min-h-control items-center justify-between gap-related px-2 py-1",
+      className,
+    )}
+  />
+);
+
+const FileTreeTitle = ({ className, ...props }: ComponentProps<"span">) => (
+  <span
+    {...props}
+    data-slot="file-tree-title"
+    className={cn(
+      "min-w-0 truncate text-control-sm font-medium text-sidebar-foreground/70",
+      className,
+    )}
+  />
+);
+
+const FileTreeActions = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    {...props}
+    data-slot="file-tree-actions"
+    className={cn("flex shrink-0 items-center gap-related", className)}
+  />
+);
 
 export { FileTree, useFileTree, FileTreeHeader, FileTreeTitle, FileTreeActions, FileTreeContent };
 

@@ -16,6 +16,63 @@ type OTPFieldStatus = "idle" | "loading" | "success" | "error";
 
 const OTPFieldStatusContext = React.createContext<OTPFieldStatus>("idle");
 
+const OTPFieldGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
+  <div
+    data-slot="otp-field-group"
+    className={cn("flex items-center gap-related", className)}
+    {...props}
+  />
+);
+
+const OTPFieldInput = ({ className, render, ...props }: OTPFieldPrimitive.Input.Props) => {
+  const status = React.useContext(OTPFieldStatusContext);
+
+  return (
+    <OTPFieldPrimitive.Input
+      data-slot="otp-field-input"
+      data-status={status === "idle" ? undefined : status}
+      spellCheck={false}
+      render={
+        render ??
+        ((inputProps, state) => (
+          <span className="relative inline-flex">
+            <input {...inputProps} />
+            {status === "loading" && (
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 flex items-center justify-center text-field text-muted-foreground"
+              >
+                <span className="shimmer motion-reduce:animate-none [--shimmer-color:color-mix(in_oklab,currentColor_35%,transparent)] [--shimmer-spread:1.5ch]">
+                  {state.value}
+                </span>
+              </span>
+            )}
+          </span>
+        ))
+      }
+      className={cn(
+        "relative size-control control-adaptive min-w-0 rounded-lg border surface-field text-center text-field outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
+        className,
+      )}
+      {...props}
+    />
+  );
+};
+
+const OTPFieldSeparator = ({ className, ...props }: OTPFieldPrimitive.Separator.Props) => (
+  <OTPFieldPrimitive.Separator
+    render={
+      <Separator
+        data-slot="otp-field-separator"
+        orientation="horizontal"
+        variant="full"
+        className={cn("rounded-full data-horizontal:w-3 data-horizontal:self-auto", className)}
+      />
+    }
+    {...props}
+  />
+);
+
 const OTPFieldSlots = ({ groups, length }: { groups?: number[]; length: number }) => {
   const sizes = groups ?? [length];
   let index = 0;
@@ -111,63 +168,6 @@ const OTPField = ({
     </OTPFieldStatusContext>
   );
 };
-
-const OTPFieldGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
-  <div
-    data-slot="otp-field-group"
-    className={cn("flex items-center gap-related", className)}
-    {...props}
-  />
-);
-
-const OTPFieldInput = ({ className, render, ...props }: OTPFieldPrimitive.Input.Props) => {
-  const status = React.useContext(OTPFieldStatusContext);
-
-  return (
-    <OTPFieldPrimitive.Input
-      data-slot="otp-field-input"
-      data-status={status === "idle" ? undefined : status}
-      spellCheck={false}
-      render={
-        render ??
-        ((inputProps, state) => (
-          <span className="relative inline-flex">
-            <input {...inputProps} />
-            {status === "loading" && (
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 flex items-center justify-center text-field text-muted-foreground"
-              >
-                <span className="shimmer motion-reduce:animate-none [--shimmer-color:color-mix(in_oklab,currentColor_35%,transparent)] [--shimmer-spread:1.5ch]">
-                  {state.value}
-                </span>
-              </span>
-            )}
-          </span>
-        ))
-      }
-      className={cn(
-        "relative size-control control-adaptive min-w-0 rounded-lg border surface-field text-center text-field outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
-        className,
-      )}
-      {...props}
-    />
-  );
-};
-
-const OTPFieldSeparator = ({ className, ...props }: OTPFieldPrimitive.Separator.Props) => (
-  <OTPFieldPrimitive.Separator
-    render={
-      <Separator
-        data-slot="otp-field-separator"
-        orientation="horizontal"
-        variant="full"
-        className={cn("rounded-full data-horizontal:w-3 data-horizontal:self-auto", className)}
-      />
-    }
-    {...props}
-  />
-);
 
 export type { OTPFieldProps, OTPFieldValidation };
 

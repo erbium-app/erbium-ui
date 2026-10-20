@@ -57,51 +57,6 @@ const positions = [
   label: string;
 }[];
 
-export const MessageScrollerOpeningPosition = () => {
-  const [positionKey, setPositionKey] = React.useState(0);
-  const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
-
-  return (
-    <div className="relative flex flex-col gap-group">
-      <Card className="mx-auto h-140 w-full max-w-sm">
-        <CardHeader className="gap-1">
-          <CardTitle>Opening Position</CardTitle>
-          <CardDescription>Choose where a saved transcript opens.</CardDescription>
-        </CardHeader>
-        <Separator variant="full" />
-        <div className="min-h-0 flex-1 overflow-hidden">
-          <MessageScrollerProvider>
-            <OpeningPositionScroller position={position} positionKey={positionKey} />
-          </MessageScrollerProvider>
-        </div>
-        <CardFooter className="flex items-center justify-center">
-          <Tabs
-            value={position}
-            onValueChange={(value) => {
-              if (value === "start" || value === "end" || value === "last-anchor") {
-                setPosition(value);
-                setPositionKey((key) => key + 1);
-              }
-            }}
-            className="w-full"
-          >
-            <TabsList className="w-full">
-              {positions.map((option) => (
-                <TabsTrigger key={option.value} value={option.value}>
-                  {option.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
-        </CardFooter>
-      </Card>
-      <div className="mx-auto max-w-sm px-0.5 text-center text-metadata text-muted-foreground">
-        Toggle the defaultScrollPosition to see where the transcript starts when you open the thread
-      </div>
-    </div>
-  );
-};
-
 const OpeningPositionScroller = ({
   position,
   positionKey,
@@ -174,5 +129,50 @@ const OpeningPositionScroller = ({
       </MessageScrollerViewport>
       <MessageScrollerButton />
     </MessageScroller>
+  );
+};
+
+export const MessageScrollerOpeningPosition = () => {
+  const [positionKey, setPositionKey] = React.useState(0);
+  const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
+
+  return (
+    <div className="relative flex flex-col gap-group">
+      <Card className="mx-auto h-140 w-full max-w-sm">
+        <CardHeader className="gap-1">
+          <CardTitle>Opening Position</CardTitle>
+          <CardDescription>Choose where a saved transcript opens.</CardDescription>
+        </CardHeader>
+        <Separator variant="full" />
+        <div className="min-h-0 flex-1 overflow-hidden">
+          <MessageScrollerProvider>
+            <OpeningPositionScroller position={position} positionKey={positionKey} />
+          </MessageScrollerProvider>
+        </div>
+        <CardFooter className="flex items-center justify-center">
+          <Tabs
+            value={position}
+            onValueChange={(value) => {
+              if (value === "start" || value === "end" || value === "last-anchor") {
+                setPosition(value);
+                setPositionKey((key) => key + 1);
+              }
+            }}
+            className="w-full"
+          >
+            <TabsList className="w-full">
+              {positions.map((option) => (
+                <TabsTrigger key={option.value} value={option.value}>
+                  {option.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </CardFooter>
+      </Card>
+      <div className="mx-auto max-w-sm px-0.5 text-center text-metadata text-muted-foreground">
+        Toggle the defaultScrollPosition to see where the transcript starts when you open the thread
+      </div>
+    </div>
   );
 };
