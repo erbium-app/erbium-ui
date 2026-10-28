@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/badge", "@erbium/spinner", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport const BadgeWithSpinner = () => (\n  <div className=\"flex flex-wrap gap-related\">\n    <Badge variant=\"error\">\n      <Spinner data-icon=\"inline-start\" />\n      Deleting\n    </Badge>\n    <Badge variant=\"secondary\">\n      Generating\n      <Spinner data-icon=\"inline-end\" />\n    </Badge>\n  </div>\n);\n",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport const BadgeWithSpinner = () => (\n  <div className=\"flex flex-wrap gap-related\">\n    <Badge variant=\"error\">\n      <Spinner data-icon=\"inline-start\" size=\"xs\" />\n      Deleting\n    </Badge>\n    <Badge variant=\"secondary\">\n      Generating\n      <Spinner data-icon=\"inline-end\" size=\"xs\" />\n    </Badge>\n  </div>\n);\n",
       "path": "src/badge/examples/badge-spinner.tsx",
       "target": "@components/showcase/badge/examples/badge-spinner.tsx",
       "type": "registry:component"

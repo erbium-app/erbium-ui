@@ -11,7 +11,7 @@ export const DocPagePending = () => (
   >
     <div className="docs-page-body">
       <div className="docs-page-inner grid min-h-64 place-items-center">
-        <Spinner className="size-6 text-muted-foreground" />
+        <Spinner className="text-muted-foreground" size="xl" />
       </div>
     </div>
   </main>

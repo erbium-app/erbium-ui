@@ -2,10 +2,11 @@ import { Spinner } from "@erbium/ui/components/spinner";
 
 const SpinnerSize = () => (
   <div className="flex items-center gap-section">
-    <Spinner className="size-3" />
-    <Spinner className="size-4" />
-    <Spinner className="size-6" />
-    <Spinner className="size-8" />
+    <Spinner size="xs" />
+    <Spinner size="sm" />
+    <Spinner size="default" />
+    <Spinner size="lg" />
+    <Spinner size="xl" />
   </div>
 );
 

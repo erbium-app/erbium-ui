@@ -19144,7 +19144,7 @@
       "name": "spinner-size",
       "type": "registry:block",
       "title": "Spinner: Size",
-      "description": "Use the `size-*` utility class to change the size of the spinner.",
+      "description": "Use the `size` prop to change the size of the spinner.",
       "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
       "files": [
         {

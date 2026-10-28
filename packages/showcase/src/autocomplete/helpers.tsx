@@ -64,7 +64,7 @@ export const FruitAutocomplete = ({
     <AutocompletePopup>
       <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
       <AutocompleteList>
-        {(item) => (
+        {(item: (typeof items)[number]) => (
           <AutocompleteItem key={item.value} value={item}>
             {item.label}
           </AutocompleteItem>
@@ -86,7 +86,7 @@ export const LabeledAutocomplete = () => {
       <AutocompletePopup>
         <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
         <AutocompleteList>
-          {(item) => (
+          {(item: (typeof items)[number]) => (
             <AutocompleteItem key={item.value} value={item}>
               {item.label}
             </AutocompleteItem>
@@ -119,11 +119,11 @@ export const GroupedAutocomplete = () => (
     <AutocompletePopup>
       <AutocompleteEmpty>No tags found.</AutocompleteEmpty>
       <AutocompleteList>
-        {(group) => (
+        {(group: (typeof tagGroups)[number]) => (
           <AutocompleteGroup key={group.group} items={group.items}>
             <AutocompleteGroupLabel>{group.group}</AutocompleteGroupLabel>
             <AutocompleteCollection>
-              {(tag) => (
+              {(tag: (typeof tags)[number]) => (
                 <AutocompleteItem key={tag.label} value={tag}>
                   {tag.label}
                 </AutocompleteItem>
@@ -161,7 +161,7 @@ export const LimitedAutocomplete = () => {
       <AutocompletePopup>
         <AutocompleteEmpty>No languages found.</AutocompleteEmpty>
         <AutocompleteList>
-          {(language) => (
+          {(language: string) => (
             <AutocompleteItem key={language} value={language}>
               {language}
             </AutocompleteItem>
@@ -187,25 +187,29 @@ export const movies = [
 ];
 
 export const AsyncAutocomplete = () => {
-  const [request, setRequest] = useState({ query: "" });
+  const [request, setRequest] = useState<{ query: string }>({ query: "" });
   const { query } = request;
-  const [response, setResponse] = useState({ request, results: [] as typeof movies });
+
+  const [response, setResponse] = useState<{ request: { query: string }; results: typeof movies }>({
+    request,
+    results: [],
+  });
+
   const results = query ? response.results : [];
   const loading = Boolean(query && response.request !== request);
   const { contains } = useAutocompleteFilter({ sensitivity: "base" });
   useEffect(() => {
-    if (!query) {
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      setResponse({
-        request,
-        results: movies.filter(
-          (movie) => contains(movie.title, query) || contains(String(movie.year), query),
-        ),
-      });
-    }, 450);
+    const timer =
+      query === ""
+        ? undefined
+        : setTimeout(() => {
+            setResponse({
+              request,
+              results: movies.filter(
+                (movie) => contains(movie.title, query) || contains(String(movie.year), query),
+              ),
+            });
+          }, 450);
 
     return () => {
       clearTimeout(timer);
@@ -218,11 +222,11 @@ export const AsyncAutocomplete = () => {
       autoHighlight
       filter={null}
       value={query}
-      onValueChange={(query) => {
-        const next = { query };
+      onValueChange={(nextQuery) => {
+        const next = { query: nextQuery };
         setRequest(next);
 
-        if (!query) {
+        if (!nextQuery) {
           setResponse({ request: next, results: [] });
         }
       }}
@@ -235,14 +239,14 @@ export const AsyncAutocomplete = () => {
             {loading ? (
               <span className="flex items-center gap-related">
                 Searching…
-                <Spinner className="size-4" />
+                <Spinner />
               </span>
             ) : (
               `${results.length} results found`
             )}
           </AutocompleteStatus>
           <AutocompleteList>
-            {(movie) => (
+            {(movie: (typeof movies)[number]) => (
               <AutocompleteItem key={movie.id} value={movie}>
                 <span className="flex flex-col">
                   <span className="font-medium">{movie.title}</span>
@@ -276,7 +280,7 @@ export const FormAutocomplete = () => {
         <AutocompletePopup>
           <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
           <AutocompleteList>
-            {(item) => (
+            {(item: (typeof items)[number]) => (
               <AutocompleteItem key={item.value} value={item}>
                 {item.label}
               </AutocompleteItem>

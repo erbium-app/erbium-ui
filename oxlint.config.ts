@@ -34,6 +34,16 @@ export default defineConfig({
   ],
   overrides: [
     {
+      // Showcase catalogs import each variant twice: once as the rendered
+      // component and once as its source text via Vite's `?raw` suffix. Those
+      // are distinct modules for the bundler, but oxlint's import/no-duplicates
+      // strips the query string and flags them as duplicates — and its "merge
+      // these imports" advice is impossible here because both imports are
+      // default imports (one default export per module).
+      files: ["packages/showcase/src/**/catalog.tsx"],
+      rules: { "import/no-duplicates": "off" },
+    },
+    {
       files: [
         "packages/ui/src/lib/{button-variants,form-control-styles,sidebar-styles}.ts",
         "packages/ui/src/components/{select,toggle,tabs,number-field,input-group,menubar,toolbar,otp-field}.tsx",

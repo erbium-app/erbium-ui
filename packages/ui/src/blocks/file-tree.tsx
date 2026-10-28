@@ -1,7 +1,7 @@
 import { FileTree as PierreTree, useFileTree as usePierreTree } from "@pierre/trees/react";
 import type { FileTreeProps as PierreTreeProps } from "@pierre/trees/react";
 import type { FileTreeOptions as PierreTreeOptions } from "@pierre/trees";
-import { createContext, use, useEffect, useRef, useState } from "react";
+import { createContext, use, useEffect, useMemo, useRef, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { DirectionProvider } from "../components/direction";
 import { Spinner } from "../components/spinner";
@@ -54,10 +54,6 @@ const FileTreeContent = ({
   // Pierre mounts the tree into a shadow root after the host attaches; until
   // its first row list exists the host is an empty box, so show progress.
   useEffect(() => {
-    if (rendered) {
-      return;
-    }
-
     let handle = 0;
 
     const poll = () => {
@@ -70,7 +66,9 @@ const FileTreeContent = ({
       }
     };
 
-    poll();
+    if (!rendered) {
+      poll();
+    }
 
     return () => {
       cancelAnimationFrame(handle);
@@ -90,7 +88,7 @@ const FileTreeContent = ({
           data-slot="file-tree-loading"
           className="absolute inset-0 flex items-center justify-center text-muted-foreground"
         >
-          <Spinner className="size-5" />
+          <Spinner size="lg" />
         </div>
       )}
     </div>
@@ -104,26 +102,32 @@ const FileTree = ({
   children,
   className,
   ...props
-}: FileTreeProps) => (
-  // File names and paths are code; the tree stays LTR even on RTL pages.
-  <DirectionProvider direction="ltr">
-    <TreeContext value={{ model, preloadedData, renderContextMenu }}>
-      <div
-        role="region"
-        aria-label="Files"
-        {...props}
-        dir="ltr"
-        data-slot="file-tree"
-        className={cn(
-          "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
-          className,
-        )}
-      >
-        {children ?? <FileTreeContent />}
-      </div>
-    </TreeContext>
-  </DirectionProvider>
-);
+}: FileTreeProps) => {
+  const context = useMemo(
+    () => ({ model, preloadedData, renderContextMenu }),
+    [model, preloadedData, renderContextMenu],
+  );
+
+  return (
+    // File names and paths are code; the tree stays LTR even on RTL pages.
+    <DirectionProvider direction="ltr">
+      <TreeContext value={context}>
+        <section
+          aria-label="Files"
+          {...props}
+          dir="ltr"
+          data-slot="file-tree"
+          className={cn(
+            "min-w-0 w-full overflow-hidden text-sidebar-foreground group-data-[collapsible=icon]:hidden",
+            className,
+          )}
+        >
+          {children ?? <FileTreeContent />}
+        </section>
+      </TreeContext>
+    </DirectionProvider>
+  );
+};
 
 const FileTreeHeader = ({ className, ...props }: ComponentProps<"div">) => (
   <div

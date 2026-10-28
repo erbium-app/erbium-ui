@@ -4,12 +4,12 @@ import { Spinner } from "@erbium/ui/components/spinner";
 export const BadgeWithSpinner = () => (
   <div className="flex flex-wrap gap-related">
     <Badge variant="error">
-      <Spinner data-icon="inline-start" />
+      <Spinner data-icon="inline-start" size="xs" />
       Deleting
     </Badge>
     <Badge variant="secondary">
       Generating
-      <Spinner data-icon="inline-end" />
+      <Spinner data-icon="inline-end" size="xs" />
     </Badge>
   </div>
 );

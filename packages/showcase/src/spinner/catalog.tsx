@@ -51,7 +51,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Spinner> = {
   argTypes: {},
-  args: { className: "size-6" },
+  args: { size: "lg" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("spinner", "playground") },

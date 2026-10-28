@@ -3,11 +3,11 @@
   "name": "spinner-size",
   "type": "registry:block",
   "title": "Spinner: Size",
-  "description": "Use the `size-*` utility class to change the size of the spinner.",
+  "description": "Use the `size` prop to change the size of the spinner.",
   "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerSize = () => (\n  <div className=\"flex items-center gap-section\">\n    <Spinner className=\"size-3\" />\n    <Spinner className=\"size-4\" />\n    <Spinner className=\"size-6\" />\n    <Spinner className=\"size-8\" />\n  </div>\n);\n\nexport default SpinnerSize;\n",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerSize = () => (\n  <div className=\"flex items-center gap-section\">\n    <Spinner size=\"xs\" />\n    <Spinner size=\"sm\" />\n    <Spinner size=\"default\" />\n    <Spinner size=\"lg\" />\n    <Spinner size=\"xl\" />\n  </div>\n);\n\nexport default SpinnerSize;\n",
       "path": "src/spinner/examples/spinner-size.tsx",
       "target": "@components/showcase/spinner/examples/spinner-size.tsx",
       "type": "registry:component"

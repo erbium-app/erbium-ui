@@ -51,12 +51,16 @@ const CodePanelActions = ({ className, ...props }: ComponentProps<"div">) => (
 );
 
 const CodePanelCopyButton = ({ children, ...props }: CopyButtonProps) => (
-  <CopyButton variant="ghost" size={children == null ? "icon-xs" : "xs"} {...props}>
+  <CopyButton
+    variant="ghost"
+    size={children === undefined || children === null ? "icon-xs" : "xs"}
+    {...props}
+  >
     {children}
   </CopyButton>
 );
 
-type CodePanelContentProps = Omit<ComponentProps<"div">, "dir" | "dangerouslySetInnerHTML"> & {
+type CodePanelContentProps = Omit<ComponentProps<"section">, "dir" | "dangerouslySetInnerHTML"> & {
   /** Shown above the rendered code until the renderer has produced output. */
   loading?: boolean;
   /** Replaces the body when there is nothing to render. */
@@ -70,13 +74,11 @@ const CodePanelContent = ({
   className,
   ...props
 }: CodePanelContentProps) => {
-  const showEmpty = empty != null && empty !== false;
+  const showEmpty = empty !== undefined && empty !== null && empty !== false;
 
   return (
-    <div
-      role="region"
-      tabIndex={0}
-      aria-busy={loading || undefined}
+    <section
+      aria-busy={loading === true ? true : undefined}
       data-slot="code-panel-content"
       {...props}
       dir="ltr"
@@ -90,15 +92,15 @@ const CodePanelContent = ({
         empty
       ) : (
         <>
-          {loading ? (
+          {loading === true ? (
             <div className="flex min-h-32 items-center justify-center text-muted-foreground">
-              <Spinner className="size-5" />
+              <Spinner size="lg" />
             </div>
           ) : null}
           {children}
         </>
       )}
-    </div>
+    </section>
   );
 };
 
@@ -106,7 +108,9 @@ const CodePanelEmpty = ({ title, description }: { title: ReactNode; description?
   <Empty className="rounded-none border-0 p-panel sm:p-panel">
     <EmptyHeader>
       <EmptyTitle>{title}</EmptyTitle>
-      {description ? <EmptyDescription>{description}</EmptyDescription> : null}
+      {description !== undefined && description !== null ? (
+        <EmptyDescription>{description}</EmptyDescription>
+      ) : null}
     </EmptyHeader>
   </Empty>
 );

@@ -3,4 +3,4 @@ title: "Size"
 story: Size
 ---
 
-Use the `size-*` utility class to change the size of the spinner.
+Use the `size` prop to change the size of the spinner.

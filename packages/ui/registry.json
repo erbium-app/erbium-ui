@@ -1334,6 +1334,7 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "Erbium spinner component.",
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
