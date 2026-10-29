@@ -57,6 +57,9 @@
     cursor: pointer;
   }
 
+  /* macOS thickens glyph edges by default, which reads as bloom for light text
+     on dark surfaces. Light surfaces that want the browser default back can opt
+     in with the `subpixel-antialiased` utility. */
   html {
     @apply font-sans antialiased;
   }

@@ -43,6 +43,13 @@ body {
   overflow-wrap: anywhere;
 }
 
+/* The shell opts into grayscale antialiasing so light-on-dark text keeps its
+   weight on macOS. Light showcases are dark-on-light, where the browser default
+   is the one that matches the design, so opt them back in. */
+.showcase-content.light {
+  @apply subpixel-antialiased;
+}
+
 .site-shell {
   margin-inline: max(var(--site-gutter), calc((100% - var(--site-max-width))/2)) var(--site-gutter);
 }
