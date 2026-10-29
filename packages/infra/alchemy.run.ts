@@ -1,5 +1,5 @@
+import * as Cloudflare from "@alchemy.run/cloudflare";
 import * as Alchemy from "alchemy";
-import * as Cloudflare from "alchemy/Cloudflare";
 import * as Effect from "effect/Effect";
 import { Path } from "effect/Path";
 import { getSubdomain } from "@distilled.cloud/cloudflare/workers";
@@ -10,7 +10,7 @@ export default Alchemy.Stack(
     providers: Cloudflare.providers(),
     state: Cloudflare.state(),
   },
-  Effect.gen(function* () {
+  Effect.gen(function* erbiumStack() {
     const { stage } = yield* Alchemy.Stack;
     const path = yield* Path;
 
@@ -62,15 +62,9 @@ export default Alchemy.Stack(
     });
 
     const docs = yield* Cloudflare.Website.Vite("Docs", {
-      rootDir: path.resolve(import.meta.dirname, "../../apps/docs"),
-      domain: "ui.erbium.app",
       assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
+      domain: "ui.erbium.app",
       env: { VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },
-      observability: {
-        enabled: true,
-        logs: { enabled: true, headSamplingRate: 1, invocationLogs: true, persist: true },
-        traces: { enabled: true, headSamplingRate: 1, persist: true },
-      },
       // Docs also reads content and registry sources from disk, outside the module graph.
       memo: {
         workspaces: [
@@ -79,6 +73,12 @@ export default Alchemy.Stack(
           { cwd: "../../packages/content" },
         ],
       },
+      observability: {
+        enabled: true,
+        logs: { enabled: true, headSamplingRate: 1, invocationLogs: true, persist: true },
+        traces: { enabled: true, headSamplingRate: 1, persist: true },
+      },
+      rootDir: path.resolve(import.meta.dirname, "../../apps/docs"),
     });
 
     return { analyticsSiteId: analytics.siteTag, docsUrl: docs.url.as<string>() };

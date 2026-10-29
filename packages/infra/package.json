@@ -13,14 +13,14 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "@alchemy.run/cloudflare": "^2.0.0-beta.84"
-  },
-  "devDependencies": {
+    "@alchemy.run/cloudflare": "2.0.0-beta.84",
     "@distilled.cloud/cloudflare": "1.0.0-rc.17",
     "@effect/platform-bun": "4.0.7",
     "@effect/platform-node": "4.0.7",
     "alchemy": "2.0.0-beta.84",
-    "effect": "4.0.7",
+    "effect": "4.0.7"
+  },
+  "devDependencies": {
     "typescript": "catalog:"
   }
 }

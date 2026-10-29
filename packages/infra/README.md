@@ -9,8 +9,11 @@ depend on the directory where the CLI runs. Add future public surfaces to this
 stack and return their typed URLs alongside `docsUrl`. Extract resource modules
 when their configuration or bindings need to be shared with app code.
 
-Alchemy and its frontend integration are pinned to `2.0.0-beta.81`. Update them
-together. This uses the Effect-based Alchemy v2 API.
+Alchemy, the Cloudflare provider (`@alchemy.run/cloudflare`) and the frontend
+integration are pinned to `2.0.0-beta.84`. Since `2.0.0-beta.84` Cloudflare lives
+in its own package: import `Cloudflare` from `@alchemy.run/cloudflare` and the
+stack runtime from `alchemy`. Update all three together. This uses the
+Effect-based Alchemy v2 API.
 
 ## Deploy
 
@@ -110,6 +113,13 @@ Set `BUN_VERSION=1.4.2`, `NODE_VERSION=26.10.0`, and
 `SKIP_DEPENDENCY_INSTALL=1`. Configure `CLOUDFLARE_ACCOUNT_ID` and a secret
 `CLOUDFLARE_API_TOKEN` with the deployment permissions above. Do not provide a
 token-admin credential to the build runner.
+
+Everything `alchemy.run.ts` imports at deploy time (`alchemy`,
+`@alchemy.run/cloudflare`, `effect`, `@distilled.cloud/cloudflare` and the Effect
+platform peers) is a production dependency of `packages/infra`. Keep it that way:
+the deploy runner installs without dev dependencies, so a runtime import declared
+in `devDependencies` fails with `Cannot find package 'alchemy'` before the stack
+loads.
 
 The Git connection, build trigger and build variables are managed in the Cloudflare
 dashboard. Alchemy owns the production Worker, domain, analytics and shared remote
