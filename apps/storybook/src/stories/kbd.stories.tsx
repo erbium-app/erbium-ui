@@ -4,7 +4,11 @@ import meta, * as showcases from "@erbium/showcase/kbd";
 export default { ...meta, title: "Components/Kbd" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Button = { ...showcases.Button, name: "Button" };
+
 export const Tooltip = { ...showcases.Tooltip, name: "Tooltip" };
+
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };

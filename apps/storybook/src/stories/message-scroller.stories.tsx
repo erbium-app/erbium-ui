@@ -4,9 +4,13 @@ import meta, * as showcases from "@erbium/showcase/message-scroller";
 export default { ...meta, title: "Components/Message Scroller" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const GroupChat = { ...showcases.GroupChat, name: "Group Chat" };
+
 export const OpeningPosition = { ...showcases.OpeningPosition, name: "Opening Position" };
+
 export const AnchoredTurns = { ...showcases.AnchoredTurns, name: "Anchored Turns" };
 
 export const PreviousTurnContext = {
@@ -15,8 +19,13 @@ export const PreviousTurnContext = {
 };
 
 export const StreamingReply = { ...showcases.StreamingReply, name: "Streaming Reply" };
+
 export const LoadEarlierHistory = { ...showcases.LoadEarlierHistory, name: "Load Earlier History" };
+
 export const AnimatedReply = { ...showcases.AnimatedReply, name: "Animated Reply" };
+
 export const ScrollCommands = { ...showcases.ScrollCommands, name: "Scroll Commands" };
+
 export const Visibility = { ...showcases.Visibility, name: "Visibility" };
+
 export const Scrollable = { ...showcases.Scrollable, name: "Scrollable" };

@@ -84,8 +84,8 @@ export const TableActions = () => {
             {headerGroup.headers.map((header) => (
               <TableHead
                 className={cn(
-                  header.column.columnDef.meta?.alignment === "end" && "text-end",
-                  header.column.columnDef.meta?.narrow && "w-25",
+                  header.column.columnDef.meta?.alignment === "end" && "text-end tabular-nums",
+                  header.column.columnDef.meta?.narrow === true && "w-25",
                 )}
                 key={header.id}
               >
@@ -101,8 +101,8 @@ export const TableActions = () => {
             {row.getAllCells().map((cell) => (
               <TableCell
                 className={cn(
-                  cell.column.columnDef.meta?.alignment === "end" && "text-end",
-                  cell.column.columnDef.meta?.narrow && "w-25",
+                  cell.column.columnDef.meta?.alignment === "end" && "text-end tabular-nums",
+                  cell.column.columnDef.meta?.narrow === true && "w-25",
                 )}
                 key={cell.id}
               >

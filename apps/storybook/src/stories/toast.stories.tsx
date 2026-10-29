@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/toast";
 export default { ...meta, title: "Components/Toast" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Types = { ...showcases.Types, name: "Types" };
+
 export const Promise = { ...showcases.Promise, name: "Promise" };
+
 export const Action = { ...showcases.Action, name: "Action" };
+
 export const Progress = { ...showcases.Progress, name: "Progress" };
+
 export const Queue = { ...showcases.Queue, name: "Queue" };

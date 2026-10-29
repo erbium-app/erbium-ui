@@ -69,8 +69,8 @@ const TableDemo = () => {
             {headerGroup.headers.map((header) => (
               <TableHead
                 className={cn(
-                  header.column.columnDef.meta?.alignment === "end" && "text-end",
-                  header.column.columnDef.meta?.narrow && "w-25",
+                  header.column.columnDef.meta?.alignment === "end" && "text-end tabular-nums",
+                  header.column.columnDef.meta?.narrow === true && "w-25",
                 )}
                 key={header.id}
               >
@@ -86,8 +86,8 @@ const TableDemo = () => {
             {row.getAllCells().map((cell) => (
               <TableCell
                 className={cn(
-                  cell.column.columnDef.meta?.alignment === "end" && "text-end",
-                  cell.column.columnDef.meta?.narrow && "w-25",
+                  cell.column.columnDef.meta?.alignment === "end" && "text-end tabular-nums",
+                  cell.column.columnDef.meta?.narrow === true && "w-25",
                 )}
                 key={cell.id}
               >
@@ -103,8 +103,8 @@ const TableDemo = () => {
             {footerGroup.headers.map((footer) => (
               <TableCell
                 className={cn(
-                  footer.column.columnDef.meta?.alignment === "end" && "text-end",
-                  footer.column.columnDef.meta?.narrow && "w-25",
+                  footer.column.columnDef.meta?.alignment === "end" && "text-end tabular-nums",
+                  footer.column.columnDef.meta?.narrow === true && "w-25",
                 )}
                 key={footer.id}
               >

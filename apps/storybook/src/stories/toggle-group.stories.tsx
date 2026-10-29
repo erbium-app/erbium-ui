@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/toggle-group";
 export default { ...meta, title: "Components/Toggle Group" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Outline = { ...showcases.Outline, name: "Outline" };
+
 export const Spacing = { ...showcases.Spacing, name: "Spacing" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const FontWeightSelector = { ...showcases.FontWeightSelector, name: "Custom" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const Size = { ...showcases.Size, name: "Size" };

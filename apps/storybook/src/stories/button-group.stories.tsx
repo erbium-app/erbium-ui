@@ -4,14 +4,25 @@ import meta, * as showcases from "@erbium/showcase/button-group";
 export default { ...meta, title: "Components/Button Group" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Orientation = { ...showcases.Orientation, name: "Orientation" };
+
 export const Size = { ...showcases.Size, name: "Size" };
+
 export const Nested = { ...showcases.Nested, name: "Nested" };
+
 export const Separator = { ...showcases.Separator, name: "Separator" };
+
 export const Input = { ...showcases.Input, name: "Input" };
+
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
+
 export const DropdownMenu = { ...showcases.DropdownMenu, name: "Dropdown Menu" };
+
 export const Select = { ...showcases.Select, name: "Select" };
+
 export const Popover = { ...showcases.Popover, name: "Popover" };
+
 export const Split = { ...showcases.Split, name: "Split" };

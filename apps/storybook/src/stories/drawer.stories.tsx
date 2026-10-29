@@ -4,13 +4,23 @@ import meta, * as showcases from "@erbium/showcase/drawer";
 export default { ...meta, title: "Components/Drawer" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const SwipeHandle = { ...showcases.SwipeHandle, name: "Swipe Handle" };
+
 export const NonModal = { ...showcases.NonModal, name: "Non Modal" };
+
 export const SnapPoints = { ...showcases.SnapPoints, name: "Snap Points" };
+
 export const Position = { ...showcases.Position, name: "Position" };
+
 export const Nested = { ...showcases.Nested, name: "Nested" };
+
 export const CustomSizes = { ...showcases.CustomSizes, name: "Custom Sizes" };
+
 export const Styling = { ...showcases.Styling, name: "Styling" };
+
 export const Responsive = { ...showcases.Responsive, name: "Responsive" };
+
 export const SearchAndControls = { ...showcases.SearchAndControls, name: "Search and controls" };

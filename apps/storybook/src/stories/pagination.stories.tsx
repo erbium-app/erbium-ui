@@ -4,6 +4,9 @@ import meta, * as showcases from "@erbium/showcase/pagination";
 export default { ...meta, title: "Components/Pagination" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Simple = { ...showcases.Simple, name: "Simple" };
+
 export const IconsOnly = { ...showcases.IconsOnly, name: "Icons Only" };

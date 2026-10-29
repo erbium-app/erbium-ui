@@ -11,7 +11,7 @@
     "./registry": "./registry.json"
   },
   "scripts": {
-    "generate": "node scripts/generate.mjs",
+    "generate": "node scripts/generate.ts",
     "registry:build": "node scripts/build-registry.mjs",
     "typecheck": "tsc --noEmit"
   },

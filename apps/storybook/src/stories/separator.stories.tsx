@@ -4,11 +4,19 @@ import meta, * as showcases from "@erbium/showcase/separator";
 export default { ...meta, title: "Components/Separator" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const Labeled = { ...showcases.Labeled, name: "Labeled" };
+
 export const FullWidth = { ...showcases.FullWidth, name: "Full Width" };
+
 export const OnSurfaces = { ...showcases.OnSurfaces, name: "On Surfaces" };
+
 export const Menu = { ...showcases.Menu, name: "Menu" };
+
 export const List = { ...showcases.List, name: "List" };
+
 export const MarginSizing = { ...showcases.MarginSizing, name: "Margin Sizing" };

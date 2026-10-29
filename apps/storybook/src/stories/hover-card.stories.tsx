@@ -4,8 +4,13 @@ import meta, * as showcases from "@erbium/showcase/hover-card";
 export default { ...meta, title: "Components/Hover Card" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Sides = { ...showcases.Sides, name: "Sides" };
+
 export const TriggerDelays = { ...showcases.TriggerDelays, name: "Trigger Delays" };
+
 export const Positioning = { ...showcases.Positioning, name: "Positioning" };

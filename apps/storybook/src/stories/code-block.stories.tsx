@@ -4,11 +4,19 @@ import meta, * as showcases from "@erbium/showcase/code-block";
 export default { ...meta, title: "Blocks/Code Block" };
 
 export const Languages = { ...showcases.Languages, name: "Languages" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Commands = { ...showcases.Commands, name: "Commands" };
+
 export const Files = { ...showcases.Files, name: "Files" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const Composition = { ...showcases.Composition, name: "Composition" };
+
 export const Overflow = { ...showcases.Overflow, name: "Overflow" };
+
 export const States = { ...showcases.States, name: "States" };
+
 export const ChangingSource = { ...showcases.ChangingSource, name: "Changing Source" };

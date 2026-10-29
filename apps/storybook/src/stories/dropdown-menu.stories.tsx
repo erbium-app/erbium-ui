@@ -4,16 +4,29 @@ import meta, * as showcases from "@erbium/showcase/dropdown-menu";
 export default { ...meta, title: "Components/Dropdown Menu" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const RadioGroup = { ...showcases.RadioGroup, name: "Radio Group" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Submenu = { ...showcases.Submenu, name: "Submenu" };
+
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
+
 export const Icons = { ...showcases.Icons, name: "Icons" };
+
 export const Checkboxes = { ...showcases.Checkboxes, name: "Checkboxes" };
+
 export const CheckboxesIcons = { ...showcases.CheckboxesIcons, name: "Checkboxes Icons" };
+
 export const RadioIcons = { ...showcases.RadioIcons, name: "Radio Icons" };
+
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };
+
 export const Avatar = { ...showcases.Avatar, name: "Avatar" };
+
 export const Complex = { ...showcases.Complex, name: "Complex" };
+
 export const Searchable = { ...showcases.Searchable, name: "Searchable" };

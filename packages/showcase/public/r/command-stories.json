@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Command stories",
   "description": "All command variants as portable React CSF stories.",
-  "dependencies": ["@tanstack/react-hotkeys@^0.16.0"],
+  "dependencies": ["@tanstack/react-hotkeys@^0.17.0"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",

@@ -32,13 +32,13 @@ type PaginationLinkProps = {
 
 const PaginationLink = ({ className, isActive, size = "icon", ...props }: PaginationLinkProps) => (
   <Button
-    variant={isActive ? "outline" : "ghost"}
+    variant={isActive === true ? "outline" : "ghost"}
     size={size}
-    className={cn(className)}
+    className={cn("tabular-nums", className)}
     nativeButton={false}
     render={
       <a
-        aria-current={isActive ? "page" : undefined}
+        aria-current={isActive === true ? "page" : undefined}
         data-slot="pagination-link"
         data-active={isActive}
         {...props}

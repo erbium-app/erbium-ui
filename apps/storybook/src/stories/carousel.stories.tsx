@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/carousel";
 export default { ...meta, title: "Components/Carousel" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Sizes = { ...showcases.Sizes, name: "Sizes" };
+
 export const Spacing = { ...showcases.Spacing, name: "Spacing" };
+
 export const Orientation = { ...showcases.Orientation, name: "Orientation" };
+
 export const Api = { ...showcases.Api, name: "Api" };
+
 export const Plugin = { ...showcases.Plugin, name: "Plugins" };
+
 export const Events = { ...showcases.Events, name: "Events" };

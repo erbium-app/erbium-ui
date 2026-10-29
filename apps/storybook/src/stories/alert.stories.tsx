@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/alert";
 export default { ...meta, title: "Components/Alert" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Info = { ...showcases.Info, name: "Info" };
+
 export const Success = { ...showcases.Success, name: "Success" };
+
 export const Action = { ...showcases.Action, name: "Action" };
+
 export const Warning = { ...showcases.Warning, name: "Warning" };

@@ -4,5 +4,7 @@ import meta, * as showcases from "@erbium/showcase/scroll-area";
 export default { ...meta, title: "Components/Scroll Area" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Horizontal = { ...showcases.Horizontal, name: "Horizontal" };

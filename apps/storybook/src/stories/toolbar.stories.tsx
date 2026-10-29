@@ -4,7 +4,11 @@ import meta, * as showcases from "@erbium/showcase/toolbar";
 export default { ...meta, title: "Components/Toolbar" };
 
 export const Formatting = { ...showcases.Formatting, name: "Formatting" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const SearchAndLink = { ...showcases.SearchAndLink, name: "Search And Link" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Showcase = { ...showcases.Showcase, name: "Showcase" };

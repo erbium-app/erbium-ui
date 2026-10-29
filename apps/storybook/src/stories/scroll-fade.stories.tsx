@@ -4,6 +4,7 @@ import meta, * as showcases from "@erbium/showcase/scroll-fade";
 export default { ...meta, title: "Utilities/Scroll Fade" };
 
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const HorizontalRTL = { ...showcases.HorizontalRTL, name: "Horizontal RTL" };
 
 export const SingleEdgeAndCustomDepth = {

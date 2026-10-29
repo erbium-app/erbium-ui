@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/spinner";
 export default { ...meta, title: "Components/Spinner" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Size = { ...showcases.Size, name: "Size" };
+
 export const Button = { ...showcases.Button, name: "Button" };
+
 export const Badge = { ...showcases.Badge, name: "Badge" };
+
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
+
 export const Empty = { ...showcases.Empty, name: "Empty" };

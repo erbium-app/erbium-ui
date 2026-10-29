@@ -4,13 +4,23 @@ import meta, * as showcases from "@erbium/showcase/otp-field";
 export default { ...meta, title: "Components/OTP Field" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Separator = { ...showcases.Separator, name: "Separator" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const Form = { ...showcases.Form, name: "Form" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Invalid = { ...showcases.Invalid, name: "Invalid" };
+
 export const Status = { ...showcases.Status, name: "Status" };
+
 export const Pattern = { ...showcases.Pattern, name: "Pattern" };
+
 export const FourDigits = { ...showcases.FourDigits, name: "Four Digits" };
+
 export const Alphanumeric = { ...showcases.Alphanumeric, name: "Alphanumeric" };

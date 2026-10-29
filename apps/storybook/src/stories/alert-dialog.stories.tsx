@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/alert-dialog";
 export default { ...meta, title: "Components/Alert Dialog" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Small = { ...showcases.Small, name: "Small" };
+
 export const Media = { ...showcases.Media, name: "Media" };
+
 export const SmallMedia = { ...showcases.SmallMedia, name: "Small with Media" };
+
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };

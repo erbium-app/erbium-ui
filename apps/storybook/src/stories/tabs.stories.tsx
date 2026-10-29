@@ -4,8 +4,13 @@ import meta, * as showcases from "@erbium/showcase/tabs";
 export default { ...meta, title: "Components/Tabs" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Selection = { ...showcases.Selection, name: "Selection" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Icons = { ...showcases.Icons, name: "Icons" };

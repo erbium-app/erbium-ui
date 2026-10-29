@@ -1,8 +1,8 @@
 import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
-import { DayPicker, getDefaultClassNames } from "react-day-picker";
-import type { DayButton, Locale } from "react-day-picker";
+import { DayPicker, getDefaultClassNames, useDayPicker } from "react-day-picker";
+import type { ChevronProps, DayButton, Locale, RootProps, WeekNumberProps } from "react-day-picker";
 import { Button, buttonVariants } from "./button";
 import { Icon } from "./icon";
 
@@ -67,6 +67,40 @@ const CalendarDayButton = ({
   );
 };
 
+const CalendarDayButtonWithLocale = (props: React.ComponentProps<typeof DayButton>) => {
+  const { dayPickerProps } = useDayPicker();
+
+  return <CalendarDayButton locale={dayPickerProps.locale} {...props} />;
+};
+
+const CalendarChevron = ({ className, orientation, style }: ChevronProps) => {
+  if (orientation === "left") {
+    return (
+      <Icon name="chevron-left" className={cn("rtl:rotate-180 size-4", className)} style={style} />
+    );
+  }
+
+  if (orientation === "right") {
+    return (
+      <Icon name="chevron-right" className={cn("rtl:rotate-180 size-4", className)} style={style} />
+    );
+  }
+
+  return <Icon name="chevron-down" className={cn("size-4", className)} style={style} />;
+};
+
+const CalendarRoot = ({ className, rootRef, ...props }: RootProps) => (
+  <div data-slot="calendar" ref={rootRef} className={cn(className)} {...props} />
+);
+
+const CalendarWeekNumber = ({ children, ...props }: Omit<WeekNumberProps, "week">) => (
+  <td {...props}>
+    <div className="flex size-(--cell-size) items-center justify-center text-center">
+      {children}
+    </div>
+  </td>
+);
+
 const Calendar = ({
   className,
   classNames,
@@ -113,7 +147,7 @@ const Calendar = ({
           defaultClassNames.caption_label,
         ),
         day: cn(
-          calendarDayVariants({ showWeekNumber: !!props.showWeekNumber }),
+          calendarDayVariants({ showWeekNumber: Boolean(props.showWeekNumber) }),
           defaultClassNames.day,
         ),
         disabled: cn("text-muted-foreground opacity-50", defaultClassNames.disabled),
@@ -148,7 +182,7 @@ const Calendar = ({
           "relative isolate z-0 rounded-s-(--cell-radius) bg-muted after:absolute after:inset-y-0 after:end-0 after:w-4 after:bg-muted",
           defaultClassNames.range_start,
         ),
-        root: cn("w-fit", defaultClassNames.root),
+        root: cn("w-fit tabular-nums", defaultClassNames.root),
         today: cn(
           "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none",
           defaultClassNames.today,
@@ -167,40 +201,10 @@ const Calendar = ({
         ...classNames,
       }}
       components={{
-        Chevron: ({ className, orientation, ...props }) => {
-          if (orientation === "left") {
-            return (
-              <Icon
-                name="chevron-left"
-                className={cn("rtl:rotate-180 size-4", className)}
-                {...props}
-              />
-            );
-          }
-
-          if (orientation === "right") {
-            return (
-              <Icon
-                name="chevron-right"
-                className={cn("rtl:rotate-180 size-4", className)}
-                {...props}
-              />
-            );
-          }
-
-          return <Icon name="chevron-down" className={cn("size-4", className)} {...props} />;
-        },
-        DayButton: ({ ...props }) => <CalendarDayButton locale={locale} {...props} />,
-        Root: ({ className, rootRef, ...props }) => (
-          <div data-slot="calendar" ref={rootRef} className={cn(className)} {...props} />
-        ),
-        WeekNumber: ({ children, ...props }) => (
-          <td {...props}>
-            <div className="flex size-(--cell-size) items-center justify-center text-center">
-              {children}
-            </div>
-          </td>
-        ),
+        Chevron: CalendarChevron,
+        DayButton: CalendarDayButtonWithLocale,
+        Root: CalendarRoot,
+        WeekNumber: CalendarWeekNumber,
         ...components,
       }}
       {...props}

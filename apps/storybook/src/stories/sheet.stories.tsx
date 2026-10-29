@@ -4,6 +4,9 @@ import meta, * as showcases from "@erbium/showcase/sheet";
 export default { ...meta, title: "Components/Sheet" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Side = { ...showcases.Side, name: "Side" };
+
 export const NoCloseButton = { ...showcases.NoCloseButton, name: "No Close Button" };

@@ -48,13 +48,31 @@ const Commands = () => {
 
   return (
     <div className="flex gap-related">
-      <Button size="sm" variant="outline" onClick={() => scrollToStart()}>
+      <Button
+        size="sm"
+        onClick={() => {
+          scrollToStart();
+        }}
+        variant="outline"
+      >
         First
       </Button>
-      <Button size="sm" variant="outline" onClick={() => scrollToMessage("message-6")}>
+      <Button
+        size="sm"
+        onClick={() => {
+          scrollToMessage("message-6");
+        }}
+        variant="outline"
+      >
         Message 6
       </Button>
-      <Button size="sm" variant="outline" onClick={() => scrollToEnd()}>
+      <Button
+        size="sm"
+        onClick={() => {
+          scrollToEnd();
+        }}
+        variant="outline"
+      >
         Latest
       </Button>
     </div>
@@ -65,7 +83,7 @@ const Visibility = () => {
   const { currentAnchorId, visibleMessageIds } = useMessageScrollerVisibility();
 
   return (
-    <p className="text-metadata text-muted-foreground">
+    <p className="text-metadata text-muted-foreground tabular-nums">
       Current turn: {currentAnchorId ?? "none"} · Visible: {visibleMessageIds.length}
     </p>
   );
@@ -114,13 +132,13 @@ export const Streaming = () => {
   const reply = "The reply grows while the reader can choose whether to follow the live edge.";
   const [text, setText] = React.useState("");
   React.useEffect(() => {
-    if (!text || text.length >= reply.length) {
-      return;
-    }
+    let timeout: number | undefined;
 
-    const timeout = window.setTimeout(() => {
-      setText(reply.slice(0, text.length + 2));
-    }, 80);
+    if (text.length > 0 && text.length < reply.length) {
+      timeout = window.setTimeout(() => {
+        setText(reply.slice(0, text.length + 2));
+      }, 80);
+    }
 
     return () => {
       window.clearTimeout(timeout);

@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/command";
 export default { ...meta, title: "Components/Command" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
+
 export const Groups = { ...showcases.Groups, name: "Groups" };
+
 export const Scrollable = { ...showcases.Scrollable, name: "Scrollable" };
+
 export const AsyncResults = { ...showcases.AsyncResults, name: "Async results" };

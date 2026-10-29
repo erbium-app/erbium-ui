@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/breadcrumb";
 export default { ...meta, title: "Components/Breadcrumb" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Ellipsis = { ...showcases.Ellipsis, name: "Collapsed" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Dropdown = { ...showcases.Dropdown, name: "Dropdown" };
+
 export const CustomSeparator = { ...showcases.CustomSeparator, name: "Custom Separator" };
+
 export const LinkComponent = { ...showcases.LinkComponent, name: "Link Component" };

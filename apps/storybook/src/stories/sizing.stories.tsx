@@ -4,5 +4,7 @@ import meta, * as showcases from "@erbium/showcase/sizing";
 export default { ...meta, title: "Foundations/Sizing" };
 
 export const Controls = { ...showcases.Controls, name: "Controls" };
+
 export const Composition = { ...showcases.Composition, name: "Composition" };
+
 export const Workflow = { ...showcases.Workflow, name: "Workflow" };

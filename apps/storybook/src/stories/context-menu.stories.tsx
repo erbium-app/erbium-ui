@@ -4,14 +4,25 @@ import meta, * as showcases from "@erbium/showcase/context-menu";
 export default { ...meta, title: "Components/Context Menu" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Submenu = { ...showcases.Submenu, name: "Submenu" };
+
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
+
 export const Groups = { ...showcases.Groups, name: "Groups" };
+
 export const Icons = { ...showcases.Icons, name: "Icons" };
+
 export const Checkboxes = { ...showcases.Checkboxes, name: "Checkboxes" };
+
 export const Radio = { ...showcases.Radio, name: "Radio" };
+
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };
+
 export const Sides = { ...showcases.Sides, name: "Sides" };
+
 export const Searchable = { ...showcases.Searchable, name: "Searchable" };

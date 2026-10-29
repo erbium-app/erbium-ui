@@ -4,7 +4,7 @@
   "type": "registry:component",
   "title": "Diff View: Patch",
   "description": "Render prepared single-file patch metadata; copying is disabled for partial contents.",
-  "dependencies": ["@pierre/diffs@1.5.2"],
+  "dependencies": ["@pierre/diffs@1.6.2"],
   "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
   "files": [
     {

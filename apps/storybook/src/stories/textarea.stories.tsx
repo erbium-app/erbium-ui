@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/textarea";
 export default { ...meta, title: "Components/Textarea" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const DisabledControl = { ...showcases.DisabledControl, name: "Disabled Control" };
+
 export const Invalid = { ...showcases.Invalid, name: "Invalid" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Field = { ...showcases.Field, name: "Field" };
+
 export const Button = { ...showcases.Button, name: "Button" };

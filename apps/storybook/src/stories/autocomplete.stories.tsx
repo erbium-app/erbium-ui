@@ -4,12 +4,19 @@ import meta, * as showcases from "@erbium/showcase/autocomplete";
 export default { ...meta, title: "Components/Autocomplete" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const SmallSize = { ...showcases.SmallSize, name: "Small Size" };
+
 export const LargeSize = { ...showcases.LargeSize, name: "Large Size" };
+
 export const WithLabel = { ...showcases.WithLabel, name: "With Label" };
+
 export const InlineAutocomplete = { ...showcases.InlineAutocomplete, name: "Inline Autocomplete" };
+
 export const AutoHighlight = { ...showcases.AutoHighlight, name: "Auto Highlight" };
+
 export const WithClearButton = { ...showcases.WithClearButton, name: "With Clear Button" };
 
 export const WithTriggerAndClear = {
@@ -18,9 +25,15 @@ export const WithTriggerAndClear = {
 };
 
 export const WithStartAddon = { ...showcases.WithStartAddon, name: "With Start Addon" };
+
 export const WithGroups = { ...showcases.WithGroups, name: "With Groups" };
+
 export const WithLimitResults = { ...showcases.WithLimitResults, name: "With Limit Results" };
+
 export const AsyncSearch = { ...showcases.AsyncSearch, name: "Async Search" };
+
 export const FormIntegration = { ...showcases.FormIntegration, name: "Form Integration" };
+
 export const Showcase = { ...showcases.Showcase, name: "Showcase" };
+
 export const SearchSurface = { ...showcases.SearchSurface, name: "Search surface" };

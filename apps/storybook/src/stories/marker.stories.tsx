@@ -4,11 +4,19 @@ import meta, * as showcases from "@erbium/showcase/marker";
 export default { ...meta, title: "Components/Marker" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Variants = { ...showcases.Variants, name: "Variants" };
+
 export const Status = { ...showcases.Status, name: "Status" };
+
 export const Shimmer = { ...showcases.Shimmer, name: "Shimmer" };
+
 export const Separator = { ...showcases.Separator, name: "Separator" };
+
 export const Border = { ...showcases.Border, name: "Border" };
+
 export const Icon = { ...showcases.Icon, name: "With Icon" };
+
 export const LinkButton = { ...showcases.LinkButton, name: "Links and Buttons" };

@@ -4,10 +4,15 @@ import meta, * as showcases from "@erbium/showcase/select";
 export default { ...meta, title: "Components/Select" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Scrollable = { ...showcases.Scrollable, name: "Scrollable" };
+
 export const Groups = { ...showcases.Groups, name: "Groups" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Invalid = { ...showcases.Invalid, name: "Invalid" };
 
 export const AlignItemWithTrigger = {

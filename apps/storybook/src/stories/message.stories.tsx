@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/message";
 export default { ...meta, title: "Components/Message" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Avatar = { ...showcases.Avatar, name: "Avatar" };
+
 export const Group = { ...showcases.Group, name: "Group" };
+
 export const HeaderFooter = { ...showcases.HeaderFooter, name: "Header and Footer" };
+
 export const Actions = { ...showcases.Actions, name: "Actions" };
+
 export const Attachment = { ...showcases.Attachment, name: "Attachment" };

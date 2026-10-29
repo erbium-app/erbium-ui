@@ -4,15 +4,27 @@ import meta, * as showcases from "@erbium/showcase/input-group";
 export default { ...meta, title: "Components/Input Group" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Icon = { ...showcases.Icon, name: "Icon" };
+
 export const Text = { ...showcases.Text, name: "Text" };
+
 export const Dropdown = { ...showcases.Dropdown, name: "Dropdown" };
+
 export const InlineStart = { ...showcases.InlineStart, name: "Inline Start" };
+
 export const InlineEnd = { ...showcases.InlineEnd, name: "Inline End" };
+
 export const BlockStart = { ...showcases.BlockStart, name: "Block Start" };
+
 export const BlockEnd = { ...showcases.BlockEnd, name: "Block End" };
+
 export const Kbd = { ...showcases.Kbd, name: "Kbd" };
+
 export const Textarea = { ...showcases.Textarea, name: "Textarea" };
+
 export const Button = { ...showcases.Button, name: "Button" };
+
 export const Custom = { ...showcases.Custom, name: "Custom Input" };

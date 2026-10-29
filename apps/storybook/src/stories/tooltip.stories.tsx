@@ -4,7 +4,9 @@ import meta, * as showcases from "@erbium/showcase/tooltip";
 export default { ...meta, title: "Components/Tooltip" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Side = { ...showcases.Side, name: "Side" };
 
 export const WithKeyboardShortcut = {

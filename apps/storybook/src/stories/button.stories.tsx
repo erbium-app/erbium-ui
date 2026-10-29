@@ -4,23 +4,43 @@ import meta, * as showcases from "@erbium/showcase/button";
 export default { ...meta, title: "Components/Button" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Variants = { ...showcases.Variants, name: "Variants" };
+
 export const Sizes = { ...showcases.Sizes, name: "Sizes" };
+
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Loading = { ...showcases.Loading, name: "Loading" };
+
 export const LoadingDirections = { ...showcases.LoadingDirections, name: "Loading Directions" };
+
 export const Size = { ...showcases.Size, name: "Size" };
+
 export const Default = { ...showcases.Default, name: "Default" };
+
 export const Outline = { ...showcases.Outline, name: "Outline" };
+
 export const Secondary = { ...showcases.Secondary, name: "Secondary" };
+
 export const Ghost = { ...showcases.Ghost, name: "Ghost" };
+
 export const ErrorVariant = { ...showcases.ErrorVariant, name: "Error" };
+
 export const Link = { ...showcases.Link, name: "Link" };
+
 export const Icon = { ...showcases.Icon, name: "Icon" };
+
 export const Rounded = { ...showcases.Rounded, name: "Rounded" };
+
 export const ButtonGroup = { ...showcases.ButtonGroup, name: "Button Group" };
+
 export const WithSpinner = { ...showcases.WithSpinner, name: "Spinner" };
+
 export const WithIcon = { ...showcases.WithIcon, name: "With Icon" };
+
 export const AsLink = { ...showcases.AsLink, name: "As Link" };

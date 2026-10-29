@@ -4,6 +4,9 @@ import meta, * as showcases from "@erbium/showcase/aspect-ratio";
 export default { ...meta, title: "Components/Aspect Ratio" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Square = { ...showcases.Square, name: "Square" };
+
 export const Portrait = { ...showcases.Portrait, name: "Portrait" };

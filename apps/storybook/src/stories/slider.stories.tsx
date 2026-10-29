@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/slider";
 export default { ...meta, title: "Components/Slider" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Midpoint = { ...showcases.Midpoint, name: "Midpoint" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Range = { ...showcases.Range, name: "Range" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const MultipleThumbs = { ...showcases.MultipleThumbs, name: "Multiple Thumbs" };

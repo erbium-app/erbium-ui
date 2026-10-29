@@ -4,15 +4,27 @@ import meta, * as showcases from "@erbium/showcase/checkbox";
 export default { ...meta, title: "Components/Checkbox" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Checked = { ...showcases.Checked, name: "Checked State" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const Indeterminate = { ...showcases.Indeterminate, name: "Indeterminate" };
+
 export const ReadOnly = { ...showcases.ReadOnly, name: "Read Only" };
+
 export const Form = { ...showcases.Form, name: "Form" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Table = { ...showcases.Table, name: "Table" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Description = { ...showcases.Description, name: "Description" };
+
 export const Group = { ...showcases.Group, name: "Group" };
+
 export const InvalidState = { ...showcases.InvalidState, name: "Invalid State" };

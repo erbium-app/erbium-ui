@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/chart";
 export default { ...meta, title: "Components/Chart" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Example = { ...showcases.Example, name: "Example" };
+
 export const ExampleGrid = { ...showcases.ExampleGrid, name: "Example Grid" };
+
 export const ExampleAxis = { ...showcases.ExampleAxis, name: "Example Axis" };
+
 export const ExampleTooltip = { ...showcases.ExampleTooltip, name: "Tooltip" };
+
 export const ExampleLegend = { ...showcases.ExampleLegend, name: "Legend" };

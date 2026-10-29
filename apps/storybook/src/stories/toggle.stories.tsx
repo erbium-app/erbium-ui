@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/toggle";
 export default { ...meta, title: "Components/Toggle" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Pressed = { ...showcases.Pressed, name: "Pressed" };
+
 export const DisabledControl = { ...showcases.DisabledControl, name: "Disabled Control" };
+
 export const Outline = { ...showcases.Outline, name: "Outline" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const WithText = { ...showcases.WithText, name: "With Text" };
+
 export const Size = { ...showcases.Size, name: "Size" };

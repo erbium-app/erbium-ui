@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/menubar";
 export default { ...meta, title: "Components/Menubar" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Checkbox = { ...showcases.Checkbox, name: "Checkbox" };
+
 export const Radio = { ...showcases.Radio, name: "Radio" };
+
 export const Submenu = { ...showcases.Submenu, name: "Submenu" };
+
 export const WithIcons = { ...showcases.WithIcons, name: "With Icons" };
+
 export const Searchable = { ...showcases.Searchable, name: "Searchable" };

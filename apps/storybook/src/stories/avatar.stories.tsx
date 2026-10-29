@@ -4,14 +4,23 @@ import meta, * as showcases from "@erbium/showcase/avatar";
 export default { ...meta, title: "Components/Avatar" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Fallback = { ...showcases.Fallback, name: "Fallback" };
+
 export const Image = { ...showcases.Image, name: "Image" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Badge = { ...showcases.Badge, name: "Badge" };
+
 export const Dropdown = { ...showcases.Dropdown, name: "Dropdown" };
+
 export const BadgeWithIcon = { ...showcases.BadgeWithIcon, name: "Badge With Icon" };
+
 export const AvatarGroup = { ...showcases.AvatarGroup, name: "Avatar Group" };
+
 export const AvatarGroupCount = { ...showcases.AvatarGroupCount, name: "Avatar Group Count" };
 
 export const AvatarGroupWithIcon = {

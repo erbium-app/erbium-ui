@@ -4,12 +4,21 @@ import meta, * as showcases from "@erbium/showcase/bubble";
 export default { ...meta, title: "Components/Bubble" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Alignment = { ...showcases.Alignment, name: "Alignment" };
+
 export const GroupDemo = { ...showcases.GroupDemo, name: "Bubble Group" };
+
 export const Collapsible = { ...showcases.Collapsible, name: "Show More / Collapsible" };
+
 export const Tooltip = { ...showcases.Tooltip, name: "Tooltip" };
+
 export const Popover = { ...showcases.Popover, name: "Popover" };
+
 export const LinkButton = { ...showcases.LinkButton, name: "Links and Buttons" };
+
 export const Reactions = { ...showcases.Reactions, name: "Reactions" };
+
 export const Variants = { ...showcases.Variants, name: "Variants" };

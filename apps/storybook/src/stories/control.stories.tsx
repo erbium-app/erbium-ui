@@ -4,20 +4,37 @@ import meta, * as showcases from "@erbium/showcase/control";
 export default { ...meta, title: "Components/Control" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Number = { ...showcases.Number, name: "Number" };
+
 export const ContinuousNumber = { ...showcases.ContinuousNumber, name: "Continuous Number" };
+
 export const DiscreteNumber = { ...showcases.DiscreteNumber, name: "Discrete Number" };
+
 export const Text = { ...showcases.Text, name: "Text" };
+
 export const Textarea = { ...showcases.Textarea, name: "Textarea" };
+
 export const Boolean = { ...showcases.Boolean, name: "Boolean" };
+
 export const Segmented = { ...showcases.Segmented, name: "Segmented" };
+
 export const Select = { ...showcases.Select, name: "Select" };
+
 export const Color = { ...showcases.Color, name: "Color" };
+
 export const Image = { ...showcases.Image, name: "Image" };
+
 export const Pad = { ...showcases.Pad, name: "Pad" };
+
 export const Spring = { ...showcases.Spring, name: "Spring" };
+
 export const Transition = { ...showcases.Transition, name: "Transition" };
+
 export const Action = { ...showcases.Action, name: "Action" };
+
 export const Section = { ...showcases.Section, name: "Section" };
+
 export const Group = { ...showcases.Group, name: "Group" };
+
 export const Row = { ...showcases.Row, name: "Row" };

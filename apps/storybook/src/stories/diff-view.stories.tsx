@@ -4,11 +4,19 @@ import meta, * as showcases from "@erbium/showcase/diff-view";
 export default { ...meta, title: "Blocks/Diff View" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Layouts = { ...showcases.Layouts, name: "Layouts" };
+
 export const Highlighting = { ...showcases.Highlighting, name: "Highlighting" };
+
 export const Context = { ...showcases.Context, name: "Context" };
+
 export const Annotations = { ...showcases.Annotations, name: "Annotations" };
+
 export const Composition = { ...showcases.Composition, name: "Composition" };
+
 export const States = { ...showcases.States, name: "States" };
+
 export const ChangingSource = { ...showcases.ChangingSource, name: "Changing Source" };
+
 export const Patch = { ...showcases.Patch, name: "Patch" };

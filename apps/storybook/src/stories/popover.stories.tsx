@@ -4,7 +4,11 @@ import meta, * as showcases from "@erbium/showcase/popover";
 export default { ...meta, title: "Components/Popover" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Align = { ...showcases.Align, name: "Align" };
+
 export const WithForm = { ...showcases.WithForm, name: "With Form" };

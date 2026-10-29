@@ -4,18 +4,33 @@ import meta, * as showcases from "@erbium/showcase/questionnaire";
 export default { ...meta, title: "Components/Questionnaire" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Multiple = { ...showcases.Multiple, name: "Multiple Selection" };
+
 export const Freeform = { ...showcases.Freeform, name: "Freeform Answer" };
+
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
+
 export const Validation = { ...showcases.Validation, name: "Custom Validation" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const Resume = { ...showcases.Resume, name: "Resume" };
+
 export const Conditional = { ...showcases.Conditional, name: "Conditional Items" };
+
 export const Progress = { ...showcases.Progress, name: "Step Indicator" };
+
 export const Animated = { ...showcases.Animated, name: "Animated Items" };
+
 export const Card = { ...showcases.Card, name: "Card" };
+
 export const Dialog = { ...showcases.Dialog, name: "Dialog" };
+
 export const Skip = { ...showcases.Skip, name: "Explicit Skip" };
+
 export const NavigationState = { ...showcases.NavigationState, name: "Navigation State" };
+
 export const SubmitState = { ...showcases.SubmitState, name: "Submit State" };

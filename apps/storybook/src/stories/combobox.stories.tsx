@@ -4,16 +4,29 @@ import meta, * as showcases from "@erbium/showcase/combobox";
 export default { ...meta, title: "Components/Combobox" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Multiple = { ...showcases.Multiple, name: "Multiple Selection" };
+
 export const Groups = { ...showcases.Groups, name: "Groups" };
+
 export const Invalid = { ...showcases.Invalid, name: "Invalid" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const AutoHighlight = { ...showcases.AutoHighlight, name: "Auto Highlight" };
+
 export const Popup = { ...showcases.Popup, name: "Popup" };
+
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
+
 export const CustomItems = { ...showcases.CustomItems, name: "Custom Items" };
+
 export const ClearButton = { ...showcases.ClearButton, name: "Clear Button" };
+
 export const ItemCollection = { ...showcases.ItemCollection, name: "Item collection" };
+
 export const AsyncSearch = { ...showcases.AsyncSearch, name: "Async search" };

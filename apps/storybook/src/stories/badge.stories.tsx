@@ -4,8 +4,13 @@ import meta, * as showcases from "@erbium/showcase/badge";
 export default { ...meta, title: "Components/Badge" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Variants = { ...showcases.Variants, name: "Variants" };
+
 export const Link = { ...showcases.Link, name: "Link" };
+
 export const WithIcon = { ...showcases.WithIcon, name: "With Icon" };
+
 export const WithSpinner = { ...showcases.WithSpinner, name: "With Spinner" };

@@ -73,7 +73,7 @@ const AvatarGroupCount = ({
 }: React.ComponentProps<typeof Avatar>) => (
   <Avatar
     data-slot="avatar-group-count"
-    className={cn("text-muted-foreground", className)}
+    className={cn("text-muted-foreground tabular-nums", className)}
     {...props}
   >
     <AvatarFallback>{children}</AvatarFallback>

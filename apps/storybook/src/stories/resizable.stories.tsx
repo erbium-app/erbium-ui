@@ -4,6 +4,9 @@ import meta, * as showcases from "@erbium/showcase/resizable";
 export default { ...meta, title: "Components/Resizable" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const Handle = { ...showcases.Handle, name: "Handle" };

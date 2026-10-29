@@ -4,19 +4,35 @@ import meta, * as showcases from "@erbium/showcase/input";
 export default { ...meta, title: "Components/Input" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const DisabledControl = { ...showcases.DisabledControl, name: "Disabled Control" };
+
 export const Invalid = { ...showcases.Invalid, name: "Invalid" };
+
 export const FileControl = { ...showcases.FileControl, name: "File Control" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const File = { ...showcases.File, name: "File" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Field = { ...showcases.Field, name: "Field" };
+
 export const Fieldgroup = { ...showcases.Fieldgroup, name: "Field Group" };
+
 export const Inline = { ...showcases.Inline, name: "Inline" };
+
 export const Grid = { ...showcases.Grid, name: "Grid" };
+
 export const Required = { ...showcases.Required, name: "Required" };
+
 export const Badge = { ...showcases.Badge, name: "Badge" };
+
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
+
 export const ButtonGroup = { ...showcases.ButtonGroup, name: "Button Group" };
+
 export const Form = { ...showcases.Form, name: "Form" };

@@ -4,5 +4,7 @@ import meta, * as showcases from "@erbium/showcase/navigation-menu";
 export default { ...meta, title: "Components/Navigation Menu" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const LinkComponent = { ...showcases.LinkComponent, name: "Link Component" };

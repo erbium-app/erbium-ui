@@ -4,11 +4,19 @@ import meta, * as showcases from "@erbium/showcase/accordion";
 export default { ...meta, title: "Components/Accordion" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const Multiple = { ...showcases.Multiple, name: "Multiple" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Borders = { ...showcases.Borders, name: "Borders" };
+
 export const Card = { ...showcases.Card, name: "Card" };
+
 export const FindInPage = { ...showcases.FindInPage, name: "Find in page" };

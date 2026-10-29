@@ -4,8 +4,13 @@ import meta, * as showcases from "@erbium/showcase/progress";
 export default { ...meta, title: "Components/Progress" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Partial = { ...showcases.Partial, name: "Partial" };
+
 export const Complete = { ...showcases.Complete, name: "Complete" };
+
 export const Label = { ...showcases.Label, name: "Label" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };

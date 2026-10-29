@@ -4,11 +4,17 @@ import meta, * as showcases from "@erbium/showcase/calendar";
 export default { ...meta, title: "Components/Calendar" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Basic = { ...showcases.Basic, name: "Basic" };
+
 export const BookedDates = { ...showcases.BookedDates, name: "Booked Dates" };
+
 export const WeekNumbers = { ...showcases.WeekNumbers, name: "Week Numbers" };
+
 export const Presets = { ...showcases.Presets, name: "Presets" };
+
 export const Hijri = { ...showcases.Hijri, name: "Persian / Hijri / Jalali Calendar" };
 
 export const SelectedDateWithTimezone = {
@@ -24,4 +30,5 @@ export const MonthAndYearSelector = {
 };
 
 export const DateAndTimePicker = { ...showcases.DateAndTimePicker, name: "Date And Time Picker" };
+
 export const CustomCellSize = { ...showcases.CustomCellSize, name: "Custom Cell Size" };

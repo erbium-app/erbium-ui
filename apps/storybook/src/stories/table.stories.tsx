@@ -4,8 +4,13 @@ import meta, * as showcases from "@erbium/showcase/table";
 export default { ...meta, title: "Components/Table" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Footer = { ...showcases.Footer, name: "Footer" };
+
 export const Actions = { ...showcases.Actions, name: "Actions" };
+
 export const RowSelection = { ...showcases.RowSelection, name: "Row Selection" };
+
 export const RTL = { ...showcases.RTL, name: "RTL" };

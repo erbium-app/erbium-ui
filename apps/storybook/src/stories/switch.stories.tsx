@@ -4,14 +4,25 @@ import meta, * as showcases from "@erbium/showcase/switch";
 export default { ...meta, title: "Components/Switch" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const On = { ...showcases.On, name: "On" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
+
 export const Description = { ...showcases.Description, name: "Description" };
+
 export const ChoiceCard = { ...showcases.ChoiceCard, name: "Choice Card" };
+
 export const Invalid = { ...showcases.Invalid, name: "Invalid" };
+
 export const Size = { ...showcases.Size, name: "Size" };
+
 export const Icons = { ...showcases.Icons, name: "Icons" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const ReadOnly = { ...showcases.ReadOnly, name: "Read Only" };
+
 export const Form = { ...showcases.Form, name: "Form" };

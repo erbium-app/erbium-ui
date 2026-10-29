@@ -4,7 +4,11 @@ import meta, * as showcases from "@erbium/showcase/typography";
 export default { ...meta, title: "Foundations/Typography" };
 
 export const Typefaces = { ...showcases.Typefaces, name: "Typefaces" };
+
 export const Interface = { ...showcases.Interface, name: "Interface" };
+
 export const Code = { ...showcases.Code, name: "Code" };
+
 export const Reading = { ...showcases.Reading, name: "Reading" };
+
 export const Multilingual = { ...showcases.Multilingual, name: "Multilingual" };

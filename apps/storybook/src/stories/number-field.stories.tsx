@@ -4,9 +4,15 @@ import meta, * as showcases from "@erbium/showcase/number-field";
 export default { ...meta, title: "Components/Number Field" };
 
 export const Default = { ...showcases.Default, name: "Default" };
+
 export const Sizes = { ...showcases.Sizes, name: "Sizes" };
+
 export const ScrubLabel = { ...showcases.ScrubLabel, name: "Scrub Label" };
+
 export const Formats = { ...showcases.Formats, name: "Formats" };
+
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
 export const Direction = { ...showcases.Direction, name: "Direction" };
+
 export const Showcase = { ...showcases.Showcase, name: "Showcase" };

@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/step-indicator";
 export default { ...meta, title: "Blocks/Step Indicator" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const ReadOnly = { ...showcases.ReadOnly, name: "Read Only" };
+
 export const Blocked = { ...showcases.Blocked, name: "Blocked" };
+
 export const Status = { ...showcases.Status, name: "Status" };
+
 export const Progress = { ...showcases.Progress, name: "Progress" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
+
 export const Tabs = { ...showcases.Tabs, name: "Tabs" };
+
 export const TanstackForm = { ...showcases.TanstackForm, name: "TanStack Form" };

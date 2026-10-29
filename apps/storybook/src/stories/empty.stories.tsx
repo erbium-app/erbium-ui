@@ -4,10 +4,17 @@ import meta, * as showcases from "@erbium/showcase/empty";
 export default { ...meta, title: "Components/Empty" };
 
 export const Playground = { ...showcases.Playground, name: "Playground" };
+
 export const Overview = { ...showcases.Overview, name: "Overview" };
+
 export const Avatar = { ...showcases.Avatar, name: "Avatar" };
+
 export const AvatarGroup = { ...showcases.AvatarGroup, name: "Avatar Group" };
+
 export const Inputgroup = { ...showcases.Inputgroup, name: "Inputgroup" };
+
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
+
 export const Outline = { ...showcases.Outline, name: "Outline" };
+
 export const Background = { ...showcases.Background, name: "Background" };
