@@ -31,7 +31,7 @@
     "check": "node scripts/generate.mjs --check"
   },
   "devDependencies": {
-    "oxfmt": "0.75.0",
+    "oxfmt": "0.77.0",
     "svgo": "4.1.0",
     "vite-plus": "catalog:"
   }

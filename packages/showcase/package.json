@@ -20,7 +20,7 @@
     "@erbium/ui": "workspace:*",
     "@hugeicons/core-free-icons": "catalog:",
     "@hugeicons/react": "catalog:",
-    "@pierre/diffs": "1.6.2",
+    "@pierre/diffs": "1.6.4",
     "@shadcn/react": "catalog:",
     "@tanstack/charts": "catalog:",
     "@tanstack/react-form": "1.33.5",
