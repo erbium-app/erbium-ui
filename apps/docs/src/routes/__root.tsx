@@ -10,6 +10,11 @@ import { IconSprite } from "@erbium/ui/components/icon-sprite";
 import { Shell } from "@/components/shell";
 import stylesheet from "@/styles.css?url";
 
+// Alchemy supplies the token only to deploy builds; dev and local builds omit the beacon.
+const analyticsToken = import.meta.env.PROD
+  ? import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN
+  : undefined;
+
 const Root = () => (
   <html className="antialiased" lang="en" suppressHydrationWarning>
     <head>
@@ -22,13 +27,11 @@ const Root = () => (
         <Outlet />
       </Shell>
       <Scripts />
-      {import.meta.env.PROD && import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN && (
+      {analyticsToken === undefined || analyticsToken === "" ? null : (
         <script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={JSON.stringify({
-            token: import.meta.env.VITE_CLOUDFLARE_ANALYTICS_TOKEN,
-          })}
+          data-cf-beacon={JSON.stringify({ token: analyticsToken })}
         />
       )}
     </body>
