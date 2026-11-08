@@ -20,3 +20,13 @@ import { Badge } from "@erbium/ui/components/badge";
   Badge
 </Badge>
 ```
+
+## Loading
+
+Loading retains the label and replaces the built-in status icon.
+
+Spinners beside labels belong at the inline start: left in LTR and right in RTL. Inherit `dir` from the page or set it on a containing element. Loading APIs do not expose a spinner alignment option.
+
+```tsx
+<Badge loading>Syncing</Badge>
+```

@@ -7,26 +7,32 @@ import {
   InputGroupInput,
   InputGroupTextarea,
 } from "@erbium/ui/components/input-group";
-import { Spinner } from "@erbium/ui/components/spinner";
 
 const SpinnerInputGroup = () => (
-  <div className="flex w-full max-w-md flex-col gap-group">
-    <InputGroup>
-      <InputGroupInput placeholder="Send a message..." disabled />
-      <InputGroupAddon align="inline-end">
-        <Spinner />
-      </InputGroupAddon>
-    </InputGroup>
-    <InputGroup>
-      <InputGroupTextarea placeholder="Send a message..." disabled />
-      <InputGroupAddon align="block-end">
-        <Spinner /> Validating...
-        <InputGroupButton className="ml-auto" variant="default">
-          <Icon name="arrow-up-01" />
-          <span className="sr-only">Send</span>
-        </InputGroupButton>
-      </InputGroupAddon>
-    </InputGroup>
+  <div className="grid w-full gap-group sm:grid-cols-2">
+    {(["ltr", "rtl"] as const).map((direction) => (
+      <div key={direction} dir={direction} className="flex w-full max-w-md flex-col gap-group">
+        <InputGroup loading>
+          <InputGroupInput
+            placeholder={direction === "rtl" ? "ارسال پیام..." : "Send a message..."}
+            disabled
+          />
+        </InputGroup>
+        <InputGroup loading>
+          <InputGroupTextarea
+            placeholder={direction === "rtl" ? "ارسال پیام..." : "Send a message..."}
+            disabled
+          />
+          <InputGroupAddon align="block-end">
+            {direction === "rtl" ? "در حال اعتبارسنجی..." : "Validating..."}
+            <InputGroupButton className="ms-auto" variant="default">
+              <Icon name="arrow-up-01" />
+              <span className="sr-only">{direction === "rtl" ? "ارسال" : "Send"}</span>
+            </InputGroupButton>
+          </InputGroupAddon>
+        </InputGroup>
+      </div>
+    ))}
   </div>
 );
 

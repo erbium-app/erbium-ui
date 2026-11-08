@@ -1,15 +1,16 @@
 import { Badge } from "@erbium/ui/components/badge";
-import { Spinner } from "@erbium/ui/components/spinner";
 
 export const BadgeWithSpinner = () => (
-  <div className="flex flex-wrap gap-related">
-    <Badge variant="error">
-      <Spinner data-icon="inline-start" size="xs" />
-      Deleting
-    </Badge>
-    <Badge variant="secondary">
-      Generating
-      <Spinner data-icon="inline-end" size="xs" />
-    </Badge>
+  <div className="flex flex-wrap gap-section">
+    {(["ltr", "rtl"] as const).map((direction) => (
+      <div key={direction} dir={direction} className="flex flex-wrap gap-related">
+        <Badge variant="error" loading>
+          {direction === "rtl" ? "در حال حذف" : "Deleting"}
+        </Badge>
+        <Badge variant="secondary" loading>
+          {direction === "rtl" ? "در حال تولید" : "Generating"}
+        </Badge>
+      </div>
+    ))}
   </div>
 );

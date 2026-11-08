@@ -46,6 +46,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Badge> = {
   argTypes: {
+    loading: { control: "boolean" },
     variant: {
       control: "select",
       options: [
@@ -74,7 +75,7 @@ export const Playground: StoryObj<typeof Badge> = {
       ],
     },
   },
-  args: { children: "Badge", className: "", variant: "default" },
+  args: { children: "Badge", className: "", loading: false, variant: "default" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("badge", "playground") },

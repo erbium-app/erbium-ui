@@ -8,7 +8,7 @@ import { cn } from "../lib/utils";
 import { Spinner } from "./spinner";
 
 const badgeVariants = cva(
-  "group/badge inline-flex min-h-badge w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0 text-control-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] focus-visible:border-ring has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid [&>svg]:pointer-events-none [&>svg]:size-3! [&_[data-slot=spinner]]:pointer-events-none [&_[data-slot=spinner]]:size-3!",
+  "group/badge inline-flex [&>[data-slot=spinner]]:order-first min-h-badge w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0 text-control-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow] focus-visible:border-ring has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid [&>svg]:pointer-events-none [&>svg]:size-3! [&_[data-slot=spinner]]:pointer-events-none [&_[data-slot=spinner]]:size-3!",
   {
     defaultVariants: {
       variant: "default",
@@ -91,6 +91,7 @@ const Badge = ({
     ),
     render,
     state: {
+      loading,
       slot: "badge",
       variant,
     },

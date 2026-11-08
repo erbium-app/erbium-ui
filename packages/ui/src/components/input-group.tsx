@@ -4,19 +4,8 @@ import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Input } from "./input";
+import { Spinner } from "./spinner";
 import { Textarea } from "./textarea";
-
-const InputGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
-  <div
-    data-slot="input-group"
-    role="group"
-    className={cn(
-      "group/input-group relative flex min-h-control control-adaptive w-full min-w-0 items-center gap-control-gap rounded-lg border surface-field transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-[>[data-slot=input-group-control][data-disabled]]:opacity-50 has-[[data-slot][aria-invalid=true]]:border-error has-[[data-slot][aria-invalid=true]]:ring-[1.5px] has-[[data-slot][aria-invalid=true]]:ring-invalid-halo has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5",
-      className,
-    )}
-    {...props}
-  />
-);
 
 const inputGroupAddonVariants = cva(
   "flex h-auto cursor-text items-center justify-center gap-related py-1.5 text-control-sm font-medium text-muted-foreground select-none [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
@@ -48,13 +37,15 @@ const InputGroupAddon = ({
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>) => (
   <div
-    role="group"
+    role="presentation"
     data-slot="input-group-addon"
     data-align={align}
     className={cn(inputGroupAddonVariants({ align }), className)}
     onMouseDown={(event) => {
       onMouseDown?.(event);
-      const interactive = (event.target as Element).closest(interactiveSelector);
+
+      const interactive =
+        event.target instanceof Element ? event.target.closest(interactiveSelector) : null;
 
       if (event.defaultPrevented || (interactive && event.currentTarget.contains(interactive))) {
         return;
@@ -69,6 +60,32 @@ const InputGroupAddon = ({
     }}
     {...props}
   />
+);
+
+const InputGroup = ({
+  children,
+  className,
+  loading = false,
+  "aria-busy": ariaBusy,
+  ...props
+}: React.ComponentProps<"fieldset"> & { loading?: boolean }) => (
+  <fieldset
+    data-slot="input-group"
+    aria-busy={loading || ariaBusy}
+    data-loading={loading ? "" : undefined}
+    className={cn(
+      "data-loading:[&>[data-slot=input-group-control]]:ps-8 group/input-group relative m-0 flex min-h-control control-adaptive w-full min-w-0 items-center gap-control-gap rounded-lg border p-0 surface-field transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0 has-[>[data-slot=input-group-control][data-disabled]]:opacity-50 has-[[data-slot][aria-invalid=true]]:border-error has-[[data-slot][aria-invalid=true]]:ring-[1.5px] has-[[data-slot][aria-invalid=true]]:ring-invalid-halo has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5",
+      className,
+    )}
+    {...props}
+  >
+    {children}
+    {loading && (
+      <InputGroupAddon className="absolute inset-s-0 top-0 min-h-control">
+        <Spinner aria-hidden size="sm" />
+      </InputGroupAddon>
+    )}
+  </fieldset>
 );
 
 const inputGroupButtonVariants = cva(

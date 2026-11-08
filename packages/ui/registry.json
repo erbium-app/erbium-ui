@@ -865,6 +865,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/input",
+        "@erbium/spinner",
         "@erbium/textarea",
         "@erbium/utils"
       ],

@@ -3,16 +3,11 @@
   "name": "spinner-input-group",
   "type": "registry:block",
   "title": "Spinner: Input Group",
-  "description": "Show progress inside an input group.",
-  "registryDependencies": [
-    "@erbium/icon",
-    "@erbium/input-group",
-    "@erbium/spinner",
-    "@erbium/styles"
-  ],
+  "description": "Set `loading` on `InputGroup` to show a spinner at the inline start (left in LTR, right in RTL) and set `aria-busy`. Keep status text in a block addon when needed. Loading does not disable editing; set `disabled` on the input separately when appropriate.",
+  "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerInputGroup = () => (\n  <div className=\"flex w-full max-w-md flex-col gap-group\">\n    <InputGroup>\n      <InputGroupInput placeholder=\"Send a message...\" disabled />\n      <InputGroupAddon align=\"inline-end\">\n        <Spinner />\n      </InputGroupAddon>\n    </InputGroup>\n    <InputGroup>\n      <InputGroupTextarea placeholder=\"Send a message...\" disabled />\n      <InputGroupAddon align=\"block-end\">\n        <Spinner /> Validating...\n        <InputGroupButton className=\"ml-auto\" variant=\"default\">\n          <Icon name=\"arrow-up-01\" />\n          <span className=\"sr-only\">Send</span>\n        </InputGroupButton>\n      </InputGroupAddon>\n    </InputGroup>\n  </div>\n);\n\nexport default SpinnerInputGroup;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupTextarea,\n} from \"@/registry/erbium/ui/input-group\";\n\nconst SpinnerInputGroup = () => (\n  <div className=\"grid w-full gap-group sm:grid-cols-2\">\n    {([\"ltr\", \"rtl\"] as const).map((direction) => (\n      <div key={direction} dir={direction} className=\"flex w-full max-w-md flex-col gap-group\">\n        <InputGroup loading>\n          <InputGroupInput\n            placeholder={direction === \"rtl\" ? \"ارسال پیام...\" : \"Send a message...\"}\n            disabled\n          />\n        </InputGroup>\n        <InputGroup loading>\n          <InputGroupTextarea\n            placeholder={direction === \"rtl\" ? \"ارسال پیام...\" : \"Send a message...\"}\n            disabled\n          />\n          <InputGroupAddon align=\"block-end\">\n            {direction === \"rtl\" ? \"در حال اعتبارسنجی...\" : \"Validating...\"}\n            <InputGroupButton className=\"ms-auto\" variant=\"default\">\n              <Icon name=\"arrow-up-01\" />\n              <span className=\"sr-only\">{direction === \"rtl\" ? \"ارسال\" : \"Send\"}</span>\n            </InputGroupButton>\n          </InputGroupAddon>\n        </InputGroup>\n      </div>\n    ))}\n  </div>\n);\n\nexport default SpinnerInputGroup;\n",
       "path": "src/spinner/examples/spinner-input-group.tsx",
       "target": "@components/showcase/spinner/examples/spinner-input-group.tsx",
       "type": "registry:component"

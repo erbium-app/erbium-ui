@@ -2336,7 +2336,7 @@
       "type": "registry:component",
       "title": "badge spinner",
       "description": "Erbium badge spinner example.",
-      "registryDependencies": ["@erbium/badge", "@erbium/spinner", "@erbium/styles"],
+      "registryDependencies": ["@erbium/badge", "@erbium/styles"],
       "files": [
         {
           "path": "src/badge/examples/badge-spinner.tsx",
@@ -2356,7 +2356,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/overlay-provider",
-        "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -2460,8 +2459,8 @@
       "name": "badge-with-spinner",
       "type": "registry:block",
       "title": "Badge: With Spinner",
-      "description": "You can render a spinner inside the badge. Remember to add the `data-icon=\"inline-start\"` or `data-icon=\"inline-end\"` prop to the spinner.",
-      "registryDependencies": ["@erbium/badge", "@erbium/spinner", "@erbium/styles"],
+      "description": "Set `loading` to show a spinner at the inline start: left in LTR and right in RTL. The badge owns the spinner and its size; do not insert a `Spinner` child or choose its alignment. Loading replaces the built-in status icon and sets `aria-busy`.",
+      "registryDependencies": ["@erbium/badge", "@erbium/styles"],
       "files": [
         {
           "path": "src/badge/examples/badge-spinner.tsx",
@@ -4270,7 +4269,7 @@
       "name": "button-with-spinner",
       "type": "registry:block",
       "title": "Button: Spinner",
-      "description": "Set `loading` to show the spinner in a consistent position and block activation.",
+      "description": "Set `loading` to show a spinner at the inline start (left in LTR, right in RTL) and block activation. The button owns spinner placement and sizing; do not insert a `Spinner` child. Icon-only buttons center the spinner and retain their accessible label.",
       "registryDependencies": ["@erbium/button", "@erbium/styles"],
       "files": [
         {
@@ -5273,7 +5272,7 @@
       "type": "registry:component",
       "title": "chart demo",
       "description": "Erbium chart demo example.",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5288,7 +5287,7 @@
       "type": "registry:block",
       "title": "Chart: Example",
       "description": "A chart with the default configuration.",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
       "files": [
         {
@@ -5308,7 +5307,7 @@
       "type": "registry:block",
       "title": "Chart: Example Axis",
       "description": "Show chart axes and labels.",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
       "files": [
         {
@@ -5333,7 +5332,7 @@
       "type": "registry:block",
       "title": "Chart: Example Grid",
       "description": "Show grid lines in a chart.",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
       "files": [
         {
@@ -5358,7 +5357,7 @@
       "type": "registry:block",
       "title": "Chart: Legend",
       "description": "TanStack Charts renders the legend from the chart definition. The example maps Desktop and Mobile to fixed colors and enables a legend labeled Device.\n\n```tsx\nimport { chartTextRole } from \"@erbium/ui/lib/typography\";\n\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  color: {\n    scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n    legend: colorLegend({\n      label: \"Device\",\n      items: colorLegendItems({\n        justify: \"start\",\n        gap: 16,\n        rowGap: 8,\n        indicator: { shape: \"dot\", width: 8, height: 8, gap: 7 },\n        label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n      }),\n    }),\n  },\n});\n```",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
       "files": [
         {
@@ -5383,7 +5382,7 @@
       "type": "registry:block",
       "title": "Chart: Tooltip",
       "description": "Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\n\n```tsx\nimport { tooltip } from \"@tanstack/charts/tooltip\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  focus: \"group-x\",\n  tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n});\n```\n\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
       "files": [
         {
@@ -5423,7 +5422,7 @@
       "type": "registry:block",
       "title": "Chart: Overview",
       "description": "",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
@@ -5443,7 +5442,7 @@
       "type": "registry:block",
       "title": "Chart: Playground",
       "description": "",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
       "files": [
         {
@@ -5463,7 +5462,7 @@
       "type": "registry:item",
       "title": "Chart stories",
       "description": "All chart variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/charts@1.4.0"],
+      "dependencies": ["@tanstack/charts@1.5.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/chart",
@@ -7008,7 +7007,7 @@
       "type": "registry:block",
       "title": "Command: Basic",
       "description": "A simple command menu in a dialog.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.22.0"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.22.2"],
       "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
       "files": [
         {
@@ -7162,7 +7161,7 @@
       "type": "registry:item",
       "title": "Command stories",
       "description": "All command variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.22.0"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.22.2"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -18996,7 +18995,7 @@
       "name": "spinner-badge",
       "type": "registry:block",
       "title": "Spinner: Badge",
-      "description": "Use `Badge loading` to show a spinner before the label.",
+      "description": "Use `Badge loading` to show a spinner at the inline start: left in LTR and right in RTL. The badge manages placement and sizing automatically.",
       "registryDependencies": ["@erbium/badge", "@erbium/styles"],
       "files": [
         {
@@ -19015,7 +19014,7 @@
       "name": "spinner-button",
       "type": "registry:block",
       "title": "Spinner: Button",
-      "description": "Use `Button loading` to show a spinner and block activation.",
+      "description": "Use `Button loading` to show a spinner at the inline start (left in LTR, right in RTL) and block activation. `InputGroupButton` inherits the same API. Icon-only buttons center the spinner.",
       "registryDependencies": ["@erbium/button", "@erbium/styles"],
       "files": [
         {
@@ -19087,13 +19086,8 @@
       "name": "spinner-input-group",
       "type": "registry:block",
       "title": "Spinner: Input Group",
-      "description": "Show progress inside an input group.",
-      "registryDependencies": [
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/spinner",
-        "@erbium/styles"
-      ],
+      "description": "Set `loading` on `InputGroup` to show a spinner at the inline start (left in LTR, right in RTL) and set `aria-busy`. Keep status text in a block addon when needed. Loading does not disable editing; set `disabled` on the input separately when appropriate.",
+      "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/styles"],
       "files": [
         {
           "path": "src/spinner/examples/spinner-input-group.tsx",

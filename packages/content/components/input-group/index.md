@@ -44,3 +44,15 @@ InputGroup
 ```
 
 For proper focus management, place `InputGroupAddon` after `InputGroupInput` or `InputGroupTextarea` in the DOM. Use `align` to position it visually.
+
+## Loading
+
+Loading marks the group busy without disabling the input.
+
+Spinners beside labels belong at the inline start: left in LTR and right in RTL. Inherit `dir` from the page or set it on a containing element. Loading APIs do not expose a spinner alignment option.
+
+```tsx
+<InputGroup loading>
+  <InputGroupInput placeholder="Search..." />
+</InputGroup>
+```

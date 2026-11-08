@@ -3,4 +3,4 @@ title: "With Spinner"
 story: WithSpinner
 ---
 
-You can render a spinner inside the badge. Remember to add the `data-icon="inline-start"` or `data-icon="inline-end"` prop to the spinner.
+Set `loading` to show a spinner at the inline start: left in LTR and right in RTL. The badge owns the spinner and its size; do not insert a `Spinner` child or choose its alignment. Loading replaces the built-in status icon and sets `aria-busy`.

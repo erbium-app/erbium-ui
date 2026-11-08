@@ -22,18 +22,19 @@ const StatefulIcon = <State extends string>({
   className,
   "data-icon": placement,
 }: StatefulIconProps<State>) => {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() === true;
   const label = labels?.[state];
+  const hasLabel = label !== undefined && label !== "";
 
   return (
     <span
-      aria-hidden={label ? undefined : true}
+      aria-hidden={hasLabel ? undefined : true}
       aria-label={label}
       className={cn("inline-grid shrink-0 align-middle *:col-start-1 *:row-start-1", className)}
       data-icon={placement}
       data-slot="stateful-icon"
       data-state={state}
-      role={label ? "img" : undefined}
+      role={hasLabel ? "img" : undefined}
     >
       {Object.entries<ReactNode>(icons).map(([key, icon]) => {
         const active = key === state;
@@ -72,14 +73,20 @@ const RotatingChevron = ({
 }: RotatingChevronProps) => {
   const name = direction === "down" ? "chevron-down" : "chevron-right";
 
-  const rotation =
-    direction === "down"
-      ? scope === "collapsible"
+  let rotation: string;
+
+  if (direction === "down") {
+    rotation =
+      scope === "collapsible"
         ? "group-data-open/collapsible-trigger:rotate-180 group-data-panel-open/collapsible-trigger:rotate-180"
-        : "group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180"
-      : direction === "inline-end" || direction === "right"
-        ? "rtl:rotate-180 group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180 rtl:group-data-open:rotate-0 rtl:group-data-popup-open:rotate-0 rtl:group-data-panel-open:rotate-0"
-        : "rotate-180 rtl:rotate-0 group-data-open:rotate-0 group-data-popup-open:rotate-0 group-data-panel-open:rotate-0 rtl:group-data-open:rotate-180 rtl:group-data-popup-open:rotate-180 rtl:group-data-panel-open:rotate-180";
+        : "group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180";
+  } else if (direction === "inline-end" || direction === "right") {
+    rotation =
+      "rtl:rotate-180 group-data-open:rotate-180 group-data-popup-open:rotate-180 group-data-panel-open:rotate-180 rtl:group-data-open:rotate-0 rtl:group-data-popup-open:rotate-0 rtl:group-data-panel-open:rotate-0";
+  } else {
+    rotation =
+      "rotate-180 rtl:rotate-0 group-data-open:rotate-0 group-data-popup-open:rotate-0 group-data-panel-open:rotate-0 rtl:group-data-open:rotate-180 rtl:group-data-popup-open:rotate-180 rtl:group-data-panel-open:rotate-180";
+  }
 
   return (
     <Icon
@@ -103,7 +110,7 @@ interface ExpandableChevronProps {
 
 /** Two chevrons exchange positions to indicate an open or closed state. */
 const ExpandableChevron = ({ isOpen, className }: ExpandableChevronProps) => {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() === true;
   const transition = reduceMotion ? { duration: 0 } : { duration: 0.2, ease: "easeOut" as const };
 
   return (
@@ -150,7 +157,7 @@ const SidebarToggleIcon = ({
   className,
   ...props
 }: SidebarToggleIconProps) => {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() === true;
 
   return (
     <svg
@@ -200,7 +207,7 @@ interface ThemeToggleIconProps {
 
 /** Sun and moon icons rotate and scale as the active theme changes. */
 const ThemeToggleIcon = ({ theme, className }: ThemeToggleIconProps) => {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() === true;
   const transition = { duration: reduceMotion ? 0 : 0.2 };
   const isDark = theme === "dark";
 
@@ -242,12 +249,12 @@ const CheckboxStateIcon = ({ className }: { className?: string }) => (
     <Icon
       name="check"
       aria-hidden="true"
-      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
+      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [stroke-dasharray:32] [stroke-dashoffset:32] group-data-checked/check-indicator:opacity-100 group-data-checked/check-indicator:delay-75 group-data-checked/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
     />
     <Icon
       name="minus"
       aria-hidden="true"
-      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [--icon-stroke-width:3.5] [stroke-dasharray:24] [stroke-dashoffset:24] group-data-indeterminate/check-indicator:opacity-100 group-data-indeterminate/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
+      className="col-start-1 row-start-1 size-full opacity-0 transition-[opacity,stroke-dashoffset] duration-120 [stroke-dasharray:24] [stroke-dashoffset:24] group-data-indeterminate/check-indicator:opacity-100 group-data-indeterminate/check-indicator:[stroke-dashoffset:0] motion-reduce:transition-none"
     />
   </span>
 );

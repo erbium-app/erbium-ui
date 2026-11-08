@@ -22,8 +22,10 @@ const spinnerVariants = cva("inline-block shrink-0 animate-spin", {
 const Spinner = ({
   className,
   size = "default",
+  "data-icon": dataIcon = "inline-start",
   ...props
-}: React.ComponentProps<"output"> & VariantProps<typeof spinnerVariants>) => {
+}: React.ComponentProps<"output"> &
+  VariantProps<typeof spinnerVariants> & { "data-icon"?: "inline-start" }) => {
   const id = useId();
   const leadingId = `${id}-leading`;
   const trailingId = `${id}-trailing`;
@@ -32,6 +34,7 @@ const Spinner = ({
     <output
       data-slot="spinner"
       data-size={size}
+      data-icon={dataIcon}
       aria-label="Loading"
       className={cn(spinnerVariants({ className, size }))}
       {...props}
