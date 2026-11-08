@@ -866,12 +866,6 @@
         "slug": "selected-date-with-timezone",
         "source": "src/calendar/variants/selected-date-with-timezone.tsx",
         "title": "Selected Date (With TimeZone)"
-      },
-      {
-        "exportName": "CustomCellSize",
-        "slug": "custom-cell-size",
-        "source": "src/calendar/variants/custom-cell-size.tsx",
-        "title": "Custom Cell Size"
       }
     ]
   },

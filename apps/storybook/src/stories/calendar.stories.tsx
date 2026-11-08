@@ -34,5 +34,3 @@ export const SelectedDateWithTimezone = {
   ...showcases.SelectedDateWithTimezone,
   name: "Selected Date (With TimeZone)",
 };
-
-export const CustomCellSize = { ...showcases.CustomCellSize, name: "Custom Cell Size" };

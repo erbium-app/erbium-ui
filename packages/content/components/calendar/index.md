@@ -23,8 +23,8 @@ return <Calendar mode="single" selected={date} onSelect={setDate} />;
 
 `Calendar` wraps [React DayPicker](https://daypicker.dev) 10 (`@daypicker/react`) and passes every DayPicker prop through. It styles DayPicker's own elements through `classNames`, so keyboard navigation and focus management stay DayPicker's:
 
-- Days and navigation buttons use the ghost button surface. Selected days use the `selection` colour; the middle of a range uses the muted fill.
-- Today is marked with a dot under the number, so it never competes with a selection.
+- Days and navigation buttons are library buttons. Days use the `ghost` variant, a selected day and the ends of a range use `default`, and the days between range ends use `secondary`, so hover, press, focus, and disabled states match every other button.
+- Today is marked with a dot under the number in the day's text colour, so it never competes with a selection.
 - `captionLayout="dropdown"` renders the month and year pickers with the library `Select`.
 - Standalone, the calendar sits on a panel surface. Inside a `Card` or a `Popover` it drops its own surface and uses the container's.
 
@@ -38,16 +38,7 @@ To pick a date from a field, use [Date Picker](/docs/components/date-picker), wh
 <Calendar classNames={{ day_button: "flex-col gap-0.5" }} />
 ```
 
-Cells are sized by two CSS variables on the root:
-
-| Variable        | Default                                           |
-| --------------- | ------------------------------------------------- |
-| `--cell-size`   | `var(--control-height)`; `2.75rem` on touch input |
-| `--cell-radius` | `var(--radius-md)`                                |
-
-```tsx
-<Calendar className="[--cell-size:--spacing(11)]" />
-```
+Day cells follow the control height and grow to a 2.75rem touch target on coarse pointers. Keep that sizing so the calendar lines up with inputs, selects, and buttons; do not override the cell size per calendar.
 
 To add content to a day, wrap `CalendarDayButton`, DayPicker's default day button, in a custom `DayButton` (see Custom Days).
 

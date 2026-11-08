@@ -24,7 +24,7 @@ export const CalendarWithPresets = () => {
           month={currentMonth}
           onMonthChange={setCurrentMonth}
           fixedWeeks
-          className="p-0 [--cell-size:--spacing(9.5)]"
+          className="p-0"
         />
       </CardContent>
       <CardFooter className="flex flex-wrap gap-related">
@@ -39,7 +39,7 @@ export const CalendarWithPresets = () => {
             key={preset.value}
             variant="outline"
             size="sm"
-            className="flex-1"
+            className="grow"
             onClick={() => {
               const newDate = addDays(new Date(), preset.value);
               setDate(newDate);

@@ -13,20 +13,42 @@ const navButtonClassName = cn(
   "size-(--cell-size) rounded-(--cell-radius) p-0 aria-disabled:pointer-events-none aria-disabled:opacity-50",
 );
 
-/* Day state lives on the grid cell (data-selected, data-today, range classes),
-   so the button reads it with `in-*` variants instead of a custom DayButton. */
+/* Day buttons take a library button variant from their state: ghost by
+   default, the primary fill when selected, and secondary between range ends.
+   Range rounding reads the marker classes DayPicker puts on the grid cell. */
 const dayButtonClassName = cn(
-  buttonVariants({ size: null, variant: "ghost" }),
   "relative size-(--cell-size) rounded-(--cell-radius) p-0 text-control-sm font-normal focus-visible:z-10",
-  "in-data-outside:text-muted-foreground",
-  "in-data-disabled:text-muted-foreground in-data-disabled:line-through in-data-disabled:opacity-50",
-  "in-data-selected:bg-selection in-data-selected:text-selection-foreground",
-  "in-data-selected:in-data-outside:text-selection-foreground",
-  "in-[.range-start:not(.range-end)]:rounded-e-none in-[.range-end:not(.range-start)]:rounded-s-none",
-  "in-[.range-middle]:rounded-none in-[.range-middle]:in-data-selected:bg-muted in-[.range-middle]:in-data-selected:text-foreground",
-  // Today is a dot under the number, so it never competes with a selection fill.
-  "in-data-today:after:pointer-events-none in-data-today:after:absolute in-data-today:after:inset-x-0 in-data-today:after:bottom-1 in-data-today:after:mx-auto in-data-today:after:size-0.75 in-data-today:after:rounded-full in-data-today:after:bg-selection",
-  "in-data-today:in-data-selected:after:bg-selection-foreground in-[.range-middle]:in-data-today:after:bg-selection in-data-today:in-data-disabled:after:bg-muted-foreground",
+  "in-data-outside:not-in-data-selected:text-muted-foreground",
+  "in-data-disabled:line-through",
+  "in-[.range-start:not(.range-end)]:rounded-e-none in-[.range-end:not(.range-start)]:rounded-s-none in-[.range-middle]:rounded-none",
+  // Today is a dot under the number in the button's text colour.
+  "in-data-today:after:pointer-events-none in-data-today:after:absolute in-data-today:after:inset-x-0 in-data-today:after:bottom-1 in-data-today:after:mx-auto in-data-today:after:size-0.75 in-data-today:after:rounded-full in-data-today:after:bg-current",
+);
+
+const dayButtonVariant = (modifiers: React.ComponentProps<typeof DayButton>["modifiers"]) => {
+  if (modifiers.range_middle) {
+    return "secondary";
+  }
+
+  return modifiers.selected ? "default" : "ghost";
+};
+
+/** The calendar's day button. Wrap it in a custom `DayButton` to add content to a day. */
+const CalendarDayButton = ({
+  className,
+  modifiers,
+  ...props
+}: React.ComponentProps<typeof DayButton>) => (
+  <DayButton
+    data-slot="calendar-day-button"
+    modifiers={modifiers}
+    className={cn(
+      buttonVariants({ size: null, variant: dayButtonVariant(modifiers) }),
+      dayButtonClassName,
+      className,
+    )}
+    {...props}
+  />
 );
 
 /* Range days carry marker classes that the day button reads with `in-[.range-*]`. */
@@ -35,7 +57,6 @@ const calendarClassNames = {
   button_previous: navButtonClassName,
   caption_label: "flex h-full items-center gap-1 font-medium select-none",
   day: "p-0 py-px text-center",
-  day_button: dayButtonClassName,
   dropdowns: "flex items-center justify-center gap-1.5",
   hidden: "invisible",
   month: "flex w-full flex-col gap-related",
@@ -81,7 +102,12 @@ const CalendarChevron = ({ className, orientation, size: _size, ...props }: Chev
   return <Icon name="chevron-down" className={cn("size-4", className)} {...props} />;
 };
 
-/** Month and year navigation through the library Select. */
+/** Month and year navigation through the library Select.
+ *
+ * DayPicker's month and year handlers expect a native select change event and
+ * resolve the target month through the calendar's own date library, which keeps
+ * non-Gregorian calendars correct. A hidden native select receives that event:
+ * the visible Select writes its value and dispatches a real `change` event. */
 const CalendarDropdown = ({
   "aria-label": ariaLabel,
   disabled,
@@ -89,36 +115,57 @@ const CalendarDropdown = ({
   options,
   value,
 }: DropdownProps) => {
+  const nativeRef = React.useRef<HTMLSelectElement>(null);
+
   const items = (options ?? []).map((option) => ({
     label: option.label,
     value: String(option.value),
   }));
 
   return (
-    <Select
-      items={items}
-      value={value === undefined ? null : String(value)}
-      disabled={disabled}
-      onValueChange={(next) => {
-        if (next !== null) {
-          // SAFETY: DayPicker's month and year handlers read only `target.value`
-          // from the change event, so a partial event carries everything they use.
-          // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-          onChange?.({ target: { value: next } } as React.ChangeEvent<HTMLSelectElement>);
-        }
-      }}
-    >
-      <SelectTrigger size="sm" aria-label={ariaLabel} className="gap-1 font-medium">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent className="max-h-72">
-        {(options ?? []).map((option) => (
-          <SelectItem key={option.value} value={String(option.value)} disabled={option.disabled}>
-            {option.label}
-          </SelectItem>
+    <>
+      <select
+        ref={nativeRef}
+        hidden
+        aria-hidden
+        tabIndex={-1}
+        disabled={disabled}
+        value={value}
+        onChange={onChange}
+      >
+        {items.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
         ))}
-      </SelectContent>
-    </Select>
+      </select>
+      <Select
+        items={items}
+        value={value === undefined ? null : String(value)}
+        disabled={disabled}
+        onValueChange={(next) => {
+          const native = nativeRef.current;
+
+          if (next === null || native === null) {
+            return;
+          }
+
+          native.value = next;
+          native.dispatchEvent(new Event("change", { bubbles: true }));
+        }}
+      >
+        <SelectTrigger size="sm" aria-label={ariaLabel} className="gap-1 font-medium">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent className="max-h-72">
+          {(options ?? []).map((option) => (
+            <SelectItem key={option.value} value={String(option.value)} disabled={option.disabled}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </>
   );
 };
 
@@ -148,6 +195,7 @@ const Calendar = ({
     classNames={mergeClassNames(classNames)}
     components={{
       Chevron: CalendarChevron,
+      DayButton: CalendarDayButton,
       Dropdown: CalendarDropdown,
       Root: CalendarRoot,
       ...components,
@@ -155,9 +203,6 @@ const Calendar = ({
     {...props}
   />
 );
-
-/** DayPicker's default day button, for custom `DayButton` components that add content. */
-const CalendarDayButton = DayButton;
 
 export { Calendar, CalendarDayButton };
 

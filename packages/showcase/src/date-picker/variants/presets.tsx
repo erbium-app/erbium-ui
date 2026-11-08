@@ -8,6 +8,7 @@ import {
   DatePickerInput,
 } from "@erbium/ui/components/date-picker";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
+import { Separator } from "@erbium/ui/components/separator";
 import { addDays } from "@erbium/ui/lib/date";
 
 const presets = [
@@ -27,13 +28,13 @@ const Example = () => {
       <FieldLabel htmlFor="date-picker-presets">Remind me</FieldLabel>
       <DatePicker value={date} onValueChange={setDate} open={open} onOpenChange={setOpen}>
         <DatePickerInput id="date-picker-presets" />
-        <DatePickerContent className="flex-row gap-0 max-sm:flex-col">
-          <div className="flex flex-col gap-0.5 border-e pe-1 max-sm:order-1 max-sm:border-e-0 max-sm:border-t max-sm:pe-0 max-sm:pt-1">
+        <DatePickerContent className="flex-row gap-group max-sm:flex-col-reverse">
+          <div className="flex flex-col gap-0.5">
             {presets.map((preset) => (
               <Button
                 key={preset.days}
                 variant="ghost"
-                size="sm"
+                size="xs"
                 className="justify-start"
                 onClick={() => {
                   const today = new Date();
@@ -51,6 +52,8 @@ const Example = () => {
               </Button>
             ))}
           </div>
+          <Separator orientation="vertical" className="max-sm:hidden" />
+          <Separator className="sm:hidden" />
           <DatePickerCalendar />
         </DatePickerContent>
       </DatePicker>

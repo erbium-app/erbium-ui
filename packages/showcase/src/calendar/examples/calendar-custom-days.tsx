@@ -5,32 +5,25 @@ import type { DateRange } from "@erbium/ui/components/calendar";
 import { Card } from "@erbium/ui/components/card";
 import { addDays } from "@erbium/ui/lib/date";
 
-const priceFormat = new Intl.NumberFormat("en-US", {
-  currency: "USD",
-  maximumFractionDigits: 0,
-  style: "currency",
-});
+const isPeak = (date: Date) => date.getDay() === 0 || date.getDay() === 6;
 
-/** Day button with the nightly price under the date. */
-const PriceDayButton = ({
+/** Day button that marks weekend nights, which are billed at the peak rate. */
+const RateDayButton = ({
   children,
   day,
   modifiers,
   ...props
-}: React.ComponentProps<typeof CalendarDayButton>) => {
-  const isWeekend = day.date.getDay() === 0 || day.date.getDay() === 6;
-
-  return (
-    <CalendarDayButton day={day} modifiers={modifiers} {...props}>
-      {children}
-      {!modifiers.outside && (
-        <span className="text-metadata opacity-70">
-          {priceFormat.format(isWeekend ? 120 : 100)}
-        </span>
-      )}
-    </CalendarDayButton>
-  );
-};
+}: React.ComponentProps<typeof CalendarDayButton>) => (
+  <CalendarDayButton day={day} modifiers={modifiers} {...props}>
+    {children}
+    {!modifiers.outside && isPeak(day.date) && (
+      <>
+        <span aria-hidden className="absolute end-1 top-1 size-1 rounded-full bg-current" />
+        <span className="sr-only">, peak rate</span>
+      </>
+    )}
+  </CalendarDayButton>
+);
 
 export const CalendarCustomDays = () => {
   const [range, setRange] = React.useState<DateRange | undefined>(() => {
@@ -46,9 +39,7 @@ export const CalendarCustomDays = () => {
         defaultMonth={range?.from}
         selected={range}
         onSelect={setRange}
-        className="[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
-        classNames={{ day_button: "flex-col gap-0" }}
-        components={{ DayButton: PriceDayButton }}
+        components={{ DayButton: RateDayButton }}
       />
     </Card>
   );

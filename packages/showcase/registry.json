@@ -4337,24 +4337,10 @@
       ]
     },
     {
-      "name": "calendar-custom-cell-size",
-      "type": "registry:component",
-      "title": "Calendar: Custom Cell Size",
-      "description": "Customize calendar cell size with the `--cell-size` CSS variable, including responsive values.",
-      "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/calendar/variants/custom-cell-size.tsx",
-          "target": "@components/showcase/calendar/variants/custom-cell-size.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "calendar-custom-days",
       "type": "registry:block",
       "title": "Calendar: Custom Days",
-      "description": "Wrap `CalendarDayButton` in a custom `DayButton` to add content to each day, and pass `classNames` to adjust its layout.",
+      "description": "Wrap `CalendarDayButton` in a custom `DayButton` to add content to each day. Keep additions inside the standard cell, such as a small marker with a screen-reader label, rather than enlarging the cells.",
       "registryDependencies": [
         "@erbium/calendar",
         "@erbium/card",
@@ -4430,8 +4416,7 @@
         "@erbium-examples/calendar-date-and-time-picker",
         "@erbium-examples/calendar-custom-days",
         "@erbium-examples/calendar-persian",
-        "@erbium-examples/calendar-selected-date-with-timezone",
-        "@erbium-examples/calendar-custom-cell-size"
+        "@erbium-examples/calendar-selected-date-with-timezone"
       ],
       "title": "Calendar examples",
       "type": "registry:item"
@@ -4570,7 +4555,7 @@
       "name": "calendar-range-calendar",
       "type": "registry:block",
       "title": "Calendar: Range Calendar",
-      "description": "Use `mode=\"range\"` to select a range. The ends use the selection colour and the days between them use the muted fill.",
+      "description": "Use `mode=\"range\"` to select a range. The ends use the `default` button variant and the days between them use `secondary`.",
       "registryDependencies": ["@erbium/calendar", "@erbium/date", "@erbium/styles"],
       "files": [
         {
@@ -4698,11 +4683,6 @@
         {
           "path": "src/calendar/variants/booked-dates.tsx",
           "target": "@components/showcase/calendar/variants/booked-dates.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/calendar/variants/custom-cell-size.tsx",
-          "target": "@components/showcase/calendar/variants/custom-cell-size.tsx",
           "type": "registry:component"
         },
         {
@@ -8477,6 +8457,7 @@
         "@erbium/date",
         "@erbium/date-picker",
         "@erbium/field",
+        "@erbium/separator",
         "@erbium/styles"
       ],
       "files": [
@@ -8516,6 +8497,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/separator",
         "@erbium/styles",
         "@erbium/toast"
       ],

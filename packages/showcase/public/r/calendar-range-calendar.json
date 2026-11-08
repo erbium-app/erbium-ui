@@ -3,7 +3,7 @@
   "name": "calendar-range-calendar",
   "type": "registry:block",
   "title": "Calendar: Range Calendar",
-  "description": "Use `mode=\"range\"` to select a range. The ends use the selection colour and the days between them use the muted fill.",
+  "description": "Use `mode=\"range\"` to select a range. The ends use the `default` button variant and the days between them use `secondary`.",
   "registryDependencies": ["@erbium/calendar", "@erbium/date", "@erbium/styles"],
   "files": [
     {

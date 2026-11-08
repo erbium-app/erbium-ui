@@ -56,10 +56,6 @@ import SelectedDateWithTimezoneExample from "./variants/selected-date-with-timez
 
 import SelectedDateWithTimezoneSource from "./variants/selected-date-with-timezone.tsx?raw";
 
-import CustomCellSizeExample from "./variants/custom-cell-size";
-
-import CustomCellSizeSource from "./variants/custom-cell-size.tsx?raw";
-
 const meta = {
   component: Calendar,
   parameters: {
@@ -233,14 +229,4 @@ export const SelectedDateWithTimezone: Story = {
     },
   },
   render: SelectedDateWithTimezoneExample,
-};
-
-export const CustomCellSize: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("calendar", "custom-cell-size") },
-      source: { code: CustomCellSizeSource },
-    },
-  },
-  render: CustomCellSizeExample,
 };

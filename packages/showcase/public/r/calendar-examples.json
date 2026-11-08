@@ -15,8 +15,7 @@
     "@erbium-examples/calendar-date-and-time-picker",
     "@erbium-examples/calendar-custom-days",
     "@erbium-examples/calendar-persian",
-    "@erbium-examples/calendar-selected-date-with-timezone",
-    "@erbium-examples/calendar-custom-cell-size"
+    "@erbium-examples/calendar-selected-date-with-timezone"
   ],
   "title": "Calendar examples",
   "type": "registry:item"
