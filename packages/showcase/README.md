@@ -45,4 +45,4 @@ Registry generation follows relative imports recursively, includes helper files,
 
 The documentation serves the UI registry at `/r/ui/` and the showcase registry at `/r/examples/`, in development and static builds. Storybook serves the showcase package's `public/r` at `/r/`. Generated registry JSON belongs to its source package; applications publish those artifacts during their builds.
 
-`bun run showcase:check` verifies generated artifacts, repository lint/types, and both builds. Example attribution is retained in [ATTRIBUTION.md](./ATTRIBUTION.md), with licenses under `licenses/`. Examples are organized by component and scenario in `src/<component>/examples`; provenance does not determine their directory.
+`bun run showcase:check` verifies generated artifacts, repository lint/types, and both builds. Examples adapted from shadcn/ui retain its [MIT license](./licenses/shadcn-ui.md). Examples are organized by component and scenario in `src/<component>/examples`; provenance does not determine their directory.
