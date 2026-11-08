@@ -7,6 +7,7 @@ import type {
   ToastManagerUpdateOptions,
 } from "@base-ui/react/toast";
 import { cn } from "../lib/utils";
+import type { CSSVariableStyle } from "../lib/utils";
 import { Button } from "./button";
 import { useDirection } from "./direction";
 import { Spinner } from "./spinner";
@@ -18,18 +19,21 @@ type ToastType = "default" | "loading" | "success" | "info" | "warning" | "error
 
 type WithToastType<T> = Omit<T, "type"> & { type?: ToastType | undefined };
 
-type ToastItem = WithToastType<ToastPrimitive.Root.ToastObject<object>>;
+// A toast as Base UI stores it. Its `type` is any string; read it through `toastTypeOf`.
+type ToastItem = ToastPrimitive.Root.ToastObject<object>;
 
 type ToastAddOptions = WithToastType<ToastManagerAddOptions<object>>;
 
 type ToastUpdateOptions = WithToastType<ToastManagerUpdateOptions<object>>;
 
-interface ToastManager extends Omit<BaseToastManager, "add" | "update"> {
-  add(options: ToastAddOptions): string;
-  update(
+// Writes accept only known toast types. Base UI's manager takes any string, so it is
+// assignable to this narrower interface as is.
+interface ToastManager extends Pick<BaseToastManager<object>, "close" | "promise"> {
+  add: (options: ToastAddOptions) => string;
+  update: (
     id: string,
     updates: ToastUpdateOptions | ((previous: ToastItem) => ToastUpdateOptions),
-  ): void;
+  ) => void;
 }
 
 const toastTypes: Record<ToastType, { className: string; icon?: React.ReactNode }> = {
@@ -59,15 +63,17 @@ const toastTypes: Record<ToastType, { className: string; icon?: React.ReactNode 
 // Older toasts stay mounted so the expanded viewport can show them.
 const VISIBLE_STACK_SIZE = 3;
 
-const toastManager = ToastPrimitive.createToastManager();
+const isToastType = (type: string): type is ToastType => Object.hasOwn(toastTypes, type);
 
-// Base UI types `type` as `string`; this is the one place it is narrowed to `ToastType`.
-const toast = toastManager as ToastManager;
+/** Falls back to `default` for a missing type or one this library does not style. */
+const toastTypeOf = (item: ToastItem): ToastType =>
+  item.type !== undefined && isToastType(item.type) ? item.type : "default";
 
-const useToastManager = () =>
-  ToastPrimitive.useToastManager() as Omit<ToastManager, " subscribe"> & {
-    toasts: ToastItem[];
-  };
+const toastManager = ToastPrimitive.createToastManager<object>();
+
+const toast: ToastManager = toastManager;
+
+const useToastManager = () => ToastPrimitive.useToastManager<object>();
 
 const ToastProvider = (props: ToastPrimitive.Provider.Props) => (
   <ToastPrimitive.Provider {...props} />
@@ -96,7 +102,7 @@ const ToastViewport = ({ className, ...props }: ToastPrimitive.Viewport.Props) =
 
 const Toast = ({
   className,
-  toast,
+  toast: item,
   ...props
 }: Omit<ToastPrimitive.Root.Props, "swipeDirection" | "toast"> & { toast: ToastItem }) => {
   // Toasts sit at the inline end of the page, so that is the side they swipe away to.
@@ -105,11 +111,11 @@ const Toast = ({
   return (
     <ToastPrimitive.Root
       data-slot="toast"
-      toast={toast}
+      toast={item}
       swipeDirection={swipeDirection}
       className={cn(
         "group/toast pointer-events-auto absolute inset-e-0 bottom-0 z-[calc(1000-var(--toast-index))] w-full origin-bottom rounded-2xl border will-change-transform outline-none select-none focus-visible:border-ring",
-        toastTypes[toast.type ?? "default"].className,
+        toastTypes[toastTypeOf(item)].className,
         "[--gap:0.75rem] [--height:var(--toast-frontmost-height,var(--toast-height))] [--offset-y:calc(var(--toast-offset-y)*-1+calc(var(--toast-index)*var(--gap)*-1)+var(--toast-swipe-movement-y))] [--peek:0.75rem] [--scale:calc(max(0,1-(var(--toast-index)*0.1)))] [--shrink:calc(1-var(--scale))] [--position-y:calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--peek))-(var(--shrink)*var(--height)))]",
         // Layout moves use `--move`, exits are quicker (200ms), and reduced motion keeps only the fades.
         "[--fade:300ms] [--move:500ms] data-ending-style:[--fade:200ms] data-ending-style:[--move:200ms] motion-reduce:[--move:0ms] motion-reduce:data-ending-style:[--move:0ms]",
@@ -156,9 +162,12 @@ const ToastDescription = ({ className, ...props }: ToastPrimitive.Description.Pr
   />
 );
 
+// Elements are immutable, so one shared default keeps the prop stable across renders.
+const toastActionRender = <Button variant="outline" size="sm" />;
+
 const ToastAction = ({
   className,
-  render = <Button variant="outline" size="sm" />,
+  render = toastActionRender,
   ...props
 }: ToastPrimitive.Action.Props) => (
   <ToastPrimitive.Action
@@ -169,10 +178,12 @@ const ToastAction = ({
   />
 );
 
+const toastCloseRender = <Button variant="ghost" size="icon-sm" />;
+
 const ToastClose = ({
   className,
   children,
-  render = <Button variant="ghost" size="icon-sm" />,
+  render = toastCloseRender,
   ...props
 }: ToastPrimitive.Close.Props) => (
   <ToastPrimitive.Close
@@ -234,7 +245,7 @@ const ToasterItem = ({
   // value must stay.
   // oxlint-disable-next-line unicorn/no-useless-undefined
   const shakeTimer = React.useRef<number | undefined>(undefined);
-  const { icon } = toastTypes[item.type ?? "default"];
+  const { icon } = toastTypes[toastTypeOf(item)];
 
   React.useEffect(
     () => () => {
@@ -287,14 +298,14 @@ const ToasterItem = ({
       data-stack-hidden={index >= VISIBLE_STACK_SIZE ? "" : undefined}
     >
       <ToastContent>
-        {icon ? (
+        {icon === undefined ? null : (
           <span
             data-slot="toast-icon"
             className="shrink-0 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4"
           >
             {icon}
           </span>
-        ) : null}
+        )}
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <ToastTitle />
           <ToastDescription />
@@ -314,15 +325,15 @@ const ToasterStack = () => {
   // Toasts are newest first; anything after the first one that is not leaving sits behind it.
   const frontIndex = toasts.findIndex((item) => item.transitionStatus !== "ending");
 
+  const stackStyle: CSSVariableStyle = {
+    "--toast-stack-height": `calc(${stackHeight}px + ${Math.max(0, toasts.length - 1)} * var(--gap))`,
+  };
+
   return (
     <div
       data-slot="toast-stack"
       className="relative h-0 w-full shrink-0 [--gap:0.75rem] group-data-expanded/toast-viewport:h-(--toast-stack-height)"
-      style={
-        {
-          "--toast-stack-height": `calc(${stackHeight}px + ${Math.max(0, toasts.length - 1)} * var(--gap))`,
-        } as React.CSSProperties
-      }
+      style={stackStyle}
     >
       {toasts.map((item, index) => (
         <ToasterItem

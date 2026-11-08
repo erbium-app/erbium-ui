@@ -3,6 +3,7 @@ import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import type { CSSVariableStyle } from "../lib/utils";
 import { toggleVariants } from "./toggle";
 
 const ToggleGroupContext = React.createContext<
@@ -29,25 +30,32 @@ const ToggleGroup = ({
   VariantProps<typeof toggleVariants> & {
     spacing?: number;
     orientation?: "horizontal" | "vertical";
-  }) => (
-  <ToggleGroupPrimitive
-    data-slot="toggle-group"
-    data-variant={variant}
-    data-size={size}
-    data-spacing={spacing}
-    data-orientation={orientation}
-    style={{ "--gap": spacing } as React.CSSProperties}
-    className={cn(
-      "group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] rounded-lg data-[size=sm]:rounded-[min(var(--radius-md),10px)] data-vertical:flex-col data-vertical:items-stretch",
-      className,
-    )}
-    {...props}
-  >
-    <ToggleGroupContext.Provider value={{ orientation, size, spacing, variant }}>
-      {children}
-    </ToggleGroupContext.Provider>
-  </ToggleGroupPrimitive>
-);
+  }) => {
+  const gapStyle: CSSVariableStyle = { "--gap": spacing };
+
+  const context = React.useMemo(
+    () => ({ orientation, size, spacing, variant }),
+    [orientation, size, spacing, variant],
+  );
+
+  return (
+    <ToggleGroupPrimitive
+      data-slot="toggle-group"
+      data-variant={variant}
+      data-size={size}
+      data-spacing={spacing}
+      data-orientation={orientation}
+      style={gapStyle}
+      className={cn(
+        "group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] rounded-lg data-[size=sm]:rounded-[min(var(--radius-md),10px)] data-vertical:flex-col data-vertical:items-stretch",
+        className,
+      )}
+      {...props}
+    >
+      <ToggleGroupContext.Provider value={context}>{children}</ToggleGroupContext.Provider>
+    </ToggleGroupPrimitive>
+  );
+};
 
 const ToggleGroupItem = ({
   className,
@@ -61,14 +69,14 @@ const ToggleGroupItem = ({
   return (
     <TogglePrimitive
       data-slot="toggle-group-item"
-      data-variant={context.variant || variant}
-      data-size={context.size || size}
+      data-variant={context.variant ?? variant}
+      data-size={context.size ?? size}
       data-spacing={context.spacing}
       className={cn(
         "shrink-0 group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 focus:z-10 focus-visible:z-10 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-end]:pe-1.5 group-data-[spacing=0]/toggle-group:has-data-[icon=inline-start]:ps-1.5 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-s-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-e-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:-ms-px group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:-mt-px group-data-horizontal/toggle-group:data-[spacing=0]:data-[variant=outline]:first:ms-0 group-data-vertical/toggle-group:data-[spacing=0]:data-[variant=outline]:first:mt-0",
         toggleVariants({
-          size: context.size || size,
-          variant: context.variant || variant,
+          size: context.size ?? size,
+          variant: context.variant ?? variant,
         }),
         className,
       )}

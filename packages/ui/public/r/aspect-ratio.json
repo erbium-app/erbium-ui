@@ -10,7 +10,7 @@
       "path": "src/components/aspect-ratio.tsx",
       "target": "@ui/aspect-ratio.tsx",
       "type": "registry:ui",
-      "content": "import { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nconst AspectRatio = ({\n  ratio,\n  className,\n  ...props\n}: React.ComponentProps<\"div\"> & { ratio: number }) => (\n  <div\n    data-slot=\"aspect-ratio\"\n    style={\n      {\n        \"--ratio\": ratio,\n      } as React.CSSProperties\n    }\n    className={cn(\"relative aspect-(--ratio)\", className)}\n    {...props}\n  />\n);\n\nexport { AspectRatio };\n"
+      "content": "import { cn } from \"@/registry/erbium/lib/erbium-utils\";\nimport type { CSSVariableStyle } from \"@/registry/erbium/lib/erbium-utils\";\n\nconst AspectRatio = ({\n  ratio,\n  className,\n  style,\n  ...props\n}: React.ComponentProps<\"div\"> & { ratio: number }) => {\n  // Merged rather than replaced, so a consumer `style` keeps the ratio.\n  const ratioStyle: CSSVariableStyle = { \"--ratio\": ratio, ...style };\n\n  return (\n    <div\n      data-slot=\"aspect-ratio\"\n      className={cn(\"relative aspect-(--ratio)\", className)}\n      {...props}\n      style={ratioStyle}\n    />\n  );\n};\n\nexport { AspectRatio };\n"
     }
   ]
 }

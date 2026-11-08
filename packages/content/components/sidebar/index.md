@@ -140,26 +140,12 @@ The `SidebarProvider` component is used to provide the sidebar context to the `S
 | `open`         | `boolean`                 | Open state of the sidebar (controlled).      |
 | `onOpenChange` | `(open: boolean) => void` | Sets open state of the sidebar (controlled). |
 
-If you have a single sidebar in your application, you can use the `SIDEBAR_WIDTH` and `SIDEBAR_WIDTH_MOBILE` variables in `sidebar.tsx` to set the width of the sidebar.
-
-For multiple sidebars in your application, you can use the `--sidebar-width` and `--sidebar-width-mobile` CSS variables in the `style` prop.
+`SidebarProvider` sets `--sidebar-width` (16rem) and `--sidebar-width-icon` (3rem) as classes. Override either one with a class on the provider; `cn` keeps the last value. The mobile sheet uses 18rem.
 
 To toggle the sidebar, `SidebarProvider` registers the `Mod+B` shortcut through TanStack Hotkeys — `Cmd+B` on macOS and `Ctrl+B` on Windows and Linux.
 
 ```tsx
-const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_MOBILE = "18rem";
-```
-
-```tsx
-<SidebarProvider
-  style={
-    {
-      "--sidebar-width": "20rem",
-      "--sidebar-width-mobile": "20rem",
-    } as React.CSSProperties
-  }
->
+<SidebarProvider className="[--sidebar-width:20rem]">
   <Sidebar />
 </SidebarProvider>
 ```

@@ -18,12 +18,13 @@ import {
   useReducedMotion,
   useTransform,
 } from "motion/react";
-import type { MotionStyle } from "motion/react";
+import type { MotionStyle, MotionValue } from "motion/react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { TextMorph } from "./text-morph";
 import { cn } from "../lib/utils";
+import type { CSSVariables, CSSVariableStyle } from "../lib/utils";
 
 const rowClass =
   "group/control relative flex control-size control-adaptive w-full min-w-0 items-center rounded-lg border surface-control text-control-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
@@ -85,6 +86,140 @@ const decimalPlaces = (step: number) => {
   return text.includes("e-") ? Number(text.split("e-")[1]) : (text.split(".")[1]?.length ?? 0);
 };
 
+/** The axis a number control moves along. `values` holds discrete snap points, if any. */
+interface NumberScale {
+  lower: number;
+  upper: number;
+  step: number;
+  mode: "continuous" | "discrete";
+  values: readonly number[];
+}
+
+const clamp = (value: number, lower: number, upper: number) =>
+  Math.max(lower, Math.min(upper, value));
+
+/** Index of the entry in `values` closest to `target`. */
+const nearestIndex = (values: readonly number[], target: number) => {
+  let best = 0;
+
+  for (const [index, candidate] of values.entries()) {
+    if (Math.abs(candidate - target) < Math.abs(values[best] - target)) {
+      best = index;
+    }
+  }
+
+  return best;
+};
+
+/** Moves a typed or dragged value onto the scale: a snap point, a step, or anywhere. */
+const snapToScale = (value: number, { lower, upper, step, mode, values }: NumberScale) => {
+  const clamped = clamp(value, lower, upper);
+
+  if (values.length > 1) {
+    return values[nearestIndex(values, clamped)];
+  }
+
+  if (mode === "continuous") {
+    return clamped;
+  }
+
+  const stepped = lower + Math.round((clamped - lower) / step) * step;
+
+  return clamp(Number(stepped.toFixed(decimalPlaces(step))), lower, upper);
+};
+
+/** Position marks for small discrete scales; none for continuous or crowded ones. */
+const stepMarks = ({ lower, upper, step, mode, values }: NumberScale, showSteps: boolean) => {
+  if (!showSteps || mode !== "discrete") {
+    return [];
+  }
+
+  if (values.length > 1) {
+    return values;
+  }
+
+  if ((upper - lower) / step > 10) {
+    return [];
+  }
+
+  const count = Math.ceil((upper - lower) / step);
+
+  return [...Array.from({ length: count }, (_, index) => lower + index * step), upper];
+};
+
+const formatScaleValue = (value: number, { step, mode, values }: NumberScale) => {
+  if (values.length > 1) {
+    return String(value);
+  }
+
+  if (mode === "continuous") {
+    return String(Number(value.toFixed(4)));
+  }
+
+  return value.toFixed(decimalPlaces(step));
+};
+
+/** +1 or -1 for keys that move toward the end or start of the scale, 0 otherwise. */
+const keyDirection = (key: string, rtl: boolean) => {
+  if (key === "ArrowRight") {
+    return rtl ? -1 : 1;
+  }
+
+  if (key === "ArrowLeft") {
+    return rtl ? 1 : -1;
+  }
+
+  if (key === "ArrowUp" || key === "PageUp") {
+    return 1;
+  }
+
+  if (key === "ArrowDown" || key === "PageDown") {
+    return -1;
+  }
+
+  return 0;
+};
+
+/**
+ * The snap point a key moves to: Home and End jump to either end, arrows and page
+ * keys move one point (ten with Shift). Null for keys that do not move the value.
+ */
+const keyTargetIndex = (
+  event: { key: string; shiftKey: boolean },
+  rtl: boolean,
+  currentIndex: number,
+  count: number,
+) => {
+  if (event.key === "Home") {
+    return 0;
+  }
+
+  if (event.key === "End") {
+    return count - 1;
+  }
+
+  const direction = keyDirection(event.key, rtl);
+
+  if (direction === 0) {
+    return null;
+  }
+
+  return clamp(currentIndex + direction * (event.shiftKey ? 10 : 1), 0, count - 1);
+};
+
+/** How far a pointer has travelled past either horizontal edge of `bounds`. */
+const overflowPast = (x: number, bounds: DOMRect) => {
+  if (x < bounds.left) {
+    return x - bounds.left;
+  }
+
+  if (x > bounds.right) {
+    return x - bounds.right;
+  }
+
+  return 0;
+};
+
 const ControlNumber = ({
   label,
   value,
@@ -118,8 +253,8 @@ const ControlNumber = ({
 
   const allowedValues = React.useMemo(
     () =>
-      mode === "discrete" && steps
-        ? [...new Set(steps.filter(Number.isFinite))].sort((a, b) => a - b)
+      mode === "discrete" && steps !== undefined
+        ? [...new Set(steps.filter(Number.isFinite))].toSorted((a, b) => a - b)
         : [],
     [mode, steps],
   );
@@ -130,32 +265,18 @@ const ControlNumber = ({
   // optional so the step math below stays non-nullable.
   const stepCandidates = hasSteps ? allowedValues : [];
   const upper = stepCandidates.at(-1) ?? (max > min ? max : min + safeStep);
+  const scale: NumberScale = { lower, mode, step: safeStep, upper, values: allowedValues };
 
-  const nearestIndex = (number: number) =>
-    allowedValues.reduce(
-      (best, candidate, index) =>
-        Math.abs(candidate - number) < Math.abs(allowedValues[best] - number) ? index : best,
-      0,
-    );
+  // Dragging only snaps to discrete points; free values stay on the slider's own step.
+  const toValue = (number: number) =>
+    hasSteps ? allowedValues[nearestIndex(allowedValues, number)] : number;
 
-  const toValue = (number: number) => (hasSteps ? allowedValues[nearestIndex(number)] : number);
   // Base UI uses a step for pointer and keyboard input. A fine step makes the
   // pointer feel free while preserving native slider semantics. Uneven discrete
   // values stay on the real numeric axis, then snap through onValueChange.
   const rootStep = hasSteps || mode === "continuous" ? 0.0001 : safeStep;
-  const pct = Math.max(0, Math.min(100, ((current - lower) / (upper - lower)) * 100));
-
-  const markValues =
-    showSteps && mode === "discrete"
-      ? hasSteps
-        ? allowedValues
-        : (upper - lower) / safeStep <= 10
-          ? Array.from(
-              { length: Math.ceil((upper - lower) / safeStep) },
-              (_, index) => lower + index * safeStep,
-            ).concat(upper)
-          : []
-      : [];
+  const pct = clamp(((current - lower) / (upper - lower)) * 100, 0, 100);
+  const markValues = stepMarks(scale, showSteps);
 
   const visualPct = useMotionValue(pct);
   const fillWidth = useTransform(visualPct, (percent) => `${percent}%`);
@@ -165,13 +286,15 @@ const ControlNumber = ({
     (percent) => `clamp(4px, ${percent}%, calc(100% - 4px))`,
   );
 
-  const shown =
-    formatValue?.(current) ??
-    (hasSteps
-      ? String(current)
-      : mode === "continuous"
-        ? String(Number(current.toFixed(4)))
-        : current.toFixed(decimalPlaces(safeStep)));
+  const fillStyle: MotionStyle & CSSVariables<MotionValue<string>> = {
+    "--control-fill-width": fillWidth,
+  };
+
+  const handleStyle: MotionStyle & CSSVariables<MotionValue<string>> = {
+    "--control-handle-start": handleStart,
+  };
+
+  const shown = formatValue?.(current) ?? formatScaleValue(current, scale);
 
   React.useEffect(() => {
     if (editing) {
@@ -276,24 +399,8 @@ const ControlNumber = ({
 
     const parsed = Number(draft.trim());
 
-    if (draft.trim() && Number.isFinite(parsed)) {
-      const clamped = Math.max(lower, Math.min(upper, parsed));
-
-      const next = hasSteps
-        ? allowedValues[nearestIndex(clamped)]
-        : mode === "continuous"
-          ? clamped
-          : Math.max(
-              lower,
-              Math.min(
-                upper,
-                Number(
-                  (lower + Math.round((clamped - lower) / safeStep) * safeStep).toFixed(
-                    decimalPlaces(safeStep),
-                  ),
-                ),
-              ),
-            );
+    if (draft.trim() !== "" && Number.isFinite(parsed)) {
+      const next = snapToScale(parsed, scale);
 
       setLocalValue(next);
       onValueChange?.(next);
@@ -321,41 +428,18 @@ const ControlNumber = ({
       onValueChange={change}
       onValueCommitted={(next) => onValueCommitted?.(toValue(next))}
       onKeyDownCapture={(event) => {
-        if (!hasSteps || disabled || editing) {
+        if (!hasSteps || disabled === true || editing) {
           return;
         }
 
         const rtl = getComputedStyle(event.currentTarget).direction === "rtl";
 
-        const direction =
-          event.key === "ArrowRight"
-            ? rtl
-              ? -1
-              : 1
-            : event.key === "ArrowLeft"
-              ? rtl
-                ? 1
-                : -1
-              : event.key === "ArrowUp" || event.key === "PageUp"
-                ? 1
-                : event.key === "ArrowDown" || event.key === "PageDown"
-                  ? -1
-                  : 0;
-
-        const targetIndex =
-          event.key === "Home"
-            ? 0
-            : event.key === "End"
-              ? allowedValues.length - 1
-              : direction
-                ? Math.max(
-                    0,
-                    Math.min(
-                      allowedValues.length - 1,
-                      nearestIndex(current) + direction * (event.shiftKey ? 10 : 1),
-                    ),
-                  )
-                : null;
+        const targetIndex = keyTargetIndex(
+          event,
+          rtl,
+          nearestIndex(allowedValues, current),
+          allowedValues.length,
+        );
 
         if (targetIndex === null) {
           return;
@@ -383,31 +467,33 @@ const ControlNumber = ({
         <div className="absolute -inset-px overflow-hidden rounded-lg">
           <motion.div
             className="w-(--control-fill-width) absolute inset-y-0 inset-s-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
-            style={{ "--control-fill-width": fillWidth } as MotionStyle}
+            style={fillStyle}
           />
-          {markValues.map((mark) => (
-            <span
-              key={mark}
-              data-slot="control-number-step"
-              data-active={Math.abs(mark - current) < 0.000001 || undefined}
-              className="inset-s-(--control-step-start) absolute top-1/2 size-1.25 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/35 transition-[background-color,transform] duration-150 data-active:scale-125 data-active:bg-foreground/80 rtl:translate-x-1/2 motion-reduce:transition-none"
-              style={
-                {
-                  "--control-step-start": `clamp(4px, ${((mark - lower) / (upper - lower)) * 100}%, calc(100% - 4px))`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
+          {markValues.map((mark) => {
+            const markStyle: CSSVariableStyle = {
+              "--control-step-start": `clamp(4px, ${((mark - lower) / (upper - lower)) * 100}%, calc(100% - 4px))`,
+            };
+
+            return (
+              <span
+                key={mark}
+                data-slot="control-number-step"
+                data-active={Math.abs(mark - current) < 0.000001 || undefined}
+                className="inset-s-(--control-step-start) absolute top-1/2 size-1.25 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/35 transition-[background-color,transform] duration-150 data-active:scale-125 data-active:bg-foreground/80 rtl:translate-x-1/2 motion-reduce:transition-none"
+                style={markStyle}
+              />
+            );
+          })}
         </div>
         <motion.div
           className="inset-s-(--control-handle-start) absolute top-1/2 h-5 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/70 opacity-0 transition-opacity duration-150 group-hover/number:opacity-70 group-data-elastic-dragging/number:opacity-100 rtl:translate-x-1/2 motion-reduce:transition-none"
-          style={{ "--control-handle-start": handleStart } as MotionStyle}
+          style={handleStyle}
         />
       </div>
       <SliderPrimitive.Control
         className="group/slider-control absolute inset-0 z-10 flex cursor-ew-resize touch-none items-center rounded-lg outline-none select-none"
         onPointerDown={(event) => {
-          if (event.button !== 0 || disabled || editing) {
+          if (event.button !== 0 || disabled === true || editing) {
             return;
           }
 
@@ -433,15 +519,7 @@ const ControlNumber = ({
             setDragging(true);
           }
 
-          const rect = pointer.bounds;
-
-          const overflow =
-            event.clientX < rect.left
-              ? event.clientX - rect.left
-              : event.clientX > rect.right
-                ? event.clientX - rect.right
-                : 0;
-
+          const overflow = overflowPast(event.clientX, pointer.bounds);
           const distance = Math.max(0, Math.abs(overflow) - 32);
           setSurfaceStretch(
             window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
@@ -528,6 +606,10 @@ type TextProps = CommonProps &
     onValueChange?: (value: string) => void;
   };
 
+// `Field.Label` names the control through `htmlFor`. Its overlay covers the row, so a
+// click anywhere on the row focuses the control; the control sits above the overlay.
+const rowLabelClass = "after:absolute after:inset-0 after:rounded-lg";
+
 const Text = ({
   label,
   value,
@@ -537,20 +619,18 @@ const Text = ({
   className,
   ...props
 }: TextProps) => (
-  // The row is the label, so a click anywhere on it focuses the input; Field
-  // tracks the control's dirty, touched and invalid state.
+  // Field tracks the control's dirty, touched and invalid state.
   <FieldPrimitive.Root
     data-slot="control-text"
-    render={<label />}
     disabled={disabled}
     className={cn(rowClass, className)}
   >
-    <span className={labelClass}>{label}</span>
+    <FieldPrimitive.Label className={cn(labelClass, rowLabelClass)}>{label}</FieldPrimitive.Label>
     <InputPrimitive
       value={value}
       defaultValue={defaultValue}
       onValueChange={onValueChange}
-      className={cn(valueClass, "min-h-control-sm bg-transparent")}
+      className={cn(valueClass, "relative min-h-control-sm bg-transparent")}
       {...props}
     />
   </FieldPrimitive.Root>
@@ -579,11 +659,12 @@ const Textarea = ({
 }: TextareaProps) => (
   <FieldPrimitive.Root
     data-slot="control-textarea"
-    render={<label />}
     disabled={disabled}
     className={cn(rowClass, "items-start py-1.5", className)}
   >
-    <span className={cn(labelClass, "pt-0.5")}>{label}</span>
+    <FieldPrimitive.Label className={cn(labelClass, rowLabelClass, "pt-0.5")}>
+      {label}
+    </FieldPrimitive.Label>
     <FieldPrimitive.Control
       value={value}
       defaultValue={defaultValue}
@@ -595,7 +676,7 @@ const Textarea = ({
           rows={1}
           className={cn(
             valueClass,
-            "max-h-40 min-h-5 resize-none field-sizing-content bg-transparent ",
+            "relative max-h-40 min-h-5 resize-none field-sizing-content bg-transparent",
           )}
           {...mergeProps(defaultProps, props)}
         />
@@ -663,7 +744,7 @@ const SegmentedTrack = ({
                 layoutId="selection"
                 initial={false}
                 transition={
-                  shouldReduceMotion
+                  shouldReduceMotion === true
                     ? { duration: 0 }
                     : { damping: 35, stiffness: 400, type: "spring" }
                 }
@@ -856,6 +937,9 @@ const Select = ({
   </SelectPrimitive.Root>
 );
 
+// A full six-digit hex colour, the only form the native colour input accepts.
+const hexColor = /^#[\da-f]{6}$/iu;
+
 type ColorProps = CommonProps & {
   value?: string;
   defaultValue?: string;
@@ -882,7 +966,8 @@ const Color = ({
     setDraft(current);
   }
 
-  const valid = /^#[\da-fA-F]{6}$/.test(current);
+  const valid = hexColor.test(current);
+  const swatchStyle: CSSVariableStyle = { "--control-color": valid ? current : "transparent" };
 
   const change = (next: string) => {
     setLocal(next);
@@ -908,7 +993,7 @@ const Color = ({
         onValueChange={(next) => {
           setDraft(next);
 
-          if (/^#[\da-fA-F]{6}$/.test(next)) {
+          if (hexColor.test(next)) {
             change(next);
           }
         }}
@@ -916,7 +1001,7 @@ const Color = ({
       />
       <span
         className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob bg-(--control-color)!"
-        style={{ "--control-color": valid ? current : "transparent" } as React.CSSProperties}
+        style={swatchStyle}
       >
         <input
           aria-label={`Pick ${label}`}
@@ -945,6 +1030,43 @@ type ImageProps = CommonProps & {
   name?: string;
 };
 
+/**
+ * Opens the file picker. Beside an option select it is a bare icon; on its own it
+ * shows the current image (or an icon) and says what clicking does.
+ */
+const ImageUploadButton = ({
+  label,
+  disabled,
+  hasOptions,
+  preview,
+  onClick,
+}: {
+  label: string;
+  disabled?: boolean;
+  hasOptions: boolean;
+  preview?: string;
+  onClick: () => void;
+}) => {
+  const showPreview = !hasOptions && preview !== undefined;
+
+  return (
+    <ButtonPrimitive
+      disabled={disabled}
+      aria-label={`Upload ${label}`}
+      onClick={onClick}
+      data-no-options={hasOptions ? undefined : ""}
+      className="flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto"
+    >
+      {showPreview ? (
+        <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
+      ) : (
+        <Icon name="image-plus" className="size-4" />
+      )}
+      {hasOptions ? null : <span>{preview === undefined ? "Choose image" : "Change"}</span>}
+    </ButtonPrimitive>
+  );
+};
+
 const Image = ({
   label,
   src,
@@ -962,11 +1084,15 @@ const Image = ({
   const [selectedValue, setSelectedValue] = React.useState(defaultValue ?? options?.[0]?.value);
   const selected = options?.find((option) => option.value === (value ?? selectedValue));
   const preview = selected?.src ?? src;
+  const hasOptions = options !== undefined && options.length > 0;
+  const hasPreview = preview !== undefined && preview !== "";
+  // Without options the button is the only way to pick an image.
+  const canUpload = onFileChange !== undefined || !hasOptions;
 
   return (
     <div data-slot="control-image" className={cn(rowClass, className)}>
       <span className={labelClass}>{label}</span>
-      {options?.length ? (
+      {hasOptions ? (
         <SelectPrimitive.Root
           items={options}
           value={value ?? selectedValue}
@@ -983,7 +1109,7 @@ const Image = ({
             aria-label={label}
             className="group group/control-select ms-auto flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
           >
-            {preview ? (
+            {hasPreview ? (
               <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
             ) : null}
             <SelectPrimitive.Value className="max-w-24 truncate" />
@@ -1008,28 +1134,19 @@ const Image = ({
           </OptionsPopup>
         </SelectPrimitive.Root>
       ) : null}
-      {onFileChange || !options?.length ? (
-        <ButtonPrimitive
+      {canUpload ? (
+        <ImageUploadButton
+          label={label}
           disabled={disabled}
-          aria-label={`Upload ${label}`}
+          hasOptions={hasOptions}
+          preview={hasPreview ? preview : undefined}
           onClick={() => ref.current?.click()}
-          data-no-options={options?.length ? undefined : ""}
-          className={cn(
-            "flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto",
-          )}
-        >
-          {!options?.length && preview ? (
-            <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
-          ) : (
-            <Icon name="image-plus" className="size-4" />
-          )}
-          {options?.length ? null : <span>{preview ? "Change" : "Choose image"}</span>}
-        </ButtonPrimitive>
+        />
       ) : null}
       <input
         ref={ref}
         type="file"
-        name={options?.length ? undefined : name}
+        name={hasOptions ? undefined : name}
         accept={accept}
         disabled={disabled}
         tabIndex={-1}
@@ -1054,10 +1171,17 @@ type PadProps = CommonProps & {
   step?: number;
 };
 
+// Shared so the default prop keeps one identity across renders.
+const padOrigin: PadValue = { x: 0, y: 0 };
+
+/** Snaps a 0–1 fraction of the pad to the nearest step between `min` and `max`. */
+const snapToStep = (fraction: number, min: number, max: number, step: number) =>
+  clamp(min + Math.round(((max - min) * fraction) / step) * step, min, max);
+
 const Pad = ({
   label,
   value,
-  defaultValue = { x: 0, y: 0 },
+  defaultValue = padOrigin,
   onValueChange,
   min = 0,
   max = 100,
@@ -1069,6 +1193,12 @@ const Pad = ({
   const current = value ?? local;
   const ref = React.useRef<HTMLDivElement>(null);
   const span = max > min ? max - min : 1;
+
+  const pointStyle: CSSVariableStyle = {
+    "--control-point-x": `${((current.x - min) / span) * 100}%`,
+    "--control-point-y": `${100 - ((current.y - min) / span) * 100}%`,
+  };
+
   const safeStep = step > 0 ? step : 1;
 
   const change = (next: PadValue) => {
@@ -1083,12 +1213,12 @@ const Pad = ({
       return;
     }
 
-    const snap = (fraction: number) =>
-      Math.max(min, Math.min(max, min + Math.round((span * fraction) / safeStep) * safeStep));
+    // `span` keeps a one-unit range when min and max coincide.
+    const upper = min + span;
 
     change({
-      x: snap((event.clientX - rect.left) / rect.width),
-      y: snap(1 - (event.clientY - rect.top) / rect.height),
+      x: snapToStep((event.clientX - rect.left) / rect.width, min, upper, safeStep),
+      y: snapToStep(1 - (event.clientY - rect.top) / rect.height, min, upper, safeStep),
     });
   };
 
@@ -1100,7 +1230,7 @@ const Pad = ({
         aria-hidden="true"
         className="relative h-24 w-full touch-none rounded-md surface-well"
         onPointerDown={(event) => {
-          if (disabled) {
+          if (disabled === true) {
             return;
           }
 
@@ -1115,12 +1245,7 @@ const Pad = ({
       >
         <span
           className="left-(--control-point-x) top-(--control-point-y) pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-selection"
-          style={
-            {
-              "--control-point-x": `${((current.x - min) / span) * 100}%`,
-              "--control-point-y": `${100 - ((current.y - min) / span) * 100}%`,
-            } as React.CSSProperties
-          }
+          style={pointStyle}
         />
       </div>
       <div className="mt-1.5 grid grid-cols-2 gap-1.5">
@@ -1270,6 +1395,80 @@ const Section = ({
   </Collapsible>
 );
 
+/** Duration and bounce for a time spring; stiffness, damping and mass for a physics spring. */
+const SpringFields = ({
+  value,
+  onValueChange,
+  disabled,
+}: {
+  value: SpringValue;
+  onValueChange: (value: SpringValue) => void;
+  disabled?: boolean;
+}) =>
+  springIsTime(value) ? (
+    <>
+      <ControlNumber
+        label="Duration"
+        value={value.visualDuration}
+        onValueChange={(visualDuration) => {
+          onValueChange({ ...value, visualDuration });
+        }}
+        min={0.1}
+        max={2}
+        step={0.01}
+        formatValue={(v) => `${v.toFixed(2)} s`}
+        disabled={disabled}
+      />
+      <ControlNumber
+        label="Bounce"
+        value={value.bounce}
+        onValueChange={(bounce) => {
+          onValueChange({ ...value, bounce });
+        }}
+        min={0}
+        max={1}
+        step={0.01}
+        disabled={disabled}
+      />
+    </>
+  ) : (
+    <>
+      <ControlNumber
+        label="Stiffness"
+        value={value.stiffness}
+        onValueChange={(stiffness) => {
+          onValueChange({ ...value, stiffness });
+        }}
+        min={1}
+        max={1000}
+        step={1}
+        disabled={disabled}
+      />
+      <ControlNumber
+        label="Damping"
+        value={value.damping}
+        onValueChange={(damping) => {
+          onValueChange({ ...value, damping });
+        }}
+        min={1}
+        max={100}
+        step={1}
+        disabled={disabled}
+      />
+      <ControlNumber
+        label="Mass"
+        value={value.mass}
+        onValueChange={(mass) => {
+          onValueChange({ ...value, mass });
+        }}
+        min={0.1}
+        max={10}
+        step={0.1}
+        disabled={disabled}
+      />
+    </>
+  );
+
 const Spring = ({
   label,
   value,
@@ -1310,71 +1509,25 @@ const Spring = ({
         }}
         disabled={disabled}
       />
-      {springIsTime(current) ? (
-        <>
-          <ControlNumber
-            label="Duration"
-            value={current.visualDuration}
-            onValueChange={(visualDuration) => {
-              change({ ...current, visualDuration });
-            }}
-            min={0.1}
-            max={2}
-            step={0.01}
-            formatValue={(v) => `${v.toFixed(2)} s`}
-            disabled={disabled}
-          />
-          <ControlNumber
-            label="Bounce"
-            value={current.bounce}
-            onValueChange={(bounce) => {
-              change({ ...current, bounce });
-            }}
-            min={0}
-            max={1}
-            step={0.01}
-            disabled={disabled}
-          />
-        </>
-      ) : (
-        <>
-          <ControlNumber
-            label="Stiffness"
-            value={current.stiffness}
-            onValueChange={(stiffness) => {
-              change({ ...current, stiffness });
-            }}
-            min={1}
-            max={1000}
-            step={1}
-            disabled={disabled}
-          />
-          <ControlNumber
-            label="Damping"
-            value={current.damping}
-            onValueChange={(damping) => {
-              change({ ...current, damping });
-            }}
-            min={1}
-            max={100}
-            step={1}
-            disabled={disabled}
-          />
-          <ControlNumber
-            label="Mass"
-            value={current.mass}
-            onValueChange={(mass) => {
-              change({ ...current, mass });
-            }}
-            min={0.1}
-            max={10}
-            step={0.1}
-            disabled={disabled}
-          />
-        </>
-      )}
+      <SpringFields value={current} onValueChange={change} disabled={disabled} />
     </Section>
   );
+};
+
+type TransitionMode = "easing" | "time" | "physics";
+
+const transitionModes: readonly { label: string; value: TransitionMode }[] = [
+  { label: "Easing", value: "easing" },
+  { label: "Time", value: "time" },
+  { label: "Physics", value: "physics" },
+];
+
+const transitionModeOf = (value: TransitionValue): TransitionMode => {
+  if (value.type === "easing") {
+    return "easing";
+  }
+
+  return springIsTime(value) ? "time" : "physics";
 };
 
 const Transition = ({
@@ -1394,7 +1547,8 @@ const Transition = ({
     time: defaultTimeSpring,
   });
 
-  const mode = current.type === "easing" ? "easing" : springIsTime(current) ? "time" : "physics";
+  const mode = transitionModeOf(current);
+
   React.useLayoutEffect(() => {
     if (current.type === "easing") {
       cache.current.easing = current;
@@ -1415,7 +1569,7 @@ const Transition = ({
       return;
     }
 
-    const ease = [...current.ease] as [number, number, number, number];
+    const ease: EasingValue["ease"] = [...current.ease];
     ease[index] = next;
     change({ ...current, ease });
   };
@@ -1432,13 +1586,13 @@ const Transition = ({
       <Segmented
         label="Type"
         value={mode}
-        options={[
-          { label: "Easing", value: "easing" },
-          { label: "Time", value: "time" },
-          { label: "Physics", value: "physics" },
-        ]}
+        options={transitionModes}
         onValueChange={(next) => {
-          change(cache.current[next as keyof typeof cache.current]);
+          const option = transitionModes.find((entry) => entry.value === next);
+
+          if (option) {
+            change(cache.current[option.value]);
+          }
         }}
         disabled={disabled}
       />
@@ -1473,67 +1627,8 @@ const Transition = ({
             ))}
           </div>
         </>
-      ) : springIsTime(current) ? (
-        <>
-          <ControlNumber
-            label="Duration"
-            value={current.visualDuration}
-            onValueChange={(visualDuration) => {
-              change({ ...current, visualDuration });
-            }}
-            min={0.1}
-            max={2}
-            step={0.01}
-            disabled={disabled}
-          />
-          <ControlNumber
-            label="Bounce"
-            value={current.bounce}
-            onValueChange={(bounce) => {
-              change({ ...current, bounce });
-            }}
-            min={0}
-            max={1}
-            step={0.01}
-            disabled={disabled}
-          />
-        </>
       ) : (
-        <>
-          <ControlNumber
-            label="Stiffness"
-            value={current.stiffness}
-            onValueChange={(stiffness) => {
-              change({ ...current, stiffness });
-            }}
-            min={1}
-            max={1000}
-            step={1}
-            disabled={disabled}
-          />
-          <ControlNumber
-            label="Damping"
-            value={current.damping}
-            onValueChange={(damping) => {
-              change({ ...current, damping });
-            }}
-            min={1}
-            max={100}
-            step={1}
-            disabled={disabled}
-          />
-          <ControlNumber
-            label="Mass"
-            value={current.mass}
-            onValueChange={(mass) => {
-              change({ ...current, mass });
-            }}
-            min={0.1}
-            max={10}
-            step={0.1}
-            disabled={disabled}
-          />
-        </>
+        <SpringFields value={current} onValueChange={change} disabled={disabled} />
       )}
     </Section>
   );

@@ -7,6 +7,7 @@ import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { useIsMobile } from "../hooks/use-is-mobile";
 import { cn } from "../lib/utils";
+import type { CSSVariableStyle } from "../lib/utils";
 import { sidebarMenuButtonVariants, sidebarStyles } from "../lib/sidebar-styles";
 import { Button } from "./button";
 import { Input } from "./input";
@@ -19,9 +20,6 @@ import { SidebarToggleIcon } from "./stateful-icon";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
-const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_MOBILE = "18rem";
-const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "Mod+B";
 
 const sidebarGapVariants = cva(
@@ -81,7 +79,6 @@ const SidebarProvider = ({
   open: openProp,
   onOpenChange: setOpenProp,
   className,
-  style,
   children,
   ...props
 }: React.ComponentProps<"div"> & {
@@ -94,29 +91,35 @@ const SidebarProvider = ({
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
-  const [_open, _setOpen] = React.useState(defaultOpen);
-  const open = openProp ?? _open;
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
+  const open = openProp ?? uncontrolledOpen;
 
   const setOpen = React.useCallback(
-    (value: boolean | ((value: boolean) => boolean)) => {
-      const openState = typeof value === "function" ? value(open) : value;
-
+    (openState: boolean) => {
       if (setOpenProp) {
         setOpenProp(openState);
       } else {
-        _setOpen(openState);
+        setUncontrolledOpen(openState);
       }
 
-      // This sets the cookie to keep the sidebar state.
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
+      // Persist the state so a server render can restore it.
+      void cookieStore.set({
+        expires: Date.now() + SIDEBAR_COOKIE_MAX_AGE * 1000,
+        name: SIDEBAR_COOKIE_NAME,
+        path: "/",
+        value: String(openState),
+      });
     },
-    [setOpenProp, open],
+    [setOpenProp],
   );
 
-  // Helper to toggle the sidebar.
   const toggleSidebar = React.useCallback(() => {
-    isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
-  }, [isMobile, setOpen, setOpenMobile]);
+    if (isMobile) {
+      setOpenMobile((current) => !current);
+    } else {
+      setOpen(!open);
+    }
+  }, [isMobile, open, setOpen, setOpenMobile]);
 
   // Toggle the sidebar with Mod+B (Cmd+B on macOS, Ctrl+B elsewhere).
   // `allow` keeps multiple providers from warning when several sidebars coexist.
@@ -143,15 +146,9 @@ const SidebarProvider = ({
     <SidebarContext.Provider value={contextValue}>
       <div
         data-slot="sidebar-wrapper"
-        style={
-          {
-            "--sidebar-width": SIDEBAR_WIDTH,
-            "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-            ...style,
-          } as React.CSSProperties
-        }
+        // Override a width with a class, e.g. `[--sidebar-width:20rem]`; `cn` keeps the last one.
         className={cn(
-          "group/sidebar-wrapper flex min-h-svh w-full has-data-[variant=inset]:bg-sidebar",
+          "group/sidebar-wrapper flex min-h-svh w-full [--sidebar-width-icon:3rem] [--sidebar-width:16rem] has-data-[variant=inset]:bg-sidebar",
           className,
         )}
         {...props}
@@ -200,12 +197,7 @@ const Sidebar = ({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
-          style={
-            {
-              "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-            } as React.CSSProperties
-          }
+          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [--sidebar-width:18rem] [&>button]:hidden"
           side={side}
         >
           <SheetHeader className="sr-only">
@@ -470,6 +462,7 @@ const SidebarMenuButton = ({
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
   } & VariantProps<typeof sidebarMenuButtonVariants>) => {
   const { isMobile, state } = useSidebar();
+  const hasTooltip = tooltip !== undefined && tooltip !== "";
 
   const comp = useRender({
     defaultTagName: "button",
@@ -479,7 +472,7 @@ const SidebarMenuButton = ({
       },
       props,
     ),
-    render: tooltip ? <TooltipTrigger render={render} /> : render,
+    render: hasTooltip ? <TooltipTrigger render={render} /> : render,
     state: {
       active: isActive,
       sidebar: "menu-button",
@@ -488,15 +481,12 @@ const SidebarMenuButton = ({
     },
   });
 
-  if (!tooltip) {
+  if (!hasTooltip) {
     return comp;
   }
 
-  if (typeof tooltip === "string") {
-    tooltip = {
-      children: tooltip,
-    };
-  }
+  // A string tooltip is shorthand for its content.
+  const tooltipProps = tooltip instanceof Object ? tooltip : { children: tooltip };
 
   return (
     <Tooltip>
@@ -505,7 +495,7 @@ const SidebarMenuButton = ({
         side="right"
         align="center"
         hidden={state !== "collapsed" || isMobile}
-        {...tooltip}
+        {...tooltipProps}
       />
     </Tooltip>
   );
@@ -559,8 +549,16 @@ const SidebarMenuSkeleton = ({
 }: React.ComponentProps<"div"> & {
   showIcon?: boolean;
 }) => {
-  // Random width between 50 to 90%.
-  const [width] = React.useState(() => `${Math.floor(Math.random() * 40) + 50}%`);
+  // A width between 50 and 90% that varies per skeleton. Derived from the stable id rather
+  // than Math.random, so the server and client render the same width.
+  const id = React.useId();
+  let seed = 0;
+
+  for (const character of id) {
+    seed += character.codePointAt(0) ?? 0;
+  }
+
+  const skeletonStyle: CSSVariableStyle = { "--skeleton-width": `${50 + (seed % 40)}%` };
 
   return (
     <div
@@ -573,11 +571,7 @@ const SidebarMenuSkeleton = ({
       <Skeleton
         className="h-4 max-w-(--skeleton-width) flex-1"
         data-sidebar="menu-skeleton-text"
-        style={
-          {
-            "--skeleton-width": width,
-          } as React.CSSProperties
-        }
+        style={skeletonStyle}
       />
     </div>
   );

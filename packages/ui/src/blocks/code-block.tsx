@@ -1,6 +1,6 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { createContext, use, useEffect, useMemo, useState } from "react";
-import type { ComponentProps, CSSProperties } from "react";
+import type { ComponentProps } from "react";
 import type { TokensResult } from "shiki/core";
 import { TabsList, TabsTrigger } from "../components/tabs";
 import { DirectionProvider } from "../components/direction";
@@ -8,6 +8,7 @@ import { Icon } from "../components/icon";
 import { codeLanguageIcon } from "../lib/code-language-icon";
 import { highlightCode } from "../lib/code-highlighter";
 import { cn } from "../lib/utils";
+import type { CSSVariableStyle } from "../lib/utils";
 import {
   CodePanelCopyButton,
   CodePanelHeader,
@@ -16,6 +17,28 @@ import {
   codePanelSurface,
 } from "./code-panel";
 import type { CopyButtonProps } from "./copy-button";
+
+type CodeToken = TokensResult["tokens"][number][number];
+
+const CodeBlockToken = ({ token }: { token: CodeToken }) => {
+  const htmlStyle = "htmlStyle" in token ? token.htmlStyle : undefined;
+
+  const tokenStyle: CSSVariableStyle = {
+    "--shiki-dark": htmlStyle?.["--shiki-dark"],
+    "--shiki-light": htmlStyle?.["--shiki-light"],
+  };
+
+  return (
+    <span
+      style={tokenStyle}
+      data-italic={htmlStyle?.["font-style"] === "italic" ? "" : undefined}
+      data-bold={htmlStyle?.["font-weight"] === "bold" ? "" : undefined}
+      className="text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit) data-italic:italic data-bold:font-bold"
+    >
+      {token.content}
+    </span>
+  );
+};
 
 interface CodeBlockItem {
   value: string;
@@ -173,16 +196,20 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
   useEffect(() => {
     let current = true;
 
+    const highlight = async () => {
+      try {
+        const result = await highlightCode(code, language);
+
+        if (current) {
+          setHighlighted({ code, language, result });
+        }
+      } catch {
+        // Source remains readable as plain text when highlighting is unavailable.
+      }
+    };
+
     if (!["text", "plaintext", "plain", "txt", ""].includes(language)) {
-      void highlightCode(code, language)
-        .then((result) => {
-          if (current) {
-            setHighlighted({ code, language, result });
-          }
-        })
-        .catch(() => {
-          /* Source remains readable when highlighting is unavailable. */
-        });
+      void highlight();
     }
 
     return () => {
@@ -196,21 +223,23 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       : undefined;
 
   const rows: TokensResult["tokens"] =
-    result?.tokens ?? code.split(/\r\n|\n|\r/).map((content) => [{ content, offset: 0 }]);
+    result?.tokens ?? code.split(/\r\n|\n|\r/u).map((content) => [{ content, offset: 0 }]);
+
+  // Shiki reports `false` when the theme sets no root style.
+  const rootStyle = result?.rootStyle;
+  const declarations = rootStyle === undefined || rootStyle === false ? [] : rootStyle.split(";");
 
   const themeColor = (name: string) => {
-    const declaration = (result?.rootStyle || "")
-      .split(";")
-      .find((entry) => entry.startsWith(`${name}:`));
+    const declaration = declarations.find((entry) => entry.startsWith(`${name}:`));
 
     return declaration?.slice(name.length + 1);
   };
 
-  const blockStyle = {
+  const blockStyle: CSSVariableStyle = {
     "--shiki-dark": themeColor("--shiki-dark"),
     "--shiki-light": themeColor("--shiki-light"),
     ...style,
-  } as CSSProperties;
+  };
 
   return (
     <pre
@@ -218,6 +247,9 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       data-slot="code-block-content"
       data-language={language}
       dir="ltr"
+      // Long code scrolls inside a fixed height; keyboard users need a tab stop to scroll it
+      // (WCAG 2.1.1, axe scrollable-region-focusable). The rule only knows interactive roles.
+      // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
       style={blockStyle}
       className={cn(
@@ -241,30 +273,7 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
               </span>
             )}
             {row.map((token, tokenIndex) => (
-              <span
-                key={tokenIndex}
-                style={
-                  {
-                    "--shiki-dark":
-                      "htmlStyle" in token ? token.htmlStyle?.["--shiki-dark"] : undefined,
-                    "--shiki-light":
-                      "htmlStyle" in token ? token.htmlStyle?.["--shiki-light"] : undefined,
-                  } as CSSProperties
-                }
-                data-italic={
-                  "htmlStyle" in token && token.htmlStyle?.["font-style"] === "italic"
-                    ? ""
-                    : undefined
-                }
-                data-bold={
-                  "htmlStyle" in token && token.htmlStyle?.["font-weight"] === "bold"
-                    ? ""
-                    : undefined
-                }
-                className="text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit) data-italic:italic data-bold:font-bold"
-              >
-                {token.content}
-              </span>
+              <CodeBlockToken key={tokenIndex} token={token} />
             ))}
             {index < rows.length - 1 ? "\n" : null}
           </span>
@@ -279,11 +288,15 @@ const CodeBlockPanel = ({
   ...props
 }: Omit<TabsPrimitive.Panel.Props, "children"> & { value: string }) => {
   const context = useCodeBlock();
-  const item = context.items.find((entry) => entry.value === value);
+
+  const panelContext = useMemo(
+    () => ({ ...context, active: context.items.find((entry) => entry.value === value) }),
+    [context, value],
+  );
 
   return (
     <TabsPrimitive.Panel {...props} value={value} data-slot="code-block-panel">
-      <CodeBlockContext value={{ ...context, active: item }}>
+      <CodeBlockContext value={panelContext}>
         <CodeBlockContent />
       </CodeBlockContext>
     </TabsPrimitive.Panel>
@@ -316,13 +329,20 @@ const CodeBlock = ({
   const [selection, setSelection] = useState(defaultValue);
   const requested = value ?? selection;
 
-  const active =
-    items.find((item) => item.value === requested && !item.disabled) ??
-    items.find((item) => !item.disabled);
+  const enabled = items.filter((item) => item.disabled !== true);
+  const active = enabled.find((item) => item.value === requested) ?? enabled.at(0);
+
+  const context = useMemo(
+    () => ({ active, items, lineNumbers, surface, wrap }),
+    [active, items, lineNumbers, surface, wrap],
+  );
+
+  const hasTabs = providedItems !== undefined && items.length > 0;
+  const hasTitle = title !== undefined && title !== "";
 
   return (
     <DirectionProvider direction="ltr">
-      <CodeBlockContext value={{ active, items, lineNumbers, surface, wrap }}>
+      <CodeBlockContext value={context}>
         <TabsPrimitive.Root
           {...props}
           dir="ltr"
@@ -331,22 +351,25 @@ const CodeBlock = ({
           className={cn("group/code-block relative", codePanelSurface, className)}
           value={active?.value ?? null}
           onValueChange={(next, details) => {
-            if (typeof next !== "string") {
+            // Tabs report any value; only an item's value selects code.
+            const item = items.find((entry) => entry.value === next);
+
+            if (!item) {
               return;
             }
 
-            onValueChange?.(next, details);
+            onValueChange?.(item.value, details);
 
             if (!details.isCanceled && value === undefined) {
-              setSelection(next);
+              setSelection(item.value);
             }
           }}
         >
           {children ?? (
             <>
-              {(providedItems && items.length > 0) || title ? (
+              {hasTabs || hasTitle ? (
                 <CodeBlockHeader>
-                  {providedItems && items.length > 0 ? (
+                  {hasTabs ? (
                     <CodeBlockTabs />
                   ) : (
                     <CodeBlockTitle>

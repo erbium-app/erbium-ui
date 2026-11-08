@@ -1,8 +1,9 @@
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
-import { createContext, use, useCallback, useState } from "react";
-import type { ComponentProps, CSSProperties } from "react";
+import { createContext, use, useCallback, useMemo, useState } from "react";
+import type { ComponentProps } from "react";
 import { cn } from "../lib/utils";
+import type { CSSVariableStyle } from "../lib/utils";
 
 type StepIndicatorOrientation = "horizontal" | "vertical";
 
@@ -134,41 +135,40 @@ const StepIndicatorItem = ({
     .filter(Boolean)
     .join(", ");
 
+  const controlProps: ComponentProps<"button"> = {
+    "aria-current": status === "current" ? "step" : undefined,
+    "aria-label": name,
+    ...dataAttributes({
+      "data-disabled": disabled ? "" : undefined,
+      "data-invalid": invalid ? "" : undefined,
+      "data-slot": "step-indicator-control",
+      "data-status": status,
+    }),
+    children: <StepIndicatorDot orientation={orientation} />,
+    className: cn(
+      "group/step relative flex items-center justify-center rounded-full p-1.5 outline-none",
+      "focus-visible:ring-2 focus-visible:ring-ring",
+      interactive
+        ? "cursor-pointer hover:bg-foreground/10 data-disabled:cursor-not-allowed data-disabled:hover:bg-transparent"
+        : "cursor-default",
+      className,
+    ),
+  };
+
+  // Read-only indicators render a span, which takes no button props.
+  if (interactive) {
+    controlProps.disabled = disabled;
+    controlProps.type = "button";
+    controlProps.onClick = (event) => {
+      if (!event.defaultPrevented) {
+        select(index);
+      }
+    };
+  }
+
   const control = useRender({
     defaultTagName: interactive ? "button" : "span",
-    props: mergeProps<"button">(
-      {
-        "aria-label": name,
-        "aria-current": status === "current" ? "step" : undefined,
-        ...dataAttributes({
-          "data-disabled": disabled ? "" : undefined,
-          "data-invalid": invalid ? "" : undefined,
-          "data-slot": "step-indicator-control",
-          "data-status": status,
-        }),
-        ...(interactive
-          ? {
-              disabled,
-              onClick(event) {
-                if (!event.defaultPrevented) {
-                  select(index);
-                }
-              },
-              type: "button" as const,
-            }
-          : {}),
-        className: cn(
-          "group/step relative flex items-center justify-center rounded-full p-1.5 outline-none",
-          "focus-visible:ring-2 focus-visible:ring-ring",
-          interactive
-            ? "cursor-pointer hover:bg-foreground/10 data-disabled:cursor-not-allowed data-disabled:hover:bg-transparent"
-            : "cursor-default",
-          className,
-        ),
-        children: <StepIndicatorDot orientation={orientation} />,
-      },
-      { ...props, onClick },
-    ),
+    props: mergeProps<"button">(controlProps, { ...props, onClick }),
     render,
     state,
   });
@@ -219,7 +219,7 @@ const StepIndicator = ({
 }: StepIndicatorProps) => {
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
   const value = valueProp ?? uncontrolled;
-  const interactive = onValueChange != null;
+  const interactive = onValueChange !== undefined;
 
   const select = useCallback(
     (index: number) => {
@@ -234,26 +234,28 @@ const StepIndicator = ({
 
   const state: StepIndicatorState = { count, interactive, orientation, value, variant };
 
+  const progressStyle: CSSVariableStyle = {
+    "--step-progress": Math.min(Math.max(progress, 0), 1),
+    ...style,
+  };
+
   const element = useRender({
     defaultTagName: "ol",
     props: mergeProps<"ol">(
       {
         "aria-label": "Progress",
         ...dataAttributes({ "data-orientation": orientation, "data-slot": "step-indicator" }),
-        className: cn(
-          "m-0 flex w-fit list-none p-0 [--step-direction:1] rtl:[--step-direction:-1]",
-          orientation === "horizontal" ? "flex-row items-center" : "flex-col items-center",
-          className,
-        ),
-        style: {
-          "--step-progress": Math.min(Math.max(progress, 0), 1),
-          ...style,
-        } as CSSProperties,
         children:
           children ??
           Array.from({ length: count ?? 0 }, (_, index) => (
             <StepIndicatorItem key={index} index={index} />
           )),
+        className: cn(
+          "m-0 flex w-fit list-none p-0 [--step-direction:1] rtl:[--step-direction:-1]",
+          orientation === "horizontal" ? "flex-row items-center" : "flex-col items-center",
+          className,
+        ),
+        style: progressStyle,
       },
       props,
     ),
@@ -261,7 +263,12 @@ const StepIndicator = ({
     state,
   });
 
-  return <StepIndicatorContext value={{ ...state, reach, select }}>{element}</StepIndicatorContext>;
+  const context = useMemo(
+    () => ({ count, interactive, orientation, reach, select, value, variant }),
+    [count, interactive, orientation, reach, select, value, variant],
+  );
+
+  return <StepIndicatorContext value={context}>{element}</StepIndicatorContext>;
 };
 
 export { StepIndicator, StepIndicatorItem };

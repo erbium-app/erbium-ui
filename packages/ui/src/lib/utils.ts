@@ -1,4 +1,5 @@
 import { createCn } from "cn/config";
+import type { CSSProperties } from "react";
 
 const anySurfaceColor = () => true;
 
@@ -64,3 +65,16 @@ export const cn = createCn({
     },
   },
 });
+
+/** CSS custom properties keyed by name, e.g. `{ "--ratio": 1.5 }`. */
+export type CSSVariables<Value = string | number> = Partial<
+  Record<`--${string}`, Value | undefined>
+>;
+
+/**
+ * Inline `style` that also accepts CSS custom properties. React's `CSSProperties`
+ * omits them, and this type is assignable to it, so annotating a constant replaces
+ * an `as CSSProperties` cast. Annotate a constant rather than using `satisfies`:
+ * an inline literal still fails React's excess-property check.
+ */
+export type CSSVariableStyle = CSSProperties & CSSVariables;

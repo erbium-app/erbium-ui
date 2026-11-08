@@ -25,20 +25,20 @@ interface Grouping {
 /** The locale's group separator and digits, and a formatter that groups whole numbers. */
 const createGrouping = (
   locale: Intl.LocalesArgument,
-  format: Intl.NumberFormatOptions | undefined,
+  { notation, useGrouping }: Pick<Intl.NumberFormatOptions, "notation" | "useGrouping">,
 ): Grouping | null => {
-  if (format?.useGrouping === false || format?.notation) {
+  if (useGrouping === false || notation !== undefined) {
     return null;
   }
 
   const formatter = new Intl.NumberFormat(locale, {
     maximumFractionDigits: 0,
-    useGrouping: format?.useGrouping ?? true,
+    useGrouping: useGrouping ?? true,
   });
 
   const group = formatter.formatToParts(1_234_567).find((part) => part.type === "group")?.value;
 
-  if (!group) {
+  if (group === undefined || group === "") {
     return null;
   }
 
@@ -53,26 +53,35 @@ const createGrouping = (
  * left as typed. Returns null when there is nothing to change.
  */
 const regroup = (text: string, caret: number, grouping: Grouping) => {
+  /** The digit's value in the locale's or ASCII digits, or -1 for any other character. */
   const digitOf = (character: string) => {
     const localeDigit = grouping.digits.indexOf(character);
 
-    return localeDigit === -1
-      ? "0123456789".includes(character)
-        ? Number(character)
-        : -1
-      : localeDigit;
+    if (localeDigit !== -1) {
+      return localeDigit;
+    }
+
+    return "0123456789".includes(character) ? Number(character) : -1;
   };
 
-  const start = [...text].findIndex((character) => digitOf(character) !== -1);
+  // String indices, so `start` and `end` line up with `slice` below.
+  let start = 0;
 
-  if (start === -1) {
+  while (start < text.length && digitOf(text.charAt(start)) === -1) {
+    start += 1;
+  }
+
+  if (start === text.length) {
     return null;
   }
 
   let end = start;
 
-  while (end < text.length && (digitOf(text[end]) !== -1 || text[end] === grouping.group)) {
-    end++;
+  while (
+    end < text.length &&
+    (digitOf(text.charAt(end)) !== -1 || text.charAt(end) === grouping.group)
+  ) {
+    end += 1;
   }
 
   // Character-wise string ops rather than `Array.from`: spreading or
@@ -98,9 +107,9 @@ const regroup = (text: string, caret: number, grouping: Grouping) => {
 
   let position = 0;
 
-  for (let count = 0; position < next.length && count < kept; position++) {
-    if (next[position] !== grouping.group) {
-      count++;
+  for (let count = 0; position < next.length && count < kept; position += 1) {
+    if (next.charAt(position) !== grouping.group) {
+      count += 1;
     }
   }
 
@@ -150,15 +159,13 @@ const NumberField = ({
   const generatedId = React.useId();
   const fieldId = id ?? generatedId;
   const [typing, setTyping] = React.useState(false);
-  // `format` is usually an inline object, so key the grouping on its contents.
-  const formatKey = format ? JSON.stringify(format) : "";
+  // `format` is usually an inline object, so key the grouping on the two options it reads.
+  const notation = format?.notation;
+  const useGrouping = format?.useGrouping;
 
   const grouping = React.useMemo(
-    () =>
-      groupWhileTyping
-        ? createGrouping(locale, formatKey ? JSON.parse(formatKey) : undefined)
-        : null,
-    [groupWhileTyping, locale, formatKey],
+    () => (groupWhileTyping ? createGrouping(locale, { notation, useGrouping }) : null),
+    [groupWhileTyping, locale, notation, useGrouping],
   );
 
   const context = React.useMemo(
@@ -266,28 +273,29 @@ const NumberFieldInputLayers = ({
 }) => {
   const reducedMotion = useReducedMotion();
   const [shownValue, setShownValue] = React.useState(value);
-  const [morphing, setMorphing] = React.useState(false);
+  // The value being animated, or null at rest. Each new value restarts the fallback timer.
+  const [morphingValue, setMorphingValue] = React.useState<string | null>(null);
+  const morphing = morphingValue !== null;
 
   // Decided while rendering, so the plain layer never paints a new value first.
   if (value !== shownValue) {
     setShownValue(value);
-    setMorphing(animated && !reducedMotion && !typing);
+    setMorphingValue(animated && reducedMotion !== true && !typing ? value : null);
   }
 
   React.useEffect(() => {
-    if (!morphing) {
-      return;
-    }
-
     // In case the morph never reports back, e.g. text torph left unanimated.
-    const timeout = window.setTimeout(() => {
-      setMorphing(false);
-    }, 1000);
+    const timeout =
+      morphingValue === null
+        ? undefined
+        : window.setTimeout(() => {
+            setMorphingValue(null);
+          }, 1000);
 
     return () => {
       window.clearTimeout(timeout);
     };
-  }, [morphing, value]);
+  }, [morphingValue]);
 
   return (
     <span
@@ -320,7 +328,7 @@ const NumberFieldInputLayers = ({
         <TextMorph
           disabled={!animated}
           onAnimationComplete={() => {
-            setMorphing(false);
+            setMorphingValue(null);
           }}
         >
           {value}
@@ -360,10 +368,11 @@ const NumberFieldInput = ({
       onChange={(event) => {
         // Runs before Base UI's own handler, which then reads the regrouped text.
         const input = event.currentTarget;
-        const composing = (event.nativeEvent as InputEvent).isComposing;
+        const { nativeEvent } = event;
+        const isComposing = nativeEvent instanceof InputEvent && nativeEvent.isComposing;
 
         const next =
-          grouping && !composing && input.selectionStart !== null
+          grouping && !isComposing && input.selectionStart !== null
             ? regroup(input.value, input.selectionStart, grouping)
             : null;
 
