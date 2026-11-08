@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vp dev --port 3001",
+    "dev": "vp dev",
     "build": "vp build && bun verify-build.ts",
-    "preview": "vp preview --port 3002",
+    "preview": "vp preview",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
