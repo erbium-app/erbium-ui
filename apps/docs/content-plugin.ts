@@ -1,29 +1,13 @@
 import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import matter from "gray-matter";
 import type { Plugin } from "vite-plus";
-import type { DocumentationKind } from "@erbium/content/taxonomy";
+import { documentationSections, kindPaths } from "@erbium/content/taxonomy";
+import registry from "../../packages/ui/registry.json" with { type: "json" };
 
 const root = new URL("../../packages/", import.meta.url);
 
-const sections: { title: string; kind: DocumentationKind; names: string[] }[] = JSON.parse(
-  readFileSync(new URL("content/src/sections.json", root), "utf-8"),
-);
-
-const paths: Record<DocumentationKind, string> = {
-  block: "blocks",
-  component: "components",
-  foundation: "foundations",
-  hook: "hooks",
-  provider: "providers",
-  utility: "utilities",
-};
-
-const registry: { items: { name: string; files?: { path: string }[] }[] } = JSON.parse(
-  readFileSync(new URL("ui/registry.json", root), "utf-8"),
-);
-
 export const navigationMetadata = () =>
-  sections.flatMap((section) =>
+  documentationSections.flatMap((section) =>
     section.names.map((name) => {
       const { data } = matter(
         readFileSync(new URL(`content/components/${name}/index.md`, root), "utf-8"),
@@ -34,7 +18,7 @@ export const navigationMetadata = () =>
         files:
           registry.items.find((item) => item.name === name)?.files?.map(({ path }) => ({ path })) ??
           [],
-        href: `/docs/${paths[section.kind]}/${name}`,
+        href: `/docs/${kindPaths[section.kind]}/${name}`,
         kind: section.kind,
         name,
         section: section.title,
@@ -61,28 +45,24 @@ export const contentPlugin = (): Plugin => {
 
   return {
     hotUpdate({ file }) {
-      if (!file.includes("packages/content/")) {
-        return;
-      }
-
-      const module = this.environment.moduleGraph.getModuleById("\0virtual:docs-navigation");
+      const module = file.includes("packages/content/")
+        ? this.environment.moduleGraph.getModuleById("\0virtual:docs-navigation")
+        : undefined;
 
       if (module) {
         this.environment.moduleGraph.invalidateModule(module);
+      }
 
-        return [module];
-      }
+      return module ? [module] : undefined;
     },
-    load(id) {
-      if (id === "\0virtual:docs-navigation") {
-        return `export default ${JSON.stringify(navigationMetadata())};`;
-      }
+    load: {
+      filter: { id: /^\0virtual:docs-navigation$/u },
+      handler: () => `export default ${JSON.stringify(navigationMetadata())};`,
     },
     name: "erbium:start-content",
-    resolveId(id) {
-      if (id === "virtual:docs-navigation") {
-        return "\0virtual:docs-navigation";
-      }
+    resolveId: {
+      filter: { id: /^virtual:docs-navigation$/u },
+      handler: () => "\0virtual:docs-navigation",
     },
   };
 };
