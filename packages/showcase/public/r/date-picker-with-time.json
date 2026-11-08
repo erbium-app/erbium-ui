@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-with-time",
+  "type": "registry:component",
+  "title": "Date Picker: With Time",
+  "description": "Pair the picker with a time input in a `FieldGroup`.",
+  "registryDependencies": [
+    "@erbium/date-picker",
+    "@erbium/field",
+    "@erbium/input",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldGroup, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => (\n  <FieldGroup className=\"w-96 flex-row\">\n    <Field>\n      <FieldLabel htmlFor=\"date-picker-time-date\">Date</FieldLabel>\n      <DatePicker>\n        <DatePickerInput id=\"date-picker-time-date\" />\n        <DatePickerContent>\n          <DatePickerCalendar />\n        </DatePickerContent>\n      </DatePicker>\n    </Field>\n    <Field className=\"w-32\">\n      <FieldLabel htmlFor=\"date-picker-time-time\">Time</FieldLabel>\n      <Input\n        id=\"date-picker-time-time\"\n        type=\"time\"\n        step=\"60\"\n        defaultValue=\"10:30\"\n        className=\"appearance-none [&::-webkit-calendar-picker-indicator]:hidden\"\n      />\n    </Field>\n  </FieldGroup>\n);\n\nexport default Example;\n",
+      "path": "src/date-picker/variants/with-time.tsx",
+      "target": "@components/showcase/date-picker/variants/with-time.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

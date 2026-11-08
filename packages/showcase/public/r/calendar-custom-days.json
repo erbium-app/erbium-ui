@@ -1,16 +1,21 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "calendar-custom-days",
-  "type": "registry:component",
-  "title": "calendar custom days",
-  "description": "Erbium calendar custom days example.",
-  "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
-  "registryDependencies": ["@erbium/calendar", "@erbium/card", "@erbium/styles"],
+  "type": "registry:block",
+  "title": "Calendar: Custom Days",
+  "description": "Wrap `CalendarDayButton` in a custom `DayButton` to add content to each day, and pass `classNames` to adjust its layout.",
+  "registryDependencies": ["@erbium/calendar", "@erbium/card", "@erbium/date", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\nimport { addDays } from \"date-fns\";\nimport type { DateRange } from \"react-day-picker\";\n\nimport { Calendar, CalendarDayButton } from \"@/registry/erbium/ui/calendar\";\nimport { Card } from \"@/registry/erbium/ui/card\";\n\nexport const CalendarCustomDays = () => {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => ({\n    from: new Date(new Date().getFullYear(), 11, 8),\n    to: addDays(new Date(new Date().getFullYear(), 11, 8), 10),\n  }));\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <Calendar\n        mode=\"range\"\n        defaultMonth={range?.from}\n        selected={range}\n        onSelect={setRange}\n        numberOfMonths={1}\n        captionLayout=\"dropdown\"\n        className=\"[--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)]\"\n        formatters={{\n          formatMonthDropdown: (date) => date.toLocaleString(\"default\", { month: \"long\" }),\n        }}\n        components={{\n          DayButton: ({ children, modifiers, day, ...props }) => {\n            const isWeekend = day.date.getDay() === 0 || day.date.getDay() === 6;\n\n            return (\n              <CalendarDayButton day={day} modifiers={modifiers} {...props}>\n                {children}\n                {!modifiers.outside && <span>{isWeekend ? \"$120\" : \"$100\"}</span>}\n              </CalendarDayButton>\n            );\n          },\n        }}\n      />\n    </Card>\n  );\n};\n",
+      "content": "import * as React from \"react\";\n\nimport { Calendar, CalendarDayButton } from \"@/registry/erbium/ui/calendar\";\nimport type { DateRange } from \"@/registry/erbium/ui/calendar\";\nimport { Card } from \"@/registry/erbium/ui/card\";\nimport { addDays } from \"@/registry/erbium/lib/date\";\n\nconst priceFormat = new Intl.NumberFormat(\"en-US\", {\n  currency: \"USD\",\n  maximumFractionDigits: 0,\n  style: \"currency\",\n});\n\n/** Day button with the nightly price under the date. */\nconst PriceDayButton = ({\n  children,\n  day,\n  modifiers,\n  ...props\n}: React.ComponentProps<typeof CalendarDayButton>) => {\n  const isWeekend = day.date.getDay() === 0 || day.date.getDay() === 6;\n\n  return (\n    <CalendarDayButton day={day} modifiers={modifiers} {...props}>\n      {children}\n      {!modifiers.outside && (\n        <span className=\"text-metadata opacity-70\">\n          {priceFormat.format(isWeekend ? 120 : 100)}\n        </span>\n      )}\n    </CalendarDayButton>\n  );\n};\n\nexport const CalendarCustomDays = () => {\n  const [range, setRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date(new Date().getFullYear(), 11, 8);\n\n    return { from, to: addDays(from, 10) };\n  });\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <Calendar\n        mode=\"range\"\n        defaultMonth={range?.from}\n        selected={range}\n        onSelect={setRange}\n        className=\"[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]\"\n        classNames={{ day_button: \"flex-col gap-0\" }}\n        components={{ DayButton: PriceDayButton }}\n      />\n    </Card>\n  );\n};\n",
       "path": "src/calendar/examples/calendar-custom-days.tsx",
       "target": "@components/showcase/calendar/examples/calendar-custom-days.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { CalendarCustomDays } from \"../examples/calendar-custom-days\";\n\nconst Example = () => <CalendarCustomDays />;\n\nexport default Example;\n",
+      "path": "src/calendar/variants/custom-days.tsx",
+      "target": "@components/showcase/calendar/variants/custom-days.tsx",
       "type": "registry:component"
     }
   ]

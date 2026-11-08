@@ -1,6 +1,6 @@
 ## External documentation
 
-React DayPicker supplies the calendar primitives. date-fns handles date formatting and calculations in the examples.
+React DayPicker supplies the calendar primitives. Intl handles formatting in the examples, and `@erbium/ui/lib/date` provides the date helpers.
 
-- [React DayPicker (v9)](https://daypicker.dev/v9)
-- [date-fns](https://date-fns.org/docs/Getting-Started)
+- [React DayPicker](https://daypicker.dev)
+- [Upgrading to DayPicker 10](https://daypicker.dev/upgrading)

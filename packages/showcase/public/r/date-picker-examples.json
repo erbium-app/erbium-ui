@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All date-picker examples.",
+  "name": "date-picker-examples",
+  "registryDependencies": [
+    "@erbium-examples/date-picker-playground",
+    "@erbium-examples/date-picker-overview",
+    "@erbium-examples/date-picker-basic",
+    "@erbium-examples/date-picker-range",
+    "@erbium-examples/date-picker-trigger",
+    "@erbium-examples/date-picker-date-of-birth",
+    "@erbium-examples/date-picker-presets",
+    "@erbium-examples/date-picker-with-time",
+    "@erbium-examples/date-picker-localized",
+    "@erbium-examples/date-picker-disabled",
+    "@erbium-examples/date-picker-form"
+  ],
+  "title": "Date Picker examples",
+  "type": "registry:item"
+}

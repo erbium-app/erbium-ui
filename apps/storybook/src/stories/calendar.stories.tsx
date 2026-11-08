@@ -9,26 +9,30 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 
 export const Basic = { ...showcases.Basic, name: "Basic" };
 
-export const BookedDates = { ...showcases.BookedDates, name: "Booked Dates" };
-
-export const WeekNumbers = { ...showcases.WeekNumbers, name: "Week Numbers" };
-
-export const Presets = { ...showcases.Presets, name: "Presets" };
-
-export const Hijri = { ...showcases.Hijri, name: "Persian / Hijri / Jalali Calendar" };
-
-export const SelectedDateWithTimezone = {
-  ...showcases.SelectedDateWithTimezone,
-  name: "Selected Date (With TimeZone)",
-};
-
 export const RangeCalendar = { ...showcases.RangeCalendar, name: "Range Calendar" };
+
+export const Multiple = { ...showcases.Multiple, name: "Multiple" };
 
 export const MonthAndYearSelector = {
   ...showcases.MonthAndYearSelector,
   name: "Month And Year Selector",
 };
 
+export const BookedDates = { ...showcases.BookedDates, name: "Booked Dates" };
+
+export const WeekNumbers = { ...showcases.WeekNumbers, name: "Week Numbers" };
+
+export const Presets = { ...showcases.Presets, name: "Presets" };
+
 export const DateAndTimePicker = { ...showcases.DateAndTimePicker, name: "Date And Time Picker" };
+
+export const CustomDays = { ...showcases.CustomDays, name: "Custom Days" };
+
+export const Persian = { ...showcases.Persian, name: "Persian (Jalali) Calendar" };
+
+export const SelectedDateWithTimezone = {
+  ...showcases.SelectedDateWithTimezone,
+  name: "Selected Date (With TimeZone)",
+};
 
 export const CustomCellSize = { ...showcases.CustomCellSize, name: "Custom Cell Size" };

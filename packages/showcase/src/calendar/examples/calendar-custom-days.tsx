@@ -1,15 +1,43 @@
 import * as React from "react";
-import { addDays } from "date-fns";
-import type { DateRange } from "react-day-picker";
 
 import { Calendar, CalendarDayButton } from "@erbium/ui/components/calendar";
+import type { DateRange } from "@erbium/ui/components/calendar";
 import { Card } from "@erbium/ui/components/card";
+import { addDays } from "@erbium/ui/lib/date";
+
+const priceFormat = new Intl.NumberFormat("en-US", {
+  currency: "USD",
+  maximumFractionDigits: 0,
+  style: "currency",
+});
+
+/** Day button with the nightly price under the date. */
+const PriceDayButton = ({
+  children,
+  day,
+  modifiers,
+  ...props
+}: React.ComponentProps<typeof CalendarDayButton>) => {
+  const isWeekend = day.date.getDay() === 0 || day.date.getDay() === 6;
+
+  return (
+    <CalendarDayButton day={day} modifiers={modifiers} {...props}>
+      {children}
+      {!modifiers.outside && (
+        <span className="text-metadata opacity-70">
+          {priceFormat.format(isWeekend ? 120 : 100)}
+        </span>
+      )}
+    </CalendarDayButton>
+  );
+};
 
 export const CalendarCustomDays = () => {
-  const [range, setRange] = React.useState<DateRange | undefined>(() => ({
-    from: new Date(new Date().getFullYear(), 11, 8),
-    to: addDays(new Date(new Date().getFullYear(), 11, 8), 10),
-  }));
+  const [range, setRange] = React.useState<DateRange | undefined>(() => {
+    const from = new Date(new Date().getFullYear(), 11, 8);
+
+    return { from, to: addDays(from, 10) };
+  });
 
   return (
     <Card className="mx-auto w-fit p-0">
@@ -18,24 +46,9 @@ export const CalendarCustomDays = () => {
         defaultMonth={range?.from}
         selected={range}
         onSelect={setRange}
-        numberOfMonths={1}
-        captionLayout="dropdown"
-        className="[--cell-size:--spacing(10)] md:[--cell-size:--spacing(12)]"
-        formatters={{
-          formatMonthDropdown: (date) => date.toLocaleString("default", { month: "long" }),
-        }}
-        components={{
-          DayButton: ({ children, modifiers, day, ...props }) => {
-            const isWeekend = day.date.getDay() === 0 || day.date.getDay() === 6;
-
-            return (
-              <CalendarDayButton day={day} modifiers={modifiers} {...props}>
-                {children}
-                {!modifiers.outside && <span>{isWeekend ? "$120" : "$100"}</span>}
-              </CalendarDayButton>
-            );
-          },
-        }}
+        className="[--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"
+        classNames={{ day_button: "flex-col gap-0" }}
+        components={{ DayButton: PriceDayButton }}
       />
     </Card>
   );

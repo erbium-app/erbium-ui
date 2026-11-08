@@ -1,15 +1,13 @@
 ---
 title: "Calendar"
-description: "Select a date or date range."
+description: "Select a date, a date range, or several dates."
 ---
 
-Select a date or date range.
+Select a date, a date range, or several dates from a month grid.
 
 **Import:** `@erbium/ui/components/calendar`
 
 ## Usage
-
-See the [React DayPicker](https://daypicker.dev/v9) documentation for more information.
 
 ```tsx
 import { Calendar } from "@erbium/ui/components/calendar";
@@ -23,18 +21,48 @@ return <Calendar mode="single" selected={date} onSelect={setDate} />;
 
 ## About
 
-The `Calendar` component is built on top of [React DayPicker](https://daypicker.dev/v9).
+`Calendar` wraps [React DayPicker](https://daypicker.dev) 10 (`@daypicker/react`) and passes every DayPicker prop through. It styles DayPicker's own elements through `classNames`, so keyboard navigation and focus management stay DayPicker's:
 
-## Date Picker
+- Days and navigation buttons use the ghost button surface. Selected days use the `selection` colour; the middle of a range uses the muted fill.
+- Today is marked with a dot under the number, so it never competes with a selection.
+- `captionLayout="dropdown"` renders the month and year pickers with the library `Select`.
+- Standalone, the calendar sits on a panel surface. Inside a `Card` or a `Popover` it drops its own surface and uses the container's.
 
-You can use the `<Calendar>` component to build a date picker. See the [Date Picker](https://ui.shadcn.com/docs/components/base/date-picker) page for more information.
+To pick a date from a field, use [Date Picker](/docs/components/date-picker), which composes `Calendar` with an input and a popover.
+
+## Styling
+
+`classNames` adds to the defaults instead of replacing them:
+
+```tsx
+<Calendar classNames={{ day_button: "flex-col gap-0.5" }} />
+```
+
+Cells are sized by two CSS variables on the root:
+
+| Variable        | Default                                           |
+| --------------- | ------------------------------------------------- |
+| `--cell-size`   | `var(--control-height)`; `2.75rem` on touch input |
+| `--cell-radius` | `var(--radius-md)`                                |
+
+```tsx
+<Calendar className="[--cell-size:--spacing(11)]" />
+```
+
+To add content to a day, wrap `CalendarDayButton`, DayPicker's default day button, in a custom `DayButton` (see Custom Days).
 
 ## Localization
 
-Pass the `locale` prop to provide locale-specific formatting.
+Pass a DayPicker locale for month names, weekday names, and the first day of the week:
 
 ```tsx
-import { enUS } from "react-day-picker/locale";
+import { de } from "@daypicker/react/locale";
 
-<Calendar mode="single" selected={date} onSelect={setDate} locale={enUS} />;
+<Calendar mode="single" selected={date} onSelect={setDate} locale={de} />;
 ```
+
+Non-Gregorian calendars ship as DayPicker add-ons (`@daypicker/persian`, `@daypicker/hijri`, `@daypicker/hebrew`, `@daypicker/buddhist`, `@daypicker/ethiopic`). Pass the add-on's date library and locale to `Calendar` to keep the library styling; see Persian (Jalali) Calendar.
+
+## Types
+
+`DateRange` and `Matcher` are re-exported from `@erbium/ui/components/calendar`, so most code needs no direct DayPicker import. Date helpers (`addDays`, `formatDate`, `parseDate`, and their range variants) live in `@erbium/ui/lib/date`.

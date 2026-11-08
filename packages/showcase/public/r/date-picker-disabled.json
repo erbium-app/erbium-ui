@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-disabled",
+  "type": "registry:component",
+  "title": "Date Picker: Disabled",
+  "description": "A disabled `DatePicker` disables the input and the calendar button.",
+  "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst Example = () => (\n  <Field className=\"w-64\" disabled>\n    <FieldLabel htmlFor=\"date-picker-disabled\">Start date</FieldLabel>\n    <DatePicker disabled defaultValue={new Date(2026, 0, 12)}>\n      <DatePickerInput id=\"date-picker-disabled\" />\n      <DatePickerContent>\n        <DatePickerCalendar />\n      </DatePickerContent>\n    </DatePicker>\n  </Field>\n);\n\nexport default Example;\n",
+      "path": "src/date-picker/variants/disabled.tsx",
+      "target": "@components/showcase/date-picker/variants/disabled.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

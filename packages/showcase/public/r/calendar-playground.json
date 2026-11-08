@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst Example = (args: {\n  showOutsideDays: boolean;\n  fixedWeeks: boolean;\n  numberOfMonths: number;\n  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;\n  captionLayout: \"label\" | \"dropdown\" | \"dropdown-months\" | \"dropdown-years\";\n  buttonVariant: \"default\" | \"outline\" | \"secondary\" | \"ghost\" | \"error\" | \"link\";\n}) => (\n  <Calendar\n    mode=\"single\"\n    showOutsideDays={args.showOutsideDays}\n    fixedWeeks={args.fixedWeeks}\n    numberOfMonths={args.numberOfMonths}\n    weekStartsOn={args.weekStartsOn}\n    captionLayout={args.captionLayout}\n    buttonVariant={args.buttonVariant}\n  />\n);\n\nexport default Example;\n",
+      "content": "import { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst Example = (args: {\n  showOutsideDays: boolean;\n  showWeekNumber: boolean;\n  fixedWeeks: boolean;\n  numberOfMonths: number;\n  weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;\n  captionLayout: \"label\" | \"dropdown\" | \"dropdown-months\" | \"dropdown-years\";\n}) => (\n  <Calendar\n    mode=\"single\"\n    showOutsideDays={args.showOutsideDays}\n    showWeekNumber={args.showWeekNumber}\n    fixedWeeks={args.fixedWeeks}\n    numberOfMonths={args.numberOfMonths}\n    weekStartsOn={args.weekStartsOn}\n    captionLayout={args.captionLayout}\n  />\n);\n\nexport default Example;\n",
       "path": "src/calendar/variants/playground.tsx",
       "target": "@components/showcase/calendar/variants/playground.tsx",
       "type": "registry:component"

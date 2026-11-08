@@ -211,8 +211,13 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "Erbium calendar component.",
-      "dependencies": ["class-variance-authority", "react-day-picker"],
-      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/utils"],
+      "dependencies": ["@daypicker/react"],
+      "registryDependencies": [
+        "@erbium/button-variants",
+        "@erbium/icon",
+        "@erbium/select",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/calendar.tsx",
@@ -523,6 +528,42 @@
         {
           "path": "src/components/csp-provider.tsx",
           "target": "@ui/csp-provider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date",
+      "type": "registry:lib",
+      "title": "Date",
+      "description": "Erbium date lib.",
+      "dependencies": ["@daypicker/react"],
+      "files": [
+        {
+          "path": "src/lib/date.ts",
+          "target": "@lib/date.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Erbium date picker component.",
+      "dependencies": ["@base-ui/react", "@daypicker/react"],
+      "registryDependencies": [
+        "@erbium/calendar",
+        "@erbium/date",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/popover",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/date-picker.tsx",
+          "target": "@ui/date-picker.tsx",
           "type": "registry:ui"
         }
       ]

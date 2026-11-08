@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-multiple",
+  "type": "registry:block",
+  "title": "Calendar: Multiple",
+  "description": "Use `mode=\"multiple\"` to select several dates. `max` limits how many can be selected.",
+  "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport const CalendarMultiple = () => {\n  const [dates, setDates] = React.useState<Date[] | undefined>(() => {\n    const year = new Date().getFullYear();\n\n    return [new Date(year, 5, 9), new Date(year, 5, 12), new Date(year, 5, 18)];\n  });\n\n  return (\n    <Calendar\n      mode=\"multiple\"\n      defaultMonth={dates?.[0]}\n      selected={dates}\n      onSelect={setDates}\n      max={5}\n    />\n  );\n};\n",
+      "path": "src/calendar/examples/calendar-multiple.tsx",
+      "target": "@components/showcase/calendar/examples/calendar-multiple.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { CalendarMultiple } from \"../examples/calendar-multiple\";\n\nconst Example = () => <CalendarMultiple />;\n\nexport default Example;\n",
+      "path": "src/calendar/variants/multiple.tsx",
+      "target": "@components/showcase/calendar/variants/multiple.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

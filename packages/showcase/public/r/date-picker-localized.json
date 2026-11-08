@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-localized",
+  "type": "registry:component",
+  "title": "Date Picker: Localized",
+  "description": "Set `locale` on `DatePicker` to format and parse typed dates, and pass a DayPicker locale to `DatePickerCalendar` for month names and the first day of the week.",
+  "dependencies": ["@daypicker/react@^10.0.2"],
+  "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { de } from \"@daypicker/react/locale\";\n\nimport {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst Example = () => (\n  <Field className=\"w-64\">\n    <FieldLabel htmlFor=\"date-picker-localized\">Liefertermin</FieldLabel>\n    <DatePicker locale=\"de-DE\">\n      <DatePickerInput\n        id=\"date-picker-localized\"\n        placeholder=\"Datum wählen\"\n        triggerLabel=\"Datum auswählen\"\n      />\n      <DatePickerContent>\n        <DatePickerCalendar locale={de} />\n      </DatePickerContent>\n    </DatePicker>\n  </Field>\n);\n\nexport default Example;\n",
+      "path": "src/date-picker/variants/localized.tsx",
+      "target": "@components/showcase/date-picker/variants/localized.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

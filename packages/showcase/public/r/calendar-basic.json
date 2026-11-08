@@ -3,7 +3,7 @@
   "name": "calendar-basic",
   "type": "registry:block",
   "title": "Calendar: Basic",
-  "description": "A basic calendar component. We used `` to style the calendar.",
+  "description": "A single-date calendar. Today is marked with a dot, and days outside the month stay visible and selectable.",
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {

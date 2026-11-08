@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-playground",
+  "type": "registry:component",
+  "title": "Date Picker: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/date-picker", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\n\nconst Example = (args: {\n  mode: \"single\" | \"range\";\n  disabled: boolean;\n  closeOnSelect: boolean;\n  numberOfMonths: number;\n  captionLayout: \"label\" | \"dropdown\";\n}) => (\n  <DatePicker\n    // Remount when the mode changes so each mode starts from an empty value.\n    key={args.mode}\n    mode={args.mode}\n    disabled={args.disabled}\n    closeOnSelect={args.closeOnSelect}\n  >\n    <DatePickerInput aria-label=\"Date\" className=\"w-72\" />\n    <DatePickerContent>\n      <DatePickerCalendar numberOfMonths={args.numberOfMonths} captionLayout={args.captionLayout} />\n    </DatePickerContent>\n  </DatePicker>\n);\n\nexport default Example;\n",
+      "path": "src/date-picker/variants/playground.tsx",
+      "target": "@components/showcase/date-picker/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

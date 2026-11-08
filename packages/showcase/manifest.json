@@ -808,6 +808,24 @@
         "title": "Basic"
       },
       {
+        "exportName": "RangeCalendar",
+        "slug": "range-calendar",
+        "source": "src/calendar/variants/range-calendar.tsx",
+        "title": "Range Calendar"
+      },
+      {
+        "exportName": "Multiple",
+        "slug": "multiple",
+        "source": "src/calendar/variants/multiple.tsx",
+        "title": "Multiple"
+      },
+      {
+        "exportName": "MonthAndYearSelector",
+        "slug": "month-and-year-selector",
+        "source": "src/calendar/variants/month-and-year-selector.tsx",
+        "title": "Month And Year Selector"
+      },
+      {
         "exportName": "BookedDates",
         "slug": "booked-dates",
         "source": "src/calendar/variants/booked-dates.tsx",
@@ -826,34 +844,28 @@
         "title": "Presets"
       },
       {
-        "exportName": "Hijri",
-        "slug": "hijri",
-        "source": "src/calendar/variants/hijri.tsx",
-        "title": "Persian / Hijri / Jalali Calendar"
+        "exportName": "DateAndTimePicker",
+        "slug": "date-and-time-picker",
+        "source": "src/calendar/variants/date-and-time-picker.tsx",
+        "title": "Date And Time Picker"
+      },
+      {
+        "exportName": "CustomDays",
+        "slug": "custom-days",
+        "source": "src/calendar/variants/custom-days.tsx",
+        "title": "Custom Days"
+      },
+      {
+        "exportName": "Persian",
+        "slug": "persian",
+        "source": "src/calendar/variants/persian.tsx",
+        "title": "Persian (Jalali) Calendar"
       },
       {
         "exportName": "SelectedDateWithTimezone",
         "slug": "selected-date-with-timezone",
         "source": "src/calendar/variants/selected-date-with-timezone.tsx",
         "title": "Selected Date (With TimeZone)"
-      },
-      {
-        "exportName": "RangeCalendar",
-        "slug": "range-calendar",
-        "source": "src/calendar/variants/range-calendar.tsx",
-        "title": "Range Calendar"
-      },
-      {
-        "exportName": "MonthAndYearSelector",
-        "slug": "month-and-year-selector",
-        "source": "src/calendar/variants/month-and-year-selector.tsx",
-        "title": "Month And Year Selector"
-      },
-      {
-        "exportName": "DateAndTimePicker",
-        "slug": "date-and-time-picker",
-        "source": "src/calendar/variants/date-and-time-picker.tsx",
-        "title": "Date And Time Picker"
       },
       {
         "exportName": "CustomCellSize",
@@ -1556,6 +1568,78 @@
         "slug": "showcase",
         "source": "src/csp-provider/variants/showcase.tsx",
         "title": "Showcase"
+      }
+    ]
+  },
+  {
+    "name": "date-picker",
+    "title": "Components/Date Picker",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/date-picker/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/date-picker/variants/overview.tsx",
+        "title": "Overview"
+      },
+      {
+        "exportName": "Basic",
+        "slug": "basic",
+        "source": "src/date-picker/variants/basic.tsx",
+        "title": "Basic"
+      },
+      {
+        "exportName": "Range",
+        "slug": "range",
+        "source": "src/date-picker/variants/range.tsx",
+        "title": "Range"
+      },
+      {
+        "exportName": "Trigger",
+        "slug": "trigger",
+        "source": "src/date-picker/variants/trigger.tsx",
+        "title": "Trigger"
+      },
+      {
+        "exportName": "DateOfBirth",
+        "slug": "date-of-birth",
+        "source": "src/date-picker/variants/date-of-birth.tsx",
+        "title": "Date Of Birth"
+      },
+      {
+        "exportName": "Presets",
+        "slug": "presets",
+        "source": "src/date-picker/variants/presets.tsx",
+        "title": "Presets"
+      },
+      {
+        "exportName": "WithTime",
+        "slug": "with-time",
+        "source": "src/date-picker/variants/with-time.tsx",
+        "title": "With Time"
+      },
+      {
+        "exportName": "Localized",
+        "slug": "localized",
+        "source": "src/date-picker/variants/localized.tsx",
+        "title": "Localized"
+      },
+      {
+        "exportName": "Disabled",
+        "slug": "disabled",
+        "source": "src/date-picker/variants/disabled.tsx",
+        "title": "Disabled"
+      },
+      {
+        "exportName": "Form",
+        "slug": "form",
+        "source": "src/date-picker/variants/form.tsx",
+        "title": "Form"
       }
     ]
   },

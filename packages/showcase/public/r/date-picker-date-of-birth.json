@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-date-of-birth",
+  "type": "registry:component",
+  "title": "Date Picker: Date Of Birth",
+  "description": "For distant dates, use `captionLayout=\"dropdown\"` with `startMonth` and `endMonth`, and disable days after today.",
+  "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst today = new Date();\n\nconst Example = () => (\n  <Field className=\"w-64\">\n    <FieldLabel htmlFor=\"date-picker-birth\">Date of birth</FieldLabel>\n    <DatePicker formatOptions={{ dateStyle: \"long\" }}>\n      <DatePickerInput id=\"date-picker-birth\" placeholder=\"Enter or pick a date\" />\n      <DatePickerContent>\n        <DatePickerCalendar\n          captionLayout=\"dropdown\"\n          startMonth={new Date(1900, 0)}\n          endMonth={today}\n          disabled={{ after: today }}\n        />\n      </DatePickerContent>\n    </DatePicker>\n  </Field>\n);\n\nexport default Example;\n",
+      "path": "src/date-picker/variants/date-of-birth.tsx",
+      "target": "@components/showcase/date-picker/variants/date-of-birth.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

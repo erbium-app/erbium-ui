@@ -4288,7 +4288,7 @@
       "name": "calendar-basic",
       "type": "registry:block",
       "title": "Calendar: Basic",
-      "description": "A basic calendar component. We used `` to style the calendar.",
+      "description": "A single-date calendar. Today is marked with a dot, and days outside the month stay visible and selectable.",
       "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
       "files": [
         {
@@ -4307,7 +4307,7 @@
       "name": "calendar-booked-dates",
       "type": "registry:block",
       "title": "Calendar: Booked Dates",
-      "description": "Disable and mark dates that are already booked.",
+      "description": "Pass dates or matchers to `disabled` to block them. Disabled days are struck through and cannot be selected.",
       "registryDependencies": ["@erbium/calendar", "@erbium/card", "@erbium/styles"],
       "files": [
         {
@@ -4352,15 +4352,24 @@
     },
     {
       "name": "calendar-custom-days",
-      "type": "registry:component",
-      "title": "calendar custom days",
-      "description": "Erbium calendar custom days example.",
-      "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
-      "registryDependencies": ["@erbium/calendar", "@erbium/card", "@erbium/styles"],
+      "type": "registry:block",
+      "title": "Calendar: Custom Days",
+      "description": "Wrap `CalendarDayButton` in a custom `DayButton` to add content to each day, and pass `classNames` to adjust its layout.",
+      "registryDependencies": [
+        "@erbium/calendar",
+        "@erbium/card",
+        "@erbium/date",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/calendar/examples/calendar-custom-days.tsx",
           "target": "@components/showcase/calendar/examples/calendar-custom-days.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/calendar/variants/custom-days.tsx",
+          "target": "@components/showcase/calendar/variants/custom-days.tsx",
           "type": "registry:component"
         }
       ]
@@ -4412,43 +4421,26 @@
         "@erbium-examples/calendar-playground",
         "@erbium-examples/calendar-overview",
         "@erbium-examples/calendar-basic",
+        "@erbium-examples/calendar-range-calendar",
+        "@erbium-examples/calendar-multiple",
+        "@erbium-examples/calendar-month-and-year-selector",
         "@erbium-examples/calendar-booked-dates",
         "@erbium-examples/calendar-week-numbers",
         "@erbium-examples/calendar-presets",
-        "@erbium-examples/calendar-hijri",
-        "@erbium-examples/calendar-selected-date-with-timezone",
-        "@erbium-examples/calendar-range-calendar",
-        "@erbium-examples/calendar-month-and-year-selector",
         "@erbium-examples/calendar-date-and-time-picker",
+        "@erbium-examples/calendar-custom-days",
+        "@erbium-examples/calendar-persian",
+        "@erbium-examples/calendar-selected-date-with-timezone",
         "@erbium-examples/calendar-custom-cell-size"
       ],
       "title": "Calendar examples",
       "type": "registry:item"
     },
     {
-      "name": "calendar-hijri",
-      "type": "registry:block",
-      "title": "Calendar: Persian / Hijri / Jalali Calendar",
-      "description": "To use the Persian calendar, edit `components/ui/calendar.tsx` and replace `react-day-picker` with `react-day-picker/persian`.",
-      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/calendar/examples/calendar-hijri.tsx",
-          "target": "@components/showcase/calendar/examples/calendar-hijri.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/calendar/variants/hijri.tsx",
-          "target": "@components/showcase/calendar/variants/hijri.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "calendar-month-and-year-selector",
       "type": "registry:block",
       "title": "Calendar: Month And Year Selector",
-      "description": "Use `captionLayout=\"dropdown\"` to show month and year dropdowns.",
+      "description": "Use `captionLayout=\"dropdown\"` to show month and year pickers built on `Select`. Set `startMonth` and `endMonth` to bound the year list.",
       "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
       "files": [
         {
@@ -4459,6 +4451,25 @@
         {
           "path": "src/calendar/variants/month-and-year-selector.tsx",
           "target": "@components/showcase/calendar/variants/month-and-year-selector.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "calendar-multiple",
+      "type": "registry:block",
+      "title": "Calendar: Multiple",
+      "description": "Use `mode=\"multiple\"` to select several dates. `max` limits how many can be selected.",
+      "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/calendar/examples/calendar-multiple.tsx",
+          "target": "@components/showcase/calendar/examples/calendar-multiple.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/calendar/variants/multiple.tsx",
+          "target": "@components/showcase/calendar/variants/multiple.tsx",
           "type": "registry:component"
         }
       ]
@@ -4483,6 +4494,26 @@
       ]
     },
     {
+      "name": "calendar-persian",
+      "type": "registry:block",
+      "title": "Calendar: Persian (Jalali) Calendar",
+      "description": "Install `@daypicker/persian` and pass its date library and locale to `Calendar`. The add-on sets the Jalali months and Persian numerals; `Calendar` keeps the library styling and lays out right to left with `dir=\"rtl\"`. The Hijri, Hebrew, Buddhist, and Ethiopic add-ons work the same way.",
+      "dependencies": ["@daypicker/persian@^10.0.2"],
+      "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/calendar/examples/calendar-persian.tsx",
+          "target": "@components/showcase/calendar/examples/calendar-persian.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/calendar/variants/persian.tsx",
+          "target": "@components/showcase/calendar/variants/persian.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "calendar-playground",
       "type": "registry:component",
       "title": "Calendar: Playground",
@@ -4501,11 +4532,11 @@
       "type": "registry:block",
       "title": "Calendar: Presets",
       "description": "Choose a date using preset buttons.",
-      "dependencies": ["date-fns@^4.4.0"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/calendar",
         "@erbium/card",
+        "@erbium/date",
         "@erbium/styles"
       ],
       "files": [
@@ -4526,8 +4557,7 @@
       "type": "registry:component",
       "title": "calendar range",
       "description": "Erbium calendar range example.",
-      "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
-      "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/calendar", "@erbium/date", "@erbium/styles"],
       "files": [
         {
           "path": "src/calendar/examples/calendar-range.tsx",
@@ -4540,9 +4570,8 @@
       "name": "calendar-range-calendar",
       "type": "registry:block",
       "title": "Calendar: Range Calendar",
-      "description": "Use the `mode=\"range\"` prop to enable range selection.",
-      "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
-      "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+      "description": "Use `mode=\"range\"` to select a range. The ends use the selection colour and the days between them use the muted fill.",
+      "registryDependencies": ["@erbium/calendar", "@erbium/date", "@erbium/styles"],
       "files": [
         {
           "path": "src/calendar/examples/calendar-range.tsx",
@@ -4580,13 +4609,14 @@
       "type": "registry:item",
       "title": "Calendar stories",
       "description": "All calendar variants as portable React CSF stories.",
-      "dependencies": ["date-fns@^4.4.0", "react-day-picker@^10.0.2"],
+      "dependencies": ["@daypicker/persian@^10.0.2"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/calendar",
         "@erbium/card",
         "@erbium/csp-provider",
+        "@erbium/date",
         "@erbium/field",
         "@erbium/icon",
         "@erbium/input-group",
@@ -4616,13 +4646,23 @@
           "type": "registry:component"
         },
         {
+          "path": "src/calendar/examples/calendar-custom-days.tsx",
+          "target": "@components/showcase/calendar/examples/calendar-custom-days.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/calendar/examples/calendar-demo.tsx",
           "target": "@components/showcase/calendar/examples/calendar-demo.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/calendar/examples/calendar-hijri.tsx",
-          "target": "@components/showcase/calendar/examples/calendar-hijri.tsx",
+          "path": "src/calendar/examples/calendar-multiple.tsx",
+          "target": "@components/showcase/calendar/examples/calendar-multiple.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/calendar/examples/calendar-persian.tsx",
+          "target": "@components/showcase/calendar/examples/calendar-persian.tsx",
           "type": "registry:component"
         },
         {
@@ -4666,13 +4706,13 @@
           "type": "registry:component"
         },
         {
-          "path": "src/calendar/variants/date-and-time-picker.tsx",
-          "target": "@components/showcase/calendar/variants/date-and-time-picker.tsx",
+          "path": "src/calendar/variants/custom-days.tsx",
+          "target": "@components/showcase/calendar/variants/custom-days.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/calendar/variants/hijri.tsx",
-          "target": "@components/showcase/calendar/variants/hijri.tsx",
+          "path": "src/calendar/variants/date-and-time-picker.tsx",
+          "target": "@components/showcase/calendar/variants/date-and-time-picker.tsx",
           "type": "registry:component"
         },
         {
@@ -4681,8 +4721,18 @@
           "type": "registry:component"
         },
         {
+          "path": "src/calendar/variants/multiple.tsx",
+          "target": "@components/showcase/calendar/variants/multiple.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/calendar/variants/overview.tsx",
           "target": "@components/showcase/calendar/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/calendar/variants/persian.tsx",
+          "target": "@components/showcase/calendar/variants/persian.tsx",
           "type": "registry:component"
         },
         {
@@ -8271,6 +8321,306 @@
         {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-basic",
+      "type": "registry:component",
+      "title": "Date Picker: Basic",
+      "description": "A controlled picker. Type a date, or open the calendar from the button.",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/basic.tsx",
+          "target": "@components/showcase/date-picker/variants/basic.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-date-of-birth",
+      "type": "registry:component",
+      "title": "Date Picker: Date Of Birth",
+      "description": "For distant dates, use `captionLayout=\"dropdown\"` with `startMonth` and `endMonth`, and disable days after today.",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/date-of-birth.tsx",
+          "target": "@components/showcase/date-picker/variants/date-of-birth.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-demo",
+      "type": "registry:component",
+      "title": "date picker demo",
+      "description": "Erbium date picker demo example.",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/examples/date-picker-demo.tsx",
+          "target": "@components/showcase/date-picker/examples/date-picker-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-disabled",
+      "type": "registry:component",
+      "title": "Date Picker: Disabled",
+      "description": "A disabled `DatePicker` disables the input and the calendar button.",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/disabled.tsx",
+          "target": "@components/showcase/date-picker/variants/disabled.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All date-picker examples.",
+      "name": "date-picker-examples",
+      "registryDependencies": [
+        "@erbium-examples/date-picker-playground",
+        "@erbium-examples/date-picker-overview",
+        "@erbium-examples/date-picker-basic",
+        "@erbium-examples/date-picker-range",
+        "@erbium-examples/date-picker-trigger",
+        "@erbium-examples/date-picker-date-of-birth",
+        "@erbium-examples/date-picker-presets",
+        "@erbium-examples/date-picker-with-time",
+        "@erbium-examples/date-picker-localized",
+        "@erbium-examples/date-picker-disabled",
+        "@erbium-examples/date-picker-form"
+      ],
+      "title": "Date Picker examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "date-picker-form",
+      "type": "registry:component",
+      "title": "Date Picker: Form",
+      "description": "Give `DatePicker` a `name` to submit its value. Ranges submit as ISO intervals.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/date-picker",
+        "@erbium/field",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/date-picker/variants/form.tsx",
+          "target": "@components/showcase/date-picker/variants/form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-localized",
+      "type": "registry:component",
+      "title": "Date Picker: Localized",
+      "description": "Set `locale` on `DatePicker` to format and parse typed dates, and pass a DayPicker locale to `DatePickerCalendar` for month names and the first day of the week.",
+      "dependencies": ["@daypicker/react@^10.0.2"],
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/localized.tsx",
+          "target": "@components/showcase/date-picker/variants/localized.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-overview",
+      "type": "registry:block",
+      "title": "Date Picker: Overview",
+      "description": "",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/examples/date-picker-demo.tsx",
+          "target": "@components/showcase/date-picker/examples/date-picker-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/overview.tsx",
+          "target": "@components/showcase/date-picker/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-playground",
+      "type": "registry:component",
+      "title": "Date Picker: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/playground.tsx",
+          "target": "@components/showcase/date-picker/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-presets",
+      "type": "registry:component",
+      "title": "Date Picker: Presets",
+      "description": "Place preset buttons next to the calendar in `DatePickerContent`. Setting the value from outside moves the calendar to its month.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/date",
+        "@erbium/date-picker",
+        "@erbium/field",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/date-picker/variants/presets.tsx",
+          "target": "@components/showcase/date-picker/variants/presets.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-range",
+      "type": "registry:component",
+      "title": "Date Picker: Range",
+      "description": "Use `mode=\"range\"` to pick a start and an end. Pass `numberOfMonths` to `DatePickerCalendar` to show two months.",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/range.tsx",
+          "target": "@components/showcase/date-picker/variants/range.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-stories",
+      "type": "registry:item",
+      "title": "Date Picker stories",
+      "description": "All date-picker variants as portable React CSF stories.",
+      "dependencies": ["@daypicker/react@^10.0.2"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/csp-provider",
+        "@erbium/date",
+        "@erbium/date-picker",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/date-picker/date-picker.stories.tsx",
+          "target": "@components/showcase/date-picker/date-picker.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/date-picker/examples/date-picker-demo.tsx",
+          "target": "@components/showcase/date-picker/examples/date-picker-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/basic.tsx",
+          "target": "@components/showcase/date-picker/variants/basic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/date-of-birth.tsx",
+          "target": "@components/showcase/date-picker/variants/date-of-birth.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/disabled.tsx",
+          "target": "@components/showcase/date-picker/variants/disabled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/form.tsx",
+          "target": "@components/showcase/date-picker/variants/form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/localized.tsx",
+          "target": "@components/showcase/date-picker/variants/localized.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/overview.tsx",
+          "target": "@components/showcase/date-picker/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/playground.tsx",
+          "target": "@components/showcase/date-picker/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/presets.tsx",
+          "target": "@components/showcase/date-picker/variants/presets.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/range.tsx",
+          "target": "@components/showcase/date-picker/variants/range.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/trigger.tsx",
+          "target": "@components/showcase/date-picker/variants/trigger.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/date-picker/variants/with-time.tsx",
+          "target": "@components/showcase/date-picker/variants/with-time.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-trigger",
+      "type": "registry:component",
+      "title": "Date Picker: Trigger",
+      "description": "Use `DatePickerTrigger` instead of the input when the date should only be picked, not typed. `formatOptions` sets how the value is shown.",
+      "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/date-picker/variants/trigger.tsx",
+          "target": "@components/showcase/date-picker/variants/trigger.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "date-picker-with-time",
+      "type": "registry:component",
+      "title": "Date Picker: With Time",
+      "description": "Pair the picker with a time input in a `FieldGroup`.",
+      "registryDependencies": [
+        "@erbium/date-picker",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/date-picker/variants/with-time.tsx",
+          "target": "@components/showcase/date-picker/variants/with-time.tsx",
           "type": "registry:component"
         }
       ]

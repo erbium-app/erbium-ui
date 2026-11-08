@@ -3,16 +3,13 @@ import * as React from "react";
 import { Calendar } from "@erbium/ui/components/calendar";
 import { Card } from "@erbium/ui/components/card";
 
+const year = new Date().getFullYear();
+
+// Fifteen nights from January 12 are already booked.
+const bookedDates = Array.from({ length: 15 }, (_, i) => new Date(year, 0, 12 + i));
+
 export const CalendarBookedDates = () => {
-  const [date, setDate] = React.useState<Date | undefined>(
-    () => new Date(new Date().getFullYear(), 0, 6),
-  );
-
-  const [bookedDates] = React.useState(() => {
-    const year = new Date().getFullYear();
-
-    return Array.from({ length: 15 }, (_, i) => new Date(year, 0, 12 + i));
-  });
+  const [date, setDate] = React.useState<Date | undefined>(() => new Date(year, 0, 6));
 
   return (
     <Card className="mx-auto w-fit p-0">
@@ -22,12 +19,6 @@ export const CalendarBookedDates = () => {
         selected={date}
         onSelect={setDate}
         disabled={bookedDates}
-        modifiers={{
-          booked: bookedDates,
-        }}
-        modifiersClassNames={{
-          booked: "[&>button]:line-through opacity-100",
-        }}
       />
     </Card>
   );

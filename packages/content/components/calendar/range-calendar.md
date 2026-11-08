@@ -3,4 +3,4 @@ title: "Range Calendar"
 story: RangeCalendar
 ---
 
-Use the `mode="range"` prop to enable range selection.
+Use `mode="range"` to select a range. The ends use the selection colour and the days between them use the muted fill.

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-picker-form",
+  "type": "registry:component",
+  "title": "Date Picker: Form",
+  "description": "Give `DatePicker` a `name` to submit its value. Ranges submit as ISO intervals.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/date-picker",
+    "@erbium/field",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import * as React from \"react\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst Example = () => {\n  const [submitted, setSubmitted] = React.useState(\"\");\n\n  return (\n    <form\n      className=\"flex w-80 flex-col gap-group\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const entries = [...new FormData(event.currentTarget)];\n\n        setSubmitted(\n          entries\n            .map(([key, value]) => `${key}=${value instanceof File ? value.name : value}`)\n            .join(\"&\"),\n        );\n      }}\n    >\n      <Field>\n        <FieldLabel htmlFor=\"date-picker-form-trip\">Trip</FieldLabel>\n        <DatePicker mode=\"range\" name=\"trip\">\n          <DatePickerInput id=\"date-picker-form-trip\" />\n          <DatePickerContent>\n            <DatePickerCalendar numberOfMonths={2} />\n          </DatePickerContent>\n        </DatePicker>\n        <FieldDescription>Submitted as an ISO interval.</FieldDescription>\n      </Field>\n      <Button type=\"submit\" className=\"self-start\">\n        Submit\n      </Button>\n      {submitted && <output className=\"text-caption text-muted-foreground\">{submitted}</output>}\n    </form>\n  );\n};\n\nexport default Example;\n",
+      "path": "src/date-picker/variants/form.tsx",
+      "target": "@components/showcase/date-picker/variants/form.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar-persian",
+  "type": "registry:block",
+  "title": "Calendar: Persian (Jalali) Calendar",
+  "description": "Install `@daypicker/persian` and pass its date library and locale to `Calendar`. The add-on sets the Jalali months and Persian numerals; `Calendar` keeps the library styling and lays out right to left with `dir=\"rtl\"`. The Hijri, Hebrew, Buddhist, and Ethiopic add-ons work the same way.",
+  "dependencies": ["@daypicker/persian@^10.0.2"],
+  "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import * as React from \"react\";\nimport { faIR, getDateLib } from \"@daypicker/persian\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\n// The Jalali date library drives months, weeks, and numerals; Calendar keeps\n// its styling and RTL layout.\nconst persianDateLib = getDateLib({ locale: faIR, numerals: \"arabext\" });\n\nconst CalendarPersian = () => {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date());\n\n  return (\n    <Calendar\n      mode=\"single\"\n      selected={date}\n      onSelect={setDate}\n      dateLib={persianDateLib}\n      locale={faIR}\n      numerals=\"arabext\"\n      dir=\"rtl\"\n      formatters={{\n        formatWeekdayName: (weekday, _options, dateLib) =>\n          (dateLib ?? persianDateLib).format(weekday, \"ccccc\"),\n      }}\n    />\n  );\n};\n\nexport default CalendarPersian;\n",
+      "path": "src/calendar/examples/calendar-persian.tsx",
+      "target": "@components/showcase/calendar/examples/calendar-persian.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import CalendarPersian from \"../examples/calendar-persian\";\n\nconst Example = () => <CalendarPersian />;\n\nexport default Example;\n",
+      "path": "src/calendar/variants/persian.tsx",
+      "target": "@components/showcase/calendar/variants/persian.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

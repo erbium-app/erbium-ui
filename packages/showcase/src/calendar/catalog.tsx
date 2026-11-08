@@ -16,6 +16,18 @@ import BasicExample from "./variants/basic";
 
 import BasicSource from "./variants/basic.tsx?raw";
 
+import RangeCalendarExample from "./variants/range-calendar";
+
+import RangeCalendarSource from "./variants/range-calendar.tsx?raw";
+
+import MultipleExample from "./variants/multiple";
+
+import MultipleSource from "./variants/multiple.tsx?raw";
+
+import MonthAndYearSelectorExample from "./variants/month-and-year-selector";
+
+import MonthAndYearSelectorSource from "./variants/month-and-year-selector.tsx?raw";
+
 import BookedDatesExample from "./variants/booked-dates";
 
 import BookedDatesSource from "./variants/booked-dates.tsx?raw";
@@ -28,25 +40,21 @@ import PresetsExample from "./variants/presets";
 
 import PresetsSource from "./variants/presets.tsx?raw";
 
-import HijriExample from "./variants/hijri";
+import DateAndTimePickerExample from "./variants/date-and-time-picker";
 
-import HijriSource from "./variants/hijri.tsx?raw";
+import DateAndTimePickerSource from "./variants/date-and-time-picker.tsx?raw";
+
+import CustomDaysExample from "./variants/custom-days";
+
+import CustomDaysSource from "./variants/custom-days.tsx?raw";
+
+import PersianExample from "./variants/persian";
+
+import PersianSource from "./variants/persian.tsx?raw";
 
 import SelectedDateWithTimezoneExample from "./variants/selected-date-with-timezone";
 
 import SelectedDateWithTimezoneSource from "./variants/selected-date-with-timezone.tsx?raw";
-
-import RangeCalendarExample from "./variants/range-calendar";
-
-import RangeCalendarSource from "./variants/range-calendar.tsx?raw";
-
-import MonthAndYearSelectorExample from "./variants/month-and-year-selector";
-
-import MonthAndYearSelectorSource from "./variants/month-and-year-selector.tsx?raw";
-
-import DateAndTimePickerExample from "./variants/date-and-time-picker";
-
-import DateAndTimePickerSource from "./variants/date-and-time-picker.tsx?raw";
 
 import CustomCellSizeExample from "./variants/custom-cell-size";
 
@@ -71,17 +79,13 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<{
   showOutsideDays: boolean;
+  showWeekNumber: boolean;
   fixedWeeks: boolean;
   numberOfMonths: number;
   weekStartsOn: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   captionLayout: "label" | "dropdown" | "dropdown-months" | "dropdown-years";
-  buttonVariant: "default" | "outline" | "secondary" | "ghost" | "error" | "link";
 }> = {
   argTypes: {
-    buttonVariant: {
-      control: "select",
-      options: ["default", "outline", "secondary", "ghost", "error", "link"],
-    },
     captionLayout: {
       control: "select",
       options: ["label", "dropdown", "dropdown-months", "dropdown-years"],
@@ -89,14 +93,15 @@ export const Playground: StoryObj<{
     fixedWeeks: { control: "boolean" },
     numberOfMonths: { control: { max: 3, min: 1, type: "number" } },
     showOutsideDays: { control: "boolean" },
+    showWeekNumber: { control: "boolean" },
     weekStartsOn: { control: "select", options: [0, 1, 2, 3, 4, 5, 6] },
   },
   args: {
-    buttonVariant: "ghost",
     captionLayout: "label",
     fixedWeeks: false,
     numberOfMonths: 1,
     showOutsideDays: true,
+    showWeekNumber: false,
     weekStartsOn: 0,
   },
   parameters: {
@@ -126,6 +131,36 @@ export const Basic: Story = {
     },
   },
   render: BasicExample,
+};
+
+export const RangeCalendar: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("calendar", "range-calendar") },
+      source: { code: RangeCalendarSource },
+    },
+  },
+  render: RangeCalendarExample,
+};
+
+export const Multiple: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("calendar", "multiple") },
+      source: { code: MultipleSource },
+    },
+  },
+  render: MultipleExample,
+};
+
+export const MonthAndYearSelector: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("calendar", "month-and-year-selector") },
+      source: { code: MonthAndYearSelectorSource },
+    },
+  },
+  render: MonthAndYearSelectorExample,
 };
 
 export const BookedDates: Story = {
@@ -158,15 +193,35 @@ export const Presets: Story = {
   render: PresetsExample,
 };
 
-export const Hijri: Story = {
-  name: "Persian / Hijri / Jalali Calendar",
+export const DateAndTimePicker: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("calendar", "hijri") },
-      source: { code: HijriSource },
+      description: { story: variantDocumentation("calendar", "date-and-time-picker") },
+      source: { code: DateAndTimePickerSource },
     },
   },
-  render: HijriExample,
+  render: DateAndTimePickerExample,
+};
+
+export const CustomDays: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("calendar", "custom-days") },
+      source: { code: CustomDaysSource },
+    },
+  },
+  render: CustomDaysExample,
+};
+
+export const Persian: Story = {
+  name: "Persian (Jalali) Calendar",
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("calendar", "persian") },
+      source: { code: PersianSource },
+    },
+  },
+  render: PersianExample,
 };
 
 export const SelectedDateWithTimezone: Story = {
@@ -178,36 +233,6 @@ export const SelectedDateWithTimezone: Story = {
     },
   },
   render: SelectedDateWithTimezoneExample,
-};
-
-export const RangeCalendar: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("calendar", "range-calendar") },
-      source: { code: RangeCalendarSource },
-    },
-  },
-  render: RangeCalendarExample,
-};
-
-export const MonthAndYearSelector: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("calendar", "month-and-year-selector") },
-      source: { code: MonthAndYearSelectorSource },
-    },
-  },
-  render: MonthAndYearSelectorExample,
-};
-
-export const DateAndTimePicker: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("calendar", "date-and-time-picker") },
-      source: { code: DateAndTimePickerSource },
-    },
-  },
-  render: DateAndTimePickerExample,
 };
 
 export const CustomCellSize: Story = {

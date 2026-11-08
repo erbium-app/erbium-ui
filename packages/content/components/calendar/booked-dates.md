@@ -3,4 +3,4 @@ title: "Booked Dates"
 story: BookedDates
 ---
 
-Disable and mark dates that are already booked.
+Pass dates or matchers to `disabled` to block them. Disabled days are struck through and cannot be selected.
