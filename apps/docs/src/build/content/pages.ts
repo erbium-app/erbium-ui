@@ -22,7 +22,6 @@ const document = (file: string) => {
   return {
     title: String(data.title ?? ""),
     description: String(data.description ?? ""),
-    markdown: content,
     tree: compileMarkdown(content),
   };
 };
@@ -31,6 +30,7 @@ export const getPage = async (path: string) => {
   const guide = guides.find((item) => item.href === path);
   if (!component && !guide) return null;
   const content = document(component ? `components/${component.name}/index` : guide!.file);
+  const headings = headingsFor(content.tree);
   const catalog =
     component && component.name !== "colors" ? await loadShowcase(component.name) : undefined;
   return {
@@ -38,7 +38,7 @@ export const getPage = async (path: string) => {
     path,
     name: component?.name ?? "",
     section: component?.section ?? guide!.section,
-    headings: headingsFor(content.tree),
+    headings,
     reference: component ? componentReference(component.name) : undefined,
     sourceUrl: component?.files[0]
       ? `https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`
@@ -50,7 +50,7 @@ export const getPage = async (path: string) => {
         .find((entry) => entry.name === component?.name)
         ?.variants.map((variant) => ({
           ...variant,
-          anchor: headingsFor(content.tree).some((heading) => heading.id === variant.slug)
+          anchor: headings.some((heading) => heading.id === variant.slug)
             ? `example-${variant.slug}`
             : variant.slug,
           args: JSON.stringify(
@@ -59,7 +59,6 @@ export const getPage = async (path: string) => {
           argTypes: JSON.stringify(
             (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.argTypes ?? {},
           ),
-          markdown: document(`components/${component!.name}/${variant.slug}`).markdown,
           tree: document(`components/${component!.name}/${variant.slug}`).tree,
         })) ?? [],
   };
