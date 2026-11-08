@@ -5,20 +5,14 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite-plus";
 import { cp } from "node:fs/promises";
 import { registryPlugin } from "./registry-plugin.mjs";
-import { contentPlugin, navigationMetadata } from "./content-plugin";
+import { contentPlugin, docsCatalog } from "./content-plugin";
 import { staticContentPlugin } from "./static-content-plugin";
 
 const root = new URL("./", import.meta.url).pathname;
 const compatibilityDate = "2026-08-31";
 
-const pagePaths = [
-  "/",
-  "/docs/roadmap",
-  "/docs/installation",
-  "/docs/getting-started",
-  "/docs/utilities/shimmer",
-  ...navigationMetadata().map((page) => page.href),
-];
+const { components, guides } = docsCatalog();
+const pagePaths = [...guides, ...components].map((page) => page.href);
 
 export default defineConfig(({ isPreview }) => ({
   build: { cssMinify: "esbuild" },

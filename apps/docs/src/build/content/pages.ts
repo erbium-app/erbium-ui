@@ -28,8 +28,10 @@ const document = (file: string) => {
 export const getPage = async (path: string) => {
   const component = components.find((item) => item.href === path);
   const guide = guides.find((item) => item.href === path);
-  if (!component && !guide) return null;
-  const content = document(component ? `components/${component.name}/index` : guide!.file);
+  const file = component ? `components/${component.name}/index` : guide?.file;
+  const section = component?.section ?? guide?.section;
+  if (file === undefined || section === undefined) return null;
+  const content = document(file);
   const headings = headingsFor(content.tree);
   const catalog =
     component && component.name !== "colors" ? await loadShowcase(component.name) : undefined;
@@ -37,7 +39,7 @@ export const getPage = async (path: string) => {
     ...content,
     path,
     name: component?.name ?? "",
-    section: component?.section ?? guide!.section,
+    section,
     headings,
     reference: component ? componentReference(component.name) : undefined,
     sourceUrl: component?.files[0]

@@ -1,7 +1,7 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { Fragment, useEffect, useRef, useState } from "react";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
 import { Icon } from "@erbium/ui/components/icon";
@@ -71,11 +71,18 @@ const Brand = () => (
   </Link>
 );
 
+// SidebarProvider sets its own width inline, so the override must be inline too.
+const sidebarStyle: CSSProperties & Record<"--sidebar-width", string> = {
+  "--sidebar-width": "var(--docs-sidebar-width)",
+};
+
 const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
   const path = useLocation({ select: (location) => location.pathname });
   const nav = useRef<HTMLElement>(null);
   useEffect(() => {
-    nav.current?.querySelector("[aria-current=page]")?.scrollIntoView({ block: "nearest" });
+    nav.current
+      ?.querySelector(`[aria-current=page][href="${path}"]`)
+      ?.scrollIntoView({ block: "nearest" });
   }, [path]);
 
   return (
@@ -182,9 +189,7 @@ const Search = ({
     >
       <Command
         items={searchGroups}
-        itemToStringValue={(item) =>
-          `${item.title} ${item.section} ${"description" in item ? item.description : ""}`
-        }
+        itemToStringValue={(item) => `${item.title} ${item.section} ${item.description}`}
       >
         <CommandInput aria-label="Search documentation" placeholder="Search documentation…" />
         <CommandEmpty>No matching documentation.</CommandEmpty>
@@ -232,10 +237,7 @@ export const Shell = ({ children }: { children: ReactNode }) => {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <SidebarProvider
-        className="contents"
-        style={{ "--sidebar-width": "var(--docs-sidebar-width)" } as import("react").CSSProperties}
-      >
+      <SidebarProvider className="contents" style={sidebarStyle}>
         <div className="site-shell">
           <header className="mobile-site-header">
             <Brand />

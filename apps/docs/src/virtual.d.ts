@@ -5,18 +5,22 @@ declare module "virtual:docs-pages" {
   export default documents;
 }
 
-declare module "virtual:docs-navigation" {
+// Mirrors `docsCatalog()` in content-plugin.ts.
+declare module "virtual:docs-catalog" {
   import type { DocumentationKind } from "@erbium/content/taxonomy";
 
-  const components: {
-    name: string;
+  interface CatalogPage {
     title: string;
     description: string;
-    kind: DocumentationKind;
     section: string;
     href: string;
-    files: { path: string }[];
-  }[];
+  }
 
-  export default components;
+  export const components: (CatalogPage & {
+    name: string;
+    kind: DocumentationKind;
+    files: { path: string }[];
+  })[];
+
+  export const guides: (CatalogPage & { file: string })[];
 }

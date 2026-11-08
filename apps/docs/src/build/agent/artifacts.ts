@@ -3,7 +3,7 @@ import matter from "gray-matter";
 import manifest from "@erbium/showcase/manifest";
 import registry from "@erbium/showcase/registry";
 import { showcaseSource } from "@erbium/showcase/sources";
-import { components } from "@/content/catalog";
+import { components, guides } from "@/content/catalog";
 import { site } from "@/config/site";
 export { site } from "@/config/site";
 
@@ -80,18 +80,9 @@ const page = (
   };
 };
 
-const guides = [
-  ["/", "introduction.md", "Overview"],
-  ["/docs/installation", "installation.md", "Guides"],
-  ["/docs/getting-started", "getting-started.md", "Guides"],
-  ["/docs/roadmap", "roadmap.md", "Overview"],
-  ["/docs/utilities/shimmer", "shimmer.md", "Utilities"],
-];
-
-export const agentPages: AgentPage[] = guides.map(([route, file, section]) => {
-  const { frontmatter } = document(file);
-  return page(route, frontmatter.title, frontmatter.description, section, body(file));
-});
+export const agentPages: AgentPage[] = guides.map((guide) =>
+  page(guide.href, guide.title, guide.description, guide.section, body(`${guide.file}.md`)),
+);
 
 for (const component of components) {
   const catalog = manifest.find((entry) => entry.name === component.name)!;

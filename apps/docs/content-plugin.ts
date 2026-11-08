@@ -6,26 +6,40 @@ import registry from "../../packages/ui/registry.json" with { type: "json" };
 
 const root = new URL("../../packages/", import.meta.url);
 
-export const navigationMetadata = () =>
-  documentationSections.flatMap((section) =>
-    section.names.map((name) => {
-      const { data } = matter(
-        readFileSync(new URL(`content/components/${name}/index.md`, root), "utf-8"),
-      );
+const frontmatter = (file: string) => {
+  const { data } = matter(readFileSync(new URL(`content/${file}.md`, root), "utf-8"));
 
-      return {
-        description: String(data.description),
-        files:
-          registry.items.find((item) => item.name === name)?.files?.map(({ path }) => ({ path })) ??
-          [],
-        href: `/docs/${kindPaths[section.kind]}/${name}`,
-        kind: section.kind,
-        name,
-        section: section.title,
-        title: String(data.title),
-      };
-    }),
-  );
+  return { description: String(data.description), title: String(data.title) };
+};
+
+// Guides live at fixed routes; titles and descriptions come from their frontmatter.
+const guideRoutes = [
+  { file: "introduction", href: "/", section: "Overview" },
+  { file: "roadmap", href: "/docs/roadmap", section: "Overview" },
+  { file: "installation", href: "/docs/installation", section: "Guides" },
+  { file: "getting-started", href: "/docs/getting-started", section: "Guides" },
+  { file: "shimmer", href: "/docs/utilities/shimmer", section: "Utilities" },
+];
+
+/** Every documentation page. Vite config prerenders these; `virtual:docs-catalog` serves them. */
+export const docsCatalog = () => ({
+  components: documentationSections.flatMap((section) =>
+    section.names.map((name) => ({
+      ...frontmatter(`components/${name}/index`),
+      files:
+        registry.items.find((item) => item.name === name)?.files?.map(({ path }) => ({ path })) ??
+        [],
+      href: `/docs/${kindPaths[section.kind]}/${name}`,
+      kind: section.kind,
+      name,
+      section: section.title,
+    })),
+  ),
+  guides: guideRoutes.map((guide) => ({ ...guide, ...frontmatter(guide.file) })),
+});
+
+const virtualId = "virtual:docs-catalog";
+const resolvedId = `\0${virtualId}`;
 
 export const contentPlugin = (): Plugin => {
   const light = ["theme", "surfaces"]
@@ -46,7 +60,7 @@ export const contentPlugin = (): Plugin => {
   return {
     hotUpdate({ file }) {
       const module = file.includes("packages/content/")
-        ? this.environment.moduleGraph.getModuleById("\0virtual:docs-navigation")
+        ? this.environment.moduleGraph.getModuleById(resolvedId)
         : undefined;
 
       if (module) {
@@ -56,13 +70,17 @@ export const contentPlugin = (): Plugin => {
       return module ? [module] : undefined;
     },
     load: {
-      filter: { id: /^\0virtual:docs-navigation$/u },
-      handler: () => `export default ${JSON.stringify(navigationMetadata())};`,
+      filter: { id: /^\0virtual:docs-catalog$/u },
+      handler: () => {
+        const { components, guides } = docsCatalog();
+
+        return `export const components = ${JSON.stringify(components)};\nexport const guides = ${JSON.stringify(guides)};`;
+      },
     },
     name: "erbium:start-content",
     resolveId: {
-      filter: { id: /^virtual:docs-navigation$/u },
-      handler: () => "\0virtual:docs-navigation",
+      filter: { id: /^virtual:docs-catalog$/u },
+      handler: () => resolvedId,
     },
   };
 };
