@@ -1,8 +1,8 @@
 # Documentation rendering improvements
 
 - [x] Compile variant descriptions once; omit raw Markdown from browser page data.
-- [ ] Replace the document server function with lazy per-page modules and Router caching.
-- [ ] Remove the preview loader waterfall and defer offscreen playground controls.
+- [x] Replace the document server function with lazy per-page modules and Router caching.
+- [x] Remove the preview loader waterfall and defer offscreen playground controls.
 - [ ] Enable and verify TanStack prerendering with Cloudflare.
 - [ ] Verify checks, builds, navigation, previews, controls, source tabs, and missing pages.
 - [ ] Document the resulting content and deployment flow.

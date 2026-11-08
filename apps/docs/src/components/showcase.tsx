@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef, useMemo } from "react";
-import type { RefObject } from "react";
+import { useEffect, useState, useRef, useMemo, lazy, Suspense } from "react";
 import { CatchBoundary } from "@tanstack/react-router";
 import { parseStoryMetadata } from "@/content/story-metadata";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
@@ -22,10 +21,16 @@ import { ThemeToggleIcon, RotatingChevron } from "@erbium/ui/components/stateful
 import { changeTheme } from "@erbium/ui/lib/change-theme";
 import { flushSync } from "react-dom";
 import { useTheme } from "./theme";
-import { Controls } from "./controls";
+
 import { exampleResource } from "./preview-resources";
 import { fetchExampleSource } from "@/content/example-source";
 import type { DocPage } from "@/content/types";
+
+const Controls = lazy(async () => {
+  const module = await import("./controls");
+
+  return { default: module.Controls };
+});
 
 const PreviewError = () => (
   <Alert variant="error">
@@ -42,51 +47,40 @@ const PreviewContent = ({
   name,
   slug,
   args,
-  container,
+  active,
 }: {
   name: string;
   slug: string;
   args: Args;
-  container: RefObject<HTMLElement | null>;
+  active: boolean;
 }) => {
   const [preview, setPreview] = useState<PreviewModule>();
   const [error, setError] = useState(false);
   useEffect(() => {
-    let active = true;
+    let current = true;
 
     const load = async () => {
       try {
         const entry = await exampleResource(name, slug);
 
-        if (active) {
+        if (current) {
           setPreview(entry);
         }
       } catch {
-        if (active) {
+        if (current) {
           setError(true);
         }
       }
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          void load();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-
-    if (container.current !== null) {
-      observer.observe(container.current);
+    if (active) {
+      void load();
     }
 
     return () => {
-      active = false;
-      observer.disconnect();
+      current = false;
     };
-  }, [name, slug, container]);
+  }, [name, slug, active]);
 
   let content = <Spinner aria-label="Loading preview" />;
 
@@ -176,6 +170,27 @@ export const Showcase = ({
   separator?: boolean;
 }) => {
   const container = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setActive(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+
+    if (container.current) {
+      observer.observe(container.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   const story = useMemo(() => parseStoryMetadata(variant), [variant]);
   const [args, setArgs] = useState<Args>(story.args);
   const [code, setCode] = useState(false);
@@ -232,7 +247,7 @@ export const Showcase = ({
                     name={name}
                     slug={variant.slug}
                     args={args}
-                    container={container}
+                    active={active}
                   />
                 </ShowcaseSurface>
               </ShowcaseProviders>
@@ -240,17 +255,21 @@ export const Showcase = ({
           </div>
         </TabsContent>
       </Tabs>
-      <Controls
-        key={revision}
-        args={args}
-        defaults={story.args}
-        argTypes={story.argTypes}
-        onChange={setArgs}
-        onReset={() => {
-          setArgs(story.args);
-          setRevision((value) => value + 1);
-        }}
-      />
+      {active && (
+        <Suspense fallback={null}>
+          <Controls
+            key={revision}
+            args={args}
+            defaults={story.args}
+            argTypes={story.argTypes}
+            onChange={setArgs}
+            onReset={() => {
+              setArgs(story.args);
+              setRevision((value) => value + 1);
+            }}
+          />
+        </Suspense>
+      )}
       <Collapsible className="mt-3">
         <CollapsibleTrigger render={<Button variant="ghost" size="sm" />}>
           <RotatingChevron scope="collapsible" className="size-4" />
