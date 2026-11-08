@@ -11,7 +11,7 @@ export const surfaceSamples = [
   ["Secondary", "bg-secondary text-secondary-foreground"],
   ["Accent", "bg-accent text-accent-foreground"],
   ["Primary", "bg-primary text-primary-foreground"],
-  ["Error", "bg-error text-error-foreground"],
+  ["Error", "bg-error-fill text-error-foreground"],
   ["Success", "bg-success text-success-foreground"],
   ["Warning", "bg-warning text-warning-foreground"],
   ["Info", "bg-info text-info-foreground"],

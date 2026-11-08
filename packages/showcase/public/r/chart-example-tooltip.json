@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chart: Tooltip",
   "description": "Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\n\n```tsx\nimport { tooltip } from \"@tanstack/charts/tooltip\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  focus: \"group-x\",\n  tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n});\n```\n\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.",
-  "dependencies": ["@tanstack/charts@1.1.0"],
+  "dependencies": ["@tanstack/charts@1.4.0"],
   "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
   "files": [
     {

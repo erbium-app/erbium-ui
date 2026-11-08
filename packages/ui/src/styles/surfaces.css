@@ -468,9 +468,10 @@
   }
 }
 
-/* Coloured roles. One colour input drives the face, rim, and catchlight. */
+/* Coloured roles. One colour input drives the face, rim, and catchlight.
+   Solid fills prefer a contrast-adjusted fill token when the palette defines one. */
 @utility surface-fill-* {
-  --surface-face: --value(--color, [color]);
+  --surface-face: --value(--color-fill-*, --color-*, [color]);
   --surface-rim: color-mix(in srgb, var(--surface-face) 88%, var(--surface-dark-source));
   --surface-catchlight: color-mix(in srgb, var(--surface-face) 80%, var(--surface-light-source));
 

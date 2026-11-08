@@ -8,6 +8,10 @@
   --invalid-halo: color-mix(in oklab, var(--error) 20%, transparent);
   --invalid: var(--error);
   --error-interactive: color-mix(in oklab, var(--error) 10%, transparent);
+
+  /* Solid error faces retain the Vitesse hue, capped for contrast with white text. */
+  --error-fill: oklch(from var(--error) min(l, 0.54) c h);
+
   --error-focus: color-mix(in oklab, var(--error) 40%, transparent);
   --success-focus: color-mix(in oklab, var(--success) 40%, transparent);
   --warning-focus: color-mix(in oklab, var(--warning) 40%, transparent);
@@ -136,6 +140,8 @@
   --color-border: var(--border);
   --color-error-foreground: var(--error-foreground);
   --color-error: var(--error);
+  --color-error-fill: var(--error-fill);
+  --color-fill-error: var(--error-fill);
   --color-success-foreground: var(--success-foreground);
   --color-success: var(--success);
   --color-warning-foreground: var(--warning-foreground);
@@ -224,7 +230,8 @@
   --accent: oklch(89.409654% 0.00970052 93.578683deg / 7%);
   --accent-foreground: oklch(87.87469% 0.01809873 92.700936deg);
   --error: oklch(65.874925% 0.10693985 20.3468deg);
-  --error-foreground: oklch(18.22037% 0 none);
+  --error-fill: oklch(from var(--error) min(l, 0.54) c h);
+  --error-foreground: oklch(100% 0 none);
   --error-soft: oklch(27.887875% 0.04051104 12.551285deg);
   --error-soft-foreground: oklch(77.702698% 0.1058442 13.899958deg);
   --success: oklch(60.856678% 0.08535672 164.03959deg);

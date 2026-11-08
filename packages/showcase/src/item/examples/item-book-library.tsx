@@ -37,7 +37,7 @@ const books = [
   {
     author: "Ursula K. Le Guin",
     badgeVariant: "secondary",
-    cover: "bg-error text-error-foreground",
+    cover: "bg-error-fill text-error-foreground",
     id: "the-dispossessed",
     monogram: "TD",
     status: "To read",
@@ -69,9 +69,9 @@ const ItemBookLibrary = () => {
           <h2 className="text-subtitle">My library</h2>
           <p className="text-caption text-muted-foreground">Books on your shelf</p>
         </div>
-        <p className="text-caption text-muted-foreground" role="status">
+        <output className="text-caption text-muted-foreground">
           {selected.length} of {books.length} selected
-        </p>
+        </output>
       </div>
 
       <Field orientation="horizontal" className="px-4">
@@ -93,9 +93,8 @@ const ItemBookLibrary = () => {
 
           return (
             <Item
-              render={<Field orientation="horizontal" />}
+              render={<Field orientation="horizontal" render={<li />} />}
               key={book.id}
-              role="listitem"
               data-selected={checked}
               className="relative"
             >

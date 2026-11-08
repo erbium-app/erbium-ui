@@ -4,7 +4,7 @@
   "type": "registry:item",
   "title": "Diff View stories",
   "description": "All diff-view variants as portable React CSF stories.",
-  "dependencies": ["@pierre/diffs@1.6.2"],
+  "dependencies": ["@pierre/diffs@1.6.4"],
   "devDependencies": ["@storybook/react@^10.6.1"],
   "registryDependencies": [
     "@erbium/button",

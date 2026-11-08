@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Chart: Legend",
   "description": "TanStack Charts renders the legend from the chart definition. The example maps Desktop and Mobile to fixed colors and enables a legend labeled Device.\n\n```tsx\nimport { chartTextRole } from \"@erbium/ui/lib/typography\";\n\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  color: {\n    scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n    legend: colorLegend({\n      label: \"Device\",\n      items: colorLegendItems({\n        justify: \"start\",\n        gap: 16,\n        rowGap: 8,\n        indicator: { shape: \"dot\", width: 8, height: 8, gap: 7 },\n        label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n      }),\n    }),\n  },\n});\n```",
-  "dependencies": ["@tanstack/charts@1.1.0"],
+  "dependencies": ["@tanstack/charts@1.4.0"],
   "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
   "files": [
     {
