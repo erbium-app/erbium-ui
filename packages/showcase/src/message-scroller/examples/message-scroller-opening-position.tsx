@@ -16,7 +16,6 @@ import {
   MessageScrollerItem,
   MessageScrollerProvider,
   MessageScrollerViewport,
-  useMessageScroller,
 } from "@erbium/ui/components/message-scroller";
 import { Separator } from "@erbium/ui/components/separator";
 import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";
@@ -57,83 +56,46 @@ const positions = [
   label: string;
 }[];
 
-const OpeningPositionScroller = ({
-  position,
-  positionKey,
-}: {
-  position: "start" | "end" | "last-anchor";
-  positionKey: number;
-}) => {
-  const { scrollToEnd, scrollToMessage, scrollToStart } = useMessageScroller();
+const OpeningPositionScroller = () => (
+  <MessageScroller>
+    <MessageScrollerViewport>
+      <MessageScrollerContent className="p-panel">
+        {messages.map((message) => {
+          const isUserMessage = message.role === "user";
 
-  React.useLayoutEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      if (position === "start") {
-        scrollToStart({ behavior: "auto" });
-
-        return;
-      }
-
-      if (position === "end") {
-        scrollToEnd({ behavior: "auto" });
-
-        return;
-      }
-
-      scrollToMessage("open-3", {
-        align: "start",
-        behavior: "auto",
-        scrollMargin: 64,
-      });
-    });
-
-    return () => {
-      cancelAnimationFrame(frame);
-    };
-  }, [position, positionKey, scrollToEnd, scrollToMessage, scrollToStart]);
-
-  return (
-    <MessageScroller>
-      <MessageScrollerViewport>
-        <MessageScrollerContent className="p-panel">
-          {messages.map((message) => {
-            const isUserMessage = message.role === "user";
-
-            return (
-              <MessageScrollerItem
-                key={message.id}
-                messageId={message.id}
-                scrollAnchor={isUserMessage}
-              >
-                <Message align={isUserMessage ? "end" : "start"}>
-                  <MessageContent>
-                    <Bubble variant={isUserMessage ? "muted" : "ghost"}>
-                      <BubbleContent className="space-y-2">
-                        {message.text
-                          .split(/\n\s*\n/)
-                          .map((paragraph) => paragraph.trim())
-                          .filter(Boolean)
-                          .map((paragraph, index) => (
-                            <p key={index} className="whitespace-pre-wrap">
-                              {paragraph}
-                            </p>
-                          ))}
-                      </BubbleContent>
-                    </Bubble>
-                  </MessageContent>
-                </Message>
-              </MessageScrollerItem>
-            );
-          })}
-        </MessageScrollerContent>
-      </MessageScrollerViewport>
-      <MessageScrollerButton />
-    </MessageScroller>
-  );
-};
+          return (
+            <MessageScrollerItem
+              key={message.id}
+              messageId={message.id}
+              scrollAnchor={isUserMessage}
+            >
+              <Message align={isUserMessage ? "end" : "start"}>
+                <MessageContent>
+                  <Bubble variant={isUserMessage ? "muted" : "ghost"}>
+                    <BubbleContent className="space-y-2">
+                      {message.text
+                        .split(/\n\s*\n/u)
+                        .map((paragraph) => paragraph.trim())
+                        .filter(Boolean)
+                        .map((paragraph, index) => (
+                          <p key={index} className="whitespace-pre-wrap">
+                            {paragraph}
+                          </p>
+                        ))}
+                    </BubbleContent>
+                  </Bubble>
+                </MessageContent>
+              </Message>
+            </MessageScrollerItem>
+          );
+        })}
+      </MessageScrollerContent>
+    </MessageScrollerViewport>
+    <MessageScrollerButton />
+  </MessageScroller>
+);
 
 export const MessageScrollerOpeningPosition = () => {
-  const [positionKey, setPositionKey] = React.useState(0);
   const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
 
   return (
@@ -145,17 +107,19 @@ export const MessageScrollerOpeningPosition = () => {
         </CardHeader>
         <Separator variant="full" />
         <div className="min-h-0 flex-1 overflow-hidden">
-          <MessageScrollerProvider>
-            <OpeningPositionScroller position={position} positionKey={positionKey} />
+          {/* Remounting applies the opening position again, as reopening the thread would. */}
+          <MessageScrollerProvider key={position} defaultScrollPosition={position}>
+            <OpeningPositionScroller />
           </MessageScrollerProvider>
         </div>
         <CardFooter className="flex items-center justify-center">
           <Tabs
             value={position}
             onValueChange={(value) => {
-              if (value === "start" || value === "end" || value === "last-anchor") {
-                setPosition(value);
-                setPositionKey((key) => key + 1);
+              const option = positions.find((entry) => entry.value === value);
+
+              if (option) {
+                setPosition(option.value);
               }
             }}
             className="w-full"

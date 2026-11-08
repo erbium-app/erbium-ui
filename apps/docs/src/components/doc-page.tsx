@@ -174,7 +174,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
           </nav>
           {page.name === "toast" && <ShowcaseToaster />}
         </div>
-        <TableOfContents headings={headings} path={page.path} />
+        <TableOfContents key={page.path} headings={headings} />
       </div>
     </main>
   );

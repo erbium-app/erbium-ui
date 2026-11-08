@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react";
 
+// Callers key this by page, so the links read on mount stay current for its lifetime.
 export const TableOfContents = ({
   headings,
-  path,
 }: {
   headings: { id: string; title: string; depth?: number }[];
-  path: string;
 }) => {
   const nav = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -13,18 +12,21 @@ export const TableOfContents = ({
     const links = [...(nav.current?.querySelectorAll<HTMLAnchorElement>("a[href^='#']") ?? [])];
 
     const entries = links.flatMap((link) => {
-      const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+      const target = document.querySelector(
+        `#${CSS.escape(decodeURIComponent(link.hash.slice(1)))}`,
+      );
 
       return target ? [{ link, target }] : [];
     });
 
     const update = () => {
       frame = 0;
-      let active = entries[0];
+      let [active] = entries;
 
       for (const entry of entries) {
-        const threshold =
-          (Number.parseFloat(getComputedStyle(entry.target).scrollMarginBlockStart) || 0) + 2;
+        // Computed lengths always resolve to px, e.g. "32px".
+        const margin = Number(getComputedStyle(entry.target).scrollMarginBlockStart.slice(0, -2));
+        const threshold = (Number.isFinite(margin) ? margin : 0) + 2;
 
         if (entry.target.getBoundingClientRect().top <= threshold) {
           active = entry;
@@ -64,7 +66,7 @@ export const TableOfContents = ({
       window.removeEventListener("hashchange", schedule);
       cancelAnimationFrame(frame);
     };
-  }, [headings, path]);
+  }, []);
 
   if (!headings.length) {
     return null;

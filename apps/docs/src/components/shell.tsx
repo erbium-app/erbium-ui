@@ -1,7 +1,7 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
-import { Fragment, useEffect, useRef, useState } from "react";
-import type { CSSProperties, ReactNode } from "react";
+import { Fragment, useState } from "react";
+import type { ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
 import { Icon } from "@erbium/ui/components/icon";
@@ -71,22 +71,16 @@ const Brand = () => (
   </Link>
 );
 
-// SidebarProvider sets its own width inline, so the override must be inline too.
-const sidebarStyle: CSSProperties & Record<"--sidebar-width", string> = {
-  "--sidebar-width": "var(--docs-sidebar-width)",
+// Attached only to the current page's link, so React calls it whenever a link becomes current.
+const revealCurrentLink = (link: HTMLAnchorElement | null) => {
+  link?.scrollIntoView({ block: "nearest" });
 };
 
 const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
   const path = useLocation({ select: (location) => location.pathname });
-  const nav = useRef<HTMLElement>(null);
-  useEffect(() => {
-    nav.current
-      ?.querySelector(`[aria-current=page][href="${path}"]`)
-      ?.scrollIntoView({ block: "nearest" });
-  }, [path]);
 
   return (
-    <nav ref={nav} aria-label="Documentation">
+    <nav aria-label="Documentation">
       {navigationGroups.map((group, index) => (
         <Fragment key={group.title}>
           {index > 0 && <Separator className="my-3" variant="inset" role="presentation" />}
@@ -101,6 +95,7 @@ const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
                     <SidebarMenuButton
                       render={
                         <Link
+                          ref={path === page.href ? revealCurrentLink : undefined}
                           to={page.href}
                           onClick={onNavigate}
                           aria-current={path === page.href ? "page" : undefined}
@@ -237,7 +232,7 @@ export const Shell = ({ children }: { children: ReactNode }) => {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <SidebarProvider className="contents" style={sidebarStyle}>
+      <SidebarProvider className="contents [--sidebar-width:var(--docs-sidebar-width)]">
         <div className="site-shell">
           <header className="mobile-site-header">
             <Brand />
