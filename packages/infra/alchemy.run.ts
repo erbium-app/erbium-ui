@@ -23,6 +23,7 @@ export default Alchemy.Stack(
 
       const start = yield* Cloudflare.Website.Vite("DocsStart", {
         assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
+        compatibility: { date: "2026-08-31" },
         env: {
           VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken,
           VITE_DOCS_PREVIEW: "true",
@@ -63,6 +64,7 @@ export default Alchemy.Stack(
 
     const docs = yield* Cloudflare.Website.Vite("Docs", {
       assets: { htmlHandling: "drop-trailing-slash", notFoundHandling: "none" },
+      compatibility: { date: "2026-08-31" },
       domain: "ui.erbium.app",
       env: { VITE_CLOUDFLARE_ANALYTICS_TOKEN: analytics.siteToken },
       // Docs also reads content and registry sources from disk, outside the module graph.

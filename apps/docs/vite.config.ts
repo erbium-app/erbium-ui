@@ -9,6 +9,7 @@ import { contentPlugin, navigationMetadata } from "./content-plugin";
 import { staticContentPlugin } from "./static-content-plugin";
 
 const root = new URL("./", import.meta.url).pathname;
+const compatibilityDate = "2026-08-31";
 
 const pagePaths = [
   "/",
@@ -21,13 +22,20 @@ const pagePaths = [
 
 export default defineConfig(({ isPreview }) => ({
   build: { cssMinify: "esbuild" },
+  environments: {
+    // Alchemy keeps Worker source maps for stack traces. Vite's CSS plugin strips
+    // style imports from server chunks without a map, so Rolldown flags them.
+    ssr: { build: { rolldownOptions: { checks: { sourcemapBroken: false } } } },
+  },
   plugins: [
     // Alchemy injects its own Cloudflare plugin into deploy builds. Start's
     // prerender preview reopens this file without it, so preview keeps ours.
     process.env.ALCHEMY_CLOUDFLARE_VITE_INJECTED === "1" && isPreview !== true
       ? undefined
       : cloudflare({
-          compatibilityFlags: ["nodejs_compat"],
+          // An explicit date enables Node.js compatibility, a default since 2026-08-04.
+          // Keep it equal to the date in packages/infra/alchemy.run.ts.
+          compatibilityDate,
           // Match the deployed asset routing in local dev and preview.
           worker: { assets: { htmlHandling: "drop-trailing-slash" }, bindings: [], name: "docs" },
         }),
