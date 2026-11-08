@@ -1,14 +1,18 @@
 declare module "virtual:docs-pages" {
-  const documents: Record<string, import("@/build/content/pages").DocPage>;
+  import type { DocPage } from "@/content/types";
+
+  const documents: Record<string, () => Promise<{ default: DocPage }>>;
   export default documents;
 }
 
 declare module "virtual:docs-navigation" {
+  import type { DocumentationKind } from "@erbium/content/taxonomy";
+
   const components: {
     name: string;
     title: string;
     description: string;
-    kind: import("@erbium/content/taxonomy").DocumentationKind;
+    kind: DocumentationKind;
     section: string;
     href: string;
     files: { path: string }[];
@@ -18,14 +22,13 @@ declare module "virtual:docs-navigation" {
 }
 
 declare module "virtual:docs-preview-loaders" {
+  import type { ShowcaseStory } from "@erbium/showcase/catalog";
+
   interface PreviewModule {
-    default: import("@erbium/showcase/catalog").ShowcaseStory["render"];
+    default: ShowcaseStory["render"];
   }
 
-  const groups: Record<
-    string,
-    () => Promise<{ default: Record<string, () => Promise<PreviewModule>> }>
-  >;
+  const examples: Record<string, () => Promise<PreviewModule>>;
 
-  export default groups;
+  export default examples;
 }

@@ -9,8 +9,8 @@ export const getRouter = () =>
     defaultPendingMinMs: 300,
     defaultPendingMs: 150,
     defaultPreload: "intent",
-    defaultPreloadStaleTime: 0,
-    defaultStaleTime: 5 * minute,
+    defaultPreloadStaleTime: Number.POSITIVE_INFINITY,
+    defaultStaleTime: Number.POSITIVE_INFINITY,
     routeTree,
     scrollRestoration: true,
   });

@@ -3,10 +3,10 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, createRunnableDevEnvironment } from "vite-plus";
 import { cp, readFile } from "node:fs/promises";
-import { showcaseVitePlugin } from "./preview-plugin.mjs";
+import { showcaseVitePlugin } from "./preview-plugin";
 import { registryPlugin } from "./registry-plugin.mjs";
 import { contentPlugin, navigationMetadata } from "./content-plugin";
-import { staticContentPlugin } from "./static-content-plugin.mjs";
+import { staticContentPlugin } from "./static-content-plugin";
 
 const cloudflare = process.env.ALCHEMY_CLOUDFLARE_VITE_INJECTED === "1";
 const root = new URL("./", import.meta.url).pathname;
