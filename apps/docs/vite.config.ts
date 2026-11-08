@@ -1,8 +1,9 @@
+import cloudflareRuntime from "@alchemy.run/cloudflare-runtime/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, createRunnableDevEnvironment } from "vite-plus";
-import { cp, readFile } from "node:fs/promises";
+import { cp } from "node:fs/promises";
 import { showcaseVitePlugin } from "./preview-plugin";
 import { registryPlugin } from "./registry-plugin.mjs";
 import { contentPlugin, navigationMetadata } from "./content-plugin";
@@ -22,8 +23,8 @@ const pagePaths = [
   ...navigationMetadata().map((page) => page.href),
 ];
 
-export default defineConfig({
-  build: { cssMinify: "esbuild" },
+export default defineConfig(({ isPreview }) => ({
+  build: { cssMinify: "esbuild", outDir: process.env.ERBIUM_DOCS_OUTPUT_DIR ?? "dist" },
   environments: cloudflare
     ? undefined
     : {
@@ -32,6 +33,14 @@ export default defineConfig({
         },
       },
   plugins: [
+    // Start reopens the config for prerendering without Alchemy's inline plugins.
+    // Restore the Worker preview handler only in that preview process.
+    isPreview === true && cloudflare
+      ? cloudflareRuntime({
+          compatibilityDate: "2026-09-25",
+          compatibilityFlags: ["nodejs_compat"],
+        })
+      : undefined,
     contentPlugin(),
     staticContentPlugin({
       pagePaths,
@@ -41,48 +50,9 @@ export default defineConfig({
     previewPlugin,
     tailwindcss({ optimize: { minify: false } }),
     registryPlugin(),
-    {
-      async configurePreviewServer(server) {
-        if (cloudflare) {
-          return;
-        }
-
-        const pages = await Promise.all(
-          pagePaths.map(async (path) => {
-            try {
-              const html = await readFile(
-                new URL(`dist/client${path === "/" ? "" : path}/index.html`, import.meta.url),
-              );
-
-              return { html, path };
-            } catch {
-              return { html: undefined, path };
-            }
-          }),
-        );
-
-        const documents = new Map(pages.map((page) => [page.path, page.html]));
-
-        server.middlewares.use((request, response, next) => {
-          const path = request.url?.split("?")[0] ?? "";
-          const html = documents.get(path);
-
-          if ((request.method !== "GET" && request.method !== "HEAD") || html === undefined) {
-            next();
-
-            return;
-          }
-
-          response.setHeader("Content-Type", "text/html; charset=utf-8");
-          response.setHeader("Cache-Control", "public, max-age=60, must-revalidate");
-          response.end(request.method === "HEAD" ? undefined : html);
-        });
-      },
-      name: "erbium:start-prerender-preview",
-    },
     tanstackStart({
       pages: pagePaths.map((path) => ({ path })),
-      prerender: { crawlLinks: false, enabled: !cloudflare, failOnError: true },
+      prerender: { crawlLinks: false, enabled: true, failOnError: true },
       sitemap: { host: "https://ui.erbium.app" },
       vite: { installDevServerMiddleware: !cloudflare },
     }),
@@ -116,4 +86,4 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   server: { host: "127.0.0.1", port: 3001, strictPort: true },
-});
+}));

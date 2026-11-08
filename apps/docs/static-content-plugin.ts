@@ -39,7 +39,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
       plugins: toolingPlugins(),
       resolve: { tsconfigPaths: true },
       root,
-      server: { middlewareMode: true },
+      server: { hmr: false, middlewareMode: true },
     });
 
     return await tooling;

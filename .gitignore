@@ -39,3 +39,6 @@ packages/ui/.registry-build/
 
 # Generated TanStack docs theme
 apps/docs/.cache/
+
+# TanStack temporary build files
+apps/docs/.tanstack/
