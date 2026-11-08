@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import nodePath from "node:path";
 import { createServer, createRunnableDevEnvironment, isRunnableDevEnvironment } from "vite-plus";
 import type { Plugin, ViteDevServer } from "vite-plus";
@@ -98,6 +98,12 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
   };
 
   return {
+    buildStart() {
+      // Compile documents while other modules transform. The page loader awaits the same
+      // memoized promise, so a compile failure still fails that load; settling here only
+      // prevents an unhandled rejection before then.
+      void Promise.allSettled([pages()]);
+    },
     async closeBundle() {
       if (this.environment?.name === "client") {
         const output = nodePath.resolve(root, this.environment.config.build.outDir);
@@ -134,24 +140,39 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
         const { ogPages } = await load<typeof OgPages>("/src/build/seo/og-pages.ts");
 
-        // Render social images sequentially to bound native image memory.
-        const writeImage = async (index: number): Promise<void> => {
-          const page = ogPages.at(index);
+        // Image paths hash their content, so unchanged cards are reused from the cache.
+        // A small pool overlaps Satori layout with Sharp encoding and bounds image memory.
+        const imageCache = nodePath.resolve(root, ".cache/og");
+        const queue = [...ogPages];
+
+        const renderImages = async (): Promise<void> => {
+          const page = queue.shift();
 
           if (!page) {
             return;
           }
 
-          const bytes = await image(page.imagePath);
+          const cached = nodePath.join(imageCache, `.${page.imagePath}`);
+
+          const bytes = await readFile(cached).catch(async () => {
+            const rendered = await image(page.imagePath);
+
+            if (rendered !== null) {
+              await mkdir(nodePath.dirname(cached), { recursive: true });
+              await writeFile(cached, rendered);
+            }
+
+            return rendered;
+          });
 
           if (bytes !== null) {
             await write(page.imagePath, bytes);
           }
 
-          await writeImage(index + 1);
+          await renderImages();
         };
 
-        await writeImage(0);
+        await Promise.all(Array.from({ length: 4 }, renderImages));
 
         const preview =
           this.environment.config.define?.["import.meta.env.VITE_DOCS_PREVIEW"] === '"true"';
@@ -270,32 +291,34 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         vite.ws.send({ type: "full-reload" });
       });
     },
-    async load(id) {
-      if (id === resolvedId) {
-        return `export default {${pagePaths.map((path) => `${JSON.stringify(path)}: () => import(${JSON.stringify(pagePrefix + path)})`).join(",")}};`;
-      }
-
-      if (id.startsWith(`\0${pagePrefix}`)) {
-        const path = id.slice(pagePrefix.length + 1);
-        const compiled = await pages();
-        const page = Object.hasOwn(compiled, path) ? compiled[path] : undefined;
-
-        if (!page) {
-          throw new Error(`Missing documentation page: ${path}`);
+    load: {
+      filter: { id: /^\0virtual:docs-page/u },
+      async handler(id) {
+        if (id === resolvedId) {
+          return `export default {${pagePaths.map((path) => `${JSON.stringify(path)}: () => import(${JSON.stringify(pagePrefix + path)})`).join(",")}};`;
         }
 
-        return `export default ${JSON.stringify(page)};`;
-      }
+        if (id.startsWith(`\0${pagePrefix}`)) {
+          const path = id.slice(pagePrefix.length + 1);
+          const compiled = await pages();
+          const page = Object.hasOwn(compiled, path) ? compiled[path] : undefined;
 
-      return null;
+          if (!page) {
+            throw new Error(`Missing documentation page: ${path}`);
+          }
+
+          return `export default ${JSON.stringify(page)};`;
+        }
+
+        return null;
+      },
     },
     name: "erbium:static-content",
-    resolveId(id) {
-      if (id === virtualId || id.startsWith(pagePrefix)) {
-        return `\0${id}`;
-      }
-
-      return null;
+    resolveId: {
+      filter: { id: /^virtual:docs-page/u },
+      handler(id) {
+        return id === virtualId || id.startsWith(pagePrefix) ? `\0${id}` : null;
+      },
     },
   };
 };
