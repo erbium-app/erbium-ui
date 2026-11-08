@@ -70,8 +70,6 @@
     "docs:build": "vp run --filter ./apps/docs --fail-if-no-match build",
     "docs:preview": "vp run --filter ./apps/docs --fail-if-no-match preview",
     "docs:typecheck": "vp run --filter ./apps/docs --fail-if-no-match typecheck",
-    "docs:cloudflare:build": "vp run --filter ./apps/docs --fail-if-no-match build:cloudflare",
-    "docs:cloudflare:preview": "vp run --filter ./apps/docs --fail-if-no-match preview:cloudflare",
     "website": "vp run --filter ./apps/website --fail-if-no-match dev",
     "website:build": "vp run --filter ./apps/website --fail-if-no-match build",
     "website:preview": "vp run --filter ./apps/website --fail-if-no-match preview",

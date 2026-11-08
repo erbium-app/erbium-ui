@@ -145,4 +145,4 @@ Grant Workers Scripts write and Account Settings write for the Worker and Web An
 
 The preview uses `Cloudflare.Website.Vite` for `apps/docs`, the existing account workers.dev subdomain, and a separate analytics site. Deployment returns both origins for comparison. Markdown, example sources and social images compile in Node before deployment; documentation HTML renders in the Worker. Invocation logs and traces are enabled for the preview. Browser Web Analytics measures visits and Core Web Vitals; it does not report JavaScript exceptions.
 
-Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `bun run docs:cloudflare:build` followed by `bun run docs:cloudflare:preview`.
+Preview robots and metadata disable indexing while canonical URLs retain the production origin. Local Worker validation uses `bun run docs:build` followed by `bun run docs:preview`.

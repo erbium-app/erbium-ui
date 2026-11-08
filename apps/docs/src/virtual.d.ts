@@ -20,15 +20,3 @@ declare module "virtual:docs-navigation" {
 
   export default components;
 }
-
-declare module "virtual:docs-preview-loaders" {
-  import type { ShowcaseStory } from "@erbium/showcase/catalog";
-
-  interface PreviewModule {
-    default: ShowcaseStory["render"];
-  }
-
-  const examples: Record<string, () => Promise<PreviewModule>>;
-
-  export default examples;
-}

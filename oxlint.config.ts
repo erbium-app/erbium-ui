@@ -17,12 +17,7 @@ export default defineConfig({
   // storybook-static, and generated files (`**/*.gen.*` matches
   // routeTree.gen.ts). The Cloudflare/SSR build outputs and the registry
   // build dir come from this repo's .gitignore.
-  ignorePatterns: [
-    ...(core.ignorePatterns ?? []),
-    "**/dist-cloudflare",
-    "**/dist-ssr",
-    "packages/ui/.registry-build",
-  ],
+  ignorePatterns: [...(core.ignorePatterns ?? []), "**/dist-ssr", "packages/ui/.registry-build"],
   jsPlugins: [
     // Re-declared on the root config so dependency analyzers (Knip) can see
     // the `@shadcn/lint` package; oxlint loads it from the extended preset

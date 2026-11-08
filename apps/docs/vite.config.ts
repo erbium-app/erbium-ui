@@ -1,18 +1,14 @@
-import cloudflareRuntime from "@alchemy.run/cloudflare-runtime/vite";
+import cloudflare from "@alchemy.run/cloudflare-runtime/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, createRunnableDevEnvironment } from "vite-plus";
+import { defineConfig } from "vite-plus";
 import { cp } from "node:fs/promises";
-import { showcaseVitePlugin } from "./preview-plugin";
 import { registryPlugin } from "./registry-plugin.mjs";
 import { contentPlugin, navigationMetadata } from "./content-plugin";
 import { staticContentPlugin } from "./static-content-plugin";
 
-const cloudflare = process.env.ALCHEMY_CLOUDFLARE_VITE_INJECTED === "1";
 const root = new URL("./", import.meta.url).pathname;
-
-const previewPlugin = showcaseVitePlugin();
 
 const pagePaths = [
   "/",
@@ -24,37 +20,25 @@ const pagePaths = [
 ];
 
 export default defineConfig(({ isPreview }) => ({
-  build: { cssMinify: "esbuild", outDir: process.env.ERBIUM_DOCS_OUTPUT_DIR ?? "dist" },
-  environments: cloudflare
-    ? undefined
-    : {
-        ssr: {
-          dev: { createEnvironment: (name, config) => createRunnableDevEnvironment(name, config) },
-        },
-      },
+  build: { cssMinify: "esbuild" },
   plugins: [
-    // Start reopens the config for prerendering without Alchemy's inline plugins.
-    // Restore the Worker preview handler only in that preview process.
-    isPreview === true && cloudflare
-      ? cloudflareRuntime({
-          compatibilityDate: "2026-09-25",
+    // Alchemy injects its own Cloudflare plugin into deploy builds. Start's
+    // prerender preview reopens this file without it, so preview keeps ours.
+    process.env.ALCHEMY_CLOUDFLARE_VITE_INJECTED === "1" && isPreview !== true
+      ? undefined
+      : cloudflare({
           compatibilityFlags: ["nodejs_compat"],
-        })
-      : undefined,
+          // Match the deployed asset routing in local dev and preview.
+          worker: { assets: { htmlHandling: "drop-trailing-slash" }, bindings: [], name: "docs" },
+        }),
     contentPlugin(),
-    staticContentPlugin({
-      pagePaths,
-      root,
-      toolingPlugins: () => [contentPlugin(), showcaseVitePlugin()],
-    }),
-    previewPlugin,
+    staticContentPlugin({ pagePaths, root, toolingPlugins: () => [contentPlugin()] }),
     tailwindcss({ optimize: { minify: false } }),
     registryPlugin(),
     tanstackStart({
       pages: pagePaths.map((path) => ({ path })),
       prerender: { crawlLinks: false, enabled: true, failOnError: true },
       sitemap: { host: "https://ui.erbium.app" },
-      vite: { installDevServerMiddleware: !cloudflare },
     }),
     react(),
     {
@@ -81,9 +65,6 @@ export default defineConfig(({ isPreview }) => ({
     },
   ],
   preview: { host: "127.0.0.1", port: 3002, strictPort: true },
-  publicDir: "./public",
-  resolve: {
-    tsconfigPaths: true,
-  },
+  resolve: { tsconfigPaths: true },
   server: { host: "127.0.0.1", port: 3001, strictPort: true },
 }));

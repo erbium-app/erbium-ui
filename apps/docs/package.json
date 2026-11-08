@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "vp dev --port 3001",
     "build": "vp build && bun verify-build.ts",
-    "build:cloudflare": "bun build-cloudflare.ts && bun verify-build.ts dist-cloudflare/client",
     "preview": "vp preview --port 3002",
-    "preview:cloudflare": "bun preview-cloudflare.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
