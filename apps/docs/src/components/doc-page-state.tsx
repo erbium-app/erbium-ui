@@ -10,7 +10,7 @@ export const DocPagePending = () => (
     className="docs-page surface-panel border border-transparent rounded-xl"
   >
     <div className="docs-page-body">
-      <div className="docs-page-inner grid min-h-[calc(100svh_-_2*var(--site-section-space))] place-items-center">
+      <div className="docs-page-inner grid min-h-[calc(100svh-2*var(--site-section-space))] place-items-center">
         <Spinner className="text-muted-foreground" size="xl" />
       </div>
     </div>

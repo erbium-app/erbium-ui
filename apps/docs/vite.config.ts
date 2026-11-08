@@ -38,54 +38,44 @@ export default defineConfig({
       root,
       toolingPlugins: () => [contentPlugin(), showcaseVitePlugin()],
     }),
-    {
-      ...previewPlugin,
-      configEnvironment(name) {
-        const config = previewPlugin.configEnvironment(name);
-
-        if (!config) {
-          return;
-        }
-
-        return {
-          optimizeDeps: {
-            ...config.optimizeDeps,
-            include: ["hast-util-to-jsx-runtime", ...config.optimizeDeps.include],
-          },
-        };
-      },
-    },
+    previewPlugin,
     tailwindcss({ optimize: { minify: false } }),
     registryPlugin(),
     {
-      configurePreviewServer(server) {
+      async configurePreviewServer(server) {
         if (cloudflare) {
           return;
         }
 
-        server.middlewares.use(async (request, response, next) => {
-          const path = request.url?.split("?")[0] ?? "";
+        const pages = await Promise.all(
+          pagePaths.map(async (path) => {
+            try {
+              const html = await readFile(
+                new URL(`dist/client${path === "/" ? "" : path}/index.html`, import.meta.url),
+              );
 
-          if (
-            (request.method !== "GET" && request.method !== "HEAD") ||
-            !pagePaths.includes(path)
-          ) {
+              return { html, path };
+            } catch {
+              return { html: undefined, path };
+            }
+          }),
+        );
+
+        const documents = new Map(pages.map((page) => [page.path, page.html]));
+
+        server.middlewares.use((request, response, next) => {
+          const path = request.url?.split("?")[0] ?? "";
+          const html = documents.get(path);
+
+          if ((request.method !== "GET" && request.method !== "HEAD") || html === undefined) {
             next();
 
             return;
           }
 
-          try {
-            const html = await readFile(
-              new URL(`./dist/client${path === "/" ? "" : path}/index.html`, import.meta.url),
-            );
-
-            response.setHeader("Content-Type", "text/html; charset=utf-8");
-            response.setHeader("Cache-Control", "public, max-age=60, must-revalidate");
-            response.end(request.method === "HEAD" ? undefined : html);
-          } catch {
-            next();
-          }
+          response.setHeader("Content-Type", "text/html; charset=utf-8");
+          response.setHeader("Cache-Control", "public, max-age=60, must-revalidate");
+          response.end(request.method === "HEAD" ? undefined : html);
         });
       },
       name: "erbium:start-prerender-preview",
@@ -103,17 +93,19 @@ export default defineConfig({
           return;
         }
 
-        for (const [source, target] of [
-          ["../../packages/ui/public/r", "r/ui"],
-          ["../../packages/showcase/public/r", "r/examples"],
-          ["../../packages/ui/src/assets/fonts", "fonts"],
-        ]) {
-          await cp(
-            new URL(source, import.meta.url),
-            `${this.environment.config.build.outDir}/${target}`,
-            { recursive: true },
-          );
-        }
+        await Promise.all(
+          [
+            ["../../packages/ui/public/r", "r/ui"],
+            ["../../packages/showcase/public/r", "r/examples"],
+            ["../../packages/ui/src/assets/fonts", "fonts"],
+          ].map(async ([source, target]) => {
+            await cp(
+              new URL(source, import.meta.url),
+              `${this.environment.config.build.outDir}/${target}`,
+              { recursive: true },
+            );
+          }),
+        );
       },
       name: "erbium:start-assets",
     },

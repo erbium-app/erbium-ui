@@ -1,63 +1,19 @@
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkRehype from "remark-rehype";
-import rehypeSlug from "rehype-slug";
-import type { Root, Element, RootContent } from "hast";
-
-const processor = unified().use(remarkParse).use(remarkGfm).use(remarkRehype).use(rehypeSlug);
+import GithubSlugger from "github-slugger";
+import { parseMarkdown } from "@tanstack/markdown/parser";
+import { collectMarkdownHeadings } from "@tanstack/markdown/extensions/headings";
+import { autolinksExtension } from "@tanstack/markdown/extensions/autolinks";
+import type { MarkdownDocument } from "@tanstack/markdown";
 
 export const compileMarkdown = (markdown: string) => {
-  const tree = processor.runSync(processor.parse(markdown));
+  const slugger = new GithubSlugger();
 
-  const stripPositions = (node: Root | Element) => {
-    delete node.position;
-
-    for (const child of node.children) {
-      delete child.position;
-
-      if (child.type === "element") {
-        stripPositions(child);
-      }
-    }
-  };
-
-  stripPositions(tree);
-
-  return JSON.stringify(tree);
+  return parseMarkdown(markdown, {
+    extensions: [autolinksExtension()],
+    headingIds: (text) => slugger.slug(text),
+  });
 };
 
-const nodeText = (node: RootContent): string => {
-  if (node.type === "text") {
-    return node.value;
-  }
-
-  return "children" in node ? node.children.map(nodeText).join("") : "";
-};
-
-export const headingsFor = (serialized: string) => {
-  const tree: Root = JSON.parse(serialized);
-  const headings: { id: string; title: string; depth: number }[] = [];
-
-  const visit = (node: Root | Element) => {
-    for (const child of node.children) {
-      if (child.type !== "element") {
-        continue;
-      }
-
-      if (child.tagName === "h2" || child.tagName === "h3") {
-        headings.push({
-          depth: Number(child.tagName.slice(1)),
-          id: String(child.properties.id),
-          title: nodeText(child),
-        });
-      }
-
-      visit(child);
-    }
-  };
-
-  visit(tree);
-
-  return headings;
-};
+export const headingsFor = (document: MarkdownDocument) =>
+  collectMarkdownHeadings(document)
+    .filter((heading) => heading.level === 2 || heading.level === 3)
+    .map((heading) => ({ depth: heading.level, id: heading.id, title: heading.text }));

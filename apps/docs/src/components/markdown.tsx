@@ -1,7 +1,7 @@
-import { toJsxRuntime } from "hast-util-to-jsx-runtime";
-import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-import type { Root } from "hast";
-import { Children, isValidElement, useCallback } from "react";
+import { Markdown } from "@tanstack/markdown/react";
+import type { MarkdownComponents } from "@tanstack/markdown/react";
+import type { MarkdownDocument } from "@tanstack/markdown";
+import { useCallback } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
@@ -24,46 +24,28 @@ import {
   TableCaption,
 } from "@erbium/ui/components/table";
 
-const textContent = (children: ReactNode): string =>
-  Children.toArray(children)
-    .map((child) =>
-      isValidElement<{ children?: ReactNode }>(child)
-        ? textContent(child.props.children)
-        : typeof child === "string" || typeof child === "number"
-          ? String(child)
-          : "",
-    )
-    .join("");
+const MarkdownLink = ({ href, children, ...props }: ComponentProps<"a">) => {
+  const internal = href?.startsWith("/") === true && !/\.(?:md|json|txt|xml)$/u.test(href);
 
-const MarkdownLink = ({ href, children }: ComponentProps<"a">) =>
-  href?.startsWith("/") && !/\.(md|json|txt|xml)$/.test(href) ? (
-    <Link to={href}>{children}</Link>
-  ) : (
+  if (internal) {
+    return (
+      <Link {...props} to={href}>
+        {children}
+      </Link>
+    );
+  }
+
+  const external = href?.startsWith("https:") === true;
+
+  return (
     <a
+      {...props}
       href={href}
-      target={href?.startsWith("https:") ? "_blank" : undefined}
-      rel={href?.startsWith("https:") ? "noopener noreferrer" : undefined}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
     >
       {children}
     </a>
-  );
-
-const MarkdownPre = ({ children }: ComponentProps<"pre">) => {
-  const code = Children.toArray(children).find(isValidElement<{ className?: string }>);
-
-  const language = isValidElement<{ className?: string }>(code)
-    ? code.props.className
-        ?.split(" ")
-        .find((value) => value.startsWith("language-"))
-        ?.slice(9)
-    : undefined;
-
-  return (
-    <UICodeBlock
-      code={textContent(children).replace(/\n$/, "")}
-      language={language}
-      className="not-typeset my-4"
-    />
   );
 };
 
@@ -80,25 +62,41 @@ const MarkdownTable = (props: ComponentProps<"table">) => (
   />
 );
 
-export const Prose = ({ tree }: { tree: string }) => (
+const isCodeText = (value: ReactNode): value is string => typeof value === "string";
+
+const MarkdownCode = ({ children, className, ...props }: ComponentProps<"code">) => {
+  if (className?.startsWith("language-") === true && isCodeText(children)) {
+    return (
+      <UICodeBlock code={children} language={className.slice(9)} className="not-typeset my-4" />
+    );
+  }
+
+  return (
+    <code {...props} className={className}>
+      {children}
+    </code>
+  );
+};
+
+const MarkdownPre = ({ children }: ComponentProps<"pre">): ReactNode => children;
+
+const components = {
+  a: MarkdownLink,
+  caption: TableCaption,
+  code: MarkdownCode,
+  pre: MarkdownPre,
+  table: MarkdownTable,
+  tbody: TableBody,
+  td: TableCell,
+  tfoot: TableFooter,
+  th: TableHead,
+  thead: TableHeader,
+  tr: TableRow,
+} satisfies MarkdownComponents;
+
+export const Prose = ({ tree }: { tree: MarkdownDocument }) => (
   <div className="typeset markdown-copy">
-    {toJsxRuntime(JSON.parse(tree) as Root, {
-      Fragment,
-      components: {
-        a: MarkdownLink,
-        caption: TableCaption,
-        pre: MarkdownPre,
-        table: MarkdownTable,
-        tbody: TableBody,
-        td: TableCell,
-        tfoot: TableFooter,
-        th: TableHead,
-        thead: TableHeader,
-        tr: TableRow,
-      },
-      jsx,
-      jsxs,
-    })}
+    <Markdown components={components}>{tree}</Markdown>
   </div>
 );
 
