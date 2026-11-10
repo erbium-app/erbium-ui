@@ -1030,6 +1030,12 @@ type ImageProps = CommonProps & {
   name?: string;
 };
 
+const ImagePreview = ({ src }: { src: string }) => (
+  <span className="image-hairline size-6 shrink-0 overflow-hidden rounded-sm">
+    <img alt="" src={src} className="size-full object-cover" />
+  </span>
+);
+
 /**
  * Opens the file picker. Beside an option select it is a bare icon; on its own it
  * shows the current image (or an icon) and says what clicking does.
@@ -1057,11 +1063,7 @@ const ImageUploadButton = ({
       data-no-options={hasOptions ? undefined : ""}
       className="flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground hover:text-foreground data-no-options:ms-auto"
     >
-      {showPreview ? (
-        <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
-      ) : (
-        <Icon name="image-plus" className="size-4" />
-      )}
+      {showPreview ? <ImagePreview src={preview} /> : <Icon name="image-plus" className="size-4" />}
       {hasOptions ? null : <span>{preview === undefined ? "Choose image" : "Change"}</span>}
     </ButtonPrimitive>
   );
@@ -1109,9 +1111,7 @@ const Image = ({
             aria-label={label}
             className="group group/control-select ms-auto flex min-w-0 items-center gap-related rounded-sm text-control text-muted-foreground outline-none hover:text-foreground"
           >
-            {hasPreview ? (
-              <img alt="" src={preview} className="size-6 rounded-sm object-cover" />
-            ) : null}
+            {hasPreview ? <ImagePreview src={preview} /> : null}
             <SelectPrimitive.Value className="max-w-24 truncate" />
             <SelectPrimitive.Icon>
               <RotatingChevron className="size-3.5" />
@@ -1124,7 +1124,7 @@ const Image = ({
                 value={option.value}
                 className="flex cursor-default items-center gap-related rounded-md px-2 py-1.5 text-control outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
               >
-                <img alt="" src={option.src} className="size-6 rounded-sm object-cover" />
+                <ImagePreview src={option.src} />
                 <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
                 <SelectPrimitive.ItemIndicator className="ms-auto">
                   <Icon name="check" className="size-3.5" />

@@ -36,13 +36,13 @@ export const ItemHeaderDemo = () => (
     <ItemGroup className="grid grid-cols-3 gap-group">
       {models.map((model) => (
         <Item key={model.name} variant="card">
-          <ItemHeader>
+          <ItemHeader className="image-hairline overflow-hidden rounded-sm">
             <img
               src={model.image}
               alt={model.name}
               width={128}
               height={128}
-              className="aspect-square w-full rounded-sm object-cover"
+              className="aspect-square w-full object-cover"
             />
           </ItemHeader>
           <ItemContent>

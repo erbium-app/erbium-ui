@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/card", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Card, CardDescription, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <img\n      src=\"/card-project.svg\"\n      alt=\"Abstract illustration of a project dashboard\"\n      className=\"h-40 w-full object-cover\"\n    />\n    <CardHeader>\n      <CardTitle>Featured project</CardTitle>\n      <CardDescription>A card with media above its header.</CardDescription>\n    </CardHeader>\n  </Card>\n);\n\nexport default Example;\n",
+      "content": "import {\n  Card,\n  CardDescription,\n  CardHeader,\n  CardMedia,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <CardMedia className=\"h-40\">\n      <img\n        src=\"/card-project.svg\"\n        alt=\"Abstract illustration of a project dashboard\"\n        className=\"size-full object-cover\"\n      />\n    </CardMedia>\n    <CardHeader>\n      <CardTitle>Featured project</CardTitle>\n      <CardDescription>A card with media above its header.</CardDescription>\n    </CardHeader>\n  </Card>\n);\n\nexport default Example;\n",
       "path": "src/card/variants/image.tsx",
       "target": "@components/showcase/card/variants/image.tsx",
       "type": "registry:component"

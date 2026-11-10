@@ -65,6 +65,7 @@
   --overlay-base: oklch(0% 0 none);
   --cursor-shadow: oklch(0% 0 none / 53%);
   --overlay-backdrop: oklch(0% 0 none / 20%);
+  --image-hairline: oklch(0% 0 none / 10%);
   --overlay-backdrop-blur: 2px;
   --chart-1: oklch(50.164705% 0.10150137 159.82321deg);
   --chart-2: oklch(51.090855% 0.1118396 248.47664deg);
@@ -253,6 +254,7 @@
   --overlay-base: oklch(0% 0 none);
   --cursor-shadow: oklch(0% 0 none / 53%);
   --overlay-backdrop: oklch(0% 0 none / 20%);
+  --image-hairline: oklch(100% 0 none / 12%);
   --chart-1: oklch(60.856678% 0.08535672 164.03959deg);
   --chart-2: oklch(64.883498% 0.08355076 246.0218deg);
   --chart-3: oklch(69.321112% 0.07698397 207.64166deg);

@@ -442,6 +442,24 @@
   }
 }
 
+/* Paint the media edge above the pixels without taking up layout space. */
+@utility image-hairline {
+  :where(&) {
+    position: relative;
+    isolation: isolate;
+  }
+
+  &::after {
+    position: absolute;
+    z-index: 20;
+    border-radius: var(--image-hairline-radius, inherit);
+    box-shadow: inset 0 0 0 0.5px var(--image-hairline);
+    content: "";
+    inset: var(--image-hairline-inset, 0);
+    pointer-events: none;
+  }
+}
+
 /* Thumbs carry no backing ring, so any bg-* colour can replace the face. */
 @utility surface-knob {
   --surface-face: var(--surface-control);

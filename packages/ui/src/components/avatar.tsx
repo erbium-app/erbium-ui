@@ -13,7 +13,7 @@ const Avatar = ({
     data-slot="avatar"
     data-size={size}
     className={cn(
-      "group/avatar relative isolate inline-flex size-(--avatar-size,2rem) shrink-0 items-center justify-center rounded-[35%] align-middle select-none after:absolute after:inset-0 after:z-20 after:rounded-[inherit] after:border after:border-border after:mix-blend-darken data-[size=lg]:[--avatar-size:2.5rem] data-[size=sm]:[--avatar-size:1.5rem] dark:after:mix-blend-lighten",
+      "group/avatar image-hairline relative isolate inline-flex size-(--avatar-size,2rem) shrink-0 items-center justify-center rounded-[35%] align-middle select-none data-[size=lg]:[--avatar-size:2.5rem] data-[size=sm]:[--avatar-size:1.5rem]",
       className,
     )}
     {...props}

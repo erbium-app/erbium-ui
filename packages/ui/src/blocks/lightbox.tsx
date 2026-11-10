@@ -55,7 +55,7 @@ const LightboxTrigger = ({
   <LightboxPrimitive.Trigger
     data-slot="lightbox-trigger"
     className={cn(
-      "cursor-zoom-in outline-none focus-visible:ring-control focus-visible:ring-ring",
+      "cursor-zoom-in outline-none focus-visible:ring-control focus-visible:ring-ring has-[>:is(img,picture):only-child]:image-hairline",
       className,
     )}
     {...props}
@@ -166,9 +166,7 @@ const LightboxMedia = ({ className, ...props }: ComponentProps<typeof LightboxPr
   <LightboxPrimitive.Media
     data-slot="lightbox-media"
     className={cn(
-      "pointer-events-auto overflow-hidden md:rounded-lg [&_img]:select-none",
-      // Keeps image edges from blending into the backdrop.
-      "after:pointer-events-none after:absolute after:inset-0 after:z-10 md:after:rounded-lg md:after:inset-ring md:after:inset-ring-foreground/10",
+      "pointer-events-auto overflow-hidden md:image-hairline md:rounded-lg [&_img]:select-none",
       className,
     )}
     {...props}
@@ -378,6 +376,7 @@ const LightboxThumbnail = ({
     className={cn(
       "surface-flat inline-flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-transparent p-0.5 outline-none",
       "transition-button duration-150 motion-reduce:transition-none data-active:border-primary focus-visible:border-ring",
+      "has-[>:is(img,picture):only-child]:image-hairline [--image-hairline-inset:calc(1px+--spacing(0.5))] [--image-hairline-radius:var(--radius-sm)]",
       "[&_img]:size-full [&_img]:rounded-sm [&_img]:object-cover",
       className,
     )}
