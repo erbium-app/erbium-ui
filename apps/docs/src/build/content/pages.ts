@@ -1,11 +1,12 @@
 import matter from "gray-matter";
-import { loadShowcase, type ShowcaseStory } from "@erbium/showcase/catalog";
-import manifest from "@erbium/showcase/manifest";
+import {
+  showcaseExampleControls,
+  showcaseExamples,
+  showcaseSource,
+} from "@erbium/showcase/docs/metadata";
 import { compileMarkdown, headingsFor } from "@/content/markdown.server";
 import { components, guides } from "@/content/catalog";
 import { componentReference } from "@erbium/content/markdown";
-import { showcaseSource } from "@erbium/showcase/sources";
-import registry from "@erbium/showcase/registry";
 import theme from "@ui/src/styles/theme.css?raw";
 import surfaces from "@ui/src/styles/surfaces.css?raw";
 import { ogPageForRoute } from "@/build/seo/og-pages";
@@ -75,8 +76,7 @@ export const getPage = async (path: string) => {
   if (file === undefined || section === undefined) return null;
   const content = document(file);
   const headings = headingsFor(content.tree);
-  const catalog =
-    component && component.name !== "colors" ? await loadShowcase(component.name) : undefined;
+  const examples = component ? await showcaseExampleControls(component.name) : [];
   const page = {
     ...content,
     path,
@@ -89,18 +89,18 @@ export const getPage = async (path: string) => {
       : undefined,
     image: ogPageForRoute(path).imagePath,
     colorSources: component?.name === "colors" ? await colorExamples() : [],
-    variants:
-      manifest
-        .find((entry) => entry.name === component?.name)
-        ?.variants.map((variant) => ({
-          ...variant,
-          anchor: headings.some((heading) => heading.id === variant.slug)
-            ? `example-${variant.slug}`
-            : variant.slug,
-          args: (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.args ?? {},
-          argTypes: (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.argTypes ?? {},
-          tree: document(`components/${component!.name}/${variant.slug}`).tree,
-        })) ?? [],
+    variants: examples.map((example) => ({
+      exportName: example.exportName,
+      slug: example.slug,
+      source: example.source,
+      title: example.title,
+      anchor: headings.some((heading) => heading.id === example.slug)
+        ? `example-${example.slug}`
+        : example.slug,
+      args: example.args,
+      argTypes: example.argTypes,
+      tree: document(`components/${component!.name}/${example.slug}`).tree,
+    })),
   };
   return {
     ...page,
@@ -110,16 +110,20 @@ export const getPage = async (path: string) => {
 
 export type DocPage = NonNullable<Awaited<ReturnType<typeof getPage>>>;
 
+/** Every documented example, keyed as served at `/examples/<name>-<slug>.json`. */
+export const listExamples = () =>
+  components.flatMap((component) =>
+    showcaseExamples(component.name).map((example) => ({
+      name: component.name,
+      slug: example.slug,
+    })),
+  );
+
 export const getExampleSource = async (name: string, slug: string) => {
-  const variant = manifest
-    .find((entry) => entry.name === name)
-    ?.variants.find((entry) => entry.slug === slug);
-  if (!variant) throw new Error("Unknown example");
-  const files = registry.items.find((item) => item.name === `${name}-${slug}`)?.files ?? [
-    { path: variant.source },
-  ];
+  const example = showcaseExamples(name).find((entry) => entry.slug === slug);
+  if (!example) throw new Error("Unknown example");
   return await Promise.all(
-    files.map(async (file) => {
+    example.files.map(async (file) => {
       const source = showcaseSource(file.path);
       return {
         path: file.path,

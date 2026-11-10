@@ -7,7 +7,6 @@ import type * as ContentPages from "./src/build/content/pages";
 import type * as Resources from "./src/build/agent/resources";
 import type * as OgPages from "./src/build/seo/og-pages";
 import type * as OgImage from "./src/build/seo/og-image";
-import type showcaseManifest from "@erbium/showcase/manifest";
 
 interface Options {
   root: string;
@@ -142,21 +141,17 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
           }),
         );
 
-        const { default: manifest } = await load<{ default: typeof showcaseManifest }>(
-          `/@fs${nodePath.resolve(root, "../../packages/showcase/manifest.json")}`,
+        const { getExampleSource, listExamples } = await load<typeof ContentPages>(
+          "/src/build/content/pages.ts",
         );
 
-        const { getExampleSource } = await load<typeof ContentPages>("/src/build/content/pages.ts");
-
         await Promise.all(
-          manifest.flatMap((component) =>
-            component.variants.map(async (variant) => {
-              await write(
-                `/examples/${component.name}-${variant.slug}.json`,
-                JSON.stringify(await getExampleSource(component.name, variant.slug)),
-              );
-            }),
-          ),
+          listExamples().map(async ({ name, slug }) => {
+            await write(
+              `/examples/${name}-${slug}.json`,
+              JSON.stringify(await getExampleSource(name, slug)),
+            );
+          }),
         );
 
         const { ogPages } = await load<typeof OgPages>("/src/build/seo/og-pages.ts");
@@ -225,28 +220,19 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
             const example = /^\/examples\/(?<example>[\w-]+)\.json$/u.exec(path);
 
             if (example) {
-              const { default: manifest } = await load<{ default: typeof showcaseManifest }>(
-                `/@fs${nodePath.resolve(root, "../../packages/showcase/manifest.json")}`,
+              const { getExampleSource, listExamples } = await load<typeof ContentPages>(
+                "/src/build/content/pages.ts",
               );
 
-              const entry = manifest
-                .flatMap((component) =>
-                  component.variants.map((variant) => ({
-                    name: component.name,
-                    slug: variant.slug,
-                  })),
-                )
-                .find((item) => `${item.name}-${item.slug}` === example.groups?.example);
+              const entry = listExamples().find(
+                (item) => `${item.name}-${item.slug}` === example.groups?.example,
+              );
 
               if (!entry) {
                 forward();
 
                 return;
               }
-
-              const { getExampleSource } = await load<typeof ContentPages>(
-                "/src/build/content/pages.ts",
-              );
 
               response.setHeader("Content-Type", "application/json");
               response.end(JSON.stringify(await getExampleSource(entry.name, entry.slug)));

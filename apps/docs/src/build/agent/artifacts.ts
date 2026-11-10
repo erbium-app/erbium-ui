@@ -1,8 +1,10 @@
 import { componentReferences } from "@erbium/content/markdown";
 import matter from "gray-matter";
-import manifest from "@erbium/showcase/manifest";
-import registry from "@erbium/showcase/registry";
-import { showcaseSource } from "@erbium/showcase/sources";
+import {
+  showcaseExamples,
+  showcaseSource,
+  showcaseStoryFiles,
+} from "@erbium/showcase/docs/metadata";
 import { components, guides } from "@/content/catalog";
 import { site } from "@/config/site";
 export { site } from "@/config/site";
@@ -18,11 +20,6 @@ const sources = import.meta.glob<string>("../../../../../packages/ui/src/**/*.{t
   query: "?raw",
   import: "default",
 });
-
-const portableStories = import.meta.glob<{ files: Array<{ path: string; content: string }> }>(
-  "../../../../../packages/showcase/public/r/*-stories.json",
-  { eager: true, import: "default" },
-);
 
 const contentRoot = "../../../../../packages/content/";
 const sourceRoot = "../../../../../packages/ui/";
@@ -85,7 +82,6 @@ export const agentPages: AgentPage[] = guides.map((guide) =>
 );
 
 for (const component of components) {
-  const catalog = manifest.find((entry) => entry.name === component.name)!;
   if (component.name === "colors") {
     const theme = sources[`${sourceRoot}src/styles/theme.css`];
     const surfaces = sources[`${sourceRoot}src/styles/surfaces.css`];
@@ -111,28 +107,25 @@ for (const component of components) {
     }
   }
   blocks.push("## Interactive examples");
-  for (const variant of catalog.variants) {
-    blocks.push(`## ${variant.title}`, body(`components/${component.name}/${variant.slug}.md`));
-    const files =
-      registry.items.find((item) => item.name === `${component.name}-${variant.slug}`)?.files ?? [];
-    for (const file of files) {
+  for (const example of showcaseExamples(component.name)) {
+    blocks.push(`## ${example.title}`, body(`components/${component.name}/${example.slug}.md`));
+    for (const file of example.files) {
       if (included.has(file.path)) continue;
       included.add(file.path);
       blocks.push(code(`packages/showcase/${file.path}`, showcaseSource(file.path)));
     }
-    if (!included.has(variant.source)) {
-      included.add(variant.source);
-      blocks.push(code(`packages/showcase/${variant.source}`, showcaseSource(variant.source)));
+    if (!included.has(example.source)) {
+      included.add(example.source);
+      blocks.push(code(`packages/showcase/${example.source}`, showcaseSource(example.source)));
     }
   }
-  const stories =
-    portableStories[`../../../../../packages/showcase/public/r/${component.name}-stories.json`];
+  const stories = showcaseStoryFiles(component.name);
   if (stories && component.kind !== "foundation") {
     blocks.push(
       "## Portable Storybook stories",
       "These files use the registry's installable local import paths. Install the corresponding stories registry item to include its dependencies.",
     );
-    for (const file of stories.files) {
+    for (const file of stories) {
       if (included.has(file.path)) continue;
       included.add(file.path);
       blocks.push(code(`packages/showcase/${file.path}`, file.content));
