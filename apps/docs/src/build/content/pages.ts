@@ -55,12 +55,8 @@ export const getPage = async (path: string) => {
           anchor: headings.some((heading) => heading.id === variant.slug)
             ? `example-${variant.slug}`
             : variant.slug,
-          args: JSON.stringify(
-            (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.args ?? {},
-          ),
-          argTypes: JSON.stringify(
-            (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.argTypes ?? {},
-          ),
+          args: (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.args ?? {},
+          argTypes: (catalog?.[variant.exportName] as ShowcaseStory | undefined)?.argTypes ?? {},
           tree: document(`components/${component!.name}/${variant.slug}`).tree,
         })) ?? [],
   };

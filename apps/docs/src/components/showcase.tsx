@@ -1,6 +1,5 @@
-import { use, useEffect, useState, useMemo, Suspense } from "react";
+import { use, useEffect, useState, Suspense } from "react";
 import { CatchBoundary } from "@tanstack/react-router";
-import { parseStoryMetadata } from "@/content/story-metadata";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Button } from "@erbium/ui/components/button";
@@ -117,8 +116,7 @@ export const Showcase = ({
   variant: DocPage["variants"][number];
   separator?: boolean;
 }) => {
-  const story = useMemo(() => parseStoryMetadata(variant), [variant]);
-  const [args, setArgs] = useState<Args>(story.args);
+  const [args, setArgs] = useState<Args>(variant.args);
   const [code, setCode] = useState(false);
   const siteDark = useTheme();
   const [appearance, setAppearance] = useState<"light" | "dark">();
@@ -180,11 +178,11 @@ export const Showcase = ({
       <Controls
         key={revision}
         args={args}
-        defaults={story.args}
-        argTypes={story.argTypes}
+        defaults={variant.args}
+        argTypes={variant.argTypes}
         onChange={setArgs}
         onReset={() => {
-          setArgs(story.args);
+          setArgs(variant.args);
           setRevision((value) => value + 1);
         }}
       />
