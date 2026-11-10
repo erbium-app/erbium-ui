@@ -20,6 +20,9 @@ import type { CopyButtonProps } from "./copy-button";
 
 type CodeToken = TokensResult["tokens"][number][number];
 
+/** Highlighted output from `highlightCode`, for code tokenized ahead of render. */
+type CodeBlockTokens = Pick<TokensResult, "tokens" | "rootStyle">;
+
 const CodeBlockToken = ({ token }: { token: CodeToken }) => {
   const htmlStyle = "htmlStyle" in token ? token.htmlStyle : undefined;
 
@@ -45,12 +48,13 @@ interface CodeBlockItem {
   label: string;
   code: string;
   language?: string;
+  tokens?: CodeBlockTokens;
   disabled?: boolean;
 }
 
 type CodeBlockSource =
-  | { code: string; language?: string; items?: never }
-  | { items: readonly CodeBlockItem[]; code?: never; language?: never };
+  | { code: string; language?: string; tokens?: CodeBlockTokens; items?: never }
+  | { items: readonly CodeBlockItem[]; code?: never; language?: never; tokens?: never };
 
 type CodeBlockProps = Omit<
   TabsPrimitive.Root.Props,
@@ -186,6 +190,7 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
   const { active, lineNumbers, wrap, surface } = useCodeBlock();
   const code = active?.code ?? "";
   const language = active?.language ?? "text";
+  const tokens = active?.tokens;
 
   const [highlighted, setHighlighted] = useState<{
     code: string;
@@ -208,19 +213,21 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       }
     };
 
-    if (!["text", "plaintext", "plain", "txt", ""].includes(language)) {
+    // Provided tokens render on the server and skip the client highlighter.
+    if (tokens === undefined && !["text", "plaintext", "plain", "txt", ""].includes(language)) {
       void highlight();
     }
 
     return () => {
       current = false;
     };
-  }, [code, language]);
+  }, [code, language, tokens]);
 
   const result =
-    highlighted?.code === code && highlighted.language === language
+    tokens ??
+    (highlighted?.code === code && highlighted.language === language
       ? highlighted.result
-      : undefined;
+      : undefined);
 
   const rows: TokensResult["tokens"] =
     result?.tokens ?? code.split(/\r\n|\n|\r/u).map((content) => [{ content, offset: 0 }]);
@@ -306,6 +313,7 @@ const CodeBlockPanel = ({
 const CodeBlock = ({
   code,
   language,
+  tokens,
   items: providedItems,
   value,
   defaultValue,
@@ -321,9 +329,9 @@ const CodeBlock = ({
   const items = useMemo(
     () =>
       providedItems ?? [
-        { code: code ?? "", label: title ?? language ?? "Code", language, value: "code" },
+        { code: code ?? "", label: title ?? language ?? "Code", language, tokens, value: "code" },
       ],
-    [providedItems, code, language, title],
+    [providedItems, code, language, title, tokens],
   );
 
   const [selection, setSelection] = useState(defaultValue);
@@ -409,4 +417,4 @@ export {
   CodeBlockCopyButton,
 };
 
-export type { CodeBlockProps, CodeBlockItem, CodeBlockContentProps };
+export type { CodeBlockProps, CodeBlockItem, CodeBlockContentProps, CodeBlockTokens };

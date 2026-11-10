@@ -36,6 +36,8 @@ Use `CodeBlockIcon` as the first child of a custom title or tab. It reads the ac
 
 Use either `code` and `language` for a single source, or `items` for tabbed content. Each item needs a unique string `value`, a readable `label`, and its exact `code`; `language` and `disabled` are optional. The command surface changes density, rather than command syntax or tab behavior. Provide complete commands for each package manager.
 
+Code is highlighted in the browser after the block mounts. To render highlighted code from the server, call `highlightCode(code, language)` from `@erbium/ui/lib/code-highlighter` ahead of time and pass its result as `tokens`, on the block or on each item. Provided tokens must come from the same `code` and `language`; the block renders them as given.
+
 `value`, `defaultValue`, and `onValueChange` follow the Base UI Tabs model. The callback receives the selected value and Base UI change details; cancel through `details.cancel()`. Selection falls back to the first enabled item if the requested item is unavailable. With no enabled items, copying is disabled. A shared controlled value can synchronize package-manager preferences across blocks. Persistence belongs to the application.
 
 ## Composition
