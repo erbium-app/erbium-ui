@@ -113,7 +113,7 @@ export const CopyPageButton = ({ path }: { path: string }) => {
 
   return (
     <CopyButton value={markdown} variant="outline" size="xs" aria-label="Copy page as Markdown">
-      <CopyButtonIcon data-icon="inline-start" />
+      <CopyButtonIcon />
       <CopyButtonLabel>
         <CopyButtonLabelIdle>Copy Markdown</CopyButtonLabelIdle>
         <CopyButtonLabelCopied>Copied</CopyButtonLabelCopied>

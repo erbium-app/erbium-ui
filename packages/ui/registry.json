@@ -494,6 +494,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",
+        "@erbium/spinner",
         "@erbium/stateful-icon",
         "@erbium/use-copy-to-clipboard"
       ],

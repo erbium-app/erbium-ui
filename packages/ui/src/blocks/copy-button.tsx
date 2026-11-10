@@ -1,12 +1,13 @@
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { Icon } from "../components/icon";
-import { createContext, use, useEffect, useRef } from "react";
+import { createContext, use, useEffect, useMemo, useRef } from "react";
 import type { ComponentProps } from "react";
 import { Button } from "../components/button";
+import { Spinner } from "../components/spinner";
 import { StatefulIcon } from "../components/stateful-icon";
 import { useCopyToClipboard } from "../hooks/use-copy-to-clipboard";
-import type { CopyToClipboardValue } from "../hooks/use-copy-to-clipboard";
+import type { CopyToClipboardOptions, CopyToClipboardValue } from "../hooks/use-copy-to-clipboard";
 
 interface CopyButtonState {
   copied: boolean;
@@ -33,20 +34,33 @@ type CopyButtonProps = Omit<ComponentProps<"button">, "onCopy" | "value"> &
     value: CopyToClipboardValue;
     timeout?: number;
     onCopied?: () => void;
-    onError?: (error: unknown) => void;
+    onError?: CopyToClipboardOptions["onError"];
     successMessage?: string;
     errorMessage?: string;
     render?: useRender.RenderProp<CopyButtonState>;
   };
 
-const CopyButtonIcon = (
-  props: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">,
-) => {
-  const { status } = useCopyButtonState();
+const CopyButtonIcon = ({
+  className,
+  "data-icon": placement = "inline-start",
+}: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">) => {
+  const { pending, status } = useCopyButtonState();
+
+  if (pending) {
+    return (
+      <span aria-hidden="true" className={className} data-icon={placement}>
+        <Spinner
+          size="sm"
+          className="block group-[:is([data-size=xs],[data-size=sm],[data-size=icon-xs],[data-size=icon-sm])]/button:size-control-icon-sm group-[:is([data-size=lg],[data-size=icon-lg])]/button:size-control-icon-lg"
+        />
+      </span>
+    );
+  }
 
   return (
     <StatefulIcon
-      {...props}
+      className={className}
+      data-icon={placement}
       state={status}
       icons={{
         copied: <Icon name="check" />,
@@ -69,10 +83,12 @@ const CopyButton = ({
   onClick,
   disabled,
   loading,
+  focusableWhenDisabled,
   ...props
 }: CopyButtonProps) => {
   const clipboard = useCopyToClipboard({ onCopy: onCopied, onError, timeout });
-  const { reset } = clipboard;
+  const { isCopied, isPending, reset, revision, status } = clipboard;
+  const iconOnly = children === null || children === undefined;
   const previousValue = useRef(value);
   useEffect(() => {
     if (previousValue.current !== value) {
@@ -81,12 +97,13 @@ const CopyButton = ({
     }
   }, [value, reset]);
 
-  const state = {
-    copied: clipboard.isCopied,
-    pending: clipboard.isPending,
-    revision: clipboard.revision,
-    status: clipboard.status,
-  };
+  const state = useMemo(
+    () => ({ copied: isCopied, pending: loading === true || isPending, revision, status }),
+    [isCopied, isPending, loading, revision, status],
+  );
+
+  const isDisabled = disabled === true || state.pending;
+  const announcement = { copied: successMessage, error: errorMessage, idle: "" }[status];
 
   const element = useRender({
     defaultTagName: "button",
@@ -94,24 +111,25 @@ const CopyButton = ({
       ...mergeProps<"button">(
         {
           "aria-busy": state.pending,
-          "aria-label": children == null ? "Copy" : undefined,
+          "aria-label": iconOnly ? "Copy" : undefined,
           children: children ?? <CopyButtonIcon />,
           onClick(event) {
-            if (!event.defaultPrevented && !disabled && !loading) {
+            if (!event.defaultPrevented && !isDisabled) {
               void clipboard.copyToClipboard(value);
             }
           },
           type: "button",
         },
-        { ...props, disabled, onClick },
+        { ...props, disabled: isDisabled, onClick },
       ),
+      "data-loading": state.pending ? "" : undefined,
       ...(render
-        ? {}
+        ? { focusableWhenDisabled }
         : {
-            size: props.size ?? (children == null ? "icon" : "default"),
+            focusableWhenDisabled: focusableWhenDisabled === true || state.pending,
+            size: props.size ?? (iconOnly ? "icon" : "default"),
             variant: props.variant ?? "ghost",
           }),
-      loading: loading || state.pending,
     },
     render: render ?? <Button />,
     state,
@@ -120,11 +138,9 @@ const CopyButton = ({
   return (
     <CopyButtonContext value={state}>
       {element}
-      <span className="sr-only" role="status" aria-atomic="true">
-        <span key={state.revision}>
-          {state.status === "error" ? errorMessage : state.copied ? successMessage : ""}
-        </span>
-      </span>
+      <output className="sr-only" aria-atomic="true">
+        <span key={revision}>{announcement}</span>
+      </output>
     </CopyButtonContext>
   );
 };
