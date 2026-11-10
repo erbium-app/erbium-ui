@@ -287,7 +287,12 @@ const PasswordInputToggle = ({
           input.focus({ preventScroll: true });
         }
       }}
-      render={<InputGroupButton size="icon-xs" />}
+      render={
+        <InputGroupButton
+          size="icon-sm"
+          className="[&_svg:not([class*='size-'])]:size-control-icon"
+        />
+      }
       className={className}
       {...props}
     >
