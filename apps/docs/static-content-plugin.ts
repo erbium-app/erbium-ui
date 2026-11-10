@@ -132,7 +132,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
             component.variants.map(async (variant) => {
               await write(
                 `/examples/${component.name}-${variant.slug}.json`,
-                JSON.stringify(getExampleSource(component.name, variant.slug)),
+                JSON.stringify(await getExampleSource(component.name, variant.slug)),
               );
             }),
           ),
@@ -228,7 +228,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
               );
 
               response.setHeader("Content-Type", "application/json");
-              response.end(JSON.stringify(getExampleSource(entry.name, entry.slug)));
+              response.end(JSON.stringify(await getExampleSource(entry.name, entry.slug)));
 
               return;
             }

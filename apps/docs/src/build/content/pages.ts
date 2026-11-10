@@ -9,6 +9,48 @@ import registry from "@erbium/showcase/registry";
 import theme from "@ui/src/styles/theme.css?raw";
 import surfaces from "@ui/src/styles/surfaces.css?raw";
 import { ogPageForRoute } from "@/build/seo/og-pages";
+import { highlightCode } from "@erbium/ui/lib/code-highlighter";
+import type { CodeBlockTokens } from "@erbium/ui/blocks/code-block";
+import { highlightKey, type CodeHighlights } from "@/content/code-highlights";
+
+const plainLanguages = new Set(["", "text", "plain", "plaintext", "txt"]);
+
+// Pages carry only what CodeBlock renders: token text, offsets, and theme variables.
+const highlight = async (code: string, language: string): Promise<CodeBlockTokens> => {
+  const { rootStyle, tokens } = await highlightCode(code, language);
+  return {
+    rootStyle,
+    tokens: tokens.map((line) =>
+      line.map(({ content, offset, htmlStyle }) => ({ content, offset, htmlStyle })),
+    ),
+  };
+};
+
+// Fences can sit inside lists, quotes, and callouts, so walk every node.
+const codeFences = (node: unknown): { lang: string; value: string }[] => {
+  if (Array.isArray(node)) return node.flatMap(codeFences);
+  if (typeof node !== "object" || node === null) return [];
+  if ("type" in node && node.type === "code" && "value" in node && typeof node.value === "string") {
+    const lang = "lang" in node && typeof node.lang === "string" ? node.lang : "plaintext";
+    return [{ lang, value: node.value }];
+  }
+  return Object.values(node).flatMap(codeFences);
+};
+
+const highlightFences = async (trees: unknown[]): Promise<CodeHighlights> =>
+  Object.fromEntries(
+    await Promise.all(
+      codeFences(trees)
+        .filter((fence) => !plainLanguages.has(fence.lang))
+        .map(
+          async (fence) =>
+            [
+              highlightKey(fence.lang, fence.value),
+              await highlight(fence.value, fence.lang),
+            ] as const,
+        ),
+    ),
+  );
 
 const documents = import.meta.glob<string>("../../../../../packages/content/**/*.md", {
   eager: true,
@@ -35,7 +77,7 @@ export const getPage = async (path: string) => {
   const headings = headingsFor(content.tree);
   const catalog =
     component && component.name !== "colors" ? await loadShowcase(component.name) : undefined;
-  return {
+  const page = {
     ...content,
     path,
     name: component?.name ?? "",
@@ -46,7 +88,7 @@ export const getPage = async (path: string) => {
       ? `https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`
       : undefined,
     image: ogPageForRoute(path).imagePath,
-    colorSources: component?.name === "colors" ? colorExamples() : [],
+    colorSources: component?.name === "colors" ? await colorExamples() : [],
     variants:
       manifest
         .find((entry) => entry.name === component?.name)
@@ -60,10 +102,15 @@ export const getPage = async (path: string) => {
           tree: document(`components/${component!.name}/${variant.slug}`).tree,
         })) ?? [],
   };
+  return {
+    ...page,
+    highlights: await highlightFences([page.tree, page.variants.map((variant) => variant.tree)]),
+  };
 };
+
 export type DocPage = NonNullable<Awaited<ReturnType<typeof getPage>>>;
 
-export const getExampleSource = (name: string, slug: string) => {
+export const getExampleSource = async (name: string, slug: string) => {
   const variant = manifest
     .find((entry) => entry.name === name)
     ?.variants.find((entry) => entry.slug === slug);
@@ -71,18 +118,24 @@ export const getExampleSource = (name: string, slug: string) => {
   const files = registry.items.find((item) => item.name === `${name}-${slug}`)?.files ?? [
     { path: variant.source },
   ];
-  return files.map((file) => ({
-    path: file.path,
-    source: showcaseSource(file.path),
-  }));
+  return await Promise.all(
+    files.map(async (file) => {
+      const source = showcaseSource(file.path);
+      return {
+        path: file.path,
+        source,
+        tokens: await highlight(source, file.path.split(".").at(-1) ?? "text"),
+      };
+    }),
+  );
 };
 
-const colorExamples = () => {
+const colorExamples = async () => {
   const block = (source: string, selector: string) => {
     const start = source.indexOf(`${selector} {`);
     return source.slice(start, source.indexOf("\n}", start) + 2);
   };
-  return [
+  const entries = [
     {
       id: "light-colors",
       title: "Light colors",
@@ -102,8 +155,12 @@ const colorExamples = () => {
       appearance: "",
       source: `${block(theme, "@theme inline")}\n\n${block(surfaces, "@theme inline")}`,
     },
-  ].map((entry) => ({
-    ...entry,
-    colors: [...new Set(entry.source.match(/oklch\([^)]+\)/g) ?? [])],
-  }));
+  ];
+  return await Promise.all(
+    entries.map(async (entry) => ({
+      ...entry,
+      colors: [...new Set(entry.source.match(/oklch\([^)]+\)/g) ?? [])],
+      tokens: await highlight(entry.source, "css"),
+    })),
+  );
 };

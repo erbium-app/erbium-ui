@@ -1,4 +1,4 @@
-import { use, useEffect, useState, Suspense } from "react";
+import { use, useState, Suspense } from "react";
 import { CatchBoundary } from "@tanstack/react-router";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
@@ -23,7 +23,7 @@ import { useTheme } from "./theme";
 
 import { Controls } from "./controls";
 import { exampleRequest } from "./preview-resources";
-import { fetchExampleSource } from "@/content/example-source";
+import { exampleSourceRequest } from "@/content/example-source";
 import type { DocPage } from "@/content/types";
 
 const PreviewError = () => (
@@ -46,52 +46,21 @@ const PreviewContent = ({ name, slug, args }: { name: string; slug: string; args
   );
 };
 
-const SourceContent = ({ name, slug, active }: { name: string; slug: string; active: boolean }) => {
-  const [files, setFiles] = useState<Awaited<ReturnType<typeof fetchExampleSource>>>();
-  const [error, setError] = useState(false);
-  useEffect(() => {
-    let current = true;
+const SourceError = () => (
+  <Alert variant="error">
+    <AlertTitle>Source could not load.</AlertTitle>
+    <AlertDescription>Switch back to Preview and retry.</AlertDescription>
+  </Alert>
+);
 
-    const load = async () => {
-      try {
-        const result = await fetchExampleSource({ name, slug });
+const SourceLoading = () => (
+  <CodePanel>
+    <CodePanelContent loading aria-label="Loading source" className="min-h-64" />
+  </CodePanel>
+);
 
-        if (current) {
-          setFiles(result);
-          setError(false);
-        }
-      } catch {
-        if (current) {
-          setError(true);
-        }
-      }
-    };
-
-    if (active && files === undefined) {
-      void load();
-    }
-
-    return () => {
-      current = false;
-    };
-  }, [active, files, name, slug]);
-
-  if (error) {
-    return (
-      <Alert variant="error">
-        <AlertTitle>Source could not load.</AlertTitle>
-        <AlertDescription>Switch back to Preview and retry.</AlertDescription>
-      </Alert>
-    );
-  }
-
-  if (files === undefined) {
-    return (
-      <CodePanel>
-        <CodePanelContent loading aria-label="Loading source" className="min-h-64" />
-      </CodePanel>
-    );
-  }
+const SourceContent = ({ name, slug }: { name: string; slug: string }) => {
+  const files = use(exampleSourceRequest(name, slug));
 
   return (
     <div className="flex flex-col gap-related">
@@ -101,6 +70,7 @@ const SourceContent = ({ name, slug, active }: { name: string; slug: string; act
           code={file.source}
           language={file.path.split(".").at(-1)}
           title={file.path}
+          tokens={file.tokens}
         />
       ))}
     </div>
@@ -118,10 +88,17 @@ export const Showcase = ({
 }) => {
   const [args, setArgs] = useState<Args>(variant.args);
   const [code, setCode] = useState(false);
+  // Source loads on first view, then stays mounted with the hidden tab.
+  const [sourceShown, setSourceShown] = useState(false);
   const siteDark = useTheme();
   const [appearance, setAppearance] = useState<"light" | "dark">();
   const dark = appearance === undefined ? siteDark : appearance === "dark";
   const [revision, setRevision] = useState(0);
+
+  const prefetchSource = () => {
+    void exampleSourceRequest(name, variant.slug);
+  };
+
   const command = `npx shadcn@latest add @erbium-examples/${name}-${variant.slug}`;
 
   return (
@@ -133,15 +110,28 @@ export const Showcase = ({
         value={code ? "code" : "preview"}
         onValueChange={(value) => {
           setCode(value === "code");
+
+          if (value === "code") {
+            setSourceShown(true);
+          }
         }}
         className="mt-4"
       >
         <TabsList aria-label={`${variant.title} example`}>
           <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
+          <TabsTrigger value="code" onPointerEnter={prefetchSource} onFocus={prefetchSource}>
+            Code
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="code" keepMounted>
-          <SourceContent name={name} slug={variant.slug} active={code} />
+          {sourceShown && (
+            // Returning to Preview resets a failed source so the next view retries it.
+            <CatchBoundary getResetKey={() => String(code)} errorComponent={SourceError}>
+              <Suspense fallback={<SourceLoading />}>
+                <SourceContent name={name} slug={variant.slug} />
+              </Suspense>
+            </CatchBoundary>
+          )}
         </TabsContent>
         <TabsContent value="preview" keepMounted>
           <div className={`showcase-content relative ${codePanelSurface} ${appearance ?? ""}`}>
