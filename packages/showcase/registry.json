@@ -7037,7 +7037,7 @@
       "type": "registry:block",
       "title": "Command: Basic",
       "description": "A simple command menu in a dialog.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.22.2"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.22.3"],
       "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
       "files": [
         {
@@ -7191,7 +7191,7 @@
       "type": "registry:item",
       "title": "Command stories",
       "description": "All command variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.22.2"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.22.3"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
