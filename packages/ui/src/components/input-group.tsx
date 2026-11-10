@@ -19,8 +19,8 @@ const inputGroupAddonVariants = cva(
           "order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2",
         "block-start":
           "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2",
-        "inline-end": "order-last pe-2 has-[>button]:me-[-0.3rem] has-[>kbd]:me-[-0.15rem]",
-        "inline-start": "order-first ps-2 has-[>button]:ms-[-0.3rem] has-[>kbd]:ms-[-0.15rem]",
+        "inline-end": "order-last py-0 pe-2 has-[>button]:me-[-0.3rem] has-[>kbd]:me-[-0.15rem]",
+        "inline-start": "order-first py-0 ps-2 has-[>button]:ms-[-0.3rem] has-[>kbd]:ms-[-0.15rem]",
       },
     },
   },
@@ -138,7 +138,8 @@ const InputGroupInput = ({ className, ...props }: React.ComponentProps<"input">)
   <Input
     data-slot="input-group-control"
     className={cn(
-      "flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent disabled:opacity-100 aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
+      // -my-px lets the control overlap the group's border, so the group is as tall as an Input.
+      "-my-px flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 focus-visible:ring-0 disabled:bg-transparent disabled:opacity-100 aria-invalid:ring-0 dark:bg-transparent dark:disabled:bg-transparent",
       className,
     )}
     {...props}
