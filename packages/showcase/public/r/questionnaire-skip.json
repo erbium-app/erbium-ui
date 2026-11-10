@@ -3,7 +3,7 @@
   "name": "questionnaire-skip",
   "type": "registry:block",
   "title": "Questionnaire: Explicit Skip",
-  "description": "Add `QuestionnaireSkip` when an optional item may be intentionally left unanswered.\n\nalign=\"end\"",
+  "description": "Add `QuestionnaireSkip` when an optional item may be intentionally left unanswered.",
   "dependencies": ["@shadcn/react@^0.3.1"],
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [

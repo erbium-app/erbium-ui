@@ -3,7 +3,7 @@
   "name": "questionnaire-progress",
   "type": "registry:block",
   "title": "Questionnaire: Step Indicator",
-  "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. It is read-only by default; pass `onValueChange` (with `reach` to block skipping ahead) when the host controls the active item. The Progress primitive remains available for fully custom indicators.\n\nalign=\"end\"",
+  "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. It is read-only by default; pass `onValueChange` (with `reach` to block skipping ahead) when the host controls the active item. The Progress primitive remains available for fully custom indicators.",
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

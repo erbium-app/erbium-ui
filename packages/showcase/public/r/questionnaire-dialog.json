@@ -3,7 +3,7 @@
   "name": "questionnaire-dialog",
   "type": "registry:block",
   "title": "Questionnaire: Dialog",
-  "description": "Compose Questionnaire inside a Dialog while keeping cancellation and dismissal host-owned.\n\nalign=\"end\"",
+  "description": "Compose Questionnaire inside a Dialog while keeping cancellation and dismissal host-owned.",
   "registryDependencies": [
     "@erbium/button",
     "@erbium/dialog",

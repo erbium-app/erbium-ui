@@ -3,7 +3,7 @@
   "name": "questionnaire-validation",
   "type": "registry:block",
   "title": "Questionnaire: Custom Validation",
-  "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.\n\nalign=\"end\"",
+  "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.",
   "dependencies": ["zod@^4.6.7"],
   "registryDependencies": [
     "@erbium/card",

@@ -3,7 +3,7 @@
   "name": "questionnaire-multiple",
   "type": "registry:block",
   "title": "Questionnaire: Multiple Selection",
-  "description": "Use `multiple` for an item that accepts more than one fixed answer.\n\nalign=\"end\"",
+  "description": "Use `multiple` for an item that accepts more than one fixed answer.",
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

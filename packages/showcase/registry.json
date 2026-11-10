@@ -16321,7 +16321,7 @@
       "name": "questionnaire-animated",
       "type": "registry:block",
       "title": "Questionnaire: Animated Items",
-      "description": "Animate the active item while keeping progress and navigation stationary.\n\nalign=\"end\"",
+      "description": "Animate the active item while keeping progress and navigation stationary.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16345,7 +16345,7 @@
       "name": "questionnaire-card",
       "type": "registry:block",
       "title": "Questionnaire: Card",
-      "description": "Compose Questionnaire with Card slots while keeping the question title and description semantic.\n\nalign=\"end\"",
+      "description": "Compose Questionnaire with Card slots while keeping the question title and description semantic.",
       "registryDependencies": [
         "@erbium/card",
         "@erbium/questionnaire",
@@ -16374,7 +16374,7 @@
       "name": "questionnaire-conditional",
       "type": "registry:block",
       "title": "Questionnaire: Conditional Items",
-      "description": "Disable items that do not apply to the user's earlier answers.\n\nalign=\"end\"",
+      "description": "Disable items that do not apply to the user's earlier answers.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16398,7 +16398,7 @@
       "name": "questionnaire-controlled",
       "type": "registry:block",
       "title": "Questionnaire: Controlled",
-      "description": "Control the active item from host state, such as returning to an invalid step. The step indicator is clickable here: `reach` blocks dots beyond the furthest checkpoint, while earlier dots stay free.\n\nalign=\"end\"",
+      "description": "Control the active item from host state, such as returning to an invalid step. The step indicator is clickable here: `reach` blocks dots beyond the furthest checkpoint, while earlier dots stay free.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16436,7 +16436,7 @@
       "name": "questionnaire-dialog",
       "type": "registry:block",
       "title": "Questionnaire: Dialog",
-      "description": "Compose Questionnaire inside a Dialog while keeping cancellation and dismissal host-owned.\n\nalign=\"end\"",
+      "description": "Compose Questionnaire inside a Dialog while keeping cancellation and dismissal host-owned.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dialog",
@@ -16490,7 +16490,7 @@
       "name": "questionnaire-freeform",
       "type": "registry:block",
       "title": "Questionnaire: Freeform Answer",
-      "description": "Compose `QuestionnaireInput` with fixed choices when the user can provide another answer.\n\nalign=\"end\"",
+      "description": "Compose `QuestionnaireInput` with fixed choices when the user can provide another answer.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16514,7 +16514,7 @@
       "name": "questionnaire-multiple",
       "type": "registry:block",
       "title": "Questionnaire: Multiple Selection",
-      "description": "Use `multiple` for an item that accepts more than one fixed answer.\n\nalign=\"end\"",
+      "description": "Use `multiple` for an item that accepts more than one fixed answer.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16538,7 +16538,7 @@
       "name": "questionnaire-navigation-state",
       "type": "registry:block",
       "title": "Questionnaire: Navigation State",
-      "description": "Read item status to opt into disabled navigation and custom action styling.\n\nalign=\"end\"",
+      "description": "Read item status to opt into disabled navigation and custom action styling.",
       "dependencies": ["@shadcn/react@^0.3.1"],
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
@@ -16596,7 +16596,7 @@
       "name": "questionnaire-progress",
       "type": "registry:block",
       "title": "Questionnaire: Step Indicator",
-      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. It is read-only by default; pass `onValueChange` (with `reach` to block skipping ahead) when the host controls the active item. The Progress primitive remains available for fully custom indicators.\n\nalign=\"end\"",
+      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. It is read-only by default; pass `onValueChange` (with `reach` to block skipping ahead) when the host controls the active item. The Progress primitive remains available for fully custom indicators.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16620,7 +16620,7 @@
       "name": "questionnaire-resume",
       "type": "registry:block",
       "title": "Questionnaire: Resume",
-      "description": "Restore a saved active item and default answers, then reset changes back to that saved state.\n\nalign=\"end\"",
+      "description": "Restore a saved active item and default answers, then reset changes back to that saved state.",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/questionnaire",
@@ -16649,7 +16649,7 @@
       "name": "questionnaire-shortcuts",
       "type": "registry:block",
       "title": "Questionnaire: Shortcuts",
-      "description": "Assign a letter or number key to each answer with `shortcuts`.\n\nalign=\"end\"",
+      "description": "Assign a letter or number key to each answer with `shortcuts`.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -16673,7 +16673,7 @@
       "name": "questionnaire-skip",
       "type": "registry:block",
       "title": "Questionnaire: Explicit Skip",
-      "description": "Add `QuestionnaireSkip` when an optional item may be intentionally left unanswered.\n\nalign=\"end\"",
+      "description": "Add `QuestionnaireSkip` when an optional item may be intentionally left unanswered.",
       "dependencies": ["@shadcn/react@^0.3.1"],
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
@@ -16889,7 +16889,7 @@
       "name": "questionnaire-submit-state",
       "type": "registry:block",
       "title": "Questionnaire: Submit State",
-      "description": "`QuestionnaireSubmit` is a Stateful Button. Own the request in `onSubmit` and pass `state` (`idle`, `loading`, `success`) with `onStateChange`; the button shows the spinner and success label, blocks repeat submits, and resets after `successDuration`. Omit `state` and it behaves like a normal button.\n\nalign=\"end\"",
+      "description": "`QuestionnaireSubmit` is a Stateful Button. Own the request in `onSubmit` and pass `state` (`idle`, `loading`, `success`) with `onStateChange`; the button shows the spinner and success label, blocks repeat submits, and resets after `successDuration`. Omit `state` and it behaves like a normal button.",
       "registryDependencies": [
         "@erbium/questionnaire",
         "@erbium/stateful-button",
@@ -16913,7 +16913,7 @@
       "name": "questionnaire-validation",
       "type": "registry:block",
       "title": "Questionnaire: Custom Validation",
-      "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.\n\nalign=\"end\"",
+      "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.",
       "dependencies": ["zod@^4.6.7"],
       "registryDependencies": [
         "@erbium/card",

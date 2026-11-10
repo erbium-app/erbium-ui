@@ -3,7 +3,7 @@
   "name": "questionnaire-conditional",
   "type": "registry:block",
   "title": "Questionnaire: Conditional Items",
-  "description": "Disable items that do not apply to the user's earlier answers.\n\nalign=\"end\"",
+  "description": "Disable items that do not apply to the user's earlier answers.",
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

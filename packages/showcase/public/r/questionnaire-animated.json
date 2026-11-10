@@ -3,7 +3,7 @@
   "name": "questionnaire-animated",
   "type": "registry:block",
   "title": "Questionnaire: Animated Items",
-  "description": "Animate the active item while keeping progress and navigation stationary.\n\nalign=\"end\"",
+  "description": "Animate the active item while keeping progress and navigation stationary.",
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

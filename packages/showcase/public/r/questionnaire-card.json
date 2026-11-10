@@ -3,7 +3,7 @@
   "name": "questionnaire-card",
   "type": "registry:block",
   "title": "Questionnaire: Card",
-  "description": "Compose Questionnaire with Card slots while keeping the question title and description semantic.\n\nalign=\"end\"",
+  "description": "Compose Questionnaire with Card slots while keeping the question title and description semantic.",
   "registryDependencies": [
     "@erbium/card",
     "@erbium/questionnaire",

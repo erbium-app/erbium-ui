@@ -3,7 +3,7 @@
   "name": "questionnaire-shortcuts",
   "type": "registry:block",
   "title": "Questionnaire: Shortcuts",
-  "description": "Assign a letter or number key to each answer with `shortcuts`.\n\nalign=\"end\"",
+  "description": "Assign a letter or number key to each answer with `shortcuts`.",
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [
     {

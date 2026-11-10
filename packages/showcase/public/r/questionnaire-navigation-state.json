@@ -3,7 +3,7 @@
   "name": "questionnaire-navigation-state",
   "type": "registry:block",
   "title": "Questionnaire: Navigation State",
-  "description": "Read item status to opt into disabled navigation and custom action styling.\n\nalign=\"end\"",
+  "description": "Read item status to opt into disabled navigation and custom action styling.",
   "dependencies": ["@shadcn/react@^0.3.1"],
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
   "files": [

@@ -3,7 +3,7 @@
   "name": "questionnaire-resume",
   "type": "registry:block",
   "title": "Questionnaire: Resume",
-  "description": "Restore a saved active item and default answers, then reset changes back to that saved state.\n\nalign=\"end\"",
+  "description": "Restore a saved active item and default answers, then reset changes back to that saved state.",
   "registryDependencies": [
     "@erbium/button",
     "@erbium/questionnaire",

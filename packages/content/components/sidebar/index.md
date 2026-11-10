@@ -106,30 +106,6 @@ SidebarProvider
 
 - **SidebarTrigger** — Control that toggles the sidebar open or collapsed.
 
-src="/images/sidebar-structure.png"
-
-width="716"
-
-height="420"
-
-alt="Sidebar Structure"
-
-className="mt-6 w-full overflow-hidden rounded-2xl border dark:hidden"
-
-/>
-
-src="/images/sidebar-structure-dark.png"
-
-width="716"
-
-height="420"
-
-alt="Sidebar Structure"
-
-className="mt-6 hidden w-full overflow-hidden rounded-2xl border dark:block"
-
-/>
-
 ## SidebarProvider
 
 The `SidebarProvider` component is used to provide the sidebar context to the `Sidebar` component. You should always wrap your application in a `SidebarProvider` component.
@@ -301,30 +277,6 @@ To make a `SidebarGroup` collapsible, wrap it in a `Collapsible`.
 
 The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 
-src="/images/sidebar-menu.png"
-
-width="716"
-
-height="420"
-
-alt="Sidebar Menu"
-
-className="mt-6 w-full overflow-hidden rounded-2xl border dark:hidden"
-
-/>
-
-src="/images/sidebar-menu-dark.png"
-
-width="716"
-
-height="420"
-
-alt="Sidebar Menu"
-
-className="mt-6 hidden w-full overflow-hidden rounded-2xl border dark:block"
-
-/>
-
 ```tsx
 <SidebarMenu>
   {projects.map((project) => (
@@ -439,7 +391,18 @@ The `SidebarRail` component is used to render a rail within a `Sidebar`. This ra
 
 ## Theming
 
-We use the following CSS variables to theme the sidebar.
+The sidebar uses its own CSS variables, defined for light and dark themes in `@erbium/ui/globals.css`. Override them to theme the sidebar separately from the rest of the app.
+
+| Variable                       | Use                                         |
+| ------------------------------ | ------------------------------------------- |
+| `--sidebar`                    | Sidebar background.                         |
+| `--sidebar-foreground`         | Default text and icon color.                |
+| `--sidebar-primary`            | Emphasized content you add, such as a logo. |
+| `--sidebar-primary-foreground` | Text on `--sidebar-primary`.                |
+| `--sidebar-accent`             | Hover and active menu item background.      |
+| `--sidebar-accent-foreground`  | Text on `--sidebar-accent`.                 |
+| `--sidebar-border`             | Borders and separators.                     |
+| `--sidebar-ring`               | Focus ring.                                 |
 
 ## Styling
 
