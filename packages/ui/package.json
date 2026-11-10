@@ -45,6 +45,7 @@
     "@hugeicons/react": "catalog:",
     "@pierre/diffs": "1.6.4",
     "@pierre/trees": "1.0.0",
+    "@ramka/react": "^0.0.2",
     "@shadcn/react": "catalog:",
     "@tanstack/charts": "catalog:",
     "@tanstack/hotkeys": "^0.27.1",

@@ -13496,6 +13496,58 @@
       ]
     },
     {
+      "description": "All lightbox examples.",
+      "name": "lightbox-examples",
+      "registryDependencies": ["@erbium-examples/lightbox-gallery"],
+      "title": "Lightbox examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "lightbox-gallery",
+      "type": "registry:component",
+      "title": "Lightbox: Gallery",
+      "description": "Open any image. Select an image in the bottom thumbnail strip, use the arrow keys, or swipe to change slides. Use the zoom buttons or pinch to inspect an image. Click the background or press Escape to close.",
+      "registryDependencies": ["@erbium/lightbox", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/lightbox/variants/gallery.tsx",
+          "target": "@components/showcase/lightbox/variants/gallery.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "lightbox-stories",
+      "type": "registry:item",
+      "title": "Lightbox stories",
+      "description": "All lightbox variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/lightbox",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/lightbox/lightbox.stories.tsx",
+          "target": "@components/showcase/lightbox/lightbox.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/lightbox/variants/gallery.tsx",
+          "target": "@components/showcase/lightbox/variants/gallery.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "marker-border",
       "type": "registry:block",
       "title": "Marker: Border",

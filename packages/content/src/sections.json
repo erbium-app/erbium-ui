@@ -85,7 +85,15 @@
     "title": "Blocks",
     "slug": "blocks",
     "kind": "block",
-    "names": ["code-block", "copy-button", "diff-view", "file-view", "file-tree", "step-indicator"]
+    "names": [
+      "code-block",
+      "copy-button",
+      "diff-view",
+      "file-view",
+      "file-tree",
+      "lightbox",
+      "step-indicator"
+    ]
   },
   {
     "title": "Hooks",

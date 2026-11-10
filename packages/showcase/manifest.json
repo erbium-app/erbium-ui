@@ -2526,6 +2526,18 @@
     ]
   },
   {
+    "name": "lightbox",
+    "title": "Blocks/Lightbox",
+    "variants": [
+      {
+        "exportName": "Gallery",
+        "slug": "gallery",
+        "source": "src/lightbox/variants/gallery.tsx",
+        "title": "Gallery"
+      }
+    ]
+  },
+  {
     "name": "marker",
     "title": "Components/Marker",
     "variants": [

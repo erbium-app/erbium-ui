@@ -1,0 +1,416 @@
+import type { ComponentProps } from "react";
+import * as LightboxPrimitive from "@ramka/react/lightbox";
+import {
+  ArrowLeft01Icon,
+  ArrowRight01Icon,
+  Cancel01Icon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
+import { cn } from "../lib/utils";
+import { Button } from "../components/button";
+
+/*!
+ * Adapted from https://chanhdai.com/components/lightbox
+ *
+ * MIT License
+ *
+ * Copyright (c) 2026 Chánh Đại
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+type ButtonStyleProps = Pick<ComponentProps<typeof Button>, "variant" | "size">;
+
+type LightboxHandle = LightboxPrimitive.LightboxHandle;
+
+const createLightboxHandle = LightboxPrimitive.createHandle;
+
+const Lightbox = (props: ComponentProps<typeof LightboxPrimitive.Root>) => (
+  <LightboxPrimitive.Root {...props} />
+);
+
+const LightboxTrigger = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Trigger>) => (
+  <LightboxPrimitive.Trigger
+    data-slot="lightbox-trigger"
+    className={cn(
+      "cursor-zoom-in outline-none focus-visible:ring-control focus-visible:ring-ring",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxPortal = (props: ComponentProps<typeof LightboxPrimitive.Portal>) => (
+  <LightboxPrimitive.Portal data-slot="lightbox-portal" {...props} />
+);
+
+const LightboxBackdrop = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Backdrop>) => (
+  <LightboxPrimitive.Backdrop
+    data-slot="lightbox-backdrop"
+    className={cn(
+      "fixed inset-0 isolate z-50 bg-overlay-backdrop opacity-0 supports-backdrop-filter:backdrop-blur-(--overlay-backdrop-blur,2px)",
+      // Pull-snap timing exists only while a cancelled pull springs back.
+      "transition-opacity duration-(--lightbox-pull-snap-duration,var(--lightbox-vt-duration,360ms)) ease-(--lightbox-pull-snap-easing,cubic-bezier(0.16,1,0.3,1))",
+      "[--lightbox-backdrop-opacity:calc(1-var(--lightbox-pull-progress,0)*0.6)] data-open:opacity-(--lightbox-backdrop-opacity) data-open:starting:opacity-0",
+      "data-pulling:transition-none motion-reduce:transition-none",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxContent = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Content>) => (
+  <LightboxPortal>
+    <LightboxBackdrop />
+    <LightboxPrimitive.Content
+      data-slot="lightbox-content"
+      className={cn(
+        "group/lightbox fixed inset-0 z-50 flex flex-col overscroll-contain opacity-0 outline-none",
+        "transition-opacity duration-(--lightbox-vt-duration,360ms) ease-out",
+        "data-open:opacity-100 data-open:starting:opacity-0 motion-reduce:transition-none",
+        // Shared by the slides, header, and footer so they stay aligned.
+        "[--lb-safe-top:env(safe-area-inset-top,0px)] [--lb-safe-bottom:env(safe-area-inset-bottom,0px)]",
+        "[--lb-inset-bottom:calc(4rem+var(--lb-safe-bottom))] [--lb-inset-top:calc(4rem+var(--lb-safe-top))] [--lb-inset-x:0px]",
+        "md:[--lb-inset-bottom:calc(4.5rem+var(--lb-safe-bottom))] md:[--lb-inset-top:calc(4.5rem+var(--lb-safe-top))] md:[--lb-inset-x:4.5rem]",
+        "has-data-[slot=lightbox-thumbnail-strip]:[--lb-inset-bottom:calc(8rem+var(--lb-safe-bottom))]",
+        className,
+      )}
+      {...props}
+    />
+  </LightboxPortal>
+);
+
+// Keep empty layout boxes transparent to the dialog's native scrim handler.
+const LightboxStage = ({ className, ...props }: ComponentProps<typeof LightboxPrimitive.Stage>) => (
+  <LightboxPrimitive.Stage
+    data-slot="lightbox-stage"
+    className={cn(
+      "pointer-events-none [&>:not([data-ramka-slides],[data-ramka-item],[data-ramka-zoom])]:pointer-events-auto",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxSlides = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Slides>) => (
+  <LightboxPrimitive.Slides
+    data-slot="lightbox-slides"
+    className={cn(
+      "pointer-events-none flex-1 scrollbar-none gap-4 md:gap-0 [&::-webkit-scrollbar]:hidden",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxSlide = ({ className, ...props }: ComponentProps<typeof LightboxPrimitive.Slide>) => (
+  <LightboxPrimitive.Slide
+    data-slot="lightbox-slide"
+    className={cn(
+      "h-full min-w-full flex-[0_0_100%] px-(--lb-inset-x) pt-(--lb-inset-top) pb-(--lb-inset-bottom)",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxItem = ({ className, ...props }: ComponentProps<typeof LightboxPrimitive.Item>) => (
+  <LightboxPrimitive.Item
+    data-slot="lightbox-item"
+    className={cn("pointer-events-none [&>:not([data-ramka-zoom])]:pointer-events-auto", className)}
+    {...props}
+  />
+);
+
+const LightboxZoom = ({ className, ...props }: ComponentProps<typeof LightboxPrimitive.Zoom>) => (
+  <LightboxPrimitive.Zoom
+    data-slot="lightbox-zoom"
+    // Ramka wraps the media in a full-size div for pan and zoom transforms.
+    className={cn("pointer-events-none cursor-zoom-in [&>div>*]:pointer-events-auto", className)}
+    {...props}
+  />
+);
+
+const LightboxMedia = ({ className, ...props }: ComponentProps<typeof LightboxPrimitive.Media>) => (
+  <LightboxPrimitive.Media
+    data-slot="lightbox-media"
+    className={cn(
+      "pointer-events-auto overflow-hidden md:rounded-lg [&_img]:select-none",
+      // Keeps image edges from blending into the backdrop.
+      "after:pointer-events-none after:absolute after:inset-0 after:z-10 md:after:rounded-lg md:after:inset-ring md:after:inset-ring-foreground/10",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxHeader = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    data-slot="lightbox-header"
+    className={cn(
+      "pointer-events-none absolute inset-x-0 top-0 z-10 flex h-(--lb-inset-top) items-center justify-end gap-2 px-3 pt-(--lb-safe-top) *:pointer-events-auto",
+      "transition-opacity duration-200 motion-reduce:transition-none",
+      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxFooter = ({ className, ...props }: ComponentProps<"div">) => (
+  <div
+    data-slot="lightbox-footer"
+    className={cn(
+      "pointer-events-none absolute inset-x-0 bottom-0 z-10 flex h-(--lb-inset-bottom) flex-col items-center justify-center gap-2 px-4 pb-(--lb-safe-bottom) text-center *:pointer-events-auto",
+      "transition-opacity duration-200 motion-reduce:transition-none",
+      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      "group-data-zoomed/lightbox:invisible group-data-zoomed/lightbox:opacity-0",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxClose = ({
+  variant = "secondary",
+  size = "icon",
+  children,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Close> & ButtonStyleProps) => (
+  <LightboxPrimitive.Close
+    data-slot="lightbox-close"
+    render={<Button variant={variant} size={size} />}
+    {...props}
+  >
+    {children ?? (
+      <>
+        <HugeiconsIcon aria-hidden icon={Cancel01Icon} />
+        <span className="sr-only">Close</span>
+      </>
+    )}
+  </LightboxPrimitive.Close>
+);
+
+const LightboxZoomIn = ({
+  variant = "secondary",
+  size = "icon",
+  children,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.ZoomIn> & ButtonStyleProps) => (
+  <LightboxPrimitive.ZoomIn
+    data-slot="lightbox-zoom-in"
+    render={<Button variant={variant} size={size} />}
+    {...props}
+  >
+    {children ?? (
+      <>
+        <HugeiconsIcon aria-hidden icon={ZoomInIcon} />
+        <span className="sr-only">Zoom in</span>
+      </>
+    )}
+  </LightboxPrimitive.ZoomIn>
+);
+
+const LightboxZoomOut = ({
+  variant = "secondary",
+  size = "icon",
+  children,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.ZoomOut> & ButtonStyleProps) => (
+  <LightboxPrimitive.ZoomOut
+    data-slot="lightbox-zoom-out"
+    render={<Button variant={variant} size={size} />}
+    {...props}
+  >
+    {children ?? (
+      <>
+        <HugeiconsIcon aria-hidden icon={ZoomOutIcon} />
+        <span className="sr-only">Zoom out</span>
+      </>
+    )}
+  </LightboxPrimitive.ZoomOut>
+);
+
+const LightboxPrevious = ({
+  className,
+  variant = "secondary",
+  size = "icon",
+  children,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Previous> & ButtonStyleProps) => (
+  <LightboxPrimitive.Previous
+    data-slot="lightbox-previous"
+    render={<Button variant={variant} size={size} />}
+    className={cn(
+      "absolute inset-s-4 top-1/2 z-10 -translate-y-1/2 max-md:hidden rtl:[&_svg]:rotate-180",
+      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      className,
+    )}
+    {...props}
+  >
+    {children ?? (
+      <>
+        <HugeiconsIcon aria-hidden icon={ArrowLeft01Icon} />
+        <span className="sr-only">Previous</span>
+      </>
+    )}
+  </LightboxPrimitive.Previous>
+);
+
+const LightboxNext = ({
+  className,
+  variant = "secondary",
+  size = "icon",
+  children,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Next> & ButtonStyleProps) => (
+  <LightboxPrimitive.Next
+    data-slot="lightbox-next"
+    render={<Button variant={variant} size={size} />}
+    className={cn(
+      "absolute inset-e-4 top-1/2 z-10 -translate-y-1/2 max-md:hidden rtl:[&_svg]:rotate-180",
+      "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      className,
+    )}
+    {...props}
+  >
+    {children ?? (
+      <>
+        <HugeiconsIcon aria-hidden icon={ArrowRight01Icon} />
+        <span className="sr-only">Next</span>
+      </>
+    )}
+  </LightboxPrimitive.Next>
+);
+
+const LightboxCounter = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Counter>) => (
+  <LightboxPrimitive.Counter
+    data-slot="lightbox-counter"
+    className={cn("text-control-sm text-muted-foreground tabular-nums", className)}
+    {...props}
+  />
+);
+
+const LightboxCaption = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Caption>) => (
+  <LightboxPrimitive.Caption
+    data-slot="lightbox-caption"
+    className={cn(
+      "max-w-full truncate text-control-sm font-medium text-foreground select-text",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxThumbnailGroup = (props: ComponentProps<typeof LightboxPrimitive.ThumbnailGroup>) => (
+  <LightboxPrimitive.ThumbnailGroup data-slot="lightbox-thumbnail-group" {...props} />
+);
+
+const LightboxThumbnailStrip = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.ThumbnailStrip>) => (
+  <LightboxPrimitive.ThumbnailStrip
+    data-slot="lightbox-thumbnail-strip"
+    className={cn(
+      "w-full py-1",
+      "[mask-image:linear-gradient(to_right,transparent,#0003_0.625rem,#000c_1.875rem,black_2.5rem,black_calc(100%-2.5rem),#000c_calc(100%-1.875rem),#0003_calc(100%-0.625rem),transparent)]",
+      className,
+    )}
+    {...props}
+  />
+);
+
+const LightboxThumbnailStripTrack = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.ThumbnailStripTrack>) => (
+  <LightboxPrimitive.ThumbnailStripTrack
+    data-slot="lightbox-thumbnail-strip-track"
+    className={cn("flex w-max items-center gap-2", className)}
+    {...props}
+  />
+);
+
+const LightboxThumbnail = ({
+  className,
+  ...props
+}: ComponentProps<typeof LightboxPrimitive.Thumbnail>) => (
+  <LightboxPrimitive.Thumbnail
+    data-slot="lightbox-thumbnail"
+    className={cn(
+      "surface-flat inline-flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-transparent p-0.5 outline-none",
+      "transition-button duration-150 motion-reduce:transition-none data-active:border-primary focus-visible:border-ring",
+      "[&_img]:size-full [&_img]:rounded-sm [&_img]:object-cover",
+      className,
+    )}
+    {...props}
+  />
+);
+
+export {
+  createLightboxHandle,
+  Lightbox,
+  LightboxBackdrop,
+  LightboxCaption,
+  LightboxClose,
+  LightboxContent,
+  LightboxCounter,
+  LightboxFooter,
+  LightboxHeader,
+  LightboxItem,
+  LightboxMedia,
+  LightboxNext,
+  LightboxPortal,
+  LightboxPrevious,
+  LightboxSlide,
+  LightboxSlides,
+  LightboxStage,
+  LightboxThumbnail,
+  LightboxThumbnailGroup,
+  LightboxThumbnailStrip,
+  LightboxThumbnailStripTrack,
+  LightboxTrigger,
+  LightboxZoom,
+  LightboxZoomIn,
+  LightboxZoomOut,
+};
+
+export type { LightboxHandle };

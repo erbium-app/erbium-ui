@@ -65,6 +65,7 @@
   --overlay-base: oklch(0% 0 none);
   --cursor-shadow: oklch(0% 0 none / 53%);
   --overlay-backdrop: oklch(0% 0 none / 20%);
+  --overlay-backdrop-blur: 2px;
   --chart-1: oklch(50.164705% 0.10150137 159.82321deg);
   --chart-2: oklch(51.090855% 0.1118396 248.47664deg);
   --chart-3: oklch(61.20257% 0.09479754 209.85414deg);

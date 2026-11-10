@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All lightbox examples.",
+  "name": "lightbox-examples",
+  "registryDependencies": ["@erbium-examples/lightbox-gallery"],
+  "title": "Lightbox examples",
+  "type": "registry:item"
+}

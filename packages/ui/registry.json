@@ -963,6 +963,21 @@
       ]
     },
     {
+      "name": "lightbox",
+      "type": "registry:block",
+      "title": "Lightbox",
+      "description": "Erbium lightbox block.",
+      "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@ramka/react"],
+      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/blocks/lightbox.tsx",
+          "target": "@components/blocks/lightbox.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "marker",
       "type": "registry:ui",
       "title": "Marker",
