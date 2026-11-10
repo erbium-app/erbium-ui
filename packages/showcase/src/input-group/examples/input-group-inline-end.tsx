@@ -7,9 +7,9 @@ export const InputGroupInlineEnd = () => (
   <Field className="max-w-sm">
     <FieldLabel>Input</FieldLabel>
     <InputGroup>
-      <InputGroupInput type="password" placeholder="Enter password" />
+      <InputGroupInput type="email" placeholder="Enter email" />
       <InputGroupAddon align="inline-end">
-        <Icon name="eye-off" />
+        <Icon name="mail-01" />
       </InputGroupAddon>
     </InputGroup>
     <FieldDescription>Icon positioned at the end.</FieldDescription>

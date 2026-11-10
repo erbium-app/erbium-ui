@@ -18,3 +18,5 @@ import { Input } from "@erbium/ui/components/input";
 ```tsx
 <Input />
 ```
+
+For passwords, use [Password Input](/docs/components/password-input) instead of `type="password"`.

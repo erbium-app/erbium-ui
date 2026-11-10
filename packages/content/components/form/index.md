@@ -57,12 +57,15 @@ Inside `form.AppField`, the `field` render argument carries Erbium's bound compo
 | Component             | Use                                                                                     |
 | --------------------- | --------------------------------------------------------------------------------------- |
 | `field.TextField`     | Label, `Input`, description, and error for a string.                                    |
+| `field.PasswordField` | Label, `PasswordInput`, description, and error for a password string.                   |
 | `field.TextareaField` | Label, `Textarea`, description, and error for a string.                                 |
 | `field.CheckboxField` | `Checkbox` with its label and description for a boolean.                                |
 | `field.SwitchField`   | `Switch` after its label and description for a boolean.                                 |
 | `field.OTPField`      | `OTPField` bound to a string. Validation drives its pending, error, and success states. |
 | `field.Field`         | `Field` with `name`, `invalid`, `touched`, and `dirty` bound, for your own composition. |
 | `field.FieldError`    | `FieldError` showing the field's messages.                                              |
+
+Use `field.PasswordField` for passwords rather than `field.TextField` with `type="password"`: it adds the show and hide toggle, and pressing the toggle does not touch the field. See [Password Input](/docs/components/password-input).
 
 A field shows its errors only after it is touched; typing, blurring, and submitting all touch it. Errors are decoded from strings or Standard Schema issues, so Effect Schema messages and plain validator strings render the same way. `FieldDescription` steps aside while an error shows. Each rejected submit shakes the invalid controls.
 

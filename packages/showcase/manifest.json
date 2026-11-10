@@ -2302,6 +2302,12 @@
         "title": "Input Group"
       },
       {
+        "exportName": "Password",
+        "slug": "password",
+        "source": "src/input/variants/password.tsx",
+        "title": "Password"
+      },
+      {
         "exportName": "ButtonGroup",
         "slug": "button-group",
         "source": "src/input/variants/button-group.tsx",
@@ -2978,6 +2984,60 @@
         "slug": "icons-only",
         "source": "src/pagination/variants/icons-only.tsx",
         "title": "Icons Only"
+      }
+    ]
+  },
+  {
+    "name": "password-input",
+    "title": "Components/Password Input",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/password-input/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/password-input/variants/overview.tsx",
+        "title": "Overview"
+      },
+      {
+        "exportName": "NewPassword",
+        "slug": "new-password",
+        "source": "src/password-input/variants/new-password.tsx",
+        "title": "New Password"
+      },
+      {
+        "exportName": "Form",
+        "slug": "form",
+        "source": "src/password-input/variants/form.tsx",
+        "title": "Form"
+      },
+      {
+        "exportName": "Controlled",
+        "slug": "controlled",
+        "source": "src/password-input/variants/controlled.tsx",
+        "title": "Controlled"
+      },
+      {
+        "exportName": "Custom",
+        "slug": "custom",
+        "source": "src/password-input/variants/custom.tsx",
+        "title": "Custom"
+      },
+      {
+        "exportName": "Disabled",
+        "slug": "disabled",
+        "source": "src/password-input/variants/disabled.tsx",
+        "title": "Disabled"
+      },
+      {
+        "exportName": "Invalid",
+        "slug": "invalid",
+        "source": "src/password-input/variants/invalid.tsx",
+        "title": "Invalid"
       }
     ]
   },

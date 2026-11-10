@@ -9,6 +9,7 @@ import {
 } from "@erbium/ui/components/card";
 import { Input } from "@erbium/ui/components/input";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
+import { PasswordInput } from "@erbium/ui/components/password-input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";
 
 const TabsDemo = () => (
@@ -52,11 +53,11 @@ const TabsDemo = () => (
           <CardContent className="grid gap-section">
             <Field>
               <FieldLabel>Current password</FieldLabel>
-              <Input type="password" />
+              <PasswordInput />
             </Field>
             <Field>
               <FieldLabel>New password</FieldLabel>
-              <Input type="password" />
+              <PasswordInput autoComplete="new-password" />
             </Field>
           </CardContent>
           <CardFooter>

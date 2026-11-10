@@ -18,6 +18,7 @@
     "@erbium-examples/input-required",
     "@erbium-examples/input-badge",
     "@erbium-examples/input-input-group",
+    "@erbium-examples/input-password",
     "@erbium-examples/input-button-group",
     "@erbium-examples/input-form"
   ],

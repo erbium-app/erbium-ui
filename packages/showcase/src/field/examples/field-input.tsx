@@ -6,6 +6,7 @@ import {
   FieldSet,
 } from "@erbium/ui/components/field";
 import { Input } from "@erbium/ui/components/input";
+import { PasswordInput } from "@erbium/ui/components/password-input";
 
 const FieldInput = () => (
   <div className="w-full max-w-md">
@@ -19,7 +20,7 @@ const FieldInput = () => (
         <Field>
           <FieldLabel>Password</FieldLabel>
           <FieldDescription>Must be at least 8 characters long.</FieldDescription>
-          <Input type="password" placeholder="••••••••" />
+          <PasswordInput autoComplete="new-password" placeholder="••••••••" />
         </Field>
       </FieldGroup>
     </FieldSet>

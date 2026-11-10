@@ -10,6 +10,7 @@ import {
 } from "@erbium/ui/components/card";
 import { Input } from "@erbium/ui/components/input";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
+import { PasswordInput } from "@erbium/ui/components/password-input";
 import { StatefulButton } from "@erbium/ui/components/stateful-button";
 
 const CardDemo = () => (
@@ -37,13 +38,13 @@ const CardDemo = () => (
             <div className="flex items-center">
               <FieldLabel>Password</FieldLabel>
               <a
-                href="#"
+                href="/forgot-password"
                 className="ml-auto inline-block text-caption underline-offset-4 hover:underline"
               >
                 Forgot your password?
               </a>
             </div>
-            <Input type="password" required />
+            <PasswordInput required />
           </Field>
         </div>
       </form>

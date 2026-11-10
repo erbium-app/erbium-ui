@@ -64,6 +64,10 @@ import InputGroupExample from "./variants/input-group";
 
 import InputGroupSource from "./variants/input-group.tsx?raw";
 
+import PasswordExample from "./variants/password";
+
+import PasswordSource from "./variants/password.tsx?raw";
+
 import ButtonGroupExample from "./variants/button-group";
 
 import ButtonGroupSource from "./variants/button-group.tsx?raw";
@@ -94,7 +98,7 @@ export const Playground: StoryObj<typeof Input> = {
     disabled: { control: "boolean" },
     type: {
       control: "select",
-      options: ["text", "email", "password", "number", "search", "date", "file"],
+      options: ["text", "email", "number", "search", "date", "file"],
     },
   },
   args: { className: "", disabled: false, placeholder: "Type here", type: "text" },
@@ -248,6 +252,16 @@ export const InputGroup: Story = {
     },
   },
   render: InputGroupExample,
+};
+
+export const Password: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("input", "password") },
+      source: { code: PasswordSource },
+    },
+  },
+  render: PasswordExample,
 };
 
 export const ButtonGroup: Story = {

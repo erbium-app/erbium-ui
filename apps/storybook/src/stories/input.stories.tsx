@@ -33,6 +33,8 @@ export const Badge = { ...showcases.Badge, name: "Badge" };
 
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
 
+export const Password = { ...showcases.Password, name: "Password" };
+
 export const ButtonGroup = { ...showcases.ButtonGroup, name: "Button Group" };
 
 export const Form = { ...showcases.Form, name: "Form" };

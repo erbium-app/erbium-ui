@@ -837,6 +837,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/otp-field",
+        "@erbium/password-input",
         "@erbium/shake",
         "@erbium/stateful-button",
         "@erbium/switch",
@@ -1171,6 +1172,26 @@
         {
           "path": "src/components/pagination.tsx",
           "target": "@ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "Erbium password input component.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/stateful-icon",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/password-input.tsx",
+          "target": "@ui/password-input.tsx",
           "type": "registry:ui"
         }
       ]

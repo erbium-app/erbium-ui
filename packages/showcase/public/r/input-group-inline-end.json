@@ -3,7 +3,7 @@
   "name": "input-group-inline-end",
   "type": "registry:block",
   "title": "Input Group: Inline End",
-  "description": "Position an addon at the inline end of the input.",
+  "description": "Position an addon at the inline end of the input. For a password, use [Password Input](/docs/components/password-input), which places a show and hide toggle there for you.",
   "registryDependencies": [
     "@erbium/field",
     "@erbium/icon",
@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport const InputGroupInlineEnd = () => (\n  <Field className=\"max-w-sm\">\n    <FieldLabel>Input</FieldLabel>\n    <InputGroup>\n      <InputGroupInput type=\"password\" placeholder=\"Enter password\" />\n      <InputGroupAddon align=\"inline-end\">\n        <Icon name=\"eye-off\" />\n      </InputGroupAddon>\n    </InputGroup>\n    <FieldDescription>Icon positioned at the end.</FieldDescription>\n  </Field>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport const InputGroupInlineEnd = () => (\n  <Field className=\"max-w-sm\">\n    <FieldLabel>Input</FieldLabel>\n    <InputGroup>\n      <InputGroupInput type=\"email\" placeholder=\"Enter email\" />\n      <InputGroupAddon align=\"inline-end\">\n        <Icon name=\"mail-01\" />\n      </InputGroupAddon>\n    </InputGroup>\n    <FieldDescription>Icon positioned at the end.</FieldDescription>\n  </Field>\n);\n",
       "path": "src/input-group/examples/input-group-inline-end.tsx",
       "target": "@components/showcase/input-group/examples/input-group-inline-end.tsx",
       "type": "registry:component"

@@ -4811,6 +4811,7 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/input",
+        "@erbium/password-input",
         "@erbium/stateful-button",
         "@erbium/styles"
       ],
@@ -4873,6 +4874,7 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/input",
+        "@erbium/password-input",
         "@erbium/stateful-button",
         "@erbium/styles"
       ],
@@ -4935,6 +4937,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/password-input",
         "@erbium/separator",
         "@erbium/stateful-button",
         "@erbium/styles",
@@ -10699,7 +10702,12 @@
       "type": "registry:block",
       "title": "Field: Input",
       "description": "Compose a field with a labeled input.",
-      "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/password-input",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/field/examples/field-input.tsx",
@@ -10930,6 +10938,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/password-input",
         "@erbium/radio-group",
         "@erbium/select",
         "@erbium/slider",
@@ -11868,6 +11877,7 @@
         "@erbium-examples/input-required",
         "@erbium-examples/input-badge",
         "@erbium-examples/input-input-group",
+        "@erbium-examples/input-password",
         "@erbium-examples/input-button-group",
         "@erbium-examples/input-form"
       ],
@@ -12167,7 +12177,7 @@
       "name": "input-group-inline-end",
       "type": "registry:block",
       "title": "Input Group: Inline End",
-      "description": "Position an addon at the inline end of the input.",
+      "description": "Position an addon at the inline end of the input. For a password, use [Password Input](/docs/components/password-input), which places a show and hide toggle there for you.",
       "registryDependencies": [
         "@erbium/field",
         "@erbium/icon",
@@ -12554,6 +12564,25 @@
       ]
     },
     {
+      "name": "input-password",
+      "type": "registry:block",
+      "title": "Input: Password",
+      "description": "Do not use `Input type=\"password\"` for passwords. Use [Password Input](/docs/components/password-input): it adds a show and hide toggle, sets password-manager autocomplete, and keeps focus in the input while the toggle is pressed.",
+      "registryDependencies": ["@erbium/field", "@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/input/examples/input-password.tsx",
+          "target": "@components/showcase/input/examples/input-password.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/input/variants/password.tsx",
+          "target": "@components/showcase/input/variants/password.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "input-playground",
       "type": "registry:component",
       "title": "Input: Playground",
@@ -12602,6 +12631,7 @@
         "@erbium/input",
         "@erbium/input-group",
         "@erbium/overlay-provider",
+        "@erbium/password-input",
         "@erbium/select",
         "@erbium/styles",
         "@erbium/toast"
@@ -12665,6 +12695,11 @@
         {
           "path": "src/input/examples/input-input-group.tsx",
           "target": "@components/showcase/input/examples/input-input-group.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/input/examples/input-password.tsx",
+          "target": "@components/showcase/input/examples/input-password.tsx",
           "type": "registry:component"
         },
         {
@@ -12750,6 +12785,11 @@
         {
           "path": "src/input/variants/overview.tsx",
           "target": "@components/showcase/input/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/input/variants/password.tsx",
+          "target": "@components/showcase/input/variants/password.tsx",
           "type": "registry:component"
         },
         {
@@ -15853,6 +15893,302 @@
         {
           "path": "src/pagination/variants/simple.tsx",
           "target": "@components/showcase/pagination/variants/simple.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-controlled",
+      "type": "registry:block",
+      "title": "Password Input: Controlled",
+      "description": "Pass `visible` and `onVisibleChange` to control visibility. Here one state shows the new password and its confirmation together, from either toggle or the checkbox.",
+      "registryDependencies": [
+        "@erbium/checkbox",
+        "@erbium/field",
+        "@erbium/password-input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-controlled.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-controlled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/controlled.tsx",
+          "target": "@components/showcase/password-input/variants/controlled.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-custom",
+      "type": "registry:block",
+      "title": "Password Input: Custom",
+      "description": "Compose `PasswordInputRoot`, `PasswordInputControl`, and `PasswordInputToggle` to add other addons, such as a leading icon. Give the toggle an `aria-label` that matches the field, here \"Show passphrase\".",
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/password-input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-custom.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-custom.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/custom.tsx",
+          "target": "@components/showcase/password-input/variants/custom.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-demo",
+      "type": "registry:component",
+      "title": "password input demo",
+      "description": "Erbium password input demo example.",
+      "registryDependencies": ["@erbium/field", "@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-demo.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-disabled",
+      "type": "registry:block",
+      "title": "Password Input: Disabled",
+      "description": "A disabled `Field` disables the input and the toggle. Pass `disabled` to `PasswordInput` for the same result outside a field.",
+      "registryDependencies": ["@erbium/field", "@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-disabled.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-disabled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/disabled.tsx",
+          "target": "@components/showcase/password-input/variants/disabled.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All password-input examples.",
+      "name": "password-input-examples",
+      "registryDependencies": [
+        "@erbium-examples/password-input-playground",
+        "@erbium-examples/password-input-overview",
+        "@erbium-examples/password-input-new-password",
+        "@erbium-examples/password-input-form",
+        "@erbium-examples/password-input-controlled",
+        "@erbium-examples/password-input-custom",
+        "@erbium-examples/password-input-disabled",
+        "@erbium-examples/password-input-invalid"
+      ],
+      "title": "Password Input examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "password-input-form",
+      "type": "registry:block",
+      "title": "Password Input: Form",
+      "description": "A sign-up form owned by TanStack Form. One Effect Schema checks the email, requires 8 characters and a number in the password, and adds a filter that places a mismatch on the confirmation through its `path`. Each password renders through `field.PasswordField`. Showing a password with the pointer keeps focus in the input, so it does not mark the field touched. Submitting hides both passwords again.",
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-form.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/form.tsx",
+          "target": "@components/showcase/password-input/variants/form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-invalid",
+      "type": "registry:block",
+      "title": "Password Input: Invalid",
+      "description": "Mark the `Field` invalid and the input group shows the error ring. `FieldError` explains what to fix.",
+      "registryDependencies": ["@erbium/field", "@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-invalid.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-invalid.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/invalid.tsx",
+          "target": "@components/showcase/password-input/variants/invalid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-new-password",
+      "type": "registry:block",
+      "title": "Password Input: New Password",
+      "description": "Pass `autoComplete=\"new-password\"` on sign-up and password-change forms so password managers offer to generate a password instead of filling a saved one.",
+      "registryDependencies": ["@erbium/field", "@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-new-password.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-new-password.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/new-password.tsx",
+          "target": "@components/showcase/password-input/variants/new-password.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-overview",
+      "type": "registry:block",
+      "title": "Password Input: Overview",
+      "description": "A labelled password field. The eye toggle shows the password as text and hides it again.",
+      "registryDependencies": ["@erbium/field", "@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-demo.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/overview.tsx",
+          "target": "@components/showcase/password-input/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-playground",
+      "type": "registry:component",
+      "title": "Password Input: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/password-input", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/password-input/variants/playground.tsx",
+          "target": "@components/showcase/password-input/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-input-stories",
+      "type": "registry:item",
+      "title": "Password Input stories",
+      "description": "All password-input variants as portable React CSF stories.",
+      "dependencies": ["effect@4.1.3"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/checkbox",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/overlay-provider",
+        "@erbium/password-input",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/password-input/examples/password-input-controlled.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-controlled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/examples/password-input-custom.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-custom.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/examples/password-input-demo.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/examples/password-input-disabled.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-disabled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/examples/password-input-form.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/examples/password-input-invalid.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-invalid.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/examples/password-input-new-password.tsx",
+          "target": "@components/showcase/password-input/examples/password-input-new-password.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/password-input.stories.tsx",
+          "target": "@components/showcase/password-input/password-input.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/password-input/variants/controlled.tsx",
+          "target": "@components/showcase/password-input/variants/controlled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/custom.tsx",
+          "target": "@components/showcase/password-input/variants/custom.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/disabled.tsx",
+          "target": "@components/showcase/password-input/variants/disabled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/form.tsx",
+          "target": "@components/showcase/password-input/variants/form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/invalid.tsx",
+          "target": "@components/showcase/password-input/variants/invalid.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/new-password.tsx",
+          "target": "@components/showcase/password-input/variants/new-password.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/overview.tsx",
+          "target": "@components/showcase/password-input/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/password-input/variants/playground.tsx",
+          "target": "@components/showcase/password-input/variants/playground.tsx",
           "type": "registry:component"
         },
         {
@@ -21067,6 +21403,7 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/input",
+        "@erbium/password-input",
         "@erbium/styles",
         "@erbium/tabs"
       ],
@@ -21140,6 +21477,7 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/input",
+        "@erbium/password-input",
         "@erbium/styles",
         "@erbium/tabs"
       ],
@@ -21198,6 +21536,7 @@
         "@erbium/icon",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/password-input",
         "@erbium/styles",
         "@erbium/tabs",
         "@erbium/toast"

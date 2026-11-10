@@ -18,6 +18,7 @@ import {
 } from "./field";
 import { Input } from "./input";
 import { OTPField as OTPFieldControl } from "./otp-field";
+import { PasswordInput } from "./password-input";
 import type { OTPFieldProps } from "./otp-field";
 import { StatefulButton } from "./stateful-button";
 import type { StatefulButtonProps, StatefulButtonState } from "./stateful-button";
@@ -170,6 +171,55 @@ const TextField = ({
       <FieldLabel>{label}</FieldLabel>
       <Input
         ref={inputRef}
+        value={field.state.value}
+        onBlur={field.handleBlur}
+        onChange={(event) => {
+          field.handleChange(event.target.value);
+        }}
+        {...props}
+      />
+      <Description>{description}</Description>
+      <FormFieldError />
+    </FormField>
+  );
+};
+
+type PasswordFieldProps = LabelledFieldProps &
+  Omit<
+    React.ComponentProps<typeof PasswordInput>,
+    | "className"
+    | "defaultValue"
+    | "groupRef"
+    | "hidden"
+    | "name"
+    | "onBlur"
+    | "onChange"
+    | "ref"
+    | "value"
+  >;
+
+/**
+ * A labelled `PasswordInput` for a string field. Pressing the show/hide toggle
+ * with a pointer keeps focus in the input, so it does not touch the field. A
+ * rejected submit shakes the whole input group, toggle included.
+ */
+const PasswordField = ({
+  className,
+  description,
+  hidden,
+  label,
+  orientation,
+  ...props
+}: PasswordFieldProps) => {
+  const field = useFieldContext<string>();
+  const groupRef = React.useRef<HTMLFieldSetElement | null>(null);
+  useShakeOnRejectedSubmit(groupRef);
+
+  return (
+    <FormField className={className} hidden={hidden} orientation={orientation}>
+      <FieldLabel>{label}</FieldLabel>
+      <PasswordInput
+        groupRef={groupRef}
         value={field.state.value}
         onBlur={field.handleBlur}
         onChange={(event) => {
@@ -395,6 +445,7 @@ const {
     Field: FormField,
     FieldError: FormFieldError,
     OTPField: FormOTPField,
+    PasswordField,
     SwitchField,
     TextField,
     TextareaField,
@@ -443,6 +494,7 @@ export {
   FormField,
   FormFieldError,
   FormOTPField,
+  PasswordField,
   SubmitButton,
   SwitchField,
   TextareaField,
