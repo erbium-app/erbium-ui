@@ -6187,6 +6187,7 @@
         "@erbium/code-highlighter",
         "@erbium/copy-button",
         "@erbium/csp-provider",
+        "@erbium/icon",
         "@erbium/icon-sprite",
         "@erbium/overlay-provider",
         "@erbium/styles",

@@ -86,6 +86,23 @@ createRoot(document.getElementById("root")!).render(
 
 It renders the generated `@erbium/icons` symbols inline, so icons inherit the surrounding text color and need no network request. Until it is mounted, icons render empty.
 
+### Serve the sprite as a file
+
+Inlining adds the whole sprite to every server-rendered page. If your app serves files from its own origin, it can reference `@erbium/icons/sprite.svg` instead, so the browser downloads it once and caches it. Wrap the app in `IconSpriteProvider` with the file's URL and skip `IconSprite`:
+
+```tsx
+import spriteUrl from "@erbium/icons/sprite.svg?url";
+import { IconSpriteProvider } from "@/components/ui/icon";
+
+createRoot(document.getElementById("root")!).render(
+  <IconSpriteProvider href={spriteUrl}>
+    <App />
+  </IconSpriteProvider>,
+);
+```
+
+The URL must be same-origin, because browsers do not load `<use>` references from other origins. Icons still inherit the surrounding text color. Do not add a `<link rel="preload">` for the file: browsers fetch `<use>` references separately, so a preload downloads the sprite twice.
+
 ## Use the component
 
 Replace `src/App.tsx` with:

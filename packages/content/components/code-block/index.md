@@ -17,7 +17,7 @@ The default layout includes the source and an anchored icon copy button. A heade
 
 Default titles and tabs include a decorative icon selected from the source’s `language`. TypeScript and JavaScript use their language icons; TSX and JSX use React. Aliases such as `typescript`, `py`, and `bash` share the same selection as their canonical languages. Plaintext uses a text-file icon and unknown languages use a generic file icon. A command surface without a language uses the shell icon. Titles and tab labels do not determine the language. Headerless snippets remain headerless.
 
-Mount `IconSprite` from `@erbium/ui/components/icon-sprite` once in the application shell, outside scrolling and hidden panels. It renders the generated `@erbium/icons` symbols and does not require client hydration. Storybook and the docs already mount it. The icons inherit the surrounding text color.
+Mount `IconSprite` from `@erbium/ui/components/icon-sprite` once in the application shell, outside scrolling and hidden panels. It renders the generated `@erbium/icons` symbols and does not require client hydration. Storybook mounts it. Apps that serve `@erbium/icons/sprite.svg` from their own origin, such as the docs, can wrap the shell in `IconSpriteProvider` from `@erbium/ui/components/icon` instead. The icons inherit the surrounding text color.
 
 Use `CodeBlockIcon` as the first child of a custom title or tab. It reads the active source by default; inside a custom tab use `value` to reference that tab’s item, for example `<CodeBlockIcon value="styles" />`. Icon artwork and names belong to `@erbium/icons`; language selection belongs to the UI package. There are no icon-set or color settings on `CodeBlock`.
 
