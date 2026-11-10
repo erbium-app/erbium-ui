@@ -25,6 +25,8 @@ const defaultValues = { confirmPassword: "", email: "", password: "" };
 
 const PasswordInputForm = () => {
   const [created, setCreated] = useState("");
+  // One visibility for both fields, so a reveal shows the two values side by side.
+  const [visible, setVisible] = useState(false);
 
   const form = useAppForm({
     defaultValues,
@@ -49,11 +51,20 @@ const PasswordInputForm = () => {
               label="Password"
               autoComplete="new-password"
               description="At least 8 characters, including a number."
+              visible={visible}
+              onVisibleChange={setVisible}
             />
           )}
         </form.AppField>
         <form.AppField name="confirmPassword">
-          {(field) => <field.PasswordField label="Confirm password" autoComplete="new-password" />}
+          {(field) => (
+            <field.PasswordField
+              label="Confirm password"
+              autoComplete="new-password"
+              visible={visible}
+              onVisibleChange={setVisible}
+            />
+          )}
         </form.AppField>
         <form.SubmitButton successLabel="Account created">Create account</form.SubmitButton>
         {created ? <output className="block">Welcome, {created}.</output> : null}

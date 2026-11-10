@@ -27,7 +27,9 @@ The input defaults to `autoComplete="current-password"`, which tells password ma
 
 ## Visibility
 
-The password is hidden by default. Pass `defaultVisible` to start shown, or `visible` with `onVisibleChange` to control it, for example to show a password and its confirmation together. `onVisibleChange` receives the next value and a `reason`: `toggle`, `submit`, or `reset`.
+The password is hidden by default. Pass `defaultVisible` to start shown, or `visible` with `onVisibleChange` to control it. `onVisibleChange` receives the next value and a `reason`: `toggle`, `submit`, or `reset`.
+
+Give a password and its confirmation one shared visibility state, so either toggle shows both values side by side for comparison. Keep the visibility separate for fields that hold different passwords, such as the current and new password on a change-password form.
 
 Submitting or resetting the surrounding form hides the password again, so a revealed password is not left as plain text on the page or offered to the browser as one.
 
@@ -70,4 +72,4 @@ In a TanStack Form, use `field.PasswordField` from the [Form](/docs/components/f
 </form.AppField>
 ```
 
-Validate with an Effect Schema. Check a confirmation field with a `Schema.makeFilter` on the struct and give its issue `path: ["confirmPassword"]` so the message shows under the confirmation.
+Validate with an Effect Schema. Check a confirmation field with a `Schema.makeFilter` on the struct and give its issue `path: ["confirmPassword"]` so the message shows under the confirmation. Pass both fields the same `visible` and `onVisibleChange`, as in the Form example.
