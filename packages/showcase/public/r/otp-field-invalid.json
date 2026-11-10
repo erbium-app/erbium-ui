@@ -3,7 +3,7 @@
   "name": "otp-field-invalid",
   "type": "registry:block",
   "title": "OTP Field: Invalid",
-  "description": "TanStack Form's `onChange` validator checks every complete changed code. Errors come from\n`field.state.meta.errors` through `FieldError`; `Field invalid` supplies accessible invalid\nstate to every slot. Editing a complete incorrect code revalidates it immediately.\nDemo code: 123456.",
+  "description": "An Effect Schema in TanStack Form's `onChange` validator checks every complete changed code. `field.FieldError` shows the schema's message, and `field.Field` supplies accessible invalid state to every slot. Editing a complete incorrect code revalidates it immediately.\nDemo code: 123456.",
   "dependencies": ["effect@4.1.3"],
   "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
   "files": [

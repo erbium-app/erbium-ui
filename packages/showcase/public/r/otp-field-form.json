@@ -3,7 +3,7 @@
   "name": "otp-field-form",
   "type": "registry:block",
   "title": "OTP Field: Form",
-  "description": "A verification card owned by TanStack Form. The field validates on change, requires all\nsix digits on submit, and shows submission feedback from `form.Subscribe`. Resend resets\nthe demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
+  "description": "A verification card owned by TanStack Form. Two Effect Schemas validate the code: one on change that rejects a complete wrong code, and one on submit that requires all six digits. `form.SubmitButton` shows submission feedback. Resend resets the demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
   "dependencies": ["effect@4.1.3"],
   "registryDependencies": [
     "@erbium/button",

@@ -29,60 +29,55 @@ OTPField
 
 Slots after the first need an `aria-label` such as `Character 2 of 6` when composed by hand.
 
-## Validation and TanStack Form
+## Validation with TanStack Form and Effect Schema
 
 Base UI's `validationType="numeric"` filters characters; it does not verify the code.
-Use TanStack Form's `validators.onChange` or `onChangeAsync` for verification on every
-value change. `onValueComplete` and `autoSubmit` only react to completion transitions
-and complete pastes, so they do not recheck every edit to an already complete code.
+Validate with an Effect Schema passed through `Schema.toStandardSchemaV1` as a
+TanStack Form `validators.onChange`, or use `onChangeAsync` for server verification,
+so every value change is checked. `onValueComplete` and `autoSubmit` only react to
+completion transitions and complete pastes, so they do not recheck every edit to an
+already complete code.
 
-Pass `field.state.meta` to `OTPField`'s `validation` prop. It accepts the structural
-subset `isValid`, `isValidating`, `isTouched`, and `isDirty`, without requiring a
-TanStack dependency in the UI component. Pending validation takes priority, then
-invalid touched state, then a complete valid value matching `verifiedValue`.
-`isValid` alone means that no validation error is recorded; it does not mean async
-verification has finished. Set `verifiedValue` only after verification succeeds,
-and clear it on every edit. Async verifiers must check their abort signal before
-publishing a successful value.
+`field.OTPField` from the [Form](/docs/components/form) module binds the value, change
+and blur handlers, and passes the field's metadata to `OTPField`'s `validation` prop.
+The prop accepts the structural subset `isValid`, `isValidating`, `isTouched`, and
+`isDirty`, so `OTPField` itself has no TanStack dependency. Pending validation takes
+priority, then invalid touched state, then a complete valid value matching
+`verifiedValue`. `isValid` alone means that no validation error is recorded; it does
+not mean async verification has finished. Set `verifiedValue` only after verification
+succeeds, and clear it on every edit. Async verifiers must check their abort signal
+before publishing a successful value.
 The field stays editable in every validation state; set `readOnly` explicitly when needed.
 
-Use the same composition for future form controls:
-
 ```tsx
-<form.Field
-  name="code"
-  validators={{
-    onChange: ({ value }) =>
-      value.length === 6 && value !== "123456" ? "Incorrect code." : undefined,
-    onSubmit: ({ value }) => (value.length !== 6 ? "Enter all 6 digits." : undefined),
-  }}
->
+import { Schema } from "effect";
+
+const DemoCode = Schema.toStandardSchemaV1(
+  Schema.String.check(
+    Schema.makeFilter((code) =>
+      code.length < 6 || code === "123456" ? undefined : "Incorrect code.",
+    ),
+  ),
+);
+
+const CompleteCode = Schema.toStandardSchemaV1(
+  Schema.String.check(Schema.isMinLength(6, { message: "Enter all 6 digits." })),
+);
+
+<form.AppField name="code" validators={{ onChange: DemoCode, onSubmit: CompleteCode }}>
   {(field) => (
-    <Field
-      name={field.name}
-      invalid={field.state.meta.isTouched && !field.state.meta.isValid}
-      touched={field.state.meta.isTouched}
-      dirty={field.state.meta.isDirty}
-    >
+    <field.Field>
       <FieldLabel>Verification code</FieldLabel>
-      <OTPField
-        length={6}
-        value={field.state.value}
-        onValueChange={field.handleChange}
-        onBlur={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) field.handleBlur();
-        }}
-        validation={field.state.meta}
-      />
-      <FieldError errors={field.state.meta.isTouched ? field.state.meta.errors : []} />
-    </Field>
+      <field.OTPField length={6} groups={[3, 3]} />
+      <field.FieldError />
+    </field.Field>
   )}
-</form.Field>
+</form.AppField>;
 ```
 
-Import `Field`, `FieldLabel`, and `FieldError` from `@erbium/ui/components/field`.
-Use `noValidate` on the form and call `form.handleSubmit()` from its submit handler.
-Controlled `invalid`, `touched`, and `dirty` props keep the field aligned with TanStack Form. The root blur
-handler marks the field touched only when focus leaves the whole OTP group.
-Read `canSubmit`, `isSubmitting`, and `isSubmitted` through `form.Subscribe` for
-submission UI; a valid field is separate from a successfully submitted form.
+Create the form with `useAppForm` and render it in `Form`. `field.Field` binds
+`invalid`, `touched`, and `dirty` to the field, and `field.FieldError` shows its
+messages once it is touched. The blur handler marks the field touched only when focus
+leaves the whole OTP group. `form.SubmitButton` follows `isSubmitting` and
+`isSubmitSuccessful`; read other submission state through `form.Subscribe`. A valid
+field is separate from a successfully submitted form.
