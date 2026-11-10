@@ -1,7 +1,12 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import nodePath from "node:path";
-import { createServer, createRunnableDevEnvironment, isRunnableDevEnvironment } from "vite-plus";
-import type { Plugin, ViteDevServer } from "vite-plus";
+import { createRunnableDevEnvironment, isRunnableDevEnvironment, resolveConfig } from "vite-plus";
+import type {
+  EnvironmentModuleNode,
+  Plugin,
+  RunnableDevEnvironment,
+  ViteDevServer,
+} from "vite-plus";
 import type { DocPage } from "./src/content/types";
 import type * as ContentPages from "./src/build/content/pages";
 import type * as Resources from "./src/build/agent/resources";
@@ -18,84 +23,91 @@ const virtualId = "virtual:docs-pages";
 const resolvedId = `\0${virtualId}`;
 const pagePrefix = "virtual:docs-page/";
 
-// Files the tooling server evaluates while compiling pages, example sources, and images.
-const toolingInput = /(?:packages\/(?:content|showcase|ui)\/|apps\/docs\/src\/build\/)/u;
-
-// Files whose changes alter compiled page data: Markdown, story args, the example
-// manifest and registries, theme sources for the colors page, and the page builder.
-const pageDataInput =
-  /(?:packages\/content\/|packages\/showcase\/(?:src\/[^/]+\/catalog\.tsx|manifest\.json|registry\.json)|packages\/ui\/(?:registry\.json|src\/styles\/(?:theme|surfaces)\.css)|apps\/docs\/src\/build\/)/u;
+// Content modules use Node-only packages (gray-matter, Shiki, Satori, Sharp), so
+// they run in this Node environment instead of the Worker.
+const environmentName = "content";
 
 /** Compile content and native image dependencies on Node, never in the Worker. */
 export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options): Plugin => {
-  let tooling: Promise<ViteDevServer> | undefined;
-  let documents: Promise<Record<string, DocPage>> | undefined;
+  let devServer: ViteDevServer | undefined;
+  let buildEnvironment: Promise<RunnableDevEnvironment> | undefined;
 
-  const server = async () => {
-    tooling ??= createServer({
-      appType: "custom",
-      // Isolate the tooling optimizer from the browser dependency cache.
-      cacheDir: nodePath.resolve(root, ".cache/tooling-vite"),
-      configFile: false,
-      environments: {
-        ssr: {
-          dev: { createEnvironment: (name, config) => createRunnableDevEnvironment(name, config) },
+  // Dev runs content in an environment of the same server, so it shares the
+  // watcher and module graph. `vite build` has no dev server, so it creates the
+  // same kind of environment on its own and closes it once the bundle is written.
+  const contentEnvironment = async () => {
+    if (devServer) {
+      const content = devServer.environments[environmentName];
+
+      if (!isRunnableDevEnvironment(content)) {
+        throw new Error("Missing content module runner");
+      }
+
+      return content;
+    }
+
+    buildEnvironment ??= (async () => {
+      const config = await resolveConfig(
+        {
+          configFile: false,
+          environments: { [environmentName]: { consumer: "server" } },
+          logLevel: "error",
+          plugins: toolingPlugins(),
+          resolve: { tsconfigPaths: true },
+          root,
         },
-      },
-      logLevel: "error",
-      plugins: toolingPlugins(),
-      resolve: { tsconfigPaths: true },
-      root,
-      server: { hmr: false, middlewareMode: true },
-    });
+        "serve",
+      );
 
-    return await tooling;
+      const content = createRunnableDevEnvironment(environmentName, config, { hot: false });
+      await content.init();
+
+      return content;
+    })();
+
+    return await buildEnvironment;
   };
 
-  const clearTooling = async () => {
-    if (!tooling) {
-      return;
-    }
-
-    const vite = await tooling;
-    const environment = vite.environments.ssr;
-
-    if (isRunnableDevEnvironment(environment)) {
-      environment.runner.clearCache();
-    }
+  const closeBuildEnvironment = async () => {
+    const pending = buildEnvironment;
+    buildEnvironment = undefined;
+    const content = await pending;
+    await content?.close();
   };
 
   const load = async <T>(path: string): Promise<T> => {
-    const vite = await server();
-    const environment = vite.environments.ssr;
+    const content = await contentEnvironment();
 
-    if (!isRunnableDevEnvironment(environment)) {
-      throw new Error("Missing tooling module runner");
-    }
-
-    return await environment.runner.import<T>(path);
+    return await content.runner.import<T>(path);
   };
 
-  const pages = async () => {
-    documents ??= (async () => {
-      const { getPage } = await load<typeof ContentPages>("/src/build/content/pages.ts");
+  // A changed source gives the page builder a new module instance, which drops
+  // every page compiled from the old one.
+  let compiled: { module: typeof ContentPages; pages: Map<string, Promise<DocPage>> } | undefined;
 
-      return Object.fromEntries(
-        await Promise.all(
-          pagePaths.map(async (path) => {
-            const page = await getPage(path);
+  const page = async (path: string) => {
+    const module = await load<typeof ContentPages>("/src/build/content/pages.ts");
 
-            if (!page) {
-              throw new Error(`Missing documentation page: ${path}`);
-            }
+    if (compiled?.module !== module) {
+      compiled = { module, pages: new Map() };
+    }
 
-            return [path, page] as const;
-          }),
-        ),
-      );
-    })();
+    let request = compiled.pages.get(path);
 
-    return await documents;
+    if (!request) {
+      request = (async () => {
+        const result = await module.getPage(path);
+
+        if (!result) {
+          throw new Error(`Missing documentation page: ${path}`);
+        }
+
+        return result;
+      })();
+      compiled.pages.set(path, request);
+    }
+
+    return await request;
   };
 
   const resources = async () => {
@@ -106,26 +118,37 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
   const image = async (path: string) => {
     const { ogPages } = await load<typeof OgPages>("/src/build/seo/og-pages.ts");
-    const page = ogPages.find((entry) => entry.imagePath === path);
+    const entry = ogPages.find((candidate) => candidate.imagePath === path);
 
-    if (!page) {
+    if (!entry) {
       return null;
     }
 
     const module = await load<typeof OgImage>("/src/build/seo/og-image.ts");
 
-    return await module.createOgImage(page);
+    return await module.createOgImage(entry);
   };
+
+  // Page JSON that dev clients last received, so a change reloads only when it differs.
+  const served = new Map<string, string>();
 
   return {
     buildStart() {
-      // Compile documents while other modules transform. The page loader awaits the same
-      // memoized promise, so a compile failure still fails that load; settling here only
+      if (devServer) {
+        return;
+      }
+
+      // Compile documents while other modules transform. Each page load awaits the same
+      // memoized request, so a compile failure still fails that load; settling here only
       // prevents an unhandled rejection before then.
-      void Promise.allSettled([pages()]);
+      void Promise.allSettled(pagePaths.map(page));
     },
     async closeBundle() {
-      if (this.environment?.name === "client") {
+      if (devServer) {
+        return;
+      }
+
+      if (this.environment.name === "client") {
         const output = nodePath.resolve(root, this.environment.config.build.outDir);
 
         const write = async (path: string, body: string | Uint8Array) => {
@@ -162,16 +185,16 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         const queue = [...ogPages];
 
         const renderImages = async (): Promise<void> => {
-          const page = queue.shift();
+          const entry = queue.shift();
 
-          if (!page) {
+          if (!entry) {
             return;
           }
 
-          const cached = nodePath.join(imageCache, `.${page.imagePath}`);
+          const cached = nodePath.join(imageCache, `.${entry.imagePath}`);
 
           const bytes = await readFile(cached).catch(async () => {
-            const rendered = await image(page.imagePath);
+            const rendered = await image(entry.imagePath);
 
             if (rendered !== null) {
               await mkdir(nodePath.dirname(cached), { recursive: true });
@@ -182,7 +205,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
           });
 
           if (bytes !== null) {
-            await write(page.imagePath, bytes);
+            await write(entry.imagePath, bytes);
           }
 
           await renderImages();
@@ -199,13 +222,115 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         );
       }
 
-      if (this.environment?.name === "ssr" && tooling) {
-        const vite = await tooling;
-        await vite.close();
-        tooling = undefined;
+      // A later environment build recreates it if it still needs content.
+      await closeBuildEnvironment();
+    },
+    config(_config, { command, isPreview }) {
+      if (command !== "serve" || isPreview === true) {
+        return null;
       }
+
+      return {
+        environments: {
+          [environmentName]: {
+            consumer: "server",
+            dev: {
+              // The change handler below applies content edits, so the runner needs no HMR.
+              createEnvironment: (name, config) =>
+                createRunnableDevEnvironment(name, config, { hot: false }),
+            },
+          },
+        },
+      };
     },
     configureServer(vite) {
+      devServer = vite;
+      compiled = undefined;
+      served.clear();
+
+      const reloadChangedPages = async () => {
+        const changes = await Promise.all(
+          [...served].map(async ([path, json]) => {
+            try {
+              return JSON.stringify(await page(path)) !== json;
+            } catch (error) {
+              vite.config.logger.error(`Failed to recompile ${path}: ${String(error)}`, {
+                error: error instanceof Error ? error : undefined,
+                timestamp: true,
+              });
+
+              // Reloading shows the error through the page load that fails.
+              return true;
+            }
+          }),
+        );
+
+        if (changes.includes(true)) {
+          vite.environments.client.hot.send({ type: "full-reload" });
+        }
+      };
+
+      let reloading = Promise.resolve();
+
+      vite.watcher.on("change", (file) => {
+        const content = vite.environments[environmentName];
+
+        if (!isRunnableDevEnvironment(content)) {
+          return;
+        }
+
+        // Walk the content module graph from the changed file to everything that
+        // depends on it. The graph includes glob members and files plugins watch, so
+        // Markdown, story args, registries, and styles all reach their importers.
+        // Vite invalidates transforms only after its own async watch hooks, so do it
+        // here before anything re-imports.
+        const stale = new Set<EnvironmentModuleNode>();
+
+        const visit = (module: EnvironmentModuleNode) => {
+          if (stale.has(module)) {
+            return;
+          }
+
+          stale.add(module);
+          content.moduleGraph.invalidateModule(module);
+
+          for (const importer of module.importers) {
+            visit(importer);
+          }
+        };
+
+        for (const module of content.moduleGraph.getModulesByFile(file) ?? []) {
+          visit(module);
+        }
+
+        if (stale.size === 0) {
+          // Not content. Components and examples update through React Fast Refresh.
+          return;
+        }
+
+        const { evaluatedModules } = content.runner;
+
+        for (const module of stale) {
+          const evaluated =
+            module.id === null ? undefined : evaluatedModules.getModuleById(module.id);
+
+          if (evaluated) {
+            evaluatedModules.invalidateModule(evaluated);
+          }
+        }
+
+        // The next request for a page module reads the recompiled page.
+        for (const environment of Object.values(vite.environments)) {
+          for (const module of environment.moduleGraph.idToModuleMap.values()) {
+            if (module.id?.startsWith(`\0${pagePrefix}`) === true) {
+              environment.moduleGraph.invalidateModule(module);
+            }
+          }
+        }
+
+        reloading = reloading.then(reloadChangedPages);
+      });
+
       vite.middlewares.use((request, response, forward) => {
         const handle = async () => {
           const path = request.url?.split("?")[0] ?? "";
@@ -280,43 +405,11 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
         void handle();
       });
-      // Content is compiled by the tooling server, outside this server's module graph,
-      // so its sources need an explicit watch to reach the handler below.
-      vite.watcher.add(
-        [
-          "../../packages/content",
-          "../../packages/showcase/manifest.json",
-          "../../packages/showcase/registry.json",
-          "../../packages/ui/registry.json",
-          "../../packages/ui/src/styles",
-        ].map((path) => nodePath.resolve(root, path)),
-      );
-      vite.watcher.on("change", (file) => {
-        if (!toolingInput.test(file)) {
-          return;
-        }
-
-        // The tooling runner keeps evaluated modules, including eager raw content
-        // imports, so recompiling without clearing it would return stale pages.
-        documents = undefined;
-        void clearTooling();
-
-        if (!pageDataInput.test(file)) {
-          // Components and examples are ordinary client modules; React Fast Refresh
-          // updates them without reloading the page.
-          return;
-        }
-
-        for (const environment of Object.values(vite.environments)) {
-          for (const module of environment.moduleGraph.idToModuleMap.values()) {
-            if (module.id === resolvedId || module.id?.startsWith(`\0${pagePrefix}`) === true) {
-              environment.moduleGraph.invalidateModule(module);
-            }
-          }
-        }
-
-        vite.ws.send({ type: "full-reload" });
-      });
+    },
+    hotUpdate() {
+      // The change handler in configureServer already applied the edit to the content
+      // runner, which has no HMR channel to send a reload to.
+      return this.environment.name === environmentName ? [] : undefined;
     },
     load: {
       filter: { id: /^\0virtual:docs-page/u },
@@ -327,14 +420,18 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
         if (id.startsWith(`\0${pagePrefix}`)) {
           const path = id.slice(pagePrefix.length + 1);
-          const compiled = await pages();
-          const page = Object.hasOwn(compiled, path) ? compiled[path] : undefined;
 
-          if (!page) {
+          if (!pagePaths.includes(path)) {
             throw new Error(`Missing documentation page: ${path}`);
           }
 
-          return `export default ${JSON.stringify(page)};`;
+          const json = JSON.stringify(await page(path));
+
+          if (devServer) {
+            served.set(path, json);
+          }
+
+          return `export default ${json};`;
         }
 
         return null;

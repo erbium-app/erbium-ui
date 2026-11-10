@@ -1,4 +1,5 @@
 import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import type { Plugin } from "vite-plus";
 import { documentationSections, kindPaths } from "@erbium/content/taxonomy";
@@ -58,21 +59,20 @@ export const contentPlugin = (): Plugin => {
   writeFileSync(new URL("theme.css", cache), light);
 
   return {
-    hotUpdate({ file }) {
-      const module = file.includes("packages/content/")
-        ? this.environment.moduleGraph.getModuleById(resolvedId)
-        : undefined;
-
-      if (module) {
-        this.environment.moduleGraph.invalidateModule(module);
-      }
-
-      return module ? [module] : undefined;
-    },
     load: {
       filter: { id: /^\0virtual:docs-catalog$/u },
-      handler: () => {
+      handler() {
         const { components, guides } = docsCatalog();
+
+        // The catalog reads these files directly; watching them puts them in the module
+        // graph, so an edit invalidates the catalog like any other import.
+        for (const file of [
+          ...components.map((component) => `content/components/${component.name}/index.md`),
+          ...guides.map((guide) => `content/${guide.file}.md`),
+          "ui/registry.json",
+        ]) {
+          this.addWatchFile(fileURLToPath(new URL(file, root)));
+        }
 
         return `export const components = ${JSON.stringify(components)};\nexport const guides = ${JSON.stringify(guides)};`;
       },
