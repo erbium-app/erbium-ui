@@ -35,7 +35,7 @@
       "@shadcn/react": "^0.3.1",
       "@tailwindcss/vite": "^4.3.5",
       "@tanstack/charts": "1.5.0",
-      "@tanstack/react-hotkeys": "^0.22.2",
+      "@tanstack/react-hotkeys": "^0.22.3",
       "@tanstack/react-pacer": "0.24.1",
       "@tanstack/react-router": "^1.170.46",
       "@tanstack/react-table": "9.3.1",
@@ -45,8 +45,8 @@
       "react": "^19.3.1",
       "react-dom": "^19.3.1",
       "typescript": "next",
-      "vite": "npm:@voidzero-dev/vite-plus-core@1.5.0",
-      "vite-plus": "1.5.0"
+      "vite": "npm:@voidzero-dev/vite-plus-core@1.5.1",
+      "vite-plus": "1.5.1"
     },
     "catalogs": {
       "typescript-stable": {
@@ -114,10 +114,10 @@
     "@shadcn/lint": "^0.2.5",
     "@tanstack/intent": "^0.5.6",
     "@types/node": "^26.6.6",
-    "knip": "^6.44.2",
-    "oxfmt": "0.77.0",
-    "oxlint": "1.92.0",
-    "skills": "^1.7.6",
+    "knip": "^6.45.0",
+    "oxfmt": "0.78.0",
+    "oxlint": "1.93.0",
+    "skills": "^1.8.0",
     "stylelint": "^18.0.0",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-standard": "^41.0.0",
