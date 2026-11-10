@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useMemo, lazy, Suspense } from "react";
+import { use, useEffect, useState, useMemo, Suspense } from "react";
 import { CatchBoundary } from "@tanstack/react-router";
 import { parseStoryMetadata } from "@/content/story-metadata";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
@@ -22,15 +22,10 @@ import { changeTheme } from "@erbium/ui/lib/change-theme";
 import { flushSync } from "react-dom";
 import { useTheme } from "./theme";
 
-import { exampleResource } from "./preview-resources";
+import { Controls } from "./controls";
+import { exampleRequest } from "./preview-resources";
 import { fetchExampleSource } from "@/content/example-source";
 import type { DocPage } from "@/content/types";
-
-const Controls = lazy(async () => {
-  const module = await import("./controls");
-
-  return { default: module.Controls };
-});
 
 const PreviewError = () => (
   <Alert variant="error">
@@ -39,64 +34,17 @@ const PreviewError = () => (
   </Alert>
 );
 
-type PreviewModule = Awaited<ReturnType<typeof exampleResource>>;
-
 type Args = NonNullable<ShowcaseStory["args"]>;
 
-const PreviewContent = ({
-  name,
-  slug,
-  args,
-  active,
-}: {
-  name: string;
-  slug: string;
-  args: Args;
-  active: boolean;
-}) => {
-  const [preview, setPreview] = useState<PreviewModule>();
-  const [error, setError] = useState(false);
-  useEffect(() => {
-    let current = true;
+const PreviewContent = ({ name, slug, args }: { name: string; slug: string; args: Args }) => {
+  const { default: Example } = use(exampleRequest(name, slug));
 
-    const load = async () => {
-      try {
-        const entry = await exampleResource(name, slug);
-
-        if (current) {
-          setPreview(entry);
-        }
-      } catch {
-        if (current) {
-          setError(true);
-        }
-      }
-    };
-
-    if (active) {
-      void load();
-    }
-
-    return () => {
-      current = false;
-    };
-  }, [name, slug, active]);
-
-  let content = <Spinner aria-label="Loading preview" />;
-
-  if (error) {
-    content = <PreviewError />;
-  } else if (preview !== undefined) {
-    const Example = preview.default;
-    content = (
-      <Example
-        key={JSON.stringify(Object.entries(args).filter(([key]) => key.startsWith("default")))}
-        {...args}
-      />
-    );
-  }
-
-  return content;
+  return (
+    <Example
+      key={JSON.stringify(Object.entries(args).filter(([key]) => key.startsWith("default")))}
+      {...args}
+    />
+  );
 };
 
 const SourceContent = ({ name, slug, active }: { name: string; slug: string; active: boolean }) => {
@@ -169,28 +117,6 @@ export const Showcase = ({
   variant: DocPage["variants"][number];
   separator?: boolean;
 }) => {
-  const container = useRef<HTMLElement>(null);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setActive(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-
-    if (container.current) {
-      observer.observe(container.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
   const story = useMemo(() => parseStoryMetadata(variant), [variant]);
   const [args, setArgs] = useState<Args>(story.args);
   const [code, setCode] = useState(false);
@@ -201,7 +127,7 @@ export const Showcase = ({
   const command = `npx shadcn@latest add @erbium-examples/${name}-${variant.slug}`;
 
   return (
-    <section ref={container} id={variant.anchor} className="demo-section my-10 scroll-mt-8">
+    <section id={variant.anchor} className="demo-section my-10 scroll-mt-8">
       {separator && <Separator className="mb-4" variant="full" role="presentation" />}
       <h2 className="text-title font-semibold">{variant.title}</h2>
       <Prose tree={variant.tree} />
@@ -242,34 +168,26 @@ export const Showcase = ({
             <CatchBoundary getResetKey={() => revision} errorComponent={PreviewError}>
               <ShowcaseProviders>
                 <ShowcaseSurface>
-                  <PreviewContent
-                    key={revision}
-                    name={name}
-                    slug={variant.slug}
-                    args={args}
-                    active={active}
-                  />
+                  <Suspense fallback={<Spinner aria-label="Loading preview" />}>
+                    <PreviewContent key={revision} name={name} slug={variant.slug} args={args} />
+                  </Suspense>
                 </ShowcaseSurface>
               </ShowcaseProviders>
             </CatchBoundary>
           </div>
         </TabsContent>
       </Tabs>
-      {active && (
-        <Suspense fallback={null}>
-          <Controls
-            key={revision}
-            args={args}
-            defaults={story.args}
-            argTypes={story.argTypes}
-            onChange={setArgs}
-            onReset={() => {
-              setArgs(story.args);
-              setRevision((value) => value + 1);
-            }}
-          />
-        </Suspense>
-      )}
+      <Controls
+        key={revision}
+        args={args}
+        defaults={story.args}
+        argTypes={story.argTypes}
+        onChange={setArgs}
+        onReset={() => {
+          setArgs(story.args);
+          setRevision((value) => value + 1);
+        }}
+      />
       <Collapsible className="mt-3">
         <CollapsibleTrigger render={<Button variant="ghost" size="sm" />}>
           <RotatingChevron scope="collapsible" className="size-4" />
