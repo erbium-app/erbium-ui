@@ -290,7 +290,8 @@ const PasswordInputToggle = ({
       render={
         <InputGroupButton
           size="icon-sm"
-          className="[&_svg:not([class*='size-'])]:size-control-icon"
+          // An invalid input paints the eye in the error color, like the label and border.
+          className="group-has-[>[data-slot=input-group-control][aria-invalid=true]]/input-group:text-error [&_svg:not([class*='size-'])]:size-control-icon"
         />
       }
       className={className}
