@@ -1,5 +1,9 @@
 import * as React from "react";
 import { Questionnaire as QuestionnairePrimitive } from "@shadcn/react/questionnaire";
+import type { QuestionnaireItemDefinition } from "@shadcn/react/questionnaire";
+import { revalidateLogic, useSelector } from "@tanstack/react-form";
+import type { AnyFormApi } from "@tanstack/react-form";
+import { extendForm, formContext, useFieldContext, visibleMessages } from "./form";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "./button";
 import type { Button } from "./button";
@@ -311,6 +315,169 @@ const QuestionnaireSubmit = ({
   </QuestionnairePrimitive.Submit>
 );
 
+/*
+ * Questionnaire answers owned by TanStack Form and validated with Effect
+ * Schema. Each `form.AppField` wraps one `QuestionnaireItem`; its choices are
+ * controlled by the field's value, so the schema validates exactly what the
+ * user sees. A rejected submit returns to the first item with an error.
+ */
+
+const useFieldMessages = () => {
+  const field = useFieldContext<unknown>();
+  const meta = useSelector(field.store, (state) => state.meta);
+
+  return React.useMemo(() => visibleMessages(meta), [meta]);
+};
+
+/** `QuestionnaireItem` named after the field and invalid while it shows errors. */
+const QuestionnaireFieldItem = (
+  props: Omit<React.ComponentProps<typeof QuestionnaireItem>, "invalid" | "name">,
+) => {
+  const field = useFieldContext<unknown>();
+  const messages = useFieldMessages();
+
+  return <QuestionnaireItem name={field.name} invalid={messages.length > 0} {...props} />;
+};
+
+/** A `multiple` item's field holds every chosen value. */
+const isChoiceList = (value: string | readonly string[]): value is readonly string[] =>
+  Array.isArray(value);
+
+/**
+ * `QuestionnaireChoice` controlled by the field: a string field holds the
+ * chosen value of a single-choice item, a string array the chosen values of a
+ * `multiple` item.
+ */
+const QuestionnaireFieldChoice = ({
+  value,
+  ...props
+}: Omit<React.ComponentProps<typeof QuestionnaireChoice>, "checked" | "defaultChecked">) => {
+  const field = useFieldContext<string | readonly string[]>();
+  const current = field.state.value;
+
+  return (
+    <QuestionnaireChoice
+      value={value}
+      checked={isChoiceList(current) ? current.includes(value) : current === value}
+      onChange={(event) => {
+        const { checked } = event.target;
+
+        if (!isChoiceList(current)) {
+          field.handleChange(value);
+
+          return;
+        }
+
+        field.handleChange(
+          checked ? [...current, value] : current.filter((chosen) => chosen !== value),
+        );
+      }}
+      {...props}
+    />
+  );
+};
+
+/**
+ * `QuestionnaireError` showing the field's messages, e.g. an Effect Schema
+ * refinement. Without one it keeps the questionnaire's own "Choose an answer"
+ * message for an unanswered item.
+ */
+const QuestionnaireFieldError = (
+  props: Omit<React.ComponentProps<typeof QuestionnaireError>, "children">,
+) => {
+  const messages = useFieldMessages();
+
+  return (
+    <QuestionnaireError {...props}>
+      {messages.length > 0 ? messages.join(" ") : undefined}
+    </QuestionnaireError>
+  );
+};
+
+const firstEnabledItem = (items: readonly QuestionnaireItemDefinition[]) =>
+  items.find((item) => item.disabled !== true)?.name ?? "";
+
+type QuestionnaireFormProps = Omit<
+  React.ComponentProps<typeof Questionnaire>,
+  "item" | "items" | "noValidate"
+> & {
+  form: AnyFormApi;
+  /** Item order decides which invalid item a rejected submit returns to. */
+  items: readonly QuestionnaireItemDefinition[];
+  /** The visible item. Uncontrolled when omitted. */
+  item?: string;
+};
+
+/**
+ * `Questionnaire` that submits through TanStack Form. After a rejected submit
+ * it shows the first item, in `items` order, whose field has an error.
+ */
+const QuestionnaireForm = ({
+  defaultItem,
+  form,
+  item: itemProp,
+  items,
+  onItemChange,
+  onSubmit,
+  ...props
+}: QuestionnaireFormProps) => {
+  const [uncontrolledItem, setUncontrolledItem] = React.useState(
+    () => defaultItem ?? firstEnabledItem(items),
+  );
+
+  const item = itemProp ?? uncontrolledItem;
+
+  const changeItem = (nextItem: string) => {
+    setUncontrolledItem(nextItem);
+    onItemChange?.(nextItem);
+  };
+
+  const submit = async () => {
+    await form.handleSubmit();
+
+    const invalid = items.find(
+      (definition) => (form.getFieldMeta(definition.name)?.errors.length ?? 0) > 0,
+    );
+
+    if (invalid) {
+      changeItem(invalid.name);
+    }
+  };
+
+  return (
+    <formContext.Provider value={form}>
+      <Questionnaire
+        item={item}
+        items={items}
+        onItemChange={changeItem}
+        onSubmit={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          onSubmit?.(event);
+          void submit();
+        }}
+        {...props}
+      />
+    </formContext.Provider>
+  );
+};
+
+const { useAppForm: useBaseQuestionnaireForm } = extendForm({
+  fieldComponents: {
+    QuestionnaireChoice: QuestionnaireFieldChoice,
+    QuestionnaireError: QuestionnaireFieldError,
+    QuestionnaireItem: QuestionnaireFieldItem,
+  },
+});
+
+/**
+ * `useAppForm` with the questionnaire field components added:
+ * `field.QuestionnaireItem`, `field.QuestionnaireChoice` and
+ * `field.QuestionnaireError`. Validation defaults to `revalidateLogic()`.
+ */
+const useQuestionnaireForm: typeof useBaseQuestionnaireForm = (options) =>
+  useBaseQuestionnaireForm({ validationLogic: revalidateLogic(), ...options });
+
 export {
   Questionnaire,
   QuestionnaireActions,
@@ -327,4 +494,9 @@ export {
   QuestionnaireStepIndicator,
   QuestionnaireSubmit,
   QuestionnaireTitle,
+  QuestionnaireFieldChoice,
+  QuestionnaireFieldError,
+  QuestionnaireFieldItem,
+  QuestionnaireForm,
+  useQuestionnaireForm,
 };

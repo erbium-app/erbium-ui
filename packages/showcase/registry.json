@@ -11420,14 +11420,8 @@
       "type": "registry:component",
       "title": "form demo",
       "description": "Erbium form demo example.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/shake",
-        "@erbium/stateful-button",
-        "@erbium/styles"
-      ],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/form/examples/form-demo.tsx",
@@ -11451,14 +11445,8 @@
       "type": "registry:block",
       "title": "Form: Playground",
       "description": "",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/shake",
-        "@erbium/stateful-button",
-        "@erbium/styles"
-      ],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/form/examples/form-demo.tsx",
@@ -11477,15 +11465,13 @@
       "type": "registry:item",
       "title": "Form stories",
       "description": "All form variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
+      "dependencies": ["effect@4.1.3"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/overlay-provider",
-        "@erbium/shake",
-        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -11493,6 +11479,11 @@
         {
           "path": "src/form/examples/form-demo.tsx",
           "target": "@components/showcase/form/examples/form-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/form/examples/form-validation.tsx",
+          "target": "@components/showcase/form/examples/form-validation.tsx",
           "type": "registry:component"
         },
         {
@@ -11522,18 +11513,12 @@
       "type": "registry:block",
       "title": "Form: Validation",
       "description": "Validate a form field and display its error beside the control.\n\nCompose `FieldDescription` and `FieldError` together. The description is removed while the field is invalid and returns when validation clears, so helper information and errors never appear together.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/shake",
-        "@erbium/stateful-button",
-        "@erbium/styles"
-      ],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
-          "path": "src/form/examples/form-demo.tsx",
-          "target": "@components/showcase/form/examples/form-demo.tsx",
+          "path": "src/form/examples/form-validation.tsx",
+          "target": "@components/showcase/form/examples/form-validation.tsx",
           "type": "registry:component"
         },
         {
@@ -15335,13 +15320,13 @@
       "type": "registry:block",
       "title": "OTP Field: Form",
       "description": "A verification card owned by TanStack Form. The field validates on change, requires all\nsix digits on submit, and shows submission feedback from `form.Subscribe`. Resend resets\nthe demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
-      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "dependencies": ["effect@4.1.3"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/icon",
-        "@erbium/otp-field",
         "@erbium/styles"
       ],
       "files": [
@@ -15381,8 +15366,8 @@
       "type": "registry:block",
       "title": "OTP Field: Invalid",
       "description": "TanStack Form's `onChange` validator checks every complete changed code. Errors come from\n`field.state.meta.errors` through `FieldError`; `Field invalid` supplies accessible invalid\nstate to every slot. Editing a complete incorrect code revalidates it immediately.\nDemo code: 123456.",
-      "dependencies": ["@tanstack/react-form@1.33.5"],
-      "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/otp-field/examples/otp-field-invalid.tsx",
@@ -15472,8 +15457,8 @@
       "type": "registry:block",
       "title": "OTP Field: Status",
       "description": "Pass TanStack Form's `field.state.meta` as `validation`. `isValidating` gently pulses\nthe normal field surfaces and shimmers the digits. A touched invalid value shows an\nerror. Success appears only when the current complete value matches `verifiedValue`,\nwhich the demo sets after verification finishes.\n\nValidation keeps editing enabled. This demo uses `onChangeAsync` to check every complete\nchanged code, including corrections made while a previous check is pending. Demo code: 123456.\n\nIncomplete values clear verification feedback without checking the code. Verification\nstarts only when all six digits are present. The simulated check takes 1.5 seconds so\nits loading treatment is visible in Storybook and the docs playground.",
-      "dependencies": ["@tanstack/react-form@1.33.5"],
-      "registryDependencies": ["@erbium/field", "@erbium/otp-field", "@erbium/styles"],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/otp-field/examples/otp-field-status.tsx",
@@ -15492,13 +15477,14 @@
       "type": "registry:item",
       "title": "OTP Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "dependencies": ["effect@4.1.3"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/icon",
         "@erbium/otp-field",
         "@erbium/overlay-provider",
@@ -16699,7 +16685,7 @@
       "type": "registry:item",
       "title": "Questionnaire stories",
       "description": "All questionnaire variants as portable React CSF stories.",
-      "dependencies": ["@shadcn/react@^0.3.1", "zod@^4.6.7"],
+      "dependencies": ["@shadcn/react@^0.3.1", "effect@4.1.3"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -16914,7 +16900,7 @@
       "type": "registry:block",
       "title": "Questionnaire: Custom Validation",
       "description": "Combine controlled navigation with an external schema such as Zod to return to an invalid item and present its error.",
-      "dependencies": ["zod@^4.6.7"],
+      "dependencies": ["effect@4.1.3"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/questionnaire",
@@ -19712,14 +19698,8 @@
       "type": "registry:component",
       "title": "stateful button form",
       "description": "Erbium stateful button form example.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/shake",
-        "@erbium/stateful-button",
-        "@erbium/styles"
-      ],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/stateful-button/examples/stateful-button-form.tsx",
@@ -19733,16 +19713,14 @@
       "type": "registry:item",
       "title": "Stateful Button stories",
       "description": "All stateful-button variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "effect@4.1.3"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/direction",
-        "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/overlay-provider",
-        "@erbium/shake",
         "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
@@ -19790,14 +19768,8 @@
       "type": "registry:block",
       "title": "Stateful Button: Tan Stack Form",
       "description": "",
-      "dependencies": ["@tanstack/react-form@1.33.5", "@tanstack/react-pacer@0.24.1"],
-      "registryDependencies": [
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/shake",
-        "@erbium/stateful-button",
-        "@erbium/styles"
-      ],
+      "dependencies": ["effect@4.1.3"],
+      "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/stateful-button/examples/stateful-button-form.tsx",
@@ -20116,13 +20088,12 @@
       "type": "registry:item",
       "title": "Step Indicator stories",
       "description": "All step-indicator variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "dependencies": ["effect@4.1.3"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/csp-provider",
-        "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/overlay-provider",
         "@erbium/slider",
         "@erbium/step-indicator",
@@ -20202,11 +20173,10 @@
       "type": "registry:component",
       "title": "Step Indicator: TanStack Form",
       "description": "Keep the step in React state and the values in TanStack Form.\n\n- **Mount every field.** `form.validateField` only finds validators on mounted fields, so an unmounted step would pass validation unchecked. Render all steps and hide the inactive ones.\n- **Validate only what the user passes.** `goTo` validates each step on the way forward, which also marks it touched, and stops at the first invalid one. Steps ahead are never validated, so they never show an error before the user reaches them.\n- **Gate errors on `isTouched`.** Both the step's `invalid` and the field's error use `isTouched && !isValid`.\n- **Submit validates everything.** `onSubmitInvalid` sends the user to the first failing step.\n- Going back is always free.",
-      "dependencies": ["@tanstack/react-form@1.33.5"],
+      "dependencies": ["effect@4.1.3"],
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/step-indicator",
         "@erbium/styles"
       ],

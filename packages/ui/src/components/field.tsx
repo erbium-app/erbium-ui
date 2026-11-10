@@ -80,9 +80,9 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
 
 /**
  * Base UI `Field.Root`: wires the label, description, error and control, and
- * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Controlled form
- * libraries pass their own state, e.g. TanStack Form:
- * `invalid={!field.state.meta.isValid}`.
+ * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Inside a
+ * TanStack Form `form.AppField`, use `field.Field` from `./form`, which binds
+ * those props to the field's state.
  */
 const Field = ({
   className,
@@ -144,40 +144,40 @@ const FieldSeparator = ({
   ...props
 }: React.ComponentProps<"div"> & {
   children?: React.ReactNode;
-}) => (
-  <div
-    data-slot="field-separator"
-    data-content={!!children}
-    className={cn(
-      "relative -my-2 flex h-5 items-center text-caption group-data-[variant=outline]/field-group:-mb-2",
-      className,
-    )}
-    {...props}
-  >
-    <Separator className="text-muted-foreground">
-      {children && <span data-slot="field-separator-content">{children}</span>}
-    </Separator>
-  </div>
-);
+}) => {
+  const hasContent = children !== undefined && children !== null && children !== false;
+
+  return (
+    <div
+      data-slot="field-separator"
+      data-content={hasContent}
+      className={cn(
+        "relative -my-2 flex h-5 items-center text-caption group-data-[variant=outline]/field-group:-mb-2",
+        className,
+      )}
+      {...props}
+    >
+      <Separator className="text-muted-foreground">
+        {hasContent ? <span data-slot="field-separator-content">{children}</span> : null}
+      </Separator>
+    </div>
+  );
+};
 
 type FieldErrorProps = FieldPrimitive.Error.Props & {
   /**
-   * Messages from a form library, e.g. TanStack Form's `field.state.meta.errors`
-   * (strings or Standard Schema issues). When set, the error shows exactly while
-   * there is at least one message; otherwise Base UI's `match` rules apply.
+   * Messages from a form library. `FormFieldError` from `./form` passes the
+   * TanStack Form field's errors, decoded from strings or Standard Schema
+   * issues such as Effect Schema's. Duplicate messages collapse. When set, the
+   * error shows exactly while there is at least one message; otherwise Base
+   * UI's `match` rules apply.
    */
-  errors?: (string | { message?: string } | undefined)[];
+  errors?: readonly string[];
 };
 
 const FieldError = ({ className, children, errors, match, ...props }: FieldErrorProps) => {
   const messages = useMemo(
-    () => [
-      ...new Set(
-        (errors ?? [])
-          .map((error) => (typeof error === "string" ? error : error?.message))
-          .filter((message): message is string => Boolean(message)),
-      ),
-    ],
+    () => [...new Set((errors ?? []).filter((message) => message.length > 0))],
     [errors],
   );
 

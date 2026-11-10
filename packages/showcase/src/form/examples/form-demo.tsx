@@ -1,47 +1,18 @@
-import { useAsyncDebouncer } from "@tanstack/react-pacer/async-debouncer";
-import { useForm } from "@tanstack/react-form";
-import { useRef, useState } from "react";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
-import { Input } from "@erbium/ui/components/input";
-import { shake } from "@erbium/ui/lib/shake";
-import { StatefulButton } from "@erbium/ui/components/stateful-button";
-import type { StatefulButtonState } from "@erbium/ui/components/stateful-button";
+import { Effect, Schema } from "effect";
+import { useState } from "react";
+import { Form, useAppForm } from "@erbium/ui/components/form";
 
-const SubmitButton = ({
-  isSubmitting,
-  isSubmitSuccessful,
-  submissionAttempts,
-  label,
-}: {
-  isSubmitting: boolean;
-  isSubmitSuccessful: boolean;
-  submissionAttempts: number;
-  label: string;
-}) => {
-  const [dismissedAttempt, setDismissedAttempt] = useState(0);
-  let state: StatefulButtonState = "idle";
+const Email = Schema.String.check(
+  Schema.isPattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/u, { message: "Enter a valid email address." }),
+);
 
-  if (isSubmitting) {
-    state = "loading";
-  } else if (isSubmitSuccessful && submissionAttempts !== dismissedAttempt) {
-    state = "success";
-  }
+const OptionalEmail = Schema.Union([Schema.Literal(""), Email]);
 
-  return (
-    <StatefulButton
-      type="submit"
-      state={state}
-      onStateChange={(nextState) => {
-        if (nextState === "idle") {
-          setDismissedAttempt(submissionAttempts);
-        }
-      }}
-      successLabel="Submitted"
-    >
-      {label}
-    </StatefulButton>
-  );
-};
+const emailForm = (email: typeof Email | typeof OptionalEmail) =>
+  Schema.toStandardSchemaV1(Schema.Struct({ email }));
+
+const RequiredEmailForm = emailForm(Email);
+const OptionalEmailForm = emailForm(OptionalEmail);
 
 const FormDemo = ({
   defaultEmail = "",
@@ -53,79 +24,32 @@ const FormDemo = ({
   submitLabel?: string;
 }) => {
   const [submitted, setSubmitted] = useState("");
-  const emailRef = useRef<HTMLInputElement>(null);
-  const request = useAsyncDebouncer(async () => {}, { wait: 450 });
 
-  const form = useForm({
+  const form = useAppForm({
     defaultValues: { email: defaultEmail },
     onSubmit: async ({ value }) => {
-      await request.maybeExecute();
+      // Stands in for the request that sends the form.
+      await Effect.runPromise(Effect.sleep("450 millis"));
       setSubmitted(value.email);
     },
-    onSubmitInvalid: ({ formApi }) => {
-      if (formApi.state.fieldMeta.email?.errors.length) {
-        shake(emailRef.current);
-      }
-    },
+    validators: { onDynamic: required ? RequiredEmailForm : OptionalEmailForm },
   });
 
   return (
-    <form
-      noValidate
-      onSubmit={(event) => {
-        event.preventDefault();
-        void form.handleSubmit();
-      }}
-      className="w-80 space-y-4"
-    >
-      <form.Field
-        name="email"
-        validators={{
-          onBlur: ({ value }) =>
-            required && !value.includes("@") ? "Enter a valid email address." : undefined,
-        }}
-      >
+    <Form form={form} className="w-80 space-y-4">
+      <form.AppField name="email">
         {(field) => (
-          <Field
-            name={field.name}
-            invalid={!field.state.meta.isValid}
-            touched={field.state.meta.isTouched}
-            dirty={field.state.meta.isDirty}
-          >
-            <FieldLabel>Email</FieldLabel>
-            <Input
-              ref={emailRef}
-              type="email"
-              value={field.state.value}
-              onFocus={() => {
-                field.setErrorMap({ ...field.state.meta.errorMap, onBlur: undefined });
-              }}
-              onBlur={field.handleBlur}
-              onChange={(event) => {
-                field.handleChange(event.target.value);
-              }}
-            />
-            <FieldDescription>We will use this to contact you.</FieldDescription>
-            <FieldError errors={field.state.meta.errors} />
-          </Field>
-        )}
-      </form.Field>
-      <form.Subscribe
-        selector={(state) =>
-          [state.isSubmitting, state.isSubmitSuccessful, state.submissionAttempts] as const
-        }
-      >
-        {([isSubmitting, isSubmitSuccessful, submissionAttempts]) => (
-          <SubmitButton
-            isSubmitting={isSubmitting}
-            isSubmitSuccessful={isSubmitSuccessful}
-            submissionAttempts={submissionAttempts}
-            label={submitLabel}
+          <field.TextField
+            label="Email"
+            type="email"
+            autoComplete="email"
+            description="We will use this to contact you."
           />
         )}
-      </form.Subscribe>
-      {submitted && <p role="status">Submitted: {submitted}</p>}
-    </form>
+      </form.AppField>
+      <form.SubmitButton successLabel="Submitted">{submitLabel}</form.SubmitButton>
+      {submitted ? <output className="block">Submitted: {submitted}</output> : null}
+    </Form>
   );
 };
 

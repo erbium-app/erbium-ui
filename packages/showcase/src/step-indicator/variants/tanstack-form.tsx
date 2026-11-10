@@ -1,30 +1,42 @@
+import { Schema } from "effect";
 import { useState } from "react";
-import { useForm, useStore } from "@tanstack/react-form";
 import { StepIndicator, StepIndicatorItem } from "@erbium/ui/blocks/step-indicator";
 import { Button } from "@erbium/ui/components/button";
-import { Field, FieldError, FieldLabel } from "@erbium/ui/components/field";
-import { Input } from "@erbium/ui/components/input";
+import { Form, useAppForm } from "@erbium/ui/components/form";
 
+const Required = Schema.Trim.check(Schema.isNonEmpty({ message: "Required" }));
+
+const Signup = Schema.Struct({
+  company: Required,
+  email: Schema.String.check(
+    Schema.isPattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/u, { message: "Enter a valid email address." }),
+  ),
+  name: Required,
+});
+
+// Each step validates its own field with the matching part of the schema.
 const steps = [
-  { field: "name", label: "Name" },
-  { field: "email", label: "Email" },
-  { field: "company", label: "Company" },
+  { field: "name", label: "Name", validator: Schema.toStandardSchemaV1(Signup.fields.name) },
+  { field: "email", label: "Email", validator: Schema.toStandardSchemaV1(Signup.fields.email) },
+  {
+    field: "company",
+    label: "Company",
+    validator: Schema.toStandardSchemaV1(Signup.fields.company),
+  },
 ] as const;
-
-const required = ({ value }: { value: string }) => (value.trim() ? undefined : "Required");
 
 const Example = () => {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
 
-  const form = useForm({
+  const form = useAppForm({
     defaultValues: { company: "", email: "", name: "" },
     onSubmit: () => {
       setDone(true);
     },
     // Submit validates every step. Send the user to the first one that failed.
     onSubmitInvalid: ({ formApi }) => {
-      const first = steps.findIndex((item) => !formApi.getFieldMeta(item.field)?.isValid);
+      const first = steps.findIndex((item) => formApi.getFieldMeta(item.field)?.isValid === false);
 
       if (first !== -1) {
         setStep(first);
@@ -32,78 +44,61 @@ const Example = () => {
     },
   });
 
-  const fieldMeta = useStore(form.store, (state) => state.fieldMeta);
+  // Validating a step touches its field. The schema validators are synchronous,
+  // so the field's meta is current as soon as validateField returns.
+  const validateStep = (field: (typeof steps)[number]["field"]) => {
+    void form.validateField(field, "change");
 
-  // A step shows an error only after the user has touched it: by typing and
-  // blurring, or by trying to move past it. Untouched steps stay quiet.
-  const hasError = (field: (typeof steps)[number]["field"]) =>
-    Boolean(fieldMeta[field]?.isTouched && !fieldMeta[field]?.isValid);
+    return form.getFieldMeta(field)?.isValid !== false;
+  };
 
-  // Going back is free. Going forward validates each step on the way, which
-  // touches it, and stops at the first invalid one. Later steps are never
-  // validated, so they never show an error before the user reaches them.
-  const goTo = async (target: number) => {
-    for (let index = step; index < target; index++) {
-      const errors = await form.validateField(steps[index].field, "change");
+  // Going back is free. Going forward validates each step on the way and stops
+  // at the first invalid one. Later steps are never validated, so they never
+  // show an error before the user reaches them.
+  const goTo = (target: number) => {
+    const blocked = steps.findIndex(
+      (item, index) => index >= step && index < target && !validateStep(item.field),
+    );
 
-      if (errors.length) {
-        setStep(index);
-
-        return;
-      }
-    }
-
-    setStep(target);
+    setStep(blocked === -1 ? target : blocked);
   };
 
   return (
-    <form
-      className="flex w-72 flex-col items-center gap-4"
-      onSubmit={(event) => {
-        event.preventDefault();
-        void form.handleSubmit();
-      }}
-    >
-      <StepIndicator value={step} onValueChange={goTo}>
-        {steps.map((item, index) => (
-          <StepIndicatorItem
-            key={item.field}
-            index={index}
-            label={item.label}
-            invalid={hasError(item.field)}
-          />
-        ))}
-      </StepIndicator>
+    <Form form={form} className="flex w-72 flex-col items-center gap-4">
+      <form.Subscribe selector={(state) => state.fieldMeta}>
+        {(fieldMeta) => (
+          <StepIndicator value={step} onValueChange={goTo}>
+            {steps.map((item, index) => (
+              <StepIndicatorItem
+                key={item.field}
+                index={index}
+                label={item.label}
+                // A step shows an error only after the user has touched it.
+                invalid={
+                  fieldMeta[item.field]?.isTouched === true &&
+                  fieldMeta[item.field]?.isValid === false
+                }
+              />
+            ))}
+          </StepIndicator>
+        )}
+      </form.Subscribe>
       {/* Every field stays mounted so validateField always finds its validators.
           Only the current step is visible. */}
       {steps.map((item, index) => (
-        <form.Field key={item.field} name={item.field} validators={{ onChange: required }}>
-          {(field) => {
-            const invalid = field.state.meta.isTouched && !field.state.meta.isValid;
-
-            return (
-              <Field className="w-full" name={field.name} invalid={invalid} hidden={index !== step}>
-                <FieldLabel>{item.label}</FieldLabel>
-                <Input
-                  value={field.state.value}
-                  onChange={(event) => {
-                    field.handleChange(event.target.value);
-                  }}
-                  onBlur={field.handleBlur}
-                />
-                <FieldError errors={invalid ? field.state.meta.errors : []} />
-              </Field>
-            );
-          }}
-        </form.Field>
+        <form.AppField key={item.field} name={item.field} validators={{ onChange: item.validator }}>
+          {(field) => (
+            <field.TextField className="w-full" label={item.label} hidden={index !== step} />
+          )}
+        </form.AppField>
       ))}
       <div className="flex gap-2">
         <Button
           type="button"
           variant="outline"
           disabled={step === 0}
-          onClick={async () => {
-            await goTo(step - 1);
+          onClick={() => {
+            goTo(step - 1);
           }}
         >
           Back
@@ -111,8 +106,8 @@ const Example = () => {
         {step < steps.length - 1 ? (
           <Button
             type="button"
-            onClick={async () => {
-              await goTo(step + 1);
+            onClick={() => {
+              goTo(step + 1);
             }}
           >
             Next
@@ -121,7 +116,7 @@ const Example = () => {
           <Button type="submit">{done ? "Saved" : "Finish"}</Button>
         )}
       </div>
-    </form>
+    </Form>
   );
 };
 

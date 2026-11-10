@@ -1,47 +1,40 @@
-import { useForm } from "@tanstack/react-form";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@erbium/ui/components/field";
-import { OTPField } from "@erbium/ui/components/otp-field";
+import { Schema } from "effect";
+import { FieldDescription, FieldLabel } from "@erbium/ui/components/field";
+import { useAppForm } from "@erbium/ui/components/form";
+
+/** Checked on every change: a complete code must be the demo code. */
+const DemoCode = Schema.toStandardSchemaV1(
+  Schema.String.check(
+    Schema.makeFilter((code) =>
+      code.length < 6 || code === "123456" ? undefined : "Incorrect code. Try 123456.",
+    ),
+  ),
+);
+
+/** Checked on submit: every digit is required. */
+const CompleteCode = Schema.toStandardSchemaV1(
+  Schema.String.check(Schema.isMinLength(6, { message: "Enter all 6 digits." })),
+);
 
 export const OTPFieldInvalid = () => {
-  const form = useForm({ defaultValues: { code: "" } });
+  const form = useAppForm({ defaultValues: { code: "" } });
 
   return (
-    <form.Field
-      name="code"
-      validators={{
-        onChange: ({ value }) =>
-          value.length === 6 && value !== "123456" ? "Incorrect code. Try 123456." : undefined,
-        onSubmit: ({ value }) => (value.length === 6 ? undefined : "Enter all 6 digits."),
-      }}
-    >
+    <form.AppField name="code" validators={{ onChange: DemoCode, onSubmit: CompleteCode }}>
       {(field) => (
-        <Field
-          className="w-fit"
-          name={field.name}
-          invalid={field.state.meta.isTouched && !field.state.meta.isValid}
-          touched={field.state.meta.isTouched}
-          dirty={field.state.meta.isDirty}
-        >
+        <field.Field className="w-fit">
           <FieldLabel>Verification code</FieldLabel>
           <FieldDescription>Demo code: 123456</FieldDescription>
-          <OTPField
+          <field.OTPField
             length={6}
             groups={[3, 3]}
-            value={field.state.value}
-            validation={field.state.meta}
             verifiedValue={
               field.state.meta.isDirty && field.state.meta.isValid ? field.state.value : undefined
             }
-            onValueChange={field.handleChange}
-            onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) {
-                field.handleBlur();
-              }
-            }}
           />
-          <FieldError errors={field.state.meta.isTouched ? field.state.meta.errors : []} />
-        </Field>
+          <field.FieldError />
+        </field.Field>
       )}
-    </form.Field>
+    </form.AppField>
   );
 };

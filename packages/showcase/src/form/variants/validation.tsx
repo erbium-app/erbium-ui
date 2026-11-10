@@ -1,4 +1,4 @@
-import Demo from "../examples/form-demo";
+import Demo from "../examples/form-validation";
 
 const Example = () => <Demo />;
 

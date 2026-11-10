@@ -827,6 +827,30 @@
       ]
     },
     {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Erbium form component.",
+      "dependencies": ["@tanstack/react-form", "effect"],
+      "registryDependencies": [
+        "@erbium/checkbox",
+        "@erbium/field",
+        "@erbium/input",
+        "@erbium/otp-field",
+        "@erbium/shake",
+        "@erbium/stateful-button",
+        "@erbium/switch",
+        "@erbium/textarea"
+      ],
+      "files": [
+        {
+          "path": "src/components/form.tsx",
+          "target": "@ui/form.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "form-control-styles",
       "type": "registry:lib",
       "title": "Form Control Styles",
@@ -1186,9 +1210,10 @@
       "type": "registry:ui",
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
-      "dependencies": ["@shadcn/react"],
+      "dependencies": ["@shadcn/react", "@tanstack/react-form"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/form",
         "@erbium/icon",
         "@erbium/kbd",
         "@erbium/stateful-button",

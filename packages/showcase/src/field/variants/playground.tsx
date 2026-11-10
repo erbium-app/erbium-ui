@@ -25,7 +25,7 @@ const Example = (args: {
       <FieldLabel htmlFor="playground-field">Email</FieldLabel>
       <UIInput id="playground-field" placeholder="name@example.com" />
       <FieldDescription>We will use this to contact you.</FieldDescription>
-      <FieldError errors={args.invalid ? [{ message: args.error }] : []} />
+      <FieldError errors={args.invalid ? [args.error] : []} />
     </Field>
   </FieldSet>
 );
