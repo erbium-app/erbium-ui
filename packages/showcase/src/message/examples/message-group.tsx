@@ -21,7 +21,10 @@ export const MessageGroupDemo = () => (
       <Message>
         <MessageAvatar>
           <Avatar>
-            <AvatarImage src="/avatars/02.png" alt="@avatar" />
+            <AvatarImage
+              src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop"
+              alt="Jane Doe"
+            />
             <AvatarFallback>JD</AvatarFallback>
           </Avatar>
         </MessageAvatar>

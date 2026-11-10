@@ -7,8 +7,11 @@ export const MessageAvatarDemo = () => (
     <Message>
       <MessageAvatar>
         <Avatar>
-          <AvatarImage src="/avatars/03.png" alt="@avatar" />
-          <AvatarFallback>R</AvatarFallback>
+          <AvatarImage
+            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop"
+            alt="Alex Smith"
+          />
+          <AvatarFallback>AS</AvatarFallback>
         </Avatar>
       </MessageAvatar>
       <MessageContent>
@@ -20,8 +23,11 @@ export const MessageAvatarDemo = () => (
     <Message align="end">
       <MessageAvatar>
         <Avatar>
-          <AvatarImage src="/avatars/10.png" alt="@avatar" />
-          <AvatarFallback>R</AvatarFallback>
+          <AvatarImage
+            src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop"
+            alt="John Doe"
+          />
+          <AvatarFallback>JD</AvatarFallback>
         </Avatar>
       </MessageAvatar>
       <MessageContent>
@@ -33,8 +39,11 @@ export const MessageAvatarDemo = () => (
     <Message>
       <MessageAvatar>
         <Avatar>
-          <AvatarImage src="/avatars/03.png" alt="@avatar" />
-          <AvatarFallback>R</AvatarFallback>
+          <AvatarImage
+            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop"
+            alt="Alex Smith"
+          />
+          <AvatarFallback>AS</AvatarFallback>
         </Avatar>
       </MessageAvatar>
       <MessageContent>
