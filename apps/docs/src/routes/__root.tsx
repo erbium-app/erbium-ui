@@ -6,7 +6,8 @@ import {
   ScriptOnce,
   Link,
 } from "@tanstack/react-router";
-import { IconSprite } from "@erbium/ui/components/icon-sprite";
+import spriteUrl from "@erbium/icons/sprite.svg?url";
+import { IconSpriteProvider } from "@erbium/ui/components/icon";
 import { Shell } from "@/components/shell";
 import stylesheet from "@/styles.css?url";
 
@@ -21,11 +22,12 @@ const Root = () => (
       <HeadContent />
     </head>
     <body className="font-sans">
-      <IconSprite />
       <ScriptOnce>{`try { const theme = localStorage.getItem('erbium-theme'); document.documentElement.classList.toggle('dark', theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)); } catch {}`}</ScriptOnce>
-      <Shell>
-        <Outlet />
-      </Shell>
+      <IconSpriteProvider href={spriteUrl}>
+        <Shell>
+          <Outlet />
+        </Shell>
+      </IconSpriteProvider>
       <Scripts />
       {analyticsToken === undefined || analyticsToken === "" ? null : (
         <script

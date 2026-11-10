@@ -27,6 +27,7 @@
       "name": "docs",
       "dependencies": {
         "@erbium/content": "workspace:*",
+        "@erbium/icons": "workspace:*",
         "@erbium/showcase": "workspace:*",
         "@erbium/ui": "workspace:*",
         "@tanstack/markdown": "^1.2.0",
