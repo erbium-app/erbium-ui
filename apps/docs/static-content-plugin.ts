@@ -19,6 +19,14 @@ const virtualId = "virtual:docs-pages";
 const resolvedId = `\0${virtualId}`;
 const pagePrefix = "virtual:docs-page/";
 
+// Files the tooling server evaluates while compiling pages, example sources, and images.
+const toolingInput = /(?:packages\/(?:content|showcase|ui)\/|apps\/docs\/src\/build\/)/u;
+
+// Files whose changes alter compiled page data: Markdown, story args, the example
+// manifest and registries, theme sources for the colors page, and the page builder.
+const pageDataInput =
+  /(?:packages\/content\/|packages\/showcase\/(?:src\/[^/]+\/catalog\.tsx|manifest\.json|registry\.json)|packages\/ui\/(?:registry\.json|src\/styles\/(?:theme|surfaces)\.css)|apps\/docs\/src\/build\/)/u;
+
 /** Compile content and native image dependencies on Node, never in the Worker. */
 export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options): Plugin => {
   let tooling: Promise<ViteDevServer> | undefined;
@@ -43,6 +51,19 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
     });
 
     return await tooling;
+  };
+
+  const clearTooling = async () => {
+    if (!tooling) {
+      return;
+    }
+
+    const vite = await tooling;
+    const environment = vite.environments.ssr;
+
+    if (isRunnableDevEnvironment(environment)) {
+      environment.runner.clearCache();
+    }
   };
 
   const load = async <T>(path: string): Promise<T> => {
@@ -273,12 +294,32 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
         void handle();
       });
+      // Content is compiled by the tooling server, outside this server's module graph,
+      // so its sources need an explicit watch to reach the handler below.
+      vite.watcher.add(
+        [
+          "../../packages/content",
+          "../../packages/showcase/manifest.json",
+          "../../packages/showcase/registry.json",
+          "../../packages/ui/registry.json",
+          "../../packages/ui/src/styles",
+        ].map((path) => nodePath.resolve(root, path)),
+      );
       vite.watcher.on("change", (file) => {
-        if (!/packages\/(?:content|showcase|ui)\//u.test(file)) {
+        if (!toolingInput.test(file)) {
           return;
         }
 
+        // The tooling runner keeps evaluated modules, including eager raw content
+        // imports, so recompiling without clearing it would return stale pages.
         documents = undefined;
+        void clearTooling();
+
+        if (!pageDataInput.test(file)) {
+          // Components and examples are ordinary client modules; React Fast Refresh
+          // updates them without reloading the page.
+          return;
+        }
 
         for (const environment of Object.values(vite.environments)) {
           for (const module of environment.moduleGraph.idToModuleMap.values()) {
