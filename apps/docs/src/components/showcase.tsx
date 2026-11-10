@@ -11,7 +11,6 @@ import {
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
 import { CodePanel, CodePanelContent, codePanelSurface } from "@erbium/ui/blocks/code-panel";
 import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
-import { Spinner } from "@erbium/ui/components/spinner";
 import { Toaster } from "@erbium/ui/components/toast";
 import { Prose } from "./markdown";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@erbium/ui/components/tabs";
@@ -34,6 +33,10 @@ const PreviewError = () => (
 );
 
 type Args = NonNullable<ShowcaseStory["args"]>;
+
+// Shown only on client navigation before an example chunk arrives. The surface keeps
+// its minimum height, so the example replaces this without shifting the page.
+const PreviewLoading = () => <output aria-label="Loading preview" className="sr-only" />;
 
 const PreviewContent = ({ name, slug, args }: { name: string; slug: string; args: Args }) => {
   const { default: Example } = use(exampleRequest(name, slug));
@@ -156,7 +159,7 @@ export const Showcase = ({
             <CatchBoundary getResetKey={() => revision} errorComponent={PreviewError}>
               <ShowcaseProviders>
                 <ShowcaseSurface>
-                  <Suspense fallback={<Spinner aria-label="Loading preview" />}>
+                  <Suspense fallback={<PreviewLoading />}>
                     <PreviewContent key={revision} name={name} slug={variant.slug} args={args} />
                   </Suspense>
                 </ShowcaseSurface>

@@ -1,6 +1,6 @@
 import { createFileRoute, notFound, useLoaderData } from "@tanstack/react-router";
 import { DocPageView } from "@/components/doc-page";
-import { DocPageError, DocPagePending } from "@/components/doc-page-state";
+import { DocPageError } from "@/components/doc-page-state";
 import { pageHead } from "@/content/head";
 import { getDocPage } from "@/content/pages";
 
@@ -19,5 +19,4 @@ export const Route = createFileRoute("/docs/$")({
 
     return page;
   },
-  pendingComponent: DocPagePending,
 });

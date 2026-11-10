@@ -6,8 +6,6 @@ const minute = 60 * 1000;
 export const getRouter = () =>
   createRouter({
     defaultGcTime: 30 * minute,
-    defaultPendingMinMs: 300,
-    defaultPendingMs: 150,
     defaultPreload: "intent",
     defaultPreloadStaleTime: Number.POSITIVE_INFINITY,
     defaultStaleTime: Number.POSITIVE_INFINITY,

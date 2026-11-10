@@ -1,21 +1,6 @@
 import type { ErrorComponentProps } from "@tanstack/react-router";
 import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert";
 import { Button } from "@erbium/ui/components/button";
-import { Spinner } from "@erbium/ui/components/spinner";
-
-export const DocPagePending = () => (
-  <main
-    id="main-content"
-    aria-busy="true"
-    className="docs-page surface-panel border border-transparent rounded-xl"
-  >
-    <div className="docs-page-body">
-      <div className="docs-page-inner grid min-h-[calc(100svh-2*var(--site-section-space))] place-items-center">
-        <Spinner className="text-muted-foreground" size="xl" />
-      </div>
-    </div>
-  </main>
-);
 
 export const DocPageError = ({ error, reset }: ErrorComponentProps) => (
   <main id="main-content" className="docs-page surface-panel border border-transparent rounded-xl">

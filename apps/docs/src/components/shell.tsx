@@ -1,5 +1,5 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
-import { Link, useLocation, useRouter } from "@tanstack/react-router";
+import { Link, useLocation, useRouter, useRouterState } from "@tanstack/react-router";
 import { Fragment, useState } from "react";
 import type { ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
@@ -215,6 +215,9 @@ const Search = ({
 };
 
 export const Shell = ({ children }: { children: ReactNode }) => {
+  // The current page stays on screen while the next one loads; this flag drives a
+  // thin progress bar instead of replacing the page with a loading state.
+  const navigating = useRouterState({ select: (state) => state.status === "pending" });
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   useHotkey("Mod+K", () => {
@@ -229,6 +232,7 @@ export const Shell = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
+      <div className="route-progress" data-active={navigating || undefined} aria-hidden="true" />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
@@ -274,7 +278,9 @@ export const Shell = ({ children }: { children: ReactNode }) => {
               </SidebarContent>
               <SidebarActions />
             </Sidebar>
-            <div className="site-page-content">{children}</div>
+            <div className="site-page-content" aria-busy={navigating || undefined}>
+              {children}
+            </div>
           </div>
         </div>
       </SidebarProvider>
