@@ -206,6 +206,9 @@ const LightboxMedia = ({ className, ...props }: ComponentProps<typeof LightboxPr
   />
 );
 
+const hideWhenTouchZoomed =
+  "pointer-coarse:group-data-zoomed/lightbox:invisible pointer-coarse:group-data-zoomed/lightbox:opacity-0";
+
 const LightboxHeader = ({ className, ...props }: ComponentProps<"div">) => (
   <div
     data-slot="lightbox-header"
@@ -213,6 +216,7 @@ const LightboxHeader = ({ className, ...props }: ComponentProps<"div">) => (
       "pointer-events-none absolute inset-x-0 top-0 z-10 flex h-(--lb-inset-top) items-center justify-end gap-2 px-3 pt-(--lb-safe-top) *:pointer-events-auto",
       "transition-opacity duration-200 motion-reduce:transition-none",
       "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhenTouchZoomed,
       className,
     )}
     {...props}
@@ -234,6 +238,7 @@ const LightboxFooter = ({ className, ...props }: ComponentProps<"div">) => (
 );
 
 const LightboxClose = ({
+  className,
   variant = "secondary",
   size = "icon",
   children,
@@ -242,6 +247,7 @@ const LightboxClose = ({
   <LightboxPrimitive.Close
     data-slot="lightbox-close"
     render={<Button variant={variant} size={size} />}
+    className={cn(hideWhenTouchZoomed, className)}
     {...props}
   >
     {children ?? (
@@ -310,6 +316,7 @@ const LightboxPrevious = ({
     className={cn(
       "absolute inset-s-4 top-1/2 z-10 -translate-y-1/2 max-md:hidden rtl:[&_svg]:rotate-180",
       "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhenTouchZoomed,
       className,
     )}
     {...props}
@@ -336,6 +343,7 @@ const LightboxNext = ({
     className={cn(
       "absolute inset-e-4 top-1/2 z-10 -translate-y-1/2 max-md:hidden rtl:[&_svg]:rotate-180",
       "group-data-pull-dismissing/lightbox:invisible group-data-pull-dismissing/lightbox:opacity-0 group-data-pulling/lightbox:invisible group-data-pulling/lightbox:opacity-0",
+      hideWhenTouchZoomed,
       className,
     )}
     {...props}
