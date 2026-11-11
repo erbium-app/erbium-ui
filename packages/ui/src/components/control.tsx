@@ -27,7 +27,7 @@ import { cn } from "../lib/utils";
 import type { CSSVariables, CSSVariableStyle } from "../lib/utils";
 
 const rowClass =
-  "group/control relative flex control-size control-adaptive w-full min-w-0 items-center rounded-lg border surface-control text-control-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
+  "group/control relative flex control-size w-full min-w-0 items-center rounded-lg border surface-control text-control-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
 
 const labelClass = "min-w-0 shrink-0 truncate text-control font-medium text-muted-foreground";
 
@@ -416,7 +416,7 @@ const ControlNumber = ({
       data-elastic-dragging={dragging || undefined}
       aria-labelledby={id}
       className={cn(
-        "group/number relative block min-h-control control-adaptive w-full min-w-0 data-disabled:opacity-50",
+        "group/number relative block min-h-control w-full min-w-0 data-disabled:opacity-50",
         className,
       )}
       disabled={disabled}

@@ -62,7 +62,7 @@ const ToolbarInput = ({ className, ...props }: ToolbarPrimitive.Input.Props) => 
   <ToolbarPrimitive.Input
     data-slot="toolbar-input"
     className={cn(
-      "control-size control-adaptive min-w-0 rounded-lg border surface-field text-field outline-none data-disabled:opacity-50",
+      "control-size min-w-0 rounded-lg border surface-field text-field outline-none data-disabled:opacity-50",
       className,
     )}
     {...props}

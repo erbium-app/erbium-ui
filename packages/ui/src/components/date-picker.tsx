@@ -346,7 +346,7 @@ const DatePickerTrigger = ({
       data-placeholder={context.text === "" ? "" : undefined}
       disabled={context.disabled}
       className={cn(
-        "flex w-fit min-w-0 items-center gap-control-gap control-size control-adaptive rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none motion-reduce:transition-none aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+        "flex w-fit min-w-0 items-center gap-control-gap control-size touch-target rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none select-none motion-reduce:transition-none aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
         className,
       )}
       {...props}

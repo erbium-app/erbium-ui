@@ -51,7 +51,7 @@ const OTPFieldInput = ({ className, render, ...props }: OTPFieldPrimitive.Input.
         ))
       }
       className={cn(
-        "relative size-control control-adaptive min-w-0 rounded-lg border surface-field text-center text-field outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
+        "relative size-control min-w-0 rounded-lg border surface-field text-center text-field outline-none transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:border-ring focus-visible:ring-[1.5px] focus-visible:ring-focus-halo-strong motion-reduce:transition-none data-invalid:border-error data-[status=error]:border-error focus-visible:data-invalid:ring-0 data-disabled:cursor-not-allowed data-disabled:opacity-50 dark:data-invalid:border-invalid dark:data-[status=error]:border-invalid data-[status=success]:border-success data-[status=success]:text-success-soft-foreground data-[status=loading]:text-transparent motion-safe:data-[status=loading]:animate-pulse",
         className,
       )}
       {...props}

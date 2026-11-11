@@ -199,7 +199,7 @@ const NumberFieldGroup = ({ className, ...props }: NumberFieldPrimitive.Group.Pr
   <NumberFieldPrimitive.Group
     data-slot="number-field-group"
     className={cn(
-      "relative flex min-h-control control-adaptive w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      "relative flex min-h-control w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
       className,
     )}
     {...props}
@@ -207,7 +207,7 @@ const NumberFieldGroup = ({ className, ...props }: NumberFieldPrimitive.Group.Pr
 );
 
 const stepperClass =
-  "relative flex shrink-0 cursor-pointer items-center justify-center px-2 text-muted-foreground transition-colors duration-150 outline-none group-data-[size=sm]/number-field:px-1.5 hover:bg-foreground/5 hover:text-foreground focus-visible:bg-foreground/5 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none pointer-coarse:after:absolute pointer-coarse:after:size-full pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11";
+  "relative flex shrink-0 cursor-pointer items-center justify-center px-2 text-muted-foreground transition-colors duration-150 outline-none group-data-[size=sm]/number-field:px-1.5 hover:bg-foreground/5 hover:text-foreground focus-visible:bg-foreground/5 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none touch-target";
 
 const NumberFieldDecrement = ({
   className,

@@ -19,9 +19,9 @@ const sidebarMenuButtonVariants = cva(
     },
     variants: {
       size: {
-        default: "control-size control-adaptive text-control-sm",
-        lg: "control-size-lg control-adaptive [&_svg]:size-control-icon-lg text-control group-data-[collapsible=icon]:p-0!",
-        sm: "control-size-sm control-adaptive text-control-sm [&_svg]:size-control-icon-sm",
+        default: "control-size touch-target text-control-sm",
+        lg: "control-size-lg touch-target [&_svg]:size-control-icon-lg text-control group-data-[collapsible=icon]:p-0!",
+        sm: "control-size-sm touch-target text-control-sm [&_svg]:size-control-icon-sm",
       },
       variant: {
         default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",

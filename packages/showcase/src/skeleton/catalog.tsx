@@ -59,7 +59,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Skeleton> = {
   argTypes: {},
-  args: { className: "min-h-control control-adaptive w-48" },
+  args: { className: "min-h-control w-48" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("skeleton", "playground") },

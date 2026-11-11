@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority";
 /* Each variant names one surface; hover, press, engaged, invalid, and
    disabled states come from the surface itself. */
 const buttonVariants = cva(
-  "group/button inline-flex [&>[data-slot=spinner]]:order-first shrink-0 items-center justify-center rounded-lg border border-transparent text-control font-medium whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-invalid-halo dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
+  "group/button inline-flex touch-target [&>[data-slot=spinner]]:order-first shrink-0 items-center justify-center rounded-lg border border-transparent text-control font-medium whitespace-nowrap transition-button duration-150 outline-none select-none [--button-shortcut-inset:0.125rem] motion-reduce:transition-none focus-visible:border-ring disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-control aria-invalid:ring-invalid-halo dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 data-disabled:pointer-events-none data-disabled:opacity-50 data-[loading]:data-disabled:opacity-100",
   {
     defaultVariants: {
       size: "default",
@@ -11,17 +11,15 @@ const buttonVariants = cva(
     },
     variants: {
       size: {
-        default:
-          "control-size control-adaptive text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
-        icon: "size-control control-adaptive [&_svg:not([class*='size-'])]:size-control-icon",
-        "icon-lg":
-          "size-control-lg control-adaptive [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        default: "control-size text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
+        icon: "size-control [&_svg:not([class*='size-'])]:size-control-icon",
+        "icon-lg": "size-control-lg [&_svg:not([class*='size-'])]:size-control-icon-lg",
         "icon-sm":
-          "size-control-sm control-adaptive rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+          "size-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
         "icon-xs":
           "size-control-xs rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
-        lg: "control-size-lg control-adaptive text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
-        sm: "control-size-sm control-adaptive text-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+        lg: "control-size-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        sm: "control-size-sm text-control-sm rounded-button-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
         xs: "control-size-xs text-control-sm rounded-button-xs [&_svg:not([class*='size-'])]:size-control-icon-sm",
       },
       variant: {

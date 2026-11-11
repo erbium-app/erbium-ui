@@ -22,7 +22,7 @@ const Slider = ({
       thumbAlignment="edge"
       {...props}
     >
-      <SliderPrimitive.Control className="relative flex min-h-control control-adaptive w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col">
+      <SliderPrimitive.Control className="relative flex min-h-control w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col">
         <SliderPrimitive.Track
           data-slot="slider-track"
           className="relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-track data-horizontal:w-full data-vertical:h-full data-vertical:w-track"

@@ -17,7 +17,7 @@ const Example = () => (
   <SurfaceStage>
     <div className="grid w-full max-w-3xl gap-section">
       <div className="flex flex-wrap items-center gap-related">
-        <div className="flex control-size control-adaptive w-full max-w-72 items-center rounded-lg border surface-field">
+        <div className="flex control-size w-full max-w-72 items-center rounded-lg border surface-field">
           <Icon name="search-01" className="size-3.5 text-muted-foreground" />
           <span className="text-muted-foreground">Search repositories and people…</span>
         </div>

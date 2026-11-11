@@ -70,7 +70,7 @@ const autocompleteFieldVariants = cva("", {
 });
 
 const autocompleteActionVariants = cva(
-  "absolute top-1/2 inline-flex size-control shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-colors pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden sm:size-control-sm [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "absolute top-1/2 inline-flex size-control-sm shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-colors touch-target hover:opacity-100 has-[+[data-slot=autocomplete-clear]]:hidden [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       size: {
@@ -98,7 +98,7 @@ export const AutocompleteClear = ({
 }: AutocompletePrimitive.Clear.Props): React.ReactElement => (
   <AutocompletePrimitive.Clear
     className={cn(
-      "absolute inset-e-0.5 top-1/2 inline-flex size-control shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-[color,background-color,box-shadow,opacity] pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 sm:size-control-sm [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
+      "absolute inset-e-0.5 top-1/2 inline-flex size-control-sm shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none transition-[color,background-color,box-shadow,opacity] touch-target hover:opacity-100 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:pointer-events-none [&_svg]:shrink-0",
       className,
     )}
     data-slot="autocomplete-clear"

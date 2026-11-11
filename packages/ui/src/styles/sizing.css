@@ -14,52 +14,66 @@
     --panel-padding: 1rem;
     --panel-padding-compact: 0.75rem;
   }
+
+  /* Narrow viewports step every height up by 0.25rem. The scale keeps its
+     order (xs < sm < default < lg), so size choices still read on phones. */
+  @media (width < 48rem) {
+    :root {
+      --control-height-embedded: 1.5rem;
+      --control-height-small: 1.75rem;
+      --control-height: 2rem;
+      --control-height-large: 2.25rem;
+    }
+  }
 }
 
-/* Minimum height plus padding lets scripts, text zoom, and touch fields grow. */
+/* Minimum height plus padding lets scripts and text zoom grow the control. */
 @utility control-size {
-  min-height: max(var(--control-height), var(--control-target-floor, 0px));
+  min-height: var(--control-height);
   gap: 0.25rem;
   padding-block: 0.1875rem;
   padding-inline: 0.5rem;
 }
 
 @utility control-size-sm {
-  min-height: max(var(--control-height-small), var(--control-target-floor, 0px));
+  min-height: var(--control-height-small);
   gap: 0.25rem;
   padding-block: 0.125rem;
   padding-inline: 0.5rem;
 }
 
 @utility control-size-xs {
-  --control-target-floor: 0px;
-
-  min-height: max(var(--control-height-embedded), var(--control-target-floor, 0px));
+  min-height: var(--control-height-embedded);
   gap: 0.25rem;
   padding-block: 0;
   padding-inline: 0.375rem;
 }
 
 @utility control-size-lg {
-  min-height: max(var(--control-height-large), var(--control-target-floor, 0px));
+  min-height: var(--control-height-large);
   gap: 0.375rem;
   padding-block: 0.1875rem;
   padding-inline: 0.625rem;
 }
 
-@utility control-adaptive {
-  @media (width < 48rem) {
-    --control-target-floor: 2.25rem;
-
-    min-width: 2.25rem;
-    min-height: var(--control-target-floor);
-  }
-
+/* Coarse pointers get a 2.75rem hit area through ::after, centred on the
+   control. The visible size stays on the scale above. Apply this to leaf
+   controls only: on a container the overlay would cover its children. */
+@utility touch-target {
   @media (pointer: coarse) {
-    --control-target-floor: 2.75rem;
+    :where(&) {
+      position: relative;
+    }
 
-    min-width: 2.75rem;
-    min-height: var(--control-target-floor);
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: max(100%, var(--touch-target-size, 2.75rem));
+      height: max(100%, var(--touch-target-size, 2.75rem));
+      content: "";
+      translate: -50% -50%;
+    }
   }
 }
 
@@ -68,34 +82,26 @@
   gap: 0.25rem;
   padding-block: 0.25rem;
   padding-inline: 0.375rem;
-
-  @media (pointer: coarse) {
-    --control-target-floor: 2.75rem;
-
-    min-height: var(--control-target-floor);
-  }
 }
 
 @utility min-h-control-xs {
-  min-height: max(var(--control-height-embedded), var(--control-target-floor, 0px));
+  min-height: var(--control-height-embedded);
 }
 
 @utility min-h-control-sm {
-  min-height: max(var(--control-height-small), var(--control-target-floor, 0px));
+  min-height: var(--control-height-small);
 }
 
 @utility min-h-control {
-  min-height: max(var(--control-height), var(--control-target-floor, 0px));
+  min-height: var(--control-height);
 }
 
 @utility min-h-control-lg {
-  min-height: max(var(--control-height-large), var(--control-target-floor, 0px));
+  min-height: var(--control-height-large);
 }
 
 @utility min-h-control-touch {
-  --control-target-floor: 2.75rem;
-
-  min-height: var(--control-target-floor);
+  min-height: 2.75rem;
 }
 
 @utility min-h-badge {
@@ -207,11 +213,12 @@
 }
 
 @utility segmented-size {
-  min-height: calc(max(var(--control-height), var(--control-target-floor, 0px)) - 0.375rem);
+  min-height: calc(var(--control-height) - 0.375rem);
 }
 
+/* Controls embedded in a field share its hit area instead of adding one. */
 @utility control-embedded {
-  --control-target-floor: 0px;
+  --touch-target-size: 0px;
 
   min-width: 0;
 }

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport const SkeletonForm = () => (\n  <div className=\"flex w-full max-w-xs flex-col gap-7\">\n    <div className=\"flex flex-col gap-3\">\n      <Skeleton className=\"h-4 w-20\" />\n      <Skeleton className=\"min-h-control control-adaptive w-full\" />\n    </div>\n    <div className=\"flex flex-col gap-3\">\n      <Skeleton className=\"h-4 w-24\" />\n      <Skeleton className=\"min-h-control control-adaptive w-full\" />\n    </div>\n    <Skeleton className=\"min-h-control control-adaptive w-24\" />\n  </div>\n);\n",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\nexport const SkeletonForm = () => (\n  <div className=\"flex w-full max-w-xs flex-col gap-7\">\n    <div className=\"flex flex-col gap-3\">\n      <Skeleton className=\"h-4 w-20\" />\n      <Skeleton className=\"min-h-control w-full\" />\n    </div>\n    <div className=\"flex flex-col gap-3\">\n      <Skeleton className=\"h-4 w-24\" />\n      <Skeleton className=\"min-h-control w-full\" />\n    </div>\n    <Skeleton className=\"min-h-control w-24\" />\n  </div>\n);\n",
       "path": "src/skeleton/examples/skeleton-form.tsx",
       "target": "@components/showcase/skeleton/examples/skeleton-form.tsx",
       "type": "registry:component"

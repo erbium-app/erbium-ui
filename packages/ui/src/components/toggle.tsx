@@ -13,9 +13,9 @@ const toggleVariants = cva(
     variants: {
       size: {
         default:
-          "control-size control-adaptive min-w-control text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
-        lg: "control-size-lg control-adaptive min-w-control-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
-        sm: "control-size-sm control-adaptive min-w-control-sm text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
+          "control-size touch-target min-w-control text-control-sm [&_svg:not([class*='size-'])]:size-control-icon",
+        lg: "control-size-lg touch-target min-w-control-lg text-control [&_svg:not([class*='size-'])]:size-control-icon-lg",
+        sm: "control-size-sm touch-target min-w-control-sm text-control-sm [&_svg:not([class*='size-'])]:size-control-icon-sm",
       },
       variant: {
         /* Flat at rest; selection presses a control surface into its plane. */

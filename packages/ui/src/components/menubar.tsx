@@ -22,10 +22,7 @@ import {
 const Menubar = ({ className, ...props }: MenubarPrimitive.Props) => (
   <MenubarPrimitive
     data-slot="menubar"
-    className={cn(
-      "flex min-h-control control-adaptive items-center gap-0.5 rounded-lg border p-0.75",
-      className,
-    )}
+    className={cn("flex min-h-control items-center gap-0.5 rounded-lg border p-0.75", className)}
     {...props}
   />
 );

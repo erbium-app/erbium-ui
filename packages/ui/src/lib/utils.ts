@@ -10,7 +10,6 @@ const anySurfaceColor = () => true;
 export const cn = createCn({
   extend: {
     classGroups: {
-      "control-adaptation": ["control-adaptive", "control-embedded"],
       "control-geometry": ["control-size", "control-size-sm", "control-size-xs", "control-size-lg"],
       "font-size": [
         {
@@ -36,7 +35,6 @@ export const cn = createCn({
       py: [{ py: ["panel", "related", "control-gap"] }],
       surface: [
         {
-          "control-adaptation": ["control-adaptive", "control-embedded"],
           "control-geometry": [
             "control-size",
             "control-size-sm",
