@@ -73,7 +73,7 @@ const LightboxBackdrop = ({
   <LightboxPrimitive.Backdrop
     data-slot="lightbox-backdrop"
     className={cn(
-      "fixed inset-0 isolate z-50 bg-overlay-backdrop opacity-0 supports-backdrop-filter:backdrop-blur-(--overlay-backdrop-blur,2px)",
+      "fixed inset-0 isolate z-50 bg-overlay-backdrop opacity-0 pointer-coarse:bg-background not-pointer-coarse:supports-backdrop-filter:backdrop-blur-(--overlay-backdrop-blur,2px)",
       // Pull-snap timing exists only while a cancelled pull springs back.
       "transition-opacity duration-(--lightbox-pull-snap-duration,var(--lightbox-vt-duration,360ms)) ease-(--lightbox-pull-snap-easing,cubic-bezier(0.16,1,0.3,1))",
       "[--lightbox-backdrop-opacity:calc(1-var(--lightbox-pull-progress,0)*0.6)] data-open:opacity-(--lightbox-backdrop-opacity) data-open:starting:opacity-0",
