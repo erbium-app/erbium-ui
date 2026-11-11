@@ -254,6 +254,7 @@ const LightboxClose = ({
 );
 
 const LightboxZoomIn = ({
+  className,
   variant = "secondary",
   size = "icon",
   children,
@@ -262,6 +263,7 @@ const LightboxZoomIn = ({
   <LightboxPrimitive.ZoomIn
     data-slot="lightbox-zoom-in"
     render={<Button variant={variant} size={size} />}
+    className={cn("pointer-coarse:hidden", className)}
     {...props}
   >
     {children ?? (
@@ -274,6 +276,7 @@ const LightboxZoomIn = ({
 );
 
 const LightboxZoomOut = ({
+  className,
   variant = "secondary",
   size = "icon",
   children,
@@ -282,6 +285,7 @@ const LightboxZoomOut = ({
   <LightboxPrimitive.ZoomOut
     data-slot="lightbox-zoom-out"
     render={<Button variant={variant} size={size} />}
+    className={cn("pointer-coarse:hidden", className)}
     {...props}
   >
     {children ?? (
