@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import type { ComponentProps } from "react";
 import * as LightboxPrimitive from "@ramka/react/lightbox";
 import {
@@ -86,27 +87,59 @@ const LightboxBackdrop = ({
 
 const LightboxContent = ({
   className,
+  onClick,
+  onPointerDown,
   ...props
-}: ComponentProps<typeof LightboxPrimitive.Content>) => (
-  <LightboxPortal>
-    <LightboxBackdrop />
-    <LightboxPrimitive.Content
-      data-slot="lightbox-content"
-      className={cn(
-        "group/lightbox fixed inset-0 z-50 flex flex-col overscroll-contain opacity-0 outline-none",
-        "transition-opacity duration-(--lightbox-vt-duration,360ms) ease-out",
-        "data-open:opacity-100 data-open:starting:opacity-0 motion-reduce:transition-none",
-        // Shared by the slides, header, and footer so they stay aligned.
-        "[--lb-safe-top:env(safe-area-inset-top,0px)] [--lb-safe-bottom:env(safe-area-inset-bottom,0px)]",
-        "[--lb-inset-bottom:calc(4rem+var(--lb-safe-bottom))] [--lb-inset-top:calc(4rem+var(--lb-safe-top))] [--lb-inset-x:0px]",
-        "md:[--lb-inset-bottom:calc(4.5rem+var(--lb-safe-bottom))] md:[--lb-inset-top:calc(4.5rem+var(--lb-safe-top))] md:[--lb-inset-x:4.5rem]",
-        "has-data-[slot=lightbox-thumbnail-strip]:[--lb-inset-bottom:calc(8rem+var(--lb-safe-bottom))]",
-        className,
-      )}
-      {...props}
-    />
-  </LightboxPortal>
-);
+}: ComponentProps<typeof LightboxPrimitive.Content>) => {
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const backgroundPress = useRef<{ target: Element; x: number; y: number } | null>(null);
+
+  return (
+    <LightboxPortal>
+      <LightboxBackdrop ref={backdropRef} />
+      <LightboxPrimitive.Content
+        data-slot="lightbox-content"
+        className={cn(
+          "group/lightbox fixed inset-0 z-50 flex flex-col overscroll-contain opacity-0 outline-none",
+          "transition-opacity duration-(--lightbox-vt-duration,360ms) ease-out",
+          "data-open:opacity-100 data-open:starting:opacity-0 motion-reduce:transition-none",
+          // Shared by the slides, header, and footer so they stay aligned.
+          "[--lb-safe-top:env(safe-area-inset-top,0px)] [--lb-safe-bottom:env(safe-area-inset-bottom,0px)]",
+          "[--lb-inset-bottom:calc(4rem+var(--lb-safe-bottom))] [--lb-inset-top:calc(4rem+var(--lb-safe-top))] [--lb-inset-x:0px]",
+          "md:[--lb-inset-bottom:calc(4.5rem+var(--lb-safe-bottom))] md:[--lb-inset-top:calc(4.5rem+var(--lb-safe-top))] md:[--lb-inset-x:4.5rem]",
+          "has-data-[slot=lightbox-thumbnail-strip]:[--lb-inset-bottom:calc(8rem+var(--lb-safe-bottom))]",
+          className,
+        )}
+        onPointerDown={(event) => {
+          onPointerDown?.(event);
+          const { target, clientX, clientY } = event;
+          // The scrollport needs to receive touch input even outside the image.
+          backgroundPress.current =
+            !event.defaultPrevented &&
+            event.button === 0 &&
+            target instanceof Element &&
+            target.matches("[data-ramka-slides], [data-ramka-slide]")
+              ? { target, x: clientX, y: clientY }
+              : null;
+        }}
+        onClick={(event) => {
+          onClick?.(event);
+          const press = backgroundPress.current;
+          backgroundPress.current = null;
+
+          if (
+            !event.defaultPrevented &&
+            press?.target === event.target &&
+            Math.hypot(press.x - event.clientX, press.y - event.clientY) < 8
+          ) {
+            backdropRef.current?.click();
+          }
+        }}
+        {...props}
+      />
+    </LightboxPortal>
+  );
+};
 
 // Keep empty layout boxes transparent to the dialog's native scrim handler.
 const LightboxStage = ({ className, ...props }: ComponentProps<typeof LightboxPrimitive.Stage>) => (
@@ -127,7 +160,7 @@ const LightboxSlides = ({
   <LightboxPrimitive.Slides
     data-slot="lightbox-slides"
     className={cn(
-      "pointer-events-none flex-1 scrollbar-none gap-4 md:gap-0 [&::-webkit-scrollbar]:hidden",
+      "pointer-events-auto flex-1 scrollbar-none gap-4 md:gap-0 [&::-webkit-scrollbar]:hidden",
       className,
     )}
     {...props}
