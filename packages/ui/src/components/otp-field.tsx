@@ -101,6 +101,41 @@ const OTPFieldSlots = ({ groups, length }: { groups?: number[]; length: number }
   });
 };
 
+const otpFieldStatus = (
+  value: string | undefined,
+  length: number,
+  validation: OTPFieldValidation | undefined,
+  verifiedValue: string | undefined,
+): OTPFieldStatus => {
+  const complete = value?.length === length;
+
+  if (validation?.isValidating === true && complete) {
+    return "loading";
+  }
+
+  if (validation?.isTouched === true && !validation.isValid) {
+    return "error";
+  }
+
+  if (validation?.isValid === true && complete && value === verifiedValue) {
+    return "success";
+  }
+
+  return "idle";
+};
+
+const assignRef = <T,>(ref: React.Ref<T> | undefined, node: T | null) => {
+  if (ref === null || ref === undefined) {
+    return;
+  }
+
+  if ("current" in ref) {
+    ref.current = node;
+  } else {
+    ref(node);
+  }
+};
+
 type OTPFieldProps = OTPFieldPrimitive.Root.Props & {
   /** Validation metadata owned by the form library. Does not lock editing. */
   validation?: OTPFieldValidation;
@@ -127,14 +162,7 @@ const OTPField = ({
 }: OTPFieldProps) => {
   const rootRef = React.useRef<HTMLDivElement | null>(null);
 
-  const status: OTPFieldStatus =
-    validation?.isValidating && value?.length === length
-      ? "loading"
-      : validation?.isTouched && !validation.isValid
-        ? "error"
-        : validation?.isValid && value?.length === length && value === verifiedValue
-          ? "success"
-          : "idle";
+  const status = otpFieldStatus(value, length, validation, verifiedValue);
 
   React.useEffect(() => {
     if (status === "error") {
@@ -154,11 +182,7 @@ const OTPField = ({
         ref={(node) => {
           rootRef.current = node;
 
-          if (typeof ref === "function") {
-            ref(node);
-          } else if (ref) {
-            ref.current = node;
-          }
+          assignRef(ref, node);
         }}
         className={cn("flex w-fit items-center gap-related", className)}
         {...props}

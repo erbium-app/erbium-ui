@@ -3,6 +3,16 @@ import type { IconProps } from "@erbium/ui/components/icon";
 import { Kbd } from "@erbium/ui/components/kbd";
 import { SurfaceStage, control } from "../helpers";
 
+const stats = [
+  { icon: "coins-01", label: "Tokens", value: "0" },
+  { icon: "sparkles", label: "Total cost", value: "$0.00" },
+] satisfies { icon: IconProps["name"]; label: string; value: string }[];
+
+const emptyPanels = [
+  { empty: "No model yet", icon: "cpu", label: "Models" },
+  { empty: "No agent yet", icon: "bot", label: "Agents" },
+] satisfies { empty: string; icon: IconProps["name"]; label: string }[];
+
 const Example = () => (
   <SurfaceStage>
     <div className="grid w-full max-w-3xl gap-section">
@@ -36,29 +46,23 @@ const Example = () => (
       </div>
 
       <div className="grid gap-group @md:grid-cols-2">
-        {[
-          ["Tokens", "0", "coins-01"],
-          ["Total cost", "$0.00", "sparkles"],
-        ].map(([label, value, icon]) => (
+        {stats.map(({ icon, label, value }) => (
           <div key={label} className="rounded-xl border surface-panel p-5">
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-related">
-                <Icon name={icon as IconProps["name"]} className="size-3.5 text-muted-foreground" />
+                <Icon name={icon} className="size-3.5 text-muted-foreground" />
                 {label}
               </span>
               <span className="tabular-nums">{value}</span>
             </div>
           </div>
         ))}
-        {[
-          ["Models", "No model yet", "cpu"],
-          ["Agents", "No agent yet", "bot"],
-        ].map(([label, empty, icon]) => (
+        {emptyPanels.map(({ empty, icon, label }) => (
           <div key={label} className="flex h-56 flex-col rounded-xl border surface-panel p-5">
             <span className="font-medium">{label}</span>
             <div className="grid flex-1 place-content-center justify-items-center gap-3">
               <span className="grid size-8 place-content-center rounded-lg border surface-control">
-                <Icon name={icon as IconProps["name"]} className="size-3.5 text-muted-foreground" />
+                <Icon name={icon} className="size-3.5 text-muted-foreground" />
               </span>
               <span>{empty}</span>
             </div>

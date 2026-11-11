@@ -1,6 +1,5 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { motion, useReducedMotion } from "motion/react";
-import type { HTMLMotionProps } from "motion/react";
 import { cn } from "../lib/utils";
 
 const Tabs = ({ className, orientation = "horizontal", ...props }: TabsPrimitive.Root.Props) => (
@@ -37,9 +36,19 @@ const TabsList = ({ className, children, ...props }: TabsPrimitive.List.Props) =
             return <span {...indicatorProps} />;
           }
 
+          /* Motion owns these handler names with different signatures; the
+             indicator never receives them, so they are dropped. */
+          const {
+            onAnimationStart: _onAnimationStart,
+            onDrag: _onDrag,
+            onDragEnd: _onDragEnd,
+            onDragStart: _onDragStart,
+            ...motionProps
+          } = indicatorProps;
+
           return (
             <motion.span
-              {...(indicatorProps as HTMLMotionProps<"span">)}
+              {...motionProps}
               initial={false}
               animate={{
                 height: size.height,
@@ -48,7 +57,7 @@ const TabsList = ({ className, children, ...props }: TabsPrimitive.List.Props) =
                 y: position.top,
               }}
               transition={
-                shouldReduceMotion
+                shouldReduceMotion === true
                   ? { duration: 0 }
                   : { damping: 35, stiffness: 400, type: "spring" }
               }

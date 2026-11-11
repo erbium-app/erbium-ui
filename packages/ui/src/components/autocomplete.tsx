@@ -126,15 +126,16 @@ export const AutocompleteInput = ({
   triggerProps?: AutocompletePrimitive.Trigger.Props;
   clearProps?: AutocompletePrimitive.Clear.Props;
 }): React.ReactElement => {
-  const sizeValue = size ?? "default";
-  const visualSize = typeof sizeValue === "number" ? "default" : sizeValue;
+  /* Numeric sizes set the native input width; the visual size stays default. */
+  const visualSize = size === "sm" || size === "lg" ? size : "default";
+  const hasStartAddon = startAddon !== undefined && startAddon !== null && startAddon !== false;
 
   return (
     <AutocompletePrimitive.InputGroup
       className="relative not-has-[>*.w-full]:w-fit w-full text-foreground has-disabled:opacity-64"
       data-slot="autocomplete-input-group"
     >
-      {startAddon && (
+      {hasStartAddon && (
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-y-0 inset-s-px z-10 flex items-center ps-[calc(--spacing(3)-1px)] opacity-80 has-[+[data-size=sm]]:ps-[calc(--spacing(2.5)-1px)] [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:-mx-0.5"
@@ -145,7 +146,7 @@ export const AutocompleteInput = ({
       )}
       <AutocompletePrimitive.Input
         className={cn(
-          autocompleteInputVariants({ className, size: visualSize, startAddon: !!startAddon }),
+          autocompleteInputVariants({ className, size: visualSize, startAddon: hasStartAddon }),
         )}
         data-slot="autocomplete-input"
         render={<Input className={cn(autocompleteFieldVariants({ size: visualSize }))} />}
@@ -328,4 +329,4 @@ export const AutocompleteCollection: typeof AutocompletePrimitive.Collection =
 export const useAutocompleteFilter: typeof AutocompletePrimitive.useFilter =
   AutocompletePrimitive.useFilter;
 
-export { AutocompletePrimitive };
+export { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete";
