@@ -3,7 +3,7 @@ import { Checkbox } from "@erbium/ui/components/checkbox";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Checkbox>) => (
-  <Field orientation="horizontal">
+  <Field orientation="horizontal" required={args.required}>
     <Checkbox key={String(args.defaultChecked)} {...args} id="playground-checkbox" />
     <FieldLabel htmlFor="playground-checkbox">Accept terms</FieldLabel>
   </Field>

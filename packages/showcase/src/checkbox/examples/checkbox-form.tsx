@@ -14,7 +14,7 @@ const CheckboxForm = () => {
           onDynamic: ({ value }) => (value ? undefined : "Accept the terms to continue."),
         }}
       >
-        {(field) => <field.CheckboxField label="Accept terms and conditions" showError />}
+        {(field) => <field.CheckboxField label="Accept terms and conditions" required showError />}
       </form.AppField>
       <form.AppField name="newsletter">
         {(field) => <field.CheckboxField label="Subscribe to the newsletter" />}

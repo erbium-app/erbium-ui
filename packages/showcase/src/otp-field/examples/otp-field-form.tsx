@@ -33,13 +33,12 @@ export const OTPFieldForm = () => {
         <Form form={form} className="flex flex-col gap-section">
           <form.AppField name="code" validators={{ onChange: DemoCode, onSubmit: CompleteCode }}>
             {(field) => (
-              <field.Field>
+              <field.Field required>
                 <FieldLabel>Verification code</FieldLabel>
                 <field.OTPField
                   className="gap-1 *:data-[slot=otp-field-group]:gap-1"
                   length={6}
                   groups={[3, 3]}
-                  required
                   verifiedValue={
                     form.state.isSubmitted && field.state.meta.isValid
                       ? field.state.value

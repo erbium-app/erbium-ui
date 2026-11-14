@@ -88,7 +88,12 @@ const Example = () => {
       {steps.map((item, index) => (
         <form.AppField key={item.field} name={item.field} validators={{ onChange: item.validator }}>
           {(field) => (
-            <field.TextField className="w-full" label={item.label} hidden={index !== step} />
+            <field.TextField
+              className="w-full"
+              label={item.label}
+              hidden={index !== step}
+              required
+            />
           )}
         </form.AppField>
       ))}

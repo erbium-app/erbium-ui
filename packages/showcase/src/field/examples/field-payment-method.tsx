@@ -112,9 +112,10 @@ const FieldDemo = () => {
                   }}
                 >
                   {(field) => (
-                    <field.Field>
+                    <field.Field required>
                       <FieldLabel htmlFor={`${id}-month`}>Month</FieldLabel>
                       <Select
+                        required
                         items={months}
                         value={field.state.value}
                         onValueChange={(value) => {
@@ -145,9 +146,10 @@ const FieldDemo = () => {
                   }}
                 >
                   {(field) => (
-                    <field.Field>
+                    <field.Field required>
                       <FieldLabel htmlFor={`${id}-year`}>Year</FieldLabel>
                       <Select
+                        required
                         items={years}
                         value={field.state.value}
                         onValueChange={(value) => {

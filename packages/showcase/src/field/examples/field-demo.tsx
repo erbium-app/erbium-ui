@@ -85,9 +85,10 @@ const FieldDemo = () => {
                   }}
                 >
                   {(field) => (
-                    <field.Field>
+                    <field.Field required>
                       <FieldLabel htmlFor={`${id}-month`}>Month</FieldLabel>
                       <Select
+                        required
                         value={field.state.value}
                         onValueChange={(value) => {
                           field.handleChange(value ?? "");
@@ -122,9 +123,10 @@ const FieldDemo = () => {
                   }}
                 >
                   {(field) => (
-                    <field.Field>
+                    <field.Field required>
                       <FieldLabel htmlFor={`${id}-year`}>Year</FieldLabel>
                       <Select
+                        required
                         value={field.state.value}
                         onValueChange={(value) => {
                           field.handleChange(value ?? "");

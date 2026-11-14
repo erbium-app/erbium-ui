@@ -41,6 +41,7 @@ const FormDemo = ({
         {(field) => (
           <field.TextField
             label="Email"
+            required={required}
             type="email"
             autoComplete="email"
             description="We will use this to contact you."

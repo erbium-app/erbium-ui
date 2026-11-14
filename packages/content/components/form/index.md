@@ -32,9 +32,11 @@ const SignupForm = () => {
 
   return (
     <Form form={form}>
-      <form.AppField name="name">{(field) => <field.TextField label="Name" />}</form.AppField>
+      <form.AppField name="name">
+        {(field) => <field.TextField label="Name" required />}
+      </form.AppField>
       <form.AppField name="email">
-        {(field) => <field.TextField label="Email" type="email" />}
+        {(field) => <field.TextField label="Email" type="email" required />}
       </form.AppField>
       <form.SubmitButton successLabel="Saved">Sign up</form.SubmitButton>
     </Form>
@@ -71,12 +73,16 @@ A field shows its errors only after it is touched; typing, blurring, and submitt
 
 A toggle that must be on, such as accepting terms, needs no error text: its label already says what is expected, and the invalid outline plus the shake say it is required. `CheckboxField` and `SwitchField` therefore shake the control together with its label and keep the message for assistive technology only. Pass `showError` to show it.
 
+Set `required` on a bound text, password, textarea, checkbox, or switch field to mark the label and set the control's required state. Standard Schema validators describe how to validate a value. Declare required state in the field UI and enforce it in the validator.
+
+For a custom composition, set `required` on `field.Field` to mark its label. `field.OTPField` and `FieldControl` inherit this setting. For other controls, use their `required` prop to convey the same state.
+
 Compose a custom field from `field.Field`, `field.FieldError`, and your own control:
 
 ```tsx
 <form.AppField name="code" validators={{ onSubmit: Schema.toStandardSchemaV1(Code) }}>
   {(field) => (
-    <field.Field>
+    <field.Field required>
       <FieldLabel>Verification code</FieldLabel>
       <field.OTPField length={6} groups={[3, 3]} />
       <field.FieldError />

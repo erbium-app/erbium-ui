@@ -22,7 +22,7 @@ const StatefulButtonForm = () => {
   return (
     <Form form={form} className="w-80 space-y-4">
       <form.AppField name="email">
-        {(field) => <field.TextField label="Email" type="email" autoComplete="email" />}
+        {(field) => <field.TextField label="Email" required type="email" autoComplete="email" />}
       </form.AppField>
       <form.SubmitButton successLabel="Subscribed">Subscribe</form.SubmitButton>
     </Form>

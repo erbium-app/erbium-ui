@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
 import { cva } from "class-variance-authority";
@@ -6,39 +6,68 @@ import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
+type FieldRootProps = FieldPrimitive.Root.Props & {
+  /** Marks the field label or legend as required. */
+  required?: boolean;
+};
+
+const FieldRequiredContext = createContext(false);
+const useFieldRequired = () => useContext(FieldRequiredContext);
+
+const RequiredMark = () => (
+  <span aria-hidden="true" className="text-error">
+    *
+  </span>
+);
+
 /**
  * Base UI's grouped-field pattern: a `Field.Root` rendered as the `<fieldset>`.
  * The legend names the group, and a `FieldDescription`, `FieldError` or
  * `FieldItem` directly inside it wires to the group's control, e.g. a radio or
  * checkbox group.
  */
-const FieldSet = ({ className, ...props }: FieldPrimitive.Root.Props) => (
-  <FieldPrimitive.Root
-    render={<FieldsetPrimitive.Root />}
-    data-slot="field-set"
-    className={cn(
-      "flex flex-col gap-group has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
-      className,
-    )}
-    {...props}
-  />
+const FieldSet = ({ className, required = false, ...props }: FieldRootProps) => (
+  <FieldRequiredContext.Provider value={required}>
+    <FieldPrimitive.Root
+      render={<FieldsetPrimitive.Root />}
+      data-slot="field-set"
+      className={cn(
+        "flex flex-col gap-group has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
+        className,
+      )}
+      {...props}
+    />
+  </FieldRequiredContext.Provider>
 );
 
 const FieldLegend = ({
+  children,
   className,
   variant = "legend",
   ...props
-}: FieldsetPrimitive.Legend.Props & { variant?: "legend" | "label" }) => (
-  <FieldsetPrimitive.Legend
-    data-slot="field-legend"
-    data-variant={variant}
-    className={cn(
-      "mb-1.5 font-medium data-[variant=label]:text-control data-[variant=legend]:text-body",
-      className,
-    )}
-    {...props}
-  />
-);
+}: FieldsetPrimitive.Legend.Props & { variant?: "legend" | "label" }) => {
+  const required = useFieldRequired();
+
+  return (
+    <FieldsetPrimitive.Legend
+      data-slot="field-legend"
+      data-variant={variant}
+      className={cn(
+        "mb-1.5 font-medium data-[variant=label]:text-control data-[variant=legend]:text-body",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {required ? (
+        <>
+          {" "}
+          <RequiredMark />
+        </>
+      ) : null}
+    </FieldsetPrimitive.Legend>
+  );
+};
 
 const FieldGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
@@ -80,23 +109,26 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
 
 /**
  * Base UI `Field.Root`: wires the label, description, error and control, and
- * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Inside a
- * TanStack Form `form.AppField`, use `field.Field` from `./form`, which binds
- * those props to the field's state.
+ * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Set `required`
+ * to mark the field label. Inside TanStack Form, `field.Field` binds the
+ * name and validation state to the surrounding `form.AppField`.
  */
 const Field = ({
   className,
   orientation = "vertical",
+  required = false,
   variant = "default",
   ...props
-}: FieldPrimitive.Root.Props & VariantProps<typeof fieldVariants>) => (
-  <FieldPrimitive.Root
-    data-slot="field"
-    data-orientation={orientation}
-    data-variant={variant}
-    className={cn(fieldVariants({ orientation, variant }), className)}
-    {...props}
-  />
+}: FieldRootProps & VariantProps<typeof fieldVariants>) => (
+  <FieldRequiredContext.Provider value={required}>
+    <FieldPrimitive.Root
+      data-slot="field"
+      data-orientation={orientation}
+      data-variant={variant}
+      className={cn(fieldVariants({ orientation, variant }), className)}
+      {...props}
+    />
+  </FieldRequiredContext.Provider>
 );
 
 const FieldContent = ({ className, ...props }: React.ComponentProps<"div">) => (
@@ -107,16 +139,23 @@ const FieldContent = ({ className, ...props }: React.ComponentProps<"div">) => (
   />
 );
 
-const FieldLabel = ({ className, ...props }: FieldPrimitive.Label.Props) => (
-  <FieldPrimitive.Label
-    data-slot="field-label"
-    className={cn(
-      "group/field-label peer/field-label flex w-fit gap-related text-control select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
-      className,
-    )}
-    {...props}
-  />
-);
+const FieldLabel = ({ children, className, ...props }: FieldPrimitive.Label.Props) => {
+  const required = useFieldRequired();
+
+  return (
+    <FieldPrimitive.Label
+      data-slot="field-label"
+      className={cn(
+        "group/field-label peer/field-label flex w-fit gap-related text-control select-none data-disabled:pointer-events-none data-disabled:opacity-50 group-data-[variant=card]/field:w-full group-data-[variant=card]/field:after:absolute group-data-[variant=card]/field:after:inset-0",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {required ? <RequiredMark /> : null}
+    </FieldPrimitive.Label>
+  );
+};
 
 /** Helper information is replaced by the error while the field is invalid. */
 const FieldDescription = ({ className, ...props }: FieldPrimitive.Description.Props) => (
@@ -233,16 +272,23 @@ const FieldItem = ({
   variant = "default",
   ...props
 }: FieldPrimitive.Item.Props & VariantProps<typeof fieldVariants>) => (
-  <FieldPrimitive.Item
-    data-slot="field-item"
-    data-orientation={orientation}
-    data-variant={variant}
-    className={cn(fieldVariants({ orientation, variant }), className)}
-    {...props}
-  />
+  <FieldRequiredContext.Provider value={false}>
+    <FieldPrimitive.Item
+      data-slot="field-item"
+      data-orientation={orientation}
+      data-variant={variant}
+      className={cn(fieldVariants({ orientation, variant }), className)}
+      {...props}
+    />
+  </FieldRequiredContext.Provider>
 );
 
-const FieldControl = FieldPrimitive.Control;
+const FieldControl = ({ required, ...props }: FieldPrimitive.Control.Props) => {
+  const fieldRequired = useFieldRequired();
+
+  return <FieldPrimitive.Control required={required ?? fieldRequired} {...props} />;
+};
+
 const FieldValidity = FieldPrimitive.Validity;
 
 export {
@@ -258,4 +304,5 @@ export {
   FieldItem,
   FieldControl,
   FieldValidity,
+  useFieldRequired,
 };

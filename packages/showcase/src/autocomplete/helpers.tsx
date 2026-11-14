@@ -273,10 +273,11 @@ export const FormAutocomplete = () => {
         }}
       >
         {(field) => (
-          <field.Field>
+          <field.Field required>
             <FieldLabel htmlFor={id}>Favorite fruit</FieldLabel>
             <Autocomplete
               items={items}
+              required
               value={field.state.value}
               onValueChange={field.handleChange}
             >

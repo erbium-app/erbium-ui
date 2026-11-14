@@ -79,13 +79,16 @@ const PasswordInputForm = () => {
           <Form form={form}>
             <FieldGroup>
               <form.AppField name="email">
-                {(field) => <field.TextField label="Email" type="email" autoComplete="email" />}
+                {(field) => (
+                  <field.TextField label="Email" type="email" autoComplete="email" required />
+                )}
               </form.AppField>
               <form.AppField name="password">
                 {(field) => (
                   <field.PasswordField
                     label="Password"
                     autoComplete="new-password"
+                    required
                     description="At least 8 characters, including a number."
                     visible={visible}
                     onVisibleChange={setVisible}
@@ -97,6 +100,7 @@ const PasswordInputForm = () => {
                   <field.PasswordField
                     label="Confirm password"
                     autoComplete="new-password"
+                    required
                     visible={visible}
                     onVisibleChange={setVisible}
                   />

@@ -1,9 +1,11 @@
+import { useId } from "react";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { FieldItem, FieldLabel } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import { Form, useAppForm } from "@erbium/ui/components/form";
 
 const RadioGroupForm = () => {
+  const labelId = useId();
   const form = useAppForm({ defaultValues: { shipping: "" } });
 
   return (
@@ -13,9 +15,13 @@ const RadioGroupForm = () => {
         validators={{ onDynamic: ({ value }) => (value ? undefined : "Choose a shipping option.") }}
       >
         {(field) => (
-          <field.Field>
+          <field.Field required>
+            <FieldLabel id={labelId} nativeLabel={false} render={<div />}>
+              Shipping speed
+            </FieldLabel>
             <RadioGroup
-              aria-label="Shipping speed"
+              aria-labelledby={labelId}
+              required
               value={field.state.value}
               onValueChange={field.handleChange}
               onBlur={field.handleBlur}

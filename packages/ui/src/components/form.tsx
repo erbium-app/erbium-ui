@@ -15,6 +15,7 @@ import {
   FieldDescription,
   FieldError as FieldErrorMessage,
   FieldLabel,
+  useFieldRequired,
 } from "./field";
 import { Input } from "./input";
 import { OTPField as OTPFieldControl } from "./otp-field";
@@ -160,6 +161,7 @@ const TextField = ({
   hidden,
   label,
   orientation,
+  required,
   ...props
 }: TextFieldProps) => {
   const field = useFieldContext<string>();
@@ -167,7 +169,7 @@ const TextField = ({
   useShakeOnRejectedSubmit(inputRef);
 
   return (
-    <FormField className={className} hidden={hidden} orientation={orientation}>
+    <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldLabel>{label}</FieldLabel>
       <Input
         ref={inputRef}
@@ -176,6 +178,7 @@ const TextField = ({
         onChange={(event) => {
           field.handleChange(event.target.value);
         }}
+        required={required}
         {...props}
       />
       <Description>{description}</Description>
@@ -209,6 +212,7 @@ const PasswordField = ({
   hidden,
   label,
   orientation,
+  required,
   ...props
 }: PasswordFieldProps) => {
   const field = useFieldContext<string>();
@@ -216,7 +220,7 @@ const PasswordField = ({
   useShakeOnRejectedSubmit(groupRef);
 
   return (
-    <FormField className={className} hidden={hidden} orientation={orientation}>
+    <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldLabel>{label}</FieldLabel>
       <PasswordInput
         groupRef={groupRef}
@@ -225,6 +229,7 @@ const PasswordField = ({
         onChange={(event) => {
           field.handleChange(event.target.value);
         }}
+        required={required}
         {...props}
       />
       <Description>{description}</Description>
@@ -246,6 +251,7 @@ const TextareaField = ({
   hidden,
   label,
   orientation,
+  required,
   ...props
 }: TextareaFieldProps) => {
   const field = useFieldContext<string>();
@@ -253,7 +259,7 @@ const TextareaField = ({
   useShakeOnRejectedSubmit(textareaRef);
 
   return (
-    <FormField className={className} hidden={hidden} orientation={orientation}>
+    <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldLabel>{label}</FieldLabel>
       <Textarea
         ref={textareaRef}
@@ -262,6 +268,7 @@ const TextareaField = ({
         onChange={(event) => {
           field.handleChange(event.target.value);
         }}
+        required={required}
         {...props}
       />
       <Description>{description}</Description>
@@ -307,6 +314,7 @@ const CheckboxField = ({
   label,
   orientation = "horizontal",
   showError = false,
+  required,
   ...props
 }: ToggleFieldProps<typeof Checkbox>) => {
   const field = useFieldContext<boolean>();
@@ -314,13 +322,20 @@ const CheckboxField = ({
   useShakeOnRejectedSubmit(rowRef);
 
   return (
-    <FormField ref={rowRef} className={className} hidden={hidden} orientation={orientation}>
+    <FormField
+      ref={rowRef}
+      className={className}
+      hidden={hidden}
+      orientation={orientation}
+      required={required}
+    >
       <Checkbox
         checked={field.state.value}
         onBlur={field.handleBlur}
         onCheckedChange={(checked) => {
           field.handleChange(checked);
         }}
+        required={required}
         {...props}
       />
       <FieldContent>
@@ -343,6 +358,7 @@ const SwitchField = ({
   label,
   orientation = "horizontal",
   showError = false,
+  required,
   ...props
 }: ToggleFieldProps<typeof Switch>) => {
   const field = useFieldContext<boolean>();
@@ -350,7 +366,13 @@ const SwitchField = ({
   useShakeOnRejectedSubmit(rowRef);
 
   return (
-    <FormField ref={rowRef} className={className} hidden={hidden} orientation={orientation}>
+    <FormField
+      ref={rowRef}
+      className={className}
+      hidden={hidden}
+      orientation={orientation}
+      required={required}
+    >
       <FieldContent>
         <FieldLabel>{label}</FieldLabel>
         <Description>{description}</Description>
@@ -362,6 +384,7 @@ const SwitchField = ({
         onCheckedChange={(checked) => {
           field.handleChange(checked);
         }}
+        required={required}
         {...props}
       />
     </FormField>
@@ -372,14 +395,17 @@ const SwitchField = ({
  * `OTPField` bound to a string field. Validation metadata drives its pending,
  * error and success states; leaving the whole group marks the field touched.
  */
-const FormOTPField = (
-  props: Omit<OTPFieldProps, "name" | "onBlur" | "onValueChange" | "validation" | "value">,
-) => {
+const FormOTPField = ({
+  required,
+  ...props
+}: Omit<OTPFieldProps, "name" | "onBlur" | "onValueChange" | "validation" | "value">) => {
   const field = useFieldContext<string>();
   const meta = useFieldMeta();
+  const fieldRequired = useFieldRequired();
 
   return (
     <OTPFieldControl
+      required={required ?? fieldRequired}
       value={field.state.value}
       validation={meta}
       onValueChange={(value) => {

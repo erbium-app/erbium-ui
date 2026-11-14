@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport const InputRequired = () => (\n  <Field>\n    <FieldLabel>\n      Required Field <span className=\"text-error\">*</span>\n    </FieldLabel>\n    <Input placeholder=\"This field is required\" required />\n    <FieldDescription>This field must be filled out.</FieldDescription>\n  </Field>\n);\n",
+      "content": "import { Field, FieldControl, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport const InputRequired = () => (\n  <Field required>\n    <FieldLabel>Required field</FieldLabel>\n    <FieldControl render={<Input placeholder=\"This field is required\" />} />\n    <FieldDescription>This field must be filled out.</FieldDescription>\n  </Field>\n);\n",
       "path": "src/input/examples/input-required.tsx",
       "target": "@components/showcase/input/examples/input-required.tsx",
       "type": "registry:component"

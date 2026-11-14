@@ -3,7 +3,7 @@ import { Switch } from "@erbium/ui/components/switch";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Switch>) => (
-  <Field orientation="horizontal">
+  <Field orientation="horizontal" required={args.required}>
     <Switch key={String(args.defaultChecked)} id="playground-switch" {...args} />
     <FieldLabel htmlFor="playground-switch">Airplane mode</FieldLabel>
   </Field>

@@ -5016,7 +5016,7 @@
       "name": "carousel-autoplay",
       "type": "registry:block",
       "title": "Carousel: Autoplay",
-      "description": "Add `CarouselAutoplay` to advance the slides on a timer. It renders the pause and play button that moving content needs, waits while the carousel is hovered or focused, and stops when someone navigates. Under reduced motion it starts paused. Combine it with `loop` so the carousel keeps going past the last slide.\n\n```tsx\n<Carousel aria-label=\"Highlights\" loop>\n  <CarouselSlides>...</CarouselSlides>\n  <CarouselAutoplay delay={2000} />\n</Carousel>\n```",
+      "description": "Add `CarouselAutoplay` to advance the slides on a timer. It renders the pause and play button that moving content needs, waits while the carousel is hovered or focused, and stops when someone navigates. Under reduced motion it starts paused. Combine it with `loop` so the carousel keeps going past the last slide. Pair it with `CarouselIndicator` and the current dot fills over `delay`, so readers can see when the next slide comes in; the fill holds while autoplay waits and turns solid once it stops.\n\n```tsx\n<Carousel aria-label=\"Highlights\" loop>\n  <CarouselSlides>...</CarouselSlides>\n  <CarouselAutoplay delay={2000} />\n  <CarouselIndicator />\n</Carousel>\n```",
       "registryDependencies": ["@erbium/card", "@erbium/carousel", "@erbium/styles"],
       "files": [
         {
@@ -20319,6 +20319,27 @@
       ]
     },
     {
+      "name": "step-indicator-autoplay",
+      "type": "registry:component",
+      "title": "Step Indicator: Autoplay",
+      "description": "`autoplay` fills the current pill over `duration` and then selects the next step, so readers can see how long is left before the content changes. It restarts whenever the value changes, whoever changed it. `paused` holds the fill where it is; tie it to a pause button, or to hover over the content it advances. `loop` (on by default) returns to the first step after the last. Reduced motion turns the timer off and shows a solid pill.\n\n```tsx\nconst [index, setIndex] = useState(0);\nconst [paused, setPaused] = useState(false);\n\n<StepIndicator\n  variant=\"dots\"\n  count={4}\n  value={index}\n  onValueChange={setIndex}\n  autoplay={{ duration: 3000, paused }}\n/>;\n```\n\nThe clock moves the fill every frame without re-rendering. When something else owns the clock, pass a motion value to `progress` instead; `CarouselIndicator` does this with the carousel's autoplay timer.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/card",
+        "@erbium/icon",
+        "@erbium/stateful-icon",
+        "@erbium/step-indicator",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/step-indicator/variants/autoplay.tsx",
+          "target": "@components/showcase/step-indicator/variants/autoplay.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "step-indicator-blocked",
       "type": "registry:component",
       "title": "Step Indicator: Blocked",
@@ -20341,6 +20362,7 @@
         "@erbium-examples/step-indicator-blocked",
         "@erbium-examples/step-indicator-status",
         "@erbium-examples/step-indicator-progress",
+        "@erbium-examples/step-indicator-autoplay",
         "@erbium-examples/step-indicator-vertical",
         "@erbium-examples/step-indicator-tabs",
         "@erbium-examples/step-indicator-tanstack-form"
@@ -20366,7 +20388,7 @@
       "name": "step-indicator-progress",
       "type": "registry:component",
       "title": "Step Indicator: Progress",
-      "description": "`progress` (0 to 1) fills the current pill. Drive it from anything: a timer for a carousel, upload progress, or the fraction of answered fields in the step.",
+      "description": "`progress` (0 to 1) fills the current pill. Drive it from anything: a timer for a carousel, upload progress, or the fraction of answered fields in the step. To fill on a timer, use `autoplay`, or pass a motion value from your own clock so the fill moves every frame without re-rendering.",
       "registryDependencies": ["@erbium/slider", "@erbium/step-indicator", "@erbium/styles"],
       "files": [
         {
@@ -20413,10 +20435,13 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/form",
+        "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/slider",
+        "@erbium/stateful-icon",
         "@erbium/step-indicator",
         "@erbium/styles",
         "@erbium/tabs",
@@ -20432,6 +20457,11 @@
           "path": "src/step-indicator/step-indicator.stories.tsx",
           "target": "@components/showcase/step-indicator/step-indicator.stories.tsx",
           "type": "registry:file"
+        },
+        {
+          "path": "src/step-indicator/variants/autoplay.tsx",
+          "target": "@components/showcase/step-indicator/variants/autoplay.tsx",
+          "type": "registry:component"
         },
         {
           "path": "src/step-indicator/variants/blocked.tsx",

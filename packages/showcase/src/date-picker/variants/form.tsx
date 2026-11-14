@@ -39,7 +39,7 @@ const Example = () => {
         }}
       >
         {(field) => (
-          <field.Field>
+          <field.Field required>
             <FieldLabel htmlFor={id}>Trip</FieldLabel>
             <DatePicker
               mode="range"
@@ -48,7 +48,7 @@ const Example = () => {
                 field.handleChange({ from: value?.from, to: value?.to });
               }}
             >
-              <DatePickerInput id={id} onBlur={field.handleBlur} />
+              <DatePickerInput required id={id} onBlur={field.handleBlur} />
               <DatePickerContent>
                 <DatePickerCalendar numberOfMonths={2} />
               </DatePickerContent>

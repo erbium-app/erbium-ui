@@ -14,7 +14,7 @@ const SwitchForm = () => {
           onDynamic: ({ value }) => (value ? undefined : "Accept the terms to continue."),
         }}
       >
-        {(field) => <field.SwitchField label="Accept terms and conditions" showError />}
+        {(field) => <field.SwitchField label="Accept terms and conditions" required showError />}
       </form.AppField>
       <form.AppField name="newsletter">
         {(field) => <field.SwitchField label="Subscribe to the newsletter" />}

@@ -44,15 +44,16 @@ const FormValidation = () => {
     <Form form={form} className="w-full max-w-sm">
       <FieldGroup>
         <form.AppField name="name">
-          {(field) => <field.TextField label="Name" autoComplete="name" />}
+          {(field) => <field.TextField label="Name" required autoComplete="name" />}
         </form.AppField>
         <form.AppField name="email">
-          {(field) => <field.TextField label="Email" type="email" autoComplete="email" />}
+          {(field) => <field.TextField label="Email" required type="email" autoComplete="email" />}
         </form.AppField>
         <form.AppField name="message">
           {(field) => (
             <field.TextareaField
               label="Message"
+              required
               description="Tell us what you need help with."
               rows={4}
             />
@@ -67,7 +68,7 @@ const FormValidation = () => {
           )}
         </form.AppField>
         <form.AppField name="terms">
-          {(field) => <field.CheckboxField label="I accept the terms of service" />}
+          {(field) => <field.CheckboxField label="I accept the terms of service" required />}
         </form.AppField>
         <form.SubmitButton successLabel="Sent">Send message</form.SubmitButton>
         {sent ? <output className="block">Thanks, {sent}. We will reply soon.</output> : null}
