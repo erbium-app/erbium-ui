@@ -37,7 +37,7 @@ const items = [
 export const QuestionnaireDialog = () => {
   const [open, setOpen] = React.useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -63,7 +63,7 @@ export const QuestionnaireDialog = () => {
           onSubmit={handleSubmit}
           className="min-h-0 flex-1 gap-0"
         >
-          <QuestionnaireItem name="scope" required className="min-h-0 flex-1 gap-0">
+          <QuestionnaireItem name="scope" className="min-h-0 flex-1 gap-0">
             <DialogHeader>
               <QuestionnaireStepIndicator />
               <QuestionnaireTitle>Which files are in scope?</QuestionnaireTitle>
@@ -85,7 +85,7 @@ export const QuestionnaireDialog = () => {
             </DialogContent>
           </QuestionnaireItem>
 
-          <QuestionnaireItem name="tests" required className="min-h-0 flex-1 gap-0">
+          <QuestionnaireItem name="tests" className="min-h-0 flex-1 gap-0">
             <DialogHeader>
               <QuestionnaireStepIndicator />
               <QuestionnaireTitle>How much verification is needed?</QuestionnaireTitle>

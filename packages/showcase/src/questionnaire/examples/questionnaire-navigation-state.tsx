@@ -23,7 +23,21 @@ const items = [
   { name: "verification", required: true },
 ] as const;
 
-type ItemName = "permission" | "verification";
+type ItemName = (typeof items)[number]["name"];
+
+const isItemName = (name: string): name is ItemName =>
+  items.some((definition) => definition.name === name);
+
+const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+
+  toast.add({
+    description: `Permission: ${getFormValue(formData, "permission")} · Verification: ${getFormValue(formData, "verification")}`,
+    title: "Permissions saved",
+  });
+};
 
 export const QuestionnaireNavigationState = () => {
   const [item, setItem] = React.useState<ItemName>("permission");
@@ -39,24 +53,15 @@ export const QuestionnaireNavigationState = () => {
     setStatuses((current) => ({ ...current, [name]: status }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-
-    toast.add({
-      description: `Permission: ${getFormValue(formData, "permission")} · Verification: ${getFormValue(formData, "verification")}`,
-      title: "Permissions saved",
-    });
-  };
-
   return (
     <Questionnaire
       className="mx-auto max-w-md"
       item={item}
       items={items}
       onItemChange={(nextItem) => {
-        setItem(nextItem as ItemName);
+        if (isItemName(nextItem)) {
+          setItem(nextItem);
+        }
       }}
       onSubmit={handleSubmit}
     >
@@ -64,7 +69,6 @@ export const QuestionnaireNavigationState = () => {
 
       <QuestionnaireItem
         name="permission"
-        required
         onStatusChange={(status) => {
           setStatus("permission", status);
         }}
@@ -83,7 +87,6 @@ export const QuestionnaireNavigationState = () => {
 
       <QuestionnaireItem
         name="verification"
-        required
         onStatusChange={(status) => {
           setStatus("verification", status);
         }}

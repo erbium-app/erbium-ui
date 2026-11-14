@@ -17413,7 +17413,7 @@
       "name": "questionnaire-animated",
       "type": "registry:block",
       "title": "Questionnaire: Animated Items",
-      "description": "Animate the active item while keeping progress and navigation stationary.",
+      "description": "Animate the active item while keeping progress and navigation stationary.\n\nQuestions can differ in size: here one has no description and two answers, another a longer description and four described answers. The questionnaire eases to each question's height, so the actions below move smoothly instead of jumping, and an error under a question eases in the same way.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -18006,7 +18006,7 @@
       "name": "questionnaire-validation",
       "type": "registry:block",
       "title": "Questionnaire: Custom Validation",
-      "description": "Validate the answers with an Effect Schema, including a rule that spans items. `useQuestionnaireForm` and `QuestionnaireForm` from `@erbium/ui/components/questionnaire` keep the answers in TanStack Form: each `form.AppField` wraps a `field.QuestionnaireItem`, and its `field.QuestionnaireChoice` elements are controlled by the field value. A rejected submit returns to the first item, in `items` order, that has an error, and `field.QuestionnaireError` shows the schema's message. Changing the answer revalidates it and clears the error.",
+      "description": "Validate the answers with an Effect Schema, including a rule that spans items. `useQuestionnaireForm` and `QuestionnaireForm` from `@erbium/ui/components/questionnaire` keep the answers in TanStack Form: each `form.AppField` wraps a `field.QuestionnaireItem`, and its `field.QuestionnaireChoice` elements are controlled by the field value. Each answer is checked against the schema before the questionnaire moves past it, so an error shows on the question that caused it rather than only at the end. A rejected submit returns to the first item, in `items` order, that has an error, and `field.QuestionnaireError` shows the schema's message. Changing the answer revalidates it and clears the error. The answers of the item it returns to shake, as a field's control does after a rejected form submit.",
       "dependencies": ["effect@4.1.4"],
       "registryDependencies": [
         "@erbium/card",

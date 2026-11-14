@@ -30,7 +30,7 @@ export const QuestionnaireSkipExample = () => {
   const [constraintStatus, setConstraintStatus] =
     React.useState<QuestionnaireItemStatus>("unanswered");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -59,7 +59,7 @@ export const QuestionnaireSkipExample = () => {
     >
       <QuestionnaireStepIndicator />
 
-      <QuestionnaireItem name="task" required>
+      <QuestionnaireItem name="task">
         <QuestionnaireTitle>What kind of change is this?</QuestionnaireTitle>
         <QuestionnaireDescription>
           Choose the category that best describes the work.
@@ -90,7 +90,7 @@ export const QuestionnaireSkipExample = () => {
         </QuestionnaireChoices>
       </QuestionnaireItem>
 
-      <QuestionnaireItem name="review" required>
+      <QuestionnaireItem name="review">
         <QuestionnaireTitle>How should the work be reviewed?</QuestionnaireTitle>
         <QuestionnaireDescription>
           Choose the checks the agent should complete before handoff.

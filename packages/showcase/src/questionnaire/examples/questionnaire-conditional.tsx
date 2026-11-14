@@ -17,6 +17,17 @@ import {
   QuestionnaireTitle,
 } from "@erbium/ui/components/questionnaire";
 
+const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+
+  toast.add({
+    description: `Runtime: ${getFormValue(formData, "runtime", "None")} · Environment: ${getFormValue(formData, "environment", "Not applicable")} · Approval: ${getFormValue(formData, "approval", "None")}`,
+    title: "Execution plan saved",
+  });
+};
+
 export const QuestionnaireConditional = () => {
   const [runtime, setRuntime] = React.useState("local");
 
@@ -33,17 +44,6 @@ export const QuestionnaireConditional = () => {
     [runtime],
   );
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-
-    toast.add({
-      description: `Runtime: ${getFormValue(formData, "runtime", "None")} · Environment: ${getFormValue(formData, "environment", "Not applicable")} · Approval: ${getFormValue(formData, "approval", "None")}`,
-      title: "Execution plan saved",
-    });
-  };
-
   return (
     <Questionnaire
       className="mx-auto max-w-md"
@@ -53,7 +53,7 @@ export const QuestionnaireConditional = () => {
     >
       <QuestionnaireStepIndicator />
 
-      <QuestionnaireItem name="runtime" required>
+      <QuestionnaireItem name="runtime">
         <QuestionnaireTitle>Where should the agent run?</QuestionnaireTitle>
         <QuestionnaireDescription>
           Cloud runs add an environment question to this flow.
@@ -81,7 +81,7 @@ export const QuestionnaireConditional = () => {
         <QuestionnaireError />
       </QuestionnaireItem>
 
-      <QuestionnaireItem disabled={runtime !== "cloud"} name="environment" required>
+      <QuestionnaireItem disabled={runtime !== "cloud"} name="environment">
         <QuestionnaireTitle>Which cloud environment should it use?</QuestionnaireTitle>
         <QuestionnaireChoices>
           <QuestionnaireChoice value="preview">Preview</QuestionnaireChoice>
@@ -91,7 +91,7 @@ export const QuestionnaireConditional = () => {
         <QuestionnaireError />
       </QuestionnaireItem>
 
-      <QuestionnaireItem name="approval" required>
+      <QuestionnaireItem name="approval">
         <QuestionnaireTitle>When should the agent request approval?</QuestionnaireTitle>
         <QuestionnaireChoices>
           <QuestionnaireChoice value="writes">Before writing files</QuestionnaireChoice>

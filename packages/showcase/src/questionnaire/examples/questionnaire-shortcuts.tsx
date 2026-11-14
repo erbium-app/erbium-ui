@@ -27,7 +27,7 @@ type ShortcutMode = React.ComponentProps<typeof Questionnaire>["shortcuts"];
 export const QuestionnaireShortcuts = () => {
   const [shortcuts, setShortcuts] = React.useState<ShortcutMode>("letters");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const action = getFormValue(new FormData(event.currentTarget), "action");
@@ -60,7 +60,7 @@ export const QuestionnaireShortcuts = () => {
         shortcuts={shortcuts}
         onSubmit={handleSubmit}
       >
-        <QuestionnaireItem name="action" required>
+        <QuestionnaireItem name="action">
           <QuestionnaireTitle>What should the agent do next?</QuestionnaireTitle>
           <QuestionnaireDescription>
             Use the displayed shortcut or navigate with the keyboard.

@@ -63,7 +63,7 @@ export const QuestionnaireValidation = () => {
       <Card className="w-full">
         <form.AppField name="detail">
           {(field) => (
-            <field.QuestionnaireItem required>
+            <field.QuestionnaireItem>
               <CardHeader>
                 <QuestionnaireTitle>How much detail should the answer include?</QuestionnaireTitle>
                 <QuestionnaireDescription>Choose the response depth.</QuestionnaireDescription>
@@ -88,7 +88,7 @@ export const QuestionnaireValidation = () => {
 
         <form.AppField name="audience">
           {(field) => (
-            <field.QuestionnaireItem required>
+            <field.QuestionnaireItem>
               <CardHeader>
                 <QuestionnaireTitle>Who will read the answer?</QuestionnaireTitle>
                 <QuestionnaireDescription>

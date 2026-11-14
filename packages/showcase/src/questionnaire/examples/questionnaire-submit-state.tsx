@@ -24,7 +24,7 @@ const items = [
 export const QuestionnaireSubmitState = () => {
   const [state, setState] = React.useState<StatefulButtonState>("idle");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (state !== "idle") {
@@ -33,16 +33,17 @@ export const QuestionnaireSubmitState = () => {
 
     // The host owns the request; the button only reflects its state.
     setState("loading");
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    setState("success");
-    toast.add({ title: "Deployment queued" });
+    setTimeout(() => {
+      setState("success");
+      toast.add({ title: "Deployment queued" });
+    }, 1200);
   };
 
   return (
     <Questionnaire className="mx-auto max-w-md" items={items} onSubmit={handleSubmit}>
       <QuestionnaireStepIndicator />
 
-      <QuestionnaireItem name="environment" required>
+      <QuestionnaireItem name="environment">
         <QuestionnaireTitle>Where should this deploy?</QuestionnaireTitle>
         <QuestionnaireChoices>
           <QuestionnaireChoice value="preview">Preview</QuestionnaireChoice>
@@ -52,7 +53,7 @@ export const QuestionnaireSubmitState = () => {
         <QuestionnaireError />
       </QuestionnaireItem>
 
-      <QuestionnaireItem name="rollout" required>
+      <QuestionnaireItem name="rollout">
         <QuestionnaireTitle>How should it roll out?</QuestionnaireTitle>
         <QuestionnaireChoices>
           <QuestionnaireChoice value="all">All at once</QuestionnaireChoice>

@@ -20,6 +20,7 @@ import {
   Questionnaire,
   QuestionnaireActions,
   QuestionnaireChoice,
+  QuestionnaireChoiceDescription,
   QuestionnaireChoices,
   QuestionnaireDescription,
   QuestionnaireError,
@@ -73,15 +74,15 @@ const items = [
 <Questionnaire items={items} onSubmit={handleSubmit}>
   <QuestionnaireStepIndicator />
   {items.map((question) => (
-    <QuestionnaireItem key={question.name} name={question.name} required={question.required}>
+    <QuestionnaireItem key={question.name} name={question.name}>
       <QuestionnaireTitle>{question.prompt}</QuestionnaireTitle>
       <QuestionnaireDescription>{question.description}</QuestionnaireDescription>
       <QuestionnaireChoices>
         {question.choices.map((choice) => (
           <QuestionnaireChoice key={choice.value} value={choice.value}>
-            <span className="font-medium">{choice.label}</span>
+            {choice.label}
             {"description" in choice ? (
-              <span className="text-muted-foreground">{choice.description}</span>
+              <QuestionnaireChoiceDescription>{choice.description}</QuestionnaireChoiceDescription>
             ) : null}
           </QuestionnaireChoice>
         ))}
@@ -136,6 +137,10 @@ Questionnaire
     ├── QuestionnaireNext
     └── QuestionnaireSubmit
 ```
+
+## Required Answers
+
+A question that cannot be skipped is `required` in the questionnaire's `items`, declared once: each `QuestionnaireItem` takes it from its definition (set `required` on the item only when you pass no `items`). Its title then ends with the same required mark as a required field's label, and `QuestionnaireSkip` hides for it. Next, Enter and submit are rejected while the active question is unanswered: the error eases in under the answers, and the answers shake on every rejected attempt, as a field's control does after a rejected form submit. Nothing needs wiring in the composition.
 
 ## Server Rendering
 
