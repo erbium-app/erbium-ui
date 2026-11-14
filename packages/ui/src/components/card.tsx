@@ -10,7 +10,7 @@ const Card = ({
     data-slot="card"
     data-size={size}
     className={cn(
-      "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>:is(img,[data-slot=card-media]):first-child]:pt-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)] *:[:is(img,[data-slot=card-media]):first-child]:rounded-t-xl *:[:is(img,[data-slot=card-media]):last-child]:rounded-b-xl",
+      "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl surface-panel py-(--card-spacing) text-caption text-card-foreground [--card-spacing:var(--panel-padding)] has-data-[slot=card-footer]:pb-0 has-[>:is(img,[data-slot=card-media]):last-child]:pb-0 has-[>:is(img,[data-slot=card-media]):first-child]:pt-0 data-[size=sm]:[--card-spacing:var(--panel-padding-compact)]",
       className,
     )}
     {...props}
@@ -20,7 +20,11 @@ const Card = ({
 const CardMedia = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="card-media"
-    className={cn("image-hairline overflow-hidden", className)}
+    className={cn(
+      "image-hairline overflow-hidden",
+      "[[data-slot=card]>&:first-child]:after:[box-shadow:inset_0_-0.5px_var(--image-hairline)] [[data-slot=card]>&:last-child]:after:[box-shadow:inset_0_0.5px_var(--image-hairline)] [[data-slot=card]>&:only-child]:after:content-none",
+      className,
+    )}
     {...props}
   />
 );

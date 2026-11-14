@@ -464,7 +464,7 @@ const ControlNumber = ({
         data-slot="control-number-surface"
         className="pointer-events-none absolute inset-0 rounded-lg border surface-control"
       >
-        <div className="absolute -inset-px overflow-hidden rounded-lg">
+        <div className="absolute -inset-px overflow-hidden rounded-[inherit]">
           <motion.div
             className="w-(--control-fill-width) absolute inset-y-0 inset-s-0 bg-foreground/8 transition-colors duration-150 group-hover/number:bg-foreground/12 dark:bg-foreground/12 dark:group-hover/number:bg-foreground/16 motion-reduce:transition-none"
             style={fillStyle}
