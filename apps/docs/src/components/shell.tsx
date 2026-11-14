@@ -1,5 +1,5 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
-import { Link, useLocation, useRouter, useRouterState } from "@tanstack/react-router";
+import { useLocation, useRouter, useRouterState } from "@tanstack/react-router";
 import { Fragment, useState } from "react";
 import type { ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
@@ -40,10 +40,11 @@ import {
   CommandItem,
 } from "@erbium/ui/components/command";
 import { navigationGroups } from "@/content/catalog";
+import { PredictiveLink } from "./predictive-link";
 import { useTheme, toggleTheme } from "./theme";
 
 const Brand = () => (
-  <Link
+  <PredictiveLink
     to="/"
     className="inline-flex items-center gap-related text-body font-semibold text-foreground"
     aria-label="Erbium UI home"
@@ -68,7 +69,7 @@ const Brand = () => (
     >
       Erbium <span className="text-link font-medium">UI</span>
     </span>
-  </Link>
+  </PredictiveLink>
 );
 
 // Attached only to the current page's link, so React calls it whenever a link becomes current.
@@ -94,7 +95,7 @@ const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
                   <SidebarMenuItem key={page.href}>
                     <SidebarMenuButton
                       render={
-                        <Link
+                        <PredictiveLink
                           ref={path === page.href ? revealCurrentLink : undefined}
                           to={page.href}
                           onClick={onNavigate}

@@ -3,7 +3,7 @@ import type { MarkdownComponents } from "@tanstack/markdown/react";
 import type { MarkdownDocument } from "@tanstack/markdown";
 import { createContext, use, useCallback } from "react";
 import type { ComponentProps, ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { PredictiveLink } from "./predictive-link";
 import { highlightKey } from "@/content/code-highlights";
 import type { CodeHighlights } from "@/content/code-highlights";
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
@@ -31,9 +31,9 @@ const MarkdownLink = ({ href, children, ...props }: ComponentProps<"a">) => {
 
   if (internal) {
     return (
-      <Link {...props} to={href}>
+      <PredictiveLink {...props} to={href}>
         {children}
-      </Link>
+      </PredictiveLink>
     );
   }
 

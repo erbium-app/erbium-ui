@@ -2,10 +2,10 @@ import { TableOfContents } from "./table-of-contents";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
 import { Icon } from "@erbium/ui/components/icon";
 import { Separator } from "@erbium/ui/components/separator";
-import { Link } from "@tanstack/react-router";
 import { CodeHighlightsProvider, CopyPageButton, Prose } from "./markdown";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
+import { PredictiveLink } from "./predictive-link";
 import { Showcase, ShowcaseToaster } from "./showcase";
 import type { DocPage } from "@/content/types";
 import { pages } from "@/content/catalog";
@@ -44,24 +44,24 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                 <h1 className="text-display text-foreground min-w-0 wrap-anywhere">{page.title}</h1>
                 <div className="flex shrink-0 gap-(--docs-tight-gap)">
                   {previousPage !== undefined && (
-                    <Link
+                    <PredictiveLink
                       to={previousPage.href}
                       className={buttonVariants({ size: "icon-sm", variant: "outline" })}
                       aria-label={`Previous: ${previousPage.title}`}
                       title={previousPage.title}
                     >
                       <Icon name="arrow-left-01" className="rtl:rotate-180" />
-                    </Link>
+                    </PredictiveLink>
                   )}
                   {nextPage !== undefined && (
-                    <Link
+                    <PredictiveLink
                       to={nextPage.href}
                       className={buttonVariants({ size: "icon-sm", variant: "outline" })}
                       aria-label={`Next: ${nextPage.title}`}
                       title={nextPage.title}
                     >
                       <Icon name="arrow-right-01" className="rtl:rotate-180" />
-                    </Link>
+                    </PredictiveLink>
                   )}
                 </div>
               </div>
@@ -150,7 +150,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
               {previousPage === undefined ? (
                 <span />
               ) : (
-                <Link
+                <PredictiveLink
                   to={previousPage.href}
                   className={`${buttonVariants({ variant: "outline" })} h-auto min-w-0 items-start py-(--docs-pagination-block) px-4 whitespace-normal flex-col gap-1 text-control`}
                 >
@@ -159,10 +159,10 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                     Previous
                   </span>
                   <strong>{previousPage.title}</strong>
-                </Link>
+                </PredictiveLink>
               )}
               {nextPage !== undefined && (
-                <Link
+                <PredictiveLink
                   to={nextPage.href}
                   className={`${buttonVariants({ variant: "outline" })} h-auto min-w-0 items-end py-(--docs-pagination-block) px-4 whitespace-normal flex-col gap-1 text-end text-control`}
                 >
@@ -171,7 +171,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                     <Icon name="arrow-right-01" className="rtl:rotate-180" />
                   </span>
                   <strong>{nextPage.title}</strong>
-                </Link>
+                </PredictiveLink>
               )}
             </nav>
             {page.name === "toast" && <ShowcaseToaster />}
