@@ -1,47 +1,88 @@
 import { readFile } from "node:fs/promises";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+/** @typedef {import("vite-plus").Plugin} Plugin */
+/** @typedef {import("vite-plus").Connect.NextFunction} NextFunction */
+/** @typedef {import("node:http").ServerResponse} ServerResponse */
 
 const root = import.meta.dirname;
+const fontPrefix = "/fonts/";
+const fontFile = /^[\w-]+\.(?:woff2|txt|md)$/u;
+const registryFile = /^[\w-]+\.json$/u;
 
+/** @type {Record<string, string>} */
 const registries = {
-  "/fonts/": resolve(root, "../../packages/ui/src/assets/fonts"),
-  "/r/examples/": resolve(root, "../../packages/showcase/public/r"),
-  "/r/ui/": resolve(root, "../../packages/ui/public/r"),
+  [fontPrefix]: path.resolve(root, "../../packages/ui/src/assets/fonts"),
+  "/r/examples/": path.resolve(root, "../../packages/showcase/public/r"),
+  "/r/ui/": path.resolve(root, "../../packages/ui/public/r"),
 };
 
+/**
+ * @param {string} filename - The requested file name.
+ * @param {boolean} isFont - Whether the request is for the fonts directory.
+ * @returns {string} The response Content-Type.
+ */
+const contentType = (filename, isFont) => {
+  if (!isFont) {
+    return "application/json";
+  }
+
+  return filename.endsWith(".woff2") ? "font/woff2" : "text/plain";
+};
+
+/**
+ * Sends one registry file, or hands the request on when it cannot be read.
+ * @param {string} file - The absolute file path.
+ * @param {string} filename - The requested file name.
+ * @param {boolean} isFont - Whether the request is for the fonts directory.
+ * @param {ServerResponse} response - The dev server response.
+ * @param {NextFunction} next - Passes the request to the next middleware.
+ * @returns {Promise<void>} Settles once the response is sent or handed on.
+ */
+const serve = async (file, filename, isFont, response, next) => {
+  /** @type {Buffer} */
+  let content;
+
+  try {
+    content = await readFile(file);
+  } catch {
+    next();
+
+    return;
+  }
+
+  response.setHeader("Content-Type", contentType(filename, isFont));
+
+  if (isFont) {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+  }
+
+  response.end(content);
+};
+
+/** @returns {Plugin} Serves the UI and example registries and fonts in development. */
 export const registryPlugin = () => ({
   configureServer(server) {
-    server.middlewares.use(async (request, response, next) => {
-      const path = request.url?.split("?")[0] ?? "";
-      const prefix = Object.keys(registries).find((prefix) => path.startsWith(prefix));
-      const filename = prefix ? path.slice(prefix.length) : "";
+    server.middlewares.use((request, response, next) => {
+      const [pathname = ""] = request.url?.split("?") ?? [];
+      const prefix = Object.keys(registries).find((candidate) => pathname.startsWith(candidate));
 
-      if (!prefix) {
-        return next();
-      }
-
-      const isFont = prefix === "/fonts/";
-
-      if (!(isFont ? /^[\w-]+\.(woff2|txt|md)$/ : /^[\w-]+\.json$/).test(filename)) {
-        return next();
-      }
-
-      try {
-        const content = await readFile(join(registries[prefix], filename));
-        response.setHeader(
-          "Content-Type",
-          isFont ? (filename.endsWith(".woff2") ? "font/woff2" : "text/plain") : "application/json",
-        );
-
-        if (isFont) {
-          response.setHeader("Access-Control-Allow-Origin", "*");
-        }
-
-        response.end(content);
-      } catch {
+      if (prefix === undefined) {
         next();
+
+        return;
       }
+
+      const filename = pathname.slice(prefix.length);
+      const isFont = prefix === fontPrefix;
+
+      if (!(isFont ? fontFile : registryFile).test(filename)) {
+        next();
+
+        return;
+      }
+
+      void serve(path.join(registries[prefix] ?? "", filename), filename, isFont, response, next);
     });
   },
   name: "erbium-registry",
