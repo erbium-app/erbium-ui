@@ -1010,6 +1010,21 @@
       ]
     },
     {
+      "name": "link",
+      "type": "registry:ui",
+      "title": "Link",
+      "description": "Erbium link component.",
+      "dependencies": ["@base-ui/utils", "@tanstack/react-router"],
+      "registryDependencies": ["@erbium/use-predicted-intent"],
+      "files": [
+        {
+          "path": "src/components/link.tsx",
+          "target": "@ui/link.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "marker",
       "type": "registry:ui",
       "title": "Marker",
@@ -1888,6 +1903,20 @@
         {
           "path": "src/hooks/use-media-query.ts",
           "target": "@hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-predicted-intent",
+      "type": "registry:hook",
+      "title": "Use Predicted Intent",
+      "description": "Erbium use predicted intent hook.",
+      "dependencies": ["@foresightjs/react"],
+      "files": [
+        {
+          "path": "src/hooks/use-predicted-intent.ts",
+          "target": "@hooks/use-predicted-intent.ts",
           "type": "registry:hook"
         }
       ]

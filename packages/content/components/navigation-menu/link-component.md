@@ -3,10 +3,10 @@ title: "Link Component"
 story: LinkComponent
 ---
 
-Use the `render` prop to compose a custom link component such as TanStack Router `Link`.
+Use the `render` prop to compose a custom link component such as `Link` from `@erbium/ui/components/link`, which preloads the route before the click.
 
 ```tsx
-import { Link } from "@tanstack/react-router";
+import { Link } from "@erbium/ui/components/link";
 
 import {
   NavigationMenuItem,

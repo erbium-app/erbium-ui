@@ -1069,6 +1069,22 @@
       ]
     },
     {
+      "name": "link",
+      "type": "registry:ui",
+      "title": "Link",
+      "description": "Erbium link component.",
+      "dependencies": ["@base-ui/utils", "@tanstack/react-router"],
+      "registryDependencies": ["@erbium/use-predicted-intent"],
+      "files": [
+        {
+          "path": "src/components/link.tsx",
+          "target": "@ui/link.tsx",
+          "type": "registry:ui",
+          "content": "import { useMergedRefs } from \"@base-ui/utils/useMergedRefs\";\nimport { Link as RouterLink, useRouter } from \"@tanstack/react-router\";\nimport type { AnyRouter, LinkComponentProps, RegisteredRouter } from \"@tanstack/react-router\";\nimport type { ReactElement, Ref } from \"react\";\nimport { usePredictedIntent } from \"@/registry/erbium/hooks/use-predicted-intent\";\n\n// Router defaults, used when the app leaves an option unset.\nconst defaultPreloadStaleTime = 30_000;\nconst defaultPreloadGcTime = 5 * 60 * 1000;\n\n// A URL with a scheme (`https:`, `mailto:`) leaves the router, as it does for Link.\nconst isExternal = (destination: string | undefined) =>\n  destination !== undefined && URL.canParse(destination);\n\n/**\n * TanStack Router's `Link`, with route preloading driven by predicted intent.\n *\n * Router's `intent` preload waits for a hover, focus, or touch. This link also preloads when\n * the cursor is heading for it, when it is a tab stop or two away, or when scrolling brings it\n * under the cursor. Router's own preloading stays in place as the fallback, and the router\n * deduplicates the two.\n *\n * The signature is Router's own, so routes, params, search, and masks stay typed, and every\n * Link prop works unchanged. `preload={false}` turns prediction off along with Router's own\n * preloading; disabled, external, and `reloadDocument` links never predict.\n */\nfunction Link<\n  TRouter extends AnyRouter = RegisteredRouter,\n  const TFrom extends string = string,\n  const TTo extends string | undefined = undefined,\n  const TMaskFrom extends string = TFrom,\n  const TMaskTo extends string = \"\",\n>(props: LinkComponentProps<\"a\", TRouter, TFrom, TTo, TMaskFrom, TMaskTo>): ReactElement;\n\n// The implementation sees the options of any link; the overload above restores the generic\n// parameters for callers.\nfunction Link({\n  ref,\n  ...props\n}: LinkComponentProps<\"a\", RegisteredRouter, string, string> & {\n  ref?: Ref<HTMLAnchorElement>;\n}) {\n  const router = useRouter();\n\n  const {\n    defaultPreload,\n    defaultPreloadGcTime: gcTime,\n    defaultPreloadStaleTime: staleTime,\n  } = router.options;\n\n  const intentRef = usePredictedIntent(\n    // Reads the latest props when prediction fires, so it preloads the link's current\n    // destination: path, params, search, hash, and mask. The router catches and logs load\n    // failures; anything else surfaces as an unhandled rejection rather than being dropped.\n    () => {\n      void router.preloadRoute(props);\n    },\n    {\n      // Prediction follows Router's own preload rules.\n      enabled:\n        (props.preload ?? defaultPreload) !== false &&\n        props.disabled !== true &&\n        props.reloadDocument !== true &&\n        !isExternal(props.to) &&\n        !isExternal(props.href),\n      name: props.to,\n      // Predict again once the router would treat the preloaded match as stale or collect it.\n      reactivateAfter: Math.min(\n        staleTime ?? defaultPreloadStaleTime,\n        gcTime ?? defaultPreloadGcTime,\n      ),\n    },\n  );\n\n  return <RouterLink {...props} ref={useMergedRefs(ref, intentRef)} />;\n}\n\nexport { Link };\n"
+        }
+      ]
+    },
+    {
       "name": "marker",
       "type": "registry:ui",
       "title": "Marker",
@@ -2014,6 +2030,21 @@
           "target": "@hooks/use-media-query.ts",
           "type": "registry:hook",
           "content": "export { useMediaQuery } from \"@base-ui/react/unstable-use-media-query\";\n"
+        }
+      ]
+    },
+    {
+      "name": "use-predicted-intent",
+      "type": "registry:hook",
+      "title": "Use Predicted Intent",
+      "description": "Erbium use predicted intent hook.",
+      "dependencies": ["@foresightjs/react"],
+      "files": [
+        {
+          "path": "src/hooks/use-predicted-intent.ts",
+          "target": "@hooks/use-predicted-intent.ts",
+          "type": "registry:hook",
+          "content": "import { ForesightManager, useForesight } from \"@foresightjs/react\";\nimport type { HitSlop } from \"@foresightjs/react\";\n\n// Foresight mirrors its state onto `data-active`, `data-predicted`, and `data-status` by\n// default. Base UI parts style themselves through `data-active` and `data-status`, so the\n// attributes stay off for every element the library registers. The manager is a client\n// singleton; registration happens in effects, so the server never creates it.\nif (typeof window !== \"undefined\") {\n  ForesightManager.instance.alterGlobalSettings({ setDataAttributes: false });\n}\n\ninterface PredictedIntentOptions {\n  /**\n   * Whether the element takes part in prediction. A disabled element stays registered and\n   * never fires.\n   * @default true\n   */\n  enabled?: boolean;\n  /**\n   * Extra distance around the element that counts as a hit, in pixels or per side.\n   * @default 0\n   */\n  hitSlop?: HitSlop;\n  /** A label for Foresight's development tools. */\n  name?: string;\n  /**\n   * Milliseconds before a fired element can fire again. Match it to how long the work it\n   * starts stays fresh.\n   * @default Infinity\n   */\n  reactivateAfter?: number;\n}\n\n/**\n * Calls `onIntent` when the user is about to interact with an element: the cursor is heading\n * for it, it is a tab stop or two away, scrolling is bringing it under the cursor, or a\n * finger touches it. Use it to start work a click would otherwise wait for, such as loading\n * data, a lazy component, or an image. Prediction stays off on slow connections and with\n * Save-Data.\n *\n * Returns a callback ref for the element. The latest `onIntent` and options are read when\n * prediction fires, so neither needs to be memoized.\n */\nconst usePredictedIntent = (\n  onIntent: () => void,\n  { enabled = true, hitSlop, name, reactivateAfter }: PredictedIntentOptions = {},\n) => {\n  const { elementRef } = useForesight({\n    callback: onIntent,\n    enabled,\n    hitSlop,\n    name,\n    reactivateAfter,\n  });\n\n  return elementRef;\n};\n\nexport { usePredictedIntent };\n\nexport type { PredictedIntentOptions };\n"
         }
       ]
     },

@@ -40,11 +40,11 @@ import {
   CommandItem,
 } from "@erbium/ui/components/command";
 import { navigationGroups } from "@/content/catalog";
-import { PredictiveLink } from "./predictive-link";
+import { Link } from "@erbium/ui/components/link";
 import { useTheme, toggleTheme } from "./theme";
 
 const Brand = () => (
-  <PredictiveLink
+  <Link
     to="/"
     className="inline-flex items-center gap-related text-body font-semibold text-foreground"
     aria-label="Erbium UI home"
@@ -69,7 +69,7 @@ const Brand = () => (
     >
       Erbium <span className="text-link font-medium">UI</span>
     </span>
-  </PredictiveLink>
+  </Link>
 );
 
 // Attached only to the current page's link, so React calls it whenever a link becomes current.
@@ -95,7 +95,7 @@ const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
                   <SidebarMenuItem key={page.href}>
                     <SidebarMenuButton
                       render={
-                        <PredictiveLink
+                        <Link
                           ref={path === page.href ? revealCurrentLink : undefined}
                           to={page.href}
                           onClick={onNavigate}

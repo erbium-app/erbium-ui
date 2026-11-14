@@ -294,7 +294,7 @@ The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 
 The `SidebarMenuButton` component is used to render a menu button within a `SidebarMenuItem`.
 
-By default, the `SidebarMenuButton` renders a button but you can use the `render` prop to render a different component such as a `Link` or an `a` tag.
+By default, the `SidebarMenuButton` renders a button but you can use the `render` prop to render a different component such as `Link` from `@erbium/ui/components/link` or an `a` tag. `Link` preloads the route before the click.
 
 Use the `isActive` prop to mark a menu item as active.
 

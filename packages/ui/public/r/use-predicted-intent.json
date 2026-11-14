@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-predicted-intent",
+  "type": "registry:hook",
+  "title": "Use Predicted Intent",
+  "description": "Erbium use predicted intent hook.",
+  "dependencies": ["@foresightjs/react"],
+  "files": [
+    {
+      "path": "src/hooks/use-predicted-intent.ts",
+      "target": "@hooks/use-predicted-intent.ts",
+      "type": "registry:hook",
+      "content": "import { ForesightManager, useForesight } from \"@foresightjs/react\";\nimport type { HitSlop } from \"@foresightjs/react\";\n\n// Foresight mirrors its state onto `data-active`, `data-predicted`, and `data-status` by\n// default. Base UI parts style themselves through `data-active` and `data-status`, so the\n// attributes stay off for every element the library registers. The manager is a client\n// singleton; registration happens in effects, so the server never creates it.\nif (typeof window !== \"undefined\") {\n  ForesightManager.instance.alterGlobalSettings({ setDataAttributes: false });\n}\n\ninterface PredictedIntentOptions {\n  /**\n   * Whether the element takes part in prediction. A disabled element stays registered and\n   * never fires.\n   * @default true\n   */\n  enabled?: boolean;\n  /**\n   * Extra distance around the element that counts as a hit, in pixels or per side.\n   * @default 0\n   */\n  hitSlop?: HitSlop;\n  /** A label for Foresight's development tools. */\n  name?: string;\n  /**\n   * Milliseconds before a fired element can fire again. Match it to how long the work it\n   * starts stays fresh.\n   * @default Infinity\n   */\n  reactivateAfter?: number;\n}\n\n/**\n * Calls `onIntent` when the user is about to interact with an element: the cursor is heading\n * for it, it is a tab stop or two away, scrolling is bringing it under the cursor, or a\n * finger touches it. Use it to start work a click would otherwise wait for, such as loading\n * data, a lazy component, or an image. Prediction stays off on slow connections and with\n * Save-Data.\n *\n * Returns a callback ref for the element. The latest `onIntent` and options are read when\n * prediction fires, so neither needs to be memoized.\n */\nconst usePredictedIntent = (\n  onIntent: () => void,\n  { enabled = true, hitSlop, name, reactivateAfter }: PredictedIntentOptions = {},\n) => {\n  const { elementRef } = useForesight({\n    callback: onIntent,\n    enabled,\n    hitSlop,\n    name,\n    reactivateAfter,\n  });\n\n  return elementRef;\n};\n\nexport { usePredictedIntent };\n\nexport type { PredictedIntentOptions };\n"
+    }
+  ]
+}

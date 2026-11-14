@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-predicted-intent-overview",
+  "type": "registry:block",
+  "title": "Use Predicted Intent: Overview",
+  "description": "The report takes 900 ms to load. Move toward the button and the request starts before you click, so the dialog usually opens with the report ready. The status line shows what started the request.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/dialog",
+    "@erbium/spinner",
+    "@erbium/styles",
+    "@erbium/use-predicted-intent"
+  ],
+  "files": [
+    {
+      "content": "import { useRef, useState } from \"react\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogHeader,\n  DialogPanel,\n  DialogTitle,\n  DialogTrigger,\n} from \"@/registry/erbium/ui/dialog\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\nimport { usePredictedIntent } from \"@/registry/erbium/hooks/use-predicted-intent\";\n\n// The report takes this long to load, as a slow API would.\nconst loadTime = 900;\n\ntype Status = \"idle\" | \"loading\" | \"ready\";\n\nconst labels: Record<Status, string> = {\n  idle: \"not requested\",\n  loading: \"loading\",\n  ready: \"ready\",\n};\n\nconst wait = async (ms: number) => {\n  // Browsers have no promise-based timer, so the delay wraps `setTimeout`.\n  // oxlint-disable-next-line promise/avoid-new\n  await new Promise((resolve) => {\n    setTimeout(resolve, ms);\n  });\n};\n\nconst UsePredictedIntentDemo = () => {\n  const [status, setStatus] = useState<Status>(\"idle\");\n  const [source, setSource] = useState<\"click\" | \"prediction\">();\n  // The current request; a reset clears it so a late response is ignored.\n  const request = useRef<symbol>(undefined);\n\n  // Starts the request once; prediction and opening the dialog share it.\n  const load = (trigger: \"click\" | \"prediction\") => {\n    if (request.current !== undefined) {\n      return;\n    }\n\n    const current = Symbol(trigger);\n    request.current = current;\n    setSource(trigger);\n    setStatus(\"loading\");\n    void (async () => {\n      await wait(loadTime);\n\n      if (request.current === current) {\n        setStatus(\"ready\");\n      }\n    })();\n  };\n\n  // `load` ignores repeat calls, so prediction can fire again at once after a reset.\n  const intentRef = usePredictedIntent(\n    () => {\n      load(\"prediction\");\n    },\n    { reactivateAfter: 0 },\n  );\n\n  return (\n    <div className=\"flex flex-col items-center gap-group\">\n      <Dialog\n        onOpenChange={(open) => {\n          if (open) {\n            load(\"click\");\n          }\n        }}\n      >\n        <DialogTrigger ref={intentRef} render={<Button variant=\"outline\">Open report</Button>} />\n        <DialogPanel className=\"sm:max-w-md\">\n          <DialogHeader>\n            <DialogTitle>Quarterly report</DialogTitle>\n            <DialogDescription>Revenue and churn for the last quarter.</DialogDescription>\n          </DialogHeader>\n          <DialogContent>\n            {status === \"ready\" ? (\n              <p>Revenue grew 12% while churn held at 2.1%.</p>\n            ) : (\n              <p className=\"flex items-center gap-related text-muted-foreground\">\n                <Spinner /> Loading the report…\n              </p>\n            )}\n          </DialogContent>\n        </DialogPanel>\n      </Dialog>\n      <p className=\"text-caption text-muted-foreground\" aria-live=\"polite\">\n        Report data: {labels[status]}\n        {source === undefined ? \"\" : `, requested by ${source}`}.\n      </p>\n      <Button\n        variant=\"ghost\"\n        size=\"sm\"\n        onClick={() => {\n          request.current = undefined;\n          setSource(undefined);\n          setStatus(\"idle\");\n        }}\n      >\n        Reset\n      </Button>\n    </div>\n  );\n};\n\nexport default UsePredictedIntentDemo;\n",
+      "path": "src/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+      "target": "@components/showcase/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import Demo from \"../examples/use-predicted-intent-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n",
+      "path": "src/use-predicted-intent/variants/overview.tsx",
+      "target": "@components/showcase/use-predicted-intent/variants/overview.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

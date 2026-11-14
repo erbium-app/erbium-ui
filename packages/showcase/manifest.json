@@ -2550,6 +2550,18 @@
     ]
   },
   {
+    "name": "link",
+    "title": "Components/Link",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/link/variants/overview.tsx",
+        "title": "Overview"
+      }
+    ]
+  },
+  {
     "name": "marker",
     "title": "Components/Marker",
     "variants": [
@@ -4441,6 +4453,18 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/use-media-query/variants/overview.tsx",
+        "title": "Overview"
+      }
+    ]
+  },
+  {
+    "name": "use-predicted-intent",
+    "title": "Hooks/Use Predicted Intent",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/use-predicted-intent/variants/overview.tsx",
         "title": "Overview"
       }
     ]

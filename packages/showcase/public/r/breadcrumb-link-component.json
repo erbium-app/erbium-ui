@@ -3,7 +3,7 @@
   "name": "breadcrumb-link-component",
   "type": "registry:block",
   "title": "Breadcrumb: Link Component",
-  "description": "To use a custom link component from your routing library, you can use the `render` prop on `<BreadcrumbLink />`.",
+  "description": "Pass a router link to the `render` prop on `<BreadcrumbLink />`. In an app, use `Link` from `@erbium/ui/components/link`, which preloads the route before the click:\n\n```tsx\n<BreadcrumbLink render={<Link to=\"/projects\" />}>Projects</BreadcrumbLink>\n```",
   "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
   "files": [
     {

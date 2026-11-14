@@ -3,7 +3,7 @@
   "name": "item-link",
   "type": "registry:block",
   "title": "Item: Link",
-  "description": "Use the `render` prop to render the item as a link. The hover and focus states will be applied to the anchor element.\n\n```tsx\n<Item render={<a href=\"/dashboard\" />}>\n  <ItemMedia variant=\"icon\">\n    <HomeIcon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Dashboard</ItemTitle>\n    <ItemDescription>Overview of your account and activity.</ItemDescription>\n  </ItemContent>\n</Item>\n```",
+  "description": "Use the `render` prop to render the item as a link. The hover and focus states will be applied to the anchor element. For links between routes, render `Link` from `@erbium/ui/components/link` instead of `a` so the route preloads before the click.\n\n```tsx\n<Item render={<a href=\"/dashboard\" />}>\n  <ItemMedia variant=\"icon\">\n    <HomeIcon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Dashboard</ItemTitle>\n    <ItemDescription>Overview of your account and activity.</ItemDescription>\n  </ItemContent>\n</Item>\n```",
   "registryDependencies": ["@erbium/icon", "@erbium/item", "@erbium/styles"],
   "files": [
     {

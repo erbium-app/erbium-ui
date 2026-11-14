@@ -45,6 +45,7 @@
       "input-group",
       "item",
       "kbd",
+      "link",
       "marker",
       "menubar",
       "message",
@@ -100,7 +101,13 @@
     "title": "Hooks",
     "slug": "hooks",
     "kind": "hook",
-    "names": ["use-copy-to-clipboard", "use-drag-select", "use-is-mobile", "use-media-query"]
+    "names": [
+      "use-copy-to-clipboard",
+      "use-drag-select",
+      "use-is-mobile",
+      "use-media-query",
+      "use-predicted-intent"
+    ]
   },
   {
     "title": "Utilities",

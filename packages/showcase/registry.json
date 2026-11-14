@@ -2603,7 +2603,7 @@
       "name": "breadcrumb-link-component",
       "type": "registry:block",
       "title": "Breadcrumb: Link Component",
-      "description": "To use a custom link component from your routing library, you can use the `render` prop on `<BreadcrumbLink />`.",
+      "description": "Pass a router link to the `render` prop on `<BreadcrumbLink />`. In an app, use `Link` from `@erbium/ui/components/link`, which preloads the route before the click:\n\n```tsx\n<BreadcrumbLink render={<Link to=\"/projects\" />}>Projects</BreadcrumbLink>\n```",
       "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
       "files": [
         {
@@ -2676,6 +2676,7 @@
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/icon",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/stateful-icon",
         "@erbium/styles",
@@ -13016,7 +13017,7 @@
       "name": "item-link",
       "type": "registry:block",
       "title": "Item: Link",
-      "description": "Use the `render` prop to render the item as a link. The hover and focus states will be applied to the anchor element.\n\n```tsx\n<Item render={<a href=\"/dashboard\" />}>\n  <ItemMedia variant=\"icon\">\n    <HomeIcon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Dashboard</ItemTitle>\n    <ItemDescription>Overview of your account and activity.</ItemDescription>\n  </ItemContent>\n</Item>\n```",
+      "description": "Use the `render` prop to render the item as a link. The hover and focus states will be applied to the anchor element. For links between routes, render `Link` from `@erbium/ui/components/link` instead of `a` so the route preloads before the click.\n\n```tsx\n<Item render={<a href=\"/dashboard\" />}>\n  <ItemMedia variant=\"icon\">\n    <HomeIcon />\n  </ItemMedia>\n  <ItemContent>\n    <ItemTitle>Dashboard</ItemTitle>\n    <ItemDescription>Overview of your account and activity.</ItemDescription>\n  </ItemContent>\n</Item>\n```",
       "registryDependencies": ["@erbium/icon", "@erbium/item", "@erbium/styles"],
       "files": [
         {
@@ -13127,6 +13128,7 @@
         "@erbium/icon",
         "@erbium/item",
         "@erbium/kbd",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/stateful-icon",
@@ -13549,6 +13551,103 @@
         {
           "path": "src/lightbox/variants/gallery.tsx",
           "target": "@components/showcase/lightbox/variants/gallery.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "link-demo",
+      "type": "registry:component",
+      "title": "link demo",
+      "description": "Erbium link demo example.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-variants",
+        "@erbium/field",
+        "@erbium/link",
+        "@erbium/styles",
+        "@erbium/switch"
+      ],
+      "files": [
+        {
+          "path": "src/link/examples/link-demo.tsx",
+          "target": "@components/showcase/link/examples/link-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All link examples.",
+      "name": "link-examples",
+      "registryDependencies": ["@erbium-examples/link-overview"],
+      "title": "Link examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "link-overview",
+      "type": "registry:block",
+      "title": "Link: Overview",
+      "description": "Each page in this example takes 900 ms to load. Move toward a page link and click it: the page reports whether it was ready before the click or how long you waited. Reset, turn prediction off, and try again to compare with Router's hover preloading alone.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-variants",
+        "@erbium/field",
+        "@erbium/link",
+        "@erbium/styles",
+        "@erbium/switch"
+      ],
+      "files": [
+        {
+          "path": "src/link/examples/link-demo.tsx",
+          "target": "@components/showcase/link/examples/link-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/link/variants/overview.tsx",
+          "target": "@components/showcase/link/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "link-stories",
+      "type": "registry:item",
+      "title": "Link stories",
+      "description": "All link variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-variants",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/link",
+        "@erbium/overlay-provider",
+        "@erbium/styles",
+        "@erbium/switch",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/link/examples/link-demo.tsx",
+          "target": "@components/showcase/link/examples/link-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/link/link.stories.tsx",
+          "target": "@components/showcase/link/link.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/link/variants/overview.tsx",
+          "target": "@components/showcase/link/variants/overview.tsx",
           "type": "registry:component"
         },
         {
@@ -14951,7 +15050,7 @@
       "name": "navigation-menu-link-component",
       "type": "registry:component",
       "title": "Navigation Menu: Link Component",
-      "description": "Use the `render` prop to compose a custom link component such as TanStack Router `Link`.\n\n```tsx\nimport { Link } from \"@tanstack/react-router\";\n\nimport {\n  NavigationMenuItem,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link to=\"/docs\" />} className={navigationMenuTriggerStyle()}>\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
+      "description": "Use the `render` prop to compose a custom link component such as `Link` from `@erbium/ui/components/link`, which preloads the route before the click.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\n\nimport {\n  NavigationMenuItem,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link to=\"/docs\" />} className={navigationMenuTriggerStyle()}>\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
       "registryDependencies": ["@erbium/navigation-menu", "@erbium/styles"],
       "files": [
         {
@@ -15002,6 +15101,7 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
+        "@erbium/link",
         "@erbium/navigation-menu",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -18943,6 +19043,7 @@
         "@erbium/collapsible",
         "@erbium/csp-provider",
         "@erbium/icon",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/sidebar",
@@ -23638,6 +23739,98 @@
         {
           "path": "src/use-media-query/variants/overview.tsx",
           "target": "@components/showcase/use-media-query/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "use-predicted-intent-demo",
+      "type": "registry:component",
+      "title": "use predicted intent demo",
+      "description": "Erbium use predicted intent demo example.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dialog",
+        "@erbium/spinner",
+        "@erbium/styles",
+        "@erbium/use-predicted-intent"
+      ],
+      "files": [
+        {
+          "path": "src/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+          "target": "@components/showcase/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All use-predicted-intent examples.",
+      "name": "use-predicted-intent-examples",
+      "registryDependencies": ["@erbium-examples/use-predicted-intent-overview"],
+      "title": "Use Predicted Intent examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "use-predicted-intent-overview",
+      "type": "registry:block",
+      "title": "Use Predicted Intent: Overview",
+      "description": "The report takes 900 ms to load. Move toward the button and the request starts before you click, so the dialog usually opens with the report ready. The status line shows what started the request.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/dialog",
+        "@erbium/spinner",
+        "@erbium/styles",
+        "@erbium/use-predicted-intent"
+      ],
+      "files": [
+        {
+          "path": "src/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+          "target": "@components/showcase/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/use-predicted-intent/variants/overview.tsx",
+          "target": "@components/showcase/use-predicted-intent/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "use-predicted-intent-stories",
+      "type": "registry:item",
+      "title": "Use Predicted Intent stories",
+      "description": "All use-predicted-intent variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/csp-provider",
+        "@erbium/dialog",
+        "@erbium/link",
+        "@erbium/overlay-provider",
+        "@erbium/spinner",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/use-predicted-intent"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+          "target": "@components/showcase/use-predicted-intent/examples/use-predicted-intent-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/use-predicted-intent/use-predicted-intent.stories.tsx",
+          "target": "@components/showcase/use-predicted-intent/use-predicted-intent.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/use-predicted-intent/variants/overview.tsx",
+          "target": "@components/showcase/use-predicted-intent/variants/overview.tsx",
           "type": "registry:component"
         }
       ]

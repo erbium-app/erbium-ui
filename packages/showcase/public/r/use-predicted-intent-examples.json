@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All use-predicted-intent examples.",
+  "name": "use-predicted-intent-examples",
+  "registryDependencies": ["@erbium-examples/use-predicted-intent-overview"],
+  "title": "Use Predicted Intent examples",
+  "type": "registry:item"
+}
