@@ -30,6 +30,14 @@
 .erbium-chart-tooltip .ts-chart-tooltip__row {
   min-height: 1.375rem;
   padding: 0 0.25rem;
+
+  /* The tooltip sets text in the control role, and the library marks the
+     active row with data-active. Pair its semibold with the role's optical
+     size so the row keeps its width and the tooltip does not resize as the
+     pointer moves. */
+  &[data-active="true"] {
+    font-variation-settings: var(--text-control--selected-variation);
+  }
 }
 
 @media (forced-colors: active) {

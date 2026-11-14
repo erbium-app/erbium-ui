@@ -3,6 +3,16 @@
  * https://ui.shadcn.com/docs/typeset.
  */
 
+/* One flow unit for all vertical rhythm. Registered as a length, so the 1.5em
+   set on .typeset resolves there, against the body size, and descendants
+   inherit pixels: a code block (14px), an h3 (18px), and a paragraph all space
+   from the same 24px instead of 1.5em of their own size. */
+@property --typeset-flow {
+  inherits: true;
+  initial-value: 24px;
+  syntax: "<length>";
+}
+
 @layer components {
   .typeset {
     color: var(--color-foreground, currentColor);
@@ -12,6 +22,7 @@
     margin-trim: block-start;
     overflow-wrap: break-word;
 
+    --typeset-flow: 1.5em;
     --typeset-muted: var(
       --color-muted-foreground,
       color-mix(in oklab, currentColor 60%, transparent)
@@ -22,7 +33,7 @@
   .typeset *:not(:where(.not-typeset, [data-not-typeset], .not-typeset *, [data-not-typeset] *)) {
     /* Paragraphs. */
     &:where(p) {
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
       text-wrap: pretty;
     }
 
@@ -39,37 +50,38 @@
       font-size: var(--text-display);
       font-weight: var(--text-display--font-weight);
       line-height: var(--text-display--line-height);
-      margin-block-start: 1.5em;
+      margin-block-start: calc(var(--typeset-flow) * 2);
     }
 
     &:where(h2) {
       font-size: var(--text-title);
       font-weight: var(--text-title--font-weight);
       line-height: var(--text-title--line-height);
-      margin-block-start: calc(1.5em * 1.4);
+      margin-block-start: calc(var(--typeset-flow) * 2);
     }
 
     &:where(h3) {
       font-size: var(--text-subtitle);
       font-weight: var(--text-subtitle--font-weight);
       line-height: var(--text-subtitle--line-height);
-      margin-block-start: 1.5em;
+      margin-block-start: calc(var(--typeset-flow) * 1.25);
     }
 
     &:where(h4, h5, h6) {
       font-size: 1em;
       line-height: var(--text-body--line-height);
-      margin-block-start: 1.5em;
+      margin-block-start: calc(var(--typeset-flow) * 1.25);
     }
 
     /* Anchors. */
     &:where([id]) {
-      scroll-margin-block-start: 1.5em;
+      scroll-margin-block-start: var(--typeset-flow);
     }
 
-    /* Headings own the space below them. */
+    /* Headings own the space below them: less than above, so a heading
+       groups with what it introduces. */
     &:where(h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + *) {
-      margin-block-start: 1em;
+      margin-block-start: calc(var(--typeset-flow) * 2 / 3);
     }
 
     /* Links. */
@@ -182,17 +194,17 @@
     }
 
     &:where(ul, ol) {
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
       padding-inline-start: 1.5em;
     }
 
     &:where(li) {
-      margin-block-start: 0.5em;
-      padding-inline-start: 0.4em;
+      margin-block-start: calc(var(--typeset-flow) / 3);
+      padding-inline-start: 0.375em;
     }
 
     &:where(li > p, li > ul, li > ol) {
-      margin-block-start: 0.5em;
+      margin-block-start: calc(var(--typeset-flow) / 3);
     }
 
     &:where(ul > li)::marker {
@@ -217,7 +229,7 @@
 
     /* Disclosures. */
     &:where(details) {
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
     }
 
     &:where(summary) {
@@ -236,27 +248,28 @@
       border-radius: min(calc(var(--radius, 0.5em) * 0.6), 0.35em);
       border-block-end-width: 2px;
       font-family: inherit;
-      font-size: 0.85em;
+      font-size: 0.875em;
+      font-size: round(nearest, 0.875em, 1px);
       font-weight: 500;
     }
 
     /* Definition lists. */
     &:where(dl) {
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
     }
 
     &:where(dt) {
       font-weight: 500;
-      margin-block-start: 1em;
+      margin-block-start: calc(var(--typeset-flow) * 2 / 3);
     }
 
     &:where(dt + dt) {
-      margin-block-start: 0.25em;
+      margin-block-start: calc(var(--typeset-flow) / 6);
     }
 
     &:where(dd) {
       color: var(--typeset-muted);
-      margin-block-start: 0.25em;
+      margin-block-start: calc(var(--typeset-flow) / 6);
       margin-inline-start: 0;
       padding-inline-start: 1em;
     }
@@ -277,7 +290,7 @@
       background-color: var(--color-muted, color-mix(in oklab, currentColor 8%, transparent));
       direction: ltr;
       font-family: var(--font-mono);
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
       overflow-x: auto;
       tab-size: 2;
 
@@ -295,20 +308,21 @@
     /* Blockquote. */
     &:where(blockquote) {
       border-inline-start: 2px solid var(--typeset-rule);
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
       margin-inline: 0;
       padding-inline-start: 1em;
     }
 
-    /* Dividers. */
+    /* Dividers. The same space on both sides, so the rule sits centered
+       between the sections it separates. */
     &:where(hr) {
       border: 0;
       border-block-start: 1px solid var(--typeset-rule);
-      margin-block: calc(1.5em * 2.4) 0;
+      margin-block: calc(var(--typeset-flow) * 2) 0;
     }
 
-    &:where(hr + h1, hr + h2, hr + h3, hr + h4) {
-      margin-block-start: 1.5em;
+    &:where(hr + *) {
+      margin-block-start: calc(var(--typeset-flow) * 2);
     }
 
     /* GFM footnotes. */
@@ -316,14 +330,14 @@
       border-block-start: 1px solid var(--typeset-rule);
       color: var(--typeset-muted);
       font-size: 0.875em;
-      margin-block-start: calc(1.5em * 2);
-      padding-block-start: 1.5em;
+      margin-block-start: calc(var(--typeset-flow) * 2);
+      padding-block-start: var(--typeset-flow);
     }
 
     /* Math. */
     &:where(math[display="block"]) {
       overflow: auto hidden;
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
       padding-block: 0.25em;
     }
 
@@ -332,7 +346,7 @@
       max-width: 100%;
       height: auto;
       border-radius: var(--radius, 0.5em);
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
     }
 
     &:where(p img) {
@@ -340,14 +354,14 @@
     }
 
     &:where(figure) {
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
       margin-inline: 0;
     }
 
     &:where(figcaption, caption) {
       color: var(--typeset-muted);
       font-size: 0.875em;
-      margin-block-start: calc(0.75em / 0.875);
+      margin-block-start: calc(var(--typeset-flow) / 2);
       text-align: center;
     }
 
@@ -365,14 +379,14 @@
       font-size: 1em;
       font-variant-numeric: tabular-nums;
       line-height: 1.5;
-      margin-block: 1.5em 0;
+      margin-block: var(--typeset-flow) 0;
     }
 
     /* Horizontal scroll for any wide block. Wrap it and the wrapper owns the
        flow margin. Tables shrink to fit, so widen the table to make it scroll
        instead of compress. */
     &:where(.typeset-scroll) {
-      margin-block-start: 1.5em;
+      margin-block-start: var(--typeset-flow);
       overflow-x: auto;
     }
 
@@ -386,7 +400,7 @@
     }
 
     &:where(thead th) {
-      padding: 0.65em 1em;
+      padding: 0.625em 1em;
       font-weight: 500;
       text-align: start;
       white-space: nowrap;
@@ -416,12 +430,8 @@
     }
 
     /* Blocks inside list items keep the list's tighter rhythm. */
-    &:where(li > blockquote, li > table, li > figure) {
-      margin-block-start: 0.5em;
-    }
-
-    &:where(li > pre) {
-      margin-block-start: calc(0.5em / 0.875);
+    &:where(li > blockquote, li > table, li > figure, li > pre) {
+      margin-block-start: calc(var(--typeset-flow) / 3);
     }
 
     @media print {
@@ -440,6 +450,13 @@
         border: 1px solid;
       }
     }
+  }
+
+  /* A busy region (a reply still streaming in) wraps plainly: pretty and
+     balanced wrapping re-flow earlier lines as each word arrives. Set
+     aria-busy="true" while content streams and remove it when done. */
+  .typeset:where([aria-busy="true"]) :where(p, h1, h2, h3, h4, h5, h6) {
+    text-wrap: wrap;
   }
 
   /* First child adds no space above. Last so it wins ties. */

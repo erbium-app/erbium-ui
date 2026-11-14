@@ -125,8 +125,9 @@ body {
   color: var(--foreground);
 }
 
+/* font-selected keeps the active entry's width, so its ellipsis stays put. */
 .docs-toc a[aria-current="location"] {
-  font-weight: 600;
+  @apply font-selected;
 }
 
 .mobile-site-header {
@@ -213,10 +214,6 @@ body {
   align-items: center;
   gap: 0.5rem;
   margin-block: 1rem;
-}
-
-:is(h1, h2, h3, h4, h5, h6):not(.showcase-content *) {
-  text-wrap: balance;
 }
 
 @layer components {

@@ -36,6 +36,13 @@
     @apply bg-background text-foreground text-body;
   }
 
+  /* Paragraphs avoid one-word last lines. A busy region (a reply still
+     streaming in) wraps plainly: pretty wrapping re-flows earlier lines as
+     words arrive. Headings balance through their role utilities. */
+  :where(p:not([aria-busy="true"] *)) {
+    text-wrap: pretty;
+  }
+
   :where(h1) {
     @apply text-display;
   }
