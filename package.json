@@ -35,7 +35,7 @@
       "@shadcn/react": "^0.3.1",
       "@tailwindcss/vite": "^4.3.5",
       "@tanstack/charts": "1.5.0",
-      "@tanstack/react-hotkeys": "^0.22.3",
+      "@tanstack/react-hotkeys": "^0.25.0",
       "@tanstack/react-pacer": "0.24.1",
       "@tanstack/react-router": "^1.170.46",
       "@tanstack/react-table": "9.3.1",
@@ -45,8 +45,8 @@
       "react": "^19.3.1",
       "react-dom": "^19.3.1",
       "typescript": "next",
-      "vite": "npm:@voidzero-dev/vite-plus-core@1.5.1",
-      "vite-plus": "1.5.1"
+      "vite": "npm:@voidzero-dev/vite-plus-core@1.6.0",
+      "vite-plus": "1.6.0"
     },
     "catalogs": {
       "typescript-stable": {
@@ -114,16 +114,16 @@
     "@shadcn/lint": "^0.2.5",
     "@tanstack/intent": "^0.5.6",
     "@types/node": "^26.6.6",
-    "knip": "^6.45.0",
+    "knip": "^6.45.1",
     "oxfmt": "0.78.0",
     "oxlint": "1.93.0",
-    "skills": "^1.8.0",
+    "skills": "^1.8.1",
     "stylelint": "^18.0.0",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-standard": "^41.0.0",
     "taze": "^21.3.0",
     "typescript": "catalog:",
-    "ultracite": "^8.1.1",
+    "ultracite": "^8.2.0",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   },

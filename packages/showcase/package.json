@@ -31,7 +31,7 @@
     "@tanstack/react-hotkeys": "catalog:",
     "@tanstack/react-pacer": "catalog:",
     "@tanstack/react-table": "catalog:",
-    "effect": "4.1.3",
+    "effect": "4.1.4",
     "embla-carousel-autoplay": "^8.6.0",
     "react": "catalog:",
     "react-dom": "catalog:",

@@ -13,12 +13,12 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "@alchemy.run/cloudflare": "2.0.0-beta.85",
-    "@distilled.cloud/cloudflare": "1.0.0-rc.18",
-    "@effect/platform-bun": "4.1.3",
-    "@effect/platform-node": "4.1.3",
-    "alchemy": "2.0.0-beta.85",
-    "effect": "4.1.3"
+    "@alchemy.run/cloudflare": "2.0.0-beta.87",
+    "@distilled.cloud/cloudflare": "1.0.0-rc.20",
+    "@effect/platform-bun": "4.1.4",
+    "@effect/platform-node": "4.1.4",
+    "alchemy": "2.0.0-beta.87",
+    "effect": "4.1.4"
   },
   "devDependencies": {
     "typescript": "catalog:"
