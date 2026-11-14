@@ -1,6 +1,6 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { useLocation, useRouter, useRouterState } from "@tanstack/react-router";
-import { Fragment, useState, useSyncExternalStore } from "react";
+import { Fragment, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
@@ -43,36 +43,30 @@ import { releases } from "virtual:docs-catalog";
 import { releaseDay, wasRecentlyUpdated } from "@/content/release-date";
 import { navigationGroups } from "@/content/catalog";
 import { Link } from "@erbium/ui/components/link";
+import { ErbiumLogo } from "./erbium-logo";
+import type { ErbiumLogoHandle } from "./erbium-logo";
 import { useTheme, toggleTheme } from "./theme";
 
-const Brand = () => (
-  <Link
-    to="/"
-    className="inline-flex items-center gap-related text-body font-semibold text-foreground"
-    aria-label="Erbium UI home"
-  >
-    <img
-      src="/brand/erbium-logo-light.svg"
-      width={32}
-      height={32}
-      alt=""
-      className="block shrink-0 dark:hidden"
-    />
-    <img
-      src="/brand/erbium-logo-dark.svg"
-      width={32}
-      height={32}
-      alt=""
-      className="hidden shrink-0 dark:block"
-    />
-    <span
-      className="inline-flex items-baseline gap-(--docs-tight-gap) text-subtitle whitespace-nowrap"
-      aria-hidden="true"
+const Brand = () => {
+  const logo = useRef<ErbiumLogoHandle>(null);
+
+  return (
+    <Link
+      to="/"
+      className="inline-flex items-center gap-related text-body font-semibold text-foreground"
+      aria-label="Erbium UI home"
+      onPointerEnter={() => logo.current?.play()}
     >
-      Erbium <span className="text-link font-medium">UI</span>
-    </span>
-  </Link>
-);
+      <ErbiumLogo ref={logo} size={32} className="block shrink-0" />
+      <span
+        className="inline-flex items-baseline gap-(--docs-tight-gap) text-subtitle whitespace-nowrap"
+        aria-hidden="true"
+      >
+        Erbium <span className="text-link font-medium">UI</span>
+      </span>
+    </Link>
+  );
+};
 
 // Attached only to the current page's link, so React calls it whenever a link becomes current.
 const revealCurrentLink = (link: HTMLAnchorElement | null) => {
