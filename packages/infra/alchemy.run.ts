@@ -33,6 +33,7 @@ export default Alchemy.Stack(
             { cwd: "../../packages/ui" },
             { cwd: "../../packages/showcase" },
             { cwd: "../../packages/content" },
+            { cwd: "../../packages/cli" },
           ],
         },
         name,
@@ -73,6 +74,7 @@ export default Alchemy.Stack(
           { cwd: "../../packages/ui" },
           { cwd: "../../packages/showcase" },
           { cwd: "../../packages/content" },
+          { cwd: "../../packages/cli" },
         ],
       },
       observability: {

@@ -3,6 +3,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite-plus";
+import { publishRevisions } from "../../packages/cli/src/publish.ts";
 import { cp } from "node:fs/promises";
 import { registryPlugin } from "./registry-plugin.mjs";
 import { contentPlugin, docsCatalog } from "./content-plugin";
@@ -49,8 +50,9 @@ export default defineConfig(({ isPreview }) => ({
           return;
         }
 
-        await Promise.all(
-          [
+        await Promise.all([
+          publishRevisions(`${this.environment.config.build.outDir}/r/erbium`, true),
+          ...[
             ["../../packages/ui/public/r", "r/ui"],
             ["../../packages/showcase/public/r", "r/examples"],
             ["../../packages/ui/src/assets/fonts", "fonts"],
@@ -61,7 +63,7 @@ export default defineConfig(({ isPreview }) => ({
               { recursive: true },
             );
           }),
-        );
+        ]);
       },
       name: "erbium:start-assets",
     },

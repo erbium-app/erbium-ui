@@ -1,3 +1,4 @@
+import { publishRevisions } from "../../packages/cli/src/publish.ts";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -62,7 +63,24 @@ const serve = async (file, filename, isFont, response, next) => {
 
 /** @returns {Plugin} Serves the UI and example registries and fonts in development. */
 export const registryPlugin = () => ({
-  configureServer(server) {
+  async configureServer(server) {
+    const versions = path.resolve(root, ".cache/registry");
+    await publishRevisions(versions, false);
+    server.middlewares.use((request, response, next) => {
+      const [pathname = ""] = request.url?.split("?") ?? [];
+
+      const revisionFile =
+        /^\/r\/erbium\/(?<file>index\.json|revisions\/[a-f0-9]{64}\.json)$/u.exec(pathname)?.groups
+          ?.file;
+
+      if (revisionFile === undefined) {
+        next();
+
+        return;
+      }
+
+      void serve(path.join(versions, revisionFile), revisionFile, false, response, next);
+    });
     server.middlewares.use((request, response, next) => {
       const [pathname = ""] = request.url?.split("?") ?? [];
       const prefix = Object.keys(registries).find((candidate) => pathname.startsWith(candidate));

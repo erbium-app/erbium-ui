@@ -1,0 +1,31 @@
+{
+  "name": "@erbium/cli",
+  "version": "0.1.0",
+  "description": "Install, track, and update Erbium UI source files.",
+  "license": "MIT",
+  "bin": {
+    "erbium": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "bun build src/index.ts --target node --packages external --outfile dist/index.js",
+    "prepack": "bun run build",
+    "test": "bun run build && node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@effect/platform-node": "4.1.4",
+    "effect": "4.1.4",
+    "get-tsconfig": "5.0.0-beta.6"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
