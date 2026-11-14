@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Form: Playground",
   "description": "",
-  "dependencies": ["effect@4.1.3"],
+  "dependencies": ["effect@4.1.4"],
   "registryDependencies": ["@erbium/form", "@erbium/styles"],
   "files": [
     {

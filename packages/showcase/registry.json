@@ -7042,7 +7042,7 @@
       "type": "registry:block",
       "title": "Command: Basic",
       "description": "A simple command menu in a dialog.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.22.3"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.25.0"],
       "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
       "files": [
         {
@@ -7196,7 +7196,7 @@
       "type": "registry:item",
       "title": "Command stories",
       "description": "All command variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.22.3"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.25.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -11429,7 +11429,7 @@
       "type": "registry:component",
       "title": "form demo",
       "description": "Erbium form demo example.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -11454,7 +11454,7 @@
       "type": "registry:block",
       "title": "Form: Playground",
       "description": "",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -11474,7 +11474,7 @@
       "type": "registry:item",
       "title": "Form stories",
       "description": "All form variants as portable React CSF stories.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
@@ -11523,7 +11523,7 @@
       "type": "registry:block",
       "title": "Form: Validation",
       "description": "One Effect Schema validates a contact form: a trimmed name, an email pattern, a minimum message length, and a terms checkbox that must be checked. Submit the empty form to see the messages, then fix a value to clear its error as you type. The terms checkbox shows no message: it turns invalid and shakes with its label, and screen readers still announce the schema's message.\n\nEach `form.AppField` renders a bound field: `TextField`, `TextareaField`, `SwitchField`, and `CheckboxField`. The description is removed while the field is invalid and returns when validation clears, so helper information and errors never appear together. `onSubmit` decodes the values with the same schema to get the trimmed name.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -15361,7 +15361,7 @@
       "type": "registry:block",
       "title": "OTP Field: Form",
       "description": "A verification card owned by TanStack Form. Two Effect Schemas validate the code: one on change that rejects a complete wrong code, and one on submit that requires all six digits. `form.SubmitButton` shows submission feedback. Resend resets the demo form. The demo checks 123456 locally; production verification belongs in a server validator.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/card",
@@ -15407,7 +15407,7 @@
       "type": "registry:block",
       "title": "OTP Field: Invalid",
       "description": "An Effect Schema in TanStack Form's `onChange` validator checks every complete changed code. `field.FieldError` shows the schema's message, and `field.Field` supplies accessible invalid state to every slot. Editing a complete incorrect code revalidates it immediately.\nDemo code: 123456.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -15498,7 +15498,7 @@
       "type": "registry:block",
       "title": "OTP Field: Status",
       "description": "`field.OTPField` passes TanStack Form's field metadata as `validation`. `isValidating` gently pulses\nthe normal field surfaces and shimmers the digits. A touched invalid value shows an\nerror. Success appears only when the current complete value matches `verifiedValue`,\nwhich the demo sets after verification finishes.\n\nValidation keeps editing enabled. This demo uses `onChangeAsync` to check every complete\nchanged code, including corrections made while a previous check is pending. A server check\nis not a schema rule, so it stays a validator function that returns its message. Demo code: 123456.\n\nIncomplete values clear verification feedback without checking the code. Verification\nstarts only when all six digits are present. The simulated check takes 1.5 seconds so\nits loading treatment is visible in Storybook and the docs playground.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -15518,7 +15518,7 @@
       "type": "registry:item",
       "title": "OTP Field stories",
       "description": "All otp-field variants as portable React CSF stories.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -16005,7 +16005,7 @@
       "type": "registry:block",
       "title": "Password Input: Form",
       "description": "A sign-up form owned by TanStack Form. One Effect Schema checks the email, requires 8 characters and a number in the password, and adds a filter that places a mismatch on the confirmation through its `path`. Each password renders through `field.PasswordField`, and both share one visibility state, so either toggle shows the two passwords together. Showing a password with the pointer keeps focus in the input, so it does not mark the field touched. Submitting hides both passwords again.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -16096,7 +16096,7 @@
       "type": "registry:item",
       "title": "Password Input stories",
       "description": "All password-input variants as portable React CSF stories.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/checkbox",
@@ -17022,7 +17022,7 @@
       "type": "registry:item",
       "title": "Questionnaire stories",
       "description": "All questionnaire variants as portable React CSF stories.",
-      "dependencies": ["@shadcn/react@^0.3.1", "effect@4.1.3"],
+      "dependencies": ["@shadcn/react@^0.3.1", "effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -17237,7 +17237,7 @@
       "type": "registry:block",
       "title": "Questionnaire: Custom Validation",
       "description": "Validate the answers with an Effect Schema, including a rule that spans items. `useQuestionnaireForm` and `QuestionnaireForm` from `@erbium/ui/components/questionnaire` keep the answers in TanStack Form: each `form.AppField` wraps a `field.QuestionnaireItem`, and its `field.QuestionnaireChoice` elements are controlled by the field value. A rejected submit returns to the first item, in `items` order, that has an error, and `field.QuestionnaireError` shows the schema's message. Changing the answer revalidates it and clears the error.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": [
         "@erbium/card",
         "@erbium/questionnaire",
@@ -20035,7 +20035,7 @@
       "type": "registry:component",
       "title": "stateful button form",
       "description": "Erbium stateful button form example.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -20050,7 +20050,7 @@
       "type": "registry:item",
       "title": "Stateful Button stories",
       "description": "All stateful-button variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "effect@4.1.3"],
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -20105,7 +20105,7 @@
       "type": "registry:block",
       "title": "Stateful Button: Tan Stack Form",
       "description": "",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": ["@erbium/form", "@erbium/styles"],
       "files": [
         {
@@ -20425,7 +20425,7 @@
       "type": "registry:item",
       "title": "Step Indicator stories",
       "description": "All step-indicator variants as portable React CSF stories.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -20510,7 +20510,7 @@
       "type": "registry:component",
       "title": "Step Indicator: TanStack Form",
       "description": "Keep the step in React state and the values in TanStack Form. One Effect Schema describes the whole form; each step validates its field with the matching `Schema.toStandardSchemaV1(Signup.fields.name)` validator.\n\n- **Mount every field.** `form.validateField` only finds validators on mounted fields, so an unmounted step would pass validation unchecked. Render all steps and hide the inactive ones with `field.TextField`'s `hidden`.\n- **Validate only what the user passes.** `goTo` validates each step on the way forward, which also marks it touched, and stops at the first invalid one. Steps ahead are never validated, so they never show an error before the user reaches them.\n- **Gate errors on `isTouched`.** The step's `invalid` uses `isTouched && !isValid`; the bound field shows its error under the same rule.\n- **Submit validates everything.** `onSubmitInvalid` sends the user to the first failing step.\n- Going back is always free.",
-      "dependencies": ["effect@4.1.3"],
+      "dependencies": ["effect@4.1.4"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/form",
