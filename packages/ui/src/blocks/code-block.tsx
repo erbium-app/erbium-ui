@@ -274,7 +274,7 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
             {lineNumbers && (
               <span
                 aria-hidden="true"
-                className="me-5 inline-block min-w-6 select-none text-end text-muted-foreground/60"
+                className="me-5 inline-block min-w-6 select-none text-end text-muted-foreground"
               >
                 {index + 1}
               </span>

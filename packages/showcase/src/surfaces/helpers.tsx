@@ -25,7 +25,7 @@ export const ladder = [
 ] as const;
 
 export const control =
-  "inline-flex control-size touch-target items-center rounded-lg text-control-sm font-medium transition-[background-color,box-shadow] duration-150";
+  "inline-flex control-size touch-target items-center rounded-lg text-control-sm transition-[background-color,box-shadow] duration-150";
 
 export const coloredSurfaces = [
   [

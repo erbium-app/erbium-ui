@@ -144,10 +144,7 @@ const FileTreeTitle = ({ className, ...props }: ComponentProps<"span">) => (
   <span
     {...props}
     data-slot="file-tree-title"
-    className={cn(
-      "min-w-0 truncate text-control-sm font-medium text-sidebar-foreground/70",
-      className,
-    )}
+    className={cn("min-w-0 truncate text-control-sm text-muted-foreground", className)}
   />
 );
 

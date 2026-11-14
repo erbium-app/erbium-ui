@@ -46,7 +46,7 @@ const MenubarTrigger = ({
   <DropdownMenuTrigger
     data-slot="menubar-trigger"
     className={cn(
-      "flex items-center rounded-sm segmented-size px-control-inset py-0 text-control-sm font-medium outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
+      "flex items-center rounded-sm segmented-size px-control-inset py-0 text-control-sm outline-hidden select-none hover:bg-muted aria-expanded:bg-muted",
       className,
     )}
     {...props}

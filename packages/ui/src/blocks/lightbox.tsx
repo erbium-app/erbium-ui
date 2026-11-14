@@ -374,10 +374,7 @@ const LightboxCaption = ({
 }: ComponentProps<typeof LightboxPrimitive.Caption>) => (
   <LightboxPrimitive.Caption
     data-slot="lightbox-caption"
-    className={cn(
-      "max-w-full truncate text-control-sm font-medium text-foreground select-text",
-      className,
-    )}
+    className={cn("max-w-full truncate text-control-sm text-foreground select-text", className)}
     {...props}
   />
 );

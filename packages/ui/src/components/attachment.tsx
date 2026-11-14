@@ -100,7 +100,7 @@ const AttachmentDescription = ({ className, ...props }: React.ComponentProps<"sp
   <span
     data-slot="attachment-description"
     className={cn(
-      "mt-0.5 block min-w-0 truncate text-metadata text-muted-foreground group-data-[state=error]/attachment:text-error/80",
+      "mt-0.5 block min-w-0 truncate text-metadata text-muted-foreground group-data-[state=error]/attachment:text-error",
       "max-w-full",
       className,
     )}

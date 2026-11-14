@@ -41,7 +41,7 @@ const Meter = ({ className, children, ...props }: MeterPrimitive.Root.Props) => 
 const MeterLabel = ({ className, ...props }: MeterPrimitive.Label.Props) => (
   <MeterPrimitive.Label
     data-slot="meter-label"
-    className={cn("text-control font-medium", className)}
+    className={cn("text-control", className)}
     {...props}
   />
 );

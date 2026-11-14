@@ -33,6 +33,22 @@ const dynamicType = /(?:^|:)(?:text|font|leading|tracking)-$/u;
 
 const typesetModifier = /(?:^|:)typeset-(?:docs|compact)$/u;
 
+// Text takes a color role at full strength (foreground, muted foreground, or a
+// status color). An opacity step like text-muted-foreground/60 is an unnamed
+// third gray that drifts below contrast minimums on tinted surfaces.
+const textOpacityStep =
+  /(?:^|:)!?text-(?:[a-z]+-)*(?:foreground|error|success|warning|info)\/\d+!?$/u;
+
+// Case is content: transforms break Arabic-script and Turkish text, and
+// screen readers may spell uppercase words letter by letter.
+const caseTransform = /(?:^|:)!?uppercase!?$/u;
+
+// The control roles set weight 500 themselves. A bare font-medium beside one
+// repeats it and pins the weight, so a change to the role's weight token would
+// no longer reach that component.
+const controlRole = /^text-control(?:-sm)?$/u;
+const repeatedControlWeight = /^(?:data-active:)?font-medium$/u;
+
 const fontUtility = /(?:^|:)!?(?<font>font-[^\s!]+)!?$/u;
 
 const classVariable = /(?:Class|ClassName|Classes|Styles|Variants)$/u;
@@ -45,6 +61,7 @@ const fontUtilities = new Set([
   "font-medium",
   "font-semibold",
   "font-bold",
+  "font-selected",
 ]);
 
 /**
@@ -187,11 +204,17 @@ export const classContext = (node, context, seen = new Set()) => {
  * @param {string} value - A space-separated class list.
  * @returns {string[]} The tokens that bypass the typography roles.
  */
-export const typographyViolations = (value) =>
-  value.split(/\s+/u).filter((token) => {
+export const typographyViolations = (value) => {
+  const tokens = value.split(/\s+/u);
+  const hasControlRole = tokens.some((token) => controlRole.test(token));
+
+  return tokens.filter((token) => {
     const font = fontUtility.exec(token)?.groups?.font;
 
     return (
+      (hasControlRole && repeatedControlWeight.test(token)) ||
+      textOpacityStep.test(token) ||
+      caseTransform.test(token) ||
       typesetModifier.test(token) ||
       stockSize.test(token) ||
       roleLeadingOverride.test(token) ||
@@ -200,6 +223,7 @@ export const typographyViolations = (value) =>
       (font !== undefined && !fontUtilities.has(font))
     );
   });
+};
 
 /**
  * @param {string} key - A style property key, in camel or kebab case.
@@ -283,7 +307,7 @@ const useRoles = defineRule({
   meta: {
     messages: {
       useRole:
-        '"{{token}}" bypasses Erbium typography. Use a text role (display, title, subtitle, body, caption, control, control-sm, metadata, code-block, inline-code, field, or editable). Define new treatments centrally in typography.css.',
+        '"{{token}}" bypasses Erbium typography. Use a text role (display, title, subtitle, body, caption, control, control-sm, metadata, code-block, inline-code, field, or editable) at a full-strength color role, without case transforms or repeating the role weight. Define new treatments centrally in typography.css.',
       useToken:
         '"{{property}}" hardcodes typography. Use a text role or the shared chartTextRole adapter for numerical chart APIs.',
     },

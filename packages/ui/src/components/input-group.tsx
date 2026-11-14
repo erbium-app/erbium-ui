@@ -8,7 +8,7 @@ import { Spinner } from "./spinner";
 import { Textarea } from "./textarea";
 
 const inputGroupAddonVariants = cva(
-  "flex h-auto cursor-text items-center justify-center gap-related py-1.5 text-control-sm font-medium text-muted-foreground select-none [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
+  "flex h-auto cursor-text items-center justify-center gap-related py-1.5 text-control-sm text-muted-foreground select-none [&>kbd]:rounded-[calc(var(--radius)-5px)] [&>svg:not([class*='size-'])]:size-4",
   {
     defaultVariants: {
       align: "inline-start",

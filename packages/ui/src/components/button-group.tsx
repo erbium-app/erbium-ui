@@ -43,7 +43,7 @@ const ButtonGroupText = ({ className, render, ...props }: useRender.ComponentPro
     props: mergeProps<"div">(
       {
         className: cn(
-          "flex items-center gap-related rounded-lg border bg-muted px-control-inset text-control-sm font-medium [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-control-icon",
+          "flex items-center gap-related rounded-lg border bg-muted px-control-inset text-control-sm [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-control-icon",
           className,
         ),
       },

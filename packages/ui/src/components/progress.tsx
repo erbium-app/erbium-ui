@@ -36,7 +36,7 @@ const Progress = ({ className, children, value, ...props }: ProgressPrimitive.Ro
 
 const ProgressLabel = ({ className, ...props }: ProgressPrimitive.Label.Props) => (
   <ProgressPrimitive.Label
-    className={cn("text-control font-medium", className)}
+    className={cn("text-control", className)}
     data-slot="progress-label"
     {...props}
   />

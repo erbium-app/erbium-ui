@@ -36,7 +36,7 @@ Fields, metadata, and code reuse the same scale:
 | Treatment          | Behavior                                                                     | Use                                               |
 | ------------------ | ---------------------------------------------------------------------------- | ------------------------------------------------- |
 | `text-metadata`    | Small control size and leading, regular weight                               | Timestamps, filenames, and secondary short values |
-| `text-code-block`  | Caption size, 1.6 line height, regular Paper Mono                            | Standalone code and commands                      |
+| `text-code-block`  | Caption size, 22px line height, regular Paper Mono                           | Standalone code and commands                      |
 | `text-inline-code` | 0.875em, inherited leading, regular Paper Mono                               | Identifiers within a sentence                     |
 | `text-field`       | Body size and leading; control size and leading on wide fine-pointer layouts | Editable input text                               |
 | `text-editable`    | Inherits the owning text treatment                                           | Inline editing without a size jump                |
@@ -45,7 +45,9 @@ Do not put essential instructions in metadata. Color expresses importance separa
 
 ## Reading and articles
 
-Apply `typeset` to an article or Markdown container. It handles headings, paragraphs, lists, quotations, and tables, with 1.5em between reading blocks and no extra margin above the first block. Keep prose around 65 characters per line; tables and code can use more width.
+Apply `typeset` to an article or Markdown container. It handles headings, paragraphs, lists, quotations, and tables, with 24px (1.5em of the container's body size) between reading blocks and no extra margin above the first block. Every block spaces from that one unit, whatever its own font size, so a code block or an h3 sits on the same rhythm as a paragraph. Keep prose around 65 characters per line; tables and code can use more width.
+
+Paragraphs use pretty wrapping to avoid one-word last lines. While a reply streams in, set `aria-busy="true"` on its container: text then wraps plainly, so lines already on screen do not move as words arrive. Remove the attribute when the content is complete.
 
 Embedded controls can opt out with `not-typeset` or `data-not-typeset`. For a wide table, use a `typeset-scroll` wrapper with a descriptive accessible name and keyboard access, while preserving the table's native markup. The Reading example shows this composition in full.
 
@@ -55,4 +57,6 @@ Keep the text scale steady as the layout narrows. Let titles and descriptions wr
 
 Fields use 16px text on touch devices and below 48rem. A wide layout with a fine primary pointer uses 14px. Inline editing inherits the text it replaces, avoiding a size jump between reading and editing.
 
-Use the supported weights—400, 500, 600, and 700—for prose, controls, emphasis, and headings. Keep label weight steady on hover, and check that selected text has enough room.
+Use the supported weights—400, 500, 600, and 700—for prose, controls, emphasis, and headings. Keep label weight steady on hover. When a selected state must change weight, use `font-selected` inside a control role. It sets 600 and raises the optical size with it: Cal Sans narrows as `opsz` rises, so the heavier label stays within 1px of its regular width instead of pushing its neighbors or moving an ellipsis. The table of contents on this site and the active row of a chart tooltip both use it. Control roles already set weight 500, so do not add `font-medium` beside them.
+
+Text uses two colors at full strength, foreground and muted foreground, plus a status color where the state calls for one. Do not lighten text with an opacity step, and write capitals into the content rather than applying `uppercase`. The typography lint reports both.

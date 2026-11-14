@@ -73,7 +73,7 @@ const TabsTrigger = ({ className, ...props }: TabsPrimitive.Tab.Props) => (
   <TabsPrimitive.Tab
     data-slot="tabs-trigger"
     className={cn(
-      "relative z-10 inline-flex segmented-size flex-1 items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm font-medium whitespace-nowrap text-muted-foreground transition-colors duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring data-active:text-foreground has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+      "relative z-10 inline-flex segmented-size flex-1 items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm whitespace-nowrap text-muted-foreground transition-colors duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring data-active:text-foreground has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
       className,
     )}
     {...props}

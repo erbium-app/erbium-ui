@@ -201,10 +201,7 @@ const ComboboxEmpty = ({ className, ...props }: ComboboxPrimitive.Empty.Props) =
 const ComboboxStatus = ({ className, ...props }: ComboboxPrimitive.Status.Props) => (
   <ComboboxPrimitive.Status
     data-slot="combobox-status"
-    className={cn(
-      "px-3 py-2 font-medium text-muted-foreground text-control-sm empty:m-0 empty:p-0",
-      className,
-    )}
+    className={cn("px-3 py-2 text-muted-foreground text-control-sm empty:m-0 empty:p-0", className)}
     {...props}
   />
 );
@@ -243,7 +240,7 @@ const ComboboxChip = ({
   <ComboboxPrimitive.Chip
     data-slot="combobox-chip"
     className={cn(
-      "flex h-[calc(--spacing(5.25))] w-fit items-center justify-center gap-1 rounded-sm bg-muted px-1.5 text-control-sm font-medium whitespace-nowrap text-foreground has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-data-[slot=combobox-chip-remove]:pe-0",
+      "flex h-[calc(--spacing(5.25))] w-fit items-center justify-center gap-1 rounded-sm bg-muted px-1.5 text-control-sm whitespace-nowrap text-foreground has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-data-[slot=combobox-chip-remove]:pe-0",
       className,
     )}
     {...props}

@@ -117,7 +117,7 @@ const ExpandableChevron = ({ isOpen, className }: ExpandableChevronProps) => {
     <span
       aria-hidden="true"
       className={cn(
-        "pointer-events-none relative inline-block size-4 shrink-0 align-middle text-muted-foreground/60",
+        "pointer-events-none relative inline-block size-4 shrink-0 align-middle text-muted-foreground",
         className,
       )}
       data-slot="expandable-chevron"

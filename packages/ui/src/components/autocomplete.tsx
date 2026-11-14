@@ -265,7 +265,7 @@ export const AutocompleteGroupLabel = ({
   ...props
 }: AutocompletePrimitive.GroupLabel.Props): React.ReactElement => (
   <AutocompletePrimitive.GroupLabel
-    className={cn("px-2 py-1.5 font-medium text-muted-foreground text-control-sm", className)}
+    className={cn("px-2 py-1.5 text-muted-foreground text-control-sm", className)}
     data-slot="autocomplete-group-label"
     {...props}
   />
@@ -314,10 +314,7 @@ export const AutocompleteStatus = ({
   ...props
 }: AutocompletePrimitive.Status.Props): React.ReactElement => (
   <AutocompletePrimitive.Status
-    className={cn(
-      "px-3 py-2 font-medium text-muted-foreground text-control-sm empty:m-0 empty:p-0",
-      className,
-    )}
+    className={cn("px-3 py-2 text-muted-foreground text-control-sm empty:m-0 empty:p-0", className)}
     data-slot="autocomplete-status"
     {...props}
   />

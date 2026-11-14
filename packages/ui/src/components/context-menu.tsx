@@ -82,10 +82,7 @@ const ContextMenuLabel = ({
   <ContextMenuPrimitive.GroupLabel
     data-slot="context-menu-label"
     data-inset={inset}
-    className={cn(
-      "px-2 py-1.5 text-control-sm font-medium text-muted-foreground data-inset:ps-7",
-      className,
-    )}
+    className={cn("px-2 py-1.5 text-control-sm text-muted-foreground data-inset:ps-7", className)}
     {...props}
   />
 );

@@ -29,7 +29,7 @@ import type { CSSVariables, CSSVariableStyle } from "../lib/utils";
 const rowClass =
   "group/control relative flex control-size w-full min-w-0 items-center rounded-lg border surface-control text-control-sm text-foreground transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none has-[:disabled]:opacity-50 has-[[data-disabled]]:opacity-50";
 
-const labelClass = "min-w-0 shrink-0 truncate text-control font-medium text-muted-foreground";
+const labelClass = "min-w-0 shrink-0 truncate text-control text-muted-foreground";
 
 const valueClass =
   "ms-auto min-w-0 flex-1 text-end text-field text-foreground outline-none placeholder:text-muted-foreground";
@@ -1385,7 +1385,7 @@ const Section = ({
     className={cn("w-full min-w-0", className)}
   >
     <Separator className="mb-2" />
-    <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control font-medium text-muted-foreground outline-none hover:text-foreground">
+    <CollapsibleTrigger className="group group/section flex w-full items-center justify-between text-start text-control text-muted-foreground outline-none hover:text-foreground">
       {title}
       <RotatingChevron scope="collapsible" className="size-4" />
     </CollapsibleTrigger>
