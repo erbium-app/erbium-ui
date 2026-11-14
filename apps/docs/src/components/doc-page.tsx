@@ -85,8 +85,8 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
             </header>
             {lead !== undefined && (
               <Showcase
-                key={`${page.name}-${lead.slug}`}
-                name={page.name}
+                key={`${lead.name}-${lead.slug}`}
+                name={lead.name}
                 variant={lead}
                 separator={false}
               />
@@ -95,7 +95,11 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
             {page.variants
               .filter((variant) => variant !== lead)
               .map((variant) => (
-                <Showcase key={`${page.name}-${variant.slug}`} name={page.name} variant={variant} />
+                <Showcase
+                  key={`${variant.name}-${variant.slug}`}
+                  name={variant.name}
+                  variant={variant}
+                />
               ))}
             {page.colorSources.map((item) => (
               <section key={item.title} id={item.id}>

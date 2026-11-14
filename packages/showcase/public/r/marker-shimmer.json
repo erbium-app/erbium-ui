@@ -3,17 +3,23 @@
   "name": "marker-shimmer",
   "type": "registry:block",
   "title": "Marker: Shimmer",
-  "description": "Add the [`shimmer`](https://ui.shadcn.com/docs/utils/shimmer) utility class to `MarkerContent` for an animated streaming-text effect. The utility ships with the `shadcn` package — see the shimmer docs for installation.",
-  "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+  "description": "Apply `shimmer` to `MarkerContent` to show that the agent is still working.",
+  "registryDependencies": [
+    "@erbium/bubble",
+    "@erbium/icon",
+    "@erbium/marker",
+    "@erbium/message",
+    "@erbium/styles"
+  ],
   "files": [
     {
-      "content": "import { Marker, MarkerContent } from \"@/registry/erbium/ui/marker\";\n\nexport const MarkerShimmerDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Marker role=\"status\">\n      <MarkerContent className=\"shimmer\">Thinking...</MarkerContent>\n    </Marker>\n    <Marker variant=\"separator\" role=\"status\">\n      <MarkerContent className=\"shimmer\">Reading 4 files</MarkerContent>\n    </Marker>\n  </div>\n);\n",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\nimport {\n  Message,\n  MessageContent,\n  MessageGroup,\n  MessageHeader,\n} from \"@/registry/erbium/ui/message\";\n\nexport const MarkerShimmerDemo = () => (\n  <figure\n    aria-label=\"Shimmer in an agent conversation\"\n    className=\"w-full min-w-0 max-w-lg rounded-xl border bg-background p-4 sm:p-6\"\n  >\n    <MessageGroup className=\"gap-6\">\n      <Message align=\"end\">\n        <MessageContent>\n          <Bubble variant=\"muted\">\n            <BubbleContent>\n              Where is the keyboard shortcut for the command menu defined?\n            </BubbleContent>\n          </Bubble>\n        </MessageContent>\n      </Message>\n      <Message>\n        <MessageContent>\n          <MessageHeader>Agent</MessageHeader>\n          <Bubble variant=\"ghost\">\n            <BubbleContent>I’ll check where the command menu registers its shortcut.</BubbleContent>\n          </Bubble>\n          <Marker render={<output />}>\n            <MarkerIcon>\n              <Icon name=\"search-01\" />\n            </MarkerIcon>\n            <MarkerContent className=\"shimmer\">Reading project files…</MarkerContent>\n          </Marker>\n        </MessageContent>\n      </Message>\n    </MessageGroup>\n  </figure>\n);\n",
       "path": "src/marker/examples/marker-shimmer.tsx",
       "target": "@components/showcase/marker/examples/marker-shimmer.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { MarkerShimmerDemo } from \"../examples/marker-shimmer\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerShimmerDemo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { MarkerShimmerDemo } from \"../examples/marker-shimmer\";\n\nexport default MarkerShimmerDemo;\n",
       "path": "src/marker/variants/shimmer.tsx",
       "target": "@components/showcase/marker/variants/shimmer.tsx",
       "type": "registry:component"

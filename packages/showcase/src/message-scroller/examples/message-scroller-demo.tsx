@@ -1,3 +1,5 @@
+import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
+import { Message, MessageContent } from "@erbium/ui/components/message";
 import {
   MessageScroller,
   MessageScrollerContent,
@@ -12,7 +14,15 @@ const Demo = () => (
       <MessageScrollerViewport>
         <MessageScrollerContent>
           {Array.from({ length: 8 }, (_, i) => (
-            <MessageScrollerItem key={i}>Message {i + 1}</MessageScrollerItem>
+            <MessageScrollerItem key={i}>
+              <Message align={i % 2 === 0 ? "end" : "start"}>
+                <MessageContent>
+                  <Bubble variant={i % 2 === 0 ? "default" : "muted"}>
+                    <BubbleContent>Message {i + 1}</BubbleContent>
+                  </Bubble>
+                </MessageContent>
+              </Message>
+            </MessageScrollerItem>
           ))}
         </MessageScrollerContent>
       </MessageScrollerViewport>

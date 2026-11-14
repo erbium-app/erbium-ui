@@ -94,7 +94,8 @@ markdown.
 container.
 
 ```tsx
-import { Message } from "@erbium/ui/components/message";
+import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
+import { Message, MessageContent } from "@erbium/ui/components/message";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -116,7 +117,13 @@ import {
             messageId={message.id}
             scrollAnchor={message.role === "user"}
           >
-            <Message />
+            <Message align={message.role === "user" ? "end" : "start"}>
+              <MessageContent>
+                <Bubble variant={message.role === "user" ? "default" : "muted"}>
+                  <BubbleContent>{message.text}</BubbleContent>
+                </Bubble>
+              </MessageContent>
+            </Message>
           </MessageScrollerItem>
         ))}
       </MessageScrollerContent>

@@ -22,5 +22,8 @@ declare module "virtual:docs-catalog" {
     files: { path: string }[];
   })[];
 
-  export const guides: (CatalogPage & { file: string })[];
+  export const guides: (CatalogPage & {
+    file: string;
+    example?: { name: string; slug: string };
+  })[];
 }

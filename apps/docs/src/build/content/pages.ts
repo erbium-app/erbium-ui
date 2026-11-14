@@ -76,7 +76,9 @@ export const getPage = async (path: string) => {
   if (file === undefined || section === undefined) return null;
   const content = document(file);
   const headings = headingsFor(content.tree);
-  const examples = component ? await showcaseExampleControls(component.name) : [];
+  const exampleName = component?.name ?? guide?.example?.name ?? "";
+  const exampleSlug = guide?.example?.slug;
+  const examples = exampleName === "" ? [] : await showcaseExampleControls(exampleName);
   const page = {
     ...content,
     path,
@@ -89,18 +91,21 @@ export const getPage = async (path: string) => {
       : undefined,
     image: ogPageForRoute(path).imagePath,
     colorSources: component?.name === "colors" ? await colorExamples() : [],
-    variants: examples.map((example) => ({
-      exportName: example.exportName,
-      slug: example.slug,
-      source: example.source,
-      title: example.title,
-      anchor: headings.some((heading) => heading.id === example.slug)
-        ? `example-${example.slug}`
-        : example.slug,
-      args: example.args,
-      argTypes: example.argTypes,
-      tree: document(`components/${component!.name}/${example.slug}`).tree,
-    })),
+    variants: examples
+      .filter((example) => exampleSlug === undefined || example.slug === exampleSlug)
+      .map((example) => ({
+        name: exampleName,
+        exportName: example.exportName,
+        slug: example.slug,
+        source: example.source,
+        title: example.title,
+        anchor: headings.some((heading) => heading.id === example.slug)
+          ? `example-${example.slug}`
+          : example.slug,
+        args: example.args,
+        argTypes: example.argTypes,
+        tree: document(`components/${exampleName}/${example.slug}`).tree,
+      })),
   };
   return {
     ...page,

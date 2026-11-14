@@ -12,6 +12,8 @@ const exampleModule = createRequestCache(async (key) => {
 export const exampleRequest = (name: string, slug: string) => exampleModule(`${name}/${slug}`);
 
 /** Starts every example request for a page; failures surface in each preview's boundary. */
-export const preloadExamples = async (name: string, slugs: readonly string[]) => {
-  await Promise.allSettled(slugs.map(async (slug) => await exampleRequest(name, slug)));
+export const preloadExamples = async (examples: readonly { name: string; slug: string }[]) => {
+  await Promise.allSettled(
+    examples.map(async ({ name, slug }) => await exampleRequest(name, slug)),
+  );
 };

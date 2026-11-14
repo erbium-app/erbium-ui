@@ -4,10 +4,15 @@
   "type": "registry:component",
   "title": "message scroller demo",
   "description": "Erbium message scroller demo example.",
-  "registryDependencies": ["@erbium/message-scroller", "@erbium/styles"],
+  "registryDependencies": [
+    "@erbium/bubble",
+    "@erbium/message",
+    "@erbium/message-scroller",
+    "@erbium/styles"
+  ],
   "files": [
     {
-      "content": "import {\n  MessageScroller,\n  MessageScrollerContent,\n  MessageScrollerItem,\n  MessageScrollerProvider,\n  MessageScrollerViewport,\n} from \"@/registry/erbium/ui/message-scroller\";\n\nconst Demo = () => (\n  <MessageScrollerProvider>\n    <MessageScroller className=\"h-40 w-80\">\n      <MessageScrollerViewport>\n        <MessageScrollerContent>\n          {Array.from({ length: 8 }, (_, i) => (\n            <MessageScrollerItem key={i}>Message {i + 1}</MessageScrollerItem>\n          ))}\n        </MessageScrollerContent>\n      </MessageScrollerViewport>\n    </MessageScroller>\n  </MessageScrollerProvider>\n);\n\nexport default Demo;\n",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport { Message, MessageContent } from \"@/registry/erbium/ui/message\";\nimport {\n  MessageScroller,\n  MessageScrollerContent,\n  MessageScrollerItem,\n  MessageScrollerProvider,\n  MessageScrollerViewport,\n} from \"@/registry/erbium/ui/message-scroller\";\n\nconst Demo = () => (\n  <MessageScrollerProvider>\n    <MessageScroller className=\"h-40 w-80\">\n      <MessageScrollerViewport>\n        <MessageScrollerContent>\n          {Array.from({ length: 8 }, (_, i) => (\n            <MessageScrollerItem key={i}>\n              <Message align={i % 2 === 0 ? \"end\" : \"start\"}>\n                <MessageContent>\n                  <Bubble variant={i % 2 === 0 ? \"default\" : \"muted\"}>\n                    <BubbleContent>Message {i + 1}</BubbleContent>\n                  </Bubble>\n                </MessageContent>\n              </Message>\n            </MessageScrollerItem>\n          ))}\n        </MessageScrollerContent>\n      </MessageScrollerViewport>\n    </MessageScroller>\n  </MessageScrollerProvider>\n);\n\nexport default Demo;\n",
       "path": "src/message-scroller/examples/message-scroller-demo.tsx",
       "target": "@components/showcase/message-scroller/examples/message-scroller-demo.tsx",
       "type": "registry:component"

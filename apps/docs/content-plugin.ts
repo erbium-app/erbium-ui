@@ -19,7 +19,12 @@ const guideRoutes = [
   { file: "roadmap", href: "/docs/roadmap", section: "Overview" },
   { file: "installation", href: "/docs/installation", section: "Guides" },
   { file: "getting-started", href: "/docs/getting-started", section: "Guides" },
-  { file: "shimmer", href: "/docs/utilities/shimmer", section: "Utilities" },
+  {
+    example: { name: "marker", slug: "shimmer" },
+    file: "shimmer",
+    href: "/docs/utilities/shimmer",
+    section: "Utilities",
+  },
 ];
 
 /** Every documentation page. Vite config prerenders these; `virtual:docs-catalog` serves them. */

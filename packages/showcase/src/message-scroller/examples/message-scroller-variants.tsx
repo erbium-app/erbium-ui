@@ -1,5 +1,7 @@
 import * as React from "react";
+import { Bubble, BubbleContent } from "@erbium/ui/components/bubble";
 import { Button } from "@erbium/ui/components/button";
+import { Message, MessageContent } from "@erbium/ui/components/message";
 import {
   MessageScroller,
   MessageScrollerButton,
@@ -14,6 +16,7 @@ import {
 
 const initialMessages = Array.from({ length: 12 }, (_, index) => ({
   id: `message-${index + 1}`,
+  fromUser: index % 2 === 0,
   text:
     index % 2 === 0
       ? `Question ${index / 2 + 1}: How does this work?`
@@ -24,17 +27,19 @@ const Transcript = ({ messages }: { messages: typeof initialMessages }) => (
   <MessageScroller className="h-72 w-96 rounded-lg border">
     <MessageScrollerViewport>
       <MessageScrollerContent className="gap-3 p-4">
-        {messages.map((message, index) => (
+        {messages.map((message) => (
           <MessageScrollerItem
             key={message.id}
             messageId={message.id}
-            scrollAnchor={index % 2 === 0}
+            scrollAnchor={message.fromUser}
           >
-            <div
-              className={`max-w-72 rounded-lg p-3 text-caption ${index % 2 === 0 ? "ms-auto bg-primary text-primary-foreground" : "bg-muted"}`}
-            >
-              {message.text}
-            </div>
+            <Message align={message.fromUser ? "end" : "start"}>
+              <MessageContent>
+                <Bubble variant={message.fromUser ? "default" : "muted"}>
+                  <BubbleContent>{message.text}</BubbleContent>
+                </Bubble>
+              </MessageContent>
+            </Message>
           </MessageScrollerItem>
         ))}
       </MessageScrollerContent>
@@ -110,7 +115,7 @@ export const Anchoring = () => {
           onClick={() => {
             setMessages((current) => [
               ...current,
-              { id: `message-${current.length + 1}`, text: "A new anchored turn" },
+              { id: `message-${current.length + 1}`, fromUser: true, text: "A new anchored turn" },
             ]);
           }}
         >
@@ -144,7 +149,11 @@ export const Streaming = () => {
       window.clearTimeout(timeout);
     };
   }, [text, reply]);
-  const messages = [...initialMessages, { id: "stream", text: text || "Start a streaming reply" }];
+
+  const messages = [
+    ...initialMessages,
+    { id: "stream", fromUser: false, text: text || "Start a streaming reply" },
+  ];
 
   return (
     <MessageScrollerProvider autoScroll>
@@ -175,6 +184,7 @@ export const LoadHistory = () => {
             setMessages((current) => [
               {
                 id: `older-${current.length}`,
+                fromUser: false,
                 text: "Earlier context loaded above the current conversation.",
               },
               ...current,

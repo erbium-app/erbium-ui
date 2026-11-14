@@ -13830,8 +13830,14 @@
       "name": "marker-shimmer",
       "type": "registry:block",
       "title": "Marker: Shimmer",
-      "description": "Add the [`shimmer`](https://ui.shadcn.com/docs/utils/shimmer) utility class to `MarkerContent` for an animated streaming-text effect. The utility ships with the `shadcn` package — see the shimmer docs for installation.",
-      "registryDependencies": ["@erbium/marker", "@erbium/styles"],
+      "description": "Apply `shimmer` to `MarkerContent` to show that the agent is still working.",
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/icon",
+        "@erbium/marker",
+        "@erbium/message",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/marker/examples/marker-shimmer.tsx",
@@ -13871,9 +13877,11 @@
       "description": "All marker variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/bubble",
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/marker",
+        "@erbium/message",
         "@erbium/overlay-provider",
         "@erbium/spinner",
         "@erbium/styles",
@@ -14330,7 +14338,7 @@
       "type": "registry:component",
       "title": "message demo",
       "description": "Erbium message demo example.",
-      "registryDependencies": ["@erbium/message", "@erbium/styles"],
+      "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
       "files": [
         {
           "path": "src/message/examples/message-demo.tsx",
@@ -14402,7 +14410,7 @@
       "type": "registry:block",
       "title": "Message: Overview",
       "description": "",
-      "registryDependencies": ["@erbium/message", "@erbium/styles"],
+      "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
       "files": [
         {
           "path": "src/message/examples/message-demo.tsx",
@@ -14421,7 +14429,7 @@
       "type": "registry:component",
       "title": "Message: Playground",
       "description": "",
-      "registryDependencies": ["@erbium/message", "@erbium/styles"],
+      "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
       "files": [
         {
           "path": "src/message/variants/playground.tsx",
@@ -14435,7 +14443,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Anchored Turns",
       "description": "Keep the current turn anchored as messages change.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14454,7 +14468,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Animated Reply",
       "description": "Handle animated message content while preserving scroll behavior.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14473,7 +14493,12 @@
       "type": "registry:component",
       "title": "message scroller demo",
       "description": "Erbium message scroller demo example.",
-      "registryDependencies": ["@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-demo.tsx",
@@ -14537,7 +14562,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Load Earlier History",
       "description": "Load earlier messages without losing the current position.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14583,7 +14614,12 @@
       "type": "registry:block",
       "title": "Message Scroller: Overview",
       "description": "",
-      "registryDependencies": ["@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-demo.tsx",
@@ -14616,7 +14652,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Previous Turn Context",
       "description": "Preserve context from earlier turns while scrolling.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14635,7 +14677,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Scroll Commands",
       "description": "Control scrolling with explicit commands.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14654,7 +14702,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Scrollable",
       "description": "Track whether the message area can scroll.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14788,7 +14842,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Streaming Reply",
       "description": "Follow a reply as new content streams in.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14807,7 +14867,13 @@
       "type": "registry:component",
       "title": "message scroller variants",
       "description": "Erbium message scroller variants example.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",
@@ -14821,7 +14887,13 @@
       "type": "registry:block",
       "title": "Message Scroller: Visibility",
       "description": "Respond to message visibility changes.",
-      "registryDependencies": ["@erbium/button", "@erbium/message-scroller", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/bubble",
+        "@erbium/button",
+        "@erbium/message",
+        "@erbium/message-scroller",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/message-scroller/examples/message-scroller-variants.tsx",

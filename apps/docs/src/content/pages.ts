@@ -8,16 +8,10 @@ import type { DocPage } from "@/content/types";
 // arrives, and examples already warmed by a hover preload render in the same pass.
 const loadExamples = createIsomorphicFn()
   .server(async (page: DocPage) => {
-    await preloadExamples(
-      page.name,
-      page.variants.map((variant) => variant.slug),
-    );
+    await preloadExamples(page.variants);
   })
   .client((page: DocPage) => {
-    void preloadExamples(
-      page.name,
-      page.variants.map((variant) => variant.slug),
-    );
+    void preloadExamples(page.variants);
   });
 
 // Vite splits each compiled document into its own asset. Router owns preloading
