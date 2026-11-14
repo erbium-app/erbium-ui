@@ -10,7 +10,7 @@ const Toolbar = ({ className, ...props }: ToolbarPrimitive.Root.Props) => (
   <ToolbarPrimitive.Root
     data-slot="toolbar"
     className={cn(
-      "flex w-fit items-center gap-1 rounded-lg surface-panel p-1 text-foreground data-vertical:flex-col data-vertical:items-stretch",
+      "flex w-fit items-center gap-1 rounded-lg surface-panel p-0.5 text-foreground data-vertical:flex-col data-vertical:items-stretch",
       className,
     )}
     {...props}
@@ -78,7 +78,7 @@ const ToolbarSeparator = ({
 }) => (
   <ToolbarPrimitive.Separator
     data-slot="toolbar-separator"
-    className={cn("self-stretch data-horizontal:my-1 data-vertical:mx-1", className)}
+    className={cn("self-stretch data-horizontal:mx-1 data-vertical:my-1", className)}
     render={<Separator variant={variant} />}
     {...props}
   />
