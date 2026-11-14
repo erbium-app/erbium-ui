@@ -109,6 +109,8 @@ bun install --frozen-lockfile
 bun run deploy:ci
 ```
 
+The CI and preview deploy commands fetch missing Git history from `origin` before Alchemy builds the site. The registry uses that history to retain published revisions. The checkout stays on the commit selected by Workers Builds.
+
 Set `BUN_VERSION=1.4.2`, `NODE_VERSION=26.10.0`, and
 `SKIP_DEPENDENCY_INSTALL=1`. Configure `CLOUDFLARE_ACCOUNT_ID` and a secret
 `CLOUDFLARE_API_TOKEN` with the deployment permissions above. Do not provide a
