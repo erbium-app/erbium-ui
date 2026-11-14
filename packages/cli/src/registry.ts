@@ -1,7 +1,15 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import * as Schema from "effect/Schema";
-import { manifest, parseJson, revision, snapshot, snapshotFor } from "./revision.ts";
+import {
+  manifest,
+  parseJson,
+  releaseHistory,
+  revision,
+  rev,
+  snapshot,
+  snapshotFor,
+} from "./revision.ts";
 import type { Snapshot } from "./revision.ts";
 
 export const defaultRegistry = "https://ui.erbium.app/r/erbium";
@@ -22,9 +30,33 @@ const readRegistry = async (root: string, location: string, file: string): Promi
     return parseJson(await readFile(path.resolve(root, location, file), "utf-8"));
   }
 
-  const response = await fetch(`${location.replace(/\/+$/u, "")}/${file}`, {
-    signal: AbortSignal.timeout(15_000),
-  });
+  const endpoint = new URL(`${location.replace(/\/+$/u, "")}/${file}`);
+
+  if (endpoint.username.length > 0 || endpoint.password.length > 0) {
+    throw new Error("Pass registry credentials through ERBIUM_REGISTRY_TOKEN.");
+  }
+
+  const token =
+    endpoint.origin === new URL(defaultRegistry).origin
+      ? undefined
+      : process.env.ERBIUM_REGISTRY_TOKEN;
+
+  if (
+    token !== undefined &&
+    endpoint.protocol !== "https:" &&
+    !["localhost", "127.0.0.1", "[::1]"].includes(endpoint.hostname)
+  ) {
+    throw new Error("Authenticated registries require HTTPS.");
+  }
+
+  const options: RequestInit = { signal: AbortSignal.timeout(15_000) };
+
+  if (token !== undefined) {
+    options.headers = { Authorization: `Bearer ${token}` };
+    options.redirect = "error";
+  }
+
+  const response = await fetch(endpoint, options);
 
   if (!response.ok) {
     throw new Error(`Registry returned HTTP ${response.status} for ${file}.`);
@@ -34,14 +66,38 @@ const readRegistry = async (root: string, location: string, file: string): Promi
 };
 
 export const openRegistry = async (root: string, location: string) => {
-  const { items } = Schema.decodeUnknownSync(manifest)(
+  const { items, catalog = {} } = Schema.decodeUnknownSync(manifest)(
     await readRegistry(root, location, "index.json"),
   );
 
   return {
     items,
+    catalog,
+    async history() {
+      const releases = Schema.decodeUnknownSync(releaseHistory)(
+        await readRegistry(root, location, "history.json"),
+      );
+
+      const published = new Map<string, string>();
+
+      return releases
+        .toReversed()
+        .map(({ commit, date, changes }) => {
+          for (const [id, digest] of Object.entries(changes)) {
+            if (digest === null) {
+              published.delete(id);
+            } else {
+              published.set(id, digest);
+            }
+          }
+
+          return { commit, date, items: Object.fromEntries(published) };
+        })
+        .toReversed();
+    },
     async load(id: string, digest: string): Promise<Snapshot> {
-      const raw = await readRegistry(root, location, `revisions/${digest}.json`);
+      const checked = Schema.decodeUnknownSync(rev)(digest);
+      const raw = await readRegistry(root, location, `revisions/${checked}.json`);
       const decoded = Schema.decodeUnknownSync(snapshot)(raw);
       const value = snapshotFor(decoded.id, decoded.item);
 

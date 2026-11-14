@@ -19,6 +19,7 @@ const trackedItem = Schema.Struct({
 const lockSchema = Schema.Struct({
   version: Schema.Literal(1),
   items: Schema.Record(Schema.String, trackedItem),
+  aliases: Schema.optionalKey(Schema.Record(Schema.String, Schema.String)),
 });
 
 const configSchema = Schema.Struct({
@@ -30,6 +31,20 @@ const aliasTarget = /^@(?<alias>ui|components|hooks|lib)\/(?<suffix>.+)$/u;
 
 const canonicalImport =
   /(?<quote>["'])@\/registry\/erbium\/(?<group>ui|components|hooks|lib|blocks)\/(?<name>[^"'\n]+)\k<quote>/gu;
+
+// Shadcn emits TypeScript starting at the first token, omitting initial trivia.
+const leadingTrivia = /^(?:#![^\r\n]*)?(?:\s+|\/\/[^\r\n]*|\/\*[\s\S]*?\*\/)*/u;
+
+const reservedTargets = new Set([
+  ".erbium",
+  "components.json",
+  "package.json",
+  "package-lock.json",
+  "bun.lock",
+  "bun.lockb",
+  "pnpm-lock.yaml",
+  "yarn.lock",
+]);
 
 export const lockPath = ".erbium/lock.json";
 
@@ -166,18 +181,46 @@ export const planFiles = (root: string, config: ProjectConfig, snapshot: Snapsho
       target = path.relative(root, absolute).split(path.sep).join("/");
     }
 
-    if (target.startsWith(".erbium/") || ["components.json", "package.json"].includes(target)) {
+    if (
+      target.startsWith(".erbium/") ||
+      reservedTargets.has(target) ||
+      /(?:^|\/)\.env(?:\.|$)/u.test(target)
+    ) {
       throw new Error(`Protected install target: ${target}`);
     }
 
     const content =
       /\.tsx?$/u.test(target) && file.type !== "registry:file" && file.type !== "registry:item"
-        ? file.content.replaceAll(
-            canonicalImport,
-            (_match, quote: string, group: string, name: string) =>
-              `${quote}${importAlias(config, group)}/${name}${quote}`,
-          )
+        ? file.content
+            .replace(leadingTrivia, "")
+            .replaceAll(
+              canonicalImport,
+              (_match, quote: string, group: string, name: string) =>
+                `${quote}${importAlias(config, group)}/${name}${quote}`,
+            )
         : file.content;
 
     return { content, target };
   });
+
+export const validateAliases = async (root: string) => {
+  const config = await projectConfig(root);
+  const aliases: Record<string, string> = {};
+
+  for (const [name, specifier] of Object.entries(config.aliases)) {
+    const [resolved] =
+      config.tsconfig === undefined
+        ? []
+        : resolvePathAlias(config.tsconfig, `${specifier}/erbium-target`);
+
+    if (resolved === undefined) {
+      throw new Error(
+        `Alias ${specifier} does not resolve. Check components.json and tsconfig.json.`,
+      );
+    }
+
+    aliases[name] = path.relative(root, path.dirname(resolved)).split(path.sep).join("/") || ".";
+  }
+
+  return aliases;
+};

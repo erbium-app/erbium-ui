@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import * as Schema from "effect/Schema";
 
-const rev = Schema.String.check(Schema.isPattern(/^[a-f0-9]{64}$/u));
+export const rev = Schema.String.check(Schema.isPattern(/^[a-f0-9]{64}$/u));
 
 const file = Schema.Struct({
   content: Schema.String,
@@ -19,7 +19,22 @@ const payload = Schema.Struct({
   type: Schema.String,
 });
 
+const catalogItem = Schema.Struct({
+  title: Schema.optionalKey(Schema.String),
+  description: Schema.optionalKey(Schema.String),
+  keywords: Schema.optionalKey(Schema.Array(Schema.String)),
+});
+
+export const releaseHistory = Schema.Array(
+  Schema.Struct({
+    commit: Schema.String,
+    date: Schema.String,
+    changes: Schema.Record(Schema.String, Schema.NullOr(rev)),
+  }),
+);
+
 export const manifest = Schema.Struct({
+  catalog: Schema.optionalKey(Schema.Record(Schema.String, catalogItem)),
   version: Schema.Literal(1),
   items: Schema.Record(Schema.String, rev),
 });
@@ -40,6 +55,7 @@ const payloadKeys = new Set([
   "description",
   "docs",
   "meta",
+  "keywords",
   "title",
   ...Object.keys(payload.fields),
 ]);

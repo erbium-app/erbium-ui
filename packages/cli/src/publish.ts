@@ -25,13 +25,38 @@ const catalogs = [
 const git = (args: string[]): string =>
   execFileSync("git", args, { cwd: root, encoding: "utf-8", maxBuffer: 50 * 1024 * 1024 });
 
-export const publishRevisions = async (output: string, history: boolean): Promise<void> => {
+export type RegistrySource = readonly [namespace: string, catalog: string];
+
+export const publishRevisions = async (
+  output: string,
+  history: boolean,
+  sources: readonly RegistrySource[] = catalogs,
+): Promise<void> => {
   const revisions = path.join(output, "revisions");
   await mkdir(revisions, { recursive: true });
   const written = new Set<string>();
+
+  const catalog: Record<
+    string,
+    { title?: string; description?: string; keywords?: readonly string[] }
+  > = {};
+
+  const metadata = Schema.decodeUnknownSync(
+    Schema.Struct({
+      title: Schema.optionalKey(Schema.String),
+      description: Schema.optionalKey(Schema.String),
+      keywords: Schema.optionalKey(Schema.Array(Schema.String)),
+    }),
+  );
+
   const items: Record<string, string> = {};
 
-  const collect = (namespace: string, text: string, current: boolean) => {
+  const collect = (
+    namespace: string,
+    text: string,
+    current: boolean,
+    releaseItems?: Record<string, string>,
+  ) => {
     const records = decodeCatalog(parseJson(text)).items;
     const snapshots = [];
 
@@ -42,6 +67,11 @@ export const publishRevisions = async (output: string, history: boolean): Promis
 
       if (current) {
         items[id] = digest;
+        catalog[id] = metadata(record);
+      }
+
+      if (releaseItems !== undefined) {
+        releaseItems[id] = digest;
       }
 
       if (!written.has(digest)) {
@@ -58,33 +88,39 @@ export const publishRevisions = async (output: string, history: boolean): Promis
   }
 
   const current = await Promise.all(
-    catalogs.map(async ([namespace, file]) =>
-      collect(namespace, await readFile(path.join(root, file), "utf-8"), true),
+    sources.map(async ([namespace, file]) =>
+      collect(namespace, await readFile(path.resolve(root, file), "utf-8"), true),
     ),
   );
 
-  const previous = history
-    ? catalogs.flatMap(([namespace, file]) => {
-        const commits = [
-          firstRegistryCommit,
-          ...git([
-            "log",
-            "--first-parent",
-            "--format=%H",
-            `${firstRegistryCommit}..HEAD`,
-            "--",
-            file,
-          ])
-            .trim()
-            .split("\n")
-            .filter(Boolean),
-        ];
-
-        return commits.flatMap((commit) =>
-          collect(namespace, git(["show", `${commit}:${file}`]), false),
-        );
-      })
+  const commits = history
+    ? [
+        ...git([
+          "log",
+          "--first-parent",
+          "--format=%H",
+          `${firstRegistryCommit}..HEAD`,
+          "--",
+          ...catalogs.map(([, file]) => file),
+        ])
+          .trim()
+          .split("\n")
+          .filter(Boolean),
+        firstRegistryCommit,
+      ]
     : [];
+
+  const releases = commits.map((commit) => ({
+    commit,
+    date: git(["show", "-s", "--format=%cI", commit]).trim(),
+    items: Object.fromEntries<string>([]),
+  }));
+
+  const previous = releases.flatMap((release) =>
+    catalogs.flatMap(([namespace, file]) =>
+      collect(namespace, git(["show", `${release.commit}:${file}`]), false, release.items),
+    ),
+  );
 
   await Promise.all(
     [...current.flat(), ...previous].map(async ({ digest, value }) => {
@@ -100,12 +136,35 @@ export const publishRevisions = async (output: string, history: boolean): Promis
     }),
   );
 
+  let last: Record<string, string> = {};
+
+  const changes = releases
+    .toReversed()
+    .map(({ commit, date, items: published }) => {
+      const ids = new Set([...Object.keys(last), ...Object.keys(published)]);
+
+      const changed = Object.fromEntries(
+        [...ids].flatMap((id) => (last[id] === published[id] ? [] : [[id, published[id] ?? null]])),
+      );
+
+      last = published;
+
+      return { commit, date, changes: changed };
+    })
+    .toReversed();
+
+  await atomicWrite(path.join(output, "history.json"), `${JSON.stringify(changes)}\n`);
+
   const ordered = Object.fromEntries(
     Object.entries(items).toSorted(([left], [right]) => left.localeCompare(right, "en")),
   );
 
   await atomicWrite(
     path.join(output, "index.json"),
-    `${JSON.stringify({ version: 1, items: ordered })}\n`,
+    `${JSON.stringify({
+      version: 1,
+      items: ordered,
+      catalog: Object.fromEntries(Object.keys(ordered).map((id) => [id, catalog[id]])),
+    })}\n`,
   );
 };

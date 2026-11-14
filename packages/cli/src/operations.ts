@@ -9,10 +9,12 @@ import {
   lockPath,
   planFiles,
   projectConfig,
+  validateAliases,
   readText,
   safePath,
 } from "./project.ts";
-import type { LockedItem } from "./project.ts";
+import { importSpecifiers, resolveLocalImport } from "./imports.ts";
+import type { Lock, LockedItem } from "./project.ts";
 import { normalizeItem, openRegistry } from "./registry.ts";
 import { hash, parseJson, revision } from "./revision.ts";
 import type { Snapshot } from "./revision.ts";
@@ -25,6 +27,8 @@ interface Options {
   names: readonly string[];
   dryRun: boolean;
   local: boolean;
+  at?: string;
+  only?: string;
 }
 
 type Registry = Awaited<ReturnType<typeof openRegistry>>;
@@ -56,16 +60,57 @@ const journalSchema = Schema.decodeUnknownSync(
 
 const basePath = (digest: string): string => `.erbium/bases/${digest}.txt`;
 
-const readBase = async (root: string, digest: string): Promise<string> => {
-  const base = await readText(await safePath(root, basePath(digest)));
-
-  if (base === undefined || hash(base) !== digest) {
-    throw new Error(
-      `Missing or invalid baseline ${digest}. Restore .erbium/bases from version control.`,
-    );
+const readBase = async (
+  root: string,
+  digest: string,
+  target: string,
+  local?: string,
+  recover?: () => Promise<string | null | undefined>,
+): Promise<string> => {
+  if (local !== undefined && hash(local) === digest) {
+    return local;
   }
 
-  return base;
+  const base = await readText(await safePath(root, basePath(digest)));
+
+  if (base !== undefined && hash(base) === digest) {
+    return base;
+  }
+
+  const history = spawnSync("git", ["log", "--format=%H", "--", target], {
+    cwd: root,
+    encoding: "utf-8",
+  });
+
+  const refs = [
+    `:./${target}`,
+    ...(history.stdout ?? "")
+      .split("\n")
+      .filter(Boolean)
+      .map((commit) => `${commit}:./${target}`),
+  ];
+
+  for (const ref of refs) {
+    const candidate = spawnSync("git", ["show", ref], {
+      cwd: root,
+      encoding: "utf-8",
+      maxBuffer: 16 * 1024 * 1024,
+    });
+
+    if (candidate.status === 0 && hash(candidate.stdout) === digest) {
+      return candidate.stdout;
+    }
+  }
+
+  const fromRegistry = await recover?.();
+
+  if (fromRegistry !== undefined && fromRegistry !== null && hash(fromRegistry) === digest) {
+    return fromRegistry;
+  }
+
+  throw new Error(
+    `Missing or invalid baseline for ${target} (${digest}). Restore .erbium/bases from version control.`,
+  );
 };
 
 const readTracked = async (root: string, target: string): Promise<string | undefined> =>
@@ -164,12 +209,45 @@ const selectItems = async (
   return selected;
 };
 
+const snapshotBaselines = (
+  root: string,
+  config: Awaited<ReturnType<typeof projectConfig>>,
+  registry: Registry,
+  items: Readonly<Record<string, LockedItem>>,
+) => {
+  const cache = new Map<string, Promise<ReturnType<typeof planFiles>>>();
+
+  return async (id: string, target: string, digest: string): Promise<string | null | undefined> => {
+    const item = items[id];
+
+    if (item === undefined) {
+      return null;
+    }
+
+    let files = cache.get(id);
+
+    if (files === undefined) {
+      files = registry
+        .load(id, item.revision)
+        .then((snapshot) => planFiles(root, config, snapshot))
+        .catch(() => []);
+      cache.set(id, files);
+    }
+
+    const resolved = await files;
+
+    return resolved.find((file) => file.target === target && hash(file.content) === digest)
+      ?.content;
+  };
+};
+
 const plannedContent = async (
   mode: Mode,
   root: string,
   target: string,
   upstream: string,
   previous?: string,
+  recover?: () => Promise<string | null | undefined>,
 ) => {
   const local = await readTracked(root, target);
 
@@ -210,7 +288,7 @@ const plannedContent = async (
     );
   }
 
-  const base = await readBase(root, previous);
+  const base = await readBase(root, previous, target, local, recover);
   const merged = await gitFile("merge", local, base, upstream);
 
   if (merged.conflict) {
@@ -412,10 +490,6 @@ const inspect = async (
         Object.entries(item.files).map(async ([target, digest]) => {
           const local = await readTracked(root, target);
 
-          if (registry === undefined) {
-            await readBase(root, digest);
-          }
-
           return {
             target,
             missing: local === undefined,
@@ -458,9 +532,16 @@ const diffItem = async (
     throw new Error(`${id} is missing from the registry.`);
   }
 
+  const config = registry === undefined ? undefined : await projectConfig(root);
+
+  const recover =
+    registry === undefined || config === undefined
+      ? undefined
+      : snapshotBaselines(root, config, registry, items);
+
   const incoming =
-    registry !== undefined && upstream !== undefined
-      ? planFiles(root, await projectConfig(root), await registry.load(id, upstream))
+    registry !== undefined && upstream !== undefined && config !== undefined
+      ? planFiles(root, config, await registry.load(id, upstream))
       : await Promise.all(
           Object.keys(item.files).map(async (target) => ({
             target,
@@ -474,7 +555,18 @@ const diffItem = async (
   return await Promise.all(
     files.map(async (target) => {
       const previous = item.files[target];
-      const base = previous === undefined ? "" : await readBase(root, previous);
+
+      const base =
+        previous === undefined
+          ? ""
+          : await readBase(
+              root,
+              previous,
+              target,
+              await readTracked(root, target),
+              async () => await recover?.(id, target, previous),
+            );
+
       const content = targets.get(target) ?? "";
       const result = await gitFile("diff", "", base, content);
 
@@ -580,12 +672,24 @@ const planChanges = async (
   const plan = planItems(mode, root, config, items, selected);
   const nextOwners = fileOwners(plan.items);
 
+  const recover = snapshotBaselines(root, config, registry, items);
+
   const planned = await Promise.all(
-    [...plan.incoming].map(async ([target, { upstream }]) => ({
-      target,
-      upstream,
-      ...(await plannedContent(mode, root, target, upstream, owners.get(target)?.digest)),
-    })),
+    [...plan.incoming].map(async ([target, { upstream }]) => {
+      const owner = owners.get(target);
+      const id = owner?.items[0];
+
+      const recoverFile =
+        owner === undefined || id === undefined
+          ? undefined
+          : async () => await recover(id, target, owner.digest);
+
+      return {
+        target,
+        upstream,
+        ...(await plannedContent(mode, root, target, upstream, owner?.digest, recoverFile)),
+      };
+    }),
   );
 
   const bases = new Map(planned.map(({ upstream }) => [hash(upstream), upstream]));
@@ -635,7 +739,7 @@ const change = async (
     writes.unshift(...baselineWrites.flat());
     const previous = await readTracked(root, lockPath);
     writes.push({
-      content: `${JSON.stringify({ version: 1, items }, null, 2)}\n`,
+      content: `${JSON.stringify({ version: 1, items, aliases: await validateAliases(root) }, null, 2)}\n`,
       previous,
       target: lockPath,
     });
@@ -665,41 +769,159 @@ const change = async (
   };
 };
 
-const validateInstall = async (
-  root: string,
-  items: Readonly<Record<string, LockedItem>>,
-  results: Awaited<ReturnType<typeof inspect>>,
-) => {
-  fileOwners(items);
+const checkNames = ["config", "provenance", "dependencies", "imports"] as const;
 
-  const failures = results.flatMap(({ files }) =>
-    files.filter(({ missing, conflict }) => missing || conflict),
-  );
+type CheckStep = (typeof checkNames)[number];
 
-  if (failures.length > 0) {
-    throw new Error(
-      `Missing files or unresolved conflicts: ${failures.map(({ target }) => target).join(", ")}.`,
-    );
+const selectedChecks = (only: string) => {
+  const valid = new Set<string>(checkNames);
+
+  const requested =
+    only.length === 0 ? [...checkNames] : [...new Set(only.split(",").map((name) => name.trim()))];
+
+  if (requested.some((name) => !valid.has(name))) {
+    throw new Error(`Unknown check. Choose from ${checkNames.join(", ")}.`);
   }
 
-  if (results.length > 0) {
-    for (const [id, item] of Object.entries(items)) {
-      normalizeItem(id);
+  return checkNames.filter((name) => requested.includes(name));
+};
 
-      for (const dependency of item.registryDependencies) {
-        if (!Object.hasOwn(items, dependency)) {
-          throw new Error(`${id} requires untracked registry item ${dependency}.`);
-        }
+const verifyProvenance = async (root: string, items: Readonly<Record<string, LockedItem>>) => {
+  const owners = fileOwners(items);
+  await Promise.all(
+    [...owners].map(async ([target, { digest }]) => {
+      const local = await readTracked(root, target);
+
+      if (local === undefined) {
+        throw new Error(`Missing files: ${target}. Restore it before updating.`);
+      }
+
+      if (markers.test(local)) {
+        throw new Error(`Unresolved merge conflict in ${target}.`);
+      }
+
+      await readBase(root, digest, target, local);
+    }),
+  );
+};
+
+const verifyDependencies = async (root: string, items: Readonly<Record<string, LockedItem>>) => {
+  for (const [id, item] of Object.entries(items)) {
+    normalizeItem(id);
+
+    for (const dependency of item.registryDependencies) {
+      if (!Object.hasOwn(items, dependency)) {
+        throw new Error(
+          `${id} requires untracked registry item ${dependency}. Run erbium add ${dependency}.`,
+        );
       }
     }
-
-    const packages = await packagePlan(root, Object.values(items));
-    const missing = [...packages.dependencies, ...packages.devDependencies];
-
-    if (missing.length > 0) {
-      throw new Error(`Missing package declarations: ${missing.join(", ")}.`);
-    }
   }
+
+  const packages = await packagePlan(root, Object.values(items));
+  const missing = [...packages.dependencies, ...packages.devDependencies];
+
+  if (missing.length > 0) {
+    throw new Error(`Missing package declarations: ${missing.join(", ")}.`);
+  }
+
+  return packages.ranges;
+};
+
+const verifyImports = async (root: string, items: Readonly<Record<string, LockedItem>>) => {
+  const config = await projectConfig(root);
+  const files = [...fileOwners(items).keys()].filter((target) => /\.[cm]?[jt]sx?$/u.test(target));
+
+  const issues = await Promise.all(
+    files.map(async (target) => {
+      const file = await safePath(root, target);
+      const text = (await readText(file)) ?? "";
+
+      const imports = await Promise.all(
+        importSpecifiers(text).map(async (specifier) => {
+          const resolved = await resolveLocalImport(config, file, specifier);
+
+          return resolved.expectedLocal && resolved.target === undefined
+            ? [`${target} imports ${specifier}, which does not resolve.`]
+            : [];
+        }),
+      );
+
+      return imports.flat();
+    }),
+  );
+
+  const broken = issues.flat();
+
+  if (broken.length > 0) {
+    throw new Error(broken.join("\n"));
+  }
+};
+
+const validateInstall = async (root: string, lock: Lock, steps: readonly CheckStep[]) => {
+  const { items } = lock;
+
+  const checks = {
+    config: async () => {
+      const aliases = await validateAliases(root);
+
+      if (
+        lock.aliases !== undefined &&
+        Object.entries(lock.aliases).some(([name, value]) => aliases[name] !== value)
+      ) {
+        throw new Error(
+          "Alias destinations changed since installation. Restore them or migrate the tracked paths.",
+        );
+      }
+    },
+    provenance: async () => {
+      await verifyProvenance(root, items);
+    },
+    dependencies: async () => await verifyDependencies(root, items),
+    imports: async () => {
+      await verifyImports(root, items);
+    },
+  };
+
+  const results = await Promise.all(
+    steps.map(async (step) => {
+      try {
+        const notes = await checks[step]();
+
+        return { step, ok: true, notes: notes ?? [] };
+      } catch (error) {
+        return { step, ok: false, notes: [error instanceof Error ? error.message : String(error)] };
+      }
+    }),
+  );
+
+  return { ok: results.every((result) => result.ok), steps: results };
+};
+
+const operationRegistry = async (mode: Mode, root: string, options: Options) => {
+  const registry =
+    mode === "check" || (mode === "diff" && options.local)
+      ? undefined
+      : await openRegistry(root, options.registry);
+
+  if (options.at === undefined || options.at.length === 0) {
+    return registry;
+  }
+
+  if (mode !== "adopt" || registry === undefined) {
+    throw new Error("--at is available for adopt.");
+  }
+
+  const releases = await registry.history();
+  const { at } = options;
+  const matching = releases.filter(({ commit }) => commit.startsWith(at));
+  const [release] = matching;
+
+  if (matching.length !== 1 || release === undefined) {
+    throw new Error(`Expected one registry release matching ${at}. Run erbium history <item>.`);
+  }
+
+  return { ...registry, items: release.items };
 };
 
 export const runOperation = async (mode: Mode, options: Options) => {
@@ -707,17 +929,15 @@ export const runOperation = async (mode: Mode, options: Options) => {
   const names = options.names.map(normalizeItem);
   const journal = await safePath(root, ".erbium/pending.json");
 
-  const registry =
-    mode === "check" || (mode === "diff" && options.local)
-      ? undefined
-      : await openRegistry(root, options.registry);
+  const registry = await operationRegistry(mode, root, options);
 
   if (mode === "check" || mode === "status" || mode === "diff") {
     if ((await readText(journal)) !== undefined) {
       throw new Error("An update was interrupted. Rerun the write command to finish it.");
     }
 
-    const { items } = await loadLock(root);
+    const lock = await loadLock(root);
+    const { items } = lock;
 
     if (mode === "diff") {
       return await diffItem(root, registry, names, items);
@@ -731,7 +951,10 @@ export const runOperation = async (mode: Mode, options: Options) => {
     );
 
     if (mode === "check") {
-      await validateInstall(root, items, results);
+      return {
+        ...(await validateInstall(root, lock, selectedChecks(options.only ?? ""))),
+        tracked: results,
+      };
     }
 
     return results;

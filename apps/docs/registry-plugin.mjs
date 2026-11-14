@@ -70,8 +70,9 @@ export const registryPlugin = () => ({
       const [pathname = ""] = request.url?.split("?") ?? [];
 
       const revisionFile =
-        /^\/r\/erbium\/(?<file>index\.json|revisions\/[a-f0-9]{64}\.json)$/u.exec(pathname)?.groups
-          ?.file;
+        /^\/r\/erbium\/(?<file>(?:index|history)\.json|revisions\/[a-f0-9]{64}\.json)$/u.exec(
+          pathname,
+        )?.groups?.file;
 
       if (revisionFile === undefined) {
         next();
