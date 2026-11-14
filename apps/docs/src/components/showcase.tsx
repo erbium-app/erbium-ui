@@ -3,6 +3,8 @@ import { CatchBoundary } from "@tanstack/react-router";
 import type { ShowcaseStory } from "@erbium/showcase/catalog";
 import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
 import { Button } from "@erbium/ui/components/button";
+import { Toolbar, ToolbarButton } from "@erbium/ui/components/toolbar";
+import { Icon } from "@erbium/ui/components/icon";
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -28,7 +30,7 @@ import type { DocPage } from "@/content/types";
 const PreviewError = () => (
   <Alert variant="error">
     <AlertTitle>Preview could not load.</AlertTitle>
-    <AlertDescription>Reload the page to retry.</AlertDescription>
+    <AlertDescription>Refresh the showcase to retry.</AlertDescription>
   </Alert>
 );
 
@@ -97,6 +99,9 @@ export const Showcase = ({
   const [appearance, setAppearance] = useState<"light" | "dark">();
   const dark = appearance === undefined ? siteDark : appearance === "dark";
   const [revision, setRevision] = useState(0);
+  // Refresh remounts the example and its providers so first-mount behaviour
+  // (skeleton reveals, entrance motion, effects) plays again with the current args.
+  const [mount, setMount] = useState(0);
 
   const prefetchSource = () => {
     void exampleSourceRequest(name, variant.slug);
@@ -138,9 +143,17 @@ export const Showcase = ({
         </TabsContent>
         <TabsContent value="preview" keepMounted>
           <div className={`showcase-content relative ${codePanelSurface} ${appearance ?? ""}`}>
-            <div className="absolute top-2 end-2 z-1 rounded-md bg-surface-panel">
-              <Button
-                variant="ghost"
+            <Toolbar aria-label="Showcase controls" className="absolute top-2 end-2 z-1 gap-0.5">
+              <ToolbarButton
+                size="icon-xs"
+                aria-label="Refresh this showcase"
+                onClick={() => {
+                  setMount((value) => value + 1);
+                }}
+              >
+                <Icon name="refresh-cw" className="size-4" />
+              </ToolbarButton>
+              <ToolbarButton
                 size="icon-xs"
                 aria-label={
                   dark ? "Use light theme for this showcase" : "Use dark theme for this showcase"
@@ -154,10 +167,10 @@ export const Showcase = ({
                 }}
               >
                 <ThemeToggleIcon theme={dark ? "dark" : "light"} />
-              </Button>
-            </div>
-            <CatchBoundary getResetKey={() => revision} errorComponent={PreviewError}>
-              <ShowcaseProviders>
+              </ToolbarButton>
+            </Toolbar>
+            <CatchBoundary getResetKey={() => `${revision}:${mount}`} errorComponent={PreviewError}>
+              <ShowcaseProviders key={mount}>
                 <ShowcaseSurface>
                   <Suspense fallback={<PreviewLoading />}>
                     <PreviewContent key={revision} name={name} slug={variant.slug} args={args} />
