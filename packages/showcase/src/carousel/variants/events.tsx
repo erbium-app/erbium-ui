@@ -1,5 +1,5 @@
-import CarouselDApiDemo from "../examples/carousel-slide-counter";
+import CarouselEvents from "../examples/carousel-events";
 
-const Example = () => <CarouselDApiDemo />;
+const Example = () => <CarouselEvents />;
 
 export default Example;

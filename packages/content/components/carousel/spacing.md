@@ -3,24 +3,23 @@ title: "Spacing"
 story: Spacing
 ---
 
-To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<CarouselItem />` and a negative `-ml-[VALUE]` on the `<CarouselContent />`.
+Set the space between slides with the `--carousel-gap` custom property on `Carousel`. The default is `--spacing(4)`. Slide sizes set with `basis` stay exact at any gap.
 
 ```tsx
-<Carousel>
-  <CarouselContent className="-ml-4">
-    <CarouselItem className="pl-4">...</CarouselItem>
-    <CarouselItem className="pl-4">...</CarouselItem>
-    <CarouselItem className="pl-4">...</CarouselItem>
-  </CarouselContent>
+<Carousel aria-label="Products" className="[--carousel-gap:--spacing(1)]">
+  <CarouselSlides>
+    <CarouselSlide>...</CarouselSlide>
+    <CarouselSlide>...</CarouselSlide>
+  </CarouselSlides>
 </Carousel>
 ```
 
 ```tsx
-<Carousel>
-  <CarouselContent className="-ml-2 md:-ml-4">
-    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>
-    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>
-    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>
-  </CarouselContent>
+// A wider gap on larger screens.
+<Carousel
+  aria-label="Products"
+  className="[--carousel-gap:--spacing(2)] md:[--carousel-gap:--spacing(4)]"
+>
+  ...
 </Carousel>
 ```

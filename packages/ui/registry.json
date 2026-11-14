@@ -245,7 +245,7 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Erbium carousel component.",
-      "dependencies": ["class-variance-authority", "embla-carousel-react"],
+      "dependencies": ["@base-ui/react", "class-variance-authority", "embla-carousel-react"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",

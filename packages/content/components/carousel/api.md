@@ -1,39 +1,26 @@
 ---
-title: "Api"
+title: "Controlled"
 story: Api
 ---
 
-Add `CarouselIndicator` for dots that follow the carousel and scroll to a slide when clicked. For anything custom, use a state and the `setApi` prop to get an instance of the carousel API.
+Pass `value` and `onValueChange` to control the position from your own state. Any control can then move the carousel, and the carousel reports swipes and key presses back through `onValueChange`. `CarouselIndicator` and `CarouselCounter` follow the position without extra wiring.
 
 ```tsx
-<Carousel>
-  <CarouselContent>...</CarouselContent>
+const [value, setValue] = React.useState(0);
+
+<Carousel aria-label="Workflow" value={value} onValueChange={setValue}>
+  <CarouselSlides>...</CarouselSlides>
   <CarouselIndicator />
-</Carousel>
+  <CarouselCounter />
+</Carousel>;
 ```
 
+To build a control inside the carousel, read `useCarousel()`:
+
 ```tsx
-import { type CarouselApi } from "@erbium/ui/components/carousel";
+const JumpToEnd = () => {
+  const { state, actions } = useCarousel();
 
-export function Example() {
-  const [api, setApi] = React.useState<CarouselApi>();
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    api.scrollTo(2);
-  }, [api]);
-
-  return (
-    <Carousel setApi={setApi}>
-      <CarouselContent>
-        <CarouselItem>...</CarouselItem>
-        <CarouselItem>...</CarouselItem>
-        <CarouselItem>...</CarouselItem>
-      </CarouselContent>
-    </Carousel>
-  );
-}
+  return <Button onClick={() => actions.goTo(state.count - 1)}>Last</Button>;
+};
 ```

@@ -32,7 +32,6 @@
     "@tanstack/react-pacer": "catalog:",
     "@tanstack/react-table": "catalog:",
     "effect": "4.1.4",
-    "embla-carousel-autoplay": "^8.6.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "react-textarea-autosize": "^8.5.9"

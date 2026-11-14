@@ -1,6 +1,6 @@
 ## External documentation
 
-Embla Carousel supplies the carousel behavior and React hook. The autoplay example uses its Autoplay plugin.
+Embla Carousel runs the scrolling and snapping. The carousel wraps it, so its options and API are not part of the component's interface.
 
-- [Embla Carousel React (v8)](https://www.embla-carousel.com/docs/v8/get-started/react)
-- [Embla Carousel Autoplay (v8)](https://www.embla-carousel.com/docs/v8/plugins/autoplay)
+- [Embla Carousel (v8)](https://www.embla-carousel.com/docs/v8/get-started/react)
+- [WAI-ARIA carousel pattern](https://www.w3.org/WAI/ARIA/apg/patterns/carousel/)

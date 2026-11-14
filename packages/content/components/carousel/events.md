@@ -3,34 +3,15 @@ title: "Events"
 story: Events
 ---
 
-You can listen to events using the api instance from `setApi`.
-
-See the [Embla Carousel docs](https://www.embla-carousel.com/api/events/) for more information on using events.
+`onValueChange` receives the new position and a `source` that says what moved the carousel: `button`, `drag`, `focus`, `indicator`, `keyboard`, `autoplay`, or `imperative`. Use it for analytics, or to react only to the person's own navigation.
 
 ```tsx
-import { type CarouselApi } from "@erbium/ui/components/carousel";
-
-export function Example() {
-  const [api, setApi] = React.useState<CarouselApi>();
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    api.on("select", () => {
-      // Do something on select.
-    });
-  }, [api]);
-
-  return (
-    <Carousel setApi={setApi}>
-      <CarouselContent>
-        <CarouselItem>...</CarouselItem>
-        <CarouselItem>...</CarouselItem>
-        <CarouselItem>...</CarouselItem>
-      </CarouselContent>
-    </Carousel>
-  );
-}
+<Carousel
+  aria-label="Numbers"
+  onValueChange={(value, { source }) => {
+    console.log(`Slide ${value + 1} via ${source}`);
+  }}
+>
+  <CarouselSlides>...</CarouselSlides>
+</Carousel>
 ```

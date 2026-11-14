@@ -28,13 +28,17 @@ import ApiExample from "./variants/api";
 
 import ApiSource from "./variants/api.tsx?raw";
 
-import PluginExample from "./variants/plugin";
+import AutoplayExample from "./variants/autoplay";
 
-import PluginSource from "./variants/plugin.tsx?raw";
+import AutoplaySource from "./variants/autoplay.tsx?raw";
 
 import EventsExample from "./variants/events";
 
 import EventsSource from "./variants/events.tsx?raw";
+
+import LightboxExample from "./variants/lightbox";
+
+import LightboxSource from "./variants/lightbox.tsx?raw";
 
 const meta = {
   component: Carousel,
@@ -54,8 +58,13 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Carousel> = {
-  argTypes: { orientation: { control: "select", options: ["horizontal", "vertical"] } },
-  args: { orientation: "horizontal" },
+  argTypes: {
+    align: { control: "select", options: ["start", "center", "end"] },
+    dragFree: { control: "boolean" },
+    loop: { control: "boolean" },
+    orientation: { control: "select", options: ["horizontal", "vertical"] },
+  },
+  args: { align: "start", dragFree: false, loop: false, orientation: "horizontal" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("carousel", "playground") },
@@ -115,15 +124,14 @@ export const Api: Story = {
   render: ApiExample,
 };
 
-export const Plugin: Story = {
-  name: "Plugins",
+export const Autoplay: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("carousel", "plugin") },
-      source: { code: PluginSource },
+      description: { story: variantDocumentation("carousel", "autoplay") },
+      source: { code: AutoplaySource },
     },
   },
-  render: PluginExample,
+  render: AutoplayExample,
 };
 
 export const Events: Story = {
@@ -134,4 +142,14 @@ export const Events: Story = {
     },
   },
   render: EventsExample,
+};
+
+export const Lightbox: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("carousel", "lightbox") },
+      source: { code: LightboxSource },
+    },
+  },
+  render: LightboxExample,
 };

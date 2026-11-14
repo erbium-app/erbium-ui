@@ -943,19 +943,25 @@
         "exportName": "Api",
         "slug": "api",
         "source": "src/carousel/variants/api.tsx",
-        "title": "Api"
+        "title": "Controlled"
       },
       {
-        "exportName": "Plugin",
-        "slug": "plugin",
-        "source": "src/carousel/variants/plugin.tsx",
-        "title": "Plugins"
+        "exportName": "Autoplay",
+        "slug": "autoplay",
+        "source": "src/carousel/variants/autoplay.tsx",
+        "title": "Autoplay"
       },
       {
         "exportName": "Events",
         "slug": "events",
         "source": "src/carousel/variants/events.tsx",
         "title": "Events"
+      },
+      {
+        "exportName": "Lightbox",
+        "slug": "lightbox",
+        "source": "src/carousel/variants/lightbox.tsx",
+        "title": "With lightbox"
       }
     ]
   },

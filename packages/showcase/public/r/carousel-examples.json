@@ -9,8 +9,9 @@
     "@erbium-examples/carousel-spacing",
     "@erbium-examples/carousel-orientation",
     "@erbium-examples/carousel-api",
-    "@erbium-examples/carousel-plugin",
-    "@erbium-examples/carousel-events"
+    "@erbium-examples/carousel-autoplay",
+    "@erbium-examples/carousel-events",
+    "@erbium-examples/carousel-lightbox"
   ],
   "title": "Carousel examples",
   "type": "registry:item"

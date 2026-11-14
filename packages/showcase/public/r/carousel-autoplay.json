@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "carousel-autoplay",
+  "type": "registry:block",
+  "title": "Carousel: Autoplay",
+  "description": "Add `CarouselAutoplay` to advance the slides on a timer. It renders the pause and play button that moving content needs, waits while the carousel is hovered or focused, and stops when someone navigates. Under reduced motion it starts paused. Combine it with `loop` so the carousel keeps going past the last slide.\n\n```tsx\n<Carousel aria-label=\"Highlights\" loop>\n  <CarouselSlides>...</CarouselSlides>\n  <CarouselAutoplay delay={2000} />\n</Carousel>\n```",
+  "registryDependencies": ["@erbium/card", "@erbium/carousel", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Card, CardContent } from \"@/registry/erbium/ui/card\";\nimport {\n  Carousel,\n  CarouselAutoplay,\n  CarouselIndicator,\n  CarouselNext,\n  CarouselPrevious,\n  CarouselSlide,\n  CarouselSlides,\n} from \"@/registry/erbium/ui/carousel\";\n\nconst CarouselAutoplayDemo = () => (\n  <Carousel aria-label=\"Numbers\" loop className=\"w-full max-w-[10rem] sm:max-w-xs\">\n    <CarouselSlides>\n      {Array.from({ length: 5 }, (_, index) => (\n        <CarouselSlide key={index}>\n          <Card className=\"aspect-square\">\n            <CardContent className=\"flex min-h-0 flex-1 items-center justify-center\">\n              <span className=\"text-display font-semibold\">{index + 1}</span>\n            </CardContent>\n          </Card>\n        </CarouselSlide>\n      ))}\n    </CarouselSlides>\n    <CarouselPrevious />\n    <CarouselNext />\n    <div className=\"mt-4 flex items-center justify-center gap-3\">\n      <CarouselAutoplay delay={2000} />\n      <CarouselIndicator className=\"mx-0 mt-0\" />\n    </div>\n  </Carousel>\n);\n\nexport default CarouselAutoplayDemo;\n",
+      "path": "src/carousel/examples/carousel-autoplay.tsx",
+      "target": "@components/showcase/carousel/examples/carousel-autoplay.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import CarouselAutoplayDemo from \"../examples/carousel-autoplay\";\n\nconst Example = () => <CarouselAutoplayDemo />;\n\nexport default Example;\n",
+      "path": "src/carousel/variants/autoplay.tsx",
+      "target": "@components/showcase/carousel/variants/autoplay.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

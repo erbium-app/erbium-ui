@@ -1,21 +1,26 @@
+import { Card, CardContent } from "@erbium/ui/components/card";
 import {
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   Carousel,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselSlide,
+  CarouselSlides,
 } from "@erbium/ui/components/carousel";
 import type * as React from "react";
 
 const Example = (args: React.ComponentProps<typeof Carousel>) => (
-  <Carousel {...args} className={args.orientation === "vertical" ? "h-64 w-72" : "w-72"}>
-    <CarouselContent>
+  <Carousel aria-label="Slides" {...args} className="w-72">
+    <CarouselSlides className={args.orientation === "vertical" ? "h-40" : undefined}>
       {[1, 2, 3].map((item) => (
-        <CarouselItem key={item}>
-          <div className="flex h-32 items-center justify-center rounded border">Slide {item}</div>
-        </CarouselItem>
+        <CarouselSlide key={item}>
+          <Card className="h-32">
+            <CardContent className="flex min-h-0 flex-1 items-center justify-center">
+              Slide {item}
+            </CardContent>
+          </Card>
+        </CarouselSlide>
       ))}
-    </CarouselContent>
+    </CarouselSlides>
     <CarouselPrevious />
     <CarouselNext />
   </Carousel>

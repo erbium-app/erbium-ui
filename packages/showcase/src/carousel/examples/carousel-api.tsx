@@ -1,32 +1,58 @@
+import * as React from "react";
+
+import { Button } from "@erbium/ui/components/button";
 import { Card, CardContent } from "@erbium/ui/components/card";
 import {
   Carousel,
-  CarouselContent,
+  CarouselCounter,
   CarouselIndicator,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselSlide,
+  CarouselSlides,
 } from "@erbium/ui/components/carousel";
 
-const CarouselApiDemo = () => (
-  <div className="mx-auto max-w-xs">
-    <Carousel className="w-full max-w-xs">
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <Card className="aspect-square">
-              <CardContent className="flex min-h-0 flex-1 items-center justify-center">
-                <span className="text-display font-semibold">{index + 1}</span>
-              </CardContent>
-            </Card>
-          </CarouselItem>
+const slides = ["Plan", "Build", "Review", "Ship", "Measure"];
+
+const CarouselApiDemo = () => {
+  const [value, setValue] = React.useState(0);
+
+  return (
+    <div className="mx-auto flex max-w-xs flex-col items-center gap-4">
+      <Carousel aria-label="Workflow" value={value} onValueChange={setValue} className="w-full">
+        <CarouselSlides>
+          {slides.map((slide) => (
+            <CarouselSlide key={slide}>
+              <Card className="aspect-square">
+                <CardContent className="flex min-h-0 flex-1 items-center justify-center">
+                  <span className="text-title font-semibold">{slide}</span>
+                </CardContent>
+              </Card>
+            </CarouselSlide>
+          ))}
+        </CarouselSlides>
+        <CarouselPrevious />
+        <CarouselNext />
+        <CarouselIndicator />
+        <CarouselCounter className="mt-2 block text-center" />
+      </Carousel>
+      <div className="flex flex-wrap justify-center gap-2">
+        {slides.map((slide, index) => (
+          <Button
+            key={slide}
+            size="sm"
+            variant={index === value ? "secondary" : "ghost"}
+            aria-pressed={index === value}
+            onClick={() => {
+              setValue(index);
+            }}
+          >
+            {slide}
+          </Button>
         ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-      <CarouselIndicator />
-    </Carousel>
-  </div>
-);
+      </div>
+    </div>
+  );
+};
 
 export default CarouselApiDemo;

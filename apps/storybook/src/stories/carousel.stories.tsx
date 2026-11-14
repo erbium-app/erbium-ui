@@ -13,8 +13,10 @@ export const Spacing = { ...showcases.Spacing, name: "Spacing" };
 
 export const Orientation = { ...showcases.Orientation, name: "Orientation" };
 
-export const Api = { ...showcases.Api, name: "Api" };
+export const Api = { ...showcases.Api, name: "Controlled" };
 
-export const Plugin = { ...showcases.Plugin, name: "Plugins" };
+export const Autoplay = { ...showcases.Autoplay, name: "Autoplay" };
 
 export const Events = { ...showcases.Events, name: "Events" };
+
+export const Lightbox = { ...showcases.Lightbox, name: "With lightbox" };

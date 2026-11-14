@@ -1,33 +1,30 @@
 import { Card, CardContent } from "@erbium/ui/components/card";
 import {
   Carousel,
-  CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselSlide,
+  CarouselSlides,
 } from "@erbium/ui/components/carousel";
 
 const CarouselOrientation = () => (
   <Carousel
-    opts={{
-      align: "start",
-    }}
+    aria-label="Numbers"
+    align="start"
     orientation="vertical"
-    className="w-full max-w-xs"
+    className="w-full max-w-xs [--carousel-gap:--spacing(2)]"
   >
-    <CarouselContent className="-mt-1 h-[200px]">
-      {Array.from({ length: 5 }).map((_, index) => (
-        <CarouselItem key={index} className="pt-1 md:basis-1/2">
-          <div className="p-1">
-            <Card className="aspect-square">
-              <CardContent className="flex min-h-0 flex-1 items-center justify-center">
-                <span className="text-display font-semibold">{index + 1}</span>
-              </CardContent>
-            </Card>
-          </div>
-        </CarouselItem>
+    <CarouselSlides className="h-72">
+      {Array.from({ length: 5 }, (_, index) => (
+        <CarouselSlide key={index} className="md:basis-1/2">
+          <Card className="h-full">
+            <CardContent className="flex min-h-0 flex-1 items-center justify-center">
+              <span className="text-display font-semibold">{index + 1}</span>
+            </CardContent>
+          </Card>
+        </CarouselSlide>
       ))}
-    </CarouselContent>
+    </CarouselSlides>
     <CarouselPrevious />
     <CarouselNext />
   </Carousel>
