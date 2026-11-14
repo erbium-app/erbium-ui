@@ -9,6 +9,14 @@ We build on [Base UI](https://base-ui.com/), [Shadcn/ui](https://ui.shadcn.com/)
 
 We also wanted better building blocks for agentic interfaces: dedicated code blocks and diffs, tree views, matrix loaders, steppers, and toolbars. These needs guide both existing components and planned additions.
 
+## Own the source
+
+Install with shadcn or the Erbium CLI. Both copy components into your project so you can adapt the markup, behavior, and styles alongside the rest of your app.
+
+Erbium records the revision and original bytes of each managed file. Commit `.erbium/` with your source. Use `erbium status` to see what changed, `erbium diff` to review upstream changes, and `erbium update` to merge them into your copy. Run `erbium check` to verify tracked files and package declarations offline.
+
+[Install Erbium and manage updates](/docs/installation).
+
 ## A few more opinions
 
 Focused APIs, thoughtful defaults, and a consistent visual language give developers and agents a considered starting point. We keep the scope small and leave room to compose.
@@ -36,4 +44,4 @@ Content, hierarchy, and flow matter as much as the components. Feedback stays cl
 
 Documentation and Storybook examples explain both composition and intent. Every page has a `.md` version, alongside a [Markdown introduction](/index.md), [llms.txt index](/llms.txt), and [JSON API](/api/docs.json).
 
-Install through the [Shadcn CLI and registry](https://ui.shadcn.com/docs/registry) or copy the source directly. Erbium UI evolves with erbium.app; see the [roadmap](/docs/roadmap) for what’s planned.
+Erbium UI evolves with erbium.app; see the [roadmap](/docs/roadmap) for what’s planned.

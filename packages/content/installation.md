@@ -1,6 +1,6 @@
 ---
 title: Installation
-description: Add Erbium UI to a new React project with the Shadcn CLI.
+description: Install Erbium UI with shadcn and manage component updates with the Erbium CLI.
 ---
 
 Add Erbium components to your React application with the [Shadcn CLI](https://ui.shadcn.com/docs/cli). It copies the source into your project and installs the dependencies. Import from those local files and edit them as needed. You do not need to clone this repository or install an `@erbium/ui` package.
@@ -193,3 +193,26 @@ For keyboard interactions, refer to [TanStack Hotkeys](https://tanstack.com/hotk
 Give your agent [llms.txt](/llms.txt) to discover Erbium’s documentation. Each documentation page is also available as Markdown by appending `.md` to its URL. Install [examples and stories](/docs/getting-started) alongside components when the agent needs composition and usage guidance.
 
 See [Typography](/docs/foundations/typography) for font roles, reading, and multilingual usage.
+
+## Track and update components
+
+Use the Erbium CLI from a project with `components.json` and TypeScript path aliases. Select the Erbium package explicitly when running the command.
+
+```sh
+bunx --package @erbium/cli erbium add styles button
+```
+
+If you already installed those items with shadcn, use `adopt styles button` instead. Adoption checks that the files match the current registry revision before it records them. It leaves the source files as they are.
+
+Commit `.erbium/lock.json` and `.erbium/bases/` with your source. The lock records the registry revision for each item and the hash of each installed file. The baseline files let Erbium compare upstream updates against exactly what landed in your project, even after you edit the files.
+
+```sh
+bunx --package @erbium/cli erbium status
+bunx --package @erbium/cli erbium diff button
+bunx --package @erbium/cli erbium diff button --local
+bunx --package @erbium/cli erbium update --dry-run
+bunx --package @erbium/cli erbium update
+bunx --package @erbium/cli erbium check
+```
+
+Updates use Git to merge your edits and the registry's changes from the same baseline. If both sides changed the same lines, Erbium reports the conflict before writing source files. If a revision stops shipping a file, Erbium reports the path and leaves the file in your project. `check` runs offline and reports missing files, damaged baselines, unresolved conflict markers, and missing package declarations. Continue running your project's own lint, type checks, and build.
