@@ -1,8 +1,10 @@
 import { createContext, useContext, useMemo, useState } from "react";
 import { Field as FieldPrimitive } from "@base-ui/react/field";
 import { Fieldset as FieldsetPrimitive } from "@base-ui/react/fieldset";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
+import { animateHeight } from "../lib/animate-height";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
@@ -24,11 +26,13 @@ const RequiredMark = () => (
  * Base UI's grouped-field pattern: a `Field.Root` rendered as the `<fieldset>`.
  * The legend names the group, and a `FieldDescription`, `FieldError` or
  * `FieldItem` directly inside it wires to the group's control, e.g. a radio or
- * checkbox group.
+ * checkbox group. Like `Field`, it eases to its new height when the group's
+ * error or other content changes it.
  */
-const FieldSet = ({ className, required = false, ...props }: FieldRootProps) => (
+const FieldSet = ({ className, ref, required = false, ...props }: FieldRootProps) => (
   <FieldRequiredContext.Provider value={required}>
     <FieldPrimitive.Root
+      ref={useMergedRefs(ref, animateHeight)}
       render={<FieldsetPrimitive.Root />}
       data-slot="field-set"
       className={cn(
@@ -119,17 +123,20 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
  * Base UI `Field.Root`: wires the label, description, error and control, and
  * exposes `name`, `invalid`, `dirty`, `touched` and `disabled`. Set `required`
  * to mark the field label. Inside TanStack Form, `field.Field` binds the
- * name and validation state to the surrounding `form.AppField`.
+ * name and validation state to the surrounding `form.AppField`. The field eases
+ * to its new height when an error or other content changes it.
  */
 const Field = ({
   className,
   orientation = "vertical",
+  ref,
   required = false,
   variant = "default",
   ...props
 }: FieldRootProps & VariantProps<typeof fieldVariants>) => (
   <FieldRequiredContext.Provider value={required}>
     <FieldPrimitive.Root
+      ref={useMergedRefs(ref, animateHeight)}
       data-slot="field"
       data-orientation={orientation}
       data-variant={variant}
@@ -165,11 +172,17 @@ const FieldLabel = ({ children, className, ...props }: FieldPrimitive.Label.Prop
   );
 };
 
-/** Helper information is replaced by the error while the field is invalid. */
+/**
+ * Helper information is replaced by the error while the field is invalid. A
+ * hidden marker keeps its place, so the error takes it over at once instead of
+ * fading in.
+ */
 const FieldDescription = ({ className, ...props }: FieldPrimitive.Description.Props) => (
   <FieldPrimitive.Validity>
     {({ validity }) =>
-      validity.valid === false ? null : (
+      validity.valid === false ? (
+        <span hidden data-slot="field-description" data-replaced="" />
+      ) : (
         <FieldPrimitive.Description
           data-slot="field-description"
           className={cn(
@@ -259,12 +272,13 @@ const FieldError = ({ className, children, errors, match, ...props }: FieldError
       role="alert"
       match={errors ? messages.length > 0 : match}
       className={cn(
-        "grid text-caption font-normal text-error transition-[grid-template-rows,opacity] duration-200 ease-out data-ending-style:hidden data-starting-style:grid-rows-[0fr] data-starting-style:opacity-0 motion-reduce:transition-none",
+        // `Field` eases the height; the message fades in, unless it takes a description's place.
+        "text-caption font-normal text-error transition-opacity duration-200 ease-out data-ending-style:hidden data-starting-style:opacity-0 motion-reduce:transition-none [[data-replaced]~&]:transition-none [[data-replaced]~&]:data-starting-style:opacity-100",
         className,
       )}
       {...props}
     >
-      <div className="min-h-0 overflow-hidden">{content}</div>
+      {content}
     </FieldPrimitive.Error>
   );
 };

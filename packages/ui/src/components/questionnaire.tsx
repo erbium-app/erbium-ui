@@ -4,6 +4,8 @@ import type { QuestionnaireItemDefinition } from "@shadcn/react/questionnaire";
 import { revalidateLogic, useSelector } from "@tanstack/react-form";
 import type { AnyFormApi } from "@tanstack/react-form";
 import { extendForm, formContext, useFieldContext, visibleMessages } from "./form";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import { animateHeight } from "../lib/animate-height";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "./button";
 import type { Button } from "./button";
@@ -13,11 +15,14 @@ import { StatefulButton } from "./stateful-button";
 import type { StatefulButtonProps } from "./stateful-button";
 import { StepIndicator } from "../blocks/step-indicator";
 
+// Eases to the next question's height, so the actions below it do not jump between questions.
 const Questionnaire = ({
   className,
+  ref,
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Root>) => (
   <QuestionnairePrimitive.Root
+    ref={useMergedRefs(ref, animateHeight)}
     data-slot="questionnaire"
     className={cn("flex w-full min-w-0 flex-col gap-group", className)}
     {...props}
@@ -68,11 +73,14 @@ const QuestionnaireStepIndicator = ({
   />
 );
 
+// Eases to make room for its error.
 const QuestionnaireItem = ({
   className,
+  ref,
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Item>) => (
   <QuestionnairePrimitive.Item
+    ref={useMergedRefs(ref, animateHeight)}
     data-slot="questionnaire-item"
     className={cn("flex min-w-0 flex-col gap-group border-0 p-0 outline-none", className)}
     {...props}
@@ -196,7 +204,10 @@ const QuestionnaireError = ({
 }: React.ComponentProps<typeof QuestionnairePrimitive.Error>) => (
   <QuestionnairePrimitive.Error
     data-slot="questionnaire-error"
-    className={cn("mt-2 text-caption text-error", className)}
+    className={cn(
+      "mt-2 text-caption text-error transition-opacity duration-200 ease-out starting:opacity-0 motion-reduce:transition-none",
+      className,
+    )}
     {...props}
   />
 );

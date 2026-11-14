@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animate-height",
+  "type": "registry:lib",
+  "title": "Animate Height",
+  "description": "Erbium animate height lib.",
+  "files": [
+    {
+      "path": "src/lib/animate-height.ts",
+      "target": "@lib/animate-height.ts",
+      "type": "registry:lib",
+      "content": "/*\n * Eases an element's height when its content changes it, as the skeleton engine eases a container\n * when content replaces its skeleton: read the height the content had, let the change land, then\n * animate from the old height to the new one while clipping what has not been revealed yet. An\n * interrupted change starts from wherever the running one has got to, so nothing jumps.\n *\n * It is a ref callback, so it needs no hook: `ref={animateHeight}`, or merge it with other refs.\n * Only DOM changes inside the element animate; a resize of the viewport or a font loading does not.\n */\n\nconst duration = 200;\nconst easing = \"cubic-bezier(0.2, 0, 0, 1)\";\n\n// Clip vertically only, so a shaking control is not cut at the sides, with room for the invalid\n// halo and focus ring above and below the control.\nconst clip = {\n  boxSizing: \"border-box\",\n  overflowClipMargin: \"4px\",\n  overflowX: \"visible\",\n  overflowY: \"clip\",\n};\n\nconst watchHeight = (element: HTMLElement) => {\n  const height = () => element.getBoundingClientRect().height;\n  let settled = height();\n  let running: Animation | null = null;\n\n  // Remembers the height content settles at, so the next change knows where it started.\n  const resize = new ResizeObserver(() => {\n    if (!running) {\n      settled = height();\n    }\n  });\n\n  // DOM changes are delivered after the change lands but before it is painted.\n  const mutations = new MutationObserver(() => {\n    const from = running ? height() : settled;\n    running?.cancel();\n    running = null;\n\n    const to = height();\n    settled = to;\n\n    // A field shown or hidden as a whole appears at once, like any other element.\n    if (\n      Math.abs(to - from) < 0.5 ||\n      from === 0 ||\n      to === 0 ||\n      window.matchMedia?.(\"(prefers-reduced-motion: reduce)\").matches\n    ) {\n      return;\n    }\n\n    const animation = element.animate(\n      [\n        { ...clip, height: `${from}px` },\n        { ...clip, height: `${to}px` },\n      ],\n      { duration, easing },\n    );\n\n    running = animation;\n    animation.addEventListener(\"finish\", () => {\n      if (running === animation) {\n        running = null;\n        settled = height();\n      }\n    });\n  });\n\n  resize.observe(element);\n  mutations.observe(element, {\n    attributes: true,\n    characterData: true,\n    childList: true,\n    subtree: true,\n  });\n\n  return () => {\n    resize.disconnect();\n    mutations.disconnect();\n    running?.cancel();\n  };\n};\n\nconst animateHeight = (element: HTMLElement | null) =>\n  element ? watchHeight(element) : undefined;\n\nexport { animateHeight };\n"
+    }
+  ]
+}

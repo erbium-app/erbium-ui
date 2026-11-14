@@ -47,6 +47,19 @@
       ]
     },
     {
+      "name": "animate-height",
+      "type": "registry:lib",
+      "title": "Animate Height",
+      "description": "Erbium animate height lib.",
+      "files": [
+        {
+          "path": "src/lib/animate-height.ts",
+          "target": "@lib/animate-height.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect Ratio",
@@ -788,8 +801,8 @@
       "type": "registry:ui",
       "title": "Field",
       "description": "Erbium field component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/separator", "@erbium/utils"],
+      "dependencies": ["@base-ui/react", "@base-ui/utils", "class-variance-authority"],
+      "registryDependencies": ["@erbium/animate-height", "@erbium/separator", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/field.tsx",
@@ -1293,8 +1306,9 @@
       "type": "registry:ui",
       "title": "Questionnaire",
       "description": "Erbium questionnaire component.",
-      "dependencies": ["@shadcn/react", "@tanstack/react-form"],
+      "dependencies": ["@base-ui/utils", "@shadcn/react", "@tanstack/react-form"],
       "registryDependencies": [
+        "@erbium/animate-height",
         "@erbium/button",
         "@erbium/form",
         "@erbium/icon",
