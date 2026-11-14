@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import {
   createFormHook,
   createFormHookContexts,
@@ -39,7 +40,9 @@ import { Textarea } from "./textarea";
  *   submit, then on every change once the user has tried to submit.
  * - A field shows its errors only after it is touched. Typing, blurring and
  *   submitting all touch it.
- * - A rejected submit shakes every invalid control.
+ * - A rejected submit shakes every invalid field. `FormField` owns the shake,
+ *   so a field composed by hand (a select, radio group, autocomplete) shakes
+ *   the same way as the prebuilt ones.
  */
 
 const { fieldContext, formContext, useFieldContext, useFormContext } = createFormHookContexts();
@@ -84,8 +87,50 @@ const useVisibleMessages = () => {
   return React.useMemo(() => visibleMessages(meta), [meta]);
 };
 
-/** Replays the error shake on `ref` after each submit that left this field invalid. */
-const useShakeOnRejectedSubmit = (ref: React.RefObject<Element | null>) => {
+/**
+ * How much of the field a rejected submit shakes. `"auto"` shakes the whole
+ * row of a choice field (a checkbox, radio or switch beside its label, the
+ * same rows the `choice-row` variant aligns) and the control of any other.
+ */
+type FormFieldShake = "auto" | "control" | "field";
+
+/** Matches `choice-row` in variants.css: a choice control beside a direct label. */
+const CHOICE_ROW =
+  ':has(> [data-choice]):has(> [data-slot="field-label"], > [data-slot="field-content"])';
+
+/** Parts of a field that frame its control rather than being the control. */
+const FIELD_CHROME = [
+  '[data-slot="field-label"]',
+  '[data-slot="field-description"]',
+  '[data-slot="field-error"]',
+  '[data-slot="field-content"]',
+  '[aria-hidden="true"]',
+  'input[type="hidden"]',
+  ".sr-only",
+].join(",");
+
+/**
+ * The elements a rejected submit shakes. A control is every direct child of
+ * the field root that is not its label, description, error or a hidden helper
+ * such as Base UI Select's validation input. That covers an input, an input
+ * group, a select trigger, a radio group and an OTP field without each control
+ * registering itself. Falls back to the root when nothing qualifies.
+ */
+const shakeTargets = (root: Element, shakeOn: FormFieldShake): Element[] => {
+  if (shakeOn === "field" || (shakeOn === "auto" && root.matches(CHOICE_ROW))) {
+    return [root];
+  }
+
+  const controls = [...root.children].filter((child) => !child.matches(FIELD_CHROME));
+
+  return controls.length > 0 ? controls : [root];
+};
+
+/** Replays the error shake on the field after each submit that left it invalid. */
+const useShakeOnRejectedSubmit = (
+  rootRef: React.RefObject<Element | null>,
+  shakeOn: FormFieldShake,
+) => {
   const field = useFieldContext<unknown>();
   const attempts = useSelector(field.form.store, (state) => state.submissionAttempts);
   const submitting = useSelector(field.form.store, (state) => state.isSubmitting);
@@ -98,29 +143,44 @@ const useShakeOnRejectedSubmit = (ref: React.RefObject<Element | null>) => {
 
     shaken.current = attempts;
 
-    if (field.state.meta.errors.length > 0) {
-      shake(ref.current);
+    const root = rootRef.current;
+
+    if (root && field.state.meta.errors.length > 0) {
+      for (const target of shakeTargets(root, shakeOn)) {
+        shake(target);
+      }
     }
-  }, [attempts, field, ref, submitting]);
+  }, [attempts, field, rootRef, shakeOn, submitting]);
 };
 
 type FieldProps = Omit<
   React.ComponentProps<typeof FieldRoot>,
   "dirty" | "invalid" | "name" | "touched"
->;
+> & {
+  /**
+   * What a rejected submit shakes. `"auto"` (default) shakes a choice row
+   * whole and the control of any other field; `"control"` and `"field"` force
+   * one or the other.
+   */
+  shakeOn?: FormFieldShake;
+};
 
 /**
  * `Field` bound to the surrounding `form.AppField`: name, invalid, touched and
  * dirty come from TanStack Form. Compose any label, description and control
- * inside it; invalid follows the visible errors.
+ * inside it; invalid follows the visible errors, and a rejected submit shakes
+ * the field (see `shakeOn`). Controls need no shake wiring of their own.
  */
-const FormField = (props: FieldProps) => {
+const FormField = ({ ref, shakeOn = "auto", ...props }: FieldProps) => {
   const field = useFieldContext<unknown>();
   const meta = useFieldMeta();
   const messages = useVisibleMessages();
+  const rootRef = React.useRef<HTMLDivElement | null>(null);
+  useShakeOnRejectedSubmit(rootRef, shakeOn);
 
   return (
     <FieldRoot
+      ref={useMergedRefs(ref, rootRef)}
       name={field.name}
       invalid={messages.length > 0}
       touched={meta.isTouched}
@@ -165,14 +225,11 @@ const TextField = ({
   ...props
 }: TextFieldProps) => {
   const field = useFieldContext<string>();
-  const inputRef = React.useRef<HTMLInputElement | null>(null);
-  useShakeOnRejectedSubmit(inputRef);
 
   return (
     <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldLabel>{label}</FieldLabel>
       <Input
-        ref={inputRef}
         value={field.state.value}
         onBlur={field.handleBlur}
         onChange={(event) => {
@@ -190,21 +247,14 @@ const TextField = ({
 type PasswordFieldProps = LabelledFieldProps &
   Omit<
     React.ComponentProps<typeof PasswordInput>,
-    | "className"
-    | "defaultValue"
-    | "groupRef"
-    | "hidden"
-    | "name"
-    | "onBlur"
-    | "onChange"
-    | "ref"
-    | "value"
+    "className" | "defaultValue" | "hidden" | "name" | "onBlur" | "onChange" | "ref" | "value"
   >;
 
 /**
  * A labelled `PasswordInput` for a string field. Pressing the show/hide toggle
  * with a pointer keeps focus in the input, so it does not touch the field. A
- * rejected submit shakes the whole input group, toggle included.
+ * rejected submit shakes the whole input group, toggle included, since the
+ * group is the field's control.
  */
 const PasswordField = ({
   className,
@@ -216,14 +266,11 @@ const PasswordField = ({
   ...props
 }: PasswordFieldProps) => {
   const field = useFieldContext<string>();
-  const groupRef = React.useRef<HTMLFieldSetElement | null>(null);
-  useShakeOnRejectedSubmit(groupRef);
 
   return (
     <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldLabel>{label}</FieldLabel>
       <PasswordInput
-        groupRef={groupRef}
         value={field.state.value}
         onBlur={field.handleBlur}
         onChange={(event) => {
@@ -255,14 +302,11 @@ const TextareaField = ({
   ...props
 }: TextareaFieldProps) => {
   const field = useFieldContext<string>();
-  const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
-  useShakeOnRejectedSubmit(textareaRef);
 
   return (
     <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldLabel>{label}</FieldLabel>
       <Textarea
-        ref={textareaRef}
         value={field.state.value}
         onBlur={field.handleBlur}
         onChange={(event) => {
@@ -318,17 +362,9 @@ const CheckboxField = ({
   ...props
 }: ToggleFieldProps<typeof Checkbox>) => {
   const field = useFieldContext<boolean>();
-  const rowRef = React.useRef<HTMLDivElement | null>(null);
-  useShakeOnRejectedSubmit(rowRef);
 
   return (
-    <FormField
-      ref={rowRef}
-      className={className}
-      hidden={hidden}
-      orientation={orientation}
-      required={required}
-    >
+    <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <Checkbox
         checked={field.state.value}
         onBlur={field.handleBlur}
@@ -362,17 +398,9 @@ const SwitchField = ({
   ...props
 }: ToggleFieldProps<typeof Switch>) => {
   const field = useFieldContext<boolean>();
-  const rowRef = React.useRef<HTMLDivElement | null>(null);
-  useShakeOnRejectedSubmit(rowRef);
 
   return (
-    <FormField
-      ref={rowRef}
-      className={className}
-      hidden={hidden}
-      orientation={orientation}
-      required={required}
-    >
+    <FormField className={className} hidden={hidden} orientation={orientation} required={required}>
       <FieldContent>
         <FieldLabel>{label}</FieldLabel>
         <Description>{description}</Description>

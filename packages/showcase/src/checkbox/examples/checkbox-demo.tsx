@@ -7,7 +7,7 @@ const CheckboxDemo = () => (
       <Checkbox />
       <FieldLabel>Accept terms and conditions</FieldLabel>
     </Field>
-    <Field orientation="horizontal" className="items-start">
+    <Field orientation="horizontal">
       <Checkbox defaultChecked />
       <FieldContent>
         <FieldLabel>Accept terms and conditions</FieldLabel>

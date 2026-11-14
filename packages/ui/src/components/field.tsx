@@ -81,6 +81,14 @@ const FieldGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
 );
 
 /*
+ * A horizontal row that pairs a choice control (`[data-choice]`: checkbox,
+ * radio, switch) with a direct `FieldLabel` or `FieldContent` matches the
+ * `choice-row` variant (variants.css). It top-aligns and offsets the control by
+ * `choice-first-line` (sizing.css), so the control is centred on the label's
+ * first line however far the label or description wraps. The offset is derived
+ * from tokens; never hand-tune it with `mt-*` on the control or `items-*` on
+ * the row.
+ *
  * The card variant is a selectable surface-frame: flat, hairline-framed and
  * translucent, so it reads on the canvas, a panel, a popover or a dialog. The
  * rim and tint come from state: hover and a checked control (switch, checkbox,
@@ -95,9 +103,9 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
   variants: {
     orientation: {
       horizontal:
-        "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+        "flex-row items-center has-[>[data-slot=field-content]]:items-start choice-row:items-start choice-row:*:data-choice:choice-first-line *:data-[slot=field-label]:flex-auto",
       responsive:
-        "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+        "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:choice-row:items-start @md/field-group:choice-row:*:data-choice:choice-first-line @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto",
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
     },
     variant: {

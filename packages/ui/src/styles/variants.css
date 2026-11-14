@@ -20,3 +20,16 @@
     @slot;
   }
 }
+
+/*
+ * A Field or FieldItem row that pairs a choice control (`[data-choice]`:
+ * checkbox, radio, switch) with a direct `FieldLabel` or `FieldContent`. Such a
+ * row top-aligns and centres the control on the label's first line through
+ * `choice-first-line`. Rows that only borrow Field's layout, such as an `Item`
+ * rendered as a Field with its label nested deeper, keep their own alignment.
+ */
+@custom-variant choice-row {
+  &:has(> [data-choice]):has(> [data-slot="field-label"], > [data-slot="field-content"]) {
+    @slot;
+  }
+}

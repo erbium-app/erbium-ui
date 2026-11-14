@@ -69,7 +69,9 @@ Inside `form.AppField`, the `field` render argument carries Erbium's bound compo
 
 Use `field.PasswordField` for passwords rather than `field.TextField` with `type="password"`: it adds the show and hide toggle, and pressing the toggle does not touch the field. See [Password Input](/docs/components/password-input).
 
-A field shows its errors only after it is touched; typing, blurring, and submitting all touch it. Errors are decoded from strings or Standard Schema issues, so Effect Schema messages and plain validator strings render the same way. `FieldDescription` steps aside while an error shows. Each rejected submit shakes the invalid controls.
+A field shows its errors only after it is touched; typing, blurring, and submitting all touch it. Errors are decoded from strings or Standard Schema issues, so Effect Schema messages and plain validator strings render the same way. `FieldDescription` steps aside while an error shows.
+
+Each rejected submit shakes every invalid field. `field.Field` owns the shake, so the bound fields and your own compositions behave the same: a Select, Radio Group, Autocomplete, or OTP field inside `field.Field` shakes without extra wiring. The shake targets the field's control, meaning each direct child of `field.Field` other than its label, description, error, and hidden helpers. Keep the control a direct child of `field.Field` rather than wrapping it in another element with the label. A choice field, where a checkbox, radio, or switch sits beside its label, shakes as a whole row. Pass `shakeOn="control"` or `shakeOn="field"` to override the default `"auto"`.
 
 A toggle that must be on, such as accepting terms, needs no error text: its label already says what is expected, and the invalid outline plus the shake say it is required. `CheckboxField` and `SwitchField` therefore shake the control together with its label and keep the message for assistive technology only. Pass `showError` to show it.
 

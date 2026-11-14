@@ -838,7 +838,7 @@
       "type": "registry:ui",
       "title": "Form",
       "description": "Erbium form component.",
-      "dependencies": ["@tanstack/react-form", "effect"],
+      "dependencies": ["@base-ui/utils", "@tanstack/react-form", "effect"],
       "registryDependencies": [
         "@erbium/checkbox",
         "@erbium/field",

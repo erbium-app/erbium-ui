@@ -6,6 +6,8 @@ import { cn } from "../lib/utils";
 const switchIconClassName =
   "pointer-events-none absolute inset-y-0 grid w-[calc(100%-var(--switch-thumb))] place-content-center transition-[scale,opacity] duration-200 ease-out motion-reduce:transition-none [&_svg]:size-2.25 group-data-[size=sm]/switch:[&_svg]:size-1.75";
 
+const hasIcon = (icon: React.ReactNode) => icon !== undefined && icon !== null && icon !== false;
+
 const Switch = ({
   className,
   size = "default",
@@ -24,6 +26,7 @@ const Switch = ({
 }) => (
   <SwitchPrimitive.Root
     data-slot="switch"
+    data-choice=""
     data-size={size}
     className={cn(
       "peer group/switch @container relative inline-flex shrink-0 items-center rounded-full border px-px border-transparent transition-all outline-none group-has-focus-visible/field-card:not-aria-invalid:border-transparent group-has-focus-visible/field-card:not-aria-invalid:ring-0 after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring not-data-disabled:not-data-readonly:active:[--switch-thumb-stretch:1.2] aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo aria-invalid:focus-visible:border-error  motion-reduce:transition-none dark:aria-invalid:border-invalid dark:aria-invalid:focus-visible:border-invalid data-checked:bg-selection data-unchecked:bg-input dark:data-unchecked:bg-input/80 data-disabled:cursor-not-allowed data-disabled:opacity-50",
@@ -32,7 +35,7 @@ const Switch = ({
     )}
     {...props}
   >
-    {startIcon ? (
+    {hasIcon(startIcon) ? (
       <span
         aria-hidden
         data-slot="switch-start-icon"
@@ -44,7 +47,7 @@ const Switch = ({
         {startIcon}
       </span>
     ) : null}
-    {endIcon ? (
+    {hasIcon(endIcon) ? (
       <span
         aria-hidden
         data-slot="switch-end-icon"
@@ -62,7 +65,7 @@ const Switch = ({
       data-slot="switch-thumb"
       className="pointer-events-none relative z-10 block h-(--switch-thumb) w-[calc(var(--switch-thumb)*var(--switch-thumb-stretch,1))] rounded-full bg-background ring-0 transition-[translate,width,background-color] duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none data-checked:translate-x-[calc(100cqw-100%)] rtl:data-checked:-translate-x-[calc(100cqw-100%)] dark:data-checked:bg-selection-foreground dark:data-unchecked:bg-foreground"
     >
-      {thumbIcon ? (
+      {hasIcon(thumbIcon) ? (
         <span
           aria-hidden
           data-slot="switch-thumb-icon"

@@ -8,6 +8,7 @@
     --control-height-small: 1.5rem;
     --control-height: 1.75rem;
     --control-height-large: 2rem;
+    --choice-size: 0.875rem;
     --space-related: 0.5rem;
     --space-group: 1rem;
     --space-section: 1.5rem;
@@ -200,8 +201,27 @@
 }
 
 @utility size-choice {
-  width: 0.875rem;
-  height: 0.875rem;
+  width: var(--choice-size);
+  height: var(--choice-size);
+}
+
+/* Centres a choice control (checkbox, radio, switch) on the first line of the
+   label beside it, so it stays put when the label or its description wraps.
+   The offset comes from the label's line box and the control's height: a
+   control taller or shorter than `--choice-size` publishes `--choice-height`.
+   Field applies it through the `choice-row` variant (variants.css); do not
+   offset choice controls by hand. */
+@utility choice-first-line {
+  margin-block-start: max(
+    0px,
+    calc(
+      (
+          var(--text-control) * var(--text-control--line-height) -
+            var(--choice-height, var(--choice-size))
+        ) /
+        2
+    )
+  );
 }
 
 @utility px-panel {
