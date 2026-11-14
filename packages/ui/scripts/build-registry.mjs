@@ -1,116 +1,248 @@
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
-import { dirname, extname, join, relative, resolve, sep } from "node:path";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
 
-const packageRoot = dirname(import.meta.dirname);
-const sourceRoot = join(packageRoot, "src");
-const packageJson = JSON.parse(await readFile(join(packageRoot, "package.json"), "utf-8"));
+/** @typedef {"registry:ui" | "registry:block" | "registry:hook" | "registry:lib"} SourceType */
+/** @typedef {{ path: string, target: string, type: string }} RegistryFile */
 
-const dependencies = new Set([
-  ...Object.keys(packageJson.dependencies ?? {}),
-  ...Object.keys(packageJson.peerDependencies ?? {}),
-]);
+/**
+ * @typedef {object} RegistryItem
+ * @property {string} name - The item name.
+ * @property {string} type - The shadcn registry item type.
+ * @property {string} title - The display title.
+ * @property {string} description - The item description.
+ * @property {string[]} [dependencies] - npm packages the item imports.
+ * @property {string[]} [registryDependencies] - Registry items the item imports.
+ * @property {RegistryFile[]} files - The item's source files.
+ */
 
-const packageName = (specifier) =>
-  specifier.startsWith("@") ? specifier.split("/").slice(0, 2).join("/") : specifier.split("/")[0];
+const packageRoot = path.dirname(import.meta.dirname);
+const sourceRoot = path.join(packageRoot, "src");
 
-const title = (name) =>
-  name.replaceAll(/(^|-)(\w)/g, (_, __, character) => ` ${character.toUpperCase()}`).trim();
-
-const readImports = (source) =>
-  [...source.matchAll(/(?:from\s*|import\s*)["']([^"']+)["']/g)].map((match) => match[1]);
-
-const getInternalItem = async (specifier, sourceFile) => {
-  if (!specifier.startsWith(".")) {
-    return null;
+/**
+ * @param {unknown} value - A parsed JSON value.
+ * @param {string} key - A property name.
+ * @returns {string[]} The keys of the object at that property, or none.
+ */
+const keysAt = (value, key) => {
+  if (!(value instanceof Object)) {
+    return [];
   }
 
-  const basePath = resolve(dirname(sourceFile), specifier);
+  /** @type {[string, unknown][]} */
+  const fields = Object.entries(value);
+  const field = fields.find(([name]) => name === key)?.[1];
 
-  for (const extension of [".tsx", ".ts", ".jsx", ".js", ".css"]) {
-    const filePath = `${basePath}${extension}`;
-
-    try {
-      if ((await stat(filePath)).isFile()) {
-        return filePath;
-      }
-    } catch {
-      // Try the next supported source extension.
-    }
-  }
-
-  return null;
+  return field instanceof Object ? Object.keys(field) : [];
 };
 
-const filesIn = async (directory) =>
-  (await readdir(directory, { withFileTypes: true })).flatMap((entry) =>
-    entry.isDirectory() ? [] : [entry.name],
-  );
+/** @type {unknown} */
+const packageJson = JSON.parse(await readFile(path.join(packageRoot, "package.json"), "utf-8"));
 
+const dependencies = new Set([
+  ...keysAt(packageJson, "dependencies"),
+  ...keysAt(packageJson, "peerDependencies"),
+]);
+
+const sourceExtensions = [".tsx", ".ts", ".jsx", ".js", ".css"];
+const scriptExtensions = new Set([".ts", ".tsx"]);
+const titleWord = /(?:^|-)\w/gu;
+const importSpecifier = /(?:from\s*|import\s*)["'](?<specifier>[^"']+)["']/gu;
+const fontUrl = /url\("(?<file>\.\.\/assets\/fonts\/[^" ]+\.woff2)"\)/gu;
+const scriptExtension = /\.(?:tsx|ts)$/u;
+const componentsDirectory = /^components\//u;
+const statefulPrefix = /^stateful\/stateful-/u;
+
+/** @type {Record<string, SourceType>} */
+const typeByDirectory = {
+  blocks: "registry:block",
+  components: "registry:ui",
+  hooks: "registry:hook",
+};
+
+/** @type {Record<string, string>} */
+const targetByType = {
+  "registry:block": "@components/blocks",
+  "registry:hook": "@hooks",
+  "registry:ui": "@ui",
+};
+
+/**
+ * Orders strings by code unit, as Array#sort does without a comparator.
+ * @param {string} left - The first string.
+ * @param {string} right - The second string.
+ * @returns {number} A negative, zero, or positive sort order.
+ */
+const compareCodeUnits = (left, right) => {
+  if (left === right) {
+    return 0;
+  }
+
+  return left < right ? -1 : 1;
+};
+
+/**
+ * @param {string} left - The first string.
+ * @param {string} right - The second string.
+ * @returns {number} The locale order of the two strings.
+ */
+const compareLocale = (left, right) => left.localeCompare(right);
+
+/**
+ * @param {string} specifier - A bare import specifier.
+ * @returns {string} The npm package name, including its scope.
+ */
+const packageName = (specifier) => {
+  const parts = specifier.split("/");
+
+  return (specifier.startsWith("@") ? parts.slice(0, 2) : parts.slice(0, 1)).join("/");
+};
+
+/**
+ * @param {string} name - A kebab-case item name.
+ * @returns {string} The name in title case.
+ */
+const title = (name) =>
+  name.replaceAll(titleWord, (match) => ` ${match.at(-1)?.toUpperCase() ?? ""}`).trim();
+
+/**
+ * @param {string} source - Module source text.
+ * @returns {string[]} The import specifiers, in source order.
+ */
+const readImports = (source) =>
+  [...source.matchAll(importSpecifier)].flatMap((match) => match.groups?.specifier ?? []);
+
+/**
+ * @param {string} file - A file path.
+ * @returns {Promise<boolean>} Whether the path exists and is a file.
+ */
+const isFile = async (file) => {
+  try {
+    const stats = await stat(file);
+
+    return stats.isFile();
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Resolves a relative import to a source file the way the bundler does.
+ * @param {string} specifier - The import specifier.
+ * @param {string} sourceFile - The importing file.
+ * @returns {Promise<string | undefined>} The first existing file by extension order.
+ */
+const getInternalItem = async (specifier, sourceFile) => {
+  const basePath = path.resolve(path.dirname(sourceFile), specifier);
+
+  const candidates = specifier.startsWith(".")
+    ? sourceExtensions.map((extension) => `${basePath}${extension}`)
+    : [];
+
+  const found = await Promise.all(candidates.map(async (candidate) => await isFile(candidate)));
+
+  return candidates.find((_candidate, index) => found[index]);
+};
+
+/**
+ * @param {string} directory - A directory.
+ * @returns {Promise<string[]>} The names of the files directly inside it.
+ */
+const filesIn = async (directory) => {
+  const entries = await readdir(directory, { withFileTypes: true });
+
+  return entries.flatMap((entry) => (entry.isDirectory() ? [] : [entry.name]));
+};
+
+/**
+ * @param {string} directory - A directory.
+ * @returns {Promise<string[]>} Every file path below it, in directory order.
+ */
 const filesInRecursive = async (directory) => {
   const entries = await readdir(directory, { withFileTypes: true });
 
   const nested = await Promise.all(
-    entries.map((entry) => {
-      const entryPath = join(directory, entry.name);
+    entries.map(async (entry) => {
+      const entryPath = path.join(directory, entry.name);
 
-      return entry.isDirectory() ? filesInRecursive(entryPath) : [entryPath];
+      return entry.isDirectory() ? await filesInRecursive(entryPath) : [entryPath];
     }),
   );
 
   return nested.flat();
 };
 
+/**
+ * @param {string} file - A file path or name.
+ * @returns {string} The path without its extension.
+ */
+const withoutExtension = (file) => file.slice(0, -path.extname(file).length);
+
+/** @type {Map<string, string>} */
 const itemBySource = new Map();
-const componentRoot = join(sourceRoot, "components");
+const componentRoot = path.join(sourceRoot, "components");
+const blockRoot = path.join(sourceRoot, "blocks");
 
 for (const filePath of await filesInRecursive(componentRoot)) {
-  if ([".ts", ".tsx"].includes(extname(filePath))) {
-    const relativePath = relative(componentRoot, filePath).slice(0, -extname(filePath).length);
-
-    const name = relativePath
-      .replace(/^stateful\/stateful-/, "stateful/")
-      .split(sep)
+  if (scriptExtensions.has(path.extname(filePath))) {
+    const name = withoutExtension(path.relative(componentRoot, filePath))
+      .replace(statefulPrefix, "stateful/")
+      .split(path.sep)
       .join("-");
 
     itemBySource.set(filePath, name);
   }
 }
 
-for (const filePath of await filesInRecursive(join(sourceRoot, "blocks"))) {
-  if ([".ts", ".tsx"].includes(extname(filePath))) {
+for (const filePath of await filesInRecursive(blockRoot)) {
+  if (scriptExtensions.has(path.extname(filePath))) {
     itemBySource.set(
       filePath,
-      relative(join(sourceRoot, "blocks"), filePath)
-        .slice(0, -extname(filePath).length)
-        .split(sep)
-        .join("-"),
+      withoutExtension(path.relative(blockRoot, filePath)).split(path.sep).join("-"),
     );
   }
 }
 
-for (const file of await filesIn(join(sourceRoot, "hooks"))) {
-  if ([".ts", ".tsx"].includes(extname(file))) {
-    itemBySource.set(join(sourceRoot, "hooks", file), file.slice(0, -extname(file).length));
+const flatDirectories = ["hooks", "lib"];
+
+const flatListings = await Promise.all(
+  flatDirectories.map(async (directory) => await filesIn(path.join(sourceRoot, directory))),
+);
+
+for (const [index, directory] of flatDirectories.entries()) {
+  for (const file of flatListings[index] ?? []) {
+    if (scriptExtensions.has(path.extname(file))) {
+      itemBySource.set(path.join(sourceRoot, directory, file), withoutExtension(file));
+    }
   }
 }
 
-for (const file of await filesIn(join(sourceRoot, "lib"))) {
-  if ([".ts", ".tsx"].includes(extname(file))) {
-    itemBySource.set(join(sourceRoot, "lib", file), file.slice(0, -extname(file).length));
-  }
-}
-
+/**
+ * Describes one source file as a registry item.
+ * @param {string} sourceFile - The source file path.
+ * @param {string} name - The item name.
+ * @param {SourceType} type - The registry item type.
+ * @returns {Promise<RegistryItem>} The registry item.
+ */
 const itemFor = async (sourceFile, name, type) => {
   const source = await readFile(sourceFile, "utf-8");
+  const specifiers = readImports(source);
+
+  const internalFiles = await Promise.all(
+    specifiers.map(async (specifier) => await getInternalItem(specifier, sourceFile)),
+  );
+
+  /** @type {Set<string>} */
   const registryDependencies = new Set();
+
+  /** @type {Set<string>} */
   const npmDependencies = new Set();
 
-  for (const specifier of readImports(source)) {
-    const internalFile = await getInternalItem(specifier, sourceFile);
+  for (const [index, specifier] of specifiers.entries()) {
+    const internalFile = internalFiles[index];
+    const internalName = internalFile === undefined ? undefined : itemBySource.get(internalFile);
 
-    if (internalFile && itemBySource.has(internalFile)) {
-      registryDependencies.add(`@erbium/${itemBySource.get(internalFile)}`);
+    if (internalName !== undefined) {
+      registryDependencies.add(`@erbium/${internalName}`);
       continue;
     }
 
@@ -119,81 +251,79 @@ const itemFor = async (sourceFile, name, type) => {
     }
   }
 
-  const sourcePath = relative(packageRoot, sourceFile).split(sep).join("/");
+  const sourcePath = path.relative(packageRoot, sourceFile).split(path.sep).join("/");
+  const kind = type === "registry:ui" ? "component" : type.slice("registry:".length);
 
-  return {
+  /** @type {Omit<RegistryItem, "files">} */
+  const head = {
     name,
     type,
     title: title(name),
-    description: `Erbium ${name.replaceAll("-", " ")} ${type === "registry:ui" ? "component" : type.slice("registry:".length)}.`,
-    ...(npmDependencies.size
-      ? { dependencies: [...npmDependencies].sort((a, b) => a.localeCompare(b)) }
-      : {}),
-    ...(registryDependencies.size
-      ? { registryDependencies: [...registryDependencies].sort((a, b) => a.localeCompare(b)) }
-      : {}),
-    files: [
-      {
-        path: sourcePath,
-        target: `${type === "registry:ui" ? "@ui" : type === "registry:hook" ? "@hooks" : type === "registry:block" ? "@components/blocks" : "@lib"}/${name === "utils" ? "erbium-utils.ts" : sourcePath.split("/").slice(2).join("/")}`,
-        type,
-      },
-    ],
+    description: `Erbium ${name.replaceAll("-", " ")} ${kind}.`,
+  };
+
+  if (npmDependencies.size > 0) {
+    head.dependencies = [...npmDependencies].toSorted(compareLocale);
+  }
+
+  if (registryDependencies.size > 0) {
+    head.registryDependencies = [...registryDependencies].toSorted(compareLocale);
+  }
+
+  const targetFile =
+    name === "utils" ? "erbium-utils.ts" : sourcePath.split("/").slice(2).join("/");
+
+  return {
+    ...head,
+    files: [{ path: sourcePath, target: `${targetByType[type] ?? "@lib"}/${targetFile}`, type }],
   };
 };
 
-const items = [];
+const sourceItems = await Promise.all(
+  [...itemBySource].map(async ([sourceFile, name]) => {
+    const [directory = ""] = path.relative(sourceRoot, path.dirname(sourceFile)).split(path.sep);
 
-for (const [sourceFile, name] of itemBySource) {
-  const directory = relative(sourceRoot, dirname(sourceFile)).split(sep)[0];
-
-  const type =
-    directory === "components"
-      ? "registry:ui"
-      : directory === "blocks"
-        ? "registry:block"
-        : directory === "hooks"
-          ? "registry:hook"
-          : "registry:lib";
-
-  items.push(await itemFor(sourceFile, name, type));
-}
+    return await itemFor(sourceFile, name, typeByDirectory[directory] ?? "registry:lib");
+  }),
+);
 
 // Global styles rely on Tailwind v4 and the listed plugins. Preserve the source
 // layout so the relative CSS imports continue to work in the consuming project.
-const styleFiles = (await filesIn(join(sourceRoot, "styles")))
-  .filter((file) => file.endsWith(".css"))
-  .sort();
+const styleDirectoryFiles = await filesIn(path.join(sourceRoot, "styles"));
 
-items.push({
-  dependencies: ["easing-gradients", "shadcn", "shadow-plugin", "tailwindcss", "tw-animate-css"],
-  description: "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
-  files: styleFiles.map((file) => ({
-    path: `src/styles/${file}`,
-    target: `~/src/styles/${file}`,
-    type: "registry:file",
-  })),
-  name: "styles",
-  title: "Erbium styles",
-  type: "registry:item",
-});
+const styleFiles = styleDirectoryFiles
+  .filter((file) => file.endsWith(".css"))
+  .toSorted(compareCodeUnits);
 
 // Preserve font licenses in source installations. Binary faces are served separately so
 // unicode-range can prevent unused script fonts from downloading.
-items
-  .find((item) => item.name === "styles")
-  .files.push(
-    ...["OFL.txt", "Vazirmatn-OFL.txt", "PaperMono-OFL.txt"].map((file) => ({
+const fontLicenses = ["OFL.txt", "Vazirmatn-OFL.txt", "PaperMono-OFL.txt"];
+
+/** @type {RegistryItem} */
+const stylesItem = {
+  dependencies: ["easing-gradients", "shadcn", "shadow-plugin", "tailwindcss", "tw-animate-css"],
+  description: "Erbium global styles, theme tokens, fonts, and Tailwind utilities.",
+  files: [
+    ...styleFiles.map((file) => ({
+      path: `src/styles/${file}`,
+      target: `~/src/styles/${file}`,
+      type: "registry:file",
+    })),
+    ...fontLicenses.map((file) => ({
       path: `src/assets/fonts/${file}`,
       target: `~/src/assets/fonts/${file}`,
       type: "registry:file",
     })),
-  );
+  ],
+  name: "styles",
+  title: "Erbium styles",
+  type: "registry:item",
+};
 
-items.sort((a, b) => a.name.localeCompare(b.name));
+const items = [...sourceItems, stylesItem].toSorted((a, b) => compareLocale(a.name, b.name));
 
 await writeFile(
-  join(packageRoot, "registry.json"),
+  path.join(packageRoot, "registry.json"),
   `${JSON.stringify(
     {
       $schema: "https://ui.shadcn.com/schema/registry.json",
@@ -206,57 +336,73 @@ await writeFile(
   )}\n`,
 );
 
-// Public source uses canonical shadcn aliases so custom consumer aliases work.
-await mkdir(join(packageRoot, "public/r"), { recursive: true });
+/**
+ * Rewrites one registry file for the public registry: font URLs point at the
+ * hosted fonts and internal imports use canonical shadcn aliases.
+ * @param {RegistryFile} file - A registry file.
+ * @returns {Promise<RegistryFile & { content: string }>} The file with its public content.
+ */
+const publicFile = async (file) => {
+  const sourceFile = path.join(packageRoot, file.path);
+  let content = await readFile(sourceFile, "utf-8");
 
-const publicItems = [];
-
-for (const item of items) {
-  const files = [];
-
-  for (const file of item.files) {
-    const sourceFile = join(packageRoot, file.path);
-    let content = await readFile(sourceFile, "utf-8");
-
-    if (file.path === "src/styles/fonts.css") {
-      for (const match of content.matchAll(/url\("(\.\.\/assets\/fonts\/[^" ]+\.woff2)"\)/g)) {
-        content = content.replace(
-          match[0],
-          `url("https://ui.erbium.app/fonts/${match[1].split("/").pop()}")`,
-        );
-      }
+  if (file.path === "src/styles/fonts.css") {
+    for (const match of content.matchAll(fontUrl)) {
+      const [url] = match;
+      const fontFile = match.groups?.file.split("/").pop() ?? "";
+      content = content.replace(url, `url("https://ui.erbium.app/fonts/${fontFile}")`);
     }
-
-    for (const specifier of readImports(content)) {
-      const internal = await getInternalItem(specifier, sourceFile);
-
-      if (!internal || !itemBySource.has(internal)) {
-        continue;
-      }
-
-      const local = relative(sourceRoot, internal)
-        .split(sep)
-        .join("/")
-        .replace(/\.(tsx|ts)$/, "");
-
-      const canonical = `@/registry/erbium/${local === "lib/utils" ? "lib/erbium-utils" : local.replace(/^components\//, "ui/")}`;
-      content = content
-        .replaceAll(`"${specifier}"`, `"${canonical}"`)
-        .replaceAll(`'${specifier}'`, `'${canonical}'`);
-    }
-
-    files.push({ ...file, content });
   }
 
-  const entry = { ...item, files };
-  publicItems.push(entry);
-  await writeFile(
-    join(packageRoot, "public/r", `${item.name}.json`),
-    `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry-item.json", ...entry }, null, 2)}\n`,
+  const specifiers = readImports(content);
+
+  const internals = await Promise.all(
+    specifiers.map(async (specifier) => await getInternalItem(specifier, sourceFile)),
   );
-}
+
+  for (const [index, specifier] of specifiers.entries()) {
+    const internal = internals[index];
+
+    if (internal === undefined || !itemBySource.has(internal)) {
+      continue;
+    }
+
+    const local = path
+      .relative(sourceRoot, internal)
+      .split(path.sep)
+      .join("/")
+      .replace(scriptExtension, "");
+
+    const canonical = `@/registry/erbium/${local === "lib/utils" ? "lib/erbium-utils" : local.replace(componentsDirectory, "ui/")}`;
+
+    content = content
+      .replaceAll(`"${specifier}"`, `"${canonical}"`)
+      .replaceAll(`'${specifier}'`, `'${canonical}'`);
+  }
+
+  return { ...file, content };
+};
+
+// Public source uses canonical shadcn aliases so custom consumer aliases work.
+await mkdir(path.join(packageRoot, "public/r"), { recursive: true });
+
+// Every item writes its own file, so items build in parallel; Promise.all keeps
+// the sorted order for the public index.
+const publicItems = await Promise.all(
+  items.map(async (item) => {
+    const files = await Promise.all(item.files.map(async (file) => await publicFile(file)));
+    const entry = { ...item, files };
+
+    await writeFile(
+      path.join(packageRoot, "public/r", `${item.name}.json`),
+      `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry-item.json", ...entry }, null, 2)}\n`,
+    );
+
+    return entry;
+  }),
+);
 
 await writeFile(
-  join(packageRoot, "public/r/registry.json"),
+  path.join(packageRoot, "public/r/registry.json"),
   `${JSON.stringify({ $schema: "https://ui.shadcn.com/schema/registry.json", homepage: "https://github.com/erbium-app/erbium-ui", items: publicItems, name: "erbium" }, null, 2)}\n`,
 );
