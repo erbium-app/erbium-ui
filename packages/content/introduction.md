@@ -15,6 +15,17 @@ Focused APIs, thoughtful defaults, and a consistent visual language give develop
 
 We follow Base UI’s naming, APIs, and defaults. RTL support is baked in to make translating your UI and internationalization easier. Labels belong to fields, and our tokens use `error` instead of `destructive`.
 
+## Loading is part of the UI layer
+
+Loading states are where interfaces most often feel broken: spinners that hold the page hostage, skeletons that guess the layout wrong, and content that jumps when it finally arrives. Erbium makes loading a decision of the UI layer rather than of each screen.
+
+- **Content you already have renders immediately.** Code shows as plain text while highlighting runs and is recoloured in place. Trees and panels keep their final size while they mount. A loading state never stands in for content the page already has.
+- **Content you are fetching gets a measured skeleton.** Wrap what you render once the data arrives in [`Skeleton`](/docs/components/skeleton) and pass sample data. The skeleton is drawn from that content, with one bar per line of text and one block per control, so the real content lands in the same place.
+- **Refetches keep their shape.** A skeleton drawn over data already on screen matches it exactly, and shapes are remembered across visits. Fast loads show no skeleton at all.
+- **Components describe themselves.** Buttons, badges, switches, avatars, and the other primitives tell the skeleton how to draw them, so any composition of them loads consistently. Error and empty states use the same Alert and Empty components as the rest of the system.
+
+Measured skeletons are built on [Skullet](https://skullet.lochie.me).
+
 ## A note on design
 
 Surface and shadow tokens provide depth and hierarchy. Squircle corners soften components, with ordinary rounded corners as a fallback; circles and pills stay round.

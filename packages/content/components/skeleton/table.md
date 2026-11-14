@@ -3,4 +3,4 @@ title: "Table"
 story: Table
 ---
 
-Use skeleton shapes to represent a table.
+A [data table](/docs/blocks/data-table) built from sample rows until the first response. The header is known, so it stays readable throughout.

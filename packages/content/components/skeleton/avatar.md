@@ -3,4 +3,4 @@ title: "Avatar"
 story: Avatar
 ---
 
-Use a skeleton as an avatar placeholder.
+Avatars are drawn in their own shape. An image that is still decoding keeps its block after the rest of the content arrives, then crossfades in.

@@ -1,8 +1,8 @@
-import Demo from "../examples/skeleton-demo";
+import SkeletonDemo from "../examples/skeleton-demo";
 
 const Example = () => (
-  <div className="w-full min-w-72 max-w-2xl p-4">
-    <Demo />
+  <div className="flex w-full min-w-72 max-w-2xl justify-center p-4">
+    <SkeletonDemo />
   </div>
 );
 

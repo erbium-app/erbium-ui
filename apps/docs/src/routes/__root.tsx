@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import spriteUrl from "@erbium/icons/sprite.svg?url";
 import { IconSpriteProvider } from "@erbium/ui/components/icon";
+import { SkeletonProvider } from "@erbium/ui/components/skeleton";
 import { Shell } from "@/components/shell";
 import stylesheet from "@/styles.css?url";
 
@@ -24,9 +25,11 @@ const Root = () => (
     <body className="font-sans">
       <ScriptOnce>{`try { const theme = localStorage.getItem('erbium-theme'); document.documentElement.classList.toggle('dark', theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)); } catch {}`}</ScriptOnce>
       <IconSpriteProvider href={spriteUrl}>
-        <Shell>
-          <Outlet />
-        </Shell>
+        <SkeletonProvider>
+          <Shell>
+            <Outlet />
+          </Shell>
+        </SkeletonProvider>
       </IconSpriteProvider>
       <Scripts />
       {analyticsToken === undefined || analyticsToken === "" ? null : (

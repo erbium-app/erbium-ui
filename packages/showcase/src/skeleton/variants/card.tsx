@@ -1,9 +1,5 @@
-import ExampleSkeletonCard from "../examples/skeleton-card";
+import { SkeletonCard } from "../examples/skeleton-card";
 
-const Example = () => (
-  <div className="w-full min-w-72 max-w-2xl p-4">
-    <ExampleSkeletonCard />
-  </div>
-);
+const Example = () => <SkeletonCard />;
 
 export default Example;

@@ -5,13 +5,16 @@
   "registryDependencies": [
     "@erbium-examples/skeleton-playground",
     "@erbium-examples/skeleton-overview",
-    "@erbium-examples/skeleton-loading-card",
     "@erbium-examples/skeleton-card",
-    "@erbium-examples/skeleton-staggered",
-    "@erbium-examples/skeleton-avatar",
     "@erbium-examples/skeleton-text",
+    "@erbium-examples/skeleton-avatar",
     "@erbium-examples/skeleton-form",
-    "@erbium-examples/skeleton-table"
+    "@erbium-examples/skeleton-table",
+    "@erbium-examples/skeleton-refetch",
+    "@erbium-examples/skeleton-suspense",
+    "@erbium-examples/skeleton-states",
+    "@erbium-examples/skeleton-box",
+    "@erbium-examples/skeleton-reveals"
   ],
   "title": "Skeleton examples",
   "type": "registry:item"

@@ -7,16 +7,22 @@ export const Playground = { ...showcases.Playground, name: "Playground" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
 
-export const LoadingCard = { ...showcases.LoadingCard, name: "Loading Card" };
-
 export const Card = { ...showcases.Card, name: "Card" };
 
-export const Staggered = { ...showcases.Staggered, name: "Staggered" };
+export const Text = { ...showcases.Text, name: "Text" };
 
 export const Avatar = { ...showcases.Avatar, name: "Avatar" };
-
-export const Text = { ...showcases.Text, name: "Text" };
 
 export const Form = { ...showcases.Form, name: "Form" };
 
 export const Table = { ...showcases.Table, name: "Table" };
+
+export const Refetch = { ...showcases.Refetch, name: "Refetch" };
+
+export const Suspense = { ...showcases.Suspense, name: "Suspense" };
+
+export const States = { ...showcases.States, name: "Error and empty" };
+
+export const Box = { ...showcases.Box, name: "Box" };
+
+export const Reveals = { ...showcases.Reveals, name: "Reveals" };

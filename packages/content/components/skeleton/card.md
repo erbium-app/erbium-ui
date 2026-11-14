@@ -3,4 +3,4 @@ title: "Card"
 story: Card
 ---
 
-Use skeleton shapes to represent a card.
+Badges are drawn as pills and text as bars, and the card keeps its surface while it loads.

@@ -1,13 +1,57 @@
+import { Badge } from "@erbium/ui/components/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@erbium/ui/components/card";
 import { Skeleton } from "@erbium/ui/components/skeleton";
+import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { article, sampleArticle } from "../fixtures";
+import type { Article } from "../fixtures";
 
-const SkeletonCard = () => (
-  <div className="flex flex-col space-y-3">
-    <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-    <div className="space-y-2">
-      <Skeleton className="h-4 w-[250px]" />
-      <Skeleton className="h-4 w-[200px]" />
-    </div>
-  </div>
+const ArticleCard = ({ article: value }: { article: Article }) => (
+  <Card className="w-full max-w-sm">
+    <CardHeader>
+      <div className="flex flex-wrap gap-1.5">
+        {value.tags.map((tag) => (
+          <Badge key={tag} variant="secondary">
+            {tag}
+          </Badge>
+        ))}
+      </div>
+      <CardTitle>{value.title}</CardTitle>
+      <CardDescription>{value.excerpt}</CardDescription>
+    </CardHeader>
+    <CardContent />
+    <CardFooter className="justify-between text-caption text-muted-foreground">
+      <span>{value.author}</span>
+      <span>
+        {value.date} · {value.readingTime}
+      </span>
+    </CardFooter>
+  </Card>
 );
 
-export default SkeletonCard;
+/** Badges are drawn as pills, text as bars, and the card keeps its surface while it loads. */
+export const SkeletonCard = ({ latency }: { latency?: number }) => {
+  const request = useSimulatedFetch(article, { latency });
+
+  return (
+    <div className="flex w-full max-w-sm flex-col items-center gap-group">
+      <Skeleton
+        data={request.data}
+        sample={sampleArticle}
+        loading={request.loading}
+        id="skeleton-article"
+        label="Loading article"
+        className="w-full"
+      >
+        {(value) => <ArticleCard article={value} />}
+      </Skeleton>
+      <LoadingControls {...request} />
+    </div>
+  );
+};

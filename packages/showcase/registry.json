@@ -201,6 +201,7 @@
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -268,6 +269,189 @@
         {
           "path": "src/accordion/variants/playground.tsx",
           "target": "@components/showcase/accordion/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All account-settings examples.",
+      "name": "account-settings-examples",
+      "registryDependencies": [
+        "@erbium-examples/account-settings-playground",
+        "@erbium-examples/account-settings-overview",
+        "@erbium-examples/account-settings-partial-failure"
+      ],
+      "title": "Account Settings examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "account-settings-overview",
+      "type": "registry:block",
+      "title": "Account Settings: Overview",
+      "description": "The profile, preferences and sessions answer one after another. Each section reveals in place as its data arrives.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/item",
+        "@erbium/select",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/account-settings/helpers.tsx",
+          "target": "@components/showcase/account-settings/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/account-settings/variants/overview.tsx",
+          "target": "@components/showcase/account-settings/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "account-settings-partial-failure",
+      "type": "registry:block",
+      "title": "Account Settings: Partial failure",
+      "description": "The sessions request fails while the profile and preferences load. The error stays inside its own card, with a way to try again.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/item",
+        "@erbium/select",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/account-settings/helpers.tsx",
+          "target": "@components/showcase/account-settings/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/account-settings/variants/partial-failure.tsx",
+          "target": "@components/showcase/account-settings/variants/partial-failure.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "account-settings-playground",
+      "type": "registry:block",
+      "title": "Account Settings: Playground",
+      "description": "Change the latency to see the sections answer in turn, or make the sessions request fail.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/item",
+        "@erbium/select",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/account-settings/helpers.tsx",
+          "target": "@components/showcase/account-settings/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/account-settings/variants/playground.tsx",
+          "target": "@components/showcase/account-settings/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "account-settings-stories",
+      "type": "registry:item",
+      "title": "Account Settings stories",
+      "description": "All account-settings variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/item",
+        "@erbium/overlay-provider",
+        "@erbium/select",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/account-settings/account-settings.stories.tsx",
+          "target": "@components/showcase/account-settings/account-settings.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/account-settings/helpers.tsx",
+          "target": "@components/showcase/account-settings/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/account-settings/variants/overview.tsx",
+          "target": "@components/showcase/account-settings/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/account-settings/variants/partial-failure.tsx",
+          "target": "@components/showcase/account-settings/variants/partial-failure.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/account-settings/variants/playground.tsx",
+          "target": "@components/showcase/account-settings/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
           "type": "registry:component"
         },
         {
@@ -545,6 +729,7 @@
         "@erbium/icon",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -738,6 +923,7 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -944,6 +1130,7 @@
         "@erbium/aspect-ratio",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -1141,6 +1328,7 @@
         "@erbium/dialog",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
@@ -1532,6 +1720,7 @@
         "@erbium/form",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
@@ -2125,6 +2314,7 @@
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -2365,6 +2555,7 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -2687,6 +2878,7 @@
         "@erbium/icon",
         "@erbium/link",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast"
@@ -2979,6 +3171,7 @@
         "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/popover",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast",
@@ -3676,6 +3869,7 @@
         "@erbium/popover",
         "@erbium/select",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/textarea",
@@ -4051,6 +4245,7 @@
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -4616,6 +4811,7 @@
         "@erbium/icon",
         "@erbium/input-group",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -4946,6 +5142,7 @@
         "@erbium/form",
         "@erbium/overlay-provider",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
         "@erbium/toast"
@@ -5227,6 +5424,7 @@
         "@erbium/csp-provider",
         "@erbium/lightbox",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -5529,6 +5727,7 @@
         "@erbium/chart",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/typography"
@@ -5892,6 +6091,7 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
         "@erbium/toast",
@@ -6213,6 +6413,7 @@
         "@erbium/icon",
         "@erbium/icon-sprite",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
         "@erbium/toast"
@@ -6500,6 +6701,7 @@
         "@erbium/number-field",
         "@erbium/overlay-provider",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/tabs",
@@ -6902,6 +7104,7 @@
         "@erbium/input-group",
         "@erbium/item",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -7224,6 +7427,7 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -7564,6 +7768,7 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -7979,6 +8184,7 @@
         "@erbium/control",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -8216,6 +8422,7 @@
         "@erbium/csp-provider",
         "@erbium/input-group",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -8319,6 +8526,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/scroll-area",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -8341,6 +8549,272 @@
         {
           "path": "src/csp-provider/variants/showcase.tsx",
           "target": "@components/showcase/csp-provider/variants/showcase.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-table-empty",
+      "type": "registry:block",
+      "title": "Data Table: Empty",
+      "description": "When the server returns no rows, the `empty` content fills the body under the header.",
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/checkbox",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/pagination",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/empty.tsx",
+          "target": "@components/showcase/data-table/variants/empty.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-table-error",
+      "type": "registry:block",
+      "title": "Data Table: Error",
+      "description": "A failed request replaces the table with an error alert carrying the error's message. Reload to try again.",
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/checkbox",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/pagination",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/error.tsx",
+          "target": "@components/showcase/data-table/variants/error.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All data-table examples.",
+      "name": "data-table-examples",
+      "registryDependencies": [
+        "@erbium-examples/data-table-playground",
+        "@erbium-examples/data-table-overview",
+        "@erbium-examples/data-table-empty",
+        "@erbium-examples/data-table-error",
+        "@erbium-examples/data-table-rtl"
+      ],
+      "title": "Data Table examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "data-table-overview",
+      "type": "registry:block",
+      "title": "Data Table: Overview",
+      "description": "Search, sort by a column header, select rows and change pages. The example server answers every query after a delay. The first load is drawn from sample rows, and every later query draws its skeleton over the rows on screen.",
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/checkbox",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/pagination",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/overview.tsx",
+          "target": "@components/showcase/data-table/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-table-playground",
+      "type": "registry:block",
+      "title": "Data Table: Playground",
+      "description": "Change the latency and page size, or make the server fail or return nothing.",
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/checkbox",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/pagination",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/playground.tsx",
+          "target": "@components/showcase/data-table/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-table-rtl",
+      "type": "registry:block",
+      "title": "Data Table: RTL",
+      "description": "Columns, sort icons, pagination and the reveal follow the reading direction.",
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/checkbox",
+        "@erbium/data-table",
+        "@erbium/direction",
+        "@erbium/empty",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/pagination",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/rtl.tsx",
+          "target": "@components/showcase/data-table/variants/rtl.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-table-stories",
+      "type": "registry:item",
+      "title": "Data Table stories",
+      "description": "All data-table variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/checkbox",
+        "@erbium/csp-provider",
+        "@erbium/data-table",
+        "@erbium/direction",
+        "@erbium/empty",
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/overlay-provider",
+        "@erbium/pagination",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/data-table.stories.tsx",
+          "target": "@components/showcase/data-table/data-table.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/empty.tsx",
+          "target": "@components/showcase/data-table/variants/empty.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/error.tsx",
+          "target": "@components/showcase/data-table/variants/error.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/overview.tsx",
+          "target": "@components/showcase/data-table/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/playground.tsx",
+          "target": "@components/showcase/data-table/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/rtl.tsx",
+          "target": "@components/showcase/data-table/variants/rtl.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
           "type": "registry:component"
         },
         {
@@ -8545,6 +9019,7 @@
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -8856,6 +9331,7 @@
         "@erbium/form",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -9134,6 +9610,7 @@
         "@erbium/csp-provider",
         "@erbium/diff-view",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle",
@@ -9270,6 +9747,7 @@
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -9542,6 +10020,7 @@
         "@erbium/drawer",
         "@erbium/field",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/styles",
         "@erbium/toast",
@@ -10050,6 +10529,7 @@
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -10266,6 +10746,7 @@
         "@erbium/editable",
         "@erbium/kbd",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -10507,6 +10988,7 @@
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -10955,6 +11437,7 @@
         "@erbium/password-input",
         "@erbium/radio-group",
         "@erbium/select",
+        "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/styles",
         "@erbium/switch",
@@ -11261,6 +11744,7 @@
         "@erbium/file-tree",
         "@erbium/overlay-provider",
         "@erbium/sidebar",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -11396,6 +11880,7 @@
         "@erbium/csp-provider",
         "@erbium/file-view",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -11495,6 +11980,7 @@
         "@erbium/form",
         "@erbium/overlay-provider",
         "@erbium/questionnaire",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -11686,6 +12172,7 @@
         "@erbium/csp-provider",
         "@erbium/hover-card",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -12309,6 +12796,7 @@
         "@erbium/overlay-provider",
         "@erbium/popover",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast"
@@ -12647,6 +13135,7 @@
         "@erbium/overlay-provider",
         "@erbium/password-input",
         "@erbium/select",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -13160,6 +13649,7 @@
         "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/select",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/switch",
@@ -13450,6 +13940,7 @@
         "@erbium/input-group",
         "@erbium/kbd",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/tooltip"
@@ -13568,6 +14059,7 @@
         "@erbium/csp-provider",
         "@erbium/lightbox",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -13659,6 +14151,7 @@
         "@erbium/field",
         "@erbium/link",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/toast"
@@ -13883,6 +14376,7 @@
         "@erbium/marker",
         "@erbium/message",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
@@ -14144,6 +14638,7 @@
         "@erbium/icon",
         "@erbium/menubar",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -14739,6 +15234,7 @@
         "@erbium/message-scroller",
         "@erbium/overlay-provider",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/tabs",
         "@erbium/toast",
@@ -14923,6 +15419,7 @@
         "@erbium/icon",
         "@erbium/message",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -15086,6 +15583,7 @@
         "@erbium/csp-provider",
         "@erbium/meter",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -15205,6 +15703,7 @@
         "@erbium/link",
         "@erbium/navigation-menu",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -15390,6 +15889,7 @@
         "@erbium/field",
         "@erbium/number-field",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -15712,6 +16212,7 @@
         "@erbium/form",
         "@erbium/otp-field",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -15894,6 +16395,7 @@
         "@erbium/csp-provider",
         "@erbium/drawer",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -16064,6 +16566,7 @@
         "@erbium/overlay-provider",
         "@erbium/pagination",
         "@erbium/select",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/table",
@@ -16370,6 +16873,7 @@
         "@erbium/input-group",
         "@erbium/overlay-provider",
         "@erbium/password-input",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -16618,6 +17122,7 @@
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/popover",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -16841,6 +17346,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/progress",
+        "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/styles",
         "@erbium/toast"
@@ -17294,6 +17800,7 @@
         "@erbium/dialog",
         "@erbium/overlay-provider",
         "@erbium/questionnaire",
+        "@erbium/skeleton",
         "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
@@ -17756,6 +18263,7 @@
         "@erbium/form",
         "@erbium/overlay-provider",
         "@erbium/radio-group",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -17955,6 +18463,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/resizable",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -18127,6 +18636,7 @@
         "@erbium/overlay-provider",
         "@erbium/scroll-area",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -18227,6 +18737,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -18489,6 +19000,7 @@
         "@erbium/field",
         "@erbium/overlay-provider",
         "@erbium/select",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/toast"
@@ -18749,6 +19261,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/separator",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -18905,6 +19418,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/shake",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -19059,6 +19573,7 @@
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/sheet",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -19227,6 +19742,7 @@
         "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/sidebar",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast"
@@ -19337,6 +19853,7 @@
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/select",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
         "@erbium/tabs",
@@ -19397,12 +19914,30 @@
       "name": "skeleton-avatar",
       "type": "registry:block",
       "title": "Skeleton: Avatar",
-      "description": "Use a skeleton as an avatar placeholder.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "description": "Avatars are drawn in their own shape. An image that is still decoding keeps its block after the rest of the content arrives, then crossfades in.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/item",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/examples/skeleton-avatar.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         },
         {
@@ -19413,15 +19948,51 @@
       ]
     },
     {
-      "name": "skeleton-card",
+      "name": "skeleton-box",
       "type": "registry:block",
-      "title": "Skeleton: Card",
-      "description": "Use skeleton shapes to represent a card.",
+      "title": "Skeleton: Box",
+      "description": "A box you size yourself, for content with nothing to render a sample from. It shares the shimmer with measured skeletons.",
       "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
       "files": [
         {
+          "path": "src/skeleton/examples/skeleton-box.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-box.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/box.tsx",
+          "target": "@components/showcase/skeleton/variants/box.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "skeleton-card",
+      "type": "registry:block",
+      "title": "Skeleton: Card",
+      "description": "Badges are drawn as pills and text as bars, and the card keeps its surface while it loads.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/skeleton/examples/skeleton-card.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         },
         {
@@ -19433,14 +20004,31 @@
     },
     {
       "name": "skeleton-demo",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "skeleton demo",
       "description": "Erbium skeleton demo example.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/examples/skeleton-demo.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         }
       ]
@@ -19451,13 +20039,16 @@
       "registryDependencies": [
         "@erbium-examples/skeleton-playground",
         "@erbium-examples/skeleton-overview",
-        "@erbium-examples/skeleton-loading-card",
         "@erbium-examples/skeleton-card",
-        "@erbium-examples/skeleton-staggered",
-        "@erbium-examples/skeleton-avatar",
         "@erbium-examples/skeleton-text",
+        "@erbium-examples/skeleton-avatar",
         "@erbium-examples/skeleton-form",
-        "@erbium-examples/skeleton-table"
+        "@erbium-examples/skeleton-table",
+        "@erbium-examples/skeleton-refetch",
+        "@erbium-examples/skeleton-suspense",
+        "@erbium-examples/skeleton-states",
+        "@erbium-examples/skeleton-box",
+        "@erbium-examples/skeleton-reveals"
       ],
       "title": "Skeleton examples",
       "type": "registry:item"
@@ -19466,12 +20057,30 @@
       "name": "skeleton-form",
       "type": "registry:block",
       "title": "Skeleton: Form",
-      "description": "Use skeleton shapes to represent a form.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "description": "Inputs, selects and switches are drawn as blocks at their own size and labels as bars. The form mounts with the loaded values, so an empty form never flashes first.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/select",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/examples/skeleton-form.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         },
         {
@@ -19482,29 +20091,32 @@
       ]
     },
     {
-      "name": "skeleton-loading-card",
-      "type": "registry:component",
-      "title": "Skeleton: Loading Card",
-      "description": "Show a card placeholder while content loads.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/skeleton/variants/loading-card.tsx",
-          "target": "@components/showcase/skeleton/variants/loading-card.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "skeleton-overview",
       "type": "registry:block",
       "title": "Skeleton: Overview",
-      "description": "",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "description": "The profile loads after a moment. Until then it is drawn from `sampleProfile`: a block for the avatar and a bar for each line of text, at their real size. Reload drops the data; refetch keeps it on screen and draws the skeleton from it.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/examples/skeleton-demo.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         },
         {
@@ -19516,11 +20128,33 @@
     },
     {
       "name": "skeleton-playground",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Skeleton: Playground",
-      "description": "",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "description": "Change the latency and the reveal, then reload or refetch to replay it.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-demo.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/variants/playground.tsx",
           "target": "@components/showcase/skeleton/variants/playground.tsx",
@@ -19529,20 +20163,124 @@
       ]
     },
     {
-      "name": "skeleton-staggered",
+      "name": "skeleton-refetch",
       "type": "registry:block",
-      "title": "Skeleton: Staggered",
-      "description": "Skeletons that mount at different times share one sweep. The highlight is attached to the viewport and synced to the document timeline, so every placeholder on the page moves as a single band.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "title": "Skeleton: Refetch",
+      "description": "Pass `loading` while the data is still on screen. The skeleton is drawn from that data, so it matches exactly, and the new data crossfades in.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
         {
-          "path": "src/skeleton/examples/skeleton-staggered.tsx",
-          "target": "@components/showcase/skeleton/examples/skeleton-staggered.tsx",
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
           "type": "registry:component"
         },
         {
-          "path": "src/skeleton/variants/staggered.tsx",
-          "target": "@components/showcase/skeleton/variants/staggered.tsx",
+          "path": "src/skeleton/examples/skeleton-demo.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-refetch.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-refetch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/refetch.tsx",
+          "target": "@components/showcase/skeleton/variants/refetch.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "skeleton-reveals",
+      "type": "registry:block",
+      "title": "Skeleton: Reveals",
+      "description": "Pick a reveal to replay the first load with it. The list shows the difference between revealing the region together and bringing each row in where its skeleton was.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/item",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toggle-group"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-avatar.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/reveals.tsx",
+          "target": "@components/showcase/skeleton/variants/reveals.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "skeleton-states",
+      "type": "registry:block",
+      "title": "Skeleton: Error and empty",
+      "description": "Choose a response. An `Error` renders the error alert with its message, and an empty result shows the empty state. Each replaces the skeleton with the same crossfade as content.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/empty",
+        "@erbium/item",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toggle-group"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-avatar.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-states.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-states.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/states.tsx",
+          "target": "@components/showcase/skeleton/variants/states.tsx",
           "type": "registry:component"
         }
       ]
@@ -19552,15 +20290,33 @@
       "type": "registry:item",
       "title": "Skeleton stories",
       "description": "All skeleton variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-table@9.3.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
         "@erbium/csp-provider",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/item",
         "@erbium/overlay-provider",
+        "@erbium/select",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/toggle-group"
       ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
@@ -19569,6 +20325,11 @@
         {
           "path": "src/skeleton/examples/skeleton-avatar.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-box.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-box.tsx",
           "type": "registry:component"
         },
         {
@@ -19587,8 +20348,18 @@
           "type": "registry:component"
         },
         {
-          "path": "src/skeleton/examples/skeleton-staggered.tsx",
-          "target": "@components/showcase/skeleton/examples/skeleton-staggered.tsx",
+          "path": "src/skeleton/examples/skeleton-refetch.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-refetch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-states.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-states.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-suspense.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-suspense.tsx",
           "type": "registry:component"
         },
         {
@@ -19602,6 +20373,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
+        {
           "path": "src/skeleton/skeleton.stories.tsx",
           "target": "@components/showcase/skeleton/skeleton.stories.tsx",
           "type": "registry:file"
@@ -19609,6 +20385,11 @@
         {
           "path": "src/skeleton/variants/avatar.tsx",
           "target": "@components/showcase/skeleton/variants/avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/box.tsx",
+          "target": "@components/showcase/skeleton/variants/box.tsx",
           "type": "registry:component"
         },
         {
@@ -19622,11 +20403,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/skeleton/variants/loading-card.tsx",
-          "target": "@components/showcase/skeleton/variants/loading-card.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/skeleton/variants/overview.tsx",
           "target": "@components/showcase/skeleton/variants/overview.tsx",
           "type": "registry:component"
@@ -19637,8 +20413,23 @@
           "type": "registry:component"
         },
         {
-          "path": "src/skeleton/variants/staggered.tsx",
-          "target": "@components/showcase/skeleton/variants/staggered.tsx",
+          "path": "src/skeleton/variants/refetch.tsx",
+          "target": "@components/showcase/skeleton/variants/refetch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/reveals.tsx",
+          "target": "@components/showcase/skeleton/variants/reveals.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/states.tsx",
+          "target": "@components/showcase/skeleton/variants/states.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/suspense.tsx",
+          "target": "@components/showcase/skeleton/variants/suspense.tsx",
           "type": "registry:component"
         },
         {
@@ -19654,15 +20445,73 @@
       ]
     },
     {
+      "name": "skeleton-suspense",
+      "type": "registry:block",
+      "title": "Skeleton: Suspense",
+      "description": "`SkeletonSuspense` measures its `skeleton`, the component rendered from sample data, into the fallback of a Suspense boundary.",
+      "registryDependencies": [
+        "@erbium/avatar",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/card",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-demo.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-suspense.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-suspense.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/suspense.tsx",
+          "target": "@components/showcase/skeleton/variants/suspense.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "skeleton-table",
       "type": "registry:block",
       "title": "Skeleton: Table",
-      "description": "Use skeleton shapes to represent a table.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "description": "A [data table](/docs/blocks/data-table) built from sample rows until the first response. The header is known, so it stays readable throughout.",
+      "dependencies": ["@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/data-table",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/examples/skeleton-table.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         },
         {
@@ -19676,12 +20525,27 @@
       "name": "skeleton-text",
       "type": "registry:block",
       "title": "Skeleton: Text",
-      "description": "Use skeleton lines as a text placeholder.",
-      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
+      "description": "Each line gets a bar from the font's ascender to its descender, and wraps where the real text will wrap.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/skeleton",
+        "@erbium/styles"
+      ],
       "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/skeleton/examples/skeleton-text.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-text.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
           "type": "registry:component"
         },
         {
@@ -19863,6 +20727,7 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/styles",
         "@erbium/toast",
@@ -20142,6 +21007,7 @@
         "@erbium/input-group",
         "@erbium/item",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
@@ -20323,6 +21189,7 @@
         "@erbium/direction",
         "@erbium/form",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
@@ -20523,6 +21390,7 @@
         "@erbium/field",
         "@erbium/menubar",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast"
@@ -20721,6 +21589,7 @@
         "@erbium/form",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/stateful-icon",
         "@erbium/step-indicator",
@@ -20980,6 +21849,7 @@
         "@erbium/icon",
         "@erbium/kbd",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle-group"
@@ -21306,6 +22176,7 @@
         "@erbium/form",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/toast"
@@ -21603,6 +22474,7 @@
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
         "@erbium/toast",
@@ -21826,6 +22698,7 @@
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/password-input",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/tabs",
         "@erbium/toast"
@@ -21962,6 +22835,7 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/text-morph",
         "@erbium/toast"
@@ -22147,6 +23021,7 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
         "@erbium/toast"
@@ -22352,6 +23227,7 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -22683,6 +23559,7 @@
         "@erbium/field",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle-group"
@@ -22903,6 +23780,7 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle"
@@ -23121,6 +23999,7 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle",
@@ -23341,6 +24220,7 @@
         "@erbium/icon",
         "@erbium/kbd",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/tooltip"
@@ -23523,6 +24403,7 @@
         "@erbium/field",
         "@erbium/input",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -23660,6 +24541,7 @@
         "@erbium/icon",
         "@erbium/input-group",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast",
@@ -23758,6 +24640,7 @@
         "@erbium/icon",
         "@erbium/item",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/use-drag-select"
@@ -23834,6 +24717,7 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/use-is-mobile"
@@ -23910,6 +24794,7 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/use-media-query"
@@ -24001,6 +24886,7 @@
         "@erbium/dialog",
         "@erbium/link",
         "@erbium/overlay-provider",
+        "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast",

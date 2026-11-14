@@ -1,44 +1,31 @@
 import type { Meta, StoryObj } from "../types";
-
-import { Skeleton } from "@erbium/ui/components/skeleton";
-
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
-
+import { Skeleton } from "@erbium/ui/components/skeleton";
+import { defaultLatency, latencyArgType } from "../loading";
 import PlaygroundExample from "./variants/playground";
-
 import PlaygroundSource from "./variants/playground.tsx?raw";
-
 import OverviewExample from "./variants/overview";
-
 import OverviewSource from "./variants/overview.tsx?raw";
-
-import LoadingCardExample from "./variants/loading-card";
-
-import LoadingCardSource from "./variants/loading-card.tsx?raw";
-
 import CardExample from "./variants/card";
-
 import CardSource from "./variants/card.tsx?raw";
-
-import StaggeredExample from "./variants/staggered";
-
-import StaggeredSource from "./variants/staggered.tsx?raw";
-
-import AvatarExample from "./variants/avatar";
-
-import AvatarSource from "./variants/avatar.tsx?raw";
-
 import TextExample from "./variants/text";
-
 import TextSource from "./variants/text.tsx?raw";
-
+import AvatarExample from "./variants/avatar";
+import AvatarSource from "./variants/avatar.tsx?raw";
 import FormExample from "./variants/form";
-
 import FormSource from "./variants/form.tsx?raw";
-
 import TableExample from "./variants/table";
-
 import TableSource from "./variants/table.tsx?raw";
+import RefetchExample from "./variants/refetch";
+import RefetchSource from "./variants/refetch.tsx?raw";
+import SuspenseExample from "./variants/suspense";
+import SuspenseSource from "./variants/suspense.tsx?raw";
+import StatesExample from "./variants/states";
+import StatesSource from "./variants/states.tsx?raw";
+import BoxExample from "./variants/box";
+import BoxSource from "./variants/box.tsx?raw";
+import RevealsExample from "./variants/reveals";
+import RevealsSource from "./variants/reveals.tsx?raw";
 
 const meta = {
   component: Skeleton,
@@ -57,9 +44,12 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Skeleton> = {
-  argTypes: {},
-  args: { className: "min-h-control w-48" },
+export const Playground: StoryObj<typeof PlaygroundExample> = {
+  argTypes: {
+    ...latencyArgType,
+    reveal: { control: { type: "select" }, options: ["smart", "together", "sequence", "sweep"] },
+  },
+  args: { latency: defaultLatency, reveal: "smart" },
   parameters: {
     docs: {
       description: { story: variantDocumentation("skeleton", "playground") },
@@ -79,16 +69,6 @@ export const Overview: Story = {
   render: OverviewExample,
 };
 
-export const LoadingCard: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("skeleton", "loading-card") },
-      source: { code: LoadingCardSource },
-    },
-  },
-  render: LoadingCardExample,
-};
-
 export const Card: Story = {
   parameters: {
     docs: {
@@ -99,14 +79,14 @@ export const Card: Story = {
   render: CardExample,
 };
 
-export const Staggered: Story = {
+export const Text: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("skeleton", "staggered") },
-      source: { code: StaggeredSource },
+      description: { story: variantDocumentation("skeleton", "text") },
+      source: { code: TextSource },
     },
   },
-  render: StaggeredExample,
+  render: TextExample,
 };
 
 export const Avatar: Story = {
@@ -117,16 +97,6 @@ export const Avatar: Story = {
     },
   },
   render: AvatarExample,
-};
-
-export const Text: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("skeleton", "text") },
-      source: { code: TextSource },
-    },
-  },
-  render: TextExample,
 };
 
 export const Form: Story = {
@@ -147,4 +117,54 @@ export const Table: Story = {
     },
   },
   render: TableExample,
+};
+
+export const Refetch: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("skeleton", "refetch") },
+      source: { code: RefetchSource },
+    },
+  },
+  render: RefetchExample,
+};
+
+export const Suspense: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("skeleton", "suspense") },
+      source: { code: SuspenseSource },
+    },
+  },
+  render: SuspenseExample,
+};
+
+export const States: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("skeleton", "states") },
+      source: { code: StatesSource },
+    },
+  },
+  render: StatesExample,
+};
+
+export const Box: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("skeleton", "box") },
+      source: { code: BoxSource },
+    },
+  },
+  render: BoxExample,
+};
+
+export const Reveals: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("skeleton", "reveals") },
+      source: { code: RevealsSource },
+    },
+  },
+  render: RevealsExample,
 };

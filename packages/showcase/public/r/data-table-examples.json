@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All data-table examples.",
+  "name": "data-table-examples",
+  "registryDependencies": [
+    "@erbium-examples/data-table-playground",
+    "@erbium-examples/data-table-overview",
+    "@erbium-examples/data-table-empty",
+    "@erbium-examples/data-table-error",
+    "@erbium-examples/data-table-rtl"
+  ],
+  "title": "Data Table examples",
+  "type": "registry:item"
+}

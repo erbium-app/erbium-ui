@@ -1,5 +1,6 @@
 import { CSPProvider } from "@erbium/ui/components/csp-provider";
 import { OverlayProvider } from "@erbium/ui/components/overlay-provider";
+import { SkeletonProvider } from "@erbium/ui/components/skeleton";
 import { Toaster } from "@erbium/ui/components/toast";
 import type { ReactNode } from "react";
 
@@ -11,10 +12,12 @@ export const ShowcaseProviders = ({
   toast?: boolean;
 }) => (
   <CSPProvider disableStyleElements>
-    <OverlayProvider>
-      {children}
-      {toast && <Toaster />}
-    </OverlayProvider>
+    <SkeletonProvider>
+      <OverlayProvider>
+        {children}
+        {toast && <Toaster />}
+      </OverlayProvider>
+    </SkeletonProvider>
   </CSPProvider>
 );
 

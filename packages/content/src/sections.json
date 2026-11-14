@@ -94,7 +94,9 @@
       "file-view",
       "file-tree",
       "lightbox",
-      "step-indicator"
+      "step-indicator",
+      "account-settings",
+      "data-table"
     ]
   },
   {
