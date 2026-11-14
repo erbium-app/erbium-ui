@@ -107,19 +107,36 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                   title={`${item.id}.css`}
                   className="my-4"
                 />
-                <div className="grid gap-3 sm:grid-cols-2 my-6">
-                  {item.colors.map((color) => (
-                    <div key={color} className="flex items-center gap-3">
-                      <span
-                        className="size-8 rounded-md border border-border"
-                        style={{ backgroundColor: color }}
-                        aria-hidden="true"
-                      />
-                      <code className="text-metadata min-w-0 break-all">{color}</code>
-                      <CopyButton value={color} size="icon-xs" aria-label={`Copy ${color}`} />
-                    </div>
-                  ))}
-                </div>
+                {item.colors.length > 0 && (
+                  <div className="@container my-6">
+                    <ul
+                      aria-label={`${item.title} swatches`}
+                      className="grid gap-x-6 gap-y-2 @min-[44rem]:grid-cols-2"
+                    >
+                      {item.colors.map((color) => (
+                        <li
+                          key={color}
+                          className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3"
+                        >
+                          <span
+                            className="image-hairline size-8 rounded-md"
+                            style={{ backgroundColor: color }}
+                            aria-hidden="true"
+                          />
+                          <code className="text-metadata wrap-anywhere">
+                            <bdi dir="ltr">{color}</bdi>
+                          </code>
+                          <CopyButton
+                            aria-label={`Copy ${color}`}
+                            size="icon-xs"
+                            value={color}
+                            variant="embedded"
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </section>
             ))}
             {page.reference && (

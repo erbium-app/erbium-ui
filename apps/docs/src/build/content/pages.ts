@@ -163,7 +163,11 @@ const colorExamples = async () => {
   return await Promise.all(
     entries.map(async (entry) => ({
       ...entry,
-      colors: [...new Set(entry.source.match(/oklch\([^)]+\)/g) ?? [])],
+      colors: [
+        ...new Set(
+          Array.from(entry.source.matchAll(/:\s*(oklch\([^;]+\))\s*;/g), ([, color]) => color),
+        ),
+      ],
       tokens: await highlight(entry.source, "css"),
     })),
   );
