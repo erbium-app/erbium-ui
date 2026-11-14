@@ -100,6 +100,7 @@ Before editing files for a substantial task:
 - `FormField` (`field.Field` in `packages/ui/src/components/form.tsx`) owns the rejected-submit shake for every bound and hand-composed field. Do not call `shake()` or add a shake hook inside individual field components or showcase examples.
 - The shake targets the field's control: each direct child of the field root except `FieldLabel`, `FieldDescription`, `FieldError`, `FieldContent` and hidden helpers. Keep the control a direct child of `field.Field`; a wrapper around label and control makes the wrapper shake.
 - A choice row (see below) shakes as a whole. Override with `shakeOn="control" | "field"` only when the default is wrong for a layout.
+- Questionnaires follow the same rules: `required` is declared once, in the questionnaire's `items`, and `QuestionnaireItem` takes it from there to add the required mark to its title; `QuestionnaireForm` validates each answer through TanStack Form before moving past it; and the questionnaire shakes the active item's answers (its `QuestionnaireChoices` or `QuestionnaireInput`) on every rejected Next, Enter or submit, and after a rejected `QuestionnaireForm` submit. Do not add marks or shakes in compositions.
 - Compose controls without a bound component (Select, RadioGroup, Autocomplete, Date Picker) inside `field.Field` plus `field.FieldError`, never inside the plain `Field`, or they lose the invalid state and the shake.
 
 # Choice control alignment
