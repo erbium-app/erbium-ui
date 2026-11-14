@@ -1,10 +1,9 @@
 import { FileTree as PierreTree, useFileTree as usePierreTree } from "@pierre/trees/react";
 import type { FileTreeProps as PierreTreeProps } from "@pierre/trees/react";
 import type { FileTreeOptions as PierreTreeOptions } from "@pierre/trees";
-import { createContext, use, useEffect, useMemo, useRef, useState } from "react";
+import { createContext, use, useMemo } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { DirectionProvider } from "../components/direction";
-import { Spinner } from "../components/spinner";
 import { fileTreeIcons } from "../lib/file-icons";
 import { treeThemeCSS } from "../lib/tree-theme";
 import { cn } from "../lib/utils";
@@ -49,49 +48,15 @@ const FileTreeContent = ({
     throw new Error("File tree content must be inside FileTree.");
   }
 
-  const frame = useRef<HTMLDivElement>(null);
-  const [rendered, setRendered] = useState(context.preloadedData !== undefined);
-  // Pierre mounts the tree into a shadow root after the host attaches; until
-  // its first row list exists the host is an empty box, so show progress.
-  useEffect(() => {
-    let handle = 0;
-
-    const poll = () => {
-      const host = frame.current?.querySelector("file-tree-container");
-
-      if (host?.shadowRoot?.querySelector('[role="tree"]')) {
-        setRendered(true);
-      } else {
-        handle = requestAnimationFrame(poll);
-      }
-    };
-
-    if (!rendered) {
-      poll();
-    }
-
-    return () => {
-      cancelAnimationFrame(handle);
-    };
-  }, [rendered]);
-
+  // The host keeps its fixed height while Pierre attaches the tree's shadow root, so the rows
+  // land in place without a loading state.
   return (
-    <div ref={frame} data-slot="file-tree-frame" className="relative">
-      <PierreTree
-        {...props}
-        {...context}
-        data-slot="file-tree-content"
-        className={cn("block h-80 min-w-0", className)}
-      />
-      {rendered ? null : (
-        <div
-          data-slot="file-tree-loading"
-          className="absolute inset-0 flex items-center justify-center text-muted-foreground"
-        >
-          <Spinner size="lg" />
-        </div>
-      )}
-    </div>
+    <PierreTree
+      {...props}
+      {...context}
+      data-slot="file-tree-content"
+      className={cn("block h-80 min-w-0", className)}
+    />
   );
 };
 

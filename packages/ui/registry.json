@@ -103,7 +103,7 @@
       "title": "Avatar",
       "description": "Erbium avatar component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/avatar.tsx",
@@ -118,7 +118,12 @@
       "title": "Badge",
       "description": "Erbium badge component.",
       "dependencies": ["@base-ui/react", "@erbium/icons", "class-variance-authority"],
-      "registryDependencies": ["@erbium/icon", "@erbium/spinner", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/skeleton-hints",
+        "@erbium/spinner",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/badge.tsx",
@@ -166,6 +171,7 @@
       "registryDependencies": [
         "@erbium/button-variants",
         "@erbium/kbd",
+        "@erbium/skeleton-hints",
         "@erbium/spinner",
         "@erbium/utils"
       ],
@@ -301,7 +307,12 @@
       "title": "Checkbox",
       "description": "Erbium checkbox component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/stateful-icon", "@erbium/use-drag-select", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/skeleton-hints",
+        "@erbium/stateful-icon",
+        "@erbium/use-drag-select",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/checkbox.tsx",
@@ -373,7 +384,7 @@
         "@erbium/direction",
         "@erbium/empty",
         "@erbium/separator",
-        "@erbium/spinner",
+        "@erbium/skeleton",
         "@erbium/utils"
       ],
       "files": [
@@ -412,6 +423,7 @@
         "@erbium/input-group",
         "@erbium/scroll-area",
         "@erbium/separator",
+        "@erbium/skeleton-hints",
         "@erbium/stateful-icon",
         "@erbium/utils"
       ],
@@ -537,6 +549,28 @@
           "path": "src/components/csp-provider.tsx",
           "target": "@ui/csp-provider.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "Erbium data table block.",
+      "dependencies": ["@tanstack/react-table"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/skeleton",
+        "@erbium/skeleton-hints",
+        "@erbium/table",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/data-table.tsx",
+          "target": "@components/blocks/data-table.tsx",
+          "type": "registry:block"
         }
       ]
     },
@@ -787,7 +821,6 @@
       "registryDependencies": [
         "@erbium/direction",
         "@erbium/file-icons",
-        "@erbium/spinner",
         "@erbium/tree-theme",
         "@erbium/utils"
       ],
@@ -972,7 +1005,7 @@
       "title": "Kbd",
       "description": "Erbium kbd component.",
       "dependencies": ["@tanstack/hotkeys"],
-      "registryDependencies": ["@erbium/kbd-styles", "@erbium/utils"],
+      "registryDependencies": ["@erbium/kbd-styles", "@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/kbd.tsx",
@@ -1111,7 +1144,7 @@
       "title": "Meter",
       "description": "Erbium meter component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/meter.tsx",
@@ -1246,7 +1279,7 @@
       "title": "Progress",
       "description": "Erbium progress component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/progress.tsx",
@@ -1284,7 +1317,7 @@
       "title": "Radio Group",
       "description": "Erbium radio group component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/radio-group.tsx",
@@ -1333,6 +1366,7 @@
         "@erbium/icon",
         "@erbium/scroll-area",
         "@erbium/separator",
+        "@erbium/skeleton-hints",
         "@erbium/stateful-icon",
         "@erbium/utils"
       ],
@@ -1438,7 +1472,8 @@
       "type": "registry:ui",
       "title": "Skeleton",
       "description": "Erbium skeleton component.",
-      "registryDependencies": ["@erbium/utils"],
+      "dependencies": ["@base-ui/utils", "skullet"],
+      "registryDependencies": ["@erbium/alert", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/skeleton.tsx",
@@ -1448,12 +1483,25 @@
       ]
     },
     {
+      "name": "skeleton-hints",
+      "type": "registry:lib",
+      "title": "Skeleton Hints",
+      "description": "Erbium skeleton hints lib.",
+      "files": [
+        {
+          "path": "src/lib/skeleton-hints.ts",
+          "target": "@lib/skeleton-hints.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
       "description": "Erbium slider component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/slider.tsx",
@@ -1468,7 +1516,7 @@
       "title": "Spinner",
       "description": "Erbium spinner component.",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/spinner.tsx",
@@ -1641,7 +1689,7 @@
       "title": "Switch",
       "description": "Erbium switch component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/switch-styles", "@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/switch-styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/switch.tsx",
@@ -1764,7 +1812,7 @@
       "title": "Toggle",
       "description": "Erbium toggle component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/toggle.tsx",

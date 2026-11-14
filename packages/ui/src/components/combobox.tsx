@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { focusSearchInput } from "../lib/focus-search-input";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "./input-group";
@@ -20,6 +21,7 @@ const ComboboxValue = ({ ...props }: ComboboxPrimitive.Value.Props) => (
 const ComboboxTrigger = ({ className, children, ...props }: ComboboxPrimitive.Trigger.Props) => (
   <ComboboxPrimitive.Trigger
     data-slot="combobox-trigger"
+    {...skeletonBlock}
     className={cn(
       "group group/combobox-trigger [&_svg:not([class*='size-'])]:size-control-icon",
       className,

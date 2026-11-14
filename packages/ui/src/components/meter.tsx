@@ -1,9 +1,11 @@
 import { Meter as MeterPrimitive } from "@base-ui/react/meter";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const MeterTrack = ({ className, ...props }: MeterPrimitive.Track.Props) => (
   <MeterPrimitive.Track
     data-slot="meter-track"
+    {...skeletonBlock}
     className={cn(
       "relative flex h-track w-full items-center overflow-x-hidden rounded-full bg-muted",
       className,

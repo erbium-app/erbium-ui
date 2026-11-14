@@ -1,7 +1,7 @@
 import { File as PierreFile } from "@pierre/diffs/react";
 import type { FileProps, FileOptions } from "@pierre/diffs/react";
 import type { FileContents } from "@pierre/diffs";
-import { createContext, use, useState } from "react";
+import { createContext, use, useMemo, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { Icon } from "../components/icon";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
@@ -13,7 +13,9 @@ import {
   CodePanelCopyButton,
   CodePanelEmpty,
   CodePanelHeader,
+  CodePanelLines,
   CodePanelTitle,
+  sourceLines,
 } from "./code-panel";
 import type { CodePanelContentProps, CodePanelProps } from "./code-panel";
 import type { CopyButtonProps } from "./copy-button";
@@ -49,8 +51,10 @@ type FileViewProps<Annotation = undefined> = Omit<CodePanelProps, "children"> &
 const FileViewContext = createContext<{
   file: FileContents;
   content: ReactNode;
-  /** True until Pierre has produced its first render. */
-  loading: boolean;
+  /** Whether Pierre draws line numbers, so the plain source matches. */
+  numbered: boolean;
+  /** False until Pierre has produced its first render; the plain source shows until then. */
+  rendered: boolean;
 } | null>(null);
 
 const useFileView = () => {
@@ -82,15 +86,19 @@ const FileViewActions = (props: ComponentProps<typeof CodePanelActions>) => (
   <CodePanelActions {...props} data-slot="file-view-actions" />
 );
 
-const FileViewContent = (props: Omit<CodePanelContentProps, "children" | "empty" | "loading">) => {
-  const { content, file, loading } = useFileView();
+const FileViewContent = (
+  props: Omit<CodePanelContentProps, "children" | "empty" | "fallback" | "loading">,
+) => {
+  const { content, file, rendered, numbered } = useFileView();
 
   return (
     <CodePanelContent
       aria-label={`Contents of ${file.name}`}
       {...props}
       data-slot="file-view-content"
-      loading={loading}
+      fallback={
+        rendered ? undefined : <CodePanelLines lines={sourceLines(file.contents, numbered)} />
+      }
       empty={
         file.contents.length === 0 ? (
           <CodePanelEmpty title="Empty file" description="This file has no contents." />
@@ -122,38 +130,62 @@ const FileView = <Annotation = undefined,>({
   className,
   ...props
 }: FileViewProps<Annotation>) => {
-  // Pierre highlights asynchronously, so its host stays empty until the first render.
+  // Pierre highlights asynchronously, so its host stays empty until the first render; the plain
+  // source stands in until then.
   const [rendered, setRendered] = useState(false);
 
-  const content = (
-    <PierreFile
-      file={file}
-      options={{
-        ...options,
-        disableFileHeader: true,
-        onPostRender(node, instance, phase) {
-          if (phase !== "unmount") {
-            setRendered(true);
-          }
+  const numbered = options?.disableLineNumbers !== true;
+  const ready = rendered || prerenderedHTML !== undefined;
 
-          return options?.onPostRender?.(node, instance, phase);
-        },
-        theme: diffTheme,
-        themeType: "system",
-        unsafeCSS: diffThemeCSS,
-      }}
-      lineAnnotations={lineAnnotations}
-      selectedLines={selectedLines}
-      renderAnnotation={renderAnnotation}
-      renderGutterUtility={renderGutterUtility}
-      prerenderedHTML={prerenderedHTML}
-      metrics={metrics}
-      disableWorkerPool={disableWorkerPool}
-    />
+  const context = useMemo(
+    () => ({
+      content: (
+        <PierreFile
+          file={file}
+          options={{
+            ...options,
+            disableFileHeader: true,
+            onPostRender(node, instance, phase) {
+              if (phase !== "unmount") {
+                setRendered(true);
+              }
+
+              return options?.onPostRender?.(node, instance, phase);
+            },
+            theme: diffTheme,
+            themeType: "system",
+            unsafeCSS: diffThemeCSS,
+          }}
+          lineAnnotations={lineAnnotations}
+          selectedLines={selectedLines}
+          renderAnnotation={renderAnnotation}
+          renderGutterUtility={renderGutterUtility}
+          prerenderedHTML={prerenderedHTML}
+          metrics={metrics}
+          disableWorkerPool={disableWorkerPool}
+        />
+      ),
+      file,
+      numbered,
+      rendered: ready,
+    }),
+    [
+      disableWorkerPool,
+      file,
+      lineAnnotations,
+      metrics,
+      numbered,
+      options,
+      prerenderedHTML,
+      ready,
+      renderAnnotation,
+      renderGutterUtility,
+      selectedLines,
+    ],
   );
 
   return (
-    <FileViewContext value={{ content, file, loading: !rendered && prerenderedHTML === undefined }}>
+    <FileViewContext value={context}>
       <CodePanel {...props} data-slot="file-view" className={className}>
         {children ?? (
           <>

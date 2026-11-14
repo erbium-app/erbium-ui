@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 import { Icon } from "./icon";
 import { RotatingChevron } from "./stateful-icon";
@@ -34,6 +35,7 @@ const SelectTrigger = ({
 }) => (
   <SelectPrimitive.Trigger
     data-slot="select-trigger"
+    {...skeletonBlock}
     data-size={size}
     className={cn(
       "group group/select-trigger flex w-fit items-center justify-between control-size touch-target rounded-lg border surface-control text-control-sm whitespace-nowrap transition-[color,background-color,box-shadow] duration-150 outline-none motion-reduce:transition-none select-none aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo data-placeholder:text-muted-foreground data-[size=sm]:control-size-sm data-[size=sm]:rounded-[min(var(--radius-md),10px)] *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon data-disabled:cursor-not-allowed data-disabled:opacity-50",

@@ -1,6 +1,7 @@
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { useId } from "react";
+import { skeletonIgnore } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 /* Spinner sizes follow the control icon scale. */
@@ -33,6 +34,7 @@ const Spinner = ({
   return (
     <output
       data-slot="spinner"
+      {...skeletonIgnore}
       data-size={size}
       data-icon={dataIcon}
       aria-label="Loading"

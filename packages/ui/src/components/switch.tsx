@@ -1,6 +1,7 @@
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import type * as React from "react";
 import { switchGeometryClassName } from "../lib/switch-styles";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const switchIconClassName =
@@ -26,6 +27,7 @@ const Switch = ({
 }) => (
   <SwitchPrimitive.Root
     data-slot="switch"
+    {...skeletonBlock}
     data-choice=""
     data-size={size}
     className={cn(

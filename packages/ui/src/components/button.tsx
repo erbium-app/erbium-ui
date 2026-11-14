@@ -1,5 +1,6 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import type { VariantProps } from "class-variance-authority";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "../lib/button-variants";
 import { Kbd } from "./kbd";
@@ -36,6 +37,7 @@ const Button = ({
   return (
     <ButtonPrimitive
       data-slot="button"
+      {...skeletonBlock}
       data-size={size}
       data-variant={variant}
       data-loading={loading ? "" : undefined}

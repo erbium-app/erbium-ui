@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const Avatar = ({
@@ -11,6 +12,7 @@ const Avatar = ({
 }) => (
   <AvatarPrimitive.Root
     data-slot="avatar"
+    {...skeletonBlock}
     data-size={size}
     className={cn(
       "group/avatar image-hairline relative isolate inline-flex size-(--avatar-size,2rem) shrink-0 items-center justify-center rounded-[35%] align-middle select-none data-[size=lg]:[--avatar-size:2.5rem] data-[size=sm]:[--avatar-size:1.5rem]",

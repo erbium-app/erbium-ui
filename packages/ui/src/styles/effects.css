@@ -52,3 +52,40 @@
     background-image: none;
   }
 }
+
+/*
+ * Measured skeletons (`Skeleton` with content, `SkeletonSuspense`). The engine draws its bars from
+ * these properties; they are declared on each skeleton root rather than `:root`, so a skeleton in a
+ * nested light or dark surface resolves that surface's tokens. The `skeleton` utility above stays
+ * as the CSS-only fallback for markup that cannot use the component.
+ */
+[skullet-reveal],
+[data-slot="skeleton"] {
+  --skullet-base: var(--color-skeleton);
+  --skullet-highlight: var(--color-skeleton-highlight);
+  --skullet-radius: var(--radius-sm);
+  --skullet-speed: slow;
+}
+
+@layer components {
+  /*
+   * While loading, the engine hides text-only leaves. A table row paints its background through
+   * its cells, so a hidden cell would cut the row's carved separator. Cells hold no paint of their
+   * own (their text is already transparent), so they stay visible unless drawn as a block.
+   */
+  [skullet-loading] :is(td, th):not([skullet-covered]) {
+    visibility: visible !important;
+  }
+
+  /*
+   * Known content (`skeletonKnown`) stays readable. The engine makes text transparent on the
+   * content around it, and that colour is inherited, so it is restored here.
+   */
+  :where([skullet-loading] [skullet-own]) {
+    color: var(--color-foreground);
+  }
+
+  [skullet-loading] [skullet-own] {
+    -webkit-text-fill-color: currentcolor;
+  }
+}

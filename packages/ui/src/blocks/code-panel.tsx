@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { DirectionProvider } from "../components/direction";
 import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "../components/empty";
 import { Separator } from "../components/separator";
-import { Spinner } from "../components/spinner";
+import { Skeleton } from "../components/skeleton";
 import { cn } from "../lib/utils";
 import { CopyButton } from "./copy-button";
 import type { CopyButtonProps } from "./copy-button";
@@ -60,14 +60,91 @@ const CodePanelCopyButton = ({ children, ...props }: CopyButtonProps) => (
   </CopyButton>
 );
 
+interface CodePanelLine {
+  /** The line number shown in the gutter; none when line numbers are off. */
+  number?: number;
+  text: string;
+  tone?: "addition" | "deletion";
+}
+
+// Rows the panel body can show before it scrolls; later rows stay out of view, so plain fallbacks
+// and skeletons stop there.
+const codePanelLineLimit = 200;
+
+/**
+ * Source as plain rows in the metrics Pierre and code blocks render with (`text-code-block`, the
+ * same gutter), for showing code that is known before it is highlighted. Swapping it for the
+ * highlighted render changes colour only, never position.
+ */
+const CodePanelLines = ({ lines, className }: { lines: CodePanelLine[]; className?: string }) => {
+  const shown = lines.slice(0, codePanelLineLimit);
+  const numbered = shown.some((line) => line.number !== undefined);
+  const digits = String(Math.max(...shown.map((line) => line.number ?? 0), 1)).length;
+  const gutter = { minWidth: `calc(${digits}ch + 2rem)` };
+
+  return (
+    <div data-slot="code-panel-lines" className={cn("min-w-max text-code-block", className)}>
+      {shown.map((line, index) => (
+        <div
+          // Rows are positional: a fallback is replaced, never reordered.
+          key={`${index}:${line.number ?? ""}`}
+          data-tone={line.tone}
+          className="flex data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8"
+        >
+          {numbered ? (
+            <span
+              className="shrink-0 px-4 text-end text-muted-foreground tabular-nums"
+              style={gutter}
+            >
+              {line.number}
+            </span>
+          ) : null}
+          <span className="whitespace-pre ps-2 pe-4">{line.text}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+/** Numbered rows for a file's source. */
+const sourceLines = (source: string, numbered = true): CodePanelLine[] =>
+  source
+    .replace(/\n$/u, "")
+    .split("\n")
+    .slice(0, codePanelLineLimit)
+    .map((text, index) => ({ number: numbered ? index + 1 : undefined, text }));
+
+// Generic lines for source that is not known yet, measured into a skeleton.
+const placeholderLines = sourceLines(
+  [
+    'import { createThing } from "./thing";',
+    "",
+    "export const configure = (options) => {",
+    "  const thing = createThing(options);",
+    "  thing.start();",
+    "",
+    "  return thing;",
+    "};",
+  ].join("\n"),
+);
+
 type CodePanelContentProps = Omit<ComponentProps<"section">, "dir" | "dangerouslySetInnerHTML"> & {
-  /** Shown above the rendered code until the renderer has produced output. */
+  /**
+   * Shown in place of the rendered code until the renderer has produced output. Pass the known
+   * source as `CodePanelLines` so it reads at once and highlighting lands without a loading state.
+   */
+  fallback?: ReactNode;
+  /**
+   * The source itself is not known yet (it is being fetched). Draws a skeleton of code lines.
+   * Prefer `fallback` whenever the source is in hand.
+   */
   loading?: boolean;
   /** Replaces the body when there is nothing to render. */
   empty?: ReactNode;
 };
 
 const CodePanelContent = ({
+  fallback,
   loading,
   empty,
   children,
@@ -75,6 +152,23 @@ const CodePanelContent = ({
   ...props
 }: CodePanelContentProps) => {
   const showEmpty = empty !== undefined && empty !== null && empty !== false;
+  let body: ReactNode = empty;
+
+  if (!showEmpty) {
+    body =
+      loading === true ? (
+        <Skeleton loading label="Loading code">
+          <CodePanelLines lines={placeholderLines} />
+        </Skeleton>
+      ) : (
+        // The renderer's host is empty until its first render, so the fallback holds the code's
+        // place and the highlighted code lands where it was.
+        <>
+          {fallback}
+          {children}
+        </>
+      );
+  }
 
   return (
     <section
@@ -88,18 +182,7 @@ const CodePanelContent = ({
         className,
       )}
     >
-      {showEmpty ? (
-        empty
-      ) : (
-        <>
-          {loading === true ? (
-            <div className="flex min-h-32 items-center justify-center text-muted-foreground">
-              <Spinner size="lg" />
-            </div>
-          ) : null}
-          {children}
-        </>
-      )}
+      {body}
     </section>
   );
 };
@@ -123,10 +206,12 @@ export {
   CodePanelCopyButton,
   CodePanelContent,
   CodePanelEmpty,
+  CodePanelLines,
+  sourceLines,
   codePanelFocusRing,
   codePanelHeader,
   codePanelSurface,
   codePanelTitle,
 };
 
-export type { CodePanelProps, CodePanelContentProps };
+export type { CodePanelProps, CodePanelContentProps, CodePanelLine };

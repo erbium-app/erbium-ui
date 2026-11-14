@@ -2,6 +2,7 @@ import { detectPlatform, formatForDisplay, normalizeHotkey } from "@tanstack/hot
 import type { DisplayHotkey } from "@tanstack/hotkeys";
 import { useSyncExternalStore } from "react";
 import { kbdClassName } from "../lib/kbd-styles";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 type KbdProps = React.ComponentProps<"kbd"> & {
@@ -23,7 +24,13 @@ const Kbd = ({ className, hotkey, useSymbols = true, children, ...props }: KbdPr
     hotkey ?? (isShortcutText(children) ? normalizeHotkey(children, platform) : undefined);
 
   return (
-    <kbd data-slot="kbd" dir="ltr" className={cn(kbdClassName, className)} {...props}>
+    <kbd
+      data-slot="kbd"
+      {...skeletonBlock}
+      dir="ltr"
+      className={cn(kbdClassName, className)}
+      {...props}
+    >
       {binding === undefined ? children : formatForDisplay(binding, { platform, useSymbols })}
     </kbd>
   );

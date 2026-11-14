@@ -1,6 +1,7 @@
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const toggleVariants = cva(
@@ -35,6 +36,7 @@ const Toggle = ({
 }: TogglePrimitive.Props & VariantProps<typeof toggleVariants>) => (
   <TogglePrimitive
     data-slot="toggle"
+    {...skeletonBlock}
     className={cn(toggleVariants({ className, size, variant }))}
     {...props}
   />

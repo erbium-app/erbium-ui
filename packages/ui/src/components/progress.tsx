@@ -1,4 +1,5 @@
 import { Progress as ProgressPrimitive } from "@base-ui/react/progress";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const ProgressTrack = ({ className, ...props }: ProgressPrimitive.Track.Props) => (
@@ -8,6 +9,7 @@ const ProgressTrack = ({ className, ...props }: ProgressPrimitive.Track.Props) =
       className,
     )}
     data-slot="progress-track"
+    {...skeletonBlock}
     {...props}
   />
 );

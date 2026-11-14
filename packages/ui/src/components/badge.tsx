@@ -4,6 +4,7 @@ import type { IconName } from "@erbium/icons";
 import { Icon } from "./icon";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
+import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 import { Spinner } from "./spinner";
 
@@ -77,6 +78,7 @@ const Badge = ({
     defaultTagName: "span",
     props: mergeProps<"span">(
       {
+        ...skeletonBlock,
         "aria-busy": loading || ariaBusy,
         children: (
           <>
