@@ -5,8 +5,10 @@ import type { VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
+// A fieldset gives the group its native group role. min-w-0 resets the
+// fieldset's min-content minimum inline size.
 const buttonGroupVariants = cva(
-  "flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-related has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-e-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>[data-slot=input-control]]:flex-1",
+  "m-0 flex w-fit min-w-0 items-stretch border-0 p-0 *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-related has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-e-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>[data-slot=input-control]]:flex-1",
   {
     defaultVariants: {
       orientation: "horizontal",
@@ -26,9 +28,8 @@ const ButtonGroup = ({
   className,
   orientation = "horizontal",
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) => (
-  <div
-    role="group"
+}: React.ComponentProps<"fieldset"> & VariantProps<typeof buttonGroupVariants>) => (
+  <fieldset
     data-slot="button-group"
     data-orientation={orientation}
     className={cn(buttonGroupVariants({ orientation }), className)}
