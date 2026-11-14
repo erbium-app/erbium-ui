@@ -321,6 +321,7 @@
       "description": "Erbium checkbox component.",
       "dependencies": ["@base-ui/react"],
       "registryDependencies": [
+        "@erbium/choice-styles",
         "@erbium/skeleton-hints",
         "@erbium/stateful-icon",
         "@erbium/use-drag-select",
@@ -331,6 +332,19 @@
           "path": "src/components/checkbox.tsx",
           "target": "@ui/checkbox.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "choice-styles",
+      "type": "registry:lib",
+      "title": "Choice Styles",
+      "description": "Erbium choice styles lib.",
+      "files": [
+        {
+          "path": "src/lib/choice-styles.ts",
+          "target": "@lib/choice-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -802,7 +816,12 @@
       "title": "Field",
       "description": "Erbium field component.",
       "dependencies": ["@base-ui/react", "@base-ui/utils", "class-variance-authority"],
-      "registryDependencies": ["@erbium/animate-height", "@erbium/separator", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/animate-height",
+        "@erbium/choice-styles",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/field.tsx",
@@ -1310,10 +1329,14 @@
       "registryDependencies": [
         "@erbium/animate-height",
         "@erbium/button",
+        "@erbium/choice-styles",
+        "@erbium/field",
         "@erbium/form",
-        "@erbium/icon",
+        "@erbium/form-control-styles",
         "@erbium/kbd",
+        "@erbium/shake",
         "@erbium/stateful-button",
+        "@erbium/stateful-icon",
         "@erbium/step-indicator",
         "@erbium/utils"
       ],
@@ -1331,7 +1354,7 @@
       "title": "Radio Group",
       "description": "Erbium radio group component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
+      "registryDependencies": ["@erbium/choice-styles", "@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/radio-group.tsx",

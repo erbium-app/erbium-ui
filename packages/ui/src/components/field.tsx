@@ -5,6 +5,7 @@ import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { animateHeight } from "../lib/animate-height";
+import { choiceCardClassName } from "../lib/choice-styles";
 import { cn } from "../lib/utils";
 import { Separator } from "./separator";
 
@@ -13,9 +14,11 @@ type FieldRootProps = FieldPrimitive.Root.Props & {
   required?: boolean;
 };
 
+/** Whether the surrounding field, fieldset or questionnaire item must be answered. */
 const FieldRequiredContext = createContext(false);
 const useFieldRequired = () => useContext(FieldRequiredContext);
 
+/** The required asterisk after a label or legend; the control's `required` announces it. */
 const RequiredMark = () => (
   <span aria-hidden="true" className="text-error">
     *
@@ -113,7 +116,7 @@ const fieldVariants = cva("group/field flex w-full gap-related data-invalid:text
       vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
     },
     variant: {
-      card: "group/field-card relative rounded-lg border surface-frame p-panel-sm transition-[background-color,box-shadow] duration-150 motion-reduce:transition-none not-data-disabled:not-has-data-checked:hover:[--surface-tint:var(--surface-tint-hover)] has-data-checked:[--surface-rim:color-mix(in_srgb,var(--selection)_30%,transparent)] has-data-checked:[--surface-tint:var(--surface-tint-selected)] has-focus-visible:[--surface-rim:var(--ring)] data-invalid:[--surface-rim:var(--error)]",
+      card: choiceCardClassName,
       default: "",
     },
   },
@@ -326,5 +329,7 @@ export {
   FieldItem,
   FieldControl,
   FieldValidity,
+  FieldRequiredContext,
+  RequiredMark,
   useFieldRequired,
 };

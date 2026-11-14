@@ -6,28 +6,143 @@ import type { AnyFormApi } from "@tanstack/react-form";
 import { extendForm, formContext, useFieldContext, visibleMessages } from "./form";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { animateHeight } from "../lib/animate-height";
+import { shake } from "../lib/shake";
+import { FieldRequiredContext, RequiredMark, useFieldRequired } from "./field";
+import {
+  checkboxClassName,
+  choiceCardClassName,
+  radioClassName,
+  radioDotClassName,
+} from "../lib/choice-styles";
+import { inputClassName } from "../lib/form-control-styles";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "./button";
 import type { Button } from "./button";
 import { Kbd } from "./kbd";
-import { Icon } from "./icon";
+import { CheckboxStateIcon } from "./stateful-icon";
 import { StatefulButton } from "./stateful-button";
 import type { StatefulButtonProps } from "./stateful-button";
 import { StepIndicator } from "../blocks/step-indicator";
 
-// Eases to the next question's height, so the actions below it do not jump between questions.
+const QuestionnaireItemsContext = React.createContext<
+  readonly QuestionnaireItemDefinition[] | undefined
+>(undefined);
+
+const ITEM = '[data-slot="questionnaire-item"]';
+const ANSWERS = '[data-slot="questionnaire-choices"], [data-slot="questionnaire-input-wrapper"]';
+
+const activeItem = (root: Element) => root.querySelector(`${ITEM}:not([hidden])`);
+
+// One rejection can be reported twice (a click and its submit, or the questionnaire and the form).
+const lastShake = new WeakMap<Element, number>();
+
+/**
+ * Shakes what answers an item, as `FormField` shakes a field's control: its choices or its input,
+ * or the item when it has neither.
+ */
+const shakeAnswers = (item: Element) => {
+  const now = performance.now();
+
+  if (now - (lastShake.get(item) ?? Number.NEGATIVE_INFINITY) < 300) {
+    return;
+  }
+
+  lastShake.set(item, now);
+
+  const answers = [...item.querySelectorAll(ANSWERS)].filter(
+    (answer) => answer.closest(ITEM) === item,
+  );
+
+  const outermost = answers.filter(
+    (answer) => !answers.some((other) => other !== answer && other.contains(answer)),
+  );
+
+  for (const target of outermost.length > 0 ? outermost : [item]) {
+    shake(target);
+  }
+};
+
+/**
+ * The questionnaire rejects Next, Enter and submit while the item is unanswered, without an event
+ * of its own. Each attempt is checked once it has rendered: an item still shown and invalid, or the
+ * invalid item a submit returned to, shakes, on every attempt like a rejected form submit.
+ */
+const useShakeOnRejectedAnswer = (rootRef: React.RefObject<HTMLFormElement | null>) =>
+  React.useCallback(
+    (submit: boolean) => {
+      const root = rootRef.current;
+
+      if (!root) {
+        return;
+      }
+
+      const before = activeItem(root);
+
+      requestAnimationFrame(() => {
+        const after = activeItem(root);
+
+        if (
+          after instanceof HTMLElement &&
+          Object.hasOwn(after.dataset, "invalid") &&
+          (submit || after === before)
+        ) {
+          shakeAnswers(after);
+        }
+      });
+    },
+    [rootRef],
+  );
+
+/**
+ * Eases to the next question's height, so the actions below it do not jump between questions, and
+ * shakes the answers of a question that cannot be left unanswered.
+ */
 const Questionnaire = ({
   className,
+  items,
+  onClick,
+  onKeyDown,
+  onSubmitCapture,
   ref,
   ...props
-}: React.ComponentProps<typeof QuestionnairePrimitive.Root>) => (
-  <QuestionnairePrimitive.Root
-    ref={useMergedRefs(ref, animateHeight)}
-    data-slot="questionnaire"
-    className={cn("flex w-full min-w-0 flex-col gap-group", className)}
-    {...props}
-  />
-);
+}: React.ComponentProps<typeof QuestionnairePrimitive.Root>) => {
+  const rootRef = React.useRef<HTMLFormElement | null>(null);
+  const checkAttempt = useShakeOnRejectedAnswer(rootRef);
+
+  return (
+    // Items take `required` from their definition here, so it is declared once.
+    <QuestionnaireItemsContext.Provider value={items}>
+      <QuestionnairePrimitive.Root
+        ref={useMergedRefs(ref, rootRef, animateHeight)}
+        items={items}
+        data-slot="questionnaire"
+        className={cn("flex w-full min-w-0 flex-col gap-group", className)}
+        onClick={(event) => {
+          onClick?.(event);
+
+          if (
+            event.target instanceof Element &&
+            event.target.closest('[data-slot="questionnaire-next"]')
+          ) {
+            checkAttempt(false);
+          }
+        }}
+        onKeyDown={(event) => {
+          onKeyDown?.(event);
+
+          if (event.key === "Enter" && !event.repeat) {
+            checkAttempt(false);
+          }
+        }}
+        onSubmitCapture={(event) => {
+          onSubmitCapture?.(event);
+          checkAttempt(true);
+        }}
+        {...props}
+      />
+    </QuestionnaireItemsContext.Provider>
+  );
+};
 
 const QuestionnaireStepIndicator = ({
   className,
@@ -73,33 +188,65 @@ const QuestionnaireStepIndicator = ({
   />
 );
 
-// Eases to make room for its error.
+/**
+ * One question. A question that cannot be skipped is `required`, taken from its definition in the
+ * questionnaire's `items` (set `required` here only without `items`): its title shows the required
+ * mark, as a required field's label does. It eases to make room for its error.
+ */
 const QuestionnaireItem = ({
   className,
+  name,
   ref,
+  required: requiredProp,
   ...props
-}: React.ComponentProps<typeof QuestionnairePrimitive.Item>) => (
-  <QuestionnairePrimitive.Item
-    ref={useMergedRefs(ref, animateHeight)}
-    data-slot="questionnaire-item"
-    className={cn("flex min-w-0 flex-col gap-group border-0 p-0 outline-none", className)}
-    {...props}
-  />
-);
+}: React.ComponentProps<typeof QuestionnairePrimitive.Item>) => {
+  const definition = React.useContext(QuestionnaireItemsContext)?.find(
+    (item) => item.name === name,
+  );
 
+  const required = requiredProp ?? definition?.required ?? false;
+
+  return (
+    <FieldRequiredContext.Provider value={required}>
+      <QuestionnairePrimitive.Item
+        ref={useMergedRefs(ref, animateHeight)}
+        data-slot="questionnaire-item"
+        name={name}
+        required={required}
+        className={cn("flex min-w-0 flex-col gap-group border-0 p-0 outline-none", className)}
+        {...props}
+      />
+    </FieldRequiredContext.Provider>
+  );
+};
+
+/** The question, as the item's legend. A required item's title ends with the required mark. */
 const QuestionnaireTitle = ({
+  children,
   className,
   ...props
-}: React.ComponentProps<typeof QuestionnairePrimitive.Title>) => (
-  <QuestionnairePrimitive.Title
-    data-slot="questionnaire-title"
-    className={cn(
-      "text-subtitle text-pretty [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4",
-      className,
-    )}
-    {...props}
-  />
-);
+}: React.ComponentProps<typeof QuestionnairePrimitive.Title>) => {
+  const required = useFieldRequired();
+
+  return (
+    <QuestionnairePrimitive.Title
+      data-slot="questionnaire-title"
+      className={cn(
+        "text-subtitle text-pretty [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+      {required ? (
+        <>
+          {" "}
+          <RequiredMark />
+        </>
+      ) : null}
+    </QuestionnairePrimitive.Title>
+  );
+};
 
 const QuestionnaireDescription = ({
   className,
@@ -123,6 +270,57 @@ const QuestionnaireChoices = ({
   />
 );
 
+interface ChoiceIndicatorProps {
+  checked: boolean;
+  invalid: boolean;
+  type: "checkbox" | "radio";
+}
+
+/**
+ * Draws Erbium's radio or checkbox for a choice. The choice's native input does the work, so this
+ * only mirrors its state onto the shared choice styles and stays out of the accessibility tree.
+ */
+const ChoiceIndicator = ({ checked, invalid, type }: ChoiceIndicatorProps) => {
+  const state = {
+    "aria-hidden": true,
+    "aria-invalid": invalid || undefined,
+    "data-checked": checked ? "" : undefined,
+    "data-choice": "",
+    "data-slot": "questionnaire-choice-indicator",
+  } as const;
+
+  if (type === "radio") {
+    return (
+      <span {...state} className={cn(radioClassName, "pointer-events-none choice-first-line")}>
+        {/* The dot grows from the center with a slight overshoot and shrinks back, like the radio's. */}
+        <span className="absolute inset-0 grid place-content-center">
+          <span
+            className={cn(
+              radioDotClassName,
+              "scale-0 opacity-0 transition-[scale,opacity] duration-150 ease-in group-data-checked/radio-group-item:scale-100 group-data-checked/radio-group-item:opacity-100 group-data-checked/radio-group-item:duration-200 group-data-checked/radio-group-item:ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none",
+            )}
+          />
+        </span>
+      </span>
+    );
+  }
+
+  return (
+    <span {...state} className={cn(checkboxClassName, "pointer-events-none choice-first-line")}>
+      <span
+        data-checked={state["data-checked"]}
+        className="group/check-indicator grid place-content-center text-current"
+      >
+        <CheckboxStateIcon />
+      </span>
+    </span>
+  );
+};
+
+/**
+ * One answer, drawn as a choice card (the card `Field`'s surface) with Erbium's radio, or checkbox
+ * in a `multiple` item. The whole card toggles the answer.
+ */
 const QuestionnaireChoice = ({
   children,
   className,
@@ -131,7 +329,8 @@ const QuestionnaireChoice = ({
   <QuestionnairePrimitive.Choice
     data-slot="questionnaire-choice"
     className={cn(
-      "group/questionnaire-choice relative flex min-h-control-touch cursor-pointer items-start gap-2.5 rounded-lg border border-input bg-transparent px-3 py-2.5 text-start text-caption transition-[color,background-color,border-color,box-shadow] outline-none select-none hover:bg-muted-hover has-[>input:focus-visible]:border-ring data-invalid:border-error data-invalid:ring-[1.5px] data-invalid:ring-invalid-halo data-invalid:has-[>input:focus-visible]:border-error data-invalid:data-checked:border-error dark:bg-input/20 dark:data-invalid:border-invalid dark:data-invalid:has-[>input:focus-visible]:border-invalid dark:data-invalid:data-checked:border-invalid data-checked:border-selection/40 data-checked:bg-muted dark:data-checked:bg-muted",
+      choiceCardClassName,
+      "group/questionnaire-choice flex cursor-pointer items-start gap-related text-start select-none",
       "data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-50",
       className,
     )}
@@ -140,40 +339,32 @@ const QuestionnaireChoice = ({
     <QuestionnairePrimitive.ChoiceInput
       data-slot="questionnaire-choice-input"
       className="absolute inset-0 z-10 size-full cursor-pointer opacity-0"
+      render={(inputProps, state) => (
+        <>
+          <input {...inputProps} />
+          <ChoiceIndicator checked={state.checked} invalid={state.invalid} type={state.type} />
+        </>
+      )}
     />
-    <span
-      aria-hidden="true"
-      data-slot="questionnaire-choice-indicator"
-      className="pointer-events-none relative flex size-4 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-lg border border-input group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5 group-data-[type=radio]/questionnaire-choice:rounded-full group-data-[type=radio]/questionnaire-choice:[corner-shape:round] group-data-checked/questionnaire-choice:border-selection group-data-checked/questionnaire-choice:bg-selection group-data-checked/questionnaire-choice:text-selection-foreground dark:bg-input/30 dark:group-data-checked/questionnaire-choice:bg-selection"
-    >
-      <span
-        data-slot="questionnaire-choice-indicator-dot"
-        className="hidden size-2 rounded-full bg-selection-foreground group-data-[type=checkbox]/questionnaire-choice:hidden group-data-checked/questionnaire-choice:block"
-      />
-      <Icon
-        name="check"
-        data-slot="questionnaire-choice-indicator-check"
-        className="hidden size-3.5 group-data-[type=radio]/questionnaire-choice:hidden group-data-checked/questionnaire-choice:block"
-      />
-    </span>
     <QuestionnairePrimitive.ChoiceLabel
       data-slot="questionnaire-choice-label"
-      className="flex min-w-0 flex-1 flex-col gap-0.5 "
+      className="flex min-w-0 flex-1 flex-col gap-0.5 text-control"
     >
       {children}
     </QuestionnairePrimitive.ChoiceLabel>
     <QuestionnairePrimitive.ChoiceShortcut
       data-slot="questionnaire-choice-shortcut"
       render={<Kbd />}
-      className="ms-auto hidden shrink-0 translate-y-[--spacing(0.45)] group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5 group-data-shortcut/questionnaire-choice:inline-flex"
+      className="ms-auto hidden shrink-0 choice-first-line [--choice-height:--spacing(5)] group-data-shortcut/questionnaire-choice:inline-flex"
     />
   </QuestionnairePrimitive.Choice>
 );
 
+/** Secondary text under a choice's label, styled like a field description. */
 const QuestionnaireChoiceDescription = ({ className, ...props }: React.ComponentProps<"span">) => (
   <span
     data-slot="questionnaire-choice-description"
-    className={cn("text-muted-foreground", className)}
+    className={cn("text-caption text-pretty text-muted-foreground", className)}
     {...props}
   />
 );
@@ -188,11 +379,8 @@ const QuestionnaireInput = ({
   >
     <QuestionnairePrimitive.Input
       data-slot="questionnaire-input"
-      className={cn(
-        "min-h-control-touch w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-field transition-[color,box-shadow,background-color] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-error aria-invalid:ring-[1.5px] aria-invalid:ring-invalid-halo pointer-fine:min-h-control dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-invalid",
-        "selection:bg-selection selection:text-selection-foreground placeholder:text-muted-foreground",
-        className,
-      )}
+      // The same field surface as `Input`.
+      className={cn(inputClassName, className)}
       {...props}
     />
   </div>
@@ -340,14 +528,55 @@ const useFieldMessages = () => {
   return React.useMemo(() => visibleMessages(meta), [meta]);
 };
 
+/**
+ * Shakes the item's answers after each submit the form rejected because of this field, like
+ * `FormField`. The questionnaire returns to the item first, so it shakes once it is shown.
+ */
+const useShakeOnRejectedSubmit = (itemRef: React.RefObject<HTMLFieldSetElement | null>) => {
+  const field = useFieldContext<unknown>();
+  const attempts = useSelector(field.form.store, (state) => state.submissionAttempts);
+  const submitting = useSelector(field.form.store, (state) => state.isSubmitting);
+  const shaken = React.useRef(attempts);
+
+  React.useEffect(() => {
+    if (submitting || attempts === shaken.current) {
+      return;
+    }
+
+    shaken.current = attempts;
+
+    if (field.state.meta.errors.length === 0) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      const item = itemRef.current;
+
+      if (item?.isConnected === true && item.hidden === false) {
+        shakeAnswers(item);
+      }
+    });
+  }, [attempts, field, itemRef, submitting]);
+};
+
 /** `QuestionnaireItem` named after the field and invalid while it shows errors. */
-const QuestionnaireFieldItem = (
-  props: Omit<React.ComponentProps<typeof QuestionnaireItem>, "invalid" | "name">,
-) => {
+const QuestionnaireFieldItem = ({
+  ref,
+  ...props
+}: Omit<React.ComponentProps<typeof QuestionnaireItem>, "invalid" | "name">) => {
   const field = useFieldContext<unknown>();
   const messages = useFieldMessages();
+  const itemRef = React.useRef<HTMLFieldSetElement | null>(null);
+  useShakeOnRejectedSubmit(itemRef);
 
-  return <QuestionnaireItem name={field.name} invalid={messages.length > 0} {...props} />;
+  return (
+    <QuestionnaireItem
+      ref={useMergedRefs(ref, itemRef)}
+      name={field.name}
+      invalid={messages.length > 0}
+      {...props}
+    />
+  );
 };
 
 /** A `multiple` item's field holds every chosen value. */
@@ -373,15 +602,19 @@ const QuestionnaireFieldChoice = ({
       onChange={(event) => {
         const { checked } = event.target;
 
-        if (!isChoiceList(current)) {
+        if (isChoiceList(current)) {
+          field.handleChange(
+            checked ? [...current, value] : current.filter((chosen) => chosen !== value),
+          );
+        } else {
           field.handleChange(value);
-
-          return;
         }
 
-        field.handleChange(
-          checked ? [...current, value] : current.filter((chosen) => chosen !== value),
-        );
+        // Checking an earlier answer can leave errors on this one before it is reached; answering
+        // replaces them with the answer's own result instead of showing them.
+        if (field.state.meta.errors.length > 0) {
+          void field.validate("submit");
+        }
       }}
       {...props}
     />
@@ -438,20 +671,42 @@ const QuestionnaireForm = ({
 
   const item = itemProp ?? uncontrolledItem;
 
-  const changeItem = (nextItem: string) => {
+  const showItem = (nextItem: string) => {
     setUncontrolledItem(nextItem);
     onItemChange?.(nextItem);
+  };
+
+  const errorsIn = (name: string) => form.getFieldMeta(name)?.errors.length ?? 0;
+
+  // The schema checks each answer before the questionnaire moves past it, not only on submit.
+  const advance = async (nextItem: string) => {
+    form.setFieldMeta(item, (meta) => ({ ...meta, isTouched: true }));
+    await form.validateField(item, "submit");
+
+    if (errorsIn(item) === 0) {
+      showItem(nextItem);
+    }
+  };
+
+  const order = (name: string) => items.findIndex((definition) => definition.name === name);
+
+  const changeItem = (nextItem: string) => {
+    if (order(nextItem) > order(item)) {
+      void advance(nextItem);
+
+      return;
+    }
+
+    showItem(nextItem);
   };
 
   const submit = async () => {
     await form.handleSubmit();
 
-    const invalid = items.find(
-      (definition) => (form.getFieldMeta(definition.name)?.errors.length ?? 0) > 0,
-    );
+    const invalid = items.find((definition) => errorsIn(definition.name) > 0);
 
     if (invalid) {
-      changeItem(invalid.name);
+      showItem(invalid.name);
     }
   };
 
