@@ -199,10 +199,13 @@ See [Typography](/docs/foundations/typography) for font roles, reading, and mult
 Use the Erbium CLI from a project with `components.json` and TypeScript path aliases. Select the Erbium package explicitly when running the command.
 
 ```sh
+bunx --package @erbium/cli erbium init
+bunx --package @erbium/cli erbium search button
+bunx --package @erbium/cli erbium docs button
 bunx --package @erbium/cli erbium add styles button
 ```
 
-If you already installed those items with shadcn, use `adopt styles button` instead. Adoption checks that the files match the current registry revision before it records them. It leaves the source files as they are.
+If you already installed those items with shadcn, use `adopt styles button` instead. Adoption checks that the files match the registry revision before it records them. To adopt an older install, use `history button` to find the release commit, then run `adopt styles button --at <commit>`. Adoption leaves the source files as they are.
 
 Commit `.erbium/lock.json` and `.erbium/bases/` with your source. The lock records the registry revision for each item and the hash of each installed file. The baseline files let Erbium compare upstream updates against exactly what landed in your project, even after you edit the files.
 
@@ -215,4 +218,6 @@ bunx --package @erbium/cli erbium update
 bunx --package @erbium/cli erbium check
 ```
 
-Updates use Git to merge your edits and the registry's changes from the same baseline. If both sides changed the same lines, Erbium reports the conflict before writing source files. If a revision stops shipping a file, Erbium reports the path and leaves the file in your project. `check` runs offline and reports missing files, damaged baselines, unresolved conflict markers, and missing package declarations. Continue running your project's own lint, type checks, and build.
+Updates use Git to merge your edits and the registry's changes from the same baseline. If both sides changed the same lines, Erbium reports the conflict before writing source files. If a revision stops shipping a file, Erbium reports the path and leaves the file in your project. `check` runs offline and reports missing files, damaged baselines, unresolved conflict markers, missing package declarations, changed alias destinations, and broken local imports. Use `check --only imports,provenance --json` to select checks and get structured output. Continue running your project's own lint, type checks, and build.
+
+Run `init --agents` to add the Erbium skill to the project. Run `usage --offline` from a Git checkout to see which files and workspaces import tracked items. Leave out `--offline` to include available updates.
