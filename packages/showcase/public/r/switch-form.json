@@ -3,17 +3,11 @@
   "name": "switch-form",
   "type": "registry:block",
   "title": "Switch: Form",
-  "description": "Set `name` to submit the switch with a form. `value` and `uncheckedValue` choose what is sent for each state, and `required` blocks submission until the switch is on.",
-  "registryDependencies": [
-    "@erbium/code-block",
-    "@erbium/field",
-    "@erbium/stateful-button",
-    "@erbium/styles",
-    "@erbium/switch"
-  ],
+  "description": "Bind the switch to a boolean with `field.SwitchField`. TanStack Form validates the required terms switch and displays its error. For native submission, set `name` and use `value` and `uncheckedValue` to control the serialized values.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/form", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { StatefulButton } from \"@/registry/erbium/ui/stateful-button\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport { useState } from \"react\";\n\nconst SwitchForm = () => {\n  const [submitted, setSubmitted] = useState<string>();\n\n  return (\n    <form\n      className=\"flex w-72 flex-col gap-group\"\n      onSubmit={(event) => {\n        event.preventDefault();\n        const data = Object.fromEntries(new FormData(event.currentTarget));\n        setSubmitted(JSON.stringify(data, null, 2));\n      }}\n    >\n      <Field orientation=\"horizontal\">\n        <Switch name=\"newsletter\" value=\"yes\" uncheckedValue=\"no\" />\n        <FieldLabel>Subscribe to the newsletter</FieldLabel>\n      </Field>\n      <Field orientation=\"horizontal\">\n        <Switch name=\"terms\" required />\n        <FieldLabel>Accept the terms (required)</FieldLabel>\n      </Field>\n      <StatefulButton className=\"self-start\" type=\"submit\">\n        Submit\n      </StatefulButton>\n      {submitted ? <CodeBlock code={submitted} language=\"json\" title=\"Submitted values\" /> : null}\n    </form>\n  );\n};\n\nexport default SwitchForm;\n",
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\nimport { Form, useAppForm } from \"@/registry/erbium/ui/form\";\n\nconst SwitchForm = () => {\n  const form = useAppForm({\n    defaultValues: { newsletter: false, terms: false },\n  });\n\n  return (\n    <Form form={form} className=\"flex w-72 flex-col gap-group\">\n      <form.AppField\n        name=\"terms\"\n        validators={{\n          onDynamic: ({ value }) => (value ? undefined : \"Accept the terms to continue.\"),\n        }}\n      >\n        {(field) => <field.SwitchField label=\"Accept terms and conditions\" showError />}\n      </form.AppField>\n      <form.AppField name=\"newsletter\">\n        {(field) => <field.SwitchField label=\"Subscribe to the newsletter\" />}\n      </form.AppField>\n      <form.SubmitButton className=\"self-start\">Submit</form.SubmitButton>\n      <form.Subscribe\n        selector={(state) =>\n          state.isSubmitSuccessful && !state.isSubmitting ? state.values : undefined\n        }\n      >\n        {(values) =>\n          values && (\n            <CodeBlock\n              code={JSON.stringify(values, null, 2)}\n              language=\"json\"\n              title=\"Submitted values\"\n            />\n          )\n        }\n      </form.Subscribe>\n    </Form>\n  );\n};\n\nexport default SwitchForm;\n",
       "path": "src/switch/examples/switch-form.tsx",
       "target": "@components/showcase/switch/examples/switch-form.tsx",
       "type": "registry:component"

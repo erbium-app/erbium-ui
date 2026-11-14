@@ -1246,8 +1246,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1271,8 +1271,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1310,8 +1310,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1359,8 +1359,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1384,8 +1384,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1409,8 +1409,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1434,8 +1434,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1492,8 +1492,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1518,9 +1518,9 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/spinner",
@@ -1637,8 +1637,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1662,8 +1662,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1687,8 +1687,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1712,8 +1712,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -1737,8 +1737,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/icon",
         "@erbium/spinner",
         "@erbium/styles"
@@ -1763,8 +1763,8 @@
       "description": "",
       "registryDependencies": [
         "@erbium/autocomplete",
-        "@erbium/button",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/spinner",
         "@erbium/styles"
       ],
@@ -4806,13 +4806,12 @@
       "type": "registry:component",
       "title": "card demo",
       "description": "Erbium card demo example.",
+      "dependencies": ["@tanstack/react-router@^1.170.46", "effect@4.1.4"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/card",
         "@erbium/field",
-        "@erbium/input",
-        "@erbium/password-input",
-        "@erbium/stateful-button",
+        "@erbium/form",
+        "@erbium/separator",
         "@erbium/styles"
       ],
       "files": [
@@ -4826,9 +4825,9 @@
     {
       "name": "card-edge-to-edge",
       "type": "registry:component",
-      "title": "Card: Edge To Edge",
-      "description": "Place media flush with the card edges.",
-      "registryDependencies": ["@erbium/card", "@erbium/separator", "@erbium/styles"],
+      "title": "Card: Edge-to-edge table",
+      "description": "Place the table directly inside the card so its header and row dividers span the full width. Match the outer cells to the card's padding to align them with the header and footer.",
+      "registryDependencies": ["@erbium/card", "@erbium/styles", "@erbium/table"],
       "files": [
         {
           "path": "src/card/variants/edge-to-edge.tsx",
@@ -4869,13 +4868,12 @@
       "type": "registry:block",
       "title": "Card: Overview",
       "description": "",
+      "dependencies": ["@tanstack/react-router@^1.170.46", "effect@4.1.4"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/card",
         "@erbium/field",
-        "@erbium/input",
-        "@erbium/password-input",
-        "@erbium/stateful-button",
+        "@erbium/form",
+        "@erbium/separator",
         "@erbium/styles"
       ],
       "files": [
@@ -4929,18 +4927,17 @@
       "type": "registry:item",
       "title": "Card stories",
       "description": "All card variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-router@^1.170.46", "effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/overlay-provider",
-        "@erbium/password-input",
         "@erbium/separator",
-        "@erbium/stateful-button",
         "@erbium/styles",
+        "@erbium/table",
         "@erbium/toast"
       ],
       "files": [
@@ -5733,15 +5730,8 @@
       "name": "checkbox-form",
       "type": "registry:block",
       "title": "Checkbox: Form",
-      "description": "A hidden input submits with the form. `name` sets the key, `value` the checked value (defaults to `\"on\"`), and `uncheckedValue` what an unticked box submits. `required` blocks submission until checked. An invalid submit shakes the visible terms row; selecting it clears the invalid state. Drag across both choices to change them together. Use `form` to associate a checkbox rendered outside its form.",
-      "registryDependencies": [
-        "@erbium/checkbox",
-        "@erbium/code-block",
-        "@erbium/field",
-        "@erbium/shake",
-        "@erbium/stateful-button",
-        "@erbium/styles"
-      ],
+      "description": "Bind the checkbox to a boolean with `field.CheckboxField`. Validate required consent in TanStack Form and use `showError` to show the message next to the checkbox. For native form submission, `name`, `value`, and `uncheckedValue` control the hidden input.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/checkbox/examples/checkbox-form.tsx",
@@ -5890,9 +5880,8 @@
         "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/overlay-provider",
-        "@erbium/shake",
-        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/table",
         "@erbium/toast",
@@ -8410,11 +8399,12 @@
       "name": "date-picker-form",
       "type": "registry:component",
       "title": "Date Picker: Form",
-      "description": "Give `DatePicker` a `name` to submit its value. Ranges submit as ISO intervals.",
+      "description": "Bind the date range through `form.AppField`. Validate that both dates are present, then format the selected range as an ISO interval.",
       "registryDependencies": [
-        "@erbium/button",
+        "@erbium/date",
         "@erbium/date-picker",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/styles"
       ],
       "files": [
@@ -8521,6 +8511,7 @@
         "@erbium/date",
         "@erbium/date-picker",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/separator",
@@ -8686,9 +8677,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dialog",
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/stateful-button",
+        "@erbium/form",
         "@erbium/styles"
       ],
       "files": [
@@ -8741,9 +8730,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dialog",
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/stateful-button",
+        "@erbium/form",
         "@erbium/styles"
       ],
       "files": [
@@ -8836,9 +8823,9 @@
         "@erbium/csp-provider",
         "@erbium/dialog",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/input",
         "@erbium/overlay-provider",
-        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -10621,13 +10608,10 @@
       "description": "Erbium field demo example.",
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/checkbox",
         "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/select",
-        "@erbium/stateful-button",
-        "@erbium/styles",
-        "@erbium/textarea"
+        "@erbium/styles"
       ],
       "files": [
         {
@@ -10763,13 +10747,10 @@
       "description": "",
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/checkbox",
         "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/select",
-        "@erbium/stateful-button",
-        "@erbium/styles",
-        "@erbium/textarea"
+        "@erbium/styles"
       ],
       "files": [
         {
@@ -10791,12 +10772,10 @@
       "description": "Erbium field payment method example.",
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/checkbox",
         "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/select",
-        "@erbium/styles",
-        "@erbium/textarea"
+        "@erbium/styles"
       ],
       "files": [
         {
@@ -10825,12 +10804,7 @@
       "type": "registry:component",
       "title": "field profile form",
       "description": "Erbium field profile form example.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/field/examples/field-profile-form.tsx",
@@ -10863,12 +10837,7 @@
       "type": "registry:block",
       "title": "Field: Responsive",
       "description": "Adapt the field layout to the available width.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/field/examples/field-profile-form.tsx",
@@ -10887,14 +10856,7 @@
       "type": "registry:block",
       "title": "Field: Responsive Layout",
       "description": "- **Vertical fields:** Default orientation stacks label, control, and helper text—ideal for mobile-first layouts.\n\n- **Horizontal fields:** Set `orientation=\"horizontal\"` on `Field` to align the label and control side-by-side. Pair with `FieldContent` to keep descriptions aligned.\n\n- **Responsive fields:** Set `orientation=\"responsive\"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `FieldGroup` to switch orientations at specific breakpoints.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/field",
-        "@erbium/input",
-        "@erbium/stateful-button",
-        "@erbium/styles",
-        "@erbium/textarea"
-      ],
+      "registryDependencies": ["@erbium/button", "@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/field/examples/field-responsive.tsx",
@@ -10957,13 +10919,13 @@
         "@erbium/checkbox",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/password-input",
         "@erbium/radio-group",
         "@erbium/select",
         "@erbium/slider",
-        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/textarea",
@@ -11989,7 +11951,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/field",
-        "@erbium/input",
+        "@erbium/form",
         "@erbium/select",
         "@erbium/styles"
       ],
@@ -12648,6 +12610,7 @@
         "@erbium/button-group",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/icon",
         "@erbium/input",
         "@erbium/input-group",
@@ -15388,7 +15351,6 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/form",
-        "@erbium/icon",
         "@erbium/styles"
       ],
       "files": [
@@ -15547,7 +15509,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/form",
-        "@erbium/icon",
         "@erbium/otp-field",
         "@erbium/overlay-provider",
         "@erbium/styles",
@@ -16027,7 +15988,7 @@
       "title": "Password Input: Form",
       "description": "A sign-up form owned by TanStack Form. One Effect Schema checks the email, requires 8 characters and a number in the password, and adds a filter that places a mismatch on the confirmation through its `path`. Each password renders through `field.PasswordField`, and both share one visibility state, so either toggle shows the two passwords together. Showing a password with the pointer keeps focus in the input, so it does not mark the field touched. Submitting hides both passwords again.",
       "dependencies": ["effect@4.1.4"],
-      "registryDependencies": ["@erbium/field", "@erbium/form", "@erbium/styles"],
+      "registryDependencies": ["@erbium/card", "@erbium/field", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/password-input/examples/password-input-form.tsx",
@@ -16120,6 +16081,7 @@
       "dependencies": ["effect@4.1.4"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/card",
         "@erbium/checkbox",
         "@erbium/csp-provider",
         "@erbium/field",
@@ -17409,12 +17371,12 @@
       "name": "radio-group-form",
       "type": "registry:block",
       "title": "Radio Group: Form",
-      "description": "`name` submits the selected `value` with the form; `required` blocks submission until an item is chosen.",
+      "description": "Bind the selected shipping option through `form.AppField`. Compose `RadioGroup` with `field.Field` and `field.FieldError` so a missing selection is reported at the group.",
       "registryDependencies": [
         "@erbium/code-block",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/radio-group",
-        "@erbium/stateful-button",
         "@erbium/styles"
       ],
       "files": [
@@ -17511,9 +17473,9 @@
         "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/overlay-provider",
         "@erbium/radio-group",
-        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -19090,6 +19052,7 @@
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/select",
@@ -19136,7 +19099,7 @@
         "@erbium/button",
         "@erbium/card",
         "@erbium/dropdown-menu",
-        "@erbium/field",
+        "@erbium/form",
         "@erbium/input",
         "@erbium/styles",
         "@erbium/table"
@@ -20867,14 +20830,8 @@
       "name": "switch-form",
       "type": "registry:block",
       "title": "Switch: Form",
-      "description": "Set `name` to submit the switch with a form. `value` and `uncheckedValue` choose what is sent for each state, and `required` blocks submission until the switch is on.",
-      "registryDependencies": [
-        "@erbium/code-block",
-        "@erbium/field",
-        "@erbium/stateful-button",
-        "@erbium/styles",
-        "@erbium/switch"
-      ],
+      "description": "Bind the switch to a boolean with `field.SwitchField`. TanStack Form validates the required terms switch and displays its error. For native submission, set `name` and use `value` and `uncheckedValue` to control the serialized values.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/form", "@erbium/styles"],
       "files": [
         {
           "path": "src/switch/examples/switch-form.tsx",
@@ -21035,9 +20992,9 @@
         "@erbium/code-block",
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/form",
         "@erbium/icon",
         "@erbium/overlay-provider",
-        "@erbium/stateful-button",
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/toast"

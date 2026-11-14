@@ -1,38 +1,55 @@
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
-import { Field, FieldItem, FieldLabel } from "@erbium/ui/components/field";
+import { FieldItem, FieldLabel } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
-import { StatefulButton } from "@erbium/ui/components/stateful-button";
-import { useState } from "react";
+import { Form, useAppForm } from "@erbium/ui/components/form";
 
 const RadioGroupForm = () => {
-  const [submitted, setSubmitted] = useState<string>();
+  const form = useAppForm({ defaultValues: { shipping: "" } });
 
   return (
-    <form
-      className="flex w-72 flex-col gap-group"
-      onSubmit={(event) => {
-        event.preventDefault();
-        const data = Object.fromEntries(new FormData(event.currentTarget));
-        setSubmitted(JSON.stringify(data, null, 2));
-      }}
-    >
-      <Field>
-        <RadioGroup name="shipping" required>
-          <FieldItem orientation="horizontal">
-            <RadioGroupItem value="standard" />
-            <FieldLabel>Standard (5–7 days)</FieldLabel>
-          </FieldItem>
-          <FieldItem orientation="horizontal">
-            <RadioGroupItem value="express" />
-            <FieldLabel>Express (1–2 days)</FieldLabel>
-          </FieldItem>
-        </RadioGroup>
-      </Field>
-      <StatefulButton className="self-start" type="submit">
-        Submit
-      </StatefulButton>
-      {submitted ? <CodeBlock code={submitted} language="json" title="Submitted values" /> : null}
-    </form>
+    <Form form={form} className="flex w-72 flex-col gap-group">
+      <form.AppField
+        name="shipping"
+        validators={{ onDynamic: ({ value }) => (value ? undefined : "Choose a shipping option.") }}
+      >
+        {(field) => (
+          <field.Field>
+            <RadioGroup
+              aria-label="Shipping speed"
+              value={field.state.value}
+              onValueChange={field.handleChange}
+              onBlur={field.handleBlur}
+            >
+              <FieldItem orientation="horizontal">
+                <RadioGroupItem value="standard" />
+                <FieldLabel>Standard (5–7 days)</FieldLabel>
+              </FieldItem>
+              <FieldItem orientation="horizontal">
+                <RadioGroupItem value="express" />
+                <FieldLabel>Express (1–2 days)</FieldLabel>
+              </FieldItem>
+            </RadioGroup>
+            <field.FieldError />
+          </field.Field>
+        )}
+      </form.AppField>
+      <form.SubmitButton className="self-start">Submit</form.SubmitButton>
+      <form.Subscribe
+        selector={(state) =>
+          state.isSubmitSuccessful && !state.isSubmitting ? state.values : undefined
+        }
+      >
+        {(values) =>
+          values && (
+            <CodeBlock
+              code={JSON.stringify(values, null, 2)}
+              language="json"
+              title="Submitted values"
+            />
+          )
+        }
+      </form.Subscribe>
+    </Form>
   );
 };
 

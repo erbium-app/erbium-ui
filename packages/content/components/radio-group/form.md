@@ -3,4 +3,4 @@ title: "Form"
 story: Form
 ---
 
-`name` submits the selected `value` with the form; `required` blocks submission until an item is chosen.
+Bind the selected shipping option through `form.AppField`. Compose `RadioGroup` with `field.Field` and `field.FieldError` so a missing selection is reported at the group.

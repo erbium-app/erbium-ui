@@ -3,4 +3,4 @@ title: "Form"
 story: Form
 ---
 
-Give `DatePicker` a `name` to submit its value. Ranges submit as ISO intervals.
+Bind the date range through `form.AppField`. Validate that both dates are present, then format the selected range as an ISO interval.

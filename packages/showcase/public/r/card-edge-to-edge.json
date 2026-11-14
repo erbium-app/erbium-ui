@@ -2,12 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card-edge-to-edge",
   "type": "registry:component",
-  "title": "Card: Edge To Edge",
-  "description": "Place media flush with the card edges.",
-  "registryDependencies": ["@erbium/card", "@erbium/separator", "@erbium/styles"],
+  "title": "Card: Edge-to-edge table",
+  "description": "Place the table directly inside the card so its header and row dividers span the full width. Match the outer cells to the card's padding to align them with the header and footer.",
+  "registryDependencies": ["@erbium/card", "@erbium/styles", "@erbium/table"],
   "files": [
     {
-      "content": "import { Card, CardFooter, CardHeader, CardTitle } from \"@/registry/erbium/ui/card\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <Card className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Recent activity</CardTitle>\n    </CardHeader>\n    <Separator variant=\"full\" />\n    <div className=\"bg-muted p-panel\">Content runs to the card edges.</div>\n    <CardFooter>View all activity</CardFooter>\n  </Card>\n);\n\nexport default Example;\n",
+      "content": "import {\n  Card,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport {\n  Table,\n  TableBody,\n  TableCell,\n  TableHead,\n  TableHeader,\n  TableRow,\n} from \"@/registry/erbium/ui/table\";\n\nconst expenses = [\n  { amount: \"$24.00\", date: \"Jun 12\", merchant: \"Figma\" },\n  { amount: \"$20.00\", date: \"Jun 10\", merchant: \"Vercel\" },\n  { amount: \"$18.00\", date: \"Jun 4\", merchant: \"GitHub\" },\n];\n\nconst Example = () => (\n  <Card className=\"w-96 max-w-full gap-0\">\n    <CardHeader>\n      <CardTitle>Workspace expenses</CardTitle>\n      <CardDescription>June 2026 · 3 transactions</CardDescription>\n    </CardHeader>\n    <Table\n      aria-label=\"June workspace expenses\"\n      containerProps={{ className: \"mt-(--card-spacing)\" }}\n    >\n      <TableHeader className=\"bg-muted\">\n        <TableRow>\n          <TableHead className=\"ps-(--card-spacing)\" scope=\"col\">\n            Merchant\n          </TableHead>\n          <TableHead scope=\"col\">Date</TableHead>\n          <TableHead className=\"pe-(--card-spacing) text-end\" scope=\"col\">\n            Amount\n          </TableHead>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        {expenses.map(({ amount, date, merchant }) => (\n          <TableRow key={merchant}>\n            <TableCell className=\"ps-(--card-spacing) font-medium\">{merchant}</TableCell>\n            <TableCell className=\"text-muted-foreground\">{date}</TableCell>\n            <TableCell className=\"pe-(--card-spacing) text-end tabular-nums\">{amount}</TableCell>\n          </TableRow>\n        ))}\n      </TableBody>\n    </Table>\n    <CardFooter className=\"justify-between font-medium\">\n      <span>Monthly total</span>\n      <span className=\"tabular-nums\">$62.00</span>\n    </CardFooter>\n  </Card>\n);\n\nexport default Example;\n",
       "path": "src/card/variants/edge-to-edge.tsx",
       "target": "@components/showcase/card/variants/edge-to-edge.tsx",
       "type": "registry:component"

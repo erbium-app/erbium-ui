@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardContent,
 } from "@erbium/ui/components/card";
-import { Field, FieldLabel, FieldError } from "@erbium/ui/components/field";
+import { Form, useAppForm } from "@erbium/ui/components/form";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -26,10 +26,16 @@ import {
 } from "@erbium/ui/components/table";
 
 const WorkflowExample = () => {
-  const [name, setName] = useState("");
-  const [error, setError] = useState(false);
   const [projects, setProjects] = useState(["Design system", "Documentation"]);
   const [query, setQuery] = useState("");
+
+  const form = useAppForm({
+    defaultValues: { name: "" },
+    onSubmit: ({ value, formApi }) => {
+      setProjects((current) => [...current, value.name.trim()]);
+      formApi.reset();
+    },
+  });
 
   return (
     <div className="p-panel">
@@ -69,42 +75,20 @@ const WorkflowExample = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
-          <form
-            className="grid gap-related"
-            noValidate
-            onSubmit={(event) => {
-              event.preventDefault();
-
-              if (!name.trim()) {
-                setError(true);
-
-                return;
-              }
-
-              setProjects((current) => [...current, name.trim()]);
-              setName("");
-              setError(false);
-            }}
-          >
-            <Field invalid={error}>
-              <FieldLabel>Project name</FieldLabel>
-              <Input
-                value={name}
-                onChange={(event) => {
-                  setName(event.currentTarget.value);
-                }}
-                placeholder="Name your project"
-              />
-              <FieldError match={error}>
-                {error
-                  ? "Enter a project name before creating it. Labels and errors should stay readable without squeezing the field."
-                  : null}
-              </FieldError>
-            </Field>
-            <Button type="submit" className="justify-self-start">
-              Create project
-            </Button>
-          </form>
+          <Form form={form} className="grid gap-related">
+            <form.AppField
+              name="name"
+              validators={{
+                onDynamic: ({ value }) =>
+                  value.trim() ? undefined : "Enter a project name before creating it.",
+              }}
+            >
+              {(field) => (
+                <field.TextField label="Project name" placeholder="Name your project" required />
+              )}
+            </form.AppField>
+            <form.SubmitButton className="justify-self-start">Create project</form.SubmitButton>
+          </Form>
           <Table>
             <TableHeader>
               <TableRow>

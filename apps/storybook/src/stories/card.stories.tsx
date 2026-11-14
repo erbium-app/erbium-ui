@@ -9,6 +9,6 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 
 export const Small = { ...showcases.Small, name: "Size" };
 
-export const EdgeToEdge = { ...showcases.EdgeToEdge, name: "Edge To Edge" };
+export const EdgeToEdge = { ...showcases.EdgeToEdge, name: "Edge-to-edge table" };
 
 export const Image = { ...showcases.Image, name: "Image" };

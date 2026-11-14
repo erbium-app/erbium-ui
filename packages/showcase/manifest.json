@@ -895,7 +895,7 @@
         "exportName": "EdgeToEdge",
         "slug": "edge-to-edge",
         "source": "src/card/variants/edge-to-edge.tsx",
-        "title": "Edge To Edge"
+        "title": "Edge-to-edge table"
       },
       {
         "exportName": "Image",

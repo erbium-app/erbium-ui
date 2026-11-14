@@ -90,3 +90,5 @@ Compose a custom field from `field.Field`, `field.FieldError`, and your own cont
 `Form` renders the native `<form>` with `noValidate`, submits through `form.handleSubmit()`, and provides the form to `form.SubmitButton`. `form.SubmitButton` is a `StatefulButton` that shows loading while the form submits and success after a submit that passed validation.
 
 Add your own bound components with `extendForm({ fieldComponents, formComponents })` and read the field inside them with `useFieldContext`. The questionnaire binding, `useQuestionnaireForm` and `QuestionnaireForm` in `@erbium/ui/components/questionnaire`, is built this way.
+
+For application examples, use `useAppForm` for submitted values, validation, and submit status. Use bound fields where available. For controls such as Select and Date Picker, compose `field.Field` and `field.FieldError`, connect the control to `field.state.value` and `field.handleChange`, and call `field.handleBlur` when the control loses focus. Keep navigation in the router and view-only state, such as a dialog's open state, in the surrounding component.

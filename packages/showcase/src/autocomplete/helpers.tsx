@@ -1,9 +1,8 @@
+import { Form, useAppForm } from "@erbium/ui/components/form";
 import { useEffect, useId, useState } from "react";
 import type { ReactNode } from "react";
 
 import { Field, FieldLabel } from "@erbium/ui/components/field";
-
-import { Button } from "@erbium/ui/components/button";
 
 import {
   Autocomplete,
@@ -262,34 +261,42 @@ export const AsyncAutocomplete = () => {
 };
 
 export const FormAutocomplete = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const id = useId();
+  const form = useAppForm({ defaultValues: { fruit: "" } });
 
   return (
-    <form
-      className="flex w-64 flex-col gap-3"
-      onSubmit={(event) => {
-        event.preventDefault();
-        setSubmitted(true);
-      }}
-    >
-      <Autocomplete items={items} required>
-        <Field>
-          <FieldLabel htmlFor="favorite-fruit">Favorite fruit</FieldLabel>
-          <AutocompleteInput id="favorite-fruit" name="fruit" placeholder="Choose a fruit…" />
-        </Field>
-        <AutocompletePopup>
-          <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
-          <AutocompleteList>
-            {(item: (typeof items)[number]) => (
-              <AutocompleteItem key={item.value} value={item}>
-                {item.label}
-              </AutocompleteItem>
-            )}
-          </AutocompleteList>
-        </AutocompletePopup>
-      </Autocomplete>
-      <Button type="submit">Submit</Button>
-      {submitted && <p className="text-caption text-muted-foreground">Form submitted.</p>}
-    </form>
+    <Form form={form} className="flex w-64 flex-col gap-3">
+      <form.AppField
+        name="fruit"
+        validators={{
+          onDynamic: ({ value }) => (value.trim() ? undefined : "Enter a favorite fruit."),
+        }}
+      >
+        {(field) => (
+          <field.Field>
+            <FieldLabel htmlFor={id}>Favorite fruit</FieldLabel>
+            <Autocomplete
+              items={items}
+              value={field.state.value}
+              onValueChange={field.handleChange}
+            >
+              <AutocompleteInput id={id} onBlur={field.handleBlur} placeholder="Choose a fruit…" />
+              <AutocompletePopup>
+                <AutocompleteEmpty>No fruits found.</AutocompleteEmpty>
+                <AutocompleteList>
+                  {(item: (typeof items)[number]) => (
+                    <AutocompleteItem key={item.value} value={item}>
+                      {item.label}
+                    </AutocompleteItem>
+                  )}
+                </AutocompleteList>
+              </AutocompletePopup>
+            </Autocomplete>
+            <field.FieldError />
+          </field.Field>
+        )}
+      </form.AppField>
+      <form.SubmitButton>Submit</form.SubmitButton>
+    </Form>
   );
 };

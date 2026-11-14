@@ -64,7 +64,7 @@ const Example = () => {
   };
 
   return (
-    <Form form={form} className="flex w-72 flex-col items-center gap-4">
+    <Form form={form} className="flex w-full max-w-xs flex-col gap-section">
       <form.Subscribe selector={(state) => state.fieldMeta}>
         {(fieldMeta) => (
           <StepIndicator value={step} onValueChange={goTo}>
@@ -92,7 +92,7 @@ const Example = () => {
           )}
         </form.AppField>
       ))}
-      <div className="flex gap-2">
+      <div className="grid grid-cols-2 gap-related">
         <Button
           type="button"
           variant="outline"

@@ -1,18 +1,8 @@
 import { Schema } from "effect";
-import { Icon } from "@erbium/ui/components/icon";
-
 import { Button } from "@erbium/ui/components/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@erbium/ui/components/card";
 import { FieldDescription, FieldLabel } from "@erbium/ui/components/field";
 import { Form, useAppForm } from "@erbium/ui/components/form";
+import { Card, CardContent, CardDescription, CardHeader } from "@erbium/ui/components/card";
 
 /** Checked on every change: a complete code must be the demo code. */
 const DemoCode = Schema.toStandardSchemaV1(
@@ -34,34 +24,19 @@ export const OTPFieldForm = () => {
   });
 
   return (
-    <Form form={form} className="mx-auto w-full max-w-sm">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Verify your login</CardTitle>
-          <CardDescription>
-            Enter the verification code we sent to{" "}
-            <span className="font-medium text-foreground">m@example.com</span>.
-          </CardDescription>
-          <CardAction>
-            <Button
-              type="button"
-              variant="outline"
-              size="xs"
-              onClick={() => {
-                form.reset();
-              }}
-            >
-              <Icon name="refresh-cw" />
-              Resend
-            </Button>
-          </CardAction>
-        </CardHeader>
-        <CardContent>
+    <Card className="w-full max-w-md">
+      <CardHeader className="text-center">
+        <h2 className="text-subtitle">Verify your sign-in</h2>
+        <CardDescription>Enter the verification code sent to m@example.com.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form form={form} className="flex flex-col gap-section">
           <form.AppField name="code" validators={{ onChange: DemoCode, onSubmit: CompleteCode }}>
             {(field) => (
               <field.Field>
                 <FieldLabel>Verification code</FieldLabel>
                 <field.OTPField
+                  className="gap-1 *:data-[slot=otp-field-group]:gap-1"
                   length={6}
                   groups={[3, 3]}
                   required
@@ -76,8 +51,6 @@ export const OTPFieldForm = () => {
               </field.Field>
             )}
           </form.AppField>
-        </CardContent>
-        <CardFooter className="flex-col items-stretch gap-3">
           <form.SubmitButton successLabel="Verified">Verify</form.SubmitButton>
           <form.Subscribe
             selector={(state) =>
@@ -92,17 +65,20 @@ export const OTPFieldForm = () => {
               ) : null
             }
           </form.Subscribe>
-          <p className="text-center text-caption text-muted-foreground">
-            Having trouble signing in?{" "}
-            <a
-              href="mailto:support@example.com"
-              className="underline underline-offset-4 transition-colors hover:text-foreground"
+          <p className="flex flex-wrap items-center justify-center gap-1 text-caption text-muted-foreground">
+            Didn’t receive a code?
+            <Button
+              type="button"
+              variant="link"
+              onClick={() => {
+                form.reset();
+              }}
             >
-              Contact support
-            </a>
+              Resend code
+            </Button>
           </p>
-        </CardFooter>
-      </Card>
-    </Form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };

@@ -1,46 +1,77 @@
 import * as React from "react";
 
-import { Button } from "@erbium/ui/components/button";
+import { toISODate } from "@erbium/ui/lib/date";
+import { Form, useAppForm } from "@erbium/ui/components/form";
 import {
   DatePicker,
   DatePickerCalendar,
   DatePickerContent,
   DatePickerInput,
 } from "@erbium/ui/components/date-picker";
-import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
+import { FieldDescription, FieldLabel } from "@erbium/ui/components/field";
+
+interface Trip {
+  from: Date | undefined;
+  to: Date | undefined;
+}
+
+const emptyTrip: Trip = {
+  from: undefined,
+  to: undefined,
+};
 
 const Example = () => {
-  const [submitted, setSubmitted] = React.useState("");
+  const id = React.useId();
+
+  const form = useAppForm({
+    defaultValues: {
+      trip: emptyTrip,
+    },
+  });
 
   return (
-    <form
-      className="flex w-80 flex-col gap-group"
-      onSubmit={(event) => {
-        event.preventDefault();
-        const entries = [...new FormData(event.currentTarget)];
-
-        setSubmitted(
-          entries
-            .map(([key, value]) => `${key}=${value instanceof File ? value.name : value}`)
-            .join("&"),
-        );
-      }}
-    >
-      <Field>
-        <FieldLabel htmlFor="date-picker-form-trip">Trip</FieldLabel>
-        <DatePicker mode="range" name="trip">
-          <DatePickerInput id="date-picker-form-trip" />
-          <DatePickerContent>
-            <DatePickerCalendar numberOfMonths={2} />
-          </DatePickerContent>
-        </DatePicker>
-        <FieldDescription>Submitted as an ISO interval.</FieldDescription>
-      </Field>
-      <Button type="submit" className="self-start">
-        Submit
-      </Button>
-      {submitted && <output className="text-caption text-muted-foreground">{submitted}</output>}
-    </form>
+    <Form form={form} className="flex w-80 flex-col gap-group">
+      <form.AppField
+        name="trip"
+        validators={{
+          onDynamic: ({ value }) =>
+            value.from && value.to ? undefined : "Choose the start and end dates.",
+        }}
+      >
+        {(field) => (
+          <field.Field>
+            <FieldLabel htmlFor={id}>Trip</FieldLabel>
+            <DatePicker
+              mode="range"
+              value={field.state.value}
+              onValueChange={(value) => {
+                field.handleChange({ from: value?.from, to: value?.to });
+              }}
+            >
+              <DatePickerInput id={id} onBlur={field.handleBlur} />
+              <DatePickerContent>
+                <DatePickerCalendar numberOfMonths={2} />
+              </DatePickerContent>
+            </DatePicker>
+            <FieldDescription>Submitted as an ISO interval.</FieldDescription>
+            <field.FieldError />
+          </field.Field>
+        )}
+      </form.AppField>
+      <form.SubmitButton className="self-start">Submit</form.SubmitButton>
+      <form.Subscribe
+        selector={(state) => (state.isSubmitSuccessful ? state.values.trip : undefined)}
+      >
+        {(trip) =>
+          trip?.from &&
+          trip.to && (
+            <output className="text-caption text-muted-foreground">
+              trip={toISODate(trip.from)}/{toISODate(trip.to)}
+            </output>
+          )
+        }
+      </form.Subscribe>
+    </Form>
   );
 };
 
