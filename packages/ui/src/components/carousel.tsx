@@ -2,11 +2,15 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva } from "class-variance-authority";
 import useEmblaCarousel from "embla-carousel-react";
+import { useMotionValue } from "motion/react";
+import type { MotionValue } from "motion/react";
 import * as React from "react";
 import { StepIndicator, StepIndicatorItem } from "../blocks/step-indicator";
+import { useAutoplayProgress } from "../hooks/use-autoplay-progress";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Icon } from "./icon";
+import { StatefulIcon } from "./stateful-icon";
 
 type CarouselOrientation = "horizontal" | "vertical";
 
@@ -60,6 +64,8 @@ type CarouselEngineApi = ReturnType<typeof useEmblaCarousel>[1];
 interface CarouselInternalContextValue extends CarouselContextValue {
   api: CarouselEngineApi;
   direction: CarouselDirection;
+  /** Time spent on the current slide, 0 to 1. Autoplay writes it; the indicator fills with it. */
+  progress: MotionValue<number>;
   rootRef: React.RefObject<HTMLElement | null>;
   setPlaying: (playing: boolean) => void;
   slidesId: string;
@@ -175,6 +181,7 @@ const Carousel = ({
   const direction = dir ?? inheritedDirection;
 
   const [playing, setPlaying] = React.useState(false);
+  const progress = useMotionValue(1);
 
   const [snapshot, setSnapshot] = React.useState<CarouselSnapshot>({
     canNext: false,
@@ -403,8 +410,18 @@ const Carousel = ({
   );
 
   const context = React.useMemo<CarouselInternalContextValue>(
-    () => ({ actions, api, direction, rootRef, setPlaying, slidesId, state, viewportRef }),
-    [actions, api, direction, slidesId, state, viewportRef],
+    () => ({
+      actions,
+      api,
+      direction,
+      progress,
+      rootRef,
+      setPlaying,
+      slidesId,
+      state,
+      viewportRef,
+    }),
+    [actions, api, direction, progress, slidesId, state, viewportRef],
   );
 
   return (
@@ -617,15 +634,26 @@ const CarouselNext = ({
   );
 };
 
-/** One dot per position, kept in sync with the carousel. Select a dot to move to it. */
+/**
+ * One dot per position, kept in sync with the carousel. Select a dot to move to it.
+ * While `CarouselAutoplay` plays, the current dot fills with the time left on the slide.
+ */
 const CarouselIndicator = ({
   className,
   ...props
 }: Omit<
   React.ComponentProps<typeof StepIndicator>,
-  "count" | "value" | "defaultValue" | "onValueChange" | "variant" | "orientation" | "children"
+  | "autoplay"
+  | "count"
+  | "value"
+  | "defaultValue"
+  | "onValueChange"
+  | "progress"
+  | "variant"
+  | "orientation"
+  | "children"
 >) => {
-  const { state, actions } = useCarouselInternal();
+  const { state, actions, progress } = useCarouselInternal();
 
   if (state.count < 2) {
     return null;
@@ -638,6 +666,7 @@ const CarouselIndicator = ({
       variant="dots"
       orientation={state.orientation}
       value={state.value}
+      progress={progress}
       onValueChange={(index) => {
         actions.goTo(index, "indicator");
       }}
@@ -699,7 +728,7 @@ const CarouselAutoplay = ({
   onClick,
   ...props
 }: CarouselAutoplayProps) => {
-  const { state, actions, rootRef, setPlaying } = useCarouselInternal();
+  const { state, actions, progress, rootRef, setPlaying } = useCarouselInternal();
   const [held, setHeld] = React.useState(false);
 
   React.useEffect(() => {
@@ -765,22 +794,18 @@ const CarouselAutoplay = ({
     };
   }, [rootRef]);
 
-  React.useEffect(() => {
-    if (!state.playing || held || state.count < 2) {
-      return noCleanup;
-    }
-
-    // Restarts on every move, so each slide gets the full delay.
-    const following = state.value + 1 < state.count ? state.value + 1 : 0;
-
-    const timer = window.setTimeout(() => {
-      actions.goTo(following, "autoplay");
-    }, delay);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
-  }, [actions, delay, held, state.count, state.playing, state.value]);
+  // Each slide gets the full delay; a move by anyone restarts the clock.
+  useAutoplayProgress({
+    count: state.count,
+    duration: delay,
+    held,
+    onAdvance: (index) => {
+      actions.goTo(index, "autoplay");
+    },
+    playing: state.playing,
+    progress,
+    value: state.value,
+  });
 
   return (
     <Button
@@ -799,7 +824,10 @@ const CarouselAutoplay = ({
     >
       {children ?? (
         <>
-          <Icon name={state.playing ? "pause" : "play"} />
+          <StatefulIcon
+            state={state.playing ? "pause" : "play"}
+            icons={{ pause: <Icon name="pause" />, play: <Icon name="play" /> }}
+          />
           <span className="sr-only">{state.playing ? "Pause slides" : "Play slides"}</span>
         </>
       )}

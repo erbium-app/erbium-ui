@@ -1,7 +1,10 @@
 import { useRender } from "@base-ui/react/use-render";
 import { mergeProps } from "@base-ui/react/merge-props";
-import { createContext, use, useCallback, useMemo, useState } from "react";
+import { createContext, use, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ComponentProps } from "react";
+import { isMotionValue } from "motion/react";
+import type { MotionValue } from "motion/react";
+import { useAutoplayProgress } from "../hooks/use-autoplay-progress";
 import { cn } from "../lib/utils";
 import type { CSSVariableStyle } from "../lib/utils";
 
@@ -97,6 +100,8 @@ const StepIndicatorDot = ({ orientation }: { orientation: StepIndicatorOrientati
         className={cn(
           "absolute inset-0 rounded-full bg-foreground/70 opacity-0",
           "transition-all duration-300 ease-out motion-reduce:transition-none",
+          // A live progress source moves every frame; easing it would trail behind.
+          "[[data-progress=live]_&]:transition-opacity",
           "group-data-[status=current]/step:opacity-100",
           "group-data-invalid/step:bg-error",
           // Slid, never scaled, so the rounded end keeps its shape. At 0 a full dot
@@ -180,6 +185,15 @@ const StepIndicatorItem = ({
   );
 };
 
+interface StepIndicatorAutoplay {
+  /** Time on each step, in milliseconds. Defaults to 3000. */
+  duration?: number;
+  /** Holds the fill where it is, for example while the pointer is over the slide. */
+  paused?: boolean;
+  /** After the last step, go back to the first. Defaults to true. */
+  loop?: boolean;
+}
+
 type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   /** Zero-based index of the current step. Controlled. */
   value?: number;
@@ -191,8 +205,17 @@ type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   count?: number;
   /** Furthest step index that can be selected. Later steps are blocked. Defaults to no limit. */
   reach?: number;
-  /** Fills the current step from 0 to 1. Defaults to 1 (solid). */
-  progress?: number;
+  /**
+   * Fills the current step from 0 to 1. Defaults to 1 (solid). A motion value moves the fill
+   * every frame without re-rendering, for when something else owns the clock.
+   * Takes precedence over `autoplay`.
+   */
+  progress?: number | MotionValue<number>;
+  /**
+   * Fills the current step over `duration`, then selects the next of `count` steps. `true`
+   * uses the defaults. Pass `count` alongside item children. Reduced motion turns the timer off.
+   */
+  autoplay?: boolean | StepIndicatorAutoplay;
   orientation?: StepIndicatorOrientation;
   /**
    * `steps` is a sequence: earlier steps read as complete. `dots` is a set of
@@ -202,12 +225,95 @@ type StepIndicatorProps = Omit<ComponentProps<"ol">, "defaultValue"> & {
   render?: useRender.RenderProp<StepIndicatorState>;
 };
 
+const clampProgress = (progress: number) => Math.min(Math.max(progress, 0), 1);
+
+// motion's own guard narrows to whichever MotionValue class its copy declares.
+const isProgressSource = (
+  progress: StepIndicatorProps["progress"],
+): progress is MotionValue<number> => isMotionValue(progress);
+
+const autoplaySettings = (autoplay: StepIndicatorProps["autoplay"]) => {
+  if (autoplay === true) {
+    return {};
+  }
+
+  if (autoplay === false || autoplay === undefined) {
+    return null;
+  }
+
+  return autoplay;
+};
+
+interface StepIndicatorProgressOptions {
+  autoplay: StepIndicatorProps["autoplay"];
+  count: number;
+  onAdvance: (index: number) => void;
+  progress: StepIndicatorProps["progress"];
+  style: StepIndicatorProps["style"];
+  value: number;
+}
+
+/** Resolves the fill source and writes a live one straight to the element, so playback never re-renders. */
+const useStepIndicatorProgress = ({
+  autoplay,
+  count,
+  onAdvance,
+  progress,
+  style,
+  value,
+}: StepIndicatorProgressOptions) => {
+  const settings = autoplaySettings(autoplay);
+  const followed = isProgressSource(progress) ? progress : null;
+  const fixed = isProgressSource(progress) ? undefined : progress;
+
+  const autoplaying = settings !== null && progress === undefined;
+
+  const clock = useAutoplayProgress({
+    count,
+    duration: settings?.duration ?? 3000,
+    held: settings?.paused,
+    loop: settings?.loop,
+    onAdvance,
+    playing: autoplaying,
+    value,
+  });
+
+  const source: MotionValue<number> | null = followed ?? (autoplaying ? clock : null);
+  const rootRef = useRef<HTMLOListElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+
+    if (!source || !root) {
+      return () => {
+        // Nothing to follow.
+      };
+    }
+
+    const write = (next: number) => {
+      root.style.setProperty("--step-progress", String(clampProgress(next)));
+    };
+
+    write(source.get());
+
+    return source.on("change", write);
+  }, [source]);
+
+  const progressStyle: CSSVariableStyle = {
+    "--step-progress": clampProgress(fixed ?? source?.get() ?? 1),
+    ...style,
+  };
+
+  return { live: source !== null, progressStyle, rootRef };
+};
+
 const StepIndicator = ({
   value: valueProp,
   defaultValue = 0,
   onValueChange,
   count,
-  progress = 1,
+  progress,
+  autoplay,
   reach = Number.POSITIVE_INFINITY,
   orientation = "horizontal",
   variant = "steps",
@@ -215,6 +321,7 @@ const StepIndicator = ({
   children,
   className,
   style,
+  ref,
   ...props
 }: StepIndicatorProps) => {
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
@@ -234,17 +341,25 @@ const StepIndicator = ({
 
   const state: StepIndicatorState = { count, interactive, orientation, value, variant };
 
-  const progressStyle: CSSVariableStyle = {
-    "--step-progress": Math.min(Math.max(progress, 0), 1),
-    ...style,
-  };
+  const { live, progressStyle, rootRef } = useStepIndicatorProgress({
+    autoplay,
+    count: count ?? 0,
+    onAdvance: select,
+    progress,
+    style,
+    value,
+  });
 
   const element = useRender({
     defaultTagName: "ol",
     props: mergeProps<"ol">(
       {
         "aria-label": "Progress",
-        ...dataAttributes({ "data-orientation": orientation, "data-slot": "step-indicator" }),
+        ...dataAttributes({
+          "data-orientation": orientation,
+          "data-progress": live ? "live" : undefined,
+          "data-slot": "step-indicator",
+        }),
         children:
           children ??
           Array.from({ length: count ?? 0 }, (_, index) => (
@@ -259,6 +374,7 @@ const StepIndicator = ({
       },
       props,
     ),
+    ref: ref ? [rootRef, ref] : rootRef,
     render,
     state,
   });
@@ -274,6 +390,7 @@ const StepIndicator = ({
 export { StepIndicator, StepIndicatorItem };
 
 export type {
+  StepIndicatorAutoplay,
   StepIndicatorItemProps,
   StepIndicatorItemState,
   StepIndicatorOrientation,

@@ -13,6 +13,8 @@ export const Status = { ...showcases.Status, name: "Status" };
 
 export const Progress = { ...showcases.Progress, name: "Progress" };
 
+export const Autoplay = { ...showcases.Autoplay, name: "Autoplay" };
+
 export const Vertical = { ...showcases.Vertical, name: "Vertical" };
 
 export const Tabs = { ...showcases.Tabs, name: "Tabs" };

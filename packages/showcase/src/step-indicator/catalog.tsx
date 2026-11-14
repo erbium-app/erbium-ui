@@ -10,6 +10,8 @@ import StatusExample from "./variants/status";
 import StatusSource from "./variants/status.tsx?raw";
 import ProgressExample from "./variants/progress";
 import ProgressSource from "./variants/progress.tsx?raw";
+import AutoplayExample from "./variants/autoplay";
+import AutoplaySource from "./variants/autoplay.tsx?raw";
 import VerticalExample from "./variants/vertical";
 import VerticalSource from "./variants/vertical.tsx?raw";
 import TabsExample from "./variants/tabs";
@@ -76,6 +78,16 @@ export const Progress: Story = {
     },
   },
   render: ProgressExample,
+};
+
+export const Autoplay: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("step-indicator", "autoplay") },
+      source: { code: AutoplaySource },
+    },
+  },
+  render: AutoplayExample,
 };
 
 export const Vertical: Story = {

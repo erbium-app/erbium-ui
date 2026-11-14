@@ -3838,6 +3838,12 @@
         "title": "Progress"
       },
       {
+        "exportName": "Autoplay",
+        "slug": "autoplay",
+        "source": "src/step-indicator/variants/autoplay.tsx",
+        "title": "Autoplay"
+      },
+      {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/step-indicator/variants/vertical.tsx",

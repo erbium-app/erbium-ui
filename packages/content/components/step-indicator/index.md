@@ -36,7 +36,9 @@ Use `StepIndicatorItem` children when steps need their own state or names. Each 
 - `value`, `defaultValue`, `onValueChange(index)`: zero-based current step. Follows the Base UI controlled and uncontrolled convention. `onValueChange` also turns the items into buttons.
 - `count`: shorthand for that many default items.
 - `reach`: furthest step index that can be selected. Steps after it are blocked: no hover, not-allowed cursor, and clicks ignored. The current step is never blocked. Defaults to no limit.
-- `progress`: fills the current step from 0 to 1. Defaults to 1.
+- `progress`: fills the current step from 0 to 1. Defaults to 1. Pass a motion value to move the fill every frame without re-rendering, when something else owns the clock. Takes precedence over `autoplay`.
+- `autoplay`: fills the current step over time, then selects the next. `true` or `{ duration, paused, loop }`: `duration` is the time on each step in milliseconds (default 3000), `paused` holds the fill, and `loop` (default true) returns to the first step after the last. It counts `count` steps, so pass `count` alongside item children. Reduced motion turns it off.
+- `variant`: `steps` (default) reads earlier steps as complete; `dots` marks only the current one, for peers such as carousel slides.
 - `orientation`: `horizontal` (default) or `vertical`.
 - `render`: replaces the `ol`. Receives `{ value, count, orientation, interactive }`.
 
@@ -58,4 +60,4 @@ Interactive steps get a simple hover area around the dot. Blocked steps show a n
 
 ## Styling and accessibility
 
-Items expose `data-status`, `data-invalid` and `data-disabled`; the root and items expose `data-orientation`. The root is an ordered list labeled "Progress" and the current step has `aria-current="step"`. Give the root an `aria-label` that names the sequence. Transitions respect reduced motion and the layout mirrors under RTL.
+Items expose `data-status`, `data-invalid` and `data-disabled`; the root and items expose `data-orientation`. The root carries `data-progress="live"` while a motion value or `autoplay` drives the fill. The root is an ordered list labeled "Progress" and the current step has `aria-current="step"`. Give the root an `aria-label` that names the sequence. Transitions respect reduced motion and the layout mirrors under RTL.

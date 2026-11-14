@@ -245,11 +245,18 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Erbium carousel component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority", "embla-carousel-react"],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "embla-carousel-react",
+        "motion"
+      ],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",
+        "@erbium/stateful-icon",
         "@erbium/step-indicator",
+        "@erbium/use-autoplay-progress",
         "@erbium/utils"
       ],
       "files": [
@@ -1488,8 +1495,8 @@
       "type": "registry:block",
       "title": "Step Indicator",
       "description": "Erbium step indicator block.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/utils"],
+      "dependencies": ["@base-ui/react", "motion"],
+      "registryDependencies": ["@erbium/use-autoplay-progress", "@erbium/utils"],
       "files": [
         {
           "path": "src/blocks/step-indicator.tsx",
@@ -1813,6 +1820,20 @@
           "path": "src/lib/typography.ts",
           "target": "@lib/typography.ts",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-autoplay-progress",
+      "type": "registry:hook",
+      "title": "Use Autoplay Progress",
+      "description": "Erbium use autoplay progress hook.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "src/hooks/use-autoplay-progress.ts",
+          "target": "@hooks/use-autoplay-progress.ts",
+          "type": "registry:hook"
         }
       ]
     },

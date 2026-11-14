@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "step-indicator-autoplay",
+  "type": "registry:component",
+  "title": "Step Indicator: Autoplay",
+  "description": "`autoplay` fills the current pill over `duration` and then selects the next step, so readers can see how long is left before the content changes. It restarts whenever the value changes, whoever changed it. `paused` holds the fill where it is; tie it to a pause button, or to hover over the content it advances. `loop` (on by default) returns to the first step after the last. Reduced motion turns the timer off and shows a solid pill.\n\n```tsx\nconst [index, setIndex] = useState(0);\nconst [paused, setPaused] = useState(false);\n\n<StepIndicator\n  variant=\"dots\"\n  count={4}\n  value={index}\n  onValueChange={setIndex}\n  autoplay={{ duration: 3000, paused }}\n/>;\n```\n\nThe clock moves the fill every frame without re-rendering. When something else owns the clock, pass a motion value to `progress` instead; `CarouselIndicator` does this with the carousel's autoplay timer.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/card",
+    "@erbium/icon",
+    "@erbium/stateful-icon",
+    "@erbium/step-indicator",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Card, CardContent } from \"@/registry/erbium/ui/card\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport { StatefulIcon } from \"@/registry/erbium/ui/stateful-icon\";\n\nconst folders = [\"Inbox\", \"Drafts\", \"Sent\", \"Archive\"];\n\nconst Example = () => {\n  const [index, setIndex] = useState(0);\n  const [paused, setPaused] = useState(false);\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Card className=\"size-40\">\n        <CardContent className=\"flex min-h-0 flex-1 items-center justify-center\">\n          <span className=\"text-title font-semibold\">{folders[index]}</span>\n        </CardContent>\n      </Card>\n      <div className=\"flex items-center gap-3\">\n        <Button\n          variant=\"outline\"\n          size=\"icon-sm\"\n          className=\"rounded-full\"\n          onClick={() => {\n            setPaused(!paused);\n          }}\n        >\n          <StatefulIcon\n            state={paused ? \"play\" : \"pause\"}\n            icons={{ pause: <Icon name=\"pause\" />, play: <Icon name=\"play\" /> }}\n          />\n          <span className=\"sr-only\">{paused ? \"Play folders\" : \"Pause folders\"}</span>\n        </Button>\n        <StepIndicator\n          variant=\"dots\"\n          count={folders.length}\n          value={index}\n          onValueChange={setIndex}\n          autoplay={{ duration: 3000, paused }}\n          aria-label=\"Folders\"\n        />\n      </div>\n    </div>\n  );\n};\n\nexport default Example;\n",
+      "path": "src/step-indicator/variants/autoplay.tsx",
+      "target": "@components/showcase/step-indicator/variants/autoplay.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
