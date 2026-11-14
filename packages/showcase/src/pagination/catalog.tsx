@@ -20,6 +20,14 @@ import IconsOnlyExample from "./variants/icons-only";
 
 import IconsOnlySource from "./variants/icons-only.tsx?raw";
 
+import RouterExample from "./variants/router";
+
+import RouterSource from "./variants/router.tsx?raw";
+
+import TableExample from "./variants/table";
+
+import TableSource from "./variants/table.tsx?raw";
+
 const meta = {
   component: Pagination,
   parameters: {
@@ -77,4 +85,24 @@ export const IconsOnly: Story = {
     },
   },
   render: IconsOnlyExample,
+};
+
+export const Router: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("pagination", "router") },
+      source: { code: RouterSource },
+    },
+  },
+  render: RouterExample,
+};
+
+export const Table: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("pagination", "table") },
+      source: { code: TableSource },
+    },
+  },
+  render: TableExample,
 };

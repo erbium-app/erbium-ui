@@ -56,3 +56,7 @@ Spinners beside labels belong at the inline start: left in LTR and right in RTL.
   <InputGroupInput placeholder="Search..." />
 </InputGroup>
 ```
+
+## Copyable fields
+
+Use [Copy Button](/docs/copy-button) in an inline-end addon. Render it as an `InputGroupButton` with `variant="embedded"` for a flush action that shares the field surface. Pass the current input value to the copy action and give the button a specific accessible name.

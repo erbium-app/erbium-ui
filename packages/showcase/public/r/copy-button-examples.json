@@ -5,7 +5,8 @@
   "registryDependencies": [
     "@erbium-examples/copy-button-overview",
     "@erbium-examples/copy-button-buttons",
-    "@erbium-examples/copy-button-input"
+    "@erbium-examples/copy-button-input",
+    "@erbium-examples/copy-button-display-value"
   ],
   "title": "Copy Button examples",
   "type": "registry:item"

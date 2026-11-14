@@ -41,7 +41,24 @@ The content components consume internal copy state. Developers do not pass copie
 
 ## Existing buttons
 
-Use `render={<InputGroupButton size="icon-xs" />}` to compose the default icon with an input group control. Explicit props on the rendered element have precedence. Keep the rendered element a button-compatible component and forward the supplied props and ref. A render callback receives copied, pending, status, and revision, but normal compositions use the content components directly.
+Place the action in `InputGroupAddon align="inline-end"` after the input. Pass the same value to the field and the copy action. Use `variant="embedded"` on the rendered button so the field provides the only surface.
+
+```tsx
+<InputGroup>
+  <InputGroupInput aria-label="Profile URL" value={profileUrl} readOnly />
+  <InputGroupAddon align="inline-end">
+    <CopyButton
+      aria-label="Copy profile URL"
+      render={<InputGroupButton variant="embedded" size="icon-xs" />}
+      value={profileUrl}
+    />
+  </InputGroupAddon>
+</InputGroup>
+```
+
+For a display-only value, pair selectable text with a named CopyButton. Use the full string as the copy value even when the display is truncated.
+
+Explicit props on the rendered element have precedence. Keep the rendered element a button-compatible component and forward the supplied props and ref. A render callback receives copied, pending, status, and revision, but normal compositions use the content components directly.
 
 ## Behavior
 

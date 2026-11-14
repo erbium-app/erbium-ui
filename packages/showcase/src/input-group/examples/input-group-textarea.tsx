@@ -28,7 +28,7 @@ const InputGroupTextareaExample = () => {
           <CopyButton
             value={code}
             aria-label="Copy script"
-            render={<InputGroupButton size="icon-xs" />}
+            render={<InputGroupButton variant="embedded" size="icon-xs" />}
           />
         </InputGroupAddon>
         <Separator variant="full" />

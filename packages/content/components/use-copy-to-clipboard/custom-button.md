@@ -3,4 +3,4 @@ title: "Custom Button"
 story: CustomButton
 ---
 
-Compose CopyButton with an existing Button through render. CopyButtonIcon and CopyButtonLabel share state automatically; labels have stable sizing, animations, failure feedback, and accessible announcements built in.
+Render CopyButton as an embedded InputGroupButton for a read-only field. Its icon and label share clipboard state and announce the result.

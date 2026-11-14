@@ -7,6 +7,9 @@ import ButtonsSource from "./variants/buttons.tsx?raw";
 import InputExample from "./variants/input";
 import InputSource from "./variants/input.tsx?raw";
 
+import DisplayValueExample from "./variants/display-value";
+import DisplayValueSource from "./variants/display-value.tsx?raw";
+
 const meta = {
   parameters: {
     docs: { description: { component: componentDocumentation("copy-button") } },
@@ -46,4 +49,15 @@ export const Input: Story = {
     },
   },
   render: InputExample,
+};
+
+export const DisplayValue: Story = {
+  name: "Display Value",
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("copy-button", "display-value") },
+      source: { code: DisplayValueSource },
+    },
+  },
+  render: DisplayValueExample,
 };

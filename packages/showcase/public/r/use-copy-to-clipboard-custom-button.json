@@ -3,11 +3,11 @@
   "name": "use-copy-to-clipboard-custom-button",
   "type": "registry:component",
   "title": "Use Copy To Clipboard: Custom Button",
-  "description": "Compose CopyButton with an existing Button through render. CopyButtonIcon and CopyButtonLabel share state automatically; labels have stable sizing, animations, failure feedback, and accessible announcements built in.",
-  "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
+  "description": "Render CopyButton as an embedded InputGroupButton for a read-only field. Its icon and label share clipboard state and announce the result.",
+  "registryDependencies": ["@erbium/copy-button", "@erbium/input-group", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CopyButton, CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <CopyButton value=\"Erbium UI\" render={<Button size=\"sm\" variant=\"outline\" />}>\n    <CopyButtonIcon data-icon=\"inline-start\" />\n    <CopyButtonLabel />\n  </CopyButton>\n);\n\nexport default Example;\n",
+      "content": "import { CopyButton, CopyButtonIcon, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n} from \"@/registry/erbium/ui/input-group\";\n\nconst url = \"https://erbium.dev\";\n\nconst Example = () => (\n  <InputGroup className=\"w-80\">\n    <InputGroupInput aria-label=\"Project URL\" readOnly value={url} />\n    <InputGroupAddon align=\"inline-end\">\n      <CopyButton\n        aria-label=\"Copy project URL\"\n        render={<InputGroupButton variant=\"embedded\" size=\"xs\" />}\n        value={url}\n      >\n        <CopyButtonIcon data-icon=\"inline-start\" />\n        <CopyButtonLabel />\n      </CopyButton>\n    </InputGroupAddon>\n  </InputGroup>\n);\n\nexport default Example;\n",
       "path": "src/use-copy-to-clipboard/variants/custom-button.tsx",
       "target": "@components/showcase/use-copy-to-clipboard/variants/custom-button.tsx",
       "type": "registry:component"

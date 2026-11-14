@@ -10,3 +10,7 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 export const Simple = { ...showcases.Simple, name: "Simple" };
 
 export const IconsOnly = { ...showcases.IconsOnly, name: "Icons Only" };
+
+export const Router = { ...showcases.Router, name: "Router" };
+
+export const Table = { ...showcases.Table, name: "Table" };

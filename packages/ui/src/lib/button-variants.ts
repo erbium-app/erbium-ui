@@ -25,6 +25,8 @@ const buttonVariants = cva(
       variant: {
         default: "surface-fill-primary text-primary-foreground",
         error: "surface-fill-error text-error-foreground focus-visible:border-error-focus",
+        embedded:
+          "border-0 bg-transparent text-muted-foreground shadow-none hover:text-foreground active:text-foreground focus-visible:ring-1 focus-visible:ring-ring",
         ghost: "surface-flat hover:text-foreground engaged:text-foreground",
         "ghost-error":
           "surface-ghost-error-soft text-error-soft-foreground focus-visible:border-error-focus",

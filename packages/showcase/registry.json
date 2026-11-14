@@ -374,7 +374,10 @@
       "registryDependencies": [
         "@erbium/alert-dialog",
         "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/field",
         "@erbium/icon",
+        "@erbium/input",
         "@erbium/styles"
       ],
       "files": [
@@ -393,7 +396,10 @@
       "registryDependencies": [
         "@erbium/alert-dialog",
         "@erbium/button",
+        "@erbium/copy-button",
+        "@erbium/field",
         "@erbium/icon",
+        "@erbium/input",
         "@erbium/styles"
       ],
       "files": [
@@ -533,8 +539,11 @@
       "registryDependencies": [
         "@erbium/alert-dialog",
         "@erbium/button",
+        "@erbium/copy-button",
         "@erbium/csp-provider",
+        "@erbium/field",
         "@erbium/icon",
+        "@erbium/input",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast"
@@ -8143,12 +8152,27 @@
       ]
     },
     {
+      "name": "copy-button-display-value",
+      "type": "registry:component",
+      "title": "Copy Button: Display Value",
+      "description": "Pair selectable text with a named copy action. Pass the full value to CopyButton.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/copy-button/variants/display-value.tsx",
+          "target": "@components/showcase/copy-button/variants/display-value.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "description": "All copy-button examples.",
       "name": "copy-button-examples",
       "registryDependencies": [
         "@erbium-examples/copy-button-overview",
         "@erbium-examples/copy-button-buttons",
-        "@erbium-examples/copy-button-input"
+        "@erbium-examples/copy-button-input",
+        "@erbium-examples/copy-button-display-value"
       ],
       "title": "Copy Button examples",
       "type": "registry:item"
@@ -8204,6 +8228,11 @@
         {
           "path": "src/copy-button/variants/buttons.tsx",
           "target": "@components/showcase/copy-button/variants/buttons.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/copy-button/variants/display-value.tsx",
+          "target": "@components/showcase/copy-button/variants/display-value.tsx",
           "type": "registry:component"
         },
         {
@@ -15840,7 +15869,9 @@
         "@erbium-examples/pagination-playground",
         "@erbium-examples/pagination-overview",
         "@erbium-examples/pagination-simple",
-        "@erbium-examples/pagination-icons-only"
+        "@erbium-examples/pagination-icons-only",
+        "@erbium-examples/pagination-router",
+        "@erbium-examples/pagination-table"
       ],
       "title": "Pagination examples",
       "type": "registry:item"
@@ -15849,7 +15880,7 @@
       "name": "pagination-icons-only",
       "type": "registry:block",
       "title": "Pagination: Icons Only",
-      "description": "Use just the previous and next buttons without page numbers. This is useful for data tables with a rows per page selector.",
+      "description": "Use just the previous and next controls without page numbers. This is useful for data tables with a rows per page selector. `disabled` marks a step that has no page, such as previous on the first page.",
       "registryDependencies": [
         "@erbium/field",
         "@erbium/pagination",
@@ -15873,7 +15904,7 @@
       "name": "pagination-overview",
       "type": "registry:block",
       "title": "Pagination: Overview",
-      "description": "",
+      "description": "`PaginationControls` lays out the pages with `usePagination`. With `onPageChange` it renders buttons and keeps the page in state.",
       "registryDependencies": ["@erbium/pagination", "@erbium/styles"],
       "files": [
         {
@@ -15903,6 +15934,32 @@
       ]
     },
     {
+      "name": "pagination-router",
+      "type": "registry:block",
+      "title": "Pagination: Router",
+      "description": "Pages kept in the URL. `renderLink` returns the UI `Link` for each page, so a page starts loading when the pointer heads for its link. Each page takes 900 ms to load. Move toward a page number and click it, then turn prediction off and compare.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/link",
+        "@erbium/pagination",
+        "@erbium/styles",
+        "@erbium/switch"
+      ],
+      "files": [
+        {
+          "path": "src/pagination/examples/pagination-router.tsx",
+          "target": "@components/showcase/pagination/examples/pagination-router.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pagination/variants/router.tsx",
+          "target": "@components/showcase/pagination/variants/router.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "pagination-simple",
       "type": "registry:block",
       "title": "Pagination: Simple",
@@ -15926,15 +15983,20 @@
       "type": "registry:item",
       "title": "Pagination stories",
       "description": "All pagination variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-router@^1.170.46", "@tanstack/react-table@9.3.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/pagination",
         "@erbium/select",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/switch",
+        "@erbium/table",
+        "@erbium/toast",
+        "@erbium/use-pagination"
       ],
       "files": [
         {
@@ -15948,8 +16010,18 @@
           "type": "registry:component"
         },
         {
+          "path": "src/pagination/examples/pagination-router.tsx",
+          "target": "@components/showcase/pagination/examples/pagination-router.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/pagination/examples/pagination-simple.tsx",
           "target": "@components/showcase/pagination/examples/pagination-simple.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pagination/examples/pagination-table.tsx",
+          "target": "@components/showcase/pagination/examples/pagination-table.tsx",
           "type": "registry:component"
         },
         {
@@ -15973,13 +16045,49 @@
           "type": "registry:component"
         },
         {
+          "path": "src/pagination/variants/router.tsx",
+          "target": "@components/showcase/pagination/variants/router.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/pagination/variants/simple.tsx",
           "target": "@components/showcase/pagination/variants/simple.tsx",
           "type": "registry:component"
         },
         {
+          "path": "src/pagination/variants/table.tsx",
+          "target": "@components/showcase/pagination/variants/table.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pagination-table",
+      "type": "registry:block",
+      "title": "Pagination: Table",
+      "description": "Pages kept in state, for a table that fetches each page from the server. `onPageChange` moves the table to the page, and `onPageIntent` requests it before the click. A cache shared by both, such as TanStack Query's or an atom family's, lets the click reuse the request.",
+      "dependencies": ["@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/field",
+        "@erbium/pagination",
+        "@erbium/styles",
+        "@erbium/switch",
+        "@erbium/table"
+      ],
+      "files": [
+        {
+          "path": "src/pagination/examples/pagination-table.tsx",
+          "target": "@components/showcase/pagination/examples/pagination-table.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pagination/variants/table.tsx",
+          "target": "@components/showcase/pagination/variants/table.tsx",
           "type": "registry:component"
         }
       ]
@@ -23402,8 +23510,8 @@
       "name": "use-copy-to-clipboard-custom-button",
       "type": "registry:component",
       "title": "Use Copy To Clipboard: Custom Button",
-      "description": "Compose CopyButton with an existing Button through render. CopyButtonIcon and CopyButtonLabel share state automatically; labels have stable sizing, animations, failure feedback, and accessible announcements built in.",
-      "registryDependencies": ["@erbium/button", "@erbium/copy-button", "@erbium/styles"],
+      "description": "Render CopyButton as an embedded InputGroupButton for a read-only field. Its icon and label share clipboard state and announce the result.",
+      "registryDependencies": ["@erbium/copy-button", "@erbium/input-group", "@erbium/styles"],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/variants/custom-button.tsx",
@@ -23417,7 +23525,12 @@
       "type": "registry:component",
       "title": "use copy to clipboard demo",
       "description": "Erbium use copy to clipboard demo example.",
-      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles",
+        "@erbium/use-copy-to-clipboard"
+      ],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
@@ -23440,8 +23553,13 @@
       "name": "use-copy-to-clipboard-overview",
       "type": "registry:block",
       "title": "Use Copy To Clipboard: Overview",
-      "description": "Use CopyButton for ready-to-use copying with an animated icon and accessible feedback. It uses useCopyToClipboard internally and inherits icon sizing from its button.",
-      "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+      "description": "Use the hook directly to copy the current input value with a flush action. A status region reports the result below the field.",
+      "registryDependencies": [
+        "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/styles",
+        "@erbium/use-copy-to-clipboard"
+      ],
       "files": [
         {
           "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
@@ -23462,10 +23580,11 @@
       "description": "All use-copy-to-clipboard variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/button",
         "@erbium/copy-button",
         "@erbium/copy-to-clipboard",
         "@erbium/csp-provider",
+        "@erbium/icon",
+        "@erbium/input-group",
         "@erbium/overlay-provider",
         "@erbium/styles",
         "@erbium/toast",

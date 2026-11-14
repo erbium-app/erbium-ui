@@ -1,55 +1,18 @@
 import { useState } from "react";
-import type { MouseEvent } from "react";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@erbium/ui/components/pagination";
+import { Pagination, PaginationControls } from "@erbium/ui/components/pagination";
+
+const pageCount = 10;
 
 const PaginationDemo = () => {
-  const [page, setPage] = useState(2);
-
-  const navigate = (nextPage: number) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    setPage(Math.min(3, Math.max(1, nextPage)));
-  };
+  const [page, setPage] = useState(5);
 
   return (
     <div className="flex flex-col gap-group">
       <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious
-              href={`?page=${page - 1}`}
-              aria-disabled={page === 1}
-              onClick={navigate(page - 1)}
-            />
-          </PaginationItem>
-          {[1, 2, 3].map((number) => (
-            <PaginationItem key={number}>
-              <PaginationLink
-                href={`?page=${number}`}
-                isActive={page === number}
-                onClick={navigate(number)}
-              >
-                {number}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-          <PaginationItem>
-            <PaginationNext
-              href={`?page=${page + 1}`}
-              aria-disabled={page === 3}
-              onClick={navigate(page + 1)}
-            />
-          </PaginationItem>
-        </PaginationContent>
+        <PaginationControls page={page} pageCount={pageCount} onPageChange={setPage} />
       </Pagination>
       <p className="text-center text-caption text-muted-foreground" aria-live="polite">
-        Page {page} of 3
+        Page {page} of {pageCount}
       </p>
     </div>
   );

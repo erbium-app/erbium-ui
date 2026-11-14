@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "copy-button-display-value",
+  "type": "registry:component",
+  "title": "Copy Button: Display Value",
+  "description": "Pair selectable text with a named copy action. Pass the full value to CopyButton.",
+  "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nconst username = \"jane-doe\";\n\nconst Example = () => (\n  <dl>\n    <dt className=\"text-caption text-muted-foreground\">Username</dt>\n    <dd className=\"flex items-center gap-related\">\n      <code>{username}</code>\n      <CopyButton aria-label=\"Copy username\" size=\"icon-xs\" value={username} variant=\"embedded\" />\n    </dd>\n  </dl>\n);\n\nexport default Example;\n",
+      "path": "src/copy-button/variants/display-value.tsx",
+      "target": "@components/showcase/copy-button/variants/display-value.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

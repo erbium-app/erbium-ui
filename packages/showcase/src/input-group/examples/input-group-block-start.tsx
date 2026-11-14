@@ -44,7 +44,7 @@ export const InputGroupBlockStart = () => {
             <CopyButton
               value={code}
               aria-label="Copy script"
-              render={<InputGroupButton size="icon-xs" className="ml-auto" />}
+              render={<InputGroupButton variant="embedded" size="icon-xs" className="ml-auto" />}
             />
           </InputGroupAddon>
         </InputGroup>

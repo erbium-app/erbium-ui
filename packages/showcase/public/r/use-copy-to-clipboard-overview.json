@@ -3,11 +3,16 @@
   "name": "use-copy-to-clipboard-overview",
   "type": "registry:block",
   "title": "Use Copy To Clipboard: Overview",
-  "description": "Use CopyButton for ready-to-use copying with an animated icon and accessible feedback. It uses useCopyToClipboard internally and inherits icon sizing from its button.",
-  "registryDependencies": ["@erbium/copy-button", "@erbium/styles"],
+  "description": "Use the hook directly to copy the current input value with a flush action. A status region reports the result below the field.",
+  "registryDependencies": [
+    "@erbium/icon",
+    "@erbium/input-group",
+    "@erbium/styles",
+    "@erbium/use-copy-to-clipboard"
+  ],
   "files": [
     {
-      "content": "import { CopyButton } from \"@/registry/erbium/blocks/copy-button\";\n\nconst Demo = () => (\n  <div className=\"flex items-center gap-3\">\n    <code className=\"text-caption\">Erbium UI</code>\n    <CopyButton value=\"Erbium UI\" aria-label=\"Copy project name\" variant=\"outline\" />\n  </div>\n);\n\nexport default Demo;\n",
+      "content": "import { useState } from \"react\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n} from \"@/registry/erbium/ui/input-group\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport { useCopyToClipboard } from \"@/registry/erbium/hooks/use-copy-to-clipboard\";\n\nconst Demo = () => {\n  const [value, setValue] = useState(\"https://erbium.dev\");\n  const { copyToClipboard, isPending, reset, revision, status } = useCopyToClipboard();\n  const feedback = { copied: \"URL copied.\", error: \"Could not copy the URL.\", idle: \"\" };\n\n  return (\n    <div className=\"grid w-80 max-w-full gap-related\">\n      <InputGroup>\n        <InputGroupInput\n          aria-label=\"URL\"\n          value={value}\n          onChange={(event) => {\n            setValue(event.target.value);\n            reset();\n          }}\n        />\n        <InputGroupAddon align=\"inline-end\">\n          <InputGroupButton\n            aria-label=\"Copy URL\"\n            focusableWhenDisabled\n            loading={isPending}\n            onClick={() => {\n              void copyToClipboard(value);\n            }}\n            size=\"icon-xs\"\n            variant=\"embedded\"\n          >\n            <Icon name=\"copy\" />\n          </InputGroupButton>\n        </InputGroupAddon>\n      </InputGroup>\n      <output aria-atomic=\"true\" className=\"min-h-5 text-caption\">\n        <span key={revision}>{feedback[status]}</span>\n      </output>\n    </div>\n  );\n};\n\nexport default Demo;\n",
       "path": "src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "target": "@components/showcase/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx",
       "type": "registry:component"

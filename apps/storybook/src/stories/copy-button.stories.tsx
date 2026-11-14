@@ -8,3 +8,5 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 export const Buttons = { ...showcases.Buttons, name: "Buttons" };
 
 export const Input = { ...showcases.Input, name: "Input" };
+
+export const DisplayValue = { ...showcases.DisplayValue, name: "Display Value" };

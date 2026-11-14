@@ -36,7 +36,7 @@ export const PaginationIconsOnly = () => (
     <Pagination className="mx-0 w-auto">
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href="#" />
+          <PaginationPrevious disabled />
         </PaginationItem>
         <PaginationItem>
           <PaginationNext href="#" />

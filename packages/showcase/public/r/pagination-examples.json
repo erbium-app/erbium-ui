@@ -6,7 +6,9 @@
     "@erbium-examples/pagination-playground",
     "@erbium-examples/pagination-overview",
     "@erbium-examples/pagination-simple",
-    "@erbium-examples/pagination-icons-only"
+    "@erbium-examples/pagination-icons-only",
+    "@erbium-examples/pagination-router",
+    "@erbium-examples/pagination-table"
   ],
   "title": "Pagination examples",
   "type": "registry:item"

@@ -1550,6 +1550,12 @@
         "slug": "input",
         "source": "src/copy-button/variants/input.tsx",
         "title": "Input"
+      },
+      {
+        "exportName": "DisplayValue",
+        "slug": "display-value",
+        "source": "src/copy-button/variants/display-value.tsx",
+        "title": "Display Value"
       }
     ]
   },
@@ -3002,6 +3008,18 @@
         "slug": "icons-only",
         "source": "src/pagination/variants/icons-only.tsx",
         "title": "Icons Only"
+      },
+      {
+        "exportName": "Router",
+        "slug": "router",
+        "source": "src/pagination/variants/router.tsx",
+        "title": "Router"
+      },
+      {
+        "exportName": "Table",
+        "slug": "table",
+        "source": "src/pagination/variants/table.tsx",
+        "title": "Table"
       }
     ]
   },

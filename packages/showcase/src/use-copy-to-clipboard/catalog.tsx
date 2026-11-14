@@ -4,7 +4,11 @@ import { componentDocumentation, variantDocumentation } from "@erbium/content/ma
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/use-copy-to-clipboard-demo.tsx?raw";
+
+import CustomButtonExample from "./variants/custom-button";
+
+import CustomButtonSource from "./variants/custom-button.tsx?raw";
 
 const meta = {
   parameters: {
@@ -26,9 +30,6 @@ export const Overview: Story = {
   },
   render: OverviewExample,
 };
-
-import CustomButtonExample from "./variants/custom-button";
-import CustomButtonSource from "./variants/custom-button.tsx?raw";
 
 export const CustomButton: Story = {
   parameters: {

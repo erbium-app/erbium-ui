@@ -1189,7 +1189,14 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Erbium pagination component.",
-      "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/utils"],
+      "dependencies": ["@base-ui/react", "@base-ui/utils"],
+      "registryDependencies": [
+        "@erbium/button-variants",
+        "@erbium/icon",
+        "@erbium/use-pagination",
+        "@erbium/use-predicted-intent",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/pagination.tsx",
@@ -1903,6 +1910,19 @@
         {
           "path": "src/hooks/use-media-query.ts",
           "target": "@hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-pagination",
+      "type": "registry:hook",
+      "title": "Use Pagination",
+      "description": "Erbium use pagination hook.",
+      "files": [
+        {
+          "path": "src/hooks/use-pagination.ts",
+          "target": "@hooks/use-pagination.ts",
           "type": "registry:hook"
         }
       ]

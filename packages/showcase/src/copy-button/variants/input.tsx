@@ -13,6 +13,7 @@ const Example = () => {
   return (
     <InputGroup className="w-80">
       <InputGroupInput
+        aria-label="URL"
         value={value}
         onChange={(event) => {
           setValue(event.target.value);
@@ -22,7 +23,7 @@ const Example = () => {
         <CopyButton
           value={value}
           aria-label="Copy URL"
-          render={<InputGroupButton size="icon-xs" />}
+          render={<InputGroupButton variant="embedded" size="icon-xs" />}
         />
       </InputGroupAddon>
     </InputGroup>

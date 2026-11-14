@@ -3,4 +3,4 @@ title: "Overview"
 story: Overview
 ---
 
-Use CopyButton for ready-to-use copying with an animated icon and accessible feedback. It uses useCopyToClipboard internally and inherits icon sizing from its button.
+Use the hook directly to copy the current input value with a flush action. A status region reports the result below the field.

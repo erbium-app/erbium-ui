@@ -10,18 +10,20 @@ import {
 } from "@erbium/ui/components/input-group";
 import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/popover";
 
+const profileUrl = "https://example.com/john-doe";
+
 const InputGroupButtonExample = () => {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   return (
     <div className="grid w-full max-w-sm gap-section">
       <InputGroup>
-        <InputGroupInput value="https://example.com/john-doe" readOnly />
+        <InputGroupInput aria-label="Profile URL" value={profileUrl} readOnly />
         <InputGroupAddon align="inline-end">
           <CopyButton
-            value="https://example.com/john-doe"
+            value={profileUrl}
             aria-label="Copy profile URL"
-            render={<InputGroupButton size="icon-xs" />}
+            render={<InputGroupButton variant="embedded" size="icon-xs" />}
           />
         </InputGroupAddon>
       </InputGroup>
