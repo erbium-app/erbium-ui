@@ -4,7 +4,6 @@ import { toast } from "@erbium/ui/components/toast";
 
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -39,6 +38,10 @@ const items = [
   },
 ] as const;
 
+// Each question eases in as it becomes active.
+const itemClassName =
+  "data-active:animate-in data-active:fade-in-0 data-active:slide-in-from-bottom-2 data-active:duration-300 motion-reduce:animate-none";
+
 const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   event.preventDefault();
 
@@ -63,7 +66,7 @@ export const QuestionnaireCard = () => {
       onSubmit={handleSubmit}
     >
       <Card>
-        <QuestionnaireItem aria-labelledby={taskTitleId} name="task">
+        <QuestionnaireItem aria-labelledby={taskTitleId} className={itemClassName} name="task">
           <CardHeader>
             <QuestionnaireTitle id={taskTitleId} render={<CardTitle />}>
               What should the agent work on?
@@ -71,9 +74,6 @@ export const QuestionnaireCard = () => {
             <QuestionnaireDescription render={<CardDescription />}>
               Choose the task that should be handled next.
             </QuestionnaireDescription>
-            <CardAction>
-              <QuestionnaireStepIndicator />
-            </CardAction>
           </CardHeader>
           <CardContent>
             <QuestionnaireChoices>
@@ -85,7 +85,7 @@ export const QuestionnaireCard = () => {
           </CardContent>
         </QuestionnaireItem>
 
-        <QuestionnaireItem aria-labelledby={outputTitleId} name="output">
+        <QuestionnaireItem aria-labelledby={outputTitleId} className={itemClassName} name="output">
           <CardHeader>
             <QuestionnaireTitle id={outputTitleId} render={<CardTitle />}>
               What should the final handoff include?
@@ -93,9 +93,6 @@ export const QuestionnaireCard = () => {
             <QuestionnaireDescription render={<CardDescription />}>
               Pick the level of detail needed for review.
             </QuestionnaireDescription>
-            <CardAction>
-              <QuestionnaireStepIndicator />
-            </CardAction>
           </CardHeader>
           <CardContent>
             <QuestionnaireChoices>
@@ -107,8 +104,10 @@ export const QuestionnaireCard = () => {
           </CardContent>
         </QuestionnaireItem>
 
-        <CardFooter>
-          <QuestionnaireActions className="w-full">
+        {/* Outside the items, so the dots stay mounted and slide between steps. */}
+        <CardFooter className="gap-group">
+          <QuestionnaireStepIndicator />
+          <QuestionnaireActions className="min-w-0 flex-1">
             <QuestionnairePrevious />
             <QuestionnaireNext>Next</QuestionnaireNext>
             <QuestionnaireSubmit>Create task</QuestionnaireSubmit>

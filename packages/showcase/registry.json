@@ -17490,7 +17490,7 @@
       "name": "questionnaire-controlled",
       "type": "registry:block",
       "title": "Questionnaire: Controlled",
-      "description": "Control the active item from host state, such as returning to an invalid step. The step indicator is clickable here: `reach` blocks dots beyond the furthest checkpoint, while earlier dots stay free.",
+      "description": "Control the active item from host state, such as returning to an invalid step. The step dots report through the same `onItemChange` as Next and Previous, so the host state follows every way of moving.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {
@@ -17688,7 +17688,7 @@
       "name": "questionnaire-progress",
       "type": "registry:block",
       "title": "Questionnaire: Step Indicator",
-      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. It is read-only by default; pass `onValueChange` (with `reach` to block skipping ahead) when the host controls the active item. The Progress primitive remains available for fully custom indicators.",
+      "description": "Use `QuestionnaireStepIndicator` to show position with dots driven by the questionnaire state. Each step already shown is a button that returns to it; later steps open as the questionnaire reaches them, so the dots never skip an unanswered question. Pass `onValueChange` and `reach` only when the host decides navigation itself. The Progress primitive remains available for fully custom indicators.",
       "registryDependencies": ["@erbium/questionnaire", "@erbium/styles", "@erbium/toast"],
       "files": [
         {

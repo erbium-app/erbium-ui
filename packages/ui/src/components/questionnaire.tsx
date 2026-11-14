@@ -28,6 +28,17 @@ const QuestionnaireItemsContext = React.createContext<
   readonly QuestionnaireItemDefinition[] | undefined
 >(undefined);
 
+interface QuestionnaireNavigation {
+  /** Shows the enabled item at this zero-based position, as Next and Previous do. */
+  go: (index: number) => void;
+  /** Furthest position shown so far. */
+  reach: number;
+  visit: (index: number) => void;
+}
+
+const QuestionnaireNavigationContext = React.createContext<QuestionnaireNavigation | null>(null);
+
+const ROOT = '[data-slot="questionnaire"]';
 const ITEM = '[data-slot="questionnaire-item"]';
 const ANSWERS = '[data-slot="questionnaire-choices"], [data-slot="questionnaire-input-wrapper"]';
 
@@ -99,51 +110,160 @@ const useShakeOnRejectedAnswer = (rootRef: React.RefObject<HTMLFormElement | nul
  */
 const Questionnaire = ({
   className,
+  item: itemProp,
   items,
   onClick,
+  onItemChange,
   onKeyDown,
+  onReset,
   onSubmitCapture,
   ref,
   ...props
 }: React.ComponentProps<typeof QuestionnairePrimitive.Root>) => {
   const rootRef = React.useRef<HTMLFormElement | null>(null);
   const checkAttempt = useShakeOnRejectedAnswer(rootRef);
+  // The primitive moves between items only through `item`, so an uncontrolled questionnaire
+  // holds it here once it changes, which lets the step indicator jump to any step.
+  const [shownItem, setShownItem] = React.useState<string>();
+  const [reach, setReach] = React.useState(0);
+
+  const changeItem = React.useCallback(
+    (next: string) => {
+      if (itemProp === undefined) {
+        setShownItem(next);
+      }
+
+      onItemChange?.(next);
+    },
+    [itemProp, onItemChange],
+  );
+
+  const visit = React.useCallback((index: number) => {
+    setReach((current) => Math.max(current, index));
+  }, []);
+
+  const navigation = React.useMemo<QuestionnaireNavigation>(() => {
+    // The primitive's order: enabled `items`, or the enabled rendered items without them.
+    const order = () => {
+      if (items) {
+        return items.flatMap((definition) =>
+          definition.disabled === true ? [] : [definition.name],
+        );
+      }
+
+      const root = rootRef.current;
+
+      return [...(root?.querySelectorAll<HTMLFieldSetElement>(ITEM) ?? [])].flatMap((element) =>
+        element.closest(ROOT) === root && !element.disabled ? [element.dataset.name ?? ""] : [],
+      );
+    };
+
+    return {
+      go: (index) => {
+        const name = order()[index];
+
+        if (name) {
+          changeItem(name);
+        }
+      },
+      reach,
+      visit,
+    };
+  }, [changeItem, items, reach, visit]);
 
   return (
     // Items take `required` from their definition here, so it is declared once.
     <QuestionnaireItemsContext.Provider value={items}>
-      <QuestionnairePrimitive.Root
-        ref={useMergedRefs(ref, rootRef, animateHeight)}
-        items={items}
-        data-slot="questionnaire"
-        className={cn("flex w-full min-w-0 flex-col gap-group", className)}
-        onClick={(event) => {
-          onClick?.(event);
+      <QuestionnaireNavigationContext.Provider value={navigation}>
+        <QuestionnairePrimitive.Root
+          ref={useMergedRefs(ref, rootRef, animateHeight)}
+          item={itemProp ?? shownItem}
+          items={items}
+          data-slot="questionnaire"
+          className={cn("flex w-full min-w-0 flex-col gap-group", className)}
+          onItemChange={changeItem}
+          onReset={(event) => {
+            onReset?.(event);
 
-          if (
-            event.target instanceof Element &&
-            event.target.closest('[data-slot="questionnaire-next"]')
-          ) {
-            checkAttempt(false);
-          }
-        }}
-        onKeyDown={(event) => {
-          onKeyDown?.(event);
+            if (!event.defaultPrevented) {
+              setReach(0);
+            }
+          }}
+          onClick={(event) => {
+            onClick?.(event);
 
-          if (event.key === "Enter" && !event.repeat) {
-            checkAttempt(false);
-          }
-        }}
-        onSubmitCapture={(event) => {
-          onSubmitCapture?.(event);
-          checkAttempt(true);
-        }}
-        {...props}
-      />
+            // A jump forward that `QuestionnaireForm` rejects shakes as a rejected Next does.
+            if (
+              event.target instanceof Element &&
+              event.target.closest(
+                '[data-slot="questionnaire-next"], [data-slot="step-indicator-control"]',
+              )
+            ) {
+              checkAttempt(false);
+            }
+          }}
+          onKeyDown={(event) => {
+            onKeyDown?.(event);
+
+            if (event.key === "Enter" && !event.repeat) {
+              checkAttempt(false);
+            }
+          }}
+          onSubmitCapture={(event) => {
+            onSubmitCapture?.(event);
+            checkAttempt(true);
+          }}
+          {...props}
+        />
+      </QuestionnaireNavigationContext.Provider>
     </QuestionnaireItemsContext.Provider>
   );
 };
 
+interface QuestionnaireStepsProps extends Pick<
+  React.ComponentProps<typeof StepIndicator>,
+  "aria-label" | "onValueChange" | "orientation" | "reach"
+> {
+  current: number;
+  total: number;
+}
+
+const QuestionnaireSteps = ({
+  current,
+  total,
+  onValueChange,
+  reach,
+  orientation,
+  "aria-label": ariaLabel,
+}: QuestionnaireStepsProps) => {
+  const navigation = React.use(QuestionnaireNavigationContext);
+  const index = current - 1;
+  const visited = navigation?.reach ?? index;
+  const visit = navigation?.visit;
+
+  React.useLayoutEffect(() => {
+    if (index > visited) {
+      visit?.(index);
+    }
+  }, [index, visit, visited]);
+
+  return (
+    <StepIndicator
+      count={total}
+      value={index}
+      onValueChange={onValueChange ?? navigation?.go}
+      // Steps already shown stay free; later ones open as the questionnaire reaches them.
+      reach={reach ?? Math.max(visited, index)}
+      orientation={orientation}
+      aria-label={ariaLabel ?? `Question ${current} of ${total}`}
+    />
+  );
+};
+
+/**
+ * The questionnaire's position as step dots. Each step already shown is a button that returns to
+ * it; pass `onValueChange` and `reach` to decide navigation in the host instead.
+ */
 const QuestionnaireStepIndicator = ({
   className,
   onValueChange,
@@ -155,38 +275,43 @@ const QuestionnaireStepIndicator = ({
   Pick<
     React.ComponentProps<typeof StepIndicator>,
     "aria-label" | "onValueChange" | "orientation" | "reach"
-  >) => (
-  <QuestionnairePrimitive.Progress
-    data-slot="questionnaire-step-indicator"
-    className={cn("w-fit", className)}
-    render={(progressProps, state) => (
-      <div
-        {...progressProps}
-        // A progressbar hides its descendants from assistive tech, which would
-        // hide the step buttons. Interactive indicators are a plain group.
-        {...(onValueChange
-          ? {
-              "aria-valuemax": undefined,
-              "aria-valuemin": undefined,
-              "aria-valuenow": undefined,
-              "aria-valuetext": undefined,
-              role: "group",
-            }
-          : {})}
-      >
-        <StepIndicator
-          count={state.total}
-          value={state.current - 1}
-          onValueChange={onValueChange}
-          reach={reach}
-          orientation={orientation}
-          aria-label={ariaLabel ?? `Question ${state.current} of ${state.total}`}
-        />
-      </div>
-    )}
-    {...props}
-  />
-);
+  >) => {
+  const navigation = React.use(QuestionnaireNavigationContext);
+  const interactive = onValueChange !== undefined || navigation !== null;
+
+  return (
+    <QuestionnairePrimitive.Progress
+      data-slot="questionnaire-step-indicator"
+      className={cn("w-fit", className)}
+      render={(progressProps, state) => (
+        <div
+          {...progressProps}
+          // A progressbar hides its descendants from assistive tech, which would
+          // hide the step buttons. Interactive indicators are a plain group.
+          {...(interactive
+            ? {
+                "aria-valuemax": undefined,
+                "aria-valuemin": undefined,
+                "aria-valuenow": undefined,
+                "aria-valuetext": undefined,
+                role: "group",
+              }
+            : {})}
+        >
+          <QuestionnaireSteps
+            current={state.current}
+            total={state.total}
+            onValueChange={onValueChange}
+            reach={reach}
+            orientation={orientation}
+            aria-label={ariaLabel}
+          />
+        </div>
+      )}
+      {...props}
+    />
+  );
+};
 
 /**
  * One question. A question that cannot be skipped is `required`, taken from its definition in the
@@ -211,6 +336,7 @@ const QuestionnaireItem = ({
       <QuestionnairePrimitive.Item
         ref={useMergedRefs(ref, animateHeight)}
         data-slot="questionnaire-item"
+        data-name={name}
         name={name}
         required={required}
         className={cn("flex min-w-0 flex-col gap-group border-0 p-0 outline-none", className)}

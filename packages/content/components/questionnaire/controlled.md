@@ -3,4 +3,4 @@ title: "Controlled"
 story: Controlled
 ---
 
-Control the active item from host state, such as returning to an invalid step. The step indicator is clickable here: `reach` blocks dots beyond the furthest checkpoint, while earlier dots stay free.
+Control the active item from host state, such as returning to an invalid step. The step dots report through the same `onItemChange` as Next and Previous, so the host state follows every way of moving.

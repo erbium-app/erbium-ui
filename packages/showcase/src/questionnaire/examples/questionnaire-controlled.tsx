@@ -47,17 +47,12 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
 
 export const QuestionnaireControlled = () => {
   const [item, setItem] = React.useState<ItemName>("scope");
-  // Furthest checkpoint reached. Dots beyond it are blocked; earlier ones are free.
-  const [reach, setReach] = React.useState(0);
-  const names = items.map((entry) => entry.name);
 
+  // Next, Previous and the step dots all report here.
   const handleItemChange = (next: string) => {
-    if (!isItemName(next)) {
-      return;
+    if (isItemName(next)) {
+      setItem(next);
     }
-
-    setItem(next);
-    setReach((current) => Math.max(current, names.indexOf(next)));
   };
 
   return (
@@ -73,12 +68,7 @@ export const QuestionnaireControlled = () => {
         onItemChange={handleItemChange}
         onSubmit={handleSubmit}
       >
-        <QuestionnaireStepIndicator
-          reach={reach}
-          onValueChange={(index) => {
-            setItem(names[index]);
-          }}
-        />
+        <QuestionnaireStepIndicator />
 
         <QuestionnaireItem name="scope">
           <QuestionnaireTitle>What may the agent change?</QuestionnaireTitle>

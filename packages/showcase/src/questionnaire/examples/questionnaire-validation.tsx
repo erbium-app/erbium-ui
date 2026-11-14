@@ -1,7 +1,7 @@
 import { Schema } from "effect";
 import { toast } from "@erbium/ui/components/toast";
 
-import { Card, CardAction, CardContent, CardFooter, CardHeader } from "@erbium/ui/components/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@erbium/ui/components/card";
 import {
   QuestionnaireActions,
   QuestionnaireChoices,
@@ -42,8 +42,6 @@ const Answers = Schema.Struct({ audience: Audience, detail: Detail }).check(
 
 const defaultValues = { audience: "", detail: "" };
 
-const ValidationProgress = () => <QuestionnaireStepIndicator className="min-w-0" />;
-
 export const QuestionnaireValidation = () => {
   const form = useQuestionnaireForm({
     defaultValues,
@@ -67,9 +65,6 @@ export const QuestionnaireValidation = () => {
               <CardHeader>
                 <QuestionnaireTitle>How much detail should the answer include?</QuestionnaireTitle>
                 <QuestionnaireDescription>Choose the response depth.</QuestionnaireDescription>
-                <CardAction>
-                  <ValidationProgress />
-                </CardAction>
               </CardHeader>
               <CardContent>
                 <QuestionnaireChoices>
@@ -94,9 +89,6 @@ export const QuestionnaireValidation = () => {
                 <QuestionnaireDescription>
                   Public answers require complete context.
                 </QuestionnaireDescription>
-                <CardAction>
-                  <ValidationProgress />
-                </CardAction>
               </CardHeader>
               <CardContent>
                 <QuestionnaireChoices>
@@ -111,8 +103,10 @@ export const QuestionnaireValidation = () => {
           )}
         </form.AppField>
 
-        <CardFooter>
-          <QuestionnaireActions>
+        {/* Outside the items, so the dots stay mounted and slide between steps. */}
+        <CardFooter className="gap-group">
+          <QuestionnaireStepIndicator />
+          <QuestionnaireActions className="min-w-0 flex-1">
             <QuestionnairePrevious />
             <QuestionnaireNext>Next</QuestionnaireNext>
             <QuestionnaireSubmit>Validate answers</QuestionnaireSubmit>
