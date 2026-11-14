@@ -46,28 +46,31 @@ const CopyButtonIcon = ({
 }: Omit<ComponentProps<typeof StatefulIcon>, "state" | "icons" | "labels">) => {
   const { pending, status } = useCopyButtonState();
 
-  if (pending) {
-    return (
-      <span aria-hidden="true" className={className} data-icon={placement}>
+  return (
+    <span
+      aria-hidden="true"
+      className={["inline-grid shrink-0 *:col-start-1 *:row-start-1", className]
+        .filter(Boolean)
+        .join(" ")}
+      data-icon={placement}
+    >
+      {/* Keep the icon mounted so the settled state can animate from the prior state. */}
+      <StatefulIcon
+        className={pending ? "invisible" : undefined}
+        state={status}
+        icons={{
+          copied: <Icon name="check" />,
+          error: <Icon name="cancel-01" />,
+          idle: <Icon name="copy" />,
+        }}
+      />
+      {pending && (
         <Spinner
           size="sm"
-          className="block group-[:is([data-size=xs],[data-size=sm],[data-size=icon-xs],[data-size=icon-sm])]/button:size-control-icon-sm group-[:is([data-size=lg],[data-size=icon-lg])]/button:size-control-icon-lg"
+          className="place-self-center group-[:is([data-size=xs],[data-size=sm],[data-size=icon-xs],[data-size=icon-sm])]/button:size-control-icon-sm group-[:is([data-size=lg],[data-size=icon-lg])]/button:size-control-icon-lg"
         />
-      </span>
-    );
-  }
-
-  return (
-    <StatefulIcon
-      className={className}
-      data-icon={placement}
-      state={status}
-      icons={{
-        copied: <Icon name="check" />,
-        error: <Icon name="cancel-01" />,
-        idle: <Icon name="copy" />,
-      }}
-    />
+      )}
+    </span>
   );
 };
 
@@ -123,13 +126,9 @@ const CopyButton = ({
         { ...props, disabled: isDisabled, onClick },
       ),
       "data-loading": state.pending ? "" : undefined,
-      ...(render
-        ? { focusableWhenDisabled }
-        : {
-            focusableWhenDisabled: focusableWhenDisabled === true || state.pending,
-            size: props.size ?? (iconOnly ? "icon" : "default"),
-            variant: props.variant ?? "ghost",
-          }),
+      focusableWhenDisabled: focusableWhenDisabled === true || state.pending,
+      size: render ? props.size : (props.size ?? (iconOnly ? "icon" : "default")),
+      variant: render ? props.variant : (props.variant ?? "ghost"),
     },
     render: render ?? <Button />,
     state,

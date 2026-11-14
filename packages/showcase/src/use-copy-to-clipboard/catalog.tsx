@@ -7,7 +7,6 @@ import OverviewExample from "./variants/overview";
 import OverviewSource from "./examples/use-copy-to-clipboard-demo.tsx?raw";
 
 import CustomButtonExample from "./variants/custom-button";
-
 import CustomButtonSource from "./variants/custom-button.tsx?raw";
 
 const meta = {

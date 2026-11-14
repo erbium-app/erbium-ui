@@ -3,7 +3,7 @@
   "name": "alert-dialog-error-variant",
   "type": "registry:block",
   "title": "Alert Dialog: Error",
-  "description": "Use the `AlertDialogAction` component to add a error action button to the alert dialog.",
+  "description": "Pair the confirmation text with a Copy Button and provide a labeled field for typing or pasting it. Enable Delete when the field matches the confirmation text.",
   "registryDependencies": [
     "@erbium/alert-dialog",
     "@erbium/button",

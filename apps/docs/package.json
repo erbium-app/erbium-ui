@@ -32,6 +32,8 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "6.3.0",
+    "js.foresight": "4.2.1",
+    "js.foresight-devtools": "2.2.1",
     "typescript": "catalog:typescript-stable",
     "vite": "catalog:",
     "vite-plus": "catalog:"

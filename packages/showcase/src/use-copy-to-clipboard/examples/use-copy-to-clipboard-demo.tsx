@@ -5,6 +5,7 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@erbium/ui/components/input-group";
+import { StatefulIcon } from "@erbium/ui/components/stateful-icon";
 import { Icon } from "@erbium/ui/components/icon";
 import { useCopyToClipboard } from "@erbium/ui/hooks/use-copy-to-clipboard";
 
@@ -28,14 +29,22 @@ const Demo = () => {
           <InputGroupButton
             aria-label="Copy URL"
             focusableWhenDisabled
-            loading={isPending}
+            aria-busy={isPending}
+            disabled={isPending}
             onClick={() => {
               void copyToClipboard(value);
             }}
             size="icon-xs"
             variant="embedded"
           >
-            <Icon name="copy" />
+            <StatefulIcon
+              state={status}
+              icons={{
+                copied: <Icon name="check" />,
+                error: <Icon name="cancel-01" />,
+                idle: <Icon name="copy" />,
+              }}
+            />
           </InputGroupButton>
         </InputGroupAddon>
       </InputGroup>
