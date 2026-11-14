@@ -83,6 +83,39 @@ const watchHeight = (element: HTMLElement) => {
   };
 };
 
-const animateHeight = (element: HTMLElement | null) => (element ? watchHeight(element) : undefined);
+interface Watcher {
+  stop: () => void;
+  users: number;
+}
+
+const watchers = new WeakMap<HTMLElement, Watcher>();
+
+const attach = (element: HTMLElement) => {
+  let watcher = watchers.get(element);
+
+  if (!watcher) {
+    watcher = { stop: watchHeight(element), users: 0 };
+    watchers.set(element, watcher);
+  }
+
+  const current = watcher;
+  current.users += 1;
+
+  return () => {
+    current.users -= 1;
+
+    // Components that merge refs can detach and attach this again in the commit that changed the
+    // content. Stopping after that commit's changes are delivered keeps one watcher, which still
+    // knows the height from before them, so the change animates.
+    queueMicrotask(() => {
+      if (current.users === 0 && watchers.get(element) === current) {
+        current.stop();
+        watchers.delete(element);
+      }
+    });
+  };
+};
+
+const animateHeight = (element: HTMLElement | null) => (element ? attach(element) : undefined);
 
 export { animateHeight };
