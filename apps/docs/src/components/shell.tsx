@@ -1,6 +1,6 @@
 import { useHotkey } from "@tanstack/react-hotkeys";
 import { useLocation, useRouter, useRouterState } from "@tanstack/react-router";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
@@ -39,6 +39,8 @@ import {
   CommandCollection,
   CommandItem,
 } from "@erbium/ui/components/command";
+import { releases } from "virtual:docs-catalog";
+import { releaseDay, wasRecentlyUpdated } from "@/content/release-date";
 import { navigationGroups } from "@/content/catalog";
 import { Link } from "@erbium/ui/components/link";
 import { useTheme, toggleTheme } from "./theme";
@@ -77,7 +79,19 @@ const revealCurrentLink = (link: HTMLAnchorElement | null) => {
   link?.scrollIntoView({ block: "nearest" });
 };
 
+const currentReleaseDay = () => releaseDay(Date.now());
+const builtReleaseDay = () => releases.builtOn;
+
+const subscribeReleaseDay = (notify: () => void) => {
+  const timer = window.setInterval(notify, 60_000);
+
+  return () => {
+    window.clearInterval(timer);
+  };
+};
+
 const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
+  const today = useSyncExternalStore(subscribeReleaseDay, currentReleaseDay, builtReleaseDay);
   const path = useLocation({ select: (location) => location.pathname });
 
   return (
@@ -106,6 +120,18 @@ const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
                       className="text-muted-foreground"
                     >
                       {page.title}
+                      {releases.changed[page.href]?.some((day) =>
+                        wasRecentlyUpdated(day, today),
+                      ) === true && (
+                        <>
+                          <span
+                            aria-hidden="true"
+                            title="Recently updated"
+                            className="ms-auto size-1.5 shrink-0 rounded-full bg-link"
+                          />
+                          <span className="sr-only">Recently updated</span>
+                        </>
+                      )}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -136,15 +162,27 @@ const ThemeToggle = () => {
 
 const SidebarActions = () => (
   <SidebarFooter className="flex-row items-center justify-between py-3 ps-0 pe-(--docs-sidebar-inset)">
-    <a
-      href="https://github.com/erbium-app/erbium-ui"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={buttonVariants({ size: "icon", variant: "ghost" })}
-      aria-label="Erbium UI on GitHub"
-    >
-      <Icon name="github" />
-    </a>
+    <div className="flex items-center gap-related">
+      <a
+        href="https://github.com/erbium-app/erbium-ui"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={buttonVariants({ size: "icon", variant: "ghost" })}
+        aria-label="Erbium UI on GitHub"
+      >
+        <Icon name="github" />
+      </a>
+      {releases.version !== null && (
+        <Link
+          to="/docs/$"
+          params={{ _splat: "changelog" }}
+          className="inline-flex min-h-8 items-center rounded-md px-1 text-metadata text-muted-foreground hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
+        >
+          v{releases.version}
+          <span className="sr-only"> changelog</span>
+        </Link>
+      )}
+    </div>
     <ThemeToggle />
   </SidebarFooter>
 );

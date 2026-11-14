@@ -5,6 +5,7 @@
   "description": "Shared Markdown documentation for Erbium UI.",
   "files": [
     "components",
+    "changelog",
     "references",
     "*.md",
     "src"

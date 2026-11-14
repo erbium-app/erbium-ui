@@ -16,6 +16,13 @@ declare module "virtual:docs-catalog" {
     href: string;
   }
 
+  export const releases: {
+    changed: Record<string, number[] | undefined>;
+    version: string | null;
+    builtOn: number;
+  };
+  export const changelogMarkdown: string;
+
   export const components: (CatalogPage & {
     name: string;
     kind: DocumentationKind;

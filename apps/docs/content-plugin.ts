@@ -3,6 +3,8 @@ import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import type { Plugin } from "vite-plus";
 import { documentationSections, kindPaths } from "@erbium/content/taxonomy";
+import { changelogDirectory, readChangelog } from "./changelog";
+import { releaseDay } from "./src/content/release-date";
 import registry from "../../packages/ui/registry.json" with { type: "json" };
 
 const root = new URL("../../packages/", import.meta.url);
@@ -16,6 +18,7 @@ const frontmatter = (file: string) => {
 // Guides live at fixed routes; titles and descriptions come from their frontmatter.
 const guideRoutes = [
   { file: "introduction", href: "/", section: "Overview" },
+  { file: "changelog", href: "/docs/changelog", section: "Overview" },
   { file: "roadmap", href: "/docs/roadmap", section: "Overview" },
   { file: "installation", href: "/docs/installation", section: "Guides" },
   { file: "getting-started", href: "/docs/getting-started", section: "Guides" },
@@ -64,10 +67,29 @@ export const contentPlugin = (): Plugin => {
   writeFileSync(new URL("theme.css", cache), light);
 
   return {
+    // Watched files invalidate the catalog when edited; a new or deleted release entry is not
+    // watched yet, so the folder itself reloads it.
+    configureServer(server) {
+      const folder = fileURLToPath(changelogDirectory);
+
+      const reload = (file: string) => {
+        const catalog = server.moduleGraph.getModuleById(resolvedId);
+
+        if (file.startsWith(folder) && file.endsWith(".md") && catalog) {
+          server.moduleGraph.invalidateModule(catalog);
+          server.ws.send({ type: "full-reload" });
+        }
+      };
+
+      server.watcher.add(folder);
+      server.watcher.on("add", reload);
+      server.watcher.on("unlink", reload);
+    },
     load: {
       filter: { id: /^\0virtual:docs-catalog$/u },
       handler() {
         const { components, guides } = docsCatalog();
+        const { changed, files, markdown, version } = readChangelog();
 
         // The catalog reads these files directly; watching them puts them in the module
         // graph, so an edit invalidates the catalog like any other import.
@@ -79,7 +101,13 @@ export const contentPlugin = (): Plugin => {
           this.addWatchFile(fileURLToPath(new URL(file, root)));
         }
 
-        return `export const components = ${JSON.stringify(components)};\nexport const guides = ${JSON.stringify(guides)};`;
+        for (const file of files) {
+          this.addWatchFile(fileURLToPath(file));
+        }
+
+        const releases = { changed, version, builtOn: releaseDay(Date.now()) };
+
+        return `export const releases = ${JSON.stringify(releases)};\nexport const changelogMarkdown = ${JSON.stringify(markdown)};\nexport const components = ${JSON.stringify(components)};\nexport const guides = ${JSON.stringify(guides)};`;
       },
     },
     name: "erbium:start-content",

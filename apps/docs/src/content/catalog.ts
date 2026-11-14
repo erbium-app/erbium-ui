@@ -12,6 +12,8 @@ export const navigationGroups = [
 ].map((title) => ({
   items: pages
     .filter((page) => page.section === title)
-    .toSorted((a, b) => a.title.localeCompare(b.title)),
+    .toSorted(
+      (a, b) => Number(b.href === "/") - Number(a.href === "/") || a.title.localeCompare(b.title),
+    ),
   title,
 }));

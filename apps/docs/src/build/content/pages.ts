@@ -1,3 +1,4 @@
+import { changelogMarkdown } from "virtual:docs-catalog";
 import matter from "gray-matter";
 import {
   showcaseExampleControls,
@@ -65,7 +66,7 @@ const document = (file: string) => {
   return {
     title: String(data.title ?? ""),
     description: String(data.description ?? ""),
-    tree: compileMarkdown(content),
+    tree: compileMarkdown(file === "changelog" ? `${content}\n\n${changelogMarkdown}` : content),
   };
 };
 export const getPage = async (path: string) => {

@@ -1,4 +1,5 @@
 import { componentReferences } from "@erbium/content/markdown";
+import { changelogMarkdown } from "virtual:docs-catalog";
 import matter from "gray-matter";
 import {
   showcaseExamples,
@@ -78,7 +79,15 @@ const page = (
 };
 
 export const agentPages: AgentPage[] = guides.map((guide) =>
-  page(guide.href, guide.title, guide.description, guide.section, body(`${guide.file}.md`)),
+  page(
+    guide.href,
+    guide.title,
+    guide.description,
+    guide.section,
+    guide.file === "changelog"
+      ? `${body("changelog.md")}\n\n${rewriteLinks(changelogMarkdown)}`
+      : body(`${guide.file}.md`),
+  ),
 );
 
 for (const component of components) {
