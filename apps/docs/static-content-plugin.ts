@@ -218,7 +218,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
         await write(
           "/_headers",
-          `${preview ? "/*\n  X-Robots-Tag: noindex\n\n" : ""}/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/examples/*\n  X-Robots-Tag: noindex\n  Cache-Control: public, max-age=60, must-revalidate\n\n/*.md\n  X-Robots-Tag: noindex\n\n/og/*\n  Cache-Control: public, max-age=3600\n`,
+          `${preview ? "/*\n  X-Robots-Tag: noindex\n\n" : ""}/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/r/erbium/revisions/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/r/erbium/index.json\n  Cache-Control: public, max-age=0, must-revalidate\n\n/examples/*\n  X-Robots-Tag: noindex\n  Cache-Control: public, max-age=60, must-revalidate\n\n/*.md\n  X-Robots-Tag: noindex\n\n/og/*\n  Cache-Control: public, max-age=3600\n`,
         );
       }
 
