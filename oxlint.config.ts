@@ -130,6 +130,11 @@ export default defineConfig({
     "vite-plus/prefer-vite-plus-imports": "error",
   },
   settings: {
-    shadcn: { ui: ["@erbium/ui/components", "@erbium/ui/blocks"] },
+    shadcn: {
+      ui: ["@erbium/ui/components", "@erbium/ui/blocks"],
+      // `buttonVariants` is a cva function, so its calls produce design-system classes the
+      // rules can read. This lets `Link` take button styling without a dynamic-class error.
+      variantFunctions: ["buttonVariants"],
+    },
   },
 });
