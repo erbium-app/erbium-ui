@@ -3,7 +3,7 @@ title: "Controlled"
 story: Api
 ---
 
-Pass `value` and `onValueChange` to control the position from your own state. Any control can then move the carousel, and the carousel reports swipes and key presses back through `onValueChange`. `CarouselIndicator` and `CarouselCounter` follow the position without extra wiring.
+Pass `value` and `onValueChange` to control the position from your own state. Any control can then move the carousel, and the carousel reports swipes and key presses back through `onValueChange`. `CarouselIndicator` and `CarouselCounter` follow the position without extra wiring. A new `value` animates only while the carousel is on screen and uncovered; otherwise the carousel jumps straight to it.
 
 ```tsx
 const [value, setValue] = React.useState(0);

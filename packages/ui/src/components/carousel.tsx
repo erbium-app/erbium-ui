@@ -96,6 +96,24 @@ const noCleanup = () => {
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/**
+ * Whether anyone can see the carousel move: its centre is on screen and not
+ * covered by another layer, such as a lightbox or dialog over the page.
+ */
+const isCarouselVisible = (root: HTMLElement) => {
+  const rect = root.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+
+  if (x < 0 || y < 0 || x > window.innerWidth || y > window.innerHeight) {
+    return false;
+  }
+
+  const hit = document.elementFromPoint(x, y);
+
+  return hit !== null && root.contains(hit);
+};
+
 /** Sources that come from the person rather than from code or autoplay. */
 const userSources = new Set<CarouselNavigationSource>([
   "button",
@@ -304,11 +322,16 @@ const Carousel = ({
     };
   }, [api]);
 
-  // Follow a controlled value.
+  // Follow a controlled value. Animate only when someone can watch the move.
+  // A carousel covered by another layer (a lightbox sharing its value) jumps
+  // instead, so it is already at rest when that layer closes and measures it.
   React.useEffect(() => {
     if (api && valueProp !== undefined && api.selectedScrollSnap() !== valueProp) {
+      const root = rootRef.current;
+      const jump = prefersReducedMotion() || !root || !isCarouselVisible(root);
+
       syncingRef.current = true;
-      api.scrollTo(valueProp, prefersReducedMotion());
+      api.scrollTo(valueProp, jump);
       syncingRef.current = false;
     }
   }, [api, valueProp]);
