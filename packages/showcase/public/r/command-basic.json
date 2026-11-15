@@ -4,7 +4,7 @@
   "type": "registry:block",
   "title": "Command: Basic",
   "description": "A simple command menu in a dialog.",
-  "dependencies": ["@tanstack/react-hotkeys@^0.25.0"],
+  "dependencies": ["@tanstack/react-hotkeys@^0.25.1"],
   "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
   "files": [
     {
