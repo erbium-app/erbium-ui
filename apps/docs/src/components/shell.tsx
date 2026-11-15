@@ -43,21 +43,27 @@ import { releases } from "virtual:docs-catalog";
 import { releaseDay, wasRecentlyUpdated } from "@/content/release-date";
 import { navigationGroups } from "@/content/catalog";
 import { Link } from "@erbium/ui/components/link";
-import { ErbiumLogo } from "./erbium-logo";
-import type { ErbiumLogoHandle } from "./erbium-logo";
+import { LogoLoader } from "@erbium/ui/components/logo-loader";
+import type { LogoLoaderHandle } from "@erbium/ui/components/logo-loader";
+import { useRouterPending } from "@erbium/ui/hooks/use-router-pending";
 import { useTheme, toggleTheme } from "./theme";
 
+// Navigations that resolve faster than this never move the logo.
+const navigationIndicatorDelay = 150;
+
 const Brand = () => {
-  const logo = useRef<ErbiumLogoHandle>(null);
+  const logo = useRef<LogoLoaderHandle>(null);
+  const navigating = useRouterPending();
 
   return (
     <Link
       to="/"
       className="inline-flex items-center gap-related text-body font-semibold text-foreground"
       aria-label="Erbium UI home"
-      onPointerEnter={() => logo.current?.play()}
+      onPointerEnter={() => logo.current?.replay()}
     >
-      <ErbiumLogo ref={logo} size={32} className="block shrink-0" />
+      {/* The logo doubles as the navigation indicator. */}
+      <LogoLoader ref={logo} loading={navigating} delay={navigationIndicatorDelay} />
       <span
         className="inline-flex items-baseline gap-(--docs-tight-gap) text-subtitle whitespace-nowrap"
         aria-hidden="true"

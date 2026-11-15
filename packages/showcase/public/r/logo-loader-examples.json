@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All logo-loader examples.",
+  "name": "logo-loader-examples",
+  "registryDependencies": [
+    "@erbium-examples/logo-loader-playground",
+    "@erbium-examples/logo-loader-request",
+    "@erbium-examples/logo-loader-replay"
+  ],
+  "title": "Logo Loader examples",
+  "type": "registry:item"
+}

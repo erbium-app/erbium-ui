@@ -29,6 +29,7 @@
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts",
     "./globals.css": "./src/styles/globals.css",
+    "./brand/logo.css": "./src/styles/brand/logo.css",
     "./package.json": "./package.json",
     "./blocks/*": "./src/blocks/*.tsx",
     "./assets/fonts/*": "./src/assets/fonts/*"

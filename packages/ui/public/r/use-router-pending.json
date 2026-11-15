@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-router-pending",
+  "type": "registry:hook",
+  "title": "Use Router Pending",
+  "description": "Erbium use router pending hook.",
+  "dependencies": ["@tanstack/react-router"],
+  "files": [
+    {
+      "path": "src/hooks/use-router-pending.ts",
+      "target": "@hooks/use-router-pending.ts",
+      "type": "registry:hook",
+      "content": "import { useRouterState } from \"@tanstack/react-router\";\n\n/**\n * True while TanStack Router resolves a navigation: matching, `beforeLoad`,\n * loaders and lazy route chunks. Preloads do not count. Pass it to a loading\n * indicator such as `LogoLoader`'s `loading` prop.\n */\nconst useRouterPending = () => useRouterState({ select: (state) => state.status === \"pending\" });\n\nexport { useRouterPending };\n"
+    }
+  ]
+}

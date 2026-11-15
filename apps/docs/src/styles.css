@@ -1,26 +1,11 @@
 @import "@erbium/ui/globals.css";
+@import "@erbium/ui/brand/logo.css";
 @import "../.cache/theme.css";
 
 @source "./";
 @source "../../../packages/showcase/src";
 
 @custom-variant dark (&:is(.dark *):not(.showcase-content.light *));
-
-/* Erbium mark colours, matching public/brand/erbium-logo-{light,dark}.svg. */
-:root {
-  --logo-body: #525252;
-  --logo-shadow: #000;
-}
-
-.dark {
-  --logo-body: #fafafa;
-  --logo-shadow: #a1a1aa;
-}
-
-@theme inline {
-  --color-logo-body: var(--logo-body);
-  --color-logo-shadow: var(--logo-shadow);
-}
 
 :root {
   --docs-tight-gap: 0.35rem;

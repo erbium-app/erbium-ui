@@ -1,0 +1,16 @@
+/*
+ * Erbium brand mark colours for LogoLoader. Kept out of the shared styles and
+ * the public registry: import it only in Erbium's own apps.
+ */
+
+:root {
+  /* Body and shadow of the brand logo (#525252, #000). */
+  --logo-body: oklch(43.8605% 0 none);
+  --logo-shadow: oklch(0% 0 none);
+}
+
+.dark {
+  /* The mark on dark surfaces (#fafafa, #a1a1aa). */
+  --logo-body: oklch(98.5104% 0 none);
+  --logo-shadow: oklch(71.1815% 0.0129 286.0665deg);
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-loader-request",
+  "type": "registry:block",
+  "title": "Logo Loader: Request",
+  "description": "A request with no layout to preview. The loader runs while the request is in flight, and the result appears once the mark has resolved.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/logo-loader",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup } from \"@/registry/erbium/ui/button-group\";\nimport { useEffect, useState } from \"react\";\n\n/*\n * A stand-in for a data request, so loading examples show the skeleton and then the reveal. In an\n * app the data comes from a route loader, TanStack Query or `use(promise)`; the UI only needs the\n * value and whether a request is in flight.\n */\n\n/** How long the example \"server\" takes to answer, in milliseconds. */\nconst defaultLatency = 1600;\n\ninterface SimulatedFetchOptions {\n  latency?: number;\n  /** The request rejects instead of resolving. */\n  fail?: boolean;\n}\n\ninterface SimulatedFetch<T> {\n  /** The loaded value; `undefined` until the first response. */\n  data: T | undefined;\n  /** A request is in flight, the first one or a refetch. */\n  loading: boolean;\n  error: Error | undefined;\n  /** Drops the data and loads again, as on a first visit. */\n  reload: () => void;\n  /** Loads again while the current data stays on screen. */\n  refetch: () => void;\n}\n\nconst useSimulatedFetch = <T,>(\n  value: T,\n  { latency = defaultLatency, fail = false }: SimulatedFetchOptions = {},\n): SimulatedFetch<T> => {\n  const [request, setRequest] = useState({ id: 0 });\n\n  // What the last response answered: the request and the value it was for. A new value (say, a new\n  // page or sort order) is a new request, while the last response stays on screen.\n  const [settled, setSettled] = useState<{\n    id: number;\n    value: T;\n    data?: T;\n    error?: Error;\n  } | null>(null);\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setSettled(\n        fail\n          ? { error: new Error(\"The server did not respond. Try again.\"), id: request.id, value }\n          : { data: value, id: request.id, value },\n      );\n    }, latency);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [request, latency, fail, value]);\n\n  const current = settled?.id === request.id && settled.value === value ? settled : null;\n  // `reload` clears the last response, so only refetches keep data on screen.\n  const previous = settled?.data;\n\n  return {\n    data: current === null ? previous : current.data,\n    error: current?.error,\n    loading: current === null,\n    refetch: () => {\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n    reload: () => {\n      setSettled(null);\n      setRequest((last) => ({ id: last.id + 1 }));\n    },\n  };\n};\n\n/** Replays the example's request: `Reload` from nothing, `Refetch` over the data on screen. */\nconst LoadingControls = ({\n  loading,\n  reload,\n  refetch,\n}: Pick<SimulatedFetch<unknown>, \"loading\" | \"reload\" | \"refetch\">) => (\n  <ButtonGroup aria-label=\"Replay the request\">\n    <Button variant=\"outline\" size=\"sm\" onClick={reload} disabled={loading}>\n      Reload\n    </Button>\n    <Button variant=\"outline\" size=\"sm\" onClick={refetch} disabled={loading}>\n      Refetch\n    </Button>\n  </ButtonGroup>\n);\n\n/** Playground controls shared by loading examples. */\nconst latencyArgType = {\n  latency: { control: { max: 5000, min: 0, step: 100, type: \"number\" } },\n} as const;\n\nexport { defaultLatency, latencyArgType, LoadingControls, useSimulatedFetch };\n\nexport type { SimulatedFetch, SimulatedFetchOptions };\n",
+      "path": "src/loading.tsx",
+      "target": "@components/showcase/loading.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { LogoLoader } from \"@/registry/erbium/ui/logo-loader\";\nimport { useState } from \"react\";\nimport { LoadingControls, useSimulatedFetch } from \"../../loading\";\n\nconst report = { pages: 12, title: \"Quarterly usage report\" };\n\ntype Report = typeof report;\n\n/** A generated file has no layout to preview, so the mark carries the wait. */\nexport const LogoLoaderRequest = ({ latency }: { latency?: number }) => {\n  const request = useSimulatedFetch(report, { latency });\n  // The result appears once the mark has come to rest, not mid-step.\n  const [revealed, setRevealed] = useState<Report>();\n  const result = request.loading ? undefined : revealed;\n\n  return (\n    <div className=\"flex w-full max-w-xs flex-col items-center gap-group text-center\">\n      <LogoLoader\n        className=\"size-16\"\n        label=\"Generating report\"\n        loading={request.loading}\n        onResolved={() => {\n          setRevealed(request.data);\n        }}\n      />\n      <p className=\"text-body text-muted-foreground\" aria-live=\"polite\">\n        {result ? `${result.title} is ready: ${result.pages} pages.` : \"Generating report…\"}\n      </p>\n      <LoadingControls {...request} />\n    </div>\n  );\n};\n",
+      "path": "src/logo-loader/examples/logo-loader-request.tsx",
+      "target": "@components/showcase/logo-loader/examples/logo-loader-request.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { LogoLoaderRequest } from \"../examples/logo-loader-request\";\n\nconst Example = () => <LogoLoaderRequest />;\n\nexport default Example;\n",
+      "path": "src/logo-loader/variants/request.tsx",
+      "target": "@components/showcase/logo-loader/variants/request.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-loader-replay",
+  "type": "registry:component",
+  "title": "Logo Loader: Replay",
+  "description": "Hover the brand to replay the rise, as the documentation header does.",
+  "registryDependencies": ["@erbium/logo-loader", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { LogoLoader } from \"@/registry/erbium/ui/logo-loader\";\nimport type { LogoLoaderHandle } from \"@/registry/erbium/ui/logo-loader\";\nimport { useRef } from \"react\";\n\nconst Example = () => {\n  const logo = useRef<LogoLoaderHandle>(null);\n\n  return (\n    <a\n      href=\"#replay\"\n      className=\"inline-flex items-center gap-related text-subtitle font-semibold text-foreground\"\n      onPointerEnter={() => logo.current?.replay()}\n    >\n      <LogoLoader ref={logo} />\n      Erbium\n    </a>\n  );\n};\n\nexport default Example;\n",
+      "path": "src/logo-loader/variants/replay.tsx",
+      "target": "@components/showcase/logo-loader/variants/replay.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

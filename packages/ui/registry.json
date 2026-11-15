@@ -1090,6 +1090,21 @@
       ]
     },
     {
+      "name": "logo-loader",
+      "type": "registry:ui",
+      "title": "Logo Loader",
+      "description": "Erbium logo loader component.",
+      "dependencies": ["motion"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
+      "files": [
+        {
+          "path": "src/components/logo-loader.tsx",
+          "target": "@ui/logo-loader.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "marker",
       "type": "registry:ui",
       "title": "Marker",
@@ -2022,6 +2037,20 @@
         {
           "path": "src/hooks/use-predicted-intent.ts",
           "target": "@hooks/use-predicted-intent.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-router-pending",
+      "type": "registry:hook",
+      "title": "Use Router Pending",
+      "description": "Erbium use router pending hook.",
+      "dependencies": ["@tanstack/react-router"],
+      "files": [
+        {
+          "path": "src/hooks/use-router-pending.ts",
+          "target": "@hooks/use-router-pending.ts",
           "type": "registry:hook"
         }
       ]

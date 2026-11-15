@@ -2628,6 +2628,30 @@
     ]
   },
   {
+    "name": "logo-loader",
+    "title": "Components/Logo Loader",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/logo-loader/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Request",
+        "slug": "request",
+        "source": "src/logo-loader/variants/request.tsx",
+        "title": "Request"
+      },
+      {
+        "exportName": "Replay",
+        "slug": "replay",
+        "source": "src/logo-loader/variants/replay.tsx",
+        "title": "Replay"
+      }
+    ]
+  },
+  {
     "name": "marker",
     "title": "Components/Marker",
     "variants": [

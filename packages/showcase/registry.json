@@ -7265,7 +7265,7 @@
       "type": "registry:block",
       "title": "Command: Basic",
       "description": "A simple command menu in a dialog.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.25.0"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.25.1"],
       "registryDependencies": ["@erbium/button", "@erbium/command", "@erbium/styles"],
       "files": [
         {
@@ -7419,7 +7419,7 @@
       "type": "registry:item",
       "title": "Command stories",
       "description": "All command variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-hotkeys@^0.25.0"],
+      "dependencies": ["@tanstack/react-hotkeys@^0.25.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/button",
@@ -14170,6 +14170,129 @@
         {
           "path": "src/link/variants/overview.tsx",
           "target": "@components/showcase/link/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All logo-loader examples.",
+      "name": "logo-loader-examples",
+      "registryDependencies": [
+        "@erbium-examples/logo-loader-playground",
+        "@erbium-examples/logo-loader-request",
+        "@erbium-examples/logo-loader-replay"
+      ],
+      "title": "Logo Loader examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "logo-loader-playground",
+      "type": "registry:component",
+      "title": "Logo Loader: Playground",
+      "description": "Toggle `loading` to start the loader and to resolve it.",
+      "registryDependencies": ["@erbium/logo-loader", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/logo-loader/variants/playground.tsx",
+          "target": "@components/showcase/logo-loader/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-loader-replay",
+      "type": "registry:component",
+      "title": "Logo Loader: Replay",
+      "description": "Hover the brand to replay the rise, as the documentation header does.",
+      "registryDependencies": ["@erbium/logo-loader", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/logo-loader/variants/replay.tsx",
+          "target": "@components/showcase/logo-loader/variants/replay.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-loader-request",
+      "type": "registry:block",
+      "title": "Logo Loader: Request",
+      "description": "A request with no layout to preview. The loader runs while the request is in flight, and the result appears once the mark has resolved.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/logo-loader",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/logo-loader/examples/logo-loader-request.tsx",
+          "target": "@components/showcase/logo-loader/examples/logo-loader-request.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/logo-loader/variants/request.tsx",
+          "target": "@components/showcase/logo-loader/variants/request.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-loader-stories",
+      "type": "registry:item",
+      "title": "Logo Loader stories",
+      "description": "All logo-loader variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/csp-provider",
+        "@erbium/logo-loader",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/use-router-pending"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/logo-loader/examples/logo-loader-request.tsx",
+          "target": "@components/showcase/logo-loader/examples/logo-loader-request.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/logo-loader/logo-loader.stories.tsx",
+          "target": "@components/showcase/logo-loader/logo-loader.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/logo-loader/variants/playground.tsx",
+          "target": "@components/showcase/logo-loader/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/logo-loader/variants/replay.tsx",
+          "target": "@components/showcase/logo-loader/variants/replay.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/logo-loader/variants/request.tsx",
+          "target": "@components/showcase/logo-loader/variants/request.tsx",
           "type": "registry:component"
         },
         {
