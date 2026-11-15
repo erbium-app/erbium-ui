@@ -6,11 +6,13 @@ import { useHotkey } from "@tanstack/react-hotkeys";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { useIsMobile } from "../hooks/use-is-mobile";
+import { toAriaKeyShortcuts, useHotkeyPlatform } from "../lib/hotkeys";
 import { cn } from "../lib/utils";
 import type { CSSVariableStyle } from "../lib/utils";
 import { sidebarMenuButtonVariants, sidebarStyles } from "../lib/sidebar-styles";
 import { Button } from "./button";
 import { Input } from "./input";
+import { KbdHint } from "./kbd";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { Sheet, SheetPanel, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
@@ -123,7 +125,10 @@ const SidebarProvider = ({
 
   // Toggle the sidebar with Mod+B (Cmd+B on macOS, Ctrl+B elsewhere).
   // `allow` keeps multiple providers from warning when several sidebars coexist.
-  useHotkey(SIDEBAR_KEYBOARD_SHORTCUT, toggleSidebar, { conflictBehavior: "allow" });
+  useHotkey(SIDEBAR_KEYBOARD_SHORTCUT, toggleSidebar, {
+    conflictBehavior: "allow",
+    meta: { name: "Toggle sidebar" },
+  });
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
@@ -261,15 +266,18 @@ const SidebarTrigger = ({
 }: React.ComponentProps<typeof Button> & { side?: "left" | "right" }) => {
   const { toggleSidebar, isMobile, open, openMobile } = useSidebar();
   const isOpen = isMobile ? openMobile : open;
+  const platform = useHotkeyPlatform();
 
+  // The provider registers the shortcut, so the trigger only announces and reveals it.
   return (
     <Button
       aria-expanded={isOpen}
+      aria-keyshortcuts={toAriaKeyShortcuts(SIDEBAR_KEYBOARD_SHORTCUT, platform)}
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon-sm"
-      className={cn(className)}
+      className={cn("relative", className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
@@ -278,6 +286,7 @@ const SidebarTrigger = ({
     >
       <SidebarToggleIcon isOpen={isOpen} side={side} className="rtl:rotate-180" />
       {children ?? <span className="sr-only">Toggle Sidebar</span>}
+      <KbdHint hotkey={SIDEBAR_KEYBOARD_SHORTCUT} />
     </Button>
   );
 };

@@ -8,6 +8,7 @@
     "@erbium-examples/button-variants",
     "@erbium-examples/button-sizes",
     "@erbium-examples/button-shortcuts",
+    "@erbium-examples/button-hotkey",
     "@erbium-examples/button-disabled",
     "@erbium-examples/button-loading",
     "@erbium-examples/button-loading-directions",

@@ -634,6 +634,12 @@
         "title": "Shortcuts"
       },
       {
+        "exportName": "Hotkey",
+        "slug": "hotkey",
+        "source": "src/button/variants/hotkey.tsx",
+        "title": "Hotkey"
+      },
+      {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/button/variants/disabled.tsx",
@@ -2588,6 +2594,12 @@
         "slug": "button",
         "source": "src/kbd/variants/button.tsx",
         "title": "Button"
+      },
+      {
+        "exportName": "Hint",
+        "slug": "hint",
+        "source": "src/kbd/variants/hint.tsx",
+        "title": "Hint"
       },
       {
         "exportName": "Tooltip",

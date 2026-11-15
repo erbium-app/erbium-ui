@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-hotkey",
+  "type": "registry:block",
+  "title": "Button: Hotkey",
+  "description": "`hotkey` registers a shortcut that clicks the button. Hold the shortcut's modifier to reveal it in a badge centred above each button, in left-to-right and right-to-left layouts alike. Publish labels its shortcut with `ButtonShortcut`, which reads the button's `hotkey`, so it shows no badge.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/direction",
+    "@erbium/icon",
+    "@erbium/kbd",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import ButtonHotkeyDemo from \"../../kbd/examples/kbd-hint\";\n\nconst Example = () => <ButtonHotkeyDemo />;\n\nexport default Example;\n",
+      "path": "src/button/variants/hotkey.tsx",
+      "target": "@components/showcase/button/variants/hotkey.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import * as React from \"react\";\nimport { Button, ButtonShortcut } from \"@/registry/erbium/ui/button\";\nimport { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nconst KbdHintExample = () => {\n  const [action, setAction] = React.useState(\"None yet\");\n\n  return (\n    <div className=\"flex flex-col items-start gap-group\">\n      {/* Hints open above the controls, so the row keeps room for them. */}\n      <div className=\"flex flex-wrap items-center gap-group pt-8\">\n        <Button\n          variant=\"outline\"\n          size=\"sm\"\n          hotkey=\"Mod+S\"\n          onClick={() => {\n            setAction(\"Save\");\n          }}\n        >\n          Save\n        </Button>\n        <Button\n          variant=\"outline\"\n          size=\"icon-sm\"\n          hotkey=\"Mod+Shift+D\"\n          aria-label=\"Duplicate\"\n          onClick={() => {\n            setAction(\"Duplicate\");\n          }}\n        >\n          <Icon name=\"copy\" />\n        </Button>\n        <Button\n          size=\"sm\"\n          hotkey=\"Mod+Enter\"\n          onClick={() => {\n            setAction(\"Publish\");\n          }}\n        >\n          Publish\n          <ButtonShortcut />\n        </Button>\n        <DirectionProvider direction=\"rtl\">\n          <div dir=\"rtl\">\n            <Button\n              variant=\"outline\"\n              size=\"sm\"\n              hotkey=\"Mod+Shift+S\"\n              onClick={() => {\n                setAction(\"ذخیره همه\");\n              }}\n            >\n              ذخیره همه\n            </Button>\n          </div>\n        </DirectionProvider>\n      </div>\n      <p className=\"text-caption text-muted-foreground\">\n        Hold <Kbd>Mod</Kbd> to reveal the shortcuts. Last action: {action}\n      </p>\n    </div>\n  );\n};\n\nexport default KbdHintExample;\n",
+      "path": "src/kbd/examples/kbd-hint.tsx",
+      "target": "@components/showcase/kbd/examples/kbd-hint.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

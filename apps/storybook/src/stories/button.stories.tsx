@@ -13,6 +13,8 @@ export const Sizes = { ...showcases.Sizes, name: "Sizes" };
 
 export const Shortcuts = { ...showcases.Shortcuts, name: "Shortcuts" };
 
+export const Hotkey = { ...showcases.Hotkey, name: "Hotkey" };
+
 export const Disabled = { ...showcases.Disabled, name: "Disabled" };
 
 export const Loading = { ...showcases.Loading, name: "Loading" };

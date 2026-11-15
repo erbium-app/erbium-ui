@@ -24,6 +24,10 @@ import ShortcutsExample from "./variants/shortcuts";
 
 import ShortcutsSource from "./variants/shortcuts.tsx?raw";
 
+import HotkeyExample from "./variants/hotkey";
+
+import HotkeySource from "./variants/hotkey.tsx?raw";
+
 import DisabledExample from "./variants/disabled";
 
 import DisabledSource from "./variants/disabled.tsx?raw";
@@ -186,6 +190,16 @@ export const Shortcuts: Story = {
     },
   },
   render: ShortcutsExample,
+};
+
+export const Hotkey: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("button", "hotkey") },
+      source: { code: HotkeySource },
+    },
+  },
+  render: HotkeyExample,
 };
 
 export const Disabled: Story = {

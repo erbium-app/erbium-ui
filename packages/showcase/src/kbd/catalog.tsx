@@ -16,6 +16,10 @@ import ButtonExample from "./variants/button";
 
 import ButtonSource from "./variants/button.tsx?raw";
 
+import HintExample from "./variants/hint";
+
+import HintSource from "./variants/hint.tsx?raw";
+
 import TooltipExample from "./variants/tooltip";
 
 import TooltipSource from "./variants/tooltip.tsx?raw";
@@ -71,6 +75,16 @@ export const Button: Story = {
     },
   },
   render: ButtonExample,
+};
+
+export const Hint: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("kbd", "hint") },
+      source: { code: HintSource },
+    },
+  },
+  render: HintExample,
 };
 
 export const Tooltip: Story = {

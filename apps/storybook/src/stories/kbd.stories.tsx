@@ -9,6 +9,8 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 
 export const Button = { ...showcases.Button, name: "Button" };
 
+export const Hint = { ...showcases.Hint, name: "Hint" };
+
 export const Tooltip = { ...showcases.Tooltip, name: "Tooltip" };
 
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };

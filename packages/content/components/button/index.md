@@ -19,6 +19,19 @@ import { Button } from "@erbium/ui/components/button";
 <Button variant="outline">Button</Button>
 ```
 
+## Keyboard shortcuts
+
+Pass `hotkey` to register a shortcut that clicks the button while it is mounted, enabled, and not loading. Clicking runs `onClick`, submits a form, or follows a rendered link, the same as a pointer press. The button sets `aria-keyshortcuts` for chords and shows the shortcut in a badge above itself while the user holds one of the shortcut's modifiers (see `KbdHint` for placement). Place a `ButtonShortcut` inside to label the shortcut permanently instead; it reads the button's `hotkey` when it has none of its own.
+
+```tsx
+<Button hotkey="Mod+S" onClick={save}>
+  Save
+  <ButtonShortcut />
+</Button>
+```
+
+The registration is named after `aria-label` or `title` for TanStack Hotkeys devtools and shortcut lists. While a modal dialog is open, shortcuts registered outside it pause, so a page button's shortcut cannot fire behind the dialog.
+
 ## Cursor
 
 Tailwind v4 [switched](https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor) from `cursor: pointer` to `cursor: default` for the button component.

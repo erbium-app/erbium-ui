@@ -6,6 +6,7 @@
     "@erbium-examples/kbd-playground",
     "@erbium-examples/kbd-overview",
     "@erbium-examples/kbd-button",
+    "@erbium-examples/kbd-hint",
     "@erbium-examples/kbd-tooltip",
     "@erbium-examples/kbd-input-group"
   ],
