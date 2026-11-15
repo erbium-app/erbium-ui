@@ -5,7 +5,7 @@ description: "Displays keyboard shortcuts for the current platform."
 
 ## Usage
 
-Displays a platform-aware shortcut. Pass the stored binding to `hotkey`; TanStack Hotkeys formats it for macOS, Windows, or Linux.
+Displays a platform-aware shortcut. Pass the stored binding to `hotkey`; TanStack Hotkeys formats it for macOS, Windows, or Linux. Physical bindings such as `[KeyW]` follow the user's keyboard layout in Chromium browsers, so the label reads `Z` on an AZERTY keyboard.
 
 **Import:** `@erbium/ui/components/kbd`
 

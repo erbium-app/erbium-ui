@@ -188,7 +188,15 @@ bunx intent list
 bunx intent load @tanstack/react-table#getting-started
 ```
 
-For keyboard interactions, refer to [TanStack Hotkeys](https://tanstack.com/hotkeys/latest/docs/overview). Check `intent list` for skills available in your installed release and use the package and skill names it reports. The Hotkeys version currently used by Erbium does not bundle skills, so use its documentation when none are listed. Other dependencies, including Ultracite and TanStack Charts, can also expose packaged skills through Intent.
+For keyboard shortcuts, [TanStack Hotkeys](https://tanstack.com/hotkeys/latest/docs/overview) ships skills for registering hotkeys, dialog scopes, hints, and shortcut settings. Load the React guidance, which names the core skill it builds on:
+
+```sh
+bunx intent load @tanstack/react-hotkeys#react-hotkeys
+```
+
+Install only `@tanstack/react-hotkeys`. It re-exports `@tanstack/hotkeys`, and a second copy of the core package at another version does not share scopes or registrations with it.
+
+Other dependencies, including Ultracite and TanStack Charts, can also expose packaged skills through Intent.
 
 Give your agent [llms.txt](/llms.txt) to discover Erbium’s documentation. Each documentation page is also available as Markdown by appending `.md` to its URL. Install [examples and stories](/docs/getting-started) alongside components when the agent needs composition and usage guidance.
 

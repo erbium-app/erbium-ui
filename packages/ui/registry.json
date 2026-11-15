@@ -1036,7 +1036,7 @@
       "type": "registry:ui",
       "title": "Kbd",
       "description": "Erbium kbd component.",
-      "dependencies": ["@tanstack/hotkeys"],
+      "dependencies": ["@tanstack/react-hotkeys"],
       "registryDependencies": ["@erbium/kbd-styles", "@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {

@@ -187,7 +187,6 @@
         "@ramka/react": "^0.0.2",
         "@shadcn/react": "catalog:",
         "@tanstack/charts": "catalog:",
-        "@tanstack/hotkeys": "^0.30.0",
         "@tanstack/react-hotkeys": "catalog:",
         "@tanstack/react-pacer": "catalog:",
         "@tanstack/react-table": "catalog:",
