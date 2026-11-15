@@ -16,5 +16,6 @@ Track remaining work here. Remove completed tasks; source and documentation reco
 10. [Agent tooling and platforms](./09-agent-tooling-and-platforms.md)
 11. [Opinionated sidebars](./10-opinionated-sidebars.md)
 12. [Files, review, and session UI](./11-files-and-session-ui.md)
+13. [Keyboard shortcuts](./12-keyboard-shortcuts.md)
 
 Keep these notes aligned with the public roadmap when scope changes. Add components and stories for recurring needs, not inventory parity.
