@@ -159,6 +159,14 @@ const SidebarProvider = ({
   );
 };
 
+/* The mobile sheet suspends the provider's shortcut while it is open, so the sheet registers
+   it again to close itself with the same keys. */
+const SidebarSheetHotkey = ({ onClose }: { onClose: () => void }) => {
+  useHotkey(SIDEBAR_KEYBOARD_SHORTCUT, onClose, { meta: { name: "Close sidebar" } });
+
+  return null;
+};
+
 const Sidebar = ({
   side = "left",
   variant = "sidebar",
@@ -200,6 +208,11 @@ const Sidebar = ({
           className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [--sidebar-width:18rem] [&>button]:hidden"
           side={side}
         >
+          <SidebarSheetHotkey
+            onClose={() => {
+              setOpenMobile(false);
+            }}
+          />
           <SheetHeader className="sr-only">
             <SheetTitle>Sidebar</SheetTitle>
             <SheetDescription>Displays the mobile sidebar.</SheetDescription>
