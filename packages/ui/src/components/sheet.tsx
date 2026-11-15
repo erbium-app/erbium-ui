@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
+import { ModalHotkeysScope } from "../lib/modal-hotkeys-scope";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
@@ -9,8 +10,17 @@ const SheetPanelContext = React.createContext(false);
 
 type SheetSide = "top" | "right" | "bottom" | "left";
 
-const Sheet = ({ ...props }: SheetPrimitive.Root.Props) => (
-  <SheetPrimitive.Root data-slot="sheet" {...props} />
+const SheetModalContext = React.createContext<SheetPrimitive.Root.Props["modal"]>(true);
+
+const Sheet = ({ modal = true, ...props }: SheetPrimitive.Root.Props) => (
+  <SheetModalContext.Provider value={modal}>
+    <SheetPrimitive.Root data-slot="sheet" modal={modal} {...props} />
+  </SheetModalContext.Provider>
+);
+
+/** Suspends the page's hotkeys while a modal sheet's popup is open. */
+const SheetHotkeysScope = ({ children }: { children: React.ReactNode }) => (
+  <ModalHotkeysScope modal={React.useContext(SheetModalContext)}>{children}</ModalHotkeysScope>
 );
 
 const SheetTrigger = ({ ...props }: SheetPrimitive.Trigger.Props) => (
@@ -81,18 +91,20 @@ const SheetPanel = ({
           )}
           {...props}
         >
-          {children}
-          {showCloseButton && (
-            <SheetPrimitive.Close
-              data-slot="sheet-close"
-              render={
-                <Button variant="ghost" className="absolute top-3 inset-e-3" size="icon-sm" />
-              }
-            >
-              <Icon name="x" />
-              <span className="sr-only">Close</span>
-            </SheetPrimitive.Close>
-          )}
+          <SheetHotkeysScope>
+            {children}
+            {showCloseButton && (
+              <SheetPrimitive.Close
+                data-slot="sheet-close"
+                render={
+                  <Button variant="ghost" className="absolute top-3 inset-e-3" size="icon-sm" />
+                }
+              >
+                <Icon name="x" />
+                <span className="sr-only">Close</span>
+              </SheetPrimitive.Close>
+            )}
+          </SheetHotkeysScope>
         </SheetPrimitive.Popup>
       </SheetViewport>
     </SheetPortal>

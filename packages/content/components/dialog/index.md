@@ -58,3 +58,20 @@ Dialog
 Use the existing controlled open state and primitive event details for application-driven opening. Focus restoration should follow the actual opening control; do not force focus to a different registered trigger. Let Base UI coordinate nested overlays and trigger lifetimes, and keep the default close/unmount behavior unless a concrete integration requires retained content. Avoid application-level focus loops and extra overlay contexts.
 
 The panel owns the surface. Header and footer own their padding; Content owns body padding and the single body scroll viewport. Do not add a ScrollArea or duplicate panel gutters inside Content. Independently scrolling search results belong beside Content, directly in the panel.
+
+## Keyboard shortcuts
+
+While a modal dialog is open, its panel owns the keyboard. `DialogPanel` gives each open panel an exclusive [TanStack Hotkeys scope](https://tanstack.com/hotkeys/latest/docs/framework/react/guides/hotkeys-provider-and-scopes#exclusive-scopes), so hotkeys registered outside it, such as the sidebar's `Mod+B`, pause until it closes and their hints stay hidden. Hotkeys registered by components inside the panel keep working. A dialog opened from another dialog suspends the first one in turn. `modal={false}` leaves the page's hotkeys working.
+
+Register a dialog's own shortcuts in a component rendered inside the panel. To close a dialog with the shortcut that opened it, register that shortcut inside the panel as well, because the page's registration is paused while the dialog is open:
+
+```tsx
+const CloseOnHotkey = ({ onClose }: { onClose: () => void }) => {
+  useHotkey("Mod+K", onClose);
+  return null;
+};
+
+<DialogPanel>
+  <CloseOnHotkey onClose={() => setOpen(false)} />…
+</DialogPanel>;
+```

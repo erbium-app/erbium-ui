@@ -45,7 +45,7 @@ Supply `items` and render the filtered results using the list callback. Objects 
 
 ## Dialog and actions
 
-Control `CommandDialog` with `open` and `onOpenChange`. Its `title` and `description` provide accessible dialog labels. Close the dialog from an item's `onClick` after running the action. Applications register their own Mod+K shortcut with `useHotkey` from `@tanstack/react-hotkeys` (pass `ignoreInputs` to skip editable targets); the hook adapts the binding to the platform and cleans itself up on unmount. `CommandShortcut` displays a shortcut; it does not register one.
+Control `CommandDialog` with `open` and `onOpenChange`. Its `title` and `description` provide accessible dialog labels. Close the dialog from an item's `onClick` after running the action. Applications register their own Mod+K shortcut with `useHotkey` from `@tanstack/react-hotkeys` (pass `ignoreInputs` to skip editable targets); the hook adapts the binding to the platform and cleans itself up on unmount. The open dialog pauses the page's hotkeys, so register Mod+K again in a component rendered inside `CommandDialog` to close it with the same keys (the Basic example does this). `CommandShortcut` displays a shortcut; it does not register one.
 
 ## Filtering and migration
 

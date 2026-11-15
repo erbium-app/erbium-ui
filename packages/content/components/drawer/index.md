@@ -104,6 +104,8 @@ Keep search inside its own result surface using Command or an inline Autocomplet
 
 Bottom drawers already integrate Base UI's virtual keyboard provider. Avoid adding another provider or compensating for the keyboard with custom viewport calculations. Let the drawer coordinate keyboard dismissal, scrolling, and item taps.
 
+A modal drawer pauses the page's hotkeys while it is open, as a modal dialog does; hotkeys registered inside the panel keep working. With `modal={false}`, the page's hotkeys stay active.
+
 Use `data-base-ui-swipe-ignore` on an interaction that must fully opt out of drawer swipes. For a touch control that only handles one axis, use `"x"` or `"y"` so the other axis can still swipe the drawer. Place this marker on the control, not the entire content area. The SearchAndControls story demonstrates a horizontal slider beside a searchable list. Real-device checks are still needed for swipe velocity and virtual keyboard behavior.
 
 ## Scrolling surfaces

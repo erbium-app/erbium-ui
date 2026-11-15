@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { ModalHotkeysScope } from "../lib/modal-hotkeys-scope";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { ScrollArea } from "./scroll-area";
@@ -7,9 +8,17 @@ import { Separator } from "./separator";
 import { Icon } from "./icon";
 
 const DialogPanelContext = React.createContext(false);
+const DialogModalContext = React.createContext<DialogPrimitive.Root.Props["modal"]>(true);
 
-const Dialog = ({ ...props }: DialogPrimitive.Root.Props) => (
-  <DialogPrimitive.Root data-slot="dialog" {...props} />
+const Dialog = ({ modal = true, ...props }: DialogPrimitive.Root.Props) => (
+  <DialogModalContext.Provider value={modal}>
+    <DialogPrimitive.Root data-slot="dialog" modal={modal} {...props} />
+  </DialogModalContext.Provider>
+);
+
+/** Suspends the page's hotkeys while a modal dialog's popup is open. */
+const DialogHotkeysScope = ({ children }: { children: React.ReactNode }) => (
+  <ModalHotkeysScope modal={React.useContext(DialogModalContext)}>{children}</ModalHotkeysScope>
 );
 
 const DialogTrigger = ({ ...props }: DialogPrimitive.Trigger.Props) => (
@@ -66,18 +75,20 @@ const DialogPanel = ({
           )}
           {...props}
         >
-          {children}
-          {showCloseButton && (
-            <DialogPrimitive.Close
-              data-slot="dialog-close"
-              render={
-                <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
-              }
-            >
-              <Icon name="x" />
-              <span className="sr-only">Close</span>
-            </DialogPrimitive.Close>
-          )}
+          <DialogHotkeysScope>
+            {children}
+            {showCloseButton && (
+              <DialogPrimitive.Close
+                data-slot="dialog-close"
+                render={
+                  <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
+                }
+              >
+                <Icon name="x" />
+                <span className="sr-only">Close</span>
+              </DialogPrimitive.Close>
+            )}
+          </DialogHotkeysScope>
         </DialogPrimitive.Popup>
       </DialogViewport>
     </DialogPortal>

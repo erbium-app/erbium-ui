@@ -2,6 +2,7 @@ import * as React from "react";
 import { Autocomplete as CommandPrimitive } from "@base-ui/react/autocomplete";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { focusSearchInput } from "../lib/focus-search-input";
+import { ModalHotkeysScope } from "../lib/modal-hotkeys-scope";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Kbd } from "./kbd";
@@ -97,20 +98,22 @@ const CommandDialog = ({
             className,
           )}
         >
-          <DialogTitle className="sr-only">{title}</DialogTitle>
-          <DialogDescription className="sr-only">{description}</DialogDescription>
-          {children}
-          {showCloseButton && (
-            <DialogPrimitive.Close
-              data-slot="dialog-close"
-              render={
-                <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
-              }
-            >
-              <Icon name="x" />
-              <span className="sr-only">Close</span>
-            </DialogPrimitive.Close>
-          )}
+          <ModalHotkeysScope modal={props.modal}>
+            <DialogTitle className="sr-only">{title}</DialogTitle>
+            <DialogDescription className="sr-only">{description}</DialogDescription>
+            {children}
+            {showCloseButton && (
+              <DialogPrimitive.Close
+                data-slot="dialog-close"
+                render={
+                  <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
+                }
+              >
+                <Icon name="x" />
+                <span className="sr-only">Close</span>
+              </DialogPrimitive.Close>
+            )}
+          </ModalHotkeysScope>
         </DialogPrimitive.Popup>
       </CommandDialogViewport>
     </DialogPortal>

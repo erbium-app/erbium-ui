@@ -25,6 +25,14 @@ const commandGroups = [
   },
 ];
 
+// The open dialog suspends the page's hotkeys, so the toggle shortcut is registered
+// again inside it to close it.
+const ClosePaletteHotkey = ({ onClose }: { onClose: () => void }) => {
+  useHotkey("Mod+K", onClose);
+
+  return null;
+};
+
 export const CommandBasic = () => {
   const [open, setOpen] = React.useState(false);
 
@@ -54,6 +62,11 @@ export const CommandBasic = () => {
         Open Command Palette
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
+        <ClosePaletteHotkey
+          onClose={() => {
+            setOpen(false);
+          }}
+        />
         <Command items={commandGroups}>
           <CommandInput aria-label="Search commands" placeholder="Type a command or search..." />
           <CommandEmpty>No results found.</CommandEmpty>

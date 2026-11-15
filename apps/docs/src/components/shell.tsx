@@ -204,6 +204,14 @@ const searchGroups = navigationGroups.map((group) => ({
   label: group.title,
 }));
 
+// The dialog suspends the page's hotkeys while it is open, so the shortcut that opened
+// it is registered again inside it to close it.
+const CloseSearchHotkey = ({ onClose }: { onClose: () => void }) => {
+  useHotkey("Mod+K", onClose);
+
+  return null;
+};
+
 const Search = ({
   open,
   onOpenChange,
@@ -221,6 +229,11 @@ const Search = ({
       description="Find a component, guide, hook, or foundation."
       className="sm:max-w-xl"
     >
+      <CloseSearchHotkey
+        onClose={() => {
+          onOpenChange(false);
+        }}
+      />
       <Command
         items={searchGroups}
         itemToStringValue={(item) => `${item.title} ${item.section} ${item.description}`}

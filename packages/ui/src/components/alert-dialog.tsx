@@ -1,5 +1,6 @@
 import * as React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
+import { ModalHotkeysScope } from "../lib/modal-hotkeys-scope";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 
@@ -40,6 +41,7 @@ const AlertDialogViewport = ({ className, ...props }: AlertDialogPrimitive.Viewp
 const AlertDialogContent = ({
   className,
   size = "default",
+  children,
   ...props
 }: AlertDialogPrimitive.Popup.Props & {
   size?: "default" | "sm";
@@ -55,7 +57,9 @@ const AlertDialogContent = ({
           className,
         )}
         {...props}
-      />
+      >
+        <ModalHotkeysScope>{children}</ModalHotkeysScope>
+      </AlertDialogPrimitive.Popup>
     </AlertDialogViewport>
   </AlertDialogPortal>
 );

@@ -57,6 +57,6 @@ Sheet
 
 ## Interaction ownership
 
-Sheet uses Dialog behavior with a side panel. Keep its existing controlled open state; programmatic opening and nested overlays follow the Dialog focus contract.
+Sheet uses Dialog behavior with a side panel. Keep its existing controlled open state; programmatic opening and nested overlays follow the Dialog focus contract. Keyboard shortcuts follow it too: an open modal sheet pauses the page's hotkeys, and hotkeys registered inside the panel keep working (see Dialog's keyboard shortcuts).
 
 The panel owns the surface. Header and footer own their padding; Content owns body padding and the single body scroll viewport. Do not add a ScrollArea or duplicate panel gutters inside Content. Independently scrolling search results belong beside Content, directly in the panel.

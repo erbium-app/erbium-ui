@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "modal-hotkeys-scope",
+  "type": "registry:lib",
+  "title": "Modal Hotkeys Scope",
+  "description": "Erbium modal hotkeys scope lib.",
+  "dependencies": ["@tanstack/react-hotkeys"],
+  "files": [
+    {
+      "path": "src/lib/modal-hotkeys-scope.tsx",
+      "target": "@lib/modal-hotkeys-scope.tsx",
+      "type": "registry:lib",
+      "content": "import { HotkeysProvider } from \"@tanstack/react-hotkeys\";\nimport * as React from \"react\";\n\ninterface ModalHotkeysScopeProps {\n  children: React.ReactNode;\n  /** The overlay's `modal` prop. A non-modal overlay leaves the page's hotkeys working. */\n  modal?: boolean | \"trap-focus\";\n}\n\n/**\n * Gives an open modal overlay the keyboard: while it is mounted, hotkeys registered outside it\n * are suspended (and their hints hidden), so a page shortcut cannot run behind the overlay.\n * Hotkeys registered by components inside the overlay keep working.\n *\n * Render it inside the overlay's popup, which Base UI unmounts on close, so the scope is\n * active exactly while the overlay is open. Each instance gets its own scope name, so an\n * overlay opened from another overlay suspends it instead of sharing its scope.\n *\n * A non-modal overlay still gets its own scope, without `exclusive`: the page's hotkeys keep\n * working, and the overlay's hotkeys win when both register the same key.\n */\nconst ModalHotkeysScope = ({ children, modal = true }: ModalHotkeysScopeProps) => (\n  <HotkeysProvider scope={`overlay-${React.useId()}`} exclusive={modal !== false}>\n    {children}\n  </HotkeysProvider>\n);\n\nexport { ModalHotkeysScope };\n"
+    }
+  ]
+}

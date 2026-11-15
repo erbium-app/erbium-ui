@@ -63,4 +63,4 @@ AlertDialog
 
 ## Interaction ownership
 
-Keep destructive-action confirmation controlled at the application boundary. Programmatic opening must restore focus to the actual opening control; do not force focus to an unrelated trigger. See the Dialog programmatic-opening story for the shared focus contract.
+Keep destructive-action confirmation controlled at the application boundary. Programmatic opening must restore focus to the actual opening control; do not force focus to an unrelated trigger. See the Dialog programmatic-opening story for the shared focus contract. While the alert dialog is open, the page's hotkeys pause, so a shortcut cannot run the action behind the confirmation; hotkeys registered inside `AlertDialogContent` keep working.

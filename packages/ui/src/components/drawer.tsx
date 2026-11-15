@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 import { Icon } from "./icon";
+import { ModalHotkeysScope } from "../lib/modal-hotkeys-scope";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { useOverlay } from "./overlay-provider";
@@ -205,18 +206,24 @@ const DrawerPanel = ({
                   "relative flex min-h-0 flex-1 flex-col overflow-hidden overscroll-contain rounded-[inherit] transition-opacity duration-300 ease-[cubic-bezier(0.45,1.005,0,1.005)] select-text group-data-nested-drawer-open/drawer-popup:opacity-0 group-data-nested-drawer-swiping/drawer-popup:opacity-100 group-data-swiping/drawer-popup:select-none",
                 )}
               >
-                {children}
-                {showCloseButton && (
-                  <DrawerPrimitive.Close
-                    data-slot="drawer-close"
-                    render={
-                      <Button variant="ghost" className="absolute top-2 inset-e-2" size="icon-sm" />
-                    }
-                  >
-                    <Icon name="x" />
-                    <span className="sr-only">Close</span>
-                  </DrawerPrimitive.Close>
-                )}
+                <ModalHotkeysScope modal={modal}>
+                  {children}
+                  {showCloseButton && (
+                    <DrawerPrimitive.Close
+                      data-slot="drawer-close"
+                      render={
+                        <Button
+                          variant="ghost"
+                          className="absolute top-2 inset-e-2"
+                          size="icon-sm"
+                        />
+                      }
+                    >
+                      <Icon name="x" />
+                      <span className="sr-only">Close</span>
+                    </DrawerPrimitive.Close>
+                  )}
+                </ModalHotkeysScope>
               </div>
             </DrawerPrimitive.Popup>
           </DrawerPrimitive.Viewport>

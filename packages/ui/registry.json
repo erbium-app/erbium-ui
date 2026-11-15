@@ -37,7 +37,7 @@
       "title": "Alert Dialog",
       "description": "Erbium alert dialog component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/utils"],
+      "registryDependencies": ["@erbium/button", "@erbium/modal-hotkeys-scope", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/alert-dialog.tsx",
@@ -474,6 +474,7 @@
         "@erbium/focus-search-input",
         "@erbium/icon",
         "@erbium/kbd",
+        "@erbium/modal-hotkeys-scope",
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/utils"
@@ -646,6 +647,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",
+        "@erbium/modal-hotkeys-scope",
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/utils"
@@ -746,6 +748,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",
+        "@erbium/modal-hotkeys-scope",
         "@erbium/overlay-provider",
         "@erbium/scroll-area",
         "@erbium/utils"
@@ -1201,6 +1204,20 @@
       ]
     },
     {
+      "name": "modal-hotkeys-scope",
+      "type": "registry:lib",
+      "title": "Modal Hotkeys Scope",
+      "description": "Erbium modal hotkeys scope lib.",
+      "dependencies": ["@tanstack/react-hotkeys"],
+      "files": [
+        {
+          "path": "src/lib/modal-hotkeys-scope.tsx",
+          "target": "@lib/modal-hotkeys-scope.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
@@ -1467,6 +1484,7 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",
+        "@erbium/modal-hotkeys-scope",
         "@erbium/scroll-area",
         "@erbium/utils"
       ],
