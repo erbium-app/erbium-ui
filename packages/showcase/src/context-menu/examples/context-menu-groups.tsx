@@ -43,7 +43,7 @@ export const ContextMenuGroups = () => (
           </ContextMenuItem>
           <ContextMenuItem>
             Redo
-            <ContextMenuShortcut hotkey="Shift+Mod+Z" />
+            <ContextMenuShortcut hotkey="Mod+Shift+Z" />
           </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />

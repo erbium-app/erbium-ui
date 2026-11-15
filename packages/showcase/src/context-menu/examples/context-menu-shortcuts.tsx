@@ -39,7 +39,7 @@ export const ContextMenuShortcuts = () => (
           </ContextMenuItem>
           <ContextMenuItem>
             Save As...
-            <ContextMenuShortcut hotkey="Shift+Mod+S" />
+            <ContextMenuShortcut hotkey="Mod+Shift+S" />
           </ContextMenuItem>
         </ContextMenuGroup>
       </ContextMenuList>

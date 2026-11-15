@@ -56,7 +56,7 @@ const MenubarDemo = () => (
             Undo <MenubarShortcut hotkey="Mod+Z" />
           </MenubarItem>
           <MenubarItem>
-            Redo <MenubarShortcut hotkey="Shift+Mod+Z" />
+            Redo <MenubarShortcut hotkey="Mod+Shift+Z" />
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
@@ -94,7 +94,7 @@ const MenubarDemo = () => (
             Reload <MenubarShortcut hotkey="Mod+R" />
           </MenubarItem>
           <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut hotkey="Shift+Mod+R" />
+            Force Reload <MenubarShortcut hotkey="Mod+Shift+R" />
           </MenubarItem>
           <MenubarSeparator />
           <MenubarItem inset>Toggle Fullscreen</MenubarItem>

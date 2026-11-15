@@ -24,7 +24,7 @@ const DropdownMenuDemo = () => (
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
             Profile
-            <DropdownMenuShortcut hotkey="Shift+Mod+P" />
+            <DropdownMenuShortcut hotkey="Mod+Shift+P" />
           </DropdownMenuItem>
           <DropdownMenuItem>
             Billing
@@ -57,7 +57,7 @@ const DropdownMenuDemo = () => (
           </DropdownMenuSub>
           <DropdownMenuItem>
             New Team
-            <DropdownMenuShortcut hotkey="Mod+PlusT" />
+            <DropdownMenuShortcut hotkey="Mod+T" />
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -67,7 +67,7 @@ const DropdownMenuDemo = () => (
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Log out
-          <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
+          <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
         </DropdownMenuItem>
       </DropdownMenuList>
     </DropdownMenuContent>

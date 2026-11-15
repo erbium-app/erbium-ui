@@ -83,7 +83,7 @@ const commandGroups = [
           <>
             <Icon name="folder-plus" />
             <span>New Folder</span>
-            <CommandShortcut hotkey="Shift+Mod+N" />
+            <CommandShortcut hotkey="Mod+Shift+N" />
           </>
         ),
         disabled: false,
@@ -163,7 +163,7 @@ const commandGroups = [
           <>
             <Icon name="zoom-in" />
             <span>Zoom In</span>
-            <CommandShortcut hotkey="Mod+Plus" />
+            <CommandShortcut hotkey="Mod++" />
           </>
         ),
         disabled: false,

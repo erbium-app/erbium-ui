@@ -26,7 +26,7 @@ export const MenubarCheckbox = () => (
             Reload <MenubarShortcut hotkey="Mod+R" />
           </MenubarItem>
           <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut hotkey="Shift+Mod+R" />
+            Force Reload <MenubarShortcut hotkey="Mod+Shift+R" />
           </MenubarItem>
         </MenubarList>
       </MenubarContent>

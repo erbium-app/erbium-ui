@@ -45,7 +45,7 @@ export const DropdownMenuComplex = () => {
             <DropdownMenuItem>
               <Icon name="folder-01" />
               New Folder
-              <DropdownMenuShortcut hotkey="Shift+Mod+N" />
+              <DropdownMenuShortcut hotkey="Mod+Shift+N" />
             </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
@@ -106,7 +106,7 @@ export const DropdownMenuComplex = () => {
             <DropdownMenuItem>
               <Icon name="download-01" />
               Export
-              <DropdownMenuShortcut hotkey="Shift+Mod+E" />
+              <DropdownMenuShortcut hotkey="Mod+Shift+E" />
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
@@ -151,7 +151,7 @@ export const DropdownMenuComplex = () => {
             <DropdownMenuItem>
               <Icon name="user" />
               Profile
-              <DropdownMenuShortcut hotkey="Shift+Mod+P" />
+              <DropdownMenuShortcut hotkey="Mod+Shift+P" />
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Icon name="credit-card" />
@@ -243,7 +243,7 @@ export const DropdownMenuComplex = () => {
             <DropdownMenuItem variant="error">
               <Icon name="log-out" />
               Sign Out
-              <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
+              <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuList>

@@ -44,7 +44,7 @@ export const MenubarSubmenu = () => (
             Undo <MenubarShortcut hotkey="Mod+Z" />
           </MenubarItem>
           <MenubarItem>
-            Redo <MenubarShortcut hotkey="Shift+Mod+Z" />
+            Redo <MenubarShortcut hotkey="Mod+Shift+Z" />
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>

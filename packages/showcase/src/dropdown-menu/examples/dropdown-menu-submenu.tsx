@@ -49,7 +49,7 @@ export const DropdownMenuSubmenu = () => (
           </DropdownMenuSub>
           <DropdownMenuItem>
             New Team
-            <DropdownMenuShortcut hotkey="Mod+PlusT" />
+            <DropdownMenuShortcut hotkey="Mod+T" />
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuList>

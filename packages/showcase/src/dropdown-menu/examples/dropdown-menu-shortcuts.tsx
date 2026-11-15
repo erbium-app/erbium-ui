@@ -20,7 +20,7 @@ export const DropdownMenuShortcuts = () => (
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuItem>
             Profile
-            <DropdownMenuShortcut hotkey="Shift+Mod+P" />
+            <DropdownMenuShortcut hotkey="Mod+Shift+P" />
           </DropdownMenuItem>
           <DropdownMenuItem>
             Billing
@@ -34,7 +34,7 @@ export const DropdownMenuShortcuts = () => (
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Log out
-          <DropdownMenuShortcut hotkey="Shift+Mod+Q" />
+          <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
         </DropdownMenuItem>
       </DropdownMenuList>
     </DropdownMenuContent>
