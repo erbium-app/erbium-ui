@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
   "files": [
     {
-      "content": "const oldFile = {\n  contents: \"export function greet(name: string) {\\n  return `Hello, ${name}`;\\n}\\n\",\n  name: \"greeting.ts\",\n};\n\nconst newFile = {\n  contents:\n    'export function greet(name: string = \"world\") {\\n  const greeting = `Welcome, ${name}!`;\\n  return greeting;\\n}\\n',\n  name: \"greeting.ts\",\n};\n\nexport { oldFile, newFile };\n",
+      "content": "const oldFile = {\n  contents: [\n    \"export function greet(name: string) {\",\n    `  return \\`Hello, \\${name}\\`;`,\n    \"}\",\n    \"\",\n  ].join(\"\\n\"),\n  name: \"greeting.ts\",\n};\n\nconst newFile = {\n  contents: [\n    'export function greet(name: string = \"world\") {',\n    `  const greeting = \\`Welcome, \\${name}!\\`;`,\n    \"  return greeting;\",\n    \"}\",\n    \"\",\n  ].join(\"\\n\"),\n  name: \"greeting.ts\",\n};\n\nexport { oldFile, newFile };\n",
       "path": "src/diff-view/examples/files.ts",
       "target": "@components/showcase/diff-view/examples/files.ts",
       "type": "registry:component"

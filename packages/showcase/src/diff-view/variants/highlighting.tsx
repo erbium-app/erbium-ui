@@ -13,7 +13,7 @@ const Example = () => {
         aria-label="Inline change highlighting"
         value={[highlight ?? "word-alt"]}
         onValueChange={(values) => {
-          const value = values[0];
+          const [value] = values;
 
           if (value === "word-alt" || value === "char" || value === "none") {
             setHighlight(value);

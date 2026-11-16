@@ -1,11 +1,21 @@
 const oldFile = {
-  contents: "export function greet(name: string) {\n  return `Hello, ${name}`;\n}\n",
+  contents: [
+    "export function greet(name: string) {",
+    `  return \`Hello, \${name}\`;`,
+    "}",
+    "",
+  ].join("\n"),
   name: "greeting.ts",
 };
 
 const newFile = {
-  contents:
-    'export function greet(name: string = "world") {\n  const greeting = `Welcome, ${name}!`;\n  return greeting;\n}\n',
+  contents: [
+    'export function greet(name: string = "world") {',
+    `  const greeting = \`Welcome, \${name}!\`;`,
+    "  return greeting;",
+    "}",
+    "",
+  ].join("\n"),
   name: "greeting.ts",
 };
 

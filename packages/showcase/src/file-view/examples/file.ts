@@ -1,7 +1,10 @@
 export const file = {
-  contents:
-    `export function greet(name: string = "world") {\n  const greeting = ` +
-    "`Welcome, ${name}!`" +
-    `;\n  return greeting;\n}\n`,
+  contents: [
+    'export function greet(name: string = "world") {',
+    `  const greeting = \`Welcome, \${name}!\`;`,
+    "  return greeting;",
+    "}",
+    "",
+  ].join("\n"),
   name: "greeting.ts",
 };

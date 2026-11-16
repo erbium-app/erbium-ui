@@ -15,7 +15,7 @@ const Example = () => {
           aria-label="Diff layout"
           value={[layout]}
           onValueChange={(values) => {
-            const value = values[0];
+            const [value] = values;
 
             if (value === "split" || value === "unified") {
               setLayout(value);

@@ -16,7 +16,7 @@
   ],
   "files": [
     {
-      "content": "export const file = {\n  contents:\n    `export function greet(name: string = \"world\") {\\n  const greeting = ` +\n    \"`Welcome, ${name}!`\" +\n    `;\\n  return greeting;\\n}\\n`,\n  name: \"greeting.ts\",\n};\n",
+      "content": "export const file = {\n  contents: [\n    'export function greet(name: string = \"world\") {',\n    `  const greeting = \\`Welcome, \\${name}!\\`;`,\n    \"  return greeting;\",\n    \"}\",\n    \"\",\n  ].join(\"\\n\"),\n  name: \"greeting.ts\",\n};\n",
       "path": "src/file-view/examples/file.ts",
       "target": "@components/showcase/file-view/examples/file.ts",
       "type": "registry:component"
