@@ -195,10 +195,13 @@ const CodePanelLines = ({
   );
 };
 
-/** Numbered rows for a file's source. Like Pierre, a final newline ends with an empty row. */
+/**
+ * Numbered rows for a file's source. Like Pierre, `\r\n`, `\n`, and `\r` each end a line, and a final
+ * line break ends with an empty row.
+ */
 const sourceLines = (source: string, numbered = true): CodePanelLine[] =>
   source
-    .split("\n")
+    .split(/\r\n|\n|\r/u)
     .slice(0, codePanelLineLimit)
     .map((text, index) => ({ number: numbered ? index + 1 : undefined, text }));
 
