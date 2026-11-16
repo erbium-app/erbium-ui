@@ -1,10 +1,12 @@
 # 13 — anti-slop fork rules
 
-## Current status (2026-11-17)
+Reviewed 2026-11-17.
 
-`oxlint.config.ts` already extends `ultracite/oxlint/anti-slop`. That preset is Ultracite 8.2.1's bundled build of [dmmulroy/anti-slop](https://github.com/dmmulroy/anti-slop). It enables 18 rules and tunes a few: `no-runtime-typeof` gets `allowInTypeGuards`, and three core rules are turned off because their autofixes loop against anti-slop (`typescript/consistent-indexed-object-style`, `unicorn/no-immediate-mutation`, `unicorn/prefer-reflect-apply`).
+## Background
 
-[K-Mistele/anti-slop](https://github.com/K-Mistele/anti-slop) is a fork of that project with more rule sets. Nothing from the fork is integrated yet. The fork is not published to npm; upstream's model is to copy `src/` into the consuming repository.
+`oxlint.config.ts` extends `ultracite/oxlint/anti-slop`. That preset is Ultracite 8.2.1's bundled build of [dmmulroy/anti-slop](https://github.com/dmmulroy/anti-slop). It enables 18 rules and tunes a few: `no-runtime-typeof` gets `allowInTypeGuards`, and three core rules are turned off because their autofixes loop against anti-slop (`typescript/consistent-indexed-object-style`, `unicorn/no-immediate-mutation`, `unicorn/prefer-reflect-apply`).
+
+[K-Mistele/anti-slop](https://github.com/K-Mistele/anti-slop) is a fork of that project with more rule sets. The fork is not published to npm; upstream's model is to copy `src/` into the consuming repository.
 
 ## What the fork adds
 

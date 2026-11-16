@@ -1,8 +1,10 @@
 # 14 — CI and Cloudflare deploy
 
-## Current status (2026-11-17)
+Reviewed 2026-11-17.
 
-Nothing below is implemented yet. Approve items by number, ship each as its own commit, and record before and after timings from real runs.
+## Baseline
+
+Approve items by number, ship each as its own commit, and record before and after timings from real runs.
 
 ### Cloudflare deploy (Workers Builds, prod, 2026-11-16 log): 1m54s total
 
@@ -22,7 +24,7 @@ Nothing below is implemented yet. Approve items by number, ship each as its own 
 - Last 120 runs: 93 failed, 19 succeeded, 8 cancelled. The latest failure is `bun run check` with `Found 1520 errors`. A check that is always red gives no signal.
 - The workflow triggers only on `pull_request`. Work lands directly on `main`, so CI has not run since 2026-11-08.
 - Workers Builds deploys every push to `main` to prod without waiting for any check.
-- Already in place: oxlint, oxfmt, bun only, TypeScript 7, and cancel-in-progress concurrency. The only test suite is `packages/cli`, so test sharding does not apply.
+- The only test suite is `packages/cli`, so test sharding does not apply.
 
 ## Remaining work
 

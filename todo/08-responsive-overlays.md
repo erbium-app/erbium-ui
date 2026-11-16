@@ -21,4 +21,4 @@ Reviewed 2026-11-17.
 - Hover Card: define a touch alternative.
 - Tooltip, Toast, and Navigation Menu: retain their semantics rather than forcing drawer presentation.
 
-These are design candidates, not universal defaults already shipped. Verify long content, nesting, RTL, reduced motion, focus restoration, and SSR manually in Storybook/docs. Run `bun run check`; use `bun run ready` for release readiness. Regenerate UI and showcase registries for affected source changes as described in [04](./04-validation.md).
+These are design candidates. Verify long content, nesting, RTL, reduced motion, focus restoration, and SSR manually in Storybook/docs. Run `bunx vp check` on edited files; use `bun run ready` for release readiness. Regenerate UI and showcase registries for affected source changes as described in [04](./04-validation.md).

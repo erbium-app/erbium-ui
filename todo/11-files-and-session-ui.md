@@ -2,10 +2,6 @@
 
 Use OpenCode's session UI and Pierre's rendering capabilities as references. Prefer compositions of existing blocks; applications own loading, execution, and persistence.
 
-## Current status (2026-11-17)
-
-The single-file blocks exist in `packages/ui/src/blocks`: FileTree (Git status and path updates), FileView, and DiffView (patch strings, split/unified layouts, wrapping, added/deleted/renamed/empty states, line selection, and typed annotations through Pierre's slots). Message, Bubble, MessageScroller, and Attachment cover the basic chat parts. Nothing below combines them yet.
-
 ## 1. Changed-file review
 
 - [ ] Compose FileTree, DiffView, and FileView with controlled file selection, rename paths, and added/deleted counts.

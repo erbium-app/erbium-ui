@@ -1,6 +1,6 @@
 # 10 — Opinionated sidebars
 
-Reviewed 2026-11-17. None of the proposed API is implemented yet; the source comparison below is from 2026-10-05. This document records the proposed direction and implementation work; the API names below are illustrative, not shipped contracts.
+Reviewed 2026-11-17. The source comparison below is from 2026-10-05. This document records the proposed direction and implementation work; the API names below are illustrative, not shipped contracts.
 
 ## Goal
 
@@ -37,7 +37,7 @@ The docs app already imports shared menu styles, but its own CSS overrides group
 - [ ] Establish fixed width, region spacing, row geometry, colors, and focus treatment for each supported pattern.
 - [ ] Add an icon-rail pattern only after a concrete use case establishes its requirements.
 - [ ] Keep resizing out of the initial implementation. Reconsider bounded resizing when a real application needs it.
-- [ ] Define ownership of controlled state and persistence. Keep product-specific routing and persistence policy in applications. The `Mod+B` toggle and its handling inside the mobile sheet's hotkey scope already exist; keep them.
+- [ ] Define ownership of controlled state and persistence. Keep product-specific routing and persistence policy in applications.
 
 ## Constrained public API
 

@@ -1,13 +1,6 @@
 # 12 — Keyboard shortcuts
 
-## Current status (2026-11-17)
-
-Erbium uses TanStack Hotkeys through `@tanstack/react-hotkeys` only; `packages/ui` no longer depends on `@tanstack/hotkeys` directly. Delivered:
-
-- `Kbd` formats labels with `useFormatForDisplay` (provider platform, keyboard layout for physical keys).
-- Modal Dialog, Sheet, AlertDialog, Drawer and CommandDialog popups render an exclusive scope (`packages/ui/src/lib/modal-hotkeys-scope.tsx`), so page shortcuts pause while they are open. The mobile sidebar sheet registers `Mod+B` inside its scope to close itself.
-- `Button` `hotkey` registers a shortcut that clicks it and sets `aria-keyshortcuts`; `ButtonShortcut` without `hotkey` labels the button's binding.
-- `KbdHint` shows a shortcut in a `Badge` while a modifier is held, anchored with Base UI's tooltip positioner (centred above by default, logical `side`/`align`). `Button` and `SidebarTrigger` render it.
+Reviewed 2026-11-17.
 
 The repository installs `@tanstack/react-hotkeys` `^0.27.0`. The local TanStack Hotkeys checkout at `/Volumes/AlirezaDev/Codes/Packages/hotkeys` is older (react-hotkeys 0.25.1); pull it before using it as a reference. Load `bunx --no-install --package @tanstack/intent intent load @tanstack/react-hotkeys#react-hotkeys` and `@tanstack/hotkeys#app-hotkeys` before working on this file.
 
