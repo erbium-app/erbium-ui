@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Spinner } from "@erbium/ui/components/spinner";
 import {
   Command,
   CommandInput,
@@ -47,9 +48,11 @@ const AsyncResultsExample = () => {
           aria-label="Search workspace commands"
           placeholder="Search workspace commands…"
         />
-        <CommandEmpty>{loading ? "Searching…" : "No commands found."}</CommandEmpty>
+        <CommandEmpty className="flex h-10 items-center justify-center not-empty:py-0">
+          {loading ? <Spinner aria-label="Searching commands" /> : "No commands found."}
+        </CommandEmpty>
         <CommandList>
-          {(action) => (
+          {(action: (typeof actions)[number]) => (
             <CommandItem
               key={action.id}
               value={action}
@@ -65,9 +68,7 @@ const AsyncResultsExample = () => {
       <p className="text-caption text-muted-foreground">
         {preview?.description ?? "Highlight a command to preview it."}
       </p>
-      <p role="status" className="text-control">
-        {selected}
-      </p>
+      <output className="text-control">{selected}</output>
     </div>
   );
 };

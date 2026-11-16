@@ -3872,12 +3872,6 @@
         "slug": "input-group",
         "source": "src/spinner/variants/input-group.tsx",
         "title": "Input Group"
-      },
-      {
-        "exportName": "Empty",
-        "slug": "empty",
-        "source": "src/spinner/variants/empty.tsx",
-        "title": "Empty"
       }
     ]
   },

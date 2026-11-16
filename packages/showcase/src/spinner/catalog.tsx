@@ -28,10 +28,6 @@ import InputGroupExample from "./variants/input-group";
 
 import InputGroupSource from "./variants/input-group.tsx?raw";
 
-import EmptyExample from "./variants/empty";
-
-import EmptySource from "./variants/empty.tsx?raw";
-
 const meta = {
   component: Spinner,
   parameters: {
@@ -50,7 +46,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Spinner> = {
-  argTypes: {},
+  argTypes: {
+    size: { control: "select", options: ["xs", "sm", "default", "lg", "xl"] },
+    "aria-label": { control: "text" },
+  },
   args: { size: "lg" },
   parameters: {
     docs: {
@@ -109,14 +108,4 @@ export const InputGroup: Story = {
     },
   },
   render: InputGroupExample,
-};
-
-export const Empty: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("spinner", "empty") },
-      source: { code: EmptySource },
-    },
-  },
-  render: EmptyExample,
 };

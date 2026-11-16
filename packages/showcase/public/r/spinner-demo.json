@@ -4,10 +4,10 @@
   "type": "registry:component",
   "title": "spinner demo",
   "description": "Erbium spinner demo example.",
-  "registryDependencies": ["@erbium/item", "@erbium/spinner", "@erbium/styles"],
+  "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Item, ItemContent, ItemMedia, ItemTitle } from \"@/registry/erbium/ui/item\";\nimport { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerDemo = () => (\n  <div className=\"flex w-full max-w-xs flex-col gap-group [--radius:1rem]\">\n    <Item variant=\"card\">\n      <ItemMedia>\n        <Spinner />\n      </ItemMedia>\n      <ItemContent>\n        <ItemTitle className=\"line-clamp-1\">Processing payment...</ItemTitle>\n      </ItemContent>\n      <ItemContent className=\"flex-none justify-end\">\n        <span className=\"text-caption tabular-nums\">$100.00</span>\n      </ItemContent>\n    </Item>\n  </div>\n);\n\nexport default SpinnerDemo;\n",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerDemo = () => <Spinner />;\n\nexport default SpinnerDemo;\n",
       "path": "src/spinner/examples/spinner-demo.tsx",
       "target": "@components/showcase/spinner/examples/spinner-demo.tsx",
       "type": "registry:component"

@@ -14,5 +14,3 @@ export const Button = { ...showcases.Button, name: "Button" };
 export const Badge = { ...showcases.Badge, name: "Badge" };
 
 export const InputGroup = { ...showcases.InputGroup, name: "Input Group" };
-
-export const Empty = { ...showcases.Empty, name: "Empty" };

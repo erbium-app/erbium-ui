@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@erbium/ui/components/button";
+import { Spinner } from "@erbium/ui/components/spinner";
 import {
   Combobox,
   ComboboxTrigger,
@@ -73,10 +74,19 @@ const AsyncSearchExample = () => {
         </ComboboxTrigger>
         <ComboboxContent className="w-72">
           <ComboboxSearchInput aria-label="Search projects" placeholder="Search projects…" />
-          <ComboboxStatus>{loading ? "Searching…" : ""}</ComboboxStatus>
-          <ComboboxEmpty>{loading ? null : "No projects found."}</ComboboxEmpty>
+          <ComboboxStatus className="p-0">
+            {loading && (
+              <span className="flex h-10 items-center justify-center">
+                <Spinner aria-hidden />
+                <span className="sr-only">Searching projects</span>
+              </span>
+            )}
+          </ComboboxStatus>
+          {!loading && (
+            <ComboboxEmpty className="h-10 items-center py-0">No projects found.</ComboboxEmpty>
+          )}
           <ComboboxList aria-busy={loading || undefined}>
-            {(project) => (
+            {(project: Project) => (
               <ComboboxItem key={project.id} value={project}>
                 {project.name}
               </ComboboxItem>
@@ -85,9 +95,7 @@ const AsyncSearchExample = () => {
         </ComboboxContent>
       </Combobox>
       <p className="text-caption text-muted-foreground">Highlighted: {preview || "none"}</p>
-      <p role="status" className="text-control">
-        Selected: {selected?.name ?? "none"}
-      </p>
+      <output className="text-control">Selected: {selected?.name ?? "none"}</output>
     </div>
   );
 };

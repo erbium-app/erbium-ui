@@ -6811,8 +6811,13 @@
       "name": "combobox-async-search",
       "type": "registry:component",
       "title": "Combobox: Async search",
-      "description": "Open the project picker and type a query. This story simulates a delayed request locally, cancels obsolete requests, and hides stale results while searching. The first arriving match is highlighted; use arrow keys and Enter to choose it. Search for a missing project to see the empty state, then clear the query to restore the longer list and its thin scrollbar.\n\nThe flush search header stays outside the scrolling list and retains its separator. Header height follows our search sizing on desktop and mobile; the list uses the space left by the actual header rather than subtracting a fixed height. For a real service, cancel the request and use `filter={null}` when the service already filters results.\n\nUse `ComboboxStatus` for loading or error announcements and `ComboboxEmpty` for a completed search with no matches. Keep Status mounted while the popup is open and update its children; hiding or conditionally mounting the live region can prevent announcements. The list's `aria-busy` communicates that results are still arriving.",
-      "registryDependencies": ["@erbium/button", "@erbium/combobox", "@erbium/styles"],
+      "description": "Open the project picker and type a query. This story simulates a delayed request locally, cancels obsolete requests, and hides stale results while searching. The first arriving match is highlighted; use arrow keys and Enter to choose it. Search for a missing project to see the empty state, then clear the query to restore the longer list and its thin scrollbar.\n\nThe flush search header stays outside the scrolling list and retains its separator. Header height follows our search sizing on desktop and mobile; the list uses the space left by the actual header rather than subtracting a fixed height. For a real service, cancel the request and use `filter={null}` when the service already filters results.\n\nShow a centered spinner while results are pending, with an accessible search status. Use `ComboboxStatus` for loading or error announcements and `ComboboxEmpty` for a completed search with no matches. Keep Status mounted while the popup is open and update its children; hiding or conditionally mounting the live region can prevent announcements. The list's `aria-busy` communicates that results are still arriving.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/combobox",
+        "@erbium/spinner",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/combobox/variants/async-search.tsx",
@@ -7142,6 +7147,7 @@
         "@erbium/item",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
+        "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -7288,7 +7294,7 @@
       "type": "registry:component",
       "title": "Command: Async results",
       "description": "The story simulates a delayed request locally. Change the query quickly, then use arrow keys and Enter after results arrive. Previous requests are cancelled; stale results are withheld while searching. Automatic highlighting applies to arriving results, and `onItemHighlighted` drives the contextual preview. A real remote search should cancel its request and use `filter={null}` when the server has already filtered the results.",
-      "registryDependencies": ["@erbium/command", "@erbium/styles"],
+      "registryDependencies": ["@erbium/command", "@erbium/spinner", "@erbium/styles"],
       "files": [
         {
           "path": "src/command/variants/async-results.tsx",
@@ -7465,6 +7471,7 @@
         "@erbium/icon",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
+        "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -21069,35 +21076,11 @@
       "type": "registry:component",
       "title": "spinner demo",
       "description": "Erbium spinner demo example.",
-      "registryDependencies": ["@erbium/item", "@erbium/spinner", "@erbium/styles"],
+      "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
       "files": [
         {
           "path": "src/spinner/examples/spinner-demo.tsx",
           "target": "@components/showcase/spinner/examples/spinner-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "spinner-empty",
-      "type": "registry:block",
-      "title": "Spinner: Empty",
-      "description": "Show progress in an empty state.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/empty",
-        "@erbium/spinner",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/spinner/examples/spinner-empty.tsx",
-          "target": "@components/showcase/spinner/examples/spinner-empty.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/spinner/variants/empty.tsx",
-          "target": "@components/showcase/spinner/variants/empty.tsx",
           "type": "registry:component"
         }
       ]
@@ -21111,8 +21094,7 @@
         "@erbium-examples/spinner-size",
         "@erbium-examples/spinner-button",
         "@erbium-examples/spinner-badge",
-        "@erbium-examples/spinner-input-group",
-        "@erbium-examples/spinner-empty"
+        "@erbium-examples/spinner-input-group"
       ],
       "title": "Spinner examples",
       "type": "registry:item"
@@ -21141,7 +21123,7 @@
       "type": "registry:block",
       "title": "Spinner: Overview",
       "description": "",
-      "registryDependencies": ["@erbium/item", "@erbium/spinner", "@erbium/styles"],
+      "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
       "files": [
         {
           "path": "src/spinner/examples/spinner-demo.tsx",
@@ -21198,10 +21180,8 @@
         "@erbium/badge",
         "@erbium/button",
         "@erbium/csp-provider",
-        "@erbium/empty",
         "@erbium/icon",
         "@erbium/input-group",
-        "@erbium/item",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
@@ -21230,11 +21210,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/spinner/examples/spinner-empty.tsx",
-          "target": "@components/showcase/spinner/examples/spinner-empty.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/spinner/examples/spinner-input-group.tsx",
           "target": "@components/showcase/spinner/examples/spinner-input-group.tsx",
           "type": "registry:component"
@@ -21257,11 +21232,6 @@
         {
           "path": "src/spinner/variants/button.tsx",
           "target": "@components/showcase/spinner/variants/button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/spinner/variants/empty.tsx",
-          "target": "@components/showcase/spinner/variants/empty.tsx",
           "type": "registry:component"
         },
         {

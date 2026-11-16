@@ -3,7 +3,7 @@ title: "Logo Loader"
 description: "The Erbium mark as a loading indicator, with start, loop and resolve phases."
 ---
 
-`LogoLoader` is the Erbium mark that builds itself while work is in flight. It is for waits that have no layout to stand in for: navigating between routes, preparing a workspace, generating a file. Content with a known shape loads behind a [Skeleton](/docs/components/skeleton) instead.
+`LogoLoader` is the Erbium mark that builds itself while work is in flight. It is for waits that have no layout to stand in for: navigating between routes, preparing a workspace, generating a file. Content with a known shape loads behind a [Skeleton](/docs/components/skeleton) instead. For localized actions or status, use a [Spinner](/docs/components/spinner), including the loading APIs on controls.
 
 **Import:** `@erbium/ui/components/logo-loader`
 

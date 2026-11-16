@@ -234,11 +234,11 @@ export const AsyncAutocomplete = () => {
       <AutocompleteInput aria-label="Search movies" placeholder="Search title or year…" />
       {query && (
         <AutocompletePopup aria-busy={loading || undefined}>
-          <AutocompleteStatus>
+          <AutocompleteStatus className="flex h-10 items-center justify-center py-0">
             {loading ? (
-              <span className="flex items-center gap-related">
-                Searching…
-                <Spinner />
+              <span className="flex items-center justify-center">
+                <Spinner aria-hidden />
+                <span className="sr-only">Searching movies</span>
               </span>
             ) : (
               `${results.length} results found`

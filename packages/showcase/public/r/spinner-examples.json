@@ -8,8 +8,7 @@
     "@erbium-examples/spinner-size",
     "@erbium-examples/spinner-button",
     "@erbium-examples/spinner-badge",
-    "@erbium-examples/spinner-input-group",
-    "@erbium-examples/spinner-empty"
+    "@erbium-examples/spinner-input-group"
   ],
   "title": "Spinner examples",
   "type": "registry:item"
