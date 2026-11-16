@@ -1180,6 +1180,12 @@
         "title": "Line Numbers"
       },
       {
+        "exportName": "HighlightedLines",
+        "slug": "highlighted-lines",
+        "source": "src/code-block/variants/highlighted-lines.tsx",
+        "title": "Highlighted Lines"
+      },
+      {
         "exportName": "States",
         "slug": "states",
         "source": "src/code-block/variants/states.tsx",

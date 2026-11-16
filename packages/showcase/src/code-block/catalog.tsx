@@ -15,6 +15,8 @@ import OverflowExample from "./variants/overflow";
 import OverflowSource from "./variants/overflow.tsx?raw";
 import LineNumbersExample from "./variants/line-numbers";
 import LineNumbersSource from "./variants/line-numbers.tsx?raw";
+import HighlightedLinesExample from "./variants/highlighted-lines";
+import HighlightedLinesSource from "./variants/highlighted-lines.tsx?raw";
 import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
 import ChangingSourceExample from "./variants/changing-source";
@@ -113,6 +115,16 @@ export const LineNumbers: Story = {
     },
   },
   render: LineNumbersExample,
+};
+
+export const HighlightedLines: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("code-block", "highlighted-lines") },
+      source: { code: HighlightedLinesSource },
+    },
+  },
+  render: HighlightedLinesExample,
 };
 
 export const States: Story = {

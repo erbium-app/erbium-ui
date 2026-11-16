@@ -21,6 +21,14 @@ The default layout includes the source and an anchored icon copy button. A heade
 
 `lineNumbers` adds a gutter, and `startLine` sets the number of the first line for an excerpt from the middle of a file. The gutter is one column sized by the widest number, so lines stay aligned past line 999. With `wrap`, a wrapped line continues in the code column rather than under its number. Code blocks share their line metrics with File View and Diff View, so a numbered snippet lines up with a file view of the same source.
 
+## Highlighted lines
+
+```tsx
+<CodeBlock code={config} language="ts" lineNumbers highlightLines={[3, 4]} />
+```
+
+`highlightLines` takes the displayed numbers of the lines to call out, counted from `startLine`, on the root or on each item. A highlighted line gets a tint across the block and a marker on its leading edge, so it does not rely on color alone. Highlighting is visual: when a line matters to the reader, say so in the surrounding text as well. To show changes between two versions, use Diff View; code blocks have no added or removed line states.
+
 ## Language icons
 
 Default titles and tabs include a decorative icon selected from the source’s `language`. TypeScript and JavaScript use their language icons; TSX and JSX use React. Aliases such as `typescript`, `py`, and `bash` share the same selection as their canonical languages. Plaintext uses a text-file icon and unknown languages use a generic file icon. A command surface without a language uses the shell icon. Titles and tab labels do not determine the language. Headerless snippets remain headerless.

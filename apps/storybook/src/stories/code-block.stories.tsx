@@ -19,6 +19,8 @@ export const Overflow = { ...showcases.Overflow, name: "Overflow" };
 
 export const LineNumbers = { ...showcases.LineNumbers, name: "Line Numbers" };
 
+export const HighlightedLines = { ...showcases.HighlightedLines, name: "Highlighted Lines" };
+
 export const States = { ...showcases.States, name: "States" };
 
 export const ChangingSource = { ...showcases.ChangingSource, name: "Changing Source" };

@@ -66,7 +66,8 @@ interface CodePanelLine {
   text: string;
   /** Highlighted content for the line. `text` is shown when it is absent. */
   content?: ReactNode;
-  tone?: "addition" | "deletion";
+  /** Diff changes, or `highlight` to call out a line. */
+  tone?: "addition" | "deletion" | "highlight";
 }
 
 // Rows the panel body can show before it scrolls; later rows stay out of view, so plain fallbacks
@@ -81,10 +82,10 @@ interface CodePanelLinesProps {
   /** Rows to render. Defaults to the rows a panel shows before it scrolls. */
   limit?: number;
   /**
-   * Pad the code column. Turn it off when the container already pads the code, as a code block
-   * without line numbers does.
+   * Replaces the code column's inline padding, which matches Pierre's gutter by default. Code
+   * blocks without line numbers pad it to the panel instead.
    */
-  inset?: boolean;
+  codeClassName?: string;
 }
 
 /**
@@ -98,7 +99,7 @@ const CodePanelLines = ({
   className,
   wrap = false,
   limit = codePanelLineLimit,
-  inset = true,
+  codeClassName = "ps-2 pe-4",
 }: CodePanelLinesProps) => {
   const shown = lines.slice(0, limit);
   const numbered = shown.some((line) => line.number !== undefined);
@@ -118,12 +119,16 @@ const CodePanelLines = ({
           key={`${index}:${line.number ?? ""}`}
           data-slot="code-panel-line"
           data-tone={line.tone}
-          className="flex min-h-lh data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8"
+          className="group/line relative flex min-h-lh data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8 data-[tone=highlight]:bg-primary/8"
         >
+          {line.tone === "highlight" ? (
+            // The edge marker keeps a highlighted line distinct without relying on its tint.
+            <span aria-hidden="true" className="absolute inset-y-0 start-0 w-0.5 bg-primary" />
+          ) : null}
           {numbered ? (
             <span
               aria-hidden="true"
-              className="shrink-0 select-none px-4 text-end text-muted-foreground tabular-nums"
+              className="shrink-0 select-none px-4 text-end text-muted-foreground tabular-nums group-data-[tone=highlight]/line:text-foreground"
               style={gutter}
             >
               {line.number}
@@ -132,7 +137,7 @@ const CodePanelLines = ({
           <span
             className={cn(
               "min-w-0",
-              inset && "ps-2 pe-4",
+              codeClassName,
               wrap ? "whitespace-pre-wrap wrap-break-word" : "whitespace-pre",
             )}
           >

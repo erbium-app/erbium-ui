@@ -53,12 +53,27 @@ interface CodeBlockItem {
   code: string;
   language?: string;
   tokens?: CodeBlockTokens;
+  /** Lines to call out, by their displayed number (counted from `startLine`). */
+  highlightLines?: readonly number[];
   disabled?: boolean;
 }
 
 type CodeBlockSource =
-  | { code: string; language?: string; tokens?: CodeBlockTokens; items?: never }
-  | { items: readonly CodeBlockItem[]; code?: never; language?: never; tokens?: never };
+  | {
+      code: string;
+      language?: string;
+      tokens?: CodeBlockTokens;
+      /** Lines to call out, by their displayed number (counted from `startLine`). */
+      highlightLines?: readonly number[];
+      items?: never;
+    }
+  | {
+      items: readonly CodeBlockItem[];
+      code?: never;
+      language?: never;
+      tokens?: never;
+      highlightLines?: never;
+    };
 
 type CodeBlockProps = Omit<
   TabsPrimitive.Root.Props,
@@ -188,6 +203,46 @@ const CodeBlockCopyButton = ({
   );
 };
 
+/** The source as panel rows, highlighted when tokens are available. */
+const codeLines = (
+  code: string,
+  result: CodeBlockTokens | undefined,
+  options: { lineNumbers: boolean; startLine: number; highlightLines?: readonly number[] },
+): CodePanelLine[] => {
+  const calledOut = new Set(options.highlightLines);
+
+  const allRows: TokensResult["tokens"] =
+    result?.tokens ?? code.split(lineBreak).map((content) => [{ content, offset: 0 }]);
+
+  // A final line break ends the last line rather than starting an empty one. Copying still uses
+  // the exact source.
+  const rows =
+    allRows.length > 1 && lineBreak.test(code.at(-1) ?? "") ? allRows.slice(0, -1) : allRows;
+
+  return rows.map((row, index) => {
+    const number = options.startLine + index;
+
+    return {
+      content:
+        result === undefined || row.length === 0
+          ? undefined
+          : row.map((token, tokenIndex) => <CodeBlockToken key={tokenIndex} token={token} />),
+      number: options.lineNumbers ? number : undefined,
+      text: row.map((token) => token.content).join(""),
+      tone: calledOut.has(number) ? "highlight" : undefined,
+    };
+  });
+};
+
+/** A theme color from the highlighter's root style, which is `false` when the theme sets none. */
+const themeColor = (result: CodeBlockTokens | undefined, name: string) => {
+  const rootStyle = result?.rootStyle;
+  const declarations = rootStyle === undefined || rootStyle === false ? [] : rootStyle.split(";");
+  const declaration = declarations.find((entry) => entry.startsWith(`${name}:`));
+
+  return declaration?.slice(name.length + 1);
+};
+
 type CodeBlockContentProps = Omit<
   ComponentProps<"pre">,
   "children" | "dangerouslySetInnerHTML" | "dir"
@@ -236,36 +291,26 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       ? highlighted.result
       : undefined);
 
-  const allRows: TokensResult["tokens"] =
-    result?.tokens ?? code.split(lineBreak).map((content) => [{ content, offset: 0 }]);
+  // Numbered rows use the file and diff view gutter; plain rows pad to the panel. The code column
+  // keeps clear of the anchored actions, so row tints still reach both edges.
+  const plainInset =
+    surface === "command"
+      ? "px-3 group-has-[[data-slot=code-block-actions]]/code-block:pe-12"
+      : "px-panel group-has-[[data-slot=code-block-actions]]/code-block:pe-12";
 
-  // A final line break ends the last line rather than starting an empty one. Copying still uses
-  // the exact source.
-  const rows =
-    allRows.length > 1 && lineBreak.test(code.at(-1) ?? "") ? allRows.slice(0, -1) : allRows;
+  const codeInset = lineNumbers
+    ? "ps-2 pe-4 group-has-[[data-slot=code-block-actions]]/code-block:pe-12"
+    : plainInset;
 
-  const lines = rows.map((row, index): CodePanelLine => ({
-    content:
-      result === undefined || row.length === 0
-        ? undefined
-        : row.map((token, tokenIndex) => <CodeBlockToken key={tokenIndex} token={token} />),
-    number: lineNumbers ? startLine + index : undefined,
-    text: row.map((token) => token.content).join(""),
-  }));
-
-  // Shiki reports `false` when the theme sets no root style.
-  const rootStyle = result?.rootStyle;
-  const declarations = rootStyle === undefined || rootStyle === false ? [] : rootStyle.split(";");
-
-  const themeColor = (name: string) => {
-    const declaration = declarations.find((entry) => entry.startsWith(`${name}:`));
-
-    return declaration?.slice(name.length + 1);
-  };
+  const lines = codeLines(code, result, {
+    highlightLines: active?.highlightLines,
+    lineNumbers,
+    startLine,
+  });
 
   const blockStyle: CSSVariableStyle = {
-    "--shiki-dark": themeColor("--shiki-dark"),
-    "--shiki-light": themeColor("--shiki-light"),
+    "--shiki-dark": themeColor(result, "--shiki-dark"),
+    "--shiki-light": themeColor(result, "--shiki-light"),
     ...style,
   };
 
@@ -284,14 +329,13 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
         "m-0 max-h-120 overflow-auto text-code-block [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
         codePanelFocusRing,
         surface === "command" ? "px-3 py-3" : "p-panel",
-        // Numbered rows pad themselves, in the same gutter as file and diff views.
-        lineNumbers && "px-0",
-        "group-has-[[data-slot=code-block-actions]]/code-block:pe-12",
+        // Rows pad themselves so highlighted lines reach both edges.
+        "px-0",
         className,
       )}
     >
       <code>
-        <CodePanelLines lines={lines} wrap={wrap} limit={lines.length} inset={lineNumbers} />
+        <CodePanelLines lines={lines} wrap={wrap} limit={lines.length} codeClassName={codeInset} />
       </code>
     </pre>
   );
@@ -321,6 +365,7 @@ const CodeBlock = ({
   code,
   language,
   tokens,
+  highlightLines,
   items: providedItems,
   value,
   defaultValue,
@@ -337,9 +382,16 @@ const CodeBlock = ({
   const items = useMemo(
     () =>
       providedItems ?? [
-        { code: code ?? "", label: title ?? language ?? "Code", language, tokens, value: "code" },
+        {
+          code: code ?? "",
+          highlightLines,
+          label: title ?? language ?? "Code",
+          language,
+          tokens,
+          value: "code",
+        },
       ],
-    [providedItems, code, language, title, tokens],
+    [providedItems, code, highlightLines, language, title, tokens],
   );
 
   const [selection, setSelection] = useState(defaultValue);

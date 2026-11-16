@@ -6360,6 +6360,7 @@
         "@erbium-examples/code-block-composition",
         "@erbium-examples/code-block-overflow",
         "@erbium-examples/code-block-line-numbers",
+        "@erbium-examples/code-block-highlighted-lines",
         "@erbium-examples/code-block-states",
         "@erbium-examples/code-block-changing-source"
       ],
@@ -6376,6 +6377,20 @@
         {
           "path": "src/code-block/variants/files.tsx",
           "target": "@components/showcase/code-block/variants/files.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "code-block-highlighted-lines",
+      "type": "registry:component",
+      "title": "Code Block: Highlighted Lines",
+      "description": "Pass the displayed numbers of the lines to call out to `highlightLines`. Each highlighted line gets a tint across the block and a marker on its leading edge.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/highlighted-lines.tsx",
+          "target": "@components/showcase/code-block/variants/highlighted-lines.tsx",
           "type": "registry:component"
         }
       ]
@@ -6499,6 +6514,11 @@
         {
           "path": "src/code-block/variants/files.tsx",
           "target": "@components/showcase/code-block/variants/files.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/code-block/variants/highlighted-lines.tsx",
+          "target": "@components/showcase/code-block/variants/highlighted-lines.tsx",
           "type": "registry:component"
         },
         {

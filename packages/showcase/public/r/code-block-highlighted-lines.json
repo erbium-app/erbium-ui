@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-highlighted-lines",
+  "type": "registry:component",
+  "title": "Code Block: Highlighted Lines",
+  "description": "Pass the displayed numbers of the lines to call out to `highlightLines`. Each highlighted line gets a tint across the block and a marker on its leading edge.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst config = `export default defineConfig({\n  server: {\n    port: 3000,\n    strictPort: true,\n  },\n  build: {\n    target: \"es2022\",\n  },\n});\n`;\n\nconst Example = () => (\n  <div className=\"grid w-full max-w-xl gap-group\">\n    <CodeBlock\n      code={config}\n      language=\"ts\"\n      title=\"vite.config.ts\"\n      lineNumbers\n      highlightLines={[3, 4]}\n    />\n    <CodeBlock code={config} language=\"ts\" highlightLines={[7]} />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/code-block/variants/highlighted-lines.tsx",
+      "target": "@components/showcase/code-block/variants/highlighted-lines.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
