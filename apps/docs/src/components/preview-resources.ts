@@ -1,19 +1,22 @@
-import { loadExample } from "@erbium/showcase/docs/examples";
+import examples from "virtual:docs-examples";
 import { createRequestCache } from "@/content/request-cache";
 
-const exampleModule = createRequestCache(async (key) => {
-  const [name = "", slug = ""] = key.split("/");
+// One module per page imports all of its examples, so they arrive in one request.
+const pageExamples = createRequestCache(async (path) => {
+  const load = Object.hasOwn(examples, path) ? examples[path] : undefined;
 
-  return await loadExample(name, slug);
+  if (!load) {
+    throw new Error(`Missing examples: ${path}`);
+  }
+
+  const { default: modules } = await load();
+
+  return modules;
 });
 
-// Server rendering awaits the same request the loader started, which puts the example
-// markup in the prerendered HTML; hydration keeps that markup while the chunk loads.
-export const exampleRequest = (name: string, slug: string) => exampleModule(`${name}/${slug}`);
-
-/** Starts every example request for a page; failures surface in each preview's boundary. */
-export const preloadExamples = async (examples: readonly { name: string; slug: string }[]) => {
-  await Promise.allSettled(
-    examples.map(async ({ name, slug }) => await exampleRequest(name, slug)),
-  );
-};
+/**
+ * A page's examples, keyed `<name>/<slug>`. Server rendering awaits the request the loader
+ * started, which puts the example markup in the prerendered HTML; hydration keeps that markup
+ * while the chunk loads.
+ */
+export const examplesRequest = (path: string) => pageExamples(path);

@@ -1,6 +1,6 @@
 // Build-time showcase data for the documentation site. It reads generated JSON and
-// evaluates catalogs, so import it from build code only; browsers load examples
-// through `@erbium/showcase/docs/examples`.
+// evaluates catalogs, so import it from build code only; the docs import each page's
+// example variants through a generated module.
 import manifest from "../../manifest.json";
 import registry from "../../registry.json";
 import { loadShowcase } from "../catalog";

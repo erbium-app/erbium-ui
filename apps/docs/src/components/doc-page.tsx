@@ -86,7 +86,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
             {lead !== undefined && (
               <Showcase
                 key={`${lead.name}-${lead.slug}`}
-                name={lead.name}
+                path={page.path}
                 variant={lead}
                 sources={page.exampleSources}
                 separator={false}
@@ -98,7 +98,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
               .map((variant) => (
                 <Showcase
                   key={`${variant.name}-${variant.slug}`}
-                  name={variant.name}
+                  path={page.path}
                   variant={variant}
                   sources={page.exampleSources}
                 />

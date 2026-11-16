@@ -23,7 +23,7 @@ import { flushSync } from "react-dom";
 import { useTheme } from "./theme";
 
 import { Controls } from "./controls";
-import { exampleRequest } from "./preview-resources";
+import { examplesRequest } from "./preview-resources";
 import type { DocPage } from "@/content/types";
 
 const PreviewError = () => (
@@ -39,8 +39,14 @@ type Args = NonNullable<ShowcaseStory["args"]>;
 // its minimum height, so the example replaces this without shifting the page.
 const PreviewLoading = () => <output aria-label="Loading preview" className="sr-only" />;
 
-const PreviewContent = ({ name, slug, args }: { name: string; slug: string; args: Args }) => {
-  const { default: Example } = use(exampleRequest(name, slug));
+const PreviewContent = ({ path, example, args }: { path: string; example: string; args: Args }) => {
+  const examples = use(examplesRequest(path));
+
+  if (!Object.hasOwn(examples, example)) {
+    throw new Error(`Missing example: ${example}`);
+  }
+
+  const Example = examples[example];
 
   return (
     <Example
@@ -71,12 +77,13 @@ const SourceContent = ({
 );
 
 export const Showcase = ({
-  name,
+  path,
   variant,
   sources,
   separator = true,
 }: {
-  name: string;
+  /** The page path, which keys the page's examples. */
+  path: string;
   variant: DocPage["variants"][number];
   sources: DocPage["exampleSources"];
   separator?: boolean;
@@ -93,7 +100,7 @@ export const Showcase = ({
   // (skeleton reveals, entrance motion, effects) plays again with the current args.
   const [mount, setMount] = useState(0);
 
-  const command = `npx shadcn@latest add @erbium-examples/${name}-${variant.slug}`;
+  const command = `npx shadcn@latest add @erbium-examples/${variant.name}-${variant.slug}`;
 
   return (
     <section id={variant.anchor} className="demo-section my-10 scroll-mt-8">
@@ -150,7 +157,12 @@ export const Showcase = ({
               <ShowcaseProviders key={mount}>
                 <ShowcaseSurface>
                   <Suspense fallback={<PreviewLoading />}>
-                    <PreviewContent key={revision} name={name} slug={variant.slug} args={args} />
+                    <PreviewContent
+                      key={revision}
+                      path={path}
+                      example={`${variant.name}/${variant.slug}`}
+                      args={args}
+                    />
                   </Suspense>
                 </ShowcaseSurface>
               </ShowcaseProviders>

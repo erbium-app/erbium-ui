@@ -5,6 +5,22 @@ declare module "virtual:docs-pages" {
   export default documents;
 }
 
+declare module "virtual:docs-examples" {
+  import type { ShowcaseStory } from "@erbium/showcase/catalog";
+
+  const examples: Record<
+    string,
+    () => Promise<{ default: Record<string, ShowcaseStory["render"]> }>
+  >;
+
+  export default examples;
+}
+
+declare module "virtual:docs-example-preloads" {
+  const preloads: Record<string, string[]>;
+  export default preloads;
+}
+
 // Mirrors `docsCatalog()` in content-plugin.ts.
 declare module "virtual:docs-catalog" {
   import type { DocumentationKind } from "@erbium/content/taxonomy";

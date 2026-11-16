@@ -4,7 +4,6 @@
   "type": "module",
   "exports": {
     "./catalog": "./src/catalog.ts",
-    "./docs/examples": "./src/docs/examples.ts",
     "./docs/metadata": "./src/docs/metadata.ts",
     "./manifest": "./manifest.json",
     "./preview": "./src/preview.tsx",

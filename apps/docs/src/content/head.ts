@@ -2,7 +2,8 @@ import type { DocPage } from "./types";
 import { site, siteName } from "@/config/site";
 import { structuredData } from "@/build/seo/structured-data";
 
-export const pageHead = (page: DocPage | null | undefined) => {
+/** `preloads` comes from the route loader, which adds it to the compiled page. */
+export const pageHead = (page: (DocPage & { preloads: string[] }) | null | undefined) => {
   if (!page) {
     return {
       meta: [{ title: "Page not found | Erbium UI" }, { content: "noindex", name: "robots" }],
@@ -21,6 +22,8 @@ export const pageHead = (page: DocPage | null | undefined) => {
         rel: "alternate",
         type: "text/markdown",
       },
+      // Prerendered pages list their examples' files, which hydration would otherwise find late.
+      ...page.preloads.map((href) => ({ href, rel: "modulepreload" })),
     ],
     meta: [
       { title },

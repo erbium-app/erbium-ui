@@ -23,6 +23,13 @@ const virtualId = "virtual:docs-pages";
 const resolvedId = `\0${virtualId}`;
 const pagePrefix = "virtual:docs-page/";
 
+// One module per page that imports its examples, so they load as one request.
+const examplesId = "virtual:docs-examples";
+const examplesPrefix = `${examplesId}/`;
+
+// The client files each page's examples need, captured from the client build for the server build.
+const preloadsId = "virtual:docs-example-preloads";
+
 // Content modules use Node-only packages (gray-matter, Shiki, Satori, Sharp), so
 // they run in this Node environment instead of the Worker.
 const environmentName = "content";
@@ -131,6 +138,9 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
   // Page JSON that dev clients last received, so a change reloads only when it differs.
   const served = new Map<string, string>();
+
+  // Start builds the client before the server, which prerenders with these.
+  const examplePreloads: Record<string, string[]> = {};
 
   return {
     buildStart() {
@@ -309,7 +319,10 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         // The next request for a page module reads the recompiled page.
         for (const environment of Object.values(vite.environments)) {
           for (const module of environment.moduleGraph.idToModuleMap.values()) {
-            if (module.id?.startsWith(`\0${pagePrefix}`) === true) {
+            if (
+              module.id?.startsWith(`\0${pagePrefix}`) === true ||
+              module.id?.startsWith(`\0${examplesPrefix}`) === true
+            ) {
               environment.moduleGraph.invalidateModule(module);
             }
           }
@@ -370,14 +383,84 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         void handle();
       });
     },
+    generateBundle(_options, bundle) {
+      if (this.environment.name !== "client") {
+        return;
+      }
+
+      const chunks = new Map(
+        Object.values(bundle).flatMap((output) =>
+          output.type === "chunk" ? [[output.fileName, output] as const] : [],
+        ),
+      );
+
+      for (const chunk of chunks.values()) {
+        const id = chunk.facadeModuleId;
+
+        if (id?.startsWith(`\0${examplesPrefix}`) !== true) {
+          continue;
+        }
+
+        // The examples chunk and every chunk it statically imports, which the browser would
+        // otherwise discover one level at a time.
+        const files = new Set<string>();
+
+        const visit = (fileName: string) => {
+          if (files.has(fileName)) {
+            return;
+          }
+
+          files.add(fileName);
+
+          for (const imported of chunks.get(fileName)?.imports ?? []) {
+            visit(imported);
+          }
+        };
+
+        visit(chunk.fileName);
+        examplePreloads[id.slice(examplesPrefix.length + 1)] = [...files].map(
+          (fileName) => `${this.environment.config.base}${fileName}`,
+        );
+      }
+    },
     hotUpdate() {
       // The change handler in configureServer already applied the edit to the content
       // runner, which has no HMR channel to send a reload to.
       return this.environment.name === environmentName ? [] : undefined;
     },
     load: {
-      filter: { id: /^\0virtual:docs-page/u },
+      filter: { id: /^\0virtual:docs-(?:page|example)/u },
       async handler(id) {
+        if (id === `\0${preloadsId}`) {
+          // Only the server build renders preload links; dev and the client have none.
+          const preloads =
+            this.environment.config.command === "build" && this.environment.name !== "client"
+              ? examplePreloads
+              : {};
+
+          return `export default ${JSON.stringify(preloads)};`;
+        }
+
+        if (id === `\0${examplesId}`) {
+          return `export default {${pagePaths.map((path) => `${JSON.stringify(path)}: () => import(${JSON.stringify(examplesPrefix + path)})`).join(",")}};`;
+        }
+
+        if (id.startsWith(`\0${examplesPrefix}`)) {
+          const { variants } = await page(id.slice(examplesPrefix.length + 1));
+
+          const imports = variants.map(
+            (variant, index) =>
+              `import example${index} from ${JSON.stringify(nodePath.resolve(root, "../../packages/showcase/src", variant.name, "variants", `${variant.slug}.tsx`))};`,
+          );
+
+          const entries = variants.map(
+            (variant, index) =>
+              `${JSON.stringify(`${variant.name}/${variant.slug}`)}: example${index}`,
+          );
+
+          return `${imports.join("\n")}\nexport default {${entries.join(",")}};`;
+        }
+
         if (id === resolvedId) {
           return `export default {${pagePaths.map((path) => `${JSON.stringify(path)}: () => import(${JSON.stringify(pagePrefix + path)})`).join(",")}};`;
         }
@@ -403,9 +486,15 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
     },
     name: "erbium:static-content",
     resolveId: {
-      filter: { id: /^virtual:docs-page/u },
+      filter: { id: /^virtual:docs-(?:page|example)/u },
       handler(id) {
-        return id === virtualId || id.startsWith(pagePrefix) ? `\0${id}` : null;
+        return id === virtualId ||
+          id.startsWith(pagePrefix) ||
+          id === examplesId ||
+          id.startsWith(examplesPrefix) ||
+          id === preloadsId
+          ? `\0${id}`
+          : null;
       },
     },
   };

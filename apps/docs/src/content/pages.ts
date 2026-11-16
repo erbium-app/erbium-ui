@@ -1,17 +1,22 @@
 import { createIsomorphicFn } from "@tanstack/react-start";
 import documents from "virtual:docs-pages";
-import { preloadExamples } from "@/components/preview-resources";
+import examplePreloads from "virtual:docs-example-preloads";
+import { examplesRequest } from "@/components/preview-resources";
 import type { DocPage } from "@/content/types";
 
-// Prerendering waits for every example so the HTML contains them. Client navigation
-// starts the same requests without waiting: the page text renders as soon as its data
-// arrives, and examples already warmed by a hover preload render in the same pass.
+// Prerendering waits for the examples so the HTML contains them, and lists their files for the
+// browser to preload. Client navigation starts the same request without waiting: the page text
+// renders as soon as its data arrives.
 const loadExamples = createIsomorphicFn()
   .server(async (page: DocPage) => {
-    await preloadExamples(page.variants);
+    await examplesRequest(page.path);
+
+    return examplePreloads[page.path] ?? [];
   })
   .client((page: DocPage) => {
-    void preloadExamples(page.variants);
+    void examplesRequest(page.path);
+
+    return [];
   });
 
 // Vite splits each compiled document into its own asset. Router owns preloading
@@ -24,8 +29,7 @@ export const getDocPage = async (path: string) => {
   }
 
   const { default: page } = await load();
+  const preloads = page.variants.length > 0 ? await loadExamples(page) : [];
 
-  await loadExamples(page);
-
-  return page;
+  return { ...page, preloads };
 };
