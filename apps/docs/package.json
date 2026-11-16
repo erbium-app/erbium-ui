@@ -34,7 +34,7 @@
     "@vitejs/plugin-react": "6.3.0",
     "js.foresight": "4.2.1",
     "js.foresight-devtools": "2.2.1",
-    "oxc-transform-react": "0.156.0",
+    "oxc-transform-react": "0.158.0",
     "typescript": "catalog:typescript-stable",
     "vite": "catalog:",
     "vite-plus": "catalog:"
