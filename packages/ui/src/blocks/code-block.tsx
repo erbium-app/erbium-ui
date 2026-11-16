@@ -102,6 +102,8 @@ interface CodeBlockContextValue {
   lineNumbers: boolean;
   startLine: number;
   wrap: boolean;
+  /** Every item has the same icon, so tabs show it once, before the list, instead of each. */
+  sharedIcon: boolean;
 }
 
 const CodeBlockContext = createContext<CodeBlockContextValue | null>(null);
@@ -148,6 +150,9 @@ const CodeBlockLanguage = ({ children, ...props }: ComponentProps<typeof CodeBlo
   return <CodeBlockTitle {...props}>{children ?? active?.language ?? "text"}</CodeBlockTitle>;
 };
 
+const itemIcon = (item: CodeBlockItem | undefined, surface: "code" | "command") =>
+  codeLanguageIcon(item?.language ?? (surface === "command" ? "shell" : undefined));
+
 const CodeBlockIcon = ({
   value,
   className,
@@ -160,7 +165,7 @@ const CodeBlockIcon = ({
     <Icon
       {...props}
       className={cn("size-4.5", className)}
-      name={codeLanguageIcon(item?.language ?? (surface === "command" ? "shell" : undefined))}
+      name={itemIcon(item, surface)}
       data-slot="code-block-icon"
     />
   );
@@ -174,7 +179,7 @@ const CodeBlockTabs = ({
   "aria-label": label = "Code examples",
   ...props
 }: ComponentProps<typeof TabsList>) => {
-  const { items } = useCodeBlock();
+  const { items, sharedIcon } = useCodeBlock();
 
   return (
     <TabsList
@@ -185,7 +190,7 @@ const CodeBlockTabs = ({
       {children ??
         items.map((item) => (
           <CodeBlockTab key={item.value} value={item.value} disabled={item.disabled}>
-            <CodeBlockIcon value={item.value} />
+            {sharedIcon ? null : <CodeBlockIcon value={item.value} />}
             {item.label}
           </CodeBlockTab>
         ))}
@@ -429,9 +434,12 @@ const CodeBlock = ({
   const enabled = items.filter((item) => item.disabled !== true);
   const active = enabled.find((item) => item.value === requested) ?? enabled.at(0);
 
+  const sharedIcon =
+    items.length > 1 && new Set(items.map((item) => itemIcon(item, surface))).size === 1;
+
   const context = useMemo(
-    () => ({ active, items, lineNumbers, startLine, surface, wrap }),
-    [active, items, lineNumbers, startLine, surface, wrap],
+    () => ({ active, items, lineNumbers, sharedIcon, startLine, surface, wrap }),
+    [active, items, lineNumbers, sharedIcon, startLine, surface, wrap],
   );
 
   const hasTabs = providedItems !== undefined && items.length > 0;
@@ -467,7 +475,12 @@ const CodeBlock = ({
               {hasTabs || hasTitle ? (
                 <CodeBlockHeader>
                   {hasTabs ? (
-                    <CodeBlockTabs />
+                    <div className="flex min-w-0 items-center gap-related">
+                      {sharedIcon ? (
+                        <CodeBlockIcon className="shrink-0 text-muted-foreground" />
+                      ) : null}
+                      <CodeBlockTabs />
+                    </div>
                   ) : (
                     <CodeBlockTitle>
                       <CodeBlockIcon />
