@@ -1,11 +1,9 @@
 import { Markdown } from "@tanstack/markdown/react";
 import type { MarkdownComponents } from "@tanstack/markdown/react";
 import type { MarkdownDocument } from "@tanstack/markdown";
-import { createContext, use, useCallback } from "react";
+import { useCallback } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { Link } from "@erbium/ui/components/link";
-import { highlightKey } from "@/content/code-highlights";
-import type { CodeHighlights } from "@/content/code-highlights";
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
 import {
   CopyButton,
@@ -64,27 +62,13 @@ const MarkdownTable = (props: ComponentProps<"table">) => (
   />
 );
 
-const CodeHighlightsContext = createContext<CodeHighlights>({});
-
-/** Supplies build-time highlighting to every fenced code block rendered inside it. */
-export const CodeHighlightsProvider = CodeHighlightsContext;
-
 const isCodeText = (value: ReactNode): value is string => typeof value === "string";
 
 const MarkdownCode = ({ children, className, ...props }: ComponentProps<"code">) => {
-  const highlights = use(CodeHighlightsContext);
-
   if (className?.startsWith("language-") === true && isCodeText(children)) {
     const language = className.slice(9);
 
-    return (
-      <UICodeBlock
-        code={children}
-        language={language}
-        tokens={highlights[highlightKey(language, children)]}
-        className="not-typeset my-4"
-      />
-    );
+    return <UICodeBlock code={children} language={language} className="not-typeset my-4" />;
   }
 
   return (

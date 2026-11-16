@@ -11,48 +11,6 @@ import { componentReference } from "@erbium/content/markdown";
 import theme from "@ui/src/styles/theme.css?raw";
 import surfaces from "@ui/src/styles/surfaces.css?raw";
 import { ogPageForRoute } from "@/build/seo/og-pages";
-import { highlightCode } from "@erbium/ui/lib/code-highlighter";
-import type { CodeBlockTokens } from "@erbium/ui/blocks/code-block";
-import { highlightKey, type CodeHighlights } from "@/content/code-highlights";
-
-const plainLanguages = new Set(["", "text", "plain", "plaintext", "txt"]);
-
-// Pages carry only what CodeBlock renders: token text, offsets, and theme variables.
-const highlight = async (code: string, language: string): Promise<CodeBlockTokens> => {
-  const { rootStyle, tokens } = await highlightCode(code, language);
-  return {
-    rootStyle,
-    tokens: tokens.map((line) =>
-      line.map(({ content, offset, htmlStyle }) => ({ content, offset, htmlStyle })),
-    ),
-  };
-};
-
-// Fences can sit inside lists, quotes, and callouts, so walk every node.
-const codeFences = (node: unknown): { lang: string; value: string }[] => {
-  if (Array.isArray(node)) return node.flatMap(codeFences);
-  if (typeof node !== "object" || node === null) return [];
-  if ("type" in node && node.type === "code" && "value" in node && typeof node.value === "string") {
-    const lang = "lang" in node && typeof node.lang === "string" ? node.lang : "plaintext";
-    return [{ lang, value: node.value }];
-  }
-  return Object.values(node).flatMap(codeFences);
-};
-
-const highlightFences = async (trees: unknown[]): Promise<CodeHighlights> =>
-  Object.fromEntries(
-    await Promise.all(
-      codeFences(trees)
-        .filter((fence) => !plainLanguages.has(fence.lang))
-        .map(
-          async (fence) =>
-            [
-              highlightKey(fence.lang, fence.value),
-              await highlight(fence.value, fence.lang),
-            ] as const,
-        ),
-    ),
-  );
 
 const documents = import.meta.glob<string>("../../../../../packages/content/**/*.md", {
   eager: true,
@@ -93,7 +51,7 @@ export const getPage = async (path: string) => {
       ? `https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`
       : undefined,
     image: ogPageForRoute(path).imagePath,
-    colorSources: component?.name === "colors" ? await colorExamples() : [],
+    colorSources: component?.name === "colors" ? colorExamples() : [],
     variants: examples.map((example) => ({
       name: exampleName,
       exportName: example.exportName,
@@ -115,15 +73,12 @@ export const getPage = async (path: string) => {
       ),
     ),
   };
-  return {
-    ...page,
-    highlights: await highlightFences([page.tree, page.variants.map((variant) => variant.tree)]),
-  };
+  return page;
 };
 
 export type DocPage = NonNullable<Awaited<ReturnType<typeof getPage>>>;
 
-const colorExamples = async () => {
+const colorExamples = () => {
   const block = (source: string, selector: string) => {
     const start = source.indexOf(`${selector} {`);
     return source.slice(start, source.indexOf("\n}", start) + 2);
@@ -149,15 +104,12 @@ const colorExamples = async () => {
       source: `${block(theme, "@theme inline")}\n\n${block(surfaces, "@theme inline")}`,
     },
   ];
-  return await Promise.all(
-    entries.map(async (entry) => ({
-      ...entry,
-      colors: [
-        ...new Set(
-          Array.from(entry.source.matchAll(/:\s*(oklch\([^;]+\))\s*;/g), ([, color]) => color),
-        ),
-      ],
-      tokens: await highlight(entry.source, "css"),
-    })),
-  );
+  return entries.map((entry) => ({
+    ...entry,
+    colors: [
+      ...new Set(
+        Array.from(entry.source.matchAll(/:\s*(oklch\([^;]+\))\s*;/g), ([, color]) => color),
+      ),
+    ],
+  }));
 };
