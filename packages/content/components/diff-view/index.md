@@ -35,7 +35,7 @@ Filenames determine syntax highlighting. Use the optional file `lang` for an exp
 />
 ```
 
-Split layout and horizontal scrolling are the defaults. `disableLineNumbers` hides gutters, `diffIndicators` supports classic markers, bars, or none, and `lineDiffType` controls word/character emphasis. `expandUnchanged` reveals all context; otherwise use the built-in separator controls. `parseDiffOptions` configures diff computation for file pairs and does not rewrite prepared patches. Keep source objects and prepared diffs stable between renders when their contents have not changed. Update `cacheKey` when file contents change if using Pierre worker caching.
+Split layout and horizontal scrolling are the defaults. `disableLineNumbers` hides gutters, `diffIndicators` supports classic markers, bars, or none, and `lineDiffType` controls word/character emphasis. `expandUnchanged` reveals all context; otherwise use the built-in separator controls. Until Pierre's first render, the diff shows as plain text in Pierre's layout, with the same gutter, indicators, and separators, and gaps of up to `collapsedContextThreshold` unchanged lines shown inline. Highlighting then lands without moving any line. `parseDiffOptions` configures diff computation for file pairs and does not rewrite prepared patches. Keep source objects and prepared diffs stable between renders when their contents have not changed. Update `cacheKey` when file contents change if using Pierre worker caching.
 
 ## Selection and annotations
 

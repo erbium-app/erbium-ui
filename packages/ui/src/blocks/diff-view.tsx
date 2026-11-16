@@ -68,6 +68,10 @@ interface DiffViewContextValue {
   /** Pierre's layout and gutter, so the plain diff matches them. */
   split: boolean;
   numbered: boolean;
+  /** Pierre's classic `+` and `-` markers are on. */
+  indicators: boolean;
+  /** The longest gap of unchanged lines Pierre shows instead of collapsing. */
+  collapse: number;
 }
 
 const DiffViewContext = createContext<DiffViewContextValue | null>(null);
@@ -151,22 +155,67 @@ const changedLines = (
     tone,
   }));
 
+const separatorRow = (split: boolean): DiffRow =>
+  split
+    ? { new: { text: "", tone: "separator" }, old: { text: "", tone: "separator" } }
+    : { new: { text: "", tone: "separator" } };
+
+/** Unchanged lines `count` long, ending just before line `oldEnd` and `newEnd`. */
+const unchangedRows = (
+  fileDiff: FileDiffMetadata,
+  split: boolean,
+  { count, oldEnd, newEnd }: { count: number; oldEnd: number; newEnd: number },
+): DiffRow[] =>
+  Array.from({ length: count }, (_, offset) => {
+    const newNumber = newEnd - count + offset;
+    const text = stripEOL(fileDiff.additionLines[newNumber - 1]);
+    const newLine = { number: newNumber, text };
+
+    return split
+      ? { new: newLine, old: { number: oldEnd - count + offset, text } }
+      : { new: newLine };
+  });
+
+/**
+ * Pierre's rule for unchanged lines between hunks: it shows a gap of up to `collapse` lines (all of
+ * them with `expandUnchanged`) and draws a separator over a longer one. A partial patch has no
+ * text for the gap, so every gap is a separator.
+ */
+const gapRows = (
+  fileDiff: FileDiffMetadata,
+  split: boolean,
+  collapse: number,
+  gap: { count: number; oldEnd: number; newEnd: number },
+): DiffRow[] => {
+  if (gap.count <= 0) {
+    return [];
+  }
+
+  return !fileDiff.isPartial && gap.count <= collapse
+    ? unchangedRows(fileDiff, split, gap)
+    : [separatorRow(split)];
+};
+
 /**
  * The diff's rows as plain text, in Pierre's layout: one column for `unified`, old and new side by
- * side for `split`. Shown until Pierre's first render, so the code reads at once and highlighting
- * lands in place.
+ * side for `split`, with Pierre's separators. Shown until Pierre's first render, so the code reads
+ * at once and highlighting lands in place.
  */
-const diffRows = (fileDiff: FileDiffMetadata, split: boolean): DiffRow[] => {
+const diffRows = (fileDiff: FileDiffMetadata, split: boolean, collapse: number): DiffRow[] => {
   const rows: DiffRow[] = [];
+  let oldNumber = 1;
+  let newNumber = 1;
 
   for (const hunk of fileDiff.hunks) {
-    // Pierre draws a separator over the unchanged lines it collapses before each hunk.
-    if (hunk.collapsedBefore > 0 || rows.length > 0) {
-      rows.push(split ? { new: { text: "" }, old: { text: "" } } : { new: { text: "" } });
-    }
-
-    let oldNumber = hunk.deletionStart;
-    let newNumber = hunk.additionStart;
+    oldNumber = hunk.deletionCount === 0 ? hunk.deletionStart + 1 : hunk.deletionStart;
+    newNumber = hunk.additionCount === 0 ? hunk.additionStart + 1 : hunk.additionStart;
+    rows.push(
+      ...gapRows(fileDiff, split, collapse, {
+        count: hunk.collapsedBefore,
+        oldEnd: oldNumber,
+        newEnd: newNumber,
+      }),
+    );
 
     for (const block of hunk.hunkContent) {
       if (block.type === "context") {
@@ -216,12 +265,46 @@ const diffRows = (fileDiff: FileDiffMetadata, split: boolean): DiffRow[] => {
     }
   }
 
+  // Unchanged lines after the last hunk, which a partial patch does not know.
+  const trailing = fileDiff.additionLines.length - newNumber + 1;
+
+  if (
+    !fileDiff.isPartial &&
+    fileDiff.hunks.length > 0 &&
+    fileDiff.deletionLines.length > 0 &&
+    trailing > 0
+  ) {
+    rows.push(
+      ...gapRows(fileDiff, split, collapse, {
+        count: trailing,
+        oldEnd: oldNumber + trailing,
+        newEnd: newNumber + trailing,
+      }),
+    );
+  }
+
   return rows;
 };
 
-const DiffViewFallback = ({ split, numbered }: { split: boolean; numbered: boolean }) => {
-  const { fileDiff } = useDiffView();
-  const rows = diffRows(fileDiff, split);
+/** The digits Pierre sizes its number column for: the longest side of the file. */
+const diffDigits = (fileDiff: FileDiffMetadata) => {
+  const last = fileDiff.hunks.at(-1);
+
+  const hunkEnd = last
+    ? Math.max(
+        last.additionStart + last.additionCount - (last.additionCount === 0 ? 0 : 1),
+        last.deletionStart + last.deletionCount - (last.deletionCount === 0 ? 0 : 1),
+      )
+    : 0;
+
+  return String(Math.max(hunkEnd, fileDiff.additionLines.length, fileDiff.deletionLines.length, 1))
+    .length;
+};
+
+const DiffViewFallback = () => {
+  const { fileDiff, split, numbered, indicators, collapse } = useDiffView();
+  const rows = diffRows(fileDiff, split, collapse);
+  const lines = { indicators, minDigits: diffDigits(fileDiff) };
 
   const side = (key: "old" | "new") =>
     rows.map((row) => {
@@ -230,20 +313,27 @@ const DiffViewFallback = ({ split, numbered }: { split: boolean; numbered: boole
       return numbered ? line : { ...line, number: undefined };
     });
 
-  return split ? (
+  // Pierre leaves out the empty side of an added or deleted file.
+  if (!split || fileDiff.type === "new") {
+    return <CodePanelLines lines={side("new")} {...lines} />;
+  }
+
+  if (fileDiff.type === "deleted") {
+    return <CodePanelLines lines={side("old")} {...lines} />;
+  }
+
+  return (
     <div className="grid grid-cols-2">
-      <CodePanelLines lines={side("old")} className="min-w-0 overflow-hidden" />
-      <CodePanelLines lines={side("new")} className="min-w-0 overflow-hidden" />
+      <CodePanelLines lines={side("old")} className="min-w-0 overflow-hidden" {...lines} />
+      <CodePanelLines lines={side("new")} className="min-w-0 overflow-hidden" {...lines} />
     </div>
-  ) : (
-    <CodePanelLines lines={side("new")} />
   );
 };
 
 const DiffViewContent = (
   props: Omit<CodePanelContentProps, "children" | "empty" | "fallback" | "loading">,
 ) => {
-  const { content, fileDiff, rendered, split, numbered } = useDiffView();
+  const { content, fileDiff, rendered } = useDiffView();
   const blank = fileDiff.additionLines.length === 0 && fileDiff.deletionLines.length === 0;
 
   const noChanges = blank ? (
@@ -262,7 +352,7 @@ const DiffViewContent = (
       aria-label={`Changes to ${fileDiff.name}`}
       {...props}
       data-slot="diff-view-content"
-      fallback={rendered ? undefined : <DiffViewFallback split={split} numbered={numbered} />}
+      fallback={rendered ? undefined : <DiffViewFallback />}
       empty={empty}
     >
       {content}
@@ -352,6 +442,11 @@ const DiffView = <Annotation = undefined,>({
       rendered: rendered || prerenderedHTML !== undefined,
       split: options?.diffStyle !== "unified",
       numbered: options?.disableLineNumbers !== true,
+      indicators: (options?.diffIndicators ?? "classic") === "classic",
+      collapse:
+        options?.expandUnchanged === true
+          ? Number.POSITIVE_INFINITY
+          : (options?.collapsedContextThreshold ?? 1),
       content: (
         <FileDiff
           fileDiff={fileDiff}
@@ -375,6 +470,9 @@ const DiffView = <Annotation = undefined,>({
       oldFile?.contents,
       options?.diffStyle,
       options?.disableLineNumbers,
+      options?.diffIndicators,
+      options?.expandUnchanged,
+      options?.collapsedContextThreshold,
       prerenderedHTML,
       renderAnnotation,
       renderGutterUtility,

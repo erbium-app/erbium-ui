@@ -66,8 +66,11 @@ interface CodePanelLine {
   text: string;
   /** Highlighted content for the line. `text` is shown when it is absent. */
   content?: ReactNode;
-  /** Diff changes, or `highlight` to call out a line. */
-  tone?: "addition" | "deletion" | "highlight";
+  /**
+   * Diff changes, `highlight` to call out a line, or `separator` for the bar a diff draws over
+   * collapsed unchanged lines.
+   */
+  tone?: "addition" | "deletion" | "highlight" | "separator";
 }
 
 // Rows the panel body can show before it scrolls; later rows stay out of view, so plain fallbacks
@@ -82,30 +85,52 @@ interface CodePanelLinesProps {
   /** Rows to render. Defaults to the rows a panel shows before it scrolls. */
   limit?: number;
   /**
-   * Replaces the code column's inline padding, which matches Pierre's gutter by default. Code
-   * blocks without line numbers pad it to the panel instead.
+   * Classes for the code column. With line numbers, or without custom classes, the column starts
+   * where Pierre starts its code; code blocks without line numbers pad it to the panel instead.
    */
   codeClassName?: string;
+  /**
+   * Fewest digits the gutter is sized for. Pierre sizes it by the file's line count, which can
+   * exceed the numbers among the rows shown.
+   */
+  minDigits?: number;
+  /** Mark added and removed lines with `+` and `-`, as Pierre's classic diff indicators do. */
+  indicators?: boolean;
 }
 
+const marker = { addition: "+", deletion: "-" } as const;
+
 /**
- * Source as rows in the metrics Pierre and code blocks render with (`text-code-block`, the same
- * gutter). Code blocks render their highlighted rows through it, and file and diff views show
- * their known source with it until Pierre has rendered, so the swap changes colour, never
- * position.
+ * Source as rows in Pierre's metrics: the same font roles (`text-code-block`), a gutter of the
+ * widest number plus three characters (two before the number, one after), and code starting one
+ * character later, or two with diff indicators. Code blocks render their highlighted rows through
+ * it, and file and diff views show their known source with it until Pierre has rendered, so the
+ * swap changes colour, never position.
  */
 const CodePanelLines = ({
   lines,
   className,
   wrap = false,
   limit = codePanelLineLimit,
-  codeClassName = "ps-2 pe-4",
+  codeClassName,
+  minDigits = 1,
+  indicators = false,
 }: CodePanelLinesProps) => {
   const shown = lines.slice(0, limit);
   const numbered = shown.some((line) => line.number !== undefined);
+
   // One gutter width for every row, sized by the widest number.
-  const digits = String(Math.max(...shown.map((line) => line.number ?? 0), 1)).length;
-  const gutter = { minWidth: `calc(${digits}ch + 2rem)` };
+  const digits = Math.max(
+    String(Math.max(...shown.map((line) => line.number ?? 0), 1)).length,
+    minDigits,
+  );
+
+  const gutter = { minWidth: `${digits + 3}ch`, paddingInline: "2ch 1ch" };
+
+  const codeInset =
+    numbered || codeClassName === undefined
+      ? { paddingInlineStart: indicators ? "2ch" : "1ch" }
+      : undefined;
 
   return (
     <span
@@ -113,47 +138,66 @@ const CodePanelLines = ({
       data-wrap={wrap ? "" : undefined}
       className={cn("grid text-code-block", wrap ? "min-w-0" : "min-w-max", className)}
     >
-      {shown.map((line, index) => (
-        <span
-          // Rows are positional: a fallback is replaced, never reordered.
-          key={`${index}:${line.number ?? ""}`}
-          data-slot="code-panel-line"
-          data-tone={line.tone}
-          className="group/line relative flex min-h-lh data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8 data-[tone=highlight]:bg-primary/8"
-        >
-          {line.tone === "highlight" ? (
-            // The edge marker keeps a highlighted line distinct without relying on its tint.
-            <span aria-hidden="true" className="absolute inset-y-0 start-0 w-0.5 bg-primary" />
-          ) : null}
-          {numbered ? (
-            <span
-              aria-hidden="true"
-              className="shrink-0 select-none px-4 text-end text-muted-foreground tabular-nums group-data-[tone=highlight]/line:text-foreground"
-              style={gutter}
-            >
-              {line.number}
-            </span>
-          ) : null}
+      {shown.map((line, index) =>
+        line.tone === "separator" ? (
           <span
-            className={cn(
-              "min-w-0",
-              codeClassName,
-              wrap ? "whitespace-pre-wrap wrap-break-word" : "whitespace-pre",
-            )}
+            key={`${index}:separator`}
+            aria-hidden="true"
+            data-slot="code-panel-line"
+            data-tone="separator"
+            className="h-8 bg-surface-control"
+          />
+        ) : (
+          <span
+            // Rows are positional: a fallback is replaced, never reordered.
+            key={`${index}:${line.number ?? ""}`}
+            data-slot="code-panel-line"
+            data-tone={line.tone}
+            className="group/line relative flex min-h-lh data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8 data-[tone=highlight]:bg-primary/8"
           >
-            {/* A blank row holds a newline so a copied selection keeps it. */}
-            {line.content ?? (line.text === "" ? "\n" : line.text)}
+            {line.tone === "highlight" ? (
+              // The edge marker keeps a highlighted line distinct without relying on its tint.
+              <span aria-hidden="true" className="absolute inset-y-0 start-0 w-0.5 bg-primary" />
+            ) : null}
+            {numbered ? (
+              <span
+                aria-hidden="true"
+                className="shrink-0 select-none text-end text-muted-foreground tabular-nums group-data-[tone=highlight]/line:text-foreground"
+                style={gutter}
+              >
+                {line.number}
+              </span>
+            ) : null}
+            <span
+              className={cn(
+                "relative min-w-0",
+                codeClassName ?? "pe-4",
+                wrap ? "whitespace-pre-wrap wrap-break-word" : "whitespace-pre",
+              )}
+              style={codeInset}
+            >
+              {indicators && (line.tone === "addition" || line.tone === "deletion") ? (
+                <span
+                  aria-hidden="true"
+                  data-tone={line.tone}
+                  className="absolute start-0 top-0 select-none data-[tone=addition]:text-success data-[tone=deletion]:text-error"
+                >
+                  {marker[line.tone]}
+                </span>
+              ) : null}
+              {/* A blank row holds a newline so a copied selection keeps it. */}
+              {line.content ?? (line.text === "" ? "\n" : line.text)}
+            </span>
           </span>
-        </span>
-      ))}
+        ),
+      )}
     </span>
   );
 };
 
-/** Numbered rows for a file's source. */
+/** Numbered rows for a file's source. Like Pierre, a final newline ends with an empty row. */
 const sourceLines = (source: string, numbered = true): CodePanelLine[] =>
   source
-    .replace(/\n$/u, "")
     .split("\n")
     .slice(0, codePanelLineLimit)
     .map((text, index) => ({ number: numbered ? index + 1 : undefined, text }));
