@@ -9,6 +9,7 @@ interface Grammar {
 // Keyed by the normalized language name. Each grammar loads the first time it is used.
 const grammars = new Map<string, Grammar>([
   ["css", { load: async () => await import("shiki/langs/css.mjs"), name: "css" }],
+  ["diff", { load: async () => await import("shiki/langs/diff.mjs"), name: "diff" }],
   ["html", { load: async () => await import("shiki/langs/html.mjs"), name: "html" }],
   ["js", { load: async () => await import("shiki/langs/javascript.mjs"), name: "javascript" }],
   ["json", { load: async () => await import("shiki/langs/json.mjs"), name: "json" }],
@@ -26,6 +27,7 @@ const aliases = new Map<string, string>([
   ["bash", "shell"],
   ["javascript", "js"],
   ["md", "markdown"],
+  ["patch", "diff"],
   ["py", "python"],
   ["sh", "shell"],
   ["shellscript", "shell"],
@@ -79,6 +81,11 @@ const loadGrammar = async (instance: HighlighterCore, grammar: Grammar) => {
 // One runtime and one in-flight grammar load per language, shared by every block. Returns Shiki's
 // name for the language, or `text` for a language without a grammar.
 const resolveLanguage = async (instance: HighlighterCore, normalized: string) => {
+  // Shiki renders ANSI escape codes without a grammar.
+  if (normalized === "ansi") {
+    return "ansi";
+  }
+
   const grammar = grammars.get(normalized);
 
   if (!grammar) {
@@ -103,12 +110,25 @@ const resolveLanguage = async (instance: HighlighterCore, normalized: string) =>
   return grammar.name;
 };
 
+const tokenizeLines = (instance: HighlighterCore, lang: string, code: string) => {
+  const lines = code
+    .split(/\r\n|\n|\r/u)
+    .map((line) => instance.codeToTokens(line, { defaultColor: false, lang, themes }));
+
+  return { ...lines[0], tokens: lines.flatMap((line) => line.tokens) };
+};
+
 const tokenize = (
   instance: HighlighterCore,
   lang: string,
   code: string,
   grammarState?: GrammarState,
-) => instance.codeToTokens(code, { defaultColor: false, grammarState, lang, themes });
+): TokensResult =>
+  // ANSI has no grammar state, so each line is colored on its own and gets the same colors
+  // whether it arrives at once or streams.
+  lang === "ansi"
+    ? tokenizeLines(instance, lang, code)
+    : instance.codeToTokens(code, { defaultColor: false, grammarState, lang, themes });
 
 const tokenizeCode = async (code: string, language: string) => {
   const instance = await getHighlighter();

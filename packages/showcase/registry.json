@@ -6400,7 +6400,7 @@
       "name": "code-block-languages",
       "type": "registry:component",
       "title": "Code Block: Languages",
-      "description": "Header icons follow the source language automatically. Language aliases share the\nsame icon; plaintext has a text-file icon, and unknown languages use a generic file.",
+      "description": "Header icons follow the source language automatically. Language aliases share the\nsame icon; plaintext has a text-file icon, and unknown languages use a generic file.\n`diff` colors a patch by its line markers, and `ansi` renders terminal escape codes as color.",
       "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
       "files": [
         {

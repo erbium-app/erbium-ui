@@ -206,18 +206,30 @@ const CodeBlockCopyButton = ({
   );
 };
 
+// ANSI select graphic rendition sequences, which terminal output colors and styles text with.
+const ansiStyle = new RegExp(`${String.fromCodePoint(27)}\\[[0-9;]*m`, "gu");
+
+interface CodeLinesOptions {
+  lineNumbers: boolean;
+  startLine: number;
+  highlightLines?: readonly number[];
+  /** The tokens were highlighted from this exact source. */
+  current: boolean;
+  /** The source is terminal output, whose escape codes are never shown as text. */
+  ansi: boolean;
+}
+
 /**
- * The source as panel rows. Rows take highlighted tokens whose text still matches, so tokens from
- * an earlier version of a changing source keep coloring the lines it shares while the new version
- * highlights.
+ * The source as panel rows. Tokens from an earlier version of a changing source keep coloring the
+ * lines whose text is unchanged or has only grown, while the new version highlights.
  */
 const codeLines = (
   code: string,
   result: CodeBlockTokens | undefined,
-  options: { lineNumbers: boolean; startLine: number; highlightLines?: readonly number[] },
+  options: CodeLinesOptions,
 ): CodePanelLine[] => {
   const calledOut = new Set(options.highlightLines);
-  const texts = code.split(lineBreak);
+  const texts = (options.ansi ? code.replaceAll(ansiStyle, "") : code).split(lineBreak);
 
   // A final line break ends the last line rather than starting an empty one. Copying still uses
   // the exact source.
@@ -231,7 +243,7 @@ const codeLines = (
     const highlighted = row.map((token) => token.content).join("");
     // A line that grew since it was highlighted, as a streamed line does, keeps its colors and
     // shows the new text plainly until the next highlight.
-    const reusable = highlighted !== "" && text.startsWith(highlighted);
+    const reusable = highlighted !== "" && (options.current || text.startsWith(highlighted));
 
     return {
       content: reusable ? (
@@ -239,7 +251,7 @@ const codeLines = (
           {row.map((token, tokenIndex) => (
             <CodeBlockToken key={tokenIndex} token={token} />
           ))}
-          {text.slice(highlighted.length)}
+          {options.current ? null : text.slice(highlighted.length)}
         </>
       ) : undefined,
       number: options.lineNumbers ? number : undefined,
@@ -300,9 +312,8 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
   }, [code, language, tokens]);
 
   // Until the current source is highlighted, the previous highlight colors the lines it shares.
-  const result =
-    tokens ??
-    (highlight?.language === normalizeCodeLanguage(language) ? highlight.result : undefined);
+  const sameLanguage = highlight?.language === normalizeCodeLanguage(language);
+  const result = tokens ?? (sameLanguage ? highlight?.result : undefined);
 
   // Numbered rows use the file and diff view gutter; plain rows pad to the panel. The code column
   // keeps clear of the anchored actions, so row tints still reach both edges.
@@ -316,6 +327,8 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
     : plainInset;
 
   const lines = codeLines(code, result, {
+    ansi: normalizeCodeLanguage(language) === "ansi",
+    current: tokens !== undefined || (sameLanguage && highlight?.code === code),
     highlightLines: active?.highlightLines,
     lineNumbers,
     startLine,
