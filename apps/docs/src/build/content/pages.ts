@@ -98,7 +98,6 @@ export const getPage = async (path: string) => {
       name: exampleName,
       exportName: example.exportName,
       slug: example.slug,
-      source: example.source,
       files: example.files.map((file) => file.path),
       title: example.title,
       anchor: headings.some((heading) => heading.id === example.slug)
