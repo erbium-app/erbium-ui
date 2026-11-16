@@ -43,7 +43,10 @@ export default defineConfig(({ isPreview }) => ({
       prerender: { crawlLinks: false, enabled: true, failOnError: true },
       sitemap: { host: "https://ui.erbium.app" },
     }),
-    react(),
+    // React Compiler through oxc-transform-react, the Rust port. Keep react() after
+    // tanstackStart(): both run as "pre" plugins in array order, so the compiler
+    // sees route components after Start splits them. Only client code is compiled.
+    react({ compiler: true }),
     {
       async closeBundle() {
         if (this.environment.name !== "client") {
