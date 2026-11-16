@@ -326,7 +326,7 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       : "px-panel group-has-[[data-slot=code-block-actions]]/code-block:pe-12";
 
   const codeInset = lineNumbers
-    ? "ps-2 pe-4 group-has-[[data-slot=code-block-actions]]/code-block:pe-12"
+    ? "pe-4 group-has-[[data-slot=code-block-actions]]/code-block:pe-12"
     : plainInset;
 
   const lines = codeLines(code, result, {
