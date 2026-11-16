@@ -134,6 +134,9 @@ const CodeBlockActions = ({ className, ...props }: ComponentProps<"div">) => (
     data-slot="code-block-actions"
     className={cn(
       "absolute end-2 top-2 z-10 flex items-center gap-1 rounded-md bg-surface-panel",
+      // Over the source, actions appear on hover or focus so they do not cover code while reading;
+      // touch screens have no hover, and a header leaves them room, so both keep them shown.
+      "opacity-0 transition-opacity group-focus-within/code-block:opacity-100 group-hover/code-block:opacity-100 group-has-[[data-slot=code-block-header]]/code-block:opacity-100 pointer-coarse:opacity-100 motion-reduce:transition-none",
       className,
     )}
   />
