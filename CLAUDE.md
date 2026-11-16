@@ -3,7 +3,7 @@
 # Agent quality workflow
 
 - When asked to validate, typecheck, clean up, run Knip, or prepare changes for review, use the repository checks below.
-- The default command is `bun run check`. Fix actionable failures and repeat the same command until it passes.
+- The default command is `bunx vp check <edited files>`, scoped to the files you changed (see Existing lint errors). Fix actionable failures and repeat the same command until it passes. `bun run check` covers the whole repository and fails on existing errors.
 - Use `bun run ready` for release-readiness checks covering checks and builds.
 - Run `bun run knip` only when unused files or dependencies are in scope.
 
@@ -34,6 +34,15 @@
 - Use lowercase conventional commits: `<type>[scope]: <imperative description>`.
 - Add an intent/why body for non-trivial, dependency, infrastructure, security, migration, breaking, or revert commits.
 - Never add AI attribution or agent co-author trailers such as Codex or Claude Code or Cursor.
+
+<!-- Source: .ruler/lint-baseline.md -->
+
+# Existing lint errors
+
+- The repository has existing lint and type errors in files unrelated to most tasks (262 as of 2026-11-17), so `bun run check` fails on a clean checkout. Do not treat that failure as caused by your change, and do not fix unrelated files unless the task asks for it.
+- Check only the files you edited: `bunx vp check <files>` for formatting, linting, and type-aware checks, and `bunx stylelint <css files>` for edited CSS. Use `bunx vp check --fix <files>` for mechanical fixes. Every file you edited must pass.
+- When you change an exported API (props, types, function signatures), also check the files that import it, since their errors would not show in your edited files.
+- Optionally confirm you added no errors elsewhere: the `Found N errors` count from `bun run check` must not rise above the count before your change.
 
 <!-- Source: .ruler/no-use-client.md -->
 
@@ -71,7 +80,7 @@ Before editing files for a substantial task:
 # Validation policy
 
 - This project has no automated test suite or test runner configuration.
-- Use `bun run check` for formatting, linting, and type-aware validation; use `bun run ready` to also build all applications.
+- Use `bunx vp check <edited files>` for formatting, linting, and type-aware validation of your changes (`bun run check` runs the whole repository, which has existing errors); use `bun run ready` to also build all applications.
 - Verify interactive component behavior manually in Storybook or the docs playground.
 
 <!-- Source: .ruler/ui-conventions.md -->
