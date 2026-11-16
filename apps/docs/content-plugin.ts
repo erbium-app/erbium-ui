@@ -22,6 +22,7 @@ const guideRoutes = [
   { file: "roadmap", href: "/docs/roadmap", section: "Overview" },
   { file: "installation", href: "/docs/installation", section: "Guides" },
   { file: "getting-started", href: "/docs/getting-started", section: "Guides" },
+  { file: "cli", href: "/docs/cli", section: "Guides" },
   {
     example: { name: "marker", slug: "shimmer" },
     file: "shimmer",

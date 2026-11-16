@@ -13,9 +13,9 @@ We also wanted better building blocks for agentic interfaces: dedicated code blo
 
 Install with shadcn or the Erbium CLI. Both copy components into your project so you can adapt the markup, behavior, and styles alongside the rest of your app.
 
-Erbium records the revision and original bytes of each managed file. Commit `.erbium/` with your source. Use `erbium status` to see what changed, `erbium diff` to review upstream changes, and `erbium update` to merge them into your copy. Run `erbium check` to verify tracked files and package declarations offline.
+Erbium records the revision and original bytes of each managed file. Commit `.erbium/lock.json` and `.erbium/bases/` with your source. Use `erbium status` to see what changed, `erbium diff` to review upstream changes, and `erbium update` to merge them into your copy. Run `erbium check` to verify tracked files and package declarations offline.
 
-[Install Erbium and manage updates](/docs/installation).
+[Install Erbium](/docs/installation) or read the [CLI guide](/docs/cli) for command options and update workflows.
 
 ## A few more opinions
 
