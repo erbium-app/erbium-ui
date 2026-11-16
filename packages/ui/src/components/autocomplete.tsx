@@ -44,21 +44,6 @@ export const AutocompleteSearchInput = ({
   </div>
 );
 
-const autocompleteInputVariants = cva("", {
-  variants: {
-    size: {
-      default:
-        "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
-      lg: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-7",
-      sm: "has-[+[data-slot=autocomplete-trigger],+[data-slot=autocomplete-clear]]:*:data-[slot=autocomplete-input]:pe-6.5",
-    },
-    startAddon: {
-      false: "",
-      true: "data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7.5)-1px)] *:data-[slot=autocomplete-input]:ps-[calc(--spacing(8.5)-1px)] sm:data-[size=sm]:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(7)-1px)] sm:*:data-[slot=autocomplete-input]:ps-[calc(--spacing(8)-1px)]",
-    },
-  },
-});
-
 const autocompleteFieldVariants = cva("", {
   variants: {
     size: {
@@ -138,7 +123,10 @@ export const AutocompleteInput = ({
       {hasStartAddon && (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 inset-s-px z-10 flex items-center ps-[calc(--spacing(3)-1px)] opacity-80 has-[+[data-size=sm]]:ps-[calc(--spacing(2.5)-1px)] [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:-mx-0.5"
+          className={cn(
+            "pointer-events-none absolute inset-y-0 inset-s-px z-10 flex items-center opacity-80 [&_svg:not([class*='size-'])]:size-4.5 sm:[&_svg:not([class*='size-'])]:size-control-icon [&_svg]:-mx-0.5",
+            visualSize === "sm" ? "ps-[calc(--spacing(2.5)-1px)]" : "ps-[calc(--spacing(3)-1px)]",
+          )}
           data-slot="autocomplete-start-addon"
         >
           {startAddon}
@@ -146,7 +134,9 @@ export const AutocompleteInput = ({
       )}
       <AutocompletePrimitive.Input
         className={cn(
-          autocompleteInputVariants({ className, size: visualSize, startAddon: hasStartAddon }),
+          hasStartAddon && (visualSize === "sm" ? "ps-7.5 sm:ps-7" : "ps-8.5 sm:ps-8"),
+          (showTrigger || showClear) && (visualSize === "sm" ? "pe-6.5" : "pe-7"),
+          className,
         )}
         data-slot="autocomplete-input"
         render={<Input className={cn(autocompleteFieldVariants({ size: visualSize }))} />}
