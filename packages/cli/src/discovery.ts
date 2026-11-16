@@ -1,6 +1,7 @@
 import * as Schema from "effect/Schema";
 import { atomicWrite, loadLock, lockPath, validateAliases, readText, safePath } from "./project.ts";
-import { defaultRegistry, normalizeItem, openRegistry } from "./registry.ts";
+import { defaultRegistry, saveRegistryConfig } from "./registry-config.ts";
+import { normalizeItem, openRegistry } from "./registry.ts";
 import { parseJson } from "./revision.ts";
 
 const docsSite = "https://ui.erbium.app";
@@ -33,7 +34,12 @@ const fetchText = async (url: URL) => {
   return await response.text();
 };
 
-export const initialize = async (root: string, agents: boolean) => {
+export const initialize = async (
+  root: string,
+  agents: boolean,
+  registry: string,
+  headers: readonly string[],
+) => {
   await validateAliases(root);
   const componentsPath = await safePath(root, "components.json");
   const config = configRecord(parseJson((await readText(componentsPath)) ?? "{}"));
@@ -46,7 +52,11 @@ export const initialize = async (root: string, agents: boolean) => {
     "@erbium-examples": `${docsSite}/r/examples/{name}.json`,
   };
 
-  const changed: string[] = [];
+  if (headers.length > 0 && !registry) {
+    throw new Error("--header requires --registry.");
+  }
+
+  const changed = registry ? await saveRegistryConfig(root, registry, headers) : [];
 
   if (Object.keys(defaults).some((namespace) => !Object.hasOwn(configured, namespace))) {
     await atomicWrite(

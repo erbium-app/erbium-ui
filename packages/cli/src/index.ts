@@ -15,11 +15,22 @@ import {
 import { runOperation } from "./operations.ts";
 import { usage } from "./usage.ts";
 import { buildRegistry, serveRegistry, validateRegistry } from "./registry-tools.ts";
-import { defaultRegistry } from "./registry.ts";
+import { hasRegistryConfig } from "./registry-config.ts";
 
-const cwd = Flag.String("cwd").pipe(Flag.withDefault("."));
-const registry = Flag.String("registry").pipe(Flag.withDefault(defaultRegistry));
-const json = Flag.Boolean("json").pipe(Flag.withDefault(false));
+const cwd = Flag.String("cwd").pipe(
+  Flag.withDescription("Run from this project directory (default: current directory)"),
+  Flag.withDefault("."),
+);
+
+const registry = Flag.String("registry").pipe(
+  Flag.withDescription("Use this managed registry directory or URL for this command"),
+  Flag.withDefault(""),
+);
+
+const json = Flag.Boolean("json").pipe(
+  Flag.withDescription("Print machine-readable JSON"),
+  Flag.withDefault(false),
+);
 
 const commands = {
   add: "Install components and track the source you received",
@@ -90,27 +101,82 @@ const render = (result: Result, jsonOutput: boolean): string => {
     packages.push(`${actionLabel} ${dependencies.join(", ")}.`);
   }
 
-  return [summary, ...dropped, ...result.packages.ranges, ...packages].join("\n");
+  const conflicts = result.conflicts.map(
+    (file) => `${result.dryRun ? "Would write" : "Wrote"} conflict markers in ${file}.`,
+  );
+
+  return [summary, ...conflicts, ...dropped, ...result.packages.ranges, ...packages].join("\n");
 };
 
+const visibleFlag = <A>(visible: boolean, flag: Flag.Flag<A>) =>
+  visible ? flag : Flag.withHidden(flag);
+
 const operation = (mode: keyof typeof commands) => {
-  const required = mode === "add" || mode === "adopt" || mode === "diff";
+  const writes = mode === "add" || mode === "adopt" || mode === "update";
+  const installs = mode === "add" || mode === "update";
+
+  const item = Argument.String("item").pipe(
+    Argument.withDescription("Erbium item name, such as button or @erbium-examples/button-demo"),
+  );
 
   const common = {
     cwd,
-    registry,
+    registry: mode === "check" ? Flag.withHidden(registry) : registry,
     json,
-    dryRun: Flag.Boolean("dry-run").pipe(Flag.withDefault(false)),
-    local: Flag.Boolean("local").pipe(Flag.withDefault(false)),
-    at: Flag.String("at").pipe(Flag.withDefault("")),
-    only: Flag.String("only").pipe(Flag.withDefault("")),
-    names: Argument.String("item").pipe(Argument.variadic({ min: required ? 1 : 0 })),
+    dryRun: visibleFlag(
+      writes,
+      Flag.Boolean("dry-run").pipe(
+        Flag.withDescription("Plan file and dependency changes without applying them"),
+        Flag.withDefault(false),
+      ),
+    ),
+    local: visibleFlag(
+      mode === "diff",
+      Flag.Boolean("local").pipe(
+        Flag.withDescription("Compare the installed baseline with the local files offline"),
+        Flag.withDefault(false),
+      ),
+    ),
+    at: visibleFlag(
+      mode === "adopt",
+      Flag.String("at").pipe(
+        Flag.withDescription("Adopt from a published Git commit or unique commit prefix"),
+        Flag.withDefault(""),
+      ),
+    ),
+    only: visibleFlag(
+      mode === "check",
+      Flag.String("only").pipe(
+        Flag.withDescription(
+          "Run comma-separated checks: config, provenance, dependencies, imports",
+        ),
+        Flag.withDefault(""),
+      ),
+    ),
+    names:
+      mode === "diff"
+        ? item.pipe(Argument.map((name) => [name]))
+        : item.pipe(Argument.variadic({ min: mode === "add" || mode === "adopt" ? 1 : 0 })),
   };
 
-  const acceptsSkipInstall = mode === "add" || mode === "update";
-
-  const config = acceptsSkipInstall
-    ? { ...common, skipInstall: Flag.Boolean("skip-install").pipe(Flag.withDefault(false)) }
+  const config = installs
+    ? {
+        ...common,
+        skipInstall: Flag.Boolean("skip-install").pipe(
+          Flag.withDescription(
+            "Track source and report missing packages for separate installation",
+          ),
+          Flag.withDefault(false),
+        ),
+        overwrite: Flag.Boolean("overwrite").pipe(
+          Flag.withDescription("Replace selected files with registry copies"),
+          Flag.withDefault(false),
+        ),
+        conflictMarkers: Flag.Boolean("conflict-markers").pipe(
+          Flag.withDescription("Write overlapping edits with Git conflict markers"),
+          Flag.withDefault(false),
+        ),
+      }
     : common;
 
   return Command.make(mode, config, (options) =>
@@ -153,11 +219,19 @@ const init = Command.make(
   "init",
   {
     cwd,
-    agents: Flag.Boolean("agents").pipe(Flag.withDefault(false)),
+    registry: registry.pipe(Flag.withDescription("Save a managed registry directory or URL")),
+    headers: Flag.String("header").pipe(
+      Flag.withDescription(`Save a header template such as 'Authorization: Bearer \${TOKEN}'`),
+      Flag.atLeast(0),
+    ),
+    agents: Flag.Boolean("agents").pipe(
+      Flag.withDescription("Write the Erbium skill and add it to AGENTS.md"),
+      Flag.withDefault(false),
+    ),
     json,
   },
   (options) =>
-    query(initialize, [options.cwd, options.agents], (files) =>
+    query(initialize, [options.cwd, options.agents, options.registry, options.headers], (files) =>
       options.json ? data(files) : files.join("\n") || "Erbium is configured.",
     ),
 ).pipe(Command.withDescription("Configure the Erbium registries in a shadcn project"));
@@ -185,17 +259,24 @@ const docs = Command.make(
   {
     cwd,
     topic: Argument.String("topic").pipe(Argument.withDefault("installation")),
-    site: Flag.String("site").pipe(Flag.withDefault(defaultDocs)),
-    registry: Flag.String("registry").pipe(Flag.withDefault("")),
+    site: Flag.String("site").pipe(
+      Flag.withDescription("Read a guide from this docs site (public site by default)"),
+      Flag.withDefault(""),
+    ),
+    registry,
   },
   (options) =>
-    options.registry.length === 0
-      ? query(documentation, [options.topic, options.site], (markdown) => markdown)
-      : query(
-          registryDocumentation,
-          [options.cwd, options.registry, options.topic],
-          (markdown) => markdown,
-        ),
+    query(
+      async () => {
+        if (options.registry || (!options.site && (await hasRegistryConfig(options.cwd)))) {
+          return await registryDocumentation(options.cwd, options.registry, options.topic);
+        }
+
+        return await documentation(options.topic, options.site || defaultDocs);
+      },
+      [],
+      (markdown) => markdown,
+    ),
 ).pipe(Command.withDescription("Read Erbium documentation as Markdown"));
 
 const historyCommand = Command.make(
@@ -225,9 +306,18 @@ const usageCommand = Command.make(
     cwd,
     registry,
     json,
-    offline: Flag.Boolean("offline").pipe(Flag.withDefault(false)),
-    repo: Flag.String("repo").pipe(Flag.withDefault("")),
-    github: Flag.String("github").pipe(Flag.withDefault("")),
+    offline: Flag.Boolean("offline").pipe(
+      Flag.withDescription("Skip registry lookups and report local usage"),
+      Flag.withDefault(false),
+    ),
+    repo: Flag.String("repo").pipe(
+      Flag.withDescription("Scan a temporary checkout of this Git repository"),
+      Flag.withDefault(""),
+    ),
+    github: Flag.String("github").pipe(
+      Flag.withDescription("Scan repositories visible to the GitHub CLI in this organization"),
+      Flag.withDefault(""),
+    ),
   },
   (options) =>
     query(
@@ -254,32 +344,61 @@ const registryCommands = Command.make("registry").pipe(
       "build",
       {
         cwd,
-        input: Argument.String("catalog"),
-        examples: Flag.String("examples").pipe(Flag.withDefault("")),
-        noSite: Flag.Boolean("no-site").pipe(Flag.withDefault(false)),
-        history: Flag.Boolean("history").pipe(Flag.withDefault(false)),
-        out: Flag.String("out").pipe(Flag.withDefault("dist/registry")),
+        input: Argument.String("catalog").pipe(
+          Argument.withDescription("Path to a shadcn catalog with inlined file contents"),
+        ),
+        examples: Flag.String("examples").pipe(
+          Flag.withDescription("Include a second catalog for @erbium-examples items"),
+          Flag.withDefault(""),
+        ),
+        storybook: Flag.String("storybook").pipe(
+          Flag.withDescription("Include a static Storybook build for item previews"),
+          Flag.withDefault(""),
+        ),
+        usage: Flag.String("usage").pipe(
+          Flag.withDescription("Publish a report from erbium usage --json"),
+          Flag.withDefault(""),
+        ),
+        verify: Flag.String("verify").pipe(
+          Flag.withDescription("Publish a report from erbium check --json"),
+          Flag.withDefault(""),
+        ),
+        noSite: Flag.Boolean("no-site").pipe(
+          Flag.withDescription("Publish only the managed and shadcn registry files"),
+          Flag.withDefault(false),
+        ),
+        history: Flag.Boolean("history").pipe(
+          Flag.withDescription("Publish revisions from the catalogs’ first-parent Git history"),
+          Flag.withDefault(false),
+        ),
+        out: Flag.String("out").pipe(
+          Flag.withDescription("Write artifacts to this directory (default: dist/registry)"),
+          Flag.withDefault("dist/registry"),
+        ),
       },
-      ({ cwd: root, input, examples, out, history: includeHistory, noSite }) =>
+      (options) =>
         query(
           buildRegistry,
-          [root, input, examples, out, includeHistory, noSite],
+          [options],
           ({ output, count }) => `Built ${count} items in ${output}.`,
         ),
-    ),
+    ).pipe(Command.withDescription("Validate catalogs and write a static registry")),
     Command.make("validate", { cwd, registry }, (options) =>
       query(
         validateRegistry,
         [options.cwd, options.registry],
         (count) => `Validated ${count} items.`,
       ),
-    ),
+    ).pipe(Command.withDescription("Validate a managed registry’s revisions and imports")),
     Command.make(
       "serve",
       {
         cwd,
         directory: Argument.String("directory").pipe(Argument.withDefault("dist/registry")),
-        port: Flag.Int("port").pipe(Flag.withDefault(4178)),
+        port: Flag.Int("port").pipe(
+          Flag.withDescription("Listen on this loopback port (default: 4178)"),
+          Flag.withDefault(4178),
+        ),
       },
       ({ cwd: root, directory, port }) =>
         Effect.gen(function* serve() {
@@ -291,7 +410,7 @@ const registryCommands = Command.make("registry").pipe(
             catch: (cause) => new CliError.UserError({ cause }),
           });
         }),
-    ),
+    ).pipe(Command.withDescription("Serve a built registry on loopback for local testing")),
   ]),
 );
 

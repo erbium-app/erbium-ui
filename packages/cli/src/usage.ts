@@ -65,11 +65,13 @@ const consumingFiles = (graph: ReadonlyMap<string, Set<string>>, targets: readon
   return { direct, all };
 };
 
-const scan = async (cwd: string, location: string, offline: boolean) => {
+const scan = async (
+  cwd: string,
+  registry: Awaited<ReturnType<typeof openRegistry>> | undefined,
+) => {
   const root = await realpath(cwd);
   const files = [...new Set(trackedFiles(root))].toSorted();
   const locks = files.filter((file) => /(?:^|\/)\.erbium\/lock\.json$/u.test(file));
-  const registry = offline ? undefined : await openRegistry(root, location);
   const graph = await importGraph(root, files);
 
   const packages = files
@@ -134,7 +136,7 @@ const scan = async (cwd: string, location: string, offline: boolean) => {
   );
 };
 
-const scanRemote = async (root: string, registry: string, offline: boolean, repo: string) => {
+const scanRemote = async (root: string, registry: Parameters<typeof scan>[1], repo: string) => {
   const temporary = await mkdtemp(path.join(tmpdir(), "erbium-usage-"));
   const checkout = path.join(temporary, "checkout");
 
@@ -144,7 +146,7 @@ const scanRemote = async (root: string, registry: string, offline: boolean, repo
       env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
     });
 
-    return await scan(checkout, registry, offline);
+    return await scan(checkout, registry);
   } finally {
     await rm(temporary, { recursive: true, force: true });
   }
@@ -195,22 +197,22 @@ export const usage = async (
     throw new Error("Use either --repo or --github.");
   }
 
+  const root = await realpath(cwd);
+  const registry = offline ? undefined : await openRegistry(root, location);
+
   if (repo.length === 0 && github.length === 0) {
-    return await scan(cwd, location, offline);
+    return await scan(root, registry);
   }
 
-  const root = await realpath(cwd);
-  const registry = /^https?:\/\//u.test(location) ? location : path.resolve(root, location);
-
   if (repo.length > 0) {
-    return await scanRemote(root, registry, offline, repo);
+    return await scanRemote(root, registry, repo);
   }
 
   const projects: Awaited<ReturnType<typeof scan>> = [];
 
   for (const repository of githubRepos(root, github)) {
     // oxlint-disable-next-line eslint/no-await-in-loop -- Bound simultaneous clones and disk usage.
-    const found = await scanRemote(root, registry, offline, repository.clone_url);
+    const found = await scanRemote(root, registry, repository.clone_url);
 
     projects.push(
       ...found.map((project) => ({

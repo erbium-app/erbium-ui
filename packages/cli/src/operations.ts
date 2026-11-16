@@ -28,6 +28,8 @@ interface Options {
   dryRun: boolean;
   local: boolean;
   skipInstall?: boolean;
+  overwrite?: boolean;
+  conflictMarkers?: boolean;
   at?: string;
   only?: string;
 }
@@ -244,12 +246,13 @@ const snapshotBaselines = (
 
 const plannedContent = async (
   mode: Mode,
+  options: Options,
   root: string,
   target: string,
   upstream: string,
   previous?: string,
   recover?: () => Promise<string | null | undefined>,
-) => {
+): Promise<{ local: string | undefined; content: string; conflict?: boolean }> => {
   const local = await readTracked(root, target);
 
   if (mode === "adopt") {
@@ -258,6 +261,10 @@ const plannedContent = async (
     }
 
     return { local, content: local };
+  }
+
+  if (options.overwrite === true) {
+    return { local, content: upstream };
   }
 
   if (local === undefined) {
@@ -292,13 +299,13 @@ const plannedContent = async (
   const base = await readBase(root, previous, target, local, recover);
   const merged = await gitFile("merge", local, base, upstream);
 
-  if (merged.conflict) {
+  if (merged.conflict && options.conflictMarkers !== true) {
     throw new Error(
       `Both sides edited the same lines in ${target}. Run erbium diff and erbium diff --local to review.`,
     );
   }
 
-  return { local, content: merged.content };
+  return { local, ...merged };
 };
 
 const packageSpecs = (specs: readonly string[]) =>
@@ -650,6 +657,7 @@ const planItems = (
 const planChanges = async (
   root: string,
   mode: Mode,
+  options: Options,
   registry: Registry,
   names: readonly string[],
 ) => {
@@ -688,7 +696,15 @@ const planChanges = async (
       return {
         target,
         upstream,
-        ...(await plannedContent(mode, root, target, upstream, owner?.digest, recoverFile)),
+        ...(await plannedContent(
+          mode,
+          options,
+          root,
+          target,
+          upstream,
+          owner?.digest,
+          recoverFile,
+        )),
       };
     }),
   );
@@ -701,7 +717,9 @@ const planChanges = async (
 
   const dropped = [...new Set(plan.dropped)].filter((target) => !nextOwners.has(target));
 
-  return { items: plan.items, writes, bases, dropped, selected: [...selected.keys()] };
+  const conflicts = planned.flatMap(({ target, conflict }) => (conflict === true ? [target] : []));
+
+  return { items: plan.items, writes, bases, dropped, conflicts, selected: [...selected.keys()] };
 };
 
 const change = async (
@@ -711,9 +729,10 @@ const change = async (
   registry: Registry,
   names: readonly string[],
 ) => {
-  const { items, writes, bases, dropped, selected } = await planChanges(
+  const { items, writes, bases, dropped, conflicts, selected } = await planChanges(
     root,
     mode,
+    options,
     registry,
     names,
   );
@@ -765,6 +784,7 @@ const change = async (
       .filter((target) => !target.startsWith(".erbium/"))
       .toArray(),
     dropped,
+    conflicts,
     packages,
     dryRun: options.dryRun,
     skipInstall: options.skipInstall ?? false,
@@ -927,6 +947,10 @@ const operationRegistry = async (mode: Mode, root: string, options: Options) => 
 };
 
 export const runOperation = async (mode: Mode, options: Options) => {
+  if (options.overwrite === true && options.conflictMarkers === true) {
+    throw new Error("Choose either --overwrite or --conflict-markers.");
+  }
+
   const root = await realpath(options.cwd);
   const names = options.names.map(normalizeItem);
   const journal = await safePath(root, ".erbium/pending.json");

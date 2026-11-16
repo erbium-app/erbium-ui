@@ -1,11 +1,16 @@
 import assert from "node:assert/strict";
-import { execFileSync, spawnSync } from "node:child_process";
-import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { execFileSync, spawn, spawnSync } from "node:child_process";
+import { access, mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { once } from "node:events";
+import { createReadStream } from "node:fs";
+import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import * as Schema from "effect/Schema";
 import { test } from "node:test";
-import { hash, revision, snapshotFor } from "../src/revision.ts";
+import { hash, parseJson, revision, snapshotFor } from "../src/revision.ts";
 
+const record = Schema.decodeUnknownSync(Schema.Record(Schema.String, Schema.Json));
 const bin = path.resolve(import.meta.dirname, "../dist/index.js");
 const source = path.join("src", "primitives", "button.tsx");
 const base = 'export const label = "base";\n\n\n\nexport const style = "base";\n';
@@ -123,11 +128,28 @@ void test("adopts an existing file, then merges successive revisions and refuses
   assert.equal(await readFile(file, "utf-8"), merged);
 
   await release(next.replace('label = "base"', 'label = "upstream"'));
+  const lock = path.join(project, ".erbium", "lock.json");
+  const previousLock = await readFile(lock, "utf-8");
   const conflict = fail("update");
   assert.notEqual(conflict.status, 0);
   assert.match(conflict.stdout + conflict.stderr, /Both sides edited the same lines/u);
   assert.equal(await readFile(file, "utf-8"), merged);
+  assert.equal(await readFile(lock, "utf-8"), previousLock);
   assert.match(run("check", "--json"), /"modified": true/u);
+
+  assert.match(run("update", "--conflict-markers", "--dry-run"), /Would write conflict markers/u);
+  assert.equal(await readFile(file, "utf-8"), merged);
+  assert.equal(await readFile(lock, "utf-8"), previousLock);
+  assert.notEqual(fail("update", "--overwrite", "--conflict-markers").status, 0);
+  assert.match(run("update", "--conflict-markers"), /Wrote conflict markers/u);
+  assert.match(await readFile(file, "utf-8"), /^<<<<<<< yours$/mu);
+  const check = fail("check");
+  assert.notEqual(check.status, 0);
+  assert.match(check.stdout, /Unresolved merge conflict/u);
+
+  run("update", "button", "--overwrite");
+  assert.equal(await readFile(file, "utf-8"), next.replace('label = "base"', 'label = "upstream"'));
+  run("check");
 });
 
 void test("adds a tracked file and reports missing files offline", async (context) => {
@@ -281,6 +303,61 @@ void test("builds and validates managed and shadcn artifacts from a catalog", as
   const docs = invoke("docs", "button", "--registry", location);
   assert.match(docs, /^# Button/u);
   assert.ok(docs.includes(base));
+
+  invoke("add", "button", "--registry", location);
+  execFileSync("git", ["-C", project, "init", "--quiet"]);
+  const usageFile = path.join(root, "consumers.json");
+  const verifyFile = path.join(root, "checks.json");
+  const storybook = path.join(root, "storybook-static");
+  await mkdir(path.join(storybook, "assets"), { recursive: true });
+  await Promise.all([
+    writeFile(usageFile, invoke("usage", "--offline", "--json")),
+    writeFile(verifyFile, invoke("check", "--json")),
+    writeFile(path.join(storybook, "iframe.html"), "<!doctype html>"),
+    writeFile(path.join(storybook, "assets", "font.woff2"), new Uint8Array([0, 255, 1])),
+    writeFile(
+      path.join(storybook, "index.json"),
+      JSON.stringify({
+        v: 5,
+        entries: {
+          "components-button--default": {
+            type: "story",
+            id: "components-button--default",
+            name: "Default",
+            importPath: "./src/stories/button.stories.tsx",
+          },
+        },
+      }),
+    ),
+  ]);
+
+  const build = ["registry", "build", catalog, "--out", out];
+  invoke(...build, "--storybook", storybook, "--usage", usageFile, "--verify", verifyFile);
+  assert.match(
+    await readFile(path.join(out, "items", "erbium", "button.html"), "utf-8"),
+    /iframe\.html\?id=components-button--default/u,
+  );
+  assert.match(await readFile(path.join(out, "index.html"), "utf-8"), /usage\.json.*Usage report/u);
+  assert.match(
+    await readFile(path.join(out, "index.html"), "utf-8"),
+    /verify\.json.*Verification report/u,
+  );
+  assert.deepEqual(await readFile(path.join(out, "usage.json")), await readFile(usageFile));
+  assert.deepEqual(await readFile(path.join(out, "verify.json")), await readFile(verifyFile));
+  assert.deepEqual(
+    await readFile(path.join(out, "storybook", "assets", "font.woff2")),
+    Buffer.from([0, 255, 1]),
+  );
+
+  invoke(...build, "--no-site");
+
+  await Promise.all(
+    ["index.html", "verify.json", "usage.json", "storybook", "items"].map(async (file) => {
+      await assert.rejects(access(path.join(out, file)), { code: "ENOENT" });
+    }),
+  );
+
+  assert.match(invoke("registry", "validate", "--registry", location), /Validated 1 items/u);
 });
 
 void test("publishes and adopts older revisions from a custom Git registry", async (context) => {
@@ -400,4 +477,158 @@ void test("copies and tracks files without installing dependencies when requeste
   assert.equal(await readFile(path.join(project, source), "utf-8"), base);
   assert.match(run("check", "--only", "provenance"), /provenance: passed/u);
   assert.notEqual(fail("check", "--only", "dependencies").status, 0);
+});
+
+void test("persists a relative registry without replacing shadcn settings", async (context) => {
+  const { root, project } = await fixture();
+  context.after(async () => {
+    await rm(root, { recursive: true, force: true });
+  });
+
+  const components = path.join(project, "components.json");
+  const original = record(parseJson(await readFile(components, "utf-8")));
+
+  const registries = {
+    "@erbium": {
+      url: "https://example.test/{name}.json",
+      headers: { Authorization: `Bearer \${SHADCN_TOKEN}` },
+    },
+    "@custom": "https://example.test/custom/{name}.json",
+  };
+
+  await writeFile(components, JSON.stringify({ ...original, registries }));
+
+  const invoke = (...args: string[]) =>
+    execFileSync(process.execPath, [bin, ...args, "--cwd", project], { encoding: "utf-8" });
+
+  invoke("init", "--registry", "../registry");
+  invoke("init");
+  assert.deepEqual(parseJson(await readFile(path.join(project, "erbium.config.json"), "utf-8")), {
+    registry: "../registry",
+  });
+  const { registries: updated } = record(parseJson(await readFile(components, "utf-8")));
+  assert.deepEqual(
+    { ...record(updated), "@erbium-examples": undefined },
+    {
+      ...registries,
+      "@erbium-examples": undefined,
+    },
+  );
+  assert.match(invoke("search", "button"), /@erbium\/button/u);
+  assert.match(invoke("docs", "button"), /^# @erbium\/button/u);
+  assert.match(invoke("registry", "validate"), /Validated 1 items/u);
+  await writeFile(path.join(project, source), "unmanaged");
+  invoke("add", "button", "--overwrite");
+  assert.equal(await readFile(path.join(project, source), "utf-8"), base);
+});
+
+void test("interpolates configured authentication for managed requests and blocks redirects", async (context) => {
+  const { root, project, registry } = await fixture();
+  const requests: string[] = [];
+
+  const server = createServer((request, response) => {
+    const resource = request.url ?? "";
+    requests.push(resource);
+
+    if (resource.startsWith("/public/")) {
+      assert.equal(request.headers.authorization, undefined);
+      assert.equal(request.headers["x-project"], undefined);
+    } else if (
+      request.headers.authorization !== "Bearer session-value" ||
+      request.headers["x-project"] !== "local-value"
+    ) {
+      response.writeHead(403).end();
+
+      return;
+    }
+
+    if (resource.startsWith("/redirect/")) {
+      response.writeHead(302, { Location: "/public/index.json" }).end();
+
+      return;
+    }
+
+    const file = path.join(registry, resource.replace(/^\/(?:private|public)\//u, ""));
+    const stream = createReadStream(file);
+    stream.on("error", () => {
+      response.writeHead(404).end();
+    });
+    stream.pipe(response);
+  });
+
+  context.after(async () => {
+    server.close();
+    await rm(root, { recursive: true, force: true });
+  });
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  const address = server.address();
+  const { port } = Schema.decodeUnknownSync(Schema.Struct({ port: Schema.Number }))(address);
+
+  const url = `http://127.0.0.1:${port}`;
+  const args = (...command: string[]) => [bin, ...command, "--cwd", project];
+  const env = { ...process.env, ERBIUM_REGISTRY_TOKEN: "", CLI_SMOKE_TOKEN: "session-value" };
+
+  const invoke = async (...command: string[]) => {
+    const child = spawn(process.execPath, args(...command), { env });
+    const stdout: string[] = [];
+    const stderr: string[] = [];
+    child.stdout.setEncoding("utf-8").on("data", (chunk: string) => {
+      stdout.push(chunk);
+    });
+    child.stderr.setEncoding("utf-8").on("data", (chunk: string) => {
+      stderr.push(chunk);
+    });
+
+    await once(child, "close");
+
+    if (child.exitCode !== 0) {
+      throw new Error(stderr.join(""));
+    }
+
+    return stdout.join("");
+  };
+
+  const configure = async (location: string) =>
+    await invoke(
+      "init",
+      "--registry",
+      location,
+      "--header",
+      `Authorization: Bearer \${CLI_SMOKE_TOKEN}`,
+      "--header",
+      `X-Project: \${CLI_SMOKE_PROJECT}`,
+    );
+
+  await configure(`${url}/private`);
+  await assert.rejects(invoke("add", "button"), /Set CLI_SMOKE_PROJECT/u);
+  assert.deepEqual(requests, []);
+  await writeFile(
+    path.join(project, ".env"),
+    "CLI_SMOKE_PROJECT=base-value\nCLI_SMOKE_TOKEN=base-value\n",
+  );
+  await writeFile(
+    path.join(project, ".env.local"),
+    "CLI_SMOKE_PROJECT=local-value\nCLI_SMOKE_TOKEN=local-value\n",
+  );
+  await invoke("add", "button");
+  assert.equal(await readFile(path.join(project, source), "utf-8"), base);
+  assert.match(await invoke("search", "button", "--registry", `${url}/public`), /@erbium\/button/u);
+
+  const config = await readFile(path.join(project, "erbium.config.json"), "utf-8");
+  const lock = await readFile(path.join(project, ".erbium", "lock.json"), "utf-8");
+  assert.match(config, /\$\{CLI_SMOKE_TOKEN\}/u);
+  assert.doesNotMatch(config + lock, /session-value|local-value/u);
+  await assert.rejects(configure("http://example.test/private"), /require HTTPS/u);
+  await assert.rejects(
+    invoke("init", "--registry", `${url}/private`, "--header", "Authorization: literal-value"),
+    /placeholder/u,
+  );
+  assert.equal(await readFile(path.join(project, "erbium.config.json"), "utf-8"), config);
+
+  await configure(`${url}/redirect`);
+  const count = requests.length;
+  await assert.rejects(invoke("search"), /fetch failed/u);
+  assert.deepEqual(requests.slice(count), ["/redirect/index.json"]);
+  assert.match(await invoke("check"), /provenance: passed/u);
 });

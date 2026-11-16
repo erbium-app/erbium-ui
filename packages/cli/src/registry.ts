@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import * as Schema from "effect/Schema";
+import { registryRequest } from "./registry-config.ts";
 import {
   manifest,
   parseJson,
@@ -12,7 +13,6 @@ import {
 } from "./revision.ts";
 import type { Snapshot } from "./revision.ts";
 
-export const defaultRegistry = "https://ui.erbium.app/r/erbium";
 const itemId = /^@(?:erbium|erbium-examples)\/[a-z0-9][a-z0-9-]*$/u;
 
 export const normalizeItem = (value: string): string => {
@@ -25,34 +25,19 @@ export const normalizeItem = (value: string): string => {
   return id;
 };
 
-const readRegistry = async (root: string, location: string, file: string): Promise<Schema.Json> => {
+const readRegistry = async (
+  { location, headers }: Awaited<ReturnType<typeof registryRequest>>,
+  file: string,
+): Promise<Schema.Json> => {
   if (!/^https?:\/\//u.test(location)) {
-    return parseJson(await readFile(path.resolve(root, location, file), "utf-8"));
+    return parseJson(await readFile(path.join(location, file), "utf-8"));
   }
 
-  const endpoint = new URL(`${location.replace(/\/+$/u, "")}/${file}`);
-
-  if (endpoint.username.length > 0 || endpoint.password.length > 0) {
-    throw new Error("Pass registry credentials through ERBIUM_REGISTRY_TOKEN.");
-  }
-
-  const token =
-    endpoint.origin === new URL(defaultRegistry).origin
-      ? undefined
-      : process.env.ERBIUM_REGISTRY_TOKEN;
-
-  if (
-    token !== undefined &&
-    endpoint.protocol !== "https:" &&
-    !["localhost", "127.0.0.1", "[::1]"].includes(endpoint.hostname)
-  ) {
-    throw new Error("Authenticated registries require HTTPS.");
-  }
-
+  const endpoint = new URL(`${location}/${file}`);
   const options: RequestInit = { signal: AbortSignal.timeout(15_000) };
 
-  if (token !== undefined) {
-    options.headers = { Authorization: `Bearer ${token}` };
+  if (headers !== undefined) {
+    options.headers = headers;
     options.redirect = "error";
   }
 
@@ -66,8 +51,10 @@ const readRegistry = async (root: string, location: string, file: string): Promi
 };
 
 export const openRegistry = async (root: string, location: string) => {
+  const request = await registryRequest(root, location);
+
   const { items, catalog = {} } = Schema.decodeUnknownSync(manifest)(
-    await readRegistry(root, location, "index.json"),
+    await readRegistry(request, "index.json"),
   );
 
   return {
@@ -75,7 +62,7 @@ export const openRegistry = async (root: string, location: string) => {
     catalog,
     async history() {
       const releases = Schema.decodeUnknownSync(releaseHistory)(
-        await readRegistry(root, location, "history.json"),
+        await readRegistry(request, "history.json"),
       );
 
       const published = new Map<string, string>();
@@ -97,7 +84,7 @@ export const openRegistry = async (root: string, location: string) => {
     },
     async load(id: string, digest: string): Promise<Snapshot> {
       const checked = Schema.decodeUnknownSync(rev)(digest);
-      const raw = await readRegistry(root, location, `revisions/${checked}.json`);
+      const raw = await readRegistry(request, `revisions/${checked}.json`);
       const decoded = Schema.decodeUnknownSync(snapshot)(raw);
       const value = snapshotFor(decoded.id, decoded.item);
 

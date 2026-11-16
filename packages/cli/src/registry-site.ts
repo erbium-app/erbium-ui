@@ -29,7 +29,17 @@ const page = (title: string, body: string) =>
 
 const itemPage = (id: string) => `items/${id.slice(1)}.html`;
 
-export const writeRegistrySite = async (output: string, location: string) => {
+interface SiteArtifacts {
+  previews: ReadonlyMap<string, string> | undefined;
+  usage: boolean;
+  verify: boolean;
+}
+
+export const writeRegistrySite = async (
+  output: string,
+  location: string,
+  artifacts: SiteArtifacts,
+) => {
   const registry = await openRegistry(output, location);
   const history = await registry.history();
   const releases = history.toReversed();
@@ -76,6 +86,14 @@ export const writeRegistrySite = async (output: string, location: string) => {
         (dependency) => `<li><code>${html(dependency)}</code></li>`,
       );
 
+      const name = id.split("/")[1] ?? id;
+      const story = artifacts.previews?.get(name);
+
+      const preview =
+        story === undefined
+          ? ""
+          : `<p><a href="../../storybook/iframe.html?id=${encodeURIComponent(story)}&amp;viewMode=story">Open Storybook preview</a></p>`;
+
       const file = path.join(output, itemPage(id));
       await mkdir(path.dirname(file), { recursive: true });
       await atomicWrite(
@@ -86,6 +104,7 @@ export const writeRegistrySite = async (output: string, location: string) => {
 <h1>${html(title)}</h1><p>${html(description)}</p>
 <p><code>erbium add ${html(id)} --registry &lt;url&gt;/r/erbium</code></p>
 <p><a href="../../r/erbium/revisions/${digest}.json">Current snapshot</a></p>
+${preview}
 ${dependencyLinks.length > 0 ? `<h2>Registry dependencies</h2><ul>${dependencyLinks.join("")}</ul>` : ""}
 ${files.length > 0 ? `<h2>Source</h2>${files.join("\n")}` : ""}
 ${revisions.length > 0 ? `<h2>Published revisions</h2><ol>${revisions.join("")}</ol>` : ""}`,
@@ -101,6 +120,8 @@ ${revisions.length > 0 ? `<h2>Published revisions</h2><ol>${revisions.join("")}<
         "Erbium registry",
         `<h1>Erbium registry</h1>
 <p><a href="llms.txt">Agent index</a> · <a href="r/erbium/index.json">Registry index</a></p>
+${artifacts.usage ? '<p><a href="usage.json">Usage report</a></p>' : ""}
+${artifacts.verify ? '<p><a href="verify.json">Verification report</a></p>' : ""}
 <ul>${summaries.map(({ id, title }) => `<li><a href="${itemPage(id)}">${html(title)}</a> <code>${html(id)}</code></li>`).join("\n")}</ul>`,
       ),
     ),

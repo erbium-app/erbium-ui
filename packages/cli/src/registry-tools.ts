@@ -1,10 +1,10 @@
 import { once } from "node:events";
-import { mkdir, readFile, realpath } from "node:fs/promises";
+import { cp, mkdir, readFile, realpath, rm } from "node:fs/promises";
 import { createServer } from "node:http";
 import path from "node:path";
 import * as Schema from "effect/Schema";
 import { importSpecifiers } from "./imports.ts";
-import { atomicWrite, readText, safePath } from "./project.ts";
+import { atomicWrite, safePath } from "./project.ts";
 import { publishRevisions } from "./publish.ts";
 import type { RegistrySource } from "./publish.ts";
 import { writeRegistrySite } from "./registry-site.ts";
@@ -139,23 +139,134 @@ const validateSnapshots = (items: readonly Snapshot[]) => {
 export const validateRegistry = async (cwd: string, location: string) => {
   const registry = await openRegistry(cwd, location);
 
-  const items = await Promise.all(
-    Object.entries(registry.items).map(
-      async ([id, digest]) => await registry.load(normalizeItem(id), digest),
-    ),
-  );
+  const entries = Object.entries(registry.items);
+  const items: Snapshot[] = [];
+  const batchSize = 16;
+
+  for (let start = 0; start < entries.length; start += batchSize) {
+    const batch = entries.slice(start, start + batchSize);
+
+    // oxlint-disable-next-line eslint/no-await-in-loop -- Bound simultaneous HTTP and file requests.
+    const snapshots = await Promise.all(
+      batch.map(async ([id, digest]) => await registry.load(normalizeItem(id), digest)),
+    );
+
+    items.push(...snapshots);
+  }
 
   return validateSnapshots(items);
 };
 
-export const buildRegistry = async (
-  cwd: string,
-  input: string,
-  examples: string,
-  out: string,
-  history: boolean,
-  noSite: boolean,
-) => {
+const storyIndex = Schema.decodeUnknownSync(
+  Schema.Struct({
+    entries: Schema.Record(
+      Schema.String,
+      Schema.Struct({
+        id: Schema.String,
+        type: Schema.String,
+        importPath: Schema.String,
+        name: Schema.String,
+      }),
+    ),
+  }),
+);
+
+const usageReport = Schema.decodeUnknownSync(
+  Schema.Array(
+    Schema.Struct({
+      project: Schema.String,
+      items: Schema.Array(Schema.Struct({ id: Schema.String })),
+    }),
+  ),
+);
+
+const verificationReport = Schema.decodeUnknownSync(
+  Schema.Struct({
+    ok: Schema.Boolean,
+    steps: Schema.Array(
+      Schema.Struct({
+        step: Schema.String,
+        ok: Schema.Boolean,
+        notes: Schema.Array(Schema.String),
+      }),
+    ),
+  }),
+);
+
+const readReport = async (cwd: string, file: string, validate: (json: Schema.Json) => object) => {
+  if (!file) {
+    return null;
+  }
+
+  const content = await readFile(path.resolve(cwd, file), "utf-8");
+  validate(parseJson(content));
+
+  return content;
+};
+
+const readStorybook = async (cwd: string, directory: string, output: string) => {
+  if (!directory) {
+    return null;
+  }
+
+  const source = await realpath(path.resolve(cwd, directory));
+  const destination = path.join(await realpath(output).catch(() => output), "storybook");
+
+  if (
+    source === destination ||
+    source.startsWith(destination + path.sep) ||
+    destination.startsWith(source + path.sep)
+  ) {
+    throw new Error("Keep the Storybook input and output directories separate.");
+  }
+
+  const [index] = await Promise.all([
+    readFile(path.join(source, "index.json"), "utf-8"),
+    readFile(path.join(source, "iframe.html")),
+  ]);
+
+  const { entries } = storyIndex(parseJson(index));
+  const previews = new Map<string, string>();
+
+  for (const entry of Object.values(entries)) {
+    const match = /(?:^|\/)(?<name>[a-z0-9-]+)\.stories\.[cm]?[jt]sx?$/u.exec(entry.importPath);
+    const name = match?.groups?.name;
+
+    if (
+      entry.type === "story" &&
+      name !== undefined &&
+      (!previews.has(name) || entry.name === "Default")
+    ) {
+      previews.set(name, entry.id);
+    }
+  }
+
+  return { source, destination, previews };
+};
+
+interface BuildOptions {
+  cwd: string;
+  input: string;
+  examples: string;
+  out: string;
+  history: boolean;
+  noSite: boolean;
+  storybook: string;
+  usage: string;
+  verify: string;
+}
+
+export const buildRegistry = async ({
+  cwd,
+  input,
+  examples,
+  out,
+  history,
+  noSite,
+  storybook,
+  usage,
+  verify,
+}: BuildOptions) => {
   const output = path.resolve(cwd, out);
   const sources: RegistrySource[] = [["erbium", path.resolve(cwd, input)]];
 
@@ -187,6 +298,12 @@ export const buildRegistry = async (
     catalogs.flatMap(({ records }) => records.map(({ snapshot }) => snapshot)),
   );
 
+  const [stories, usageJson, verifyJson] = await Promise.all([
+    readStorybook(cwd, noSite ? "" : storybook, output),
+    readReport(cwd, noSite ? "" : usage, usageReport),
+    readReport(cwd, noSite ? "" : verify, verificationReport),
+  ]);
+
   const managed = path.join(output, "r", "erbium");
 
   const historySources = history
@@ -216,15 +333,55 @@ export const buildRegistry = async (
     }),
   );
 
+  await Promise.all([
+    rm(await safePath(output, "storybook"), { recursive: true, force: true }),
+    rm(await safePath(output, "usage.json"), { force: true }),
+    rm(await safePath(output, "verify.json"), { force: true }),
+    ...(noSite
+      ? [
+          rm(await safePath(output, "index.html"), { force: true }),
+          rm(await safePath(output, "llms.txt"), { force: true }),
+          rm(await safePath(output, "items"), { recursive: true, force: true }),
+        ]
+      : []),
+  ]);
+
   if (!noSite) {
-    await writeRegistrySite(output, managed);
+    await Promise.all([
+      stories === null ? undefined : cp(stories.source, stories.destination, { recursive: true }),
+      usageJson === null ? undefined : atomicWrite(path.join(output, "usage.json"), usageJson),
+      verifyJson === null ? undefined : atomicWrite(path.join(output, "verify.json"), verifyJson),
+      writeRegistrySite(output, managed, {
+        previews: stories?.previews,
+        usage: usageJson !== null,
+        verify: verifyJson !== null,
+      }),
+    ]);
   }
 
   return { output, count };
 };
 
 const routes =
-  /^\/(?<file>index\.html|llms\.txt|items\/(?:erbium|erbium-examples)\/[a-z0-9-]+\.html|r\/(?:erbium\/(?:index\.json|history\.json|revisions\/[a-f0-9]{64}\.json)|(?:ui|examples)\/[a-z0-9-]+\.json))$/u;
+  /^\/(?<file>index\.html|llms\.txt|usage\.json|verify\.json|storybook\/.+|items\/(?:erbium|erbium-examples)\/[a-z0-9-]+\.html|r\/(?:erbium\/(?:index\.json|history\.json|revisions\/[a-f0-9]{64}\.json)|(?:ui|examples)\/[a-z0-9-]+\.json))$/u;
+
+const contentTypes = new Map([
+  [".html", "text/html; charset=utf-8"],
+  [".txt", "text/plain; charset=utf-8"],
+  [".json", "application/json; charset=utf-8"],
+  [".css", "text/css; charset=utf-8"],
+  [".js", "text/javascript; charset=utf-8"],
+  [".mjs", "text/javascript; charset=utf-8"],
+  [".svg", "image/svg+xml"],
+  [".png", "image/png"],
+  [".webp", "image/webp"],
+  [".jpg", "image/jpeg"],
+  [".jpeg", "image/jpeg"],
+  [".gif", "image/gif"],
+  [".woff", "font/woff"],
+  [".woff2", "font/woff2"],
+  [".wasm", "application/wasm"],
+]);
 
 export const serveRegistry = async (
   cwd: string,
@@ -236,7 +393,16 @@ export const serveRegistry = async (
 
   const server = createServer((request, response) => {
     const [url = ""] = request.url?.split("?") ?? [];
-    const file = routes.exec(url === "/" ? "/index.html" : url)?.groups?.file;
+    const route = url === "/" || url === "/storybook/" ? `${url}index.html` : url;
+    let file: string | undefined;
+
+    try {
+      file = routes.exec(decodeURIComponent(route))?.groups?.file;
+    } catch {
+      response.writeHead(400).end();
+
+      return;
+    }
 
     if (file === undefined || (request.method !== "GET" && request.method !== "HEAD")) {
       response.writeHead(404).end();
@@ -245,29 +411,16 @@ export const serveRegistry = async (
     }
 
     const send = async () => {
-      const content = await readText(await safePath(root, file));
-
-      if (content === undefined) {
-        response.writeHead(404).end();
-
-        return;
-      }
-
-      let contentType = "application/json";
-
-      if (file.endsWith(".html")) {
-        contentType = "text/html";
-      } else if (file.endsWith(".txt")) {
-        contentType = "text/plain";
-      }
+      const content = await readFile(await safePath(root, file));
+      const type = contentTypes.get(path.extname(file)) ?? "application/octet-stream";
 
       response
-        .writeHead(200, { "Content-Type": `${contentType}; charset=utf-8` })
+        .writeHead(200, { "Content-Type": type, "Content-Length": content.length })
         .end(request.method === "HEAD" ? undefined : content);
     };
 
     send().catch(() => {
-      response.writeHead(500).end();
+      response.writeHead(404).end();
     });
   });
 
