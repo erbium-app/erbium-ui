@@ -1,4 +1,4 @@
-import { parseDiffFromFile } from "@pierre/diffs";
+import { parseDiffFromFile, parsePatchFiles } from "@pierre/diffs";
 import type { DiffFileInput, FileDiffMetadata } from "@pierre/diffs";
 import { FileDiff } from "@pierre/diffs/react";
 import type { FileDiffProps, FileDiffOptions } from "@pierre/diffs/react";
@@ -39,8 +39,29 @@ type DiffViewOptions<Annotation = undefined> = Omit<
 >;
 
 type DiffViewSource =
-  | (DiffFileInput & { fileDiff?: never })
-  | { fileDiff: FileDiffMetadata; oldFile?: never; newFile?: never };
+  | (DiffFileInput & { fileDiff?: never; patch?: never })
+  | { fileDiff: FileDiffMetadata; oldFile?: never; newFile?: never; patch?: never }
+  | {
+      /** A unified diff or `git diff` output for one file. */
+      patch: string;
+      oldFile?: never;
+      newFile?: never;
+      fileDiff?: never;
+    };
+
+/** The one file a patch changes. */
+const patchDiff = (patch: string): FileDiffMetadata => {
+  const files = parsePatchFiles(patch).flatMap((parsed) => parsed.files);
+  const [file] = files;
+
+  if (file === undefined || files.length > 1) {
+    throw new Error(
+      `DiffView expects a patch for exactly one file; this patch changes ${files.length}.`,
+    );
+  }
+
+  return file;
+};
 
 type DiffViewProps<Annotation = undefined> = DiffViewSource &
   Omit<CodePanelProps, "children"> &
@@ -381,6 +402,7 @@ const DiffView = <Annotation = undefined,>({
   oldFile,
   newFile,
   fileDiff: providedDiff,
+  patch,
   options,
   lineAnnotations,
   selectedLines,
@@ -396,8 +418,10 @@ const DiffView = <Annotation = undefined,>({
   const fileDiff = useMemo(
     () =>
       providedDiff ??
-      parseDiffFromFile(oldFile ?? null, newFile ?? null, options?.parseDiffOptions),
-    [providedDiff, oldFile, newFile, options?.parseDiffOptions],
+      (patch === undefined
+        ? parseDiffFromFile(oldFile ?? null, newFile ?? null, options?.parseDiffOptions)
+        : patchDiff(patch)),
+    [providedDiff, patch, oldFile, newFile, options?.parseDiffOptions],
   );
 
   // Pierre highlights asynchronously, so its host stays empty until the first render; the plain

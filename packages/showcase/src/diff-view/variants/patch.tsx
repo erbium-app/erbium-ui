@@ -1,4 +1,3 @@
-import { parsePatchFiles } from "@pierre/diffs";
 import { DiffView } from "@erbium/ui/blocks/diff-view";
 
 const patch = `diff --git a/settings.json b/settings.json
@@ -12,16 +11,8 @@ const patch = `diff --git a/settings.json b/settings.json
  }
 `;
 
-const fileDiff = parsePatchFiles(patch, "settings-patch", true)[0]?.files[0];
-
-const Example = () => {
-  if (!fileDiff) {
-    return null;
-  }
-
-  return (
-    <DiffView className="w-full max-w-4xl" fileDiff={fileDiff} options={{ diffStyle: "unified" }} />
-  );
-};
+const Example = () => (
+  <DiffView className="w-full max-w-4xl" patch={patch} options={{ diffStyle: "unified" }} />
+);
 
 export default Example;

@@ -1,6 +1,6 @@
 ---
 title: "Patch"
-description: "Render prepared single-file patch metadata; copying is disabled for partial contents."
+description: "Render a single-file patch string; copying is disabled for partial contents."
 ---
 
-Render prepared single-file patch metadata; copying is disabled for partial contents.
+Pass a unified diff or `git diff` output for one file as `patch`. The diff shows only the patch's lines, so copying is disabled.

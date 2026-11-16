@@ -76,7 +76,13 @@ Use existing Toggle, ToggleGroup, Button, and other controls for application-own
 
 ## Prepared patches
 
-Instead of a file pair, supply `fileDiff` containing Pierre's `FileDiffMetadata`. Parse patch input with `parsePatchFiles` from `@pierre/diffs`, then choose exactly one file's metadata. Keep that metadata stable when using `options.loadDiffFiles`, because Pierre hydrates partial metadata in place.
+Instead of a file pair, pass a unified diff or `git diff` output as `patch`. It must change exactly one file; a patch with no file or several files throws. The patch is parsed again only when the string changes.
+
+```tsx
+<DiffView patch={patch} options={{ diffStyle: "unified" }} />
+```
+
+For a patch that changes several files, parse it with `parsePatchFiles` from `@pierre/diffs` and render one `DiffView` per file, passing each file's `FileDiffMetadata` as `fileDiff`. Keep that metadata stable when using `options.loadDiffFiles`, because Pierre hydrates partial metadata in place; a `patch` string is parsed into new metadata whenever it changes.
 
 Partial patches contain only the patch's visible lines. Exact full-file copying is disabled when the supplied metadata is partial. Expanding omitted context requires `options.loadDiffFiles`; it cannot be recovered from the patch alone. For an always-available copy action, pass complete file pairs instead.
 
