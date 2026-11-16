@@ -135,6 +135,64 @@ const samplePreferences: Preferences = {
   weeklyDigest: true,
 };
 
+interface Settings {
+  timezone: string;
+  securityAlerts: boolean;
+  productUpdates: boolean;
+}
+
+const settings: Settings = {
+  productUpdates: false,
+  securityAlerts: true,
+  timezone: "Europe/Berlin",
+};
+
+const sampleSettings: Settings = {
+  productUpdates: true,
+  securityAlerts: true,
+  timezone: "Europe/Berlin",
+};
+
+interface Session {
+  id: string;
+  device: string;
+  location: string;
+  lastActive: string;
+  current: boolean;
+}
+
+const sessions: Session[] = [
+  {
+    current: true,
+    device: "Safari on macOS",
+    id: "1",
+    lastActive: "Active now",
+    location: "Berlin, Germany",
+  },
+  {
+    current: false,
+    device: "Erbium for iOS",
+    id: "2",
+    lastActive: "2 hours ago",
+    location: "Berlin, Germany",
+  },
+  {
+    current: false,
+    device: "Chrome on Windows",
+    id: "3",
+    lastActive: "Nov 2",
+    location: "Lisbon, Portugal",
+  },
+];
+
+const sampleSessions: Session[] = sessions.map((session, index) => ({
+  ...session,
+  device: "Browser on System",
+  id: `sample-${index}`,
+  lastActive: "Some time ago",
+  location: "City, Country",
+}));
+
 export {
   article,
   members,
@@ -146,6 +204,10 @@ export {
   sampleParagraphs,
   samplePreferences,
   sampleProfile,
+  sampleSessions,
+  sampleSettings,
+  sessions,
+  settings,
 };
 
-export type { Article, Member, Preferences, Profile };
+export type { Article, Member, Preferences, Profile, Session, Settings };

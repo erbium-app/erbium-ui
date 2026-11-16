@@ -83,6 +83,10 @@ The provider can set `together`, `sequence` or `sweep` instead. Everything holds
 
 `error` replaces the skeleton with an error. Pass an `Error` to render the error alert with its message, or pass any node. `empty` with `emptyMessage` shows an [Empty](/docs/components/empty) state instead of the content. Both use the same crossfade as content.
 
+## Sections
+
+Give each independently fetched region its own `Skeleton`, wrapped around that region's data only. A slow request then holds back only its own region, and a failed request shows its error there while the rest of the page stays usable. Headings, descriptions and other content known before the requests answer stay outside the skeleton and render at once. Pass a distinct `id` to each region so its shape is remembered on its own.
+
 ## Accessibility
 
 A loading region is `aria-busy`, and its skeleton is hidden from assistive technology and inert. Pass `label` so screen readers hear what is loading, such as "Loading profile". Query tests by role, since the sample's text sits inside the hidden skeleton.

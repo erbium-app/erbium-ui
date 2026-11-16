@@ -60,30 +60,6 @@
     ]
   },
   {
-    "name": "account-settings",
-    "title": "Blocks/Account Settings",
-    "variants": [
-      {
-        "exportName": "Playground",
-        "slug": "playground",
-        "source": "src/account-settings/variants/playground.tsx",
-        "title": "Playground"
-      },
-      {
-        "exportName": "Overview",
-        "slug": "overview",
-        "source": "src/account-settings/variants/overview.tsx",
-        "title": "Overview"
-      },
-      {
-        "exportName": "PartialFailure",
-        "slug": "partial-failure",
-        "source": "src/account-settings/variants/partial-failure.tsx",
-        "title": "Partial failure"
-      }
-    ]
-  },
-  {
     "name": "alert",
     "title": "Components/Alert",
     "variants": [
@@ -3782,6 +3758,12 @@
         "slug": "states",
         "source": "src/skeleton/variants/states.tsx",
         "title": "Error and empty"
+      },
+      {
+        "exportName": "Sections",
+        "slug": "sections",
+        "source": "src/skeleton/variants/sections.tsx",
+        "title": "Sections"
       },
       {
         "exportName": "Box",

@@ -279,189 +279,6 @@
       ]
     },
     {
-      "description": "All account-settings examples.",
-      "name": "account-settings-examples",
-      "registryDependencies": [
-        "@erbium-examples/account-settings-playground",
-        "@erbium-examples/account-settings-overview",
-        "@erbium-examples/account-settings-partial-failure"
-      ],
-      "title": "Account Settings examples",
-      "type": "registry:item"
-    },
-    {
-      "name": "account-settings-overview",
-      "type": "registry:block",
-      "title": "Account Settings: Overview",
-      "description": "The profile, preferences and sessions answer one after another. Each section reveals in place as its data arrives.",
-      "registryDependencies": [
-        "@erbium/avatar",
-        "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/card",
-        "@erbium/field",
-        "@erbium/form",
-        "@erbium/icon",
-        "@erbium/item",
-        "@erbium/select",
-        "@erbium/skeleton",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/account-settings/helpers.tsx",
-          "target": "@components/showcase/account-settings/helpers.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/account-settings/variants/overview.tsx",
-          "target": "@components/showcase/account-settings/variants/overview.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/loading.tsx",
-          "target": "@components/showcase/loading.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "account-settings-partial-failure",
-      "type": "registry:block",
-      "title": "Account Settings: Partial failure",
-      "description": "The sessions request fails while the profile and preferences load. The error stays inside its own card, with a way to try again.",
-      "registryDependencies": [
-        "@erbium/avatar",
-        "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/card",
-        "@erbium/field",
-        "@erbium/form",
-        "@erbium/icon",
-        "@erbium/item",
-        "@erbium/select",
-        "@erbium/skeleton",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/account-settings/helpers.tsx",
-          "target": "@components/showcase/account-settings/helpers.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/account-settings/variants/partial-failure.tsx",
-          "target": "@components/showcase/account-settings/variants/partial-failure.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/loading.tsx",
-          "target": "@components/showcase/loading.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "account-settings-playground",
-      "type": "registry:block",
-      "title": "Account Settings: Playground",
-      "description": "Change the latency to see the sections answer in turn, or make the sessions request fail.",
-      "registryDependencies": [
-        "@erbium/avatar",
-        "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/card",
-        "@erbium/field",
-        "@erbium/form",
-        "@erbium/icon",
-        "@erbium/item",
-        "@erbium/select",
-        "@erbium/skeleton",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/account-settings/helpers.tsx",
-          "target": "@components/showcase/account-settings/helpers.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/account-settings/variants/playground.tsx",
-          "target": "@components/showcase/account-settings/variants/playground.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/loading.tsx",
-          "target": "@components/showcase/loading.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "account-settings-stories",
-      "type": "registry:item",
-      "title": "Account Settings stories",
-      "description": "All account-settings variants as portable React CSF stories.",
-      "devDependencies": ["@storybook/react@^10.6.1"],
-      "registryDependencies": [
-        "@erbium/avatar",
-        "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/card",
-        "@erbium/csp-provider",
-        "@erbium/field",
-        "@erbium/form",
-        "@erbium/icon",
-        "@erbium/item",
-        "@erbium/overlay-provider",
-        "@erbium/select",
-        "@erbium/skeleton",
-        "@erbium/styles",
-        "@erbium/toast"
-      ],
-      "files": [
-        {
-          "path": "src/account-settings/account-settings.stories.tsx",
-          "target": "@components/showcase/account-settings/account-settings.stories.tsx",
-          "type": "registry:file"
-        },
-        {
-          "path": "src/account-settings/helpers.tsx",
-          "target": "@components/showcase/account-settings/helpers.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/account-settings/variants/overview.tsx",
-          "target": "@components/showcase/account-settings/variants/overview.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/account-settings/variants/partial-failure.tsx",
-          "target": "@components/showcase/account-settings/variants/partial-failure.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/account-settings/variants/playground.tsx",
-          "target": "@components/showcase/account-settings/variants/playground.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/loading.tsx",
-          "target": "@components/showcase/loading.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/preview.tsx",
-          "target": "@components/showcase/preview.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "alert-action",
       "type": "registry:component",
       "title": "Alert: Action",
@@ -20308,6 +20125,7 @@
         "@erbium-examples/skeleton-refetch",
         "@erbium-examples/skeleton-suspense",
         "@erbium-examples/skeleton-states",
+        "@erbium-examples/skeleton-sections",
         "@erbium-examples/skeleton-box",
         "@erbium-examples/skeleton-reveals"
       ],
@@ -20503,6 +20321,46 @@
       ]
     },
     {
+      "name": "skeleton-sections",
+      "type": "registry:block",
+      "title": "Skeleton: Sections",
+      "description": "Each section comes from its own request and wraps only its own data in its own `Skeleton`. A slow request holds back only its section, and a failed one shows its error and a retry while the rest of the page stays usable. Section headings are known before any request answers, so they render at once outside the skeleton.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/field",
+        "@erbium/icon",
+        "@erbium/item",
+        "@erbium/select",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/switch"
+      ],
+      "files": [
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-sections.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-sections.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/fixtures.ts",
+          "target": "@components/showcase/skeleton/fixtures.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/sections.tsx",
+          "target": "@components/showcase/skeleton/variants/sections.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "skeleton-states",
       "type": "registry:block",
       "title": "Skeleton: Error and empty",
@@ -20564,11 +20422,13 @@
         "@erbium/empty",
         "@erbium/field",
         "@erbium/form",
+        "@erbium/icon",
         "@erbium/item",
         "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/skeleton",
         "@erbium/styles",
+        "@erbium/switch",
         "@erbium/toast",
         "@erbium/toggle-group"
       ],
@@ -20611,6 +20471,11 @@
         {
           "path": "src/skeleton/examples/skeleton-refetch.tsx",
           "target": "@components/showcase/skeleton/examples/skeleton-refetch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/examples/skeleton-sections.tsx",
+          "target": "@components/showcase/skeleton/examples/skeleton-sections.tsx",
           "type": "registry:component"
         },
         {
@@ -20681,6 +20546,11 @@
         {
           "path": "src/skeleton/variants/reveals.tsx",
           "target": "@components/showcase/skeleton/variants/reveals.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/skeleton/variants/sections.tsx",
+          "target": "@components/showcase/skeleton/variants/sections.tsx",
           "type": "registry:component"
         },
         {

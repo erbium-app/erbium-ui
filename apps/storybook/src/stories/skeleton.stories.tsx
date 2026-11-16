@@ -23,6 +23,8 @@ export const Suspense = { ...showcases.Suspense, name: "Suspense" };
 
 export const States = { ...showcases.States, name: "Error and empty" };
 
+export const Sections = { ...showcases.Sections, name: "Sections" };
+
 export const Box = { ...showcases.Box, name: "Box" };
 
 export const Reveals = { ...showcases.Reveals, name: "Reveals" };

@@ -13,6 +13,7 @@
     "@erbium-examples/skeleton-refetch",
     "@erbium-examples/skeleton-suspense",
     "@erbium-examples/skeleton-states",
+    "@erbium-examples/skeleton-sections",
     "@erbium-examples/skeleton-box",
     "@erbium-examples/skeleton-reveals"
   ],

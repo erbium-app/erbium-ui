@@ -22,6 +22,8 @@ import SuspenseExample from "./variants/suspense";
 import SuspenseSource from "./variants/suspense.tsx?raw";
 import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
+import SectionsExample from "./variants/sections";
+import SectionsSource from "./variants/sections.tsx?raw";
 import BoxExample from "./variants/box";
 import BoxSource from "./variants/box.tsx?raw";
 import RevealsExample from "./variants/reveals";
@@ -147,6 +149,16 @@ export const States: Story = {
     },
   },
   render: StatesExample,
+};
+
+export const Sections: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("skeleton", "sections") },
+      source: { code: SectionsSource },
+    },
+  },
+  render: SectionsExample,
 };
 
 export const Box: Story = {
