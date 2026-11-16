@@ -1,5 +1,6 @@
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 import { cva } from "class-variance-authority";
+import { skeletonKnown } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 
 const separatorVariants = cva(
@@ -31,10 +32,13 @@ const Separator = ({
   variant,
   ...props
 }: SeparatorProps) => {
-  const labeled = children != null && children !== false && children !== "";
+  const labeled =
+    children !== null && children !== undefined && children !== false && children !== "";
 
   return (
     <SeparatorPrimitive
+      // A loading skeleton draws the rule as itself, with its faded ends, not as a solid bar.
+      {...skeletonKnown}
       data-slot="separator"
       data-variant={labeled ? "inset" : variant}
       data-labeled={labeled ? "" : undefined}

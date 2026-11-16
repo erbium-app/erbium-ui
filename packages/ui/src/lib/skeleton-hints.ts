@@ -4,9 +4,10 @@
  *
  * - `skeletonBlock`: one block at the element's box (controls, chips, pills), not a bar per line of
  *   the text inside.
- * - `skeletonIgnore`: nothing at all (spinners, decorative rules, focus and overlay layers).
+ * - `skeletonIgnore`: nothing at all (spinners, decorative layers, focus and overlay layers).
  * - `skeletonKnown`: drawn as itself. For content that is already known while the rest loads
- *   (column headers, labels, toolbars), which stays readable instead of becoming a skeleton.
+ *   (column headers, labels, toolbars, separators), which stays as it is instead of becoming a
+ *   skeleton.
  *
  * Inputs, textareas, images, SVG icons and media are drawn as blocks already.
  */

@@ -138,7 +138,7 @@ const ItemTitle = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="item-title"
     className={cn(
-      "line-clamp-1 flex w-fit items-center gap-related text-control underline-offset-4",
+      "line-clamp-1 flex w-fit items-center gap-related text-control underline-offset-4 has-data-[slot=badge]:overflow-visible",
       className,
     )}
     {...props}

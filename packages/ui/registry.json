@@ -1481,7 +1481,7 @@
       "title": "Separator",
       "description": "Erbium separator component.",
       "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/separator.tsx",

@@ -30,6 +30,8 @@ const Icon = ({ name, className, ...props }: IconProps) => {
 
   // Size comes from width/height attributes so a parent's
   // `[&_svg:not([class*='size-'])]:size-*` rule can resize the icon.
+  // A loading skeleton takes the icon's radius, so `rounded-full` draws it as a dot instead of a
+  // square; `overflow-visible` keeps that radius from clipping the glyph itself.
   return (
     <svg
       aria-hidden="true"
@@ -39,7 +41,7 @@ const Icon = ({ name, className, ...props }: IconProps) => {
       data-slot="icon"
       {...props}
       viewBox={viewBox}
-      className={cn("shrink-0", className)}
+      className={cn("shrink-0 overflow-visible rounded-full", className)}
     >
       <use href={`${spriteHref}#${id}`} />
     </svg>
