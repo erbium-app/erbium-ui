@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-streaming",
+  "type": "registry:component",
+  "title": "Code Block: Streaming",
+  "description": "Pass the source received so far as `code`. When it grows, the block highlights only the new lines, continuing from the grammar state where the last complete line ended, and lines already shown keep their colors.",
+  "registryDependencies": ["@erbium/button", "@erbium/code-block", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { useEffect, useState } from \"react\";\nimport { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst source = `// Answers every request with its path.\nconst server = createServer((request, response) => {\n  response.writeHead(200, { \"content-type\": \"application/json\" });\n  response.end(JSON.stringify({ path: request.url, ok: true }));\n});\n\nserver.listen(3000, () => {\n  console.log(\"Listening on http://localhost:3000\");\n});\n`;\n\n// Characters added per tick, roughly the pace of a streamed response.\nconst chunkSize = 6;\n\nconst StreamedSource = () => {\n  const [length, setLength] = useState(0);\n\n  useEffect(() => {\n    const timer = setInterval(() => {\n      setLength((current) => Math.min(current + chunkSize, source.length));\n    }, 30);\n\n    return () => {\n      clearInterval(timer);\n    };\n  }, []);\n\n  return <CodeBlock code={source.slice(0, length)} language=\"ts\" title=\"server.ts\" lineNumbers />;\n};\n\nconst Example = () => {\n  const [run, setRun] = useState(0);\n\n  return (\n    <div className=\"grid w-full max-w-xl gap-related\">\n      <StreamedSource key={run} />\n      <Button\n        variant=\"outline\"\n        size=\"sm\"\n        className=\"justify-self-start\"\n        onClick={() => {\n          setRun((current) => current + 1);\n        }}\n      >\n        Replay\n      </Button>\n    </div>\n  );\n};\n\nexport default Example;\n",
+      "path": "src/code-block/variants/streaming.tsx",
+      "target": "@components/showcase/code-block/variants/streaming.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

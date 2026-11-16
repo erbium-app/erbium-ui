@@ -1,12 +1,13 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
-import { createContext, use, useEffect, useMemo, useState } from "react";
+import { createContext, use, useEffect, useMemo, useRef, useState } from "react";
 import type { ComponentProps } from "react";
 import type { TokensResult } from "shiki/core";
 import { TabsList, TabsTrigger } from "../components/tabs";
 import { DirectionProvider } from "../components/direction";
 import { Icon } from "../components/icon";
 import { codeLanguageIcon } from "../lib/code-language-icon";
-import { highlightCode } from "../lib/code-highlighter";
+import { normalizeCodeLanguage, updateCodeHighlight } from "../lib/code-highlighter";
+import type { CodeHighlight } from "../lib/code-highlighter";
 import { cn } from "../lib/utils";
 import type { CSSVariableStyle } from "../lib/utils";
 import {
@@ -23,6 +24,8 @@ import type { CopyButtonProps } from "./copy-button";
 type CodeToken = TokensResult["tokens"][number][number];
 
 const lineBreak = /\r\n|\n|\r/u;
+
+const plaintext = new Set(["text", "plaintext", "plain", "txt", ""]);
 
 /** Highlighted output from `highlightCode`, for code tokenized ahead of render. */
 type CodeBlockTokens = Pick<TokensResult, "tokens" | "rootStyle">;
@@ -203,32 +206,44 @@ const CodeBlockCopyButton = ({
   );
 };
 
-/** The source as panel rows, highlighted when tokens are available. */
+/**
+ * The source as panel rows. Rows take highlighted tokens whose text still matches, so tokens from
+ * an earlier version of a changing source keep coloring the lines it shares while the new version
+ * highlights.
+ */
 const codeLines = (
   code: string,
   result: CodeBlockTokens | undefined,
   options: { lineNumbers: boolean; startLine: number; highlightLines?: readonly number[] },
 ): CodePanelLine[] => {
   const calledOut = new Set(options.highlightLines);
-
-  const allRows: TokensResult["tokens"] =
-    result?.tokens ?? code.split(lineBreak).map((content) => [{ content, offset: 0 }]);
+  const texts = code.split(lineBreak);
 
   // A final line break ends the last line rather than starting an empty one. Copying still uses
   // the exact source.
-  const rows =
-    allRows.length > 1 && lineBreak.test(code.at(-1) ?? "") ? allRows.slice(0, -1) : allRows;
+  if (texts.length > 1 && lineBreak.test(code.at(-1) ?? "")) {
+    texts.pop();
+  }
 
-  return rows.map((row, index) => {
+  return texts.map((text, index) => {
     const number = options.startLine + index;
+    const row = result?.tokens[index] ?? [];
+    const highlighted = row.map((token) => token.content).join("");
+    // A line that grew since it was highlighted, as a streamed line does, keeps its colors and
+    // shows the new text plainly until the next highlight.
+    const reusable = highlighted !== "" && text.startsWith(highlighted);
 
     return {
-      content:
-        result === undefined || row.length === 0
-          ? undefined
-          : row.map((token, tokenIndex) => <CodeBlockToken key={tokenIndex} token={token} />),
+      content: reusable ? (
+        <>
+          {row.map((token, tokenIndex) => (
+            <CodeBlockToken key={tokenIndex} token={token} />
+          ))}
+          {text.slice(highlighted.length)}
+        </>
+      ) : undefined,
       number: options.lineNumbers ? number : undefined,
-      text: row.map((token) => token.content).join(""),
+      text,
       tone: calledOut.has(number) ? "highlight" : undefined,
     };
   });
@@ -254,21 +269,20 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
   const language = active?.language ?? "text";
   const tokens = active?.tokens;
 
-  const [highlighted, setHighlighted] = useState<{
-    code: string;
-    language: string;
-    result: TokensResult;
-  }>();
+  const [highlight, setHighlight] = useState<CodeHighlight>();
+  // The latest highlight, which a growing source continues from.
+  const latest = useRef<CodeHighlight>(undefined);
 
   useEffect(() => {
     let current = true;
 
-    const highlight = async () => {
+    const run = async () => {
       try {
-        const result = await highlightCode(code, language);
+        const next = await updateCodeHighlight(latest.current, code, language);
 
         if (current) {
-          setHighlighted({ code, language, result });
+          latest.current = next;
+          setHighlight(next);
         }
       } catch {
         // Source remains readable as plain text when highlighting is unavailable.
@@ -276,8 +290,8 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
     };
 
     // Provided tokens render on the server and skip the client highlighter.
-    if (tokens === undefined && !["text", "plaintext", "plain", "txt", ""].includes(language)) {
-      void highlight();
+    if (tokens === undefined && !plaintext.has(language)) {
+      void run();
     }
 
     return () => {
@@ -285,11 +299,10 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
     };
   }, [code, language, tokens]);
 
+  // Until the current source is highlighted, the previous highlight colors the lines it shares.
   const result =
     tokens ??
-    (highlighted?.code === code && highlighted.language === language
-      ? highlighted.result
-      : undefined);
+    (highlight?.language === normalizeCodeLanguage(language) ? highlight.result : undefined);
 
   // Numbered rows use the file and diff view gutter; plain rows pad to the panel. The code column
   // keeps clear of the anchored actions, so row tints still reach both edges.

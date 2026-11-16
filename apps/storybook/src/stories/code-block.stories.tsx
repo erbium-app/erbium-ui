@@ -24,3 +24,5 @@ export const HighlightedLines = { ...showcases.HighlightedLines, name: "Highligh
 export const States = { ...showcases.States, name: "States" };
 
 export const ChangingSource = { ...showcases.ChangingSource, name: "Changing Source" };
+
+export const Streaming = { ...showcases.Streaming, name: "Streaming" };

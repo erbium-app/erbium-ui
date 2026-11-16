@@ -1196,6 +1196,12 @@
         "slug": "changing-source",
         "source": "src/code-block/variants/changing-source.tsx",
         "title": "Changing Source"
+      },
+      {
+        "exportName": "Streaming",
+        "slug": "streaming",
+        "source": "src/code-block/variants/streaming.tsx",
+        "title": "Streaming"
       }
     ]
   },

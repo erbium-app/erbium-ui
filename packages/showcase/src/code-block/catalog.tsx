@@ -21,6 +21,8 @@ import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
 import ChangingSourceExample from "./variants/changing-source";
 import ChangingSourceSource from "./variants/changing-source.tsx?raw";
+import StreamingExample from "./variants/streaming";
+import StreamingSource from "./variants/streaming.tsx?raw";
 import LanguagesExample from "./variants/languages";
 import LanguagesSource from "./variants/languages.tsx?raw";
 
@@ -145,4 +147,14 @@ export const ChangingSource: Story = {
     },
   },
   render: ChangingSourceExample,
+};
+
+export const Streaming: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("code-block", "streaming") },
+      source: { code: StreamingSource },
+    },
+  },
+  render: StreamingExample,
 };

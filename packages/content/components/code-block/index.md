@@ -82,7 +82,9 @@ Providing children replaces the default layout. Place `CodeBlockActions` directl
 
 Copying preserves the provided string exactly, including indentation, trailing spaces, and final newlines. A final newline ends the last line rather than rendering an extra empty one. It excludes line numbers and controls. Empty strings are valid. Dedent authored examples before passing them if necessary; the component does not format source.
 
-React snippets start as readable plaintext, then load a shared Shiki JavaScript runtime and the requested grammar. TypeScript, TSX, JavaScript, JSX, JSON, CSS, HTML, shell, YAML, Python, SQL, and Markdown are supported, including common aliases. Other languages fall back to plaintext. Highlighted results use a bounded shared cache, and stale asynchronous results cannot overwrite changed source. Documentation fences continue to use build-time TanStack Highlight with Vitesse colors.
+React snippets start as readable plaintext, then load a shared Shiki JavaScript runtime and the requested grammar. TypeScript, TSX, JavaScript, JSX, JSON, CSS, HTML, shell, YAML, Python, SQL, and Markdown are supported, including common aliases. Other languages fall back to plaintext. Highlighted results use a bounded shared cache, and stale asynchronous results cannot overwrite changed source.
+
+When the source changes, lines it shares with the previous version keep their colors while the new version highlights, so editing or replacing source never drops the block back to plaintext. Source that grows from its previous version, such as streamed output, highlights only the new lines: the block continues from the grammar state where the last complete line ended, so multi-line comments and strings stay correct across chunks. Pass the text received so far as `code`. `updateCodeHighlight(previous, code, language)` from `@erbium/ui/lib/code-highlighter` exposes the same continuation for custom renderers. Documentation fences continue to use build-time TanStack Highlight with Vitesse colors.
 
 This is a read-only presentation block. Editable document code blocks and future file/diff viewers keep their own rendering lifecycles.
 

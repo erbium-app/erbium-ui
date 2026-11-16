@@ -13,7 +13,8 @@
     "@erbium-examples/code-block-line-numbers",
     "@erbium-examples/code-block-highlighted-lines",
     "@erbium-examples/code-block-states",
-    "@erbium-examples/code-block-changing-source"
+    "@erbium-examples/code-block-changing-source",
+    "@erbium-examples/code-block-streaming"
   ],
   "title": "Code Block examples",
   "type": "registry:item"

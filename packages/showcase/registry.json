@@ -6362,7 +6362,8 @@
         "@erbium-examples/code-block-line-numbers",
         "@erbium-examples/code-block-highlighted-lines",
         "@erbium-examples/code-block-states",
-        "@erbium-examples/code-block-changing-source"
+        "@erbium-examples/code-block-changing-source",
+        "@erbium-examples/code-block-streaming"
       ],
       "title": "Code Block examples",
       "type": "registry:item"
@@ -6547,8 +6548,27 @@
           "type": "registry:component"
         },
         {
+          "path": "src/code-block/variants/streaming.tsx",
+          "target": "@components/showcase/code-block/variants/streaming.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "code-block-streaming",
+      "type": "registry:component",
+      "title": "Code Block: Streaming",
+      "description": "Pass the source received so far as `code`. When it grows, the block highlights only the new lines, continuing from the grammar state where the last complete line ended, and lines already shown keep their colors.",
+      "registryDependencies": ["@erbium/button", "@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/streaming.tsx",
+          "target": "@components/showcase/code-block/variants/streaming.tsx",
           "type": "registry:component"
         }
       ]
