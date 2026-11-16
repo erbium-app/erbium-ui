@@ -30,23 +30,6 @@ const useHotkeyPlatform = (): HotkeyPlatform => {
   return providerPlatform ?? detectedPlatform;
 };
 
-/* `aria-keyshortcuts` spells modifiers with these names, in this order, before the key. */
-const ariaModifiers = [
-  ["ctrl", "Control"],
-  ["alt", "Alt"],
-  ["shift", "Shift"],
-  ["meta", "Meta"],
-] as const;
-
-/* Keys whose `KeyboardEvent.key` value cannot appear in the attribute as written. */
-const ariaKeyName = (key: string) => {
-  if (key === " ") {
-    return "Space";
-  }
-
-  return key === "+" ? "Plus" : key;
-};
-
 /**
  * The `aria-keyshortcuts` value for a chord, such as `Meta+Shift+K` on macOS. Sequences and
  * physical-key bindings have no `aria-keyshortcuts` form, so they return `undefined`.
@@ -59,15 +42,21 @@ const toAriaKeyShortcuts = (
     return undefined;
   }
 
-  const chord = parseHotkey(hotkey, platform);
+  const { key, modifiers } = parseHotkey(hotkey, platform);
 
-  if (chord.key === undefined) {
+  if (key === undefined) {
     return undefined;
   }
 
-  const parts = ariaModifiers.flatMap(([flag, name]) => (chord[flag] ? [name] : []));
+  let ariaKey = key;
 
-  return [...parts, ariaKeyName(chord.key)].join("+");
+  if (key === " ") {
+    ariaKey = "Space";
+  } else if (key === "+") {
+    ariaKey = "Plus";
+  }
+
+  return [...modifiers, ariaKey].join("+");
 };
 
 export { toAriaKeyShortcuts, useHotkeyPlatform };

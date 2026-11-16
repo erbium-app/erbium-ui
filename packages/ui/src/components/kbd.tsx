@@ -72,8 +72,7 @@ const KbdHint = ({
   useSymbols = true,
 }: KbdHintProps) => {
   const visible = useHotkeyHint(hotkey, { exact });
-  const [anchor, setAnchor] = React.useState<HTMLSpanElement | null>(null);
-  const platform = useHotkeyPlatform();
+  const anchor = React.useRef<HTMLSpanElement>(null);
   const formatForDisplay = useFormatForDisplay();
 
   if (hotkey === null || hotkey === undefined) {
@@ -84,7 +83,7 @@ const KbdHint = ({
     <>
       {/* Covers the container, so the positioner anchors to it without a ref from the parent. */}
       <span
-        ref={setAnchor}
+        ref={anchor}
         aria-hidden
         data-slot="kbd-hint-anchor"
         className="pointer-events-none absolute inset-0"
@@ -97,7 +96,7 @@ const KbdHint = ({
             align={align}
             sideOffset={sideOffset}
             alignOffset={alignOffset}
-            className="pointer-events-none isolate z-50"
+            className="pointer-events-none isolate z-50 data-anchor-hidden:invisible"
           >
             <TooltipPrimitive.Popup
               aria-hidden
@@ -108,7 +107,7 @@ const KbdHint = ({
               )}
             >
               <Badge variant="outline" className="font-sans shadow-sm" render={<kbd dir="ltr" />}>
-                {formatForDisplay(hotkey, { platform, useSymbols })}
+                {formatForDisplay(hotkey, { useSymbols })}
               </Badge>
             </TooltipPrimitive.Popup>
           </TooltipPrimitive.Positioner>

@@ -25,21 +25,14 @@ const spinnerSizes = {
   xs: "xs",
 } as const satisfies Record<ButtonSize, NonNullable<React.ComponentProps<typeof Spinner>["size"]>>;
 
-interface ButtonHotkeyContextValue {
-  hotkey: RegisterableHotkey | undefined;
-  /** Counts mounted `ButtonShortcut`s; while one labels the shortcut, the hint stays hidden. */
-  setLabelCount: React.Dispatch<React.SetStateAction<number>>;
-}
-
-/* The button's hotkey, so a `ButtonShortcut` inside it labels the same binding. */
-const ButtonHotkeyContext = React.createContext<ButtonHotkeyContextValue | null>(null);
+const ButtonHotkeyContext = React.createContext<RegisterableHotkey | undefined>(undefined);
 
 type ButtonProps = ButtonPrimitive.Props &
   VariantProps<typeof buttonVariants> & {
     loading?: boolean;
     /**
      * A shortcut that clicks the button while it is mounted, enabled and not loading. While the
-     * user holds one of its modifiers, a badge shows it on the top end corner of the button,
+     * user holds one of its modifiers, a badge shows it above the button,
      * unless a `ButtonShortcut` already labels it. Sets `aria-keyshortcuts` for chords.
      */
     hotkey?: RegisterableHotkey;
@@ -65,8 +58,6 @@ const Button = ({
   const buttonRef = React.useRef<HTMLElement>(null);
   const mergedRef = useMergedRefs(ref, buttonRef);
   const platform = useHotkeyPlatform();
-  const [labelCount, setLabelCount] = React.useState(0);
-  const hotkeyContext = React.useMemo(() => ({ hotkey, setLabelCount }), [hotkey]);
   // Names the registration for devtools and shortcut lists.
   const name = props["aria-label"] ?? props.title;
 
@@ -80,7 +71,7 @@ const Button = ({
   );
 
   return (
-    <ButtonHotkeyContext.Provider value={hotkeyContext}>
+    <ButtonHotkeyContext.Provider value={hotkey}>
       <ButtonPrimitive
         data-slot="button"
         {...skeletonBlock}
@@ -93,7 +84,9 @@ const Button = ({
         focusableWhenDisabled={loading || focusableWhenDisabled === true}
         className={cn(
           buttonVariants({ size, variant }),
-          hotkey !== undefined && "relative",
+          // KbdHint hides its badge when Base UI marks the anchor hidden.
+          hotkey !== undefined &&
+            "relative has-[[data-slot=button-shortcut]]:[&>[data-slot=kbd-hint-anchor]]:hidden",
           className,
         )}
         ref={mergedRef}
@@ -107,7 +100,7 @@ const Button = ({
           />
         )}
         {loading && iconOnly ? null : children}
-        {labelCount === 0 && <KbdHint hotkey={hotkey} />}
+        {hotkey !== undefined && <KbdHint hotkey={hotkey} />}
       </ButtonPrimitive>
     </ButtonHotkeyContext.Provider>
   );
@@ -116,15 +109,6 @@ const Button = ({
 /** Labels a shortcut inside a button. Without `hotkey`, it labels the hotkey of its button. */
 const ButtonShortcut = ({ className, hotkey, ...props }: React.ComponentProps<typeof Kbd>) => {
   const buttonHotkey = React.useContext(ButtonHotkeyContext);
-  const setLabelCount = buttonHotkey?.setLabelCount;
-
-  React.useLayoutEffect(() => {
-    setLabelCount?.((count) => count + 1);
-
-    return () => {
-      setLabelCount?.((count) => count - 1);
-    };
-  }, [setLabelCount]);
 
   return (
     <span
@@ -133,7 +117,7 @@ const ButtonShortcut = ({ className, hotkey, ...props }: React.ComponentProps<ty
     >
       <Kbd
         aria-hidden
-        hotkey={hotkey ?? buttonHotkey?.hotkey}
+        hotkey={hotkey ?? buttonHotkey}
         className={cn(
           "group-data-[size=xs]/button:h-4 group-data-[size=xs]/button:min-w-4 group-data-[size=xs]/button:text-control-sm",
           className,
