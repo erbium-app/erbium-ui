@@ -3242,6 +3242,12 @@
         "slug": "controlled",
         "source": "src/progress/variants/controlled.tsx",
         "title": "Controlled"
+      },
+      {
+        "exportName": "Indeterminate",
+        "slug": "indeterminate",
+        "source": "src/progress/variants/indeterminate.tsx",
+        "title": "Indeterminate"
       }
     ]
   },

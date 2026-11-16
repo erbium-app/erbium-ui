@@ -17343,10 +17343,25 @@
         "@erbium-examples/progress-partial",
         "@erbium-examples/progress-complete",
         "@erbium-examples/progress-label",
-        "@erbium-examples/progress-controlled"
+        "@erbium-examples/progress-controlled",
+        "@erbium-examples/progress-indeterminate"
       ],
       "title": "Progress examples",
       "type": "registry:item"
+    },
+    {
+      "name": "progress-indeterminate",
+      "type": "registry:component",
+      "title": "Progress: Indeterminate",
+      "description": "Use an indeterminate progress bar when the completion percentage is unknown.",
+      "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/progress/variants/indeterminate.tsx",
+          "target": "@components/showcase/progress/variants/indeterminate.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "progress-label",
@@ -17405,7 +17420,7 @@
       "type": "registry:component",
       "title": "Progress: Playground",
       "description": "",
-      "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+      "registryDependencies": ["@erbium/progress", "@erbium/styles", "@erbium/utils"],
       "files": [
         {
           "path": "src/progress/variants/playground.tsx",
@@ -17427,7 +17442,8 @@
         "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -17463,6 +17479,11 @@
         {
           "path": "src/progress/variants/controlled.tsx",
           "target": "@components/showcase/progress/variants/controlled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/progress/variants/indeterminate.tsx",
+          "target": "@components/showcase/progress/variants/indeterminate.tsx",
           "type": "registry:component"
         },
         {

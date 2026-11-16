@@ -82,9 +82,9 @@ const AsyncSearchExample = () => {
               </span>
             )}
           </ComboboxStatus>
-          {!loading && (
-            <ComboboxEmpty className="h-10 items-center py-0">No projects found.</ComboboxEmpty>
-          )}
+          <ComboboxEmpty className="not-empty:flex not-empty:h-10 not-empty:items-center not-empty:justify-center not-empty:py-0">
+            {loading ? null : "No projects found."}
+          </ComboboxEmpty>
           <ComboboxList aria-busy={loading || undefined}>
             {(project: Project) => (
               <ComboboxItem key={project.id} value={project}>

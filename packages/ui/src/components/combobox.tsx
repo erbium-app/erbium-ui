@@ -192,7 +192,7 @@ const ComboboxEmpty = ({ className, ...props }: ComboboxPrimitive.Empty.Props) =
   <ComboboxPrimitive.Empty
     data-slot="combobox-empty"
     className={cn(
-      "hidden w-full justify-center py-2 text-center text-control text-muted-foreground group-data-empty/combobox-content:flex",
+      "w-full text-center text-control text-muted-foreground not-empty:py-2",
       className,
     )}
     {...props}

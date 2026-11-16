@@ -4,10 +4,10 @@
   "type": "registry:component",
   "title": "Progress: Playground",
   "description": "",
-  "registryDependencies": ["@erbium/progress", "@erbium/styles"],
+  "registryDependencies": ["@erbium/progress", "@erbium/styles", "@erbium/utils"],
   "files": [
     {
-      "content": "import { ProgressTrack, ProgressIndicator, Progress } from \"@/registry/erbium/ui/progress\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Progress>) => (\n  <Progress\n    {...args}\n    className={`w-72 ${typeof args.className === \"string\" ? args.className : \"\"}`}\n  >\n    <ProgressTrack>\n      <ProgressIndicator />\n    </ProgressTrack>\n  </Progress>\n);\n\nexport default Example;\n",
+      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\nimport type * as React from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nconst Example = (args: React.ComponentProps<typeof Progress>) => (\n  <Progress {...args} className={cn(\"w-72\", args.className)} />\n);\n\nexport default Example;\n",
       "path": "src/progress/variants/playground.tsx",
       "target": "@components/showcase/progress/variants/playground.tsx",
       "type": "registry:component"

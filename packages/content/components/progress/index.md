@@ -39,3 +39,9 @@ Progress
 └── ProgressTrack
     └── ProgressIndicator
 ```
+
+For an operation without a known completion percentage, pass `value={null}` and give the progress bar an accessible label:
+
+```tsx
+<Progress value={null} aria-label="Uploading" />
+```

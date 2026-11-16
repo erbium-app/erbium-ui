@@ -8,7 +8,8 @@
     "@erbium-examples/progress-partial",
     "@erbium-examples/progress-complete",
     "@erbium-examples/progress-label",
-    "@erbium-examples/progress-controlled"
+    "@erbium-examples/progress-controlled",
+    "@erbium-examples/progress-indeterminate"
   ],
   "title": "Progress examples",
   "type": "registry:item"

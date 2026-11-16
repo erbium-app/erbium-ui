@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "../types";
 
 import { Progress } from "@erbium/ui/components/progress";
+import IndeterminateExample from "./variants/indeterminate";
+import IndeterminateSource from "./variants/indeterminate.tsx?raw";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
@@ -105,4 +107,14 @@ export const Controlled: Story = {
     },
   },
   render: ControlledExample,
+};
+
+export const Indeterminate: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("progress", "indeterminate") },
+      source: { code: IndeterminateSource },
+    },
+  },
+  render: IndeterminateExample,
 };

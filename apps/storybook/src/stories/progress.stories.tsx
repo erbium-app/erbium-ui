@@ -14,3 +14,5 @@ export const Complete = { ...showcases.Complete, name: "Complete" };
 export const Label = { ...showcases.Label, name: "Label" };
 
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
+
+export const Indeterminate = { ...showcases.Indeterminate, name: "Indeterminate" };

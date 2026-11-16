@@ -194,8 +194,8 @@ export const AsyncAutocomplete = () => {
     results: [],
   });
 
-  const results = query ? response.results : [];
   const loading = Boolean(query && response.request !== request);
+  const results = query && !loading ? response.results : [];
   const { contains } = useAutocompleteFilter({ sensitivity: "base" });
   useEffect(() => {
     const timer =
@@ -234,17 +234,17 @@ export const AsyncAutocomplete = () => {
       <AutocompleteInput aria-label="Search movies" placeholder="Search title or year…" />
       {query && (
         <AutocompletePopup aria-busy={loading || undefined}>
-          <AutocompleteStatus className="flex h-10 items-center justify-center py-0">
-            {loading ? (
+          <AutocompleteStatus className="flex items-center justify-center py-0 not-empty:h-10">
+            {loading && (
               <span className="flex items-center justify-center">
                 <Spinner aria-hidden />
                 <span className="sr-only">Searching movies</span>
               </span>
-            ) : (
-              `${results.length} results found`
             )}
+            {!loading && results.length > 0 && `${results.length} results found`}
           </AutocompleteStatus>
-          <AutocompleteList>
+          <AutocompleteEmpty>{loading ? null : "No movies found."}</AutocompleteEmpty>
+          <AutocompleteList aria-busy={loading || undefined}>
             {(movie: (typeof movies)[number]) => (
               <AutocompleteItem key={movie.id} value={movie}>
                 <span className="flex flex-col">

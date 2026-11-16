@@ -17,7 +17,10 @@ const ProgressTrack = ({ className, ...props }: ProgressPrimitive.Track.Props) =
 const ProgressIndicator = ({ className, ...props }: ProgressPrimitive.Indicator.Props) => (
   <ProgressPrimitive.Indicator
     data-slot="progress-indicator"
-    className={cn("h-full bg-primary transition-all", className)}
+    className={cn(
+      "h-full bg-primary transition-all data-indeterminate:w-1/3 data-indeterminate:animate-pulse motion-reduce:transition-none motion-reduce:data-indeterminate:animate-none",
+      className,
+    )}
     {...props}
   />
 );
