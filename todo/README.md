@@ -18,5 +18,6 @@ Track remaining work here. Remove completed tasks; source and documentation reco
 12. [Files, review, and session UI](./11-files-and-session-ui.md)
 13. [Keyboard shortcuts](./12-keyboard-shortcuts.md)
 14. [anti-slop fork rules](./13-anti-slop-fork.md)
+15. [CI and Cloudflare deploy](./14-ci-and-deploy.md)
 
 Keep these notes aligned with the public roadmap when scope changes. Add components and stories for recurring needs, not inventory parity.
