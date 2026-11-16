@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Strip AI attribution from commit messages (see .ruler/commit-conventions.md).
+msg="$1"
+pattern='^(co-authored-by:.*(claude|anthropic|codex|openai|cursor|copilot|gemini|noreply@anthropic\.com).*|.*generated with \[?(claude|codex|cursor).*)$'
+
+if grep -Eiq "$pattern" "$msg"; then
+  tmp="$msg.tmp"
+  grep -Eiv "$pattern" "$msg" | awk 'NF { for (; blank > 0; blank--) print ""; print; next } { blank++ }' >"$tmp"
+  mv "$tmp" "$msg"
+  echo "commit-msg: removed AI attribution lines (see .ruler/commit-conventions.md)" >&2
+fi
