@@ -27,6 +27,7 @@ interface Options {
   names: readonly string[];
   dryRun: boolean;
   local: boolean;
+  skipInstall?: boolean;
   at?: string;
   only?: string;
 }
@@ -744,7 +745,7 @@ const change = async (
       target: lockPath,
     });
 
-    if (mode !== "adopt") {
+    if (mode !== "adopt" && options.skipInstall !== true) {
       installPackages(root, packages);
     }
 
@@ -766,6 +767,7 @@ const change = async (
     dropped,
     packages,
     dryRun: options.dryRun,
+    skipInstall: options.skipInstall ?? false,
   };
 };
 

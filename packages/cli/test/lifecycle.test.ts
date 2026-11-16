@@ -277,4 +277,127 @@ void test("builds and validates managed and shadcn artifacts from a catalog", as
   const location = path.join(out, "r", "erbium");
   assert.match(invoke("registry", "validate", "--registry", location), /Validated 1 items/u);
   assert.match(invoke("search", "action", "--registry", location), /@erbium\/button/u);
+
+  const docs = invoke("docs", "button", "--registry", location);
+  assert.match(docs, /^# Button/u);
+  assert.ok(docs.includes(base));
+});
+
+void test("publishes and adopts older revisions from a custom Git registry", async (context) => {
+  const { root, project, run } = await fixture();
+  context.after(async () => {
+    await rm(root, { recursive: true, force: true });
+  });
+
+  const catalog = path.join(project, "registry.json");
+  const out = path.join(root, "published");
+
+  const writeCatalog = async (content: string) => {
+    await writeFile(
+      catalog,
+      JSON.stringify({
+        items: [
+          {
+            name: "button",
+            type: "registry:ui",
+            files: [{ path: "button.tsx", target: "@ui/button.tsx", type: "registry:ui", content }],
+          },
+        ],
+      }),
+    );
+  };
+
+  const git = (...args: string[]) =>
+    execFileSync("git", ["-C", project, ...args], { encoding: "utf-8" }).trim();
+
+  git("init", "--quiet");
+  await writeCatalog(base);
+  git("add", "registry.json");
+  git(
+    "-c",
+    "user.name=Erbium Test",
+    "-c",
+    "user.email=test@example.com",
+    "commit",
+    "-qm",
+    "Initial registry",
+  );
+  const initial = git("rev-parse", "HEAD");
+  await writeCatalog(base.replace('style = "base"', 'style = "upstream"'));
+  git("add", "registry.json");
+  git(
+    "-c",
+    "user.name=Erbium Test",
+    "-c",
+    "user.email=test@example.com",
+    "commit",
+    "-qm",
+    "Update button",
+  );
+
+  const invoke = (...args: string[]) =>
+    execFileSync(process.execPath, [bin, ...args, "--cwd", project], { encoding: "utf-8" });
+
+  invoke("registry", "build", "registry.json", "--history", "--out", out);
+  const location = path.join(out, "r", "erbium");
+  assert.match(invoke("history", "button", "--registry", location), new RegExp(initial, "u"));
+  assert.match(
+    await readFile(path.join(out, "items", "erbium", "button.html"), "utf-8"),
+    /Published revisions/u,
+  );
+  assert.match(await readFile(path.join(out, "llms.txt"), "utf-8"), /items\/erbium\/button.html/u);
+
+  await writeFile(path.join(project, source), base);
+  invoke("adopt", "button", "--at", initial, "--registry", location);
+  assert.equal(await readFile(path.join(project, source), "utf-8"), base);
+  assert.match(invoke("status", "--registry", location), /update available/u);
+  assert.match(run("check"), /provenance: passed/u);
+
+  const indexPath = path.join(location, "index.json");
+  const published = await readFile(indexPath, "utf-8");
+  await writeCatalog('import { missing } from "./missing";\nexport { missing };');
+
+  const invalid = spawnSync(
+    process.execPath,
+    [bin, "registry", "build", catalog, "--cwd", project, "--out", out],
+    { encoding: "utf-8" },
+  );
+
+  assert.notEqual(invalid.status, 0);
+  assert.match(invalid.stderr, /Unresolved registry import \.\/missing/u);
+  assert.equal(await readFile(indexPath, "utf-8"), published);
+});
+
+void test("copies and tracks files without installing dependencies when requested", async (context) => {
+  const { root, project, registry, run, fail } = await fixture();
+  context.after(async () => {
+    await rm(root, { recursive: true, force: true });
+  });
+
+  const id = "@erbium/button";
+
+  const item = snapshotFor(id, {
+    name: "button",
+    type: "registry:ui",
+    dependencies: ["missing-test-dependency@1.0.0"],
+    files: [{ path: "button.tsx", target: "@ui/button.tsx", type: "registry:ui", content: base }],
+  });
+
+  const digest = revision(item);
+  await writeFile(path.join(registry, "revisions", `${digest}.json`), JSON.stringify(item));
+  await writeFile(
+    path.join(registry, "index.json"),
+    JSON.stringify({ version: 1, items: { [id]: digest } }),
+  );
+
+  const manifest = path.join(project, "package.json");
+  const before = await readFile(manifest, "utf-8");
+  assert.match(
+    run("add", "button", "--skip-install"),
+    /Install separately: missing-test-dependency/u,
+  );
+  assert.equal(await readFile(manifest, "utf-8"), before);
+  assert.equal(await readFile(path.join(project, source), "utf-8"), base);
+  assert.match(run("check", "--only", "provenance"), /provenance: passed/u);
+  assert.notEqual(fail("check", "--only", "dependencies").status, 0);
 });

@@ -4,7 +4,14 @@ import * as NodeServices from "@effect/platform-node/NodeServices";
 import { Console, Effect } from "effect";
 import { Argument, CliError, Command, Flag } from "effect/cli";
 import packageJson from "../package.json" with { type: "json" };
-import { defaultDocs, documentation, history, initialize, search } from "./discovery.ts";
+import {
+  defaultDocs,
+  documentation,
+  history,
+  initialize,
+  registryDocumentation,
+  search,
+} from "./discovery.ts";
 import { runOperation } from "./operations.ts";
 import { usage } from "./usage.ts";
 import { buildRegistry, serveRegistry, validateRegistry } from "./registry-tools.ts";
@@ -76,8 +83,12 @@ const render = (result: Result, jsonOutput: boolean): string => {
   const dropped = result.dropped.map((file) => `Kept ${file}. The item no longer ships it.`);
   const dependencies = [...result.packages.dependencies, ...result.packages.devDependencies];
 
-  const packages =
-    result.dryRun && dependencies.length > 0 ? [`Would install ${dependencies.join(", ")}.`] : [];
+  const packages = [];
+
+  if (dependencies.length > 0 && (result.skipInstall || result.dryRun)) {
+    const actionLabel = result.skipInstall ? "Install separately:" : "Would install";
+    packages.push(`${actionLabel} ${dependencies.join(", ")}.`);
+  }
 
   return [summary, ...dropped, ...result.packages.ranges, ...packages].join("\n");
 };
@@ -85,35 +96,40 @@ const render = (result: Result, jsonOutput: boolean): string => {
 const operation = (mode: keyof typeof commands) => {
   const required = mode === "add" || mode === "adopt" || mode === "diff";
 
-  return Command.make(
-    mode,
-    {
-      cwd,
-      registry,
-      json,
-      dryRun: Flag.Boolean("dry-run").pipe(Flag.withDefault(false)),
-      local: Flag.Boolean("local").pipe(Flag.withDefault(false)),
-      at: Flag.String("at").pipe(Flag.withDefault("")),
-      only: Flag.String("only").pipe(Flag.withDefault("")),
-      names: Argument.String("item").pipe(Argument.variadic({ min: required ? 1 : 0 })),
-    },
-    (options) =>
-      Effect.gen(function* runCommand() {
-        const result = yield* Effect.tryPromise({
-          try: async () => await runOperation(mode, options),
-          catch: (cause) => new CliError.UserError({ cause }),
-        });
+  const common = {
+    cwd,
+    registry,
+    json,
+    dryRun: Flag.Boolean("dry-run").pipe(Flag.withDefault(false)),
+    local: Flag.Boolean("local").pipe(Flag.withDefault(false)),
+    at: Flag.String("at").pipe(Flag.withDefault("")),
+    only: Flag.String("only").pipe(Flag.withDefault("")),
+    names: Argument.String("item").pipe(Argument.variadic({ min: required ? 1 : 0 })),
+  };
 
-        const output = render(result, options.json);
+  const acceptsSkipInstall = mode === "add" || mode === "update";
 
-        if (output.length > 0) {
-          yield* Console.log(output);
-        }
+  const config = acceptsSkipInstall
+    ? { ...common, skipInstall: Flag.Boolean("skip-install").pipe(Flag.withDefault(false)) }
+    : common;
 
-        if ("ok" in result && !result.ok) {
-          yield* new CliError.UserError({ cause: new Error("Erbium check failed.") });
-        }
-      }),
+  return Command.make(mode, config, (options) =>
+    Effect.gen(function* runCommand() {
+      const result = yield* Effect.tryPromise({
+        try: async () => await runOperation(mode, options),
+        catch: (cause) => new CliError.UserError({ cause }),
+      });
+
+      const output = render(result, options.json);
+
+      if (output.length > 0) {
+        yield* Console.log(output);
+      }
+
+      if ("ok" in result && !result.ok) {
+        yield* new CliError.UserError({ cause: new Error("Erbium check failed.") });
+      }
+    }),
   ).pipe(Command.withDescription(commands[mode]));
 };
 
@@ -167,10 +183,19 @@ const searchCommand = Command.make(
 const docs = Command.make(
   "docs",
   {
+    cwd,
     topic: Argument.String("topic").pipe(Argument.withDefault("installation")),
     site: Flag.String("site").pipe(Flag.withDefault(defaultDocs)),
+    registry: Flag.String("registry").pipe(Flag.withDefault("")),
   },
-  ({ topic, site }) => query(documentation, [topic, site], (markdown) => markdown),
+  (options) =>
+    options.registry.length === 0
+      ? query(documentation, [options.topic, options.site], (markdown) => markdown)
+      : query(
+          registryDocumentation,
+          [options.cwd, options.registry, options.topic],
+          (markdown) => markdown,
+        ),
 ).pipe(Command.withDescription("Read Erbium documentation as Markdown"));
 
 const historyCommand = Command.make(
@@ -231,12 +256,14 @@ const registryCommands = Command.make("registry").pipe(
         cwd,
         input: Argument.String("catalog"),
         examples: Flag.String("examples").pipe(Flag.withDefault("")),
+        noSite: Flag.Boolean("no-site").pipe(Flag.withDefault(false)),
+        history: Flag.Boolean("history").pipe(Flag.withDefault(false)),
         out: Flag.String("out").pipe(Flag.withDefault("dist/registry")),
       },
-      ({ cwd: root, input, examples, out }) =>
+      ({ cwd: root, input, examples, out, history: includeHistory, noSite }) =>
         query(
           buildRegistry,
-          [root, input, examples, out],
+          [root, input, examples, out, includeHistory, noSite],
           ({ output, count }) => `Built ${count} items in ${output}.`,
         ),
     ),
@@ -250,15 +277,16 @@ const registryCommands = Command.make("registry").pipe(
     Command.make(
       "serve",
       {
+        cwd,
         directory: Argument.String("directory").pipe(Argument.withDefault("dist/registry")),
         port: Flag.Int("port").pipe(Flag.withDefault(4178)),
       },
-      ({ directory, port }) =>
+      ({ cwd: root, directory, port }) =>
         Effect.gen(function* serve() {
-          yield* Console.log(`Serving registry on http://127.0.0.1:${port}/r/erbium`);
+          yield* Console.log(`Serving registry on http://127.0.0.1:${port}/`);
           yield* Effect.tryPromise({
             try: async (signal) => {
-              await serveRegistry(directory, port, signal);
+              await serveRegistry(root, directory, port, signal);
             },
             catch: (cause) => new CliError.UserError({ cause }),
           });

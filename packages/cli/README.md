@@ -14,6 +14,8 @@ bunx --package @erbium/cli erbium update
 bunx --package @erbium/cli erbium check
 ```
 
+Use `add --skip-install` or `update --skip-install` if you manage package dependencies separately. The command reports what to install, and `check` verifies the declarations afterward.
+
 Use `adopt` with items already installed by shadcn. Their source must match a published revision. Use `history <item>` and `adopt <item> --at <commit>` for an older release. Managed installs use the TypeScript path aliases and explicit targets used by Erbium's two registries. Use shadcn for other registries and framework-specific shadcn transforms.
 
 Commit the installed source and `.erbium/lock.json` and `.erbium/bases/`. The lock tracks item revisions, file owners, and exact upstream file hashes. The baseline files make the exact installed bytes available offline. If a baseline file is missing, Erbium checks the working file and local Git history. Upstream diffs and merges can also reconstruct the baseline from a verified registry snapshot. Changes in unrelated project code are outside the scope of `check`.
@@ -25,12 +27,14 @@ The docs build publishes both ordinary shadcn catalogs and the managed registry 
 ## Registry tooling
 
 ```sh
-erbium registry build ./registry.json --examples ./examples/registry.json --out dist/registry
+erbium registry build ./registry.json --examples ./examples/registry.json --history --out dist/registry
 erbium registry validate --registry dist/registry/r/erbium
 erbium registry serve dist/registry
 ```
 
-Build takes Shadcn catalogs with inlined file content and emits Shadcn item endpoints at `/r/ui` and `/r/examples` alongside the managed registry at `/r/erbium`. Serve listens on loopback for local testing. For a private managed registry, set `ERBIUM_REGISTRY_TOKEN` alongside an explicit `--registry` URL. Erbium sends the bearer token over HTTPS or to loopback and refuses redirects while using it.
+Build takes Shadcn catalogs with inlined file content and emits Shadcn item endpoints at `/r/ui` and `/r/examples` alongside the managed registry at `/r/erbium`. It checks that relative and Erbium registry imports resolve to files shipped by the item or its registry dependencies. Use `--history` with committed catalogs in a full Git checkout to publish first-parent revisions for `history` and `adopt --at`. Without it, the build publishes the current snapshots. Run `erbium docs <item> --registry <location>` to read an item’s metadata, dependencies and source without the public docs site.
+
+Open the output directory's `index.html` through a static host or `registry serve` to browse items, source and revisions. The build also generates an agent index at `llms.txt`. Use a clean output directory and pass `--no-site` if you only need the registry files. Serve listens on loopback for local testing. For a private managed registry, set `ERBIUM_REGISTRY_TOKEN` alongside an explicit `--registry` URL. Erbium sends the bearer token over HTTPS or to loopback and refuses redirects while using it.
 
 `usage --offline --json` scans a local Git checkout. Its report lists direct importers and consuming workspaces reachable through local imports and resolvable workspace packages. Run it after installing workspace dependencies so package exports can be resolved. Use `--repo <git-url>` to scan a temporary checkout of another repository through its committed files and TypeScript aliases. Use `--github <organization>` to scan the repositories visible to your authenticated GitHub CLI. Remote scans use your configured Git credentials and clone one repository at a time.
 

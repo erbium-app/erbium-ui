@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as Schema from "effect/Schema";
 import { atomicWrite } from "./project.ts";
+import { normalizeItem } from "./registry.ts";
 import { parseJson, revision, snapshotFor } from "./revision.ts";
 
 const root = fileURLToPath(new URL("../../..", import.meta.url));
@@ -22,8 +23,19 @@ const catalogs = [
   ["erbium-examples", "packages/showcase/public/r/registry.json"],
 ] as const;
 
-const git = (args: string[]): string =>
-  execFileSync("git", args, { cwd: root, encoding: "utf-8", maxBuffer: 50 * 1024 * 1024 });
+const gitAt = (cwd: string, args: string[]): string =>
+  execFileSync("git", args, { cwd, encoding: "utf-8", maxBuffer: 50 * 1024 * 1024 });
+
+const historyPaths = (directory: string, sources: readonly RegistrySource[]) =>
+  sources.map(([namespace, file]) => {
+    const relative = path.relative(directory, path.resolve(directory, file));
+
+    if (relative.startsWith(`..${path.sep}`) || relative === ".." || relative === "") {
+      throw new Error(`Catalog must be inside the Git checkout to publish history: ${file}`);
+    }
+
+    return [namespace, relative.split(path.sep).join("/")] as const;
+  });
 
 export type RegistrySource = readonly [namespace: string, catalog: string];
 
@@ -31,6 +43,7 @@ export const publishRevisions = async (
   output: string,
   history: boolean,
   sources: readonly RegistrySource[] = catalogs,
+  checkout?: string,
 ): Promise<void> => {
   const revisions = path.join(output, "revisions");
   await mkdir(revisions, { recursive: true });
@@ -59,9 +72,16 @@ export const publishRevisions = async (
   ) => {
     const records = decodeCatalog(parseJson(text)).items;
     const snapshots = [];
+    const seen = new Set<string>();
 
     for (const record of records) {
-      const id = `@${namespace}/${itemName(record).name}`;
+      const id = normalizeItem(`@${namespace}/${itemName(record).name}`);
+
+      if (seen.has(id)) {
+        throw new Error(`Duplicate registry item ${id}.`);
+      }
+
+      seen.add(id);
       const value = snapshotFor(id, record);
       const digest = revision(value);
 
@@ -83,6 +103,14 @@ export const publishRevisions = async (
     return snapshots;
   };
 
+  const directory =
+    history && checkout !== undefined
+      ? gitAt(checkout, ["rev-parse", "--show-toplevel"]).trim()
+      : root;
+
+  const git = (args: string[]) => gitAt(directory, args);
+  const files = history ? historyPaths(directory, sources) : [];
+
   if (history && git(["rev-parse", "--is-shallow-repository"]).trim() !== "false") {
     throw new Error("Registry publishing requires full Git history. Use fetch-depth: 0.");
   }
@@ -94,21 +122,28 @@ export const publishRevisions = async (
   );
 
   const commits = history
-    ? [
-        ...git([
-          "log",
-          "--first-parent",
-          "--format=%H",
-          `${firstRegistryCommit}..HEAD`,
-          "--",
-          ...catalogs.map(([, file]) => file),
-        ])
-          .trim()
-          .split("\n")
-          .filter(Boolean),
-        firstRegistryCommit,
-      ]
+    ? git([
+        "--literal-pathspecs",
+        "log",
+        "--first-parent",
+        "--full-history",
+        "--format=%H",
+        ...(checkout === undefined ? [`${firstRegistryCommit}..HEAD`] : ["HEAD"]),
+        "--",
+        ...files.map(([, file]) => file),
+      ])
+        .trim()
+        .split("\n")
+        .filter(Boolean)
     : [];
+
+  if (history && checkout === undefined) {
+    commits.push(firstRegistryCommit);
+  } else if (history && commits.length === 0) {
+    throw new Error(
+      "No committed catalog history found. Commit the catalog before publishing history.",
+    );
+  }
 
   const releases = commits.map((commit) => ({
     commit,
@@ -117,8 +152,10 @@ export const publishRevisions = async (
   }));
 
   const previous = releases.flatMap((release) =>
-    catalogs.flatMap(([namespace, file]) =>
-      collect(namespace, git(["show", `${release.commit}:${file}`]), false, release.items),
+    files.flatMap(([namespace, file]) =>
+      git(["--literal-pathspecs", "ls-tree", release.commit, "--", file]).length === 0
+        ? []
+        : collect(namespace, git(["show", `${release.commit}:${file}`]), false, release.items),
     ),
   );
 

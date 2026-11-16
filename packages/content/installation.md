@@ -229,3 +229,16 @@ bunx --package @erbium/cli erbium check
 Updates use Git to merge your edits and the registry's changes from the same baseline. If both sides changed the same lines, Erbium reports the conflict before writing source files. If a revision stops shipping a file, Erbium reports the path and leaves the file in your project. `check` runs offline and reports missing files, damaged baselines, unresolved conflict markers, missing package declarations, changed alias destinations, and broken local imports. Use `check --only imports,provenance --json` to select checks and get structured output. Continue running your project's own lint, type checks, and build.
 
 Run `init --agents` to add the Erbium skill to the project. Run `usage --offline` from a Git checkout to see which files and workspaces import tracked items. Leave out `--offline` to include available updates.
+
+Use `add --skip-install` or `update --skip-install` if you manage package dependencies yourself. Erbium still tracks the copied source and lists the packages you need to declare.
+
+## Publish your own registry
+
+Start with shadcn catalogs that include file contents and explicit install targets. From a full Git checkout with the catalogs committed, run:
+
+```sh
+bunx --package @erbium/cli erbium registry build registry.json --history --out dist/registry
+bunx --package @erbium/cli erbium registry serve dist/registry
+```
+
+The build checks registry dependencies and local imports, writes shadcn and managed endpoints, and generates a site where people can browse source and published revisions. Point the Erbium CLI at the hosted `/r/erbium` URL with `--registry`. With `--history`, teams can use `history` and `adopt --at` against your registry too.

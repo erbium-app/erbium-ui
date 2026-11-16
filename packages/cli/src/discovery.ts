@@ -88,15 +88,74 @@ export const search = async (root: string, location: string, terms: readonly str
   const registry = await openRegistry(root, location);
   const words = terms.map((term) => term.toLowerCase());
 
-  return Object.entries(registry.items).flatMap(([id, revision]) => {
+  const matches = Object.entries(registry.items).flatMap(([id, revision]) => {
     const metadata = registry.catalog[id];
+    const name = id.split("/")[1] ?? id;
+    const title = metadata?.title?.toLowerCase() ?? "";
 
-    const content = [id, metadata?.title, metadata?.description, ...(metadata?.keywords ?? [])]
+    const content = [id, title, metadata?.description, ...(metadata?.keywords ?? [])]
       .join(" ")
       .toLowerCase();
 
-    return words.every((word) => content.includes(word)) ? [{ id, revision, ...metadata }] : [];
+    if (!words.every((word) => content.includes(word))) {
+      return [];
+    }
+
+    let score = 0;
+
+    for (const word of words) {
+      if (word === id || word === name || word === title) {
+        score += 4;
+      } else {
+        score += name.includes(word) || title.includes(word) ? 2 : 1;
+      }
+    }
+
+    return [{ score, item: { id, revision, ...metadata } }];
   });
+
+  return matches.toSorted((left, right) => right.score - left.score).map(({ item }) => item);
+};
+
+export const registryDocumentation = async (cwd: string, location: string, topic: string) => {
+  const registry = await openRegistry(cwd, location);
+  const id = normalizeItem(topic);
+  const digest = registry.items[id];
+
+  if (digest === undefined) {
+    throw new Error(`No registry item found for ${id}. Use erbium search to discover items.`);
+  }
+
+  const { item } = await registry.load(id, digest);
+  const info = registry.catalog[id];
+
+  const dependencies = [
+    ...(item.registryDependencies ?? []),
+    ...(item.dependencies ?? []),
+    ...(item.devDependencies ?? []),
+  ];
+
+  const files = (item.files ?? []).map(({ target, content }) => {
+    let width = 3;
+
+    for (const [run] of content.matchAll(/`+/gu)) {
+      width = Math.max(width, run.length + 1);
+    }
+
+    const fence = "`".repeat(width);
+
+    return `## ${target}\n\n${fence}\n${content}\n${fence}`;
+  });
+
+  return [
+    `# ${info?.title ?? id}`,
+    info?.description,
+    `Revision: ${digest}`,
+    dependencies.length === 0 ? undefined : `Dependencies: ${dependencies.join(", ")}`,
+    ...files,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
 };
 
 export const documentation = async (topic: string, site: string) => {
