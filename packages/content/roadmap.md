@@ -15,17 +15,17 @@ Editable data sheets extend that direction with cell editing, range selection, c
 
 We want common product decisions to have useful starting points: property and settings panels, searchable tags with optional creation, and icon and emoji selection. These will be small compositions with stories that explain their use.
 
-Multi-step forms bring together Questionnaire, StepIndicator, and [TanStack Form](https://tanstack.com/form/latest) validation. Responsive overlays and searchable menus will carry the same interaction decisions across desktop and mobile. Command will move from CMDK toward Base UI command and autocomplete behavior.
+Responsive overlays will carry the same interaction decisions across desktop and mobile.
 
-## Code and terminal commands
+## Terminal commands
 
-CodeBlock displays source code with syntax highlighting, overflow handling, optional language or file labels, and shared copy feedback. A TerminalCommand block (working name) will compose shell and CLI snippets with optional package-manager or platform selection. It will copy the selected command without decorative prompts and reuse CodeBlock where useful. This planned block is separate from the Command palette.
+A TerminalCommand block (working name) will compose shell and CLI snippets with optional package-manager or platform selection. It will copy the selected command without decorative prompts and reuse CodeBlock where useful. This planned block is separate from the Command palette.
 
 ## Files and media
 
-File handling will connect picking, drag and drop, validation, and attachment previews. Lightbox handles image viewing and navigation, and can share its state with Carousel. Audio playback, waveforms, and transcripts are another area we’re exploring.
+File handling will connect picking, drag and drop, validation, and attachment previews. Audio playback, waveforms, and transcripts are another area we’re exploring.
 
-FileTree, FileView, and DiffView build on [Pierre](https://pierre.computer/)’s [Trees](https://trees.software/) and [Diffs](https://diffs.com/). Next come changed-file review, review comments, and multi-file review composed from those blocks.
+Changed-file review, review comments, and multi-file review will compose the existing file tree, file, and diff blocks.
 
 ## Interfaces for agents
 
