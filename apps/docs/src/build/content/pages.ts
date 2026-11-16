@@ -79,7 +79,9 @@ export const getPage = async (path: string) => {
   const headings = headingsFor(content.tree);
   const exampleName = component?.name ?? guide?.example?.name ?? "";
   const exampleSlug = guide?.example?.slug;
-  const examples = exampleName === "" ? [] : await showcaseExampleControls(exampleName);
+  const examples = (exampleName === "" ? [] : await showcaseExampleControls(exampleName)).filter(
+    (example) => exampleSlug === undefined || example.slug === exampleSlug,
+  );
   const page = {
     ...content,
     path,
@@ -92,21 +94,27 @@ export const getPage = async (path: string) => {
       : undefined,
     image: ogPageForRoute(path).imagePath,
     colorSources: component?.name === "colors" ? await colorExamples() : [],
-    variants: examples
-      .filter((example) => exampleSlug === undefined || example.slug === exampleSlug)
-      .map((example) => ({
-        name: exampleName,
-        exportName: example.exportName,
-        slug: example.slug,
-        source: example.source,
-        title: example.title,
-        anchor: headings.some((heading) => heading.id === example.slug)
-          ? `example-${example.slug}`
-          : example.slug,
-        args: example.args,
-        argTypes: example.argTypes,
-        tree: document(`components/${exampleName}/${example.slug}`).tree,
-      })),
+    variants: examples.map((example) => ({
+      name: exampleName,
+      exportName: example.exportName,
+      slug: example.slug,
+      source: example.source,
+      files: example.files.map((file) => file.path),
+      title: example.title,
+      anchor: headings.some((heading) => heading.id === example.slug)
+        ? `example-${example.slug}`
+        : example.slug,
+      args: example.args,
+      argTypes: example.argTypes,
+      tree: document(`components/${exampleName}/${example.slug}`).tree,
+    })),
+    // Plain source of every example file, once per path since examples share files. The Code tab
+    // shows it at once and highlights it in place; tokens would be many times its size.
+    exampleSources: Object.fromEntries(
+      examples.flatMap((example) =>
+        example.files.map((file) => [file.path, showcaseSource(file.path)] as const),
+      ),
+    ),
   };
   return {
     ...page,
@@ -115,30 +123,6 @@ export const getPage = async (path: string) => {
 };
 
 export type DocPage = NonNullable<Awaited<ReturnType<typeof getPage>>>;
-
-/** Every documented example, keyed as served at `/examples/<name>-<slug>.json`. */
-export const listExamples = () =>
-  components.flatMap((component) =>
-    showcaseExamples(component.name).map((example) => ({
-      name: component.name,
-      slug: example.slug,
-    })),
-  );
-
-export const getExampleSource = async (name: string, slug: string) => {
-  const example = showcaseExamples(name).find((entry) => entry.slug === slug);
-  if (!example) throw new Error("Unknown example");
-  return await Promise.all(
-    example.files.map(async (file) => {
-      const source = showcaseSource(file.path);
-      return {
-        path: file.path,
-        source,
-        tokens: await highlight(source, file.path.split(".").at(-1) ?? "text"),
-      };
-    }),
-  );
-};
 
 const colorExamples = async () => {
   const block = (source: string, selector: string) => {

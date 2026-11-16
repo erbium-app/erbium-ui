@@ -91,6 +91,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                   key={`${lead.name}-${lead.slug}`}
                   name={lead.name}
                   variant={lead}
+                  sources={page.exampleSources}
                   separator={false}
                 />
               )}
@@ -102,6 +103,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                     key={`${variant.name}-${variant.slug}`}
                     name={variant.name}
                     variant={variant}
+                    sources={page.exampleSources}
                   />
                 ))}
               {page.colorSources.map((item) => (

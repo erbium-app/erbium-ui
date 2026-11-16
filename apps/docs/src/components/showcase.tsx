@@ -11,7 +11,7 @@ import {
   CollapsibleContent,
 } from "@erbium/ui/components/collapsible";
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
-import { CodePanel, CodePanelContent, codePanelSurface } from "@erbium/ui/blocks/code-panel";
+import { codePanelSurface } from "@erbium/ui/blocks/code-panel";
 import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
 import { Toaster } from "@erbium/ui/components/toast";
 import { Prose } from "./markdown";
@@ -24,7 +24,6 @@ import { useTheme } from "./theme";
 
 import { Controls } from "./controls";
 import { exampleRequest } from "./preview-resources";
-import { exampleSourceRequest } from "@/content/example-source";
 import type { DocPage } from "@/content/types";
 
 const PreviewError = () => (
@@ -51,49 +50,40 @@ const PreviewContent = ({ name, slug, args }: { name: string; slug: string; args
   );
 };
 
-const SourceError = () => (
-  <Alert variant="error">
-    <AlertTitle>Source could not load.</AlertTitle>
-    <AlertDescription>Switch back to Preview and retry.</AlertDescription>
-  </Alert>
+// The source ships with the page, so the lines show at once and highlighting lands in place.
+const SourceContent = ({
+  files,
+  sources,
+}: {
+  files: string[];
+  sources: Record<string, string>;
+}) => (
+  <div className="flex flex-col gap-related">
+    {files.map((path) => (
+      <UICodeBlock
+        key={path}
+        code={sources[path] ?? ""}
+        language={path.split(".").at(-1)}
+        title={path}
+      />
+    ))}
+  </div>
 );
-
-const SourceLoading = () => (
-  <CodePanel>
-    <CodePanelContent loading aria-label="Loading source" className="min-h-64" />
-  </CodePanel>
-);
-
-const SourceContent = ({ name, slug }: { name: string; slug: string }) => {
-  const files = use(exampleSourceRequest(name, slug));
-
-  return (
-    <div className="flex flex-col gap-related">
-      {files.map((file) => (
-        <UICodeBlock
-          key={file.path}
-          code={file.source}
-          language={file.path.split(".").at(-1)}
-          title={file.path}
-          tokens={file.tokens}
-        />
-      ))}
-    </div>
-  );
-};
 
 export const Showcase = ({
   name,
   variant,
+  sources,
   separator = true,
 }: {
   name: string;
   variant: DocPage["variants"][number];
+  sources: DocPage["exampleSources"];
   separator?: boolean;
 }) => {
   const [args, setArgs] = useState<Args>(variant.args);
   const [code, setCode] = useState(false);
-  // Source loads on first view, then stays mounted with the hidden tab.
+  // Source mounts, and so highlights, on first view, then stays mounted with the hidden tab.
   const [sourceShown, setSourceShown] = useState(false);
   const siteDark = useTheme();
   const [appearance, setAppearance] = useState<"light" | "dark">();
@@ -102,10 +92,6 @@ export const Showcase = ({
   // Refresh remounts the example and its providers so first-mount behaviour
   // (skeleton reveals, entrance motion, effects) plays again with the current args.
   const [mount, setMount] = useState(0);
-
-  const prefetchSource = () => {
-    void exampleSourceRequest(name, variant.slug);
-  };
 
   const command = `npx shadcn@latest add @erbium-examples/${name}-${variant.slug}`;
 
@@ -127,19 +113,10 @@ export const Showcase = ({
       >
         <TabsList aria-label={`${variant.title} example`}>
           <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code" onPointerEnter={prefetchSource} onFocus={prefetchSource}>
-            Code
-          </TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <TabsContent value="code" keepMounted>
-          {sourceShown && (
-            // Returning to Preview resets a failed source so the next view retries it.
-            <CatchBoundary getResetKey={() => String(code)} errorComponent={SourceError}>
-              <Suspense fallback={<SourceLoading />}>
-                <SourceContent name={name} slug={variant.slug} />
-              </Suspense>
-            </CatchBoundary>
-          )}
+          {sourceShown && <SourceContent files={variant.files} sources={sources} />}
         </TabsContent>
         <TabsContent value="preview" keepMounted>
           <div className={`showcase-content relative ${codePanelSurface} ${appearance ?? ""}`}>

@@ -164,19 +164,6 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
           }),
         );
 
-        const { getExampleSource, listExamples } = await load<typeof ContentPages>(
-          "/src/build/content/pages.ts",
-        );
-
-        await Promise.all(
-          listExamples().map(async ({ name, slug }) => {
-            await write(
-              `/examples/${name}-${slug}.json`,
-              JSON.stringify(await getExampleSource(name, slug)),
-            );
-          }),
-        );
-
         const { ogPages } = await load<typeof OgPages>("/src/build/seo/og-pages.ts");
 
         // Image paths hash their content, so unchanged cards are reused from the cache.
@@ -218,7 +205,7 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
 
         await write(
           "/_headers",
-          `${preview ? "/*\n  X-Robots-Tag: noindex\n\n" : ""}/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/r/erbium/revisions/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/r/erbium/index.json\n  Cache-Control: public, max-age=0, must-revalidate\n\n/examples/*\n  X-Robots-Tag: noindex\n  Cache-Control: public, max-age=60, must-revalidate\n\n/*.md\n  X-Robots-Tag: noindex\n\n/og/*\n  Cache-Control: public, max-age=3600\n`,
+          `${preview ? "/*\n  X-Robots-Tag: noindex\n\n" : ""}/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/r/erbium/revisions/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/r/erbium/index.json\n  Cache-Control: public, max-age=0, must-revalidate\n\n/*.md\n  X-Robots-Tag: noindex\n\n/og/*\n  Cache-Control: public, max-age=3600\n`,
         );
       }
 
@@ -342,29 +329,6 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
           }
 
           try {
-            const example = /^\/examples\/(?<example>[\w-]+)\.json$/u.exec(path);
-
-            if (example) {
-              const { getExampleSource, listExamples } = await load<typeof ContentPages>(
-                "/src/build/content/pages.ts",
-              );
-
-              const entry = listExamples().find(
-                (item) => `${item.name}-${item.slug}` === example.groups?.example,
-              );
-
-              if (!entry) {
-                forward();
-
-                return;
-              }
-
-              response.setHeader("Content-Type", "application/json");
-              response.end(JSON.stringify(await getExampleSource(entry.name, entry.slug)));
-
-              return;
-            }
-
             if (path.startsWith("/og/")) {
               const bytes = await image(path);
 
