@@ -17,10 +17,6 @@ We want common product decisions to have useful starting points: property and se
 
 Responsive overlays will carry the same interaction decisions across desktop and mobile.
 
-## Terminal commands
-
-A TerminalCommand block (working name) will compose shell and CLI snippets with optional package-manager or platform selection. It will copy the selected command without decorative prompts and reuse CodeBlock where useful. This planned block is separate from the Command palette.
-
 ## Files and media
 
 File handling will connect picking, drag and drop, validation, and attachment previews. Audio playback, waveforms, and transcripts are another area we’re exploring.

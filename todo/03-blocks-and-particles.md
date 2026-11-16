@@ -4,7 +4,6 @@ Reviewed 2026-11-17.
 
 ## Remaining work
 
-- [ ] Create TerminalCommand stories once its API is agreed; compose CodeBlock and CopyButton. Track the block in [01](./01-missing-primitives.md).
 - [ ] Review existing catalogs before adding or porting examples; add only compositions that demonstrate a recurring need.
 - [ ] Expand card, dialog, form, and selection stories where layout or behavior decisions need explanation.
 - [ ] Cover useful loading, empty, error, disabled, success, long-content, keyboard, and RTL cases in the relevant stories.

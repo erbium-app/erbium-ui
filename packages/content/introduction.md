@@ -5,7 +5,9 @@ description: An agent ready design system with taste built in
 
 Erbium UI is the open-source component library and design system behind [erbium.app](https://erbium.app). Copy components and blocks into your project and adapt them to your design.
 
-We build on [Base UI](https://base-ui.com/), [Shadcn/ui](https://ui.shadcn.com/), and [coss ui](https://coss.com/ui). Design and motion draw from [Fluid Functionalism](https://www.fluidfunctionalism.com/), [Sonner](https://sonner.emilkowal.ski/), [Animate UI](https://animate-ui.com/), [Transition](https://transition.dev/), and [ReUI](https://reui.io/).
+We build on [Base UI](https://base-ui.com/), [Shadcn/ui](https://ui.shadcn.com/), and [coss ui](https://coss.com/ui), and [Shelf UI](https://shelfui.dev/). Design and motion draw from [Fluid Functionalism](https://www.fluidfunctionalism.com/), [Sonner](https://sonner.emilkowal.ski/), [Animate UI](https://animate-ui.com/), [Transition](https://transition.dev/), and [ReUI](https://reui.io/).
+
+Several components wrap focused open-source packages. Code blocks are highlighted with [Shiki](https://shiki.style/), and diff views, file views, and file trees run on [Pierre](https://pierre.computer/). The lightbox adapts [Chánh Đại’s Lightbox](https://chanhdai.com/components/lightbox) on top of [Ramka](https://ramka.dev/docs). Calendars and date pickers use [React DayPicker](https://daypicker.dev), carousels use [Embla Carousel](https://www.embla-carousel.com/), and resizable layouts use [react-resizable-panels](https://react-resizable-panels.vercel.app). Text morphing comes from [Torph](https://torph.lochie.me), intent prediction from [ForesightJS](https://foresightjs.com), and animation from [Motion](https://motion.dev/). Tables, forms, and charts are built on [TanStack](https://tanstack.com/) Table, Form, and Charts.
 
 We also wanted better building blocks for agentic interfaces: dedicated code blocks and diffs, tree views, matrix loaders, steppers, and toolbars. These needs guide both existing components and planned additions.
 
@@ -23,16 +25,11 @@ Focused APIs, thoughtful defaults, and a consistent visual language give develop
 
 We follow Base UI’s naming, APIs, and defaults. RTL support is baked in to make translating your UI and internationalization easier. Labels belong to fields, and our tokens use `error` instead of `destructive`.
 
-## Loading is part of the UI layer
+Loading, error, and empty states belong to the UI layer, not to each screen. Content the page already has renders immediately and upgrades in place: code shows as plain text until highlighting finishes, and trees and panels keep their final size while they mount. Content still being fetched gets a [`Skeleton`](/docs/components/skeleton) measured from sample data with [Skullet](https://skullet.lochie.me), so the real content lands where the skeleton was. Primitives describe how they draw while loading, and error and empty states reuse the Alert and Empty components with the same reveal.
 
-Loading states are where interfaces most often feel broken: spinners that hold the page hostage, skeletons that guess the layout wrong, and content that jumps when it finally arrives. Erbium makes loading a decision of the UI layer rather than of each screen.
+Animation is opinionated. Components ship with chosen durations, easing, and enter and exit transitions, so you do not tune each one, and they respect reduced-motion settings.
 
-- **Content you already have renders immediately.** Code shows as plain text while highlighting runs and is recoloured in place. Trees and panels keep their final size while they mount. A loading state never stands in for content the page already has.
-- **Content you are fetching gets a measured skeleton.** Wrap what you render once the data arrives in [`Skeleton`](/docs/components/skeleton) and pass sample data. The skeleton is drawn from that content, with one bar per line of text and one block per control, so the real content lands in the same place.
-- **Refetches keep their shape.** A skeleton drawn over data already on screen matches it exactly, and shapes are remembered across visits. Fast loads show no skeleton at all.
-- **Components describe themselves.** Buttons, badges, switches, avatars, and the other primitives tell the skeleton how to draw them, so any composition of them loads consistently. Error and empty states use the same Alert and Empty components as the rest of the system.
-
-Measured skeletons are built on [Skullet](https://skullet.lochie.me).
+The source is linted with Ultracite’s core, React, anti-slop, and shadcn presets, plus Erbium’s own typography and sizing rules. The anti-slop rules reject the patterns generated code tends to leave behind, so the components you copy need no cleanup first.
 
 ## A note on design
 
