@@ -12,13 +12,17 @@ import type { CSSVariableStyle } from "../lib/utils";
 import {
   CodePanelCopyButton,
   CodePanelHeader,
+  CodePanelLines,
   CodePanelTitle,
   codePanelFocusRing,
   codePanelSurface,
 } from "./code-panel";
+import type { CodePanelLine } from "./code-panel";
 import type { CopyButtonProps } from "./copy-button";
 
 type CodeToken = TokensResult["tokens"][number][number];
+
+const lineBreak = /\r\n|\n|\r/u;
 
 /** Highlighted output from `highlightCode`, for code tokenized ahead of render. */
 type CodeBlockTokens = Pick<TokensResult, "tokens" | "rootStyle">;
@@ -67,6 +71,8 @@ type CodeBlockProps = Omit<
     onValueChange?: (value: string, details: TabsPrimitive.Root.ChangeEventDetails) => void;
     surface?: "code" | "command";
     lineNumbers?: boolean;
+    /** The number of the first line, when `lineNumbers` is set. */
+    startLine?: number;
     wrap?: boolean;
     title?: string;
   };
@@ -76,6 +82,7 @@ interface CodeBlockContextValue {
   active: CodeBlockItem | undefined;
   surface: "code" | "command";
   lineNumbers: boolean;
+  startLine: number;
   wrap: boolean;
 }
 
@@ -187,7 +194,7 @@ type CodeBlockContentProps = Omit<
 >;
 
 const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps) => {
-  const { active, lineNumbers, wrap, surface } = useCodeBlock();
+  const { active, lineNumbers, startLine, wrap, surface } = useCodeBlock();
   const code = active?.code ?? "";
   const language = active?.language ?? "text";
   const tokens = active?.tokens;
@@ -229,8 +236,22 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
       ? highlighted.result
       : undefined);
 
-  const rows: TokensResult["tokens"] =
-    result?.tokens ?? code.split(/\r\n|\n|\r/u).map((content) => [{ content, offset: 0 }]);
+  const allRows: TokensResult["tokens"] =
+    result?.tokens ?? code.split(lineBreak).map((content) => [{ content, offset: 0 }]);
+
+  // A final line break ends the last line rather than starting an empty one. Copying still uses
+  // the exact source.
+  const rows =
+    allRows.length > 1 && lineBreak.test(code.at(-1) ?? "") ? allRows.slice(0, -1) : allRows;
+
+  const lines = rows.map((row, index): CodePanelLine => ({
+    content:
+      result === undefined || row.length === 0
+        ? undefined
+        : row.map((token, tokenIndex) => <CodeBlockToken key={tokenIndex} token={token} />),
+    number: lineNumbers ? startLine + index : undefined,
+    text: row.map((token) => token.content).join(""),
+  }));
 
   // Shiki reports `false` when the theme sets no root style.
   const rootStyle = result?.rootStyle;
@@ -250,41 +271,27 @@ const CodeBlockContent = ({ className, style, ...props }: CodeBlockContentProps)
 
   return (
     <pre
-      {...props}
-      data-slot="code-block-content"
-      data-language={language}
-      dir="ltr"
       // Long code scrolls inside a fixed height; keyboard users need a tab stop to scroll it
       // (WCAG 2.1.1, axe scrollable-region-focusable). The rule only knows interactive roles.
       // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex={0}
+      {...props}
+      data-slot="code-block-content"
+      data-language={language}
+      dir="ltr"
       style={blockStyle}
       className={cn(
-        "m-0 max-h-120 overflow-auto p-panel text-code-block [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
+        "m-0 max-h-120 overflow-auto text-code-block [tab-size:2] text-(--shiki-light,inherit) dark:text-(--shiki-dark,inherit)",
         codePanelFocusRing,
-        wrap ? "whitespace-pre-wrap break-words" : "whitespace-pre",
-        surface === "command" && "px-3 py-3",
+        surface === "command" ? "px-3 py-3" : "p-panel",
+        // Numbered rows pad themselves, in the same gutter as file and diff views.
+        lineNumbers && "px-0",
         "group-has-[[data-slot=code-block-actions]]/code-block:pe-12",
         className,
       )}
     >
       <code>
-        {rows.map((row, index) => (
-          <span key={index} data-slot="code-block-line">
-            {lineNumbers && (
-              <span
-                aria-hidden="true"
-                className="me-5 inline-block min-w-6 select-none text-end text-muted-foreground"
-              >
-                {index + 1}
-              </span>
-            )}
-            {row.map((token, tokenIndex) => (
-              <CodeBlockToken key={tokenIndex} token={token} />
-            ))}
-            {index < rows.length - 1 ? "\n" : null}
-          </span>
-        ))}
+        <CodePanelLines lines={lines} wrap={wrap} limit={lines.length} inset={lineNumbers} />
       </code>
     </pre>
   );
@@ -320,6 +327,7 @@ const CodeBlock = ({
   onValueChange,
   surface = "code",
   lineNumbers = false,
+  startLine = 1,
   wrap = false,
   title,
   children,
@@ -341,8 +349,8 @@ const CodeBlock = ({
   const active = enabled.find((item) => item.value === requested) ?? enabled.at(0);
 
   const context = useMemo(
-    () => ({ active, items, lineNumbers, surface, wrap }),
-    [active, items, lineNumbers, surface, wrap],
+    () => ({ active, items, lineNumbers, startLine, surface, wrap }),
+    [active, items, lineNumbers, startLine, surface, wrap],
   );
 
   const hasTabs = providedItems !== undefined && items.length > 0;

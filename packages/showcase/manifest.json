@@ -1174,6 +1174,12 @@
         "title": "Overflow"
       },
       {
+        "exportName": "LineNumbers",
+        "slug": "line-numbers",
+        "source": "src/code-block/variants/line-numbers.tsx",
+        "title": "Line Numbers"
+      },
+      {
         "exportName": "States",
         "slug": "states",
         "source": "src/code-block/variants/states.tsx",

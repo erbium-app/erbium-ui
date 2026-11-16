@@ -13,6 +13,14 @@ Import from `@erbium/ui/blocks/code-block`.
 
 The default layout includes the source and an anchored icon copy button. A header and separator appear only when you provide a `title` or tabbed `items`; the language does not create a header. Actions stay at the block’s top inline end while the source scrolls. Vitesse light and dark syntax colors follow the application's appearance. There is no theme or highlighting-engine setting. Code surfaces scroll horizontally by default and have a bounded height; use `wrap` or `lineNumbers` when appropriate.
 
+## Line numbers
+
+```tsx
+<CodeBlock code={excerpt} language="ts" title="server.ts" lineNumbers startLine={42} />
+```
+
+`lineNumbers` adds a gutter, and `startLine` sets the number of the first line for an excerpt from the middle of a file. The gutter is one column sized by the widest number, so lines stay aligned past line 999. With `wrap`, a wrapped line continues in the code column rather than under its number. Code blocks share their line metrics with File View and Diff View, so a numbered snippet lines up with a file view of the same source.
+
 ## Language icons
 
 Default titles and tabs include a decorative icon selected from the source’s `language`. TypeScript and JavaScript use their language icons; TSX and JSX use React. Aliases such as `typescript`, `py`, and `bash` share the same selection as their canonical languages. Plaintext uses a text-file icon and unknown languages use a generic file icon. A command surface without a language uses the shell icon. Titles and tab labels do not determine the language. Headerless snippets remain headerless.
@@ -64,7 +72,7 @@ Providing children replaces the default layout. Place `CodeBlockActions` directl
 
 ## Source and highlighting
 
-Copying preserves the provided string exactly, including indentation, trailing spaces, and final newlines. It excludes line numbers and controls. Empty strings are valid. Dedent authored examples before passing them if necessary; the component does not format source.
+Copying preserves the provided string exactly, including indentation, trailing spaces, and final newlines. A final newline ends the last line rather than rendering an extra empty one. It excludes line numbers and controls. Empty strings are valid. Dedent authored examples before passing them if necessary; the component does not format source.
 
 React snippets start as readable plaintext, then load a shared Shiki JavaScript runtime and the requested grammar. TypeScript, TSX, JavaScript, JSX, JSON, CSS, HTML, shell, YAML, Python, SQL, and Markdown are supported, including common aliases. Other languages fall back to plaintext. Highlighted results use a bounded shared cache, and stale asynchronous results cannot overwrite changed source. Documentation fences continue to use build-time TanStack Highlight with Vitesse colors.
 
@@ -72,4 +80,4 @@ This is a read-only presentation block. Editable document code blocks and future
 
 ## Accessibility
 
-Tabbed blocks use Base UI Tabs for keyboard navigation and tab/panel relationships. The entire block—header, tabs, actions, source, and tab keyboard navigation—always uses LTR direction, including inside an RTL page or direction provider. The root has no `dir` option. Source regions are focusable for scrolling. Copy actions announce success and failure using the shared clipboard implementation. Line numbers are excluded from accessibility text and clipboard actions. Override the copy button's accessible name when a more specific label is useful.
+Tabbed blocks use Base UI Tabs for keyboard navigation and tab/panel relationships. The entire block—header, tabs, actions, source, and tab keyboard navigation—always uses LTR direction, including inside an RTL page or direction provider. The root has no `dir` option. Source regions are focusable for scrolling; pass `tabIndex={-1}` to `CodeBlockContent` to remove the tab stop from source that never scrolls. Copy actions announce success and failure using the shared clipboard implementation. Line numbers are excluded from accessibility text and clipboard actions. Override the copy button's accessible name when a more specific label is useful.

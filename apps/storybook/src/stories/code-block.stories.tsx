@@ -17,6 +17,8 @@ export const Composition = { ...showcases.Composition, name: "Composition" };
 
 export const Overflow = { ...showcases.Overflow, name: "Overflow" };
 
+export const LineNumbers = { ...showcases.LineNumbers, name: "Line Numbers" };
+
 export const States = { ...showcases.States, name: "States" };
 
 export const ChangingSource = { ...showcases.ChangingSource, name: "Changing Source" };

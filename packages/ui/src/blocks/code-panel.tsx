@@ -64,6 +64,8 @@ interface CodePanelLine {
   /** The line number shown in the gutter; none when line numbers are off. */
   number?: number;
   text: string;
+  /** Highlighted content for the line. `text` is shown when it is absent. */
+  content?: ReactNode;
   tone?: "addition" | "deletion";
 }
 
@@ -71,38 +73,75 @@ interface CodePanelLine {
 // and skeletons stop there.
 const codePanelLineLimit = 200;
 
+interface CodePanelLinesProps {
+  lines: CodePanelLine[];
+  className?: string;
+  /** Wrap long lines inside the code column instead of scrolling. */
+  wrap?: boolean;
+  /** Rows to render. Defaults to the rows a panel shows before it scrolls. */
+  limit?: number;
+  /**
+   * Pad the code column. Turn it off when the container already pads the code, as a code block
+   * without line numbers does.
+   */
+  inset?: boolean;
+}
+
 /**
- * Source as plain rows in the metrics Pierre and code blocks render with (`text-code-block`, the
- * same gutter), for showing code that is known before it is highlighted. Swapping it for the
- * highlighted render changes colour only, never position.
+ * Source as rows in the metrics Pierre and code blocks render with (`text-code-block`, the same
+ * gutter). Code blocks render their highlighted rows through it, and file and diff views show
+ * their known source with it until Pierre has rendered, so the swap changes colour, never
+ * position.
  */
-const CodePanelLines = ({ lines, className }: { lines: CodePanelLine[]; className?: string }) => {
-  const shown = lines.slice(0, codePanelLineLimit);
+const CodePanelLines = ({
+  lines,
+  className,
+  wrap = false,
+  limit = codePanelLineLimit,
+  inset = true,
+}: CodePanelLinesProps) => {
+  const shown = lines.slice(0, limit);
   const numbered = shown.some((line) => line.number !== undefined);
+  // One gutter width for every row, sized by the widest number.
   const digits = String(Math.max(...shown.map((line) => line.number ?? 0), 1)).length;
   const gutter = { minWidth: `calc(${digits}ch + 2rem)` };
 
   return (
-    <div data-slot="code-panel-lines" className={cn("min-w-max text-code-block", className)}>
+    <span
+      data-slot="code-panel-lines"
+      data-wrap={wrap ? "" : undefined}
+      className={cn("grid text-code-block", wrap ? "min-w-0" : "min-w-max", className)}
+    >
       {shown.map((line, index) => (
-        <div
+        <span
           // Rows are positional: a fallback is replaced, never reordered.
           key={`${index}:${line.number ?? ""}`}
+          data-slot="code-panel-line"
           data-tone={line.tone}
-          className="flex data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8"
+          className="flex min-h-lh data-[tone=addition]:bg-success/8 data-[tone=deletion]:bg-error/8"
         >
           {numbered ? (
             <span
-              className="shrink-0 px-4 text-end text-muted-foreground tabular-nums"
+              aria-hidden="true"
+              className="shrink-0 select-none px-4 text-end text-muted-foreground tabular-nums"
               style={gutter}
             >
               {line.number}
             </span>
           ) : null}
-          <span className="whitespace-pre ps-2 pe-4">{line.text}</span>
-        </div>
+          <span
+            className={cn(
+              "min-w-0",
+              inset && "ps-2 pe-4",
+              wrap ? "whitespace-pre-wrap wrap-break-word" : "whitespace-pre",
+            )}
+          >
+            {/* A blank row holds a newline so a copied selection keeps it. */}
+            {line.content ?? (line.text === "" ? "\n" : line.text)}
+          </span>
+        </span>
       ))}
-    </div>
+    </span>
   );
 };
 
@@ -214,4 +253,4 @@ export {
   codePanelTitle,
 };
 
-export type { CodePanelProps, CodePanelContentProps, CodePanelLine };
+export type { CodePanelProps, CodePanelContentProps, CodePanelLine, CodePanelLinesProps };

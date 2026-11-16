@@ -6359,6 +6359,7 @@
         "@erbium-examples/code-block-controlled",
         "@erbium-examples/code-block-composition",
         "@erbium-examples/code-block-overflow",
+        "@erbium-examples/code-block-line-numbers",
         "@erbium-examples/code-block-states",
         "@erbium-examples/code-block-changing-source"
       ],
@@ -6389,6 +6390,20 @@
         {
           "path": "src/code-block/variants/languages.tsx",
           "target": "@components/showcase/code-block/variants/languages.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "code-block-line-numbers",
+      "type": "registry:component",
+      "title": "Code Block: Line Numbers",
+      "description": "Set `startLine` to number an excerpt from the middle of a file. The gutter grows to fit the widest number, so every line stays aligned, and wrapped lines continue in the code column rather than under the number.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/line-numbers.tsx",
+          "target": "@components/showcase/code-block/variants/line-numbers.tsx",
           "type": "registry:component"
         }
       ]
@@ -6489,6 +6504,11 @@
         {
           "path": "src/code-block/variants/languages.tsx",
           "target": "@components/showcase/code-block/variants/languages.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/code-block/variants/line-numbers.tsx",
+          "target": "@components/showcase/code-block/variants/line-numbers.tsx",
           "type": "registry:component"
         },
         {

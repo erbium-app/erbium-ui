@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-line-numbers",
+  "type": "registry:component",
+  "title": "Code Block: Line Numbers",
+  "description": "Set `startLine` to number an excerpt from the middle of a file. The gutter grows to fit the widest number, so every line stays aligned, and wrapped lines continue in the code column rather than under the number.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst excerpt = `export const createServer = (options: ServerOptions) => {\n  const server = http.createServer(options.handler);\n\n  server.listen(options.port);\n\n  return server;\n};\n`;\n\nconst message =\n  \"The server could not start because port 3000 is already in use. Stop the other process or set a different port in server.config.ts.\";\n\nconst Example = () => (\n  <div className=\"grid w-full max-w-xl gap-group\">\n    <CodeBlock code={excerpt} language=\"ts\" title=\"server.ts\" lineNumbers startLine={42} />\n    <CodeBlock code={message} language=\"text\" title=\"Wrapped lines\" lineNumbers wrap />\n    <CodeBlock\n      code={Array.from({ length: 12 }, (_, index) => `log.info(\"step ${index + 995}\");`).join(\n        \"\\n\",\n      )}\n      language=\"js\"\n      title=\"Wider numbers\"\n      lineNumbers\n      startLine={995}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/code-block/variants/line-numbers.tsx",
+      "target": "@components/showcase/code-block/variants/line-numbers.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

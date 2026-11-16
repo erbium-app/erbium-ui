@@ -13,6 +13,8 @@ import CompositionExample from "./variants/composition";
 import CompositionSource from "./variants/composition.tsx?raw";
 import OverflowExample from "./variants/overflow";
 import OverflowSource from "./variants/overflow.tsx?raw";
+import LineNumbersExample from "./variants/line-numbers";
+import LineNumbersSource from "./variants/line-numbers.tsx?raw";
 import StatesExample from "./variants/states";
 import StatesSource from "./variants/states.tsx?raw";
 import ChangingSourceExample from "./variants/changing-source";
@@ -101,6 +103,16 @@ export const Overflow: Story = {
     },
   },
   render: OverflowExample,
+};
+
+export const LineNumbers: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("code-block", "line-numbers") },
+      source: { code: LineNumbersSource },
+    },
+  },
+  render: LineNumbersExample,
 };
 
 export const States: Story = {
