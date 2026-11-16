@@ -227,8 +227,19 @@ export const staticContentPlugin = ({ root, pagePaths, toolingPlugins }: Options
         return null;
       }
 
+      // Pages import their examples through generated modules, which the dependency scanner
+      // cannot read. Scanning the variant files up front optimizes their dependencies at startup,
+      // instead of on first render, where the reload leaves SSR with two copies of React.
+      const examples = {
+        optimizeDeps: {
+          entries: [nodePath.resolve(root, "../../packages/showcase/src/*/variants/*.tsx")],
+        },
+      };
+
       return {
         environments: {
+          client: examples,
+          ssr: examples,
           [environmentName]: {
             consumer: "server",
             dev: {
