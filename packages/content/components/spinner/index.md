@@ -3,8 +3,6 @@ title: "Spinner"
 description: "A loading indicator for ongoing activity."
 ---
 
-A loading indicator for ongoing activity.
-
 **Import:** `@erbium/ui/components/spinner`
 
 ## Usage
