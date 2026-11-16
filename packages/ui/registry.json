@@ -882,6 +882,8 @@
       "registryDependencies": [
         "@erbium/code-panel",
         "@erbium/copy-button",
+        "@erbium/diff-accessibility",
+        "@erbium/diff-icons",
         "@erbium/diff-theme",
         "@erbium/file-icons",
         "@erbium/icon"

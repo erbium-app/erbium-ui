@@ -4,6 +4,8 @@ import type { FileContents } from "@pierre/diffs";
 import { createContext, use, useMemo, useState } from "react";
 import type { ComponentProps, ReactNode } from "react";
 import { Icon } from "../components/icon";
+import { enhanceDiffAccessibility } from "../lib/diff-accessibility";
+import { applyDiffIcons } from "../lib/diff-icons";
 import { diffTheme, diffThemeCSS } from "../lib/diff-theme";
 import { fileIconName } from "../lib/file-icons";
 import {
@@ -147,6 +149,10 @@ const FileView = <Annotation = undefined,>({
             disableFileHeader: true,
             onPostRender(node, instance, phase) {
               if (phase !== "unmount") {
+                // The same Erbium icons and keyboard support as Diff View, for Pierre's gutter
+                // utility and any other controls it draws.
+                applyDiffIcons(node);
+                enhanceDiffAccessibility(node);
                 setRendered(true);
               }
 

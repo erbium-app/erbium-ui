@@ -33,7 +33,7 @@ Supplying children replaces the default layout. Parts read the file from context
 
 ## Selection and annotations
 
-`options` retains Pierre’s typed read-only file settings and callbacks, including wrapping, line numbers, and selection. Theme, injected CSS, and header rendering belong to Erbium. Use `lineAnnotations`, `renderAnnotation`, and `renderGutterUtility` to compose review UI. Annotation metadata is generic; `lineNumber` is one-based (zero attaches above the file).
+`options` retains Pierre’s typed read-only file settings and callbacks, including wrapping, line numbers, and selection. Theme, injected CSS, and header rendering belong to Erbium. Use `lineAnnotations`, `renderAnnotation`, and `renderGutterUtility` to compose review UI. Controls Pierre draws itself, such as the gutter button from `enableGutterUtility`, use Erbium icons, as they do in Diff View. Annotation metadata is generic; `lineNumber` is one-based (zero attaches above the file).
 
 ```tsx
 <FileView
