@@ -102,7 +102,7 @@ interface CodeBlockContextValue {
   lineNumbers: boolean;
   startLine: number;
   wrap: boolean;
-  /** Every item has the same icon, so tabs show it once, before the list, instead of each. */
+  /** A command block whose items all have the same icon shows it once, before the tabs. */
   sharedIcon: boolean;
 }
 
@@ -434,8 +434,12 @@ const CodeBlock = ({
   const enabled = items.filter((item) => item.disabled !== true);
   const active = enabled.find((item) => item.value === requested) ?? enabled.at(0);
 
+  // Command tabs are alternatives for one command (package managers), so a shared icon shows once;
+  // file tabs keep an icon each, even when the files share a language.
   const sharedIcon =
-    items.length > 1 && new Set(items.map((item) => itemIcon(item, surface))).size === 1;
+    surface === "command" &&
+    items.length > 1 &&
+    new Set(items.map((item) => itemIcon(item, surface))).size === 1;
 
   const context = useMemo(
     () => ({ active, items, lineNumbers, sharedIcon, startLine, surface, wrap }),
