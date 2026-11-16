@@ -1,6 +1,6 @@
 # 10 — Opinionated sidebars
 
-Reviewed 2026-10-05. This document records the proposed direction and implementation work; the API names below are illustrative, not shipped contracts.
+Reviewed 2026-11-17. None of the proposed API is implemented yet; the source comparison below is from 2026-10-05. This document records the proposed direction and implementation work; the API names below are illustrative, not shipped contracts.
 
 ## Goal
 
@@ -12,7 +12,7 @@ Reference: `/Volumes/AlirezaDev/Codes/Fullstack/elavie/packages/ui/web/src/compo
 
 | Area            | Elavie                                                   | Current Erbium                                             |
 | --------------- | -------------------------------------------------------- | ---------------------------------------------------------- |
-| Navigation rows | 28px height, 13px text, muted resting color, 2px gaps    | 32px height, 14px text, no row gaps                        |
+| Navigation rows | 28px height, 13px text, muted resting color, 2px gaps    | `h-control` rows, `text-control` text, no row gaps         |
 | Header/footer   | Distinct spacing for each region                         | Both reuse the same `p-2` styles                           |
 | Content padding | Horizontal padding belongs to the scroll viewport        | Padding belongs to each group                              |
 | Inset frame     | Tight 0.3rem margin, layered shadows, spring animation   | 0.5rem margin, simple shadow                               |
@@ -37,7 +37,7 @@ The docs app already imports shared menu styles, but its own CSS overrides group
 - [ ] Establish fixed width, region spacing, row geometry, colors, and focus treatment for each supported pattern.
 - [ ] Add an icon-rail pattern only after a concrete use case establishes its requirements.
 - [ ] Keep resizing out of the initial implementation. Reconsider bounded resizing when a real application needs it.
-- [ ] Define ownership of controlled state, persistence, and keyboard shortcuts. Keep product-specific routing and persistence policy in applications.
+- [ ] Define ownership of controlled state and persistence. Keep product-specific routing and persistence policy in applications. The `Mod+B` toggle and its handling inside the mobile sheet's hotkey scope already exist; keep them.
 
 ## Constrained public API
 

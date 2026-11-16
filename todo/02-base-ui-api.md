@@ -1,6 +1,6 @@
 # 02 — Base UI APIs
 
-Reviewed 2026-10-04.
+Reviewed 2026-11-17.
 
 ## Remaining work
 

@@ -1,6 +1,6 @@
 # 04 — Validation and release gates
 
-Reviewed 2026-10-04. This is a recurring acceptance checklist, not a list of missing implementations. The repository has no automated test suite or test runner configuration; verify interaction behavior manually in Storybook or docs and record the scope checked.
+Reviewed 2026-11-17. This is a recurring acceptance checklist, not a list of missing implementations. The repository has no automated test suite or test runner configuration; verify interaction behavior manually in Storybook or docs and record the scope checked.
 
 ## Per-component checks
 
@@ -25,8 +25,8 @@ Reviewed 2026-10-04. This is a recurring acceptance checklist, not a list of mis
 
 ## Repository checks
 
-- [ ] Run `bun run fix` after mechanical edits.
-- [ ] Run `bun run check` and fix actionable failures.
+- [ ] Run `bunx vp check <edited files>` (and `bunx stylelint <css files>` for CSS) until every edited file passes. `bun run check` covers the whole repository and fails on existing errors; see `CLAUDE.md`.
+- [ ] Use `bunx vp check --fix <edited files>` for mechanical fixes.
 - [ ] Run `bun run ready` before considering the registry parity work release-ready.
 - [ ] Run `bun run knip` only when unused files or dependencies are in scope.
 

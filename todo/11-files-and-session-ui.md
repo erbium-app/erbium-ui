@@ -2,15 +2,19 @@
 
 Use OpenCode's session UI and Pierre's rendering capabilities as references. Prefer compositions of existing blocks; applications own loading, execution, and persistence.
 
+## Current status (2026-11-17)
+
+The single-file blocks exist in `packages/ui/src/blocks`: FileTree (Git status and path updates), FileView, and DiffView (patch strings, split/unified layouts, wrapping, added/deleted/renamed/empty states, line selection, and typed annotations through Pierre's slots). Message, Bubble, MessageScroller, and Attachment cover the basic chat parts. Nothing below combines them yet.
+
 ## 1. Changed-file review
 
-- [ ] Compose FileTree, DiffView, and FileView with controlled file selection, Git status, rename paths, and added/deleted counts.
-- [ ] Add source/diff switching, split/unified controls, and next/previous file navigation.
-- [ ] Cover loading, error, no changes, no Git, added/deleted, empty, and unsupported files.
+- [ ] Compose FileTree, DiffView, and FileView with controlled file selection, rename paths, and added/deleted counts.
+- [ ] Add source/diff switching and next/previous file navigation.
+- [ ] Cover loading, error, no changes, no Git, and unsupported files in the composed review.
 
 ## 2. Review comments
 
-- [ ] Add reusable comment threads and editors through file/diff annotation slots.
+- [ ] Add reusable comment thread and editor components for the existing annotation slots.
 - [ ] Define controlled IDs, file paths, side-aware line ranges, and create/update/delete callbacks; consider resolve/reopen.
 - [ ] Support gutter and selected-line comments, drafts, cancellation, and focus restoration without intercepting editor keys.
 
@@ -29,7 +33,7 @@ Use OpenCode's session UI and Pierre's rendering capabilities as references. Pre
 
 ## 5. Messages and composer
 
-- [ ] Compose user/assistant messages, Markdown, attachments, tool groups, timestamps, copy actions, and streaming states.
+- [ ] Add Markdown, tool groups, and streaming states to the existing Message compositions.
 - [ ] Define controlled composer text, attachments, submit, pending, and cancel behavior.
 - [ ] Build a full session showcase before deciding whether a dedicated session package is needed.
 
@@ -37,7 +41,7 @@ Use OpenCode's session UI and Pierre's rendering capabilities as references. Pre
 
 Keep APIs minimal and reuse shared surfaces, input styles, and sidebar sizing. Validate keyboard access, RTL, light/dark, text zoom, touch sizing, and large content. Keep Pierre virtualization measurements aligned with rendered rows.
 
-Include documentation and useful stories, regenerate affected registries, run `bun run check`, and verify interactions manually.
+Include documentation and useful stories, regenerate affected registries, run `bunx vp check` on edited files, and verify interactions manually.
 
 ## References
 

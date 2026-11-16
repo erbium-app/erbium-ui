@@ -1,6 +1,6 @@
 # 12 — Keyboard shortcuts
 
-## Current status (2026-11-16)
+## Current status (2026-11-17)
 
 Erbium uses TanStack Hotkeys through `@tanstack/react-hotkeys` only; `packages/ui` no longer depends on `@tanstack/hotkeys` directly. Delivered:
 
@@ -9,7 +9,7 @@ Erbium uses TanStack Hotkeys through `@tanstack/react-hotkeys` only; `packages/u
 - `Button` `hotkey` registers a shortcut that clicks it and sets `aria-keyshortcuts`; `ButtonShortcut` without `hotkey` labels the button's binding.
 - `KbdHint` shows a shortcut in a `Badge` while a modifier is held, anchored with Base UI's tooltip positioner (centred above by default, logical `side`/`align`). `Button` and `SidebarTrigger` render it.
 
-Reference: the local TanStack Hotkeys checkout is at `/Volumes/AlirezaDev/Codes/Packages/hotkeys` (react-hotkeys 0.25.1, core 0.30.0). Load `bunx --no-install --package @tanstack/intent intent load @tanstack/react-hotkeys#react-hotkeys` and `@tanstack/hotkeys#app-hotkeys` before working on this file.
+The repository installs `@tanstack/react-hotkeys` `^0.27.0`. The local TanStack Hotkeys checkout at `/Volumes/AlirezaDev/Codes/Packages/hotkeys` is older (react-hotkeys 0.25.1); pull it before using it as a reference. Load `bunx --no-install --package @tanstack/intent intent load @tanstack/react-hotkeys#react-hotkeys` and `@tanstack/hotkeys#app-hotkeys` before working on this file.
 
 ## Remaining work
 
@@ -45,10 +45,6 @@ Use `useHeldKeys` to set `data-pressed` on `Kbd` keycaps while their keys are he
 ### Devtools
 
 Add `@tanstack/react-hotkeys-devtools` (`hotkeysDevtoolsPlugin()` in `@tanstack/react-devtools`) to Storybook and the docs dev build, not production.
-
-### Server-rendered labels
-
-The docs app is prerendered, so Mac users see `Ctrl` labels until hydration. Options: render shortcut labels client-only with a same-width fallback, or accept the switch. Server-rendered apps can pass `detectPlatform(userAgent)` to `HotkeysProvider` (documented in the Kbd page).
 
 ## Verification gaps
 

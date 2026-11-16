@@ -1,6 +1,6 @@
 # 06 — Surfaces and depth
 
-Reviewed 2026-10-11.
+Reviewed 2026-11-17.
 
 ## Remaining work
 

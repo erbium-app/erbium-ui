@@ -1,6 +1,6 @@
 # 00 — Naming and boundaries
 
-Reviewed 2026-10-04.
+Reviewed 2026-11-17.
 
 Base UI owns primitive behavior; Erbium owns design, composition, and documented API decisions. Prefer Base UI naming and APIs where applicable. shadcn compatibility is primarily the installation and registry workflow, not a requirement to preserve every upstream component name.
 
@@ -14,6 +14,5 @@ Base UI owns primitive behavior; Erbium owns design, composition, and documented
 
 ## Remaining decisions
 
-- [ ] Define package boundaries for agent sessions, file trees, and diffs before implementation.
+- [ ] Define the package boundary for agent session compositions before implementation. File trees, file views, and diffs already live in `packages/ui/src/blocks`.
 - [ ] Define shared API contracts for React Native alongside React, documenting necessary platform differences.
-- [ ] Review proposed Menu, Frame, and Group abstractions against actual compositions before exposing them.

@@ -1,6 +1,6 @@
 # 08 — Responsive overlays
 
-Reviewed 2026-10-04.
+Reviewed 2026-11-17.
 
 ## Remaining work
 
@@ -17,7 +17,7 @@ Reviewed 2026-10-04.
 - Alert Dialog: preserve deliberate confirmation and prohibit accidental gesture dismissal.
 - Sheet: decide its relationship to Drawer before merging APIs.
 - Popover and value pickers: consider drawer presentations with keyboard-safe search.
-- Menus: preserve action/checkbox/radio semantics; coordinate with [07](./07-searchable-menus.md).
+- Menus: preserve action/checkbox/radio semantics and the `searchable` filter header in drawer presentations.
 - Hover Card: define a touch alternative.
 - Tooltip, Toast, and Navigation Menu: retain their semantics rather than forcing drawer presentation.
 
