@@ -19,5 +19,6 @@ Track remaining work here. Remove completed tasks; source and documentation reco
 13. [anti-slop fork rules](./13-anti-slop-fork.md)
 14. [CI and Cloudflare deploy](./14-ci-and-deploy.md)
 15. [Control primitives](./15-control-primitives.md)
+16. [Async states](./16-async-states.md)
 
 Keep these notes aligned with the public roadmap when scope changes. Add components and stories for recurring needs, not inventory parity.
