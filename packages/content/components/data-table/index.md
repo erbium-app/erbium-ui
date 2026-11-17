@@ -49,6 +49,16 @@ function Invoices({ invoices }: { invoices: Invoice[] }) {
 
 Keep `columns` at module scope or in a memo. Rows with an `id` keep their selection across pages and refetches.
 
+## Opening rows
+
+`onRowClick` on `DataTable` makes each row open something, such as its detail page. The row arrives typed, so `row.original` is the record:
+
+```tsx
+<DataTable table={table} onRowClick={(row) => navigate({ to: "/invoices/$id", params: row.original })}>
+```
+
+Clicks on a control inside the row, such as the selection checkbox, a row menu or a link, go to that control alone, so their handlers need no `stopPropagation`. Rows are not focusable, so also render a link to the row in one of its cells: keyboards reach the row through it, and it opens in a new tab.
+
 ## Columns
 
 Columns are TanStack column definitions. A data table reads three more things from them:
@@ -122,7 +132,7 @@ function Invoices() {
 }
 ```
 
-The URL reads `?q=acme&sort=issued.desc,customer&page=2&size=20&status=paid,overdue`. `q` is the search, `sort` the sort order, `page` and `size` the page, and each filterable column keeps its rule under its id, so do not name a column `q`, `sort`, `page` or `size`. Defaults are left out of the URL, and every change replaces the history entry. `validateDataTableSearch` drops params that do not fit the columns and passes other params through.
+The URL reads `?q=acme&sort=issued.desc,customer&page=2&size=20&status=paid,overdue`. `q` is the search, `sort` the sort order, `page` and `size` the page, and each filterable column keeps its rule under its id, so do not name a column `q`, `sort`, `page` or `size`. A route with more than one table gives each config a `prefix`: `prefix: "users"` writes `?users.q=acme&users.page=2`, so the tables keep separate params. Defaults are left out of the URL, and every change replaces the history entry. `validateDataTableSearch` drops params that do not fit the columns and passes other params through.
 
 ## Loading
 
@@ -132,7 +142,7 @@ The URL reads `?q=acme&sort=issued.desc,customer&page=2&size=20&status=paid,over
 
 ## Parts
 
-- `DataTable`: provides `table` to the parts inside it.
+- `DataTable`: provides `table` to the parts inside it. `onRowClick` opens a row.
 - `DataTableToolbar`: the row above the table.
 - `DataTableSearch`: searches every column. `placeholder` names what it searches.
 - `DataTableFilters`: filter chips for the filterable columns. `DataTableFacets` shows a button per column instead; pass `fields` to pick them.

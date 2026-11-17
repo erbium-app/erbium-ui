@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDebouncedCallback } from "@tanstack/react-pacer/debouncer";
 import { FlexRender, Subscribe } from "@tanstack/react-table";
-import type { CellContext, HeaderContext, RowData } from "@tanstack/react-table";
+import type { CellContext, HeaderContext, Row, RowData } from "@tanstack/react-table";
 import { Button } from "../components/button";
 import { Checkbox } from "../components/checkbox";
 import {
@@ -78,22 +78,62 @@ const columnLabel = (column: Column) => {
 
 interface DataTableProps<TData extends RowData> extends React.ComponentProps<"div"> {
   table: DataTableInstance<TData>;
+  /**
+   * Opens a row, such as its detail page, when the row is clicked. Clicks on a control in the row
+   * (a checkbox, a menu, a link) are left to that control. Rows are not focusable, so also render
+   * a link to the row in one of its cells for keyboards and for opening it in a new tab.
+   */
+  onRowClick?: (row: Row<DataTableFeatures, TData>) => void;
 }
+
+/** Opens a row by id, when the table's rows can be opened. */
+const RowClickContext = React.createContext<((rowId: string) => void) | undefined>(undefined);
+
+const interactive =
+  "a, button, input, label, select, textarea, [contenteditable], [role=button], [role=checkbox], [role=menuitem], [role=switch]";
+
+/** A click on the row itself: not on a control inside it, nor in a menu it opened, nor a text selection. */
+const isRowClick = ({ target, currentTarget }: React.MouseEvent<HTMLElement>) => {
+  if (!(target instanceof Element) || !currentTarget.contains(target)) {
+    return false;
+  }
+
+  const control = target.closest(interactive);
+
+  return (
+    (control === null || !currentTarget.contains(control)) &&
+    globalThis.getSelection()?.type !== "Range"
+  );
+};
 
 /** Provides the table to its parts, which read it from context. */
 const DataTable = <TData extends RowData>({
   table,
+  onRowClick,
   className,
   ...props
-}: DataTableProps<TData>) => (
-  <table.AppTable>
-    <div
-      data-slot="data-table"
-      className={cn("flex w-full min-w-0 flex-col gap-group", className)}
-      {...props}
-    />
-  </table.AppTable>
-);
+}: DataTableProps<TData>) => {
+  const openRowById = React.useCallback(
+    (rowId: string) => {
+      onRowClick?.(table.getRow(rowId, true));
+    },
+    [onRowClick, table],
+  );
+
+  const openRow = onRowClick === undefined ? undefined : openRowById;
+
+  return (
+    <table.AppTable>
+      <RowClickContext value={openRow}>
+        <div
+          data-slot="data-table"
+          className={cn("flex w-full min-w-0 flex-col gap-group", className)}
+          {...props}
+        />
+      </RowClickContext>
+    </table.AppTable>
+  );
+};
 
 /** The row of search, filters and view options above the table. Stays readable while rows load. */
 const DataTableToolbar = ({ className, ...props }: React.ComponentProps<"div">) => (
@@ -372,6 +412,7 @@ const DataTableContent = ({
   ...props
 }: DataTableContentProps) => {
   const table = useDataTableContext();
+  const openRow = React.use(RowClickContext);
   const columns = table.getVisibleLeafColumns();
   const { rows } = table.getRowModel();
   const sized = columns.some((column) => column.columnDef.size !== undefined);
@@ -420,7 +461,20 @@ const DataTableContent = ({
             </TableRow>
           ) : (
             rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() ? "selected" : undefined}>
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() ? "selected" : undefined}
+                className={cn(openRow !== undefined && "cursor-pointer")}
+                onClick={
+                  openRow === undefined
+                    ? undefined
+                    : (event) => {
+                        if (isRowClick(event)) {
+                          openRow(row.id);
+                        }
+                      }
+                }
+              >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}

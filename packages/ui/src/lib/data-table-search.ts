@@ -9,8 +9,9 @@ import type { FilterSearchColumn, FilterSearchFields, SearchParams } from "./fil
  *
  * `q` is the search, `sort` the sort order (`.desc` marks a descending column), `page` the
  * 1-based page, `size` the page size, and each filterable column keeps its rule under its id.
- * Defaults are left out of the URL. These functions are pure, so a route loader can parse the
- * same search the table reads.
+ * Defaults are left out of the URL. A route with two tables gives each a `prefix`, which names
+ * its params `users.q`, `users.page` and so on. These functions are pure, so a route loader can
+ * parse the same search the table reads.
  */
 
 /** The page sizes a table offers. */
@@ -39,6 +40,11 @@ interface DataTableSearchConfig {
   defaultSorting?: SortingState;
   /** The page size when the URL names none. */
   defaultPageSize?: number;
+  /**
+   * Prefixes the table's params, for a route with more than one table: `prefix: "users"` writes
+   * `?users.q=…&users.page=2`. Left out, the params are unprefixed.
+   */
+  prefix?: string;
 }
 
 type ParamValue = SearchParams[string];
@@ -112,6 +118,21 @@ const parseSorting = (value: ParamValue, sortable: Set<string>): SortingState =>
 const encodeSorting = (sorting: SortingState) =>
   sorting.map(({ id, desc }) => (desc ? `${id}.desc` : id)).join(",");
 
+/** The table's own params, read without their prefix. */
+const unprefix = (search: SearchParams, prefix: string | undefined): SearchParams =>
+  prefix === undefined
+    ? search
+    : Object.fromEntries(
+        Object.entries(search).flatMap(([key, value]) =>
+          key.startsWith(`${prefix}.`) ? [[key.slice(prefix.length + 1), value]] : [],
+        ),
+      );
+
+const withPrefix = <TValue>(params: Record<string, TValue>, prefix: string | undefined) =>
+  prefix === undefined
+    ? params
+    : Object.fromEntries(Object.entries(params).map(([key, value]) => [`${prefix}.${key}`, value]));
+
 const getDefaultPageSize = (config: DataTableSearchConfig) =>
   config.defaultPageSize ?? fallbackPageSize;
 
@@ -120,10 +141,11 @@ const isPageSize = (size: number, config: DataTableSearchConfig) =>
 
 /** The query a search holds, with the table's defaults where the URL names none. */
 const parseDataTableSearch = (
-  search: SearchParams,
+  params: SearchParams,
   config: DataTableSearchConfig,
 ): DataTableQuery => {
   const { filterFields, sortable } = getSchema(config.columns);
+  const search = unprefix(params, config.prefix);
   const size = toPositiveInteger(search.size);
   const sorting = parseSorting(search.sort, sortable);
 
@@ -148,14 +170,19 @@ const toDataTableSearch = (query: DataTableQuery, config: DataTableSearchConfig)
   const sort = encodeSorting(query.sorting);
   const { pageIndex, pageSize } = query.pagination;
 
-  return {
-    ...toFilterSearch(query.columnFilters, filterFields),
-    page: pageIndex > 0 ? pageIndex + 1 : undefined,
-    q: query.globalFilter === "" ? undefined : query.globalFilter,
-    size: pageSize === getDefaultPageSize(config) ? undefined : pageSize,
-    sort:
-      sort === "" || sort === encodeSorting(config.defaultSorting ?? noSorting) ? undefined : sort,
-  };
+  return withPrefix(
+    {
+      ...toFilterSearch(query.columnFilters, filterFields),
+      page: pageIndex > 0 ? pageIndex + 1 : undefined,
+      q: query.globalFilter === "" ? undefined : query.globalFilter,
+      size: pageSize === getDefaultPageSize(config) ? undefined : pageSize,
+      sort:
+        sort === "" || sort === encodeSorting(config.defaultSorting ?? noSorting)
+          ? undefined
+          : sort,
+    },
+    config.prefix,
+  );
 };
 
 /**
@@ -173,7 +200,8 @@ const validateDataTableSearch =
 
     return Object.fromEntries(
       Object.entries({ ...search, ...params }).filter(
-        (entry) => entry[1] !== undefined && entry[1] !== null,
+        (entry): entry is [string, string | number | boolean] =>
+          entry[1] !== undefined && entry[1] !== null,
       ),
     );
   };

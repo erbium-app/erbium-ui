@@ -115,13 +115,13 @@ const readSearch = (search: SearchParams) => search;
 const useDataTableSearchParams = (
   config: DataTableSearchConfig,
 ): readonly [DataTableQuery, DataTableQueryChange] => {
-  const { columns, defaultSorting, defaultPageSize } = config;
+  const { columns, defaultSorting, defaultPageSize, prefix } = config;
   const search = useSearch({ select: readSearch, strict: false });
   const navigate = useNavigate();
 
   const query = React.useMemo(
-    () => parseDataTableSearch(search, { columns, defaultPageSize, defaultSorting }),
-    [search, columns, defaultPageSize, defaultSorting],
+    () => parseDataTableSearch(search, { columns, defaultPageSize, defaultSorting, prefix }),
+    [search, columns, defaultPageSize, defaultSorting, prefix],
   );
 
   // Changes made before the router re-renders build on each other, not on the stale URL.
@@ -142,7 +142,7 @@ const useDataTableSearchParams = (
       replace: true,
       search: (prev: SearchParams) => ({
         ...prev,
-        ...toDataTableSearch(next, { columns, defaultPageSize, defaultSorting }),
+        ...toDataTableSearch(next, { columns, defaultPageSize, defaultSorting, prefix }),
       }),
       to: ".",
     });
@@ -194,6 +194,8 @@ const useDataTable = <TData extends RowData>({
   state,
   defaultPageSize,
   defaultSorting,
+  // Only the URL reads the prefix; it is taken here so one config can be spread into both hooks.
+  prefix: _prefix,
   ...options
 }: DataTableOptions<TData>) => {
   const [ownQuery, setOwnQuery] = useDataTableQuery({
