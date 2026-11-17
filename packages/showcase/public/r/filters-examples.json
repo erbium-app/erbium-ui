@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All filters examples.",
+  "name": "filters-examples",
+  "registryDependencies": [
+    "@erbium-examples/filters-overview",
+    "@erbium-examples/filters-faceted",
+    "@erbium-examples/filters-list"
+  ],
+  "title": "Filters examples",
+  "type": "registry:item"
+}

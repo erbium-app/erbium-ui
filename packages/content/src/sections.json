@@ -110,7 +110,8 @@
       "file-tree",
       "lightbox",
       "step-indicator",
-      "data-table"
+      "data-table",
+      "filters"
     ]
   },
   {

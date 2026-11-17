@@ -928,6 +928,48 @@
       ]
     },
     {
+      "name": "filter-rules",
+      "type": "registry:lib",
+      "title": "Filter Rules",
+      "description": "Erbium filter rules lib.",
+      "dependencies": ["@erbium/icons", "@tanstack/react-table"],
+      "files": [
+        {
+          "path": "src/lib/filter-rules.ts",
+          "target": "@lib/filter-rules.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "filters",
+      "type": "registry:block",
+      "title": "Filters",
+      "description": "Erbium filters block.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/button-variants",
+        "@erbium/calendar",
+        "@erbium/dropdown-menu",
+        "@erbium/filter-rules",
+        "@erbium/icon",
+        "@erbium/input",
+        "@erbium/number-field",
+        "@erbium/popover",
+        "@erbium/separator",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/filters.tsx",
+          "target": "@components/blocks/filters.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "focus-search-input",
       "type": "registry:lib",
       "title": "Focus Search Input",
@@ -2149,6 +2191,21 @@
         {
           "path": "src/hooks/use-drag-select.ts",
           "target": "@hooks/use-drag-select.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-filters",
+      "type": "registry:hook",
+      "title": "Use Filters",
+      "description": "Erbium use filters hook.",
+      "dependencies": ["@tanstack/react-table"],
+      "registryDependencies": ["@erbium/filter-rules"],
+      "files": [
+        {
+          "path": "src/hooks/use-filters.ts",
+          "target": "@hooks/use-filters.ts",
           "type": "registry:hook"
         }
       ]
