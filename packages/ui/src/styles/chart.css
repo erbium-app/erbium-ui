@@ -12,34 +12,7 @@
   --ts-chart-focus-fill: var(--background);
   --ts-chart-crosshair-marker-fill: var(--background);
   --ts-chart-crosshair-label-halo: var(--background);
-  --ts-chart-tooltip-background: var(--surface-overlay);
-  --ts-chart-tooltip-color: var(--popover-foreground);
-  --ts-chart-tooltip-border: none;
-  --ts-chart-tooltip-border-radius: var(--radius-lg);
 
-  /* The overlay surface recipe, resolved from theme tokens because the
-     tooltip is rendered by the chart library rather than a surface class. */
-  --ts-chart-tooltip-shadow:
-    0 -1px 0 0 var(--surface-highlight-strong), 0 0 0 1px var(--surface-edge),
-    0 0 0 1px var(--surface-overlay), 0 2px 4px -1px var(--surface-shadow),
-    0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
-  --ts-chart-tooltip-padding: 0.375rem 0.5rem;
-  --ts-chart-tooltip-font: var(--text-control--font-weight)
-    var(--text-control-sm)/var(--text-control-sm--line-height) var(--font-sans);
-}
-
-/* The library marks the row under the pointer as active. Pair the semibold
-   with the role's optical size so the row keeps its width and the tooltip
-   does not resize as the pointer moves. */
-.erbium-chart [data-slot="chart-tooltip-row"][data-active],
-.erbium-chart-tooltip [data-slot="chart-tooltip-row"][data-active] {
-  font-variation-settings: var(--text-control--selected-variation);
-  font-weight: var(--font-weight-semibold);
-}
-
-@media (forced-colors: active) {
-  .erbium-chart,
-  .erbium-chart-tooltip {
-    --ts-chart-tooltip-border: 1px solid CanvasText;
-  }
+  /* The tooltip card itself is drawn by `ChartTooltipBody` with the overlay
+     surface: TanStack Charts clears its own card styles for a custom body. */
 }

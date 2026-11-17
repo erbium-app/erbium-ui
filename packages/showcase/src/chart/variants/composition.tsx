@@ -36,7 +36,15 @@ const definition = defineChart({
     y: { grid: true, nice: true, scale: scaleLinear },
   },
   theme: chartTheme,
-  tooltip: chartTooltip,
+  tooltip: {
+    ...chartTooltip,
+    // Without items, the rows are named after the channels, "x" and "y".
+    items: [
+      { channel: "x", label: "Month" },
+      { channel: "y", label: "Revenue" },
+      { id: "target", label: "Target", text: () => String(target) },
+    ],
+  },
 });
 
 const Example = () => (

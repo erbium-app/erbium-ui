@@ -303,17 +303,28 @@ const ChartLegend = ({
   </ul>
 );
 
+/**
+ * TanStack Charts drops its own card styles when a custom body renders, so the
+ * body carries the overlay surface that popovers and hover cards use.
+ */
+const tooltipSurface =
+  "rounded-lg surface-overlay px-2 py-1.5 text-control-sm text-popover-foreground";
+
 /** Tooltip content in Erbium markup. Passed to TanStack Charts as `renderTooltipBody`. */
 const ChartTooltipBody = ({ content }: { content: ChartTooltipContent | string }) => {
   // oxlint-disable-next-line anti-slop/no-runtime-typeof -- TanStack Charts types tooltip content as its own union of a plain string or rows; this branches on that library contract, not on unparsed input.
   if (typeof content === "string") {
-    return <div data-slot="chart-tooltip">{content}</div>;
+    return (
+      <div data-slot="chart-tooltip" className={tooltipSurface}>
+        {content}
+      </div>
+    );
   }
 
   const { title = "", rows } = content;
 
   return (
-    <div data-slot="chart-tooltip" className="grid min-w-32 gap-1">
+    <div data-slot="chart-tooltip" className={cn(tooltipSurface, "grid min-w-32 gap-1")}>
       {title === "" ? null : (
         <div data-slot="chart-tooltip-title" className="text-muted-foreground">
           {title}
@@ -325,7 +336,7 @@ const ChartTooltipBody = ({ content }: { content: ChartTooltipContent | string }
             key={label}
             data-slot="chart-tooltip-row"
             data-active={active ? "" : undefined}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 data-active:font-selected"
           >
             {color === "" ? null : <ChartSwatch color={color} />}
             <span className="flex-1">{label}</span>
