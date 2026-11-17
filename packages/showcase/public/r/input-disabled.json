@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst InputDisabled = () => <Input disabled type=\"email\" placeholder=\"Email\" />;\n\nexport default InputDisabled;\n",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputDisabledExample() {\n  return <Input disabled type=\"email\" placeholder=\"Email\" />;\n}\n",
       "path": "src/input/examples/input-disabled.tsx",
       "target": "@components/showcase/input/examples/input-disabled.tsx",
       "type": "registry:component"

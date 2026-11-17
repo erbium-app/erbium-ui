@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport const TooltipDisabled = () => (\n  <>\n    <Tooltip>\n      <TooltipTrigger render={<span className=\"inline-block w-fit\" />}>\n        <Button variant=\"outline\" disabled>\n          Disabled\n        </Button>\n      </TooltipTrigger>\n      <TooltipContent>\n        <p>This feature is currently unavailable</p>\n      </TooltipContent>\n    </Tooltip>\n  </>\n);\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipDisabledExample() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<span className=\"inline-block w-fit\" />}>\n        <Button variant=\"outline\" disabled>\n          Disabled\n        </Button>\n      </TooltipTrigger>\n      <TooltipContent>\n        <p>This feature is currently unavailable</p>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n",
       "path": "src/tooltip/examples/tooltip-disabled.tsx",
       "target": "@components/showcase/tooltip/examples/tooltip-disabled.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { TooltipDisabled } from \"../examples/tooltip-disabled\";\n\nconst Example = () => <TooltipDisabled />;\n\nexport default Example;\n",
+      "content": "import TooltipDisabled from \"../examples/tooltip-disabled\";\n\nconst Example = () => <TooltipDisabled />;\n\nexport default Example;\n",
       "path": "src/tooltip/variants/disabled-button.tsx",
       "target": "@components/showcase/tooltip/variants/disabled-button.tsx",
       "type": "registry:component"

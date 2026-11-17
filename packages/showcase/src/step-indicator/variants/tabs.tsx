@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@erbium/ui/components/
 
 const tabs = ["Source", "Build", "Deploy"];
 
-const Example = () => {
+export default function StepIndicatorTabsExample() {
   const [index, setIndex] = useState(0);
 
   return (
@@ -35,6 +35,4 @@ const Example = () => {
       </StepIndicator>
     </div>
   );
-};
-
-export default Example;
+}

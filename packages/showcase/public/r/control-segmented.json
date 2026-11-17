@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Segmented\n    label=\"Mode\"\n    defaultValue=\"photo\"\n    options={[\n      { label: \"Photo\", value: \"photo\" },\n      { label: \"Video\", value: \"video\" },\n    ]}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlSegmentedExample() {\n  return (\n    <Control.Segmented\n      label=\"Mode\"\n      defaultValue=\"photo\"\n      options={[\n        { label: \"Photo\", value: \"photo\" },\n        { label: \"Video\", value: \"video\" },\n      ]}\n      className=\"w-72\"\n    />\n  );\n}\n",
       "path": "src/control/variants/segmented.tsx",
       "target": "@components/showcase/control/variants/segmented.tsx",
       "type": "registry:component"

@@ -1,7 +1,13 @@
 import Demo from "../examples/form-demo";
 
-const Example = (args: { defaultEmail: string; required: boolean; submitLabel: string }) => (
-  <Demo key={args.defaultEmail} {...args} />
-);
+export const defaultProps = {
+  defaultEmail: "",
+  required: true,
+  submitLabel: "Submit",
+} satisfies { defaultEmail: string; required: boolean; submitLabel: string };
 
-export default Example;
+export default function FormPlaygroundExample(
+  args: { defaultEmail: string; required: boolean; submitLabel: string } = defaultProps,
+) {
+  return <Demo key={args.defaultEmail} {...args} />;
+}

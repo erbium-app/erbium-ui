@@ -10,7 +10,7 @@ const verify = async (code: string, signal: AbortSignal) => {
   return !signal.aborted && code === "123456";
 };
 
-export const OTPFieldStatusDemo = () => {
+export default function OTPFieldStatusExample() {
   const [verifiedValue, setVerifiedValue] = useState<string>();
   const form = useAppForm({ defaultValues: { code: "" } });
 
@@ -48,4 +48,4 @@ export const OTPFieldStatusDemo = () => {
       )}
     </form.AppField>
   );
-};
+}

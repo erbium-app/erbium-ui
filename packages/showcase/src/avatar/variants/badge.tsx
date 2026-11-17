@@ -1,5 +1,5 @@
-import { AvatarWithBadge } from "../examples/avatar-badge";
+import AvatarWithBadgeExample from "../examples/avatar-badge";
 
-const Example = () => <AvatarWithBadge />;
+const Example = () => <AvatarWithBadgeExample />;
 
 export default Example;

@@ -1,5 +1,5 @@
-import { BubbleVariantsDemo } from "../examples/bubble-variants";
+import BubbleVariantsExample from "../examples/bubble-variants";
 
-const Example = () => <BubbleVariantsDemo />;
+const Example = () => <BubbleVariantsExample />;
 
 export default Example;

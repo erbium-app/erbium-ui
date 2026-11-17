@@ -193,7 +193,9 @@ const signUpRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([signInRoute, signUpRoute]);
 
-const CardDemo = ({ authClient }: CardDemoProps) => {
+export const defaultProps = {} satisfies CardDemoProps;
+
+export default function CardExample({ authClient }: CardDemoProps = defaultProps) {
   const router = useMemo(
     () =>
       createRouter({
@@ -208,6 +210,4 @@ const CardDemo = ({ authClient }: CardDemoProps) => {
       <RouterProvider router={router} />
     </AuthClientContext>
   );
-};
-
-export default CardDemo;
+}

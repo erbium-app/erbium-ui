@@ -53,7 +53,7 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   });
 };
 
-export const QuestionnaireCard = () => {
+export default function QuestionnaireCardExample() {
   const taskTitleId = React.useId();
   const outputTitleId = React.useId();
 
@@ -116,4 +116,4 @@ export const QuestionnaireCard = () => {
       </Card>
     </Questionnaire>
   );
-};
+}

@@ -12,7 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/p
 
 const profileUrl = "https://example.com/john-doe";
 
-const InputGroupButtonExample = () => {
+export default function InputGroupButtonExample() {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   return (
@@ -72,6 +72,4 @@ const InputGroupButtonExample = () => {
       </InputGroup>
     </div>
   );
-};
-
-export default InputGroupButtonExample;
+}

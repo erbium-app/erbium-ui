@@ -1,5 +1,5 @@
-import { ComboboxMultiple } from "../examples/combobox-multiple";
+import ComboboxMultipleExample from "../examples/combobox-multiple";
 
-const Example = () => <ComboboxMultiple />;
+const Example = () => <ComboboxMultipleExample />;
 
 export default Example;

@@ -1,5 +1,5 @@
-import ShowcaseDemo from "../examples/autocomplete-demo";
+import AutocompleteShowcaseExample from "../examples/autocomplete-demo";
 
-const Example = () => <ShowcaseDemo />;
+const Example = () => <AutocompleteShowcaseExample />;
 
 export default Example;

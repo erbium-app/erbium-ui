@@ -20,7 +20,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete startAddon={<Icon name=\"search-01\" />} />;\n\nexport default Example;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { FruitAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteWithStartAddonExample() {\n  return <FruitAutocomplete startAddon={<Icon name=\"search-01\" />} />;\n}\n",
       "path": "src/autocomplete/variants/with-start-addon.tsx",
       "target": "@components/showcase/autocomplete/variants/with-start-addon.tsx",
       "type": "registry:component"

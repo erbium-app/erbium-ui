@@ -1,5 +1,5 @@
-import { BubbleCollapsible } from "../examples/bubble-collapsible";
+import BubbleCollapsibleExample from "../examples/bubble-collapsible";
 
-const Example = () => <BubbleCollapsible />;
+const Example = () => <BubbleCollapsibleExample />;
 
 export default Example;

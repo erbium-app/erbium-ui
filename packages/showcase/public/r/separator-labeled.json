@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst Example = () => (\n  <div className=\"w-72 rounded-lg surface-panel p-4\">\n    <Separator className=\"text-metadata text-muted-foreground\">or</Separator>\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport default function SeparatorLabeledExample() {\n  return (\n    <div className=\"w-72 rounded-lg surface-panel p-4\">\n      <Separator className=\"text-metadata text-muted-foreground\">or</Separator>\n    </div>\n  );\n}\n",
       "path": "src/separator/variants/labeled.tsx",
       "target": "@components/showcase/separator/variants/labeled.tsx",
       "type": "registry:component"

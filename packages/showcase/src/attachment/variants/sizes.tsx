@@ -1,5 +1,5 @@
-import { AttachmentSizes } from "../examples/attachment-sizes";
+import AttachmentSizesExample from "../examples/attachment-sizes";
 
-const Example = () => <AttachmentSizes />;
+const Example = () => <AttachmentSizesExample />;
 
 export default Example;

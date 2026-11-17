@@ -1,4 +1,4 @@
-import { SliderMultiple } from "../examples/slider-multiple";
+import SliderMultiple from "../examples/slider-multiple";
 
 const Example = () => <SliderMultiple />;
 

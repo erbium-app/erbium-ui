@@ -1,5 +1,5 @@
-import { BadgeWithSpinner } from "../examples/badge-spinner";
+import BadgeWithSpinnerExample from "../examples/badge-spinner";
 
-const Example = () => <BadgeWithSpinner />;
+const Example = () => <BadgeWithSpinnerExample />;
 
 export default Example;

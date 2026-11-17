@@ -1,5 +1,5 @@
-import { ComboboxInvalid } from "../examples/combobox-invalid";
+import ComboboxInvalidExample from "../examples/combobox-invalid";
 
-const Example = () => <ComboboxInvalid />;
+const Example = () => <ComboboxInvalidExample />;
 
 export default Example;

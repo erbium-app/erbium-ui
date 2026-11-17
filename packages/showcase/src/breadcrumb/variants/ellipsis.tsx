@@ -1,5 +1,5 @@
-import { BreadcrumbEllipsisDemo } from "../examples/breadcrumb-ellipsis";
+import BreadcrumbEllipsisExample from "../examples/breadcrumb-ellipsis";
 
-const Example = () => <BreadcrumbEllipsisDemo />;
+const Example = () => <BreadcrumbEllipsisExample />;
 
 export default Example;

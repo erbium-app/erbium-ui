@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\n/**\n * Without content, `Skeleton` is a box you size yourself. Use it only when there is nothing to\n * render a sample from, such as a chart whose shape depends on the data. It shares the page's\n * shimmer with every measured skeleton.\n */\nexport const SkeletonBox = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-related\">\n    <Skeleton className=\"h-40 w-full rounded-xl\" />\n    <div className=\"flex gap-related\">\n      <Skeleton className=\"h-4 flex-1\" />\n      <Skeleton className=\"h-4 w-16\" />\n    </div>\n  </div>\n);\n",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\n\n/**\n * Without content, `Skeleton` is a box you size yourself. Use it only when there is nothing to\n * render a sample from, such as a chart whose shape depends on the data. It shares the page's\n * shimmer with every measured skeleton.\n */\nexport default function SkeletonBoxExample() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-related\">\n      <Skeleton className=\"h-40 w-full rounded-xl\" />\n      <div className=\"flex gap-related\">\n        <Skeleton className=\"h-4 flex-1\" />\n        <Skeleton className=\"h-4 w-16\" />\n      </div>\n    </div>\n  );\n}\n",
       "path": "src/skeleton/examples/skeleton-box.tsx",
       "target": "@components/showcase/skeleton/examples/skeleton-box.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { SkeletonBox } from \"../examples/skeleton-box\";\n\nconst Example = () => <SkeletonBox />;\n\nexport default Example;\n",
+      "content": "import SkeletonBox from \"../examples/skeleton-box\";\n\nconst Example = () => <SkeletonBox />;\n\nexport default Example;\n",
       "path": "src/skeleton/variants/box.tsx",
       "target": "@components/showcase/skeleton/variants/box.tsx",
       "type": "registry:component"

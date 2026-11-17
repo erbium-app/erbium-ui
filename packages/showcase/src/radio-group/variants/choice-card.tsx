@@ -1,4 +1,4 @@
-import { RadioGroupChoiceCard } from "../examples/radio-group-choice-card";
+import RadioGroupChoiceCard from "../examples/radio-group-choice-card";
 
 const Example = () => <RadioGroupChoiceCard />;
 

@@ -1,5 +1,5 @@
-import { InputField } from "../examples/input-field";
+import InputFieldExample from "../examples/input-field";
 
-const Example = () => <InputField />;
+const Example = () => <InputFieldExample />;
 
 export default Example;

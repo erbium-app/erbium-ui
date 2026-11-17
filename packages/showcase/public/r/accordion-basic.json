@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { AccordionExample } from \"../helpers\";\n\nconst Example = () => <AccordionExample />;\n\nexport default Example;\n",
+      "content": "import { AccordionExample } from \"../helpers\";\n\nexport default function AccordionBasicExample() {\n  return <AccordionExample />;\n}\n",
       "path": "src/accordion/variants/basic.tsx",
       "target": "@components/showcase/accordion/variants/basic.tsx",
       "type": "registry:component"

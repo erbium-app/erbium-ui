@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/button", "@erbium/dropdown-menu", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n  DropdownMenuList,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport const DropdownMenuBasic = () => (\n  <DropdownMenu>\n    <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n    <DropdownMenuContent>\n      <DropdownMenuList>\n        <DropdownMenuGroup>\n          <DropdownMenuLabel>My Account</DropdownMenuLabel>\n          <DropdownMenuItem>Profile</DropdownMenuItem>\n          <DropdownMenuItem>Billing</DropdownMenuItem>\n          <DropdownMenuItem>Settings</DropdownMenuItem>\n        </DropdownMenuGroup>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem>GitHub</DropdownMenuItem>\n        <DropdownMenuItem>Support</DropdownMenuItem>\n        <DropdownMenuItem disabled>API</DropdownMenuItem>\n      </DropdownMenuList>\n    </DropdownMenuContent>\n  </DropdownMenu>\n);\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuGroup,\n  DropdownMenuItem,\n  DropdownMenuLabel,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n  DropdownMenuList,\n} from \"@/registry/erbium/ui/dropdown-menu\";\n\nexport default function DropdownMenuBasicExample() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger render={<Button variant=\"outline\" />}>Open</DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuList>\n          <DropdownMenuGroup>\n            <DropdownMenuLabel>My Account</DropdownMenuLabel>\n            <DropdownMenuItem>Profile</DropdownMenuItem>\n            <DropdownMenuItem>Billing</DropdownMenuItem>\n            <DropdownMenuItem>Settings</DropdownMenuItem>\n          </DropdownMenuGroup>\n          <DropdownMenuSeparator />\n          <DropdownMenuItem>GitHub</DropdownMenuItem>\n          <DropdownMenuItem>Support</DropdownMenuItem>\n          <DropdownMenuItem disabled>API</DropdownMenuItem>\n        </DropdownMenuList>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n",
       "path": "src/dropdown-menu/examples/dropdown-menu-basic.tsx",
       "target": "@components/showcase/dropdown-menu/examples/dropdown-menu-basic.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { DropdownMenuBasic } from \"../examples/dropdown-menu-basic\";\n\nconst Example = () => <DropdownMenuBasic />;\n\nexport default Example;\n",
+      "content": "import DropdownMenuBasicExample from \"../examples/dropdown-menu-basic\";\n\nconst Example = () => <DropdownMenuBasicExample />;\n\nexport default Example;\n",
       "path": "src/dropdown-menu/variants/basic.tsx",
       "target": "@components/showcase/dropdown-menu/variants/basic.tsx",
       "type": "registry:component"

@@ -4,13 +4,13 @@ import { Checkbox } from "@erbium/ui/components/checkbox";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/checkbox-demo.tsx?raw";
 
 import CheckedExample from "./variants/checked";
 
@@ -18,43 +18,43 @@ import CheckedSource from "./variants/checked.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/checkbox-controlled.tsx?raw";
 
 import IndeterminateExample from "./variants/indeterminate";
 
-import IndeterminateSource from "./variants/indeterminate.tsx?raw";
+import IndeterminateSource from "./examples/checkbox-indeterminate.tsx?raw";
 
 import ReadOnlyExample from "./variants/read-only";
 
-import ReadOnlySource from "./variants/read-only.tsx?raw";
+import ReadOnlySource from "./examples/checkbox-read-only.tsx?raw";
 
 import FormExample from "./variants/form";
 
-import FormSource from "./variants/form.tsx?raw";
+import FormSource from "./examples/checkbox-form.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/checkbox-disabled.tsx?raw";
 
 import TableExample from "./variants/table";
 
-import TableSource from "./variants/table.tsx?raw";
+import TableSource from "./examples/checkbox-table.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/checkbox-basic.tsx?raw";
 
 import DescriptionExample from "./variants/description";
 
-import DescriptionSource from "./variants/description.tsx?raw";
+import DescriptionSource from "./examples/checkbox-description.tsx?raw";
 
 import GroupExample from "./variants/group";
 
-import GroupSource from "./variants/group.tsx?raw";
+import GroupSource from "./examples/checkbox-group.tsx?raw";
 
 import InvalidStateExample from "./variants/invalid-state";
 
-import InvalidStateSource from "./variants/invalid-state.tsx?raw";
+import InvalidStateSource from "./examples/checkbox-invalid.tsx?raw";
 
 const meta = {
   component: Checkbox,
@@ -82,13 +82,7 @@ export const Playground: StoryObj<typeof Checkbox> = {
     readOnly: { control: "boolean", description: "Focusable, but the state cannot change." },
     required: { control: "boolean", description: "Must be checked before the form submits." },
   },
-  args: {
-    defaultChecked: false,
-    disabled: false,
-    indeterminate: false,
-    readOnly: false,
-    required: false,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("checkbox", "playground") },

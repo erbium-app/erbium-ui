@@ -11,7 +11,7 @@ const runItems = [
   { code: "npm run dev", label: "npm", language: "shell", value: "npm" },
 ];
 
-const Example = () => {
+export default function CodeBlockControlledExample() {
   const [manager, setManager] = useState("bun");
 
   return (
@@ -23,6 +23,4 @@ const Example = () => {
       <CodeBlock surface="command" items={runItems} value={manager} onValueChange={setManager} />
     </div>
   );
-};
-
-export default Example;
+}

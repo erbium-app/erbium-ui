@@ -4,13 +4,13 @@ import { Avatar } from "@erbium/ui/components/avatar";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/avatar-demo.tsx?raw";
 
 import FallbackExample from "./variants/fallback";
 
@@ -22,35 +22,35 @@ import ImageSource from "./variants/image.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/avatar-basic.tsx?raw";
 
 import BadgeExample from "./variants/badge";
 
-import BadgeSource from "./variants/badge.tsx?raw";
+import BadgeSource from "./examples/avatar-badge.tsx?raw";
 
 import DropdownExample from "./variants/dropdown";
 
-import DropdownSource from "./variants/dropdown.tsx?raw";
+import DropdownSource from "./examples/avatar-dropdown.tsx?raw";
 
 import BadgeWithIconExample from "./variants/badge-with-icon";
 
-import BadgeWithIconSource from "./variants/badge-with-icon.tsx?raw";
+import BadgeWithIconSource from "./examples/avatar-badge-icon.tsx?raw";
 
 import AvatarGroupExample from "./variants/avatar-group";
 
-import AvatarGroupSource from "./variants/avatar-group.tsx?raw";
+import AvatarGroupSource from "./examples/avatar-group.tsx?raw";
 
 import AvatarGroupCountExample from "./variants/avatar-group-count";
 
-import AvatarGroupCountSource from "./variants/avatar-group-count.tsx?raw";
+import AvatarGroupCountSource from "./examples/avatar-group-count.tsx?raw";
 
 import AvatarGroupWithIconExample from "./variants/avatar-group-with-icon";
 
-import AvatarGroupWithIconSource from "./variants/avatar-group-with-icon.tsx?raw";
+import AvatarGroupWithIconSource from "./examples/avatar-group-count-icon.tsx?raw";
 
 import SizesExample from "./variants/sizes";
 
-import SizesSource from "./variants/sizes.tsx?raw";
+import SizesSource from "./examples/avatar-size.tsx?raw";
 
 const meta = {
   component: Avatar,
@@ -82,7 +82,7 @@ export const Playground: StoryObj<{
     size: { control: "select", options: ["default", "sm", "lg"] },
     src: { control: "text" },
   },
-  args: { alt: "Profile photo", className: "", fallback: "AN", size: "default", src: "" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("avatar", "playground") },

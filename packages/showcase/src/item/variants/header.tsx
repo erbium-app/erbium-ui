@@ -1,5 +1,5 @@
-import { ItemHeaderDemo } from "../examples/item-header";
+import ItemHeaderExample from "../examples/item-header";
 
-const Example = () => <ItemHeaderDemo />;
+const Example = () => <ItemHeaderExample />;
 
 export default Example;

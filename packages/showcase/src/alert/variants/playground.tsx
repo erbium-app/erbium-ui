@@ -2,7 +2,14 @@ import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert
 import type * as React from "react";
 import { alertContent } from "../helpers";
 
-const Example = (args: React.ComponentProps<typeof Alert>) => {
+export const defaultProps = {
+  className: "",
+  variant: "default",
+} satisfies React.ComponentProps<typeof Alert>;
+
+export default function AlertPlaygroundExample(
+  args: React.ComponentProps<typeof Alert> = defaultProps,
+) {
   const content = alertContent[args.variant ?? "default"];
 
   return (
@@ -11,6 +18,4 @@ const Example = (args: React.ComponentProps<typeof Alert>) => {
       <AlertDescription>{content.description}</AlertDescription>
     </Alert>
   );
-};
-
-export default Example;
+}

@@ -4,7 +4,7 @@ import { Button } from "@erbium/ui/components/button";
 
 const COUNT = 5;
 
-const Example = () => {
+export default function StepIndicatorBlockedExample() {
   const [step, setStep] = useState(0);
   const [reach, setReach] = useState(0);
 
@@ -46,6 +46,4 @@ const Example = () => {
       </p>
     </div>
   );
-};
-
-export default Example;
+}

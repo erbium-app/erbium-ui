@@ -1,5 +1,5 @@
-import { DropdownMenuRadioIcons } from "../examples/dropdown-menu-radio-icons";
+import DropdownMenuRadioIconsExample from "../examples/dropdown-menu-radio-icons";
 
-const Example = () => <DropdownMenuRadioIcons />;
+const Example = () => <DropdownMenuRadioIconsExample />;
 
 export default Example;

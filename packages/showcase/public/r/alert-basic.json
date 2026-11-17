@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/alert", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert className=\"w-80\">\n    <AlertTitle>Workspace connected</AlertTitle>\n    <AlertDescription>The agent can read the files in this project.</AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertBasicExample() {\n  return (\n    <Alert className=\"w-80\">\n      <AlertTitle>Workspace connected</AlertTitle>\n      <AlertDescription>The agent can read the files in this project.</AlertDescription>\n    </Alert>\n  );\n}\n",
       "path": "src/alert/variants/basic.tsx",
       "target": "@components/showcase/alert/variants/basic.tsx",
       "type": "registry:component"

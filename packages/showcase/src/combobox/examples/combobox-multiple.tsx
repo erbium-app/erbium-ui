@@ -15,14 +15,14 @@ import {
 
 const frameworks = ["TanStack Start", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
-export const ComboboxMultiple = () => {
+export default function ComboboxMultipleExample() {
   const anchor = useComboboxAnchor();
 
   return (
     <Combobox multiple autoHighlight items={frameworks} defaultValue={[frameworks[0]]}>
       <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
-          {(values) => (
+          {(values: string[]) => (
             <>
               {values.map((value: string) => (
                 <ComboboxChip key={value}>{value}</ComboboxChip>
@@ -35,7 +35,7 @@ export const ComboboxMultiple = () => {
       <ComboboxContent anchor={anchor}>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
-          {(item) => (
+          {(item: (typeof frameworks)[number]) => (
             <ComboboxItem key={item} value={item}>
               {item}
             </ComboboxItem>
@@ -44,4 +44,4 @@ export const ComboboxMultiple = () => {
       </ComboboxContent>
     </Combobox>
   );
-};
+}

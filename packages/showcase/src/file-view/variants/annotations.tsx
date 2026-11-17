@@ -11,7 +11,7 @@ const annotations: LineAnnotation<{ author: string; message: string }>[] = [
   },
 ];
 
-const Example = () => {
+export default function FileViewAnnotationsExample() {
   const [selection, setSelection] = useState<SelectedLineRange | null>(null);
 
   return (
@@ -47,6 +47,4 @@ const Example = () => {
       />
     </div>
   );
-};
-
-export default Example;
+}

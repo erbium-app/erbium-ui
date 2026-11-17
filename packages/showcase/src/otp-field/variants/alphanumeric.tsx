@@ -1,4 +1,4 @@
-import { OTPFieldAlphanumeric } from "../examples/otp-field-alphanumeric";
+import OTPFieldAlphanumeric from "../examples/otp-field-alphanumeric";
 
 const Example = () => <OTPFieldAlphanumeric />;
 

@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/questionnaire", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Questionnaire,\n  QuestionnaireItem,\n  QuestionnaireTitle,\n  QuestionnaireDescription,\n  QuestionnaireChoices,\n  QuestionnaireChoice,\n  QuestionnaireActions,\n  QuestionnaireNext,\n} from \"@/registry/erbium/ui/questionnaire\";\n\nconst Demo = () => (\n  <Questionnaire>\n    <QuestionnaireItem name=\"plan\">\n      <QuestionnaireTitle>What is your preferred plan?</QuestionnaireTitle>\n      <QuestionnaireDescription>Choose one option to continue.</QuestionnaireDescription>\n      <QuestionnaireChoices>\n        <QuestionnaireChoice value=\"starter\">Starter</QuestionnaireChoice>\n        <QuestionnaireChoice value=\"pro\">Pro</QuestionnaireChoice>\n      </QuestionnaireChoices>\n      <QuestionnaireActions>\n        <QuestionnaireNext>Continue</QuestionnaireNext>\n      </QuestionnaireActions>\n    </QuestionnaireItem>\n  </Questionnaire>\n);\n\nexport default Demo;\n",
+      "content": "import {\n  Questionnaire,\n  QuestionnaireItem,\n  QuestionnaireTitle,\n  QuestionnaireDescription,\n  QuestionnaireChoices,\n  QuestionnaireChoice,\n  QuestionnaireActions,\n  QuestionnaireNext,\n} from \"@/registry/erbium/ui/questionnaire\";\n\nexport default function QuestionnaireExample() {\n  return (\n    <Questionnaire>\n      <QuestionnaireItem name=\"plan\">\n        <QuestionnaireTitle>What is your preferred plan?</QuestionnaireTitle>\n        <QuestionnaireDescription>Choose one option to continue.</QuestionnaireDescription>\n        <QuestionnaireChoices>\n          <QuestionnaireChoice value=\"starter\">Starter</QuestionnaireChoice>\n          <QuestionnaireChoice value=\"pro\">Pro</QuestionnaireChoice>\n        </QuestionnaireChoices>\n        <QuestionnaireActions>\n          <QuestionnaireNext>Continue</QuestionnaireNext>\n        </QuestionnaireActions>\n      </QuestionnaireItem>\n    </Questionnaire>\n  );\n}\n",
       "path": "src/questionnaire/examples/questionnaire-demo.tsx",
       "target": "@components/showcase/questionnaire/examples/questionnaire-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/questionnaire-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import QuestionnaireExample from \"../examples/questionnaire-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <QuestionnaireExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/questionnaire/variants/overview.tsx",
       "target": "@components/showcase/questionnaire/variants/overview.tsx",
       "type": "registry:component"

@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/card", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card } from \"@/registry/erbium/ui/card\";\n\nexport const CalendarWeekNumbers = () => {\n  const [date, setDate] = React.useState<Date | undefined>(\n    () => new Date(new Date().getFullYear(), 0, 12),\n  );\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <Calendar\n        mode=\"single\"\n        defaultMonth={date}\n        selected={date}\n        onSelect={setDate}\n        showWeekNumber\n      />\n    </Card>\n  );\n};\n",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card } from \"@/registry/erbium/ui/card\";\n\nexport default function CalendarWeekNumbersExample() {\n  const [date, setDate] = React.useState<Date | undefined>(\n    () => new Date(new Date().getFullYear(), 0, 12),\n  );\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <Calendar\n        mode=\"single\"\n        defaultMonth={date}\n        selected={date}\n        onSelect={setDate}\n        showWeekNumber\n      />\n    </Card>\n  );\n}\n",
       "path": "src/calendar/examples/calendar-week-numbers.tsx",
       "target": "@components/showcase/calendar/examples/calendar-week-numbers.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { CalendarWeekNumbers } from \"../examples/calendar-week-numbers\";\n\nconst Example = () => <CalendarWeekNumbers />;\n\nexport default Example;\n",
+      "content": "import CalendarWeekNumbersExample from \"../examples/calendar-week-numbers\";\n\nconst Example = () => <CalendarWeekNumbersExample />;\n\nexport default Example;\n",
       "path": "src/calendar/variants/week-numbers.tsx",
       "target": "@components/showcase/calendar/variants/week-numbers.tsx",
       "type": "registry:component"

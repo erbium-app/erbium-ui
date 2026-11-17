@@ -1,7 +1,7 @@
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { Form, useAppForm } from "@erbium/ui/components/form";
 
-const CheckboxForm = () => {
+export default function CheckboxFormExample() {
   const form = useAppForm({
     defaultValues: { newsletter: false, terms: false },
   });
@@ -37,6 +37,4 @@ const CheckboxForm = () => {
       </form.Subscribe>
     </Form>
   );
-};
-
-export default CheckboxForm;
+}

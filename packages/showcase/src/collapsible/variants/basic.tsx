@@ -1,5 +1,5 @@
-import { CollapsibleBasic } from "../examples/collapsible-basic";
+import CollapsibleBasicExample from "../examples/collapsible-basic";
 
-const Example = () => <CollapsibleBasic />;
+const Example = () => <CollapsibleBasicExample />;
 
 export default Example;

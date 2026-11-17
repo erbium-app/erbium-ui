@@ -4,13 +4,13 @@ import { ScrollArea } from "@erbium/ui/components/scroll-area";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/scroll-area-demo.tsx?raw";
 
 import HorizontalExample from "./variants/horizontal";
 
@@ -39,7 +39,7 @@ export const Playground: StoryObj<typeof ScrollArea> = {
     scrollbar: { control: "select", options: ["thin", "default", "none"] },
     scrollbarVisibility: { control: "select", options: ["always", "hover", "scroll"] },
   },
-  args: { fade: "vertical", scrollbar: "thin", scrollbarVisibility: "always" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("scroll-area", "playground") },

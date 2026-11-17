@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst hertz = (value: number) => (value >= 1000 ? `${value / 1000} kHz` : `${value} Hz`);\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Number\n      label=\"Frequency\"\n      scale=\"log\"\n      min={20}\n      max={20_000}\n      step={1}\n      defaultValue={440}\n      formatValue={hertz}\n    />\n    <Control.Number\n      label=\"Scale\"\n      scale=\"log\"\n      mode=\"continuous\"\n      min={0.01}\n      max={100}\n      defaultValue={1}\n    />\n  </Control.Group>\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst hertz = (value: number) => (value >= 1000 ? `${value / 1000} kHz` : `${value} Hz`);\n\nexport default function ControlLogarithmicNumberExample() {\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Number\n        label=\"Frequency\"\n        scale=\"log\"\n        min={20}\n        max={20_000}\n        step={1}\n        defaultValue={440}\n        formatValue={hertz}\n      />\n      <Control.Number\n        label=\"Scale\"\n        scale=\"log\"\n        mode=\"continuous\"\n        min={0.01}\n        max={100}\n        defaultValue={1}\n      />\n    </Control.Group>\n  );\n}\n",
       "path": "src/control/variants/logarithmic-number.tsx",
       "target": "@components/showcase/control/variants/logarithmic-number.tsx",
       "type": "registry:component"

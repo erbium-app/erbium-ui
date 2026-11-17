@@ -9,7 +9,7 @@ const Subscription = Schema.toStandardSchemaV1(
   }),
 );
 
-const StatefulButtonForm = () => {
+export default function StatefulButtonFormExample() {
   const form = useAppForm({
     defaultValues: { email: "" },
     onSubmit: async () => {
@@ -27,6 +27,4 @@ const StatefulButtonForm = () => {
       <form.SubmitButton successLabel="Subscribed">Subscribe</form.SubmitButton>
     </Form>
   );
-};
-
-export default StatefulButtonForm;
+}

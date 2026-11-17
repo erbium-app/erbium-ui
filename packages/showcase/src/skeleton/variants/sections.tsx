@@ -1,4 +1,4 @@
-import { SkeletonSections } from "../examples/skeleton-sections";
+import SkeletonSections from "../examples/skeleton-sections";
 
 const Example = () => <SkeletonSections />;
 

@@ -6,13 +6,13 @@ import { Accordion } from "@erbium/ui/components/accordion";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/accordion-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
@@ -36,7 +36,7 @@ import BordersSource from "./variants/borders.tsx?raw";
 
 import CardExample from "./variants/card";
 
-import CardSource from "./variants/card.tsx?raw";
+import CardSource from "./examples/accordion-card.tsx?raw";
 
 const meta = {
   component: Accordion,
@@ -56,7 +56,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Accordion> = {
   argTypes: { multiple: { control: "boolean" } },
-  args: { defaultValue: ["one"], multiple: false },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("accordion", "playground") },

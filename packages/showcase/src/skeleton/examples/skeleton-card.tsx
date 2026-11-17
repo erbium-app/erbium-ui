@@ -36,7 +36,9 @@ const ArticleCard = ({ article: value }: { article: Article }) => (
 );
 
 /** Badges are drawn as pills, text as bars, and the card keeps its surface while it loads. */
-export const SkeletonCard = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonCardExample({ latency }: { latency?: number } = defaultProps) {
   const request = useSimulatedFetch(article, { latency });
 
   return (
@@ -54,4 +56,4 @@ export const SkeletonCard = ({ latency }: { latency?: number }) => {
       <LoadingControls {...request} />
     </div>
   );
-};
+}

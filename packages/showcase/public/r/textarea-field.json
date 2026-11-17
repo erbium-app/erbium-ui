@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport const TextareaField = () => (\n  <Field>\n    <FieldLabel>Message</FieldLabel>\n    <FieldDescription>Enter your message below.</FieldDescription>\n    <Textarea placeholder=\"Type your message here.\" />\n  </Field>\n);\n",
+      "content": "import { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function TextareaFieldExample() {\n  return (\n    <Field>\n      <FieldLabel>Message</FieldLabel>\n      <FieldDescription>Enter your message below.</FieldDescription>\n      <Textarea placeholder=\"Type your message here.\" />\n    </Field>\n  );\n}\n",
       "path": "src/textarea/examples/textarea-field.tsx",
       "target": "@components/showcase/textarea/examples/textarea-field.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { TextareaField } from \"../examples/textarea-field\";\n\nconst Example = () => <TextareaField />;\n\nexport default Example;\n",
+      "content": "import TextareaField from \"../examples/textarea-field\";\n\nconst Example = () => <TextareaField />;\n\nexport default Example;\n",
       "path": "src/textarea/variants/field.tsx",
       "target": "@components/showcase/textarea/variants/field.tsx",
       "type": "registry:component"

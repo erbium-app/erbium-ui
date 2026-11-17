@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "content": "import { CopyButton, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nconst ButtonGroupSeparatorDemo = () => (\n  <ButtonGroup>\n    <CopyButton value=\"Erbium UI\" variant=\"secondary\" size=\"sm\">\n      <CopyButtonLabel />\n    </CopyButton>\n    <ButtonGroupSeparator />\n    <Button variant=\"secondary\" size=\"sm\">\n      Paste\n    </Button>\n  </ButtonGroup>\n);\n\nexport default ButtonGroupSeparatorDemo;\n",
+      "content": "import { CopyButton, CopyButtonLabel } from \"@/registry/erbium/blocks/copy-button\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSeparatorExample() {\n  return (\n    <ButtonGroup>\n      <CopyButton value=\"Erbium UI\" variant=\"secondary\" size=\"sm\">\n        <CopyButtonLabel />\n      </CopyButton>\n      <ButtonGroupSeparator />\n      <Button variant=\"secondary\" size=\"sm\">\n        Paste\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
       "path": "src/button-group/examples/button-group-separator.tsx",
       "target": "@components/showcase/button-group/examples/button-group-separator.tsx",
       "type": "registry:component"

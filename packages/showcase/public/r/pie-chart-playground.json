@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nexport const defaultProps = {\n  donut: true,\n  legend: true,\n  tooltip: true,\n} satisfies { donut: boolean; legend: boolean; tooltip: boolean };\n\nexport default function PieChartPlaygroundExample(\n  args: { donut: boolean; legend: boolean; tooltip: boolean } = defaultProps,\n) {\n  return (\n    <div className=\"w-md max-w-full p-4\">\n      <PieChart\n        ariaLabel=\"Visitors by browser\"\n        data={browsers}\n        index=\"browser\"\n        value=\"visitors\"\n        initialWidth={400}\n        {...args}\n      />\n    </div>\n  );\n}\n",
       "path": "src/pie-chart/variants/playground.tsx",
       "target": "@components/showcase/pie-chart/variants/playground.tsx",
       "type": "registry:component"

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Button>) => {\n  const iconOnly = typeof args.size === \"string\" && args.size.startsWith(\"icon\");\n\n  return (\n    <Button {...args} aria-label={iconOnly ? \"Submit\" : undefined}>\n      {iconOnly ? <Icon name=\"arrow-up-01\" /> : \"Button\"}\n    </Button>\n  );\n};\n\nexport default Example;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  loading: false,\n  size: \"default\",\n  variant: \"default\",\n} satisfies React.ComponentProps<typeof Button>;\n\nexport default function ButtonPlaygroundExample(\n  args: React.ComponentProps<typeof Button> = defaultProps,\n) {\n  const iconOnly = args.size?.startsWith(\"icon\") === true;\n\n  return (\n    <Button {...args} aria-label={iconOnly ? \"Submit\" : undefined}>\n      {iconOnly ? <Icon name=\"arrow-up-01\" /> : \"Button\"}\n    </Button>\n  );\n}\n",
       "path": "src/button/variants/playground.tsx",
       "target": "@components/showcase/button/variants/playground.tsx",
       "type": "registry:component"

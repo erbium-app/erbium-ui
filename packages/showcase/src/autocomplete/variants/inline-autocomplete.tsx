@@ -1,5 +1,5 @@
 import { FruitAutocomplete } from "../helpers";
 
-const Example = () => <FruitAutocomplete mode="both" />;
-
-export default Example;
+export default function AutocompleteInlineAutocompleteExample() {
+  return <FruitAutocomplete mode="both" />;
+}

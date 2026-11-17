@@ -4,7 +4,7 @@ import { BarChart } from "@erbium/ui/charts/bar-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -49,14 +49,7 @@ export const Playground: StoryObj<{
     stacked: { control: "boolean" },
     tooltip: { control: "boolean" },
   },
-  args: {
-    axis: true,
-    grid: true,
-    legend: true,
-    orientation: "vertical",
-    stacked: false,
-    tooltip: true,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("bar-chart", "playground") },

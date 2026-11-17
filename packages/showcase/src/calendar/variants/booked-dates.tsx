@@ -1,5 +1,5 @@
-import { CalendarBookedDates } from "../examples/calendar-booked-dates";
+import CalendarBookedDatesExample from "../examples/calendar-booked-dates";
 
-const Example = () => <CalendarBookedDates />;
+const Example = () => <CalendarBookedDatesExample />;
 
 export default Example;

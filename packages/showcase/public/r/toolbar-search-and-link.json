@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toolbar"],
   "files": [
     {
-      "content": "import {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarInput,\n  ToolbarLink,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Page tools\">\n    <ToolbarGroup aria-label=\"Navigation\">\n      <ToolbarButton>Refresh</ToolbarButton>\n      <ToolbarLink href=\"https://base-ui.com/react/components/toolbar\">Details</ToolbarLink>\n    </ToolbarGroup>\n    <ToolbarSeparator />\n    <ToolbarInput aria-label=\"Find on page\" className=\"w-36\" placeholder=\"Find on page\" />\n  </Toolbar>\n);\n\nexport default Example;\n",
+      "content": "import {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarInput,\n  ToolbarLink,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nexport default function ToolbarSearchAndLinkExample() {\n  return (\n    <Toolbar aria-label=\"Page tools\">\n      <ToolbarGroup aria-label=\"Navigation\">\n        <ToolbarButton>Refresh</ToolbarButton>\n        <ToolbarLink href=\"https://base-ui.com/react/components/toolbar\">Details</ToolbarLink>\n      </ToolbarGroup>\n      <ToolbarSeparator />\n      <ToolbarInput aria-label=\"Find on page\" className=\"w-36\" placeholder=\"Find on page\" />\n    </Toolbar>\n  );\n}\n",
       "path": "src/toolbar/variants/search-and-link.tsx",
       "target": "@components/showcase/toolbar/variants/search-and-link.tsx",
       "type": "registry:component"

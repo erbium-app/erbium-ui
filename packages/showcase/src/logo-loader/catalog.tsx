@@ -4,13 +4,13 @@ import { LogoLoader } from "@erbium/ui/components/logo-loader";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import RequestExample from "./variants/request";
 
-import RequestSource from "./variants/request.tsx?raw";
+import RequestSource from "./examples/logo-loader-request.tsx?raw";
 
 import ReplayExample from "./variants/replay";
 
@@ -38,7 +38,7 @@ export const Playground: StoryObj<typeof LogoLoader> = {
     delay: { control: { max: 1000, min: 0, step: 50, type: "number" } },
     loading: { control: "boolean" },
   },
-  args: { delay: 0, loading: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("logo-loader", "playground") },

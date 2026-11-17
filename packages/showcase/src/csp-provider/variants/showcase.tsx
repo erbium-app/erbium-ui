@@ -1,5 +1,5 @@
-import ShowcaseDemo from "../examples/csp-provider-demo";
+import CspProviderShowcaseExample from "../examples/csp-provider-demo";
 
-const Example = () => <ShowcaseDemo />;
+const Example = () => <CspProviderShowcaseExample />;
 
 export default Example;

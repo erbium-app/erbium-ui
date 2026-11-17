@@ -1,5 +1,5 @@
-import { BubbleReactionsDemo } from "../examples/bubble-reactions";
+import BubbleReactionsExample from "../examples/bubble-reactions";
 
-const Example = () => <BubbleReactionsDemo />;
+const Example = () => <BubbleReactionsExample />;
 
 export default Example;

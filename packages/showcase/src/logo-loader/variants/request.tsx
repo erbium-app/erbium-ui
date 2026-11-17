@@ -1,4 +1,4 @@
-import { LogoLoaderRequest } from "../examples/logo-loader-request";
+import LogoLoaderRequest from "../examples/logo-loader-request";
 
 const Example = () => <LogoLoaderRequest />;
 

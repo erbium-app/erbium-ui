@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { MarkerIconDemo } from \"../examples/marker-icon\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerIconDemo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { MarkerIconDemo } from \"../examples/marker-icon\";\n\nexport default function MarkerIconExample() {\n  return (\n    <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n      <MarkerIconDemo />\n    </div>\n  );\n}\n",
       "path": "src/marker/variants/icon.tsx",
       "target": "@components/showcase/marker/variants/icon.tsx",
       "type": "registry:component"

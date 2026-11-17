@@ -25,7 +25,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { InvoicesTable } from \"../helpers\";\nimport type { InvoicesTableProps } from \"../helpers\";\n\nconst Example = (args: InvoicesTableProps) => (\n  <div className=\"w-full min-w-72 max-w-3xl p-4\">\n    <InvoicesTable {...args} />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { defaultLatency } from \"../../loading\";\nimport { InvoicesTable } from \"../helpers\";\nimport type { InvoicesTableProps } from \"../helpers\";\n\nexport const defaultProps = {\n  empty: false,\n  fail: false,\n  latency: defaultLatency,\n  pageSize: 6,\n} satisfies InvoicesTableProps;\n\nexport default function DataTablePlaygroundExample(args: InvoicesTableProps = defaultProps) {\n  return (\n    <div className=\"w-full min-w-72 max-w-3xl p-4\">\n      <InvoicesTable {...args} />\n    </div>\n  );\n}\n",
       "path": "src/data-table/variants/playground.tsx",
       "target": "@components/showcase/data-table/variants/playground.tsx",
       "type": "registry:component"

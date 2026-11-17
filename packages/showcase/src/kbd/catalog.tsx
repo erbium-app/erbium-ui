@@ -4,29 +4,29 @@ import { Kbd } from "@erbium/ui/components/kbd";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/kbd-demo.tsx?raw";
 
 import ButtonExample from "./variants/button";
 
-import ButtonSource from "./variants/button.tsx?raw";
+import ButtonSource from "./examples/kbd-button.tsx?raw";
 
 import HintExample from "./variants/hint";
 
-import HintSource from "./variants/hint.tsx?raw";
+import HintSource from "./examples/kbd-hint.tsx?raw";
 
 import TooltipExample from "./variants/tooltip";
 
-import TooltipSource from "./variants/tooltip.tsx?raw";
+import TooltipSource from "./examples/kbd-tooltip.tsx?raw";
 
 import InputGroupExample from "./variants/input-group";
 
-import InputGroupSource from "./variants/input-group.tsx?raw";
+import InputGroupSource from "./examples/kbd-input-group.tsx?raw";
 
 const meta = {
   component: Kbd,
@@ -47,7 +47,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Kbd> = {
   argTypes: {},
-  args: { className: "", hotkey: "Mod+K" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("kbd", "playground") },

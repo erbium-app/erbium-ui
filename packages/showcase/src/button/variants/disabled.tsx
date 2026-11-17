@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
 
-const Example = () => <Button disabled>Unavailable</Button>;
-
-export default Example;
+export default function ButtonDisabledExample() {
+  return <Button disabled>Unavailable</Button>;
+}

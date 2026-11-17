@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/csp-provider", "@erbium/scroll-area", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\n\nconst Demo = () => (\n  <CSPProvider disableStyleElements>\n    <ScrollArea className=\"h-40 w-72\" aria-label=\"Scrollable example\">\n      {Array.from({ length: 12 }, (_, index) => (\n        <p key={index} className=\"p-3\">\n          Scrollable item {index + 1}\n        </p>\n      ))}\n    </ScrollArea>\n  </CSPProvider>\n);\n\nexport default Demo;\n",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\n\nexport default function CspProviderShowcaseExample() {\n  return (\n    <CSPProvider disableStyleElements>\n      <ScrollArea className=\"h-40 w-72\" aria-label=\"Scrollable example\">\n        {Array.from({ length: 12 }, (_, index) => (\n          <p key={index} className=\"p-3\">\n            Scrollable item {index + 1}\n          </p>\n        ))}\n      </ScrollArea>\n    </CSPProvider>\n  );\n}\n",
       "path": "src/csp-provider/examples/csp-provider-demo.tsx",
       "target": "@components/showcase/csp-provider/examples/csp-provider-demo.tsx",
       "type": "registry:component"

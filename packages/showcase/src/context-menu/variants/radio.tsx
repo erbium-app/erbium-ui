@@ -1,5 +1,5 @@
-import { ContextMenuRadio } from "../examples/context-menu-radio";
+import ContextMenuRadioExample from "../examples/context-menu-radio";
 
-const Example = () => <ContextMenuRadio />;
+const Example = () => <ContextMenuRadioExample />;
 
 export default Example;

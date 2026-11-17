@@ -7,7 +7,7 @@ import { Calendar } from "@erbium/ui/components/calendar";
 // its styling and RTL layout.
 const persianDateLib = getDateLib({ locale: faIR, numerals: "arabext" });
 
-const CalendarPersian = () => {
+export default function CalendarPersianExample() {
   const [date, setDate] = React.useState<Date | undefined>(() => new Date());
 
   return (
@@ -25,6 +25,4 @@ const CalendarPersian = () => {
       }}
     />
   );
-};
-
-export default CalendarPersian;
+}

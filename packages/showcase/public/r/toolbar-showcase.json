@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle", "@erbium/toolbar"],
   "files": [
     {
-      "content": "import { Toolbar, ToolbarButton, ToolbarGroup } from \"@/registry/erbium/ui/toolbar\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Demo = () => (\n  <Toolbar aria-label=\"Text formatting\">\n    <ToolbarGroup aria-label=\"Text style\">\n      <ToolbarButton render={<Toggle aria-label=\"Bold\" />}>Bold</ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Italic\" />}>Italic</ToolbarButton>\n      <ToolbarButton render={<Toggle aria-label=\"Underline\" />}>Underline</ToolbarButton>\n    </ToolbarGroup>\n  </Toolbar>\n);\n\nexport default Demo;\n",
+      "content": "import { Toolbar, ToolbarButton, ToolbarGroup } from \"@/registry/erbium/ui/toolbar\";\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToolbarShowcaseExample() {\n  return (\n    <Toolbar aria-label=\"Text formatting\">\n      <ToolbarGroup aria-label=\"Text style\">\n        <ToolbarButton render={<Toggle aria-label=\"Bold\" />}>Bold</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Italic\" />}>Italic</ToolbarButton>\n        <ToolbarButton render={<Toggle aria-label=\"Underline\" />}>Underline</ToolbarButton>\n      </ToolbarGroup>\n    </Toolbar>\n  );\n}\n",
       "path": "src/toolbar/examples/toolbar-demo.tsx",
       "target": "@components/showcase/toolbar/examples/toolbar-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import ShowcaseDemo from \"../examples/toolbar-demo\";\n\nconst Example = () => <ShowcaseDemo />;\n\nexport default Example;\n",
+      "content": "import ToolbarShowcaseExample from \"../examples/toolbar-demo\";\n\nconst Example = () => <ToolbarShowcaseExample />;\n\nexport default Example;\n",
       "path": "src/toolbar/variants/showcase.tsx",
       "target": "@components/showcase/toolbar/variants/showcase.tsx",
       "type": "registry:component"

@@ -1,5 +1,5 @@
-import { InputInline } from "../examples/input-inline";
+import InputInlineExample from "../examples/input-inline";
 
-const Example = () => <InputInline />;
+const Example = () => <InputInlineExample />;
 
 export default Example;

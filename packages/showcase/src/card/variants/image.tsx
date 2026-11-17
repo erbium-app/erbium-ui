@@ -43,16 +43,16 @@ const ProjectArtwork = () => (
   </svg>
 );
 
-const Example = () => (
-  <Card className="w-80">
-    <CardMedia className="h-40">
-      <ProjectArtwork />
-    </CardMedia>
-    <CardHeader>
-      <CardTitle>Featured project</CardTitle>
-      <CardDescription>A card with media above its header.</CardDescription>
-    </CardHeader>
-  </Card>
-);
-
-export default Example;
+export default function CardImageExample() {
+  return (
+    <Card className="w-80">
+      <CardMedia className="h-40">
+        <ProjectArtwork />
+      </CardMedia>
+      <CardHeader>
+        <CardTitle>Featured project</CardTitle>
+        <CardDescription>A card with media above its header.</CardDescription>
+      </CardHeader>
+    </Card>
+  );
+}

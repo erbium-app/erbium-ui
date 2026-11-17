@@ -34,7 +34,7 @@ const items = [
   { name: "tests", required: true },
 ] as const;
 
-export const QuestionnaireDialog = () => {
+export default function QuestionnaireDialogExample() {
   const [open, setOpen] = React.useState(false);
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
@@ -115,4 +115,4 @@ export const QuestionnaireDialog = () => {
       </DialogPanel>
     </Dialog>
   );
-};
+}

@@ -4,7 +4,7 @@ import { RadarChart } from "@erbium/ui/charts/radar-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -35,7 +35,7 @@ export const Playground: StoryObj<{
     rings: { control: { max: 8, min: 2, type: "number" } },
     tooltip: { control: "boolean" },
   },
-  args: { legend: true, points: false, rings: 4, tooltip: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("radar-chart", "playground") },

@@ -9,7 +9,7 @@ import { StatefulIcon } from "@erbium/ui/components/stateful-icon";
 import { Icon } from "@erbium/ui/components/icon";
 import { useCopyToClipboard } from "@erbium/ui/hooks/use-copy-to-clipboard";
 
-const Demo = () => {
+export default function UseCopyToClipboardExample() {
   const [value, setValue] = useState("https://erbium.dev");
   const { copyToClipboard, isPending, reset, revision, status } = useCopyToClipboard();
   const feedback = { copied: "URL copied.", error: "Could not copy the URL.", idle: "" };
@@ -53,6 +53,4 @@ const Demo = () => {
       </output>
     </div>
   );
-};
-
-export default Demo;
+}

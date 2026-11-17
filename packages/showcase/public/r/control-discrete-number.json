@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Number\n    label=\"Quality\"\n    steps={[0.1, 0.5, 0.7, 1.3]}\n    defaultValue={0.7}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlDiscreteNumberExample() {\n  return (\n    <Control.Number\n      label=\"Quality\"\n      steps={[0.1, 0.5, 0.7, 1.3]}\n      defaultValue={0.7}\n      className=\"w-72\"\n    />\n  );\n}\n",
       "path": "src/control/variants/discrete-number.tsx",
       "target": "@components/showcase/control/variants/discrete-number.tsx",
       "type": "registry:component"

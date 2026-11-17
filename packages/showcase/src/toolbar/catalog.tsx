@@ -22,7 +22,7 @@ import DisabledSource from "./variants/disabled.tsx?raw";
 
 import ShowcaseExample from "./variants/showcase";
 
-import ShowcaseSource from "./variants/showcase.tsx?raw";
+import ShowcaseSource from "./examples/toolbar-demo.tsx?raw";
 
 const meta = {
   component: Toolbar,

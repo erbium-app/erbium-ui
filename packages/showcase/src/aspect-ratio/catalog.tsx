@@ -4,13 +4,13 @@ import { AspectRatio } from "@erbium/ui/components/aspect-ratio";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/aspect-ratio-demo.tsx?raw";
 
 import SquareExample from "./variants/square";
 
@@ -39,7 +39,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof AspectRatio> = {
   argTypes: { ratio: { control: { max: 4, min: 0.25, step: 0.25, type: "number" } } },
-  args: { className: "", ratio: 16 / 9 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("aspect-ratio", "playground") },

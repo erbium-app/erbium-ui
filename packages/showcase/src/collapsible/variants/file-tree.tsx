@@ -1,5 +1,5 @@
-import { CollapsibleFileTree } from "../examples/collapsible-file-tree";
+import CollapsibleFileTreeExample from "../examples/collapsible-file-tree";
 
-const Example = () => <CollapsibleFileTree />;
+const Example = () => <CollapsibleFileTreeExample />;
 
 export default Example;

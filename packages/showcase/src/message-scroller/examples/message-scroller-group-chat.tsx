@@ -84,7 +84,8 @@ type GroupChatItem =
 
 const GroupChatMessage = ({ item }: { item: Extract<GroupChatItem, { type: "message" }> }) => {
   const isCurrentUser = item.sender === currentUser;
-  const variant = isCurrentUser ? "muted" : item.role === "assistant" ? "ghost" : "tinted";
+  const receivedVariant = item.role === "assistant" ? "ghost" : "tinted";
+  const variant = isCurrentUser ? "muted" : receivedVariant;
 
   return (
     <MessageScrollerItem messageId={item.id} scrollAnchor={item.scrollAnchor}>
@@ -114,16 +115,17 @@ const GroupChatMarker = ({
   </MessageScrollerItem>
 );
 
-export const MessageScrollerGroupChat = () => {
+export default function MessageScrollerGroupChatExample() {
   const [demoKey, setDemoKey] = React.useState(0);
   const [rockyTurn, setRockyTurn] = React.useState<"idle" | "marker" | "message">("idle");
 
-  const items =
-    rockyTurn === "message"
-      ? [...initialItems, rockyMarker, rockyMessage]
-      : rockyTurn === "marker"
-        ? [...initialItems, rockyMarker]
-        : initialItems;
+  const turns = {
+    idle: initialItems,
+    marker: [...initialItems, rockyMarker],
+    message: [...initialItems, rockyMarker, rockyMessage],
+  };
+
+  const items = turns[rockyTurn];
 
   const buttonLabel = rockyTurn === "idle" ? "Add Rocky" : "Send Message as Rocky";
   const isComplete = rockyTurn === "message";
@@ -212,4 +214,4 @@ export const MessageScrollerGroupChat = () => {
       </div>
     </MessageScrollerProvider>
   );
-};
+}

@@ -4,7 +4,7 @@ import { ScatterChart } from "@erbium/ui/charts/scatter-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -35,7 +35,7 @@ export const Playground: StoryObj<{
     radius: { control: { max: 10, min: 2, type: "number" } },
     tooltip: { control: "boolean" },
   },
-  args: { grid: true, legend: true, radius: 4, tooltip: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("scatter-chart", "playground") },

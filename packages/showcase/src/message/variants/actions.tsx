@@ -1,5 +1,5 @@
-import { MessageActionsDemo } from "../examples/message-actions";
+import MessageActionsExample from "../examples/message-actions";
 
-const Example = () => <MessageActionsDemo />;
+const Example = () => <MessageActionsExample />;
 
 export default Example;

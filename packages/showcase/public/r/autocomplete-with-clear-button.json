@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete showClear />;\n\nexport default Example;\n",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteWithClearButtonExample() {\n  return <FruitAutocomplete showClear />;\n}\n",
       "path": "src/autocomplete/variants/with-clear-button.tsx",
       "target": "@components/showcase/autocomplete/variants/with-clear-button.tsx",
       "type": "registry:component"

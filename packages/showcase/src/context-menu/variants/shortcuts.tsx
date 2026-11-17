@@ -1,5 +1,5 @@
-import { ContextMenuShortcuts } from "../examples/context-menu-shortcuts";
+import ContextMenuShortcutsExample from "../examples/context-menu-shortcuts";
 
-const Example = () => <ContextMenuShortcuts />;
+const Example = () => <ContextMenuShortcutsExample />;
 
 export default Example;

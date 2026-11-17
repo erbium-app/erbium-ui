@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/avatar", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport const AvatarWithBadge = () => (\n  <Avatar>\n    <AvatarImage\n      src=\"https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop\"\n      alt=\"John Doe\"\n    />\n    <AvatarFallback>JD</AvatarFallback>\n    <AvatarBadge className=\"bg-success\" />\n  </Avatar>\n);\n",
+      "content": "import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport default function AvatarWithBadgeExample() {\n  return (\n    <Avatar>\n      <AvatarImage\n        src=\"https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop\"\n        alt=\"John Doe\"\n      />\n      <AvatarFallback>JD</AvatarFallback>\n      <AvatarBadge className=\"bg-success\" />\n    </Avatar>\n  );\n}\n",
       "path": "src/avatar/examples/avatar-badge.tsx",
       "target": "@components/showcase/avatar/examples/avatar-badge.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { AvatarWithBadge } from \"../examples/avatar-badge\";\n\nconst Example = () => <AvatarWithBadge />;\n\nexport default Example;\n",
+      "content": "import AvatarWithBadgeExample from \"../examples/avatar-badge\";\n\nconst Example = () => <AvatarWithBadgeExample />;\n\nexport default Example;\n",
       "path": "src/avatar/variants/badge.tsx",
       "target": "@components/showcase/avatar/variants/badge.tsx",
       "type": "registry:component"

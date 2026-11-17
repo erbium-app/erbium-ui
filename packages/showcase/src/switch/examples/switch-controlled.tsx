@@ -2,7 +2,7 @@ import { Field, FieldLabel } from "@erbium/ui/components/field";
 import { Switch } from "@erbium/ui/components/switch";
 import { useState } from "react";
 
-const SwitchControlled = () => {
+export default function SwitchControlledExample() {
   const [checked, setChecked] = useState(true);
 
   return (
@@ -16,6 +16,4 @@ const SwitchControlled = () => {
       </p>
     </div>
   );
-};
-
-export default SwitchControlled;
+}

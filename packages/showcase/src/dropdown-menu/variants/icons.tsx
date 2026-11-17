@@ -1,5 +1,5 @@
-import { DropdownMenuIcons } from "../examples/dropdown-menu-icons";
+import DropdownMenuIconsExample from "../examples/dropdown-menu-icons";
 
-const Example = () => <DropdownMenuIcons />;
+const Example = () => <DropdownMenuIconsExample />;
 
 export default Example;

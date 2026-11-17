@@ -9,7 +9,7 @@ import {
 import { Button } from "@erbium/ui/components/button";
 import { paths } from "../examples/paths";
 
-const Example = () => {
+export default function FileTreeChangesExample() {
   const { model } = useFileTree({
     gitStatus: [
       { path: "src/blocks/file-view.tsx", status: "added" },
@@ -38,6 +38,4 @@ const Example = () => {
       <FileTreeContent />
     </FileTree>
   );
-};
-
-export default Example;
+}

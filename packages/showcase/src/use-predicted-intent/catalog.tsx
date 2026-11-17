@@ -4,7 +4,7 @@ import { componentDocumentation, variantDocumentation } from "@erbium/content/ma
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/use-predicted-intent-demo.tsx?raw";
 
 const meta = {
   parameters: {

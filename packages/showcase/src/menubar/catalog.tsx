@@ -6,29 +6,29 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/menubar-demo.tsx?raw";
 
 import CheckboxExample from "./variants/checkbox";
 
-import CheckboxSource from "./variants/checkbox.tsx?raw";
+import CheckboxSource from "./examples/menubar-checkbox.tsx?raw";
 
 import RadioExample from "./variants/radio";
 
-import RadioSource from "./variants/radio.tsx?raw";
+import RadioSource from "./examples/menubar-radio.tsx?raw";
 
 import SubmenuExample from "./variants/submenu";
 
-import SubmenuSource from "./variants/submenu.tsx?raw";
+import SubmenuSource from "./examples/menubar-submenu.tsx?raw";
 
 import WithIconsExample from "./variants/with-icons";
 
-import WithIconsSource from "./variants/with-icons.tsx?raw";
+import WithIconsSource from "./examples/menubar-icons.tsx?raw";
 
 const meta = {
   component: Menubar,
@@ -59,7 +59,7 @@ export const Playground: StoryObj<{
     disabled: { control: "boolean" },
     itemVariant: { control: "select", options: ["default", "error"] },
   },
-  args: { align: "start", className: "", disabled: false, itemVariant: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("menubar", "playground") },

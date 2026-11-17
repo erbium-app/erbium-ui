@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Field, FieldDescription, FieldError, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input as UIInput } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => (\n  <Field className=\"w-80\" invalid>\n    <FieldLabel>Email</FieldLabel>\n    <UIInput placeholder=\"name@example.com\" type=\"email\" />\n    <FieldDescription>We will use this to contact you.</FieldDescription>\n    <FieldError match>Enter a valid email address.</FieldError>\n  </Field>\n);\n\nexport default Example;\n",
+      "content": "import { Field, FieldDescription, FieldError, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Input as UIInput } from \"@/registry/erbium/ui/input\";\n\nexport default function FieldValidationAndErrorsExample() {\n  return (\n    <Field className=\"w-80\" invalid>\n      <FieldLabel>Email</FieldLabel>\n      <UIInput placeholder=\"name@example.com\" type=\"email\" />\n      <FieldDescription>We will use this to contact you.</FieldDescription>\n      <FieldError match>Enter a valid email address.</FieldError>\n    </Field>\n  );\n}\n",
       "path": "src/field/variants/validation-and-errors.tsx",
       "target": "@components/showcase/field/variants/validation-and-errors.tsx",
       "type": "registry:component"

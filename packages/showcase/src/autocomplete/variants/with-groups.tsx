@@ -1,5 +1,5 @@
 import { GroupedAutocomplete } from "../helpers";
 
-const Example = () => <GroupedAutocomplete />;
-
-export default Example;
+export default function AutocompleteWithGroupsExample() {
+  return <GroupedAutocomplete />;
+}

@@ -1,6 +1,8 @@
 import { PlaygroundTable } from "../helpers";
 import type { PlaygroundArgs } from "../helpers";
 
-const Example = (args: PlaygroundArgs) => <PlaygroundTable {...args} />;
+export const defaultProps = { caption: "Example data", rows: 3 } satisfies PlaygroundArgs;
 
-export default Example;
+export default function TablePlaygroundExample(args: PlaygroundArgs = defaultProps) {
+  return <PlaygroundTable {...args} />;
+}

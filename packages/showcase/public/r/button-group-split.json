@@ -12,7 +12,7 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nconst ButtonGroupSplit = () => (\n  <ButtonGroup>\n    <Button variant=\"secondary\">Button</Button>\n    <ButtonGroupSeparator />\n    <Button size=\"icon\" variant=\"secondary\">\n      <Icon name=\"plus\" />\n    </Button>\n  </ButtonGroup>\n);\n\nexport default ButtonGroupSplit;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/registry/erbium/ui/button-group\";\n\nexport default function ButtonGroupSplitExample() {\n  return (\n    <ButtonGroup>\n      <Button variant=\"secondary\">Button</Button>\n      <ButtonGroupSeparator />\n      <Button size=\"icon\" variant=\"secondary\">\n        <Icon name=\"plus\" />\n      </Button>\n    </ButtonGroup>\n  );\n}\n",
       "path": "src/button-group/examples/button-group-split.tsx",
       "target": "@components/showcase/button-group/examples/button-group-split.tsx",
       "type": "registry:component"

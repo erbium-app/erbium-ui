@@ -1,5 +1,5 @@
 import { FruitAutocomplete } from "../helpers";
 
-const Example = () => <FruitAutocomplete autoHighlight />;
-
-export default Example;
+export default function AutocompleteAutoHighlightExample() {
+  return <FruitAutocomplete autoHighlight />;
+}

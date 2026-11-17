@@ -1,5 +1,5 @@
-import Demo from "../examples/shake-demo";
+import ShakeExample from "../examples/shake-demo";
 
-const Example = () => <Demo />;
+const Example = () => <ShakeExample />;
 
 export default Example;

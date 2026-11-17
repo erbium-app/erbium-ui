@@ -8,53 +8,53 @@ import { Combobox } from "@erbium/ui/components/combobox";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/combobox-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/combobox-basic.tsx?raw";
 
 import MultipleExample from "./variants/multiple";
 
-import MultipleSource from "./variants/multiple.tsx?raw";
+import MultipleSource from "./examples/combobox-multiple.tsx?raw";
 
 import GroupsExample from "./variants/groups";
 
-import GroupsSource from "./variants/groups.tsx?raw";
+import GroupsSource from "./examples/combobox-groups.tsx?raw";
 
 import InvalidExample from "./variants/invalid";
 
-import InvalidSource from "./variants/invalid.tsx?raw";
+import InvalidSource from "./examples/combobox-invalid.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/combobox-disabled.tsx?raw";
 
 import AutoHighlightExample from "./variants/auto-highlight";
 
-import AutoHighlightSource from "./variants/auto-highlight.tsx?raw";
+import AutoHighlightSource from "./examples/combobox-auto-highlight.tsx?raw";
 
 import PopupExample from "./variants/popup";
 
-import PopupSource from "./variants/popup.tsx?raw";
+import PopupSource from "./examples/combobox-popup.tsx?raw";
 
 import InputGroupExample from "./variants/input-group";
 
-import InputGroupSource from "./variants/input-group.tsx?raw";
+import InputGroupSource from "./examples/combobox-input-group.tsx?raw";
 
 import CustomItemsExample from "./variants/custom-items";
 
-import CustomItemsSource from "./variants/custom-items.tsx?raw";
+import CustomItemsSource from "./examples/combobox-custom.tsx?raw";
 
 import ClearButtonExample from "./variants/clear-button";
 
-import ClearButtonSource from "./variants/clear-button.tsx?raw";
+import ClearButtonSource from "./examples/combobox-clear.tsx?raw";
 
 const meta = {
   component: Combobox,
@@ -87,13 +87,7 @@ export const Playground: StoryObj<{
     showClear: { control: "boolean" },
     showTrigger: { control: "boolean" },
   },
-  args: {
-    autoHighlight: false,
-    disabled: false,
-    placeholder: "Select a framework",
-    showClear: false,
-    showTrigger: true,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("combobox", "playground") },

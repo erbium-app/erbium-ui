@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Calendar } from "@erbium/ui/components/calendar";
 
-export const CalendarMultiple = () => {
+export default function CalendarMultipleExample() {
   const [dates, setDates] = React.useState<Date[] | undefined>(() => {
     const year = new Date().getFullYear();
 
@@ -18,4 +18,4 @@ export const CalendarMultiple = () => {
       max={5}
     />
   );
-};
+}

@@ -1,5 +1,5 @@
-import { InputGroupBlockStart } from "../examples/input-group-block-start";
+import InputGroupBlockStartExample from "../examples/input-group-block-start";
 
-const Example = () => <InputGroupBlockStart />;
+const Example = () => <InputGroupBlockStartExample />;
 
 export default Example;

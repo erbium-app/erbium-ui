@@ -13,13 +13,13 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport const TooltipKeyboard = () => (\n  <Tooltip>\n    <TooltipTrigger render={<Button variant=\"outline\" size=\"icon-sm\" />}>\n      <Icon name=\"save\" />\n    </TooltipTrigger>\n    <TooltipContent>\n      Save Changes <Kbd hotkey=\"S\" />\n    </TooltipContent>\n  </Tooltip>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipKeyboardExample() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\" size=\"icon-sm\" />}>\n        <Icon name=\"save\" />\n      </TooltipTrigger>\n      <TooltipContent>\n        Save Changes <Kbd hotkey=\"S\" />\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n",
       "path": "src/tooltip/examples/tooltip-keyboard.tsx",
       "target": "@components/showcase/tooltip/examples/tooltip-keyboard.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { TooltipKeyboard } from \"../examples/tooltip-keyboard\";\n\nconst Example = () => <TooltipKeyboard />;\n\nexport default Example;\n",
+      "content": "import TooltipKeyboard from \"../examples/tooltip-keyboard\";\n\nconst Example = () => <TooltipKeyboard />;\n\nexport default Example;\n",
       "path": "src/tooltip/variants/with-keyboard-shortcut.tsx",
       "target": "@components/showcase/tooltip/variants/with-keyboard-shortcut.tsx",
       "type": "registry:component"

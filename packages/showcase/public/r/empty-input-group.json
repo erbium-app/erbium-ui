@@ -13,13 +13,13 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nconst EmptyInputGroup = () => (\n  <Empty>\n    <EmptyHeader>\n      <EmptyTitle>404 - Not Found</EmptyTitle>\n      <EmptyDescription>\n        The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need below.\n      </EmptyDescription>\n    </EmptyHeader>\n    <EmptyContent>\n      <InputGroup className=\"sm:w-3/4\">\n        <InputGroupInput placeholder=\"Try searching for pages...\" />\n        <InputGroupAddon>\n          <Icon name=\"search-01\" />\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Kbd hotkey=\"/\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <EmptyDescription>\n        Need help? <a href=\"#\">Contact support</a>\n      </EmptyDescription>\n    </EmptyContent>\n  </Empty>\n);\n\nexport default EmptyInputGroup;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport {\n  Empty,\n  EmptyContent,\n  EmptyDescription,\n  EmptyHeader,\n  EmptyTitle,\n} from \"@/registry/erbium/ui/empty\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function EmptyInputGroupExample() {\n  return (\n    <Empty>\n      <EmptyHeader>\n        <EmptyTitle>404 - Not Found</EmptyTitle>\n        <EmptyDescription>\n          The page you&apos;re looking for doesn&apos;t exist. Try searching for what you need\n          below.\n        </EmptyDescription>\n      </EmptyHeader>\n      <EmptyContent>\n        <InputGroup className=\"sm:w-3/4\">\n          <InputGroupInput placeholder=\"Try searching for pages...\" />\n          <InputGroupAddon>\n            <Icon name=\"search-01\" />\n          </InputGroupAddon>\n          <InputGroupAddon align=\"inline-end\">\n            <Kbd hotkey=\"/\" />\n          </InputGroupAddon>\n        </InputGroup>\n        <EmptyDescription>\n          Need help? <a href=\"#overview\">Contact support</a>\n        </EmptyDescription>\n      </EmptyContent>\n    </Empty>\n  );\n}\n",
       "path": "src/empty/examples/empty-input-group.tsx",
       "target": "@components/showcase/empty/examples/empty-input-group.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import EmptyInputGroup from \"../examples/empty-input-group\";\n\nconst Example = () => <EmptyInputGroup />;\n\nexport default Example;\n",
+      "content": "import EmptyInputGroup from \"../examples/empty-input-group\";\n\nexport default function EmptyInputGroupExample() {\n  return <EmptyInputGroup />;\n}\n",
       "path": "src/empty/variants/input-group.tsx",
       "target": "@components/showcase/empty/variants/input-group.tsx",
       "type": "registry:component"

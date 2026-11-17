@@ -21,7 +21,7 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export const DropdownMenuComplex = () => {
+export default function DropdownMenuComplexExample() {
   const [notifications, setNotifications] = React.useState({
     email: true,
     push: true,
@@ -250,4 +250,4 @@ export const DropdownMenuComplex = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}

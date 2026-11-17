@@ -45,7 +45,7 @@ const photos = [
 ];
 
 /** Carousel and lightbox share one index, so closing the viewer lands on the photo last shown. */
-const CarouselLightbox = () => {
+export default function CarouselLightboxExample() {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -122,6 +122,4 @@ const CarouselLightbox = () => {
       </LightboxContent>
     </Lightbox>
   );
-};
-
-export default CarouselLightbox;
+}

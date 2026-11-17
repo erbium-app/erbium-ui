@@ -1,5 +1,5 @@
-import { MarkerBorderDemo } from "../examples/marker-border";
+import MarkerBorderExample from "../examples/marker-border";
 
-const Example = () => <MarkerBorderDemo />;
+const Example = () => <MarkerBorderExample />;
 
 export default Example;

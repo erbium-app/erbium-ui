@@ -1,5 +1,5 @@
 import { Textarea } from "@erbium/ui/components/textarea";
 
-const TextareaDemo = () => <Textarea placeholder="Type your message here." />;
-
-export default TextareaDemo;
+export default function TextareaExample() {
+  return <Textarea placeholder="Type your message here." />;
+}

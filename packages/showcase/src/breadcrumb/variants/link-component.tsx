@@ -1,5 +1,5 @@
-import { BreadcrumbLinkDemo } from "../examples/breadcrumb-link";
+import BreadcrumbLinkExample from "../examples/breadcrumb-link";
 
-const Example = () => <BreadcrumbLinkDemo />;
+const Example = () => <BreadcrumbLinkExample />;
 
 export default Example;

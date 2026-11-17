@@ -4,7 +4,7 @@ import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group
 import { Toggle } from "@erbium/ui/components/toggle";
 import { oldFile, newFile } from "../examples/files";
 
-const Example = () => {
+export default function DiffViewLayoutsExample() {
   const [layout, setLayout] = useState<"split" | "unified">("split");
   const [wrap, setWrap] = useState(false);
 
@@ -38,6 +38,4 @@ const Example = () => {
       />
     </div>
   );
-};
-
-export default Example;
+}

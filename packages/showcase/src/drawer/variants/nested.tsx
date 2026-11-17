@@ -1,5 +1,5 @@
-import { DrawerNested } from "../examples/drawer-nested";
+import DrawerNestedExample from "../examples/drawer-nested";
 
-const Example = () => <DrawerNested />;
+const Example = () => <DrawerNestedExample />;
 
 export default Example;

@@ -1,9 +1,9 @@
 import { AvatarFallback, Avatar } from "@erbium/ui/components/avatar";
 
-const Example = () => (
-  <Avatar>
-    <AvatarFallback>AN</AvatarFallback>
-  </Avatar>
-);
-
-export default Example;
+export default function AvatarFallbackExample() {
+  return (
+    <Avatar>
+      <AvatarFallback>AN</AvatarFallback>
+    </Avatar>
+  );
+}

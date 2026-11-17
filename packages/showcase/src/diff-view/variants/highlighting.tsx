@@ -4,7 +4,7 @@ import type { DiffViewOptions } from "@erbium/ui/blocks/diff-view";
 import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
 import { oldFile, newFile } from "../examples/files";
 
-const Example = () => {
+export default function DiffViewHighlightingExample() {
   const [highlight, setHighlight] = useState<DiffViewOptions["lineDiffType"]>("word-alt");
 
   return (
@@ -34,6 +34,4 @@ const Example = () => {
       />
     </div>
   );
-};
-
-export default Example;
+}

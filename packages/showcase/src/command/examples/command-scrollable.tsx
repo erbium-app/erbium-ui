@@ -288,7 +288,7 @@ const commandGroups = [
   },
 ];
 
-export const CommandManyItems = () => {
+export default function CommandManyItemsExample() {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -331,4 +331,4 @@ export const CommandManyItems = () => {
       </CommandDialog>
     </div>
   );
-};
+}

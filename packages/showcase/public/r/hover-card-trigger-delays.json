@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/hover-card", "@erbium/styles"],
   "files": [
     {
-      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <HoverCard>\n    <HoverCardTrigger closeDelay={200} delay={100} render={<Button variant=\"link\" />}>\n      Hover to preview\n    </HoverCardTrigger>\n    <HoverCardContent>Opens after 100 ms and closes after 200 ms.</HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function HoverCardTriggerDelaysExample() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger closeDelay={200} delay={100} render={<Button variant=\"link\" />}>\n        Hover to preview\n      </HoverCardTrigger>\n      <HoverCardContent>Opens after 100 ms and closes after 200 ms.</HoverCardContent>\n    </HoverCard>\n  );\n}\n",
       "path": "src/hover-card/variants/trigger-delays.tsx",
       "target": "@components/showcase/hover-card/variants/trigger-delays.tsx",
       "type": "registry:component"

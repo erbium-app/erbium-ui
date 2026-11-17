@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => <Button disabled>Unavailable</Button>;\n\nexport default Example;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonDisabledExample() {\n  return <Button disabled>Unavailable</Button>;\n}\n",
       "path": "src/button/variants/disabled.tsx",
       "target": "@components/showcase/button/variants/disabled.tsx",
       "type": "registry:component"

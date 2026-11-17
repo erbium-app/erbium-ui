@@ -1,5 +1,5 @@
-import { InputGroupKbd } from "../examples/input-group-kbd";
+import InputGroupKbdExample from "../examples/input-group-kbd";
 
-const Example = () => <InputGroupKbd />;
+const Example = () => <InputGroupKbdExample />;
 
 export default Example;

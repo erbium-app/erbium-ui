@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/pagination", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  Pagination,\n} from \"@/registry/erbium/ui/pagination\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Pagination>) => (\n  <Pagination {...args}>\n    <PaginationContent>\n      {[1, 2, 3].map((page) => (\n        <PaginationItem key={page}>\n          <PaginationLink href=\"#\" isActive={page === 2}>\n            {page}\n          </PaginationLink>\n        </PaginationItem>\n      ))}\n    </PaginationContent>\n  </Pagination>\n);\n\nexport default Example;\n",
+      "content": "import {\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n  Pagination,\n} from \"@/registry/erbium/ui/pagination\";\nimport type * as React from \"react\";\n\nexport const defaultProps = { className: \"\" } satisfies React.ComponentProps<typeof Pagination>;\n\nexport default function PaginationPlaygroundExample(\n  args: React.ComponentProps<typeof Pagination> = defaultProps,\n) {\n  return (\n    <Pagination {...args}>\n      <PaginationContent>\n        {[1, 2, 3].map((page) => (\n          <PaginationItem key={page}>\n            <PaginationLink href=\"#\" isActive={page === 2}>\n              {page}\n            </PaginationLink>\n          </PaginationItem>\n        ))}\n      </PaginationContent>\n    </Pagination>\n  );\n}\n",
       "path": "src/pagination/variants/playground.tsx",
       "target": "@components/showcase/pagination/variants/playground.tsx",
       "type": "registry:component"

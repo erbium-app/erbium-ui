@@ -6,29 +6,29 @@ import { Command } from "@erbium/ui/components/command";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/command-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/command-basic.tsx?raw";
 
 import ShortcutsExample from "./variants/shortcuts";
 
-import ShortcutsSource from "./variants/shortcuts.tsx?raw";
+import ShortcutsSource from "./examples/command-shortcuts.tsx?raw";
 
 import GroupsExample from "./variants/groups";
 
-import GroupsSource from "./variants/groups.tsx?raw";
+import GroupsSource from "./examples/command-groups.tsx?raw";
 
 import ScrollableExample from "./variants/scrollable";
 
-import ScrollableSource from "./variants/scrollable.tsx?raw";
+import ScrollableSource from "./examples/command-scrollable.tsx?raw";
 
 const meta = {
   component: Command,
@@ -49,7 +49,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<{ placeholder: string; disabled: boolean }> = {
   argTypes: { disabled: { control: "boolean" }, placeholder: { control: "text" } },
-  args: { disabled: false, placeholder: "Search commands" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("command", "playground") },

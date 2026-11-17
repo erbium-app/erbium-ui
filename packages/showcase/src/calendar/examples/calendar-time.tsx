@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter } from "@erbium/ui/components/card";
 import { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
 
-export const CalendarWithTime = () => {
+export default function CalendarWithTimeExample() {
   const [date, setDate] = React.useState<Date | undefined>(
     () => new Date(new Date().getFullYear(), new Date().getMonth(), 12),
   );
@@ -50,4 +50,4 @@ export const CalendarWithTime = () => {
       </CardFooter>
     </Card>
   );
-};
+}

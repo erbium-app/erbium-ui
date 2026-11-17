@@ -4,7 +4,7 @@ import { AreaChart } from "@erbium/ui/charts/area-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -47,15 +47,7 @@ export const Playground: StoryObj<{
     stacked: { control: "boolean" },
     tooltip: { control: "boolean" },
   },
-  args: {
-    axis: true,
-    curve: "smooth",
-    fill: "gradient",
-    grid: true,
-    legend: true,
-    stacked: false,
-    tooltip: true,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("area-chart", "playground") },

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => <Button loading>Saving</Button>;\n\nexport default Example;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonLoadingExample() {\n  return <Button loading>Saving</Button>;\n}\n",
       "path": "src/button/variants/loading.tsx",
       "target": "@components/showcase/button/variants/loading.tsx",
       "type": "registry:component"

@@ -1,4 +1,4 @@
-import { SkeletonBox } from "../examples/skeleton-box";
+import SkeletonBox from "../examples/skeleton-box";
 
 const Example = () => <SkeletonBox />;
 

@@ -11,7 +11,7 @@ import {
   InputGroupTextarea,
 } from "@erbium/ui/components/input-group";
 
-const InputGroupTextareaExample = () => {
+export default function InputGroupTextareaExample() {
   const [code, setCode] = useState("console.log('Hello, world!');");
 
   return (
@@ -51,6 +51,4 @@ const InputGroupTextareaExample = () => {
       </InputGroup>
     </div>
   );
-};
-
-export default InputGroupTextareaExample;
+}

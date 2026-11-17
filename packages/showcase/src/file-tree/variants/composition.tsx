@@ -16,7 +16,7 @@ import {
 } from "@erbium/ui/components/sidebar";
 import { paths } from "../examples/paths";
 
-const Example = () => {
+export default function FileTreeCompositionExample() {
   const { model } = useFileTree({ initialExpansion: 1, paths, search: true });
 
   return (
@@ -48,6 +48,4 @@ const Example = () => {
       </Sidebar>
     </SidebarProvider>
   );
-};
-
-export default Example;
+}

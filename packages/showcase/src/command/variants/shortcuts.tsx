@@ -1,5 +1,5 @@
-import { CommandWithShortcuts } from "../examples/command-shortcuts";
+import CommandWithShortcutsExample from "../examples/command-shortcuts";
 
-const Example = () => <CommandWithShortcuts />;
+const Example = () => <CommandWithShortcutsExample />;
 
 export default Example;

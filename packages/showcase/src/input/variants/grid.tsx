@@ -1,5 +1,5 @@
-import { InputGrid } from "../examples/input-grid";
+import InputGridExample from "../examples/input-grid";
 
-const Example = () => <InputGrid />;
+const Example = () => <InputGridExample />;
 
 export default Example;

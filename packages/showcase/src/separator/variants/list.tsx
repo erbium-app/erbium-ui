@@ -1,9 +1,9 @@
 import { SeparatorList } from "../examples/separator-list";
 
-const Example = () => (
-  <div className="w-72 max-w-[calc(100vw-2rem)]">
-    <SeparatorList />
-  </div>
-);
-
-export default Example;
+export default function SeparatorListExample() {
+  return (
+    <div className="w-72 max-w-[calc(100vw-2rem)]">
+      <SeparatorList />
+    </div>
+  );
+}

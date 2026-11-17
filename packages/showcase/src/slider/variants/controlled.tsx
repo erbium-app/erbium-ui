@@ -1,4 +1,4 @@
-import { SliderControlled } from "../examples/slider-controlled";
+import SliderControlled from "../examples/slider-controlled";
 
 const Example = () => <SliderControlled />;
 

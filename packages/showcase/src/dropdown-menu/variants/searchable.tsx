@@ -16,7 +16,7 @@ import {
   DropdownMenuCheckboxItem,
 } from "@erbium/ui/components/dropdown-menu";
 
-const SearchableExample = () => {
+export default function SearchableExample() {
   const [action, setAction] = useState("No action selected.");
 
   return (
@@ -85,11 +85,7 @@ const SearchableExample = () => {
           </DropdownMenuList>
         </DropdownMenuContent>
       </DropdownMenu>
-      <p role="status" className="text-caption text-muted-foreground">
-        {action}
-      </p>
+      <output className="text-caption text-muted-foreground">{action}</output>
     </div>
   );
-};
-
-export default SearchableExample;
+}

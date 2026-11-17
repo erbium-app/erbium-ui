@@ -12,7 +12,7 @@ import {
   DialogClose,
 } from "@erbium/ui/components/dialog";
 
-const ProgrammaticExample = () => {
+export default function ProgrammaticExample() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -48,6 +48,4 @@ const ProgrammaticExample = () => {
       </Dialog>
     </div>
   );
-};
-
-export default ProgrammaticExample;
+}

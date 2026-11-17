@@ -1,5 +1,5 @@
-import { ContextMenuIcons } from "../examples/context-menu-icons";
+import ContextMenuIconsExample from "../examples/context-menu-icons";
 
-const Example = () => <ContextMenuIcons />;
+const Example = () => <ContextMenuIconsExample />;
 
 export default Example;

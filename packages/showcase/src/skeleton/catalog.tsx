@@ -1,31 +1,31 @@
 import type { Meta, StoryObj } from "../types";
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { defaultLatency, latencyArgType } from "../loading";
-import PlaygroundExample from "./variants/playground";
+import { latencyArgType } from "../loading";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 import PlaygroundSource from "./variants/playground.tsx?raw";
 import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
 import CardExample from "./variants/card";
-import CardSource from "./variants/card.tsx?raw";
+import CardSource from "./examples/skeleton-card.tsx?raw";
 import TextExample from "./variants/text";
-import TextSource from "./variants/text.tsx?raw";
+import TextSource from "./examples/skeleton-text.tsx?raw";
 import AvatarExample from "./variants/avatar";
 import AvatarSource from "./variants/avatar.tsx?raw";
 import FormExample from "./variants/form";
-import FormSource from "./variants/form.tsx?raw";
+import FormSource from "./examples/skeleton-form.tsx?raw";
 import TableExample from "./variants/table";
-import TableSource from "./variants/table.tsx?raw";
+import TableSource from "./examples/skeleton-table.tsx?raw";
 import RefetchExample from "./variants/refetch";
-import RefetchSource from "./variants/refetch.tsx?raw";
+import RefetchSource from "./examples/skeleton-refetch.tsx?raw";
 import SuspenseExample from "./variants/suspense";
-import SuspenseSource from "./variants/suspense.tsx?raw";
+import SuspenseSource from "./examples/skeleton-suspense.tsx?raw";
 import StatesExample from "./variants/states";
-import StatesSource from "./variants/states.tsx?raw";
+import StatesSource from "./examples/skeleton-states.tsx?raw";
 import SectionsExample from "./variants/sections";
-import SectionsSource from "./variants/sections.tsx?raw";
+import SectionsSource from "./examples/skeleton-sections.tsx?raw";
 import BoxExample from "./variants/box";
-import BoxSource from "./variants/box.tsx?raw";
+import BoxSource from "./examples/skeleton-box.tsx?raw";
 import RevealsExample from "./variants/reveals";
 import RevealsSource from "./variants/reveals.tsx?raw";
 
@@ -51,7 +51,7 @@ export const Playground: StoryObj<typeof PlaygroundExample> = {
     ...latencyArgType,
     reveal: { control: { type: "select" }, options: ["smart", "together", "sequence", "sweep"] },
   },
-  args: { latency: defaultLatency, reveal: "smart" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("skeleton", "playground") },

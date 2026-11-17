@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerTrigger,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst Example = () => (\n  <Field className=\"w-56\">\n    <FieldLabel htmlFor=\"date-picker-trigger\">Publish on</FieldLabel>\n    <DatePicker formatOptions={{ dateStyle: \"long\" }}>\n      <DatePickerTrigger id=\"date-picker-trigger\" className=\"w-full\" />\n      <DatePickerContent>\n        <DatePickerCalendar />\n      </DatePickerContent>\n    </DatePicker>\n  </Field>\n);\n\nexport default Example;\n",
+      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerTrigger,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function DatePickerTriggerExample() {\n  return (\n    <Field className=\"w-56\">\n      <FieldLabel htmlFor=\"date-picker-trigger\">Publish on</FieldLabel>\n      <DatePicker formatOptions={{ dateStyle: \"long\" }}>\n        <DatePickerTrigger id=\"date-picker-trigger\" className=\"w-full\" />\n        <DatePickerContent>\n          <DatePickerCalendar />\n        </DatePickerContent>\n      </DatePicker>\n    </Field>\n  );\n}\n",
       "path": "src/date-picker/variants/trigger.tsx",
       "target": "@components/showcase/date-picker/variants/trigger.tsx",
       "type": "registry:component"

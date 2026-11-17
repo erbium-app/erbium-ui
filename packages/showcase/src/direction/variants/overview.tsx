@@ -1,8 +1,8 @@
-import Demo from "../examples/direction-demo";
+import DirectionExample from "../examples/direction-demo";
 
 const Example = () => (
   <div className="w-full min-w-72 max-w-2xl p-4">
-    <Demo />
+    <DirectionExample />
   </div>
 );
 

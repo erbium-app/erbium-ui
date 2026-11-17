@@ -1,4 +1,4 @@
-import { OTPFieldDisabled } from "../examples/otp-field-disabled";
+import OTPFieldDisabled from "../examples/otp-field-disabled";
 
 const Example = () => <OTPFieldDisabled />;
 

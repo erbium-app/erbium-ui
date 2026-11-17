@@ -1,8 +1,8 @@
 import { Button } from "@erbium/ui/components/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@erbium/ui/components/popover";
 
-export const PopoverAlignments = () => (
-  <>
+export default function PopoverAlignmentsExample() {
+  return (
     <div className="flex gap-section">
       <Popover>
         <PopoverTrigger render={<Button variant="outline" size="sm" />}>Start</PopoverTrigger>
@@ -23,5 +23,5 @@ export const PopoverAlignments = () => (
         </PopoverContent>
       </Popover>
     </div>
-  </>
-);
+  );
+}

@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SidebarToggleIconExample } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"flex gap-3\">\n    <SidebarToggleIconExample side=\"left\" />\n    <SidebarToggleIconExample side=\"right\" />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { SidebarToggleIconExample } from \"../helpers\";\n\nexport default function StatefulIconSidebarToggleIconExample() {\n  return (\n    <div className=\"flex gap-3\">\n      <SidebarToggleIconExample side=\"left\" />\n      <SidebarToggleIconExample side=\"right\" />\n    </div>\n  );\n}\n",
       "path": "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
       "target": "@components/showcase/stateful-icon/variants/sidebar-toggle-icon.tsx",
       "type": "registry:component"

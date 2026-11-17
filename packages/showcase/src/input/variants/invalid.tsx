@@ -1,5 +1,5 @@
 import { Input } from "@erbium/ui/components/input";
 
-const Example = () => <Input aria-invalid placeholder="Invalid email" />;
-
-export default Example;
+export default function InputInvalidExample() {
+  return <Input aria-invalid placeholder="Invalid email" />;
+}

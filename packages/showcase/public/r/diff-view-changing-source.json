@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { useState } from \"react\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nconst Example = () => {\n  const [reversed, setReversed] = useState(false);\n\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <Button\n        className=\"w-fit\"\n        size=\"sm\"\n        variant=\"outline\"\n        onClick={() => {\n          setReversed(!reversed);\n        }}\n      >\n        Swap file versions\n      </Button>\n      <DiffView oldFile={reversed ? newFile : oldFile} newFile={reversed ? oldFile : newFile} />\n    </div>\n  );\n};\n\nexport default Example;\n",
+      "content": "import { useState } from \"react\";\nimport { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function DiffViewChangingSourceExample() {\n  const [reversed, setReversed] = useState(false);\n\n  return (\n    <div className=\"grid w-full max-w-4xl gap-4\">\n      <Button\n        className=\"w-fit\"\n        size=\"sm\"\n        variant=\"outline\"\n        onClick={() => {\n          setReversed(!reversed);\n        }}\n      >\n        Swap file versions\n      </Button>\n      <DiffView oldFile={reversed ? newFile : oldFile} newFile={reversed ? oldFile : newFile} />\n    </div>\n  );\n}\n",
       "path": "src/diff-view/variants/changing-source.tsx",
       "target": "@components/showcase/diff-view/variants/changing-source.tsx",
       "type": "registry:component"

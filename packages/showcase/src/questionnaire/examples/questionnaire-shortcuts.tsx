@@ -24,7 +24,7 @@ const items = [
 
 type ShortcutMode = React.ComponentProps<typeof Questionnaire>["shortcuts"];
 
-export const QuestionnaireShortcuts = () => {
+export default function QuestionnaireShortcutsExample() {
   const [shortcuts, setShortcuts] = React.useState<ShortcutMode>("letters");
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
@@ -79,4 +79,4 @@ export const QuestionnaireShortcuts = () => {
       </Questionnaire>
     </div>
   );
-};
+}

@@ -12,49 +12,51 @@ import {
   MenubarList,
 } from "@erbium/ui/components/menubar";
 
-export const MenubarIcons = () => (
-  <Menubar className="w-72">
-    <MenubarMenu>
-      <MenubarTrigger>File</MenubarTrigger>
-      <MenubarContent>
-        <MenubarList>
-          <MenubarItem>
-            <Icon name="file-01" />
-            New File <MenubarShortcut hotkey="Mod+N" />
-          </MenubarItem>
-          <MenubarItem>
-            <Icon name="folder-01" />
-            Open Folder
-          </MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>
-            <Icon name="save" />
-            Save <MenubarShortcut hotkey="Mod+S" />
-          </MenubarItem>
-        </MenubarList>
-      </MenubarContent>
-    </MenubarMenu>
-    <MenubarMenu>
-      <MenubarTrigger>More</MenubarTrigger>
-      <MenubarContent>
-        <MenubarList>
-          <MenubarGroup>
+export default function MenubarIconsExample() {
+  return (
+    <Menubar className="w-72">
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarList>
             <MenubarItem>
-              <Icon name="settings-01" />
-              Settings
+              <Icon name="file-01" />
+              New File <MenubarShortcut hotkey="Mod+N" />
             </MenubarItem>
             <MenubarItem>
-              <Icon name="help-circle" />
-              Help
+              <Icon name="folder-01" />
+              Open Folder
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem variant="error">
-              <Icon name="trash" />
-              Delete
+            <MenubarItem>
+              <Icon name="save" />
+              Save <MenubarShortcut hotkey="Mod+S" />
             </MenubarItem>
-          </MenubarGroup>
-        </MenubarList>
-      </MenubarContent>
-    </MenubarMenu>
-  </Menubar>
-);
+          </MenubarList>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>More</MenubarTrigger>
+        <MenubarContent>
+          <MenubarList>
+            <MenubarGroup>
+              <MenubarItem>
+                <Icon name="settings-01" />
+                Settings
+              </MenubarItem>
+              <MenubarItem>
+                <Icon name="help-circle" />
+                Help
+              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem variant="error">
+                <Icon name="trash" />
+                Delete
+              </MenubarItem>
+            </MenubarGroup>
+          </MenubarList>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}

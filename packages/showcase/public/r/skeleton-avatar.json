@@ -33,7 +33,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SkeletonAvatar } from \"../examples/skeleton-avatar\";\n\nconst Example = () => <SkeletonAvatar />;\n\nexport default Example;\n",
+      "content": "import { SkeletonAvatar } from \"../examples/skeleton-avatar\";\n\nexport default function SkeletonAvatarExample() {\n  return <SkeletonAvatar />;\n}\n",
       "path": "src/skeleton/variants/avatar.tsx",
       "target": "@components/showcase/skeleton/variants/avatar.tsx",
       "type": "registry:component"

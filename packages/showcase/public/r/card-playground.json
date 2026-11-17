@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/card", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Card>) => (\n  <Card {...args} className=\"w-80\">\n    <CardHeader>\n      <CardTitle>Card title</CardTitle>\n      <CardDescription>Card description</CardDescription>\n    </CardHeader>\n    <CardContent>Card content</CardContent>\n    <CardFooter>Card footer</CardFooter>\n  </Card>\n);\n\nexport default Example;\n",
+      "content": "import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/erbium/ui/card\";\nimport type * as React from \"react\";\n\nexport const defaultProps = { size: \"default\" } satisfies React.ComponentProps<typeof Card>;\n\nexport default function CardPlaygroundExample(\n  args: React.ComponentProps<typeof Card> = defaultProps,\n) {\n  return (\n    <Card {...args} className=\"w-80\">\n      <CardHeader>\n        <CardTitle>Card title</CardTitle>\n        <CardDescription>Card description</CardDescription>\n      </CardHeader>\n      <CardContent>Card content</CardContent>\n      <CardFooter>Card footer</CardFooter>\n    </Card>\n  );\n}\n",
       "path": "src/card/variants/playground.tsx",
       "target": "@components/showcase/card/variants/playground.tsx",
       "type": "registry:component"

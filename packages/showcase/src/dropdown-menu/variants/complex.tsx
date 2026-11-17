@@ -1,5 +1,5 @@
-import { DropdownMenuComplex } from "../examples/dropdown-menu-complex";
+import DropdownMenuComplexExample from "../examples/dropdown-menu-complex";
 
-const Example = () => <DropdownMenuComplex />;
+const Example = () => <DropdownMenuComplexExample />;
 
 export default Example;

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toolbar"],
   "files": [
     {
-      "content": "import {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nconst Example = () => (\n  <Toolbar aria-label=\"Editing commands\">\n    <ToolbarButton>Undo</ToolbarButton>\n    <ToolbarButton disabled>Redo</ToolbarButton>\n    <ToolbarSeparator />\n    <ToolbarGroup aria-label=\"Clipboard\" disabled>\n      <ToolbarButton>Cut</ToolbarButton>\n      <ToolbarButton>Paste</ToolbarButton>\n    </ToolbarGroup>\n  </Toolbar>\n);\n\nexport default Example;\n",
+      "content": "import {\n  Toolbar,\n  ToolbarButton,\n  ToolbarGroup,\n  ToolbarSeparator,\n} from \"@/registry/erbium/ui/toolbar\";\n\nexport default function ToolbarDisabledExample() {\n  return (\n    <Toolbar aria-label=\"Editing commands\">\n      <ToolbarButton>Undo</ToolbarButton>\n      <ToolbarButton disabled>Redo</ToolbarButton>\n      <ToolbarSeparator />\n      <ToolbarGroup aria-label=\"Clipboard\" disabled>\n        <ToolbarButton>Cut</ToolbarButton>\n        <ToolbarButton>Paste</ToolbarButton>\n      </ToolbarGroup>\n    </Toolbar>\n  );\n}\n",
       "path": "src/toolbar/variants/disabled.tsx",
       "target": "@components/showcase/toolbar/variants/disabled.tsx",
       "type": "registry:component"

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { OTPField } from "@erbium/ui/components/otp-field";
 
-const OTPFieldControlled = () => {
+export default function OTPFieldControlledExample() {
   const [value, setValue] = React.useState("");
 
   return (
@@ -13,6 +13,4 @@ const OTPFieldControlled = () => {
       </div>
     </div>
   );
-};
-
-export default OTPFieldControlled;
+}

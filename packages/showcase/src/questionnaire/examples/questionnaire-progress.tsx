@@ -34,59 +34,61 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   });
 };
 
-export const QuestionnaireProgressExample = () => (
-  <Questionnaire
-    className="mx-auto max-w-md"
-    defaultItem="scope"
-    items={items}
-    onSubmit={handleSubmit}
-  >
-    <QuestionnaireStepIndicator />
+export default function QuestionnaireProgressExample() {
+  return (
+    <Questionnaire
+      className="mx-auto max-w-md"
+      defaultItem="scope"
+      items={items}
+      onSubmit={handleSubmit}
+    >
+      <QuestionnaireStepIndicator />
 
-    <QuestionnaireItem name="scope">
-      <QuestionnaireTitle>How large is the change?</QuestionnaireTitle>
-      <QuestionnaireChoices>
-        <QuestionnaireChoice value="small">Small patch</QuestionnaireChoice>
-        <QuestionnaireChoice value="medium">Feature-sized change</QuestionnaireChoice>
-        <QuestionnaireChoice value="large">Cross-package change</QuestionnaireChoice>
-      </QuestionnaireChoices>
-      <QuestionnaireError />
-    </QuestionnaireItem>
+      <QuestionnaireItem name="scope">
+        <QuestionnaireTitle>How large is the change?</QuestionnaireTitle>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="small">Small patch</QuestionnaireChoice>
+          <QuestionnaireChoice value="medium">Feature-sized change</QuestionnaireChoice>
+          <QuestionnaireChoice value="large">Cross-package change</QuestionnaireChoice>
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
 
-    <QuestionnaireItem name="strategy">
-      <QuestionnaireTitle>How should commits be organized?</QuestionnaireTitle>
-      <QuestionnaireChoices>
-        <QuestionnaireChoice value="single">Single commit</QuestionnaireChoice>
-        <QuestionnaireChoice value="logical">Logical commits</QuestionnaireChoice>
-        <QuestionnaireChoice value="squash">Squash before review</QuestionnaireChoice>
-      </QuestionnaireChoices>
-      <QuestionnaireError />
-    </QuestionnaireItem>
+      <QuestionnaireItem name="strategy">
+        <QuestionnaireTitle>How should commits be organized?</QuestionnaireTitle>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="single">Single commit</QuestionnaireChoice>
+          <QuestionnaireChoice value="logical">Logical commits</QuestionnaireChoice>
+          <QuestionnaireChoice value="squash">Squash before review</QuestionnaireChoice>
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
 
-    <QuestionnaireItem name="tests">
-      <QuestionnaireTitle>Which tests should run?</QuestionnaireTitle>
-      <QuestionnaireChoices>
-        <QuestionnaireChoice value="targeted">Targeted tests</QuestionnaireChoice>
-        <QuestionnaireChoice value="package">Package suite</QuestionnaireChoice>
-        <QuestionnaireChoice value="workspace">Full workspace</QuestionnaireChoice>
-      </QuestionnaireChoices>
-      <QuestionnaireError />
-    </QuestionnaireItem>
+      <QuestionnaireItem name="tests">
+        <QuestionnaireTitle>Which tests should run?</QuestionnaireTitle>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="targeted">Targeted tests</QuestionnaireChoice>
+          <QuestionnaireChoice value="package">Package suite</QuestionnaireChoice>
+          <QuestionnaireChoice value="workspace">Full workspace</QuestionnaireChoice>
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
 
-    <QuestionnaireItem name="delivery">
-      <QuestionnaireTitle>How should the work be delivered?</QuestionnaireTitle>
-      <QuestionnaireChoices>
-        <QuestionnaireChoice value="patch">Patch only</QuestionnaireChoice>
-        <QuestionnaireChoice value="commit">Committed locally</QuestionnaireChoice>
-        <QuestionnaireChoice value="branch">Push a review branch</QuestionnaireChoice>
-      </QuestionnaireChoices>
-      <QuestionnaireError />
-    </QuestionnaireItem>
+      <QuestionnaireItem name="delivery">
+        <QuestionnaireTitle>How should the work be delivered?</QuestionnaireTitle>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="patch">Patch only</QuestionnaireChoice>
+          <QuestionnaireChoice value="commit">Committed locally</QuestionnaireChoice>
+          <QuestionnaireChoice value="branch">Push a review branch</QuestionnaireChoice>
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
 
-    <QuestionnaireActions>
-      <QuestionnairePrevious />
-      <QuestionnaireNext>Next</QuestionnaireNext>
-      <QuestionnaireSubmit>Finish plan</QuestionnaireSubmit>
-    </QuestionnaireActions>
-  </Questionnaire>
-);
+      <QuestionnaireActions>
+        <QuestionnairePrevious />
+        <QuestionnaireNext>Next</QuestionnaireNext>
+        <QuestionnaireSubmit>Finish plan</QuestionnaireSubmit>
+      </QuestionnaireActions>
+    </Questionnaire>
+  );
+}

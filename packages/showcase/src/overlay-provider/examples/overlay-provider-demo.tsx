@@ -12,22 +12,22 @@ import {
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
 
-const DrawerDemo = () => (
-  <OverlayProvider>
-    <Drawer showSwipeHandle>
-      <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
-      <DrawerPanel>
-        <DrawerHeader>
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>Make changes and close when finished.</DrawerDescription>
-        </DrawerHeader>
-        <DrawerContent>Review your profile details here.</DrawerContent>
-        <DrawerFooter>
-          <DrawerClose render={<Button>Done</Button>} />
-        </DrawerFooter>
-      </DrawerPanel>
-    </Drawer>
-  </OverlayProvider>
-);
-
-export default DrawerDemo;
+export default function DrawerExample() {
+  return (
+    <OverlayProvider>
+      <Drawer showSwipeHandle>
+        <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
+        <DrawerPanel>
+          <DrawerHeader>
+            <DrawerTitle>Edit profile</DrawerTitle>
+            <DrawerDescription>Make changes and close when finished.</DrawerDescription>
+          </DrawerHeader>
+          <DrawerContent>Review your profile details here.</DrawerContent>
+          <DrawerFooter>
+            <DrawerClose render={<Button>Done</Button>} />
+          </DrawerFooter>
+        </DrawerPanel>
+      </Drawer>
+    </OverlayProvider>
+  );
+}

@@ -1,5 +1,5 @@
-import { DropdownMenuShortcuts } from "../examples/dropdown-menu-shortcuts";
+import DropdownMenuShortcutsExample from "../examples/dropdown-menu-shortcuts";
 
-const Example = () => <DropdownMenuShortcuts />;
+const Example = () => <DropdownMenuShortcutsExample />;
 
 export default Example;

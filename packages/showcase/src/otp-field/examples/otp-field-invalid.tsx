@@ -16,7 +16,7 @@ const CompleteCode = Schema.toStandardSchemaV1(
   Schema.String.check(Schema.isMinLength(6, { message: "Enter all 6 digits." })),
 );
 
-export const OTPFieldInvalid = () => {
+export default function OTPFieldInvalidExample() {
   const form = useAppForm({ defaultValues: { code: "" } });
 
   return (
@@ -37,4 +37,4 @@ export const OTPFieldInvalid = () => {
       )}
     </form.AppField>
   );
-};
+}

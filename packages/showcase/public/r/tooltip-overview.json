@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nconst TooltipDemo = () => (\n  <Tooltip>\n    <TooltipTrigger render={<Button variant=\"outline\">Hover</Button>} />\n    <TooltipContent>\n      <p>Add to library</p>\n    </TooltipContent>\n  </Tooltip>\n);\n\nexport default TooltipDemo;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipExample() {\n  return (\n    <Tooltip>\n      <TooltipTrigger render={<Button variant=\"outline\">Hover</Button>} />\n      <TooltipContent>\n        <p>Add to library</p>\n      </TooltipContent>\n    </Tooltip>\n  );\n}\n",
       "path": "src/tooltip/examples/tooltip-demo.tsx",
       "target": "@components/showcase/tooltip/examples/tooltip-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/tooltip-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import TooltipExample from \"../examples/tooltip-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <TooltipExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/tooltip/variants/overview.tsx",
       "target": "@components/showcase/tooltip/variants/overview.tsx",
       "type": "registry:component"

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/avatar", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport const AvatarBadgeIconExample = () => (\n  <Avatar className=\"grayscale\">\n    <AvatarImage\n      src=\"https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop\"\n      alt=\"Sam Taylor\"\n    />\n    <AvatarFallback>ST</AvatarFallback>\n    <AvatarBadge>\n      <Icon name=\"plus\" />\n    </AvatarBadge>\n  </Avatar>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from \"@/registry/erbium/ui/avatar\";\n\nexport default function AvatarBadgeIconExample() {\n  return (\n    <Avatar className=\"grayscale\">\n      <AvatarImage\n        src=\"https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=256&h=256&fit=crop\"\n        alt=\"Sam Taylor\"\n      />\n      <AvatarFallback>ST</AvatarFallback>\n      <AvatarBadge>\n        <Icon name=\"plus\" />\n      </AvatarBadge>\n    </Avatar>\n  );\n}\n",
       "path": "src/avatar/examples/avatar-badge-icon.tsx",
       "target": "@components/showcase/avatar/examples/avatar-badge-icon.tsx",
       "type": "registry:component"

@@ -4,7 +4,7 @@ import { LineChart } from "@erbium/ui/charts/line-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -45,7 +45,7 @@ export const Playground: StoryObj<{
     points: { control: "boolean" },
     tooltip: { control: "boolean" },
   },
-  args: { axis: true, curve: "smooth", grid: true, legend: true, points: false, tooltip: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("line-chart", "playground") },

@@ -1,5 +1,5 @@
 import { AsyncAutocomplete } from "../helpers";
 
-const Example = () => <AsyncAutocomplete />;
-
-export default Example;
+export default function AutocompleteAsyncSearchExample() {
+  return <AsyncAutocomplete />;
+}

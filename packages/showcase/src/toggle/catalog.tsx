@@ -4,13 +4,13 @@ import { Toggle } from "@erbium/ui/components/toggle";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/toggle-demo.tsx?raw";
 
 import PressedExample from "./variants/pressed";
 
@@ -22,19 +22,19 @@ import DisabledControlSource from "./variants/disabled-control.tsx?raw";
 
 import OutlineExample from "./variants/outline";
 
-import OutlineSource from "./variants/outline.tsx?raw";
+import OutlineSource from "./examples/toggle-outline.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/toggle-disabled.tsx?raw";
 
 import WithTextExample from "./variants/with-text";
 
-import WithTextSource from "./variants/with-text.tsx?raw";
+import WithTextSource from "./examples/toggle-text.tsx?raw";
 
 import SizeExample from "./variants/size";
 
-import SizeSource from "./variants/size.tsx?raw";
+import SizeSource from "./examples/toggle-sizes.tsx?raw";
 
 const meta = {
   component: Toggle,
@@ -59,7 +59,7 @@ export const Playground: StoryObj<typeof Toggle> = {
     size: { control: "select", options: ["default", "sm", "lg"] },
     variant: { control: "select", options: ["default", "outline"] },
   },
-  args: { className: "", defaultPressed: false, size: "default", variant: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("toggle", "playground") },

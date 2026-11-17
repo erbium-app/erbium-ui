@@ -1,5 +1,5 @@
-import { CalendarRange } from "../examples/calendar-range";
+import CalendarRangeExample from "../examples/calendar-range";
 
-const Example = () => <CalendarRange />;
+const Example = () => <CalendarRangeExample />;
 
 export default Example;

@@ -20,17 +20,25 @@ packages/showcase/
   scripts/
 ```
 
-Catalogs preserve stable story export names. Storybook namespaces are generated from the shared semantic section and the component Markdown title; docs navigation consumes the same taxonomy. Variant names and prose live in `packages/content/components/<component>/<variant>.md`; component documentation lives in `index.md`. The catalog imports that Markdown and the real variant source, so descriptions and source panels stay synchronized.
+Catalogs preserve stable story export names. Storybook namespaces are generated from the shared semantic section and the component Markdown title; docs navigation consumes the same taxonomy. Variant names and prose live in `packages/content/components/<component>/<variant>.md`; component documentation lives in `index.md`. The catalog imports that Markdown, the preview composition, and the runnable usage source through `?raw`. The usage source is part of the preview’s import graph. Both applications use that same file for the Code tab.
 
 ## Authoring
 
-1. Add or edit a React composition in `src/<component>/variants/<variant>.tsx`. Keep reusable state, helpers and fixtures in that component's folder. Use `@erbium/ui` primitives and real event handlers.
-2. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters. Use the matching `variantDocumentation` and `?raw` source imports. Classify the component once in `packages/content/src/sections.json`; do not add a title to the catalog.
-3. Add the matching Markdown file under `packages/content/components/<component>/`, with a JSON-quoted `title` and the stable `story` export name in frontmatter. An empty body is valid when the example has no additional explanation.
-4. Run `bun run showcase:generate`, then `bun run showcase:registry` from the workspace root.
-5. Run `bun run showcase:check` and review both applications with `bun run showcase`.
+1. Write the usage component as `export default function ComponentVariantExample()`. Use an explicit return, complete imports, real event handlers, and a descriptive name ending in `Example`. Put state and required layout in that function. A developer must be able to render it without Storybook args. Keep local helpers and fixtures in the component’s folder.
+2. Render that component from `variants/<variant>.tsx`. Keep preview framing, simulated navigation hosts, and demonstration controls outside the usage component when they are unnecessary for using the API. The catalog’s `VariantSource` raw import points to the usage component actually rendered by the preview. When the variant itself is useful copyable usage, import that file as the source.
+3. For playgrounds, export `defaultProps` from the usage file and import those defaults into the catalog’s `args`. Pass them as the function’s parameter default. This keeps standalone usage and playground controls synchronized.
+4. Add its named export to `catalog.tsx`, with any default `args`, `argTypes`, layout parameters. Use the matching `variantDocumentation` and `?raw` source imports. Classify the component once in `packages/content/src/sections.json`; do not add a title to the catalog.
+5. Add the matching Markdown file under `packages/content/components/<component>/`, with a JSON-quoted `title` and the stable `story` export name in frontmatter. An empty body is valid when the example has no additional explanation.
+6. Run `bun run showcase:generate`, then `bun run showcase:registry` from the workspace root.
+7. Run `bun run showcase:check` and review both applications with `bun run showcase`.
 
 Generation creates static Storybook adapters; edit the shared catalog instead of those adapters. The website creates one React island per variant, hydrates visible previews, and exposes the catalog's playground controls. Both applications use the same theme and providers. Toast documentation mounts one toaster for the page.
+
+## Displayed usage
+
+Generation follows the usage entry’s relative imports and verifies that the entry is consumed by the preview. The docs show the entry first, followed by required local files in file tabs. Single-file examples have one code block. Copy includes the whole module, including imports, state, and its default export. The docs derive default Shadcn import aliases from the UI registry’s install targets. Adjust these aliases to match your application’s `components.json`.
+
+The generated manifest keeps usage files and preview entries explicit. Registry installation follows the preview entry so installed examples and portable stories retain their demonstration behavior. The docs page source and agent-readable examples use the usage files. Run generation in check mode to catch missing dependencies, disconnected usage entries, and inconsistent entry exports.
 
 ## Installable examples and stories
 

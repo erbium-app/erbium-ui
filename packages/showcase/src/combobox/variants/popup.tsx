@@ -1,5 +1,5 @@
-import { ComboboxPopup } from "../examples/combobox-popup";
+import ComboboxPopupExample from "../examples/combobox-popup";
 
-const Example = () => <ComboboxPopup />;
+const Example = () => <ComboboxPopupExample />;
 
 export default Example;

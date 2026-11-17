@@ -33,7 +33,7 @@ const ClosePaletteHotkey = ({ onClose }: { onClose: () => void }) => {
   return null;
 };
 
-export const CommandBasic = () => {
+export default function CommandBasicExample() {
   const [open, setOpen] = React.useState(false);
 
   // Toggle the palette with Mod+K, but keep the shortcut from firing while
@@ -95,4 +95,4 @@ export const CommandBasic = () => {
       </CommandDialog>
     </div>
   );
-};
+}

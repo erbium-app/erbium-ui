@@ -1,5 +1,5 @@
-import { MessageGroupDemo } from "../examples/message-group";
+import MessageGroupExample from "../examples/message-group";
 
-const Example = () => <MessageGroupDemo />;
+const Example = () => <MessageGroupExample />;
 
 export default Example;

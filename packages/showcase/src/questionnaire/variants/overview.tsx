@@ -1,8 +1,8 @@
-import Demo from "../examples/questionnaire-demo";
+import QuestionnaireExample from "../examples/questionnaire-demo";
 
 const Example = () => (
   <div className="w-full min-w-72 max-w-2xl p-4">
-    <Demo />
+    <QuestionnaireExample />
   </div>
 );
 

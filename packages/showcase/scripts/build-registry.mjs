@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { imports, localImport } from "./source-imports.mjs";
 import workspaceJson from "../../../package.json" with { type: "json" };
 import uiRegistry from "../../ui/registry.json" with { type: "json" };
 import manifest from "../manifest.json" with { type: "json" };
@@ -36,15 +37,12 @@ const namedCatalogs = new Map(
   ]),
 );
 
-const importSpecifier = /(?:from\s*|import\s*(?:\(\s*)?)["'](?<specifier>[^"']+)["']/gu;
 const uiSpecifier = /@erbium\/ui\/(?:components|blocks|charts|hooks|lib)\/[\w-]+/gu;
 const frontmatter = /^---\r?\n[\s\S]*?\r?\n---\r?\n/u;
 const localTypesImport = /import type \{ Meta, StoryObj \} from "\.\.\/types";/u;
 const markdownImport = /import[^;]*from "@erbium\/content\/markdown";\s*/gu;
 const rawImports = /import \w+ from "[^"\n]+\?raw";/gu;
-const rawImport = /^import (?<binding>\w+) from "(?<source>[^"\n]+)\?raw";$/u;
 const defaultExport = /export default meta;/u;
-const localSuffixes = ["", ".tsx", ".ts", ".json", "/index.tsx", "/index.ts"];
 const runtimeImports = new Set(["react", "react/jsx-runtime"]);
 
 /** @type {Map<string, string>} */
@@ -95,13 +93,6 @@ const dependencyVersion = (name) => {
 };
 
 /**
- * @param {string} source - Module source text.
- * @returns {string[]} The static and dynamic import specifiers, in source order.
- */
-const imports = (source) =>
-  [...source.matchAll(importSpecifier)].flatMap((match) => match.groups?.specifier ?? []);
-
-/**
  * Writes a JSON file, or in check mode verifies that it already holds the value.
  * @param {string} file - The destination path.
  * @param {unknown} value - The JSON value.
@@ -130,44 +121,6 @@ const output = async (file, value) => {
  * @returns {Promise<string>} The generated text for virtual files, or the file on disk.
  */
 const sourceAt = async (file) => virtual.get(file) ?? (await readFile(file, "utf-8"));
-
-/**
- * @param {string} file - A file path.
- * @returns {Promise<boolean>} Whether the path is virtual or readable on disk.
- */
-const exists = async (file) => {
-  if (virtual.has(file)) {
-    return true;
-  }
-
-  try {
-    await readFile(file);
-
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-/**
- * Resolves a relative import the way the bundler does.
- * @param {string} specifier - The relative import specifier.
- * @param {string} from - The importing file.
- * @returns {Promise<string>} The first existing candidate by suffix order.
- */
-const localImport = async (specifier, from) => {
-  const [request = ""] = specifier.split("?");
-  const base = path.resolve(path.dirname(from), request);
-  const candidates = localSuffixes.map((suffix) => base + suffix);
-  const found = await Promise.all(candidates.map(async (candidate) => await exists(candidate)));
-  const match = candidates.find((_candidate, index) => found[index]);
-
-  if (match === undefined) {
-    throw new Error(`Unresolved registry dependency ${specifier} in ${from}`);
-  }
-
-  return match;
-};
 
 /**
  * @param {string} directory - The UI source directory.
@@ -350,20 +303,6 @@ const referenceCopy = async (catalogName) => {
 };
 
 /**
- * Replaces each Vite raw import with a constant holding the virtual source.
- * @param {string} source - Catalog source text.
- * @param {string} componentPath - The catalog directory.
- * @returns {string} The source without raw imports.
- */
-const inlineRawImports = (source, componentPath) =>
-  source.replaceAll(rawImports, (statement) => {
-    const { binding = "", source: request = "" } = rawImport.exec(statement)?.groups ?? {};
-    const file = path.resolve(componentPath, request);
-
-    return `const ${binding} = ${JSON.stringify(virtual.get(file) ?? "")};`;
-  });
-
-/**
  * Builds every registry item for one catalog: its variants, its portable CSF
  * stories file, and an item that installs all of its examples.
  * @param {Catalog} catalog - A showcase manifest catalog.
@@ -379,7 +318,8 @@ const catalogItems = async (catalog) => {
     ),
     Promise.all(
       catalog.variants.map(
-        async (variant) => await readFile(path.join(root, variant.source), "utf-8"),
+        async (variant) =>
+          await readFile(path.join(root, variant.usage[0] ?? variant.source), "utf-8"),
       ),
     ),
     readFile(path.join(componentPath, "catalog.tsx"), "utf-8"),
@@ -409,13 +349,15 @@ const catalogItems = async (catalog) => {
   );
 
   portable = portable.replaceAll(markdownImport, "");
-  portable = inlineRawImports(portable, componentPath);
+  portable = portable
+    .replaceAll(rawImports, "")
+    .replaceAll(/const \w+Source = \w+Source;\s*/gu, "");
 
   // Fill source constants from the canonical files without a Vite-specific raw import.
   for (const [index, variant] of catalog.variants.entries()) {
     portable = portable.replace(
-      `const ${variant.exportName}Source = "";`,
-      `const ${variant.exportName}Source = ${JSON.stringify(variantSources[index] ?? "")};`,
+      `source: { code: ${variant.exportName}Source }`,
+      `source: { code: ${JSON.stringify(variantSources[index] ?? "")} }`,
     );
 
     portable = portable.replace(

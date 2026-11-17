@@ -6,33 +6,33 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/drawer-demo.tsx?raw";
 
 import SwipeHandleExample from "./variants/swipe-handle";
 
-import SwipeHandleSource from "./variants/swipe-handle.tsx?raw";
+import SwipeHandleSource from "./examples/drawer-swipe-handle.tsx?raw";
 
 import NonModalExample from "./variants/non-modal";
 
-import NonModalSource from "./variants/non-modal.tsx?raw";
+import NonModalSource from "./examples/drawer-non-modal.tsx?raw";
 
 import SnapPointsExample from "./variants/snap-points";
 
-import SnapPointsSource from "./variants/snap-points.tsx?raw";
+import SnapPointsSource from "./examples/drawer-snap-points.tsx?raw";
 
 import PositionExample from "./variants/position";
 
-import PositionSource from "./variants/position.tsx?raw";
+import PositionSource from "./examples/drawer-sides.tsx?raw";
 
 import NestedExample from "./variants/nested";
 
-import NestedSource from "./variants/nested.tsx?raw";
+import NestedSource from "./examples/drawer-nested.tsx?raw";
 
 import CustomSizesExample from "./variants/custom-sizes";
 
@@ -75,7 +75,7 @@ export const Playground: StoryObj<{
     showSwipeHandle: { control: "boolean" },
     swipeDirection: { control: "select", options: ["up", "down", "left", "right"] },
   },
-  args: { modal: true, showCloseButton: false, showSwipeHandle: true, swipeDirection: "down" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("drawer", "playground") },

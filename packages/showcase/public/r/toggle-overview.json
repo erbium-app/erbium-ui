@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/icon", "@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst ToggleDemo = () => (\n  <Toggle\n    aria-label=\"Toggle bookmark\"\n    size=\"sm\"\n    variant=\"outline\"\n    className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n  >\n    <Icon name=\"bookmark-01\" />\n    Bookmark\n  </Toggle>\n);\n\nexport default ToggleDemo;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleExample() {\n  return (\n    <Toggle\n      aria-label=\"Toggle bookmark\"\n      size=\"sm\"\n      variant=\"outline\"\n      className=\"data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-info data-[state=on]:*:[svg]:stroke-info\"\n    >\n      <Icon name=\"bookmark-01\" />\n      Bookmark\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-demo.tsx",
       "target": "@components/showcase/toggle/examples/toggle-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ToggleExample from \"../examples/toggle-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ToggleExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/toggle/variants/overview.tsx",
       "target": "@components/showcase/toggle/variants/overview.tsx",
       "type": "registry:component"

@@ -4,13 +4,13 @@ import { Textarea } from "@erbium/ui/components/textarea";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/textarea-demo.tsx?raw";
 
 import DisabledControlExample from "./variants/disabled-control";
 
@@ -22,15 +22,15 @@ import InvalidSource from "./variants/invalid.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/textarea-disabled.tsx?raw";
 
 import FieldExample from "./variants/field";
 
-import FieldSource from "./variants/field.tsx?raw";
+import FieldSource from "./examples/textarea-field.tsx?raw";
 
 import ButtonExample from "./variants/button";
 
-import ButtonSource from "./variants/button.tsx?raw";
+import ButtonSource from "./examples/textarea-button.tsx?raw";
 
 const meta = {
   component: Textarea,
@@ -54,7 +54,7 @@ export const Playground: StoryObj<typeof Textarea> = {
     disabled: { control: "boolean" },
     rows: { control: { max: 12, min: 1, type: "number" } },
   },
-  args: { className: "", disabled: false, placeholder: "Type here", rows: 3 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("textarea", "playground") },

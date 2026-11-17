@@ -1,5 +1,5 @@
-import { MessageAttachmentDemo } from "../examples/message-attachment";
+import MessageAttachmentExample from "../examples/message-attachment";
 
-const Example = () => <MessageAttachmentDemo />;
+const Example = () => <MessageAttachmentExample />;
 
 export default Example;

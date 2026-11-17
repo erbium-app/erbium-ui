@@ -7,7 +7,7 @@ import {
   DatePickerInput,
 } from "@erbium/ui/components/date-picker";
 
-const Example = () => {
+export default function DatePickerBasicExample() {
   const [date, setDate] = React.useState<Date | undefined>();
 
   return (
@@ -23,6 +23,4 @@ const Example = () => {
       </p>
     </div>
   );
-};
-
-export default Example;
+}

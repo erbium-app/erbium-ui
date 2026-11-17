@@ -1,5 +1,5 @@
-import Demo from "../examples/pagination-router";
+import PaginationRouterExample from "../examples/pagination-router";
 
-const Example = () => <Demo />;
+const Example = () => <PaginationRouterExample />;
 
 export default Example;

@@ -4,37 +4,37 @@ import { PasswordInput } from "@erbium/ui/components/password-input";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/password-input-demo.tsx?raw";
 
 import NewPasswordExample from "./variants/new-password";
 
-import NewPasswordSource from "./variants/new-password.tsx?raw";
+import NewPasswordSource from "./examples/password-input-new-password.tsx?raw";
 
 import FormExample from "./variants/form";
 
-import FormSource from "./variants/form.tsx?raw";
+import FormSource from "./examples/password-input-form.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/password-input-controlled.tsx?raw";
 
 import CustomExample from "./variants/custom";
 
-import CustomSource from "./variants/custom.tsx?raw";
+import CustomSource from "./examples/password-input-custom.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/password-input-disabled.tsx?raw";
 
 import InvalidExample from "./variants/invalid";
 
-import InvalidSource from "./variants/invalid.tsx?raw";
+import InvalidSource from "./examples/password-input-invalid.tsx?raw";
 
 const meta = {
   component: PasswordInput,
@@ -60,13 +60,7 @@ export const Playground: StoryObj<typeof PasswordInput> = {
     disabled: { control: "boolean" },
     readOnly: { control: "boolean" },
   },
-  args: {
-    autoComplete: "current-password",
-    defaultVisible: false,
-    disabled: false,
-    placeholder: "Enter your password",
-    readOnly: false,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("password-input", "playground") },

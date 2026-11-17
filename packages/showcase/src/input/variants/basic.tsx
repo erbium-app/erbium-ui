@@ -1,5 +1,5 @@
-import { InputBasic } from "../examples/input-basic";
+import InputBasicExample from "../examples/input-basic";
 
-const Example = () => <InputBasic />;
+const Example = () => <InputBasicExample />;
 
 export default Example;

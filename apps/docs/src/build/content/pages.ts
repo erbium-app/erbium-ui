@@ -1,10 +1,6 @@
 import { changelogMarkdown } from "virtual:docs-catalog";
 import matter from "gray-matter";
-import {
-  showcaseExampleControls,
-  showcaseExamples,
-  showcaseSource,
-} from "@erbium/showcase/docs/metadata";
+import { showcaseExampleControls, showcaseUsageSource } from "@erbium/showcase/docs/metadata";
 import { compileMarkdown, headingsFor } from "@/content/markdown.server";
 import { components, guides } from "@/content/catalog";
 import { componentReference } from "@erbium/content/markdown";
@@ -56,7 +52,7 @@ export const getPage = async (path: string) => {
       name: exampleName,
       exportName: example.exportName,
       slug: example.slug,
-      files: example.files.map((file) => file.path),
+      files: example.usage,
       title: example.title,
       anchor: headings.some((heading) => heading.id === example.slug)
         ? `example-${example.slug}`
@@ -65,11 +61,10 @@ export const getPage = async (path: string) => {
       argTypes: example.argTypes,
       tree: document(`components/${exampleName}/${example.slug}`).tree,
     })),
-    // Plain source of every example file, once per path since examples share files. The Code tab
-    // shows it at once and highlights it in place; tokens would be many times its size.
+    // Examples share local files. Ship each source once per page.
     exampleSources: Object.fromEntries(
       examples.flatMap((example) =>
-        example.files.map((file) => [file.path, showcaseSource(file.path)] as const),
+        example.usage.map((file) => [file, showcaseUsageSource(file)] as const),
       ),
     ),
   };

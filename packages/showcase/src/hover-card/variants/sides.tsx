@@ -1,5 +1,5 @@
-import { HoverCardSides } from "../examples/hover-card-sides";
+import HoverCardSidesExample from "../examples/hover-card-sides";
 
-const Example = () => <HoverCardSides />;
+const Example = () => <HoverCardSidesExample />;
 
 export default Example;

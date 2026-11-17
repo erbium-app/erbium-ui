@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/number-field", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nconst Example = () => (\n  <div className=\"flex w-48 flex-col gap-related\">\n    {([\"sm\", \"default\", \"lg\"] as const).map((size) => (\n      <NumberField key={size} size={size} defaultValue={8}>\n        <NumberFieldGroup>\n          <NumberFieldDecrement />\n          <NumberFieldInput aria-label={`Size ${size}`} />\n          <NumberFieldIncrement />\n        </NumberFieldGroup>\n      </NumberField>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nexport default function NumberFieldSizesExample() {\n  return (\n    <div className=\"flex w-48 flex-col gap-related\">\n      {([\"sm\", \"default\", \"lg\"] as const).map((size) => (\n        <NumberField key={size} size={size} defaultValue={8}>\n          <NumberFieldGroup>\n            <NumberFieldDecrement />\n            <NumberFieldInput aria-label={`Size ${size}`} />\n            <NumberFieldIncrement />\n          </NumberFieldGroup>\n        </NumberField>\n      ))}\n    </div>\n  );\n}\n",
       "path": "src/number-field/variants/sizes.tsx",
       "target": "@components/showcase/number-field/variants/sizes.tsx",
       "type": "registry:component"

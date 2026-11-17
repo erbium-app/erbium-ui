@@ -1,5 +1,5 @@
-import { CollapsibleSettings } from "../examples/collapsible-settings";
+import CollapsibleSettingsExample from "../examples/collapsible-settings";
 
-const Example = () => <CollapsibleSettings />;
+const Example = () => <CollapsibleSettingsExample />;
 
 export default Example;

@@ -1,5 +1,5 @@
-import { CalendarWeekNumbers } from "../examples/calendar-week-numbers";
+import CalendarWeekNumbersExample from "../examples/calendar-week-numbers";
 
-const Example = () => <CalendarWeekNumbers />;
+const Example = () => <CalendarWeekNumbersExample />;
 
 export default Example;

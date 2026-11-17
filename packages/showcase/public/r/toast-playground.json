@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = (args: { type: \"success\" | \"info\" | \"warning\" | \"error\"; description: string }) => (\n  <Button\n    variant={args.type}\n    onClick={() => {\n      void toast.add({\n        description: args.description,\n        id: `toast-playground-${args.type}`,\n        type: args.type,\n      });\n    }}\n  >\n    Show toast\n  </Button>\n);\n\nexport default Example;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nexport const defaultProps = {\n  description: \"Saved successfully\",\n  type: \"success\",\n} satisfies { type: \"success\" | \"info\" | \"warning\" | \"error\"; description: string };\n\nexport default function ToastPlaygroundExample(\n  args: { type: \"success\" | \"info\" | \"warning\" | \"error\"; description: string } = defaultProps,\n) {\n  return (\n    <Button\n      variant={args.type}\n      onClick={() => {\n        void toast.add({\n          description: args.description,\n          id: `toast-playground-${args.type}`,\n          type: args.type,\n        });\n      }}\n    >\n      Show toast\n    </Button>\n  );\n}\n",
       "path": "src/toast/variants/playground.tsx",
       "target": "@components/showcase/toast/variants/playground.tsx",
       "type": "registry:component"

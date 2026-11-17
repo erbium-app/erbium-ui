@@ -7,7 +7,9 @@ import { ProfileCard } from "./skeleton-demo";
  * Pass `loading` with the data still on screen. The skeleton is drawn from that data, so it matches
  * exactly, and the new data crossfades in. Refetches that answer within 150 ms show no skeleton.
  */
-export const SkeletonRefetch = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonRefetchExample({ latency }: { latency?: number } = defaultProps) {
   const request = useSimulatedFetch(profile, { latency });
 
   return (
@@ -24,4 +26,4 @@ export const SkeletonRefetch = ({ latency }: { latency?: number }) => {
       <LoadingControls {...request} />
     </div>
   );
-};
+}

@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
 
-const ButtonError = () => <Button variant="error">Error</Button>;
-
-export default ButtonError;
+export default function ButtonErrorExample() {
+  return <Button variant="error">Error</Button>;
+}

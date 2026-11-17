@@ -6482,23 +6482,11 @@
     },
     {
       "name": "collapsible-controlled-state",
-      "type": "registry:block",
+      "type": "registry:component",
       "title": "Collapsible: Controlled State",
       "description": "Use the `open` and `onOpenChange` props to control the state.\n\n```tsx\nimport * as React from \"react\";\n\nexport function Example() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <Collapsible open={open} onOpenChange={setOpen}>\n      <CollapsibleTrigger>Toggle</CollapsibleTrigger>\n      <CollapsibleContent>Content</CollapsibleContent>\n    </Collapsible>\n  );\n}\n```",
-      "registryDependencies": [
-        "@erbium/card",
-        "@erbium/collapsible",
-        "@erbium/icon",
-        "@erbium/separator",
-        "@erbium/stateful-icon",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/button", "@erbium/collapsible", "@erbium/styles"],
       "files": [
-        {
-          "path": "src/collapsible/examples/collapsible-demo.tsx",
-          "target": "@components/showcase/collapsible/examples/collapsible-demo.tsx",
-          "type": "registry:component"
-        },
         {
           "path": "src/collapsible/variants/controlled-state.tsx",
           "target": "@components/showcase/collapsible/variants/controlled-state.tsx",

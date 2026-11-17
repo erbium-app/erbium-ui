@@ -34,7 +34,7 @@ const projects = [
   "Team workspace",
 ];
 
-const SearchAndControlsExample = () => {
+export default function SearchAndControlsExample() {
   const [selected, setSelected] = useState("Design system");
   const [zoom, setZoom] = useState(50);
 
@@ -50,7 +50,7 @@ const SearchAndControlsExample = () => {
           <CommandInput aria-label="Search projects" placeholder="Search projects…" />
           <CommandEmpty>No projects found.</CommandEmpty>
           <CommandList>
-            {(project) => (
+            {(project: string) => (
               <CommandItem
                 key={project}
                 value={project}
@@ -70,14 +70,18 @@ const SearchAndControlsExample = () => {
               data-base-ui-swipe-ignore="x"
               value={zoom}
               onValueChange={(value) => {
-                setZoom(typeof value === "number" ? value : value[0]);
+                const [next] = [value].flat();
+
+                if (next !== undefined) {
+                  setZoom(next);
+                }
               }}
               aria-label="Preview scale"
             />
           </Field>
-          <p role="status" className="text-caption text-muted-foreground">
+          <output className="text-caption text-muted-foreground">
             {selected} · Preview scale {zoom}%
-          </p>
+          </output>
         </DrawerContent>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Done</DrawerClose>
@@ -85,6 +89,4 @@ const SearchAndControlsExample = () => {
       </DrawerPanel>
     </Drawer>
   );
-};
-
-export default SearchAndControlsExample;
+}

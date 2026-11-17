@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/otp-field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport const OTPFieldFourDigits = () => <OTPField aria-label=\"PIN\" length={4} />;\n",
+      "content": "import { OTPField } from \"@/registry/erbium/ui/otp-field\";\n\nexport default function OTPFieldFourDigitsExample() {\n  return <OTPField aria-label=\"PIN\" length={4} />;\n}\n",
       "path": "src/otp-field/examples/otp-field-four-digits.tsx",
       "target": "@components/showcase/otp-field/examples/otp-field-four-digits.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { OTPFieldFourDigits } from \"../examples/otp-field-four-digits\";\n\nconst Example = () => <OTPFieldFourDigits />;\n\nexport default Example;\n",
+      "content": "import OTPFieldFourDigits from \"../examples/otp-field-four-digits\";\n\nconst Example = () => <OTPFieldFourDigits />;\n\nexport default Example;\n",
       "path": "src/otp-field/variants/four-digits.tsx",
       "target": "@components/showcase/otp-field/variants/four-digits.tsx",
       "type": "registry:component"

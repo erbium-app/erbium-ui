@@ -4,21 +4,21 @@ import { MessageScroller } from "@erbium/ui/components/message-scroller";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/message-scroller-demo.tsx?raw";
 
 import GroupChatExample from "./variants/group-chat";
 
-import GroupChatSource from "./variants/group-chat.tsx?raw";
+import GroupChatSource from "./examples/message-scroller-group-chat.tsx?raw";
 
 import OpeningPositionExample from "./variants/opening-position";
 
-import OpeningPositionSource from "./variants/opening-position.tsx?raw";
+import OpeningPositionSource from "./examples/message-scroller-opening-position.tsx?raw";
 
 import AnchoredTurnsExample from "./variants/anchored-turns";
 
@@ -81,7 +81,7 @@ export const Playground: StoryObj<{
     messageCount: { control: { max: 40, min: 1, type: "number" } },
     scrollPreviousItemPeek: { control: { max: 200, min: 0, type: "number" } },
   },
-  args: { autoScroll: false, busy: false, messageCount: 12, scrollPreviousItemPeek: 0 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("message-scroller", "playground") },

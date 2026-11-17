@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/tooltip"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport const TooltipSides = () => (\n  <div className=\"flex flex-wrap gap-related\">\n    {([\"left\", \"top\", \"bottom\", \"right\"] as const).map((side) => (\n      <Tooltip key={side}>\n        <TooltipTrigger render={<Button variant=\"outline\" className=\"w-fit capitalize\" />}>\n          {side}\n        </TooltipTrigger>\n        <TooltipContent side={side}>\n          <p>Add to library</p>\n        </TooltipContent>\n      </Tooltip>\n    ))}\n  </div>\n);\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function TooltipSidesExample() {\n  return (\n    <div className=\"flex flex-wrap gap-related\">\n      {([\"left\", \"top\", \"bottom\", \"right\"] as const).map((side) => (\n        <Tooltip key={side}>\n          <TooltipTrigger render={<Button variant=\"outline\" className=\"w-fit capitalize\" />}>\n            {side}\n          </TooltipTrigger>\n          <TooltipContent side={side}>\n            <p>Add to library</p>\n          </TooltipContent>\n        </Tooltip>\n      ))}\n    </div>\n  );\n}\n",
       "path": "src/tooltip/examples/tooltip-sides.tsx",
       "target": "@components/showcase/tooltip/examples/tooltip-sides.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { TooltipSides } from \"../examples/tooltip-sides\";\n\nconst Example = () => <TooltipSides />;\n\nexport default Example;\n",
+      "content": "import TooltipSides from \"../examples/tooltip-sides\";\n\nconst Example = () => <TooltipSides />;\n\nexport default Example;\n",
       "path": "src/tooltip/variants/side.tsx",
       "target": "@components/showcase/tooltip/variants/side.tsx",
       "type": "registry:component"

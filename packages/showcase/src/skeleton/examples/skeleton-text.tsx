@@ -3,7 +3,9 @@ import { LoadingControls, useSimulatedFetch } from "../../loading";
 import { paragraphs, sampleParagraphs } from "../fixtures";
 
 /** Each line of text gets a bar from the font's ascender to its descender, wrapped as it will be. */
-export const SkeletonText = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonTextExample({ latency }: { latency?: number } = defaultProps) {
   const request = useSimulatedFetch(paragraphs, { latency });
 
   return (
@@ -29,4 +31,4 @@ export const SkeletonText = ({ latency }: { latency?: number }) => {
       <LoadingControls {...request} />
     </div>
   );
-};
+}

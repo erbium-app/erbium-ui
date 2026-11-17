@@ -1,5 +1,5 @@
 import { Responsive as ResponsiveExample } from "../examples/drawer-variants";
 
-const Example = () => <ResponsiveExample />;
-
-export default Example;
+export default function DrawerResponsiveExample() {
+  return <ResponsiveExample />;
+}

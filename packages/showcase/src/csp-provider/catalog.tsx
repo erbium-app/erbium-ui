@@ -4,13 +4,15 @@ import { CSPProvider } from "@erbium/ui/components/csp-provider";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import ExternalStylesExample from "./variants/external-styles";
+import ExternalStylesExample, {
+  defaultProps as ExternalStylesDefaults,
+} from "./variants/external-styles";
 
 import ExternalStylesSource from "./variants/external-styles.tsx?raw";
 
 import ShowcaseExample from "./variants/showcase";
 
-import ShowcaseSource from "./variants/showcase.tsx?raw";
+import ShowcaseSource from "./examples/csp-provider-demo.tsx?raw";
 
 const meta = {
   component: CSPProvider,
@@ -29,7 +31,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const ExternalStyles: Story = {
-  args: { disableStyleElements: true },
+  args: ExternalStylesDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("csp-provider", "external-styles") },

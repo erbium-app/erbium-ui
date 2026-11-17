@@ -1,4 +1,4 @@
-import { AvatarGroupExample } from "../examples/avatar-group";
+import AvatarGroupExample from "../examples/avatar-group";
 
 const Example = () => <AvatarGroupExample />;
 

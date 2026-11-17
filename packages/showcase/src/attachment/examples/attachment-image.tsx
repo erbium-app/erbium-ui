@@ -33,35 +33,37 @@ const images = [
   },
 ];
 
-export const AttachmentImage = () => (
-  <div className="mx-auto w-full max-w-sm py-12">
-    <AttachmentGroup className="w-full">
-      {images.map((image) => (
-        <Attachment key={image.name} orientation="vertical">
-          <AttachmentMedia variant="image">
-            <img src={image.src} alt={image.alt} />
-          </AttachmentMedia>
-          <AttachmentContent>
-            <AttachmentTitle>{image.name}</AttachmentTitle>
-            <AttachmentDescription>{image.meta}</AttachmentDescription>
-          </AttachmentContent>
-          <AttachmentActions>
-            <AttachmentAction aria-label={`Remove ${image.name}`}>
-              <Icon name="x" />
-            </AttachmentAction>
-          </AttachmentActions>
-          <AttachmentTrigger
-            render={
-              <a
-                href={image.src}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Open ${image.name}`}
-              />
-            }
-          />
-        </Attachment>
-      ))}
-    </AttachmentGroup>
-  </div>
-);
+export default function AttachmentImageExample() {
+  return (
+    <div className="mx-auto w-full max-w-sm py-12">
+      <AttachmentGroup className="w-full">
+        {images.map((image) => (
+          <Attachment key={image.name} orientation="vertical">
+            <AttachmentMedia variant="image">
+              <img src={image.src} alt={image.alt} />
+            </AttachmentMedia>
+            <AttachmentContent>
+              <AttachmentTitle>{image.name}</AttachmentTitle>
+              <AttachmentDescription>{image.meta}</AttachmentDescription>
+            </AttachmentContent>
+            <AttachmentActions>
+              <AttachmentAction aria-label={`Remove ${image.name}`}>
+                <Icon name="x" />
+              </AttachmentAction>
+            </AttachmentActions>
+            <AttachmentTrigger
+              render={
+                <a
+                  href={image.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${image.name}`}
+                />
+              }
+            />
+          </Attachment>
+        ))}
+      </AttachmentGroup>
+    </div>
+  );
+}

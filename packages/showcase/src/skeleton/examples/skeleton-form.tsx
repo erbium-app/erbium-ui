@@ -81,7 +81,9 @@ const PreferencesForm = ({ initial }: { initial: Preferences }) => {
  * Controls are drawn as blocks at their own size and labels as bars, so the form keeps its layout.
  * The form mounts with the loaded values, so there is no empty form to flash first.
  */
-export const SkeletonForm = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonFormExample({ latency }: { latency?: number } = defaultProps) {
   const request = useSimulatedFetch(preferences, { latency });
 
   return (
@@ -99,4 +101,4 @@ export const SkeletonForm = ({ latency }: { latency?: number }) => {
       <LoadingControls {...request} />
     </div>
   );
-};
+}

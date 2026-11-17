@@ -1,4 +1,4 @@
-import { SelectGroups } from "../examples/select-groups";
+import SelectGroups from "../examples/select-groups";
 
 const Example = () => <SelectGroups />;
 

@@ -1,5 +1,5 @@
-import { CheckboxDescription } from "../examples/checkbox-description";
+import CheckboxDescriptionExample from "../examples/checkbox-description";
 
-const Example = () => <CheckboxDescription />;
+const Example = () => <CheckboxDescriptionExample />;
 
 export default Example;

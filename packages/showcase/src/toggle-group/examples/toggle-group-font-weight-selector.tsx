@@ -3,7 +3,7 @@ import * as React from "react";
 import { Field, FieldDescription, FieldLabel } from "@erbium/ui/components/field";
 import { ToggleGroup, ToggleGroupItem } from "@erbium/ui/components/toggle-group";
 
-export const ToggleGroupFontWeightSelector = () => {
+export default function ToggleGroupFontWeightSelectorExample() {
   const [fontWeight, setFontWeight] = React.useState("normal");
 
   return (
@@ -58,4 +58,4 @@ export const ToggleGroupFontWeightSelector = () => {
       </FieldDescription>
     </Field>
   );
-};
+}

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input type=\"file\" aria-label=\"Upload file\" />;\n\nexport default Example;\n",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputFileControlExample() {\n  return <Input type=\"file\" aria-label=\"Upload file\" />;\n}\n",
       "path": "src/input/variants/file-control.tsx",
       "target": "@components/showcase/input/variants/file-control.tsx",
       "type": "registry:component"

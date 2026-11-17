@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete size=\"lg\" />;\n\nexport default Example;\n",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteLargeSizeExample() {\n  return <FruitAutocomplete size=\"lg\" />;\n}\n",
       "path": "src/autocomplete/variants/large-size.tsx",
       "target": "@components/showcase/autocomplete/variants/large-size.tsx",
       "type": "registry:component"

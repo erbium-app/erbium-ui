@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst Example = () => <Switch disabled aria-label=\"Unavailable\" />;\n\nexport default Example;\n",
+      "content": "import { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchDisabledExample() {\n  return <Switch disabled aria-label=\"Unavailable\" />;\n}\n",
       "path": "src/switch/variants/disabled.tsx",
       "target": "@components/showcase/switch/variants/disabled.tsx",
       "type": "registry:component"

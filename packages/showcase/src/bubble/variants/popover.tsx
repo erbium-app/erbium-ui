@@ -1,5 +1,5 @@
-import { BubblePopoverDemo } from "../examples/bubble-popover";
+import BubblePopoverExample from "../examples/bubble-popover";
 
-const Example = () => <BubblePopoverDemo />;
+const Example = () => <BubblePopoverExample />;
 
 export default Example;

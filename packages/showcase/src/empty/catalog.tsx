@@ -4,37 +4,37 @@ import { Empty } from "@erbium/ui/components/empty";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/empty-demo.tsx?raw";
 
 import AvatarExample from "./variants/avatar";
 
-import AvatarSource from "./variants/avatar.tsx?raw";
+import AvatarSource from "./examples/empty-avatar.tsx?raw";
 
 import AvatarGroupExample from "./variants/avatar-group";
 
-import AvatarGroupSource from "./variants/avatar-group.tsx?raw";
+import AvatarGroupSource from "./examples/empty-avatar-group.tsx?raw";
 
 import InputgroupExample from "./variants/inputgroup";
 
-import InputgroupSource from "./variants/inputgroup.tsx?raw";
+import InputgroupSource from "./examples/empty-input-group.tsx?raw";
 
 import InputGroupExample from "./variants/input-group";
 
-import InputGroupSource from "./variants/input-group.tsx?raw";
-
 import OutlineExample from "./variants/outline";
 
-import OutlineSource from "./variants/outline.tsx?raw";
+import OutlineSource from "./examples/empty-outline.tsx?raw";
 
 import BackgroundExample from "./variants/background";
 
-import BackgroundSource from "./variants/background.tsx?raw";
+import BackgroundSource from "./examples/empty-background.tsx?raw";
+
+const InputGroupSource = InputgroupSource;
 
 const meta = {
   component: Empty,
@@ -65,12 +65,7 @@ export const Playground: StoryObj<{
     mediaVariant: { control: "select", options: ["default", "icon"] },
     title: { control: "text" },
   },
-  args: {
-    className: "",
-    description: "Try another search.",
-    mediaVariant: "icon",
-    title: "No results",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("empty", "playground") },

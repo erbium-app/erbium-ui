@@ -145,7 +145,7 @@ pageRoute.update({ component: Page, pendingComponent: PagePending });
 
 const routeTree = rootRoute.addChildren([indexRoute, pageRoute]);
 
-const LinkDemo = () => {
+export default function LinkExample() {
   const timing = useMemo<Timing>(() => ({ clickedAt: { current: 0 }, readyAt: new Map() }), []);
 
   const router = useMemo(
@@ -165,6 +165,4 @@ const LinkDemo = () => {
       <RouterProvider router={router} />
     </TimingContext>
   );
-};
-
-export default LinkDemo;
+}

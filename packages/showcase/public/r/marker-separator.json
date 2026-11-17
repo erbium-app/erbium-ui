@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { MarkerSeparatorDemo } from \"../examples/marker-separator\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerSeparatorDemo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { MarkerSeparatorDemo } from \"../examples/marker-separator\";\n\nexport default function MarkerSeparatorExample() {\n  return (\n    <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n      <MarkerSeparatorDemo />\n    </div>\n  );\n}\n",
       "path": "src/marker/variants/separator.tsx",
       "target": "@components/showcase/marker/variants/separator.tsx",
       "type": "registry:component"

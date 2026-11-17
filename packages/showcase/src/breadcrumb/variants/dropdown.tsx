@@ -1,5 +1,5 @@
-import { BreadcrumbDropdown } from "../examples/breadcrumb-dropdown";
+import BreadcrumbDropdownExample from "../examples/breadcrumb-dropdown";
 
-const Example = () => <BreadcrumbDropdown />;
+const Example = () => <BreadcrumbDropdownExample />;
 
 export default Example;

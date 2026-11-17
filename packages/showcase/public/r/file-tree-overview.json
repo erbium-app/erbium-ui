@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { useState } from \"react\";\nimport { FileTree, useFileTree } from \"@/registry/erbium/blocks/file-tree\";\nimport { paths } from \"../examples/paths\";\n\nconst Example = () => {\n  const [selected, setSelected] = useState<readonly string[]>([]);\n\n  const { model } = useFileTree({\n    initialExpansion: \"open\",\n    onSelectionChange: setSelected,\n    paths,\n  });\n\n  return (\n    <div className=\"grid w-80 gap-3\">\n      <FileTree model={model} aria-label=\"Workspace files\" />\n      <p className=\"text-caption text-muted-foreground\" aria-live=\"polite\">\n        {selected.length ? selected.join(\", \") : \"Select a file or directory.\"}\n      </p>\n    </div>\n  );\n};\n\nexport default Example;\n",
+      "content": "import { useState } from \"react\";\nimport { FileTree, useFileTree } from \"@/registry/erbium/blocks/file-tree\";\nimport { paths } from \"../examples/paths\";\n\nexport default function FileTreeExample() {\n  const [selected, setSelected] = useState<readonly string[]>([]);\n\n  const { model } = useFileTree({\n    initialExpansion: \"open\",\n    onSelectionChange: setSelected,\n    paths,\n  });\n\n  return (\n    <div className=\"grid w-80 gap-3\">\n      <FileTree model={model} aria-label=\"Workspace files\" />\n      <p className=\"text-caption text-muted-foreground\" aria-live=\"polite\">\n        {selected.length ? selected.join(\", \") : \"Select a file or directory.\"}\n      </p>\n    </div>\n  );\n}\n",
       "path": "src/file-tree/variants/overview.tsx",
       "target": "@components/showcase/file-tree/variants/overview.tsx",
       "type": "registry:component"

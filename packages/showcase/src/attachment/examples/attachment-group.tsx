@@ -29,35 +29,35 @@ const items: Item[] = [
   { icon: "file-code", meta: "TSX · 12 KB", name: "renderer.tsx" },
 ];
 
-export const AttachmentGroupDemo = () => (
-  <div className="mx-auto w-full max-w-sm py-12">
-    <AttachmentGroup className="w-full">
-      {items.map((item) => {
-        const { icon } = item;
+export default function AttachmentGroupExample() {
+  return (
+    <div className="mx-auto w-full max-w-sm py-12">
+      <AttachmentGroup className="w-full">
+        {items.map((item) => {
+          const { icon } = item;
 
-        return (
-          <Attachment key={item.name} className="w-64">
-            {item.src ? (
-              <AttachmentMedia variant="image">
-                <img src={item.src} alt={item.name} />
-              </AttachmentMedia>
-            ) : icon ? (
-              <AttachmentMedia>
-                <Icon name={icon} />
-              </AttachmentMedia>
-            ) : null}
-            <AttachmentContent>
-              <AttachmentTitle>{item.name}</AttachmentTitle>
-              <AttachmentDescription>{item.meta}</AttachmentDescription>
-            </AttachmentContent>
-            <AttachmentActions>
-              <AttachmentAction aria-label={`Remove ${item.name}`}>
-                <Icon name="x" />
-              </AttachmentAction>
-            </AttachmentActions>
-          </Attachment>
-        );
-      })}
-    </AttachmentGroup>
-  </div>
-);
+          return (
+            <Attachment key={item.name} className="w-64">
+              {item.src === undefined ? (
+                <AttachmentMedia>{icon !== undefined && <Icon name={icon} />}</AttachmentMedia>
+              ) : (
+                <AttachmentMedia variant="image">
+                  <img src={item.src} alt={item.name} />
+                </AttachmentMedia>
+              )}
+              <AttachmentContent>
+                <AttachmentTitle>{item.name}</AttachmentTitle>
+                <AttachmentDescription>{item.meta}</AttachmentDescription>
+              </AttachmentContent>
+              <AttachmentActions>
+                <AttachmentAction aria-label={`Remove ${item.name}`}>
+                  <Icon name="x" />
+                </AttachmentAction>
+              </AttachmentActions>
+            </Attachment>
+          );
+        })}
+      </AttachmentGroup>
+    </div>
+  );
+}

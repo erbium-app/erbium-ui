@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/badge", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport const BadgeWithIconLeft = () => (\n  <div className=\"flex flex-wrap gap-related\">\n    <Badge variant=\"success\" statusIcon>\n      Verified\n    </Badge>\n    <Badge variant=\"outline\">\n      Bookmark\n      <Icon name=\"bookmark-01\" data-icon=\"inline-end\" />\n    </Badge>\n  </div>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function BadgeWithIconLeftExample() {\n  return (\n    <div className=\"flex flex-wrap gap-related\">\n      <Badge variant=\"success\" statusIcon>\n        Verified\n      </Badge>\n      <Badge variant=\"outline\">\n        Bookmark\n        <Icon name=\"bookmark-01\" data-icon=\"inline-end\" />\n      </Badge>\n    </div>\n  );\n}\n",
       "path": "src/badge/examples/badge-icon.tsx",
       "target": "@components/showcase/badge/examples/badge-icon.tsx",
       "type": "registry:component"

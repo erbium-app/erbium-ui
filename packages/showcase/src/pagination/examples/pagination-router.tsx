@@ -136,7 +136,7 @@ const invoicesRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([invoicesRoute]);
 
-const PaginationRouter = () => {
+export default function PaginationRouterExample() {
   const [predict, setPredict] = useState(true);
   const timing = useMemo(() => createTiming(), []);
 
@@ -165,6 +165,4 @@ const PaginationRouter = () => {
       </Field>
     </div>
   );
-};
-
-export default PaginationRouter;
+}

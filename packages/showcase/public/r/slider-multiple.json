@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const SliderMultiple = () => (\n  <Slider defaultValue={[10, 20, 70]} max={100} step={10} className=\"mx-auto w-full max-w-xs\" />\n);\n",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport default function SliderMultipleExample() {\n  return (\n    <Slider defaultValue={[10, 20, 70]} max={100} step={10} className=\"mx-auto w-full max-w-xs\" />\n  );\n}\n",
       "path": "src/slider/examples/slider-multiple.tsx",
       "target": "@components/showcase/slider/examples/slider-multiple.tsx",
       "type": "registry:component"

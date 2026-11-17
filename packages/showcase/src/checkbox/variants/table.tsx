@@ -1,5 +1,5 @@
-import { CheckboxInTable } from "../examples/checkbox-table";
+import CheckboxInTableExample from "../examples/checkbox-table";
 
-const Example = () => <CheckboxInTable />;
+const Example = () => <CheckboxInTableExample />;
 
 export default Example;

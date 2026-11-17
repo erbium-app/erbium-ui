@@ -47,16 +47,16 @@ const definition = defineChart({
   },
 });
 
-const Example = () => (
-  <div className="flex w-2xl max-w-full flex-col gap-3 p-4">
-    <ChartLegend series={series} />
-    <Chart
-      ariaLabel="Monthly revenue against a target of 240"
-      definition={definition}
-      height={240}
-      initialWidth={640}
-    />
-  </div>
-);
-
-export default Example;
+export default function ChartCompositionExample() {
+  return (
+    <div className="flex w-2xl max-w-full flex-col gap-3 p-4">
+      <ChartLegend series={series} />
+      <Chart
+        ariaLabel="Monthly revenue against a target of 240"
+        definition={definition}
+        height={240}
+        initialWidth={640}
+      />
+    </div>
+  );
+}

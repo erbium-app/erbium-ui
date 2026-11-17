@@ -1,5 +1,5 @@
-import { InputGroupBlockEnd } from "../examples/input-group-block-end";
+import InputGroupBlockEndExample from "../examples/input-group-block-end";
 
-const Example = () => <InputGroupBlockEnd />;
+const Example = () => <InputGroupBlockEndExample />;
 
 export default Example;

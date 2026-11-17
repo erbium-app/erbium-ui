@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
 
-const ButtonLink = () => <Button variant="link">Link</Button>;
-
-export default ButtonLink;
+export default function ButtonLinkExample() {
+  return <Button variant="link">Link</Button>;
+}

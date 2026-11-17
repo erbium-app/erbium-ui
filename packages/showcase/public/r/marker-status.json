@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { MarkerStatusDemo } from \"../examples/marker-status\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <MarkerStatusDemo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { MarkerStatusDemo } from \"../examples/marker-status\";\n\nexport default function MarkerStatusExample() {\n  return (\n    <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n      <MarkerStatusDemo />\n    </div>\n  );\n}\n",
       "path": "src/marker/variants/status.tsx",
       "target": "@components/showcase/marker/variants/status.tsx",
       "type": "registry:component"

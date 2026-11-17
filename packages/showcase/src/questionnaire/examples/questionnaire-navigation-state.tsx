@@ -39,7 +39,7 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   });
 };
 
-export const QuestionnaireNavigationState = () => {
+export default function QuestionnaireNavigationStateExample() {
   const [item, setItem] = React.useState<ItemName>("permission");
 
   const [statuses, setStatuses] = React.useState<Record<ItemName, QuestionnaireItemStatus>>({
@@ -113,4 +113,4 @@ export const QuestionnaireNavigationState = () => {
       </QuestionnaireActions>
     </Questionnaire>
   );
-};
+}

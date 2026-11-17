@@ -28,7 +28,7 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   });
 };
 
-export const QuestionnaireConditional = () => {
+export default function QuestionnaireConditionalExample() {
   const [runtime, setRuntime] = React.useState("local");
 
   const items = React.useMemo(
@@ -108,4 +108,4 @@ export const QuestionnaireConditional = () => {
       </QuestionnaireActions>
     </Questionnaire>
   );
-};
+}

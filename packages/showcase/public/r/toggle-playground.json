@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Toggle>) => <Toggle {...args}>Toggle</Toggle>;\n\nexport default Example;\n",
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  className: \"\",\n  defaultPressed: false,\n  size: \"default\",\n  variant: \"default\",\n} satisfies React.ComponentProps<typeof Toggle>;\n\nexport default function TogglePlaygroundExample(\n  args: React.ComponentProps<typeof Toggle> = defaultProps,\n) {\n  return <Toggle {...args}>Toggle</Toggle>;\n}\n",
       "path": "src/toggle/variants/playground.tsx",
       "target": "@components/showcase/toggle/variants/playground.tsx",
       "type": "registry:component"

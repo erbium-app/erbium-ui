@@ -3,7 +3,7 @@ import { Checkbox } from "@erbium/ui/components/checkbox";
 import { Field, FieldGroup, FieldLabel } from "@erbium/ui/components/field";
 import { PasswordInput } from "@erbium/ui/components/password-input";
 
-const PasswordInputControlled = () => {
+export default function PasswordInputControlledExample() {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -27,6 +27,4 @@ const PasswordInputControlled = () => {
       </Field>
     </FieldGroup>
   );
-};
-
-export default PasswordInputControlled;
+}

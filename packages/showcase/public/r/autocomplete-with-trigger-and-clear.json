@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete showTrigger showClear />;\n\nexport default Example;\n",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteWithTriggerAndClearExample() {\n  return <FruitAutocomplete showTrigger showClear />;\n}\n",
       "path": "src/autocomplete/variants/with-trigger-and-clear.tsx",
       "target": "@components/showcase/autocomplete/variants/with-trigger-and-clear.tsx",
       "type": "registry:component"

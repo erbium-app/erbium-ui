@@ -1,5 +1,5 @@
-import { BubbleLinkButtonDemo } from "../examples/bubble-link-button";
+import BubbleLinkButtonExample from "../examples/bubble-link-button";
 
-const Example = () => <BubbleLinkButtonDemo />;
+const Example = () => <BubbleLinkButtonExample />;
 
 export default Example;

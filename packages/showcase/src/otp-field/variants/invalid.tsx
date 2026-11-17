@@ -1,4 +1,4 @@
-import { OTPFieldInvalid } from "../examples/otp-field-invalid";
+import OTPFieldInvalid from "../examples/otp-field-invalid";
 
 const Example = () => <OTPFieldInvalid />;
 

@@ -107,6 +107,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
               <section key={item.title} id={item.id}>
                 <h2 className="text-title">{item.title}</h2>
                 <CodeBlock
+                  wrap
                   code={item.source}
                   language="css"
                   title={`${item.id}.css`}

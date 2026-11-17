@@ -6,7 +6,7 @@ import { componentDocumentation, variantDocumentation } from "@erbium/content/ma
 
 import CopyFeedbackExample from "./variants/copy-feedback";
 
-import CopyFeedbackSource from "./variants/copy-feedback.tsx?raw";
+import CopyFeedbackSource from "./examples/stateful-icon-demo.tsx?raw";
 
 import RotatingChevronExample from "./variants/rotating-chevron";
 

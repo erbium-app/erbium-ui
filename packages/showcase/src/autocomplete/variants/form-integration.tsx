@@ -1,5 +1,5 @@
 import { FormAutocomplete } from "../helpers";
 
-const Example = () => <FormAutocomplete />;
-
-export default Example;
+export default function AutocompleteFormIntegrationExample() {
+  return <FormAutocomplete />;
+}

@@ -1,5 +1,5 @@
-import { AttachmentGroupDemo } from "../examples/attachment-group";
+import AttachmentGroupExample from "../examples/attachment-group";
 
-const Example = () => <AttachmentGroupDemo />;
+const Example = () => <AttachmentGroupExample />;
 
 export default Example;

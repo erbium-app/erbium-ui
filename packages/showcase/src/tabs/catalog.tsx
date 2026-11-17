@@ -4,13 +4,13 @@ import { Tabs } from "@erbium/ui/components/tabs";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/tabs-demo.tsx?raw";
 
 import SelectionExample from "./variants/selection";
 
@@ -18,15 +18,15 @@ import SelectionSource from "./variants/selection.tsx?raw";
 
 import VerticalExample from "./variants/vertical";
 
-import VerticalSource from "./variants/vertical.tsx?raw";
+import VerticalSource from "./examples/tabs-vertical.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/tabs-disabled.tsx?raw";
 
 import IconsExample from "./variants/icons";
 
-import IconsSource from "./variants/icons.tsx?raw";
+import IconsSource from "./examples/tabs-icons.tsx?raw";
 
 const meta = {
   component: Tabs,
@@ -50,7 +50,7 @@ export const Playground: StoryObj<typeof Tabs> = {
     defaultValue: { control: "select", options: ["one", "two"] },
     orientation: { control: "select", options: ["horizontal", "vertical"] },
   },
-  args: { defaultValue: "one", orientation: "horizontal" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("tabs", "playground") },

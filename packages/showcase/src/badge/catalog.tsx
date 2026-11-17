@@ -4,13 +4,13 @@ import { Badge } from "@erbium/ui/components/badge";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/badge-demo.tsx?raw";
 
 import VariantsExample from "./variants/variants";
 
@@ -18,15 +18,15 @@ import VariantsSource from "./variants/variants.tsx?raw";
 
 import LinkExample from "./variants/link";
 
-import LinkSource from "./variants/link.tsx?raw";
+import LinkSource from "./examples/badge-link.tsx?raw";
 
 import WithIconExample from "./variants/with-icon";
 
-import WithIconSource from "./variants/with-icon.tsx?raw";
+import WithIconSource from "./examples/badge-icon.tsx?raw";
 
 import WithSpinnerExample from "./variants/with-spinner";
 
-import WithSpinnerSource from "./variants/with-spinner.tsx?raw";
+import WithSpinnerSource from "./examples/badge-spinner.tsx?raw";
 
 const meta = {
   component: Badge,
@@ -75,7 +75,7 @@ export const Playground: StoryObj<typeof Badge> = {
       ],
     },
   },
-  args: { children: "Badge", className: "", loading: false, variant: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("badge", "playground") },

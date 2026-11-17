@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/alert", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst Example = () => (\n  <Alert variant=\"success\" className=\"w-96\">\n    <AlertTitle>Verification passed</AlertTitle>\n    <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n  </Alert>\n);\n\nexport default Example;\n",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertSuccessExample() {\n  return (\n    <Alert variant=\"success\" className=\"w-96\">\n      <AlertTitle>Verification passed</AlertTitle>\n      <AlertDescription>Type checks and 42 tests passed after the changes.</AlertDescription>\n    </Alert>\n  );\n}\n",
       "path": "src/alert/variants/success.tsx",
       "target": "@components/showcase/alert/variants/success.tsx",
       "type": "registry:component"

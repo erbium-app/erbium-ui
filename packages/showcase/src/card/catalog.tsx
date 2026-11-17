@@ -4,13 +4,13 @@ import { Card } from "@erbium/ui/components/card";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/card-demo.tsx?raw";
 
 import SmallExample from "./variants/small";
 
@@ -46,7 +46,7 @@ export const Playground: StoryObj<typeof Card> = {
     className: { table: { disable: true } },
     size: { control: "select", options: ["default", "sm"] },
   },
-  args: { size: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("card", "playground") },

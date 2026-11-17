@@ -1,5 +1,5 @@
-import { BreadcrumbSeparatorDemo } from "../examples/breadcrumb-separator";
+import BreadcrumbSeparatorExample from "../examples/breadcrumb-separator";
 
-const Example = () => <BreadcrumbSeparatorDemo />;
+const Example = () => <BreadcrumbSeparatorExample />;
 
 export default Example;

@@ -1,5 +1,5 @@
-import { CheckboxInvalid } from "../examples/checkbox-invalid";
+import CheckboxInvalidExample from "../examples/checkbox-invalid";
 
-const Example = () => <CheckboxInvalid />;
+const Example = () => <CheckboxInvalidExample />;
 
 export default Example;

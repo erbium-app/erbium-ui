@@ -4,17 +4,17 @@ import { Alert } from "@erbium/ui/components/alert";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/alert-demo.tsx?raw";
 
 import ErrorVariantExample from "./variants/error-variant";
 
-import ErrorVariantSource from "./variants/error-variant.tsx?raw";
+import ErrorVariantSource from "./examples/alert-error.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
@@ -34,7 +34,7 @@ import ActionSource from "./variants/action.tsx?raw";
 
 import WarningExample from "./variants/warning";
 
-import WarningSource from "./variants/warning.tsx?raw";
+import WarningSource from "./examples/alert-colors.tsx?raw";
 
 const meta = {
   component: Alert,
@@ -59,7 +59,7 @@ export const Playground: StoryObj<typeof Alert> = {
       options: ["default", "error", "info", "success", "warning"],
     },
   },
-  args: { className: "", variant: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("alert", "playground") },

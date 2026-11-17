@@ -4,17 +4,17 @@ import { Separator } from "@erbium/ui/components/separator";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/separator-demo.tsx?raw";
 
 import VerticalExample from "./variants/vertical";
 
-import VerticalSource from "./variants/vertical.tsx?raw";
+import VerticalSource from "./examples/separator-vertical.tsx?raw";
 
 import LabeledExample from "./variants/labeled";
 
@@ -30,7 +30,7 @@ import OnSurfacesSource from "./variants/on-surfaces.tsx?raw";
 
 import MenuExample from "./variants/menu";
 
-import MenuSource from "./variants/menu.tsx?raw";
+import MenuSource from "./examples/separator-menu.tsx?raw";
 
 import ListExample from "./variants/list";
 
@@ -57,12 +57,12 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Playground: StoryObj<typeof Separator> = {
+export const Playground: StoryObj<Parameters<typeof PlaygroundExample>[0]> = {
   argTypes: {
     orientation: { control: "select", options: ["horizontal", "vertical"] },
     variant: { control: "select", options: [undefined, "full", "inset"] },
   },
-  args: { className: "", orientation: "horizontal" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("separator", "playground") },

@@ -31,7 +31,7 @@ const wait = async (ms: number) => {
   });
 };
 
-const UsePredictedIntentDemo = () => {
+export default function UsePredictedIntentExample() {
   const [status, setStatus] = useState<Status>("idle");
   const [source, setSource] = useState<"click" | "prediction">();
   // The current request; a reset clears it so a late response is ignored.
@@ -107,6 +107,4 @@ const UsePredictedIntentDemo = () => {
       </Button>
     </div>
   );
-};
-
-export default UsePredictedIntentDemo;
+}

@@ -12,13 +12,13 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport const InputGroupInlineEnd = () => (\n  <Field className=\"max-w-sm\">\n    <FieldLabel>Input</FieldLabel>\n    <InputGroup>\n      <InputGroupInput type=\"email\" placeholder=\"Enter email\" />\n      <InputGroupAddon align=\"inline-end\">\n        <Icon name=\"mail-01\" />\n      </InputGroupAddon>\n    </InputGroup>\n    <FieldDescription>Icon positioned at the end.</FieldDescription>\n  </Field>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\n\nexport default function InputGroupInlineEndExample() {\n  return (\n    <Field className=\"max-w-sm\">\n      <FieldLabel>Input</FieldLabel>\n      <InputGroup>\n        <InputGroupInput type=\"email\" placeholder=\"Enter email\" />\n        <InputGroupAddon align=\"inline-end\">\n          <Icon name=\"mail-01\" />\n        </InputGroupAddon>\n      </InputGroup>\n      <FieldDescription>Icon positioned at the end.</FieldDescription>\n    </Field>\n  );\n}\n",
       "path": "src/input-group/examples/input-group-inline-end.tsx",
       "target": "@components/showcase/input-group/examples/input-group-inline-end.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { InputGroupInlineEnd } from \"../examples/input-group-inline-end\";\n\nconst Example = () => <InputGroupInlineEnd />;\n\nexport default Example;\n",
+      "content": "import InputGroupInlineEndExample from \"../examples/input-group-inline-end\";\n\nconst Example = () => <InputGroupInlineEndExample />;\n\nexport default Example;\n",
       "path": "src/input-group/variants/inline-end.tsx",
       "target": "@components/showcase/input-group/variants/inline-end.tsx",
       "type": "registry:component"

@@ -1,26 +1,13 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "collapsible-controlled-state",
-  "type": "registry:block",
+  "type": "registry:component",
   "title": "Collapsible: Controlled State",
   "description": "Use the `open` and `onOpenChange` props to control the state.\n\n```tsx\nimport * as React from \"react\";\n\nexport function Example() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <Collapsible open={open} onOpenChange={setOpen}>\n      <CollapsibleTrigger>Toggle</CollapsibleTrigger>\n      <CollapsibleContent>Content</CollapsibleContent>\n    </Collapsible>\n  );\n}\n```",
-  "registryDependencies": [
-    "@erbium/card",
-    "@erbium/collapsible",
-    "@erbium/icon",
-    "@erbium/separator",
-    "@erbium/stateful-icon",
-    "@erbium/styles"
-  ],
+  "registryDependencies": ["@erbium/button", "@erbium/collapsible", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { RotatingChevron } from \"@/registry/erbium/ui/stateful-icon\";\nimport { Card } from \"@/registry/erbium/ui/card\";\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\nimport { Separator } from \"@/registry/erbium/ui/separator\";\n\nconst files = [\"README.md\", \"package.json\", \"tsconfig.json\"];\n\nconst CollapsibleDemo = () => {\n  const [isOpen, setIsOpen] = React.useState(false);\n\n  return (\n    <Card className=\"w-[350px] gap-0 p-0\" size=\"sm\">\n      <Collapsible open={isOpen} onOpenChange={setIsOpen}>\n        <CollapsibleTrigger className=\"group group/files flex w-full items-center gap-related rounded-xl px-3 py-2 text-start outline-none hover:bg-accent data-panel-open:rounded-b-none [&:has(+_[data-slot=collapsible-content]:not([hidden]))]:rounded-b-none focus-visible:ring-2 focus-visible:ring-focus-halo\">\n          <Icon\n            name=\"folder-01\"\n            aria-hidden=\"true\"\n            className=\"size-4 shrink-0 text-muted-foreground\"\n          />\n          <span className=\"min-w-0 flex-1\">\n            <span className=\"block text-caption font-medium\">Project files</span>\n            <span className=\"block text-metadata text-muted-foreground\">\n              3 files in this workspace\n            </span>\n          </span>\n          <RotatingChevron scope=\"collapsible\" className=\"size-4 shrink-0 text-muted-foreground\" />\n        </CollapsibleTrigger>\n        <CollapsibleContent>\n          <Separator />\n          <div className=\"space-y-1 px-3 pt-2 pb-3\">\n            {files.map((file) => (\n              <div key={file} className=\"flex items-center gap-related py-1 text-caption\">\n                <Icon\n                  name=\"file-text\"\n                  aria-hidden=\"true\"\n                  className=\"size-4 text-muted-foreground\"\n                />\n                {file}\n              </div>\n            ))}\n          </div>\n        </CollapsibleContent>\n      </Collapsible>\n    </Card>\n  );\n};\n\nexport default CollapsibleDemo;\n",
-      "path": "src/collapsible/examples/collapsible-demo.tsx",
-      "target": "@components/showcase/collapsible/examples/collapsible-demo.tsx",
-      "type": "registry:component"
-    },
-    {
-      "content": "import Demo from \"../examples/collapsible-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n",
+      "content": "import { useState } from \"react\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/registry/erbium/ui/collapsible\";\n\nexport default function CollapsibleControlledStateExample() {\n  const [open, setOpen] = useState(false);\n\n  return (\n    <Collapsible open={open} onOpenChange={setOpen} className=\"w-72\">\n      <CollapsibleTrigger render={<Button variant=\"outline\" />}>\n        {open ? \"Hide details\" : \"Show details\"}\n      </CollapsibleTrigger>\n      <CollapsibleContent className=\"pt-4\">\n        This section is controlled by React state.\n      </CollapsibleContent>\n    </Collapsible>\n  );\n}\n",
       "path": "src/collapsible/variants/controlled-state.tsx",
       "target": "@components/showcase/collapsible/variants/controlled-state.tsx",
       "type": "registry:component"

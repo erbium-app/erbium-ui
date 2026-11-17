@@ -4,17 +4,17 @@ import { Sidebar } from "@erbium/ui/components/sidebar";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/sidebar-demo.tsx?raw";
 
 import ControlledSidebarExample from "./variants/controlled-sidebar";
 
-import ControlledSidebarSource from "./variants/controlled-sidebar.tsx?raw";
+import ControlledSidebarSource from "./examples/sidebar-controlled.tsx?raw";
 
 const meta = {
   component: Sidebar,
@@ -45,7 +45,7 @@ export const Playground: StoryObj<{
     side: { control: "select", options: ["left", "right"] },
     variant: { control: "select", options: ["sidebar", "floating", "inset"] },
   },
-  args: { collapsible: "none", defaultOpen: true, side: "left", variant: "sidebar" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("sidebar", "playground") },

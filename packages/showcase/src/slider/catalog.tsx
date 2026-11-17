@@ -4,13 +4,13 @@ import { Slider } from "@erbium/ui/components/slider";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/slider-demo.tsx?raw";
 
 import MidpointExample from "./variants/midpoint";
 
@@ -22,19 +22,19 @@ import DisabledSource from "./variants/disabled.tsx?raw";
 
 import RangeExample from "./variants/range";
 
-import RangeSource from "./variants/range.tsx?raw";
+import RangeSource from "./examples/slider-range.tsx?raw";
 
 import VerticalExample from "./variants/vertical";
 
-import VerticalSource from "./variants/vertical.tsx?raw";
+import VerticalSource from "./examples/slider-vertical.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/slider-controlled.tsx?raw";
 
 import MultipleThumbsExample from "./variants/multiple-thumbs";
 
-import MultipleThumbsSource from "./variants/multiple-thumbs.tsx?raw";
+import MultipleThumbsSource from "./examples/slider-multiple.tsx?raw";
 
 import ThumbCollisionExample from "./variants/thumb-collision";
 
@@ -78,7 +78,7 @@ export const Playground: StoryObj<typeof Slider> = {
     step: { control: "number" },
     marks: { control: "boolean" },
   },
-  args: { defaultValue: [50], disabled: false, marks: false, max: 100, min: 0, step: 1 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("slider", "playground") },

@@ -10,7 +10,7 @@ import AsyncActionSource from "./variants/async-action.tsx?raw";
 
 import TanStackFormExample from "./variants/tan-stack-form";
 
-import TanStackFormSource from "./variants/tan-stack-form.tsx?raw";
+import TanStackFormSource from "./examples/stateful-button-form.tsx?raw";
 
 import DirectionsExample from "./variants/directions";
 

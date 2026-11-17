@@ -13,7 +13,7 @@ import {
   MenubarList,
 } from "@erbium/ui/components/menubar";
 
-export const MenubarRadio = () => {
+export default function MenubarRadioExample() {
   const [user, setUser] = React.useState("benoit");
   const [theme, setTheme] = React.useState("light");
 
@@ -53,4 +53,4 @@ export const MenubarRadio = () => {
       </MenubarMenu>
     </Menubar>
   );
-};
+}

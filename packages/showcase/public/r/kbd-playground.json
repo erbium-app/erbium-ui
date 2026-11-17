@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/kbd", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Kbd>) => <Kbd {...args} />;\n\nexport default Example;\n",
+      "content": "import { Kbd } from \"@/registry/erbium/ui/kbd\";\nimport type * as React from \"react\";\n\nexport const defaultProps = { className: \"\", hotkey: \"Mod+K\" } satisfies React.ComponentProps<\n  typeof Kbd\n>;\n\nexport default function KbdPlaygroundExample(\n  args: React.ComponentProps<typeof Kbd> = defaultProps,\n) {\n  return <Kbd {...args} />;\n}\n",
       "path": "src/kbd/variants/playground.tsx",
       "target": "@components/showcase/kbd/variants/playground.tsx",
       "type": "registry:component"

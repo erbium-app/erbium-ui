@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete mode=\"both\" />;\n\nexport default Example;\n",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteInlineAutocompleteExample() {\n  return <FruitAutocomplete mode=\"both\" />;\n}\n",
       "path": "src/autocomplete/variants/inline-autocomplete.tsx",
       "target": "@components/showcase/autocomplete/variants/inline-autocomplete.tsx",
       "type": "registry:component"

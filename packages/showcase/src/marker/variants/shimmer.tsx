@@ -1,3 +1,3 @@
-import { MarkerShimmerDemo } from "../examples/marker-shimmer";
+import MarkerShimmerExample from "../examples/marker-shimmer";
 
-export default MarkerShimmerDemo;
+export default MarkerShimmerExample;

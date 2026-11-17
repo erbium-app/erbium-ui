@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/logo-loader", "@erbium/styles"],
   "files": [
     {
-      "content": "import { LogoLoader } from \"@/registry/erbium/ui/logo-loader\";\nimport type { LogoLoaderHandle } from \"@/registry/erbium/ui/logo-loader\";\nimport { useRef } from \"react\";\n\nconst Example = () => {\n  const logo = useRef<LogoLoaderHandle>(null);\n\n  return (\n    <a\n      href=\"#replay\"\n      className=\"inline-flex items-center gap-related text-subtitle font-semibold text-foreground\"\n      onPointerEnter={() => logo.current?.replay()}\n    >\n      <LogoLoader ref={logo} />\n      Erbium\n    </a>\n  );\n};\n\nexport default Example;\n",
+      "content": "import { LogoLoader } from \"@/registry/erbium/ui/logo-loader\";\nimport type { LogoLoaderHandle } from \"@/registry/erbium/ui/logo-loader\";\nimport { useRef } from \"react\";\n\nexport default function LogoLoaderReplayExample() {\n  const logo = useRef<LogoLoaderHandle>(null);\n\n  return (\n    <a\n      href=\"#replay\"\n      className=\"inline-flex items-center gap-related text-subtitle font-semibold text-foreground\"\n      onPointerEnter={() => logo.current?.replay()}\n    >\n      <LogoLoader ref={logo} />\n      Erbium\n    </a>\n  );\n}\n",
       "path": "src/logo-loader/variants/replay.tsx",
       "target": "@components/showcase/logo-loader/variants/replay.tsx",
       "type": "registry:component"

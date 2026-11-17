@@ -11,7 +11,7 @@ import {
   DrawerTrigger,
 } from "@erbium/ui/components/drawer";
 
-export const DrawerNested = () => {
+export default function DrawerNestedExample() {
   const isMobile = false;
 
   const swipeDirection = isMobile ? "down" : "right";
@@ -88,4 +88,4 @@ export const DrawerNested = () => {
       </DrawerPanel>
     </Drawer>
   );
-};
+}

@@ -1,4 +1,4 @@
-import { QuestionnaireCard } from "../examples/questionnaire-card";
+import QuestionnaireCard from "../examples/questionnaire-card";
 
 const Example = () => <QuestionnaireCard />;
 

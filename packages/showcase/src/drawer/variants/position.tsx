@@ -1,5 +1,5 @@
-import { DrawerWithSides } from "../examples/drawer-sides";
+import DrawerWithSidesExample from "../examples/drawer-sides";
 
-const Example = () => <DrawerWithSides />;
+const Example = () => <DrawerWithSidesExample />;
 
 export default Example;

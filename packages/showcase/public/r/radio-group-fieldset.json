@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport const RadioGroupFieldset = () => (\n  <FieldSet className=\"w-full max-w-xs\">\n    <FieldLegend variant=\"label\">Subscription Plan</FieldLegend>\n    <FieldDescription>Yearly and lifetime plans offer significant savings.</FieldDescription>\n    <RadioGroup defaultValue=\"monthly\">\n      <FieldItem orientation=\"horizontal\">\n        <RadioGroupItem value=\"monthly\" />\n        <FieldLabel className=\"font-normal\">Monthly ($9.99/month)</FieldLabel>\n      </FieldItem>\n      <FieldItem orientation=\"horizontal\">\n        <RadioGroupItem value=\"yearly\" />\n        <FieldLabel className=\"font-normal\">Yearly ($99.99/year)</FieldLabel>\n      </FieldItem>\n      <FieldItem orientation=\"horizontal\">\n        <RadioGroupItem value=\"lifetime\" />\n        <FieldLabel className=\"font-normal\">Lifetime ($299.99)</FieldLabel>\n      </FieldItem>\n    </RadioGroup>\n  </FieldSet>\n);\n",
+      "content": "import {\n  FieldDescription,\n  FieldItem,\n  FieldLabel,\n  FieldLegend,\n  FieldSet,\n} from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport default function RadioGroupFieldsetExample() {\n  return (\n    <FieldSet className=\"w-full max-w-xs\">\n      <FieldLegend variant=\"label\">Subscription Plan</FieldLegend>\n      <FieldDescription>Yearly and lifetime plans offer significant savings.</FieldDescription>\n      <RadioGroup defaultValue=\"monthly\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"monthly\" />\n          <FieldLabel className=\"font-normal\">Monthly ($9.99/month)</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"yearly\" />\n          <FieldLabel className=\"font-normal\">Yearly ($99.99/year)</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"lifetime\" />\n          <FieldLabel className=\"font-normal\">Lifetime ($299.99)</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </FieldSet>\n  );\n}\n",
       "path": "src/radio-group/examples/radio-group-fieldset.tsx",
       "target": "@components/showcase/radio-group/examples/radio-group-fieldset.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { RadioGroupFieldset } from \"../examples/radio-group-fieldset\";\n\nconst Example = () => <RadioGroupFieldset />;\n\nexport default Example;\n",
+      "content": "import RadioGroupFieldset from \"../examples/radio-group-fieldset\";\n\nconst Example = () => <RadioGroupFieldset />;\n\nexport default Example;\n",
       "path": "src/radio-group/variants/fieldset.tsx",
       "target": "@components/showcase/radio-group/variants/fieldset.tsx",
       "type": "registry:component"

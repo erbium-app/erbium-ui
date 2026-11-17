@@ -6,14 +6,14 @@ import {
   MeterValue,
 } from "@erbium/ui/components/meter";
 
-const MeterDemo = () => (
-  <Meter value={24} className="w-72">
-    <MeterLabel>Storage used</MeterLabel>
-    <MeterValue />
-    <MeterTrack>
-      <MeterIndicator />
-    </MeterTrack>
-  </Meter>
-);
-
-export default MeterDemo;
+export default function MeterExample() {
+  return (
+    <Meter value={24} className="w-72">
+      <MeterLabel>Storage used</MeterLabel>
+      <MeterValue />
+      <MeterTrack>
+        <MeterIndicator />
+      </MeterTrack>
+    </Meter>
+  );
+}

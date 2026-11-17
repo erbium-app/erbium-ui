@@ -25,7 +25,7 @@ const steps = [
   },
 ] as const;
 
-const Example = () => {
+export default function StepIndicatorTanstackFormExample() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
 
@@ -123,6 +123,4 @@ const Example = () => {
       </div>
     </Form>
   );
-};
-
-export default Example;
+}

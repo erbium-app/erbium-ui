@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\n\nconst Example = () => <Checkbox defaultChecked aria-label=\"Selected\" />;\n\nexport default Example;\n",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\n\nexport default function CheckboxCheckedExample() {\n  return <Checkbox defaultChecked aria-label=\"Selected\" />;\n}\n",
       "path": "src/checkbox/variants/checked.tsx",
       "target": "@components/showcase/checkbox/variants/checked.tsx",
       "type": "registry:component"

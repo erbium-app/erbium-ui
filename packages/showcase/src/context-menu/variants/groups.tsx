@@ -1,5 +1,5 @@
-import { ContextMenuGroups } from "../examples/context-menu-groups";
+import ContextMenuGroupsExample from "../examples/context-menu-groups";
 
-const Example = () => <ContextMenuGroups />;
+const Example = () => <ContextMenuGroupsExample />;
 
 export default Example;

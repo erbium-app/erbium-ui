@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Breadcrumb } from \"@/registry/erbium/ui/breadcrumb\";\n\nconst Example = (args: { separator: string; currentPage: string }) => (\n  <Breadcrumb\n    items={[{ href: \"/\", label: \"Home\" }]}\n    currentPage={args.currentPage}\n    separator={args.separator}\n  />\n);\n\nexport default Example;\n",
+      "content": "import { Breadcrumb } from \"@/registry/erbium/ui/breadcrumb\";\n\nexport const defaultProps = {\n  currentPage: \"Current page\",\n  separator: \"/\",\n} satisfies { separator: string; currentPage: string };\n\nexport default function BreadcrumbPlaygroundExample(\n  args: { separator: string; currentPage: string } = defaultProps,\n) {\n  return (\n    <Breadcrumb\n      items={[{ href: \"/\", label: \"Home\" }]}\n      currentPage={args.currentPage}\n      separator={args.separator}\n    />\n  );\n}\n",
       "path": "src/breadcrumb/variants/playground.tsx",
       "target": "@components/showcase/breadcrumb/variants/playground.tsx",
       "type": "registry:component"

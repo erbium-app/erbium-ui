@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/progress", "@erbium/styles", "@erbium/utils"],
   "files": [
     {
-      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\nimport type * as React from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nconst Example = (args: React.ComponentProps<typeof Progress>) => (\n  <Progress {...args} className={cn(\"w-72\", args.className)} />\n);\n\nexport default Example;\n",
+      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\nimport type * as React from \"react\";\nimport { cn } from \"@/registry/erbium/lib/erbium-utils\";\n\nexport const defaultProps = { className: \"\", value: 45 } satisfies React.ComponentProps<\n  typeof Progress\n>;\n\nexport default function ProgressPlaygroundExample(\n  args: React.ComponentProps<typeof Progress> = defaultProps,\n) {\n  return <Progress {...args} className={cn(\"w-72\", args.className)} />;\n}\n",
       "path": "src/progress/variants/playground.tsx",
       "target": "@components/showcase/progress/variants/playground.tsx",
       "type": "registry:component"

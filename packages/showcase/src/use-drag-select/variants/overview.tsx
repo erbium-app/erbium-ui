@@ -1,5 +1,5 @@
-import Demo from "../examples/use-drag-select-demo";
+import ItemJoinedSelectionExample from "../examples/use-drag-select-demo";
 
-const Example = () => <Demo />;
+const Example = () => <ItemJoinedSelectionExample />;
 
 export default Example;

@@ -4,57 +4,57 @@ import { InputGroup } from "@erbium/ui/components/input-group";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/input-group-demo.tsx?raw";
 
 import IconExample from "./variants/icon";
 
-import IconSource from "./variants/icon.tsx?raw";
+import IconSource from "./examples/input-group-icon.tsx?raw";
 
 import TextExample from "./variants/text";
 
-import TextSource from "./variants/text.tsx?raw";
+import TextSource from "./examples/input-group-text.tsx?raw";
 
 import DropdownExample from "./variants/dropdown";
 
-import DropdownSource from "./variants/dropdown.tsx?raw";
+import DropdownSource from "./examples/input-group-dropdown.tsx?raw";
 
 import InlineStartExample from "./variants/inline-start";
 
-import InlineStartSource from "./variants/inline-start.tsx?raw";
+import InlineStartSource from "./examples/input-group-inline-start.tsx?raw";
 
 import InlineEndExample from "./variants/inline-end";
 
-import InlineEndSource from "./variants/inline-end.tsx?raw";
+import InlineEndSource from "./examples/input-group-inline-end.tsx?raw";
 
 import BlockStartExample from "./variants/block-start";
 
-import BlockStartSource from "./variants/block-start.tsx?raw";
+import BlockStartSource from "./examples/input-group-block-start.tsx?raw";
 
 import BlockEndExample from "./variants/block-end";
 
-import BlockEndSource from "./variants/block-end.tsx?raw";
+import BlockEndSource from "./examples/input-group-block-end.tsx?raw";
 
 import KbdExample from "./variants/kbd";
 
-import KbdSource from "./variants/kbd.tsx?raw";
+import KbdSource from "./examples/input-group-kbd.tsx?raw";
 
 import TextareaExample from "./variants/textarea";
 
-import TextareaSource from "./variants/textarea.tsx?raw";
+import TextareaSource from "./examples/input-group-textarea.tsx?raw";
 
 import ButtonExample from "./variants/button";
 
-import ButtonSource from "./variants/button.tsx?raw";
+import ButtonSource from "./examples/input-group-button.tsx?raw";
 
 import CustomExample from "./variants/custom";
 
-import CustomSource from "./variants/custom.tsx?raw";
+import CustomSource from "./examples/input-group-custom.tsx?raw";
 
 const meta = {
   component: InputGroup,
@@ -93,13 +93,7 @@ export const Playground: StoryObj<{
     className: { control: "text" },
     placeholder: { control: "text" },
   },
-  args: {
-    align: "inline-start",
-    buttonSize: "xs",
-    buttonVariant: "ghost",
-    className: "",
-    placeholder: "Search",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("input-group", "playground") },

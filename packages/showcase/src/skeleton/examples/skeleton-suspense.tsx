@@ -28,7 +28,15 @@ const LoadedProfile = ({ request }: { request: Promise<Profile> }) => (
  * A Suspense boundary whose fallback is the component rendered from sample data, measured into a
  * skeleton. Use it where the data comes from `use(promise)` or a suspending query.
  */
-export const SkeletonSuspenseExample = ({ latency = defaultLatency }: { latency?: number }) => {
+export const defaultProps = {} satisfies {
+  latency?: number;
+};
+
+export default function SkeletonSuspenseExample({
+  latency = defaultLatency,
+}: {
+  latency?: number;
+} = defaultProps) {
   const [suspended, setSuspended] = useState(() => ({
     attempt: 0,
     request: fetchProfile(latency),
@@ -55,4 +63,4 @@ export const SkeletonSuspenseExample = ({ latency = defaultLatency }: { latency?
       </Button>
     </div>
   );
-};
+}

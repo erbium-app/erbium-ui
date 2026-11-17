@@ -57,7 +57,7 @@ const columns = columnHelper.columns([
   }),
 ]);
 
-export const TableFooterExample = () => {
+export default function TableFooterExample() {
   const table = useTable({ columns, data: invoices.slice(0, 3), features });
 
   return (
@@ -116,4 +116,4 @@ export const TableFooterExample = () => {
       </TableFooter>
     </Table>
   );
-};
+}

@@ -1,5 +1,5 @@
 import { ExpandableChevronExample } from "../helpers";
 
-const Example = () => <ExpandableChevronExample />;
-
-export default Example;
+export default function StatefulIconExpandableChevronExample() {
+  return <ExpandableChevronExample />;
+}

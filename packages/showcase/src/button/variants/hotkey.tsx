@@ -1,5 +1,5 @@
-import ButtonHotkeyDemo from "../../kbd/examples/kbd-hint";
+import KbdHintExample from "../../kbd/examples/kbd-hint";
 
-const Example = () => <ButtonHotkeyDemo />;
-
-export default Example;
+export default function ButtonHotkeyExample() {
+  return <KbdHintExample />;
+}

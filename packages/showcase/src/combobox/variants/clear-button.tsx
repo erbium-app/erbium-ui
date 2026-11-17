@@ -1,5 +1,5 @@
-import { ComboboxWithClear } from "../examples/combobox-clear";
+import ComboboxWithClearExample from "../examples/combobox-clear";
 
-const Example = () => <ComboboxWithClear />;
+const Example = () => <ComboboxWithClearExample />;
 
 export default Example;

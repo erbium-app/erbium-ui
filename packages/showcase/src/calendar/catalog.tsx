@@ -4,57 +4,57 @@ import { Calendar } from "@erbium/ui/components/calendar";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/calendar-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/calendar-basic.tsx?raw";
 
 import RangeCalendarExample from "./variants/range-calendar";
 
-import RangeCalendarSource from "./variants/range-calendar.tsx?raw";
+import RangeCalendarSource from "./examples/calendar-range.tsx?raw";
 
 import MultipleExample from "./variants/multiple";
 
-import MultipleSource from "./variants/multiple.tsx?raw";
+import MultipleSource from "./examples/calendar-multiple.tsx?raw";
 
 import MonthAndYearSelectorExample from "./variants/month-and-year-selector";
 
-import MonthAndYearSelectorSource from "./variants/month-and-year-selector.tsx?raw";
+import MonthAndYearSelectorSource from "./examples/calendar-caption.tsx?raw";
 
 import BookedDatesExample from "./variants/booked-dates";
 
-import BookedDatesSource from "./variants/booked-dates.tsx?raw";
+import BookedDatesSource from "./examples/calendar-booked-dates.tsx?raw";
 
 import WeekNumbersExample from "./variants/week-numbers";
 
-import WeekNumbersSource from "./variants/week-numbers.tsx?raw";
+import WeekNumbersSource from "./examples/calendar-week-numbers.tsx?raw";
 
 import PresetsExample from "./variants/presets";
 
-import PresetsSource from "./variants/presets.tsx?raw";
+import PresetsSource from "./examples/calendar-presets.tsx?raw";
 
 import DateAndTimePickerExample from "./variants/date-and-time-picker";
 
-import DateAndTimePickerSource from "./variants/date-and-time-picker.tsx?raw";
+import DateAndTimePickerSource from "./examples/calendar-time.tsx?raw";
 
 import CustomDaysExample from "./variants/custom-days";
 
-import CustomDaysSource from "./variants/custom-days.tsx?raw";
+import CustomDaysSource from "./examples/calendar-custom-days.tsx?raw";
 
 import PersianExample from "./variants/persian";
 
-import PersianSource from "./variants/persian.tsx?raw";
+import PersianSource from "./examples/calendar-persian.tsx?raw";
 
 import SelectedDateWithTimezoneExample from "./variants/selected-date-with-timezone";
 
-import SelectedDateWithTimezoneSource from "./variants/selected-date-with-timezone.tsx?raw";
+import SelectedDateWithTimezoneSource from "./examples/calendar-timezone.tsx?raw";
 
 const meta = {
   component: Calendar,
@@ -92,14 +92,7 @@ export const Playground: StoryObj<{
     showWeekNumber: { control: "boolean" },
     weekStartsOn: { control: "select", options: [0, 1, 2, 3, 4, 5, 6] },
   },
-  args: {
-    captionLayout: "label",
-    fixedWeeks: false,
-    numberOfMonths: 1,
-    showOutsideDays: true,
-    showWeekNumber: false,
-    weekStartsOn: 0,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("calendar", "playground") },

@@ -1,9 +1,9 @@
 import { Control } from "@erbium/ui/components/control";
 
-const Example = () => (
-  <Control.Row label="Version" className="w-72">
-    <span className="ms-auto text-caption text-muted-foreground">1.0</span>
-  </Control.Row>
-);
-
-export default Example;
+export default function ControlRowExample() {
+  return (
+    <Control.Row label="Version" className="w-72">
+      <span className="ms-auto text-caption text-muted-foreground">1.0</span>
+    </Control.Row>
+  );
+}

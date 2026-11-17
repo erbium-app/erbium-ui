@@ -1,5 +1,5 @@
-import Demo from "../examples/use-copy-to-clipboard-demo";
+import UseCopyToClipboardExample from "../examples/use-copy-to-clipboard-demo";
 
-const Example = () => <Demo />;
+const Example = () => <UseCopyToClipboardExample />;
 
 export default Example;

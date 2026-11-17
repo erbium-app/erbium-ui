@@ -15,37 +15,35 @@ import {
 
 const SHEET_SIDES = ["top", "right", "bottom", "left"] as const;
 
-type SheetSide = (typeof SHEET_SIDES)[number];
-
-const SheetSide = () => (
-  <div className="grid grid-cols-2 gap-related">
-    {SHEET_SIDES.map((side) => (
-      <Sheet key={side}>
-        <SheetTrigger render={<Button variant="outline">{side}</Button>} />
-        <SheetPanel side={side}>
-          <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when you&apos;re done.
-            </SheetDescription>
-          </SheetHeader>
-          <SheetContent className="grid content-start gap-group">
-            <Field className="grid grid-cols-4 items-center gap-group">
-              <FieldLabel className="text-end">Name</FieldLabel>
-              <Input defaultValue="Pedro Duarte" className="col-span-3" />
-            </Field>
-            <Field className="grid grid-cols-4 items-center gap-group">
-              <FieldLabel className="text-end">Username</FieldLabel>
-              <Input defaultValue="@peduarte" className="col-span-3" />
-            </Field>
-          </SheetContent>
-          <SheetFooter>
-            <SheetClose render={<Button>Save changes</Button>} />
-          </SheetFooter>
-        </SheetPanel>
-      </Sheet>
-    ))}
-  </div>
-);
-
-export default SheetSide;
+export default function SheetSideExample() {
+  return (
+    <div className="grid grid-cols-2 gap-related">
+      {SHEET_SIDES.map((side) => (
+        <Sheet key={side}>
+          <SheetTrigger render={<Button variant="outline">{side}</Button>} />
+          <SheetPanel side={side}>
+            <SheetHeader>
+              <SheetTitle>Edit profile</SheetTitle>
+              <SheetDescription>
+                Make changes to your profile here. Click save when you&apos;re done.
+              </SheetDescription>
+            </SheetHeader>
+            <SheetContent className="grid content-start gap-group">
+              <Field className="grid grid-cols-4 items-center gap-group">
+                <FieldLabel className="text-end">Name</FieldLabel>
+                <Input defaultValue="Pedro Duarte" className="col-span-3" />
+              </Field>
+              <Field className="grid grid-cols-4 items-center gap-group">
+                <FieldLabel className="text-end">Username</FieldLabel>
+                <Input defaultValue="@peduarte" className="col-span-3" />
+              </Field>
+            </SheetContent>
+            <SheetFooter>
+              <SheetClose render={<Button>Save changes</Button>} />
+            </SheetFooter>
+          </SheetPanel>
+        </Sheet>
+      ))}
+    </div>
+  );
+}

@@ -1,5 +1,5 @@
-import Demo from "../examples/overlay-provider-demo";
+import DrawerExample from "../examples/overlay-provider-demo";
 
-const Example = () => <Demo />;
+const Example = () => <DrawerExample />;
 
 export default Example;

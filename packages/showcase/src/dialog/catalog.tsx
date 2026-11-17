@@ -6,29 +6,29 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/dialog-demo.tsx?raw";
 
 import CustomCloseButtonExample from "./variants/custom-close-button";
 
-import CustomCloseButtonSource from "./variants/custom-close-button.tsx?raw";
+import CustomCloseButtonSource from "./examples/dialog-close-button.tsx?raw";
 
 import NoCloseButtonExample from "./variants/no-close-button";
 
-import NoCloseButtonSource from "./variants/no-close-button.tsx?raw";
+import NoCloseButtonSource from "./examples/dialog-no-close-button.tsx?raw";
 
 import StickyFooterExample from "./variants/sticky-footer";
 
-import StickyFooterSource from "./variants/sticky-footer.tsx?raw";
+import StickyFooterSource from "./examples/dialog-sticky-footer.tsx?raw";
 
 import ScrollableContentExample from "./variants/scrollable-content";
 
-import ScrollableContentSource from "./variants/scrollable-content.tsx?raw";
+import ScrollableContentSource from "./examples/dialog-scrollable-content.tsx?raw";
 
 const meta = {
   component: Dialog,
@@ -49,7 +49,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<{ defaultOpen: boolean; showCloseButton: boolean }> = {
   argTypes: { defaultOpen: { control: "boolean" }, showCloseButton: { control: "boolean" } },
-  args: { defaultOpen: false, showCloseButton: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("dialog", "playground") },

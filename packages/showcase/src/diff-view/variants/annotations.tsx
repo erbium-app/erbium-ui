@@ -12,7 +12,7 @@ const annotations: DiffLineAnnotation<{ author: string; message: string }>[] = [
   },
 ];
 
-const Example = () => {
+export default function DiffViewAnnotationsExample() {
   const [selection, setSelection] = useState<SelectedLineRange | null>(null);
 
   return (
@@ -49,6 +49,4 @@ const Example = () => {
       />
     </div>
   );
-};
-
-export default Example;
+}

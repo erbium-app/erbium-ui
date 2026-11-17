@@ -1,5 +1,5 @@
-import { ContextMenuCheckboxes } from "../examples/context-menu-checkboxes";
+import ContextMenuCheckboxesExample from "../examples/context-menu-checkboxes";
 
-const Example = () => <ContextMenuCheckboxes />;
+const Example = () => <ContextMenuCheckboxesExample />;
 
 export default Example;

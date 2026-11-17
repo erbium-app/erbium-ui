@@ -1,5 +1,5 @@
-import DatePickerDemo from "../examples/date-picker-demo";
+import DatePickerExample from "../examples/date-picker-demo";
 
-const Example = () => <DatePickerDemo />;
+const Example = () => <DatePickerExample />;
 
 export default Example;

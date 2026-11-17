@@ -1,5 +1,5 @@
-import Demo from "../examples/use-is-mobile-demo";
+import UseIsMobileExample from "../examples/use-is-mobile-demo";
 
-const Example = () => <Demo />;
+const Example = () => <UseIsMobileExample />;
 
 export default Example;

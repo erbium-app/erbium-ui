@@ -1,4 +1,4 @@
-import { TableFooterExample } from "../examples/table-footer";
+import TableFooterExample from "../examples/table-footer";
 
 const Example = () => <TableFooterExample />;
 

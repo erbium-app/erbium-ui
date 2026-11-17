@@ -11,23 +11,23 @@ import {
 } from "@erbium/ui/components/alert-dialog";
 import { Button } from "@erbium/ui/components/button";
 
-const AlertDialogDemo = () => (
-  <AlertDialog>
-    <AlertDialogTrigger render={<Button variant="outline">Show Dialog</Button>} />
-    <AlertDialogContent>
-      <AlertDialogHeader>
-        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-        <AlertDialogDescription>
-          This action cannot be undone. This will permanently delete your account and remove your
-          data from our servers.
-        </AlertDialogDescription>
-      </AlertDialogHeader>
-      <AlertDialogFooter>
-        <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction>Continue</AlertDialogAction>
-      </AlertDialogFooter>
-    </AlertDialogContent>
-  </AlertDialog>
-);
-
-export default AlertDialogDemo;
+export default function AlertDialogExample() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger render={<Button variant="outline">Show Dialog</Button>} />
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}

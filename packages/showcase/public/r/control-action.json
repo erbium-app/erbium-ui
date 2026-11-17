@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Action label=\"Reset settings\" className=\"w-72\" onClick={() => {}} />;\n\nexport default Example;\n",
+      "content": "import { useState } from \"react\";\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlActionExample() {\n  const [reset, setReset] = useState(false);\n\n  return (\n    <Control.Action\n      label={reset ? \"Settings reset\" : \"Reset settings\"}\n      className=\"w-72\"\n      onClick={() => {\n        setReset(true);\n      }}\n    />\n  );\n}\n",
       "path": "src/control/variants/action.tsx",
       "target": "@components/showcase/control/variants/action.tsx",
       "type": "registry:component"

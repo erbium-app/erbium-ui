@@ -7,7 +7,7 @@ import {
   InputGroupButton,
 } from "@erbium/ui/components/input-group";
 
-const Example = () => {
+export default function CopyButtonInputExample() {
   const [value, setValue] = useState("https://erbium.dev");
 
   return (
@@ -28,6 +28,4 @@ const Example = () => {
       </InputGroupAddon>
     </InputGroup>
   );
-};
-
-export default Example;
+}

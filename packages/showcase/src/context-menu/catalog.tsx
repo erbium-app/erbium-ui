@@ -6,49 +6,49 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/context-menu-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/context-menu-basic.tsx?raw";
 
 import SubmenuExample from "./variants/submenu";
 
-import SubmenuSource from "./variants/submenu.tsx?raw";
+import SubmenuSource from "./examples/context-menu-submenu.tsx?raw";
 
 import ShortcutsExample from "./variants/shortcuts";
 
-import ShortcutsSource from "./variants/shortcuts.tsx?raw";
+import ShortcutsSource from "./examples/context-menu-shortcuts.tsx?raw";
 
 import GroupsExample from "./variants/groups";
 
-import GroupsSource from "./variants/groups.tsx?raw";
+import GroupsSource from "./examples/context-menu-groups.tsx?raw";
 
 import IconsExample from "./variants/icons";
 
-import IconsSource from "./variants/icons.tsx?raw";
+import IconsSource from "./examples/context-menu-icons.tsx?raw";
 
 import CheckboxesExample from "./variants/checkboxes";
 
-import CheckboxesSource from "./variants/checkboxes.tsx?raw";
+import CheckboxesSource from "./examples/context-menu-checkboxes.tsx?raw";
 
 import RadioExample from "./variants/radio";
 
-import RadioSource from "./variants/radio.tsx?raw";
+import RadioSource from "./examples/context-menu-radio.tsx?raw";
 
 import ErrorVariantExample from "./variants/error-variant";
 
-import ErrorVariantSource from "./variants/error-variant.tsx?raw";
+import ErrorVariantSource from "./examples/context-menu-error.tsx?raw";
 
 import SidesExample from "./variants/sides";
 
-import SidesSource from "./variants/sides.tsx?raw";
+import SidesSource from "./examples/context-menu-sides.tsx?raw";
 
 const meta = {
   component: ContextMenu,
@@ -75,7 +75,7 @@ export const Playground: StoryObj<{
     align: { control: "select", options: ["start", "center", "end"] },
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
-  args: { align: "start", side: "bottom" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("context-menu", "playground") },

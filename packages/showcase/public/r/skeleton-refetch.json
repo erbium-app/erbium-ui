@@ -26,7 +26,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { LoadingControls, useSimulatedFetch } from \"../../loading\";\nimport { profile, sampleProfile } from \"../fixtures\";\nimport { ProfileCard } from \"./skeleton-demo\";\n\n/**\n * Pass `loading` with the data still on screen. The skeleton is drawn from that data, so it matches\n * exactly, and the new data crossfades in. Refetches that answer within 150 ms show no skeleton.\n */\nexport const SkeletonRefetch = ({ latency }: { latency?: number }) => {\n  const request = useSimulatedFetch(profile, { latency });\n\n  return (\n    <div className=\"flex w-full max-w-sm flex-col items-center gap-group\">\n      <Skeleton\n        data={request.data}\n        sample={sampleProfile}\n        loading={request.loading}\n        label=\"Refreshing profile\"\n        className=\"w-full\"\n      >\n        {(value) => <ProfileCard profile={value} />}\n      </Skeleton>\n      <LoadingControls {...request} />\n    </div>\n  );\n};\n",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { LoadingControls, useSimulatedFetch } from \"../../loading\";\nimport { profile, sampleProfile } from \"../fixtures\";\nimport { ProfileCard } from \"./skeleton-demo\";\n\n/**\n * Pass `loading` with the data still on screen. The skeleton is drawn from that data, so it matches\n * exactly, and the new data crossfades in. Refetches that answer within 150 ms show no skeleton.\n */\nexport const defaultProps = {} satisfies { latency?: number };\n\nexport default function SkeletonRefetchExample({ latency }: { latency?: number } = defaultProps) {\n  const request = useSimulatedFetch(profile, { latency });\n\n  return (\n    <div className=\"flex w-full max-w-sm flex-col items-center gap-group\">\n      <Skeleton\n        data={request.data}\n        sample={sampleProfile}\n        loading={request.loading}\n        label=\"Refreshing profile\"\n        className=\"w-full\"\n      >\n        {(value) => <ProfileCard profile={value} />}\n      </Skeleton>\n      <LoadingControls {...request} />\n    </div>\n  );\n}\n",
       "path": "src/skeleton/examples/skeleton-refetch.tsx",
       "target": "@components/showcase/skeleton/examples/skeleton-refetch.tsx",
       "type": "registry:component"
@@ -38,7 +38,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SkeletonRefetch } from \"../examples/skeleton-refetch\";\n\nconst Example = () => <SkeletonRefetch />;\n\nexport default Example;\n",
+      "content": "import SkeletonRefetch from \"../examples/skeleton-refetch\";\n\nconst Example = () => <SkeletonRefetch />;\n\nexport default Example;\n",
       "path": "src/skeleton/variants/refetch.tsx",
       "target": "@components/showcase/skeleton/variants/refetch.tsx",
       "type": "registry:component"

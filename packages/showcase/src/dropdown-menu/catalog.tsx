@@ -6,57 +6,57 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/dropdown-menu-demo.tsx?raw";
 
 import RadioGroupExample from "./variants/radio-group";
 
-import RadioGroupSource from "./variants/radio-group.tsx?raw";
+import RadioGroupSource from "./examples/dropdown-menu-radio-group.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/dropdown-menu-basic.tsx?raw";
 
 import SubmenuExample from "./variants/submenu";
 
-import SubmenuSource from "./variants/submenu.tsx?raw";
+import SubmenuSource from "./examples/dropdown-menu-submenu.tsx?raw";
 
 import ShortcutsExample from "./variants/shortcuts";
 
-import ShortcutsSource from "./variants/shortcuts.tsx?raw";
+import ShortcutsSource from "./examples/dropdown-menu-shortcuts.tsx?raw";
 
 import IconsExample from "./variants/icons";
 
-import IconsSource from "./variants/icons.tsx?raw";
+import IconsSource from "./examples/dropdown-menu-icons.tsx?raw";
 
 import CheckboxesExample from "./variants/checkboxes";
 
-import CheckboxesSource from "./variants/checkboxes.tsx?raw";
+import CheckboxesSource from "./examples/dropdown-menu-checkboxes.tsx?raw";
 
 import CheckboxesIconsExample from "./variants/checkboxes-icons";
 
-import CheckboxesIconsSource from "./variants/checkboxes-icons.tsx?raw";
+import CheckboxesIconsSource from "./examples/dropdown-menu-checkboxes-icons.tsx?raw";
 
 import RadioIconsExample from "./variants/radio-icons";
 
-import RadioIconsSource from "./variants/radio-icons.tsx?raw";
+import RadioIconsSource from "./examples/dropdown-menu-radio-icons.tsx?raw";
 
 import ErrorVariantExample from "./variants/error-variant";
 
-import ErrorVariantSource from "./variants/error-variant.tsx?raw";
+import ErrorVariantSource from "./examples/dropdown-menu-error.tsx?raw";
 
 import AvatarExample from "./variants/avatar";
 
-import AvatarSource from "./variants/avatar.tsx?raw";
+import AvatarSource from "./examples/dropdown-menu-avatar.tsx?raw";
 
 import ComplexExample from "./variants/complex";
 
-import ComplexSource from "./variants/complex.tsx?raw";
+import ComplexSource from "./examples/dropdown-menu-complex.tsx?raw";
 
 const meta = {
   component: DropdownMenu,
@@ -85,7 +85,7 @@ export const Playground: StoryObj<{
     defaultOpen: { control: "boolean" },
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
-  args: { align: "start", defaultOpen: false, side: "bottom" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("dropdown-menu", "playground") },

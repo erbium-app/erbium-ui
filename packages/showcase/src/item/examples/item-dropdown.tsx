@@ -37,43 +37,47 @@ const people = [
   },
 ];
 
-const ItemDropdown = () => (
-  <div className="flex min-h-64 w-full max-w-md flex-col items-center gap-section">
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        render={
-          <Button variant="outline" size="sm" className="group group/item-menu-trigger w-fit">
-            Select <RotatingChevron />
-          </Button>
-        }
-      />
-      <DropdownMenuContent className="w-72 [--radius:0.65rem]" align="end">
-        <DropdownMenuList>
-          {people.map((person) => (
-            <DropdownMenuItem key={person.username} className="p-0">
-              <Item size="sm" className="w-full p-2">
-                <ItemMedia>
-                  <Avatar>
-                    <AvatarImage alt={person.username} src={person.avatar} className="grayscale" />
-                    <AvatarFallback>
-                      {person.username
-                        .split(" ")
-                        .map((part) => part[0])
-                        .join("")}
-                    </AvatarFallback>
-                  </Avatar>
-                </ItemMedia>
-                <ItemContent className="gap-0.5">
-                  <ItemTitle>{person.username}</ItemTitle>
-                  <ItemDescription>{person.email}</ItemDescription>
-                </ItemContent>
-              </Item>
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuList>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  </div>
-);
-
-export default ItemDropdown;
+export default function ItemDropdownExample() {
+  return (
+    <div className="flex min-h-64 w-full max-w-md flex-col items-center gap-section">
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          render={
+            <Button variant="outline" size="sm" className="group group/item-menu-trigger w-fit">
+              Select <RotatingChevron />
+            </Button>
+          }
+        />
+        <DropdownMenuContent className="w-72 [--radius:0.65rem]" align="end">
+          <DropdownMenuList>
+            {people.map((person) => (
+              <DropdownMenuItem key={person.username} className="p-0">
+                <Item size="sm" className="w-full p-2">
+                  <ItemMedia>
+                    <Avatar>
+                      <AvatarImage
+                        alt={person.username}
+                        src={person.avatar}
+                        className="grayscale"
+                      />
+                      <AvatarFallback>
+                        {person.username
+                          .split(" ")
+                          .map((part) => part[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+                  </ItemMedia>
+                  <ItemContent className="gap-0.5">
+                    <ItemTitle>{person.username}</ItemTitle>
+                    <ItemDescription>{person.email}</ItemDescription>
+                  </ItemContent>
+                </Item>
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuList>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/hover-card", "@erbium/styles"],
   "files": [
     {
-      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <HoverCard>\n    <HoverCardTrigger render={<Button variant=\"link\" />}>Preview above</HoverCardTrigger>\n    <HoverCardContent align=\"start\" side=\"top\">\n      Aligned to the start of the trigger.\n    </HoverCardContent>\n  </HoverCard>\n);\n\nexport default Example;\n",
+      "content": "import { HoverCard, HoverCardContent, HoverCardTrigger } from \"@/registry/erbium/ui/hover-card\";\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function HoverCardPositioningExample() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger render={<Button variant=\"link\" />}>Preview above</HoverCardTrigger>\n      <HoverCardContent align=\"start\" side=\"top\">\n        Aligned to the start of the trigger.\n      </HoverCardContent>\n    </HoverCard>\n  );\n}\n",
       "path": "src/hover-card/variants/positioning.tsx",
       "target": "@components/showcase/hover-card/variants/positioning.tsx",
       "type": "registry:component"

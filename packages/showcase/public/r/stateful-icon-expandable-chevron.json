@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { ExpandableChevronExample } from \"../helpers\";\n\nconst Example = () => <ExpandableChevronExample />;\n\nexport default Example;\n",
+      "content": "import { ExpandableChevronExample } from \"../helpers\";\n\nexport default function StatefulIconExpandableChevronExample() {\n  return <ExpandableChevronExample />;\n}\n",
       "path": "src/stateful-icon/variants/expandable-chevron.tsx",
       "target": "@components/showcase/stateful-icon/variants/expandable-chevron.tsx",
       "type": "registry:component"

@@ -4,13 +4,13 @@ import { DirectionProvider } from "@erbium/ui/components/direction";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/direction-demo.tsx?raw";
 
 const meta = {
   component: DirectionProvider,
@@ -31,7 +31,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<{ direction: "ltr" | "rtl" }> = {
   argTypes: { direction: { control: "select", options: ["ltr", "rtl"] } },
-  args: { direction: "ltr" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("direction", "playground") },

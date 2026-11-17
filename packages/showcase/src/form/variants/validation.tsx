@@ -1,5 +1,5 @@
-import Demo from "../examples/form-validation";
+import FormValidationExample from "../examples/form-validation";
 
-const Example = () => <Demo />;
+const Example = () => <FormValidationExample />;
 
 export default Example;

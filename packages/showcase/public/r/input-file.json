@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst InputFile = () => (\n  <Field className=\"grid w-full max-w-sm items-center gap-related\">\n    <FieldLabel>Picture</FieldLabel>\n    <Input type=\"file\" />\n  </Field>\n);\n\nexport default InputFile;\n",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function InputFileExample() {\n  return (\n    <Field className=\"grid w-full max-w-sm items-center gap-related\">\n      <FieldLabel>Picture</FieldLabel>\n      <Input type=\"file\" />\n    </Field>\n  );\n}\n",
       "path": "src/input/examples/input-file.tsx",
       "target": "@components/showcase/input/examples/input-file.tsx",
       "type": "registry:component"

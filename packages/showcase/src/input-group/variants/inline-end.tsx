@@ -1,5 +1,5 @@
-import { InputGroupInlineEnd } from "../examples/input-group-inline-end";
+import InputGroupInlineEndExample from "../examples/input-group-inline-end";
 
-const Example = () => <InputGroupInlineEnd />;
+const Example = () => <InputGroupInlineEndExample />;
 
 export default Example;

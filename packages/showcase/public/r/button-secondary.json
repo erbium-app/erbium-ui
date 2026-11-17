@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonSecondary = () => <Button variant=\"secondary\">Secondary</Button>;\n\nexport default ButtonSecondary;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonSecondaryExample() {\n  return <Button variant=\"secondary\">Secondary</Button>;\n}\n",
       "path": "src/button/examples/button-secondary.tsx",
       "target": "@components/showcase/button/examples/button-secondary.tsx",
       "type": "registry:component"

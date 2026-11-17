@@ -1,5 +1,5 @@
-import { FieldResponsive } from "../examples/field-profile-form";
+import FieldResponsiveExample from "../examples/field-profile-form";
 
-const Example = () => <FieldResponsive />;
+const Example = () => <FieldResponsiveExample />;
 
 export default Example;

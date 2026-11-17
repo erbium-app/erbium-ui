@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst SwitchDemo = () => (\n  <Field orientation=\"horizontal\">\n    <Switch />\n    <FieldLabel>Airplane Mode</FieldLabel>\n  </Field>\n);\n\nexport default SwitchDemo;\n",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchExample() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Switch />\n      <FieldLabel>Airplane Mode</FieldLabel>\n    </Field>\n  );\n}\n",
       "path": "src/switch/examples/switch-demo.tsx",
       "target": "@components/showcase/switch/examples/switch-demo.tsx",
       "type": "registry:component"

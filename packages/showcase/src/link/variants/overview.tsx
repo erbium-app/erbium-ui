@@ -1,5 +1,5 @@
-import Demo from "../examples/link-demo";
+import LinkExample from "../examples/link-demo";
 
-const Example = () => <Demo />;
+const Example = () => <LinkExample />;
 
 export default Example;

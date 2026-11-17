@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/progress", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\n\nconst Example = () => <Progress value={100} className=\"w-64\" aria-label=\"Upload complete\" />;\n\nexport default Example;\n",
+      "content": "import { Progress } from \"@/registry/erbium/ui/progress\";\n\nexport default function ProgressCompleteExample() {\n  return <Progress value={100} className=\"w-64\" aria-label=\"Upload complete\" />;\n}\n",
       "path": "src/progress/variants/complete.tsx",
       "target": "@components/showcase/progress/variants/complete.tsx",
       "type": "registry:component"

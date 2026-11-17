@@ -1,5 +1,5 @@
-import { CalendarMultiple } from "../examples/calendar-multiple";
+import CalendarMultipleExample from "../examples/calendar-multiple";
 
-const Example = () => <CalendarMultiple />;
+const Example = () => <CalendarMultipleExample />;
 
 export default Example;

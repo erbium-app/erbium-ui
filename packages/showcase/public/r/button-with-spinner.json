@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonLoading = () => (\n  <div className=\"flex gap-related\">\n    <Button variant=\"outline\" loading>\n      Generating\n    </Button>\n    <Button variant=\"secondary\" loading>\n      Downloading\n    </Button>\n  </div>\n);\n\nexport default ButtonLoading;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonLoadingExample() {\n  return (\n    <div className=\"flex gap-related\">\n      <Button variant=\"outline\" loading>\n        Generating\n      </Button>\n      <Button variant=\"secondary\" loading>\n        Downloading\n      </Button>\n    </div>\n  );\n}\n",
       "path": "src/button/examples/button-spinner.tsx",
       "target": "@components/showcase/button/examples/button-spinner.tsx",
       "type": "registry:component"

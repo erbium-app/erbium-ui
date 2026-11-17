@@ -88,25 +88,25 @@ const commandGroups = [
   },
 ];
 
-const CommandDemo = () => (
-  <Command items={commandGroups} className="md:min-w-[450px]">
-    <CommandInput aria-label="Search commands" placeholder="Type a command or search..." />
-    <CommandEmpty>No results found.</CommandEmpty>
-    <CommandList>
-      {(group: (typeof commandGroups)[number]) => (
-        <CommandGroup key={group.label} items={group.items}>
-          <CommandGroupLabel>{group.label}</CommandGroupLabel>
-          <CommandCollection>
-            {(item: (typeof commandGroups)[number]["items"][number]) => (
-              <CommandItem key={item.label} value={item} disabled={item.disabled}>
-                {item.content}
-              </CommandItem>
-            )}
-          </CommandCollection>
-        </CommandGroup>
-      )}
-    </CommandList>
-  </Command>
-);
-
-export default CommandDemo;
+export default function CommandExample() {
+  return (
+    <Command items={commandGroups} className="md:min-w-[450px]">
+      <CommandInput aria-label="Search commands" placeholder="Type a command or search..." />
+      <CommandEmpty>No results found.</CommandEmpty>
+      <CommandList>
+        {(group: (typeof commandGroups)[number]) => (
+          <CommandGroup key={group.label} items={group.items}>
+            <CommandGroupLabel>{group.label}</CommandGroupLabel>
+            <CommandCollection>
+              {(item: (typeof commandGroups)[number]["items"][number]) => (
+                <CommandItem key={item.label} value={item} disabled={item.disabled}>
+                  {item.content}
+                </CommandItem>
+              )}
+            </CommandCollection>
+          </CommandGroup>
+        )}
+      </CommandList>
+    </Command>
+  );
+}

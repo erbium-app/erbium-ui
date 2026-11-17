@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/badge", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Badge>) => <Badge {...args} />;\n\nexport default Example;\n",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  children: \"Badge\",\n  className: \"\",\n  loading: false,\n  variant: \"default\",\n} satisfies React.ComponentProps<typeof Badge>;\n\nexport default function BadgePlaygroundExample(\n  args: React.ComponentProps<typeof Badge> = defaultProps,\n) {\n  return <Badge {...args} />;\n}\n",
       "path": "src/badge/variants/playground.tsx",
       "target": "@components/showcase/badge/variants/playground.tsx",
       "type": "registry:component"

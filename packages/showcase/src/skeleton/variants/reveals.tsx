@@ -9,7 +9,7 @@ const reveals: SkeletonReveal[] = ["smart", "together", "sequence", "sweep"];
 const isReveal = (value: unknown): value is SkeletonReveal =>
   reveals.some((reveal) => reveal === value);
 
-const Example = () => {
+export default function SkeletonRevealsExample() {
   const [reveal, setReveal] = useState<SkeletonReveal>("smart");
 
   return (
@@ -37,6 +37,4 @@ const Example = () => {
       </SkeletonProvider>
     </div>
   );
-};
-
-export default Example;
+}

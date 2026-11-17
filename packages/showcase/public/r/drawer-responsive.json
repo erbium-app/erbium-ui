@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Responsive as ResponsiveExample } from \"../examples/drawer-variants\";\n\nconst Example = () => <ResponsiveExample />;\n\nexport default Example;\n",
+      "content": "import { Responsive as ResponsiveExample } from \"../examples/drawer-variants\";\n\nexport default function DrawerResponsiveExample() {\n  return <ResponsiveExample />;\n}\n",
       "path": "src/drawer/variants/responsive.tsx",
       "target": "@components/showcase/drawer/variants/responsive.tsx",
       "type": "registry:component"

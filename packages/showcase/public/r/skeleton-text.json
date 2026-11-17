@@ -18,7 +18,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { LoadingControls, useSimulatedFetch } from \"../../loading\";\nimport { paragraphs, sampleParagraphs } from \"../fixtures\";\n\n/** Each line of text gets a bar from the font's ascender to its descender, wrapped as it will be. */\nexport const SkeletonText = ({ latency }: { latency?: number }) => {\n  const request = useSimulatedFetch(paragraphs, { latency });\n\n  return (\n    <div className=\"flex w-full max-w-md flex-col items-center gap-group\">\n      <Skeleton\n        data={request.data}\n        sample={sampleParagraphs}\n        loading={request.loading}\n        label=\"Loading article\"\n        className=\"w-full\"\n      >\n        {(value) => (\n          <article className=\"flex flex-col gap-related\">\n            <h3 className=\"text-title font-semibold\">Measured, not guessed</h3>\n            {value.map((paragraph) => (\n              <p key={paragraph} className=\"text-body text-muted-foreground\">\n                {paragraph}\n              </p>\n            ))}\n          </article>\n        )}\n      </Skeleton>\n      <LoadingControls {...request} />\n    </div>\n  );\n};\n",
+      "content": "import { Skeleton } from \"@/registry/erbium/ui/skeleton\";\nimport { LoadingControls, useSimulatedFetch } from \"../../loading\";\nimport { paragraphs, sampleParagraphs } from \"../fixtures\";\n\n/** Each line of text gets a bar from the font's ascender to its descender, wrapped as it will be. */\nexport const defaultProps = {} satisfies { latency?: number };\n\nexport default function SkeletonTextExample({ latency }: { latency?: number } = defaultProps) {\n  const request = useSimulatedFetch(paragraphs, { latency });\n\n  return (\n    <div className=\"flex w-full max-w-md flex-col items-center gap-group\">\n      <Skeleton\n        data={request.data}\n        sample={sampleParagraphs}\n        loading={request.loading}\n        label=\"Loading article\"\n        className=\"w-full\"\n      >\n        {(value) => (\n          <article className=\"flex flex-col gap-related\">\n            <h3 className=\"text-title font-semibold\">Measured, not guessed</h3>\n            {value.map((paragraph) => (\n              <p key={paragraph} className=\"text-body text-muted-foreground\">\n                {paragraph}\n              </p>\n            ))}\n          </article>\n        )}\n      </Skeleton>\n      <LoadingControls {...request} />\n    </div>\n  );\n}\n",
       "path": "src/skeleton/examples/skeleton-text.tsx",
       "target": "@components/showcase/skeleton/examples/skeleton-text.tsx",
       "type": "registry:component"
@@ -30,7 +30,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SkeletonText } from \"../examples/skeleton-text\";\n\nconst Example = () => <SkeletonText />;\n\nexport default Example;\n",
+      "content": "import SkeletonText from \"../examples/skeleton-text\";\n\nconst Example = () => <SkeletonText />;\n\nexport default Example;\n",
       "path": "src/skeleton/variants/text.tsx",
       "target": "@components/showcase/skeleton/variants/text.tsx",
       "type": "registry:component"

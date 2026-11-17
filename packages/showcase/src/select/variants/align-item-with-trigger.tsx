@@ -1,4 +1,4 @@
-import { SelectAlignItem } from "../examples/select-align-item";
+import SelectAlignItem from "../examples/select-align-item";
 
 const Example = () => <SelectAlignItem />;
 

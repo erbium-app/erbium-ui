@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport { useState } from \"react\";\n\nconst SwitchControlled = () => {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Switch checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Wi-Fi</FieldLabel>\n      </Field>\n      <p className=\"text-caption text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n};\n\nexport default SwitchControlled;\n",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport { useState } from \"react\";\n\nexport default function SwitchControlledExample() {\n  const [checked, setChecked] = useState(true);\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Field orientation=\"horizontal\">\n        <Switch checked={checked} onCheckedChange={setChecked} />\n        <FieldLabel>Wi-Fi</FieldLabel>\n      </Field>\n      <p className=\"text-caption text-muted-foreground\">\n        checked: <code>{String(checked)}</code>\n      </p>\n    </div>\n  );\n}\n",
       "path": "src/switch/examples/switch-controlled.tsx",
       "target": "@components/showcase/switch/examples/switch-controlled.tsx",
       "type": "registry:component"

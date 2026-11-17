@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport { Message, MessageContent, MessageGroup } from \"@/registry/erbium/ui/message\";\n\nconst Demo = () => (\n  <MessageGroup className=\"w-80\">\n    <Message>\n      <MessageContent>\n        <Bubble variant=\"muted\">\n          <BubbleContent>Hello, how can I help?</BubbleContent>\n        </Bubble>\n      </MessageContent>\n    </Message>\n    <Message align=\"end\">\n      <MessageContent>\n        <Bubble>\n          <BubbleContent>Please show me an example.</BubbleContent>\n        </Bubble>\n      </MessageContent>\n    </Message>\n  </MessageGroup>\n);\n\nexport default Demo;\n",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport { Message, MessageContent, MessageGroup } from \"@/registry/erbium/ui/message\";\n\nexport default function MessageExample() {\n  return (\n    <MessageGroup className=\"w-80\">\n      <Message>\n        <MessageContent>\n          <Bubble variant=\"muted\">\n            <BubbleContent>Hello, how can I help?</BubbleContent>\n          </Bubble>\n        </MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>\n          <Bubble>\n            <BubbleContent>Please show me an example.</BubbleContent>\n          </Bubble>\n        </MessageContent>\n      </Message>\n    </MessageGroup>\n  );\n}\n",
       "path": "src/message/examples/message-demo.tsx",
       "target": "@components/showcase/message/examples/message-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/message-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import MessageExample from \"../examples/message-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <MessageExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/message/variants/overview.tsx",
       "target": "@components/showcase/message/variants/overview.tsx",
       "type": "registry:component"

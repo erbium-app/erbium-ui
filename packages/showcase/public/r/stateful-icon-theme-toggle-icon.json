@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { ThemeToggleIconExample } from \"../helpers\";\n\nconst Example = () => <ThemeToggleIconExample />;\n\nexport default Example;\n",
+      "content": "import { ThemeToggleIconExample } from \"../helpers\";\n\nexport default function StatefulIconThemeToggleIconExample() {\n  return <ThemeToggleIconExample />;\n}\n",
       "path": "src/stateful-icon/variants/theme-toggle-icon.tsx",
       "target": "@components/showcase/stateful-icon/variants/theme-toggle-icon.tsx",
       "type": "registry:component"

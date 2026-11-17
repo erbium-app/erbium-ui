@@ -4,37 +4,37 @@ import { ToggleGroup } from "@erbium/ui/components/toggle-group";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/toggle-group-demo.tsx?raw";
 
 import OutlineExample from "./variants/outline";
 
-import OutlineSource from "./variants/outline.tsx?raw";
+import OutlineSource from "./examples/toggle-group-outline.tsx?raw";
 
 import SpacingExample from "./variants/spacing";
 
-import SpacingSource from "./variants/spacing.tsx?raw";
+import SpacingSource from "./examples/toggle-group-spacing.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/toggle-group-disabled.tsx?raw";
 
 import FontWeightSelectorExample from "./variants/font-weight-selector";
 
-import FontWeightSelectorSource from "./variants/font-weight-selector.tsx?raw";
+import FontWeightSelectorSource from "./examples/toggle-group-font-weight-selector.tsx?raw";
 
 import VerticalExample from "./variants/vertical";
 
-import VerticalSource from "./variants/vertical.tsx?raw";
+import VerticalSource from "./examples/toggle-group-vertical.tsx?raw";
 
 import SizeExample from "./variants/size";
 
-import SizeSource from "./variants/size.tsx?raw";
+import SizeSource from "./examples/toggle-group-sizes.tsx?raw";
 
 const meta = {
   component: ToggleGroup,
@@ -61,13 +61,7 @@ export const Playground: StoryObj<typeof ToggleGroup> = {
     spacing: { control: { max: 8, min: 0, step: 1, type: "range" } },
     variant: { control: "select", options: ["default", "outline"] },
   },
-  args: {
-    multiple: false,
-    orientation: "horizontal",
-    size: "default",
-    spacing: 2,
-    variant: "default",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("toggle-group", "playground") },

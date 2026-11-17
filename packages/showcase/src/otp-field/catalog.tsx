@@ -4,49 +4,49 @@ import { OTPField } from "@erbium/ui/components/otp-field";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/otp-field-demo.tsx?raw";
 
 import SeparatorExample from "./variants/separator";
 
-import SeparatorSource from "./variants/separator.tsx?raw";
+import SeparatorSource from "./examples/otp-field-separator.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/otp-field-controlled.tsx?raw";
 
 import FormExample from "./variants/form";
 
-import FormSource from "./variants/form.tsx?raw";
+import FormSource from "./examples/otp-field-form.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/otp-field-disabled.tsx?raw";
 
 import InvalidExample from "./variants/invalid";
 
-import InvalidSource from "./variants/invalid.tsx?raw";
+import InvalidSource from "./examples/otp-field-invalid.tsx?raw";
 
 import StatusExample from "./variants/status";
 
-import StatusSource from "./variants/status.tsx?raw";
+import StatusSource from "./examples/otp-field-status.tsx?raw";
 
 import PatternExample from "./variants/pattern";
 
-import PatternSource from "./variants/pattern.tsx?raw";
+import PatternSource from "./examples/otp-field-pattern.tsx?raw";
 
 import FourDigitsExample from "./variants/four-digits";
 
-import FourDigitsSource from "./variants/four-digits.tsx?raw";
+import FourDigitsSource from "./examples/otp-field-four-digits.tsx?raw";
 
 import AlphanumericExample from "./variants/alphanumeric";
 
-import AlphanumericSource from "./variants/alphanumeric.tsx?raw";
+import AlphanumericSource from "./examples/otp-field-alphanumeric.tsx?raw";
 
 const meta = {
   component: OTPField,
@@ -77,7 +77,7 @@ export const Playground: StoryObj<{
     length: { control: { max: 8, min: 1, type: "number" } },
     validationType: { control: "select", options: ["numeric", "alphanumeric", "none"] },
   },
-  args: { disabled: false, isValidating: false, length: 6, validationType: "numeric" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("otp-field", "playground") },

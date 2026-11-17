@@ -1,5 +1,5 @@
-import { DrawerSnapPoints } from "../examples/drawer-snap-points";
+import DrawerSnapPointsExample from "../examples/drawer-snap-points";
 
-const Example = () => <DrawerSnapPoints />;
+const Example = () => <DrawerSnapPointsExample />;
 
 export default Example;

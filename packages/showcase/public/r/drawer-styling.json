@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Styling as StylingExample } from \"../examples/drawer-variants\";\n\nconst Example = () => <StylingExample />;\n\nexport default Example;\n",
+      "content": "import { Styling as StylingExample } from \"../examples/drawer-variants\";\n\nexport default function DrawerStylingExample() {\n  return <StylingExample />;\n}\n",
       "path": "src/drawer/variants/styling.tsx",
       "target": "@components/showcase/drawer/variants/styling.tsx",
       "type": "registry:component"

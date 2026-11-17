@@ -6,13 +6,13 @@ import IndeterminateSource from "./variants/indeterminate.tsx?raw";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/progress-demo.tsx?raw";
 
 import PartialExample from "./variants/partial";
 
@@ -24,11 +24,11 @@ import CompleteSource from "./variants/complete.tsx?raw";
 
 import LabelExample from "./variants/label";
 
-import LabelSource from "./variants/label.tsx?raw";
+import LabelSource from "./examples/progress-label.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/progress-controlled.tsx?raw";
 
 const meta = {
   component: Progress,
@@ -49,7 +49,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Progress> = {
   argTypes: { value: { control: { max: 100, min: 0, step: 1, type: "range" } } },
-  args: { className: "", value: 45 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("progress", "playground") },

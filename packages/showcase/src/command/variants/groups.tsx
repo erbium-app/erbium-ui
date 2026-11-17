@@ -1,5 +1,5 @@
-import { CommandWithGroups } from "../examples/command-groups";
+import CommandWithGroupsExample from "../examples/command-groups";
 
-const Example = () => <CommandWithGroups />;
+const Example = () => <CommandWithGroupsExample />;
 
 export default Example;

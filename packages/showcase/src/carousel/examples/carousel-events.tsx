@@ -16,7 +16,7 @@ interface CarouselEvent {
   source: CarouselNavigationSource;
 }
 
-const CarouselEvents = () => {
+export default function CarouselEventsExample() {
   const [event, setEvent] = React.useState<CarouselEvent | null>(null);
 
   return (
@@ -48,6 +48,4 @@ const CarouselEvents = () => {
       </p>
     </div>
   );
-};
-
-export default CarouselEvents;
+}

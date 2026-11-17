@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { LoadHistory } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <LoadHistory />;\n\nexport default Example;\n",
+      "content": "import { LoadHistory } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerLoadEarlierHistoryExample() {\n  return <LoadHistory />;\n}\n",
       "path": "src/message-scroller/variants/load-earlier-history.tsx",
       "target": "@components/showcase/message-scroller/variants/load-earlier-history.tsx",
       "type": "registry:component"

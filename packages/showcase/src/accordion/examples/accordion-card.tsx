@@ -33,25 +33,25 @@ const items = [
   },
 ];
 
-const AccordionCard = () => (
-  <Card className="w-full max-w-sm">
-    <CardHeader>
-      <CardTitle>Subscription & Billing</CardTitle>
-      <CardDescription>
-        Common questions about your account, plans, payments and cancellations.
-      </CardDescription>
-    </CardHeader>
-    <CardContent>
-      <Accordion defaultValue={["plans"]}>
-        {items.map((item) => (
-          <AccordionItem key={item.value} value={item.value}>
-            <AccordionTrigger>{item.trigger}</AccordionTrigger>
-            <AccordionContent>{item.content}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </CardContent>
-  </Card>
-);
-
-export default AccordionCard;
+export default function AccordionCardExample() {
+  return (
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Subscription & Billing</CardTitle>
+        <CardDescription>
+          Common questions about your account, plans, payments and cancellations.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Accordion defaultValue={["plans"]}>
+          {items.map((item) => (
+            <AccordionItem key={item.value} value={item.value}>
+              <AccordionTrigger>{item.trigger}</AccordionTrigger>
+              <AccordionContent>{item.content}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
+  );
+}

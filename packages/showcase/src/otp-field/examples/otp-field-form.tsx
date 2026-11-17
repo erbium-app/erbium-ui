@@ -18,7 +18,7 @@ const CompleteCode = Schema.toStandardSchemaV1(
   Schema.String.check(Schema.isMinLength(6, { message: "Enter all 6 digits." })),
 );
 
-export const OTPFieldForm = () => {
+export default function OTPFieldFormExample() {
   const form = useAppForm({
     defaultValues: { code: "" },
   });
@@ -80,4 +80,4 @@ export const OTPFieldForm = () => {
       </CardContent>
     </Card>
   );
-};
+}

@@ -1,3 +1,4 @@
+import { defaultLatency } from "../../loading";
 import { SkeletonProvider } from "@erbium/ui/components/skeleton";
 import type { SkeletonReveal } from "@erbium/ui/components/skeleton";
 import SkeletonDemo from "../examples/skeleton-demo";
@@ -7,10 +8,15 @@ interface PlaygroundArgs {
   reveal: SkeletonReveal;
 }
 
-const Example = ({ latency, reveal }: PlaygroundArgs) => (
-  <SkeletonProvider reveal={reveal}>
-    <SkeletonDemo key={reveal} latency={latency} />
-  </SkeletonProvider>
-);
+export const defaultProps = { latency: defaultLatency, reveal: "smart" } satisfies PlaygroundArgs;
 
-export default Example;
+export default function SkeletonPlaygroundExample({
+  latency,
+  reveal,
+}: PlaygroundArgs = defaultProps) {
+  return (
+    <SkeletonProvider reveal={reveal}>
+      <SkeletonDemo key={reveal} latency={latency} />
+    </SkeletonProvider>
+  );
+}

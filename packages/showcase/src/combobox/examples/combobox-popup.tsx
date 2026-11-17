@@ -63,8 +63,8 @@ const countries = [
   },
 ];
 
-export const ComboboxPopup = () => (
-  <>
+export default function ComboboxPopupExample() {
+  return (
     <Combobox items={countries} defaultValue={countries[0]}>
       <ComboboxTrigger
         render={<Button variant="outline" className="w-64 justify-between font-normal" />}
@@ -75,7 +75,7 @@ export const ComboboxPopup = () => (
         <ComboboxSearchInput placeholder="Search" aria-label="Search countries" />
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
-          {(item) => (
+          {(item: (typeof countries)[number]) => (
             <ComboboxItem key={item.code} value={item}>
               {item.label}
             </ComboboxItem>
@@ -83,5 +83,5 @@ export const ComboboxPopup = () => (
         </ComboboxList>
       </ComboboxContent>
     </Combobox>
-  </>
-);
+  );
+}

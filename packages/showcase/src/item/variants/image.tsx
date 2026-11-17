@@ -1,5 +1,5 @@
-import { ItemImage } from "../examples/item-image";
+import ItemImageExample from "../examples/item-image";
 
-const Example = () => <ItemImage />;
+const Example = () => <ItemImageExample />;
 
 export default Example;

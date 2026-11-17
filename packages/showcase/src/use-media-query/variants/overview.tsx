@@ -1,5 +1,5 @@
-import Demo from "../examples/use-media-query-demo";
+import UseMediaQueryExample from "../examples/use-media-query-demo";
 
-const Example = () => <Demo />;
+const Example = () => <UseMediaQueryExample />;
 
 export default Example;

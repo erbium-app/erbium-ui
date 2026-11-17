@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/breadcrumb", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Breadcrumb } from \"@/registry/erbium/ui/breadcrumb\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\n\nexport const BreadcrumbSeparatorDemo = () => (\n  <Breadcrumb\n    items={[\n      { href: \"/\", label: \"Home\" },\n      { href: \"/docs/installation\", label: \"Installation\" },\n    ]}\n    currentPage=\"Breadcrumb\"\n    separator={<Icon name=\"dot\" />}\n  />\n);\n",
+      "content": "import { Breadcrumb } from \"@/registry/erbium/ui/breadcrumb\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\n\nexport default function BreadcrumbSeparatorExample() {\n  return (\n    <Breadcrumb\n      items={[\n        { href: \"/\", label: \"Home\" },\n        { href: \"/docs/installation\", label: \"Installation\" },\n      ]}\n      currentPage=\"Breadcrumb\"\n      separator={<Icon name=\"dot\" />}\n    />\n  );\n}\n",
       "path": "src/breadcrumb/examples/breadcrumb-separator.tsx",
       "target": "@components/showcase/breadcrumb/examples/breadcrumb-separator.tsx",
       "type": "registry:component"

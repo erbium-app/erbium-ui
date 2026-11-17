@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle disabled aria-label=\"Unavailable\">\n    Disabled\n  </Toggle>\n);\n\nexport default Example;\n",
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleDisabledControlExample() {\n  return (\n    <Toggle disabled aria-label=\"Unavailable\">\n      Disabled\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/variants/disabled-control.tsx",
       "target": "@components/showcase/toggle/variants/disabled-control.tsx",
       "type": "registry:component"

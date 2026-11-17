@@ -3,7 +3,7 @@ import * as React from "react";
 import { Progress } from "@erbium/ui/components/progress";
 import { Slider } from "@erbium/ui/components/slider";
 
-export const ProgressControlled = () => {
+export default function ProgressControlledExample() {
   const [value, setValue] = React.useState(50);
 
   return (
@@ -20,4 +20,4 @@ export const ProgressControlled = () => {
       />
     </div>
   );
-};
+}

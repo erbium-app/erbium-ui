@@ -1,5 +1,5 @@
-import { InputInputGroup } from "../examples/input-input-group";
+import InputInputGroupExample from "../examples/input-input-group";
 
-const Example = () => <InputInputGroup />;
+const Example = () => <InputInputGroupExample />;
 
 export default Example;

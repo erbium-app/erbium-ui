@@ -7,18 +7,18 @@ import {
 } from "@erbium/ui/components/field";
 import { Textarea } from "@erbium/ui/components/textarea";
 
-const FieldTextarea = () => (
-  <div className="w-full max-w-md">
-    <FieldSet>
-      <FieldGroup>
-        <Field>
-          <FieldLabel>Feedback</FieldLabel>
-          <Textarea placeholder="Your feedback helps us improve..." rows={4} />
-          <FieldDescription>Share your thoughts about our service.</FieldDescription>
-        </Field>
-      </FieldGroup>
-    </FieldSet>
-  </div>
-);
-
-export default FieldTextarea;
+export default function FieldTextareaExample() {
+  return (
+    <div className="w-full max-w-md">
+      <FieldSet>
+        <FieldGroup>
+          <Field>
+            <FieldLabel>Feedback</FieldLabel>
+            <Textarea placeholder="Your feedback helps us improve..." rows={4} />
+            <FieldDescription>Share your thoughts about our service.</FieldDescription>
+          </Field>
+        </FieldGroup>
+      </FieldSet>
+    </div>
+  );
+}

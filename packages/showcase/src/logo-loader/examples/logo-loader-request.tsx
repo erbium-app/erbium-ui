@@ -7,7 +7,9 @@ const report = { pages: 12, title: "Quarterly usage report" };
 type Report = typeof report;
 
 /** A generated file has no layout to preview, so the mark carries the wait. */
-export const LogoLoaderRequest = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function LogoLoaderRequestExample({ latency }: { latency?: number } = defaultProps) {
   const request = useSimulatedFetch(report, { latency });
   // The result appears once the mark has come to rest, not mid-step.
   const [revealed, setRevealed] = useState<Report>();
@@ -29,4 +31,4 @@ export const LogoLoaderRequest = ({ latency }: { latency?: number }) => {
       <LoadingControls {...request} />
     </div>
   );
-};
+}

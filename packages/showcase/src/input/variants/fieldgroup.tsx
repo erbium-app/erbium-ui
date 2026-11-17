@@ -1,5 +1,5 @@
-import { InputFieldgroup } from "../examples/input-fieldgroup";
+import InputFieldgroupExample from "../examples/input-fieldgroup";
 
-const Example = () => <InputFieldgroup />;
+const Example = () => <InputFieldgroupExample />;
 
 export default Example;

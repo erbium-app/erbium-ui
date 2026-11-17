@@ -26,7 +26,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport { InvoicesTable } from \"../helpers\";\n\nconst Example = () => (\n  <DirectionProvider direction=\"rtl\">\n    <div dir=\"rtl\" className=\"w-full min-w-72 max-w-3xl p-4\">\n      <InvoicesTable />\n    </div>\n  </DirectionProvider>\n);\n\nexport default Example;\n",
+      "content": "import { DirectionProvider } from \"@/registry/erbium/ui/direction\";\nimport { InvoicesTable } from \"../helpers\";\n\nexport default function DataTableRtlExample() {\n  return (\n    <DirectionProvider direction=\"rtl\">\n      <div dir=\"rtl\" className=\"w-full min-w-72 max-w-3xl p-4\">\n        <InvoicesTable />\n      </div>\n    </DirectionProvider>\n  );\n}\n",
       "path": "src/data-table/variants/rtl.tsx",
       "target": "@components/showcase/data-table/variants/rtl.tsx",
       "type": "registry:component"

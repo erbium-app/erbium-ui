@@ -42,7 +42,7 @@ const Answers = Schema.Struct({ audience: Audience, detail: Detail }).check(
 
 const defaultValues = { audience: "", detail: "" };
 
-export const QuestionnaireValidation = () => {
+export default function QuestionnaireValidationExample() {
   const form = useQuestionnaireForm({
     defaultValues,
     onSubmit: ({ value }) => {
@@ -115,4 +115,4 @@ export const QuestionnaireValidation = () => {
       </Card>
     </QuestionnaireForm>
   );
-};
+}

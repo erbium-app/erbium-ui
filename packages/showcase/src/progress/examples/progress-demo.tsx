@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Progress } from "@erbium/ui/components/progress";
 
-const ProgressDemo = () => {
+export default function ProgressExample() {
   const [progress, setProgress] = React.useState(13);
 
   React.useEffect(() => {
@@ -16,6 +16,4 @@ const ProgressDemo = () => {
   }, []);
 
   return <Progress value={progress} className="w-[60%]" />;
-};
-
-export default ProgressDemo;
+}

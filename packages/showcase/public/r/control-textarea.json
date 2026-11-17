@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Textarea\n    label=\"Description\"\n    defaultValue=\"A collection of favorite places.\"\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlTextareaExample() {\n  return (\n    <Control.Textarea\n      label=\"Description\"\n      defaultValue=\"A collection of favorite places.\"\n      className=\"w-72\"\n    />\n  );\n}\n",
       "path": "src/control/variants/textarea.tsx",
       "target": "@components/showcase/control/variants/textarea.tsx",
       "type": "registry:component"

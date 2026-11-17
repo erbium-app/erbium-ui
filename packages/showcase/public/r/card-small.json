@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SampleCard } from \"../helpers\";\n\nconst Example = () => <SampleCard size=\"sm\" />;\n\nexport default Example;\n",
+      "content": "import { SampleCard } from \"../helpers\";\n\nexport default function CardSmallExample() {\n  return <SampleCard size=\"sm\" />;\n}\n",
       "path": "src/card/variants/small.tsx",
       "target": "@components/showcase/card/variants/small.tsx",
       "type": "registry:component"

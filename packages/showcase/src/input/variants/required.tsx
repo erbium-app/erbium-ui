@@ -1,5 +1,5 @@
-import { InputRequired } from "../examples/input-required";
+import InputRequiredExample from "../examples/input-required";
 
-const Example = () => <InputRequired />;
+const Example = () => <InputRequiredExample />;
 
 export default Example;

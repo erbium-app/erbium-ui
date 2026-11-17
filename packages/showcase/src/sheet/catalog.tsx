@@ -4,21 +4,21 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/sheet-demo.tsx?raw";
 
 import SideExample from "./variants/side";
 
-import SideSource from "./variants/side.tsx?raw";
+import SideSource from "./examples/sheet-side.tsx?raw";
 
 import NoCloseButtonExample from "./variants/no-close-button";
 
-import NoCloseButtonSource from "./variants/no-close-button.tsx?raw";
+import NoCloseButtonSource from "./examples/sheet-no-close-button.tsx?raw";
 
 const meta = {
   component: Sheet,
@@ -47,7 +47,7 @@ export const Playground: StoryObj<{
     showCloseButton: { control: "boolean" },
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
-  args: { defaultOpen: false, showCloseButton: true, side: "right" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("sheet", "playground") },

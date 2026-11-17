@@ -4,7 +4,7 @@ import { DirectionProvider } from "@erbium/ui/components/direction";
 import { Icon } from "@erbium/ui/components/icon";
 import { Kbd } from "@erbium/ui/components/kbd";
 
-const KbdHintExample = () => {
+export default function KbdHintExample() {
   const [action, setAction] = React.useState("None yet");
 
   return (
@@ -62,6 +62,4 @@ const KbdHintExample = () => {
       </p>
     </div>
   );
-};
-
-export default KbdHintExample;
+}

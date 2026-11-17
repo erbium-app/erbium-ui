@@ -1,6 +1,6 @@
 import { useIsMobile } from "@erbium/ui/hooks/use-is-mobile";
 
-const Demo = () => {
+export default function UseIsMobileExample() {
   const isMobile = useIsMobile();
 
   return (
@@ -8,6 +8,4 @@ const Demo = () => {
       Viewport: {isMobile ? "mobile" : "desktop"}. Resize the window to update.
     </p>
   );
-};
-
-export default Demo;
+}

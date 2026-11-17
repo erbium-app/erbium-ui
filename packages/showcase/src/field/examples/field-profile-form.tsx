@@ -8,7 +8,7 @@ import {
   FieldSet,
 } from "@erbium/ui/components/field";
 
-export const FieldResponsive = () => {
+export default function FieldResponsiveExample() {
   const form = useAppForm({ defaultValues: { name: "" } });
 
   return (
@@ -51,4 +51,4 @@ export const FieldResponsive = () => {
       </Form>
     </div>
   );
-};
+}

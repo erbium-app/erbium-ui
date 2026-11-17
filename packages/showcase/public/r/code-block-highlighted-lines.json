@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst config = `export default defineConfig({\n  server: {\n    port: 3000,\n    strictPort: true,\n  },\n  build: {\n    target: \"es2022\",\n  },\n});\n`;\n\nconst Example = () => (\n  <div className=\"grid w-full max-w-xl gap-group\">\n    <CodeBlock\n      code={config}\n      language=\"ts\"\n      title=\"vite.config.ts\"\n      lineNumbers\n      highlightLines={[3, 4]}\n    />\n    <CodeBlock code={config} language=\"ts\" highlightLines={[7]} />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { CodeBlock } from \"@/registry/erbium/blocks/code-block\";\n\nconst config = `export default defineConfig({\n  server: {\n    port: 3000,\n    strictPort: true,\n  },\n  build: {\n    target: \"es2022\",\n  },\n});\n`;\n\nexport default function CodeBlockHighlightedLinesExample() {\n  return (\n    <div className=\"grid w-full max-w-xl gap-group\">\n      <CodeBlock\n        code={config}\n        language=\"ts\"\n        title=\"vite.config.ts\"\n        lineNumbers\n        highlightLines={[3, 4]}\n      />\n      <CodeBlock code={config} language=\"ts\" highlightLines={[7]} />\n    </div>\n  );\n}\n",
       "path": "src/code-block/variants/highlighted-lines.tsx",
       "target": "@components/showcase/code-block/variants/highlighted-lines.tsx",
       "type": "registry:component"

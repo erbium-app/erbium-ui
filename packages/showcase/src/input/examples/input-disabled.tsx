@@ -1,5 +1,5 @@
 import { Input } from "@erbium/ui/components/input";
 
-const InputDisabled = () => <Input disabled type="email" placeholder="Email" />;
-
-export default InputDisabled;
+export default function InputDisabledExample() {
+  return <Input disabled type="email" placeholder="Email" />;
+}

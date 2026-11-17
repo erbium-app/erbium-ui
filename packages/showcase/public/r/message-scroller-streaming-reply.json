@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Streaming } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <Streaming />;\n\nexport default Example;\n",
+      "content": "import { Streaming } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerStreamingReplyExample() {\n  return <Streaming />;\n}\n",
       "path": "src/message-scroller/variants/streaming-reply.tsx",
       "target": "@components/showcase/message-scroller/variants/streaming-reply.tsx",
       "type": "registry:component"

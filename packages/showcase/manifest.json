@@ -1437,7 +1437,7 @@
         "exportName": "ControlledState",
         "slug": "controlled-state",
         "source": "src/collapsible/variants/controlled-state.tsx",
-        "usage": ["src/collapsible/examples/collapsible-demo.tsx"],
+        "usage": ["src/collapsible/variants/controlled-state.tsx"],
         "title": "Controlled State"
       }
     ]
@@ -4448,8 +4448,8 @@
         "source": "src/skeleton/variants/playground.tsx",
         "usage": [
           "src/skeleton/variants/playground.tsx",
-          "src/skeleton/examples/skeleton-demo.tsx",
           "src/loading.tsx",
+          "src/skeleton/examples/skeleton-demo.tsx",
           "src/skeleton/fixtures.ts"
         ],
         "title": "Playground"
@@ -4460,8 +4460,8 @@
         "source": "src/skeleton/variants/overview.tsx",
         "usage": [
           "src/skeleton/variants/overview.tsx",
-          "src/skeleton/examples/skeleton-demo.tsx",
           "src/loading.tsx",
+          "src/skeleton/examples/skeleton-demo.tsx",
           "src/skeleton/fixtures.ts"
         ],
         "title": "Overview"
@@ -4494,8 +4494,8 @@
         "source": "src/skeleton/variants/avatar.tsx",
         "usage": [
           "src/skeleton/variants/avatar.tsx",
-          "src/skeleton/examples/skeleton-avatar.tsx",
           "src/loading.tsx",
+          "src/skeleton/examples/skeleton-avatar.tsx",
           "src/skeleton/fixtures.ts"
         ],
         "title": "Avatar"
@@ -4529,8 +4529,8 @@
         "usage": [
           "src/skeleton/examples/skeleton-refetch.tsx",
           "src/loading.tsx",
-          "src/skeleton/fixtures.ts",
-          "src/skeleton/examples/skeleton-demo.tsx"
+          "src/skeleton/examples/skeleton-demo.tsx",
+          "src/skeleton/fixtures.ts"
         ],
         "title": "Refetch"
       },
@@ -4541,8 +4541,8 @@
         "usage": [
           "src/skeleton/examples/skeleton-suspense.tsx",
           "src/loading.tsx",
-          "src/skeleton/fixtures.ts",
-          "src/skeleton/examples/skeleton-demo.tsx"
+          "src/skeleton/examples/skeleton-demo.tsx",
+          "src/skeleton/fixtures.ts"
         ],
         "title": "Suspense"
       },
@@ -4553,8 +4553,8 @@
         "usage": [
           "src/skeleton/examples/skeleton-states.tsx",
           "src/loading.tsx",
-          "src/skeleton/fixtures.ts",
-          "src/skeleton/examples/skeleton-avatar.tsx"
+          "src/skeleton/examples/skeleton-avatar.tsx",
+          "src/skeleton/fixtures.ts"
         ],
         "title": "Error and empty"
       },
@@ -4582,8 +4582,8 @@
         "source": "src/skeleton/variants/reveals.tsx",
         "usage": [
           "src/skeleton/variants/reveals.tsx",
-          "src/skeleton/examples/skeleton-avatar.tsx",
           "src/loading.tsx",
+          "src/skeleton/examples/skeleton-avatar.tsx",
           "src/skeleton/fixtures.ts"
         ],
         "title": "Reveals"

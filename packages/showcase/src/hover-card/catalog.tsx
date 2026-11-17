@@ -4,21 +4,21 @@ import { HoverCard } from "@erbium/ui/components/hover-card";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/hover-card-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/hover-card-basic.tsx?raw";
 
 import SidesExample from "./variants/sides";
 
-import SidesSource from "./variants/sides.tsx?raw";
+import SidesSource from "./examples/hover-card-sides.tsx?raw";
 
 import TriggerDelaysExample from "./variants/trigger-delays";
 
@@ -57,7 +57,7 @@ export const Playground: StoryObj<{
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
     sideOffset: { control: "number" },
   },
-  args: { align: "center", defaultOpen: false, side: "bottom", sideOffset: 4 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("hover-card", "playground") },

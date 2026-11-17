@@ -4,69 +4,69 @@ import { Questionnaire } from "@erbium/ui/components/questionnaire";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/questionnaire-demo.tsx?raw";
 
 import MultipleExample from "./variants/multiple";
 
-import MultipleSource from "./variants/multiple.tsx?raw";
+import MultipleSource from "./examples/questionnaire-multiple.tsx?raw";
 
 import FreeformExample from "./variants/freeform";
 
-import FreeformSource from "./variants/freeform.tsx?raw";
+import FreeformSource from "./examples/questionnaire-freeform.tsx?raw";
 
 import ShortcutsExample from "./variants/shortcuts";
 
-import ShortcutsSource from "./variants/shortcuts.tsx?raw";
+import ShortcutsSource from "./examples/questionnaire-shortcuts.tsx?raw";
 
 import SubmitStateExample from "./variants/submit-state";
 
-import SubmitStateSource from "./variants/submit-state.tsx?raw";
+import SubmitStateSource from "./examples/questionnaire-submit-state.tsx?raw";
 
 import ValidationExample from "./variants/validation";
 
-import ValidationSource from "./variants/validation.tsx?raw";
+import ValidationSource from "./examples/questionnaire-validation.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/questionnaire-controlled.tsx?raw";
 
 import ResumeExample from "./variants/resume";
 
-import ResumeSource from "./variants/resume.tsx?raw";
+import ResumeSource from "./examples/questionnaire-resume.tsx?raw";
 
 import ConditionalExample from "./variants/conditional";
 
-import ConditionalSource from "./variants/conditional.tsx?raw";
+import ConditionalSource from "./examples/questionnaire-conditional.tsx?raw";
 
 import ProgressExample from "./variants/progress";
 
-import ProgressSource from "./variants/progress.tsx?raw";
+import ProgressSource from "./examples/questionnaire-progress.tsx?raw";
 
 import AnimatedExample from "./variants/animated";
 
-import AnimatedSource from "./variants/animated.tsx?raw";
+import AnimatedSource from "./examples/questionnaire-animated.tsx?raw";
 
 import CardExample from "./variants/card";
 
-import CardSource from "./variants/card.tsx?raw";
+import CardSource from "./examples/questionnaire-card.tsx?raw";
 
 import DialogExample from "./variants/dialog";
 
-import DialogSource from "./variants/dialog.tsx?raw";
+import DialogSource from "./examples/questionnaire-dialog.tsx?raw";
 
 import SkipExample from "./variants/skip";
 
-import SkipSource from "./variants/skip.tsx?raw";
+import SkipSource from "./examples/questionnaire-skip.tsx?raw";
 
 import NavigationStateExample from "./variants/navigation-state";
 
-import NavigationStateSource from "./variants/navigation-state.tsx?raw";
+import NavigationStateSource from "./examples/questionnaire-navigation-state.tsx?raw";
 
 const meta = {
   component: Questionnaire,
@@ -97,12 +97,7 @@ export const Playground: StoryObj<{
     prompt: { control: "text" },
     required: { control: "boolean" },
   },
-  args: {
-    choices: 2,
-    description: "Choose one option.",
-    prompt: "Which plan works best?",
-    required: true,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("questionnaire", "playground") },

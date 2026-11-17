@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
 // Fifteen nights from January 12 are already booked.
 const bookedDates = Array.from({ length: 15 }, (_, i) => new Date(year, 0, 12 + i));
 
-export const CalendarBookedDates = () => {
+export default function CalendarBookedDatesExample() {
   const [date, setDate] = React.useState<Date | undefined>(() => new Date(year, 0, 6));
 
   return (
@@ -22,4 +22,4 @@ export const CalendarBookedDates = () => {
       />
     </Card>
   );
-};
+}

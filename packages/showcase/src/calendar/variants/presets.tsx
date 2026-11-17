@@ -1,5 +1,5 @@
-import { CalendarWithPresets } from "../examples/calendar-presets";
+import CalendarWithPresetsExample from "../examples/calendar-presets";
 
-const Example = () => <CalendarWithPresets />;
+const Example = () => <CalendarWithPresetsExample />;
 
 export default Example;

@@ -4,21 +4,21 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/toast-demo.tsx?raw";
 
 import TypesExample from "./variants/types";
 
-import TypesSource from "./variants/types.tsx?raw";
+import TypesSource from "./examples/toast-types.tsx?raw";
 
 import PromiseExample from "./variants/promise";
 
-import PromiseSource from "./variants/promise.tsx?raw";
+import PromiseSource from "./examples/toast-promise.tsx?raw";
 
 import ActionExample from "./variants/action";
 
@@ -57,7 +57,7 @@ export const Playground: StoryObj<{
     description: { control: "text" },
     type: { control: "select", options: ["success", "info", "warning", "error"] },
   },
-  args: { description: "Saved successfully", type: "success" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("toast", "playground") },

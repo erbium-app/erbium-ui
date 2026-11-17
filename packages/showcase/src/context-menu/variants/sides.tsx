@@ -1,5 +1,5 @@
-import { ContextMenuSides } from "../examples/context-menu-sides";
+import ContextMenuSidesExample from "../examples/context-menu-sides";
 
-const Example = () => <ContextMenuSides />;
+const Example = () => <ContextMenuSidesExample />;
 
 export default Example;

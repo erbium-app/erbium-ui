@@ -1,5 +1,5 @@
-import Demo from "../examples/pagination-table";
+import PaginationTableExample from "../examples/pagination-table";
 
-const Example = () => <Demo />;
+const Example = () => <PaginationTableExample />;
 
 export default Example;

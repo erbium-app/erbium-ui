@@ -1,5 +1,5 @@
-import { BreadcrumbBasic } from "../examples/breadcrumb-basic";
+import BreadcrumbBasicExample from "../examples/breadcrumb-basic";
 
-const Example = () => <BreadcrumbBasic />;
+const Example = () => <BreadcrumbBasicExample />;
 
 export default Example;

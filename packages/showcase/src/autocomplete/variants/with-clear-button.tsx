@@ -1,5 +1,5 @@
 import { FruitAutocomplete } from "../helpers";
 
-const Example = () => <FruitAutocomplete showClear />;
-
-export default Example;
+export default function AutocompleteWithClearButtonExample() {
+  return <FruitAutocomplete showClear />;
+}

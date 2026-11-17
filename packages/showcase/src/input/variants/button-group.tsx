@@ -1,5 +1,5 @@
-import { InputButtonGroup } from "../examples/input-button-group";
+import InputButtonGroupExample from "../examples/input-button-group";
 
-const Example = () => <InputButtonGroup />;
+const Example = () => <InputButtonGroupExample />;
 
 export default Example;

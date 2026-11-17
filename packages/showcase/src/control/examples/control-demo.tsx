@@ -7,7 +7,7 @@ const orientations = [
   { label: "Landscape", value: "landscape" },
 ];
 
-const ControlDemo = () => {
+export default function ControlExample() {
   const [title, setTitle] = useState("Japan");
   const [opacity, setOpacity] = useState(0.6);
   const [scale, setScale] = useState(1.03);
@@ -49,6 +49,4 @@ const ControlDemo = () => {
       </Control.Group>
     </div>
   );
-};
-
-export default ControlDemo;
+}

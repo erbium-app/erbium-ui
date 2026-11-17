@@ -1,5 +1,5 @@
-import { BadgeAsLink } from "../examples/badge-link";
+import BadgeAsLinkExample from "../examples/badge-link";
 
-const Example = () => <BadgeAsLink />;
+const Example = () => <BadgeAsLinkExample />;
 
 export default Example;

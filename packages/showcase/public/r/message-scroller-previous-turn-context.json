@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { PreviousContext } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <PreviousContext />;\n\nexport default Example;\n",
+      "content": "import { PreviousContext } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerPreviousTurnContextExample() {\n  return <PreviousContext />;\n}\n",
       "path": "src/message-scroller/variants/previous-turn-context.tsx",
       "target": "@components/showcase/message-scroller/variants/previous-turn-context.tsx",
       "type": "registry:component"

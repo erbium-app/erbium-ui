@@ -3,7 +3,7 @@ import { changelogMarkdown } from "virtual:docs-catalog";
 import matter from "gray-matter";
 import {
   showcaseExamples,
-  showcaseSource,
+  showcaseUsageSource,
   showcaseStoryFiles,
 } from "@erbium/showcase/docs/metadata";
 import { components, guides } from "@/content/catalog";
@@ -118,14 +118,10 @@ for (const component of components) {
   blocks.push("## Interactive examples");
   for (const example of showcaseExamples(component.name)) {
     blocks.push(`## ${example.title}`, body(`components/${component.name}/${example.slug}.md`));
-    for (const file of example.files) {
-      if (included.has(file.path)) continue;
-      included.add(file.path);
-      blocks.push(code(`packages/showcase/${file.path}`, showcaseSource(file.path)));
-    }
-    if (!included.has(example.source)) {
-      included.add(example.source);
-      blocks.push(code(`packages/showcase/${example.source}`, showcaseSource(example.source)));
+    for (const file of example.usage) {
+      if (included.has(file)) continue;
+      included.add(file);
+      blocks.push(code(file.replace(/^src\//u, ""), showcaseUsageSource(file)));
     }
   }
   const stories = showcaseStoryFiles(component.name);
@@ -165,7 +161,7 @@ export const pageIndex = agentPages.map(({ markdown: _markdown, ...entry }) => (
   jsonUrl: absolute(`/api/docs/${entry.route === "/" ? "index" : entry.route.slice(1)}.json`),
 }));
 
-export const llmsIndex = `# Erbium UI\n\n> Accessible React components with shared Markdown documentation and runnable examples.\n\nInstall through shadcn or use the Erbium CLI for tracked updates. Use \`erbium search\` and \`erbium docs\` to discover items. Read the installation guide first. Source code uses workspace imports; registry installation rewrites these to local aliases.\n\n## Agent resources\n\n- [Full documentation](${site}/llms-full.txt): Every page with component and example source.\n- [Page index](${site}/api/docs.json): JSON catalog linking Markdown and JSON pages.\n- [OpenAPI](${site}/openapi.json): Read-only documentation API.\n- [Agent discovery](${site}/agent-readability.json)\n- [Usage skill](${site}/.well-known/agent-skills/erbium-ui/SKILL.md)\n- [Sitemap](${site}/sitemap-index.xml)\n\n${[
+export const llmsIndex = `# Erbium UI\n\n> Accessible React components with shared Markdown documentation and runnable examples.\n\nInstall through shadcn or use the Erbium CLI for tracked updates. Use \`erbium search\` and \`erbium docs\` to discover items. Read the installation guide first. Usage examples use the default Shadcn import aliases.\n\n## Agent resources\n\n- [Full documentation](${site}/llms-full.txt): Every page with component and example source.\n- [Page index](${site}/api/docs.json): JSON catalog linking Markdown and JSON pages.\n- [OpenAPI](${site}/openapi.json): Read-only documentation API.\n- [Agent discovery](${site}/agent-readability.json)\n- [Usage skill](${site}/.well-known/agent-skills/erbium-ui/SKILL.md)\n- [Sitemap](${site}/sitemap-index.xml)\n\n${[
   ...new Set(agentPages.map((entry) => entry.section)),
 ]
   .map(

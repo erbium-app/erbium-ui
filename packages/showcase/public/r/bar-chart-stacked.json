@@ -14,7 +14,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nexport default function BarChartStackedExample() {\n  return (\n    <div className=\"w-2xl max-w-full p-4\">\n      <BarChart\n        ariaLabel=\"Visitors by month, stacked by device\"\n        data={visitors}\n        index=\"month\"\n        indexFormat={shortMonth}\n        series={devices}\n        stacked\n        initialWidth={640}\n      />\n    </div>\n  );\n}\n",
       "path": "src/bar-chart/variants/stacked.tsx",
       "target": "@components/showcase/bar-chart/variants/stacked.tsx",
       "type": "registry:component"

@@ -32,7 +32,7 @@ const StreamedSource = () => {
   return <CodeBlock code={source.slice(0, length)} language="ts" title="server.ts" lineNumbers />;
 };
 
-const Example = () => {
+export default function CodeBlockStreamingExample() {
   const [run, setRun] = useState(0);
 
   return (
@@ -50,6 +50,4 @@ const Example = () => {
       </Button>
     </div>
   );
-};
-
-export default Example;
+}

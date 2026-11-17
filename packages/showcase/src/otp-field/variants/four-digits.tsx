@@ -1,4 +1,4 @@
-import { OTPFieldFourDigits } from "../examples/otp-field-four-digits";
+import OTPFieldFourDigits from "../examples/otp-field-four-digits";
 
 const Example = () => <OTPFieldFourDigits />;
 

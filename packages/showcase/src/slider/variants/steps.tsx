@@ -5,7 +5,7 @@ import { Slider } from "@erbium/ui/components/slider";
 
 const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 4];
 
-const Example = () => {
+export default function SliderStepsExample() {
   const [speed, setSpeed] = React.useState(1);
 
   return (
@@ -25,6 +25,4 @@ const Example = () => {
       />
     </Field>
   );
-};
-
-export default Example;
+}

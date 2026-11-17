@@ -31,34 +31,38 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   toast.add({ description: `Approach: ${approach ?? "None"}`, title: "Approach selected" });
 };
 
-export const QuestionnaireFreeform = () => (
-  <Questionnaire
-    className="mx-auto max-w-md"
-    items={items}
-    shortcuts="letters"
-    onSubmit={handleSubmit}
-  >
-    <QuestionnaireItem name="approach">
-      <QuestionnaireTitle>How should the agent approach this refactor?</QuestionnaireTitle>
-      <QuestionnaireDescription>
-        Choose a strategy or write a more specific instruction.
-      </QuestionnaireDescription>
-      <QuestionnaireChoices>
-        <QuestionnaireChoice value="incremental">Make the smallest safe change</QuestionnaireChoice>
-        <QuestionnaireChoice value="module">Refactor one module at a time</QuestionnaireChoice>
-        <QuestionnaireChoice value="rewrite">
-          Replace the implementation completely
-        </QuestionnaireChoice>
-        <QuestionnaireInput
-          aria-label="Another refactoring approach"
-          placeholder="Describe another approach…"
-        />
-      </QuestionnaireChoices>
-      <QuestionnaireError />
-    </QuestionnaireItem>
+export default function QuestionnaireFreeformExample() {
+  return (
+    <Questionnaire
+      className="mx-auto max-w-md"
+      items={items}
+      shortcuts="letters"
+      onSubmit={handleSubmit}
+    >
+      <QuestionnaireItem name="approach">
+        <QuestionnaireTitle>How should the agent approach this refactor?</QuestionnaireTitle>
+        <QuestionnaireDescription>
+          Choose a strategy or write a more specific instruction.
+        </QuestionnaireDescription>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="incremental">
+            Make the smallest safe change
+          </QuestionnaireChoice>
+          <QuestionnaireChoice value="module">Refactor one module at a time</QuestionnaireChoice>
+          <QuestionnaireChoice value="rewrite">
+            Replace the implementation completely
+          </QuestionnaireChoice>
+          <QuestionnaireInput
+            aria-label="Another refactoring approach"
+            placeholder="Describe another approach…"
+          />
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
 
-    <QuestionnaireActions>
-      <QuestionnaireSubmit>Use this approach</QuestionnaireSubmit>
-    </QuestionnaireActions>
-  </Questionnaire>
-);
+      <QuestionnaireActions>
+        <QuestionnaireSubmit>Use this approach</QuestionnaireSubmit>
+      </QuestionnaireActions>
+    </Questionnaire>
+  );
+}

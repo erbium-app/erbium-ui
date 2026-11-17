@@ -1,5 +1,5 @@
-import { DialogStickyFooter } from "../examples/dialog-sticky-footer";
+import DialogStickyFooterExample from "../examples/dialog-sticky-footer";
 
-const Example = () => <DialogStickyFooter />;
+const Example = () => <DialogStickyFooterExample />;
 
 export default Example;

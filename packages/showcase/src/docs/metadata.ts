@@ -2,16 +2,11 @@
 // evaluates catalogs, so import it from build code only; the docs import each page's
 // example variants through a generated module.
 import manifest from "../../manifest.json";
-import registry from "../../registry.json";
+import uiRegistry from "../../../ui/registry.json";
 import { loadShowcase } from "../catalog";
 import type { ShowcaseStory } from "../catalog";
 
-export { showcaseSource } from "../sources";
-
-/** A file that installing the example copies, relative to the showcase package. */
-export interface ShowcaseExampleFile {
-  path: string;
-}
+import { showcaseSource } from "../sources";
 
 export interface ShowcaseExample {
   /** Documentation slug, which names the variant file and its Markdown. */
@@ -19,10 +14,8 @@ export interface ShowcaseExample {
   title: string;
   /** Story export name in the component's catalog. */
   exportName: string;
-  /** Variant source, relative to the showcase package. */
-  source: string;
-  /** Files of the installable registry item, or the variant source when it has none. */
-  files: ShowcaseExampleFile[];
+  /** The usage entry and the relative imports it needs. */
+  usage: string[];
 }
 
 /** An example with the Storybook controls its catalog declares. */
@@ -31,12 +24,35 @@ export interface ShowcaseExampleControls extends ShowcaseExample {
   argTypes: NonNullable<ShowcaseStory["argTypes"]>;
 }
 
-const registryFiles = new Map(
-  registry.items.map((item) => [
-    item.name,
-    (item.files ?? []).map((file): ShowcaseExampleFile => ({ path: file.path })),
-  ]),
+const installedImports = new Map(
+  uiRegistry.items.flatMap((item) =>
+    (item.files ?? []).map(
+      ({ path, target }) =>
+        [
+          path.replace(/^src\//u, "").replace(/\.tsx?$/u, ""),
+          target
+            .replace(/^@ui\//u, "@/components/ui/")
+            .replace(/^@(?<folder>components|hooks|lib)\//u, "@/$<folder>/")
+            .replace(/\.tsx?$/u, ""),
+        ] as const,
+    ),
+  ),
 );
+
+/** Show the default shadcn aliases described by the installation guide. */
+export const showcaseUsageSource = (path: string): string =>
+  showcaseSource(path).replaceAll(
+    /"@erbium\/ui\/(?<request>[^"\n]+)"/gu,
+    (_specifier, request: string) => {
+      const installed = installedImports.get(request);
+
+      if (installed === undefined) {
+        throw new Error(`Missing install target for ${request} in ${path}`);
+      }
+
+      return `"${installed}"`;
+    },
+  );
 
 /**
  * Lists a component's documented examples in catalog order.
@@ -47,9 +63,8 @@ const registryFiles = new Map(
 export const showcaseExamples = (name: string): ShowcaseExample[] =>
   (manifest.find((entry) => entry.name === name)?.variants ?? []).map((variant) => ({
     exportName: variant.exportName,
-    files: registryFiles.get(`${name}-${variant.slug}`) ?? [{ path: variant.source }],
     slug: variant.slug,
-    source: variant.source,
+    usage: variant.usage,
     title: variant.title,
   }));
 

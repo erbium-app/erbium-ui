@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nconst Example = () => (\n  <Toggle defaultPressed aria-label=\"Bold\">\n    Bold\n  </Toggle>\n);\n\nexport default Example;\n",
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function TogglePressedExample() {\n  return (\n    <Toggle defaultPressed aria-label=\"Bold\">\n      Bold\n    </Toggle>\n  );\n}\n",
       "path": "src/toggle/variants/pressed.tsx",
       "target": "@components/showcase/toggle/variants/pressed.tsx",
       "type": "registry:component"

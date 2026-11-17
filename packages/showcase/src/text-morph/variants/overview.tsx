@@ -1,5 +1,5 @@
-import Demo from "../examples/text-morph-demo";
+import TextMorphExample from "../examples/text-morph-demo";
 
-const Example = () => <Demo />;
+const Example = () => <TextMorphExample />;
 
 export default Example;

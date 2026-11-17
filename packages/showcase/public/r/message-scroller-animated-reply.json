@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Animation } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <Animation />;\n\nexport default Example;\n",
+      "content": "import { Animation } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerAnimatedReplyExample() {\n  return <Animation />;\n}\n",
       "path": "src/message-scroller/variants/animated-reply.tsx",
       "target": "@components/showcase/message-scroller/variants/animated-reply.tsx",
       "type": "registry:component"

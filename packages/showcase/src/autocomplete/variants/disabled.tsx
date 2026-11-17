@@ -1,5 +1,5 @@
 import { FruitAutocomplete } from "../helpers";
 
-const Example = () => <FruitAutocomplete disabled />;
-
-export default Example;
+export default function AutocompleteDisabledExample() {
+  return <FruitAutocomplete disabled />;
+}

@@ -44,13 +44,11 @@ const routeTree = rootRoute.addChildren([
   }),
 ]);
 
-const Example = () => {
+export default function NavigationMenuLinkComponentExample() {
   const router = useMemo(
     () => createRouter({ defaultPreload: "intent", history: createMemoryHistory(), routeTree }),
     [],
   );
 
   return <RouterProvider router={router} />;
-};
-
-export default Example;
+}

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/slider", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst Example = () => (\n  <Slider disabled defaultValue={[50]} max={100} className=\"w-64\" aria-label=\"Unavailable\" />\n);\n\nexport default Example;\n",
+      "content": "import { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport default function SliderDisabledExample() {\n  return (\n    <Slider disabled defaultValue={[50]} max={100} className=\"w-64\" aria-label=\"Unavailable\" />\n  );\n}\n",
       "path": "src/slider/variants/disabled.tsx",
       "target": "@components/showcase/slider/variants/disabled.tsx",
       "type": "registry:component"

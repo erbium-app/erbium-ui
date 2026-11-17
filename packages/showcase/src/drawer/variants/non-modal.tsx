@@ -1,5 +1,5 @@
-import { DrawerNonModal } from "../examples/drawer-non-modal";
+import DrawerNonModalExample from "../examples/drawer-non-modal";
 
-const Example = () => <DrawerNonModal />;
+const Example = () => <DrawerNonModalExample />;
 
 export default Example;

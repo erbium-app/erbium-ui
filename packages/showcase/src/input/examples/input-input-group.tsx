@@ -8,17 +8,19 @@ import {
   InputGroupText,
 } from "@erbium/ui/components/input-group";
 
-export const InputInputGroup = () => (
-  <Field>
-    <FieldLabel>Website URL</FieldLabel>
-    <InputGroup>
-      <InputGroupInput placeholder="example.com" />
-      <InputGroupAddon>
-        <InputGroupText>https://</InputGroupText>
-      </InputGroupAddon>
-      <InputGroupAddon align="inline-end">
-        <Icon name="info" />
-      </InputGroupAddon>
-    </InputGroup>
-  </Field>
-);
+export default function InputInputGroupExample() {
+  return (
+    <Field>
+      <FieldLabel>Website URL</FieldLabel>
+      <InputGroup>
+        <InputGroupInput placeholder="example.com" />
+        <InputGroupAddon>
+          <InputGroupText>https://</InputGroupText>
+        </InputGroupAddon>
+        <InputGroupAddon align="inline-end">
+          <Icon name="info" />
+        </InputGroupAddon>
+      </InputGroup>
+    </Field>
+  );
+}

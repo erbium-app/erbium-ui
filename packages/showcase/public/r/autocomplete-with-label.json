@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { LabeledAutocomplete } from \"../helpers\";\n\nconst Example = () => <LabeledAutocomplete />;\n\nexport default Example;\n",
+      "content": "import { LabeledAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteWithLabelExample() {\n  return <LabeledAutocomplete />;\n}\n",
       "path": "src/autocomplete/variants/with-label.tsx",
       "target": "@components/showcase/autocomplete/variants/with-label.tsx",
       "type": "registry:component"

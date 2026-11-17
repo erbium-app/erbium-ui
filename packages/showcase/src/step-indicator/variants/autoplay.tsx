@@ -7,7 +7,7 @@ import { StatefulIcon } from "@erbium/ui/components/stateful-icon";
 
 const folders = ["Inbox", "Drafts", "Sent", "Archive"];
 
-const Example = () => {
+export default function StepIndicatorAutoplayExample() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -44,6 +44,4 @@ const Example = () => {
       </div>
     </div>
   );
-};
-
-export default Example;
+}

@@ -1,5 +1,5 @@
-import { DropdownMenuCheckboxesIcons } from "../examples/dropdown-menu-checkboxes-icons";
+import DropdownMenuCheckboxesIconsExample from "../examples/dropdown-menu-checkboxes-icons";
 
-const Example = () => <DropdownMenuCheckboxesIcons />;
+const Example = () => <DropdownMenuCheckboxesIconsExample />;
 
 export default Example;

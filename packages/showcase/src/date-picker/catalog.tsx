@@ -4,13 +4,13 @@ import { DatePicker } from "@erbium/ui/components/date-picker";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/date-picker-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
@@ -79,13 +79,7 @@ export const Playground: StoryObj<{
     mode: { control: "select", options: ["single", "range"] },
     numberOfMonths: { control: { max: 3, min: 1, type: "number" } },
   },
-  args: {
-    captionLayout: "label",
-    closeOnSelect: true,
-    disabled: false,
-    mode: "single",
-    numberOfMonths: 1,
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("date-picker", "playground") },

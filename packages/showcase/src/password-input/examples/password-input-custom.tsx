@@ -7,19 +7,19 @@ import {
   PasswordInputToggle,
 } from "@erbium/ui/components/password-input";
 
-const PasswordInputCustom = () => (
-  <Field className="max-w-sm">
-    <FieldLabel>Vault passphrase</FieldLabel>
-    <PasswordInputRoot>
-      <PasswordInputControl placeholder="Enter your passphrase" />
-      <InputGroupAddon>
-        <Icon name="lock" />
-      </InputGroupAddon>
-      <InputGroupAddon align="inline-end">
-        <PasswordInputToggle aria-label="Show passphrase" />
-      </InputGroupAddon>
-    </PasswordInputRoot>
-  </Field>
-);
-
-export default PasswordInputCustom;
+export default function PasswordInputCustomExample() {
+  return (
+    <Field className="max-w-sm">
+      <FieldLabel>Vault passphrase</FieldLabel>
+      <PasswordInputRoot>
+        <PasswordInputControl placeholder="Enter your passphrase" />
+        <InputGroupAddon>
+          <Icon name="lock" />
+        </InputGroupAddon>
+        <InputGroupAddon align="inline-end">
+          <PasswordInputToggle aria-label="Show passphrase" />
+        </InputGroupAddon>
+      </PasswordInputRoot>
+    </Field>
+  );
+}

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonDefault = () => <Button>Button</Button>;\n\nexport default ButtonDefault;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonDefaultExample() {\n  return <Button>Button</Button>;\n}\n",
       "path": "src/button/examples/button-default.tsx",
       "target": "@components/showcase/button/examples/button-default.tsx",
       "type": "registry:component"

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/step-indicator", "@erbium/styles"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nconst Example = () => {\n  const [step, setStep] = useState(0);\n\n  return <StepIndicator orientation=\"vertical\" count={5} value={step} onValueChange={setStep} />;\n};\n\nexport default Example;\n",
+      "content": "import { useState } from \"react\";\nimport { StepIndicator } from \"@/registry/erbium/blocks/step-indicator\";\n\nexport default function StepIndicatorVerticalExample() {\n  const [step, setStep] = useState(0);\n\n  return <StepIndicator orientation=\"vertical\" count={5} value={step} onValueChange={setStep} />;\n}\n",
       "path": "src/step-indicator/variants/vertical.tsx",
       "target": "@components/showcase/step-indicator/variants/vertical.tsx",
       "type": "registry:component"

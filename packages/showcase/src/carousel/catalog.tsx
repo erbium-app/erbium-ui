@@ -4,41 +4,41 @@ import { Carousel } from "@erbium/ui/components/carousel";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/carousel-demo.tsx?raw";
 
 import SizesExample from "./variants/sizes";
 
-import SizesSource from "./variants/sizes.tsx?raw";
+import SizesSource from "./examples/carousel-size.tsx?raw";
 
 import SpacingExample from "./variants/spacing";
 
-import SpacingSource from "./variants/spacing.tsx?raw";
+import SpacingSource from "./examples/carousel-spacing.tsx?raw";
 
 import OrientationExample from "./variants/orientation";
 
-import OrientationSource from "./variants/orientation.tsx?raw";
+import OrientationSource from "./examples/carousel-orientation.tsx?raw";
 
 import ApiExample from "./variants/api";
 
-import ApiSource from "./variants/api.tsx?raw";
+import ApiSource from "./examples/carousel-api.tsx?raw";
 
 import AutoplayExample from "./variants/autoplay";
 
-import AutoplaySource from "./variants/autoplay.tsx?raw";
+import AutoplaySource from "./examples/carousel-autoplay.tsx?raw";
 
 import EventsExample from "./variants/events";
 
-import EventsSource from "./variants/events.tsx?raw";
+import EventsSource from "./examples/carousel-events.tsx?raw";
 
 import LightboxExample from "./variants/lightbox";
 
-import LightboxSource from "./variants/lightbox.tsx?raw";
+import LightboxSource from "./examples/carousel-lightbox.tsx?raw";
 
 const meta = {
   component: Carousel,
@@ -64,7 +64,7 @@ export const Playground: StoryObj<typeof Carousel> = {
     loop: { control: "boolean" },
     orientation: { control: "select", options: ["horizontal", "vertical"] },
   },
-  args: { align: "start", dragFree: false, loop: false, orientation: "horizontal" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("carousel", "playground") },

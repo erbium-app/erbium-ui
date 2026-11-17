@@ -19,7 +19,7 @@ const presets = [
   { days: 14, label: "In 2 weeks" },
 ];
 
-const Example = () => {
+export default function DatePickerPresetsExample() {
   const [date, setDate] = React.useState<Date | undefined>();
   const [open, setOpen] = React.useState(false);
 
@@ -59,6 +59,4 @@ const Example = () => {
       </DatePicker>
     </Field>
   );
-};
-
-export default Example;
+}

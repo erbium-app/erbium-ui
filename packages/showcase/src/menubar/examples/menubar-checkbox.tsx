@@ -11,37 +11,39 @@ import {
   MenubarList,
 } from "@erbium/ui/components/menubar";
 
-export const MenubarCheckbox = () => (
-  <Menubar className="w-72">
-    <MenubarMenu>
-      <MenubarTrigger>View</MenubarTrigger>
-      <MenubarContent className="w-64">
-        <MenubarList>
-          <MenubarGroup>
-            <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
-            <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
-          </MenubarGroup>
-          <MenubarSeparator />
-          <MenubarItem inset>
-            Reload <MenubarShortcut hotkey="Mod+R" />
-          </MenubarItem>
-          <MenubarItem disabled inset>
-            Force Reload <MenubarShortcut hotkey="Mod+Shift+R" />
-          </MenubarItem>
-        </MenubarList>
-      </MenubarContent>
-    </MenubarMenu>
-    <MenubarMenu>
-      <MenubarTrigger>Format</MenubarTrigger>
-      <MenubarContent>
-        <MenubarList>
-          <MenubarGroup>
-            <MenubarCheckboxItem checked>Strikethrough</MenubarCheckboxItem>
-            <MenubarCheckboxItem>Code</MenubarCheckboxItem>
-            <MenubarCheckboxItem>Superscript</MenubarCheckboxItem>
-          </MenubarGroup>
-        </MenubarList>
-      </MenubarContent>
-    </MenubarMenu>
-  </Menubar>
-);
+export default function MenubarCheckboxExample() {
+  return (
+    <Menubar className="w-72">
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent className="w-64">
+          <MenubarList>
+            <MenubarGroup>
+              <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
+              <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
+            </MenubarGroup>
+            <MenubarSeparator />
+            <MenubarItem inset>
+              Reload <MenubarShortcut hotkey="Mod+R" />
+            </MenubarItem>
+            <MenubarItem disabled inset>
+              Force Reload <MenubarShortcut hotkey="Mod+Shift+R" />
+            </MenubarItem>
+          </MenubarList>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Format</MenubarTrigger>
+        <MenubarContent>
+          <MenubarList>
+            <MenubarGroup>
+              <MenubarCheckboxItem checked>Strikethrough</MenubarCheckboxItem>
+              <MenubarCheckboxItem>Code</MenubarCheckboxItem>
+              <MenubarCheckboxItem>Superscript</MenubarCheckboxItem>
+            </MenubarGroup>
+          </MenubarList>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}

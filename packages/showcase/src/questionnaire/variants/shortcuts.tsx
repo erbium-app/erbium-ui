@@ -1,4 +1,4 @@
-import { QuestionnaireShortcuts } from "../examples/questionnaire-shortcuts";
+import QuestionnaireShortcuts from "../examples/questionnaire-shortcuts";
 
 const Example = () => <QuestionnaireShortcuts />;
 

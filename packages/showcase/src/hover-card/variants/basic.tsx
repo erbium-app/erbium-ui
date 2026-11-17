@@ -1,5 +1,5 @@
-import HoverCardDemo from "../examples/hover-card-basic";
+import HoverCardExample from "../examples/hover-card-basic";
 
-const Example = () => <HoverCardDemo />;
+const Example = () => <HoverCardExample />;
 
 export default Example;

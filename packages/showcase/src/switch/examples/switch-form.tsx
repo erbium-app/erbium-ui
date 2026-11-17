@@ -1,7 +1,7 @@
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { Form, useAppForm } from "@erbium/ui/components/form";
 
-const SwitchForm = () => {
+export default function SwitchFormExample() {
   const form = useAppForm({
     defaultValues: { newsletter: false, terms: false },
   });
@@ -37,6 +37,4 @@ const SwitchForm = () => {
       </form.Subscribe>
     </Form>
   );
-};
-
-export default SwitchForm;
+}

@@ -13,13 +13,13 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Bubble, BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport const BubbleTooltipDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-group py-12\">\n    <Bubble variant=\"secondary\">\n      <BubbleContent>Did you remove the stale route?</BubbleContent>\n    </Bubble>\n    <Bubble align=\"end\">\n      <BubbleContent>Yes, removed it from the registry.</BubbleContent>\n      <BubbleReactions>\n        <Tooltip>\n          <TooltipTrigger render={<Button variant=\"ghost\" size=\"icon-xs\" />}>\n            <Icon name=\"check\" />\n          </TooltipTrigger>\n          <TooltipContent>Read on Jan 5, 2026 at 4:32 PM</TooltipContent>\n        </Tooltip>\n      </BubbleReactions>\n    </Bubble>\n  </div>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Bubble, BubbleContent, BubbleReactions } from \"@/registry/erbium/ui/bubble\";\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { Tooltip, TooltipContent, TooltipTrigger } from \"@/registry/erbium/ui/tooltip\";\n\nexport default function BubbleTooltipExample() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-group py-12\">\n      <Bubble variant=\"secondary\">\n        <BubbleContent>Did you remove the stale route?</BubbleContent>\n      </Bubble>\n      <Bubble align=\"end\">\n        <BubbleContent>Yes, removed it from the registry.</BubbleContent>\n        <BubbleReactions>\n          <Tooltip>\n            <TooltipTrigger render={<Button variant=\"ghost\" size=\"icon-xs\" />}>\n              <Icon name=\"check\" />\n            </TooltipTrigger>\n            <TooltipContent>Read on Jan 5, 2026 at 4:32 PM</TooltipContent>\n          </Tooltip>\n        </BubbleReactions>\n      </Bubble>\n    </div>\n  );\n}\n",
       "path": "src/bubble/examples/bubble-tooltip.tsx",
       "target": "@components/showcase/bubble/examples/bubble-tooltip.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { BubbleTooltipDemo } from \"../examples/bubble-tooltip\";\n\nconst Example = () => <BubbleTooltipDemo />;\n\nexport default Example;\n",
+      "content": "import BubbleTooltipExample from \"../examples/bubble-tooltip\";\n\nconst Example = () => <BubbleTooltipExample />;\n\nexport default Example;\n",
       "path": "src/bubble/variants/tooltip.tsx",
       "target": "@components/showcase/bubble/variants/tooltip.tsx",
       "type": "registry:component"

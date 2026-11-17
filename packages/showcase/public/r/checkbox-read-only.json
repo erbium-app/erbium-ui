@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst CheckboxReadOnly = () => (\n  <Field orientation=\"horizontal\">\n    <Checkbox readOnly defaultChecked />\n    <FieldLabel>Included in your plan</FieldLabel>\n  </Field>\n);\n\nexport default CheckboxReadOnly;\n",
+      "content": "import { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function CheckboxReadOnlyExample() {\n  return (\n    <Field orientation=\"horizontal\">\n      <Checkbox readOnly defaultChecked />\n      <FieldLabel>Included in your plan</FieldLabel>\n    </Field>\n  );\n}\n",
       "path": "src/checkbox/examples/checkbox-read-only.tsx",
       "target": "@components/showcase/checkbox/examples/checkbox-read-only.tsx",
       "type": "registry:component"

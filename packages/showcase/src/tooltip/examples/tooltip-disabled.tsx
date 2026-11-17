@@ -1,8 +1,8 @@
 import { Button } from "@erbium/ui/components/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@erbium/ui/components/tooltip";
 
-export const TooltipDisabled = () => (
-  <>
+export default function TooltipDisabledExample() {
+  return (
     <Tooltip>
       <TooltipTrigger render={<span className="inline-block w-fit" />}>
         <Button variant="outline" disabled>
@@ -13,5 +13,5 @@ export const TooltipDisabled = () => (
         <p>This feature is currently unavailable</p>
       </TooltipContent>
     </Tooltip>
-  </>
-);
+  );
+}

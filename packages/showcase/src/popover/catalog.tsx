@@ -4,25 +4,25 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/popover-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/popover-basic.tsx?raw";
 
 import AlignExample from "./variants/align";
 
-import AlignSource from "./variants/align.tsx?raw";
+import AlignSource from "./examples/popover-alignments.tsx?raw";
 
 import WithFormExample from "./variants/with-form";
 
-import WithFormSource from "./variants/with-form.tsx?raw";
+import WithFormSource from "./examples/popover-form.tsx?raw";
 
 const meta = {
   component: Popover,
@@ -51,7 +51,7 @@ export const Playground: StoryObj<{
     defaultOpen: { control: "boolean" },
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
   },
-  args: { align: "center", defaultOpen: false, side: "bottom" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("popover", "playground") },

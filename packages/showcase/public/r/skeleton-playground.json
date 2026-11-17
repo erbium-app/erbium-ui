@@ -32,7 +32,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport type { SkeletonReveal } from \"@/registry/erbium/ui/skeleton\";\nimport SkeletonDemo from \"../examples/skeleton-demo\";\n\ninterface PlaygroundArgs {\n  latency: number;\n  reveal: SkeletonReveal;\n}\n\nconst Example = ({ latency, reveal }: PlaygroundArgs) => (\n  <SkeletonProvider reveal={reveal}>\n    <SkeletonDemo key={reveal} latency={latency} />\n  </SkeletonProvider>\n);\n\nexport default Example;\n",
+      "content": "import { defaultLatency } from \"../../loading\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport type { SkeletonReveal } from \"@/registry/erbium/ui/skeleton\";\nimport SkeletonDemo from \"../examples/skeleton-demo\";\n\ninterface PlaygroundArgs {\n  latency: number;\n  reveal: SkeletonReveal;\n}\n\nexport const defaultProps = { latency: defaultLatency, reveal: \"smart\" } satisfies PlaygroundArgs;\n\nexport default function SkeletonPlaygroundExample({\n  latency,\n  reveal,\n}: PlaygroundArgs = defaultProps) {\n  return (\n    <SkeletonProvider reveal={reveal}>\n      <SkeletonDemo key={reveal} latency={latency} />\n    </SkeletonProvider>\n  );\n}\n",
       "path": "src/skeleton/variants/playground.tsx",
       "target": "@components/showcase/skeleton/variants/playground.tsx",
       "type": "registry:component"

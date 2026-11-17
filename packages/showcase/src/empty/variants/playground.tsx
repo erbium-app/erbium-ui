@@ -7,21 +7,35 @@ import {
   Empty,
 } from "@erbium/ui/components/empty";
 
-const Example = (args: {
+export const defaultProps = {
+  className: "",
+  description: "Try another search.",
+  mediaVariant: "icon",
+  title: "No results",
+} satisfies {
   className: string;
   mediaVariant: "default" | "icon";
   title: string;
   description: string;
-}) => (
-  <Empty className={`w-80 ${args.className}`}>
-    <EmptyHeader>
-      <EmptyMedia variant={args.mediaVariant}>
-        <Icon name="star" aria-hidden="true" />
-      </EmptyMedia>
-      <EmptyTitle>{args.title}</EmptyTitle>
-      <EmptyDescription>{args.description}</EmptyDescription>
-    </EmptyHeader>
-  </Empty>
-);
+};
 
-export default Example;
+export default function EmptyPlaygroundExample(
+  args: {
+    className: string;
+    mediaVariant: "default" | "icon";
+    title: string;
+    description: string;
+  } = defaultProps,
+) {
+  return (
+    <Empty className={`w-80 ${args.className}`}>
+      <EmptyHeader>
+        <EmptyMedia variant={args.mediaVariant}>
+          <Icon name="star" aria-hidden="true" />
+        </EmptyMedia>
+        <EmptyTitle>{args.title}</EmptyTitle>
+        <EmptyDescription>{args.description}</EmptyDescription>
+      </EmptyHeader>
+    </Empty>
+  );
+}

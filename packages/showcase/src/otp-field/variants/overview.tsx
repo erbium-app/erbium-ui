@@ -1,5 +1,5 @@
-import Demo from "../examples/otp-field-demo";
+import OTPFieldExample from "../examples/otp-field-demo";
 
-const Example = () => <Demo />;
+const Example = () => <OTPFieldExample />;
 
 export default Example;

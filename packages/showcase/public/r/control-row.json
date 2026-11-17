@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Row label=\"Version\" className=\"w-72\">\n    <span className=\"ms-auto text-caption text-muted-foreground\">1.0</span>\n  </Control.Row>\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlRowExample() {\n  return (\n    <Control.Row label=\"Version\" className=\"w-72\">\n      <span className=\"ms-auto text-caption text-muted-foreground\">1.0</span>\n    </Control.Row>\n  );\n}\n",
       "path": "src/control/variants/row.tsx",
       "target": "@components/showcase/control/variants/row.tsx",
       "type": "registry:component"

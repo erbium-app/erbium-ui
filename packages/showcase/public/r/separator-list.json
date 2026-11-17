@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { SeparatorList } from \"../examples/separator-list\";\n\nconst Example = () => (\n  <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n    <SeparatorList />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { SeparatorList } from \"../examples/separator-list\";\n\nexport default function SeparatorListExample() {\n  return (\n    <div className=\"w-72 max-w-[calc(100vw-2rem)]\">\n      <SeparatorList />\n    </div>\n  );\n}\n",
       "path": "src/separator/variants/list.tsx",
       "target": "@components/showcase/separator/variants/list.tsx",
       "type": "registry:component"

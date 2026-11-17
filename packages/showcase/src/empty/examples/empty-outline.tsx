@@ -10,23 +10,23 @@ import {
   EmptyTitle,
 } from "@erbium/ui/components/empty";
 
-const EmptyOutline = () => (
-  <Empty>
-    <EmptyHeader>
-      <EmptyMedia variant="icon">
-        <Icon name="cloud" />
-      </EmptyMedia>
-      <EmptyTitle>Cloud Storage Empty</EmptyTitle>
-      <EmptyDescription>
-        Upload files to your cloud storage to access them anywhere.
-      </EmptyDescription>
-    </EmptyHeader>
-    <EmptyContent>
-      <Button variant="outline" size="sm">
-        Upload Files
-      </Button>
-    </EmptyContent>
-  </Empty>
-);
-
-export default EmptyOutline;
+export default function EmptyOutlineExample() {
+  return (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <Icon name="cloud" />
+        </EmptyMedia>
+        <EmptyTitle>Cloud Storage Empty</EmptyTitle>
+        <EmptyDescription>
+          Upload files to your cloud storage to access them anywhere.
+        </EmptyDescription>
+      </EmptyHeader>
+      <EmptyContent>
+        <Button variant="outline" size="sm">
+          Upload Files
+        </Button>
+      </EmptyContent>
+    </Empty>
+  );
+}

@@ -14,7 +14,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { PlaygroundTable } from \"../helpers\";\nimport type { PlaygroundArgs } from \"../helpers\";\n\nconst Example = (args: PlaygroundArgs) => <PlaygroundTable {...args} />;\n\nexport default Example;\n",
+      "content": "import { PlaygroundTable } from \"../helpers\";\nimport type { PlaygroundArgs } from \"../helpers\";\n\nexport const defaultProps = { caption: \"Example data\", rows: 3 } satisfies PlaygroundArgs;\n\nexport default function TablePlaygroundExample(args: PlaygroundArgs = defaultProps) {\n  return <PlaygroundTable {...args} />;\n}\n",
       "path": "src/table/variants/playground.tsx",
       "target": "@components/showcase/table/variants/playground.tsx",
       "type": "registry:component"

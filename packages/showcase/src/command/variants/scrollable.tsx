@@ -1,5 +1,5 @@
-import { CommandManyItems } from "../examples/command-scrollable";
+import CommandManyItemsExample from "../examples/command-scrollable";
 
-const Example = () => <CommandManyItems />;
+const Example = () => <CommandManyItemsExample />;
 
 export default Example;

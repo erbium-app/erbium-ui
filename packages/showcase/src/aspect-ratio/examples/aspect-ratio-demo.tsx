@@ -1,13 +1,13 @@
 import { AspectRatio } from "@erbium/ui/components/aspect-ratio";
 
-const Demo = () => (
-  <div className="w-80">
-    <AspectRatio ratio={16 / 9}>
-      <div className="flex size-full items-center justify-center rounded-lg bg-muted">
-        16:9 media area
-      </div>
-    </AspectRatio>
-  </div>
-);
-
-export default Demo;
+export default function AspectRatioExample() {
+  return (
+    <div className="w-80">
+      <AspectRatio ratio={16 / 9}>
+        <div className="flex size-full items-center justify-center rounded-lg bg-muted">
+          16:9 media area
+        </div>
+      </AspectRatio>
+    </div>
+  );
+}

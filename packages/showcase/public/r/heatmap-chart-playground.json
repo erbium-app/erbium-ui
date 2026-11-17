@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { HeatmapChart } from \"@/registry/erbium/charts/heatmap-chart\";\nimport { days, hours, orders } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <HeatmapChart\n      ariaLabel=\"Orders by weekday and hour\"\n      data={orders}\n      x=\"hour\"\n      y=\"day\"\n      value=\"orders\"\n      columns={hours}\n      rows={days}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { HeatmapChart } from \"@/registry/erbium/charts/heatmap-chart\";\nimport { days, hours, orders } from \"../examples/data\";\n\nexport const defaultProps = { legend: true, tooltip: true } satisfies {\n  legend: boolean;\n  tooltip: boolean;\n};\n\nexport default function HeatmapChartPlaygroundExample(\n  args: { legend: boolean; tooltip: boolean } = defaultProps,\n) {\n  return (\n    <div className=\"w-2xl max-w-full p-4\">\n      <HeatmapChart\n        ariaLabel=\"Orders by weekday and hour\"\n        data={orders}\n        x=\"hour\"\n        y=\"day\"\n        value=\"orders\"\n        columns={hours}\n        rows={days}\n        initialWidth={640}\n        {...args}\n      />\n    </div>\n  );\n}\n",
       "path": "src/heatmap-chart/variants/playground.tsx",
       "target": "@components/showcase/heatmap-chart/variants/playground.tsx",
       "type": "registry:component"

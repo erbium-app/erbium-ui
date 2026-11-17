@@ -1,4 +1,4 @@
-import { PopoverForm } from "../examples/popover-form";
+import PopoverForm from "../examples/popover-form";
 
 const Example = () => <PopoverForm />;
 

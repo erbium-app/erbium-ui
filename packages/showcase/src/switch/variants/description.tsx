@@ -1,4 +1,4 @@
-import { SwitchDescription } from "../examples/switch-description";
+import SwitchDescription from "../examples/switch-description";
 
 const Example = () => <SwitchDescription />;
 

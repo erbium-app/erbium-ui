@@ -1,5 +1,5 @@
-import { CalendarCaption } from "../examples/calendar-caption";
+import CalendarCaptionExample from "../examples/calendar-caption";
 
-const Example = () => <CalendarCaption />;
+const Example = () => <CalendarCaptionExample />;
 
 export default Example;

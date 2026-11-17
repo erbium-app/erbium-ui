@@ -3,18 +3,18 @@ import { CodeBlock } from "@erbium/ui/blocks/code-block";
 const code =
   'const description = "A code block preserves the original source, including long lines, while keeping the surrounding layout within the available width.";';
 
-const Example = () => (
-  <div className="grid w-full max-w-xl gap-group">
-    <CodeBlock code={code} language="ts" title="Horizontal scrolling" />
-    <CodeBlock code={code} language="ts" title="Wrapped lines" wrap />
-    <CodeBlock
-      code={Array.from({ length: 40 }, (_, index) => `console.log("Line ${index + 1}");`).join(
-        "\n",
-      )}
-      language="js"
-      lineNumbers
-    />
-  </div>
-);
-
-export default Example;
+export default function CodeBlockOverflowExample() {
+  return (
+    <div className="grid w-full max-w-xl gap-group">
+      <CodeBlock code={code} language="ts" title="Horizontal scrolling" />
+      <CodeBlock code={code} language="ts" title="Wrapped lines" wrap />
+      <CodeBlock
+        code={Array.from({ length: 40 }, (_, index) => `console.log("Line ${index + 1}");`).join(
+          "\n",
+        )}
+        language="js"
+        lineNumbers
+      />
+    </div>
+  );
+}

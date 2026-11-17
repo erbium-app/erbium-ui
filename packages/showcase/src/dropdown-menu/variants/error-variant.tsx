@@ -1,5 +1,5 @@
-import { DropdownMenuError } from "../examples/dropdown-menu-error";
+import DropdownMenuErrorExample from "../examples/dropdown-menu-error";
 
-const Example = () => <DropdownMenuError />;
+const Example = () => <DropdownMenuErrorExample />;
 
 export default Example;

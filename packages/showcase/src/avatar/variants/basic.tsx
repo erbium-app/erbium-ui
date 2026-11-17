@@ -1,5 +1,5 @@
-import AvatarDemo from "../examples/avatar-basic";
+import AvatarExample from "../examples/avatar-basic";
 
-const Example = () => <AvatarDemo />;
+const Example = () => <AvatarExample />;
 
 export default Example;

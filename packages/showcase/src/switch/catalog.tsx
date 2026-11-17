@@ -4,13 +4,13 @@ import { Switch } from "@erbium/ui/components/switch";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/switch-demo.tsx?raw";
 
 import OnExample from "./variants/on";
 
@@ -22,35 +22,35 @@ import DisabledSource from "./variants/disabled.tsx?raw";
 
 import DescriptionExample from "./variants/description";
 
-import DescriptionSource from "./variants/description.tsx?raw";
+import DescriptionSource from "./examples/switch-description.tsx?raw";
 
 import ChoiceCardExample from "./variants/choice-card";
 
-import ChoiceCardSource from "./variants/choice-card.tsx?raw";
+import ChoiceCardSource from "./examples/switch-choice-card.tsx?raw";
 
 import InvalidExample from "./variants/invalid";
 
-import InvalidSource from "./variants/invalid.tsx?raw";
+import InvalidSource from "./examples/switch-invalid.tsx?raw";
 
 import SizeExample from "./variants/size";
 
-import SizeSource from "./variants/size.tsx?raw";
+import SizeSource from "./examples/switch-sizes.tsx?raw";
 
 import IconsExample from "./variants/icons";
 
-import IconsSource from "./variants/icons.tsx?raw";
+import IconsSource from "./examples/switch-icons.tsx?raw";
 
 import ControlledExample from "./variants/controlled";
 
-import ControlledSource from "./variants/controlled.tsx?raw";
+import ControlledSource from "./examples/switch-controlled.tsx?raw";
 
 import ReadOnlyExample from "./variants/read-only";
 
-import ReadOnlySource from "./variants/read-only.tsx?raw";
+import ReadOnlySource from "./examples/switch-read-only.tsx?raw";
 
 import FormExample from "./variants/form";
 
-import FormSource from "./variants/form.tsx?raw";
+import FormSource from "./examples/switch-form.tsx?raw";
 
 const meta = {
   component: Switch,
@@ -78,13 +78,7 @@ export const Playground: StoryObj<typeof Switch> = {
     required: { control: "boolean", description: "Must be on before the form submits." },
     size: { control: "inline-radio", options: ["sm", "default"] },
   },
-  args: {
-    defaultChecked: false,
-    disabled: false,
-    readOnly: false,
-    required: false,
-    size: "default",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("switch", "playground") },

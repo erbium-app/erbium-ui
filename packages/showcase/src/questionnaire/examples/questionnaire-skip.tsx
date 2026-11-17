@@ -26,7 +26,7 @@ const items = [
   { name: "review", required: true },
 ] as const;
 
-export const QuestionnaireSkipExample = () => {
+export default function QuestionnaireSkipExample() {
   const [constraintStatus, setConstraintStatus] =
     React.useState<QuestionnaireItemStatus>("unanswered");
 
@@ -111,4 +111,4 @@ export const QuestionnaireSkipExample = () => {
       </QuestionnaireActions>
     </Questionnaire>
   );
-};
+}

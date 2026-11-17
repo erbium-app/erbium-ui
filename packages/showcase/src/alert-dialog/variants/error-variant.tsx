@@ -1,5 +1,5 @@
-import { AlertDialogError } from "../examples/alert-dialog-error";
+import AlertDialogErrorExample from "../examples/alert-dialog-error";
 
-const Example = () => <AlertDialogError />;
+const Example = () => <AlertDialogErrorExample />;
 
 export default Example;

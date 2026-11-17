@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/use-is-mobile"],
   "files": [
     {
-      "content": "import { useIsMobile } from \"@/registry/erbium/hooks/use-is-mobile\";\n\nconst Demo = () => {\n  const isMobile = useIsMobile();\n\n  return (\n    <p aria-live=\"polite\">\n      Viewport: {isMobile ? \"mobile\" : \"desktop\"}. Resize the window to update.\n    </p>\n  );\n};\n\nexport default Demo;\n",
+      "content": "import { useIsMobile } from \"@/registry/erbium/hooks/use-is-mobile\";\n\nexport default function UseIsMobileExample() {\n  const isMobile = useIsMobile();\n\n  return (\n    <p aria-live=\"polite\">\n      Viewport: {isMobile ? \"mobile\" : \"desktop\"}. Resize the window to update.\n    </p>\n  );\n}\n",
       "path": "src/use-is-mobile/examples/use-is-mobile-demo.tsx",
       "target": "@components/showcase/use-is-mobile/examples/use-is-mobile-demo.tsx",
       "type": "registry:component"

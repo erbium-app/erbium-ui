@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nconst Example = () => (\n  <div className=\"flex items-center gap-related\">\n    {([\"xs\", \"sm\", \"default\", \"lg\"] as const).map((size) => (\n      <Button key={size} size={size}>\n        {size}\n      </Button>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonSizesExample() {\n  return (\n    <div className=\"flex items-center gap-related\">\n      {([\"xs\", \"sm\", \"default\", \"lg\"] as const).map((size) => (\n        <Button key={size} size={size}>\n          {size}\n        </Button>\n      ))}\n    </div>\n  );\n}\n",
       "path": "src/button/variants/sizes.tsx",
       "target": "@components/showcase/button/variants/sizes.tsx",
       "type": "registry:component"

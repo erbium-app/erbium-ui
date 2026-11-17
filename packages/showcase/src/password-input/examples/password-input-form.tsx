@@ -29,7 +29,7 @@ const SignIn = Schema.Struct({
 
 const defaultValues = { confirmPassword: "", email: "", password: "" };
 
-const PasswordInputForm = () => {
+export default function PasswordInputFormExample() {
   const [signingIn, setSigningIn] = useState(false);
   // One visibility for both fields, so a reveal shows the two values side by side.
   const [visible, setVisible] = useState(false);
@@ -128,6 +128,4 @@ const PasswordInputForm = () => {
       </CardContent>
     </Card>
   );
-};
-
-export default PasswordInputForm;
+}

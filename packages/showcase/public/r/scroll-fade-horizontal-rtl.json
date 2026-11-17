@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { rows } from \"../helpers\";\n\nconst Example = () => (\n  <div dir=\"rtl\" className=\"scroll-fade-x flex w-96 gap-3 overflow-x-auto p-4\">\n    {rows.map((row) => (\n      <div\n        key={row}\n        className=\"grid h-36 min-w-32 shrink-0 place-items-center rounded-lg border bg-card text-caption\"\n      >\n        Card {row}\n      </div>\n    ))}\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { rows } from \"../helpers\";\n\nexport default function ScrollFadeHorizontalRtlExample() {\n  return (\n    <div dir=\"rtl\" className=\"scroll-fade-x flex w-96 gap-3 overflow-x-auto p-4\">\n      {rows.map((row) => (\n        <div\n          key={row}\n          className=\"grid h-36 min-w-32 shrink-0 place-items-center rounded-lg border bg-card text-caption\"\n        >\n          Card {row}\n        </div>\n      ))}\n    </div>\n  );\n}\n",
       "path": "src/scroll-fade/variants/horizontal-rtl.tsx",
       "target": "@components/showcase/scroll-fade/variants/horizontal-rtl.tsx",
       "type": "registry:component"

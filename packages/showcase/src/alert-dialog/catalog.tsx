@@ -4,33 +4,33 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/alert-dialog-demo.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/alert-dialog-basic.tsx?raw";
 
 import SmallExample from "./variants/small";
 
-import SmallSource from "./variants/small.tsx?raw";
+import SmallSource from "./examples/alert-dialog-small.tsx?raw";
 
 import MediaExample from "./variants/media";
 
-import MediaSource from "./variants/media.tsx?raw";
+import MediaSource from "./examples/alert-dialog-media.tsx?raw";
 
 import SmallMediaExample from "./variants/small-media";
 
-import SmallMediaSource from "./variants/small-media.tsx?raw";
+import SmallMediaSource from "./examples/alert-dialog-small-media.tsx?raw";
 
 import ErrorVariantExample from "./variants/error-variant";
 
-import ErrorVariantSource from "./variants/error-variant.tsx?raw";
+import ErrorVariantSource from "./examples/alert-dialog-error.tsx?raw";
 
 const meta = {
   component: AlertDialog,
@@ -54,7 +54,7 @@ export const Playground: StoryObj<{ size: "default" | "sm"; defaultOpen: boolean
     defaultOpen: { control: "boolean" },
     size: { control: "select", options: ["default", "sm"] },
   },
-  args: { defaultOpen: false, size: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("alert-dialog", "playground") },

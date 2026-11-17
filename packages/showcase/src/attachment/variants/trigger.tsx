@@ -1,5 +1,5 @@
-import { AttachmentTriggerDemo } from "../examples/attachment-trigger";
+import AttachmentTriggerExample from "../examples/attachment-trigger";
 
-const Example = () => <AttachmentTriggerDemo />;
+const Example = () => <AttachmentTriggerExample />;
 
 export default Example;

@@ -1,5 +1,5 @@
-import { DropdownMenuBasic } from "../examples/dropdown-menu-basic";
+import DropdownMenuBasicExample from "../examples/dropdown-menu-basic";
 
-const Example = () => <DropdownMenuBasic />;
+const Example = () => <DropdownMenuBasicExample />;
 
 export default Example;

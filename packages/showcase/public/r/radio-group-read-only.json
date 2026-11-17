@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/radio-group", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nconst RadioGroupReadOnly = () => (\n  <Field>\n    <RadioGroup readOnly defaultValue=\"pro\">\n      <FieldItem orientation=\"horizontal\">\n        <RadioGroupItem value=\"free\" />\n        <FieldLabel>Free</FieldLabel>\n      </FieldItem>\n      <FieldItem orientation=\"horizontal\">\n        <RadioGroupItem value=\"pro\" />\n        <FieldLabel>Pro (current plan)</FieldLabel>\n      </FieldItem>\n    </RadioGroup>\n  </Field>\n);\n\nexport default RadioGroupReadOnly;\n",
+      "content": "import { Field, FieldItem, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { RadioGroup, RadioGroupItem } from \"@/registry/erbium/ui/radio-group\";\n\nexport default function RadioGroupReadOnlyExample() {\n  return (\n    <Field>\n      <RadioGroup readOnly defaultValue=\"pro\">\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"free\" />\n          <FieldLabel>Free</FieldLabel>\n        </FieldItem>\n        <FieldItem orientation=\"horizontal\">\n          <RadioGroupItem value=\"pro\" />\n          <FieldLabel>Pro (current plan)</FieldLabel>\n        </FieldItem>\n      </RadioGroup>\n    </Field>\n  );\n}\n",
       "path": "src/radio-group/examples/radio-group-read-only.tsx",
       "target": "@components/showcase/radio-group/examples/radio-group-read-only.tsx",
       "type": "registry:component"

@@ -1,5 +1,5 @@
 import { Switch } from "@erbium/ui/components/switch";
 
-const Example = () => <Switch defaultChecked aria-label="Notifications" />;
-
-export default Example;
+export default function SwitchOnExample() {
+  return <Switch defaultChecked aria-label="Notifications" />;
+}

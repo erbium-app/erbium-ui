@@ -43,7 +43,7 @@ const projects = [
     name: "Feedback",
     url: "#",
   },
-] satisfies ({ icon: IconProps["name"] } & Record<string, unknown>)[];
+] satisfies { icon: IconProps["name"]; name: string; url: string }[];
 
 const ControlledSidebarTrigger = () => {
   const { isMobile, open, openMobile } = useSidebar();
@@ -56,7 +56,7 @@ const ControlledSidebarTrigger = () => {
   );
 };
 
-const AppSidebar = () => {
+export default function AppSidebarExample() {
   const [open, setOpen] = React.useState(true);
 
   return (
@@ -69,7 +69,10 @@ const AppSidebar = () => {
               <SidebarMenu>
                 {projects.map((project) => (
                   <SidebarMenuItem key={project.name}>
-                    <SidebarMenuButton render={<a href={project.url} />}>
+                    <SidebarMenuButton
+                      aria-label="Choose option"
+                      render={<a aria-label="View details" href={project.url} />}
+                    >
                       <Icon name={project.icon} />
                       <span>{project.name}</span>
                     </SidebarMenuButton>
@@ -87,6 +90,4 @@ const AppSidebar = () => {
       </SidebarInset>
     </SidebarProvider>
   );
-};
-
-export default AppSidebar;
+}

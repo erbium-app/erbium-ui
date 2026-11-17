@@ -1,5 +1,5 @@
-import { CheckboxBasic } from "../examples/checkbox-basic";
+import CheckboxBasicExample from "../examples/checkbox-basic";
 
-const Example = () => <CheckboxBasic />;
+const Example = () => <CheckboxBasicExample />;
 
 export default Example;

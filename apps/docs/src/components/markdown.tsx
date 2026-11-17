@@ -80,7 +80,7 @@ const MarkdownCode = ({ children, className, ...props }: ComponentProps<"code">)
       return <PackageCommand code={children} className="not-typeset my-4" />;
     }
 
-    return <UICodeBlock code={children} language={language} className="not-typeset my-4" />;
+    return <UICodeBlock wrap code={children} language={language} className="not-typeset my-4" />;
   }
 
   return (

@@ -1,5 +1,5 @@
-import { ComboboxAutoHighlight } from "../examples/combobox-auto-highlight";
+import ComboboxAutoHighlightExample from "../examples/combobox-auto-highlight";
 
-const Example = () => <ComboboxAutoHighlight />;
+const Example = () => <ComboboxAutoHighlightExample />;
 
 export default Example;

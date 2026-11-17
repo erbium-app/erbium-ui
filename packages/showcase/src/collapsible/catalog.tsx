@@ -4,25 +4,25 @@ import { Collapsible } from "@erbium/ui/components/collapsible";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/collapsible-demo.tsx?raw";
 
 import FileTreeExample from "./variants/file-tree";
 
-import FileTreeSource from "./variants/file-tree.tsx?raw";
+import FileTreeSource from "./examples/collapsible-file-tree.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/collapsible-basic.tsx?raw";
 
 import SettingsPanelExample from "./variants/settings-panel";
 
-import SettingsPanelSource from "./variants/settings-panel.tsx?raw";
+import SettingsPanelSource from "./examples/collapsible-settings.tsx?raw";
 
 import ControlledStateExample from "./variants/controlled-state";
 
@@ -46,7 +46,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: StoryObj<typeof Collapsible> = {
   argTypes: { defaultOpen: { control: "boolean" }, disabled: { control: "boolean" } },
-  args: { defaultOpen: true, disabled: false },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("collapsible", "playground") },

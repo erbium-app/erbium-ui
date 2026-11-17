@@ -4,7 +4,7 @@ import { PieChart } from "@erbium/ui/charts/pie-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -35,7 +35,7 @@ export const Playground: StoryObj<{ donut: boolean; legend: boolean; tooltip: bo
     legend: { control: "boolean" },
     tooltip: { control: "boolean" },
   },
-  args: { donut: true, legend: true, tooltip: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("pie-chart", "playground") },

@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { ControlledAccordionExample } from \"../helpers\";\n\nconst Example = () => <ControlledAccordionExample />;\n\nexport default Example;\n",
+      "content": "import { ControlledAccordionExample } from \"../helpers\";\n\nexport default function AccordionControlledExample() {\n  return <ControlledAccordionExample />;\n}\n",
       "path": "src/accordion/variants/controlled.tsx",
       "target": "@components/showcase/accordion/variants/controlled.tsx",
       "type": "registry:component"

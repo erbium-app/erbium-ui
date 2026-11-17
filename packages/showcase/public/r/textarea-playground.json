@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Textarea>) => (\n  <Textarea {...args} className={`w-72 ${args.className ?? \"\"}`} />\n);\n\nexport default Example;\n",
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  className: \"\",\n  disabled: false,\n  placeholder: \"Type here\",\n  rows: 3,\n} satisfies React.ComponentProps<typeof Textarea>;\n\nexport default function TextareaPlaygroundExample(\n  args: React.ComponentProps<typeof Textarea> = defaultProps,\n) {\n  return <Textarea {...args} className={`w-72 ${args.className ?? \"\"}`} />;\n}\n",
       "path": "src/textarea/variants/playground.tsx",
       "target": "@components/showcase/textarea/variants/playground.tsx",
       "type": "registry:component"

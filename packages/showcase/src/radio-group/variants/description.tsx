@@ -1,4 +1,4 @@
-import { RadioGroupDescription } from "../examples/radio-group-description";
+import RadioGroupDescription from "../examples/radio-group-description";
 
 const Example = () => <RadioGroupDescription />;
 

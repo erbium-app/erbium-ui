@@ -1,4 +1,4 @@
-import { PopoverBasic } from "../examples/popover-basic";
+import PopoverBasic from "../examples/popover-basic";
 
 const Example = () => <PopoverBasic />;
 

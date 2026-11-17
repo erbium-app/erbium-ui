@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
 
-const Example = () => <Button loading>Saving</Button>;
-
-export default Example;
+export default function ButtonLoadingExample() {
+  return <Button loading>Saving</Button>;
+}

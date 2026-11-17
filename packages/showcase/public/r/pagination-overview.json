@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/pagination", "@erbium/styles"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\nimport { Pagination, PaginationControls } from \"@/registry/erbium/ui/pagination\";\n\nconst pageCount = 10;\n\nconst PaginationDemo = () => {\n  const [page, setPage] = useState(5);\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Pagination>\n        <PaginationControls page={page} pageCount={pageCount} onPageChange={setPage} />\n      </Pagination>\n      <p className=\"text-center text-caption text-muted-foreground\" aria-live=\"polite\">\n        Page {page} of {pageCount}\n      </p>\n    </div>\n  );\n};\n\nexport default PaginationDemo;\n",
+      "content": "import { useState } from \"react\";\nimport { Pagination, PaginationControls } from \"@/registry/erbium/ui/pagination\";\n\nconst pageCount = 10;\n\nexport default function PaginationExample() {\n  const [page, setPage] = useState(5);\n\n  return (\n    <div className=\"flex flex-col gap-group\">\n      <Pagination>\n        <PaginationControls page={page} pageCount={pageCount} onPageChange={setPage} />\n      </Pagination>\n      <p className=\"text-center text-caption text-muted-foreground\" aria-live=\"polite\">\n        Page {page} of {pageCount}\n      </p>\n    </div>\n  );\n}\n",
       "path": "src/pagination/examples/pagination-demo.tsx",
       "target": "@components/showcase/pagination/examples/pagination-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/pagination-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import PaginationExample from \"../examples/pagination-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <PaginationExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/pagination/variants/overview.tsx",
       "target": "@components/showcase/pagination/variants/overview.tsx",
       "type": "registry:component"

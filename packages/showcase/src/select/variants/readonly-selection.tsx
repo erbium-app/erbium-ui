@@ -15,7 +15,7 @@ const options = [
 
 const initialValues: readonly string[] = ["design"];
 
-const ReadonlySelectionExample = () => {
+export default function ReadonlySelectionExample() {
   const [value, setValue] = useState<readonly string[]>(initialValues);
 
   return (
@@ -32,11 +32,9 @@ const ReadonlySelectionExample = () => {
           ))}
         </SelectContent>
       </Select>
-      <p role="status" className="text-caption text-muted-foreground">
+      <output className="text-caption text-muted-foreground">
         Selected teams: {value.join(", ") || "none"}
-      </p>
+      </output>
     </div>
   );
-};
-
-export default ReadonlySelectionExample;
+}

@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport const SeparatorVertical = () => (\n  <div className=\"flex h-5 items-center gap-group text-caption\">\n    <div>Blog</div>\n    <Separator orientation=\"vertical\" />\n    <div>Docs</div>\n    <Separator orientation=\"vertical\" />\n    <div>Source</div>\n  </div>\n);\n",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\n\nexport default function SeparatorVerticalExample() {\n  return (\n    <div className=\"flex h-5 items-center gap-group text-caption\">\n      <div>Blog</div>\n      <Separator orientation=\"vertical\" />\n      <div>Docs</div>\n      <Separator orientation=\"vertical\" />\n      <div>Source</div>\n    </div>\n  );\n}\n",
       "path": "src/separator/examples/separator-vertical.tsx",
       "target": "@components/showcase/separator/examples/separator-vertical.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { SeparatorVertical } from \"../examples/separator-vertical\";\n\nconst Example = () => <SeparatorVertical />;\n\nexport default Example;\n",
+      "content": "import SeparatorVertical from \"../examples/separator-vertical\";\n\nconst Example = () => <SeparatorVertical />;\n\nexport default Example;\n",
       "path": "src/separator/variants/vertical.tsx",
       "target": "@components/showcase/separator/variants/vertical.tsx",
       "type": "registry:component"

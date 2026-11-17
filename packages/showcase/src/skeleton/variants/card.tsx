@@ -1,4 +1,4 @@
-import { SkeletonCard } from "../examples/skeleton-card";
+import SkeletonCard from "../examples/skeleton-card";
 
 const Example = () => <SkeletonCard />;
 

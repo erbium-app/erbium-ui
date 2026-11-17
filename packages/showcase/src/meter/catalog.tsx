@@ -4,13 +4,13 @@ import { Meter } from "@erbium/ui/components/meter";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/meter-demo.tsx?raw";
 
 import RangeExample from "./variants/range";
 
@@ -39,7 +39,7 @@ export const Playground: StoryObj<typeof Meter> = {
     min: { control: "number" },
     value: { control: { max: 100, min: 0, step: 1, type: "range" } },
   },
-  args: { max: 100, min: 0, value: 24 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("meter", "playground") },

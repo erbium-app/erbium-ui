@@ -1,5 +1,5 @@
-import Demo from "../examples/control-demo";
+import ControlExample from "../examples/control-demo";
 
-const Example = () => <Demo />;
+const Example = () => <ControlExample />;
 
 export default Example;

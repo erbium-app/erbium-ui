@@ -1,5 +1,5 @@
-import { BubbleAlignmentDemo } from "../examples/bubble-alignment";
+import BubbleAlignmentExample from "../examples/bubble-alignment";
 
-const Example = () => <BubbleAlignmentDemo />;
+const Example = () => <BubbleAlignmentExample />;
 
 export default Example;

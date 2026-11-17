@@ -7,8 +7,8 @@ export function SaveButton() {
 }
 `;
 
-const Example = () => (
-  <CodeBlock className="w-full max-w-xl" code={code} language="tsx" title="save-button.tsx" />
-);
-
-export default Example;
+export default function CodeBlockExample() {
+  return (
+    <CodeBlock className="w-full max-w-xl" code={code} language="tsx" title="save-button.tsx" />
+  );
+}

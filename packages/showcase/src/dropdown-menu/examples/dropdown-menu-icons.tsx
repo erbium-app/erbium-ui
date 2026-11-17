@@ -10,29 +10,31 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export const DropdownMenuIcons = () => (
-  <DropdownMenu>
-    <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
-    <DropdownMenuContent>
-      <DropdownMenuList>
-        <DropdownMenuItem>
-          <Icon name="user" />
-          Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Icon name="credit-card" />
-          Billing
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Icon name="settings-01" />
-          Settings
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem variant="error">
-          <Icon name="log-out" />
-          Log out
-        </DropdownMenuItem>
-      </DropdownMenuList>
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
+export default function DropdownMenuIconsExample() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuList>
+          <DropdownMenuItem>
+            <Icon name="user" />
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Icon name="credit-card" />
+            Billing
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Icon name="settings-01" />
+            Settings
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem variant="error">
+            <Icon name="log-out" />
+            Log out
+          </DropdownMenuItem>
+        </DropdownMenuList>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

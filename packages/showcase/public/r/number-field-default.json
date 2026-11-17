@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/number-field", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nconst Example = () => (\n  <NumberField defaultValue={1200} className=\"w-48\">\n    <NumberFieldGroup>\n      <NumberFieldDecrement />\n      <NumberFieldInput aria-label=\"Quantity\" />\n      <NumberFieldIncrement />\n    </NumberFieldGroup>\n  </NumberField>\n);\n\nexport default Example;\n",
+      "content": "import {\n  NumberField,\n  NumberFieldDecrement,\n  NumberFieldGroup,\n  NumberFieldIncrement,\n  NumberFieldInput,\n} from \"@/registry/erbium/ui/number-field\";\n\nexport default function NumberFieldDefaultExample() {\n  return (\n    <NumberField defaultValue={1200} className=\"w-48\">\n      <NumberFieldGroup>\n        <NumberFieldDecrement />\n        <NumberFieldInput aria-label=\"Quantity\" />\n        <NumberFieldIncrement />\n      </NumberFieldGroup>\n    </NumberField>\n  );\n}\n",
       "path": "src/number-field/variants/default.tsx",
       "target": "@components/showcase/number-field/variants/default.tsx",
       "type": "registry:component"

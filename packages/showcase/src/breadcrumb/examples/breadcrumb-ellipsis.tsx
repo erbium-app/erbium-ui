@@ -68,7 +68,7 @@ const BreadcrumbDemoRouter = () => {
   return <RouterProvider router={router} />;
 };
 
-export const BreadcrumbEllipsisDemo = () => {
+export default function BreadcrumbEllipsisExample() {
   const [width, setWidth] = useState(310);
   const widthId = useId();
 
@@ -97,4 +97,4 @@ export const BreadcrumbEllipsisDemo = () => {
       </div>
     </div>
   );
-};
+}

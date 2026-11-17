@@ -4,45 +4,45 @@ import { Bubble } from "@erbium/ui/components/bubble";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/bubble-demo.tsx?raw";
 
 import AlignmentExample from "./variants/alignment";
 
-import AlignmentSource from "./variants/alignment.tsx?raw";
+import AlignmentSource from "./examples/bubble-alignment.tsx?raw";
 
 import GroupDemoExample from "./variants/group-demo";
 
-import GroupDemoSource from "./variants/group-demo.tsx?raw";
+import GroupDemoSource from "./examples/bubble-group-demo.tsx?raw";
 
 import CollapsibleExample from "./variants/collapsible";
 
-import CollapsibleSource from "./variants/collapsible.tsx?raw";
+import CollapsibleSource from "./examples/bubble-collapsible.tsx?raw";
 
 import TooltipExample from "./variants/tooltip";
 
-import TooltipSource from "./variants/tooltip.tsx?raw";
+import TooltipSource from "./examples/bubble-tooltip.tsx?raw";
 
 import PopoverExample from "./variants/popover";
 
-import PopoverSource from "./variants/popover.tsx?raw";
+import PopoverSource from "./examples/bubble-popover.tsx?raw";
 
 import LinkButtonExample from "./variants/link-button";
 
-import LinkButtonSource from "./variants/link-button.tsx?raw";
+import LinkButtonSource from "./examples/bubble-link-button.tsx?raw";
 
 import ReactionsExample from "./variants/reactions";
 
-import ReactionsSource from "./variants/reactions.tsx?raw";
+import ReactionsSource from "./examples/bubble-reactions.tsx?raw";
 
 import VariantsExample from "./variants/variants";
 
-import VariantsSource from "./variants/variants.tsx?raw";
+import VariantsSource from "./examples/bubble-variants.tsx?raw";
 
 const meta = {
   component: Bubble,
@@ -80,14 +80,7 @@ export const Playground: StoryObj<{
       options: ["default", "secondary", "muted", "tinted", "outline", "ghost", "error"],
     },
   },
-  args: {
-    align: "start",
-    className: "",
-    contentAs: "text",
-    reactionAlign: "end",
-    reactionSide: "bottom",
-    variant: "default",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("bubble", "playground") },

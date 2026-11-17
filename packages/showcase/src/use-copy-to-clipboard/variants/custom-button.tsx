@@ -8,20 +8,20 @@ import {
 
 const url = "https://erbium.dev";
 
-const Example = () => (
-  <InputGroup className="w-80">
-    <InputGroupInput aria-label="Project URL" readOnly value={url} />
-    <InputGroupAddon align="inline-end">
-      <CopyButton
-        aria-label="Copy project URL"
-        render={<InputGroupButton variant="embedded" size="xs" />}
-        value={url}
-      >
-        <CopyButtonIcon data-icon="inline-start" />
-        <CopyButtonLabel />
-      </CopyButton>
-    </InputGroupAddon>
-  </InputGroup>
-);
-
-export default Example;
+export default function UseCopyToClipboardCustomButtonExample() {
+  return (
+    <InputGroup className="w-80">
+      <InputGroupInput aria-label="Project URL" readOnly value={url} />
+      <InputGroupAddon align="inline-end">
+        <CopyButton
+          aria-label="Copy project URL"
+          render={<InputGroupButton variant="embedded" size="xs" />}
+          value={url}
+        >
+          <CopyButtonIcon data-icon="inline-start" />
+          <CopyButtonLabel />
+        </CopyButton>
+      </InputGroupAddon>
+    </InputGroup>
+  );
+}

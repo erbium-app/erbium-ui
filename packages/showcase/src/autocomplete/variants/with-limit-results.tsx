@@ -1,5 +1,5 @@
 import { LimitedAutocomplete } from "../helpers";
 
-const Example = () => <LimitedAutocomplete />;
-
-export default Example;
+export default function AutocompleteWithLimitResultsExample() {
+  return <LimitedAutocomplete />;
+}

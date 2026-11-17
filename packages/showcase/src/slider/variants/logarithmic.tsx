@@ -10,7 +10,7 @@ const MARKS = [20, 100, 1000, 10_000, 20_000].map((value) => ({
   value,
 }));
 
-const Example = () => {
+export default function SliderLogarithmicExample() {
   const [cutoff, setCutoff] = React.useState(1000);
   const [committed, setCommitted] = React.useState(1000);
 
@@ -39,6 +39,4 @@ const Example = () => {
       />
     </Field>
   );
-};
-
-export default Example;
+}

@@ -1,5 +1,5 @@
-import { AttachmentStates } from "../examples/attachment-states";
+import AttachmentStatesExample from "../examples/attachment-states";
 
-const Example = () => <AttachmentStates />;
+const Example = () => <AttachmentStatesExample />;
 
 export default Example;

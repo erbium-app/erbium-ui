@@ -21,7 +21,7 @@ const items = [
   { name: "rollout", required: true },
 ] as const;
 
-export const QuestionnaireSubmitState = () => {
+export default function QuestionnaireSubmitStateExample() {
   const [state, setState] = React.useState<StatefulButtonState>("idle");
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
@@ -71,4 +71,4 @@ export const QuestionnaireSubmitState = () => {
       </QuestionnaireActions>
     </Questionnaire>
   );
-};
+}

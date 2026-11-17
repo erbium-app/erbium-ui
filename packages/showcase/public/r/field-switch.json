@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst FieldSwitch = () => (\n  <div className=\"w-full max-w-md\">\n    <Field orientation=\"horizontal\">\n      <FieldContent>\n        <FieldLabel>Multi-factor authentication</FieldLabel>\n        <FieldDescription>\n          Enable multi-factor authentication. If you do not have a two-factor device, you can use a\n          one-time code sent to your email.\n        </FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  </div>\n);\n\nexport default FieldSwitch;\n",
+      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function FieldSwitchExample() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Field orientation=\"horizontal\">\n        <FieldContent>\n          <FieldLabel>Multi-factor authentication</FieldLabel>\n          <FieldDescription>\n            Enable multi-factor authentication. If you do not have a two-factor device, you can use\n            a one-time code sent to your email.\n          </FieldDescription>\n        </FieldContent>\n        <Switch />\n      </Field>\n    </div>\n  );\n}\n",
       "path": "src/field/examples/field-switch.tsx",
       "target": "@components/showcase/field/examples/field-switch.tsx",
       "type": "registry:component"

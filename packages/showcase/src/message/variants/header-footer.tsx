@@ -1,5 +1,5 @@
-import { MessageHeaderFooterDemo } from "../examples/message-header-footer";
+import MessageHeaderFooterExample from "../examples/message-header-footer";
 
-const Example = () => <MessageHeaderFooterDemo />;
+const Example = () => <MessageHeaderFooterExample />;
 
 export default Example;

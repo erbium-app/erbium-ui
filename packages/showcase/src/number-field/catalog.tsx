@@ -30,7 +30,7 @@ import DirectionSource from "./variants/direction.tsx?raw";
 
 import ShowcaseExample from "./variants/showcase";
 
-import ShowcaseSource from "./variants/showcase.tsx?raw";
+import ShowcaseSource from "./examples/number-field-demo.tsx?raw";
 
 const meta = {
   component: NumberField,

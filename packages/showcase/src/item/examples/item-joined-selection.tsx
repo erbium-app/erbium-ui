@@ -46,7 +46,7 @@ const projects = [
   { color: "text-tag-blue", icon: "globe-02", id: "website", issues: 15, name: "Website" },
 ] as const;
 
-const ItemJoinedSelection = () => {
+export default function ItemJoinedSelectionExample() {
   const [selected, setSelected] = useState<string[]>([
     "gateway",
     "reader",
@@ -70,9 +70,9 @@ const ItemJoinedSelection = () => {
 
           return (
             <Item
-              render={<Field orientation="horizontal" />}
+              render={<Field orientation="horizontal" render={<li />} />}
               key={project.id}
-              role="listitem"
+
               size="sm"
               data-selected={selected.includes(project.id)}
               className="min-h-12"
@@ -110,6 +110,4 @@ const ItemJoinedSelection = () => {
       </ItemGroup>
     </section>
   );
-};
-
-export default ItemJoinedSelection;
+}

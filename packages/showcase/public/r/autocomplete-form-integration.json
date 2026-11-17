@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FormAutocomplete } from \"../helpers\";\n\nconst Example = () => <FormAutocomplete />;\n\nexport default Example;\n",
+      "content": "import { FormAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteFormIntegrationExample() {\n  return <FormAutocomplete />;\n}\n",
       "path": "src/autocomplete/variants/form-integration.tsx",
       "target": "@components/showcase/autocomplete/variants/form-integration.tsx",
       "type": "registry:component"

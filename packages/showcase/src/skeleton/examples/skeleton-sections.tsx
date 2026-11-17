@@ -144,7 +144,11 @@ const Section = ({
  * `Skeleton`, so a slow request holds back only that section and a failed one shows its error
  * while the rest of the page stays usable. Headings are known, so they stay outside the skeleton.
  */
-export const SkeletonSections = ({ latency = 1200 }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonSectionsExample({
+  latency = 1200,
+}: { latency?: number } = defaultProps) {
   const [failSessions, setFailSessions] = useState(false);
   const failId = useId();
 
@@ -218,4 +222,4 @@ export const SkeletonSections = ({ latency = 1200 }: { latency?: number }) => {
       </Section>
     </div>
   );
-};
+}

@@ -20,7 +20,7 @@ import { Button } from "@erbium/ui/components/button";
 
 const confirmation = "delete chat";
 
-export const AlertDialogError = () => {
+export default function AlertDialogErrorExample() {
   const inputId = useId();
   const [value, setValue] = useState("");
 
@@ -71,4 +71,4 @@ export const AlertDialogError = () => {
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}

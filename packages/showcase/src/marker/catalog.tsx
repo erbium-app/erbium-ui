@@ -4,13 +4,13 @@ import { Marker } from "@erbium/ui/components/marker";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/marker-demo.tsx?raw";
 
 import VariantsExample from "./variants/variants";
 
@@ -22,7 +22,7 @@ import StatusSource from "./variants/status.tsx?raw";
 
 import ShimmerExample from "./variants/shimmer";
 
-import ShimmerSource from "./variants/shimmer.tsx?raw";
+import ShimmerSource from "./examples/marker-shimmer.tsx?raw";
 
 import SeparatorExample from "./variants/separator";
 
@@ -30,7 +30,7 @@ import SeparatorSource from "./variants/separator.tsx?raw";
 
 import BorderExample from "./variants/border";
 
-import BorderSource from "./variants/border.tsx?raw";
+import BorderSource from "./examples/marker-border.tsx?raw";
 
 import IconExample from "./variants/icon";
 
@@ -38,7 +38,7 @@ import IconSource from "./variants/icon.tsx?raw";
 
 import LinkButtonExample from "./variants/link-button";
 
-import LinkButtonSource from "./variants/link-button.tsx?raw";
+import LinkButtonSource from "./examples/marker-link-button.tsx?raw";
 
 const meta = {
   component: Marker,
@@ -70,7 +70,7 @@ export const Playground: StoryObj<{
       options: ["default", "separator", "border"],
     },
   },
-  args: { asSpan: false, className: "", variant: "default" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("marker", "playground") },

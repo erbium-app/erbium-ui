@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/input", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nconst Example = () => <Input aria-invalid placeholder=\"Invalid email\" />;\n\nexport default Example;\n",
+      "content": "import { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function InputInvalidExample() {\n  return <Input aria-invalid placeholder=\"Invalid email\" />;\n}\n",
       "path": "src/input/variants/invalid.tsx",
       "target": "@components/showcase/input/variants/invalid.tsx",
       "type": "registry:component"

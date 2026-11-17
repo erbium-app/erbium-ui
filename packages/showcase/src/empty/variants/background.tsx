@@ -1,5 +1,5 @@
-import { EmptyMuted } from "../examples/empty-background";
+import EmptyMutedExample from "../examples/empty-background";
 
-const Example = () => <EmptyMuted />;
+const Example = () => <EmptyMutedExample />;
 
 export default Example;

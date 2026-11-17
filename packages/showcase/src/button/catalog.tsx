@@ -4,13 +4,13 @@ import { Button } from "@erbium/ui/components/button";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/button-demo.tsx?raw";
 
 import VariantsExample from "./variants/variants";
 
@@ -42,39 +42,39 @@ import LoadingDirectionsSource from "./variants/loading-directions.tsx?raw";
 
 import SizeExample from "./variants/size";
 
-import SizeSource from "./variants/size.tsx?raw";
+import SizeSource from "./examples/button-size.tsx?raw";
 
 import DefaultExample from "./variants/default";
 
-import DefaultSource from "./variants/default.tsx?raw";
+import DefaultSource from "./examples/button-default.tsx?raw";
 
 import OutlineExample from "./variants/outline";
 
-import OutlineSource from "./variants/outline.tsx?raw";
+import OutlineSource from "./examples/button-outline.tsx?raw";
 
 import SecondaryExample from "./variants/secondary";
 
-import SecondarySource from "./variants/secondary.tsx?raw";
+import SecondarySource from "./examples/button-secondary.tsx?raw";
 
 import GhostExample from "./variants/ghost";
 
-import GhostSource from "./variants/ghost.tsx?raw";
+import GhostSource from "./examples/button-ghost.tsx?raw";
 
 import ErrorVariantExample from "./variants/error-variant";
 
-import ErrorVariantSource from "./variants/error-variant.tsx?raw";
+import ErrorVariantSource from "./examples/button-error.tsx?raw";
 
 import LinkExample from "./variants/link";
 
-import LinkSource from "./variants/link.tsx?raw";
+import LinkSource from "./examples/button-link.tsx?raw";
 
 import IconExample from "./variants/icon";
 
-import IconSource from "./variants/icon.tsx?raw";
+import IconSource from "./examples/button-icon.tsx?raw";
 
 import RoundedExample from "./variants/rounded";
 
-import RoundedSource from "./variants/rounded.tsx?raw";
+import RoundedSource from "./examples/button-rounded.tsx?raw";
 
 import ButtonGroupExample from "./variants/button-group";
 
@@ -82,11 +82,11 @@ import ButtonGroupSource from "./variants/button-group.tsx?raw";
 
 import WithSpinnerExample from "./variants/with-spinner";
 
-import WithSpinnerSource from "./variants/with-spinner.tsx?raw";
+import WithSpinnerSource from "./examples/button-spinner.tsx?raw";
 
 import WithIconExample from "./variants/with-icon";
 
-import WithIconSource from "./variants/with-icon.tsx?raw";
+import WithIconSource from "./examples/button-with-icon.tsx?raw";
 
 import AsLinkExample from "./variants/as-link";
 
@@ -138,11 +138,7 @@ export const Playground: StoryObj<typeof Button> = {
       table: { defaultValue: { summary: "default" } },
     },
   },
-  args: {
-    loading: false,
-    size: "default",
-    variant: "default",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("button", "playground") },

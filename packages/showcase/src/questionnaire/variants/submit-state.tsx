@@ -1,4 +1,4 @@
-import { QuestionnaireSubmitState } from "../examples/questionnaire-submit-state";
+import QuestionnaireSubmitState from "../examples/questionnaire-submit-state";
 
 const Example = () => <QuestionnaireSubmitState />;
 

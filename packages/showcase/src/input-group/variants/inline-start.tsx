@@ -1,5 +1,5 @@
-import { InputGroupInlineStart } from "../examples/input-group-inline-start";
+import InputGroupInlineStartExample from "../examples/input-group-inline-start";
 
-const Example = () => <InputGroupInlineStart />;
+const Example = () => <InputGroupInlineStartExample />;
 
 export default Example;

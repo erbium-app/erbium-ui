@@ -6,33 +6,33 @@ import { Select } from "@erbium/ui/components/select";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/select-demo.tsx?raw";
 
 import ScrollableExample from "./variants/scrollable";
 
-import ScrollableSource from "./variants/scrollable.tsx?raw";
+import ScrollableSource from "./examples/select-scrollable.tsx?raw";
 
 import GroupsExample from "./variants/groups";
 
-import GroupsSource from "./variants/groups.tsx?raw";
+import GroupsSource from "./examples/select-groups.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/select-disabled.tsx?raw";
 
 import InvalidExample from "./variants/invalid";
 
-import InvalidSource from "./variants/invalid.tsx?raw";
+import InvalidSource from "./examples/select-invalid.tsx?raw";
 
 import AlignItemWithTriggerExample from "./variants/align-item-with-trigger";
 
-import AlignItemWithTriggerSource from "./variants/align-item-with-trigger.tsx?raw";
+import AlignItemWithTriggerSource from "./examples/select-align-item.tsx?raw";
 
 const meta = {
   component: Select,
@@ -65,13 +65,7 @@ export const Playground: StoryObj<{
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
     size: { control: "select", options: ["default", "sm"] },
   },
-  args: {
-    align: "start",
-    disabled: false,
-    placeholder: "Select a fruit",
-    side: "bottom",
-    size: "default",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("select", "playground") },

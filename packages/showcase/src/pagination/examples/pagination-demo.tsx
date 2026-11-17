@@ -3,7 +3,7 @@ import { Pagination, PaginationControls } from "@erbium/ui/components/pagination
 
 const pageCount = 10;
 
-const PaginationDemo = () => {
+export default function PaginationExample() {
   const [page, setPage] = useState(5);
 
   return (
@@ -16,6 +16,4 @@ const PaginationDemo = () => {
       </p>
     </div>
   );
-};
-
-export default PaginationDemo;
+}

@@ -1,5 +1,5 @@
-import { CheckboxGroupFieldset } from "../examples/checkbox-group";
+import CheckboxGroupFieldsetExample from "../examples/checkbox-group";
 
-const Example = () => <CheckboxGroupFieldset />;
+const Example = () => <CheckboxGroupFieldsetExample />;
 
 export default Example;

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nconst ButtonDemo = () => (\n  <div className=\"flex flex-wrap items-center gap-related md:flex-row\">\n    <Button variant=\"outline\">Button</Button>\n    <Button variant=\"outline\" size=\"icon\" aria-label=\"Submit\">\n      <Icon name=\"arrow-up-01\" />\n    </Button>\n  </div>\n);\n\nexport default ButtonDemo;\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonExample() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-related md:flex-row\">\n      <Button variant=\"outline\">Button</Button>\n      <Button variant=\"outline\" size=\"icon\" aria-label=\"Submit\">\n        <Icon name=\"arrow-up-01\" />\n      </Button>\n    </div>\n  );\n}\n",
       "path": "src/button/examples/button-demo.tsx",
       "target": "@components/showcase/button/examples/button-demo.tsx",
       "type": "registry:component"

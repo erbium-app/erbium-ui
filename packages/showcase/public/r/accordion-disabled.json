@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/accordion", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n  Accordion,\n} from \"@/registry/erbium/ui/accordion\";\n\nconst Example = () => (\n  <Accordion className=\"w-80\">\n    <AccordionItem value=\"one\">\n      <AccordionTrigger>Available</AccordionTrigger>\n      <AccordionContent>This panel opens.</AccordionContent>\n    </AccordionItem>\n    <AccordionItem value=\"two\" disabled>\n      <AccordionTrigger>Unavailable</AccordionTrigger>\n      <AccordionContent>This panel is disabled.</AccordionContent>\n    </AccordionItem>\n  </Accordion>\n);\n\nexport default Example;\n",
+      "content": "import {\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n  Accordion,\n} from \"@/registry/erbium/ui/accordion\";\n\nexport default function AccordionDisabledExample() {\n  return (\n    <Accordion className=\"w-80\">\n      <AccordionItem value=\"one\">\n        <AccordionTrigger>Available</AccordionTrigger>\n        <AccordionContent>This panel opens.</AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"two\" disabled>\n        <AccordionTrigger>Unavailable</AccordionTrigger>\n        <AccordionContent>This panel is disabled.</AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  );\n}\n",
       "path": "src/accordion/variants/disabled.tsx",
       "target": "@components/showcase/accordion/variants/disabled.tsx",
       "type": "registry:component"

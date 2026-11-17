@@ -9,17 +9,17 @@ const MARKS = [
   { label: "100%", value: 100 },
 ];
 
-const Example = () => (
-  <div className="mx-auto flex w-full max-w-xs flex-col gap-section">
-    <Field className="gap-related">
-      <FieldLabel>Opacity</FieldLabel>
-      <Slider defaultValue={75} step={25} marks={MARKS} />
-    </Field>
-    <Field className="gap-related">
-      <FieldLabel>Brightness</FieldLabel>
-      <Slider defaultValue={4} min={0} max={10} marks />
-    </Field>
-  </div>
-);
-
-export default Example;
+export default function SliderMarksExample() {
+  return (
+    <div className="mx-auto flex w-full max-w-xs flex-col gap-section">
+      <Field className="gap-related">
+        <FieldLabel>Opacity</FieldLabel>
+        <Slider defaultValue={75} step={25} marks={MARKS} />
+      </Field>
+      <Field className="gap-related">
+        <FieldLabel>Brightness</FieldLabel>
+        <Slider defaultValue={4} min={0} max={10} marks />
+      </Field>
+    </div>
+  );
+}

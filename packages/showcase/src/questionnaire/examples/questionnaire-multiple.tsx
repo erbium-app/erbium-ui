@@ -33,29 +33,31 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   });
 };
 
-export const QuestionnaireMultiple = () => (
-  <Questionnaire
-    className="mx-auto max-w-md"
-    items={items}
-    shortcuts="letters"
-    onSubmit={handleSubmit}
-  >
-    <QuestionnaireItem name="context" multiple>
-      <QuestionnaireTitle>What context should the agent inspect?</QuestionnaireTitle>
-      <QuestionnaireDescription>
-        Select every source that may affect the implementation.
-      </QuestionnaireDescription>
-      <QuestionnaireChoices>
-        <QuestionnaireChoice value="source">Relevant source files</QuestionnaireChoice>
-        <QuestionnaireChoice value="tests">Existing tests</QuestionnaireChoice>
-        <QuestionnaireChoice value="docs">Architecture documentation</QuestionnaireChoice>
-        <QuestionnaireChoice value="history">Recent commit history</QuestionnaireChoice>
-      </QuestionnaireChoices>
-      <QuestionnaireError />
-    </QuestionnaireItem>
+export default function QuestionnaireMultipleExample() {
+  return (
+    <Questionnaire
+      className="mx-auto max-w-md"
+      items={items}
+      shortcuts="letters"
+      onSubmit={handleSubmit}
+    >
+      <QuestionnaireItem name="context" multiple>
+        <QuestionnaireTitle>What context should the agent inspect?</QuestionnaireTitle>
+        <QuestionnaireDescription>
+          Select every source that may affect the implementation.
+        </QuestionnaireDescription>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="source">Relevant source files</QuestionnaireChoice>
+          <QuestionnaireChoice value="tests">Existing tests</QuestionnaireChoice>
+          <QuestionnaireChoice value="docs">Architecture documentation</QuestionnaireChoice>
+          <QuestionnaireChoice value="history">Recent commit history</QuestionnaireChoice>
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
 
-    <QuestionnaireActions>
-      <QuestionnaireSubmit>Share context</QuestionnaireSubmit>
-    </QuestionnaireActions>
-  </Questionnaire>
-);
+      <QuestionnaireActions>
+        <QuestionnaireSubmit>Share context</QuestionnaireSubmit>
+      </QuestionnaireActions>
+    </Questionnaire>
+  );
+}

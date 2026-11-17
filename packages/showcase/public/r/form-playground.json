@@ -14,7 +14,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/form-demo\";\n\nconst Example = (args: { defaultEmail: string; required: boolean; submitLabel: string }) => (\n  <Demo key={args.defaultEmail} {...args} />\n);\n\nexport default Example;\n",
+      "content": "import Demo from \"../examples/form-demo\";\n\nexport const defaultProps = {\n  defaultEmail: \"\",\n  required: true,\n  submitLabel: \"Submit\",\n} satisfies { defaultEmail: string; required: boolean; submitLabel: string };\n\nexport default function FormPlaygroundExample(\n  args: { defaultEmail: string; required: boolean; submitLabel: string } = defaultProps,\n) {\n  return <Demo key={args.defaultEmail} {...args} />;\n}\n",
       "path": "src/form/variants/playground.tsx",
       "target": "@components/showcase/form/variants/playground.tsx",
       "type": "registry:component"

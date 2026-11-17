@@ -11,8 +11,6 @@ const patch = `diff --git a/settings.json b/settings.json
  }
 `;
 
-const Example = () => (
-  <DiffView className="w-full max-w-4xl" patch={patch} options={{ diffStyle: "unified" }} />
-);
-
-export default Example;
+export default function DiffViewPatchExample() {
+  return <DiffView className="w-full max-w-4xl" patch={patch} options={{ diffStyle: "unified" }} />;
+}

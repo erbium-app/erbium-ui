@@ -4,7 +4,7 @@ import { HeatmapChart } from "@erbium/ui/charts/heatmap-chart";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
@@ -25,7 +25,7 @@ export default meta;
 
 export const Playground: StoryObj<{ legend: boolean; tooltip: boolean }> = {
   argTypes: { legend: { control: "boolean" }, tooltip: { control: "boolean" } },
-  args: { legend: true, tooltip: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("heatmap-chart", "playground") },

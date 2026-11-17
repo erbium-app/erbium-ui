@@ -55,7 +55,7 @@ const columns = columnHelper.columns([
   }),
 ]);
 
-const TableRtl = () => {
+export default function TableRtlExample() {
   const table = useTable({ columns, data: invoices, features });
 
   return (
@@ -114,6 +114,4 @@ const TableRtl = () => {
       </TableFooter>
     </Table>
   );
-};
-
-export default TableRtl;
+}

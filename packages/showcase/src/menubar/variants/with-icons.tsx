@@ -1,4 +1,4 @@
-import { MenubarIcons } from "../examples/menubar-icons";
+import MenubarIcons from "../examples/menubar-icons";
 
 const Example = () => <MenubarIcons />;
 

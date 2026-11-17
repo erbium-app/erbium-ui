@@ -13,7 +13,7 @@ import {
 } from "@erbium/ui/components/dialog";
 import { Form, useAppForm } from "@erbium/ui/components/form";
 
-const DialogDemo = () => {
+export default function DialogExample() {
   const [open, setOpen] = useState(false);
   const [savedName, setSavedName] = useState<string | null>(null);
 
@@ -83,6 +83,4 @@ const DialogDemo = () => {
       )}
     </div>
   );
-};
-
-export default DialogDemo;
+}

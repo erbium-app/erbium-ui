@@ -1,5 +1,5 @@
-import { DrawerSwipeHandle } from "../examples/drawer-swipe-handle";
+import DrawerSwipeHandleExample from "../examples/drawer-swipe-handle";
 
-const Example = () => <DrawerSwipeHandle />;
+const Example = () => <DrawerSwipeHandleExample />;
 
 export default Example;

@@ -1,4 +1,4 @@
-import { TabsIcons } from "../examples/tabs-icons";
+import TabsIcons from "../examples/tabs-icons";
 
 const Example = () => <TabsIcons />;
 

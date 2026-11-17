@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Anchoring } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <Anchoring />;\n\nexport default Example;\n",
+      "content": "import { Anchoring } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerAnchoredTurnsExample() {\n  return <Anchoring />;\n}\n",
       "path": "src/message-scroller/variants/anchored-turns.tsx",
       "target": "@components/showcase/message-scroller/variants/anchored-turns.tsx",
       "type": "registry:component"

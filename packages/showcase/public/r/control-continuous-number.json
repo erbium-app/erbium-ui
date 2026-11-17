@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Number\n    label=\"Position\"\n    mode=\"continuous\"\n    defaultValue={32.418}\n    min={-100}\n    max={100}\n    className=\"w-72\"\n  />\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlContinuousNumberExample() {\n  return (\n    <Control.Number\n      label=\"Position\"\n      mode=\"continuous\"\n      defaultValue={32.418}\n      min={-100}\n      max={100}\n      className=\"w-72\"\n    />\n  );\n}\n",
       "path": "src/control/variants/continuous-number.tsx",
       "target": "@components/showcase/control/variants/continuous-number.tsx",
       "type": "registry:component"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Editable, EditableInput, EditablePreview } from "@erbium/ui/components/editable";
 import { Kbd } from "@erbium/ui/components/kbd";
 
-const EditableDemo = () => {
+export default function EditableExample() {
   const [name, setName] = useState("Overview");
 
   return (
@@ -18,6 +18,4 @@ const EditableDemo = () => {
       </span>
     </div>
   );
-};
-
-export default EditableDemo;
+}

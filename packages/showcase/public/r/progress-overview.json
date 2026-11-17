@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/progress", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\n\nimport { Progress } from \"@/registry/erbium/ui/progress\";\n\nconst ProgressDemo = () => {\n  const [progress, setProgress] = React.useState(13);\n\n  React.useEffect(() => {\n    const timer = setTimeout(() => {\n      setProgress(66);\n    }, 500);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, []);\n\n  return <Progress value={progress} className=\"w-[60%]\" />;\n};\n\nexport default ProgressDemo;\n",
+      "content": "import * as React from \"react\";\n\nimport { Progress } from \"@/registry/erbium/ui/progress\";\n\nexport default function ProgressExample() {\n  const [progress, setProgress] = React.useState(13);\n\n  React.useEffect(() => {\n    const timer = setTimeout(() => {\n      setProgress(66);\n    }, 500);\n\n    return () => {\n      clearTimeout(timer);\n    };\n  }, []);\n\n  return <Progress value={progress} className=\"w-[60%]\" />;\n}\n",
       "path": "src/progress/examples/progress-demo.tsx",
       "target": "@components/showcase/progress/examples/progress-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/progress-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import ProgressExample from \"../examples/progress-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ProgressExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/progress/variants/overview.tsx",
       "target": "@components/showcase/progress/variants/overview.tsx",
       "type": "registry:component"

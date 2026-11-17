@@ -95,7 +95,7 @@ const OpeningPositionScroller = () => (
   </MessageScroller>
 );
 
-export const MessageScrollerOpeningPosition = () => {
+export default function MessageScrollerOpeningPositionExample() {
   const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
 
   return (
@@ -139,4 +139,4 @@ export const MessageScrollerOpeningPosition = () => {
       </div>
     </div>
   );
-};
+}

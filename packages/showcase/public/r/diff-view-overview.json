@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nconst Example = () => <DiffView className=\"w-full max-w-4xl\" oldFile={oldFile} newFile={newFile} />;\n\nexport default Example;\n",
+      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\nimport { oldFile, newFile } from \"../examples/files\";\n\nexport default function DiffViewExample() {\n  return <DiffView className=\"w-full max-w-4xl\" oldFile={oldFile} newFile={newFile} />;\n}\n",
       "path": "src/diff-view/variants/overview.tsx",
       "target": "@components/showcase/diff-view/variants/overview.tsx",
       "type": "registry:component"

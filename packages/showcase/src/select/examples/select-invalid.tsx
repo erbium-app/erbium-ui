@@ -15,23 +15,25 @@ const items = [
   { label: "Blueberry", value: "blueberry" },
 ];
 
-export const SelectInvalid = () => (
-  <Field invalid className="w-full max-w-48">
-    <FieldLabel>Fruit</FieldLabel>
-    <Select items={items}>
-      <SelectTrigger>
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          {items.map((item) => (
-            <SelectItem key={item.value} value={item.value}>
-              {item.label}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-    <FieldError match>Please select a fruit.</FieldError>
-  </Field>
-);
+export default function SelectInvalidExample() {
+  return (
+    <Field invalid className="w-full max-w-48">
+      <FieldLabel>Fruit</FieldLabel>
+      <Select items={items}>
+        <SelectTrigger>
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {items.map((item) => (
+              <SelectItem key={item.value} value={item.value}>
+                {item.label}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+      <FieldError match>Please select a fruit.</FieldError>
+    </Field>
+  );
+}

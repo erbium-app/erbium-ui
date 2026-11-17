@@ -8,17 +8,17 @@ import {
   NumberFieldScrubArea,
 } from "@erbium/ui/components/number-field";
 
-const Demo = () => (
-  <Field>
-    <NumberField defaultValue={24} min={0} max={200} className="w-48">
-      <NumberFieldScrubArea label="Font size" />
-      <NumberFieldGroup>
-        <NumberFieldDecrement />
-        <NumberFieldInput />
-        <NumberFieldIncrement />
-      </NumberFieldGroup>
-    </NumberField>
-  </Field>
-);
-
-export default Demo;
+export default function NumberFieldShowcaseExample() {
+  return (
+    <Field>
+      <NumberField defaultValue={24} min={0} max={200} className="w-48">
+        <NumberFieldScrubArea label="Font size" />
+        <NumberFieldGroup>
+          <NumberFieldDecrement />
+          <NumberFieldInput />
+          <NumberFieldIncrement />
+        </NumberFieldGroup>
+      </NumberField>
+    </Field>
+  );
+}

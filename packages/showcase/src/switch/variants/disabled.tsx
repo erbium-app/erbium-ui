@@ -1,5 +1,5 @@
 import { Switch } from "@erbium/ui/components/switch";
 
-const Example = () => <Switch disabled aria-label="Unavailable" />;
-
-export default Example;
+export default function SwitchDisabledExample() {
+  return <Switch disabled aria-label="Unavailable" />;
+}

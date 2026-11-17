@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/attachment", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Attachment,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentGroup,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\n\nconst Demo = () => (\n  <AttachmentGroup>\n    <Attachment>\n      <AttachmentContent>\n        <AttachmentTitle>report.pdf</AttachmentTitle>\n        <AttachmentDescription>PDF document · 2.4 MB</AttachmentDescription>\n      </AttachmentContent>\n    </Attachment>\n  </AttachmentGroup>\n);\n\nexport default Demo;\n",
+      "content": "import {\n  Attachment,\n  AttachmentContent,\n  AttachmentDescription,\n  AttachmentGroup,\n  AttachmentTitle,\n} from \"@/registry/erbium/ui/attachment\";\n\nexport default function AttachmentExample() {\n  return (\n    <AttachmentGroup>\n      <Attachment>\n        <AttachmentContent>\n          <AttachmentTitle>report.pdf</AttachmentTitle>\n          <AttachmentDescription>PDF document · 2.4 MB</AttachmentDescription>\n        </AttachmentContent>\n      </Attachment>\n    </AttachmentGroup>\n  );\n}\n",
       "path": "src/attachment/examples/attachment-demo.tsx",
       "target": "@components/showcase/attachment/examples/attachment-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/attachment-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import AttachmentExample from \"../examples/attachment-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <AttachmentExample />\n  </div>\n);\n\nexport default Example;\n",
       "path": "src/attachment/variants/overview.tsx",
       "target": "@components/showcase/attachment/variants/overview.tsx",
       "type": "registry:component"

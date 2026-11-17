@@ -1,5 +1,5 @@
-import { AlertDialogSmall } from "../examples/alert-dialog-small";
+import AlertDialogSmallExample from "../examples/alert-dialog-small";
 
-const Example = () => <AlertDialogSmall />;
+const Example = () => <AlertDialogSmallExample />;
 
 export default Example;

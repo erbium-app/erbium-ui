@@ -1,5 +1,5 @@
-import { ComboboxWithCustomItems } from "../examples/combobox-custom";
+import ComboboxWithCustomItemsExample from "../examples/combobox-custom";
 
-const Example = () => <ComboboxWithCustomItems />;
+const Example = () => <ComboboxWithCustomItemsExample />;
 
 export default Example;

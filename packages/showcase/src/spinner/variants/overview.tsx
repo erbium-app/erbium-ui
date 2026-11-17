@@ -1,5 +1,5 @@
-import Demo from "../examples/spinner-demo";
+import SpinnerExample from "../examples/spinner-demo";
 
-const Example = () => <Demo />;
+const Example = () => <SpinnerExample />;
 
 export default Example;

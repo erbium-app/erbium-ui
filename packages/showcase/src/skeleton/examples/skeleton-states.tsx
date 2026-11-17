@@ -17,7 +17,9 @@ type Outcome = "rows" | "empty" | "error";
  * One region, every state. An `Error` renders Erbium's error alert with its message; `empty` shows
  * `emptyMessage`. Each replaces the skeleton with the same crossfade as content.
  */
-export const SkeletonStates = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonStatesExample({ latency }: { latency?: number } = defaultProps) {
   const [outcome, setOutcome] = useState<Outcome>("rows");
 
   const request = useSimulatedFetch(outcome === "empty" ? noMembers : members, {
@@ -74,4 +76,4 @@ export const SkeletonStates = ({ latency }: { latency?: number }) => {
       </Button>
     </div>
   );
-};
+}

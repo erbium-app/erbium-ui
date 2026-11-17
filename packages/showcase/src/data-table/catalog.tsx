@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "../types";
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
-import { defaultLatency, latencyArgType } from "../loading";
-import PlaygroundExample from "./variants/playground";
+import { latencyArgType } from "../loading";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 import PlaygroundSource from "./variants/playground.tsx?raw";
 import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
@@ -30,7 +30,7 @@ export const Playground: StoryObj<typeof PlaygroundExample> = {
     fail: { control: "boolean" },
     pageSize: { control: { max: 12, min: 3, type: "number" } },
   },
-  args: { empty: false, fail: false, latency: defaultLatency, pageSize: 6 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("data-table", "playground") },

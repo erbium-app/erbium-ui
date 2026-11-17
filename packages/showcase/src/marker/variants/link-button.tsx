@@ -1,5 +1,5 @@
-import { MarkerLinkButtonDemo } from "../examples/marker-link-button";
+import MarkerLinkButtonExample from "../examples/marker-link-button";
 
-const Example = () => <MarkerLinkButtonDemo />;
+const Example = () => <MarkerLinkButtonExample />;
 
 export default Example;

@@ -1,4 +1,4 @@
-import { SkeletonForm } from "../examples/skeleton-form";
+import SkeletonForm from "../examples/skeleton-form";
 
 const Example = () => <SkeletonForm />;
 

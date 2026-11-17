@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import ValidationExample from "./variants/validation";
 
-import ValidationSource from "./variants/validation.tsx?raw";
+import ValidationSource from "./examples/form-validation.tsx?raw";
 
 const meta = {
   parameters: {
@@ -35,7 +35,7 @@ export const Playground: StoryObj<{
     required: { control: "boolean" },
     submitLabel: { control: "text" },
   },
-  args: { defaultEmail: "", required: true, submitLabel: "Submit" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("form", "playground") },

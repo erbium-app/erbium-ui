@@ -4,13 +4,13 @@ import { Input } from "@erbium/ui/components/input";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/input-demo.tsx?raw";
 
 import DisabledControlExample from "./variants/disabled-control";
 
@@ -26,55 +26,55 @@ import FileControlSource from "./variants/file-control.tsx?raw";
 
 import DisabledExample from "./variants/disabled";
 
-import DisabledSource from "./variants/disabled.tsx?raw";
+import DisabledSource from "./examples/input-disabled.tsx?raw";
 
 import FileExample from "./variants/file";
 
-import FileSource from "./variants/file.tsx?raw";
+import FileSource from "./examples/input-file.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/input-basic.tsx?raw";
 
 import FieldExample from "./variants/field";
 
-import FieldSource from "./variants/field.tsx?raw";
+import FieldSource from "./examples/input-field.tsx?raw";
 
 import FieldgroupExample from "./variants/fieldgroup";
 
-import FieldgroupSource from "./variants/fieldgroup.tsx?raw";
+import FieldgroupSource from "./examples/input-fieldgroup.tsx?raw";
 
 import InlineExample from "./variants/inline";
 
-import InlineSource from "./variants/inline.tsx?raw";
+import InlineSource from "./examples/input-inline.tsx?raw";
 
 import GridExample from "./variants/grid";
 
-import GridSource from "./variants/grid.tsx?raw";
+import GridSource from "./examples/input-grid.tsx?raw";
 
 import RequiredExample from "./variants/required";
 
-import RequiredSource from "./variants/required.tsx?raw";
+import RequiredSource from "./examples/input-required.tsx?raw";
 
 import BadgeExample from "./variants/badge";
 
-import BadgeSource from "./variants/badge.tsx?raw";
+import BadgeSource from "./examples/input-badge.tsx?raw";
 
 import InputGroupExample from "./variants/input-group";
 
-import InputGroupSource from "./variants/input-group.tsx?raw";
+import InputGroupSource from "./examples/input-input-group.tsx?raw";
 
 import PasswordExample from "./variants/password";
 
-import PasswordSource from "./variants/password.tsx?raw";
+import PasswordSource from "./examples/input-password.tsx?raw";
 
 import ButtonGroupExample from "./variants/button-group";
 
-import ButtonGroupSource from "./variants/button-group.tsx?raw";
+import ButtonGroupSource from "./examples/input-button-group.tsx?raw";
 
 import FormExample from "./variants/form";
 
-import FormSource from "./variants/form.tsx?raw";
+import FormSource from "./examples/input-form.tsx?raw";
 
 const meta = {
   component: Input,
@@ -101,7 +101,7 @@ export const Playground: StoryObj<typeof Input> = {
       options: ["text", "email", "number", "search", "date", "file"],
     },
   },
-  args: { className: "", disabled: false, placeholder: "Type here", type: "text" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("input", "playground") },

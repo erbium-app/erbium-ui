@@ -1,4 +1,4 @@
-import { PopoverAlignments } from "../examples/popover-alignments";
+import PopoverAlignments from "../examples/popover-alignments";
 
 const Example = () => <PopoverAlignments />;
 

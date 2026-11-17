@@ -1,5 +1,5 @@
-import { DropdownMenuCheckboxes } from "../examples/dropdown-menu-checkboxes";
+import DropdownMenuCheckboxesExample from "../examples/dropdown-menu-checkboxes";
 
-const Example = () => <DropdownMenuCheckboxes />;
+const Example = () => <DropdownMenuCheckboxesExample />;
 
 export default Example;

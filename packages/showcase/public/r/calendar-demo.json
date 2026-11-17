@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nconst CalendarDemo = () => {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n};\n\nexport default CalendarDemo;\n",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\n\nexport default function CalendarExample() {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date());\n\n  return <Calendar mode=\"single\" selected={date} onSelect={setDate} captionLayout=\"dropdown\" />;\n}\n",
       "path": "src/calendar/examples/calendar-demo.tsx",
       "target": "@components/showcase/calendar/examples/calendar-demo.tsx",
       "type": "registry:component"

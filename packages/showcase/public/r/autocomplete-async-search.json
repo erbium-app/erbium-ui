@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { AsyncAutocomplete } from \"../helpers\";\n\nconst Example = () => <AsyncAutocomplete />;\n\nexport default Example;\n",
+      "content": "import { AsyncAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteAsyncSearchExample() {\n  return <AsyncAutocomplete />;\n}\n",
       "path": "src/autocomplete/variants/async-search.tsx",
       "target": "@components/showcase/autocomplete/variants/async-search.tsx",
       "type": "registry:component"

@@ -1,5 +1,5 @@
 import StatefulButtonDemo from "../examples/stateful-button-demo";
 
-const Example = () => <StatefulButtonDemo />;
-
-export default Example;
+export default function StatefulButtonAsyncActionExample() {
+  return <StatefulButtonDemo />;
+}

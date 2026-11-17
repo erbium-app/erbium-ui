@@ -12,7 +12,7 @@ import { Tabs, TabsList, TabsTrigger } from "@erbium/ui/components/tabs";
 
 type FileTreeItem = { name: string } | { name: string; items: FileTreeItem[] };
 
-export const CollapsibleFileTree = () => {
+export default function CollapsibleFileTreeExample() {
   const fileTree: FileTreeItem[] = [
     {
       items: [
@@ -115,4 +115,4 @@ export const CollapsibleFileTree = () => {
       </CardContent>
     </Card>
   );
-};
+}

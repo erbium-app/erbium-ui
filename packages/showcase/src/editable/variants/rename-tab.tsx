@@ -1,5 +1,5 @@
-import Demo from "../examples/editable-demo";
+import EditableExample from "../examples/editable-demo";
 
-const Example = () => <Demo />;
+const Example = () => <EditableExample />;
 
 export default Example;

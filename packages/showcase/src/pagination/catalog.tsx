@@ -4,29 +4,29 @@ import { Pagination } from "@erbium/ui/components/pagination";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/pagination-demo.tsx?raw";
 
 import SimpleExample from "./variants/simple";
 
-import SimpleSource from "./variants/simple.tsx?raw";
+import SimpleSource from "./examples/pagination-simple.tsx?raw";
 
 import IconsOnlyExample from "./variants/icons-only";
 
-import IconsOnlySource from "./variants/icons-only.tsx?raw";
+import IconsOnlySource from "./examples/pagination-icons-only.tsx?raw";
 
 import RouterExample from "./variants/router";
 
-import RouterSource from "./variants/router.tsx?raw";
+import RouterSource from "./examples/pagination-router.tsx?raw";
 
 import TableExample from "./variants/table";
 
-import TableSource from "./variants/table.tsx?raw";
+import TableSource from "./examples/pagination-table.tsx?raw";
 
 const meta = {
   component: Pagination,
@@ -47,7 +47,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Pagination> = {
   argTypes: { className: { control: "text" } },
-  args: { className: "" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("pagination", "playground") },

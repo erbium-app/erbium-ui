@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { imports, localImport } from "./source-imports.mjs";
 import sectionsJson from "../../content/src/sections.json" with { type: "json" };
 
 interface DocumentationSection {
@@ -17,6 +18,8 @@ interface Variant {
   slug: string;
   /** Variant source path relative to the showcase root. */
   source: string;
+  /** Usage entry followed by its local dependencies, relative to the showcase root. */
+  usage: string[];
   /** Display title of the variant. */
   title: string;
 }
@@ -157,13 +160,45 @@ const variantTasks: { plan: CatalogPlan; exportName: string }[] = plans.flatMap(
   plan.exportNames.map((exportName) => ({ exportName, plan })),
 );
 
+const usageDependencies = async (entry: string): Promise<string[]> => {
+  const seen = new Set<string>();
+
+  const visit = async (file: string): Promise<void> => {
+    if (seen.has(file)) {
+      return;
+    }
+
+    seen.add(file);
+
+    const source = await readFile(path.join(root, file), "utf-8");
+
+    await Promise.all(
+      imports(source)
+        .filter((fileName) => fileName.startsWith("."))
+        .map(async (fileName) => {
+          const resolved = await localImport(fileName, path.join(root, file));
+
+          if (!resolved.startsWith(path.join(root, "src") + path.sep)) {
+            throw new Error(`Unresolved local usage import ${fileName} in ${file}`);
+          }
+
+          await visit(path.relative(root, resolved));
+        }),
+    );
+  };
+
+  await visit(entry);
+
+  return [entry, ...[...seen].filter((file) => file !== entry).toSorted()];
+};
+
 const variants: Variant[] = await Promise.all(
   variantTasks.map(async (task): Promise<Variant> => {
     const { directory, source } = task.plan.input;
     const { exportName } = task;
 
     const variantPattern = new RegExp(
-      `import ${exportName}Example from "\\./variants/(?<slug>[^"/]+)"`,
+      `import ${exportName}Example(?:, [{][^}]*[}])? from "\\./variants/(?<slug>[^"/]+)"`,
       "u",
     );
 
@@ -186,10 +221,39 @@ const variants: Variant[] = await Promise.all(
         ? exportName
         : unquote(displayMatch.groups.title);
 
+    const entry = `src/${directory}/variants/${slug}.tsx`;
+
+    const sourceBinding =
+      new RegExp(`const ${exportName}Source = (?<binding>\\w+);`, "u").exec(source)?.groups
+        ?.binding ?? `${exportName}Source`;
+
+    const rawImport = new RegExp(
+      `import ${sourceBinding} from "(?<request>\\./[^"]+)\\?raw";`,
+      "u",
+    ).exec(source)?.groups?.request;
+
+    if (rawImport === undefined) {
+      throw new Error(`Missing usage source: ${directory}/${exportName}`);
+    }
+
+    const usageEntry = path.join("src", directory, rawImport);
+    const usageSource = await readFile(path.join(root, usageEntry), "utf-8");
+
+    if (!/export default function [A-Z]\w*Example\(/u.test(usageSource)) {
+      throw new Error(`Usage entry must export a named Example function: ${usageEntry}`);
+    }
+
+    const previewFiles = await usageDependencies(entry);
+
+    if (!previewFiles.includes(usageEntry)) {
+      throw new Error(`Usage source ${usageEntry} must be used by ${entry}`);
+    }
+
     return {
       exportName,
       slug,
-      source: `src/${directory}/variants/${slug}.tsx`,
+      source: entry,
+      usage: await usageDependencies(usageEntry),
       title: variantTitle,
     };
   }),

@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { CommandControls } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <CommandControls />;\n\nexport default Example;\n",
+      "content": "import { CommandControls } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerScrollCommandsExample() {\n  return <CommandControls />;\n}\n",
       "path": "src/message-scroller/variants/scroll-commands.tsx",
       "target": "@components/showcase/message-scroller/variants/scroll-commands.tsx",
       "type": "registry:component"

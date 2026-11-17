@@ -8,8 +8,8 @@ import {
   PopoverTrigger,
 } from "@erbium/ui/components/popover";
 
-export const PopoverBasic = () => (
-  <>
+export default function PopoverBasicExample() {
+  return (
     <Popover>
       <PopoverTrigger render={<Button variant="outline" className="w-fit" />}>
         Open Popover
@@ -21,5 +21,5 @@ export const PopoverBasic = () => (
         </PopoverHeader>
       </PopoverContent>
     </Popover>
-  </>
-);
+  );
+}

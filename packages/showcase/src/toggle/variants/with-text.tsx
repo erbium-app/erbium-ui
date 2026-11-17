@@ -1,4 +1,4 @@
-import { ToggleText } from "../examples/toggle-text";
+import ToggleText from "../examples/toggle-text";
 
 const Example = () => <ToggleText />;
 

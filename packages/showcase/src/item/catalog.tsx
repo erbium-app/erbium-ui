@@ -4,33 +4,33 @@ import { Item } from "@erbium/ui/components/item";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/item-demo.tsx?raw";
 
 import VariantExample from "./variants/variant";
 
-import VariantSource from "./variants/variant.tsx?raw";
+import VariantSource from "./examples/item-variant.tsx?raw";
 
 import SizeExample from "./variants/size";
 
-import SizeSource from "./variants/size.tsx?raw";
+import SizeSource from "./examples/item-size.tsx?raw";
 
 import IconExample from "./variants/icon";
 
-import IconSource from "./variants/icon.tsx?raw";
+import IconSource from "./examples/item-icon.tsx?raw";
 
 import AvatarExample from "./variants/avatar";
 
-import AvatarSource from "./variants/avatar.tsx?raw";
+import AvatarSource from "./examples/item-avatar.tsx?raw";
 
 import GroupExample from "./variants/group";
 
-import GroupSource from "./variants/group.tsx?raw";
+import GroupSource from "./examples/item-group.tsx?raw";
 
 import SettingsPanelExample from "./variants/settings-panel";
 
@@ -38,27 +38,27 @@ import SettingsPanelSource from "./variants/settings-panel.tsx?raw";
 
 import BookLibraryExample from "./variants/book-library";
 
-import BookLibrarySource from "./variants/book-library.tsx?raw";
+import BookLibrarySource from "./examples/item-book-library.tsx?raw";
 
 import JoinedSelectionExample from "./variants/joined-selection";
 
-import JoinedSelectionSource from "./variants/joined-selection.tsx?raw";
+import JoinedSelectionSource from "./examples/item-joined-selection.tsx?raw";
 
 import LinkExample from "./variants/link";
 
-import LinkSource from "./variants/link.tsx?raw";
+import LinkSource from "./examples/item-link.tsx?raw";
 
 import DropdownExample from "./variants/dropdown";
 
-import DropdownSource from "./variants/dropdown.tsx?raw";
+import DropdownSource from "./examples/item-dropdown.tsx?raw";
 
 import HeaderExample from "./variants/header";
 
-import HeaderSource from "./variants/header.tsx?raw";
+import HeaderSource from "./examples/item-header.tsx?raw";
 
 import ImageExample from "./variants/image";
 
-import ImageSource from "./variants/image.tsx?raw";
+import ImageSource from "./examples/item-image.tsx?raw";
 
 const meta = {
   component: Item,
@@ -91,13 +91,7 @@ export const Playground: StoryObj<{
     size: { control: "select", options: ["default", "sm", "xs"] },
     variant: { control: "select", options: ["default", "card"] },
   },
-  args: {
-    asLink: false,
-    className: "",
-    mediaVariant: "icon",
-    size: "default",
-    variant: "default",
-  },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("item", "playground") },

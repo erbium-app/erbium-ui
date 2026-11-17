@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/aspect-ratio", "@erbium/styles"],
   "files": [
     {
-      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof AspectRatio>) => (\n  <AspectRatio\n    {...args}\n    className={`w-80 overflow-hidden rounded-md bg-muted ${args.className ?? \"\"}`}\n  >\n    <div className=\"flex size-full items-center justify-center\">Content at {args.ratio}:1</div>\n  </AspectRatio>\n);\n\nexport default Example;\n",
+      "content": "import { AspectRatio } from \"@/registry/erbium/ui/aspect-ratio\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  className: \"\",\n  ratio: 16 / 9,\n} satisfies React.ComponentProps<typeof AspectRatio>;\n\nexport default function AspectRatioPlaygroundExample(\n  args: React.ComponentProps<typeof AspectRatio> = defaultProps,\n) {\n  return (\n    <AspectRatio\n      {...args}\n      className={`w-80 overflow-hidden rounded-md bg-muted ${args.className ?? \"\"}`}\n    >\n      <div className=\"flex size-full items-center justify-center\">Content at {args.ratio}:1</div>\n    </AspectRatio>\n  );\n}\n",
       "path": "src/aspect-ratio/variants/playground.tsx",
       "target": "@components/showcase/aspect-ratio/variants/playground.tsx",
       "type": "registry:component"

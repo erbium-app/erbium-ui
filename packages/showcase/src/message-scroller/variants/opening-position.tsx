@@ -1,4 +1,4 @@
-import { MessageScrollerOpeningPosition } from "../examples/message-scroller-opening-position";
+import MessageScrollerOpeningPosition from "../examples/message-scroller-opening-position";
 
 const Example = () => <MessageScrollerOpeningPosition />;
 

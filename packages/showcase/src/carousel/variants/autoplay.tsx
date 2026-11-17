@@ -1,5 +1,5 @@
-import CarouselAutoplayDemo from "../examples/carousel-autoplay";
+import CarouselAutoplayExample from "../examples/carousel-autoplay";
 
-const Example = () => <CarouselAutoplayDemo />;
+const Example = () => <CarouselAutoplayExample />;
 
 export default Example;

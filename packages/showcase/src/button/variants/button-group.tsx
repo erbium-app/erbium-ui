@@ -1,5 +1,5 @@
-import ExampleButtonGroupDemo from "../../button-group/examples/button-group-demo";
+import ButtonGroupExample from "../../button-group/examples/button-group-demo";
 
-const Example = () => <ExampleButtonGroupDemo />;
-
-export default Example;
+export default function ButtonButtonGroupExample() {
+  return <ButtonGroupExample />;
+}

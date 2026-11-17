@@ -1,20 +1,22 @@
 import { Separator } from "@erbium/ui/components/separator";
 
-export const SeparatorMenu = () => (
-  <div className="flex items-center gap-related text-caption md:gap-group">
-    <div className="flex flex-col gap-1">
-      <span className="font-medium">Settings</span>
-      <span className="text-metadata text-muted-foreground">Manage preferences</span>
+export default function SeparatorMenuExample() {
+  return (
+    <div className="flex items-center gap-related text-caption md:gap-group">
+      <div className="flex flex-col gap-1">
+        <span className="font-medium">Settings</span>
+        <span className="text-metadata text-muted-foreground">Manage preferences</span>
+      </div>
+      <Separator orientation="vertical" />
+      <div className="flex flex-col gap-1">
+        <span className="font-medium">Account</span>
+        <span className="text-metadata text-muted-foreground">Profile & security</span>
+      </div>
+      <Separator orientation="vertical" className="hidden md:block" />
+      <div className="hidden flex-col gap-1 md:flex">
+        <span className="font-medium">Help</span>
+        <span className="text-metadata text-muted-foreground">Support & docs</span>
+      </div>
     </div>
-    <Separator orientation="vertical" />
-    <div className="flex flex-col gap-1">
-      <span className="font-medium">Account</span>
-      <span className="text-metadata text-muted-foreground">Profile & security</span>
-    </div>
-    <Separator orientation="vertical" className="hidden md:block" />
-    <div className="hidden flex-col gap-1 md:flex">
-      <span className="font-medium">Help</span>
-      <span className="text-metadata text-muted-foreground">Support & docs</span>
-    </div>
-  </div>
-);
+  );
+}

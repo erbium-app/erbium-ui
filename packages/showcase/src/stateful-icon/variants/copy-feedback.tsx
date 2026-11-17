@@ -1,5 +1,5 @@
-import StatefulIconDemo from "../examples/stateful-icon-demo";
+import StatefulIconExample from "../examples/stateful-icon-demo";
 
-const Example = () => <StatefulIconDemo />;
+const Example = () => <StatefulIconExample />;
 
 export default Example;

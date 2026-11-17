@@ -73,7 +73,7 @@ const columns = columnHelper.columns([
   }),
 ]);
 
-export const TableActions = () => {
+export default function TableActionsExample() {
   const table = useTable({ columns, data: products, features, getRowId: (row) => row.id });
 
   return (
@@ -114,4 +114,4 @@ export const TableActions = () => {
       </TableBody>
     </Table>
   );
-};
+}

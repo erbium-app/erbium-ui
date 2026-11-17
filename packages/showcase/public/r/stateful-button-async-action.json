@@ -14,7 +14,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import StatefulButtonDemo from \"../examples/stateful-button-demo\";\n\nconst Example = () => <StatefulButtonDemo />;\n\nexport default Example;\n",
+      "content": "import StatefulButtonDemo from \"../examples/stateful-button-demo\";\n\nexport default function StatefulButtonAsyncActionExample() {\n  return <StatefulButtonDemo />;\n}\n",
       "path": "src/stateful-button/variants/async-action.tsx",
       "target": "@components/showcase/stateful-button/variants/async-action.tsx",
       "type": "registry:component"

@@ -15,63 +15,63 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-const DropdownMenuDemo = () => (
-  <DropdownMenu>
-    <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
-    <DropdownMenuContent className="w-56" align="start">
-      <DropdownMenuList>
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+export default function DropdownMenuExample() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline">Open</Button>} />
+      <DropdownMenuContent className="w-56" align="start">
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuItem>
+              Profile
+              <DropdownMenuShortcut hotkey="Mod+Shift+P" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Billing
+              <DropdownMenuShortcut hotkey="Mod+B" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Settings
+              <DropdownMenuShortcut hotkey="Mod+S" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Keyboard shortcuts
+              <DropdownMenuShortcut hotkey="Mod+K" />
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuList>
+                    <DropdownMenuItem>Email</DropdownMenuItem>
+                    <DropdownMenuItem>Message</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>More...</DropdownMenuItem>
+                  </DropdownMenuList>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+            <DropdownMenuItem>
+              New Team
+              <DropdownMenuShortcut hotkey="Mod+T" />
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>GitHub</DropdownMenuItem>
+          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem disabled>API</DropdownMenuItem>
+          <DropdownMenuSeparator />
           <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut hotkey="Mod+Shift+P" />
+            Log out
+            <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut hotkey="Mod+B" />
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut hotkey="Mod+S" />
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Keyboard shortcuts
-            <DropdownMenuShortcut hotkey="Mod+K" />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>Team</DropdownMenuItem>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuList>
-                  <DropdownMenuItem>Email</DropdownMenuItem>
-                  <DropdownMenuItem>Message</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>More...</DropdownMenuItem>
-                </DropdownMenuList>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-          <DropdownMenuItem>
-            New Team
-            <DropdownMenuShortcut hotkey="Mod+T" />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>GitHub</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
-        <DropdownMenuItem disabled>API</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Log out
-          <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
-        </DropdownMenuItem>
-      </DropdownMenuList>
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
-
-export default DropdownMenuDemo;
+        </DropdownMenuList>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

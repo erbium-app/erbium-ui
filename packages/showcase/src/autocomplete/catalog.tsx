@@ -64,7 +64,7 @@ import FormIntegrationSource from "./variants/form-integration.tsx?raw";
 
 import ShowcaseExample from "./variants/showcase";
 
-import ShowcaseSource from "./variants/showcase.tsx?raw";
+import ShowcaseSource from "./examples/autocomplete-demo.tsx?raw";
 
 const meta = {
   component: Autocomplete,

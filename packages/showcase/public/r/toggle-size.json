@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle"],
   "files": [
     {
-      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport const ToggleSizes = () => (\n  <div className=\"flex flex-wrap items-center gap-related\">\n    <Toggle variant=\"outline\" aria-label=\"Toggle small\" size=\"sm\">\n      Small\n    </Toggle>\n    <Toggle variant=\"outline\" aria-label=\"Toggle default\" size=\"default\">\n      Default\n    </Toggle>\n    <Toggle variant=\"outline\" aria-label=\"Toggle large\" size=\"lg\">\n      Large\n    </Toggle>\n  </div>\n);\n",
+      "content": "import { Toggle } from \"@/registry/erbium/ui/toggle\";\n\nexport default function ToggleSizesExample() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-related\">\n      <Toggle variant=\"outline\" aria-label=\"Toggle small\" size=\"sm\">\n        Small\n      </Toggle>\n      <Toggle variant=\"outline\" aria-label=\"Toggle default\" size=\"default\">\n        Default\n      </Toggle>\n      <Toggle variant=\"outline\" aria-label=\"Toggle large\" size=\"lg\">\n        Large\n      </Toggle>\n    </div>\n  );\n}\n",
       "path": "src/toggle/examples/toggle-sizes.tsx",
       "target": "@components/showcase/toggle/examples/toggle-sizes.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { ToggleSizes } from \"../examples/toggle-sizes\";\n\nconst Example = () => <ToggleSizes />;\n\nexport default Example;\n",
+      "content": "import ToggleSizes from \"../examples/toggle-sizes\";\n\nconst Example = () => <ToggleSizes />;\n\nexport default Example;\n",
       "path": "src/toggle/variants/size.tsx",
       "target": "@components/showcase/toggle/variants/size.tsx",
       "type": "registry:component"

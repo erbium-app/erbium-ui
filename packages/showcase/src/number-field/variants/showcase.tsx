@@ -1,5 +1,5 @@
-import ShowcaseDemo from "../examples/number-field-demo";
+import NumberFieldShowcaseExample from "../examples/number-field-demo";
 
-const Example = () => <ShowcaseDemo />;
+const Example = () => <NumberFieldShowcaseExample />;
 
 export default Example;

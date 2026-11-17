@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Switch } from \"@/registry/erbium/ui/switch\";\n\nconst Example = () => <Switch defaultChecked aria-label=\"Notifications\" />;\n\nexport default Example;\n",
+      "content": "import { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchOnExample() {\n  return <Switch defaultChecked aria-label=\"Notifications\" />;\n}\n",
       "path": "src/switch/variants/on.tsx",
       "target": "@components/showcase/switch/variants/on.tsx",
       "type": "registry:component"

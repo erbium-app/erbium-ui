@@ -1,5 +1,5 @@
-import { CalendarCustomDays } from "../examples/calendar-custom-days";
+import CalendarCustomDaysExample from "../examples/calendar-custom-days";
 
-const Example = () => <CalendarCustomDays />;
+const Example = () => <CalendarCustomDaysExample />;
 
 export default Example;

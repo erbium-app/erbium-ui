@@ -1,5 +1,5 @@
 import { AccordionExample } from "../helpers";
 
-const Example = () => <AccordionExample multiple />;
-
-export default Example;
+export default function AccordionMultipleExample() {
+  return <AccordionExample multiple />;
+}

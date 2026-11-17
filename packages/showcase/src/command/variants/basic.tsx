@@ -1,5 +1,5 @@
-import { CommandBasic } from "../examples/command-basic";
+import CommandBasicExample from "../examples/command-basic";
 
-const Example = () => <CommandBasic />;
+const Example = () => <CommandBasicExample />;
 
 export default Example;

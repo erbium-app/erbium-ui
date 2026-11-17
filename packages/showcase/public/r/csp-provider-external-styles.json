@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/csp-provider", "@erbium/scroll-area", "@erbium/styles"],
   "files": [
     {
-      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof CSPProvider>) => (\n  <CSPProvider {...args}>\n    <ScrollArea className=\"h-40 w-72\" aria-label=\"CSP provider example\">\n      {Array.from({ length: 12 }, (_, index) => (\n        <p key={index} className=\"p-3\">\n          Scrollable item {index + 1}\n        </p>\n      ))}\n    </ScrollArea>\n  </CSPProvider>\n);\n\nexport default Example;\n",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { ScrollArea } from \"@/registry/erbium/ui/scroll-area\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  disableStyleElements: true,\n} satisfies React.ComponentProps<typeof CSPProvider>;\n\nexport default function CspProviderExternalStylesExample(\n  args: React.ComponentProps<typeof CSPProvider> = defaultProps,\n) {\n  return (\n    <CSPProvider {...args}>\n      <ScrollArea className=\"h-40 w-72\" aria-label=\"CSP provider example\">\n        {Array.from({ length: 12 }, (_, index) => (\n          <p key={index} className=\"p-3\">\n            Scrollable item {index + 1}\n          </p>\n        ))}\n      </ScrollArea>\n    </CSPProvider>\n  );\n}\n",
       "path": "src/csp-provider/variants/external-styles.tsx",
       "target": "@components/showcase/csp-provider/variants/external-styles.tsx",
       "type": "registry:component"

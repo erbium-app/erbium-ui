@@ -45,7 +45,7 @@ const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
   });
 };
 
-export const QuestionnaireControlled = () => {
+export default function QuestionnaireControlledExample() {
   const [item, setItem] = React.useState<ItemName>("scope");
 
   // Next, Previous and the step dots all report here.
@@ -113,4 +113,4 @@ export const QuestionnaireControlled = () => {
       </Questionnaire>
     </div>
   );
-};
+}

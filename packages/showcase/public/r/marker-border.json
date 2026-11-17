@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport const MarkerBorderDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-3 py-12\">\n    <Marker variant=\"border\">\n      <MarkerIcon>\n        <Icon name=\"git-branch\" />\n      </MarkerIcon>\n      <MarkerContent>Switched to release-candidate</MarkerContent>\n    </Marker>\n    <Marker variant=\"border\">\n      <MarkerIcon>\n        <Icon name=\"search-01\" />\n      </MarkerIcon>\n      <MarkerContent>Reviewed 8 related files</MarkerContent>\n    </Marker>\n    <Marker variant=\"border\">\n      <MarkerIcon>\n        <Icon name=\"file-text\" />\n      </MarkerIcon>\n      <MarkerContent>Opened implementation notes</MarkerContent>\n    </Marker>\n  </div>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport default function MarkerBorderExample() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-3 py-12\">\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <Icon name=\"git-branch\" />\n        </MarkerIcon>\n        <MarkerContent>Switched to release-candidate</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <Icon name=\"search-01\" />\n        </MarkerIcon>\n        <MarkerContent>Reviewed 8 related files</MarkerContent>\n      </Marker>\n      <Marker variant=\"border\">\n        <MarkerIcon>\n          <Icon name=\"file-text\" />\n        </MarkerIcon>\n        <MarkerContent>Opened implementation notes</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
       "path": "src/marker/examples/marker-border.tsx",
       "target": "@components/showcase/marker/examples/marker-border.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { MarkerBorderDemo } from \"../examples/marker-border\";\n\nconst Example = () => <MarkerBorderDemo />;\n\nexport default Example;\n",
+      "content": "import MarkerBorderExample from \"../examples/marker-border\";\n\nconst Example = () => <MarkerBorderExample />;\n\nexport default Example;\n",
       "path": "src/marker/variants/border.tsx",
       "target": "@components/showcase/marker/variants/border.tsx",
       "type": "registry:component"

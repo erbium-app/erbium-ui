@@ -1,5 +1,5 @@
-import ButtonShortcutDemo from "../../kbd/examples/kbd-button";
+import KbdButtonExample from "../../kbd/examples/kbd-button";
 
-const Example = () => <ButtonShortcutDemo />;
-
-export default Example;
+export default function ButtonShortcutsExample() {
+  return <KbdButtonExample />;
+}

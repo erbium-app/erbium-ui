@@ -87,7 +87,7 @@ const statusOf = (page: number, loaded: Loaded) => {
   return `Page ${page} was fetched before the click.`;
 };
 
-const PaginationTable = () => {
+export default function PaginationTableExample() {
   const [predict, setPredict] = useState(true);
   const [page, setPage] = useState(1);
   // The first page arrives with the document, as a route loader would provide it.
@@ -185,6 +185,4 @@ const PaginationTable = () => {
       </Field>
     </div>
   );
-};
-
-export default PaginationTable;
+}

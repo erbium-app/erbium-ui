@@ -13,7 +13,7 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-const DropdownMenuRadioGroupDemo = () => {
+export default function DropdownMenuRadioGroupExample() {
   const [position, setPosition] = React.useState("bottom");
 
   return (
@@ -34,6 +34,4 @@ const DropdownMenuRadioGroupDemo = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export default DropdownMenuRadioGroupDemo;
+}

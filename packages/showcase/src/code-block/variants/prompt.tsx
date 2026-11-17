@@ -21,23 +21,23 @@ const prompt = `Build a settings form with Erbium UI: a name field, an email fie
 3. Show validation errors inside each field, and keep the labels with their controls.
 4. Run \`erbium check\` and the project's build when you are done.`;
 
-const Example = () => (
-  <CodeBlock className="w-full max-w-xl" code={prompt} language="text" wrap>
-    <CodeBlockHeader className="pe-32">
-      <CodeBlockTitle>Prompt</CodeBlockTitle>
-    </CodeBlockHeader>
-    <CodeBlockActions>
-      <CodeBlockCopyButton aria-label="Copy prompt">
-        <CopyButtonIcon data-icon="inline-start" />
-        <CopyButtonLabel>
-          <CopyButtonLabelIdle>Copy prompt</CopyButtonLabelIdle>
-          <CopyButtonLabelCopied>Copied</CopyButtonLabelCopied>
-          <CopyButtonLabelError>Failed</CopyButtonLabelError>
-        </CopyButtonLabel>
-      </CodeBlockCopyButton>
-    </CodeBlockActions>
-    <CodeBlockContent />
-  </CodeBlock>
-);
-
-export default Example;
+export default function CodeBlockPromptExample() {
+  return (
+    <CodeBlock className="w-full max-w-xl" code={prompt} language="text" wrap>
+      <CodeBlockHeader className="pe-32">
+        <CodeBlockTitle>Prompt</CodeBlockTitle>
+      </CodeBlockHeader>
+      <CodeBlockActions>
+        <CodeBlockCopyButton aria-label="Copy prompt">
+          <CopyButtonIcon data-icon="inline-start" />
+          <CopyButtonLabel>
+            <CopyButtonLabelIdle>Copy prompt</CopyButtonLabelIdle>
+            <CopyButtonLabelCopied>Copied</CopyButtonLabelCopied>
+            <CopyButtonLabelError>Failed</CopyButtonLabelError>
+          </CopyButtonLabel>
+        </CodeBlockCopyButton>
+      </CodeBlockActions>
+      <CodeBlockContent />
+    </CodeBlock>
+  );
+}

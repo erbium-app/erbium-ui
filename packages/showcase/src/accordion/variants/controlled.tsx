@@ -1,5 +1,5 @@
 import { ControlledAccordionExample } from "../helpers";
 
-const Example = () => <ControlledAccordionExample />;
-
-export default Example;
+export default function AccordionControlledExample() {
+  return <ControlledAccordionExample />;
+}

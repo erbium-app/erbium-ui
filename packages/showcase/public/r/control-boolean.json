@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => (\n  <Control.Group className=\"w-72\">\n    <Control.Boolean label=\"Visible\" defaultChecked />\n    <Control.Boolean label=\"Reduced motion\" presentation=\"switch\" />\n  </Control.Group>\n);\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlBooleanExample() {\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Boolean label=\"Visible\" defaultChecked />\n      <Control.Boolean label=\"Reduced motion\" presentation=\"switch\" />\n    </Control.Group>\n  );\n}\n",
       "path": "src/control/variants/boolean.tsx",
       "target": "@components/showcase/control/variants/boolean.tsx",
       "type": "registry:component"

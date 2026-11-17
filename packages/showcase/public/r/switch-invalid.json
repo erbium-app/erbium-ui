@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport const SwitchInvalid = () => (\n  <Field orientation=\"horizontal\" className=\"max-w-sm\" invalid>\n    <FieldContent>\n      <FieldLabel>Accept terms and conditions</FieldLabel>\n      <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n    </FieldContent>\n    <Switch />\n  </Field>\n);\n",
+      "content": "import { Field, FieldContent, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\n\nexport default function SwitchInvalidExample() {\n  return (\n    <Field orientation=\"horizontal\" className=\"max-w-sm\" invalid>\n      <FieldContent>\n        <FieldLabel>Accept terms and conditions</FieldLabel>\n        <FieldDescription>You must accept the terms and conditions to continue.</FieldDescription>\n      </FieldContent>\n      <Switch />\n    </Field>\n  );\n}\n",
       "path": "src/switch/examples/switch-invalid.tsx",
       "target": "@components/showcase/switch/examples/switch-invalid.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { SwitchInvalid } from \"../examples/switch-invalid\";\n\nconst Example = () => <SwitchInvalid />;\n\nexport default Example;\n",
+      "content": "import SwitchInvalid from \"../examples/switch-invalid\";\n\nconst Example = () => <SwitchInvalid />;\n\nexport default Example;\n",
       "path": "src/switch/variants/invalid.tsx",
       "target": "@components/showcase/switch/variants/invalid.tsx",
       "type": "registry:component"

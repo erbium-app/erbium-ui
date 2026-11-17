@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 
-const FieldDemo = () => {
+export default function FieldExample() {
   const id = useId();
 
   const form = useAppForm({
@@ -205,6 +205,4 @@ const FieldDemo = () => {
       </Form>
     </div>
   );
-};
-
-export default FieldDemo;
+}

@@ -4,33 +4,33 @@ import { Message } from "@erbium/ui/components/message";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/message-demo.tsx?raw";
 
 import AvatarExample from "./variants/avatar";
 
-import AvatarSource from "./variants/avatar.tsx?raw";
+import AvatarSource from "./examples/message-avatar.tsx?raw";
 
 import GroupExample from "./variants/group";
 
-import GroupSource from "./variants/group.tsx?raw";
+import GroupSource from "./examples/message-group.tsx?raw";
 
 import HeaderFooterExample from "./variants/header-footer";
 
-import HeaderFooterSource from "./variants/header-footer.tsx?raw";
+import HeaderFooterSource from "./examples/message-header-footer.tsx?raw";
 
 import ActionsExample from "./variants/actions";
 
-import ActionsSource from "./variants/actions.tsx?raw";
+import ActionsSource from "./examples/message-actions.tsx?raw";
 
 import AttachmentExample from "./variants/attachment";
 
-import AttachmentSource from "./variants/attachment.tsx?raw";
+import AttachmentSource from "./examples/message-attachment.tsx?raw";
 
 const meta = {
   component: Message,
@@ -51,7 +51,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<typeof Message> = {
   argTypes: { align: { control: "select", options: ["start", "end"] } },
-  args: { align: "start", className: "" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("message", "playground") },

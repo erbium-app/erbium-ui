@@ -1,5 +1,5 @@
-import { DialogScrollableContent } from "../examples/dialog-scrollable-content";
+import DialogScrollableContentExample from "../examples/dialog-scrollable-content";
 
-const Example = () => <DialogScrollableContent />;
+const Example = () => <DialogScrollableContentExample />;
 
 export default Example;

@@ -1,4 +1,4 @@
-import { SkeletonStates } from "../examples/skeleton-states";
+import SkeletonStates from "../examples/skeleton-states";
 
 const Example = () => <SkeletonStates />;
 

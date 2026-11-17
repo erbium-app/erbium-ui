@@ -1,4 +1,4 @@
-import { TableActions } from "../examples/table-actions";
+import TableActions from "../examples/table-actions";
 
 const Example = () => <TableActions />;
 

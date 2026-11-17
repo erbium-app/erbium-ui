@@ -25,7 +25,7 @@ const CURRENCIES = [
   },
 ];
 
-const ButtonGroupSelect = () => {
+export default function ButtonGroupSelectExample() {
   const [currency, setCurrency] = React.useState("$");
 
   return (
@@ -39,9 +39,9 @@ const ButtonGroupSelect = () => {
         >
           <SelectTrigger className="font-mono">{currency}</SelectTrigger>
           <SelectContent className="min-w-24">
-            {CURRENCIES.map((currency) => (
-              <SelectItem key={currency.value} value={currency.value}>
-                {currency.value} <span className="text-muted-foreground">{currency.label}</span>
+            {CURRENCIES.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.value} <span className="text-muted-foreground">{option.label}</span>
               </SelectItem>
             ))}
           </SelectContent>
@@ -62,6 +62,4 @@ const ButtonGroupSelect = () => {
       </ButtonGroup>
     </ButtonGroup>
   );
-};
-
-export default ButtonGroupSelect;
+}

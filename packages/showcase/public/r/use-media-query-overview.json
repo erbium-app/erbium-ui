@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/styles", "@erbium/use-media-query"],
   "files": [
     {
-      "content": "import { useMediaQuery } from \"@/registry/erbium/hooks/use-media-query\";\n\nconst Demo = () => {\n  const reducedMotion = useMediaQuery(\"(prefers-reduced-motion: reduce)\", {});\n\n  return (\n    <p aria-live=\"polite\">\n      Reduced motion: {reducedMotion ? \"enabled\" : \"disabled\"}. Change your system preference to\n      update.\n    </p>\n  );\n};\n\nexport default Demo;\n",
+      "content": "import { useMediaQuery } from \"@/registry/erbium/hooks/use-media-query\";\n\nexport default function UseMediaQueryExample() {\n  const reducedMotion = useMediaQuery(\"(prefers-reduced-motion: reduce)\", {});\n\n  return (\n    <p aria-live=\"polite\">\n      Reduced motion: {reducedMotion ? \"enabled\" : \"disabled\"}. Change your system preference to\n      update.\n    </p>\n  );\n}\n",
       "path": "src/use-media-query/examples/use-media-query-demo.tsx",
       "target": "@components/showcase/use-media-query/examples/use-media-query-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/use-media-query-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n",
+      "content": "import UseMediaQueryExample from \"../examples/use-media-query-demo\";\n\nconst Example = () => <UseMediaQueryExample />;\n\nexport default Example;\n",
       "path": "src/use-media-query/variants/overview.tsx",
       "target": "@components/showcase/use-media-query/variants/overview.tsx",
       "type": "registry:component"

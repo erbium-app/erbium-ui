@@ -1,5 +1,5 @@
-import { ContextMenuError } from "../examples/context-menu-error";
+import ContextMenuErrorExample from "../examples/context-menu-error";
 
-const Example = () => <ContextMenuError />;
+const Example = () => <ContextMenuErrorExample />;
 
 export default Example;

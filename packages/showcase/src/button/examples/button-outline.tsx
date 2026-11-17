@@ -1,5 +1,5 @@
 import { Button } from "@erbium/ui/components/button";
 
-const ButtonOutline = () => <Button variant="outline">Outline</Button>;
-
-export default ButtonOutline;
+export default function ButtonOutlineExample() {
+  return <Button variant="outline">Outline</Button>;
+}

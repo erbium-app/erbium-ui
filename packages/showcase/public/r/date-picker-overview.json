@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/date-picker", "@erbium/field", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nconst DatePickerDemo = () => (\n  <Field className=\"w-64\">\n    <FieldLabel htmlFor=\"date-picker-demo\">Start date</FieldLabel>\n    <DatePicker>\n      <DatePickerInput id=\"date-picker-demo\" />\n      <DatePickerContent>\n        <DatePickerCalendar />\n      </DatePickerContent>\n    </DatePicker>\n    <FieldDescription>Type a date or press the down arrow to open the calendar.</FieldDescription>\n  </Field>\n);\n\nexport default DatePickerDemo;\n",
+      "content": "import {\n  DatePicker,\n  DatePickerCalendar,\n  DatePickerContent,\n  DatePickerInput,\n} from \"@/registry/erbium/ui/date-picker\";\nimport { Field, FieldDescription, FieldLabel } from \"@/registry/erbium/ui/field\";\n\nexport default function DatePickerExample() {\n  return (\n    <Field className=\"w-64\">\n      <FieldLabel htmlFor=\"date-picker-demo\">Start date</FieldLabel>\n      <DatePicker>\n        <DatePickerInput id=\"date-picker-demo\" />\n        <DatePickerContent>\n          <DatePickerCalendar />\n        </DatePickerContent>\n      </DatePicker>\n      <FieldDescription>Type a date or press the down arrow to open the calendar.</FieldDescription>\n    </Field>\n  );\n}\n",
       "path": "src/date-picker/examples/date-picker-demo.tsx",
       "target": "@components/showcase/date-picker/examples/date-picker-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import DatePickerDemo from \"../examples/date-picker-demo\";\n\nconst Example = () => <DatePickerDemo />;\n\nexport default Example;\n",
+      "content": "import DatePickerExample from \"../examples/date-picker-demo\";\n\nconst Example = () => <DatePickerExample />;\n\nexport default Example;\n",
       "path": "src/date-picker/variants/overview.tsx",
       "target": "@components/showcase/date-picker/variants/overview.tsx",
       "type": "registry:component"

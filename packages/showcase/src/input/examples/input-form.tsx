@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 
-export const InputForm = () => {
+export default function InputFormExample() {
   const countries = [
     { label: "United States", value: "us" },
     { label: "United Kingdom", value: "uk" },
@@ -117,4 +117,4 @@ export const InputForm = () => {
       </FieldGroup>
     </Form>
   );
-};
+}

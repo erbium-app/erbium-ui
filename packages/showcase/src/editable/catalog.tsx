@@ -6,7 +6,7 @@ import { componentDocumentation, variantDocumentation } from "@erbium/content/ma
 
 import RenameTabExample from "./variants/rename-tab";
 
-import RenameTabSource from "./variants/rename-tab.tsx?raw";
+import RenameTabSource from "./examples/editable-demo.tsx?raw";
 
 const meta = {
   component: Editable,

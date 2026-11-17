@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/icon", "@erbium/input-group", "@erbium/kbd", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport const InputGroupKbd = () => (\n  <InputGroup className=\"max-w-sm\">\n    <InputGroupInput placeholder=\"Search...\" />\n    <InputGroupAddon>\n      <Icon name=\"search-01\" className=\"text-muted-foreground\" />\n    </InputGroupAddon>\n    <InputGroupAddon align=\"inline-end\">\n      <Kbd hotkey=\"Mod+K\" />\n    </InputGroupAddon>\n  </InputGroup>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/erbium/ui/input-group\";\nimport { Kbd } from \"@/registry/erbium/ui/kbd\";\n\nexport default function InputGroupKbdExample() {\n  return (\n    <InputGroup className=\"max-w-sm\">\n      <InputGroupInput placeholder=\"Search...\" />\n      <InputGroupAddon>\n        <Icon name=\"search-01\" className=\"text-muted-foreground\" />\n      </InputGroupAddon>\n      <InputGroupAddon align=\"inline-end\">\n        <Kbd hotkey=\"Mod+K\" />\n      </InputGroupAddon>\n    </InputGroup>\n  );\n}\n",
       "path": "src/input-group/examples/input-group-kbd.tsx",
       "target": "@components/showcase/input-group/examples/input-group-kbd.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { InputGroupKbd } from \"../examples/input-group-kbd\";\n\nconst Example = () => <InputGroupKbd />;\n\nexport default Example;\n",
+      "content": "import InputGroupKbdExample from \"../examples/input-group-kbd\";\n\nconst Example = () => <InputGroupKbdExample />;\n\nexport default Example;\n",
       "path": "src/input-group/variants/kbd.tsx",
       "target": "@components/showcase/input-group/variants/kbd.tsx",
       "type": "registry:component"

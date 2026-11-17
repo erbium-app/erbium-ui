@@ -1,5 +1,5 @@
-import { BubbleGroupDemo } from "../examples/bubble-group-demo";
+import BubbleGroupExample from "../examples/bubble-group-demo";
 
-const Example = () => <BubbleGroupDemo />;
+const Example = () => <BubbleGroupExample />;
 
 export default Example;

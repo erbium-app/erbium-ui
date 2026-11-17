@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport {\n  Message,\n  MessageContent,\n  MessageFooter,\n  MessageHeader,\n} from \"@/registry/erbium/ui/message\";\n\nexport const MessageHeaderFooterDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Message>\n      <MessageContent>\n        <MessageHeader>Olivia</MessageHeader>\n        <Bubble variant=\"muted\">\n          <BubbleContent>I already checked the logs.</BubbleContent>\n        </Bubble>\n      </MessageContent>\n    </Message>\n    <Message align=\"end\">\n      <MessageContent>\n        <Bubble>\n          <BubbleContent>\n            Send the report to the team. Ping @john.doe if you need help.\n          </BubbleContent>\n        </Bubble>\n        <MessageFooter>\n          <div>\n            Read <span className=\"font-normal\">Yesterday</span>\n          </div>\n        </MessageFooter>\n      </MessageContent>\n    </Message>\n  </div>\n);\n",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport {\n  Message,\n  MessageContent,\n  MessageFooter,\n  MessageHeader,\n} from \"@/registry/erbium/ui/message\";\n\nexport default function MessageHeaderFooterExample() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Message>\n        <MessageContent>\n          <MessageHeader>Olivia</MessageHeader>\n          <Bubble variant=\"muted\">\n            <BubbleContent>I already checked the logs.</BubbleContent>\n          </Bubble>\n        </MessageContent>\n      </Message>\n      <Message align=\"end\">\n        <MessageContent>\n          <Bubble>\n            <BubbleContent>\n              Send the report to the team. Ping @john.doe if you need help.\n            </BubbleContent>\n          </Bubble>\n          <MessageFooter>\n            <div>\n              Read <span className=\"font-normal\">Yesterday</span>\n            </div>\n          </MessageFooter>\n        </MessageContent>\n      </Message>\n    </div>\n  );\n}\n",
       "path": "src/message/examples/message-header-footer.tsx",
       "target": "@components/showcase/message/examples/message-header-footer.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { MessageHeaderFooterDemo } from \"../examples/message-header-footer\";\n\nconst Example = () => <MessageHeaderFooterDemo />;\n\nexport default Example;\n",
+      "content": "import MessageHeaderFooterExample from \"../examples/message-header-footer\";\n\nconst Example = () => <MessageHeaderFooterExample />;\n\nexport default Example;\n",
       "path": "src/message/variants/header-footer.tsx",
       "target": "@components/showcase/message/variants/header-footer.tsx",
       "type": "registry:component"

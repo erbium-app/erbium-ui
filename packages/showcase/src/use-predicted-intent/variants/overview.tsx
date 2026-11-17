@@ -1,5 +1,5 @@
-import Demo from "../examples/use-predicted-intent-demo";
+import UsePredictedIntentExample from "../examples/use-predicted-intent-demo";
 
-const Example = () => <Demo />;
+const Example = () => <UsePredictedIntentExample />;
 
 export default Example;

@@ -1,4 +1,4 @@
-import { QuestionnaireMultiple } from "../examples/questionnaire-multiple";
+import QuestionnaireMultiple from "../examples/questionnaire-multiple";
 
 const Example = () => <QuestionnaireMultiple />;
 

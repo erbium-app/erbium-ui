@@ -1,4 +1,4 @@
-import { TabsDisabled } from "../examples/tabs-disabled";
+import TabsDisabled from "../examples/tabs-disabled";
 
 const Example = () => <TabsDisabled />;
 

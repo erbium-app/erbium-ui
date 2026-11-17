@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/meter", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Meter,\n  MeterIndicator,\n  MeterLabel,\n  MeterTrack,\n  MeterValue,\n} from \"@/registry/erbium/ui/meter\";\n\nconst Example = () => (\n  <Meter value={72} min={0} max={100} format={{ style: \"unit\", unit: \"percent\" }} className=\"w-72\">\n    <MeterLabel>Battery</MeterLabel>\n    <MeterValue />\n    <MeterTrack>\n      <MeterIndicator />\n    </MeterTrack>\n  </Meter>\n);\n\nexport default Example;\n",
+      "content": "import {\n  Meter,\n  MeterIndicator,\n  MeterLabel,\n  MeterTrack,\n  MeterValue,\n} from \"@/registry/erbium/ui/meter\";\n\nexport default function MeterRangeExample() {\n  return (\n    <Meter\n      value={72}\n      min={0}\n      max={100}\n      format={{ style: \"unit\", unit: \"percent\" }}\n      className=\"w-72\"\n    >\n      <MeterLabel>Battery</MeterLabel>\n      <MeterValue />\n      <MeterTrack>\n        <MeterIndicator />\n      </MeterTrack>\n    </Meter>\n  );\n}\n",
       "path": "src/meter/variants/range.tsx",
       "target": "@components/showcase/meter/variants/range.tsx",
       "type": "registry:component"

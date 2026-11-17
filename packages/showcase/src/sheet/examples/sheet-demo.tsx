@@ -13,32 +13,32 @@ import {
   SheetTrigger,
 } from "@erbium/ui/components/sheet";
 
-const SheetDemo = () => (
-  <Sheet>
-    <SheetTrigger render={<Button variant="outline">Open</Button>} />
-    <SheetPanel>
-      <SheetHeader>
-        <SheetTitle>Edit profile</SheetTitle>
-        <SheetDescription>
-          Make changes to your profile here. Click save when you&apos;re done.
-        </SheetDescription>
-      </SheetHeader>
-      <SheetContent className="grid content-start gap-section">
-        <Field>
-          <FieldLabel>Name</FieldLabel>
-          <Input defaultValue="Pedro Duarte" />
-        </Field>
-        <Field>
-          <FieldLabel>Username</FieldLabel>
-          <Input defaultValue="@peduarte" />
-        </Field>
-      </SheetContent>
-      <SheetFooter>
-        <SheetClose render={<Button variant="outline">Close</Button>} />
-        <SheetClose render={<Button>Save changes</Button>} />
-      </SheetFooter>
-    </SheetPanel>
-  </Sheet>
-);
-
-export default SheetDemo;
+export default function SheetExample() {
+  return (
+    <Sheet>
+      <SheetTrigger render={<Button variant="outline">Open</Button>} />
+      <SheetPanel>
+        <SheetHeader>
+          <SheetTitle>Edit profile</SheetTitle>
+          <SheetDescription>
+            Make changes to your profile here. Click save when you&apos;re done.
+          </SheetDescription>
+        </SheetHeader>
+        <SheetContent className="grid content-start gap-section">
+          <Field>
+            <FieldLabel>Name</FieldLabel>
+            <Input defaultValue="Pedro Duarte" />
+          </Field>
+          <Field>
+            <FieldLabel>Username</FieldLabel>
+            <Input defaultValue="@peduarte" />
+          </Field>
+        </SheetContent>
+        <SheetFooter>
+          <SheetClose render={<Button variant="outline">Close</Button>} />
+          <SheetClose render={<Button>Save changes</Button>} />
+        </SheetFooter>
+      </SheetPanel>
+    </Sheet>
+  );
+}

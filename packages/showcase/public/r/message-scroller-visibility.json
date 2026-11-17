@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { VisibilityState } from \"../examples/message-scroller-variants\";\n\nconst Example = () => <VisibilityState />;\n\nexport default Example;\n",
+      "content": "import { VisibilityState } from \"../examples/message-scroller-variants\";\n\nexport default function MessageScrollerVisibilityExample() {\n  return <VisibilityState />;\n}\n",
       "path": "src/message-scroller/variants/visibility.tsx",
       "target": "@components/showcase/message-scroller/variants/visibility.tsx",
       "type": "registry:component"

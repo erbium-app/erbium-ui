@@ -11,11 +11,9 @@ const getTimeZone = () => Intl.DateTimeFormat().resolvedOptions().timeZone;
 // The server has no user time zone; the calendar renders in UTC until hydration.
 const getServerTimeZone = () => "UTC";
 
-const CalendarTimezone = () => {
+export default function CalendarTimezoneExample() {
   const [date, setDate] = React.useState<Date>();
   const timeZone = React.useSyncExternalStore(subscribe, getTimeZone, getServerTimeZone);
 
   return <Calendar mode="single" onSelect={setDate} selected={date} timeZone={timeZone} />;
-};
-
-export default CalendarTimezone;
+}

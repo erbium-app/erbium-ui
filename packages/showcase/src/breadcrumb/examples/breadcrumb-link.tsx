@@ -89,7 +89,7 @@ const routeTree = rootRoute.addChildren([
   ]),
 ]);
 
-export const BreadcrumbLinkDemo = () => {
+export default function BreadcrumbLinkExample() {
   const router = useMemo(
     () =>
       createRouter({
@@ -101,4 +101,4 @@ export const BreadcrumbLinkDemo = () => {
   );
 
   return <RouterProvider router={router} />;
-};
+}

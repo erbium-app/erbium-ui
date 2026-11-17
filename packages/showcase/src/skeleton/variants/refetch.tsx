@@ -1,4 +1,4 @@
-import { SkeletonRefetch } from "../examples/skeleton-refetch";
+import SkeletonRefetch from "../examples/skeleton-refetch";
 
 const Example = () => <SkeletonRefetch />;
 

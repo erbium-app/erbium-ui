@@ -1,4 +1,4 @@
-import { AvatarSizeExample } from "../examples/avatar-size";
+import AvatarSizeExample from "../examples/avatar-size";
 
 const Example = () => <AvatarSizeExample />;
 

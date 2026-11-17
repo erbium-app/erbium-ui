@@ -1,3 +1,5 @@
 import { Input } from "@erbium/ui/components/input";
 
-export const InputBasic = () => <Input placeholder="Enter text" />;
+export default function InputBasicExample() {
+  return <Input placeholder="Enter text" />;
+}

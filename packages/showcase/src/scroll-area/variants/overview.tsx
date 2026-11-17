@@ -1,8 +1,8 @@
-import Demo from "../examples/scroll-area-demo";
+import ScrollAreaExample from "../examples/scroll-area-demo";
 
 const Example = () => (
   <div className="w-full min-w-72 max-w-2xl p-4">
-    <Demo />
+    <ScrollAreaExample />
   </div>
 );
 

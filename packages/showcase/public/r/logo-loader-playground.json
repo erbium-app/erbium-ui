@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/logo-loader", "@erbium/styles"],
   "files": [
     {
-      "content": "import { LogoLoader } from \"@/registry/erbium/ui/logo-loader\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof LogoLoader>) => (\n  <LogoLoader className=\"size-16\" label=\"Loading\" {...args} />\n);\n\nexport default Example;\n",
+      "content": "import { LogoLoader } from \"@/registry/erbium/ui/logo-loader\";\nimport type * as React from \"react\";\n\nexport const defaultProps = { delay: 0, loading: true } satisfies React.ComponentProps<\n  typeof LogoLoader\n>;\n\nexport default function LogoLoaderPlaygroundExample(\n  args: React.ComponentProps<typeof LogoLoader> = defaultProps,\n) {\n  return <LogoLoader className=\"size-16\" label=\"Loading\" {...args} />;\n}\n",
       "path": "src/logo-loader/variants/playground.tsx",
       "target": "@components/showcase/logo-loader/variants/playground.tsx",
       "type": "registry:component"

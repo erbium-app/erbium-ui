@@ -4,29 +4,29 @@ import { Spinner } from "@erbium/ui/components/spinner";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/spinner-demo.tsx?raw";
 
 import SizeExample from "./variants/size";
 
-import SizeSource from "./variants/size.tsx?raw";
+import SizeSource from "./examples/spinner-size.tsx?raw";
 
 import ButtonExample from "./variants/button";
 
-import ButtonSource from "./variants/button.tsx?raw";
+import ButtonSource from "./examples/spinner-button.tsx?raw";
 
 import BadgeExample from "./variants/badge";
 
-import BadgeSource from "./variants/badge.tsx?raw";
+import BadgeSource from "./examples/spinner-badge.tsx?raw";
 
 import InputGroupExample from "./variants/input-group";
 
-import InputGroupSource from "./variants/input-group.tsx?raw";
+import InputGroupSource from "./examples/spinner-input-group.tsx?raw";
 
 const meta = {
   component: Spinner,
@@ -50,7 +50,7 @@ export const Playground: StoryObj<typeof Spinner> = {
     size: { control: "select", options: ["xs", "sm", "default", "lg", "xl"] },
     "aria-label": { control: "text" },
   },
-  args: { size: "lg" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("spinner", "playground") },

@@ -1,5 +1,5 @@
-import { DropdownMenuSubmenu } from "../examples/dropdown-menu-submenu";
+import DropdownMenuSubmenuExample from "../examples/dropdown-menu-submenu";
 
-const Example = () => <DropdownMenuSubmenu />;
+const Example = () => <DropdownMenuSubmenuExample />;
 
 export default Example;

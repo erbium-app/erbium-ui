@@ -1,5 +1,5 @@
-import { BadgeWithIconLeft } from "../examples/badge-icon";
+import BadgeWithIconLeftExample from "../examples/badge-icon";
 
-const Example = () => <BadgeWithIconLeft />;
+const Example = () => <BadgeWithIconLeftExample />;
 
 export default Example;

@@ -12,13 +12,13 @@
   ],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport const InputInputGroup = () => (\n  <Field>\n    <FieldLabel>Website URL</FieldLabel>\n    <InputGroup>\n      <InputGroupInput placeholder=\"example.com\" />\n      <InputGroupAddon>\n        <InputGroupText>https://</InputGroupText>\n      </InputGroupAddon>\n      <InputGroupAddon align=\"inline-end\">\n        <Icon name=\"info\" />\n      </InputGroupAddon>\n    </InputGroup>\n  </Field>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupInput,\n  InputGroupText,\n} from \"@/registry/erbium/ui/input-group\";\n\nexport default function InputInputGroupExample() {\n  return (\n    <Field>\n      <FieldLabel>Website URL</FieldLabel>\n      <InputGroup>\n        <InputGroupInput placeholder=\"example.com\" />\n        <InputGroupAddon>\n          <InputGroupText>https://</InputGroupText>\n        </InputGroupAddon>\n        <InputGroupAddon align=\"inline-end\">\n          <Icon name=\"info\" />\n        </InputGroupAddon>\n      </InputGroup>\n    </Field>\n  );\n}\n",
       "path": "src/input/examples/input-input-group.tsx",
       "target": "@components/showcase/input/examples/input-input-group.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { InputInputGroup } from \"../examples/input-input-group\";\n\nconst Example = () => <InputInputGroup />;\n\nexport default Example;\n",
+      "content": "import InputInputGroupExample from \"../examples/input-input-group\";\n\nconst Example = () => <InputInputGroupExample />;\n\nexport default Example;\n",
       "path": "src/input/variants/input-group.tsx",
       "target": "@components/showcase/input/variants/input-group.tsx",
       "type": "registry:component"

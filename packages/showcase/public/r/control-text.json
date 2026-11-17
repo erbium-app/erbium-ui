@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nconst Example = () => <Control.Text label=\"Title\" defaultValue=\"Japan\" className=\"w-72\" />;\n\nexport default Example;\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlTextExample() {\n  return <Control.Text label=\"Title\" defaultValue=\"Japan\" className=\"w-72\" />;\n}\n",
       "path": "src/control/variants/text.tsx",
       "target": "@components/showcase/control/variants/text.tsx",
       "type": "registry:component"

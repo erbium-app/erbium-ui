@@ -25,7 +25,9 @@ const columns = columnHelper.columns([
  * header is known, so it stays readable throughout, and set column widths keep the sample rows
  * from sizing the columns differently from the members that replace them.
  */
-export const SkeletonTable = ({ latency }: { latency?: number }) => {
+export const defaultProps = {} satisfies { latency?: number };
+
+export default function SkeletonTableExample({ latency }: { latency?: number } = defaultProps) {
   const request = useSimulatedFetch(members, { latency });
   const table = useTable({ columns, data: request.data ?? sampleMembers, features });
 
@@ -41,4 +43,4 @@ export const SkeletonTable = ({ latency }: { latency?: number }) => {
       <LoadingControls {...request} />
     </div>
   );
-};
+}

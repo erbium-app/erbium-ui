@@ -1,5 +1,5 @@
-import { ComboboxDisabled } from "../examples/combobox-disabled";
+import ComboboxDisabledExample from "../examples/combobox-disabled";
 
-const Example = () => <ComboboxDisabled />;
+const Example = () => <ComboboxDisabledExample />;
 
 export default Example;

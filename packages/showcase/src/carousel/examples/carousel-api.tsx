@@ -14,7 +14,7 @@ import {
 
 const slides = ["Plan", "Build", "Review", "Ship", "Measure"];
 
-const CarouselApiDemo = () => {
+export default function CarouselApiExample() {
   const [value, setValue] = React.useState(0);
 
   return (
@@ -53,6 +53,4 @@ const CarouselApiDemo = () => {
       </div>
     </div>
   );
-};
-
-export default CarouselApiDemo;
+}

@@ -173,11 +173,12 @@ export const PackageCommand = ({ code, className }: { code: string; className?: 
   const items = packageCommands(code);
 
   if (items.length === 0) {
-    return <CodeBlock code={code} language="shell" surface="command" className={className} />;
+    return <CodeBlock wrap code={code} language="shell" surface="command" className={className} />;
   }
 
   return (
     <CodeBlock
+      wrap
       surface="command"
       items={items}
       value={manager}

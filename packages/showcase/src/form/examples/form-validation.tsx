@@ -24,7 +24,7 @@ const defaultValues = {
   updates: true,
 };
 
-const FormValidation = () => {
+export default function FormValidationExample() {
   const [sent, setSent] = useState("");
 
   const form = useAppForm({
@@ -75,6 +75,4 @@ const FormValidation = () => {
       </FieldGroup>
     </Form>
   );
-};
-
-export default FormValidation;
+}

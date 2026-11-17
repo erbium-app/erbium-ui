@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/separator", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Separator>) => (\n  <div className=\"flex h-28 w-72 flex-col items-center justify-center\">\n    <Separator\n      {...args}\n      className={\n        args.orientation === \"vertical\"\n          ? `h-full ${typeof args.className === \"string\" ? args.className : \"\"}`\n          : `w-full ${typeof args.className === \"string\" ? args.className : \"\"}`\n      }\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { Separator } from \"@/registry/erbium/ui/separator\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  className: \"\",\n  orientation: \"horizontal\",\n} satisfies Omit<React.ComponentProps<typeof Separator>, \"className\"> & { className?: string };\n\nexport default function SeparatorPlaygroundExample(\n  args: Omit<React.ComponentProps<typeof Separator>, \"className\"> & {\n    className?: string;\n  } = defaultProps,\n) {\n  return (\n    <div className=\"flex h-28 w-72 flex-col items-center justify-center\">\n      <Separator\n        {...args}\n        className={\n          args.orientation === \"vertical\"\n            ? `h-full ${args.className ?? \"\"}`\n            : `w-full ${args.className ?? \"\"}`\n        }\n      />\n    </div>\n  );\n}\n",
       "path": "src/separator/variants/playground.tsx",
       "target": "@components/showcase/separator/variants/playground.tsx",
       "type": "registry:component"

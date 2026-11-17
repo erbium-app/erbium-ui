@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/pagination", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n} from \"@/registry/erbium/ui/pagination\";\n\nexport const PaginationSimple = () => (\n  <Pagination>\n    <PaginationContent>\n      <PaginationItem>\n        <PaginationLink href=\"#\">1</PaginationLink>\n      </PaginationItem>\n      <PaginationItem>\n        <PaginationLink href=\"#\" isActive>\n          2\n        </PaginationLink>\n      </PaginationItem>\n      <PaginationItem>\n        <PaginationLink href=\"#\">3</PaginationLink>\n      </PaginationItem>\n      <PaginationItem>\n        <PaginationLink href=\"#\">4</PaginationLink>\n      </PaginationItem>\n      <PaginationItem>\n        <PaginationLink href=\"#\">5</PaginationLink>\n      </PaginationItem>\n    </PaginationContent>\n  </Pagination>\n);\n",
+      "content": "import {\n  Pagination,\n  PaginationContent,\n  PaginationItem,\n  PaginationLink,\n} from \"@/registry/erbium/ui/pagination\";\n\nexport default function PaginationSimpleExample() {\n  return (\n    <Pagination>\n      <PaginationContent>\n        <PaginationItem>\n          <PaginationLink href=\"#\">1</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\" isActive>\n            2\n          </PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\">3</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\">4</PaginationLink>\n        </PaginationItem>\n        <PaginationItem>\n          <PaginationLink href=\"#\">5</PaginationLink>\n        </PaginationItem>\n      </PaginationContent>\n    </Pagination>\n  );\n}\n",
       "path": "src/pagination/examples/pagination-simple.tsx",
       "target": "@components/showcase/pagination/examples/pagination-simple.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { PaginationSimple } from \"../examples/pagination-simple\";\n\nconst Example = () => <PaginationSimple />;\n\nexport default Example;\n",
+      "content": "import PaginationSimple from \"../examples/pagination-simple\";\n\nconst Example = () => <PaginationSimple />;\n\nexport default Example;\n",
       "path": "src/pagination/variants/simple.tsx",
       "target": "@components/showcase/pagination/variants/simple.tsx",
       "type": "registry:component"

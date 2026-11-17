@@ -1,5 +1,5 @@
-import { AttachmentImage } from "../examples/attachment-image";
+import AttachmentImageExample from "../examples/attachment-image";
 
-const Example = () => <AttachmentImage />;
+const Example = () => <AttachmentImageExample />;
 
 export default Example;

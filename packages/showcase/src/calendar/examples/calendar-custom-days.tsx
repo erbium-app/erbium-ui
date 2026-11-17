@@ -25,7 +25,7 @@ const RateDayButton = ({
   </CalendarDayButton>
 );
 
-export const CalendarCustomDays = () => {
+export default function CalendarCustomDaysExample() {
   const [range, setRange] = React.useState<DateRange | undefined>(() => {
     const from = new Date(new Date().getFullYear(), 11, 8);
 
@@ -43,4 +43,4 @@ export const CalendarCustomDays = () => {
       />
     </Card>
   );
-};
+}

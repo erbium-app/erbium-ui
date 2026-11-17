@@ -1,5 +1,5 @@
-import { ComboboxWithGroupsAndSeparator } from "../examples/combobox-groups";
+import ComboboxWithGroupsAndSeparatorExample from "../examples/combobox-groups";
 
-const Example = () => <ComboboxWithGroupsAndSeparator />;
+const Example = () => <ComboboxWithGroupsAndSeparatorExample />;
 
 export default Example;

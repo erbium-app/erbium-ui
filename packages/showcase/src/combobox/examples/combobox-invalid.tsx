@@ -9,18 +9,20 @@ import {
 
 const frameworks = ["TanStack Start", "SvelteKit", "Nuxt.js", "Remix", "Astro"] as const;
 
-export const ComboboxInvalid = () => (
-  <Combobox items={frameworks}>
-    <ComboboxInput placeholder="Select a framework" aria-invalid="true" />
-    <ComboboxContent>
-      <ComboboxEmpty>No items found.</ComboboxEmpty>
-      <ComboboxList>
-        {(item) => (
-          <ComboboxItem key={item} value={item}>
-            {item}
-          </ComboboxItem>
-        )}
-      </ComboboxList>
-    </ComboboxContent>
-  </Combobox>
-);
+export default function ComboboxInvalidExample() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" aria-invalid="true" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item: (typeof frameworks)[number]) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+}

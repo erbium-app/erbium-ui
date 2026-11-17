@@ -1,5 +1,5 @@
-import { ContextMenuBasic } from "../examples/context-menu-basic";
+import ContextMenuBasicExample from "../examples/context-menu-basic";
 
-const Example = () => <ContextMenuBasic />;
+const Example = () => <ContextMenuBasicExample />;
 
 export default Example;

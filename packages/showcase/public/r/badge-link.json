@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/badge", "@erbium/icon", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport const BadgeAsLink = () => (\n  <Badge render={<a href=\"#link\" />}>\n    Open Link <Icon name=\"arrow-up-right-01\" data-icon=\"inline-end\" />\n  </Badge>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function BadgeAsLinkExample() {\n  return (\n    <Badge aria-label=\"Choose option\" render={<a aria-label=\"View details\" href=\"#link\" />}>\n      Open Link <Icon name=\"arrow-up-right-01\" data-icon=\"inline-end\" />\n    </Badge>\n  );\n}\n",
       "path": "src/badge/examples/badge-link.tsx",
       "target": "@components/showcase/badge/examples/badge-link.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { BadgeAsLink } from \"../examples/badge-link\";\n\nconst Example = () => <BadgeAsLink />;\n\nexport default Example;\n",
+      "content": "import BadgeAsLinkExample from \"../examples/badge-link\";\n\nconst Example = () => <BadgeAsLinkExample />;\n\nexport default Example;\n",
       "path": "src/badge/variants/link.tsx",
       "target": "@components/showcase/badge/variants/link.tsx",
       "type": "registry:component"

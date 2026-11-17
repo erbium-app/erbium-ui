@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/badge", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport const BadgeWithSpinner = () => (\n  <div className=\"flex flex-wrap gap-section\">\n    {([\"ltr\", \"rtl\"] as const).map((direction) => (\n      <div key={direction} dir={direction} className=\"flex flex-wrap gap-related\">\n        <Badge variant=\"error\" loading>\n          {direction === \"rtl\" ? \"در حال حذف\" : \"Deleting\"}\n        </Badge>\n        <Badge variant=\"secondary\" loading>\n          {direction === \"rtl\" ? \"در حال تولید\" : \"Generating\"}\n        </Badge>\n      </div>\n    ))}\n  </div>\n);\n",
+      "content": "import { Badge } from \"@/registry/erbium/ui/badge\";\n\nexport default function BadgeWithSpinnerExample() {\n  return (\n    <div className=\"flex flex-wrap gap-section\">\n      {([\"ltr\", \"rtl\"] as const).map((direction) => (\n        <div key={direction} dir={direction} className=\"flex flex-wrap gap-related\">\n          <Badge variant=\"error\" loading>\n            {direction === \"rtl\" ? \"در حال حذف\" : \"Deleting\"}\n          </Badge>\n          <Badge variant=\"secondary\" loading>\n            {direction === \"rtl\" ? \"در حال تولید\" : \"Generating\"}\n          </Badge>\n        </div>\n      ))}\n    </div>\n  );\n}\n",
       "path": "src/badge/examples/badge-spinner.tsx",
       "target": "@components/showcase/badge/examples/badge-spinner.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { BadgeWithSpinner } from \"../examples/badge-spinner\";\n\nconst Example = () => <BadgeWithSpinner />;\n\nexport default Example;\n",
+      "content": "import BadgeWithSpinnerExample from \"../examples/badge-spinner\";\n\nconst Example = () => <BadgeWithSpinnerExample />;\n\nexport default Example;\n",
       "path": "src/badge/variants/with-spinner.tsx",
       "target": "@components/showcase/badge/variants/with-spinner.tsx",
       "type": "registry:component"

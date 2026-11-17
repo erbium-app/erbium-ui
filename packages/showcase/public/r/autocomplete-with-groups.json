@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { GroupedAutocomplete } from \"../helpers\";\n\nconst Example = () => <GroupedAutocomplete />;\n\nexport default Example;\n",
+      "content": "import { GroupedAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteWithGroupsExample() {\n  return <GroupedAutocomplete />;\n}\n",
       "path": "src/autocomplete/variants/with-groups.tsx",
       "target": "@components/showcase/autocomplete/variants/with-groups.tsx",
       "type": "registry:component"

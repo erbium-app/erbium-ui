@@ -1,5 +1,5 @@
-import { MessageAvatarDemo } from "../examples/message-avatar";
+import MessageAvatarExample from "../examples/message-avatar";
 
-const Example = () => <MessageAvatarDemo />;
+const Example = () => <MessageAvatarExample />;
 
 export default Example;

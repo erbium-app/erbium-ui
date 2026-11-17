@@ -4,33 +4,33 @@ import { Breadcrumb } from "@erbium/ui/components/breadcrumb";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/breadcrumb-demo.tsx?raw";
 
 import EllipsisExample from "./variants/ellipsis";
 
-import EllipsisSource from "./variants/ellipsis.tsx?raw";
+import EllipsisSource from "./examples/breadcrumb-ellipsis.tsx?raw";
 
 import BasicExample from "./variants/basic";
 
-import BasicSource from "./variants/basic.tsx?raw";
+import BasicSource from "./examples/breadcrumb-basic.tsx?raw";
 
 import DropdownExample from "./variants/dropdown";
 
-import DropdownSource from "./variants/dropdown.tsx?raw";
+import DropdownSource from "./examples/breadcrumb-dropdown.tsx?raw";
 
 import CustomSeparatorExample from "./variants/custom-separator";
 
-import CustomSeparatorSource from "./variants/custom-separator.tsx?raw";
+import CustomSeparatorSource from "./examples/breadcrumb-separator.tsx?raw";
 
 import LinkComponentExample from "./variants/link-component";
 
-import LinkComponentSource from "./variants/link-component.tsx?raw";
+import LinkComponentSource from "./examples/breadcrumb-link.tsx?raw";
 
 const meta = {
   component: Breadcrumb,
@@ -51,7 +51,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<{ separator: string; currentPage: string }> = {
   argTypes: { currentPage: { control: "text" }, separator: { control: "text" } },
-  args: { currentPage: "Current page", separator: "/" },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("breadcrumb", "playground") },

@@ -1,5 +1,5 @@
 import { FruitAutocomplete } from "../helpers";
 
-const Example = () => <FruitAutocomplete size="sm" />;
-
-export default Example;
+export default function AutocompleteSmallSizeExample() {
+  return <FruitAutocomplete size="sm" />;
+}

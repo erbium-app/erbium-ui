@@ -1,5 +1,5 @@
-import { BubbleTooltipDemo } from "../examples/bubble-tooltip";
+import BubbleTooltipExample from "../examples/bubble-tooltip";
 
-const Example = () => <BubbleTooltipDemo />;
+const Example = () => <BubbleTooltipExample />;
 
 export default Example;

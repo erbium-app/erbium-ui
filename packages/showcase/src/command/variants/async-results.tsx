@@ -14,7 +14,7 @@ const actions = [
   { description: "Download a copy of your work", id: "export", label: "Export project" },
 ];
 
-const AsyncResultsExample = () => {
+export default function AsyncResultsExample() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState({ items: actions, query: "" });
   const [preview, setPreview] = useState<(typeof actions)[number] | undefined>();
@@ -71,6 +71,4 @@ const AsyncResultsExample = () => {
       <output className="text-control">{selected}</output>
     </div>
   );
-};
-
-export default AsyncResultsExample;
+}

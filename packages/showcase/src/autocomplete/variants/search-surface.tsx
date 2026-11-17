@@ -26,7 +26,7 @@ const documents = [
   "Internationalization",
 ];
 
-const SearchSurfaceExample = () => {
+export default function SearchSurfaceExample() {
   const [selected, setSelected] = useState("");
 
   return (
@@ -36,7 +36,7 @@ const SearchSurfaceExample = () => {
           <AutocompleteSearchInput aria-label="Search documents" placeholder="Search documents…" />
           <AutocompleteEmpty>No documents found.</AutocompleteEmpty>
           <AutocompleteList>
-            {(document) => (
+            {(document: string) => (
               <AutocompleteItem
                 key={document}
                 value={document}
@@ -50,11 +50,9 @@ const SearchSurfaceExample = () => {
           </AutocompleteList>
         </div>
       </Autocomplete>
-      <p role="status" className="text-caption text-muted-foreground">
+      <output className="text-caption text-muted-foreground">
         {selected || "Search or choose a document."}
-      </p>
+      </output>
     </div>
   );
-};
-
-export default SearchSurfaceExample;
+}

@@ -1,6 +1,15 @@
 import { Badge } from "@erbium/ui/components/badge";
 import type * as React from "react";
 
-const Example = (args: React.ComponentProps<typeof Badge>) => <Badge {...args} />;
+export const defaultProps = {
+  children: "Badge",
+  className: "",
+  loading: false,
+  variant: "default",
+} satisfies React.ComponentProps<typeof Badge>;
 
-export default Example;
+export default function BadgePlaygroundExample(
+  args: React.ComponentProps<typeof Badge> = defaultProps,
+) {
+  return <Badge {...args} />;
+}

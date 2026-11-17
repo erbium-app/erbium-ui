@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/styles", "@erbium/tabs"],
   "files": [
     {
-      "content": "import { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport const TabsVertical = () => (\n  <Tabs defaultValue=\"account\" orientation=\"vertical\">\n    <TabsList>\n      <TabsTrigger value=\"account\">Account</TabsTrigger>\n      <TabsTrigger value=\"password\">Password</TabsTrigger>\n      <TabsTrigger value=\"notifications\">Notifications</TabsTrigger>\n    </TabsList>\n  </Tabs>\n);\n",
+      "content": "import { Tabs, TabsList, TabsTrigger } from \"@/registry/erbium/ui/tabs\";\n\nexport default function TabsVerticalExample() {\n  return (\n    <Tabs defaultValue=\"account\" orientation=\"vertical\">\n      <TabsList>\n        <TabsTrigger value=\"account\">Account</TabsTrigger>\n        <TabsTrigger value=\"password\">Password</TabsTrigger>\n        <TabsTrigger value=\"notifications\">Notifications</TabsTrigger>\n      </TabsList>\n    </Tabs>\n  );\n}\n",
       "path": "src/tabs/examples/tabs-vertical.tsx",
       "target": "@components/showcase/tabs/examples/tabs-vertical.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { TabsVertical } from \"../examples/tabs-vertical\";\n\nconst Example = () => <TabsVertical />;\n\nexport default Example;\n",
+      "content": "import TabsVertical from \"../examples/tabs-vertical\";\n\nconst Example = () => <TabsVertical />;\n\nexport default Example;\n",
       "path": "src/tabs/variants/vertical.tsx",
       "target": "@components/showcase/tabs/variants/vertical.tsx",
       "type": "registry:component"

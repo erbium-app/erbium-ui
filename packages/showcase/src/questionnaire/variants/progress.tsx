@@ -1,4 +1,4 @@
-import { QuestionnaireProgressExample } from "../examples/questionnaire-progress";
+import QuestionnaireProgressExample from "../examples/questionnaire-progress";
 
 const Example = () => <QuestionnaireProgressExample />;
 

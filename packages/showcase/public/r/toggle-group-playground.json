@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/toggle-group"],
   "files": [
     {
-      "content": "import { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof ToggleGroup>) => (\n  <ToggleGroup {...args}>\n    <ToggleGroupItem value=\"one\">One</ToggleGroupItem>\n    <ToggleGroupItem value=\"two\">Two</ToggleGroupItem>\n    <ToggleGroupItem value=\"three\">Three</ToggleGroupItem>\n  </ToggleGroup>\n);\n\nexport default Example;\n",
+      "content": "import { ToggleGroup, ToggleGroupItem } from \"@/registry/erbium/ui/toggle-group\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  multiple: false,\n  orientation: \"horizontal\",\n  size: \"default\",\n  spacing: 2,\n  variant: \"default\",\n} satisfies React.ComponentProps<typeof ToggleGroup>;\n\nexport default function ToggleGroupPlaygroundExample(\n  args: React.ComponentProps<typeof ToggleGroup> = defaultProps,\n) {\n  return (\n    <ToggleGroup {...args}>\n      <ToggleGroupItem value=\"one\">One</ToggleGroupItem>\n      <ToggleGroupItem value=\"two\">Two</ToggleGroupItem>\n      <ToggleGroupItem value=\"three\">Three</ToggleGroupItem>\n    </ToggleGroup>\n  );\n}\n",
       "path": "src/toggle-group/variants/playground.tsx",
       "target": "@components/showcase/toggle-group/variants/playground.tsx",
       "type": "registry:component"

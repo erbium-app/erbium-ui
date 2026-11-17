@@ -11,7 +11,7 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export const DropdownMenuCheckboxes = () => {
+export default function DropdownMenuCheckboxesExample() {
   const [showStatusBar, setShowStatusBar] = React.useState(true);
   const [showActivityBar, setShowActivityBar] = React.useState(false);
   const [showPanel, setShowPanel] = React.useState(false);
@@ -44,4 +44,4 @@ export const DropdownMenuCheckboxes = () => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}

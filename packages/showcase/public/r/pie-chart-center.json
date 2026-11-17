@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\n\nconst Example = () => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      center={\n        <>\n          <span className=\"text-subtitle tabular-nums\">{total.toLocaleString(\"en\")}</span>\n          <span className=\"text-metadata text-muted-foreground\">Visitors</span>\n        </>\n      }\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\n\nexport default function PieChartCenterExample() {\n  return (\n    <div className=\"w-md max-w-full p-4\">\n      <PieChart\n        ariaLabel=\"Visitors by browser\"\n        data={browsers}\n        index=\"browser\"\n        value=\"visitors\"\n        initialWidth={400}\n        center={\n          <>\n            <span className=\"text-subtitle tabular-nums\">{total.toLocaleString(\"en\")}</span>\n            <span className=\"text-metadata text-muted-foreground\">Visitors</span>\n          </>\n        }\n      />\n    </div>\n  );\n}\n",
       "path": "src/pie-chart/variants/center.tsx",
       "target": "@components/showcase/pie-chart/variants/center.tsx",
       "type": "registry:component"

@@ -20,7 +20,7 @@ const emptyTrip: Trip = {
   to: undefined,
 };
 
-const Example = () => {
+export default function DatePickerFormExample() {
   const id = React.useId();
 
   const form = useAppForm({
@@ -73,6 +73,4 @@ const Example = () => {
       </form.Subscribe>
     </Form>
   );
-};
-
-export default Example;
+}

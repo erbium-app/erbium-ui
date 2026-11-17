@@ -3,7 +3,7 @@ import { FileView } from "@erbium/ui/blocks/file-view";
 import { Button } from "@erbium/ui/components/button";
 import { file } from "../examples/file";
 
-const Example = () => {
+export default function FileViewStatesExample() {
   const [empty, setEmpty] = useState(false);
 
   return (
@@ -23,6 +23,4 @@ const Example = () => {
       />
     </div>
   );
-};
-
-export default Example;
+}

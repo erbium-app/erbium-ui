@@ -34,7 +34,7 @@ const projects = [
 
 type Project = (typeof projects)[number];
 
-const AsyncSearchExample = () => {
+export default function AsyncSearchExample() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState({ items: projects, query: "" });
   const [selected, setSelected] = useState<Project | null>(null);
@@ -98,6 +98,4 @@ const AsyncSearchExample = () => {
       <output className="text-control">Selected: {selected?.name ?? "none"}</output>
     </div>
   );
-};
-
-export default AsyncSearchExample;
+}

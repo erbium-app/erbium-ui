@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Bubble, BubbleContent, BubbleGroup } from \"@/registry/erbium/ui/bubble\";\n\nconst Demo = () => (\n  <BubbleGroup>\n    <Bubble>\n      <BubbleContent>Hello! How can I help?</BubbleContent>\n    </Bubble>\n    <Bubble>\n      <BubbleContent>Show me the latest update.</BubbleContent>\n    </Bubble>\n  </BubbleGroup>\n);\n\nexport default Demo;\n",
+      "content": "import { Bubble, BubbleContent, BubbleGroup } from \"@/registry/erbium/ui/bubble\";\n\nexport default function BubbleExample() {\n  return (\n    <BubbleGroup>\n      <Bubble>\n        <BubbleContent>Hello! How can I help?</BubbleContent>\n      </Bubble>\n      <Bubble>\n        <BubbleContent>Show me the latest update.</BubbleContent>\n      </Bubble>\n    </BubbleGroup>\n  );\n}\n",
       "path": "src/bubble/examples/bubble-demo.tsx",
       "target": "@components/showcase/bubble/examples/bubble-demo.tsx",
       "type": "registry:component"

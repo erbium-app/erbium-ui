@@ -71,7 +71,7 @@ const columns = columnHelper.columns([
   columnHelper.accessor("role", { header: "Role" }),
 ]);
 
-export const CheckboxInTable = () => {
+export default function CheckboxInTableExample() {
   const table = useTable({
     columns,
     data: tableData,
@@ -105,7 +105,7 @@ export const CheckboxInTable = () => {
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
               <TableHead
-                className={header.column.columnDef.meta?.selection ? "w-8" : undefined}
+                className={header.column.columnDef.meta?.selection === true ? "w-8" : undefined}
                 key={header.id}
               >
                 {header.isPlaceholder ? null : <table.FlexRender header={header} />}
@@ -119,7 +119,7 @@ export const CheckboxInTable = () => {
           <TableRow data-state={row.getIsSelected() ? "selected" : undefined} key={row.id}>
             {row.getAllCells().map((cell) => (
               <TableCell
-                className={cell.column.columnDef.meta?.selection ? "w-8" : undefined}
+                className={cell.column.columnDef.meta?.selection === true ? "w-8" : undefined}
                 key={cell.id}
               >
                 <table.FlexRender cell={cell} />
@@ -130,4 +130,4 @@ export const CheckboxInTable = () => {
       </TableBody>
     </Table>
   );
-};
+}

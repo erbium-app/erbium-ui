@@ -1,4 +1,4 @@
-import { TooltipDisabled } from "../examples/tooltip-disabled";
+import TooltipDisabled from "../examples/tooltip-disabled";
 
 const Example = () => <TooltipDisabled />;
 

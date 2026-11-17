@@ -21,19 +21,19 @@
       "type": "registry:component"
     },
     {
-      "content": "import { useMediaQuery } from \"@/registry/erbium/hooks/use-media-query\";\n\nconst Demo = () => {\n  const reducedMotion = useMediaQuery(\"(prefers-reduced-motion: reduce)\", {});\n\n  return (\n    <p aria-live=\"polite\">\n      Reduced motion: {reducedMotion ? \"enabled\" : \"disabled\"}. Change your system preference to\n      update.\n    </p>\n  );\n};\n\nexport default Demo;\n",
+      "content": "import { useMediaQuery } from \"@/registry/erbium/hooks/use-media-query\";\n\nexport default function UseMediaQueryExample() {\n  const reducedMotion = useMediaQuery(\"(prefers-reduced-motion: reduce)\", {});\n\n  return (\n    <p aria-live=\"polite\">\n      Reduced motion: {reducedMotion ? \"enabled\" : \"disabled\"}. Change your system preference to\n      update.\n    </p>\n  );\n}\n",
       "path": "src/use-media-query/examples/use-media-query-demo.tsx",
       "target": "@components/showcase/use-media-query/examples/use-media-query-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/use-media-query-demo\\\";\\n\\nconst Example = () => <Demo />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  parameters: {\n    docs: { description: { component: \"## Usage\\n\\nSubscribes to a CSS media query and updates when its match changes. This example tracks your system reduced motion preference.\\n\\nImport `useMediaQuery` from `@/registry/erbium/hooks/use-media-query`.\" } },\n    layout: \"centered\",\n  },\n} satisfies Meta;\n\nexport default { ...meta, title: \"Hooks/Use Media Query\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n",
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport OverviewExample from \"./variants/overview\";\n\n\n\nconst meta = {\n  parameters: {\n    docs: { description: { component: \"## Usage\\n\\nSubscribes to a CSS media query and updates when its match changes. This example tracks your system reduced motion preference.\\n\\nImport `useMediaQuery` from `@/registry/erbium/hooks/use-media-query`.\" } },\n    layout: \"centered\",\n  },\n} satisfies Meta;\n\nexport default { ...meta, title: \"Hooks/Use Media Query\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj<typeof meta>;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: \"import { useMediaQuery } from \\\"@/registry/erbium/hooks/use-media-query\\\";\\n\\nexport default function UseMediaQueryExample() {\\n  const reducedMotion = useMediaQuery(\\\"(prefers-reduced-motion: reduce)\\\", {});\\n\\n  return (\\n    <p aria-live=\\\"polite\\\">\\n      Reduced motion: {reducedMotion ? \\\"enabled\\\" : \\\"disabled\\\"}. Change your system preference to\\n      update.\\n    </p>\\n  );\\n}\\n\" },\n    },\n  },\n  render: OverviewExample,\n};\n",
       "path": "src/use-media-query/use-media-query.stories.tsx",
       "target": "@components/showcase/use-media-query/use-media-query.stories.tsx",
       "type": "registry:file"
     },
     {
-      "content": "import Demo from \"../examples/use-media-query-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n",
+      "content": "import UseMediaQueryExample from \"../examples/use-media-query-demo\";\n\nconst Example = () => <UseMediaQueryExample />;\n\nexport default Example;\n",
       "path": "src/use-media-query/variants/overview.tsx",
       "target": "@components/showcase/use-media-query/variants/overview.tsx",
       "type": "registry:component"

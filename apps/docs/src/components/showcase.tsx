@@ -64,18 +64,36 @@ const SourceContent = ({
 }: {
   files: string[];
   sources: Record<string, string>;
-}) => (
-  <div className="flex flex-col gap-related">
-    {files.map((path) => (
+}) => {
+  const items = files.map((path) => ({
+    value: path,
+    label: path.replace(/^src\//u, ""),
+    code: sources[path],
+    language: path.split(".").at(-1),
+  }));
+
+  const [first] = items;
+
+  if (items.length === 1 && first !== undefined) {
+    return (
       <UICodeBlock
-        key={path}
-        code={sources[path] ?? ""}
-        language={path.split(".").at(-1)}
-        title={path}
+        wrap
+        code={first.code}
+        language={first.language}
+        title={first.label.split("/").at(-1)}
       />
-    ))}
-  </div>
-);
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-related">
+      <UICodeBlock wrap items={items} />
+      <p className="text-caption text-muted-foreground">
+        Keep these files in the same relative locations when copying the example.
+      </p>
+    </div>
+  );
+};
 
 export const Showcase = ({
   path,

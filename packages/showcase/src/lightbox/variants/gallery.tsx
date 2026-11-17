@@ -39,84 +39,84 @@ const photos = [
   },
 ];
 
-const Gallery = () => (
-  <Lightbox>
-    <div className="grid w-full max-w-md grid-cols-3 gap-3">
-      {photos.map((photo, index) => (
-        <LightboxTrigger
-          aria-label={`Open ${photo.caption}`}
-          className="overflow-hidden rounded-lg"
-          index={index}
-          key={photo.src}
-        >
-          {({ imageRef }) => (
-            <img
-              alt={photo.alt}
-              className="aspect-[3/2] w-full object-cover"
-              height={240}
-              ref={imageRef}
-              src={`${photo.src}?auto=format&fit=crop&w=360&h=240&q=80`}
-              width={360}
-            />
-          )}
-        </LightboxTrigger>
-      ))}
-    </div>
-
-    <LightboxContent aria-label="Workspace photos">
-      <LightboxSlides aria-label="Workspace photos" aria-roledescription="carousel">
+export default function GalleryExample() {
+  return (
+    <Lightbox>
+      <div className="grid w-full max-w-md grid-cols-3 gap-3">
         {photos.map((photo, index) => (
-          <LightboxSlide key={photo.src}>
-            <LightboxItem
-              aria-label={`${index + 1} of ${photos.length}`}
-              aria-roledescription="slide"
-              caption={photo.caption}
-              index={index}
-            >
-              <LightboxZoom>
-                <LightboxMedia height={1200} width={1800}>
-                  <img
-                    alt={photo.alt}
-                    height={1200}
-                    src={`${photo.src}?auto=format&fit=crop&w=1800&h=1200&q=85`}
-                    width={1800}
-                  />
-                </LightboxMedia>
-              </LightboxZoom>
-            </LightboxItem>
-          </LightboxSlide>
+          <LightboxTrigger
+            aria-label={`Open ${photo.caption}`}
+            className="overflow-hidden rounded-lg"
+            index={index}
+            key={photo.src}
+          >
+            {({ imageRef }) => (
+              <img
+                alt={photo.alt}
+                className="aspect-[3/2] w-full object-cover"
+                height={240}
+                ref={imageRef}
+                src={`${photo.src}?auto=format&fit=crop&w=360&h=240&q=80`}
+                width={360}
+              />
+            )}
+          </LightboxTrigger>
         ))}
-      </LightboxSlides>
+      </div>
 
-      <LightboxHeader>
-        <LightboxZoomOut />
-        <LightboxZoomIn />
-        <LightboxClose />
-      </LightboxHeader>
+      <LightboxContent aria-label="Workspace photos">
+        <LightboxSlides aria-label="Workspace photos" aria-roledescription="carousel">
+          {photos.map((photo, index) => (
+            <LightboxSlide key={photo.src}>
+              <LightboxItem
+                aria-label={`${index + 1} of ${photos.length}`}
+                aria-roledescription="slide"
+                caption={photo.caption}
+                index={index}
+              >
+                <LightboxZoom>
+                  <LightboxMedia height={1200} width={1800}>
+                    <img
+                      alt={photo.alt}
+                      height={1200}
+                      src={`${photo.src}?auto=format&fit=crop&w=1800&h=1200&q=85`}
+                      width={1800}
+                    />
+                  </LightboxMedia>
+                </LightboxZoom>
+              </LightboxItem>
+            </LightboxSlide>
+          ))}
+        </LightboxSlides>
 
-      <LightboxPrevious />
-      <LightboxNext />
+        <LightboxHeader>
+          <LightboxZoomOut />
+          <LightboxZoomIn />
+          <LightboxClose />
+        </LightboxHeader>
 
-      <LightboxFooter>
-        <LightboxCaption />
-        <LightboxCounter />
-        <LightboxThumbnailStrip>
-          <LightboxThumbnailStripTrack aria-label="Workspace photo thumbnails">
-            {photos.map((photo, index) => (
-              <LightboxThumbnail aria-label={photo.caption} index={index} key={photo.src}>
-                <img
-                  alt=""
-                  height={112}
-                  src={`${photo.src}?auto=format&fit=crop&w=112&h=112&q=75`}
-                  width={112}
-                />
-              </LightboxThumbnail>
-            ))}
-          </LightboxThumbnailStripTrack>
-        </LightboxThumbnailStrip>
-      </LightboxFooter>
-    </LightboxContent>
-  </Lightbox>
-);
+        <LightboxPrevious />
+        <LightboxNext />
 
-export default Gallery;
+        <LightboxFooter>
+          <LightboxCaption />
+          <LightboxCounter />
+          <LightboxThumbnailStrip>
+            <LightboxThumbnailStripTrack aria-label="Workspace photo thumbnails">
+              {photos.map((photo, index) => (
+                <LightboxThumbnail aria-label={photo.caption} index={index} key={photo.src}>
+                  <img
+                    alt=""
+                    height={112}
+                    src={`${photo.src}?auto=format&fit=crop&w=112&h=112&q=75`}
+                    width={112}
+                  />
+                </LightboxThumbnail>
+              ))}
+            </LightboxThumbnailStripTrack>
+          </LightboxThumbnailStrip>
+        </LightboxFooter>
+      </LightboxContent>
+    </Lightbox>
+  );
+}

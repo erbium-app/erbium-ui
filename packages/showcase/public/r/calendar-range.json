@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/date", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport type { DateRange } from \"@/registry/erbium/ui/calendar\";\nimport { addDays } from \"@/registry/erbium/lib/date\";\n\nexport const CalendarRange = () => {\n  const [dateRange, setDateRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date(new Date().getFullYear(), 0, 12);\n\n    return { from, to: addDays(from, 30) };\n  });\n\n  return (\n    <Calendar\n      mode=\"range\"\n      defaultMonth={dateRange?.from}\n      selected={dateRange}\n      onSelect={setDateRange}\n      numberOfMonths={2}\n    />\n  );\n};\n",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport type { DateRange } from \"@/registry/erbium/ui/calendar\";\nimport { addDays } from \"@/registry/erbium/lib/date\";\n\nexport default function CalendarRangeExample() {\n  const [dateRange, setDateRange] = React.useState<DateRange | undefined>(() => {\n    const from = new Date(new Date().getFullYear(), 0, 12);\n\n    return { from, to: addDays(from, 30) };\n  });\n\n  return (\n    <Calendar\n      mode=\"range\"\n      defaultMonth={dateRange?.from}\n      selected={dateRange}\n      onSelect={setDateRange}\n      numberOfMonths={2}\n    />\n  );\n}\n",
       "path": "src/calendar/examples/calendar-range.tsx",
       "target": "@components/showcase/calendar/examples/calendar-range.tsx",
       "type": "registry:component"

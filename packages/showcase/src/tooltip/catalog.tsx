@@ -4,25 +4,25 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/tooltip-demo.tsx?raw";
 
 import SideExample from "./variants/side";
 
-import SideSource from "./variants/side.tsx?raw";
+import SideSource from "./examples/tooltip-sides.tsx?raw";
 
 import WithKeyboardShortcutExample from "./variants/with-keyboard-shortcut";
 
-import WithKeyboardShortcutSource from "./variants/with-keyboard-shortcut.tsx?raw";
+import WithKeyboardShortcutSource from "./examples/tooltip-keyboard.tsx?raw";
 
 import DisabledButtonExample from "./variants/disabled-button";
 
-import DisabledButtonSource from "./variants/disabled-button.tsx?raw";
+import DisabledButtonSource from "./examples/tooltip-disabled.tsx?raw";
 
 const meta = {
   component: Tooltip,
@@ -53,7 +53,7 @@ export const Playground: StoryObj<{
     side: { control: "select", options: ["top", "right", "bottom", "left"] },
     sideOffset: { control: "number" },
   },
-  args: { align: "center", defaultOpen: false, side: "top", sideOffset: 4 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("tooltip", "playground") },

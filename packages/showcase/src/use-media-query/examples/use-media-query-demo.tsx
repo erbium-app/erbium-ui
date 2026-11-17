@@ -1,6 +1,6 @@
 import { useMediaQuery } from "@erbium/ui/hooks/use-media-query";
 
-const Demo = () => {
+export default function UseMediaQueryExample() {
   const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)", {});
 
   return (
@@ -9,6 +9,4 @@ const Demo = () => {
       update.
     </p>
   );
-};
-
-export default Demo;
+}

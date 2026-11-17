@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/icon", "@erbium/marker", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport const MarkerLinkButtonDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Marker render={<a href=\"#links-and-buttons\" />}>\n      <MarkerIcon>\n        <Icon name=\"git-branch\" />\n      </MarkerIcon>\n      <MarkerContent>View the pull request</MarkerContent>\n    </Marker>\n    <Marker\n      render={\n        <button\n          type=\"button\"\n          className=\"transition-colors hover:text-foreground\"\n          onClick={() => toast.add({ title: \"You clicked the revert button\" })}\n        />\n      }\n    >\n      <MarkerIcon>\n        <Icon name=\"rotate-ccw\" />\n      </MarkerIcon>\n      <MarkerContent>Revert this change</MarkerContent>\n    </Marker>\n  </div>\n);\n",
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nimport { Marker, MarkerContent, MarkerIcon } from \"@/registry/erbium/ui/marker\";\n\nexport default function MarkerLinkButtonExample() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Marker\n        aria-label=\"Choose option\"\n        render={<a aria-label=\"View details\" href=\"#links-and-buttons\" />}\n      >\n        <MarkerIcon>\n          <Icon name=\"git-branch\" />\n        </MarkerIcon>\n        <MarkerContent>View the pull request</MarkerContent>\n      </Marker>\n      <Marker\n        aria-label=\"Choose option\"\n        render={\n          <button\n            aria-label=\"Choose option\"\n            type=\"button\"\n            className=\"transition-colors hover:text-foreground\"\n            onClick={() => {\n              toast.add({ title: \"You clicked the revert button\" });\n            }}\n          />\n        }\n      >\n        <MarkerIcon>\n          <Icon name=\"rotate-ccw\" />\n        </MarkerIcon>\n        <MarkerContent>Revert this change</MarkerContent>\n      </Marker>\n    </div>\n  );\n}\n",
       "path": "src/marker/examples/marker-link-button.tsx",
       "target": "@components/showcase/marker/examples/marker-link-button.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { MarkerLinkButtonDemo } from \"../examples/marker-link-button\";\n\nconst Example = () => <MarkerLinkButtonDemo />;\n\nexport default Example;\n",
+      "content": "import MarkerLinkButtonExample from \"../examples/marker-link-button\";\n\nconst Example = () => <MarkerLinkButtonExample />;\n\nexport default Example;\n",
       "path": "src/marker/variants/link-button.tsx",
       "target": "@components/showcase/marker/variants/link-button.tsx",
       "type": "registry:component"

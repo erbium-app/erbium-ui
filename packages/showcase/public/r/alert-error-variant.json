@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/alert", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst AlertError = () => (\n  <Alert variant=\"error\">\n    <AlertTitle>Tool call failed</AlertTitle>\n    <AlertDescription>\n      The agent could not run the test suite. The workspace process exited before returning results.\n    </AlertDescription>\n  </Alert>\n);\n\nexport default AlertError;\n",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertErrorExample() {\n  return (\n    <Alert variant=\"error\">\n      <AlertTitle>Tool call failed</AlertTitle>\n      <AlertDescription>\n        The agent could not run the test suite. The workspace process exited before returning\n        results.\n      </AlertDescription>\n    </Alert>\n  );\n}\n",
       "path": "src/alert/examples/alert-error.tsx",
       "target": "@components/showcase/alert/examples/alert-error.tsx",
       "type": "registry:component"

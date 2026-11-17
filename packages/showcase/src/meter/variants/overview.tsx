@@ -1,5 +1,5 @@
-import Demo from "../examples/meter-demo";
+import MeterExample from "../examples/meter-demo";
 
-const Example = () => <Demo />;
+const Example = () => <MeterExample />;
 
 export default Example;

@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { CustomSizes as CustomSizesExample } from \"../examples/drawer-variants\";\n\nconst Example = () => <CustomSizesExample />;\n\nexport default Example;\n",
+      "content": "import { CustomSizes as CustomSizesExample } from \"../examples/drawer-variants\";\n\nexport default function DrawerCustomSizesExample() {\n  return <CustomSizesExample />;\n}\n",
       "path": "src/drawer/variants/custom-sizes.tsx",
       "target": "@components/showcase/drawer/variants/custom-sizes.tsx",
       "type": "registry:component"

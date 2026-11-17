@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\nimport { players, skills } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; points: boolean; rings: number; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <RadarChart\n      ariaLabel=\"Skill ratings for two players\"\n      data={skills}\n      index=\"skill\"\n      series={players}\n      max={100}\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\nimport { players, skills } from \"../examples/data\";\n\nexport const defaultProps = {\n  legend: true,\n  points: false,\n  rings: 4,\n  tooltip: true,\n} satisfies { legend: boolean; points: boolean; rings: number; tooltip: boolean };\n\nexport default function RadarChartPlaygroundExample(\n  args: { legend: boolean; points: boolean; rings: number; tooltip: boolean } = defaultProps,\n) {\n  return (\n    <div className=\"w-md max-w-full p-4\">\n      <RadarChart\n        ariaLabel=\"Skill ratings for two players\"\n        data={skills}\n        index=\"skill\"\n        series={players}\n        max={100}\n        initialWidth={400}\n        {...args}\n      />\n    </div>\n  );\n}\n",
       "path": "src/radar-chart/variants/playground.tsx",
       "target": "@components/showcase/radar-chart/variants/playground.tsx",
       "type": "registry:component"

@@ -5,21 +5,21 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/table-demo.tsx?raw";
 
 import FooterExample from "./variants/footer";
 
-import FooterSource from "./variants/footer.tsx?raw";
+import FooterSource from "./examples/table-footer.tsx?raw";
 
 import ActionsExample from "./variants/actions";
 
-import ActionsSource from "./variants/actions.tsx?raw";
+import ActionsSource from "./examples/table-actions.tsx?raw";
 
 import RowSelectionExample from "./variants/row-selection";
 
@@ -27,7 +27,7 @@ import RowSelectionSource from "./variants/row-selection.tsx?raw";
 
 import RTLExample from "./variants/rtl";
 
-import RTLSource from "./variants/rtl.tsx?raw";
+import RTLSource from "./examples/table-rtl.tsx?raw";
 
 const meta = {
   component: Table,
@@ -51,7 +51,7 @@ export const Playground: StoryObj<PlaygroundArgs> = {
     caption: { control: "text" },
     rows: { control: { max: 10, min: 1, type: "number" } },
   },
-  args: { caption: "Example data", rows: 3 },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("table", "playground") },

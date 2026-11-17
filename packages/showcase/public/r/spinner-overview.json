@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerDemo = () => <Spinner />;\n\nexport default SpinnerDemo;\n",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerExample() {\n  return <Spinner />;\n}\n",
       "path": "src/spinner/examples/spinner-demo.tsx",
       "target": "@components/showcase/spinner/examples/spinner-demo.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import Demo from \"../examples/spinner-demo\";\n\nconst Example = () => <Demo />;\n\nexport default Example;\n",
+      "content": "import SpinnerExample from \"../examples/spinner-demo\";\n\nconst Example = () => <SpinnerExample />;\n\nexport default Example;\n",
       "path": "src/spinner/variants/overview.tsx",
       "target": "@components/showcase/spinner/variants/overview.tsx",
       "type": "registry:component"

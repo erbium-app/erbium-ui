@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/styles", "@erbium/textarea"],
   "files": [
     {
-      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nconst TextareaDisabled = () => <Textarea placeholder=\"Type your message here.\" disabled />;\n\nexport default TextareaDisabled;\n",
+      "content": "import { Textarea } from \"@/registry/erbium/ui/textarea\";\n\nexport default function TextareaDisabledExample() {\n  return <Textarea placeholder=\"Type your message here.\" disabled />;\n}\n",
       "path": "src/textarea/examples/textarea-disabled.tsx",
       "target": "@components/showcase/textarea/examples/textarea-disabled.tsx",
       "type": "registry:component"

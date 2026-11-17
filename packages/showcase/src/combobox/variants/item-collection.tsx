@@ -23,7 +23,7 @@ const items = createComboboxItems(projects, {
   getValue: (project) => project.id,
 });
 
-const ItemCollectionExample = () => {
+export default function ItemCollectionExample() {
   const [value, setValue] = useState<(typeof projects)[number]["id"] | null>("design");
 
   return (
@@ -36,7 +36,7 @@ const ItemCollectionExample = () => {
           <ComboboxSearchInput aria-label="Search projects" />
           <ComboboxEmpty>No projects found.</ComboboxEmpty>
           <ComboboxList>
-            {(project) => (
+            {(project: (typeof projects)[number]) => (
               <ComboboxItem key={project.id} value={project.id}>
                 <span className="grid gap-1">
                   <span>{project.name}</span>
@@ -47,11 +47,9 @@ const ItemCollectionExample = () => {
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
-      <p role="status" className="text-caption text-muted-foreground">
+      <output className="text-caption text-muted-foreground">
         Saved project ID: {value ?? "none"}
-      </p>
+      </output>
     </div>
   );
-};
-
-export default ItemCollectionExample;
+}

@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { LimitedAutocomplete } from \"../helpers\";\n\nconst Example = () => <LimitedAutocomplete />;\n\nexport default Example;\n",
+      "content": "import { LimitedAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteWithLimitResultsExample() {\n  return <LimitedAutocomplete />;\n}\n",
       "path": "src/autocomplete/variants/with-limit-results.tsx",
       "target": "@components/showcase/autocomplete/variants/with-limit-results.tsx",
       "type": "registry:component"

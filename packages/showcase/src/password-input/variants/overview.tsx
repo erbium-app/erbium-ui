@@ -1,5 +1,5 @@
-import PasswordInputDemo from "../examples/password-input-demo";
+import PasswordInputExample from "../examples/password-input-demo";
 
-const Example = () => <PasswordInputDemo />;
+const Example = () => <PasswordInputExample />;
 
 export default Example;

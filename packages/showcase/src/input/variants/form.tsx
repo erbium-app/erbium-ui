@@ -1,5 +1,5 @@
-import { InputForm } from "../examples/input-form";
+import InputFormExample from "../examples/input-form";
 
-const Example = () => <InputForm />;
+const Example = () => <InputFormExample />;
 
 export default Example;

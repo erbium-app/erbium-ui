@@ -1,5 +1,5 @@
-import { CalendarWithTime } from "../examples/calendar-time";
+import CalendarWithTimeExample from "../examples/calendar-time";
 
-const Example = () => <CalendarWithTime />;
+const Example = () => <CalendarWithTimeExample />;
 
 export default Example;

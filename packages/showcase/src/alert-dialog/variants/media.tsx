@@ -1,5 +1,5 @@
-import { AlertDialogWithMedia } from "../examples/alert-dialog-media";
+import AlertDialogWithMediaExample from "../examples/alert-dialog-media";
 
-const Example = () => <AlertDialogWithMedia />;
+const Example = () => <AlertDialogWithMediaExample />;
 
 export default Example;

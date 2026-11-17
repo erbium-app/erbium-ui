@@ -2,21 +2,21 @@ import type { Meta, StoryObj } from "../types";
 
 import { componentDocumentation, variantDocumentation } from "@erbium/content/markdown";
 
-import PlaygroundExample from "./variants/playground";
+import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
 import PlaygroundSource from "./variants/playground.tsx?raw";
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/resizable-demo.tsx?raw";
 
 import VerticalExample from "./variants/vertical";
 
-import VerticalSource from "./variants/vertical.tsx?raw";
+import VerticalSource from "./examples/resizable-vertical.tsx?raw";
 
 import HandleExample from "./variants/handle";
 
-import HandleSource from "./variants/handle.tsx?raw";
+import HandleSource from "./examples/resizable-handle.tsx?raw";
 
 const meta = {
   parameters: {
@@ -44,7 +44,7 @@ export const Playground: StoryObj<{
     orientation: { control: "select", options: ["horizontal", "vertical"] },
     showHandle: { control: "boolean" },
   },
-  args: { firstPanelSize: 50, orientation: "horizontal", showHandle: true },
+  args: PlaygroundDefaults,
   parameters: {
     docs: {
       description: { story: variantDocumentation("resizable", "playground") },

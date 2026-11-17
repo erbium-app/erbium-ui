@@ -4,7 +4,7 @@ import { FieldItem, FieldLabel } from "@erbium/ui/components/field";
 import { RadioGroup, RadioGroupItem } from "@erbium/ui/components/radio-group";
 import { Form, useAppForm } from "@erbium/ui/components/form";
 
-const RadioGroupForm = () => {
+export default function RadioGroupFormExample() {
   const labelId = useId();
   const form = useAppForm({ defaultValues: { shipping: "" } });
 
@@ -57,6 +57,4 @@ const RadioGroupForm = () => {
       </form.Subscribe>
     </Form>
   );
-};
-
-export default RadioGroupForm;
+}

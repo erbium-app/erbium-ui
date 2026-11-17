@@ -1,8 +1,8 @@
-import Demo from "../examples/switch-demo";
+import SwitchExample from "../examples/switch-demo";
 
 const Example = () => (
   <div className="w-full min-w-72 max-w-2xl p-4">
-    <Demo />
+    <SwitchExample />
   </div>
 );
 

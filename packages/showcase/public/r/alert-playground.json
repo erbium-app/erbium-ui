@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\nimport type * as React from \"react\";\nimport { alertContent } from \"../helpers\";\n\nconst Example = (args: React.ComponentProps<typeof Alert>) => {\n  const content = alertContent[args.variant ?? \"default\"];\n\n  return (\n    <Alert {...args} className={`w-96 ${args.className ?? \"\"}`}>\n      <AlertTitle>{content.title}</AlertTitle>\n      <AlertDescription>{content.description}</AlertDescription>\n    </Alert>\n  );\n};\n\nexport default Example;\n",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\nimport type * as React from \"react\";\nimport { alertContent } from \"../helpers\";\n\nexport const defaultProps = {\n  className: \"\",\n  variant: \"default\",\n} satisfies React.ComponentProps<typeof Alert>;\n\nexport default function AlertPlaygroundExample(\n  args: React.ComponentProps<typeof Alert> = defaultProps,\n) {\n  const content = alertContent[args.variant ?? \"default\"];\n\n  return (\n    <Alert {...args} className={`w-96 ${args.className ?? \"\"}`}>\n      <AlertTitle>{content.title}</AlertTitle>\n      <AlertDescription>{content.description}</AlertDescription>\n    </Alert>\n  );\n}\n",
       "path": "src/alert/variants/playground.tsx",
       "target": "@components/showcase/alert/variants/playground.tsx",
       "type": "registry:component"

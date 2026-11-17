@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/message", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport { Message, MessageContent } from \"@/registry/erbium/ui/message\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Message>) => (\n  <Message {...args} className={`w-80 ${args.className ?? \"\"}`}>\n    <MessageContent>\n      <Bubble>\n        <BubbleContent>Message content</BubbleContent>\n      </Bubble>\n    </MessageContent>\n  </Message>\n);\n\nexport default Example;\n",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\nimport { Message, MessageContent } from \"@/registry/erbium/ui/message\";\nimport type * as React from \"react\";\n\nexport const defaultProps = { align: \"start\", className: \"\" } satisfies React.ComponentProps<\n  typeof Message\n>;\n\nexport default function MessagePlaygroundExample(\n  args: React.ComponentProps<typeof Message> = defaultProps,\n) {\n  return (\n    <Message {...args} className={`w-80 ${args.className ?? \"\"}`}>\n      <MessageContent>\n        <Bubble>\n          <BubbleContent>Message content</BubbleContent>\n        </Bubble>\n      </MessageContent>\n    </Message>\n  );\n}\n",
       "path": "src/message/variants/playground.tsx",
       "target": "@components/showcase/message/variants/playground.tsx",
       "type": "registry:component"

@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/bubble", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\n\nexport const BubbleAlignmentDemo = () => (\n  <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n    <Bubble variant=\"muted\">\n      <BubbleContent>\n        This bubble is aligned to the start. This is the default alignment.\n      </BubbleContent>\n    </Bubble>\n    <Bubble align=\"end\">\n      <BubbleContent>This bubble is aligned to the end. Use this for user messages.</BubbleContent>\n    </Bubble>\n  </div>\n);\n",
+      "content": "import { Bubble, BubbleContent } from \"@/registry/erbium/ui/bubble\";\n\nexport default function BubbleAlignmentExample() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <Bubble variant=\"muted\">\n        <BubbleContent>\n          This bubble is aligned to the start. This is the default alignment.\n        </BubbleContent>\n      </Bubble>\n      <Bubble align=\"end\">\n        <BubbleContent>\n          This bubble is aligned to the end. Use this for user messages.\n        </BubbleContent>\n      </Bubble>\n    </div>\n  );\n}\n",
       "path": "src/bubble/examples/bubble-alignment.tsx",
       "target": "@components/showcase/bubble/examples/bubble-alignment.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { BubbleAlignmentDemo } from \"../examples/bubble-alignment\";\n\nconst Example = () => <BubbleAlignmentDemo />;\n\nexport default Example;\n",
+      "content": "import BubbleAlignmentExample from \"../examples/bubble-alignment\";\n\nconst Example = () => <BubbleAlignmentExample />;\n\nexport default Example;\n",
       "path": "src/bubble/variants/alignment.tsx",
       "target": "@components/showcase/bubble/variants/alignment.tsx",
       "type": "registry:component"

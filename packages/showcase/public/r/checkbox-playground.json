@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/checkbox", "@erbium/field", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Checkbox>) => (\n  <Field orientation=\"horizontal\" required={args.required}>\n    <Checkbox key={String(args.defaultChecked)} {...args} id=\"playground-checkbox\" />\n    <FieldLabel htmlFor=\"playground-checkbox\">Accept terms</FieldLabel>\n  </Field>\n);\n\nexport default Example;\n",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Checkbox } from \"@/registry/erbium/ui/checkbox\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  defaultChecked: false,\n  disabled: false,\n  indeterminate: false,\n  readOnly: false,\n  required: false,\n} satisfies React.ComponentProps<typeof Checkbox>;\n\nexport default function CheckboxPlaygroundExample(\n  args: React.ComponentProps<typeof Checkbox> = defaultProps,\n) {\n  return (\n    <Field orientation=\"horizontal\" required={args.required}>\n      <Checkbox key={String(args.defaultChecked)} {...args} id=\"playground-checkbox\" />\n      <FieldLabel htmlFor=\"playground-checkbox\">Accept terms</FieldLabel>\n    </Field>\n  );\n}\n",
       "path": "src/checkbox/variants/playground.tsx",
       "target": "@components/showcase/checkbox/variants/playground.tsx",
       "type": "registry:component"

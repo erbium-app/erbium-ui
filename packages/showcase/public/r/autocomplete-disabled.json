@@ -19,7 +19,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nconst Example = () => <FruitAutocomplete disabled />;\n\nexport default Example;\n",
+      "content": "import { FruitAutocomplete } from \"../helpers\";\n\nexport default function AutocompleteDisabledExample() {\n  return <FruitAutocomplete disabled />;\n}\n",
       "path": "src/autocomplete/variants/disabled.tsx",
       "target": "@components/showcase/autocomplete/variants/disabled.tsx",
       "type": "registry:component"

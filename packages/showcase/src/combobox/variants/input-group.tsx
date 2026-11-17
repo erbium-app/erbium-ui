@@ -1,5 +1,5 @@
-import { ComboxboxInputGroup } from "../examples/combobox-input-group";
+import ComboxboxInputGroupExample from "../examples/combobox-input-group";
 
-const Example = () => <ComboxboxInputGroup />;
+const Example = () => <ComboxboxInputGroupExample />;
 
 export default Example;

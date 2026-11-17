@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/alert", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nconst AlertColors = () => (\n  <Alert variant=\"warning\" className=\"max-w-md\">\n    <AlertTitle>Context window nearly full</AlertTitle>\n    <AlertDescription>\n      The agent may need to summarize this conversation before continuing the task.\n    </AlertDescription>\n  </Alert>\n);\n\nexport default AlertColors;\n",
+      "content": "import { Alert, AlertDescription, AlertTitle } from \"@/registry/erbium/ui/alert\";\n\nexport default function AlertColorsExample() {\n  return (\n    <Alert variant=\"warning\" className=\"max-w-md\">\n      <AlertTitle>Context window nearly full</AlertTitle>\n      <AlertDescription>\n        The agent may need to summarize this conversation before continuing the task.\n      </AlertDescription>\n    </Alert>\n  );\n}\n",
       "path": "src/alert/examples/alert-colors.tsx",
       "target": "@components/showcase/alert/examples/alert-colors.tsx",
       "type": "registry:component"

@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/combobox", "@erbium/styles"],
   "files": [
     {
-      "content": "import {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/erbium/ui/combobox\";\n\nconst frameworks = [\"TanStack Start\", \"SvelteKit\", \"Nuxt.js\", \"Remix\", \"Astro\"] as const;\n\nexport const ComboboxDisabled = () => (\n  <Combobox items={frameworks}>\n    <ComboboxInput placeholder=\"Select a framework\" disabled />\n    <ComboboxContent>\n      <ComboboxEmpty>No items found.</ComboboxEmpty>\n      <ComboboxList>\n        {(item) => (\n          <ComboboxItem key={item} value={item}>\n            {item}\n          </ComboboxItem>\n        )}\n      </ComboboxList>\n    </ComboboxContent>\n  </Combobox>\n);\n",
+      "content": "import {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from \"@/registry/erbium/ui/combobox\";\n\nconst frameworks = [\"TanStack Start\", \"SvelteKit\", \"Nuxt.js\", \"Remix\", \"Astro\"] as const;\n\nexport default function ComboboxDisabledExample() {\n  return (\n    <Combobox items={frameworks}>\n      <ComboboxInput placeholder=\"Select a framework\" disabled />\n      <ComboboxContent>\n        <ComboboxEmpty>No items found.</ComboboxEmpty>\n        <ComboboxList>\n          {(item: (typeof frameworks)[number]) => (\n            <ComboboxItem key={item} value={item}>\n              {item}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxContent>\n    </Combobox>\n  );\n}\n",
       "path": "src/combobox/examples/combobox-disabled.tsx",
       "target": "@components/showcase/combobox/examples/combobox-disabled.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { ComboboxDisabled } from \"../examples/combobox-disabled\";\n\nconst Example = () => <ComboboxDisabled />;\n\nexport default Example;\n",
+      "content": "import ComboboxDisabledExample from \"../examples/combobox-disabled\";\n\nconst Example = () => <ComboboxDisabledExample />;\n\nexport default Example;\n",
       "path": "src/combobox/variants/disabled.tsx",
       "target": "@components/showcase/combobox/variants/disabled.tsx",
       "type": "registry:component"

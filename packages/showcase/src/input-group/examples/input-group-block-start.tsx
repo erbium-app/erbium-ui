@@ -12,7 +12,7 @@ import {
   InputGroupTextarea,
 } from "@erbium/ui/components/input-group";
 
-export const InputGroupBlockStart = () => {
+export default function InputGroupBlockStartExample() {
   const [code, setCode] = useState("console.log('Hello, world!');");
 
   return (
@@ -52,4 +52,4 @@ export const InputGroupBlockStart = () => {
       </Field>
     </FieldGroup>
   );
-};
+}

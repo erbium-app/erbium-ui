@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/meter", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Meter, MeterIndicator, MeterTrack } from \"@/registry/erbium/ui/meter\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Meter>) => (\n  <Meter {...args} className=\"w-72\" aria-label=\"Storage used\">\n    <MeterTrack>\n      <MeterIndicator />\n    </MeterTrack>\n  </Meter>\n);\n\nexport default Example;\n",
+      "content": "import { Meter, MeterIndicator, MeterTrack } from \"@/registry/erbium/ui/meter\";\nimport type * as React from \"react\";\n\nexport const defaultProps = { max: 100, min: 0, value: 24 } satisfies React.ComponentProps<\n  typeof Meter\n>;\n\nexport default function MeterPlaygroundExample(\n  args: React.ComponentProps<typeof Meter> = defaultProps,\n) {\n  return (\n    <Meter {...args} className=\"w-72\" aria-label=\"Storage used\">\n      <MeterTrack>\n        <MeterIndicator />\n      </MeterTrack>\n    </Meter>\n  );\n}\n",
       "path": "src/meter/variants/playground.tsx",
       "target": "@components/showcase/meter/variants/playground.tsx",
       "type": "registry:component"

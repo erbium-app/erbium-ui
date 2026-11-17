@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/spinner", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nconst SpinnerSize = () => (\n  <div className=\"flex items-center gap-section\">\n    <Spinner size=\"xs\" />\n    <Spinner size=\"sm\" />\n    <Spinner size=\"default\" />\n    <Spinner size=\"lg\" />\n    <Spinner size=\"xl\" />\n  </div>\n);\n\nexport default SpinnerSize;\n",
+      "content": "import { Spinner } from \"@/registry/erbium/ui/spinner\";\n\nexport default function SpinnerSizeExample() {\n  return (\n    <div className=\"flex items-center gap-section\">\n      <Spinner size=\"xs\" />\n      <Spinner size=\"sm\" />\n      <Spinner size=\"default\" />\n      <Spinner size=\"lg\" />\n      <Spinner size=\"xl\" />\n    </div>\n  );\n}\n",
       "path": "src/spinner/examples/spinner-size.tsx",
       "target": "@components/showcase/spinner/examples/spinner-size.tsx",
       "type": "registry:component"

@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/button", "@erbium/styles", "@erbium/toast"],
   "files": [
     {
-      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nconst Example = () => (\n  <Button\n    variant=\"outline\"\n    onClick={() => {\n      const id = toast.add({ timeout: 0, title: \"Syncing changes…\", type: \"loading\" });\n      window.setTimeout(() => {\n        toast.update(id, { timeout: 4000, title: \"Changes synced\", type: \"success\" });\n      }, 1200);\n    }}\n  >\n    Show progress toast\n  </Button>\n);\n\nexport default Example;\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\nimport { toast } from \"@/registry/erbium/ui/toast\";\n\nexport default function ToastProgressExample() {\n  return (\n    <Button\n      variant=\"outline\"\n      onClick={() => {\n        const id = toast.add({ timeout: 0, title: \"Syncing changes…\", type: \"loading\" });\n        window.setTimeout(() => {\n          toast.update(id, { timeout: 4000, title: \"Changes synced\", type: \"success\" });\n        }, 1200);\n      }}\n    >\n      Show progress toast\n    </Button>\n  );\n}\n",
       "path": "src/toast/variants/progress.tsx",
       "target": "@components/showcase/toast/variants/progress.tsx",
       "type": "registry:component"

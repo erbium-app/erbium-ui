@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/field", "@erbium/styles", "@erbium/switch"],
   "files": [
     {
-      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport type * as React from \"react\";\n\nconst Example = (args: React.ComponentProps<typeof Switch>) => (\n  <Field orientation=\"horizontal\" required={args.required}>\n    <Switch key={String(args.defaultChecked)} id=\"playground-switch\" {...args} />\n    <FieldLabel htmlFor=\"playground-switch\">Airplane mode</FieldLabel>\n  </Field>\n);\n\nexport default Example;\n",
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Switch } from \"@/registry/erbium/ui/switch\";\nimport type * as React from \"react\";\n\nexport const defaultProps = {\n  defaultChecked: false,\n  disabled: false,\n  readOnly: false,\n  required: false,\n  size: \"default\",\n} satisfies React.ComponentProps<typeof Switch>;\n\nexport default function SwitchPlaygroundExample(\n  args: React.ComponentProps<typeof Switch> = defaultProps,\n) {\n  return (\n    <Field orientation=\"horizontal\" required={args.required}>\n      <Switch key={String(args.defaultChecked)} id=\"playground-switch\" {...args} />\n      <FieldLabel htmlFor=\"playground-switch\">Airplane mode</FieldLabel>\n    </Field>\n  );\n}\n",
       "path": "src/switch/variants/playground.tsx",
       "target": "@components/showcase/switch/variants/playground.tsx",
       "type": "registry:component"

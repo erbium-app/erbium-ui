@@ -1,8 +1,8 @@
-import Demo from "../examples/pagination-demo";
+import PaginationExample from "../examples/pagination-demo";
 
 const Example = () => (
   <div className="w-full min-w-72 max-w-2xl p-4">
-    <Demo />
+    <PaginationExample />
   </div>
 );
 

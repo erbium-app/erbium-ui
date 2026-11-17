@@ -11,32 +11,34 @@ import {
   DropdownMenuList,
 } from "@erbium/ui/components/dropdown-menu";
 
-export const DropdownMenuShortcuts = () => (
-  <DropdownMenu>
-    <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
-    <DropdownMenuContent>
-      <DropdownMenuList>
-        <DropdownMenuGroup>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+export default function DropdownMenuShortcutsExample() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger render={<Button variant="outline" />}>Open</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuList>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuItem>
+              Profile
+              <DropdownMenuShortcut hotkey="Mod+Shift+P" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Billing
+              <DropdownMenuShortcut hotkey="Mod+B" />
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              Settings
+              <DropdownMenuShortcut hotkey="Mod+S" />
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
           <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut hotkey="Mod+Shift+P" />
+            Log out
+            <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut hotkey="Mod+B" />
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut hotkey="Mod+S" />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Log out
-          <DropdownMenuShortcut hotkey="Mod+Shift+Q" />
-        </DropdownMenuItem>
-      </DropdownMenuList>
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
+        </DropdownMenuList>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}

@@ -61,28 +61,30 @@ const countries = [
   },
 ];
 
-export const ComboboxWithCustomItems = () => (
-  <Combobox
-    items={countries.filter((country) => country.code !== "")}
-    itemToStringValue={(country: (typeof countries)[number]) => country.label}
-  >
-    <ComboboxInput placeholder="Search countries..." />
-    <ComboboxContent>
-      <ComboboxEmpty>No countries found.</ComboboxEmpty>
-      <ComboboxList>
-        {(country) => (
-          <ComboboxItem key={country.code} value={country}>
-            <Item size="xs" className="p-0">
-              <ItemContent>
-                <ItemTitle className="whitespace-nowrap">{country.label}</ItemTitle>
-                <ItemDescription>
-                  {country.continent} ({country.code})
-                </ItemDescription>
-              </ItemContent>
-            </Item>
-          </ComboboxItem>
-        )}
-      </ComboboxList>
-    </ComboboxContent>
-  </Combobox>
-);
+export default function ComboboxWithCustomItemsExample() {
+  return (
+    <Combobox
+      items={countries.filter((country) => country.code !== "")}
+      itemToStringValue={(country: (typeof countries)[number]) => country.label}
+    >
+      <ComboboxInput placeholder="Search countries..." />
+      <ComboboxContent>
+        <ComboboxEmpty>No countries found.</ComboboxEmpty>
+        <ComboboxList>
+          {(country: (typeof countries)[number]) => (
+            <ComboboxItem key={country.code} value={country}>
+              <Item size="xs" className="p-0">
+                <ItemContent>
+                  <ItemTitle className="whitespace-nowrap">{country.label}</ItemTitle>
+                  <ItemDescription>
+                    {country.continent} ({country.code})
+                  </ItemDescription>
+                </ItemContent>
+              </Item>
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  );
+}

@@ -25,7 +25,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { InvoicesTable } from \"../helpers\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-3xl p-4\">\n    <InvoicesTable />\n  </div>\n);\n\nexport default Example;\n",
+      "content": "import { InvoicesTable } from \"../helpers\";\n\nexport default function DataTableExample() {\n  return (\n    <div className=\"w-full min-w-72 max-w-3xl p-4\">\n      <InvoicesTable />\n    </div>\n  );\n}\n",
       "path": "src/data-table/variants/overview.tsx",
       "target": "@components/showcase/data-table/variants/overview.tsx",
       "type": "registry:component"

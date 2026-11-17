@@ -7,13 +7,13 @@
   "registryDependencies": ["@erbium/calendar", "@erbium/card", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card } from \"@/registry/erbium/ui/card\";\n\nconst year = new Date().getFullYear();\n\n// Fifteen nights from January 12 are already booked.\nconst bookedDates = Array.from({ length: 15 }, (_, i) => new Date(year, 0, 12 + i));\n\nexport const CalendarBookedDates = () => {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date(year, 0, 6));\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <Calendar\n        mode=\"single\"\n        defaultMonth={date}\n        selected={date}\n        onSelect={setDate}\n        disabled={bookedDates}\n      />\n    </Card>\n  );\n};\n",
+      "content": "import * as React from \"react\";\n\nimport { Calendar } from \"@/registry/erbium/ui/calendar\";\nimport { Card } from \"@/registry/erbium/ui/card\";\n\nconst year = new Date().getFullYear();\n\n// Fifteen nights from January 12 are already booked.\nconst bookedDates = Array.from({ length: 15 }, (_, i) => new Date(year, 0, 12 + i));\n\nexport default function CalendarBookedDatesExample() {\n  const [date, setDate] = React.useState<Date | undefined>(() => new Date(year, 0, 6));\n\n  return (\n    <Card className=\"mx-auto w-fit p-0\">\n      <Calendar\n        mode=\"single\"\n        defaultMonth={date}\n        selected={date}\n        onSelect={setDate}\n        disabled={bookedDates}\n      />\n    </Card>\n  );\n}\n",
       "path": "src/calendar/examples/calendar-booked-dates.tsx",
       "target": "@components/showcase/calendar/examples/calendar-booked-dates.tsx",
       "type": "registry:component"
     },
     {
-      "content": "import { CalendarBookedDates } from \"../examples/calendar-booked-dates\";\n\nconst Example = () => <CalendarBookedDates />;\n\nexport default Example;\n",
+      "content": "import CalendarBookedDatesExample from \"../examples/calendar-booked-dates\";\n\nconst Example = () => <CalendarBookedDatesExample />;\n\nexport default Example;\n",
       "path": "src/calendar/variants/booked-dates.tsx",
       "target": "@components/showcase/calendar/variants/booked-dates.tsx",
       "type": "registry:component"

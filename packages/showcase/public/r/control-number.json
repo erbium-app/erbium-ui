@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { NumberExample } from \"../helpers\";\n\nconst Example = () => <NumberExample />;\n\nexport default Example;\n",
+      "content": "import { NumberExample } from \"../helpers\";\n\nexport default function ControlNumberExample() {\n  return <NumberExample />;\n}\n",
       "path": "src/control/variants/number.tsx",
       "target": "@components/showcase/control/variants/number.tsx",
       "type": "registry:component"

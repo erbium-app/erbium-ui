@@ -9,22 +9,31 @@ const priceFormat = chartNumberFormat(
 
 const ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, "en");
 
-const Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (
-  <div className="w-2xl max-w-full p-4">
-    <ScatterChart
-      ariaLabel="Product price against average rating"
-      data={products}
-      x="price"
-      y="rating"
-      group="category"
-      xLabel="Price"
-      yLabel="Rating"
-      xFormat={priceFormat}
-      format={ratingFormat}
-      initialWidth={640}
-      {...args}
-    />
-  </div>
-);
+export const defaultProps = {
+  grid: true,
+  legend: true,
+  radius: 4,
+  tooltip: true,
+} satisfies { grid: boolean; legend: boolean; radius: number; tooltip: boolean };
 
-export default Example;
+export default function ScatterChartPlaygroundExample(
+  args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean } = defaultProps,
+) {
+  return (
+    <div className="w-2xl max-w-full p-4">
+      <ScatterChart
+        ariaLabel="Product price against average rating"
+        data={products}
+        x="price"
+        y="rating"
+        group="category"
+        xLabel="Price"
+        yLabel="Rating"
+        xFormat={priceFormat}
+        format={ratingFormat}
+        initialWidth={640}
+        {...args}
+      />
+    </div>
+  );
+}
