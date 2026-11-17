@@ -7,6 +7,22 @@ The Erbium CLI copies components, styles, and examples into your project as sour
 
 Use Node.js 22.18 or later and Git in a TypeScript React project with shadcn configured. Follow [Installation](/docs/installation) for the app setup, global styles, and icon sprite.
 
+## Work with an agent
+
+Agents build with Erbium through the CLI: they find an existing item, read its documentation, install the source, and verify the result. Copy this prompt into your coding agent, or add it to your project’s agent instructions. [Set up with an agent](/docs/installation#set-up-with-an-agent) covers the first install.
+
+```prompt
+Use Erbium UI and its CLI for all UI work in this project. Run `erbium` through the project's package manager.
+
+1. Before building UI, run `erbium search <terms>` to find an existing component, block, or example. Read the match with `erbium docs <item>` and follow its composition, accessibility, and loading guidance.
+2. Install with `erbium add <item>`. A bare name such as `combobox` means `@erbium/combobox`; use the full `@erbium-examples/<name>` for an example. Never copy registry files by hand.
+3. Compose new UI from the installed Erbium components and the tokens in src/styles/. Edit the installed source when a change belongs in the component itself. Keep labels inside fields, use `error` rather than `destructive`, and preserve RTL support.
+4. To update, run `erbium status`, review `erbium diff <item>`, then run `erbium update <item>`. If edits overlap, stop and show me the conflict instead of using `--overwrite`.
+5. After changing UI, run `erbium check`, the project's lint and type checks, and its build. Keep .erbium/lock.json and .erbium/bases/ with the source.
+```
+
+`erbium init --agents` writes a short Erbium skill to `.agents/skills/erbium-ui/SKILL.md` and points to it from `AGENTS.md`. Each documentation page is also available as Markdown at its URL with `.md` appended, and [llms.txt](/llms.txt) lists every page.
+
 ## Install and track source
 
 Run these commands from the app directory. Like [Installation](/docs/installation), the examples use Bun, and each command block offers npm, pnpm, and Yarn. Later sections show the bare `erbium` command, which you run through your package manager. To try the CLI without adding a dependency, use `bunx --package @erbium/cli erbium`.

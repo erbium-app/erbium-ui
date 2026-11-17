@@ -24,6 +24,7 @@ import {
   TableCaption,
 } from "@erbium/ui/components/table";
 import { PackageCommand } from "./package-command";
+import { PromptBlock } from "./prompt-block";
 
 const MarkdownLink = ({ href, children, ...props }: ComponentProps<"a">) => {
   const internal = href?.startsWith("/") === true && !/\.(?:md|json|txt|xml)$/u.test(href);
@@ -70,6 +71,10 @@ const isCodeText = (value: ReactNode): value is string => typeof value === "stri
 const MarkdownCode = ({ children, className, ...props }: ComponentProps<"code">) => {
   if (className?.startsWith("language-") === true && isCodeText(children)) {
     const language = className.slice(9);
+
+    if (language === "prompt") {
+      return <PromptBlock code={children} className="not-typeset my-4" />;
+    }
 
     if (shellLanguages.has(language)) {
       return <PackageCommand code={children} className="not-typeset my-4" />;

@@ -5,6 +5,23 @@ description: Install Erbium UI with shadcn and manage component updates with the
 
 Add Erbium components to your React application with the [Shadcn CLI](https://ui.shadcn.com/docs/cli). It copies the source into your project and installs the dependencies. Import from those local files and edit them as needed. You do not need to clone this repository or install an `@erbium/ui` package.
 
+## Set up with an agent
+
+Copy this prompt into your coding agent to run the steps on this page in a new or existing app. The agent also installs the Erbium CLI and records how to work with Erbium in your project, so later UI requests follow the [agent workflow](/docs/cli#work-with-an-agent).
+
+```prompt
+Set up Erbium UI in this React project and prepare it for future UI work.
+
+1. Read https://ui.erbium.app/docs/installation.md and follow it. The project needs React with TypeScript, Tailwind CSS v4, and shadcn initialized with Base UI. If shadcn is missing, initialize it as the guide describes. Run every command with the project's package manager.
+2. Install @erbium/cli as a dev dependency and run `erbium init --agents`. It adds the @erbium registries to components.json, starts .erbium/lock.json, and writes an Erbium skill and an AGENTS.md note.
+3. Run `erbium add styles icon-sprite`. Import the installed src/styles/globals.css from the app's global CSS entry and remove starter theme variables that conflict with it. Mount IconSprite once in the app shell, outside scrolling and hidden panels.
+4. If the project already has components installed from Erbium with shadcn, track them with `erbium adopt <items>` instead of reinstalling them.
+5. Read https://ui.erbium.app/docs/cli.md and follow its agent workflow for all later UI work.
+6. Run `erbium check` and the project's build. Keep .erbium/lock.json and .erbium/bases/ with the source, then summarize what changed.
+```
+
+To set up by hand, follow the steps below.
+
 ## Prerequisites
 
 Use a React project with TypeScript and [Tailwind CSS v4](https://tailwindcss.com/docs/installation). The CLI needs a `components.json` file and configured import aliases. If your app already has Shadcn configured, skip to **Configure the registries**.
