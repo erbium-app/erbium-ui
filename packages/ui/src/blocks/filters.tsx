@@ -24,6 +24,7 @@ import { Input } from "../components/input";
 import { NumberField, NumberFieldGroup, NumberFieldInput } from "../components/number-field";
 import { Popover, PopoverContent, PopoverTrigger } from "../components/popover";
 import { Separator } from "../components/separator";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../components/tooltip";
 import {
   changeOperator,
   createRule,
@@ -90,6 +91,19 @@ const formatValue = (field: FilterField, value: FilterValue | undefined): string
   return field.options.find((option) => option.value === value)?.label ?? String(value);
 };
 
+/** How many chosen options a summary names; past this it counts them instead. */
+const listedOptionLimit = 2;
+
+/** Whether a field's summary counts its chosen options instead of naming them. */
+const isCounted = (field: FilterField): boolean =>
+  isOptionType(field.type) && (field.rule?.values.length ?? 0) > listedOptionLimit;
+
+/** The chosen options a counted summary leaves out, named in full, or `null` when none are. */
+const countedValues = (field: FilterField): string | null =>
+  isCounted(field)
+    ? (field.rule?.values ?? []).map((value) => formatValue(field, value)).join(", ")
+    : null;
+
 /** What a field's value reads as in a chip or facet button, or `null` while it has none. */
 const summarize = (field: FilterField): string | null => {
   const { rule } = field;
@@ -99,7 +113,7 @@ const summarize = (field: FilterField): string | null => {
   }
 
   if (isOptionType(field.type)) {
-    return rule.values.length > 2
+    return isCounted(field)
       ? `${rule.values.length} selected`
       : rule.values.map((value) => formatValue(field, value)).join(", ");
   }
@@ -348,6 +362,23 @@ const FilterValueControl = ({
   );
 };
 
+/**
+ * A value control for a trigger that shows the field's summary. When the summary counts the chosen
+ * options ("3 selected"), hovering or focusing the trigger names them all in a tooltip.
+ */
+const SummaryValueControl = ({ trigger, ...props }: FilterValueControlProps) => {
+  const values = countedValues(props.field);
+
+  // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an open
+  // menu keeps its anchor) when choosing one more option turns the names into a count.
+  return (
+    <Tooltip disabled={values === null}>
+      <FilterValueControl {...props} trigger={<TooltipTrigger render={trigger} />} />
+      <TooltipContent>{values}</TooltipContent>
+    </Tooltip>
+  );
+};
+
 // Chip mode
 
 /** The menu that changes a filter's operator. */
@@ -420,7 +451,7 @@ const FilterChip = ({ field, open, onOpenChange, className }: FilterChipProps) =
         {field.label}
       </span>
       <FilterOperatorMenu field={field} />
-      <FilterValueControl
+      <SummaryValueControl
         field={field}
         open={open}
         onOpenChange={onOpenChange}
@@ -567,12 +598,10 @@ const FilterBar = ({ filters, className, children, ...props }: FilterBarProps) =
 
 // Faceted mode
 
-const facetBadgeLimit = 2;
-
 const FacetSummary = ({ field }: { field: FilterField }) => {
   const chosen = field.rule?.values ?? [];
 
-  if (!isOptionType(field.type) || chosen.length > facetBadgeLimit) {
+  if (!isOptionType(field.type) || isCounted(field)) {
     return (
       <Badge variant="secondary" className="max-w-40">
         <span className="truncate">{summarize(field)}</span>
@@ -634,7 +663,7 @@ const FilterFacet = ({ field, className }: FilterFacetProps) => {
   const active = field.rule !== undefined && !isRuleEmpty(field.rule);
 
   return (
-    <FilterValueControl
+    <SummaryValueControl
       field={field}
       footer={active ? <FacetClear field={field} /> : null}
       trigger={

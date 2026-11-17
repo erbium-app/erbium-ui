@@ -974,6 +974,7 @@
         "@erbium/number-field",
         "@erbium/popover",
         "@erbium/separator",
+        "@erbium/tooltip",
         "@erbium/utils"
       ],
       "files": [
