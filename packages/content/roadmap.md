@@ -7,9 +7,9 @@ Erbium is growing from a set of primitives into a focused system for building da
 
 ## Working with data
 
-We’re building toward a full-featured data table on [TanStack Table](https://tanstack.com/table/latest), with sorting, pagination, selection, grouping, column controls, and [TanStack Virtual](https://tanstack.com/virtual/latest) for large datasets. Filters will share a field, operator, and value model across tables, lists, and search.
+The [data table](/docs/blocks/data-table) on [TanStack Table](https://tanstack.com/table/latest) already searches, filters, sorts, selects and pages rows in the browser or on a server, and keeps its query in the URL. Next come cursor pagination, column resizing, pinning and ordering, grouping, and [TanStack Virtual](https://tanstack.com/virtual/latest) for large datasets.
 
-Editable data sheets extend that direction with cell editing, range selection, clipboard operations, and undo/redo. Table behavior and editing will remain composable, with applications owning fetching and persistence.
+Editable data grids extend that direction with cell editing, range selection, clipboard operations, and undo/redo. Table behavior and editing will remain composable, with applications owning fetching and persistence.
 
 ## Composing product interfaces
 
