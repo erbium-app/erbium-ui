@@ -9,11 +9,12 @@ depend on the directory where the CLI runs. Add future public surfaces to this
 stack and return their typed URLs alongside `docsUrl`. Extract resource modules
 when their configuration or bindings need to be shared with app code.
 
-Alchemy, the Cloudflare provider (`@alchemy.run/cloudflare`) and the frontend
-integration are pinned to `2.0.0-beta.84`. Since `2.0.0-beta.84` Cloudflare lives
-in its own package: import `Cloudflare` from `@alchemy.run/cloudflare` and the
-stack runtime from `alchemy`. Update all three together. This uses the
-Effect-based Alchemy v2 API.
+Alchemy (`alchemy`), the Cloudflare provider (`@alchemy.run/cloudflare`) and the
+docs integrations (`@alchemy.run/cloudflare-runtime`,
+`@alchemy.run/frontend-frameworks` in `apps/docs`) are pinned to
+`2.0.0-beta.87`. Since `2.0.0-beta.84` Cloudflare lives in its own package:
+import `Cloudflare` from `@alchemy.run/cloudflare` and the stack runtime from
+`alchemy`. Update all four together. This uses the Effect-based Alchemy v2 API.
 
 ## Deploy
 
@@ -38,6 +39,30 @@ permissions needed for Alchemy's Cloudflare state backend and custom domains
 (Workers KV Storage, Account Settings Write, Secrets Store Write, Zone Read and
 DNS Edit). See [Cloudflare setup](https://alchemy.run/cloudflare/setup/) and
 [CI configuration](https://alchemy.run/environments/ci/).
+
+## Environment and secrets
+
+The stack's `secrets` option lists where `Config` values come from:
+`packages/infra/.env` (git-ignored, optional), then the process environment,
+which wins. CI runners and one-off `KEY=value bun run deploy` calls need no
+extra setup. Because `secrets` is declared, Alchemy refuses `--env-file`; add a
+path to `Secrets.DotEnv({ path })` instead. Run with `--log-level debug` to see
+which keys each source loaded.
+
+The stack holds no secrets of its own today. Cloudflare credentials come from
+the Alchemy profile, and the analytics token is an output of the `Rum.Site`
+resource. When a Worker needs a real secret, read it with
+`Config.Redacted("NAME")` so Alchemy uploads it as `secret_text`, and keep the
+value in `.env` or the CI secret store. Add a secrets manager to the list, such
+as `Doppler.Secrets` from `@alchemy.run/doppler`, once secrets are shared
+between people or stages. See
+[Secret providers](https://alchemy.run/environments/secret-providers/).
+
+Build-time values for `apps/docs` (`VITE_CLOUDFLARE_ANALYTICS_TOKEN`,
+`VITE_DOCS_PREVIEW`) are set in this file through each `Website.Vite` `env`.
+Their types live in `apps/docs/src/vite-env.d.ts`; update both together.
+
+## State
 
 State is stored in Cloudflare through `Cloudflare.state()` so local and CI runs
 share the same production stack state. To remove the production deployment and

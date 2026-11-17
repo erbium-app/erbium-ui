@@ -9,6 +9,9 @@ export default Alchemy.Stack(
   {
     providers: Cloudflare.providers(),
     state: Cloudflare.state(),
+    // Later entries win: the shell and CI runner override packages/infra/.env.
+    // Read values with Config.Redacted; add a secrets manager here when one is needed.
+    secrets: [Alchemy.Secrets.DotEnv(), Alchemy.Secrets.ProcessEnv()],
   },
   Effect.gen(function* erbiumStack() {
     const { stage } = yield* Alchemy.Stack;
