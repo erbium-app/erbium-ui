@@ -25,10 +25,10 @@ Use Erbium UI and its CLI for all UI work in this project. Run `erbium` through 
 
 ## Install and track source
 
-Run these commands from the app directory. Like [Installation](/docs/installation), the examples use Bun, and each command block offers npm, pnpm, and Yarn. Later sections show the bare `erbium` command, which you run through your package manager. To try the CLI without adding a dependency, use `bunx --package @erbium/cli erbium`.
+Run these commands from the app directory. Like [Installation](/docs/installation), the examples use Bun, and each command block offers npm, pnpm, and Yarn. Later sections show the bare `erbium` command, which you run through your package manager. To try the CLI without adding a dependency, use `bunx --package @erbium-app/cli erbium`.
 
 ```sh
-bun add -d @erbium/cli
+bun add -d @erbium-app/cli
 bunx erbium init
 bunx erbium search button
 bunx erbium add styles button

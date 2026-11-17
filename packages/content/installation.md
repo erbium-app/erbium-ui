@@ -13,7 +13,7 @@ Copy this prompt into your coding agent to run the steps on this page in a new o
 Set up Erbium UI in this React project and prepare it for future UI work.
 
 1. Read https://ui.erbium.app/docs/installation.md and follow it. The project needs React with TypeScript, Tailwind CSS v4, and shadcn initialized with Base UI. If shadcn is missing, initialize it as the guide describes. Run every command with the project's package manager.
-2. Install @erbium/cli as a dev dependency and run `erbium init --agents`. It adds the @erbium registries to components.json, starts .erbium/lock.json, and writes an Erbium skill and an AGENTS.md note.
+2. Install @erbium-app/cli as a dev dependency and run `erbium init --agents`. It adds the @erbium registries to components.json, starts .erbium/lock.json, and writes an Erbium skill and an AGENTS.md note.
 3. Run `erbium add styles icon-sprite`. Import the installed src/styles/globals.css from the app's global CSS entry and remove starter theme variables that conflict with it. Mount IconSprite once in the app shell, outside scrolling and hidden panels.
 4. If the project already has components installed from Erbium with shadcn, track them with `erbium adopt <items>` instead of reinstalling them.
 5. Read https://ui.erbium.app/docs/cli.md and follow its agent workflow for all later UI work.
@@ -147,7 +147,7 @@ Run `bun run build` to check the production build. Continue with [Using componen
 The Erbium CLI records the revision of each component you install, so you can review upstream changes and merge them into your edited source later. Start tracking the styles and Button installed above:
 
 ```sh
-bun add -d @erbium/cli
+bun add -d @erbium-app/cli
 bunx erbium init
 bunx erbium adopt styles button
 bunx erbium check

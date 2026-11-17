@@ -99,7 +99,7 @@
       },
     },
     "packages/cli": {
-      "name": "@erbium/cli",
+      "name": "@erbium-app/cli",
       "version": "0.1.0",
       "bin": {
         "erbium": "./dist/index.js",
@@ -416,7 +416,7 @@
 
     "@emnapi/wasi-threads": ["@emnapi/wasi-threads@1.2.2", "", { "dependencies": { "tslib": "^2.4.0" } }, "sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA=="],
 
-    "@erbium/cli": ["@erbium/cli@workspace:packages/cli"],
+    "@erbium-app/cli": ["@erbium-app/cli@workspace:packages/cli"],
 
     "@erbium/content": ["@erbium/content@workspace:packages/content"],
 

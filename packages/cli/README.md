@@ -3,15 +3,15 @@
 Install source-owned Erbium UI in a TypeScript React project configured with shadcn. Use Node 22.18 or later and Git for comparisons and merges.
 
 ```sh
-bunx --package @erbium/cli erbium init
-bunx --package @erbium/cli erbium search button
-bunx --package @erbium/cli erbium docs button
-bunx --package @erbium/cli erbium add styles button
-bunx --package @erbium/cli erbium status
-bunx --package @erbium/cli erbium diff button
-bunx --package @erbium/cli erbium update --dry-run
-bunx --package @erbium/cli erbium update
-bunx --package @erbium/cli erbium check
+bunx --package @erbium-app/cli erbium init
+bunx --package @erbium-app/cli erbium search button
+bunx --package @erbium-app/cli erbium docs button
+bunx --package @erbium-app/cli erbium add styles button
+bunx --package @erbium-app/cli erbium status
+bunx --package @erbium-app/cli erbium diff button
+bunx --package @erbium-app/cli erbium update --dry-run
+bunx --package @erbium-app/cli erbium update
+bunx --package @erbium-app/cli erbium check
 ```
 
 By default, overlapping edits abort the whole operation before any source, baseline, lock or dependency changes. For `add` and `update`, choose one of these options when you need to resolve the overlap explicitly.

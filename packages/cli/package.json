@@ -1,8 +1,26 @@
 {
-  "name": "@erbium/cli",
+  "name": "@erbium-app/cli",
   "version": "0.1.0",
   "description": "Install, track, and update Erbium UI source files.",
+  "keywords": [
+    "cli",
+    "components",
+    "design-system",
+    "react",
+    "registry",
+    "shadcn",
+    "ui"
+  ],
+  "homepage": "https://ui.erbium.app/docs/cli",
+  "bugs": {
+    "url": "https://github.com/erbium-app/erbium-ui/issues"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erbium-app/erbium-ui.git",
+    "directory": "packages/cli"
+  },
   "bin": {
     "erbium": "./dist/index.js"
   },
@@ -11,6 +29,9 @@
     "README.md"
   ],
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "bun build src/index.ts --target node --packages external --outfile dist/index.js",
     "prepack": "bun run build",
