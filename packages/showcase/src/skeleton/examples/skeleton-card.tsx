@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@erbium/ui/components/card";
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 import { article, sampleArticle } from "../fixtures";
 import type { Article } from "../fixtures";
 
@@ -53,7 +53,6 @@ export default function SkeletonCardExample({ latency }: { latency?: number } = 
       >
         {(value) => <ArticleCard article={value} />}
       </Skeleton>
-      <LoadingControls {...request} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 import { paragraphs, sampleParagraphs } from "../fixtures";
 
 /** Each line of text gets a bar from the font's ascender to its descender, wrapped as it will be. */
@@ -28,7 +28,6 @@ export default function SkeletonTextExample({ latency }: { latency?: number } = 
           </article>
         )}
       </Skeleton>
-      <LoadingControls {...request} />
     </div>
   );
 }

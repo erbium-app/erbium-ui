@@ -1,5 +1,3 @@
-import { Button } from "@erbium/ui/components/button";
-import { ButtonGroup } from "@erbium/ui/components/button-group";
 import { useEffect, useState } from "react";
 
 /*
@@ -76,27 +74,11 @@ const useSimulatedFetch = <T,>(
   };
 };
 
-/** Replays the example's request: `Reload` from nothing, `Refetch` over the data on screen. */
-const LoadingControls = ({
-  loading,
-  reload,
-  refetch,
-}: Pick<SimulatedFetch<unknown>, "loading" | "reload" | "refetch">) => (
-  <ButtonGroup aria-label="Replay the request">
-    <Button variant="outline" size="sm" onClick={reload} disabled={loading}>
-      Reload
-    </Button>
-    <Button variant="outline" size="sm" onClick={refetch} disabled={loading}>
-      Refetch
-    </Button>
-  </ButtonGroup>
-);
-
 /** Playground controls shared by loading examples. */
 const latencyArgType = {
   latency: { control: { max: 5000, min: 0, step: 100, type: "number" } },
 } as const;
 
-export { defaultLatency, latencyArgType, LoadingControls, useSimulatedFetch };
+export { defaultLatency, latencyArgType, useSimulatedFetch };
 
 export type { SimulatedFetch, SimulatedFetchOptions };

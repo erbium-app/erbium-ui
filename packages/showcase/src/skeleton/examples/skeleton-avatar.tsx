@@ -10,7 +10,7 @@ import {
   ItemTitle,
 } from "@erbium/ui/components/item";
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 import { members, sampleMembers } from "../fixtures";
 import type { Member } from "../fixtures";
 
@@ -52,7 +52,6 @@ export const SkeletonAvatar = ({ latency }: { latency?: number }) => {
       >
         {(value) => <SkeletonMemberList members={value} />}
       </Skeleton>
-      <LoadingControls {...request} />
     </div>
   );
 };

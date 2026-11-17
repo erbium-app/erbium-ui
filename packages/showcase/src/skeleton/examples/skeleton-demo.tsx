@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@erbium/ui/components/card";
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 import { profile, sampleProfile } from "../fixtures";
 import type { Profile } from "../fixtures";
 
@@ -58,7 +58,6 @@ const SkeletonDemo = ({ latency }: { latency?: number }) => {
       >
         {(value) => <ProfileCard profile={value} />}
       </Skeleton>
-      <LoadingControls {...request} />
     </div>
   );
 };

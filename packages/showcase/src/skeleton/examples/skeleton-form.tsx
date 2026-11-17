@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@erbium/ui/components/select";
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 import { preferences, samplePreferences } from "../fixtures";
 import type { Preferences } from "../fixtures";
 
@@ -98,7 +98,6 @@ export default function SkeletonFormExample({ latency }: { latency?: number } = 
       >
         {(value) => <PreferencesForm initial={value} />}
       </Skeleton>
-      <LoadingControls {...request} />
     </div>
   );
 }

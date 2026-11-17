@@ -1,6 +1,6 @@
 import { LogoLoader } from "@erbium/ui/components/logo-loader";
 import { useState } from "react";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 
 const report = { pages: 12, title: "Quarterly usage report" };
 
@@ -28,7 +28,6 @@ export default function LogoLoaderRequestExample({ latency }: { latency?: number
       <p className="text-body text-muted-foreground" aria-live="polite">
         {result ? `${result.title} is ready: ${result.pages} pages.` : "Generating report…"}
       </p>
-      <LoadingControls {...request} />
     </div>
   );
 }

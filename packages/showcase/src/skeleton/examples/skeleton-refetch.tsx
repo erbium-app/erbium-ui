@@ -1,5 +1,5 @@
 import { Skeleton } from "@erbium/ui/components/skeleton";
-import { LoadingControls, useSimulatedFetch } from "../../loading";
+import { useSimulatedFetch } from "../../loading";
 import { profile, sampleProfile } from "../fixtures";
 import { ProfileCard } from "./skeleton-demo";
 
@@ -23,7 +23,6 @@ export default function SkeletonRefetchExample({ latency }: { latency?: number }
       >
         {(value) => <ProfileCard profile={value} />}
       </Skeleton>
-      <LoadingControls {...request} />
     </div>
   );
 }
