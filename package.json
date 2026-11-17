@@ -105,6 +105,8 @@
     "intent:list": "intent list",
     "build:cached": "vp run -r --cache build",
     "infra": "bun run --cwd packages/infra",
+    "cli:publish": "cd packages/cli && bun publish",
+    "cli:publish:dry": "cd packages/cli && bun publish --dry-run",
     "icons:generate": "vp run --filter ./packages/icons --fail-if-no-match generate",
     "icons:check": "vp run --filter ./packages/icons --fail-if-no-match check",
     "icons:dev": "vp run --filter ./packages/icons --fail-if-no-match dev"
