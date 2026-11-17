@@ -1,6 +1,6 @@
 // Pierre's internals live in a shadow root. Inherit Erbium's explicit scheme
 // rather than letting the operating system choose light-dark() colors.
-import { controlInsetShadow, controlShadow } from "./surface-shadows";
+import { controlShadow } from "./surface-shadows";
 
 const diffTheme = { dark: "vitesse-dark", light: "vitesse-light" };
 
@@ -76,7 +76,6 @@ pre { font-variant-ligatures: none; }
 }
 [data-expand-button]:active {
   background-color: color-mix(in oklab, var(--surface-tint-pressed), var(--surface-control));
-  box-shadow: ${controlInsetShadow};
 }
 [data-expand-button]:focus-visible {
   outline: 2px solid var(--ring);

@@ -16,6 +16,4 @@ const fieldShadow = [
   "0 2px 4px -1px var(--surface-shadow)",
 ].join(", ");
 
-const controlInsetShadow = "inset 0 1px 2px var(--surface-shadow-inset)";
-
-export { controlInsetShadow, controlShadow, fieldShadow };
+export { controlShadow, fieldShadow };

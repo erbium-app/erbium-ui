@@ -2,9 +2,9 @@
  * Surfaces: a lit, layered elevation system.
  *
  * Light falls from the top. Raised surfaces catch it on their top edge and
- * cast a short shadow below; pressed and selected controls sink into their
- * plane. An element takes one surface class for its role. Framed surfaces
- * own their border and forced-colors fallback. The class sets the face colour, the
+ * cast a short shadow below. Pressed and selected controls keep their
+ * elevation and take a tint, so joined groups keep one shape. An element
+ * takes one surface class for its role. Framed surfaces own their border and forced-colors fallback. The class sets the face colour, the
  * perimeter, the catchlight, the drop shadows, and every interaction state:
  *
  *   surface-panel          cards, frames, table containers, alerts
@@ -26,18 +26,17 @@
  * States come from the element, never from extra classes:
  *   hover / press        links, buttons, comboboxes, and tabs (the
  *                        surface-interactive variant) get a tint overlay on
- *                        any surface; raised controls also sink
+ *                        any surface
  *   engaged              aria-expanded, aria-pressed, data-state="on", and an
- *                        open popup tint a surface and sink a raised control
- *                        into its plane
+ *                        open popup tint a surface
  *   invalid              aria-invalid (on the element or its direct input)
  *                        turns a control or field perimeter error
  *   disabled             :disabled, data-disabled, aria-disabled, or a
  *                        disabled direct input flatten a control to its
  *                        hairline; a selected control keeps its tint
- * surface-flat owns the tint states. surface-control owns the sink, invalid,
- * and disabled states, and surface-field and surface-fill-* build on it, so
- * pressed beats engaged and disabled beats both in every raised role.
+ * surface-flat owns the tint states. surface-control owns the invalid and
+ * disabled states, and surface-field and surface-fill-* build on it, so
+ * disabled beats press and engaged in every raised role.
  *
  * Coloured faces derive their perimeter and catchlight from the face colour,
  * so any colour works in both themes:
@@ -61,6 +60,7 @@
  *   --surface-tint-{state}       neutral hover and pressed overlays
  *   --surface-tint-selected      selection overlay for selected rows
  *   --surface-tag-alpha          translucent tag strength
+ *   --surface-seam-line          single-line seam between joined segments
  *
  * Element tokens are registered as non-inheriting properties, so a nested
  * surface never picks up its parent's face or state. Override one on an
@@ -71,7 +71,8 @@
  *   --surface-backing      ring under the perimeter, so translucent rims are
  *                          not darkened by the drop shadow
  *   --surface-drop         three drop shadows (pad with transparent)
- *   --surface-recess       inset shadow for pressed and engaged states
+ *   --surface-recess       inset shadow layer (zero; kept so the seven-layer
+ *                          shadow stays interpolable)
  *   --surface-tint         state overlay painted over the face
  *   --surface-hover-tint   the tint hover paints (default --surface-tint-hover)
  *   --surface-press-tint   the tint press and engaged paint
@@ -100,6 +101,7 @@
   --surface-highlight: transparent;
   --surface-highlight-strong: transparent;
   --surface-highlight-divider: color-mix(in srgb, var(--surface-panel) 10%, transparent);
+  --surface-seam-line: var(--surface-shadow-divider);
   --surface-catchlight-lift: 0%;
   --surface-shadow: oklch(34.541285% 0.01028535 114.61857deg / 6%);
   --surface-shadow-strong: oklch(34.541285% 0.01028535 114.61857deg / 10%);
@@ -130,13 +132,14 @@
   --surface-highlight: oklch(89.409654% 0.00970052 93.578683deg / 6%);
   --surface-highlight-strong: oklch(89.409654% 0.00970052 93.578683deg / 9%);
   --surface-highlight-divider: var(--surface-highlight);
+  --surface-seam-line: var(--surface-highlight-divider);
   --surface-catchlight-lift: 100%;
   --surface-shadow: oklch(0% 0 none / 30%);
   --surface-shadow-strong: oklch(0% 0 none / 50%);
   --surface-shadow-inset: oklch(0% 0 none / 35%);
   --surface-shadow-divider: var(--surface-shadow);
   --surface-tint-hover: oklch(89.409654% 0.00970052 93.578683deg / 2.5%);
-  --surface-tint-pressed: oklch(0% 0 none / 12%);
+  --surface-tint-pressed: oklch(89.409654% 0.00970052 93.578683deg / 5%);
   --surface-tint-selected: color-mix(in srgb, var(--selection) 10%, transparent);
   --surface-tag-alpha: 15%;
 }
@@ -327,8 +330,10 @@
 
 /*
  * The raised, pressable surface. Fields and solid fills build on it, so its
- * depth, validity, and disabled states are written once. They come after the
- * flat states: pressed beats engaged and disabled beats both.
+ * depth, validity, and disabled states are written once. Press and engaged
+ * keep the elevation and only tint the face (surface-flat), so a control in a
+ * joined group keeps the group's shape while its menu is open. Disabled
+ * flattens it to its hairline.
  */
 @utility surface-control {
   @apply surface-flat;
@@ -342,24 +347,6 @@
     --surface-drop:
       0 1px 1px -0.5px var(--surface-shadow-strong), 0 2px 4px -1px var(--surface-shadow),
       0 0 0 0 transparent;
-  }
-
-  @variant engaged {
-    &:where(:not(input, textarea)) {
-      --surface-catchlight: transparent;
-      --surface-backing: transparent;
-      --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
-      --surface-recess: 0 1px 2px 0 var(--surface-shadow-inset);
-    }
-  }
-
-  @variant surface-interactive {
-    &:where(:active) {
-      --surface-catchlight: transparent;
-      --surface-backing: transparent;
-      --surface-drop: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;
-      --surface-recess: 0 2px 3px -1px var(--surface-shadow-inset);
-    }
   }
 
   &:where([aria-invalid="true"], :has(> :is(input, textarea)[aria-invalid="true"])) {
@@ -664,7 +651,9 @@
    frame, and each segment keeps only its face, tint, and recess. Nested
    groups frame their own segments. Each segment after the first carries its
    seam as an inset --surface-seam shadow, so it works on <input> too. Explicit
-   separators own their group's seams. */
+   separators own their group's seams. Seams are one line, not the carved
+   two-tone rule: a hovered or pressed segment changes its face, and the dark
+   half of a carve would show as a strip between that face and the line. */
 @layer utilities {
   :is(
     [data-slot="button-group"],
@@ -696,23 +685,29 @@
     &:not(:has(> [data-slot="button-group-separator"]))
       > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"])
       ~ [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
-      --surface-seam:
-        inset 1px 0 0 0 var(--surface-shadow-divider),
-        inset 2px 0 0 0 var(--surface-highlight-divider);
+      --surface-seam: inset 1px 0 0 0 var(--surface-seam-line), 0 0 0 0 transparent;
 
       &:dir(rtl) {
-        --surface-seam:
-          inset -1px 0 0 0 var(--surface-shadow-divider),
-          inset -2px 0 0 0 var(--surface-highlight-divider);
+        --surface-seam: inset -1px 0 0 0 var(--surface-seam-line), 0 0 0 0 transparent;
       }
     }
 
     &[data-orientation="vertical"]:not(:has(> [data-slot="button-group-separator"]))
       > [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"])
       ~ [data-slot]:not([data-slot="button-group"], [data-slot="button-group-separator"]) {
-      --surface-seam:
-        inset 0 1px 0 0 var(--surface-shadow-divider),
-        inset 0 2px 0 0 var(--surface-highlight-divider);
+      --surface-seam: inset 0 1px 0 0 var(--surface-seam-line), 0 0 0 0 transparent;
+    }
+
+    & > [data-slot="button-group-separator"] {
+      background-image: linear-gradient(var(--surface-seam-line), var(--surface-seam-line));
+
+      &[data-orientation="vertical"] {
+        width: 1px;
+      }
+
+      &[data-orientation="horizontal"] {
+        height: 1px;
+      }
     }
   }
 }
