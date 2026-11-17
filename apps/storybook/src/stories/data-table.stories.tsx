@@ -7,6 +7,10 @@ export const Playground = { ...showcases.Playground, name: "Playground" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
 
+export const Client = { ...showcases.Client, name: "Rows in the browser" };
+
+export const Router = { ...showcases.Router, name: "URL state" };
+
 export const EmptyState = { ...showcases.EmptyState, name: "Empty" };
 
 export const ErrorState = { ...showcases.ErrorState, name: "Error" };

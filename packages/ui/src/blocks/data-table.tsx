@@ -1,17 +1,346 @@
-import type { ReactTable, RowData, TableFeatures } from "@tanstack/react-table";
-import type { ComponentProps, ReactNode } from "react";
+import * as React from "react";
+import { useDebouncedCallback } from "@tanstack/react-pacer/debouncer";
+import { FlexRender, Subscribe } from "@tanstack/react-table";
+import type { CellContext, HeaderContext, RowData } from "@tanstack/react-table";
 import { Button } from "../components/button";
+import { Checkbox } from "../components/checkbox";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../components/dropdown-menu";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from "../components/empty";
 import { Icon } from "../components/icon";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "../components/input-group";
+import { Pagination, PaginationControls } from "../components/pagination";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/select";
+import { Separator } from "../components/separator";
 import { Skeleton } from "../components/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/table";
+import { useDataTableContext } from "../hooks/use-data-table";
+import type { DataTableFeatures, DataTableInstance } from "../hooks/use-data-table";
+import { useTableFilters } from "../hooks/use-filters";
+import { dataTablePageSizes } from "../lib/data-table-search";
 import { skeletonKnown } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
+import { FilterBar, FilterFacets } from "./filters";
 
-type DataTableProps<TFeatures extends TableFeatures, TData extends RowData, TSelected> = Omit<
-  ComponentProps<"div">,
-  "children"
-> & {
-  table: ReactTable<TFeatures, TData, TSelected>;
+/*
+ * A data table is a table built by `useDataTable`, given to `DataTable`,
+ * and composed from the parts below. Every part reads the table from context:
+ *
+ *   <DataTable table={table}>
+ *     <DataTableToolbar>
+ *       <DataTableSearch />
+ *       <DataTableFilters />
+ *       <DataTableViewOptions />
+ *     </DataTableToolbar>
+ *     <DataTableContent loading={query.isFetching} />
+ *     <DataTablePagination />
+ *     <DataTableActionBar>…</DataTableActionBar>
+ *   </DataTable>
+ */
+
+type Column = ReturnType<DataTableInstance["getAllLeafColumns"]>[number];
+
+type Header = ReturnType<DataTableInstance["getFlatHeaders"]>[number];
+
+const isText = <TValue,>(value: TValue): value is TValue & string => typeof value === "string";
+
+/** A column's name in menus: its `meta.label`, its string header, or its id. */
+const columnLabel = (column: Column) => {
+  const { header, meta } = column.columnDef;
+
+  return meta?.label ?? meta?.filter?.label ?? (isText(header) ? header : column.id);
+};
+
+interface DataTableProps<TData extends RowData> extends React.ComponentProps<"div"> {
+  table: DataTableInstance<TData>;
+}
+
+/** Provides the table to its parts, which read it from context. */
+const DataTable = <TData extends RowData>({
+  table,
+  className,
+  ...props
+}: DataTableProps<TData>) => (
+  <table.AppTable>
+    <div
+      data-slot="data-table"
+      className={cn("flex w-full min-w-0 flex-col gap-group", className)}
+      {...props}
+    />
+  </table.AppTable>
+);
+
+/** The row of search, filters and view options above the table. Stays readable while rows load. */
+const DataTableToolbar = ({ className, ...props }: React.ComponentProps<"div">) => (
+  <div
+    data-slot="data-table-toolbar"
+    className={cn("flex flex-wrap items-center gap-related", className)}
+    {...props}
+  />
+);
+
+/**
+ * Searches every column. A server table waits for a pause in typing before it asks for rows;
+ * a browser table filters on each keystroke.
+ */
+const DataTableSearch = ({
+  placeholder = "Search",
+  className,
+}: {
+  placeholder?: string;
+  className?: string;
+}) => {
+  const table = useDataTableContext();
+  const value = String(table.state.globalFilter ?? "");
+  const [draft, setDraft] = React.useState(value);
+  const [seen, setSeen] = React.useState(value);
+
+  // The search changed elsewhere, such as Back or a cleared filter: show it.
+  if (value !== seen) {
+    setSeen(value);
+    setDraft(value);
+  }
+
+  const commit = useDebouncedCallback(
+    (next: string) => {
+      table.setGlobalFilter(next);
+    },
+    { wait: table.options.manualFiltering === true ? 300 : 0 },
+  );
+
+  const change = (next: string) => {
+    setDraft(next);
+    commit(next);
+  };
+
+  return (
+    <InputGroup data-slot="data-table-search" className={cn("w-full sm:max-w-64", className)}>
+      <InputGroupAddon>
+        <Icon name="search-01" aria-hidden="true" />
+      </InputGroupAddon>
+      <InputGroupInput
+        type="search"
+        aria-label={placeholder}
+        placeholder={placeholder}
+        value={draft}
+        onChange={(event) => {
+          change(event.target.value);
+        }}
+      />
+      {draft === "" ? null : (
+        <InputGroupAddon align="inline-end">
+          <InputGroupButton
+            size="icon-xs"
+            aria-label="Clear search"
+            onClick={() => {
+              change("");
+            }}
+          >
+            <Icon name="x" aria-hidden="true" />
+          </InputGroupButton>
+        </InputGroupAddon>
+      )}
+    </InputGroup>
+  );
+};
+
+interface DataTableFiltersProps extends Omit<React.ComponentProps<"div">, "children"> {
+  /**
+   * Option counts by column id, for a server table: it holds one page, so counts it derives would
+   * describe that page rather than every row.
+   */
+  counts?: Partial<Record<string, Map<string, number>>>;
+}
+
+/** Filter chips for the columns with a `meta.filter` config: an add-filter menu, then a chip per rule. */
+const DataTableFilters = ({ counts, ...props }: DataTableFiltersProps) => {
+  const filters = useTableFilters(useDataTableContext(), { counts });
+
+  return <FilterBar filters={filters} {...props} />;
+};
+
+/** A filter button per filterable column, for tables with a few fixed filters. */
+const DataTableFacets = ({
+  counts,
+  fields,
+  ...props
+}: DataTableFiltersProps & { fields?: string[] }) => {
+  const filters = useTableFilters(useDataTableContext(), { counts });
+
+  return <FilterFacets filters={filters} fields={fields} {...props} />;
+};
+
+/** Shows and hides columns. Lists every data column that can be hidden. */
+const DataTableViewOptions = ({ className }: { className?: string }) => {
+  const table = useDataTableContext();
+
+  const columns = table
+    .getAllLeafColumns()
+    .filter((column) => column.accessorFn !== undefined && column.getCanHide());
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={<Button variant="outline" size="sm" className={cn("ms-auto", className)} />}
+      >
+        <Icon name="settings-01" aria-hidden="true" data-icon="inline-start" />
+        View
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>Columns</DropdownMenuLabel>
+          {columns.map((column) => (
+            <DropdownMenuCheckboxItem
+              key={column.id}
+              checked={column.getIsVisible()}
+              onCheckedChange={(checked) => {
+                column.toggleVisibility(checked);
+              }}
+            >
+              {columnLabel(column)}
+            </DropdownMenuCheckboxItem>
+          ))}
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+const ariaSort = { asc: "ascending", desc: "descending" } as const;
+
+/**
+ * A header cell's content. A column that can be sorted or hidden opens a menu with those actions;
+ * the current sort shows as an arrow.
+ */
+const DataTableColumnHeader = ({ header }: { header: Header }) => {
+  const { column } = header;
+  const canSort = column.getCanSort();
+  const canHide = column.accessorFn !== undefined && column.getCanHide();
+  const sorted = column.getIsSorted();
+  const content = <FlexRender header={header} />;
+
+  if (!canSort && !canHide) {
+    return content;
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={<Button variant="ghost" size="xs" className="-mx-2 font-medium" />}
+      >
+        {content}
+        {sorted === false ? null : (
+          <Icon
+            name={sorted === "asc" ? "arrow-up-01" : "arrow-down-01"}
+            aria-hidden="true"
+            data-icon="inline-end"
+          />
+        )}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align={column.columnDef.meta?.align === "end" ? "end" : "start"}>
+        {canSort ? (
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              onClick={() => {
+                column.toggleSorting(false);
+              }}
+            >
+              <Icon name="arrow-up-01" aria-hidden="true" />
+              Sort ascending
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                column.toggleSorting(true);
+              }}
+            >
+              <Icon name="arrow-down-01" aria-hidden="true" />
+              Sort descending
+            </DropdownMenuItem>
+            {sorted === false ? null : (
+              <DropdownMenuItem
+                onClick={() => {
+                  column.clearSorting();
+                }}
+              >
+                <Icon name="x" aria-hidden="true" />
+                Clear sort
+              </DropdownMenuItem>
+            )}
+          </DropdownMenuGroup>
+        ) : null}
+        {canSort && canHide ? <DropdownMenuSeparator /> : null}
+        {canHide ? (
+          <DropdownMenuItem
+            onClick={() => {
+              column.toggleVisibility(false);
+            }}
+          >
+            <Icon name="eye-off" aria-hidden="true" />
+            Hide column
+          </DropdownMenuItem>
+        ) : null}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+/** The empty state: offers to clear the search and filters when they hide every row. */
+const DataTableEmpty = () => {
+  const table = useDataTableContext();
+  const filtered = table.state.columnFilters.length > 0 || table.state.globalFilter !== "";
+
+  return (
+    <Empty className="border-0">
+      <EmptyHeader>
+        <EmptyTitle>{filtered ? "No matching rows" : "No rows yet"}</EmptyTitle>
+        <EmptyDescription>
+          {filtered ? "Change the search or filters." : "Rows appear here once they are added."}
+        </EmptyDescription>
+      </EmptyHeader>
+      {filtered ? (
+        <EmptyContent>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              table.resetColumnFilters(true);
+              table.resetGlobalFilter(true);
+            }}
+          >
+            Clear filters
+          </Button>
+        </EmptyContent>
+      ) : null}
+    </Empty>
+  );
+};
+
+interface DataTableContentProps extends React.ComponentProps<"table"> {
   /**
    * The rows are loading. Their skeleton is measured from the rows the table holds: the rows on
    * screen during a refetch, or sample rows (give the table sample data) for the first load. The
@@ -23,142 +352,251 @@ type DataTableProps<TFeatures extends TableFeatures, TData extends RowData, TSel
   /** Read to screen readers while the rows load. */
   label?: string;
   /** Shown in place of the table when the rows could not load. */
-  error?: ReactNode | Error;
-  /** Shown in the body when there are no rows. */
-  empty?: ReactNode;
-  /**
-   * Column widths by column id, as CSS lengths. With them the table lays out at fixed widths, so the
-   * sample rows of the first load cannot size the columns differently from the rows that replace
-   * them; columns left out share the remaining width.
-   */
-  columnWidths?: Partial<Record<string, string>>;
-  /** Props for each body row, such as `data-state="selected"` for a selected row. */
-  rowProps?: (
-    row: ReturnType<ReactTable<TFeatures, TData, TSelected>["getRowModel"]>["rows"][number],
-  ) => ComponentProps<"tr"> & Partial<Record<`data-${string}`, string>>;
-};
+  error?: React.ReactNode | Error;
+  /** Shown in the body when there are no rows. Defaults to `DataTableEmpty`. */
+  empty?: React.ReactNode;
+}
 
-const DataTable = <TFeatures extends TableFeatures, TData extends RowData, TSelected>({
-  table,
+/**
+ * The table itself. Columns with a `size` (in pixels) get that width and the table lays out at
+ * fixed widths, so sample rows cannot size the columns differently from the rows that replace
+ * them; columns without one share the remaining width.
+ */
+const DataTableContent = ({
   loading = false,
   id,
   label = "Loading rows",
   error,
   empty,
-  rowProps,
-  columnWidths,
   className,
   ...props
-}: DataTableProps<TFeatures, TData, TSelected>) => {
+}: DataTableContentProps) => {
+  const table = useDataTableContext();
+  const columns = table.getVisibleLeafColumns();
   const { rows } = table.getRowModel();
-  const columns = table.getAllLeafColumns();
+  const sized = columns.some((column) => column.columnDef.size !== undefined);
 
   return (
-    <div data-slot="data-table" className={cn("w-full min-w-0", className)} {...props}>
-      <Skeleton loading={loading} id={id} label={label} error={error}>
-        <Table className={columnWidths === undefined ? undefined : "table-fixed"}>
-          {columnWidths === undefined ? null : (
-            <colgroup>
-              {columns.map((column) => (
-                <col key={column.id} style={{ width: columnWidths[column.id] }} />
-              ))}
-            </colgroup>
-          )}
-          <TableHeader {...skeletonKnown}>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id} colSpan={header.colSpan}>
-                    {header.isPlaceholder ? null : <table.FlexRender header={header} />}
+    <Skeleton loading={loading} id={id} label={label} error={error}>
+      <Table className={cn(sized && "table-fixed", className)} {...props}>
+        {sized ? (
+          <colgroup>
+            {columns.map((column) => (
+              <col key={column.id} style={{ width: column.columnDef.size }} />
+            ))}
+          </colgroup>
+        ) : null}
+        <TableHeader {...skeletonKnown}>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                const sorted = header.column.getIsSorted();
+
+                return (
+                  <TableHead
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    aria-sort={sorted === false ? undefined : ariaSort[sorted]}
+                    data-align={header.column.columnDef.meta?.align}
+                    className="data-[align=end]:text-end"
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div className="flex items-center in-data-[align=end]:justify-end">
+                        <DataTableColumnHeader header={header} />
+                      </div>
+                    )}
                   </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {rows.length === 0 && !loading ? (
+            <TableRow className="hover:bg-transparent">
+              <TableCell colSpan={columns.length} className="p-0 whitespace-normal">
+                {empty ?? <DataTableEmpty />}
+              </TableCell>
+            </TableRow>
+          ) : (
+            rows.map((row) => (
+              <TableRow key={row.id} data-state={row.getIsSelected() ? "selected" : undefined}>
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell
+                    key={cell.id}
+                    data-align={cell.column.columnDef.meta?.align}
+                    className="data-[align=end]:text-end"
+                  >
+                    <FlexRender cell={cell} />
+                  </TableCell>
                 ))}
               </TableRow>
+            ))
+          )}
+        </TableBody>
+      </Table>
+    </Skeleton>
+  );
+};
+
+/**
+ * The row count, the page size and the page controls. Counts selected rows while any are
+ * selected.
+ */
+const DataTablePagination = ({
+  pageSizes = dataTablePageSizes,
+  className,
+  ...props
+}: React.ComponentProps<"div"> & { pageSizes?: readonly number[] }) => {
+  const table = useDataTableContext();
+  const { pageIndex, pageSize } = table.state.pagination;
+  const rowCount = table.getRowCount();
+  const selected = table.getSelectedRowIds().length;
+  const sizes = pageSizes.includes(pageSize) ? pageSizes : [pageSize, ...pageSizes];
+
+  return (
+    <div
+      data-slot="data-table-pagination"
+      className={cn(
+        "flex flex-wrap items-center justify-between gap-related text-caption text-muted-foreground",
+        className,
+      )}
+      {...props}
+    >
+      <span aria-live="polite" className="tabular-nums">
+        {selected > 0
+          ? `${selected.toLocaleString()} of ${rowCount.toLocaleString()} selected`
+          : `${rowCount.toLocaleString()} ${rowCount === 1 ? "row" : "rows"}`}
+      </span>
+      <div className="flex flex-wrap items-center gap-related">
+        <Select
+          value={pageSize}
+          items={sizes.map((size) => ({ label: `${size} per page`, value: size }))}
+          onValueChange={(size) => {
+            if (size !== null) {
+              table.setPageSize(size);
+            }
+          }}
+        >
+          <SelectTrigger size="sm" aria-label="Rows per page">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {sizes.map((size) => (
+              <SelectItem key={size} value={size}>
+                {size} per page
+              </SelectItem>
             ))}
-          </TableHeader>
-          <TableBody>
-            {rows.length === 0 && !loading ? (
-              <TableRow className="hover:bg-transparent">
-                <TableCell colSpan={columns.length} className="p-0 whitespace-normal">
-                  {empty}
-                </TableCell>
-              </TableRow>
-            ) : (
-              rows.map((row) => (
-                <TableRow key={row.id} {...rowProps?.(row)}>
-                  {row.getAllCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      <table.FlexRender cell={cell} />
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </Skeleton>
+          </SelectContent>
+        </Select>
+        <Pagination className="mx-0 w-auto">
+          <PaginationControls
+            page={pageIndex + 1}
+            pageCount={Math.max(table.getPageCount(), 1)}
+            onPageChange={(page) => {
+              table.setPageIndex(page - 1);
+            }}
+          />
+        </Pagination>
+      </div>
     </div>
   );
 };
 
-/** The parts of a sortable column a header needs; any column with `rowSortingFeature` has them. */
-interface SortableColumn {
-  getCanSort: () => boolean;
-  getIsSorted: () => false | "asc" | "desc";
-  toggleSorting: (desc?: boolean) => void;
-}
+/** Actions for the selected rows. Shown while rows are selected; read them with `useDataTableContext`. */
+const DataTableActionBar = ({ className, children, ...props }: React.ComponentProps<"div">) => {
+  const table = useDataTableContext();
+  const selected = table.getSelectedRowIds().length;
 
-const sortIcon = { asc: "arrow-up-01", desc: "arrow-down-01", none: "arrow-up-down" } as const;
-
-/** A column header that sorts its column, announcing the current order. */
-const DataTableColumnHeader = ({
-  column,
-  children,
-  className,
-}: {
-  column: SortableColumn;
-  children: ReactNode;
-  className?: string;
-}) => {
-  if (!column.getCanSort()) {
-    return <span className={className}>{children}</span>;
+  if (selected === 0) {
+    return null;
   }
 
-  const sorted = column.getIsSorted();
-
   return (
-    <Button
-      variant="ghost"
-      size="xs"
-      className={cn("-ms-2", className)}
-      onClick={() => {
-        column.toggleSorting(sorted === "asc");
-      }}
+    <div
+      role="toolbar"
+      aria-label="Selected rows"
+      data-slot="data-table-action-bar"
+      className={cn(
+        "sticky bottom-4 z-10 mx-auto flex w-fit items-center gap-related rounded-xl surface-overlay p-1 ps-3 text-caption animate-in fade-in-0 slide-in-from-bottom-2 motion-reduce:animate-none",
+        className,
+      )}
+      {...props}
     >
+      <span className="tabular-nums">{selected.toLocaleString()} selected</span>
+      <Separator orientation="vertical" className="h-4" />
       {children}
-      <Icon
-        name={sortIcon[sorted === false ? "none" : sorted]}
-        data-icon="inline-end"
-        aria-hidden="true"
-        className={sorted === false ? "text-muted-foreground" : undefined}
-      />
-      <span className="sr-only">
-        {sorted === false
-          ? ", not sorted"
-          : `, sorted ${sorted === "asc" ? "ascending" : "descending"}`}
-      </span>
-    </Button>
+      <Button
+        variant="ghost"
+        size="icon-sm"
+        aria-label="Clear selection"
+        onClick={() => {
+          table.resetRowSelection(true);
+        }}
+      >
+        <Icon name="x" aria-hidden="true" />
+      </Button>
+    </div>
   );
 };
 
-/** The row of filters and actions above a data table. It is known content, so it stays readable while rows load. */
-const DataTableToolbar = ({ className, ...props }: ComponentProps<"div">) => (
-  <div
-    data-slot="data-table-toolbar"
-    className={cn("flex flex-wrap items-center justify-between gap-related", className)}
-    {...props}
-  />
+/** The header of a selection column: selects every row on the page. */
+const DataTableSelectAll = <TData extends RowData>({
+  table,
+}: HeaderContext<DataTableFeatures, TData>) => (
+  // Rows and the table keep their identity when the selection changes, so the checkbox
+  // subscribes to the selection to render again.
+  <Subscribe source={table.atoms.rowSelection}>
+    {() => {
+      const all = table.getIsAllPageRowsSelected();
+
+      return (
+        <Checkbox
+          aria-label="Select all rows on this page"
+          checked={all}
+          indeterminate={!all && table.getIsSomePageRowsSelected()}
+          onCheckedChange={(checked) => {
+            table.toggleAllPageRowsSelected(checked);
+          }}
+        />
+      );
+    }}
+  </Subscribe>
 );
 
-export { DataTable, DataTableColumnHeader, DataTableToolbar };
+/** The cell of a selection column: selects its row. */
+const DataTableSelectRow = <TData extends RowData>({
+  row,
+  table,
+}: CellContext<DataTableFeatures, TData>) => (
+  <Subscribe source={table.atoms.rowSelection}>
+    {() => (
+      <Checkbox
+        aria-label="Select row"
+        checked={row.getIsSelected()}
+        disabled={!row.getCanSelect()}
+        onCheckedChange={(checked) => {
+          row.toggleSelected(checked);
+        }}
+      />
+    )}
+  </Subscribe>
+);
 
-export type { DataTableProps, SortableColumn };
+export {
+  DataTable,
+  DataTableActionBar,
+  DataTableColumnHeader,
+  DataTableContent,
+  DataTableEmpty,
+  DataTableFacets,
+  DataTableFilters,
+  DataTablePagination,
+  DataTableSearch,
+  DataTableSelectAll,
+  DataTableSelectRow,
+  DataTableToolbar,
+  DataTableViewOptions,
+};
+
+export type { DataTableContentProps, DataTableFiltersProps, DataTableProps };

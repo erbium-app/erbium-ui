@@ -1890,6 +1890,28 @@
         "title": "Overview"
       },
       {
+        "exportName": "Client",
+        "slug": "client",
+        "source": "src/data-table/variants/client.tsx",
+        "usage": [
+          "src/data-table/variants/client.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
+        "title": "Rows in the browser"
+      },
+      {
+        "exportName": "Router",
+        "slug": "router",
+        "source": "src/data-table/variants/router.tsx",
+        "usage": [
+          "src/data-table/variants/router.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
+        "title": "URL state"
+      },
+      {
         "exportName": "EmptyState",
         "slug": "empty",
         "source": "src/data-table/variants/empty.tsx",

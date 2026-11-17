@@ -218,7 +218,8 @@ const validateFilterSearch = <TKey extends string>(
 /** The parts of a column definition `getColumnFilterFields` reads. */
 interface FilterSearchColumn {
   id?: string;
-  accessorKey?: string;
+  /** A key of the row type: TanStack types it from the row, so generic columns need `PropertyKey`. */
+  accessorKey?: PropertyKey;
   meta?: unknown;
   columns?: readonly FilterSearchColumn[];
 }
@@ -232,7 +233,7 @@ const getColumnFilterFields = (columns: readonly FilterSearchColumn[]): FilterSe
     columns.flatMap(function collect(column): [string, { type: FilterType }][] {
       const nested = column.columns?.flatMap(collect) ?? [];
       // TanStack makes an id from an accessor key, writing nested keys' dots as underscores.
-      const id = column.id ?? column.accessorKey?.replaceAll(".", "_");
+      const id = column.id ?? column.accessorKey?.toString().replaceAll(".", "_");
 
       return id !== undefined && hasFilterConfig(column.meta)
         ? [...nested, [id, { type: column.meta.filter.type }]]

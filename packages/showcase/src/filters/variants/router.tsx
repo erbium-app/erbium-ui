@@ -8,60 +8,44 @@ import {
   Outlet,
   RouterProvider,
   useLocation,
-  useRouter,
 } from "@tanstack/react-router";
 import {
-  columnFacetingFeature,
-  columnFilteringFeature,
-  createColumnHelper,
-  createFacetedMinMaxValues,
-  createFacetedRowModel,
-  createFacetedUniqueValues,
-  createFilteredRowModel,
-  metaHelper,
-  tableFeatures,
-  useTable,
-} from "@tanstack/react-table";
-import { DataTable, DataTableToolbar } from "@erbium/ui/blocks/data-table";
-import { FilterBar } from "@erbium/ui/blocks/filters";
+  DataTable,
+  DataTableContent,
+  DataTableFilters,
+  DataTableToolbar,
+} from "@erbium/ui/blocks/data-table";
 import { Badge } from "@erbium/ui/components/badge";
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@erbium/ui/components/empty";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
 import { Link } from "@erbium/ui/components/link";
-import { useFilterSearch, useTableFilters } from "@erbium/ui/hooks/use-filters";
-import { filterColumn } from "@erbium/ui/lib/filter-rules";
-import type { FilterColumnMeta } from "@erbium/ui/lib/filter-rules";
-import { getColumnFilterFields, validateFilterSearch } from "@erbium/ui/lib/filter-search";
-import type { FilterSearch } from "@erbium/ui/lib/filter-search";
+import {
+  createDataTableColumnHelper,
+  useDataTable,
+  useDataTableSearchParams,
+} from "@erbium/ui/hooks/use-data-table";
+import { validateDataTableSearch } from "@erbium/ui/lib/data-table-search";
+import type { DataTableSearchParams } from "@erbium/ui/lib/data-table-search";
 import { labelOf, priorityOptions, priorityVariant, statusOptions, tasks } from "../data";
 import type { Task } from "../data";
 
-const features = tableFeatures({
-  columnFacetingFeature,
-  columnFilteringFeature,
-  columnMeta: metaHelper<FilterColumnMeta>(),
-  facetedMinMaxValues: createFacetedMinMaxValues(),
-  facetedRowModel: createFacetedRowModel(),
-  facetedUniqueValues: createFacetedUniqueValues(),
-  filteredRowModel: createFilteredRowModel(),
-});
-
-const columnHelper = createColumnHelper<typeof features, Task>();
+const columnHelper = createDataTableColumnHelper<Task>();
 
 const columns = columnHelper.columns([
   columnHelper.accessor("title", {
     header: "Title",
-    ...filterColumn({ icon: "file-text", label: "Title", type: "text" }),
+    meta: { filter: { icon: "file-text", label: "Title", type: "text" } },
   }),
   columnHelper.accessor("status", {
     cell: (info) => labelOf(statusOptions, info.getValue()),
     header: "Status",
-    ...filterColumn({
-      icon: "circle-check",
-      label: "Status",
-      options: statusOptions,
-      type: "option",
-    }),
+    meta: {
+      filter: {
+        icon: "circle-check",
+        label: "Status",
+        options: statusOptions,
+        type: "option",
+      },
+    },
   }),
   columnHelper.accessor("priority", {
     cell: (info) => (
@@ -70,76 +54,45 @@ const columns = columnHelper.columns([
       </Badge>
     ),
     header: "Priority",
-    ...filterColumn({
-      icon: "arrow-up-down",
-      label: "Priority",
-      options: priorityOptions,
-      type: "option",
-    }),
+    meta: {
+      filter: {
+        icon: "arrow-up-down",
+        label: "Priority",
+        options: priorityOptions,
+        type: "option",
+      },
+    },
   }),
   columnHelper.accessor("estimate", {
-    cell: (info) => <div className="text-end tabular-nums">{info.getValue()} h</div>,
-    header: () => <div className="text-end">Estimate</div>,
-    ...filterColumn({ label: "Estimate", step: 1, type: "number" }),
+    cell: (info) => <span className="tabular-nums">{info.getValue()} h</span>,
+    header: "Estimate",
+    meta: { align: "end", filter: { label: "Estimate", step: 1, type: "number" } },
+    size: 104,
   }),
 ]);
 
-// The filterable columns by id and type: the params the URL holds.
-const filterFields = getColumnFilterFields(columns);
+// One config for the route and the table, so both read the URL the same way.
+const tasksTable = { columns };
 
 // The return type breaks the inference cycle between the page and the route it reads from.
 const Tasks = (): ReactElement => {
-  const search = tasksRoute.useSearch<ExampleRouter>();
-  const router = useRouter<ExampleRouter>();
-
-  // The URL is the only copy of the rules. Each change replaces the history entry, so typing in
+  // The URL is the only copy of the query. Each change replaces the history entry, so typing in
   // a text filter does not add a step to Back.
-  const { columnFilters, onColumnFiltersChange } = useFilterSearch({
-    fields: filterFields,
-    onSearchChange: (next) => {
-      void router.navigate({
-        replace: true,
-        search: (prev: FilterSearch) => ({ ...prev, ...next }),
-        to: "/tasks",
-      });
-    },
-    search,
-  });
-
-  const table = useTable({
-    columns,
-    data: tasks,
-    features,
-    getRowId: (row) => row.id,
-    onColumnFiltersChange,
-    state: { columnFilters },
-  });
-
-  const filters = useTableFilters(table);
+  const [query, setQuery] = useDataTableSearchParams(tasksTable);
+  const table = useDataTable({ columns, data: tasks, onQueryChange: setQuery, query });
 
   return (
-    <>
+    <DataTable table={table}>
       <DataTableToolbar>
-        <FilterBar filters={filters} />
+        <DataTableFilters />
       </DataTableToolbar>
-      <DataTable
-        table={table}
-        columnWidths={{ estimate: "6.5rem", priority: "6.5rem", status: "8rem" }}
-        empty={
-          <Empty className="border-0">
-            <EmptyHeader>
-              <EmptyTitle>No tasks match</EmptyTitle>
-              <EmptyDescription>Change or clear the filters.</EmptyDescription>
-            </EmptyHeader>
-          </Empty>
-        }
-      />
-    </>
+      <DataTableContent />
+    </DataTable>
   );
 };
 
 // Shared links: each one is a filtered view of the same page.
-const savedViews: { label: string; search: FilterSearch }[] = [
+const savedViews: { label: string; search: DataTableSearchParams }[] = [
   { label: "Open high priority", search: { priority: "high", status: "todo,in-progress" } },
   {
     label: "Quick wins",
@@ -177,8 +130,8 @@ const tasksRoute = createRoute({
   component: Tasks,
   getParentRoute: () => rootRoute,
   path: "/tasks",
-  // Only filter params that fit their field reach the page, written in their normal form.
-  validateSearch: (search: FilterSearch) => validateFilterSearch(search, filterFields),
+  // Only params that fit the columns reach the page, written in their normal form.
+  validateSearch: validateDataTableSearch(tasksTable),
 });
 
 const routeTree = rootRoute.addChildren([tasksRoute]);
@@ -189,9 +142,6 @@ const createExampleRouter = () =>
     history: createMemoryHistory({ initialEntries: ["/tasks?status=todo,in-progress"] }),
     routeTree,
   });
-
-// The example's router is not registered app-wide, so its hooks name it to stay typed.
-type ExampleRouter = ReturnType<typeof createExampleRouter>;
 
 export default function FiltersRouterExample() {
   const router = useMemo(() => createExampleRouter(), []);

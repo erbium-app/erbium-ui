@@ -13,6 +13,8 @@ Filters have three layers:
 
 ### Tables
 
+In a [data table](/docs/blocks/data-table), filters need no setup: set `meta.filter` on a column and render `DataTableFilters` or `DataTableFacets`. The rest of this section is for tables built with `useTable` directly.
+
 Mark a column filterable with `filterColumn`, which sets both its `filterFn` and its `meta.filter` config. Register the column filtering feature and, for option counts and number ranges, the faceting feature. Control `columnFilters` in the component that calls `useTable`.
 
 ```tsx
@@ -90,7 +92,7 @@ The default operators are `contains` for text, `is` for numbers and dates, `isAn
 
 ### With TanStack Router
 
-Validate the filter params in the route, then pass the route's search and a navigate call to `useFilterSearch`. The URL is the only copy of the rules; the table reads them from `state` and writes them back through the router.
+A [data table](/docs/blocks/data-table) keeps its whole query (search, filters, sort and page) in the URL with `useDataTableSearchParams`, using these filter params. For tables built with `useTable` and for lists, validate the filter params in the route, then pass the route's search and a navigate call to `useFilterSearch`. The URL is the only copy of the rules; the table reads them from `state` and writes them back through the router.
 
 ```tsx
 import { createFileRoute } from "@tanstack/react-router";

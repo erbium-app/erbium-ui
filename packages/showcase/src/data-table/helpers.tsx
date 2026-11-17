@@ -1,30 +1,34 @@
-import { useMemo, useState } from "react";
-import { useDebouncedValue } from "@tanstack/react-pacer/debouncer";
+import { useMemo } from "react";
 import {
-  createColumnHelper,
-  rowPaginationFeature,
-  rowSelectionFeature,
-  rowSortingFeature,
-  tableFeatures,
-  useTable,
-} from "@tanstack/react-table";
-import type { PaginationState, RowSelectionState, SortingState } from "@tanstack/react-table";
-import { DataTable, DataTableColumnHeader, DataTableToolbar } from "@erbium/ui/blocks/data-table";
+  DataTable,
+  DataTableActionBar,
+  DataTableContent,
+  DataTableFilters,
+  DataTablePagination,
+  DataTableSearch,
+  DataTableSelectAll,
+  DataTableSelectRow,
+  DataTableToolbar,
+  DataTableViewOptions,
+} from "@erbium/ui/blocks/data-table";
 import { Badge } from "@erbium/ui/components/badge";
-import { Checkbox } from "@erbium/ui/components/checkbox";
-import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@erbium/ui/components/empty";
-import { Icon } from "@erbium/ui/components/icon";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@erbium/ui/components/input-group";
-import { Pagination, PaginationControls } from "@erbium/ui/components/pagination";
-import { LoadingControls, useSimulatedFetch } from "../loading";
+import { Button } from "@erbium/ui/components/button";
+import {
+  createDataTableColumnHelper,
+  useDataTable,
+  useDataTableQuery,
+} from "@erbium/ui/hooks/use-data-table";
+import type { DataTableQuery } from "@erbium/ui/lib/data-table-search";
+import { isFilterRule, matchesRule } from "@erbium/ui/lib/filter-rules";
+import type { FilterOption } from "@erbium/ui/lib/filter-rules";
+import { useSimulatedFetch } from "../loading";
 
 /*
- * A server-backed table: the example "server" searches, sorts and pages the invoices, and the
- * table only renders the page it gets back. Each change of query is a refetch, so the skeleton is
- * drawn over the rows on screen and the next page lands in their place.
+ * Invoices for the data table examples, and a stand-in server that searches, filters, sorts and
+ * pages them. The table only renders the page the server returns.
  */
 
-type Status = "Paid" | "Pending" | "Overdue";
+type Status = "paid" | "pending" | "overdue";
 
 interface Invoice {
   id: string;
@@ -46,7 +50,7 @@ const customers = [
   ["Omar Haddad", "omar@example.com"],
 ] as const;
 
-const statuses: Status[] = ["Paid", "Pending", "Paid", "Overdue", "Paid"];
+const statuses: Status[] = ["paid", "pending", "paid", "overdue", "paid"];
 
 const invoices: Invoice[] = Array.from({ length: 46 }, (_, index) => {
   const [customer, email] = customers[index % customers.length] ?? customers[0];
@@ -57,100 +61,34 @@ const invoices: Invoice[] = Array.from({ length: 46 }, (_, index) => {
     email,
     id: `INV-${String(1040 + index)}`,
     issued: new Date(Date.UTC(2026, 9, 30 - (index % 28))).toISOString().slice(0, 10),
-    status: statuses[index % statuses.length] ?? "Paid",
+    status: statuses[index % statuses.length] ?? "paid",
   };
 });
 
-interface InvoiceQuery {
-  pagination: PaginationState;
-  sorting: SortingState;
-  search: string;
-}
+const statusOptions: FilterOption[] = [
+  { icon: "circle-check", label: "Paid", value: "paid" },
+  { icon: "circle-fading-arrow-up", label: "Pending", value: "pending" },
+  { icon: "triangle-alert", label: "Overdue", value: "overdue" },
+];
 
-interface InvoicePage {
-  rows: Invoice[];
-  total: number;
-}
-
-// The sortable columns and how the "server" orders each.
-type CompareInvoices = (a: Invoice, b: Invoice) => number;
-
-const comparators = new Map<string, CompareInvoices>([
-  ["amount", (a, b) => a.amount - b.amount],
-  ["customer", (a, b) => a.customer.localeCompare(b.customer)],
-  ["id", (a, b) => a.id.localeCompare(b.id)],
-  ["issued", (a, b) => a.issued.localeCompare(b.issued)],
-]);
-
-// Stands in for the API: filters, sorts and slices on the "server".
-const queryInvoices = ({ pagination, sorting, search }: InvoiceQuery): InvoicePage => {
-  const term = search.trim().toLowerCase();
-
-  const matching = invoices.filter(
-    (invoice) =>
-      term === "" ||
-      invoice.customer.toLowerCase().includes(term) ||
-      invoice.id.toLowerCase().includes(term),
-  );
-
-  const [sort] = sorting;
-
-  const compare = sort === undefined ? undefined : comparators.get(sort.id);
-
-  const sorted =
-    compare === undefined
-      ? matching
-      : matching.toSorted((a, b) => (sort?.desc ? compare(b, a) : compare(a, b)));
-
-  const start = pagination.pageIndex * pagination.pageSize;
-
-  return { rows: sorted.slice(start, start + pagination.pageSize), total: sorted.length };
-};
-
-// The skeleton for the first load is drawn from a page of these.
-const sampleInvoices: Invoice[] = Array.from({ length: 6 }, (_, index) => ({
-  amount: 1000,
-  customer: "Customer Name",
-  email: "name@example.com",
-  id: `INV-000${index}`,
-  issued: "2026-01-01",
-  status: "Pending",
-}));
-
+const statusLabel = { overdue: "Overdue", paid: "Paid", pending: "Pending" } as const;
+const statusVariant = { overdue: "error", paid: "success", pending: "warning" } as const;
 const currency = new Intl.NumberFormat("en-US", { currency: "USD", style: "currency" });
 
-const statusVariant = { Overdue: "error", Paid: "success", Pending: "warning" } as const;
-
-const features = tableFeatures({ rowPaginationFeature, rowSelectionFeature, rowSortingFeature });
-
-const columnHelper = createColumnHelper<typeof features, Invoice>();
+const columnHelper = createDataTableColumnHelper<Invoice>();
 
 const columns = columnHelper.columns([
   columnHelper.display({
-    cell: ({ row }) => (
-      <Checkbox
-        aria-label={`Select ${row.original.id}`}
-        checked={row.getIsSelected()}
-        onCheckedChange={(checked) => {
-          row.toggleSelected(checked);
-        }}
-      />
-    ),
-    header: ({ table }) => (
-      <Checkbox
-        aria-label="Select all rows on this page"
-        checked={table.getIsAllPageRowsSelected()}
-        indeterminate={table.getIsSomePageRowsSelected() && !table.getIsAllPageRowsSelected()}
-        onCheckedChange={(checked) => {
-          table.toggleAllPageRowsSelected(checked);
-        }}
-      />
-    ),
+    cell: DataTableSelectRow,
+    enableHiding: false,
+    header: DataTableSelectAll,
     id: "select",
+    size: 40,
   }),
   columnHelper.accessor("id", {
     cell: (info) => <span className="font-medium tabular-nums">{info.getValue()}</span>,
-    header: ({ column }) => <DataTableColumnHeader column={column}>Invoice</DataTableColumnHeader>,
+    header: "Invoice",
+    size: 112,
   }),
   columnHelper.accessor("customer", {
     cell: ({ row }) => (
@@ -159,39 +97,98 @@ const columns = columnHelper.columns([
         <span className="text-muted-foreground">{row.original.email}</span>
       </div>
     ),
-    header: ({ column }) => <DataTableColumnHeader column={column}>Customer</DataTableColumnHeader>,
+    header: "Customer",
+    meta: { filter: { icon: "user", label: "Customer", type: "text" } },
   }),
   columnHelper.accessor("status", {
     cell: (info) => (
       <Badge variant={statusVariant[info.getValue()]} statusIcon>
-        {info.getValue()}
+        {statusLabel[info.getValue()]}
       </Badge>
     ),
     enableSorting: false,
     header: "Status",
+    meta: { filter: { label: "Status", options: statusOptions, type: "option" } },
+    size: 120,
   }),
   columnHelper.accessor("issued", {
     cell: (info) => <span className="tabular-nums">{info.getValue()}</span>,
-    header: ({ column }) => <DataTableColumnHeader column={column}>Issued</DataTableColumnHeader>,
+    header: "Issued",
+    meta: { filter: { label: "Issued", type: "date" } },
+    size: 112,
   }),
   columnHelper.accessor("amount", {
-    cell: (info) => <div className="text-end tabular-nums">{currency.format(info.getValue())}</div>,
-    header: ({ column }) => (
-      <div className="flex justify-end">
-        <DataTableColumnHeader column={column}>Amount</DataTableColumnHeader>
-      </div>
-    ),
+    cell: (info) => <span className="tabular-nums">{currency.format(info.getValue())}</span>,
+    header: "Amount",
+    meta: {
+      align: "end",
+      filter: { format: { currency: "USD", style: "currency" }, label: "Amount", type: "number" },
+    },
+    size: 120,
   }),
 ]);
 
-// Fixed widths, so the first page sizes nothing differently from the sample rows it replaces.
-const columnWidths = {
-  amount: "7.5rem",
-  id: "7rem",
-  issued: "7rem",
-  select: "2.5rem",
-  status: "7.5rem",
+// The sortable columns and how the "server" orders each.
+const comparators = new Map<string, (a: Invoice, b: Invoice) => number>([
+  ["amount", (a, b) => a.amount - b.amount],
+  ["customer", (a, b) => a.customer.localeCompare(b.customer)],
+  ["id", (a, b) => a.id.localeCompare(b.id)],
+  ["issued", (a, b) => a.issued.localeCompare(b.issued)],
+]);
+
+// The filterable fields of an invoice, by column id.
+const filterable = new Set<string>(["amount", "customer", "issued", "status"]);
+
+const isFilterable = (id: string): id is "amount" | "customer" | "issued" | "status" =>
+  filterable.has(id);
+
+// Stands in for the API: the same query a route loader would pass on.
+const queryInvoices = (
+  { globalFilter, columnFilters, sorting, pagination }: DataTableQuery,
+  rows: Invoice[],
+) => {
+  const term = globalFilter.trim().toLowerCase();
+
+  const matching = rows.filter(
+    (invoice) =>
+      (term === "" ||
+        invoice.customer.toLowerCase().includes(term) ||
+        invoice.id.toLowerCase().includes(term)) &&
+      columnFilters.every(
+        ({ id, value }) =>
+          !isFilterable(id) || !isFilterRule(value) || matchesRule(invoice[id], value),
+      ),
+  );
+
+  const sorted = matching.toSorted((a, b) => {
+    for (const { id, desc } of sorting) {
+      const order = comparators.get(id)?.(a, b) ?? 0;
+
+      if (order !== 0) {
+        return desc ? -order : order;
+      }
+    }
+
+    return 0;
+  });
+
+  const start = pagination.pageIndex * pagination.pageSize;
+
+  return { rows: sorted.slice(start, start + pagination.pageSize), total: sorted.length };
 };
+
+// The skeleton of the first load is drawn from a full page of these, so it is as tall as the page
+// that replaces it.
+const sampleInvoice = (index: number): Invoice => ({
+  amount: 1000,
+  customer: "Customer Name",
+  email: "name@example.com",
+  id: `INV-${String(index).padStart(4, "0")}`,
+  issued: "2026-01-01",
+  status: "pending",
+});
+
+const defaultSorting = [{ desc: true, id: "issued" }];
 
 interface InvoicesTableProps {
   latency?: number;
@@ -208,101 +205,55 @@ const InvoicesTable = ({
   latency,
   fail = false,
   empty = false,
-  pageSize = 6,
+  pageSize = 10,
 }: InvoicesTableProps) => {
-  const [sorting, setSorting] = useState<SortingState>([{ desc: true, id: "issued" }]);
-  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize });
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-  const [search, setSearch] = useState("");
-  const [debouncedSearch] = useDebouncedValue(search, { wait: 300 });
-
-  // The response for the current query, memoized so it changes only when the query does.
-  const page = useMemo(
-    () =>
-      empty
-        ? { rows: noInvoices, total: 0 }
-        : queryInvoices({ pagination, search: debouncedSearch, sorting }),
-    [empty, pagination, debouncedSearch, sorting],
-  );
-
-  const request = useSimulatedFetch(page, { fail, latency });
-
-  const table = useTable({
+  // The query is lifted out of the table: the request needs it before the rows exist.
+  const [query, setQuery] = useDataTableQuery({
     columns,
-    data: request.data?.rows ?? sampleInvoices,
-    features,
-    getRowId: (row) => row.id,
-    manualPagination: true,
-    manualSorting: true,
-    onPaginationChange: setPagination,
-    onRowSelectionChange: setRowSelection,
-    onSortingChange: (updater) => {
-      setSorting(updater);
-      setPagination((last) => ({ ...last, pageIndex: 0 }));
-    },
-    rowCount: request.data?.total ?? 0,
-    state: { pagination, rowSelection, sorting },
+    defaultPageSize: pageSize,
+    defaultSorting,
   });
 
-  const selected = Object.keys(rowSelection).length;
+  const page = useMemo(() => queryInvoices(query, empty ? noInvoices : invoices), [query, empty]);
+  const request = useSimulatedFetch(page, { fail, latency });
+
+  const samples = useMemo(
+    () => Array.from({ length: query.pagination.pageSize }, (_, index) => sampleInvoice(index)),
+    [query.pagination.pageSize],
+  );
+
+  const table = useDataTable({
+    columns,
+    data: request.data?.rows ?? samples,
+    defaultPageSize: pageSize,
+    onQueryChange: setQuery,
+    query,
+    rowCount: request.data?.total ?? 0,
+  });
 
   return (
-    <div className="flex w-full flex-col gap-group">
+    <DataTable table={table}>
       <DataTableToolbar>
-        <InputGroup className="max-w-64">
-          <InputGroupAddon>
-            <Icon name="search-01" aria-hidden="true" />
-          </InputGroupAddon>
-          <InputGroupInput
-            aria-label="Search invoices"
-            placeholder="Search invoices"
-            value={search}
-            onChange={(event) => {
-              setSearch(event.target.value);
-              setPagination((last) => ({ ...last, pageIndex: 0 }));
-            }}
-          />
-        </InputGroup>
-        <LoadingControls {...request} />
+        <DataTableSearch placeholder="Search invoices" />
+        <DataTableFilters />
+        <DataTableViewOptions />
       </DataTableToolbar>
-      <DataTable
-        table={table}
+      <DataTableContent
         loading={request.loading}
         error={request.error}
         id="data-table-invoices"
         label="Loading invoices"
-        columnWidths={columnWidths}
-        rowProps={(row) => ({ "data-state": row.getIsSelected() ? "selected" : undefined })}
-        empty={
-          <Empty className="border-0">
-            <EmptyHeader>
-              <EmptyTitle>No invoices found</EmptyTitle>
-              <EmptyDescription>
-                {debouncedSearch === "" ? "Invoices you send appear here." : "Try another search."}
-              </EmptyDescription>
-            </EmptyHeader>
-          </Empty>
-        }
       />
-      <div className="flex flex-wrap items-center justify-between gap-related text-caption text-muted-foreground">
-        <span aria-live="polite">
-          {selected > 0 ? `${selected} selected · ` : ""}
-          {request.data === undefined ? "Loading invoices…" : `${request.data.total} invoices`}
-        </span>
-        <Pagination className="mx-0 w-auto">
-          <PaginationControls
-            page={pagination.pageIndex + 1}
-            pageCount={Math.max(table.getPageCount(), 1)}
-            onPageChange={(target) => {
-              setPagination((last) => ({ ...last, pageIndex: target - 1 }));
-            }}
-          />
-        </Pagination>
-      </div>
-    </div>
+      <DataTablePagination pageSizes={[pageSize, 20, 50]} />
+      <DataTableActionBar>
+        <Button variant="ghost" size="sm">
+          Send reminders
+        </Button>
+      </DataTableActionBar>
+    </DataTable>
   );
 };
 
-export { InvoicesTable };
+export { columns as invoiceColumns, defaultSorting as invoiceSorting, invoices, InvoicesTable };
 
-export type { InvoicesTableProps };
+export type { Invoice, InvoicesTableProps };

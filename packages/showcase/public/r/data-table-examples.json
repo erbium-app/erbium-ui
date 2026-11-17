@@ -5,6 +5,8 @@
   "registryDependencies": [
     "@erbium-examples/data-table-playground",
     "@erbium-examples/data-table-overview",
+    "@erbium-examples/data-table-client",
+    "@erbium-examples/data-table-router",
     "@erbium-examples/data-table-empty",
     "@erbium-examples/data-table-error",
     "@erbium-examples/data-table-rtl"

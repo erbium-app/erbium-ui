@@ -8509,22 +8509,50 @@
       ]
     },
     {
+      "name": "data-table-client",
+      "type": "registry:block",
+      "title": "Data Table: Rows in the browser",
+      "description": "Every invoice is in the browser, so the table searches, filters, sorts and pages them itself. The whole setup is `useDataTable({ columns, data })` and the parts.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/data-table",
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/styles",
+        "@erbium/use-data-table"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/client.tsx",
+          "target": "@components/showcase/data-table/variants/client.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "data-table-empty",
       "type": "registry:block",
       "title": "Data Table: Empty",
       "description": "When the server returns no rows, the `empty` content fills the body under the header.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/checkbox",
         "@erbium/data-table",
-        "@erbium/empty",
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/pagination",
-        "@erbium/styles"
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/styles",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -8549,18 +8577,14 @@
       "type": "registry:block",
       "title": "Data Table: Error",
       "description": "A failed request replaces the table with an error alert carrying the error's message. Reload to try again.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/checkbox",
         "@erbium/data-table",
-        "@erbium/empty",
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/pagination",
-        "@erbium/styles"
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/styles",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -8586,6 +8610,8 @@
       "registryDependencies": [
         "@erbium-examples/data-table-playground",
         "@erbium-examples/data-table-overview",
+        "@erbium-examples/data-table-client",
+        "@erbium-examples/data-table-router",
         "@erbium-examples/data-table-empty",
         "@erbium-examples/data-table-error",
         "@erbium-examples/data-table-rtl"
@@ -8597,19 +8623,15 @@
       "name": "data-table-overview",
       "type": "registry:block",
       "title": "Data Table: Overview",
-      "description": "Search, sort by a column header, select rows and change pages. The example server answers every query after a delay. The first load is drawn from sample rows, and every later query draws its skeleton over the rows on screen.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "description": "A server table. Search, filter, sort from a column header, hide columns, select rows and change pages. The example server answers every query after a delay. The first load is drawn from sample rows, and every later query draws its skeleton over the rows on screen.",
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/checkbox",
         "@erbium/data-table",
-        "@erbium/empty",
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/pagination",
-        "@erbium/styles"
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/styles",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -8634,18 +8656,14 @@
       "type": "registry:block",
       "title": "Data Table: Playground",
       "description": "Change the latency and page size, or make the server fail or return nothing.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/checkbox",
         "@erbium/data-table",
-        "@erbium/empty",
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/pagination",
-        "@erbium/styles"
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/styles",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -8666,23 +8684,54 @@
       ]
     },
     {
+      "name": "data-table-router",
+      "type": "registry:block",
+      "title": "Data Table: URL state",
+      "description": "The search, filters, sort and page live in the URL through TanStack Router, so every view of the table is a link. Change anything and the address updates; open a saved view and the table rebuilds from the link. The example runs its own router in memory, so the address is shown above the table.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/button",
+        "@erbium/data-table",
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/input-group",
+        "@erbium/link",
+        "@erbium/styles",
+        "@erbium/use-data-table"
+      ],
+      "files": [
+        {
+          "path": "src/data-table/helpers.tsx",
+          "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/router.tsx",
+          "target": "@components/showcase/data-table/variants/router.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/loading.tsx",
+          "target": "@components/showcase/loading.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "data-table-rtl",
       "type": "registry:block",
       "title": "Data Table: RTL",
       "description": "Columns, sort icons, pagination and the reveal follow the reading direction.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/checkbox",
         "@erbium/data-table",
+        "@erbium/data-table-search",
         "@erbium/direction",
-        "@erbium/empty",
-        "@erbium/icon",
-        "@erbium/input-group",
-        "@erbium/pagination",
-        "@erbium/styles"
+        "@erbium/filter-rules",
+        "@erbium/styles",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -8707,24 +8756,23 @@
       "type": "registry:item",
       "title": "Data Table stories",
       "description": "All data-table variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-pacer@0.24.1", "@tanstack/react-table@9.3.1"],
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/checkbox",
         "@erbium/csp-provider",
         "@erbium/data-table",
+        "@erbium/data-table-search",
         "@erbium/direction",
-        "@erbium/empty",
-        "@erbium/icon",
+        "@erbium/filter-rules",
         "@erbium/input-group",
+        "@erbium/link",
         "@erbium/overlay-provider",
-        "@erbium/pagination",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -8735,6 +8783,11 @@
         {
           "path": "src/data-table/helpers.tsx",
           "target": "@components/showcase/data-table/helpers.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/client.tsx",
+          "target": "@components/showcase/data-table/variants/client.tsx",
           "type": "registry:component"
         },
         {
@@ -8755,6 +8808,11 @@
         {
           "path": "src/data-table/variants/playground.tsx",
           "target": "@components/showcase/data-table/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/data-table/variants/router.tsx",
+          "target": "@components/showcase/data-table/variants/router.tsx",
           "type": "registry:component"
         },
         {
@@ -11887,15 +11945,12 @@
       "type": "registry:block",
       "title": "Filters: Faceted",
       "description": "Faceted mode on the same table: one button per field, showing the chosen values. Option counts follow the other active filters.",
-      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/data-table",
-        "@erbium/empty",
         "@erbium/filter-rules",
-        "@erbium/filters",
         "@erbium/styles",
-        "@erbium/use-filters"
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -11942,16 +11997,13 @@
       "type": "registry:block",
       "title": "Filters: Overview",
       "description": "Chip mode on a TanStack table. Add a filter from the searchable menu: option fields open a searchable submenu with counts, and text, number and date fields open their editor in a new chip. Change a chip's operator or value in place.",
-      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/data-table",
-        "@erbium/empty",
+        "@erbium/data-table-search",
         "@erbium/filter-rules",
-        "@erbium/filters",
-        "@erbium/pagination",
         "@erbium/styles",
-        "@erbium/use-filters"
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -11971,18 +12023,16 @@
       "type": "registry:block",
       "title": "Filters: URL state",
       "description": "The rules live in the URL through TanStack Router, so every filtered view is a link. Change a filter and the address updates; open a saved view and the table rebuilds its chips from the link. The example runs its own router in memory, so the address is shown above the table.",
-      "dependencies": ["@tanstack/react-router@^1.170.46", "@tanstack/react-table@9.3.1"],
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/data-table",
-        "@erbium/empty",
+        "@erbium/data-table-search",
         "@erbium/filter-rules",
-        "@erbium/filter-search",
-        "@erbium/filters",
         "@erbium/input-group",
         "@erbium/link",
         "@erbium/styles",
-        "@erbium/use-filters"
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -12002,12 +12052,13 @@
       "type": "registry:item",
       "title": "Filters stories",
       "description": "All filters variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-router@^1.170.46", "@tanstack/react-table@9.3.1"],
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/csp-provider",
         "@erbium/data-table",
+        "@erbium/data-table-search",
         "@erbium/empty",
         "@erbium/filter-rules",
         "@erbium/filter-search",
@@ -12016,10 +12067,10 @@
         "@erbium/item",
         "@erbium/link",
         "@erbium/overlay-provider",
-        "@erbium/pagination",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
+        "@erbium/use-data-table",
         "@erbium/use-filters"
       ],
       "files": [
@@ -14548,12 +14599,7 @@
       "type": "registry:block",
       "title": "Logo Loader: Request",
       "description": "A request with no layout to preview. The loader runs while the request is in flight, and the result appears once the mark has resolved.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/logo-loader",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/logo-loader", "@erbium/styles"],
       "files": [
         {
           "path": "src/loading.tsx",
@@ -14579,8 +14625,6 @@
       "description": "All logo-loader variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/csp-provider",
         "@erbium/logo-loader",
         "@erbium/overlay-provider",
@@ -20606,8 +20650,6 @@
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/item",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -20661,8 +20703,6 @@
       "description": "Badges are drawn as pills and text as bars, and the card keeps its surface while it loads.",
       "registryDependencies": [
         "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -20697,8 +20737,6 @@
       "description": "Erbium skeleton demo example.",
       "registryDependencies": [
         "@erbium/avatar",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -20748,8 +20786,6 @@
       "title": "Skeleton: Form",
       "description": "Inputs, selects and switches are drawn as blocks at their own size and labels as bars. The form mounts with the loaded values, so an empty form never flashes first.",
       "registryDependencies": [
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/field",
         "@erbium/form",
         "@erbium/select",
@@ -20783,11 +20819,9 @@
       "name": "skeleton-overview",
       "type": "registry:block",
       "title": "Skeleton: Overview",
-      "description": "The profile loads after a moment. Until then it is drawn from `sampleProfile`: a block for the avatar and a bar for each line of text, at their real size. Reload drops the data; refetch keeps it on screen and draws the skeleton from it.",
+      "description": "The profile loads after a moment. Until then it is drawn from `sampleProfile`: a block for the avatar and a bar for each line of text, at their real size.",
       "registryDependencies": [
         "@erbium/avatar",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -20819,11 +20853,9 @@
       "name": "skeleton-playground",
       "type": "registry:block",
       "title": "Skeleton: Playground",
-      "description": "Change the latency and the reveal, then reload or refetch to replay it.",
+      "description": "Change the latency and the reveal to see the first load with them.",
       "registryDependencies": [
         "@erbium/avatar",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -20858,8 +20890,6 @@
       "description": "Pass `loading` while the data is still on screen. The skeleton is drawn from that data, so it matches exactly, and the new data crossfades in.",
       "registryDependencies": [
         "@erbium/avatar",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -20900,8 +20930,6 @@
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/item",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -20938,7 +20966,6 @@
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
         "@erbium/field",
         "@erbium/icon",
         "@erbium/item",
@@ -20979,7 +21006,6 @@
         "@erbium/avatar",
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
         "@erbium/empty",
         "@erbium/item",
         "@erbium/skeleton",
@@ -21019,13 +21045,11 @@
       "type": "registry:item",
       "title": "Skeleton stories",
       "description": "All skeleton variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-table@9.3.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/badge",
         "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/data-table",
@@ -21040,7 +21064,8 @@
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/toast",
-        "@erbium/toggle-group"
+        "@erbium/toggle-group",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -21193,7 +21218,6 @@
       "registryDependencies": [
         "@erbium/avatar",
         "@erbium/button",
-        "@erbium/button-group",
         "@erbium/card",
         "@erbium/skeleton",
         "@erbium/styles"
@@ -21231,13 +21255,11 @@
       "type": "registry:block",
       "title": "Skeleton: Table",
       "description": "A [data table](/docs/blocks/data-table) built from sample rows until the first response. The header is known, so it stays readable throughout.",
-      "dependencies": ["@tanstack/react-table@9.3.1"],
       "registryDependencies": [
         "@erbium/badge",
-        "@erbium/button",
-        "@erbium/button-group",
         "@erbium/data-table",
-        "@erbium/styles"
+        "@erbium/styles",
+        "@erbium/use-data-table"
       ],
       "files": [
         {
@@ -21267,12 +21289,7 @@
       "type": "registry:block",
       "title": "Skeleton: Text",
       "description": "Each line gets a bar from the font's ascender to its descender, and wraps where the real text will wrap.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/button-group",
-        "@erbium/skeleton",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/skeleton", "@erbium/styles"],
       "files": [
         {
           "path": "src/loading.tsx",

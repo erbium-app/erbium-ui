@@ -5,6 +5,10 @@ import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variant
 import PlaygroundSource from "./variants/playground.tsx?raw";
 import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
+import ClientExample from "./variants/client";
+import ClientSource from "./variants/client.tsx?raw";
+import RouterExample from "./variants/router";
+import RouterSource from "./variants/router.tsx?raw";
 import EmptyStateExample from "./variants/empty";
 import EmptyStateSource from "./variants/empty.tsx?raw";
 import ErrorStateExample from "./variants/error";
@@ -48,6 +52,26 @@ export const Overview: Story = {
     },
   },
   render: OverviewExample,
+};
+
+export const Client: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("data-table", "client") },
+      source: { code: ClientSource },
+    },
+  },
+  render: ClientExample,
+};
+
+export const Router: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("data-table", "router") },
+      source: { code: RouterSource },
+    },
+  },
+  render: RouterExample,
 };
 
 export const EmptyState: Story = {

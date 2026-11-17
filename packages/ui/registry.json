@@ -622,13 +622,24 @@
       "type": "registry:block",
       "title": "Data Table",
       "description": "Erbium data table block.",
-      "dependencies": ["@tanstack/react-table"],
+      "dependencies": ["@tanstack/react-pacer", "@tanstack/react-table"],
       "registryDependencies": [
         "@erbium/button",
+        "@erbium/checkbox",
+        "@erbium/data-table-search",
+        "@erbium/dropdown-menu",
+        "@erbium/empty",
+        "@erbium/filters",
         "@erbium/icon",
+        "@erbium/input-group",
+        "@erbium/pagination",
+        "@erbium/select",
+        "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/skeleton-hints",
         "@erbium/table",
+        "@erbium/use-data-table",
+        "@erbium/use-filters",
         "@erbium/utils"
       ],
       "files": [
@@ -636,6 +647,21 @@
           "path": "src/blocks/data-table.tsx",
           "target": "@components/blocks/data-table.tsx",
           "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "data-table-search",
+      "type": "registry:lib",
+      "title": "Data Table Search",
+      "description": "Erbium data table search lib.",
+      "dependencies": ["@tanstack/react-table"],
+      "registryDependencies": ["@erbium/filter-search"],
+      "files": [
+        {
+          "path": "src/lib/data-table-search.ts",
+          "target": "@lib/data-table-search.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -2194,6 +2220,25 @@
         {
           "path": "src/hooks/use-copy-to-clipboard.ts",
           "target": "@hooks/use-copy-to-clipboard.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-data-table",
+      "type": "registry:hook",
+      "title": "Use Data Table",
+      "description": "Erbium use data table hook.",
+      "dependencies": ["@tanstack/react-pacer", "@tanstack/react-router", "@tanstack/react-table"],
+      "registryDependencies": [
+        "@erbium/data-table-search",
+        "@erbium/filter-rules",
+        "@erbium/filter-search"
+      ],
+      "files": [
+        {
+          "path": "src/hooks/use-data-table.ts",
+          "target": "@hooks/use-data-table.ts",
           "type": "registry:hook"
         }
       ]
