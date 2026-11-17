@@ -14,7 +14,8 @@
     "@erbium-examples/button-group-dropdown-menu",
     "@erbium-examples/button-group-select",
     "@erbium-examples/button-group-popover",
-    "@erbium-examples/button-group-split"
+    "@erbium-examples/button-group-split",
+    "@erbium-examples/button-group-text"
   ],
   "title": "Button Group examples",
   "type": "registry:item"

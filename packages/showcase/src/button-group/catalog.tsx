@@ -52,6 +52,10 @@ import SplitExample from "./variants/split";
 
 import SplitSource from "./examples/button-group-split.tsx?raw";
 
+import TextExample from "./variants/text";
+
+import TextSource from "./examples/button-group-text.tsx?raw";
+
 const meta = {
   component: ButtonGroup,
   parameters: {
@@ -195,4 +199,14 @@ export const Split: Story = {
     },
   },
   render: SplitExample,
+};
+
+export const Text: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("button-group", "text") },
+      source: { code: TextSource },
+    },
+  },
+  render: TextExample,
 };

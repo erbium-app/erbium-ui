@@ -26,3 +26,5 @@ export const Select = { ...showcases.Select, name: "Select" };
 export const Popover = { ...showcases.Popover, name: "Popover" };
 
 export const Split = { ...showcases.Split, name: "Split" };
+
+export const Text = { ...showcases.Text, name: "Text" };

@@ -3622,7 +3622,8 @@
         "@erbium-examples/button-group-dropdown-menu",
         "@erbium-examples/button-group-select",
         "@erbium-examples/button-group-popover",
-        "@erbium-examples/button-group-split"
+        "@erbium-examples/button-group-split",
+        "@erbium-examples/button-group-text"
       ],
       "title": "Button Group examples",
       "type": "registry:item"
@@ -3980,6 +3981,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/button-group/examples/button-group-text.tsx",
+          "target": "@components/showcase/button-group/examples/button-group-text.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/button-group/variants/dropdown-menu.tsx",
           "target": "@components/showcase/button-group/variants/dropdown-menu.tsx",
           "type": "registry:component"
@@ -4040,8 +4046,38 @@
           "type": "registry:component"
         },
         {
+          "path": "src/button-group/variants/text.tsx",
+          "target": "@components/showcase/button-group/variants/text.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "button-group-text",
+      "type": "registry:block",
+      "title": "Button Group: Text",
+      "description": "Lead a group with a fixed label using `ButtonGroupText`, such as a URL prefix before an input or a field name before its value. The last row is sized like a filter chip.",
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/button-group",
+        "@erbium/icon",
+        "@erbium/input",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/button-group/examples/button-group-text.tsx",
+          "target": "@components/showcase/button-group/examples/button-group-text.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/button-group/variants/text.tsx",
+          "target": "@components/showcase/button-group/variants/text.tsx",
           "type": "registry:component"
         }
       ]
@@ -11825,6 +11861,156 @@
         {
           "path": "src/file-view/variants/states.tsx",
           "target": "@components/showcase/file-view/variants/states.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All filters examples.",
+      "name": "filters-examples",
+      "registryDependencies": [
+        "@erbium-examples/filters-overview",
+        "@erbium-examples/filters-faceted",
+        "@erbium-examples/filters-list"
+      ],
+      "title": "Filters examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "filters-faceted",
+      "type": "registry:block",
+      "title": "Filters: Faceted",
+      "description": "Faceted mode on the same table: one button per field, showing the chosen values. Option counts follow the other active filters.",
+      "dependencies": ["@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/filter-rules",
+        "@erbium/filters",
+        "@erbium/styles",
+        "@erbium/use-filters"
+      ],
+      "files": [
+        {
+          "path": "src/filters/data.ts",
+          "target": "@components/showcase/filters/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/faceted.tsx",
+          "target": "@components/showcase/filters/variants/faceted.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "filters-list",
+      "type": "registry:block",
+      "title": "Filters: List",
+      "description": "Chip mode on a plain list. `useListFilters` keeps the rules, filters the items and counts the options with the same matcher the table uses.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/empty",
+        "@erbium/filter-rules",
+        "@erbium/filters",
+        "@erbium/item",
+        "@erbium/styles",
+        "@erbium/use-filters"
+      ],
+      "files": [
+        {
+          "path": "src/filters/data.ts",
+          "target": "@components/showcase/filters/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/list.tsx",
+          "target": "@components/showcase/filters/variants/list.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "filters-overview",
+      "type": "registry:block",
+      "title": "Filters: Overview",
+      "description": "Chip mode on a TanStack table. Add a filter from the searchable menu: option fields open a searchable submenu with counts, and text, number and date fields open their editor in a new chip. Change a chip's operator or value in place.",
+      "dependencies": ["@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/filter-rules",
+        "@erbium/filters",
+        "@erbium/pagination",
+        "@erbium/styles",
+        "@erbium/use-filters"
+      ],
+      "files": [
+        {
+          "path": "src/filters/data.ts",
+          "target": "@components/showcase/filters/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/overview.tsx",
+          "target": "@components/showcase/filters/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "filters-stories",
+      "type": "registry:item",
+      "title": "Filters stories",
+      "description": "All filters variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-table@9.3.1"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/csp-provider",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/filter-rules",
+        "@erbium/filters",
+        "@erbium/item",
+        "@erbium/overlay-provider",
+        "@erbium/pagination",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast",
+        "@erbium/use-filters"
+      ],
+      "files": [
+        {
+          "path": "src/filters/data.ts",
+          "target": "@components/showcase/filters/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/filters.stories.tsx",
+          "target": "@components/showcase/filters/filters.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/filters/variants/faceted.tsx",
+          "target": "@components/showcase/filters/variants/faceted.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/list.tsx",
+          "target": "@components/showcase/filters/variants/list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/overview.tsx",
+          "target": "@components/showcase/filters/variants/overview.tsx",
           "type": "registry:component"
         },
         {

@@ -970,6 +970,13 @@
         "source": "src/button-group/variants/split.tsx",
         "usage": ["src/button-group/examples/button-group-split.tsx"],
         "title": "Split"
+      },
+      {
+        "exportName": "Text",
+        "slug": "text",
+        "source": "src/button-group/variants/text.tsx",
+        "usage": ["src/button-group/examples/button-group-text.tsx"],
+        "title": "Text"
       }
     ]
   },
@@ -2585,6 +2592,33 @@
         "source": "src/file-view/variants/states.tsx",
         "usage": ["src/file-view/variants/states.tsx", "src/file-view/examples/file.ts"],
         "title": "States"
+      }
+    ]
+  },
+  {
+    "name": "filters",
+    "title": "Blocks/Filters",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/filters/variants/overview.tsx",
+        "usage": ["src/filters/variants/overview.tsx", "src/filters/data.ts"],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Faceted",
+        "slug": "faceted",
+        "source": "src/filters/variants/faceted.tsx",
+        "usage": ["src/filters/variants/faceted.tsx", "src/filters/data.ts"],
+        "title": "Faceted"
+      },
+      {
+        "exportName": "List",
+        "slug": "list",
+        "source": "src/filters/variants/list.tsx",
+        "usage": ["src/filters/variants/list.tsx", "src/filters/data.ts"],
+        "title": "List"
       }
     ]
   },

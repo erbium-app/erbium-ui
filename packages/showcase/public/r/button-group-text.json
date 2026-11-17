@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group-text",
+  "type": "registry:block",
+  "title": "Button Group: Text",
+  "description": "Lead a group with a fixed label using `ButtonGroupText`, such as a URL prefix before an input or a field name before its value. The last row is sized like a filter chip.",
+  "registryDependencies": [
+    "@erbium/button",
+    "@erbium/button-group",
+    "@erbium/icon",
+    "@erbium/input",
+    "@erbium/styles"
+  ],
+  "files": [
+    {
+      "content": "import { Icon } from \"@/registry/erbium/ui/icon\";\n\nimport { Button } from \"@/registry/erbium/ui/button\";\nimport { ButtonGroup, ButtonGroupText } from \"@/registry/erbium/ui/button-group\";\nimport { Input } from \"@/registry/erbium/ui/input\";\n\nexport default function ButtonGroupTextExample() {\n  return (\n    <div className=\"flex flex-col items-start gap-group\">\n      <ButtonGroup>\n        <ButtonGroupText>https://</ButtonGroupText>\n        <Input aria-label=\"Domain\" placeholder=\"example.com\" className=\"w-48\" />\n      </ButtonGroup>\n      <ButtonGroup>\n        <ButtonGroupText>\n          <Icon name=\"user\" aria-hidden=\"true\" />\n          Assignee\n        </ButtonGroupText>\n        <Button variant=\"outline\">Leo Brandt</Button>\n        <Button variant=\"outline\" size=\"icon\" aria-label=\"Clear assignee\">\n          <Icon name=\"x\" aria-hidden=\"true\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <ButtonGroupText>\n          <Icon name=\"tag-01\" aria-hidden=\"true\" />\n          Labels\n        </ButtonGroupText>\n        <Button variant=\"outline\" size=\"sm\" className=\"text-muted-foreground\">\n          includes any of\n        </Button>\n        <Button variant=\"outline\" size=\"sm\">\n          Feature\n        </Button>\n        <Button variant=\"outline\" size=\"icon-sm\" aria-label=\"Remove labels filter\">\n          <Icon name=\"x\" aria-hidden=\"true\" />\n        </Button>\n      </ButtonGroup>\n    </div>\n  );\n}\n",
+      "path": "src/button-group/examples/button-group-text.tsx",
+      "target": "@components/showcase/button-group/examples/button-group-text.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import ButtonGroupText from \"../examples/button-group-text\";\n\nconst Example = () => <ButtonGroupText />;\n\nexport default Example;\n",
+      "path": "src/button-group/variants/text.tsx",
+      "target": "@components/showcase/button-group/variants/text.tsx",
+      "type": "registry:component"
+    }
+  ]
+}
