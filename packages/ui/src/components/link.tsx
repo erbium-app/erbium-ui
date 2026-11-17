@@ -1,8 +1,10 @@
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
-import { Link as RouterLink, useRouter } from "@tanstack/react-router";
+import { createLink, useRouter } from "@tanstack/react-router";
 import type { AnyRouter, LinkComponentProps, RegisteredRouter } from "@tanstack/react-router";
 import type { ReactElement, Ref } from "react";
 import { usePredictedIntent } from "../hooks/use-predicted-intent";
+
+const RouterLink = createLink("a");
 
 // Router defaults, used when the app leaves an option unset.
 const defaultPreloadStaleTime = 30_000;

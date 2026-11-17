@@ -3,9 +3,7 @@ title: "Breadcrumb"
 description: "Links that show the current page’s location."
 ---
 
-## Usage
-
-Use a hierarchy of links to show the path to the current resource.
+Use `BreadcrumbLink` for each ancestor page and `BreadcrumbPage` for the current page. `BreadcrumbPage` renders a text label with `aria-current="page"`.
 
 **Import:** `@erbium/ui/components/breadcrumb`
 
@@ -26,11 +24,11 @@ import {
 <Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
-      <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
-      <BreadcrumbLink render={<a href="/components" />}>Components</BreadcrumbLink>
+      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>

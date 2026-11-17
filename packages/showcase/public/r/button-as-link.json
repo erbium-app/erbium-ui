@@ -3,7 +3,7 @@
   "name": "button-as-link",
   "type": "registry:component",
   "title": "Button: As Link",
-  "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.",
+  "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.\n\nFor a TanStack Router destination, apply the same styles to Erbium's `Link` to enable Foresight route preloading.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\nimport { buttonVariants } from \"@erbium/ui/lib/button-variants\";\n\n<Link to=\"/projects\" className={buttonVariants()}>\n  Projects\n</Link>;\n```",
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {

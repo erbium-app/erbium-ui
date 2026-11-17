@@ -51,6 +51,19 @@ export function AppSidebar() {
 }
 ```
 
+## Route links
+
+In a TanStack Router app, pass Erbium's `Link` to the `render` prop on `SidebarMenuButton` or `SidebarMenuSubButton` to use Foresight route preloading. Set `isActive` from the current route to apply the sidebar's active styling.
+
+```tsx
+import { Link } from "@erbium/ui/components/link";
+import { SidebarMenuButton } from "@erbium/ui/components/sidebar";
+
+<SidebarMenuButton render={<Link to="/projects" />} isActive={isProjectsPage}>
+  Projects
+</SidebarMenuButton>;
+```
+
 ## Composition
 
 Use the following composition to build a `Sidebar` layout:

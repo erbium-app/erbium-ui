@@ -2821,7 +2821,8 @@
       "type": "registry:component",
       "title": "breadcrumb link",
       "description": "Erbium breadcrumb link example.",
-      "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": ["@erbium/breadcrumb", "@erbium/link", "@erbium/styles"],
       "files": [
         {
           "path": "src/breadcrumb/examples/breadcrumb-link.tsx",
@@ -2834,8 +2835,9 @@
       "name": "breadcrumb-link-component",
       "type": "registry:block",
       "title": "Breadcrumb: Link Component",
-      "description": "Pass a router link to the `render` prop on `<BreadcrumbLink />`. In an app, use `Link` from `@erbium/ui/components/link`, which preloads the route before the click:\n\n```tsx\n<BreadcrumbLink render={<Link to=\"/projects\" />}>Projects</BreadcrumbLink>\n```",
-      "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+      "description": "In a TanStack Router app, pass the Erbium `Link` to `BreadcrumbLink` through its `render` prop. Foresight predicts interest in the link and asks the router to preload its route. Use exact matching so an ancestor link is marked current only on its own route.\n\n```tsx\nimport { BreadcrumbLink } from \"@erbium/ui/components/breadcrumb\";\nimport { Link } from \"@erbium/ui/components/link\";\n\n<BreadcrumbLink render={<Link to=\"/projects\" activeOptions={{ exact: true }} />}>\n  Projects\n</BreadcrumbLink>;\n```\n\nThe preview uses in-memory routing. Select **Projects** to go up one level and **Open settings** to return.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": ["@erbium/breadcrumb", "@erbium/link", "@erbium/styles"],
       "files": [
         {
           "path": "src/breadcrumb/examples/breadcrumb-link.tsx",
@@ -2901,6 +2903,7 @@
       "type": "registry:item",
       "title": "Breadcrumb stories",
       "description": "All breadcrumb variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/breadcrumb",
@@ -3364,7 +3367,7 @@
       "name": "button-as-link",
       "type": "registry:component",
       "title": "Button: As Link",
-      "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.",
+      "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.\n\nFor a TanStack Router destination, apply the same styles to Erbium's `Link` to enable Foresight route preloading.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\nimport { buttonVariants } from \"@erbium/ui/lib/button-variants\";\n\n<Link to=\"/projects\" className={buttonVariants()}>\n  Projects\n</Link>;\n```",
       "registryDependencies": ["@erbium/button", "@erbium/styles"],
       "files": [
         {
@@ -4297,11 +4300,13 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
+        "@erbium/button-variants",
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/kbd",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -5085,6 +5090,7 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/form",
+        "@erbium/link",
         "@erbium/separator",
         "@erbium/styles"
       ],
@@ -5147,6 +5153,7 @@
         "@erbium/card",
         "@erbium/field",
         "@erbium/form",
+        "@erbium/link",
         "@erbium/separator",
         "@erbium/styles"
       ],
@@ -5208,6 +5215,7 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/form",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
@@ -15927,8 +15935,9 @@
       "name": "navigation-menu-link-component",
       "type": "registry:component",
       "title": "Navigation Menu: Link Component",
-      "description": "Use the `render` prop to compose a custom link component such as `Link` from `@erbium/ui/components/link`, which preloads the route before the click.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\n\nimport {\n  NavigationMenuItem,\n  NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link to=\"/docs\" />} className={navigationMenuTriggerStyle()}>\n        Documentation\n      </NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
-      "registryDependencies": ["@erbium/navigation-menu", "@erbium/styles"],
+      "description": "In a TanStack Router app, pass Erbium's `Link` to `NavigationMenuLink` through `render`. The menu still manages focus and keyboard navigation, while Foresight can preload the destination before activation. The menu applies its active styles when the router marks a link with `aria-current=\"page\"`. Use `href` for ordinary anchors.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\n\nimport { NavigationMenuItem, NavigationMenuLink } from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link to=\"/docs\" />}>Documentation</NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": ["@erbium/link", "@erbium/navigation-menu", "@erbium/styles"],
       "files": [
         {
           "path": "src/navigation-menu/variants/link-component.tsx",
@@ -15975,6 +15984,7 @@
       "type": "registry:item",
       "title": "Navigation Menu stories",
       "description": "All navigation-menu variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",

@@ -1,5 +1,6 @@
 import { createElement } from "react";
-import { createRootRoute, createRoute, createRouter, Link, Outlet } from "@tanstack/react-router";
+import { createRootRoute, createRoute, createRouter, Outlet } from "@tanstack/react-router";
+import { Link } from "@erbium/ui/components/link";
 
 const rootRoute = createRootRoute({
   component: () =>

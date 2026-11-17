@@ -5,13 +5,13 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
-  useLinkProps,
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
 import { Card, CardContent, CardDescription, CardHeader } from "@erbium/ui/components/card";
 import { FieldGroup } from "@erbium/ui/components/field";
 import { Form, useAppForm } from "@erbium/ui/components/form";
+import { Link } from "@erbium/ui/components/link";
 import { Separator } from "@erbium/ui/components/separator";
 
 interface AuthResult {
@@ -76,7 +76,6 @@ const AuthCard = ({ authClient, registering }: CardDemoProps & { registering: bo
     },
   });
 
-  const switchLink = useLinkProps({ to: registering ? "/" : "/sign-up" });
   const action = registering ? "Create account" : "Sign in";
 
   return (
@@ -166,9 +165,9 @@ const AuthCard = ({ authClient, registering }: CardDemoProps & { registering: bo
         </Form>
         <p className="text-center text-caption text-muted-foreground">
           {registering ? "Already have an account?" : "Don’t have an account?"}{" "}
-          <a {...switchLink} className="text-link hover:underline">
+          <Link to={registering ? "/" : "/sign-up"} className="text-link hover:underline">
             {registering ? "Sign in" : "Create an account"}
-          </a>
+          </Link>
         </p>
       </CardContent>
     </Card>
