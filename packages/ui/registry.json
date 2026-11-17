@@ -942,6 +942,21 @@
       ]
     },
     {
+      "name": "filter-search",
+      "type": "registry:lib",
+      "title": "Filter Search",
+      "description": "Erbium filter search lib.",
+      "dependencies": ["@tanstack/react-table"],
+      "registryDependencies": ["@erbium/filter-rules"],
+      "files": [
+        {
+          "path": "src/lib/filter-search.ts",
+          "target": "@lib/filter-search.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "filters",
       "type": "registry:block",
       "title": "Filters",
@@ -2201,7 +2216,7 @@
       "title": "Use Filters",
       "description": "Erbium use filters hook.",
       "dependencies": ["@tanstack/react-table"],
-      "registryDependencies": ["@erbium/filter-rules"],
+      "registryDependencies": ["@erbium/filter-rules", "@erbium/filter-search"],
       "files": [
         {
           "path": "src/hooks/use-filters.ts",

@@ -11876,7 +11876,8 @@
       "registryDependencies": [
         "@erbium-examples/filters-overview",
         "@erbium-examples/filters-faceted",
-        "@erbium-examples/filters-list"
+        "@erbium-examples/filters-list",
+        "@erbium-examples/filters-router"
       ],
       "title": "Filters examples",
       "type": "registry:item"
@@ -11966,11 +11967,42 @@
       ]
     },
     {
+      "name": "filters-router",
+      "type": "registry:block",
+      "title": "Filters: URL state",
+      "description": "The rules live in the URL through TanStack Router, so every filtered view is a link. Change a filter and the address updates; open a saved view and the table rebuilds its chips from the link. The example runs its own router in memory, so the address is shown above the table.",
+      "dependencies": ["@tanstack/react-router@^1.170.46", "@tanstack/react-table@9.3.1"],
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/data-table",
+        "@erbium/empty",
+        "@erbium/filter-rules",
+        "@erbium/filter-search",
+        "@erbium/filters",
+        "@erbium/input-group",
+        "@erbium/link",
+        "@erbium/styles",
+        "@erbium/use-filters"
+      ],
+      "files": [
+        {
+          "path": "src/filters/data.ts",
+          "target": "@components/showcase/filters/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/router.tsx",
+          "target": "@components/showcase/filters/variants/router.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "filters-stories",
       "type": "registry:item",
       "title": "Filters stories",
       "description": "All filters variants as portable React CSF stories.",
-      "dependencies": ["@tanstack/react-table@9.3.1"],
+      "dependencies": ["@tanstack/react-router@^1.170.46", "@tanstack/react-table@9.3.1"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/badge",
@@ -11978,8 +12010,11 @@
         "@erbium/data-table",
         "@erbium/empty",
         "@erbium/filter-rules",
+        "@erbium/filter-search",
         "@erbium/filters",
+        "@erbium/input-group",
         "@erbium/item",
+        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/pagination",
         "@erbium/skeleton",
@@ -12011,6 +12046,11 @@
         {
           "path": "src/filters/variants/overview.tsx",
           "target": "@components/showcase/filters/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/router.tsx",
+          "target": "@components/showcase/filters/variants/router.tsx",
           "type": "registry:component"
         },
         {

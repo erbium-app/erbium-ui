@@ -1,4 +1,5 @@
 import * as React from "react";
+import { functionalUpdate } from "@tanstack/react-table";
 import type { ColumnFiltersState, OnChangeFn, Updater } from "@tanstack/react-table";
 import {
   createFilters,
@@ -8,6 +9,8 @@ import {
   matchesRule,
 } from "../lib/filter-rules";
 import type { FilterCell, FilterFieldConfig, FilterSource, Filters } from "../lib/filter-rules";
+import { parseFilterSearch, toFilterSearch } from "../lib/filter-search";
+import type { FilterSearch, FilterSearchFields, SearchParams } from "../lib/filter-search";
 
 /*
  * Adapters from a data source to the `Filters` the filter components read. A TanStack table keeps
@@ -162,11 +165,50 @@ const useListFilters = <TItem>({
   }, [items, fields, state, setState]);
 };
 
-export { useListFilters, useTableFilters };
+interface FilterSearchOptions<TKey extends string> {
+  /** The current search params, such as TanStack Router's `Route.useSearch()`. */
+  search: SearchParams<TKey>;
+  /** The fields kept in the URL: `getColumnFilterFields(columns)` for a table, the fields of a list. */
+  fields: FilterSearchFields<TKey>;
+  /**
+   * Writes the filter params after a change. Merge them into the current search, replacing the
+   * history entry so each keystroke is not a step back:
+   * `navigate({ search: (prev) => ({ ...prev, ...next }), replace: true })`.
+   */
+  onSearchChange: (next: FilterSearch<TKey>) => void;
+}
+
+/**
+ * Keeps column filters in the URL, so a filtered view is a link. Returns `columnFilters` and
+ * `onColumnFiltersChange` to pass to `useTable` (in `state` and as the change handler) or to spread
+ * into `useListFilters`. The search params are the only copy of the rules; the router owns them.
+ */
+const useFilterSearch = <TKey extends string>({
+  search,
+  fields,
+  onSearchChange,
+}: FilterSearchOptions<TKey>) => {
+  const columnFilters = React.useMemo(() => parseFilterSearch(search, fields), [search, fields]);
+  // Updates made before the router re-renders build on each other, not on stale search.
+  const pending = React.useRef<{ from: ColumnFiltersState; next: ColumnFiltersState }>(undefined);
+
+  const onColumnFiltersChange: OnChangeFn<ColumnFiltersState> = (updater) => {
+    const last = pending.current?.from === columnFilters ? pending.current.next : columnFilters;
+    const next = functionalUpdate(updater, last);
+
+    pending.current = { from: columnFilters, next };
+    onSearchChange(toFilterSearch(next, fields));
+  };
+
+  return { columnFilters, onColumnFiltersChange };
+};
+
+export { useFilterSearch, useListFilters, useTableFilters };
 
 export type {
   FilterableColumn,
   FilterableTable,
+  FilterSearchOptions,
   ListFilterField,
   ListFiltersOptions,
   TableFiltersOptions,

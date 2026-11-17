@@ -2619,6 +2619,13 @@
         "source": "src/filters/variants/list.tsx",
         "usage": ["src/filters/variants/list.tsx", "src/filters/data.ts"],
         "title": "List"
+      },
+      {
+        "exportName": "Router",
+        "slug": "router",
+        "source": "src/filters/variants/router.tsx",
+        "usage": ["src/filters/variants/router.tsx", "src/filters/data.ts"],
+        "title": "URL state"
       }
     ]
   },

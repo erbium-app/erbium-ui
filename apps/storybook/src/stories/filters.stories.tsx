@@ -8,3 +8,5 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 export const Faceted = { ...showcases.Faceted, name: "Faceted" };
 
 export const List = { ...showcases.List, name: "List" };
+
+export const Router = { ...showcases.Router, name: "URL state" };

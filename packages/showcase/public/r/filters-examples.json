@@ -5,7 +5,8 @@
   "registryDependencies": [
     "@erbium-examples/filters-overview",
     "@erbium-examples/filters-faceted",
-    "@erbium-examples/filters-list"
+    "@erbium-examples/filters-list",
+    "@erbium-examples/filters-router"
   ],
   "title": "Filters examples",
   "type": "registry:item"

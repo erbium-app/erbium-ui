@@ -6,6 +6,8 @@ import FacetedExample from "./variants/faceted";
 import FacetedSource from "./variants/faceted.tsx?raw";
 import ListExample from "./variants/list";
 import ListSource from "./variants/list.tsx?raw";
+import RouterExample from "./variants/router";
+import RouterSource from "./variants/router.tsx?raw";
 
 const meta = {
   parameters: {
@@ -46,4 +48,14 @@ export const List: Story = {
     },
   },
   render: ListExample,
+};
+
+export const Router: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("filters", "router") },
+      source: { code: RouterSource },
+    },
+  },
+  render: RouterExample,
 };
