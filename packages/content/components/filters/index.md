@@ -158,5 +158,5 @@ Option fields without `options` list the values found in the data. A rule with n
 
 - `FilterBar`: chip mode. `FilterMenu` adds filters; each active filter is a `FilterChip` with its field, operator menu, value and a remove button.
 - `FilterFacets`: faceted mode, one `FilterFacet` per field. Pass `fields` to choose and order them.
-- `FilterValueControl`: opens a field's value editor from any trigger. Use it to build other layouts.
-- `FilterOptionMenu`, `FilterOptionItems`, `FilterValueEditor`, `FilterOperatorMenu`: the editors the layouts are built from.
+- `FilterValueControl`: opens a field's value editor from any trigger. Once a summary only counts the chosen options ("3 selected"), hovering the trigger lists them in a tooltip. Use it to build other layouts.
+- `FilterOptionMenu`, `FilterValueEditor`, `FilterOperatorMenu`: the editors the layouts are built from.

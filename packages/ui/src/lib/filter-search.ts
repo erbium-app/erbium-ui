@@ -194,7 +194,7 @@ const toFilterSearch = <TKey extends string>(
 
 /**
  * Validates the filter params of a search object, for a route's `validateSearch`. Keeps a param
- * for each field that holds a rule, written in its normal form, and drops the rest.
+ * for each field that holds a rule, in URL order and written in its normal form, and drops the rest.
  *
  * ```ts
  * validateSearch: (search) => ({ ...validateFilterSearch(search, filterFields), page: … })
@@ -206,15 +206,9 @@ const validateFilterSearch = <TKey extends string>(
 ): FilterSearch<TKey> => {
   const valid: FilterSearch<TKey> = {};
 
-  for (const id in fields) {
-    if (Object.hasOwn(fields, id)) {
-      const value = search[id];
-
-      const rule = isParamText(value) ? decodeFilterParam(fields[id].type, value) : undefined;
-
-      if (rule !== undefined) {
-        valid[id] = encodeFilterParam(rule);
-      }
+  for (const { id, value } of parseFilterSearch(search, fields)) {
+    if (isFieldId(fields, id) && isFilterRule(value)) {
+      valid[id] = encodeFilterParam(value);
     }
   }
 

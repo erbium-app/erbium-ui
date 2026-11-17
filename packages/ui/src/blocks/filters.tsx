@@ -67,10 +67,6 @@ const toggleOption = (field: FilterField, value: string, checked: boolean) => {
   }
 };
 
-const removeRule = (field: FilterField) => {
-  field.setRule(undefined);
-};
-
 // Summaries
 
 const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: "medium" });
@@ -91,18 +87,16 @@ const formatValue = (field: FilterField, value: FilterValue | undefined): string
   return field.options.find((option) => option.value === value)?.label ?? String(value);
 };
 
-/** How many chosen options a summary names; past this it counts them instead. */
-const listedOptionLimit = 2;
+/** The labels of an option field's chosen options, in the order they were chosen. */
+const optionLabels = (field: FilterField): string[] =>
+  isOptionType(field.type)
+    ? (field.rule?.values ?? []).map((value) => formatValue(field, value) ?? "")
+    : [];
 
-/** Whether a field's summary counts its chosen options instead of naming them. */
-const isCounted = (field: FilterField): boolean =>
-  isOptionType(field.type) && (field.rule?.values.length ?? 0) > listedOptionLimit;
+/** Past this many chosen options, a summary counts them instead of naming them. */
+const namedOptionLimit = 2;
 
-/** The chosen options a counted summary leaves out, named in full, or `null` when none are. */
-const countedValues = (field: FilterField): string | null =>
-  isCounted(field)
-    ? (field.rule?.values ?? []).map((value) => formatValue(field, value)).join(", ")
-    : null;
+const isCounted = (field: FilterField) => optionLabels(field).length > namedOptionLimit;
 
 /** What a field's value reads as in a chip or facet button, or `null` while it has none. */
 const summarize = (field: FilterField): string | null => {
@@ -113,9 +107,9 @@ const summarize = (field: FilterField): string | null => {
   }
 
   if (isOptionType(field.type)) {
-    return isCounted(field)
-      ? `${rule.values.length} selected`
-      : rule.values.map((value) => formatValue(field, value)).join(", ");
+    const labels = optionLabels(field);
+
+    return isCounted(field) ? `${labels.length} selected` : labels.join(", ");
   }
 
   const [first, second] = rule.values;
@@ -129,43 +123,40 @@ const summarize = (field: FilterField): string | null => {
 
 // Value editors
 
-/** The checkable options of an option field, with their counts. Render inside a menu list. */
-const FilterOptionItems = ({ field }: { field: FilterField }) => {
+/** A searchable list of an option field's options, with their counts, for any menu popup. */
+const FilterOptionMenu = ({ field }: { field: FilterField }) => {
   const chosen = new Set(field.rule?.values);
 
-  return field.options.map((option) => (
-    <DropdownMenuCheckboxItem
-      key={option.value}
-      label={option.label}
-      checked={chosen.has(option.value)}
-      onCheckedChange={(checked) => {
-        toggleOption(field, option.value, checked);
-      }}
-    >
-      {option.icon === undefined ? null : <Icon name={option.icon} aria-hidden="true" />}
-      <span className="truncate">{option.label}</span>
-      {field.counts === undefined ? null : (
-        <span className="ms-auto ps-4 text-muted-foreground tabular-nums">
-          {field.counts.get(option.value) ?? 0}
-        </span>
-      )}
-    </DropdownMenuCheckboxItem>
-  ));
+  return (
+    <>
+      <DropdownMenuSearch
+        aria-label={`Search ${field.label}`}
+        placeholder={`Search ${field.label.toLocaleLowerCase()}…`}
+      />
+      <DropdownMenuEmpty>No options found.</DropdownMenuEmpty>
+      <DropdownMenuList>
+        {field.options.map((option) => (
+          <DropdownMenuCheckboxItem
+            key={option.value}
+            label={option.label}
+            checked={chosen.has(option.value)}
+            onCheckedChange={(checked) => {
+              toggleOption(field, option.value, checked);
+            }}
+          >
+            {option.icon === undefined ? null : <Icon name={option.icon} aria-hidden="true" />}
+            <span className="truncate">{option.label}</span>
+            {field.counts === undefined ? null : (
+              <span className="ms-auto ps-4 text-muted-foreground tabular-nums">
+                {field.counts.get(option.value) ?? 0}
+              </span>
+            )}
+          </DropdownMenuCheckboxItem>
+        ))}
+      </DropdownMenuList>
+    </>
+  );
 };
-
-/** A searchable option list: search, empty message and items, for any menu popup. */
-const FilterOptionMenu = ({ field }: { field: FilterField }) => (
-  <>
-    <DropdownMenuSearch
-      aria-label={`Search ${field.label}`}
-      placeholder={`Search ${field.label.toLocaleLowerCase()}…`}
-    />
-    <DropdownMenuEmpty>No options found.</DropdownMenuEmpty>
-    <DropdownMenuList>
-      <FilterOptionItems field={field} />
-    </DropdownMenuList>
-  </>
-);
 
 interface NumberInputProps {
   field: FilterField;
@@ -320,7 +311,8 @@ interface FilterValueControlProps {
 
 /**
  * Opens a field's value editor from a trigger: a searchable menu for option fields, a popover for
- * the others. A text, number or date filter left without a value is removed when it closes.
+ * the others. A text, number or date filter left without a value is removed when it closes. While
+ * more options are chosen than a summary names, hovering the trigger lists them in a tooltip.
  */
 const FilterValueControl = ({
   field,
@@ -331,14 +323,19 @@ const FilterValueControl = ({
   align = "start",
 }: FilterValueControlProps) => {
   if (isOptionType(field.type)) {
+    // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an
+    // open menu keeps its anchor) when one more chosen option turns the names into a count.
     return (
-      <DropdownMenu searchable open={open} onOpenChange={onOpenChange}>
-        <DropdownMenuTrigger render={trigger} />
-        <DropdownMenuContent align={align} className="w-60">
-          <FilterOptionMenu field={field} />
-          {footer}
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <Tooltip disabled={!isCounted(field)}>
+        <DropdownMenu searchable open={open} onOpenChange={onOpenChange}>
+          <DropdownMenuTrigger render={<TooltipTrigger render={trigger} />} />
+          <DropdownMenuContent align={align} className="w-60">
+            <FilterOptionMenu field={field} />
+            {footer}
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <TooltipContent>{optionLabels(field).join(", ")}</TooltipContent>
+      </Tooltip>
     );
   }
 
@@ -347,7 +344,7 @@ const FilterValueControl = ({
       open={open}
       onOpenChange={(next) => {
         if (!next && field.rule !== undefined && isRuleEmpty(field.rule)) {
-          removeRule(field);
+          field.setRule(undefined);
         }
 
         onOpenChange?.(next);
@@ -359,23 +356,6 @@ const FilterValueControl = ({
         {footer}
       </PopoverContent>
     </Popover>
-  );
-};
-
-/**
- * A value control for a trigger that shows the field's summary. When the summary counts the chosen
- * options ("3 selected"), hovering or focusing the trigger names them all in a tooltip.
- */
-const SummaryValueControl = ({ trigger, ...props }: FilterValueControlProps) => {
-  const values = countedValues(props.field);
-
-  // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an open
-  // menu keeps its anchor) when choosing one more option turns the names into a count.
-  return (
-    <Tooltip disabled={values === null}>
-      <FilterValueControl {...props} trigger={<TooltipTrigger render={trigger} />} />
-      <TooltipContent>{values}</TooltipContent>
-    </Tooltip>
   );
 };
 
@@ -451,7 +431,7 @@ const FilterChip = ({ field, open, onOpenChange, className }: FilterChipProps) =
         {field.label}
       </span>
       <FilterOperatorMenu field={field} />
-      <SummaryValueControl
+      <FilterValueControl
         field={field}
         open={open}
         onOpenChange={onOpenChange}
@@ -468,7 +448,7 @@ const FilterChip = ({ field, open, onOpenChange, className }: FilterChipProps) =
         size="icon-sm"
         aria-label={`Remove ${field.label} filter`}
         onClick={() => {
-          removeRule(field);
+          field.setRule(undefined);
         }}
       >
         <Icon name="x" aria-hidden="true" />
@@ -623,7 +603,7 @@ const FacetClear = ({ field }: { field: FilterField }) => {
         variant="ghost"
         size="sm"
         onClick={() => {
-          removeRule(field);
+          field.setRule(undefined);
         }}
       >
         Clear filter
@@ -640,7 +620,7 @@ const FacetClear = ({ field }: { field: FilterField }) => {
         <DropdownMenuItem
           className="justify-center"
           onClick={() => {
-            removeRule(field);
+            field.setRule(undefined);
           }}
         >
           Clear filter
@@ -663,7 +643,7 @@ const FilterFacet = ({ field, className }: FilterFacetProps) => {
   const active = field.rule !== undefined && !isRuleEmpty(field.rule);
 
   return (
-    <SummaryValueControl
+    <FilterValueControl
       field={field}
       footer={active ? <FacetClear field={field} /> : null}
       trigger={
@@ -740,7 +720,6 @@ export {
   FilterFacets,
   FilterMenu,
   FilterOperatorMenu,
-  FilterOptionItems,
   FilterOptionMenu,
   FilterValueControl,
   FilterValueEditor,

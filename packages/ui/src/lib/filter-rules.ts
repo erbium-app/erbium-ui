@@ -163,40 +163,40 @@ const hasFilterConfig = (meta: unknown): meta is { filter: FilterFieldConfig } =
 
 // Operators
 
-const operatorLabels = new Map<string, string>([
-  ["after", "is after"],
-  ["before", "is before"],
-  ["between", "is between"],
-  ["contains", "contains"],
-  ["doesNotContain", "does not contain"],
-  ["excludesAllOf", "excludes all of"],
-  ["excludesAnyOf", "excludes any of"],
-  ["greaterThan", "is greater than"],
-  ["greaterThanOrEqual", "is at least"],
-  ["includesAllOf", "includes all of"],
-  ["includesAnyOf", "includes any of"],
-  ["is", "is"],
-  ["isAnyOf", "is any of"],
-  ["isNoneOf", "is none of"],
-  ["isNot", "is not"],
-  ["lessThan", "is less than"],
-  ["lessThanOrEqual", "is at most"],
-  ["notBetween", "is not between"],
-  ["onOrAfter", "is on or after"],
-  ["onOrBefore", "is on or before"],
-]);
+const operatorLabels: Record<FilterOperator, string> = {
+  after: "is after",
+  before: "is before",
+  between: "is between",
+  contains: "contains",
+  doesNotContain: "does not contain",
+  excludesAllOf: "excludes all of",
+  excludesAnyOf: "excludes any of",
+  greaterThan: "is greater than",
+  greaterThanOrEqual: "is at least",
+  includesAllOf: "includes all of",
+  includesAnyOf: "includes any of",
+  is: "is",
+  isAnyOf: "is any of",
+  isNoneOf: "is none of",
+  isNot: "is not",
+  lessThan: "is less than",
+  lessThanOrEqual: "is at most",
+  notBetween: "is not between",
+  onOrAfter: "is on or after",
+  onOrBefore: "is on or before",
+};
 
-// Option operators read as "is" and "is not" while one value is chosen.
-const singleOptionLabels = new Map<string, string>([
-  ["isAnyOf", "is"],
-  ["isNoneOf", "is not"],
-]);
+/**
+ * The words an operator reads as in a filter, given how many values the rule holds. Option
+ * operators read as "is" and "is not" while one value is chosen.
+ */
+const getOperatorLabel = (type: FilterType, operator: FilterOperator, valueCount = 0) => {
+  if (type === "option" && valueCount <= 1) {
+    return operator === "isNoneOf" ? "is not" : "is";
+  }
 
-/** The words an operator reads as in a filter, given how many values the rule holds. */
-const getOperatorLabel = (type: FilterType, operator: FilterOperator, valueCount = 0) =>
-  (type === "option" && valueCount <= 1 ? singleOptionLabels.get(operator) : undefined) ??
-  operatorLabels.get(operator) ??
-  operator;
+  return operatorLabels[operator];
+};
 
 const rangeOperators = new Set<FilterOperator>(["between", "notBetween"]);
 
@@ -291,107 +291,124 @@ const toText = (cell: FilterCell) => toOptionValues(cell).join(" ").toLocaleLowe
 
 type Ordered = number | string;
 
-type OrderedTest = (value: Ordered, first: Ordered, second: Ordered) => boolean;
+/** The operators of some field types. */
+type OperatorOf<TType extends FilterType> = (typeof filterOperators)[TType][number];
 
-// Reversed range ends are swapped, so 900–100 means 100–900.
-const isWithin: OrderedTest = (value, first, second) =>
-  first <= second ? value >= first && value <= second : value >= second && value <= first;
+const isOperatorOf = <TType extends FilterType>(
+  types: readonly TType[],
+  operator: FilterOperator,
+): operator is OperatorOf<TType> =>
+  types.some((type) => filterOperators[type].some((candidate) => candidate === operator));
 
-const orderedTests = new Map<string, OrderedTest>([
-  ["after", (value, first) => value > first],
-  ["before", (value, first) => value < first],
-  ["between", isWithin],
-  ["greaterThan", (value, first) => value > first],
-  ["greaterThanOrEqual", (value, first) => value >= first],
-  ["is", (value, first) => value === first],
-  ["isNot", (value, first) => value !== first],
-  ["lessThan", (value, first) => value < first],
-  ["lessThanOrEqual", (value, first) => value <= first],
-  ["notBetween", (value, first, second) => !isWithin(value, first, second)],
-  ["onOrAfter", (value, first) => value >= first],
-  ["onOrBefore", (value, first) => value <= first],
-]);
+// A start and an end, either of which may be open (`null`). Reversed ends are swapped, so 900–100
+// means 100–900.
+const isWithin = (value: Ordered, first: Ordered | null, second: Ordered | null) => {
+  const [low, high] =
+    first !== null && second !== null && first > second ? [second, first] : [first, second];
 
-// Numbers and day keys. A range with one end open compares against the other end only.
-const matchesOrdered = (value: Ordered | null, rule: FilterRule, values: (Ordered | null)[]) => {
-  const [first = null, second = null] = values;
-  const missing = rule.operator === "isNot" || rule.operator === "notBetween";
-
-  if (value === null) {
-    return missing;
-  }
-
-  if (isRangeOperator(rule.operator) && (first === null || second === null)) {
-    const bound = first ?? second;
-    const inside = bound === null || (first === null ? value <= bound : value >= bound);
-
-    return rule.operator === "between" ? inside : !inside;
-  }
-
-  const test = orderedTests.get(rule.operator);
-
-  return first === null || test === undefined || test(value, first, second ?? first);
+  return (low === null || value >= low) && (high === null || value <= high);
 };
 
-type TextTest = (text: string, query: string) => boolean;
+type OrderedTest = (value: Ordered, first: Ordered | null, second: Ordered | null) => boolean;
 
-const textTests = new Map<string, TextTest>([
-  ["contains", (text, query) => text.includes(query)],
-  ["doesNotContain", (text, query) => !text.includes(query)],
-  ["is", (text, query) => text === query],
-  ["isNot", (text, query) => text !== query],
-]);
+// A single-value test passes everything until its value is set.
+const against =
+  (test: (value: Ordered, first: Ordered) => boolean): OrderedTest =>
+  (value, first) =>
+    first === null || test(value, first);
+
+const orderedTests: Record<OperatorOf<"number" | "date">, OrderedTest> = {
+  after: against((value, first) => value > first),
+  before: against((value, first) => value < first),
+  between: isWithin,
+  greaterThan: against((value, first) => value > first),
+  greaterThanOrEqual: against((value, first) => value >= first),
+  is: against((value, first) => value === first),
+  isNot: against((value, first) => value !== first),
+  lessThan: against((value, first) => value < first),
+  lessThanOrEqual: against((value, first) => value <= first),
+  notBetween: (value, first, second) => !isWithin(value, first, second),
+  onOrAfter: against((value, first) => value >= first),
+  onOrBefore: against((value, first) => value <= first),
+};
+
+const textTests: Record<OperatorOf<"text">, (text: string, query: string) => boolean> = {
+  contains: (text, query) => text.includes(query),
+  doesNotContain: (text, query) => !text.includes(query),
+  is: (text, query) => text === query,
+  isNot: (text, query) => text !== query,
+};
 
 type OptionTest = (options: Set<string>, chosen: string[]) => boolean;
 
 const hasAny: OptionTest = (options, chosen) => chosen.some((option) => options.has(option));
 const hasAll: OptionTest = (options, chosen) => chosen.every((option) => options.has(option));
 
-const optionTests = new Map<string, OptionTest>([
-  ["excludesAllOf", (options, chosen) => !hasAll(options, chosen)],
-  ["excludesAnyOf", (options, chosen) => !hasAny(options, chosen)],
-  ["includesAllOf", hasAll],
-  ["includesAnyOf", hasAny],
-  ["isAnyOf", hasAny],
-  ["isNoneOf", (options, chosen) => !hasAny(options, chosen)],
-]);
+const optionTests: Record<OperatorOf<"option" | "multiOption">, OptionTest> = {
+  excludesAllOf: (options, chosen) => !hasAll(options, chosen),
+  excludesAnyOf: (options, chosen) => !hasAny(options, chosen),
+  includesAllOf: hasAll,
+  includesAnyOf: hasAny,
+  isAnyOf: hasAny,
+  isNoneOf: (options, chosen) => !hasAny(options, chosen),
+};
+
+/** Numbers and day keys. A row without a value passes only the negative operators. */
+const matchesOrdered = (
+  value: Ordered | null,
+  operator: FilterOperator,
+  values: (Ordered | null)[],
+) => {
+  const [first = null, second = null] = values;
+
+  if (value === null) {
+    return operator === "isNot" || operator === "notBetween";
+  }
+
+  return (
+    !isOperatorOf(["number", "date"], operator) || orderedTests[operator](value, first, second)
+  );
+};
 
 /** Whether a value passes a rule. A rule with no values yet matches everything. */
 const matchesRule = (cell: FilterCell, rule: FilterRule): boolean => {
+  const { type, operator, values } = rule;
+
   if (isRuleEmpty(rule)) {
     return true;
   }
 
-  if (rule.type === "number") {
+  if (type === "number") {
     const number = toNumber(cell);
 
     return matchesOrdered(
       Number.isNaN(number) ? null : number,
-      rule,
-      rule.values.map((value) => (isNumber(value) ? value : null)),
+      operator,
+      values.map((value) => (isNumber(value) ? value : null)),
     );
   }
 
-  if (rule.type === "date") {
+  if (type === "date") {
     return matchesOrdered(
       toDayKey(cell),
-      rule,
-      rule.values.map((value) => (isText(value) ? value : null)),
+      operator,
+      values.map((value) => (isText(value) ? value : null)),
     );
   }
 
-  if (rule.type === "text") {
-    const test = textTests.get(rule.operator);
-
+  if (type === "text") {
     return (
-      test === undefined || test(toText(cell), String(rule.values[0] ?? "").toLocaleLowerCase())
+      !isOperatorOf(["text"], operator) ||
+      textTests[operator](toText(cell), String(values[0] ?? "").toLocaleLowerCase())
     );
   }
 
-  const test = optionTests.get(rule.operator);
-  const chosen = rule.values.flatMap((value) => (value === null ? [] : [String(value)]));
+  const chosen = values.flatMap((value) => (value === null ? [] : [String(value)]));
 
-  return test === undefined || test(new Set(toOptionValues(cell)), chosen);
+  return (
+    !isOperatorOf(["option", "multiOption"], operator) ||
+    optionTests[operator](new Set(toOptionValues(cell)), chosen)
+  );
 };
 
 /**
