@@ -1126,6 +1126,12 @@
         "title": "Commands"
       },
       {
+        "exportName": "Prompt",
+        "slug": "prompt",
+        "source": "src/code-block/variants/prompt.tsx",
+        "title": "Prompt"
+      },
+      {
         "exportName": "Files",
         "slug": "files",
         "source": "src/code-block/variants/files.tsx",

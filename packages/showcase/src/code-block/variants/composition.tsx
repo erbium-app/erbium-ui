@@ -8,7 +8,6 @@ import {
   CodeBlockIcon,
   CodeBlockTitle,
 } from "@erbium/ui/blocks/code-block";
-import { CopyButtonIcon, CopyButtonLabel } from "@erbium/ui/blocks/copy-button";
 
 const Example = () => (
   <CodeBlock
@@ -16,7 +15,7 @@ const Example = () => (
     code={'{\n  "name": "Erbium",\n  "accessible": true\n}'}
     language="json"
   >
-    <CodeBlockHeader className="justify-start pe-24">
+    <CodeBlockHeader className="justify-start">
       <CodeBlockTitle>
         <CodeBlockIcon />
         <span className="truncate">project.json</span>
@@ -24,12 +23,9 @@ const Example = () => (
       <CodeBlockLanguage />
     </CodeBlockHeader>
     <CodeBlockActions>
-      <CodeBlockCopyButton aria-label="Copy project configuration">
-        <CopyButtonIcon data-icon="inline-start" />
-        <CopyButtonLabel />
-      </CodeBlockCopyButton>
+      <CodeBlockCopyButton aria-label="Copy project configuration" />
     </CodeBlockActions>
-    <CodeBlockContent className="pe-24" />
+    <CodeBlockContent />
   </CodeBlock>
 );
 

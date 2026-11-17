@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "code-block-prompt",
+  "type": "registry:component",
+  "title": "Code Block: Prompt",
+  "description": "A prompt for a coding agent is a code block of plain text. `wrap` keeps long instructions readable without horizontal scrolling, the title names the content, and a labelled copy button says what is copied. The header reserves room for the wider action.",
+  "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  CodeBlock,\n  CodeBlockActions,\n  CodeBlockContent,\n  CodeBlockCopyButton,\n  CodeBlockHeader,\n  CodeBlockTitle,\n} from \"@/registry/erbium/blocks/code-block\";\nimport {\n  CopyButtonIcon,\n  CopyButtonLabel,\n  CopyButtonLabelCopied,\n  CopyButtonLabelError,\n  CopyButtonLabelIdle,\n} from \"@/registry/erbium/blocks/copy-button\";\n\nconst prompt = `Build a settings form with Erbium UI: a name field, an email field, and a switch for email notifications.\n\n1. Run \\`erbium search form\\` and read the match with \\`erbium docs form\\` before writing code.\n2. Install what you need with \\`erbium add\\`, and compose the form from the installed components.\n3. Show validation errors inside each field, and keep the labels with their controls.\n4. Run \\`erbium check\\` and the project's build when you are done.`;\n\nconst Example = () => (\n  <CodeBlock className=\"w-full max-w-xl\" code={prompt} language=\"text\" wrap>\n    <CodeBlockHeader className=\"pe-32\">\n      <CodeBlockTitle>Prompt</CodeBlockTitle>\n    </CodeBlockHeader>\n    <CodeBlockActions>\n      <CodeBlockCopyButton aria-label=\"Copy prompt\">\n        <CopyButtonIcon data-icon=\"inline-start\" />\n        <CopyButtonLabel>\n          <CopyButtonLabelIdle>Copy prompt</CopyButtonLabelIdle>\n          <CopyButtonLabelCopied>Copied</CopyButtonLabelCopied>\n          <CopyButtonLabelError>Failed</CopyButtonLabelError>\n        </CopyButtonLabel>\n      </CodeBlockCopyButton>\n    </CodeBlockActions>\n    <CodeBlockContent />\n  </CodeBlock>\n);\n\nexport default Example;\n",
+      "path": "src/code-block/variants/prompt.tsx",
+      "target": "@components/showcase/code-block/variants/prompt.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -76,7 +76,34 @@ Code is highlighted in the browser after the block mounts. To render highlighted
 
 Providing children replaces the default layout. Place `CodeBlockActions` directly inside the root, independently of the optional header. It anchors custom actions outside the scrolling content, at the top right. Omit the actions part for a read-only block without controls. Content reserves space for the default icon action; for wider custom actions, increase the content’s end padding through `className`. Compose `CodeBlockTabs`, `CodeBlockTab`, and `CodeBlockPanel` for custom tabbed layouts; panel values reference the root's items rather than duplicating source strings. `CodeBlockTabs` generates tabs from items when it has no children. In a command block (`surface="command"`) whose items all have the same icon, such as one command for several package managers, the generated tabs show labels only and the default layout shows the icon once, before the tabs; place a `CodeBlockIcon` there yourself in a custom header. Give its `aria-label` a name appropriate to the alternatives. Each panel renders its corresponding source. For a single source or only the active source, use `CodeBlockContent`.
 
-`CodeBlockCopyButton` wraps the existing CopyButton and reads the active source from context. It accepts CopyButton props, including custom labels, `render`, callbacks, and translated announcements. An explicit `value` overrides copied text. Source changes reset copy feedback without remounting the button. The button appears when focus enters the block and stays shown on touch screens. Use the existing CopyButtonIcon and CopyButtonLabel parts for a labeled action.
+`CodeBlockCopyButton` wraps the existing CopyButton and reads the active source from context. It accepts CopyButton props, including custom labels, `render`, callbacks, and translated announcements. An explicit `value` overrides copied text. Source changes reset copy feedback without remounting the button. The button appears when focus enters the block and stays shown on touch screens. It is a ghost button in every block, with or without a label.
+
+Keep the copy action icon-only when it copies the block’s source, as in the default layout and the composition above: a visible “Copy” label repeats what the icon and the block already say. Give the button a specific `aria-label` instead, such as “Copy project configuration”. Show a label only when it names something the icon cannot, such as “Copy prompt” on a [prompt](#prompts); compose it from the existing CopyButtonIcon and CopyButtonLabel parts and reserve room for it in the header.
+
+## Prompts
+
+A prompt for a coding agent is a plain-text block with `wrap`, a `Prompt` title, and a labelled ghost copy action, so long instructions read as prose and the action says what it copies. Compose it from the same parts:
+
+```tsx
+<CodeBlock code={prompt} language="text" wrap>
+  <CodeBlockHeader className="pe-32">
+    <CodeBlockTitle>Prompt</CodeBlockTitle>
+  </CodeBlockHeader>
+  <CodeBlockActions>
+    <CodeBlockCopyButton aria-label="Copy prompt">
+      <CopyButtonIcon data-icon="inline-start" />
+      <CopyButtonLabel>
+        <CopyButtonLabelIdle>Copy prompt</CopyButtonLabelIdle>
+        <CopyButtonLabelCopied>Copied</CopyButtonLabelCopied>
+        <CopyButtonLabelError>Failed</CopyButtonLabelError>
+      </CopyButtonLabel>
+    </CodeBlockCopyButton>
+  </CodeBlockActions>
+  <CodeBlockContent />
+</CodeBlock>
+```
+
+The header’s end padding reserves room for the labelled action. Write prompts as numbered steps that name the tools and checks the agent should use; the [installation prompt](/docs/installation#set-up-with-an-agent) is a complete example.
 
 ## Source and highlighting
 

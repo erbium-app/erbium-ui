@@ -9,6 +9,8 @@ export const Overview = { ...showcases.Overview, name: "Overview" };
 
 export const Commands = { ...showcases.Commands, name: "Commands" };
 
+export const Prompt = { ...showcases.Prompt, name: "Prompt" };
+
 export const Files = { ...showcases.Files, name: "Files" };
 
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };

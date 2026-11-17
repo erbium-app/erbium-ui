@@ -5,6 +5,8 @@ import OverviewExample from "./variants/overview";
 import OverviewSource from "./variants/overview.tsx?raw";
 import CommandsExample from "./variants/commands";
 import CommandsSource from "./variants/commands.tsx?raw";
+import PromptExample from "./variants/prompt";
+import PromptSource from "./variants/prompt.tsx?raw";
 import FilesExample from "./variants/files";
 import FilesSource from "./variants/files.tsx?raw";
 import ControlledExample from "./variants/controlled";
@@ -67,6 +69,16 @@ export const Commands: Story = {
     },
   },
   render: CommandsExample,
+};
+
+export const Prompt: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("code-block", "prompt") },
+      source: { code: PromptSource },
+    },
+  },
+  render: PromptExample,
 };
 
 export const Files: Story = {

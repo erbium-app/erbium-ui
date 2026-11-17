@@ -198,6 +198,10 @@ const CodeBlockTabs = ({
   );
 };
 
+/**
+ * A ghost copy action for the active source. Keep it icon-only when it copies the block's source;
+ * add a label only when it names something the icon cannot, such as "Copy prompt".
+ */
 const CodeBlockCopyButton = ({
   value,
   ...props

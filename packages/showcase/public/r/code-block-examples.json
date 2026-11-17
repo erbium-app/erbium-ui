@@ -6,6 +6,7 @@
     "@erbium-examples/code-block-languages",
     "@erbium-examples/code-block-overview",
     "@erbium-examples/code-block-commands",
+    "@erbium-examples/code-block-prompt",
     "@erbium-examples/code-block-files",
     "@erbium-examples/code-block-controlled",
     "@erbium-examples/code-block-composition",

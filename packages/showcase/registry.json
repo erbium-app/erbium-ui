@@ -6142,7 +6142,7 @@
       "type": "registry:component",
       "title": "Code Block: Composition",
       "description": "Compose a custom header and the existing copy button labels.\n\nPlace `CodeBlockIcon` before the title to use the active source’s language icon.",
-      "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
+      "registryDependencies": ["@erbium/code-block", "@erbium/styles"],
       "files": [
         {
           "path": "src/code-block/variants/composition.tsx",
@@ -6172,6 +6172,7 @@
         "@erbium-examples/code-block-languages",
         "@erbium-examples/code-block-overview",
         "@erbium-examples/code-block-commands",
+        "@erbium-examples/code-block-prompt",
         "@erbium-examples/code-block-files",
         "@erbium-examples/code-block-controlled",
         "@erbium-examples/code-block-composition",
@@ -6270,6 +6271,20 @@
       ]
     },
     {
+      "name": "code-block-prompt",
+      "type": "registry:component",
+      "title": "Code Block: Prompt",
+      "description": "A prompt for a coding agent is a code block of plain text. `wrap` keeps long instructions readable without horizontal scrolling, the title names the content, and a labelled copy button says what is copied. The header reserves room for the wider action.",
+      "registryDependencies": ["@erbium/code-block", "@erbium/copy-button", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/code-block/variants/prompt.tsx",
+          "target": "@components/showcase/code-block/variants/prompt.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "code-block-states",
       "type": "registry:component",
       "title": "Code Block: States",
@@ -6357,6 +6372,11 @@
         {
           "path": "src/code-block/variants/overview.tsx",
           "target": "@components/showcase/code-block/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/code-block/variants/prompt.tsx",
+          "target": "@components/showcase/code-block/variants/prompt.tsx",
           "type": "registry:component"
         },
         {
