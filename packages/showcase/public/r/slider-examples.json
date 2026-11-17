@@ -10,7 +10,11 @@
     "@erbium-examples/slider-range",
     "@erbium-examples/slider-vertical",
     "@erbium-examples/slider-controlled",
-    "@erbium-examples/slider-multiple-thumbs"
+    "@erbium-examples/slider-multiple-thumbs",
+    "@erbium-examples/slider-thumb-collision",
+    "@erbium-examples/slider-marks",
+    "@erbium-examples/slider-steps",
+    "@erbium-examples/slider-logarithmic"
   ],
   "title": "Slider examples",
   "type": "registry:item"

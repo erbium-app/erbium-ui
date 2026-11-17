@@ -20,6 +20,10 @@ import DiscreteNumberExample from "./variants/discrete-number";
 
 import DiscreteNumberSource from "./variants/discrete-number.tsx?raw";
 
+import LogarithmicNumberExample from "./variants/logarithmic-number";
+
+import LogarithmicNumberSource from "./variants/logarithmic-number.tsx?raw";
+
 import TextExample from "./variants/text";
 
 import TextSource from "./variants/text.tsx?raw";
@@ -131,6 +135,16 @@ export const DiscreteNumber: Story = {
     },
   },
   render: DiscreteNumberExample,
+};
+
+export const LogarithmicNumber: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("control", "logarithmic-number") },
+      source: { code: LogarithmicNumberSource },
+    },
+  },
+  render: LogarithmicNumberExample,
 };
 
 export const Text: Story = {

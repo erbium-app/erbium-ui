@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-steps",
+  "type": "registry:component",
+  "title": "Slider: Steps",
+  "description": "Pass `steps` to allow only a fixed set of values, including uneven intervals. Each value sits at its position on the scale, thumbs snap to the nearest one while dragging, and arrow keys move one allowed value per press (ten with Shift or Page Up/Down). Home and End jump to the first and last value. `steps` replaces `min`, `max` and `step`.",
+  "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import * as React from \"react\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst SPEEDS = [0.25, 0.5, 1, 1.5, 2, 4];\n\nconst Example = () => {\n  const [speed, setSpeed] = React.useState(1);\n\n  return (\n    <Field className=\"mx-auto w-full max-w-xs gap-related\">\n      <div className=\"flex items-center justify-between gap-related\">\n        <FieldLabel>Playback speed</FieldLabel>\n        <span className=\"text-caption text-muted-foreground tabular-nums\">{speed}×</span>\n      </div>\n      <Slider\n        value={speed}\n        onValueChange={(value) => {\n          setSpeed(value);\n        }}\n        steps={SPEEDS}\n        marks={SPEEDS.map((value) => ({ label: `${value}×`, value }))}\n        format={{ maximumFractionDigits: 2 }}\n      />\n    </Field>\n  );\n};\n\nexport default Example;\n",
+      "path": "src/slider/variants/steps.tsx",
+      "target": "@components/showcase/slider/variants/steps.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

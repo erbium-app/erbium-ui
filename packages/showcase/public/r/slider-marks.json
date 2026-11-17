@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-marks",
+  "type": "registry:component",
+  "title": "Slider: Marks",
+  "description": "Pass `marks` to draw ticks along the track. An array of `{ value, label }` places each tick, and ticks with a `label` print it under the track (beside it when vertical). `marks` set to `true` derives the ticks from the slider: each allowed value with `steps`, each step when the `step` grid has ten intervals or fewer, or each power of ten on a log scale. Ticks inside the selected range switch colour. Marks are decorative, so they are hidden from assistive technology; the thumb's value text carries the value.",
+  "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst MARKS = [\n  { label: \"0%\", value: 0 },\n  { label: \"25%\", value: 25 },\n  { label: \"50%\", value: 50 },\n  { label: \"75%\", value: 75 },\n  { label: \"100%\", value: 100 },\n];\n\nconst Example = () => (\n  <div className=\"mx-auto flex w-full max-w-xs flex-col gap-section\">\n    <Field className=\"gap-related\">\n      <FieldLabel>Opacity</FieldLabel>\n      <Slider defaultValue={75} step={25} marks={MARKS} />\n    </Field>\n    <Field className=\"gap-related\">\n      <FieldLabel>Brightness</FieldLabel>\n      <Slider defaultValue={4} min={0} max={10} marks />\n    </Field>\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/slider/variants/marks.tsx",
+      "target": "@components/showcase/slider/variants/marks.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

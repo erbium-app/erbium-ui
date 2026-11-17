@@ -14,8 +14,8 @@ export const SliderControlled = () => {
       </div>
       <Slider
         value={value}
-        onValueChange={(value) => {
-          setValue(value as number[]);
+        onValueChange={(next) => {
+          setValue(next);
         }}
         min={0}
         max={1}

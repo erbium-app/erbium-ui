@@ -11,6 +11,8 @@ export const ContinuousNumber = { ...showcases.ContinuousNumber, name: "Continuo
 
 export const DiscreteNumber = { ...showcases.DiscreteNumber, name: "Discrete Number" };
 
+export const LogarithmicNumber = { ...showcases.LogarithmicNumber, name: "Logarithmic Number" };
+
 export const Text = { ...showcases.Text, name: "Text" };
 
 export const Textarea = { ...showcases.Textarea, name: "Textarea" };

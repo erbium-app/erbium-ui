@@ -18,3 +18,11 @@ export const Vertical = { ...showcases.Vertical, name: "Vertical" };
 export const Controlled = { ...showcases.Controlled, name: "Controlled" };
 
 export const MultipleThumbs = { ...showcases.MultipleThumbs, name: "Multiple Thumbs" };
+
+export const ThumbCollision = { ...showcases.ThumbCollision, name: "Thumb Collision" };
+
+export const Marks = { ...showcases.Marks, name: "Marks" };
+
+export const Steps = { ...showcases.Steps, name: "Steps" };
+
+export const Logarithmic = { ...showcases.Logarithmic, name: "Logarithmic" };

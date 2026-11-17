@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-thumb-collision",
+  "type": "registry:component",
+  "title": "Slider: Thumb Collision",
+  "description": "Set what happens when one thumb is dragged into another. `thumbCollisionBehavior=\"push\"` (the default) moves the neighbour along, `\"swap\"` lets the dragged thumb pass and take over the other value, and `\"none\"` stops it at the neighbour. `minStepsBetweenValues` keeps thumbs a number of steps apart. It applies to linear sliders without `steps`.",
+  "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst Example = () => (\n  <div className=\"mx-auto flex w-full max-w-xs flex-col gap-section\">\n    <Field className=\"gap-related\">\n      <FieldLabel>Push, at least 10 apart</FieldLabel>\n      <Slider defaultValue={[30, 60]} minStepsBetweenValues={10} />\n    </Field>\n    <Field className=\"gap-related\">\n      <FieldLabel>Swap</FieldLabel>\n      <Slider defaultValue={[30, 60]} thumbCollisionBehavior=\"swap\" />\n    </Field>\n    <Field className=\"gap-related\">\n      <FieldLabel>Stop at the neighbour</FieldLabel>\n      <Slider defaultValue={[30, 60]} thumbCollisionBehavior=\"none\" />\n    </Field>\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/slider/variants/thumb-collision.tsx",
+      "target": "@components/showcase/slider/variants/thumb-collision.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

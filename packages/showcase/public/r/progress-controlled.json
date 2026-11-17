@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/progress", "@erbium/slider", "@erbium/styles"],
   "files": [
     {
-      "content": "import * as React from \"react\";\n\nimport { Progress } from \"@/registry/erbium/ui/progress\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const ProgressControlled = () => {\n  const [value, setValue] = React.useState(50);\n\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-group\">\n      <Progress value={value} className=\"w-full\" />\n      <Slider\n        value={value}\n        onValueChange={(value) => {\n          setValue(value as number);\n        }}\n        min={0}\n        max={100}\n        step={1}\n      />\n    </div>\n  );\n};\n",
+      "content": "import * as React from \"react\";\n\nimport { Progress } from \"@/registry/erbium/ui/progress\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nexport const ProgressControlled = () => {\n  const [value, setValue] = React.useState(50);\n\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-group\">\n      <Progress value={value} className=\"w-full\" />\n      <Slider\n        value={value}\n        onValueChange={(next) => {\n          setValue(next);\n        }}\n        min={0}\n        max={100}\n        step={1}\n      />\n    </div>\n  );\n};\n",
       "path": "src/progress/examples/progress-controlled.tsx",
       "target": "@components/showcase/progress/examples/progress-controlled.tsx",
       "type": "registry:component"

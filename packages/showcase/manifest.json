@@ -1486,6 +1486,12 @@
         "title": "Discrete Number"
       },
       {
+        "exportName": "LogarithmicNumber",
+        "slug": "logarithmic-number",
+        "source": "src/control/variants/logarithmic-number.tsx",
+        "title": "Logarithmic Number"
+      },
+      {
         "exportName": "Text",
         "slug": "text",
         "source": "src/control/variants/text.tsx",
@@ -3926,6 +3932,30 @@
         "slug": "multiple-thumbs",
         "source": "src/slider/variants/multiple-thumbs.tsx",
         "title": "Multiple Thumbs"
+      },
+      {
+        "exportName": "ThumbCollision",
+        "slug": "thumb-collision",
+        "source": "src/slider/variants/thumb-collision.tsx",
+        "title": "Thumb Collision"
+      },
+      {
+        "exportName": "Marks",
+        "slug": "marks",
+        "source": "src/slider/variants/marks.tsx",
+        "title": "Marks"
+      },
+      {
+        "exportName": "Steps",
+        "slug": "steps",
+        "source": "src/slider/variants/steps.tsx",
+        "title": "Steps"
+      },
+      {
+        "exportName": "Logarithmic",
+        "slug": "logarithmic",
+        "source": "src/slider/variants/logarithmic.tsx",
+        "title": "Logarithmic"
       }
     ]
   },

@@ -23,6 +23,18 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsib
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { TextMorph } from "./text-morph";
+import {
+  clamp,
+  decimalPlaces,
+  linearScale,
+  keyDirection,
+  LARGE_STEP_COUNT,
+  moveAlongScale,
+  nearestIndex,
+  resolveScale,
+  roundToStep,
+} from "../lib/slider-scale";
+import type { SliderScale, SliderScaleOption } from "../lib/slider-scale";
 import { cn } from "../lib/utils";
 import type { CSSVariables, CSSVariableStyle } from "../lib/utils";
 
@@ -76,15 +88,17 @@ type NumberProps = CommonProps & {
   steps?: readonly number[];
   /** Show position marks for small discrete sets. */
   showSteps?: boolean;
+  /**
+   * How values spread along the row: `"linear"` (default), `"log"` for ranges that
+   * span orders of magnitude (needs `min > 0`), or a custom `{ toPosition, toValue }`.
+   */
+  scale?: SliderScaleOption;
   formatValue?: (value: number) => string;
   name?: string;
 };
 
-const decimalPlaces = (step: number) => {
-  const text = String(step);
-
-  return text.includes("e-") ? Number(text.split("e-")[1]) : (text.split(".")[1]?.length ?? 0);
-};
+/** Track positions Base UI works in when a non-linear scale remaps the values. */
+const TRACK_RESOLUTION = 1000;
 
 /** The axis a number control moves along. `values` holds discrete snap points, if any. */
 interface NumberScale {
@@ -94,22 +108,6 @@ interface NumberScale {
   mode: "continuous" | "discrete";
   values: readonly number[];
 }
-
-const clamp = (value: number, lower: number, upper: number) =>
-  Math.max(lower, Math.min(upper, value));
-
-/** Index of the entry in `values` closest to `target`. */
-const nearestIndex = (values: readonly number[], target: number) => {
-  let best = 0;
-
-  for (const [index, candidate] of values.entries()) {
-    if (Math.abs(candidate - target) < Math.abs(values[best] - target)) {
-      best = index;
-    }
-  }
-
-  return best;
-};
 
 /** Moves a typed or dragged value onto the scale: a snap point, a step, or anywhere. */
 const snapToScale = (value: number, { lower, upper, step, mode, values }: NumberScale) => {
@@ -159,27 +157,6 @@ const formatScaleValue = (value: number, { step, mode, values }: NumberScale) =>
   return value.toFixed(decimalPlaces(step));
 };
 
-/** +1 or -1 for keys that move toward the end or start of the scale, 0 otherwise. */
-const keyDirection = (key: string, rtl: boolean) => {
-  if (key === "ArrowRight") {
-    return rtl ? -1 : 1;
-  }
-
-  if (key === "ArrowLeft") {
-    return rtl ? 1 : -1;
-  }
-
-  if (key === "ArrowUp" || key === "PageUp") {
-    return 1;
-  }
-
-  if (key === "ArrowDown" || key === "PageDown") {
-    return -1;
-  }
-
-  return 0;
-};
-
 /**
  * The snap point a key moves to: Home and End jump to either end, arrows and page
  * keys move one point (ten with Shift). Null for keys that do not move the value.
@@ -204,8 +181,114 @@ const keyTargetIndex = (
     return null;
   }
 
-  return clamp(currentIndex + direction * (event.shiftKey ? 10 : 1), 0, count - 1);
+  return clamp(currentIndex + direction * (event.shiftKey ? LARGE_STEP_COUNT : 1), 0, count - 1);
 };
+
+interface KeyMove {
+  value: number;
+  numberScale: NumberScale;
+  trackScale: SliderScale;
+  remapped: boolean;
+}
+
+/**
+ * The value a key moves a continuous or non-linear control to. Home and End jump to
+ * either end; arrows move one step (ten with Shift or the page keys). A non-linear
+ * track moves by track distance instead, so each press covers the same ground.
+ * Null for keys that do not move the value.
+ */
+const keyTargetValue = (
+  event: { key: string; shiftKey: boolean },
+  rtl: boolean,
+  { value, numberScale, trackScale, remapped }: KeyMove,
+) => {
+  const { lower, upper, step, mode } = numberScale;
+
+  if (event.key === "Home") {
+    return lower;
+  }
+
+  if (event.key === "End") {
+    return upper;
+  }
+
+  const direction = keyDirection(event.key, rtl);
+
+  if (direction === 0) {
+    return null;
+  }
+
+  const large = event.shiftKey || event.key === "PageUp" || event.key === "PageDown";
+
+  if (!remapped) {
+    const moved = value + direction * step * (large ? LARGE_STEP_COUNT : 1);
+
+    return clamp(Number(moved.toFixed(4)), lower, upper);
+  }
+
+  return moveAlongScale({
+    direction,
+    large,
+    lower,
+    scale: trackScale,
+    step: mode === "discrete" ? step : undefined,
+    upper,
+    value,
+  });
+};
+
+/**
+ * The axis Base UI moves a number control along. A linear row works on the values
+ * themselves; a non-linear scale works on track positions, translated back here.
+ */
+const numberTrack = (scale: NumberScale, option: SliderScaleOption | undefined) => {
+  const { lower, upper, step, mode, values } = scale;
+  const trackScale = resolveScale(option, lower);
+  const remapped = trackScale !== linearScale;
+  const hasSteps = values.length > 1;
+
+  const toTrack = (number: number) =>
+    remapped ? TRACK_RESOLUTION * clamp(trackScale.toPosition(number, lower, upper), 0, 1) : number;
+
+  // Dragging only snaps to discrete points; free values stay on the slider's own step.
+  const toValue = (position: number) => {
+    if (!remapped) {
+      return hasSteps ? values[nearestIndex(values, position)] : position;
+    }
+
+    const raw = trackScale.toValue(position / TRACK_RESOLUTION, lower, upper);
+
+    return mode === "discrete" ? snapToScale(raw, scale) : roundToStep(raw, lower, undefined);
+  };
+
+  return {
+    max: remapped ? TRACK_RESOLUTION : upper,
+    min: remapped ? 0 : lower,
+    // Keys move discrete points, continuous values and non-linear tracks here;
+    // even discrete steps on a linear row use Base UI's own keyboard handling.
+    ownsKeys: hasSteps || remapped || mode === "continuous",
+    remapped,
+    // Base UI uses a step for pointer and keyboard input. A fine step makes the
+    // pointer feel free while preserving native slider semantics. Uneven discrete
+    // values stay on the real numeric axis, then snap through onValueChange.
+    step: remapped || hasSteps || mode === "continuous" ? 0.0001 : step,
+    toTrack,
+    toValue,
+    trackScale,
+  };
+};
+
+/** Submits a remapped control's value; Base UI's own input holds its track position. */
+const TrackValueInput = ({
+  name,
+  disabled,
+  value,
+}: {
+  name: string | undefined;
+  disabled: boolean | undefined;
+  value: number;
+}) =>
+  name === undefined ? null : <input type="hidden" name={name} disabled={disabled} value={value} />;
 
 /** How far a pointer has travelled past either horizontal edge of `bounds`. */
 const overflowPast = (x: number, bounds: DOMRect) => {
@@ -232,6 +315,7 @@ const ControlNumber = ({
   mode = "discrete",
   steps,
   showSteps = true,
+  scale: scaleOption,
   formatValue,
   disabled,
   className,
@@ -266,16 +350,9 @@ const ControlNumber = ({
   const stepCandidates = hasSteps ? allowedValues : [];
   const upper = stepCandidates.at(-1) ?? (max > min ? max : min + safeStep);
   const scale: NumberScale = { lower, mode, step: safeStep, upper, values: allowedValues };
-
-  // Dragging only snaps to discrete points; free values stay on the slider's own step.
-  const toValue = (number: number) =>
-    hasSteps ? allowedValues[nearestIndex(allowedValues, number)] : number;
-
-  // Base UI uses a step for pointer and keyboard input. A fine step makes the
-  // pointer feel free while preserving native slider semantics. Uneven discrete
-  // values stay on the real numeric axis, then snap through onValueChange.
-  const rootStep = hasSteps || mode === "continuous" ? 0.0001 : safeStep;
-  const pct = clamp(((current - lower) / (upper - lower)) * 100, 0, 100);
+  const track = numberTrack(scale, scaleOption);
+  const { trackScale, remapped, toTrack, toValue } = track;
+  const pct = clamp(trackScale.toPosition(current, lower, upper) * 100, 0, 100);
   const markValues = stepMarks(scale, showSteps);
 
   const visualPct = useMotionValue(pct);
@@ -388,6 +465,12 @@ const ControlNumber = ({
 
   const change = (next: number) => {
     const actual = toValue(next);
+
+    // A fine track step reports many positions that round to one value.
+    if (actual === current) {
+      return;
+    }
+
     setLocalValue(actual);
     onValueChange?.(actual);
   };
@@ -420,34 +503,46 @@ const ControlNumber = ({
         className,
       )}
       disabled={disabled}
-      min={lower}
-      max={upper}
-      step={rootStep}
-      name={name}
-      value={current}
+      min={track.min}
+      max={track.max}
+      step={track.step}
+      // Base UI's input holds a track position when remapped; a hidden input submits the value.
+      name={remapped ? undefined : name}
+      value={toTrack(current)}
       onValueChange={change}
       onValueCommitted={(next) => onValueCommitted?.(toValue(next))}
       onKeyDownCapture={(event) => {
-        if (!hasSteps || disabled === true || editing) {
+        if (!track.ownsKeys || disabled === true || editing) {
           return;
         }
 
         const rtl = getComputedStyle(event.currentTarget).direction === "rtl";
+        let next: number | null = null;
 
-        const targetIndex = keyTargetIndex(
-          event,
-          rtl,
-          nearestIndex(allowedValues, current),
-          allowedValues.length,
-        );
+        if (hasSteps) {
+          const targetIndex = keyTargetIndex(
+            event,
+            rtl,
+            nearestIndex(allowedValues, current),
+            allowedValues.length,
+          );
 
-        if (targetIndex === null) {
+          next = targetIndex === null ? null : allowedValues[targetIndex];
+        } else {
+          next = keyTargetValue(event, rtl, {
+            numberScale: scale,
+            remapped,
+            trackScale,
+            value: current,
+          });
+        }
+
+        if (next === null) {
           return;
         }
 
         event.preventDefault();
         event.stopPropagation();
-        const next = allowedValues[targetIndex];
 
         if (next === current) {
           return;
@@ -471,7 +566,7 @@ const ControlNumber = ({
           />
           {markValues.map((mark) => {
             const markStyle: CSSVariableStyle = {
-              "--control-step-start": `clamp(4px, ${((mark - lower) / (upper - lower)) * 100}%, calc(100% - 4px))`,
+              "--control-step-start": `clamp(4px, ${trackScale.toPosition(mark, lower, upper) * 100}%, calc(100% - 4px))`,
             };
 
             return (
@@ -592,6 +687,7 @@ const ControlNumber = ({
         {/* A drag changes the value every frame, so it tracks the hand; jumps morph. */}
         <TextMorph disabled={dragging}>{shown}</TextMorph>
       </ButtonPrimitive>
+      {remapped ? <TrackValueInput name={name} disabled={disabled} value={current} /> : null}
     </SliderPrimitive.Root>
   );
 };

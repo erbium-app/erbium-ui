@@ -11,8 +11,8 @@ export const ProgressControlled = () => {
       <Progress value={value} className="w-full" />
       <Slider
         value={value}
-        onValueChange={(value) => {
-          setValue(value as number);
+        onValueChange={(next) => {
+          setValue(next);
         }}
         min={0}
         max={100}

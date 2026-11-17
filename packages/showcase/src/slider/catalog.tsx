@@ -36,6 +36,22 @@ import MultipleThumbsExample from "./variants/multiple-thumbs";
 
 import MultipleThumbsSource from "./variants/multiple-thumbs.tsx?raw";
 
+import ThumbCollisionExample from "./variants/thumb-collision";
+
+import ThumbCollisionSource from "./variants/thumb-collision.tsx?raw";
+
+import MarksExample from "./variants/marks";
+
+import MarksSource from "./variants/marks.tsx?raw";
+
+import StepsExample from "./variants/steps";
+
+import StepsSource from "./variants/steps.tsx?raw";
+
+import LogarithmicExample from "./variants/logarithmic";
+
+import LogarithmicSource from "./variants/logarithmic.tsx?raw";
+
 const meta = {
   component: Slider,
   parameters: {
@@ -60,8 +76,9 @@ export const Playground: StoryObj<typeof Slider> = {
     max: { control: "number" },
     min: { control: "number" },
     step: { control: "number" },
+    marks: { control: "boolean" },
   },
-  args: { defaultValue: [50], disabled: false, max: 100, min: 0, step: 1 },
+  args: { defaultValue: [50], disabled: false, marks: false, max: 100, min: 0, step: 1 },
   parameters: {
     docs: {
       description: { story: variantDocumentation("slider", "playground") },
@@ -139,4 +156,44 @@ export const MultipleThumbs: Story = {
     },
   },
   render: MultipleThumbsExample,
+};
+
+export const ThumbCollision: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("slider", "thumb-collision") },
+      source: { code: ThumbCollisionSource },
+    },
+  },
+  render: ThumbCollisionExample,
+};
+
+export const Marks: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("slider", "marks") },
+      source: { code: MarksSource },
+    },
+  },
+  render: MarksExample,
+};
+
+export const Steps: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("slider", "steps") },
+      source: { code: StepsSource },
+    },
+  },
+  render: StepsExample,
+};
+
+export const Logarithmic: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("slider", "logarithmic") },
+      source: { code: LogarithmicSource },
+    },
+  },
+  render: LogarithmicExample,
 };

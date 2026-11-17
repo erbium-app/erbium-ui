@@ -556,6 +556,7 @@
         "@erbium/icon",
         "@erbium/scroll-area",
         "@erbium/separator",
+        "@erbium/slider-scale",
         "@erbium/stateful-icon",
         "@erbium/text-morph",
         "@erbium/utils"
@@ -1706,12 +1707,25 @@
       "title": "Slider",
       "description": "Erbium slider component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/slider-scale", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/slider.tsx",
           "target": "@ui/slider.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slider-scale",
+      "type": "registry:lib",
+      "title": "Slider Scale",
+      "description": "Erbium slider scale lib.",
+      "files": [
+        {
+          "path": "src/lib/slider-scale.ts",
+          "target": "@lib/slider-scale.ts",
+          "type": "registry:lib"
         }
       ]
     },

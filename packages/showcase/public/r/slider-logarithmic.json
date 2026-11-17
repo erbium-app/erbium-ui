@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider-logarithmic",
+  "type": "registry:component",
+  "title": "Slider: Logarithmic",
+  "description": "Use `scale=\"log\"` when a range spans orders of magnitude, such as frequencies, zoom levels or prices. Equal distances along the track cover equal ratios, so 20 Hz to 200 Hz takes the same width as 2 kHz to 20 kHz. A log scale needs `min` above zero and falls back to linear otherwise. Arrow keys move 1% of the track (10% with Shift), rounded onto `step` and always by at least one step. Without a `step`, values keep four significant digits. This example also shows `onValueChange` for the live value and `onValueCommitted` for the value once the drag or key press ends.",
+  "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import * as React from \"react\";\n\nimport { Field, FieldLabel } from \"@/registry/erbium/ui/field\";\nimport { Slider } from \"@/registry/erbium/ui/slider\";\n\nconst hertz = (value: number) => (value >= 1000 ? `${value / 1000} kHz` : `${value} Hz`);\n\nconst MARKS = [20, 100, 1000, 10_000, 20_000].map((value) => ({\n  label: hertz(value).replace(\" \", \"\"),\n  value,\n}));\n\nconst Example = () => {\n  const [cutoff, setCutoff] = React.useState(1000);\n  const [committed, setCommitted] = React.useState(1000);\n\n  return (\n    <Field className=\"mx-auto w-full max-w-sm gap-related\">\n      <div className=\"flex items-center justify-between gap-related\">\n        <FieldLabel>Cutoff</FieldLabel>\n        <span className=\"text-caption text-muted-foreground tabular-nums\">\n          {hertz(cutoff)} · applied {hertz(committed)}\n        </span>\n      </div>\n      <Slider\n        value={cutoff}\n        onValueChange={(value) => {\n          setCutoff(value);\n        }}\n        onValueCommitted={(value) => {\n          setCommitted(value);\n        }}\n        scale=\"log\"\n        min={20}\n        max={20_000}\n        step={1}\n        marks={MARKS}\n        format={{ maximumFractionDigits: 0 }}\n      />\n    </Field>\n  );\n};\n\nexport default Example;\n",
+      "path": "src/slider/variants/logarithmic.tsx",
+      "target": "@components/showcase/slider/variants/logarithmic.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

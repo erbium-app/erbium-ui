@@ -3,7 +3,7 @@
   "name": "control-continuous-number",
   "type": "registry:component",
   "title": "Control: Continuous Number",
-  "description": "Continuous mode drags smoothly across the range and accepts any in-range number through the value editor.",
+  "description": "Continuous mode drags smoothly across the range and accepts any in-range number through the value editor. Arrow keys move the value by `step` (ten steps with Shift or Page Up/Down), and Home and End jump to either end.",
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {

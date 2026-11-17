@@ -7945,7 +7945,7 @@
       "name": "control-continuous-number",
       "type": "registry:component",
       "title": "Control: Continuous Number",
-      "description": "Continuous mode drags smoothly across the range and accepts any in-range number through the value editor.",
+      "description": "Continuous mode drags smoothly across the range and accepts any in-range number through the value editor. Arrow keys move the value by `step` (ten steps with Shift or Page Up/Down), and Home and End jump to either end.",
       "registryDependencies": ["@erbium/control", "@erbium/styles"],
       "files": [
         {
@@ -7973,7 +7973,7 @@
       "name": "control-discrete-number",
       "type": "registry:component",
       "title": "Control: Discrete Number",
-      "description": "Discrete mode accepts uneven steps and moves one allowed value per arrow key.",
+      "description": "Discrete mode accepts uneven steps and moves one allowed value per arrow key (ten with Shift). Home and End jump to the first and last value, and a typed value snaps to the nearest step.",
       "registryDependencies": ["@erbium/control", "@erbium/styles"],
       "files": [
         {
@@ -7991,6 +7991,7 @@
         "@erbium-examples/control-number",
         "@erbium-examples/control-continuous-number",
         "@erbium-examples/control-discrete-number",
+        "@erbium-examples/control-logarithmic-number",
         "@erbium-examples/control-text",
         "@erbium-examples/control-textarea",
         "@erbium-examples/control-boolean",
@@ -8033,6 +8034,20 @@
         {
           "path": "src/control/variants/image.tsx",
           "target": "@components/showcase/control/variants/image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "control-logarithmic-number",
+      "type": "registry:component",
+      "title": "Control: Logarithmic Number",
+      "description": "`scale=\"log\"` spreads values by ratio, so a frequency or zoom row gives the low end as much room as the high end. It works in both modes: discrete rows round onto `step`, continuous rows keep four significant digits. Arrow keys move 1% of the row (10% with Shift). The value editor still accepts any in-range number, and a log scale needs `min` above zero.",
+      "registryDependencies": ["@erbium/control", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/control/variants/logarithmic-number.tsx",
+          "target": "@components/showcase/control/variants/logarithmic-number.tsx",
           "type": "registry:component"
         }
       ]
@@ -8170,6 +8185,7 @@
         "@erbium/csp-provider",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
+        "@erbium/slider-scale",
         "@erbium/styles",
         "@erbium/toast"
       ],
@@ -8222,6 +8238,11 @@
         {
           "path": "src/control/variants/image.tsx",
           "target": "@components/showcase/control/variants/image.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/control/variants/logarithmic-number.tsx",
+          "target": "@components/showcase/control/variants/logarithmic-number.tsx",
           "type": "registry:component"
         },
         {
@@ -21199,10 +21220,42 @@
         "@erbium-examples/slider-range",
         "@erbium-examples/slider-vertical",
         "@erbium-examples/slider-controlled",
-        "@erbium-examples/slider-multiple-thumbs"
+        "@erbium-examples/slider-multiple-thumbs",
+        "@erbium-examples/slider-thumb-collision",
+        "@erbium-examples/slider-marks",
+        "@erbium-examples/slider-steps",
+        "@erbium-examples/slider-logarithmic"
       ],
       "title": "Slider examples",
       "type": "registry:item"
+    },
+    {
+      "name": "slider-logarithmic",
+      "type": "registry:component",
+      "title": "Slider: Logarithmic",
+      "description": "Use `scale=\"log\"` when a range spans orders of magnitude, such as frequencies, zoom levels or prices. Equal distances along the track cover equal ratios, so 20 Hz to 200 Hz takes the same width as 2 kHz to 20 kHz. A log scale needs `min` above zero and falls back to linear otherwise. Arrow keys move 1% of the track (10% with Shift), rounded onto `step` and always by at least one step. Without a `step`, values keep four significant digits. This example also shows `onValueChange` for the live value and `onValueCommitted` for the value once the drag or key press ends.",
+      "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/slider/variants/logarithmic.tsx",
+          "target": "@components/showcase/slider/variants/logarithmic.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slider-marks",
+      "type": "registry:component",
+      "title": "Slider: Marks",
+      "description": "Pass `marks` to draw ticks along the track. An array of `{ value, label }` places each tick, and ticks with a `label` print it under the track (beside it when vertical). `marks` set to `true` derives the ticks from the slider: each allowed value with `steps`, each step when the `step` grid has ten intervals or fewer, or each power of ten on a log scale. Ticks inside the selected range switch colour. Marks are decorative, so they are hidden from assistive technology; the thumb's value text carries the value.",
+      "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/slider/variants/marks.tsx",
+          "target": "@components/showcase/slider/variants/marks.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "slider-midpoint",
@@ -21304,6 +21357,20 @@
       ]
     },
     {
+      "name": "slider-steps",
+      "type": "registry:component",
+      "title": "Slider: Steps",
+      "description": "Pass `steps` to allow only a fixed set of values, including uneven intervals. Each value sits at its position on the scale, thumbs snap to the nearest one while dragging, and arrow keys move one allowed value per press (ten with Shift or Page Up/Down). Home and End jump to the first and last value. `steps` replaces `min`, `max` and `step`.",
+      "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/slider/variants/steps.tsx",
+          "target": "@components/showcase/slider/variants/steps.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "slider-stories",
       "type": "registry:item",
       "title": "Slider stories",
@@ -21315,6 +21382,7 @@
         "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/slider",
+        "@erbium/slider-scale",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/utils"
@@ -21366,6 +21434,16 @@
           "type": "registry:component"
         },
         {
+          "path": "src/slider/variants/logarithmic.tsx",
+          "target": "@components/showcase/slider/variants/logarithmic.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/slider/variants/marks.tsx",
+          "target": "@components/showcase/slider/variants/marks.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/slider/variants/midpoint.tsx",
           "target": "@components/showcase/slider/variants/midpoint.tsx",
           "type": "registry:component"
@@ -21391,8 +21469,32 @@
           "type": "registry:component"
         },
         {
+          "path": "src/slider/variants/steps.tsx",
+          "target": "@components/showcase/slider/variants/steps.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/slider/variants/thumb-collision.tsx",
+          "target": "@components/showcase/slider/variants/thumb-collision.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/slider/variants/vertical.tsx",
           "target": "@components/showcase/slider/variants/vertical.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slider-thumb-collision",
+      "type": "registry:component",
+      "title": "Slider: Thumb Collision",
+      "description": "Set what happens when one thumb is dragged into another. `thumbCollisionBehavior=\"push\"` (the default) moves the neighbour along, `\"swap\"` lets the dragged thumb pass and take over the other value, and `\"none\"` stops it at the neighbour. `minStepsBetweenValues` keeps thumbs a number of steps apart. It applies to linear sliders without `steps`.",
+      "registryDependencies": ["@erbium/field", "@erbium/slider", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/slider/variants/thumb-collision.tsx",
+          "target": "@components/showcase/slider/variants/thumb-collision.tsx",
           "type": "registry:component"
         }
       ]

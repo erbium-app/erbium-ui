@@ -3,7 +3,7 @@
   "name": "control-discrete-number",
   "type": "registry:component",
   "title": "Control: Discrete Number",
-  "description": "Discrete mode accepts uneven steps and moves one allowed value per arrow key.",
+  "description": "Discrete mode accepts uneven steps and moves one allowed value per arrow key (ten with Shift). Home and End jump to the first and last value, and a typed value snaps to the nearest step.",
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
