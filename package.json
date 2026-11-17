@@ -45,8 +45,8 @@
       "react": "^19.3.1",
       "react-dom": "^19.3.1",
       "typescript": "next",
-      "vite": "npm:@voidzero-dev/vite-plus-core@1.6.0",
-      "vite-plus": "1.6.0"
+      "vite": "npm:@voidzero-dev/vite-plus-core@8.3.8000",
+      "vite-plus": "1.7.0"
     },
     "catalogs": {
       "typescript-stable": {
