@@ -166,7 +166,7 @@ const CommandList = ({ className, children, ...props }: CommandPrimitive.List.Pr
 const CommandEmpty = ({ className, ...props }: CommandPrimitive.Empty.Props) => (
   <CommandPrimitive.Empty
     data-slot="command-empty"
-    className={cn("not-empty:py-6 text-center text-control", className)}
+    className={cn("not-empty:py-6 text-center text-control empty:py-0", className)}
     {...props}
   />
 );

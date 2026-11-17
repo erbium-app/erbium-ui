@@ -266,7 +266,10 @@ export const AutocompleteEmpty = ({
   ...props
 }: AutocompletePrimitive.Empty.Props): React.ReactElement => (
   <AutocompletePrimitive.Empty
-    className={cn("not-empty:p-2 text-center text-caption text-muted-foreground", className)}
+    className={cn(
+      "not-empty:p-2 text-center text-caption text-muted-foreground empty:p-0",
+      className,
+    )}
     data-slot="autocomplete-empty"
     {...props}
   />

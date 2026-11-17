@@ -48,7 +48,7 @@ export default function AsyncResultsExample() {
           aria-label="Search workspace commands"
           placeholder="Search workspace commands…"
         />
-        <CommandEmpty className="flex h-10 items-center justify-center not-empty:py-0">
+        <CommandEmpty className="not-empty:flex not-empty:h-10 not-empty:items-center not-empty:justify-center not-empty:py-0">
           {loading ? <Spinner aria-label="Searching commands" /> : "No commands found."}
         </CommandEmpty>
         <CommandList>
