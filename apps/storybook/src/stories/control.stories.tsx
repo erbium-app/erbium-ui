@@ -23,15 +23,7 @@ export const Segmented = { ...showcases.Segmented, name: "Segmented" };
 
 export const Select = { ...showcases.Select, name: "Select" };
 
-export const Color = { ...showcases.Color, name: "Color" };
-
 export const Image = { ...showcases.Image, name: "Image" };
-
-export const Pad = { ...showcases.Pad, name: "Pad" };
-
-export const Spring = { ...showcases.Spring, name: "Spring" };
-
-export const Transition = { ...showcases.Transition, name: "Transition" };
 
 export const Action = { ...showcases.Action, name: "Action" };
 

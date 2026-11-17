@@ -1,4 +1,0 @@
----
-title: "Spring"
-story: Spring
----

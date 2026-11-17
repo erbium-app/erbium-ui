@@ -1,4 +1,0 @@
----
-title: "Transition"
-story: Transition
----

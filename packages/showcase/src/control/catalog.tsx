@@ -6,7 +6,7 @@ import { componentDocumentation, variantDocumentation } from "@erbium/content/ma
 
 import OverviewExample from "./variants/overview";
 
-import OverviewSource from "./variants/overview.tsx?raw";
+import OverviewSource from "./examples/control-demo.tsx?raw";
 
 import NumberExample from "./variants/number";
 
@@ -44,25 +44,9 @@ import SelectExample from "./variants/select";
 
 import SelectSource from "./variants/select.tsx?raw";
 
-import ColorExample from "./variants/color";
-
-import ColorSource from "./variants/color.tsx?raw";
-
 import ImageExample from "./variants/image";
 
 import ImageSource from "./variants/image.tsx?raw";
-
-import PadExample from "./variants/pad";
-
-import PadSource from "./variants/pad.tsx?raw";
-
-import SpringExample from "./variants/spring";
-
-import SpringSource from "./variants/spring.tsx?raw";
-
-import TransitionExample from "./variants/transition";
-
-import TransitionSource from "./variants/transition.tsx?raw";
 
 import ActionExample from "./variants/action";
 
@@ -197,16 +181,6 @@ export const Select: Story = {
   render: SelectExample,
 };
 
-export const Color: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("control", "color") },
-      source: { code: ColorSource },
-    },
-  },
-  render: ColorExample,
-};
-
 export const Image: Story = {
   parameters: {
     docs: {
@@ -215,36 +189,6 @@ export const Image: Story = {
     },
   },
   render: ImageExample,
-};
-
-export const Pad: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("control", "pad") },
-      source: { code: PadSource },
-    },
-  },
-  render: PadExample,
-};
-
-export const Spring: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("control", "spring") },
-      source: { code: SpringSource },
-    },
-  },
-  render: SpringExample,
-};
-
-export const Transition: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("control", "transition") },
-      source: { code: TransitionSource },
-    },
-  },
-  render: TransitionExample,
 };
 
 export const Action: Story = {

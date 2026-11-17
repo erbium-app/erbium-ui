@@ -7,54 +7,63 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/accordion/variants/playground.tsx",
+        "usage": ["src/accordion/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/accordion/variants/overview.tsx",
+        "usage": ["src/accordion/examples/accordion-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/accordion/variants/basic.tsx",
+        "usage": ["src/accordion/variants/basic.tsx", "src/accordion/helpers.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
         "source": "src/accordion/variants/multiple.tsx",
+        "usage": ["src/accordion/variants/multiple.tsx", "src/accordion/helpers.tsx"],
         "title": "Multiple"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/accordion/variants/controlled.tsx",
+        "usage": ["src/accordion/variants/controlled.tsx", "src/accordion/helpers.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/accordion/variants/disabled.tsx",
+        "usage": ["src/accordion/variants/disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Borders",
         "slug": "borders",
         "source": "src/accordion/variants/borders.tsx",
+        "usage": ["src/accordion/variants/borders.tsx", "src/accordion/helpers.tsx"],
         "title": "Borders"
       },
       {
         "exportName": "Card",
         "slug": "card",
         "source": "src/accordion/variants/card.tsx",
+        "usage": ["src/accordion/examples/accordion-card.tsx"],
         "title": "Card"
       },
       {
         "exportName": "FindInPage",
         "slug": "find-in-page",
         "source": "src/accordion/variants/find-in-page.tsx",
+        "usage": ["src/accordion/variants/find-in-page.tsx"],
         "title": "Find in page"
       }
     ]
@@ -67,48 +76,56 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/alert/variants/playground.tsx",
+        "usage": ["src/alert/variants/playground.tsx", "src/alert/helpers.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/alert/variants/overview.tsx",
+        "usage": ["src/alert/examples/alert-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
         "source": "src/alert/variants/error-variant.tsx",
+        "usage": ["src/alert/examples/alert-error.tsx"],
         "title": "Error"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/alert/variants/basic.tsx",
+        "usage": ["src/alert/variants/basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Info",
         "slug": "info",
         "source": "src/alert/variants/info.tsx",
+        "usage": ["src/alert/variants/info.tsx"],
         "title": "Info"
       },
       {
         "exportName": "Success",
         "slug": "success",
         "source": "src/alert/variants/success.tsx",
+        "usage": ["src/alert/variants/success.tsx"],
         "title": "Success"
       },
       {
         "exportName": "Action",
         "slug": "action",
         "source": "src/alert/variants/action.tsx",
+        "usage": ["src/alert/variants/action.tsx"],
         "title": "Action"
       },
       {
         "exportName": "Warning",
         "slug": "warning",
         "source": "src/alert/variants/warning.tsx",
+        "usage": ["src/alert/examples/alert-colors.tsx"],
         "title": "Warning"
       }
     ]
@@ -121,42 +138,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/alert-dialog/variants/playground.tsx",
+        "usage": ["src/alert-dialog/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/alert-dialog/variants/overview.tsx",
+        "usage": ["src/alert-dialog/examples/alert-dialog-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/alert-dialog/variants/basic.tsx",
+        "usage": ["src/alert-dialog/examples/alert-dialog-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Small",
         "slug": "small",
         "source": "src/alert-dialog/variants/small.tsx",
+        "usage": ["src/alert-dialog/examples/alert-dialog-small.tsx"],
         "title": "Small"
       },
       {
         "exportName": "Media",
         "slug": "media",
         "source": "src/alert-dialog/variants/media.tsx",
+        "usage": ["src/alert-dialog/examples/alert-dialog-media.tsx"],
         "title": "Media"
       },
       {
         "exportName": "SmallMedia",
         "slug": "small-media",
         "source": "src/alert-dialog/variants/small-media.tsx",
+        "usage": ["src/alert-dialog/examples/alert-dialog-small-media.tsx"],
         "title": "Small with Media"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
         "source": "src/alert-dialog/variants/error-variant.tsx",
+        "usage": ["src/alert-dialog/examples/alert-dialog-error.tsx"],
         "title": "Error"
       }
     ]
@@ -169,12 +193,14 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/area-chart/variants/playground.tsx",
+        "usage": ["src/area-chart/variants/playground.tsx", "src/area-chart/examples/data.ts"],
         "title": "Playground"
       },
       {
         "exportName": "Stacked",
         "slug": "stacked",
         "source": "src/area-chart/variants/stacked.tsx",
+        "usage": ["src/area-chart/variants/stacked.tsx", "src/area-chart/examples/data.ts"],
         "title": "Stacked"
       }
     ]
@@ -187,24 +213,28 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/aspect-ratio/variants/playground.tsx",
+        "usage": ["src/aspect-ratio/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/aspect-ratio/variants/overview.tsx",
+        "usage": ["src/aspect-ratio/examples/aspect-ratio-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Square",
         "slug": "square",
         "source": "src/aspect-ratio/variants/square.tsx",
+        "usage": ["src/aspect-ratio/variants/square.tsx"],
         "title": "Square"
       },
       {
         "exportName": "Portrait",
         "slug": "portrait",
         "source": "src/aspect-ratio/variants/portrait.tsx",
+        "usage": ["src/aspect-ratio/variants/portrait.tsx"],
         "title": "Portrait"
       }
     ]
@@ -217,42 +247,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/attachment/variants/playground.tsx",
+        "usage": ["src/attachment/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/attachment/variants/overview.tsx",
+        "usage": ["src/attachment/examples/attachment-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Image",
         "slug": "image",
         "source": "src/attachment/variants/image.tsx",
+        "usage": ["src/attachment/examples/attachment-image.tsx"],
         "title": "Image"
       },
       {
         "exportName": "States",
         "slug": "states",
         "source": "src/attachment/variants/states.tsx",
+        "usage": ["src/attachment/examples/attachment-states.tsx"],
         "title": "States"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
         "source": "src/attachment/variants/sizes.tsx",
+        "usage": ["src/attachment/examples/attachment-sizes.tsx"],
         "title": "Sizes"
       },
       {
         "exportName": "Group",
         "slug": "group",
         "source": "src/attachment/variants/group.tsx",
+        "usage": ["src/attachment/examples/attachment-group.tsx"],
         "title": "Group"
       },
       {
         "exportName": "Trigger",
         "slug": "trigger",
         "source": "src/attachment/variants/trigger.tsx",
+        "usage": ["src/attachment/examples/attachment-trigger.tsx"],
         "title": "Trigger"
       }
     ]
@@ -265,96 +302,124 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/autocomplete/variants/overview.tsx",
+        "usage": ["src/autocomplete/variants/overview.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/autocomplete/variants/disabled.tsx",
+        "usage": ["src/autocomplete/variants/disabled.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "SmallSize",
         "slug": "small-size",
         "source": "src/autocomplete/variants/small-size.tsx",
+        "usage": ["src/autocomplete/variants/small-size.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Small Size"
       },
       {
         "exportName": "LargeSize",
         "slug": "large-size",
         "source": "src/autocomplete/variants/large-size.tsx",
+        "usage": ["src/autocomplete/variants/large-size.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Large Size"
       },
       {
         "exportName": "WithLabel",
         "slug": "with-label",
         "source": "src/autocomplete/variants/with-label.tsx",
+        "usage": ["src/autocomplete/variants/with-label.tsx", "src/autocomplete/helpers.tsx"],
         "title": "With Label"
       },
       {
         "exportName": "InlineAutocomplete",
         "slug": "inline-autocomplete",
         "source": "src/autocomplete/variants/inline-autocomplete.tsx",
+        "usage": [
+          "src/autocomplete/variants/inline-autocomplete.tsx",
+          "src/autocomplete/helpers.tsx"
+        ],
         "title": "Inline Autocomplete"
       },
       {
         "exportName": "AutoHighlight",
         "slug": "auto-highlight",
         "source": "src/autocomplete/variants/auto-highlight.tsx",
+        "usage": ["src/autocomplete/variants/auto-highlight.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Auto Highlight"
       },
       {
         "exportName": "WithClearButton",
         "slug": "with-clear-button",
         "source": "src/autocomplete/variants/with-clear-button.tsx",
+        "usage": [
+          "src/autocomplete/variants/with-clear-button.tsx",
+          "src/autocomplete/helpers.tsx"
+        ],
         "title": "With Clear Button"
       },
       {
         "exportName": "WithTriggerAndClear",
         "slug": "with-trigger-and-clear",
         "source": "src/autocomplete/variants/with-trigger-and-clear.tsx",
+        "usage": [
+          "src/autocomplete/variants/with-trigger-and-clear.tsx",
+          "src/autocomplete/helpers.tsx"
+        ],
         "title": "With Trigger And Clear"
       },
       {
         "exportName": "WithStartAddon",
         "slug": "with-start-addon",
         "source": "src/autocomplete/variants/with-start-addon.tsx",
+        "usage": ["src/autocomplete/variants/with-start-addon.tsx", "src/autocomplete/helpers.tsx"],
         "title": "With Start Addon"
       },
       {
         "exportName": "WithGroups",
         "slug": "with-groups",
         "source": "src/autocomplete/variants/with-groups.tsx",
+        "usage": ["src/autocomplete/variants/with-groups.tsx", "src/autocomplete/helpers.tsx"],
         "title": "With Groups"
       },
       {
         "exportName": "WithLimitResults",
         "slug": "with-limit-results",
         "source": "src/autocomplete/variants/with-limit-results.tsx",
+        "usage": [
+          "src/autocomplete/variants/with-limit-results.tsx",
+          "src/autocomplete/helpers.tsx"
+        ],
         "title": "With Limit Results"
       },
       {
         "exportName": "AsyncSearch",
         "slug": "async-search",
         "source": "src/autocomplete/variants/async-search.tsx",
+        "usage": ["src/autocomplete/variants/async-search.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Async Search"
       },
       {
         "exportName": "FormIntegration",
         "slug": "form-integration",
         "source": "src/autocomplete/variants/form-integration.tsx",
+        "usage": ["src/autocomplete/variants/form-integration.tsx", "src/autocomplete/helpers.tsx"],
         "title": "Form Integration"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
         "source": "src/autocomplete/variants/showcase.tsx",
+        "usage": ["src/autocomplete/examples/autocomplete-demo.tsx"],
         "title": "Showcase"
       },
       {
         "exportName": "SearchSurface",
         "slug": "search-surface",
         "source": "src/autocomplete/variants/search-surface.tsx",
+        "usage": ["src/autocomplete/variants/search-surface.tsx"],
         "title": "Search surface"
       }
     ]
@@ -367,72 +432,84 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/avatar/variants/playground.tsx",
+        "usage": ["src/avatar/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/avatar/variants/overview.tsx",
+        "usage": ["src/avatar/examples/avatar-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Fallback",
         "slug": "fallback",
         "source": "src/avatar/variants/fallback.tsx",
+        "usage": ["src/avatar/variants/fallback.tsx"],
         "title": "Fallback"
       },
       {
         "exportName": "Image",
         "slug": "image",
         "source": "src/avatar/variants/image.tsx",
+        "usage": ["src/avatar/variants/image.tsx"],
         "title": "Image"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/avatar/variants/basic.tsx",
+        "usage": ["src/avatar/examples/avatar-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Badge",
         "slug": "badge",
         "source": "src/avatar/variants/badge.tsx",
+        "usage": ["src/avatar/examples/avatar-badge.tsx"],
         "title": "Badge"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
         "source": "src/avatar/variants/dropdown.tsx",
+        "usage": ["src/avatar/examples/avatar-dropdown.tsx"],
         "title": "Dropdown"
       },
       {
         "exportName": "BadgeWithIcon",
         "slug": "badge-with-icon",
         "source": "src/avatar/variants/badge-with-icon.tsx",
+        "usage": ["src/avatar/examples/avatar-badge-icon.tsx"],
         "title": "Badge With Icon"
       },
       {
         "exportName": "AvatarGroup",
         "slug": "avatar-group",
         "source": "src/avatar/variants/avatar-group.tsx",
+        "usage": ["src/avatar/examples/avatar-group.tsx"],
         "title": "Avatar Group"
       },
       {
         "exportName": "AvatarGroupCount",
         "slug": "avatar-group-count",
         "source": "src/avatar/variants/avatar-group-count.tsx",
+        "usage": ["src/avatar/examples/avatar-group-count.tsx"],
         "title": "Avatar Group Count"
       },
       {
         "exportName": "AvatarGroupWithIcon",
         "slug": "avatar-group-with-icon",
         "source": "src/avatar/variants/avatar-group-with-icon.tsx",
+        "usage": ["src/avatar/examples/avatar-group-count-icon.tsx"],
         "title": "Avatar Group With Icon"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
         "source": "src/avatar/variants/sizes.tsx",
+        "usage": ["src/avatar/examples/avatar-size.tsx"],
         "title": "Sizes"
       }
     ]
@@ -445,36 +522,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/badge/variants/playground.tsx",
+        "usage": ["src/badge/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/badge/variants/overview.tsx",
+        "usage": ["src/badge/examples/badge-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
         "source": "src/badge/variants/variants.tsx",
+        "usage": ["src/badge/variants/variants.tsx"],
         "title": "Variants"
       },
       {
         "exportName": "Link",
         "slug": "link",
         "source": "src/badge/variants/link.tsx",
+        "usage": ["src/badge/examples/badge-link.tsx"],
         "title": "Link"
       },
       {
         "exportName": "WithIcon",
         "slug": "with-icon",
         "source": "src/badge/variants/with-icon.tsx",
+        "usage": ["src/badge/examples/badge-icon.tsx"],
         "title": "With Icon"
       },
       {
         "exportName": "WithSpinner",
         "slug": "with-spinner",
         "source": "src/badge/variants/with-spinner.tsx",
+        "usage": ["src/badge/examples/badge-spinner.tsx"],
         "title": "With Spinner"
       }
     ]
@@ -487,18 +570,21 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/bar-chart/variants/playground.tsx",
+        "usage": ["src/bar-chart/variants/playground.tsx", "src/bar-chart/examples/data.ts"],
         "title": "Playground"
       },
       {
         "exportName": "Stacked",
         "slug": "stacked",
         "source": "src/bar-chart/variants/stacked.tsx",
+        "usage": ["src/bar-chart/variants/stacked.tsx", "src/bar-chart/examples/data.ts"],
         "title": "Stacked"
       },
       {
         "exportName": "Horizontal",
         "slug": "horizontal",
         "source": "src/bar-chart/variants/horizontal.tsx",
+        "usage": ["src/bar-chart/variants/horizontal.tsx", "src/bar-chart/examples/data.ts"],
         "title": "Horizontal"
       }
     ]
@@ -511,42 +597,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/breadcrumb/variants/playground.tsx",
+        "usage": ["src/breadcrumb/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/breadcrumb/variants/overview.tsx",
+        "usage": ["src/breadcrumb/examples/breadcrumb-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Ellipsis",
         "slug": "ellipsis",
         "source": "src/breadcrumb/variants/ellipsis.tsx",
+        "usage": ["src/breadcrumb/examples/breadcrumb-ellipsis.tsx"],
         "title": "Collapsed"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/breadcrumb/variants/basic.tsx",
+        "usage": ["src/breadcrumb/examples/breadcrumb-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
         "source": "src/breadcrumb/variants/dropdown.tsx",
+        "usage": ["src/breadcrumb/examples/breadcrumb-dropdown.tsx"],
         "title": "Dropdown"
       },
       {
         "exportName": "CustomSeparator",
         "slug": "custom-separator",
         "source": "src/breadcrumb/variants/custom-separator.tsx",
+        "usage": ["src/breadcrumb/examples/breadcrumb-separator.tsx"],
         "title": "Custom Separator"
       },
       {
         "exportName": "LinkComponent",
         "slug": "link-component",
         "source": "src/breadcrumb/variants/link-component.tsx",
+        "usage": ["src/breadcrumb/examples/breadcrumb-link.tsx"],
         "title": "TanStack Router"
       }
     ]
@@ -559,60 +652,70 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/bubble/variants/playground.tsx",
+        "usage": ["src/bubble/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/bubble/variants/overview.tsx",
+        "usage": ["src/bubble/examples/bubble-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Alignment",
         "slug": "alignment",
         "source": "src/bubble/variants/alignment.tsx",
+        "usage": ["src/bubble/examples/bubble-alignment.tsx"],
         "title": "Alignment"
       },
       {
         "exportName": "GroupDemo",
         "slug": "group-demo",
         "source": "src/bubble/variants/group-demo.tsx",
+        "usage": ["src/bubble/examples/bubble-group-demo.tsx"],
         "title": "Bubble Group"
       },
       {
         "exportName": "Collapsible",
         "slug": "collapsible",
         "source": "src/bubble/variants/collapsible.tsx",
+        "usage": ["src/bubble/examples/bubble-collapsible.tsx"],
         "title": "Show More / Collapsible"
       },
       {
         "exportName": "Tooltip",
         "slug": "tooltip",
         "source": "src/bubble/variants/tooltip.tsx",
+        "usage": ["src/bubble/examples/bubble-tooltip.tsx"],
         "title": "Tooltip"
       },
       {
         "exportName": "Popover",
         "slug": "popover",
         "source": "src/bubble/variants/popover.tsx",
+        "usage": ["src/bubble/examples/bubble-popover.tsx"],
         "title": "Popover"
       },
       {
         "exportName": "LinkButton",
         "slug": "link-button",
         "source": "src/bubble/variants/link-button.tsx",
+        "usage": ["src/bubble/examples/bubble-link-button.tsx"],
         "title": "Links and Buttons"
       },
       {
         "exportName": "Reactions",
         "slug": "reactions",
         "source": "src/bubble/variants/reactions.tsx",
+        "usage": ["src/bubble/examples/bubble-reactions.tsx"],
         "title": "Reactions"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
         "source": "src/bubble/variants/variants.tsx",
+        "usage": ["src/bubble/examples/bubble-variants.tsx"],
         "title": "Variants"
       }
     ]
@@ -625,132 +728,157 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/button/variants/playground.tsx",
+        "usage": ["src/button/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/button/variants/overview.tsx",
+        "usage": ["src/button/examples/button-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
         "source": "src/button/variants/variants.tsx",
+        "usage": ["src/button/variants/variants.tsx"],
         "title": "Variants"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
         "source": "src/button/variants/sizes.tsx",
+        "usage": ["src/button/variants/sizes.tsx"],
         "title": "Sizes"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
         "source": "src/button/variants/shortcuts.tsx",
+        "usage": ["src/button/variants/shortcuts.tsx", "src/kbd/examples/kbd-button.tsx"],
         "title": "Shortcuts"
       },
       {
         "exportName": "Hotkey",
         "slug": "hotkey",
         "source": "src/button/variants/hotkey.tsx",
+        "usage": ["src/button/variants/hotkey.tsx", "src/kbd/examples/kbd-hint.tsx"],
         "title": "Hotkey"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/button/variants/disabled.tsx",
+        "usage": ["src/button/variants/disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Loading",
         "slug": "loading",
         "source": "src/button/variants/loading.tsx",
+        "usage": ["src/button/variants/loading.tsx"],
         "title": "Loading"
       },
       {
         "exportName": "LoadingDirections",
         "slug": "loading-directions",
         "source": "src/button/variants/loading-directions.tsx",
+        "usage": ["src/button/variants/loading-directions.tsx"],
         "title": "Loading Directions"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/button/variants/size.tsx",
+        "usage": ["src/button/examples/button-size.tsx"],
         "title": "Size"
       },
       {
         "exportName": "Default",
         "slug": "default",
         "source": "src/button/variants/default.tsx",
+        "usage": ["src/button/examples/button-default.tsx"],
         "title": "Default"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
         "source": "src/button/variants/outline.tsx",
+        "usage": ["src/button/examples/button-outline.tsx"],
         "title": "Outline"
       },
       {
         "exportName": "Secondary",
         "slug": "secondary",
         "source": "src/button/variants/secondary.tsx",
+        "usage": ["src/button/examples/button-secondary.tsx"],
         "title": "Secondary"
       },
       {
         "exportName": "Ghost",
         "slug": "ghost",
         "source": "src/button/variants/ghost.tsx",
+        "usage": ["src/button/examples/button-ghost.tsx"],
         "title": "Ghost"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
         "source": "src/button/variants/error-variant.tsx",
+        "usage": ["src/button/examples/button-error.tsx"],
         "title": "Error"
       },
       {
         "exportName": "Link",
         "slug": "link",
         "source": "src/button/variants/link.tsx",
+        "usage": ["src/button/examples/button-link.tsx"],
         "title": "Link"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
         "source": "src/button/variants/icon.tsx",
+        "usage": ["src/button/examples/button-icon.tsx"],
         "title": "Icon"
       },
       {
         "exportName": "Rounded",
         "slug": "rounded",
         "source": "src/button/variants/rounded.tsx",
+        "usage": ["src/button/examples/button-rounded.tsx"],
         "title": "Rounded"
       },
       {
         "exportName": "ButtonGroup",
         "slug": "button-group",
         "source": "src/button/variants/button-group.tsx",
+        "usage": [
+          "src/button/variants/button-group.tsx",
+          "src/button-group/examples/button-group-demo.tsx"
+        ],
         "title": "Button Group"
       },
       {
         "exportName": "WithSpinner",
         "slug": "with-spinner",
         "source": "src/button/variants/with-spinner.tsx",
+        "usage": ["src/button/examples/button-spinner.tsx"],
         "title": "Spinner"
       },
       {
         "exportName": "WithIcon",
         "slug": "with-icon",
         "source": "src/button/variants/with-icon.tsx",
+        "usage": ["src/button/examples/button-with-icon.tsx"],
         "title": "With Icon"
       },
       {
         "exportName": "AsLink",
         "slug": "as-link",
         "source": "src/button/variants/as-link.tsx",
+        "usage": ["src/button/variants/as-link.tsx"],
         "title": "As Link"
       }
     ]
@@ -763,72 +891,84 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/button-group/variants/playground.tsx",
+        "usage": ["src/button-group/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/button-group/variants/overview.tsx",
+        "usage": ["src/button-group/examples/button-group-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Orientation",
         "slug": "orientation",
         "source": "src/button-group/variants/orientation.tsx",
+        "usage": ["src/button-group/examples/button-group-orientation.tsx"],
         "title": "Orientation"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/button-group/variants/size.tsx",
+        "usage": ["src/button-group/examples/button-group-size.tsx"],
         "title": "Size"
       },
       {
         "exportName": "Nested",
         "slug": "nested",
         "source": "src/button-group/variants/nested.tsx",
+        "usage": ["src/button-group/examples/button-group-nested.tsx"],
         "title": "Nested"
       },
       {
         "exportName": "Separator",
         "slug": "separator",
         "source": "src/button-group/variants/separator.tsx",
+        "usage": ["src/button-group/examples/button-group-separator.tsx"],
         "title": "Separator"
       },
       {
         "exportName": "Input",
         "slug": "input",
         "source": "src/button-group/variants/input.tsx",
+        "usage": ["src/button-group/examples/button-group-input.tsx"],
         "title": "Input"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
         "source": "src/button-group/variants/input-group.tsx",
+        "usage": ["src/button-group/examples/button-group-input-group.tsx"],
         "title": "Input Group"
       },
       {
         "exportName": "DropdownMenu",
         "slug": "dropdown-menu",
         "source": "src/button-group/variants/dropdown-menu.tsx",
+        "usage": ["src/button-group/examples/button-group-dropdown.tsx"],
         "title": "Dropdown Menu"
       },
       {
         "exportName": "Select",
         "slug": "select",
         "source": "src/button-group/variants/select.tsx",
+        "usage": ["src/button-group/examples/button-group-select.tsx"],
         "title": "Select"
       },
       {
         "exportName": "Popover",
         "slug": "popover",
         "source": "src/button-group/variants/popover.tsx",
+        "usage": ["src/button-group/examples/button-group-popover.tsx"],
         "title": "Popover"
       },
       {
         "exportName": "Split",
         "slug": "split",
         "source": "src/button-group/variants/split.tsx",
+        "usage": ["src/button-group/examples/button-group-split.tsx"],
         "title": "Split"
       }
     ]
@@ -841,78 +981,91 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/calendar/variants/playground.tsx",
+        "usage": ["src/calendar/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/calendar/variants/overview.tsx",
+        "usage": ["src/calendar/examples/calendar-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/calendar/variants/basic.tsx",
+        "usage": ["src/calendar/examples/calendar-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "RangeCalendar",
         "slug": "range-calendar",
         "source": "src/calendar/variants/range-calendar.tsx",
+        "usage": ["src/calendar/examples/calendar-range.tsx"],
         "title": "Range Calendar"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
         "source": "src/calendar/variants/multiple.tsx",
+        "usage": ["src/calendar/examples/calendar-multiple.tsx"],
         "title": "Multiple"
       },
       {
         "exportName": "MonthAndYearSelector",
         "slug": "month-and-year-selector",
         "source": "src/calendar/variants/month-and-year-selector.tsx",
+        "usage": ["src/calendar/examples/calendar-caption.tsx"],
         "title": "Month And Year Selector"
       },
       {
         "exportName": "BookedDates",
         "slug": "booked-dates",
         "source": "src/calendar/variants/booked-dates.tsx",
+        "usage": ["src/calendar/examples/calendar-booked-dates.tsx"],
         "title": "Booked Dates"
       },
       {
         "exportName": "WeekNumbers",
         "slug": "week-numbers",
         "source": "src/calendar/variants/week-numbers.tsx",
+        "usage": ["src/calendar/examples/calendar-week-numbers.tsx"],
         "title": "Week Numbers"
       },
       {
         "exportName": "Presets",
         "slug": "presets",
         "source": "src/calendar/variants/presets.tsx",
+        "usage": ["src/calendar/examples/calendar-presets.tsx"],
         "title": "Presets"
       },
       {
         "exportName": "DateAndTimePicker",
         "slug": "date-and-time-picker",
         "source": "src/calendar/variants/date-and-time-picker.tsx",
+        "usage": ["src/calendar/examples/calendar-time.tsx"],
         "title": "Date And Time Picker"
       },
       {
         "exportName": "CustomDays",
         "slug": "custom-days",
         "source": "src/calendar/variants/custom-days.tsx",
+        "usage": ["src/calendar/examples/calendar-custom-days.tsx"],
         "title": "Custom Days"
       },
       {
         "exportName": "Persian",
         "slug": "persian",
         "source": "src/calendar/variants/persian.tsx",
+        "usage": ["src/calendar/examples/calendar-persian.tsx"],
         "title": "Persian (Jalali) Calendar"
       },
       {
         "exportName": "SelectedDateWithTimezone",
         "slug": "selected-date-with-timezone",
         "source": "src/calendar/variants/selected-date-with-timezone.tsx",
+        "usage": ["src/calendar/examples/calendar-timezone.tsx"],
         "title": "Selected Date (With TimeZone)"
       }
     ]
@@ -925,30 +1078,35 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/card/variants/playground.tsx",
+        "usage": ["src/card/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/card/variants/overview.tsx",
+        "usage": ["src/card/examples/card-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Small",
         "slug": "small",
         "source": "src/card/variants/small.tsx",
+        "usage": ["src/card/variants/small.tsx", "src/card/helpers.tsx"],
         "title": "Size"
       },
       {
         "exportName": "EdgeToEdge",
         "slug": "edge-to-edge",
         "source": "src/card/variants/edge-to-edge.tsx",
+        "usage": ["src/card/variants/edge-to-edge.tsx"],
         "title": "Edge-to-edge table"
       },
       {
         "exportName": "Image",
         "slug": "image",
         "source": "src/card/variants/image.tsx",
+        "usage": ["src/card/variants/image.tsx"],
         "title": "Image"
       }
     ]
@@ -961,54 +1119,63 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/carousel/variants/playground.tsx",
+        "usage": ["src/carousel/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/carousel/variants/overview.tsx",
+        "usage": ["src/carousel/examples/carousel-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
         "source": "src/carousel/variants/sizes.tsx",
+        "usage": ["src/carousel/examples/carousel-size.tsx"],
         "title": "Sizes"
       },
       {
         "exportName": "Spacing",
         "slug": "spacing",
         "source": "src/carousel/variants/spacing.tsx",
+        "usage": ["src/carousel/examples/carousel-spacing.tsx"],
         "title": "Spacing"
       },
       {
         "exportName": "Orientation",
         "slug": "orientation",
         "source": "src/carousel/variants/orientation.tsx",
+        "usage": ["src/carousel/examples/carousel-orientation.tsx"],
         "title": "Orientation"
       },
       {
         "exportName": "Api",
         "slug": "api",
         "source": "src/carousel/variants/api.tsx",
+        "usage": ["src/carousel/examples/carousel-api.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Autoplay",
         "slug": "autoplay",
         "source": "src/carousel/variants/autoplay.tsx",
+        "usage": ["src/carousel/examples/carousel-autoplay.tsx"],
         "title": "Autoplay"
       },
       {
         "exportName": "Events",
         "slug": "events",
         "source": "src/carousel/variants/events.tsx",
+        "usage": ["src/carousel/examples/carousel-events.tsx"],
         "title": "Events"
       },
       {
         "exportName": "Lightbox",
         "slug": "lightbox",
         "source": "src/carousel/variants/lightbox.tsx",
+        "usage": ["src/carousel/examples/carousel-lightbox.tsx"],
         "title": "With lightbox"
       }
     ]
@@ -1021,12 +1188,14 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/chart/variants/overview.tsx",
+        "usage": ["src/chart/variants/overview.tsx", "src/chart/examples/data.ts"],
         "title": "Overview"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
         "source": "src/chart/variants/composition.tsx",
+        "usage": ["src/chart/variants/composition.tsx"],
         "title": "Composition"
       }
     ]
@@ -1039,78 +1208,91 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/checkbox/variants/playground.tsx",
+        "usage": ["src/checkbox/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/checkbox/variants/overview.tsx",
+        "usage": ["src/checkbox/examples/checkbox-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Checked",
         "slug": "checked",
         "source": "src/checkbox/variants/checked.tsx",
+        "usage": ["src/checkbox/variants/checked.tsx"],
         "title": "Checked State"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/checkbox/variants/controlled.tsx",
+        "usage": ["src/checkbox/examples/checkbox-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Indeterminate",
         "slug": "indeterminate",
         "source": "src/checkbox/variants/indeterminate.tsx",
+        "usage": ["src/checkbox/examples/checkbox-indeterminate.tsx"],
         "title": "Indeterminate"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
         "source": "src/checkbox/variants/read-only.tsx",
+        "usage": ["src/checkbox/examples/checkbox-read-only.tsx"],
         "title": "Read Only"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/checkbox/variants/form.tsx",
+        "usage": ["src/checkbox/examples/checkbox-form.tsx"],
         "title": "Form"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/checkbox/variants/disabled.tsx",
+        "usage": ["src/checkbox/examples/checkbox-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Table",
         "slug": "table",
         "source": "src/checkbox/variants/table.tsx",
+        "usage": ["src/checkbox/examples/checkbox-table.tsx"],
         "title": "Table"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/checkbox/variants/basic.tsx",
+        "usage": ["src/checkbox/examples/checkbox-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Description",
         "slug": "description",
         "source": "src/checkbox/variants/description.tsx",
+        "usage": ["src/checkbox/examples/checkbox-description.tsx"],
         "title": "Description"
       },
       {
         "exportName": "Group",
         "slug": "group",
         "source": "src/checkbox/variants/group.tsx",
+        "usage": ["src/checkbox/examples/checkbox-group.tsx"],
         "title": "Group"
       },
       {
         "exportName": "InvalidState",
         "slug": "invalid-state",
         "source": "src/checkbox/variants/invalid-state.tsx",
+        "usage": ["src/checkbox/examples/checkbox-invalid.tsx"],
         "title": "Invalid State"
       }
     ]
@@ -1123,78 +1305,91 @@
         "exportName": "Languages",
         "slug": "languages",
         "source": "src/code-block/variants/languages.tsx",
+        "usage": ["src/code-block/variants/languages.tsx"],
         "title": "Languages"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/code-block/variants/overview.tsx",
+        "usage": ["src/code-block/variants/overview.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Commands",
         "slug": "commands",
         "source": "src/code-block/variants/commands.tsx",
+        "usage": ["src/code-block/variants/commands.tsx"],
         "title": "Commands"
       },
       {
         "exportName": "Prompt",
         "slug": "prompt",
         "source": "src/code-block/variants/prompt.tsx",
+        "usage": ["src/code-block/variants/prompt.tsx"],
         "title": "Prompt"
       },
       {
         "exportName": "Files",
         "slug": "files",
         "source": "src/code-block/variants/files.tsx",
+        "usage": ["src/code-block/variants/files.tsx"],
         "title": "Files"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/code-block/variants/controlled.tsx",
+        "usage": ["src/code-block/variants/controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
         "source": "src/code-block/variants/composition.tsx",
+        "usage": ["src/code-block/variants/composition.tsx"],
         "title": "Composition"
       },
       {
         "exportName": "Overflow",
         "slug": "overflow",
         "source": "src/code-block/variants/overflow.tsx",
+        "usage": ["src/code-block/variants/overflow.tsx"],
         "title": "Overflow"
       },
       {
         "exportName": "LineNumbers",
         "slug": "line-numbers",
         "source": "src/code-block/variants/line-numbers.tsx",
+        "usage": ["src/code-block/variants/line-numbers.tsx"],
         "title": "Line Numbers"
       },
       {
         "exportName": "HighlightedLines",
         "slug": "highlighted-lines",
         "source": "src/code-block/variants/highlighted-lines.tsx",
+        "usage": ["src/code-block/variants/highlighted-lines.tsx"],
         "title": "Highlighted Lines"
       },
       {
         "exportName": "States",
         "slug": "states",
         "source": "src/code-block/variants/states.tsx",
+        "usage": ["src/code-block/variants/states.tsx"],
         "title": "States"
       },
       {
         "exportName": "ChangingSource",
         "slug": "changing-source",
         "source": "src/code-block/variants/changing-source.tsx",
+        "usage": ["src/code-block/variants/changing-source.tsx"],
         "title": "Changing Source"
       },
       {
         "exportName": "Streaming",
         "slug": "streaming",
         "source": "src/code-block/variants/streaming.tsx",
+        "usage": ["src/code-block/variants/streaming.tsx"],
         "title": "Streaming"
       }
     ]
@@ -1207,36 +1402,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/collapsible/variants/playground.tsx",
+        "usage": ["src/collapsible/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/collapsible/variants/overview.tsx",
+        "usage": ["src/collapsible/examples/collapsible-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "FileTree",
         "slug": "file-tree",
         "source": "src/collapsible/variants/file-tree.tsx",
+        "usage": ["src/collapsible/examples/collapsible-file-tree.tsx"],
         "title": "File Tree"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/collapsible/variants/basic.tsx",
+        "usage": ["src/collapsible/examples/collapsible-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "SettingsPanel",
         "slug": "settings-panel",
         "source": "src/collapsible/variants/settings-panel.tsx",
+        "usage": ["src/collapsible/examples/collapsible-settings.tsx"],
         "title": "Settings Panel"
       },
       {
         "exportName": "ControlledState",
         "slug": "controlled-state",
         "source": "src/collapsible/variants/controlled-state.tsx",
+        "usage": ["src/collapsible/examples/collapsible-demo.tsx"],
         "title": "Controlled State"
       }
     ]
@@ -1249,84 +1450,98 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/combobox/variants/playground.tsx",
+        "usage": ["src/combobox/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/combobox/variants/overview.tsx",
+        "usage": ["src/combobox/examples/combobox-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/combobox/variants/basic.tsx",
+        "usage": ["src/combobox/examples/combobox-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
         "source": "src/combobox/variants/multiple.tsx",
+        "usage": ["src/combobox/examples/combobox-multiple.tsx"],
         "title": "Multiple Selection"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
         "source": "src/combobox/variants/groups.tsx",
+        "usage": ["src/combobox/examples/combobox-groups.tsx"],
         "title": "Groups"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/combobox/variants/invalid.tsx",
+        "usage": ["src/combobox/examples/combobox-invalid.tsx"],
         "title": "Invalid"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/combobox/variants/disabled.tsx",
+        "usage": ["src/combobox/examples/combobox-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "AutoHighlight",
         "slug": "auto-highlight",
         "source": "src/combobox/variants/auto-highlight.tsx",
+        "usage": ["src/combobox/examples/combobox-auto-highlight.tsx"],
         "title": "Auto Highlight"
       },
       {
         "exportName": "Popup",
         "slug": "popup",
         "source": "src/combobox/variants/popup.tsx",
+        "usage": ["src/combobox/examples/combobox-popup.tsx"],
         "title": "Popup"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
         "source": "src/combobox/variants/input-group.tsx",
+        "usage": ["src/combobox/examples/combobox-input-group.tsx"],
         "title": "Input Group"
       },
       {
         "exportName": "CustomItems",
         "slug": "custom-items",
         "source": "src/combobox/variants/custom-items.tsx",
+        "usage": ["src/combobox/examples/combobox-custom.tsx"],
         "title": "Custom Items"
       },
       {
         "exportName": "ClearButton",
         "slug": "clear-button",
         "source": "src/combobox/variants/clear-button.tsx",
+        "usage": ["src/combobox/examples/combobox-clear.tsx"],
         "title": "Clear Button"
       },
       {
         "exportName": "ItemCollection",
         "slug": "item-collection",
         "source": "src/combobox/variants/item-collection.tsx",
+        "usage": ["src/combobox/variants/item-collection.tsx"],
         "title": "Item collection"
       },
       {
         "exportName": "AsyncSearch",
         "slug": "async-search",
         "source": "src/combobox/variants/async-search.tsx",
+        "usage": ["src/combobox/variants/async-search.tsx"],
         "title": "Async search"
       }
     ]
@@ -1339,42 +1554,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/command/variants/playground.tsx",
+        "usage": ["src/command/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/command/variants/overview.tsx",
+        "usage": ["src/command/examples/command-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/command/variants/basic.tsx",
+        "usage": ["src/command/examples/command-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
         "source": "src/command/variants/shortcuts.tsx",
+        "usage": ["src/command/examples/command-shortcuts.tsx"],
         "title": "Shortcuts"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
         "source": "src/command/variants/groups.tsx",
+        "usage": ["src/command/examples/command-groups.tsx"],
         "title": "Groups"
       },
       {
         "exportName": "Scrollable",
         "slug": "scrollable",
         "source": "src/command/variants/scrollable.tsx",
+        "usage": ["src/command/examples/command-scrollable.tsx"],
         "title": "Scrollable"
       },
       {
         "exportName": "AsyncResults",
         "slug": "async-results",
         "source": "src/command/variants/async-results.tsx",
+        "usage": ["src/command/variants/async-results.tsx"],
         "title": "Async results"
       }
     ]
@@ -1387,72 +1609,84 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/context-menu/variants/playground.tsx",
+        "usage": ["src/context-menu/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/context-menu/variants/overview.tsx",
+        "usage": ["src/context-menu/examples/context-menu-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/context-menu/variants/basic.tsx",
+        "usage": ["src/context-menu/examples/context-menu-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Submenu",
         "slug": "submenu",
         "source": "src/context-menu/variants/submenu.tsx",
+        "usage": ["src/context-menu/examples/context-menu-submenu.tsx"],
         "title": "Submenu"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
         "source": "src/context-menu/variants/shortcuts.tsx",
+        "usage": ["src/context-menu/examples/context-menu-shortcuts.tsx"],
         "title": "Shortcuts"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
         "source": "src/context-menu/variants/groups.tsx",
+        "usage": ["src/context-menu/examples/context-menu-groups.tsx"],
         "title": "Groups"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
         "source": "src/context-menu/variants/icons.tsx",
+        "usage": ["src/context-menu/examples/context-menu-icons.tsx"],
         "title": "Icons"
       },
       {
         "exportName": "Checkboxes",
         "slug": "checkboxes",
         "source": "src/context-menu/variants/checkboxes.tsx",
+        "usage": ["src/context-menu/examples/context-menu-checkboxes.tsx"],
         "title": "Checkboxes"
       },
       {
         "exportName": "Radio",
         "slug": "radio",
         "source": "src/context-menu/variants/radio.tsx",
+        "usage": ["src/context-menu/examples/context-menu-radio.tsx"],
         "title": "Radio"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
         "source": "src/context-menu/variants/error-variant.tsx",
+        "usage": ["src/context-menu/examples/context-menu-error.tsx"],
         "title": "Error"
       },
       {
         "exportName": "Sides",
         "slug": "sides",
         "source": "src/context-menu/variants/sides.tsx",
+        "usage": ["src/context-menu/examples/context-menu-sides.tsx"],
         "title": "Sides"
       },
       {
         "exportName": "Searchable",
         "slug": "searchable",
         "source": "src/context-menu/variants/searchable.tsx",
+        "usage": ["src/context-menu/variants/searchable.tsx"],
         "title": "Searchable"
       }
     ]
@@ -1465,114 +1699,105 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/control/variants/overview.tsx",
+        "usage": ["src/control/examples/control-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Number",
         "slug": "number",
         "source": "src/control/variants/number.tsx",
+        "usage": ["src/control/variants/number.tsx", "src/control/helpers.tsx"],
         "title": "Number"
       },
       {
         "exportName": "ContinuousNumber",
         "slug": "continuous-number",
         "source": "src/control/variants/continuous-number.tsx",
+        "usage": ["src/control/variants/continuous-number.tsx"],
         "title": "Continuous Number"
       },
       {
         "exportName": "DiscreteNumber",
         "slug": "discrete-number",
         "source": "src/control/variants/discrete-number.tsx",
+        "usage": ["src/control/variants/discrete-number.tsx"],
         "title": "Discrete Number"
       },
       {
         "exportName": "LogarithmicNumber",
         "slug": "logarithmic-number",
         "source": "src/control/variants/logarithmic-number.tsx",
+        "usage": ["src/control/variants/logarithmic-number.tsx"],
         "title": "Logarithmic Number"
       },
       {
         "exportName": "Text",
         "slug": "text",
         "source": "src/control/variants/text.tsx",
+        "usage": ["src/control/variants/text.tsx"],
         "title": "Text"
       },
       {
         "exportName": "Textarea",
         "slug": "textarea",
         "source": "src/control/variants/textarea.tsx",
+        "usage": ["src/control/variants/textarea.tsx"],
         "title": "Textarea"
       },
       {
         "exportName": "Boolean",
         "slug": "boolean",
         "source": "src/control/variants/boolean.tsx",
+        "usage": ["src/control/variants/boolean.tsx"],
         "title": "Boolean"
       },
       {
         "exportName": "Segmented",
         "slug": "segmented",
         "source": "src/control/variants/segmented.tsx",
+        "usage": ["src/control/variants/segmented.tsx"],
         "title": "Segmented"
       },
       {
         "exportName": "Select",
         "slug": "select",
         "source": "src/control/variants/select.tsx",
+        "usage": ["src/control/variants/select.tsx"],
         "title": "Select"
-      },
-      {
-        "exportName": "Color",
-        "slug": "color",
-        "source": "src/control/variants/color.tsx",
-        "title": "Color"
       },
       {
         "exportName": "Image",
         "slug": "image",
         "source": "src/control/variants/image.tsx",
+        "usage": ["src/control/variants/image.tsx"],
         "title": "Image"
-      },
-      {
-        "exportName": "Pad",
-        "slug": "pad",
-        "source": "src/control/variants/pad.tsx",
-        "title": "Pad"
-      },
-      {
-        "exportName": "Spring",
-        "slug": "spring",
-        "source": "src/control/variants/spring.tsx",
-        "title": "Spring"
-      },
-      {
-        "exportName": "Transition",
-        "slug": "transition",
-        "source": "src/control/variants/transition.tsx",
-        "title": "Transition"
       },
       {
         "exportName": "Action",
         "slug": "action",
         "source": "src/control/variants/action.tsx",
+        "usage": ["src/control/variants/action.tsx"],
         "title": "Action"
       },
       {
         "exportName": "Section",
         "slug": "section",
         "source": "src/control/variants/section.tsx",
+        "usage": ["src/control/variants/section.tsx"],
         "title": "Section"
       },
       {
         "exportName": "Group",
         "slug": "group",
         "source": "src/control/variants/group.tsx",
+        "usage": ["src/control/variants/group.tsx"],
         "title": "Group"
       },
       {
         "exportName": "Row",
         "slug": "row",
         "source": "src/control/variants/row.tsx",
+        "usage": ["src/control/variants/row.tsx"],
         "title": "Row"
       }
     ]
@@ -1585,24 +1810,28 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/copy-button/variants/overview.tsx",
+        "usage": ["src/copy-button/variants/overview.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Buttons",
         "slug": "buttons",
         "source": "src/copy-button/variants/buttons.tsx",
+        "usage": ["src/copy-button/variants/buttons.tsx"],
         "title": "Buttons"
       },
       {
         "exportName": "Input",
         "slug": "input",
         "source": "src/copy-button/variants/input.tsx",
+        "usage": ["src/copy-button/variants/input.tsx"],
         "title": "Input"
       },
       {
         "exportName": "DisplayValue",
         "slug": "display-value",
         "source": "src/copy-button/variants/display-value.tsx",
+        "usage": ["src/copy-button/variants/display-value.tsx"],
         "title": "Display Value"
       }
     ]
@@ -1615,12 +1844,14 @@
         "exportName": "ExternalStyles",
         "slug": "external-styles",
         "source": "src/csp-provider/variants/external-styles.tsx",
+        "usage": ["src/csp-provider/variants/external-styles.tsx"],
         "title": "External Styles"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
         "source": "src/csp-provider/variants/showcase.tsx",
+        "usage": ["src/csp-provider/examples/csp-provider-demo.tsx"],
         "title": "Showcase"
       }
     ]
@@ -1633,30 +1864,55 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/data-table/variants/playground.tsx",
+        "usage": [
+          "src/data-table/variants/playground.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/data-table/variants/overview.tsx",
+        "usage": [
+          "src/data-table/variants/overview.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
         "title": "Overview"
       },
       {
         "exportName": "EmptyState",
         "slug": "empty",
         "source": "src/data-table/variants/empty.tsx",
+        "usage": [
+          "src/data-table/variants/empty.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
         "title": "Empty"
       },
       {
         "exportName": "ErrorState",
         "slug": "error",
         "source": "src/data-table/variants/error.tsx",
+        "usage": [
+          "src/data-table/variants/error.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
         "title": "Error"
       },
       {
         "exportName": "Rtl",
         "slug": "rtl",
         "source": "src/data-table/variants/rtl.tsx",
+        "usage": [
+          "src/data-table/variants/rtl.tsx",
+          "src/data-table/helpers.tsx",
+          "src/loading.tsx"
+        ],
         "title": "RTL"
       }
     ]
@@ -1669,66 +1925,77 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/date-picker/variants/playground.tsx",
+        "usage": ["src/date-picker/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/date-picker/variants/overview.tsx",
+        "usage": ["src/date-picker/examples/date-picker-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/date-picker/variants/basic.tsx",
+        "usage": ["src/date-picker/variants/basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Range",
         "slug": "range",
         "source": "src/date-picker/variants/range.tsx",
+        "usage": ["src/date-picker/variants/range.tsx"],
         "title": "Range"
       },
       {
         "exportName": "Trigger",
         "slug": "trigger",
         "source": "src/date-picker/variants/trigger.tsx",
+        "usage": ["src/date-picker/variants/trigger.tsx"],
         "title": "Trigger"
       },
       {
         "exportName": "DateOfBirth",
         "slug": "date-of-birth",
         "source": "src/date-picker/variants/date-of-birth.tsx",
+        "usage": ["src/date-picker/variants/date-of-birth.tsx"],
         "title": "Date Of Birth"
       },
       {
         "exportName": "Presets",
         "slug": "presets",
         "source": "src/date-picker/variants/presets.tsx",
+        "usage": ["src/date-picker/variants/presets.tsx"],
         "title": "Presets"
       },
       {
         "exportName": "WithTime",
         "slug": "with-time",
         "source": "src/date-picker/variants/with-time.tsx",
+        "usage": ["src/date-picker/variants/with-time.tsx"],
         "title": "With Time"
       },
       {
         "exportName": "Localized",
         "slug": "localized",
         "source": "src/date-picker/variants/localized.tsx",
+        "usage": ["src/date-picker/variants/localized.tsx"],
         "title": "Localized"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/date-picker/variants/disabled.tsx",
+        "usage": ["src/date-picker/variants/disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/date-picker/variants/form.tsx",
+        "usage": ["src/date-picker/variants/form.tsx"],
         "title": "Form"
       }
     ]
@@ -1741,42 +2008,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/dialog/variants/playground.tsx",
+        "usage": ["src/dialog/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/dialog/variants/overview.tsx",
+        "usage": ["src/dialog/examples/dialog-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "CustomCloseButton",
         "slug": "custom-close-button",
         "source": "src/dialog/variants/custom-close-button.tsx",
+        "usage": ["src/dialog/examples/dialog-close-button.tsx"],
         "title": "Custom Close Button"
       },
       {
         "exportName": "NoCloseButton",
         "slug": "no-close-button",
         "source": "src/dialog/variants/no-close-button.tsx",
+        "usage": ["src/dialog/examples/dialog-no-close-button.tsx"],
         "title": "No Close Button"
       },
       {
         "exportName": "StickyFooter",
         "slug": "sticky-footer",
         "source": "src/dialog/variants/sticky-footer.tsx",
+        "usage": ["src/dialog/examples/dialog-sticky-footer.tsx"],
         "title": "Sticky Footer"
       },
       {
         "exportName": "ScrollableContent",
         "slug": "scrollable-content",
         "source": "src/dialog/variants/scrollable-content.tsx",
+        "usage": ["src/dialog/examples/dialog-scrollable-content.tsx"],
         "title": "Scrollable Content"
       },
       {
         "exportName": "Programmatic",
         "slug": "programmatic",
         "source": "src/dialog/variants/programmatic.tsx",
+        "usage": ["src/dialog/variants/programmatic.tsx"],
         "title": "Programmatic opening"
       }
     ]
@@ -1789,54 +2063,63 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/diff-view/variants/overview.tsx",
+        "usage": ["src/diff-view/variants/overview.tsx", "src/diff-view/examples/files.ts"],
         "title": "Overview"
       },
       {
         "exportName": "Layouts",
         "slug": "layouts",
         "source": "src/diff-view/variants/layouts.tsx",
+        "usage": ["src/diff-view/variants/layouts.tsx", "src/diff-view/examples/files.ts"],
         "title": "Layouts"
       },
       {
         "exportName": "Highlighting",
         "slug": "highlighting",
         "source": "src/diff-view/variants/highlighting.tsx",
+        "usage": ["src/diff-view/variants/highlighting.tsx", "src/diff-view/examples/files.ts"],
         "title": "Highlighting"
       },
       {
         "exportName": "Context",
         "slug": "context",
         "source": "src/diff-view/variants/context.tsx",
+        "usage": ["src/diff-view/variants/context.tsx"],
         "title": "Context"
       },
       {
         "exportName": "Annotations",
         "slug": "annotations",
         "source": "src/diff-view/variants/annotations.tsx",
+        "usage": ["src/diff-view/variants/annotations.tsx", "src/diff-view/examples/files.ts"],
         "title": "Annotations"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
         "source": "src/diff-view/variants/composition.tsx",
+        "usage": ["src/diff-view/variants/composition.tsx", "src/diff-view/examples/files.ts"],
         "title": "Composition"
       },
       {
         "exportName": "States",
         "slug": "states",
         "source": "src/diff-view/variants/states.tsx",
+        "usage": ["src/diff-view/variants/states.tsx", "src/diff-view/examples/files.ts"],
         "title": "States"
       },
       {
         "exportName": "ChangingSource",
         "slug": "changing-source",
         "source": "src/diff-view/variants/changing-source.tsx",
+        "usage": ["src/diff-view/variants/changing-source.tsx", "src/diff-view/examples/files.ts"],
         "title": "Changing Source"
       },
       {
         "exportName": "Patch",
         "slug": "patch",
         "source": "src/diff-view/variants/patch.tsx",
+        "usage": ["src/diff-view/variants/patch.tsx"],
         "title": "Patch"
       }
     ]
@@ -1849,12 +2132,14 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/direction/variants/playground.tsx",
+        "usage": ["src/direction/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/direction/variants/overview.tsx",
+        "usage": ["src/direction/examples/direction-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -1867,66 +2152,80 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/drawer/variants/playground.tsx",
+        "usage": ["src/drawer/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/drawer/variants/overview.tsx",
+        "usage": ["src/drawer/examples/drawer-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "SwipeHandle",
         "slug": "swipe-handle",
         "source": "src/drawer/variants/swipe-handle.tsx",
+        "usage": ["src/drawer/examples/drawer-swipe-handle.tsx"],
         "title": "Swipe Handle"
       },
       {
         "exportName": "NonModal",
         "slug": "non-modal",
         "source": "src/drawer/variants/non-modal.tsx",
+        "usage": ["src/drawer/examples/drawer-non-modal.tsx"],
         "title": "Non Modal"
       },
       {
         "exportName": "SnapPoints",
         "slug": "snap-points",
         "source": "src/drawer/variants/snap-points.tsx",
+        "usage": ["src/drawer/examples/drawer-snap-points.tsx"],
         "title": "Snap Points"
       },
       {
         "exportName": "Position",
         "slug": "position",
         "source": "src/drawer/variants/position.tsx",
+        "usage": ["src/drawer/examples/drawer-sides.tsx"],
         "title": "Position"
       },
       {
         "exportName": "Nested",
         "slug": "nested",
         "source": "src/drawer/variants/nested.tsx",
+        "usage": ["src/drawer/examples/drawer-nested.tsx"],
         "title": "Nested"
       },
       {
         "exportName": "CustomSizes",
         "slug": "custom-sizes",
         "source": "src/drawer/variants/custom-sizes.tsx",
+        "usage": [
+          "src/drawer/variants/custom-sizes.tsx",
+          "src/drawer/examples/drawer-variants.tsx"
+        ],
         "title": "Custom Sizes"
       },
       {
         "exportName": "Styling",
         "slug": "styling",
         "source": "src/drawer/variants/styling.tsx",
+        "usage": ["src/drawer/variants/styling.tsx", "src/drawer/examples/drawer-variants.tsx"],
         "title": "Styling"
       },
       {
         "exportName": "Responsive",
         "slug": "responsive",
         "source": "src/drawer/variants/responsive.tsx",
+        "usage": ["src/drawer/variants/responsive.tsx", "src/drawer/examples/drawer-variants.tsx"],
         "title": "Responsive"
       },
       {
         "exportName": "SearchAndControls",
         "slug": "search-and-controls",
         "source": "src/drawer/variants/search-and-controls.tsx",
+        "usage": ["src/drawer/variants/search-and-controls.tsx"],
         "title": "Search and controls"
       }
     ]
@@ -1939,84 +2238,98 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/dropdown-menu/variants/playground.tsx",
+        "usage": ["src/dropdown-menu/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/dropdown-menu/variants/overview.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "RadioGroup",
         "slug": "radio-group",
         "source": "src/dropdown-menu/variants/radio-group.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-radio-group.tsx"],
         "title": "Radio Group"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/dropdown-menu/variants/basic.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Submenu",
         "slug": "submenu",
         "source": "src/dropdown-menu/variants/submenu.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-submenu.tsx"],
         "title": "Submenu"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
         "source": "src/dropdown-menu/variants/shortcuts.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-shortcuts.tsx"],
         "title": "Shortcuts"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
         "source": "src/dropdown-menu/variants/icons.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-icons.tsx"],
         "title": "Icons"
       },
       {
         "exportName": "Checkboxes",
         "slug": "checkboxes",
         "source": "src/dropdown-menu/variants/checkboxes.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-checkboxes.tsx"],
         "title": "Checkboxes"
       },
       {
         "exportName": "CheckboxesIcons",
         "slug": "checkboxes-icons",
         "source": "src/dropdown-menu/variants/checkboxes-icons.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-checkboxes-icons.tsx"],
         "title": "Checkboxes Icons"
       },
       {
         "exportName": "RadioIcons",
         "slug": "radio-icons",
         "source": "src/dropdown-menu/variants/radio-icons.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-radio-icons.tsx"],
         "title": "Radio Icons"
       },
       {
         "exportName": "ErrorVariant",
         "slug": "error-variant",
         "source": "src/dropdown-menu/variants/error-variant.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-error.tsx"],
         "title": "Error"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
         "source": "src/dropdown-menu/variants/avatar.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-avatar.tsx"],
         "title": "Avatar"
       },
       {
         "exportName": "Complex",
         "slug": "complex",
         "source": "src/dropdown-menu/variants/complex.tsx",
+        "usage": ["src/dropdown-menu/examples/dropdown-menu-complex.tsx"],
         "title": "Complex"
       },
       {
         "exportName": "Searchable",
         "slug": "searchable",
         "source": "src/dropdown-menu/variants/searchable.tsx",
+        "usage": ["src/dropdown-menu/variants/searchable.tsx"],
         "title": "Searchable"
       }
     ]
@@ -2029,6 +2342,7 @@
         "exportName": "RenameTab",
         "slug": "rename-tab",
         "source": "src/editable/variants/rename-tab.tsx",
+        "usage": ["src/editable/examples/editable-demo.tsx"],
         "title": "Rename Tab"
       }
     ]
@@ -2041,48 +2355,56 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/empty/variants/playground.tsx",
+        "usage": ["src/empty/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/empty/variants/overview.tsx",
+        "usage": ["src/empty/examples/empty-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
         "source": "src/empty/variants/avatar.tsx",
+        "usage": ["src/empty/examples/empty-avatar.tsx"],
         "title": "Avatar"
       },
       {
         "exportName": "AvatarGroup",
         "slug": "avatar-group",
         "source": "src/empty/variants/avatar-group.tsx",
+        "usage": ["src/empty/examples/empty-avatar-group.tsx"],
         "title": "Avatar Group"
       },
       {
         "exportName": "Inputgroup",
         "slug": "inputgroup",
         "source": "src/empty/variants/inputgroup.tsx",
+        "usage": ["src/empty/examples/empty-input-group.tsx"],
         "title": "Inputgroup"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
         "source": "src/empty/variants/input-group.tsx",
+        "usage": ["src/empty/examples/empty-input-group.tsx"],
         "title": "Input Group"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
         "source": "src/empty/variants/outline.tsx",
+        "usage": ["src/empty/examples/empty-outline.tsx"],
         "title": "Outline"
       },
       {
         "exportName": "Background",
         "slug": "background",
         "source": "src/empty/variants/background.tsx",
+        "usage": ["src/empty/examples/empty-background.tsx"],
         "title": "Background"
       }
     ]
@@ -2095,96 +2417,112 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/field/variants/playground.tsx",
+        "usage": ["src/field/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/field/variants/overview.tsx",
+        "usage": ["src/field/examples/field-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Input",
         "slug": "input",
         "source": "src/field/variants/input.tsx",
+        "usage": ["src/field/examples/field-input.tsx"],
         "title": "Input"
       },
       {
         "exportName": "Textarea",
         "slug": "textarea",
         "source": "src/field/variants/textarea.tsx",
+        "usage": ["src/field/examples/field-textarea.tsx"],
         "title": "Textarea"
       },
       {
         "exportName": "Select",
         "slug": "select",
         "source": "src/field/variants/select.tsx",
+        "usage": ["src/field/examples/field-select.tsx"],
         "title": "Select"
       },
       {
         "exportName": "Slider",
         "slug": "slider",
         "source": "src/field/variants/slider.tsx",
+        "usage": ["src/field/examples/field-slider.tsx"],
         "title": "Slider"
       },
       {
         "exportName": "Fieldset",
         "slug": "fieldset",
         "source": "src/field/variants/fieldset.tsx",
+        "usage": ["src/field/examples/field-fieldset.tsx"],
         "title": "Fieldset"
       },
       {
         "exportName": "Checkbox",
         "slug": "checkbox",
         "source": "src/field/variants/checkbox.tsx",
+        "usage": ["src/field/examples/field-checkbox.tsx"],
         "title": "Checkbox"
       },
       {
         "exportName": "Radio",
         "slug": "radio",
         "source": "src/field/variants/radio.tsx",
+        "usage": ["src/field/examples/field-radio.tsx"],
         "title": "Radio"
       },
       {
         "exportName": "Switch",
         "slug": "switch",
         "source": "src/field/variants/switch.tsx",
+        "usage": ["src/field/examples/field-switch.tsx"],
         "title": "Switch"
       },
       {
         "exportName": "ChoiceCard",
         "slug": "choice-card",
         "source": "src/field/variants/choice-card.tsx",
+        "usage": ["src/field/examples/field-choice-card.tsx"],
         "title": "Choice Card"
       },
       {
         "exportName": "FieldGroup",
         "slug": "field-group",
         "source": "src/field/variants/field-group.tsx",
+        "usage": ["src/field/examples/field-group.tsx"],
         "title": "Field Group"
       },
       {
         "exportName": "ResponsiveLayout",
         "slug": "responsive-layout",
         "source": "src/field/variants/responsive-layout.tsx",
+        "usage": ["src/field/examples/field-responsive.tsx"],
         "title": "Responsive Layout"
       },
       {
         "exportName": "Group",
         "slug": "group",
         "source": "src/field/variants/group.tsx",
+        "usage": ["src/field/examples/field-notification-settings.tsx"],
         "title": "Group"
       },
       {
         "exportName": "Responsive",
         "slug": "responsive",
         "source": "src/field/variants/responsive.tsx",
+        "usage": ["src/field/examples/field-profile-form.tsx"],
         "title": "Responsive"
       },
       {
         "exportName": "ValidationAndErrors",
         "slug": "validation-and-errors",
         "source": "src/field/variants/validation-and-errors.tsx",
+        "usage": ["src/field/variants/validation-and-errors.tsx"],
         "title": "Validation And Errors"
       }
     ]
@@ -2197,18 +2535,21 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/file-tree/variants/overview.tsx",
+        "usage": ["src/file-tree/variants/overview.tsx", "src/file-tree/examples/paths.ts"],
         "title": "Overview"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
         "source": "src/file-tree/variants/composition.tsx",
+        "usage": ["src/file-tree/variants/composition.tsx", "src/file-tree/examples/paths.ts"],
         "title": "Composition"
       },
       {
         "exportName": "Changes",
         "slug": "changes",
         "source": "src/file-tree/variants/changes.tsx",
+        "usage": ["src/file-tree/variants/changes.tsx", "src/file-tree/examples/paths.ts"],
         "title": "Changes"
       }
     ]
@@ -2221,24 +2562,28 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/file-view/variants/overview.tsx",
+        "usage": ["src/file-view/variants/overview.tsx", "src/file-view/examples/file.ts"],
         "title": "Overview"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
         "source": "src/file-view/variants/composition.tsx",
+        "usage": ["src/file-view/variants/composition.tsx", "src/file-view/examples/file.ts"],
         "title": "Composition"
       },
       {
         "exportName": "Annotations",
         "slug": "annotations",
         "source": "src/file-view/variants/annotations.tsx",
+        "usage": ["src/file-view/variants/annotations.tsx", "src/file-view/examples/file.ts"],
         "title": "Annotations"
       },
       {
         "exportName": "States",
         "slug": "states",
         "source": "src/file-view/variants/states.tsx",
+        "usage": ["src/file-view/variants/states.tsx", "src/file-view/examples/file.ts"],
         "title": "States"
       }
     ]
@@ -2251,12 +2596,14 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/form/variants/playground.tsx",
+        "usage": ["src/form/variants/playground.tsx", "src/form/examples/form-demo.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Validation",
         "slug": "validation",
         "source": "src/form/variants/validation.tsx",
+        "usage": ["src/form/examples/form-validation.tsx"],
         "title": "Validation"
       }
     ]
@@ -2269,6 +2616,10 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/heatmap-chart/variants/playground.tsx",
+        "usage": [
+          "src/heatmap-chart/variants/playground.tsx",
+          "src/heatmap-chart/examples/data.ts"
+        ],
         "title": "Playground"
       }
     ]
@@ -2281,36 +2632,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/hover-card/variants/playground.tsx",
+        "usage": ["src/hover-card/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/hover-card/variants/overview.tsx",
+        "usage": ["src/hover-card/examples/hover-card-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/hover-card/variants/basic.tsx",
+        "usage": ["src/hover-card/examples/hover-card-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Sides",
         "slug": "sides",
         "source": "src/hover-card/variants/sides.tsx",
+        "usage": ["src/hover-card/examples/hover-card-sides.tsx"],
         "title": "Sides"
       },
       {
         "exportName": "TriggerDelays",
         "slug": "trigger-delays",
         "source": "src/hover-card/variants/trigger-delays.tsx",
+        "usage": ["src/hover-card/variants/trigger-delays.tsx"],
         "title": "Trigger Delays"
       },
       {
         "exportName": "Positioning",
         "slug": "positioning",
         "source": "src/hover-card/variants/positioning.tsx",
+        "usage": ["src/hover-card/variants/positioning.tsx"],
         "title": "Positioning"
       }
     ]
@@ -2323,108 +2680,126 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/input/variants/playground.tsx",
+        "usage": ["src/input/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/input/variants/overview.tsx",
+        "usage": ["src/input/examples/input-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "DisabledControl",
         "slug": "disabled-control",
         "source": "src/input/variants/disabled-control.tsx",
+        "usage": ["src/input/variants/disabled-control.tsx"],
         "title": "Disabled Control"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/input/variants/invalid.tsx",
+        "usage": ["src/input/variants/invalid.tsx"],
         "title": "Invalid"
       },
       {
         "exportName": "FileControl",
         "slug": "file-control",
         "source": "src/input/variants/file-control.tsx",
+        "usage": ["src/input/variants/file-control.tsx"],
         "title": "File Control"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/input/variants/disabled.tsx",
+        "usage": ["src/input/examples/input-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "File",
         "slug": "file",
         "source": "src/input/variants/file.tsx",
+        "usage": ["src/input/examples/input-file.tsx"],
         "title": "File"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/input/variants/basic.tsx",
+        "usage": ["src/input/examples/input-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Field",
         "slug": "field",
         "source": "src/input/variants/field.tsx",
+        "usage": ["src/input/examples/input-field.tsx"],
         "title": "Field"
       },
       {
         "exportName": "Fieldgroup",
         "slug": "fieldgroup",
         "source": "src/input/variants/fieldgroup.tsx",
+        "usage": ["src/input/examples/input-fieldgroup.tsx"],
         "title": "Field Group"
       },
       {
         "exportName": "Inline",
         "slug": "inline",
         "source": "src/input/variants/inline.tsx",
+        "usage": ["src/input/examples/input-inline.tsx"],
         "title": "Inline"
       },
       {
         "exportName": "Grid",
         "slug": "grid",
         "source": "src/input/variants/grid.tsx",
+        "usage": ["src/input/examples/input-grid.tsx"],
         "title": "Grid"
       },
       {
         "exportName": "Required",
         "slug": "required",
         "source": "src/input/variants/required.tsx",
+        "usage": ["src/input/examples/input-required.tsx"],
         "title": "Required"
       },
       {
         "exportName": "Badge",
         "slug": "badge",
         "source": "src/input/variants/badge.tsx",
+        "usage": ["src/input/examples/input-badge.tsx"],
         "title": "Badge"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
         "source": "src/input/variants/input-group.tsx",
+        "usage": ["src/input/examples/input-input-group.tsx"],
         "title": "Input Group"
       },
       {
         "exportName": "Password",
         "slug": "password",
         "source": "src/input/variants/password.tsx",
+        "usage": ["src/input/examples/input-password.tsx"],
         "title": "Password"
       },
       {
         "exportName": "ButtonGroup",
         "slug": "button-group",
         "source": "src/input/variants/button-group.tsx",
+        "usage": ["src/input/examples/input-button-group.tsx"],
         "title": "Button Group"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/input/variants/form.tsx",
+        "usage": ["src/input/examples/input-form.tsx"],
         "title": "Form"
       }
     ]
@@ -2437,78 +2812,91 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/input-group/variants/playground.tsx",
+        "usage": ["src/input-group/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/input-group/variants/overview.tsx",
+        "usage": ["src/input-group/examples/input-group-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
         "source": "src/input-group/variants/icon.tsx",
+        "usage": ["src/input-group/examples/input-group-icon.tsx"],
         "title": "Icon"
       },
       {
         "exportName": "Text",
         "slug": "text",
         "source": "src/input-group/variants/text.tsx",
+        "usage": ["src/input-group/examples/input-group-text.tsx"],
         "title": "Text"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
         "source": "src/input-group/variants/dropdown.tsx",
+        "usage": ["src/input-group/examples/input-group-dropdown.tsx"],
         "title": "Dropdown"
       },
       {
         "exportName": "InlineStart",
         "slug": "inline-start",
         "source": "src/input-group/variants/inline-start.tsx",
+        "usage": ["src/input-group/examples/input-group-inline-start.tsx"],
         "title": "Inline Start"
       },
       {
         "exportName": "InlineEnd",
         "slug": "inline-end",
         "source": "src/input-group/variants/inline-end.tsx",
+        "usage": ["src/input-group/examples/input-group-inline-end.tsx"],
         "title": "Inline End"
       },
       {
         "exportName": "BlockStart",
         "slug": "block-start",
         "source": "src/input-group/variants/block-start.tsx",
+        "usage": ["src/input-group/examples/input-group-block-start.tsx"],
         "title": "Block Start"
       },
       {
         "exportName": "BlockEnd",
         "slug": "block-end",
         "source": "src/input-group/variants/block-end.tsx",
+        "usage": ["src/input-group/examples/input-group-block-end.tsx"],
         "title": "Block End"
       },
       {
         "exportName": "Kbd",
         "slug": "kbd",
         "source": "src/input-group/variants/kbd.tsx",
+        "usage": ["src/input-group/examples/input-group-kbd.tsx"],
         "title": "Kbd"
       },
       {
         "exportName": "Textarea",
         "slug": "textarea",
         "source": "src/input-group/variants/textarea.tsx",
+        "usage": ["src/input-group/examples/input-group-textarea.tsx"],
         "title": "Textarea"
       },
       {
         "exportName": "Button",
         "slug": "button",
         "source": "src/input-group/variants/button.tsx",
+        "usage": ["src/input-group/examples/input-group-button.tsx"],
         "title": "Button"
       },
       {
         "exportName": "Custom",
         "slug": "custom",
         "source": "src/input-group/variants/custom.tsx",
+        "usage": ["src/input-group/examples/input-group-custom.tsx"],
         "title": "Custom Input"
       }
     ]
@@ -2521,84 +2909,101 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/item/variants/playground.tsx",
+        "usage": ["src/item/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/item/variants/overview.tsx",
+        "usage": ["src/item/examples/item-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Variant",
         "slug": "variant",
         "source": "src/item/variants/variant.tsx",
+        "usage": ["src/item/examples/item-variant.tsx"],
         "title": "Variant"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/item/variants/size.tsx",
+        "usage": ["src/item/examples/item-size.tsx"],
         "title": "Size"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
         "source": "src/item/variants/icon.tsx",
+        "usage": ["src/item/examples/item-icon.tsx"],
         "title": "Icon"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
         "source": "src/item/variants/avatar.tsx",
+        "usage": ["src/item/examples/item-avatar.tsx"],
         "title": "Avatar"
       },
       {
         "exportName": "Group",
         "slug": "group",
         "source": "src/item/variants/group.tsx",
+        "usage": ["src/item/examples/item-group.tsx"],
         "title": "Group"
       },
       {
         "exportName": "SettingsPanel",
         "slug": "settings-panel",
         "source": "src/item/variants/settings-panel.tsx",
+        "usage": [
+          "src/item/variants/settings-panel.tsx",
+          "src/item/examples/item-settings-panel.tsx"
+        ],
         "title": "Settings Panel"
       },
       {
         "exportName": "BookLibrary",
         "slug": "book-library",
         "source": "src/item/variants/book-library.tsx",
+        "usage": ["src/item/examples/item-book-library.tsx"],
         "title": "Book Library"
       },
       {
         "exportName": "JoinedSelection",
         "slug": "joined-selection",
         "source": "src/item/variants/joined-selection.tsx",
+        "usage": ["src/item/examples/item-joined-selection.tsx"],
         "title": "Joined Selection"
       },
       {
         "exportName": "Link",
         "slug": "link",
         "source": "src/item/variants/link.tsx",
+        "usage": ["src/item/examples/item-link.tsx"],
         "title": "Link"
       },
       {
         "exportName": "Dropdown",
         "slug": "dropdown",
         "source": "src/item/variants/dropdown.tsx",
+        "usage": ["src/item/examples/item-dropdown.tsx"],
         "title": "Dropdown"
       },
       {
         "exportName": "Header",
         "slug": "header",
         "source": "src/item/variants/header.tsx",
+        "usage": ["src/item/examples/item-header.tsx"],
         "title": "Header"
       },
       {
         "exportName": "Image",
         "slug": "image",
         "source": "src/item/variants/image.tsx",
+        "usage": ["src/item/examples/item-image.tsx"],
         "title": "Image"
       }
     ]
@@ -2611,36 +3016,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/kbd/variants/playground.tsx",
+        "usage": ["src/kbd/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/kbd/variants/overview.tsx",
+        "usage": ["src/kbd/examples/kbd-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Button",
         "slug": "button",
         "source": "src/kbd/variants/button.tsx",
+        "usage": ["src/kbd/examples/kbd-button.tsx"],
         "title": "Button"
       },
       {
         "exportName": "Hint",
         "slug": "hint",
         "source": "src/kbd/variants/hint.tsx",
+        "usage": ["src/kbd/examples/kbd-hint.tsx"],
         "title": "Hint"
       },
       {
         "exportName": "Tooltip",
         "slug": "tooltip",
         "source": "src/kbd/variants/tooltip.tsx",
+        "usage": ["src/kbd/examples/kbd-tooltip.tsx"],
         "title": "Tooltip"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
         "source": "src/kbd/variants/input-group.tsx",
+        "usage": ["src/kbd/examples/kbd-input-group.tsx"],
         "title": "Input Group"
       }
     ]
@@ -2653,6 +3064,7 @@
         "exportName": "Gallery",
         "slug": "gallery",
         "source": "src/lightbox/variants/gallery.tsx",
+        "usage": ["src/lightbox/variants/gallery.tsx"],
         "title": "Gallery"
       }
     ]
@@ -2665,12 +3077,14 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/line-chart/variants/playground.tsx",
+        "usage": ["src/line-chart/variants/playground.tsx", "src/line-chart/examples/data.ts"],
         "title": "Playground"
       },
       {
         "exportName": "Time",
         "slug": "time",
         "source": "src/line-chart/variants/time.tsx",
+        "usage": ["src/line-chart/variants/time.tsx"],
         "title": "Time"
       }
     ]
@@ -2683,6 +3097,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/link/variants/overview.tsx",
+        "usage": ["src/link/examples/link-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -2695,18 +3110,21 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/logo-loader/variants/playground.tsx",
+        "usage": ["src/logo-loader/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Request",
         "slug": "request",
         "source": "src/logo-loader/variants/request.tsx",
+        "usage": ["src/logo-loader/examples/logo-loader-request.tsx", "src/loading.tsx"],
         "title": "Request"
       },
       {
         "exportName": "Replay",
         "slug": "replay",
         "source": "src/logo-loader/variants/replay.tsx",
+        "usage": ["src/logo-loader/variants/replay.tsx"],
         "title": "Replay"
       }
     ]
@@ -2719,54 +3137,63 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/marker/variants/playground.tsx",
+        "usage": ["src/marker/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/marker/variants/overview.tsx",
+        "usage": ["src/marker/examples/marker-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Variants",
         "slug": "variants",
         "source": "src/marker/variants/variants.tsx",
+        "usage": ["src/marker/variants/variants.tsx", "src/marker/examples/marker-variants.tsx"],
         "title": "Variants"
       },
       {
         "exportName": "Status",
         "slug": "status",
         "source": "src/marker/variants/status.tsx",
+        "usage": ["src/marker/variants/status.tsx", "src/marker/examples/marker-status.tsx"],
         "title": "Status"
       },
       {
         "exportName": "Shimmer",
         "slug": "shimmer",
         "source": "src/marker/variants/shimmer.tsx",
+        "usage": ["src/marker/examples/marker-shimmer.tsx"],
         "title": "Shimmer"
       },
       {
         "exportName": "Separator",
         "slug": "separator",
         "source": "src/marker/variants/separator.tsx",
+        "usage": ["src/marker/variants/separator.tsx", "src/marker/examples/marker-separator.tsx"],
         "title": "Separator"
       },
       {
         "exportName": "Border",
         "slug": "border",
         "source": "src/marker/variants/border.tsx",
+        "usage": ["src/marker/examples/marker-border.tsx"],
         "title": "Border"
       },
       {
         "exportName": "Icon",
         "slug": "icon",
         "source": "src/marker/variants/icon.tsx",
+        "usage": ["src/marker/variants/icon.tsx", "src/marker/examples/marker-icon.tsx"],
         "title": "With Icon"
       },
       {
         "exportName": "LinkButton",
         "slug": "link-button",
         "source": "src/marker/variants/link-button.tsx",
+        "usage": ["src/marker/examples/marker-link-button.tsx"],
         "title": "Links and Buttons"
       }
     ]
@@ -2779,42 +3206,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/menubar/variants/playground.tsx",
+        "usage": ["src/menubar/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/menubar/variants/overview.tsx",
+        "usage": ["src/menubar/examples/menubar-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Checkbox",
         "slug": "checkbox",
         "source": "src/menubar/variants/checkbox.tsx",
+        "usage": ["src/menubar/examples/menubar-checkbox.tsx"],
         "title": "Checkbox"
       },
       {
         "exportName": "Radio",
         "slug": "radio",
         "source": "src/menubar/variants/radio.tsx",
+        "usage": ["src/menubar/examples/menubar-radio.tsx"],
         "title": "Radio"
       },
       {
         "exportName": "Submenu",
         "slug": "submenu",
         "source": "src/menubar/variants/submenu.tsx",
+        "usage": ["src/menubar/examples/menubar-submenu.tsx"],
         "title": "Submenu"
       },
       {
         "exportName": "WithIcons",
         "slug": "with-icons",
         "source": "src/menubar/variants/with-icons.tsx",
+        "usage": ["src/menubar/examples/menubar-icons.tsx"],
         "title": "With Icons"
       },
       {
         "exportName": "Searchable",
         "slug": "searchable",
         "source": "src/menubar/variants/searchable.tsx",
+        "usage": ["src/menubar/variants/searchable.tsx"],
         "title": "Searchable"
       }
     ]
@@ -2827,42 +3261,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/message/variants/playground.tsx",
+        "usage": ["src/message/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/message/variants/overview.tsx",
+        "usage": ["src/message/examples/message-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
         "source": "src/message/variants/avatar.tsx",
+        "usage": ["src/message/examples/message-avatar.tsx"],
         "title": "Avatar"
       },
       {
         "exportName": "Group",
         "slug": "group",
         "source": "src/message/variants/group.tsx",
+        "usage": ["src/message/examples/message-group.tsx"],
         "title": "Group"
       },
       {
         "exportName": "HeaderFooter",
         "slug": "header-footer",
         "source": "src/message/variants/header-footer.tsx",
+        "usage": ["src/message/examples/message-header-footer.tsx"],
         "title": "Header and Footer"
       },
       {
         "exportName": "Actions",
         "slug": "actions",
         "source": "src/message/variants/actions.tsx",
+        "usage": ["src/message/examples/message-actions.tsx"],
         "title": "Actions"
       },
       {
         "exportName": "Attachment",
         "slug": "attachment",
         "source": "src/message/variants/attachment.tsx",
+        "usage": ["src/message/examples/message-attachment.tsx"],
         "title": "Attachment"
       }
     ]
@@ -2875,72 +3316,108 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/message-scroller/variants/playground.tsx",
+        "usage": ["src/message-scroller/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/message-scroller/variants/overview.tsx",
+        "usage": ["src/message-scroller/examples/message-scroller-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "GroupChat",
         "slug": "group-chat",
         "source": "src/message-scroller/variants/group-chat.tsx",
+        "usage": ["src/message-scroller/examples/message-scroller-group-chat.tsx"],
         "title": "Group Chat"
       },
       {
         "exportName": "OpeningPosition",
         "slug": "opening-position",
         "source": "src/message-scroller/variants/opening-position.tsx",
+        "usage": ["src/message-scroller/examples/message-scroller-opening-position.tsx"],
         "title": "Opening Position"
       },
       {
         "exportName": "AnchoredTurns",
         "slug": "anchored-turns",
         "source": "src/message-scroller/variants/anchored-turns.tsx",
+        "usage": [
+          "src/message-scroller/variants/anchored-turns.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Anchored Turns"
       },
       {
         "exportName": "PreviousTurnContext",
         "slug": "previous-turn-context",
         "source": "src/message-scroller/variants/previous-turn-context.tsx",
+        "usage": [
+          "src/message-scroller/variants/previous-turn-context.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Previous Turn Context"
       },
       {
         "exportName": "StreamingReply",
         "slug": "streaming-reply",
         "source": "src/message-scroller/variants/streaming-reply.tsx",
+        "usage": [
+          "src/message-scroller/variants/streaming-reply.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Streaming Reply"
       },
       {
         "exportName": "LoadEarlierHistory",
         "slug": "load-earlier-history",
         "source": "src/message-scroller/variants/load-earlier-history.tsx",
+        "usage": [
+          "src/message-scroller/variants/load-earlier-history.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Load Earlier History"
       },
       {
         "exportName": "AnimatedReply",
         "slug": "animated-reply",
         "source": "src/message-scroller/variants/animated-reply.tsx",
+        "usage": [
+          "src/message-scroller/variants/animated-reply.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Animated Reply"
       },
       {
         "exportName": "ScrollCommands",
         "slug": "scroll-commands",
         "source": "src/message-scroller/variants/scroll-commands.tsx",
+        "usage": [
+          "src/message-scroller/variants/scroll-commands.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Scroll Commands"
       },
       {
         "exportName": "Visibility",
         "slug": "visibility",
         "source": "src/message-scroller/variants/visibility.tsx",
+        "usage": [
+          "src/message-scroller/variants/visibility.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Visibility"
       },
       {
         "exportName": "Scrollable",
         "slug": "scrollable",
         "source": "src/message-scroller/variants/scrollable.tsx",
+        "usage": [
+          "src/message-scroller/variants/scrollable.tsx",
+          "src/message-scroller/examples/message-scroller-variants.tsx"
+        ],
         "title": "Scrollable"
       }
     ]
@@ -2953,18 +3430,21 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/meter/variants/playground.tsx",
+        "usage": ["src/meter/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/meter/variants/overview.tsx",
+        "usage": ["src/meter/examples/meter-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Range",
         "slug": "range",
         "source": "src/meter/variants/range.tsx",
+        "usage": ["src/meter/variants/range.tsx"],
         "title": "Range"
       }
     ]
@@ -2977,18 +3457,21 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/navigation-menu/variants/playground.tsx",
+        "usage": ["src/navigation-menu/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/navigation-menu/variants/overview.tsx",
+        "usage": ["src/navigation-menu/examples/navigation-menu-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "LinkComponent",
         "slug": "link-component",
         "source": "src/navigation-menu/variants/link-component.tsx",
+        "usage": ["src/navigation-menu/variants/link-component.tsx"],
         "title": "Link Component"
       }
     ]
@@ -3001,42 +3484,49 @@
         "exportName": "Default",
         "slug": "default",
         "source": "src/number-field/variants/default.tsx",
+        "usage": ["src/number-field/variants/default.tsx"],
         "title": "Default"
       },
       {
         "exportName": "Sizes",
         "slug": "sizes",
         "source": "src/number-field/variants/sizes.tsx",
+        "usage": ["src/number-field/variants/sizes.tsx"],
         "title": "Sizes"
       },
       {
         "exportName": "ScrubLabel",
         "slug": "scrub-label",
         "source": "src/number-field/variants/scrub-label.tsx",
+        "usage": ["src/number-field/variants/scrub-label.tsx"],
         "title": "Scrub Label"
       },
       {
         "exportName": "Formats",
         "slug": "formats",
         "source": "src/number-field/variants/formats.tsx",
+        "usage": ["src/number-field/variants/formats.tsx"],
         "title": "Formats"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/number-field/variants/controlled.tsx",
+        "usage": ["src/number-field/variants/controlled.tsx", "src/number-field/helpers.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Direction",
         "slug": "direction",
         "source": "src/number-field/variants/direction.tsx",
+        "usage": ["src/number-field/variants/direction.tsx"],
         "title": "Direction"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
         "source": "src/number-field/variants/showcase.tsx",
+        "usage": ["src/number-field/examples/number-field-demo.tsx"],
         "title": "Showcase"
       }
     ]
@@ -3049,66 +3539,77 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/otp-field/variants/playground.tsx",
+        "usage": ["src/otp-field/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/otp-field/variants/overview.tsx",
+        "usage": ["src/otp-field/examples/otp-field-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Separator",
         "slug": "separator",
         "source": "src/otp-field/variants/separator.tsx",
+        "usage": ["src/otp-field/examples/otp-field-separator.tsx"],
         "title": "Separator"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/otp-field/variants/controlled.tsx",
+        "usage": ["src/otp-field/examples/otp-field-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/otp-field/variants/form.tsx",
+        "usage": ["src/otp-field/examples/otp-field-form.tsx"],
         "title": "Form"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/otp-field/variants/disabled.tsx",
+        "usage": ["src/otp-field/examples/otp-field-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/otp-field/variants/invalid.tsx",
+        "usage": ["src/otp-field/examples/otp-field-invalid.tsx"],
         "title": "Invalid"
       },
       {
         "exportName": "Status",
         "slug": "status",
         "source": "src/otp-field/variants/status.tsx",
+        "usage": ["src/otp-field/examples/otp-field-status.tsx"],
         "title": "Status"
       },
       {
         "exportName": "Pattern",
         "slug": "pattern",
         "source": "src/otp-field/variants/pattern.tsx",
+        "usage": ["src/otp-field/examples/otp-field-pattern.tsx"],
         "title": "Pattern"
       },
       {
         "exportName": "FourDigits",
         "slug": "four-digits",
         "source": "src/otp-field/variants/four-digits.tsx",
+        "usage": ["src/otp-field/examples/otp-field-four-digits.tsx"],
         "title": "Four Digits"
       },
       {
         "exportName": "Alphanumeric",
         "slug": "alphanumeric",
         "source": "src/otp-field/variants/alphanumeric.tsx",
+        "usage": ["src/otp-field/examples/otp-field-alphanumeric.tsx"],
         "title": "Alphanumeric"
       }
     ]
@@ -3121,6 +3622,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/overlay-provider/variants/overview.tsx",
+        "usage": ["src/overlay-provider/examples/overlay-provider-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -3133,36 +3635,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/pagination/variants/playground.tsx",
+        "usage": ["src/pagination/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/pagination/variants/overview.tsx",
+        "usage": ["src/pagination/examples/pagination-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Simple",
         "slug": "simple",
         "source": "src/pagination/variants/simple.tsx",
+        "usage": ["src/pagination/examples/pagination-simple.tsx"],
         "title": "Simple"
       },
       {
         "exportName": "IconsOnly",
         "slug": "icons-only",
         "source": "src/pagination/variants/icons-only.tsx",
+        "usage": ["src/pagination/examples/pagination-icons-only.tsx"],
         "title": "Icons Only"
       },
       {
         "exportName": "Router",
         "slug": "router",
         "source": "src/pagination/variants/router.tsx",
+        "usage": ["src/pagination/examples/pagination-router.tsx"],
         "title": "Router"
       },
       {
         "exportName": "Table",
         "slug": "table",
         "source": "src/pagination/variants/table.tsx",
+        "usage": ["src/pagination/examples/pagination-table.tsx"],
         "title": "Table"
       }
     ]
@@ -3175,48 +3683,56 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/password-input/variants/playground.tsx",
+        "usage": ["src/password-input/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/password-input/variants/overview.tsx",
+        "usage": ["src/password-input/examples/password-input-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "NewPassword",
         "slug": "new-password",
         "source": "src/password-input/variants/new-password.tsx",
+        "usage": ["src/password-input/examples/password-input-new-password.tsx"],
         "title": "New Password"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/password-input/variants/form.tsx",
+        "usage": ["src/password-input/examples/password-input-form.tsx"],
         "title": "Form"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/password-input/variants/controlled.tsx",
+        "usage": ["src/password-input/examples/password-input-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Custom",
         "slug": "custom",
         "source": "src/password-input/variants/custom.tsx",
+        "usage": ["src/password-input/examples/password-input-custom.tsx"],
         "title": "Custom"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/password-input/variants/disabled.tsx",
+        "usage": ["src/password-input/examples/password-input-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/password-input/variants/invalid.tsx",
+        "usage": ["src/password-input/examples/password-input-invalid.tsx"],
         "title": "Invalid"
       }
     ]
@@ -3229,12 +3745,14 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/pie-chart/variants/playground.tsx",
+        "usage": ["src/pie-chart/variants/playground.tsx", "src/pie-chart/examples/data.ts"],
         "title": "Playground"
       },
       {
         "exportName": "Center",
         "slug": "center",
         "source": "src/pie-chart/variants/center.tsx",
+        "usage": ["src/pie-chart/variants/center.tsx", "src/pie-chart/examples/data.ts"],
         "title": "Center"
       }
     ]
@@ -3247,30 +3765,35 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/popover/variants/playground.tsx",
+        "usage": ["src/popover/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/popover/variants/overview.tsx",
+        "usage": ["src/popover/examples/popover-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Basic",
         "slug": "basic",
         "source": "src/popover/variants/basic.tsx",
+        "usage": ["src/popover/examples/popover-basic.tsx"],
         "title": "Basic"
       },
       {
         "exportName": "Align",
         "slug": "align",
         "source": "src/popover/variants/align.tsx",
+        "usage": ["src/popover/examples/popover-alignments.tsx"],
         "title": "Align"
       },
       {
         "exportName": "WithForm",
         "slug": "with-form",
         "source": "src/popover/variants/with-form.tsx",
+        "usage": ["src/popover/examples/popover-form.tsx"],
         "title": "With Form"
       }
     ]
@@ -3283,42 +3806,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/progress/variants/playground.tsx",
+        "usage": ["src/progress/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/progress/variants/overview.tsx",
+        "usage": ["src/progress/examples/progress-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Partial",
         "slug": "partial",
         "source": "src/progress/variants/partial.tsx",
+        "usage": ["src/progress/variants/partial.tsx"],
         "title": "Partial"
       },
       {
         "exportName": "Complete",
         "slug": "complete",
         "source": "src/progress/variants/complete.tsx",
+        "usage": ["src/progress/variants/complete.tsx"],
         "title": "Complete"
       },
       {
         "exportName": "Label",
         "slug": "label",
         "source": "src/progress/variants/label.tsx",
+        "usage": ["src/progress/examples/progress-label.tsx"],
         "title": "Label"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/progress/variants/controlled.tsx",
+        "usage": ["src/progress/examples/progress-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "Indeterminate",
         "slug": "indeterminate",
         "source": "src/progress/variants/indeterminate.tsx",
+        "usage": ["src/progress/variants/indeterminate.tsx"],
         "title": "Indeterminate"
       }
     ]
@@ -3331,96 +3861,148 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/questionnaire/variants/playground.tsx",
+        "usage": ["src/questionnaire/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/questionnaire/variants/overview.tsx",
+        "usage": ["src/questionnaire/examples/questionnaire-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Multiple",
         "slug": "multiple",
         "source": "src/questionnaire/variants/multiple.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-multiple.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Multiple Selection"
       },
       {
         "exportName": "Freeform",
         "slug": "freeform",
         "source": "src/questionnaire/variants/freeform.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-freeform.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Freeform Answer"
       },
       {
         "exportName": "Shortcuts",
         "slug": "shortcuts",
         "source": "src/questionnaire/variants/shortcuts.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-shortcuts.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Shortcuts"
       },
       {
         "exportName": "Validation",
         "slug": "validation",
         "source": "src/questionnaire/variants/validation.tsx",
+        "usage": ["src/questionnaire/examples/questionnaire-validation.tsx"],
         "title": "Custom Validation"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/questionnaire/variants/controlled.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-controlled.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Controlled"
       },
       {
         "exportName": "Resume",
         "slug": "resume",
         "source": "src/questionnaire/variants/resume.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-resume.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Resume"
       },
       {
         "exportName": "Conditional",
         "slug": "conditional",
         "source": "src/questionnaire/variants/conditional.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-conditional.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Conditional Items"
       },
       {
         "exportName": "Progress",
         "slug": "progress",
         "source": "src/questionnaire/variants/progress.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-progress.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Step Indicator"
       },
       {
         "exportName": "Animated",
         "slug": "animated",
         "source": "src/questionnaire/variants/animated.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-animated.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Animated Items"
       },
       {
         "exportName": "Card",
         "slug": "card",
         "source": "src/questionnaire/variants/card.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-card.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Card"
       },
       {
         "exportName": "Dialog",
         "slug": "dialog",
         "source": "src/questionnaire/variants/dialog.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-dialog.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Dialog"
       },
       {
         "exportName": "Skip",
         "slug": "skip",
         "source": "src/questionnaire/variants/skip.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-skip.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Explicit Skip"
       },
       {
         "exportName": "NavigationState",
         "slug": "navigation-state",
         "source": "src/questionnaire/variants/navigation-state.tsx",
+        "usage": [
+          "src/questionnaire/examples/questionnaire-navigation-state.tsx",
+          "src/form/examples/form-value.ts"
+        ],
         "title": "Navigation State"
       },
       {
         "exportName": "SubmitState",
         "slug": "submit-state",
         "source": "src/questionnaire/variants/submit-state.tsx",
+        "usage": ["src/questionnaire/examples/questionnaire-submit-state.tsx"],
         "title": "Submit State"
       }
     ]
@@ -3433,6 +4015,7 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/radar-chart/variants/playground.tsx",
+        "usage": ["src/radar-chart/variants/playground.tsx", "src/radar-chart/examples/data.ts"],
         "title": "Playground"
       }
     ]
@@ -3445,60 +4028,70 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/radio-group/variants/playground.tsx",
+        "usage": ["src/radio-group/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/radio-group/variants/overview.tsx",
+        "usage": ["src/radio-group/examples/radio-group-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/radio-group/variants/controlled.tsx",
+        "usage": ["src/radio-group/examples/radio-group-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
         "source": "src/radio-group/variants/read-only.tsx",
+        "usage": ["src/radio-group/examples/radio-group-read-only.tsx"],
         "title": "Read Only"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/radio-group/variants/form.tsx",
+        "usage": ["src/radio-group/examples/radio-group-form.tsx"],
         "title": "Form"
       },
       {
         "exportName": "Description",
         "slug": "description",
         "source": "src/radio-group/variants/description.tsx",
+        "usage": ["src/radio-group/examples/radio-group-description.tsx"],
         "title": "Description"
       },
       {
         "exportName": "ChoiceCard",
         "slug": "choice-card",
         "source": "src/radio-group/variants/choice-card.tsx",
+        "usage": ["src/radio-group/examples/radio-group-choice-card.tsx"],
         "title": "Choice Card"
       },
       {
         "exportName": "Fieldset",
         "slug": "fieldset",
         "source": "src/radio-group/variants/fieldset.tsx",
+        "usage": ["src/radio-group/examples/radio-group-fieldset.tsx"],
         "title": "Fieldset"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/radio-group/variants/disabled.tsx",
+        "usage": ["src/radio-group/examples/radio-group-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/radio-group/variants/invalid.tsx",
+        "usage": ["src/radio-group/examples/radio-group-invalid.tsx"],
         "title": "Invalid"
       }
     ]
@@ -3511,24 +4104,28 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/resizable/variants/playground.tsx",
+        "usage": ["src/resizable/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/resizable/variants/overview.tsx",
+        "usage": ["src/resizable/examples/resizable-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/resizable/variants/vertical.tsx",
+        "usage": ["src/resizable/examples/resizable-vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "Handle",
         "slug": "handle",
         "source": "src/resizable/variants/handle.tsx",
+        "usage": ["src/resizable/examples/resizable-handle.tsx"],
         "title": "Handle"
       }
     ]
@@ -3541,6 +4138,10 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/scatter-chart/variants/playground.tsx",
+        "usage": [
+          "src/scatter-chart/variants/playground.tsx",
+          "src/scatter-chart/examples/data.ts"
+        ],
         "title": "Playground"
       }
     ]
@@ -3553,18 +4154,24 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/scroll-area/variants/playground.tsx",
+        "usage": ["src/scroll-area/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/scroll-area/variants/overview.tsx",
+        "usage": ["src/scroll-area/examples/scroll-area-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Horizontal",
         "slug": "horizontal",
         "source": "src/scroll-area/variants/horizontal.tsx",
+        "usage": [
+          "src/scroll-area/variants/horizontal.tsx",
+          "src/scroll-area/examples/scroll-area-horizontal-demo.tsx"
+        ],
         "title": "Horizontal"
       }
     ]
@@ -3577,18 +4184,24 @@
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/scroll-fade/variants/vertical.tsx",
+        "usage": ["src/scroll-fade/variants/vertical.tsx", "src/scroll-fade/helpers.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "HorizontalRTL",
         "slug": "horizontal-rtl",
         "source": "src/scroll-fade/variants/horizontal-rtl.tsx",
+        "usage": ["src/scroll-fade/variants/horizontal-rtl.tsx", "src/scroll-fade/helpers.tsx"],
         "title": "Horizontal RTL"
       },
       {
         "exportName": "SingleEdgeAndCustomDepth",
         "slug": "single-edge-and-custom-depth",
         "source": "src/scroll-fade/variants/single-edge-and-custom-depth.tsx",
+        "usage": [
+          "src/scroll-fade/variants/single-edge-and-custom-depth.tsx",
+          "src/scroll-fade/helpers.tsx"
+        ],
         "title": "Single Edge And Custom Depth"
       }
     ]
@@ -3601,48 +4214,56 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/select/variants/playground.tsx",
+        "usage": ["src/select/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/select/variants/overview.tsx",
+        "usage": ["src/select/examples/select-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Scrollable",
         "slug": "scrollable",
         "source": "src/select/variants/scrollable.tsx",
+        "usage": ["src/select/examples/select-scrollable.tsx"],
         "title": "Scrollable"
       },
       {
         "exportName": "Groups",
         "slug": "groups",
         "source": "src/select/variants/groups.tsx",
+        "usage": ["src/select/examples/select-groups.tsx"],
         "title": "Groups"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/select/variants/disabled.tsx",
+        "usage": ["src/select/examples/select-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/select/variants/invalid.tsx",
+        "usage": ["src/select/examples/select-invalid.tsx"],
         "title": "Invalid"
       },
       {
         "exportName": "AlignItemWithTrigger",
         "slug": "align-item-with-trigger",
         "source": "src/select/variants/align-item-with-trigger.tsx",
+        "usage": ["src/select/examples/select-align-item.tsx"],
         "title": "Align Item With Trigger"
       },
       {
         "exportName": "ReadonlySelection",
         "slug": "readonly-selection",
         "source": "src/select/variants/readonly-selection.tsx",
+        "usage": ["src/select/variants/readonly-selection.tsx"],
         "title": "Readonly selection"
       }
     ]
@@ -3655,54 +4276,63 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/separator/variants/playground.tsx",
+        "usage": ["src/separator/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/separator/variants/overview.tsx",
+        "usage": ["src/separator/examples/separator-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/separator/variants/vertical.tsx",
+        "usage": ["src/separator/examples/separator-vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "Labeled",
         "slug": "labeled",
         "source": "src/separator/variants/labeled.tsx",
+        "usage": ["src/separator/variants/labeled.tsx"],
         "title": "Labeled"
       },
       {
         "exportName": "FullWidth",
         "slug": "full-width",
         "source": "src/separator/variants/full-width.tsx",
+        "usage": ["src/separator/variants/full-width.tsx"],
         "title": "Full Width"
       },
       {
         "exportName": "OnSurfaces",
         "slug": "on-surfaces",
         "source": "src/separator/variants/on-surfaces.tsx",
+        "usage": ["src/separator/variants/on-surfaces.tsx", "src/separator/helpers.tsx"],
         "title": "On Surfaces"
       },
       {
         "exportName": "Menu",
         "slug": "menu",
         "source": "src/separator/variants/menu.tsx",
+        "usage": ["src/separator/examples/separator-menu.tsx"],
         "title": "Menu"
       },
       {
         "exportName": "List",
         "slug": "list",
         "source": "src/separator/variants/list.tsx",
+        "usage": ["src/separator/variants/list.tsx", "src/separator/examples/separator-list.tsx"],
         "title": "List"
       },
       {
         "exportName": "MarginSizing",
         "slug": "margin-sizing",
         "source": "src/separator/variants/margin-sizing.tsx",
+        "usage": ["src/separator/variants/margin-sizing.tsx"],
         "title": "Margin Sizing"
       }
     ]
@@ -3715,6 +4345,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/shake/variants/overview.tsx",
+        "usage": ["src/shake/examples/shake-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -3727,24 +4358,28 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/sheet/variants/playground.tsx",
+        "usage": ["src/sheet/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/sheet/variants/overview.tsx",
+        "usage": ["src/sheet/examples/sheet-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Side",
         "slug": "side",
         "source": "src/sheet/variants/side.tsx",
+        "usage": ["src/sheet/examples/sheet-side.tsx"],
         "title": "Side"
       },
       {
         "exportName": "NoCloseButton",
         "slug": "no-close-button",
         "source": "src/sheet/variants/no-close-button.tsx",
+        "usage": ["src/sheet/examples/sheet-no-close-button.tsx"],
         "title": "No Close Button"
       }
     ]
@@ -3757,18 +4392,21 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/sidebar/variants/playground.tsx",
+        "usage": ["src/sidebar/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/sidebar/variants/overview.tsx",
+        "usage": ["src/sidebar/examples/sidebar-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "ControlledSidebar",
         "slug": "controlled-sidebar",
         "source": "src/sidebar/variants/controlled-sidebar.tsx",
+        "usage": ["src/sidebar/examples/sidebar-controlled.tsx"],
         "title": "Controlled Sidebar"
       }
     ]
@@ -3781,18 +4419,21 @@
         "exportName": "Controls",
         "slug": "controls",
         "source": "src/sizing/variants/controls.tsx",
+        "usage": ["src/sizing/variants/controls.tsx"],
         "title": "Controls"
       },
       {
         "exportName": "Composition",
         "slug": "composition",
         "source": "src/sizing/variants/composition.tsx",
+        "usage": ["src/sizing/variants/composition.tsx"],
         "title": "Composition"
       },
       {
         "exportName": "Workflow",
         "slug": "workflow",
         "source": "src/sizing/variants/workflow.tsx",
+        "usage": ["src/sizing/variants/workflow.tsx"],
         "title": "Workflow"
       }
     ]
@@ -3805,78 +4446,146 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/skeleton/variants/playground.tsx",
+        "usage": [
+          "src/skeleton/variants/playground.tsx",
+          "src/skeleton/examples/skeleton-demo.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/skeleton/variants/overview.tsx",
+        "usage": [
+          "src/skeleton/variants/overview.tsx",
+          "src/skeleton/examples/skeleton-demo.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Overview"
       },
       {
         "exportName": "Card",
         "slug": "card",
         "source": "src/skeleton/variants/card.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-card.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Card"
       },
       {
         "exportName": "Text",
         "slug": "text",
         "source": "src/skeleton/variants/text.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-text.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Text"
       },
       {
         "exportName": "Avatar",
         "slug": "avatar",
         "source": "src/skeleton/variants/avatar.tsx",
+        "usage": [
+          "src/skeleton/variants/avatar.tsx",
+          "src/skeleton/examples/skeleton-avatar.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Avatar"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/skeleton/variants/form.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-form.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Form"
       },
       {
         "exportName": "Table",
         "slug": "table",
         "source": "src/skeleton/variants/table.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-table.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Table"
       },
       {
         "exportName": "Refetch",
         "slug": "refetch",
         "source": "src/skeleton/variants/refetch.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-refetch.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts",
+          "src/skeleton/examples/skeleton-demo.tsx"
+        ],
         "title": "Refetch"
       },
       {
         "exportName": "Suspense",
         "slug": "suspense",
         "source": "src/skeleton/variants/suspense.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-suspense.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts",
+          "src/skeleton/examples/skeleton-demo.tsx"
+        ],
         "title": "Suspense"
       },
       {
         "exportName": "States",
         "slug": "states",
         "source": "src/skeleton/variants/states.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-states.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts",
+          "src/skeleton/examples/skeleton-avatar.tsx"
+        ],
         "title": "Error and empty"
       },
       {
         "exportName": "Sections",
         "slug": "sections",
         "source": "src/skeleton/variants/sections.tsx",
+        "usage": [
+          "src/skeleton/examples/skeleton-sections.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Sections"
       },
       {
         "exportName": "Box",
         "slug": "box",
         "source": "src/skeleton/variants/box.tsx",
+        "usage": ["src/skeleton/examples/skeleton-box.tsx"],
         "title": "Box"
       },
       {
         "exportName": "Reveals",
         "slug": "reveals",
         "source": "src/skeleton/variants/reveals.tsx",
+        "usage": [
+          "src/skeleton/variants/reveals.tsx",
+          "src/skeleton/examples/skeleton-avatar.tsx",
+          "src/loading.tsx",
+          "src/skeleton/fixtures.ts"
+        ],
         "title": "Reveals"
       }
     ]
@@ -3889,72 +4598,84 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/slider/variants/playground.tsx",
+        "usage": ["src/slider/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/slider/variants/overview.tsx",
+        "usage": ["src/slider/examples/slider-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Midpoint",
         "slug": "midpoint",
         "source": "src/slider/variants/midpoint.tsx",
+        "usage": ["src/slider/variants/midpoint.tsx"],
         "title": "Midpoint"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/slider/variants/disabled.tsx",
+        "usage": ["src/slider/variants/disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Range",
         "slug": "range",
         "source": "src/slider/variants/range.tsx",
+        "usage": ["src/slider/examples/slider-range.tsx"],
         "title": "Range"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/slider/variants/vertical.tsx",
+        "usage": ["src/slider/examples/slider-vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/slider/variants/controlled.tsx",
+        "usage": ["src/slider/examples/slider-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "MultipleThumbs",
         "slug": "multiple-thumbs",
         "source": "src/slider/variants/multiple-thumbs.tsx",
+        "usage": ["src/slider/examples/slider-multiple.tsx"],
         "title": "Multiple Thumbs"
       },
       {
         "exportName": "ThumbCollision",
         "slug": "thumb-collision",
         "source": "src/slider/variants/thumb-collision.tsx",
+        "usage": ["src/slider/variants/thumb-collision.tsx"],
         "title": "Thumb Collision"
       },
       {
         "exportName": "Marks",
         "slug": "marks",
         "source": "src/slider/variants/marks.tsx",
+        "usage": ["src/slider/variants/marks.tsx"],
         "title": "Marks"
       },
       {
         "exportName": "Steps",
         "slug": "steps",
         "source": "src/slider/variants/steps.tsx",
+        "usage": ["src/slider/variants/steps.tsx"],
         "title": "Steps"
       },
       {
         "exportName": "Logarithmic",
         "slug": "logarithmic",
         "source": "src/slider/variants/logarithmic.tsx",
+        "usage": ["src/slider/variants/logarithmic.tsx"],
         "title": "Logarithmic"
       }
     ]
@@ -3967,36 +4688,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/spinner/variants/playground.tsx",
+        "usage": ["src/spinner/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/spinner/variants/overview.tsx",
+        "usage": ["src/spinner/examples/spinner-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/spinner/variants/size.tsx",
+        "usage": ["src/spinner/examples/spinner-size.tsx"],
         "title": "Size"
       },
       {
         "exportName": "Button",
         "slug": "button",
         "source": "src/spinner/variants/button.tsx",
+        "usage": ["src/spinner/examples/spinner-button.tsx"],
         "title": "Button"
       },
       {
         "exportName": "Badge",
         "slug": "badge",
         "source": "src/spinner/variants/badge.tsx",
+        "usage": ["src/spinner/examples/spinner-badge.tsx"],
         "title": "Badge"
       },
       {
         "exportName": "InputGroup",
         "slug": "input-group",
         "source": "src/spinner/variants/input-group.tsx",
+        "usage": ["src/spinner/examples/spinner-input-group.tsx"],
         "title": "Input Group"
       }
     ]
@@ -4009,18 +4736,27 @@
         "exportName": "AsyncAction",
         "slug": "async-action",
         "source": "src/stateful-button/variants/async-action.tsx",
+        "usage": [
+          "src/stateful-button/variants/async-action.tsx",
+          "src/stateful-button/examples/stateful-button-demo.tsx"
+        ],
         "title": "Async Action"
       },
       {
         "exportName": "TanStackForm",
         "slug": "tan-stack-form",
         "source": "src/stateful-button/variants/tan-stack-form.tsx",
+        "usage": ["src/stateful-button/examples/stateful-button-form.tsx"],
         "title": "Tan Stack Form"
       },
       {
         "exportName": "Directions",
         "slug": "directions",
         "source": "src/stateful-button/variants/directions.tsx",
+        "usage": [
+          "src/stateful-button/variants/directions.tsx",
+          "src/stateful-button/examples/stateful-button-demo.tsx"
+        ],
         "title": "Directions"
       }
     ]
@@ -4033,36 +4769,51 @@
         "exportName": "CopyFeedback",
         "slug": "copy-feedback",
         "source": "src/stateful-icon/variants/copy-feedback.tsx",
+        "usage": ["src/stateful-icon/examples/stateful-icon-demo.tsx"],
         "title": "Copy Feedback"
       },
       {
         "exportName": "RotatingChevron",
         "slug": "rotating-chevron",
         "source": "src/stateful-icon/variants/rotating-chevron.tsx",
+        "usage": ["src/stateful-icon/variants/rotating-chevron.tsx"],
         "title": "Rotating Chevron"
       },
       {
         "exportName": "ExpandableChevron",
         "slug": "expandable-chevron",
         "source": "src/stateful-icon/variants/expandable-chevron.tsx",
+        "usage": [
+          "src/stateful-icon/variants/expandable-chevron.tsx",
+          "src/stateful-icon/helpers.tsx"
+        ],
         "title": "Expandable Chevron"
       },
       {
         "exportName": "SidebarToggleIcon",
         "slug": "sidebar-toggle-icon",
         "source": "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
+        "usage": [
+          "src/stateful-icon/variants/sidebar-toggle-icon.tsx",
+          "src/stateful-icon/helpers.tsx"
+        ],
         "title": "Sidebar Toggle Icon"
       },
       {
         "exportName": "ThemeToggleIcon",
         "slug": "theme-toggle-icon",
         "source": "src/stateful-icon/variants/theme-toggle-icon.tsx",
+        "usage": [
+          "src/stateful-icon/variants/theme-toggle-icon.tsx",
+          "src/stateful-icon/helpers.tsx"
+        ],
         "title": "Theme Toggle Icon"
       },
       {
         "exportName": "CheckboxState",
         "slug": "checkbox-state",
         "source": "src/stateful-icon/variants/checkbox-state.tsx",
+        "usage": ["src/stateful-icon/variants/checkbox-state.tsx"],
         "title": "Checkbox state"
       }
     ]
@@ -4075,54 +4826,63 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/step-indicator/variants/overview.tsx",
+        "usage": ["src/step-indicator/variants/overview.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
         "source": "src/step-indicator/variants/read-only.tsx",
+        "usage": ["src/step-indicator/variants/read-only.tsx"],
         "title": "Read Only"
       },
       {
         "exportName": "Blocked",
         "slug": "blocked",
         "source": "src/step-indicator/variants/blocked.tsx",
+        "usage": ["src/step-indicator/variants/blocked.tsx"],
         "title": "Blocked"
       },
       {
         "exportName": "Status",
         "slug": "status",
         "source": "src/step-indicator/variants/status.tsx",
+        "usage": ["src/step-indicator/variants/status.tsx"],
         "title": "Status"
       },
       {
         "exportName": "Progress",
         "slug": "progress",
         "source": "src/step-indicator/variants/progress.tsx",
+        "usage": ["src/step-indicator/variants/progress.tsx"],
         "title": "Progress"
       },
       {
         "exportName": "Autoplay",
         "slug": "autoplay",
         "source": "src/step-indicator/variants/autoplay.tsx",
+        "usage": ["src/step-indicator/variants/autoplay.tsx"],
         "title": "Autoplay"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/step-indicator/variants/vertical.tsx",
+        "usage": ["src/step-indicator/variants/vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "Tabs",
         "slug": "tabs",
         "source": "src/step-indicator/variants/tabs.tsx",
+        "usage": ["src/step-indicator/variants/tabs.tsx"],
         "title": "Tabs"
       },
       {
         "exportName": "TanstackForm",
         "slug": "tanstack-form",
         "source": "src/step-indicator/variants/tanstack-form.tsx",
+        "usage": ["src/step-indicator/variants/tanstack-form.tsx"],
         "title": "TanStack Form"
       }
     ]
@@ -4135,36 +4895,42 @@
         "exportName": "Ladder",
         "slug": "ladder",
         "source": "src/surfaces/variants/ladder.tsx",
+        "usage": ["src/surfaces/variants/ladder.tsx", "src/surfaces/helpers.tsx"],
         "title": "Ladder"
       },
       {
         "exportName": "Colored",
         "slug": "colored",
         "source": "src/surfaces/variants/colored.tsx",
+        "usage": ["src/surfaces/variants/colored.tsx", "src/surfaces/helpers.tsx"],
         "title": "Colored"
       },
       {
         "exportName": "Roles",
         "slug": "roles",
         "source": "src/surfaces/variants/roles.tsx",
+        "usage": ["src/surfaces/variants/roles.tsx", "src/surfaces/helpers.tsx"],
         "title": "Roles"
       },
       {
         "exportName": "Nesting",
         "slug": "nesting",
         "source": "src/surfaces/variants/nesting.tsx",
+        "usage": ["src/surfaces/variants/nesting.tsx", "src/surfaces/helpers.tsx"],
         "title": "Nesting"
       },
       {
         "exportName": "States",
         "slug": "states",
         "source": "src/surfaces/variants/states.tsx",
+        "usage": ["src/surfaces/variants/states.tsx", "src/surfaces/helpers.tsx"],
         "title": "States"
       },
       {
         "exportName": "ControlStates",
         "slug": "control-states",
         "source": "src/surfaces/variants/control-states.tsx",
+        "usage": ["src/surfaces/variants/control-states.tsx", "src/surfaces/helpers.tsx"],
         "title": "Control States"
       }
     ]
@@ -4177,72 +4943,84 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/switch/variants/playground.tsx",
+        "usage": ["src/switch/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/switch/variants/overview.tsx",
+        "usage": ["src/switch/examples/switch-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "On",
         "slug": "on",
         "source": "src/switch/variants/on.tsx",
+        "usage": ["src/switch/variants/on.tsx"],
         "title": "On"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/switch/variants/disabled.tsx",
+        "usage": ["src/switch/variants/disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Description",
         "slug": "description",
         "source": "src/switch/variants/description.tsx",
+        "usage": ["src/switch/examples/switch-description.tsx"],
         "title": "Description"
       },
       {
         "exportName": "ChoiceCard",
         "slug": "choice-card",
         "source": "src/switch/variants/choice-card.tsx",
+        "usage": ["src/switch/examples/switch-choice-card.tsx"],
         "title": "Choice Card"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/switch/variants/invalid.tsx",
+        "usage": ["src/switch/examples/switch-invalid.tsx"],
         "title": "Invalid"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/switch/variants/size.tsx",
+        "usage": ["src/switch/examples/switch-sizes.tsx"],
         "title": "Size"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
         "source": "src/switch/variants/icons.tsx",
+        "usage": ["src/switch/examples/switch-icons.tsx"],
         "title": "Icons"
       },
       {
         "exportName": "Controlled",
         "slug": "controlled",
         "source": "src/switch/variants/controlled.tsx",
+        "usage": ["src/switch/examples/switch-controlled.tsx"],
         "title": "Controlled"
       },
       {
         "exportName": "ReadOnly",
         "slug": "read-only",
         "source": "src/switch/variants/read-only.tsx",
+        "usage": ["src/switch/examples/switch-read-only.tsx"],
         "title": "Read Only"
       },
       {
         "exportName": "Form",
         "slug": "form",
         "source": "src/switch/variants/form.tsx",
+        "usage": ["src/switch/examples/switch-form.tsx"],
         "title": "Form"
       }
     ]
@@ -4255,36 +5033,45 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/table/variants/playground.tsx",
+        "usage": ["src/table/variants/playground.tsx", "src/table/helpers.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/table/variants/overview.tsx",
+        "usage": ["src/table/examples/table-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Footer",
         "slug": "footer",
         "source": "src/table/variants/footer.tsx",
+        "usage": ["src/table/examples/table-footer.tsx"],
         "title": "Footer"
       },
       {
         "exportName": "Actions",
         "slug": "actions",
         "source": "src/table/variants/actions.tsx",
+        "usage": ["src/table/examples/table-actions.tsx"],
         "title": "Actions"
       },
       {
         "exportName": "RowSelection",
         "slug": "row-selection",
         "source": "src/table/variants/row-selection.tsx",
+        "usage": [
+          "src/table/variants/row-selection.tsx",
+          "src/checkbox/examples/checkbox-table.tsx"
+        ],
         "title": "Row Selection"
       },
       {
         "exportName": "RTL",
         "slug": "rtl",
         "source": "src/table/variants/rtl.tsx",
+        "usage": ["src/table/examples/table-rtl.tsx"],
         "title": "RTL"
       }
     ]
@@ -4297,36 +5084,42 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/tabs/variants/playground.tsx",
+        "usage": ["src/tabs/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/tabs/variants/overview.tsx",
+        "usage": ["src/tabs/examples/tabs-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Selection",
         "slug": "selection",
         "source": "src/tabs/variants/selection.tsx",
+        "usage": ["src/tabs/variants/selection.tsx"],
         "title": "Selection"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/tabs/variants/vertical.tsx",
+        "usage": ["src/tabs/examples/tabs-vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/tabs/variants/disabled.tsx",
+        "usage": ["src/tabs/examples/tabs-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Icons",
         "slug": "icons",
         "source": "src/tabs/variants/icons.tsx",
+        "usage": ["src/tabs/examples/tabs-icons.tsx"],
         "title": "Icons"
       }
     ]
@@ -4339,6 +5132,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/text-morph/variants/overview.tsx",
+        "usage": ["src/text-morph/examples/text-morph-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -4351,42 +5145,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/textarea/variants/playground.tsx",
+        "usage": ["src/textarea/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/textarea/variants/overview.tsx",
+        "usage": ["src/textarea/examples/textarea-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "DisabledControl",
         "slug": "disabled-control",
         "source": "src/textarea/variants/disabled-control.tsx",
+        "usage": ["src/textarea/variants/disabled-control.tsx"],
         "title": "Disabled Control"
       },
       {
         "exportName": "Invalid",
         "slug": "invalid",
         "source": "src/textarea/variants/invalid.tsx",
+        "usage": ["src/textarea/variants/invalid.tsx"],
         "title": "Invalid"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/textarea/variants/disabled.tsx",
+        "usage": ["src/textarea/examples/textarea-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Field",
         "slug": "field",
         "source": "src/textarea/variants/field.tsx",
+        "usage": ["src/textarea/examples/textarea-field.tsx"],
         "title": "Field"
       },
       {
         "exportName": "Button",
         "slug": "button",
         "source": "src/textarea/variants/button.tsx",
+        "usage": ["src/textarea/examples/textarea-button.tsx"],
         "title": "Button"
       }
     ]
@@ -4399,42 +5200,49 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/toast/variants/playground.tsx",
+        "usage": ["src/toast/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/toast/variants/overview.tsx",
+        "usage": ["src/toast/examples/toast-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Types",
         "slug": "types",
         "source": "src/toast/variants/types.tsx",
+        "usage": ["src/toast/examples/toast-types.tsx"],
         "title": "Types"
       },
       {
         "exportName": "Promise",
         "slug": "promise",
         "source": "src/toast/variants/promise.tsx",
+        "usage": ["src/toast/examples/toast-promise.tsx"],
         "title": "Promise"
       },
       {
         "exportName": "Action",
         "slug": "action",
         "source": "src/toast/variants/action.tsx",
+        "usage": ["src/toast/variants/action.tsx"],
         "title": "Action"
       },
       {
         "exportName": "Progress",
         "slug": "progress",
         "source": "src/toast/variants/progress.tsx",
+        "usage": ["src/toast/variants/progress.tsx"],
         "title": "Progress"
       },
       {
         "exportName": "Queue",
         "slug": "queue",
         "source": "src/toast/variants/queue.tsx",
+        "usage": ["src/toast/variants/queue.tsx"],
         "title": "Queue"
       }
     ]
@@ -4447,48 +5255,56 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/toggle/variants/playground.tsx",
+        "usage": ["src/toggle/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/toggle/variants/overview.tsx",
+        "usage": ["src/toggle/examples/toggle-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Pressed",
         "slug": "pressed",
         "source": "src/toggle/variants/pressed.tsx",
+        "usage": ["src/toggle/variants/pressed.tsx"],
         "title": "Pressed"
       },
       {
         "exportName": "DisabledControl",
         "slug": "disabled-control",
         "source": "src/toggle/variants/disabled-control.tsx",
+        "usage": ["src/toggle/variants/disabled-control.tsx"],
         "title": "Disabled Control"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
         "source": "src/toggle/variants/outline.tsx",
+        "usage": ["src/toggle/examples/toggle-outline.tsx"],
         "title": "Outline"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/toggle/variants/disabled.tsx",
+        "usage": ["src/toggle/examples/toggle-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "WithText",
         "slug": "with-text",
         "source": "src/toggle/variants/with-text.tsx",
+        "usage": ["src/toggle/examples/toggle-text.tsx"],
         "title": "With Text"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/toggle/variants/size.tsx",
+        "usage": ["src/toggle/examples/toggle-sizes.tsx"],
         "title": "Size"
       }
     ]
@@ -4501,48 +5317,56 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/toggle-group/variants/playground.tsx",
+        "usage": ["src/toggle-group/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/toggle-group/variants/overview.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Outline",
         "slug": "outline",
         "source": "src/toggle-group/variants/outline.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-outline.tsx"],
         "title": "Outline"
       },
       {
         "exportName": "Spacing",
         "slug": "spacing",
         "source": "src/toggle-group/variants/spacing.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-spacing.tsx"],
         "title": "Spacing"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/toggle-group/variants/disabled.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "FontWeightSelector",
         "slug": "font-weight-selector",
         "source": "src/toggle-group/variants/font-weight-selector.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-font-weight-selector.tsx"],
         "title": "Custom"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/toggle-group/variants/vertical.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "Size",
         "slug": "size",
         "source": "src/toggle-group/variants/size.tsx",
+        "usage": ["src/toggle-group/examples/toggle-group-sizes.tsx"],
         "title": "Size"
       }
     ]
@@ -4555,30 +5379,35 @@
         "exportName": "Formatting",
         "slug": "formatting",
         "source": "src/toolbar/variants/formatting.tsx",
+        "usage": ["src/toolbar/variants/formatting.tsx"],
         "title": "Formatting"
       },
       {
         "exportName": "Vertical",
         "slug": "vertical",
         "source": "src/toolbar/variants/vertical.tsx",
+        "usage": ["src/toolbar/variants/vertical.tsx"],
         "title": "Vertical"
       },
       {
         "exportName": "SearchAndLink",
         "slug": "search-and-link",
         "source": "src/toolbar/variants/search-and-link.tsx",
+        "usage": ["src/toolbar/variants/search-and-link.tsx"],
         "title": "Search And Link"
       },
       {
         "exportName": "Disabled",
         "slug": "disabled",
         "source": "src/toolbar/variants/disabled.tsx",
+        "usage": ["src/toolbar/variants/disabled.tsx"],
         "title": "Disabled"
       },
       {
         "exportName": "Showcase",
         "slug": "showcase",
         "source": "src/toolbar/variants/showcase.tsx",
+        "usage": ["src/toolbar/examples/toolbar-demo.tsx"],
         "title": "Showcase"
       }
     ]
@@ -4591,30 +5420,35 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/tooltip/variants/playground.tsx",
+        "usage": ["src/tooltip/variants/playground.tsx"],
         "title": "Playground"
       },
       {
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/tooltip/variants/overview.tsx",
+        "usage": ["src/tooltip/examples/tooltip-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "Side",
         "slug": "side",
         "source": "src/tooltip/variants/side.tsx",
+        "usage": ["src/tooltip/examples/tooltip-sides.tsx"],
         "title": "Side"
       },
       {
         "exportName": "WithKeyboardShortcut",
         "slug": "with-keyboard-shortcut",
         "source": "src/tooltip/variants/with-keyboard-shortcut.tsx",
+        "usage": ["src/tooltip/examples/tooltip-keyboard.tsx"],
         "title": "With Keyboard Shortcut"
       },
       {
         "exportName": "DisabledButton",
         "slug": "disabled-button",
         "source": "src/tooltip/variants/disabled-button.tsx",
+        "usage": ["src/tooltip/examples/tooltip-disabled.tsx"],
         "title": "Disabled Button"
       }
     ]
@@ -4627,30 +5461,35 @@
         "exportName": "Typefaces",
         "slug": "typefaces",
         "source": "src/typography/variants/typefaces.tsx",
+        "usage": ["src/typography/variants/typefaces.tsx"],
         "title": "Typefaces"
       },
       {
         "exportName": "Interface",
         "slug": "interface",
         "source": "src/typography/variants/interface.tsx",
+        "usage": ["src/typography/variants/interface.tsx"],
         "title": "Interface"
       },
       {
         "exportName": "Code",
         "slug": "code",
         "source": "src/typography/variants/code.tsx",
+        "usage": ["src/typography/variants/code.tsx"],
         "title": "Code"
       },
       {
         "exportName": "Reading",
         "slug": "reading",
         "source": "src/typography/variants/reading.tsx",
+        "usage": ["src/typography/variants/reading.tsx"],
         "title": "Reading"
       },
       {
         "exportName": "Multilingual",
         "slug": "multilingual",
         "source": "src/typography/variants/multilingual.tsx",
+        "usage": ["src/typography/variants/multilingual.tsx"],
         "title": "Multilingual"
       }
     ]
@@ -4663,12 +5502,14 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/use-copy-to-clipboard/variants/overview.tsx",
+        "usage": ["src/use-copy-to-clipboard/examples/use-copy-to-clipboard-demo.tsx"],
         "title": "Overview"
       },
       {
         "exportName": "CustomButton",
         "slug": "custom-button",
         "source": "src/use-copy-to-clipboard/variants/custom-button.tsx",
+        "usage": ["src/use-copy-to-clipboard/variants/custom-button.tsx"],
         "title": "Custom Button"
       }
     ]
@@ -4681,6 +5522,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/use-drag-select/variants/overview.tsx",
+        "usage": ["src/use-drag-select/examples/use-drag-select-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -4693,6 +5535,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/use-is-mobile/variants/overview.tsx",
+        "usage": ["src/use-is-mobile/examples/use-is-mobile-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -4705,6 +5548,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/use-media-query/variants/overview.tsx",
+        "usage": ["src/use-media-query/examples/use-media-query-demo.tsx"],
         "title": "Overview"
       }
     ]
@@ -4717,6 +5561,7 @@
         "exportName": "Overview",
         "slug": "overview",
         "source": "src/use-predicted-intent/variants/overview.tsx",
+        "usage": ["src/use-predicted-intent/examples/use-predicted-intent-demo.tsx"],
         "title": "Overview"
       }
     ]

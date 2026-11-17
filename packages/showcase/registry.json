@@ -7928,20 +7928,6 @@
       ]
     },
     {
-      "name": "control-color",
-      "type": "registry:component",
-      "title": "Control: Color",
-      "description": "",
-      "registryDependencies": ["@erbium/control", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/control/variants/color.tsx",
-          "target": "@components/showcase/control/variants/color.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "control-continuous-number",
       "type": "registry:component",
       "title": "Control: Continuous Number",
@@ -7997,11 +7983,7 @@
         "@erbium-examples/control-boolean",
         "@erbium-examples/control-segmented",
         "@erbium-examples/control-select",
-        "@erbium-examples/control-color",
         "@erbium-examples/control-image",
-        "@erbium-examples/control-pad",
-        "@erbium-examples/control-spring",
-        "@erbium-examples/control-transition",
         "@erbium-examples/control-action",
         "@erbium-examples/control-section",
         "@erbium-examples/control-group",
@@ -8091,20 +8073,6 @@
       ]
     },
     {
-      "name": "control-pad",
-      "type": "registry:component",
-      "title": "Control: Pad",
-      "description": "",
-      "registryDependencies": ["@erbium/control", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/control/variants/pad.tsx",
-          "target": "@components/showcase/control/variants/pad.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "control-row",
       "type": "registry:component",
       "title": "Control: Row",
@@ -8161,20 +8129,6 @@
       ]
     },
     {
-      "name": "control-spring",
-      "type": "registry:component",
-      "title": "Control: Spring",
-      "description": "",
-      "registryDependencies": ["@erbium/control", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/control/variants/spring.tsx",
-          "target": "@components/showcase/control/variants/spring.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "control-stories",
       "type": "registry:item",
       "title": "Control stories",
@@ -8216,11 +8170,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/control/variants/color.tsx",
-          "target": "@components/showcase/control/variants/color.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/control/variants/continuous-number.tsx",
           "target": "@components/showcase/control/variants/continuous-number.tsx",
           "type": "registry:component"
@@ -8256,11 +8205,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/control/variants/pad.tsx",
-          "target": "@components/showcase/control/variants/pad.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/control/variants/row.tsx",
           "target": "@components/showcase/control/variants/row.tsx",
           "type": "registry:component"
@@ -8281,11 +8225,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/control/variants/spring.tsx",
-          "target": "@components/showcase/control/variants/spring.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/control/variants/text.tsx",
           "target": "@components/showcase/control/variants/text.tsx",
           "type": "registry:component"
@@ -8293,11 +8232,6 @@
         {
           "path": "src/control/variants/textarea.tsx",
           "target": "@components/showcase/control/variants/textarea.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/control/variants/transition.tsx",
-          "target": "@components/showcase/control/variants/transition.tsx",
           "type": "registry:component"
         },
         {
@@ -8331,20 +8265,6 @@
         {
           "path": "src/control/variants/textarea.tsx",
           "target": "@components/showcase/control/variants/textarea.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "control-transition",
-      "type": "registry:component",
-      "title": "Control: Transition",
-      "description": "",
-      "registryDependencies": ["@erbium/control", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/control/variants/transition.tsx",
-          "target": "@components/showcase/control/variants/transition.tsx",
           "type": "registry:component"
         }
       ]

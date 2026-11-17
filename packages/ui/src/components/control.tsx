@@ -48,6 +48,10 @@ const valueClass =
 
 const monoClass = "font-mono tabular-nums";
 
+// A segmented track sits 2px inside the row, so its 18px segments plus the track's
+// own 2px padding fill the row's content box without growing it.
+const segmentedRowClass = "py-0.5 pe-0.5";
+
 interface CommonProps {
   label: string;
   disabled?: boolean;
@@ -726,7 +730,7 @@ const Text = ({
       value={value}
       defaultValue={defaultValue}
       onValueChange={onValueChange}
-      className={cn(valueClass, "relative min-h-control-sm bg-transparent")}
+      className={cn(valueClass, "relative self-stretch bg-transparent")}
       {...props}
     />
   </FieldPrimitive.Root>
@@ -756,11 +760,9 @@ const Textarea = ({
   <FieldPrimitive.Root
     data-slot="control-textarea"
     disabled={disabled}
-    className={cn(rowClass, "items-start py-1.5", className)}
+    className={cn(rowClass, "items-start", className)}
   >
-    <FieldPrimitive.Label className={cn(labelClass, rowLabelClass, "pt-0.5")}>
-      {label}
-    </FieldPrimitive.Label>
+    <FieldPrimitive.Label className={cn(labelClass, rowLabelClass)}>{label}</FieldPrimitive.Label>
     <FieldPrimitive.Control
       value={value}
       defaultValue={defaultValue}
@@ -823,7 +825,7 @@ const SegmentedTrack = ({
         disabled={disabled}
         name={name}
         className={cn(
-          "relative isolate ms-auto flex min-w-0 rounded-lg surface-well p-0.75",
+          "relative isolate ms-auto flex min-w-0 self-stretch rounded-md surface-well p-0.5",
           className,
         )}
       >
@@ -831,7 +833,7 @@ const SegmentedTrack = ({
           <RadioPrimitive.Root
             key={option.value}
             value={option.value}
-            className="relative flex min-h-control-sm min-w-0 items-center justify-center rounded-md px-2 py-0.5 text-center text-control-sm text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
+            className="relative flex min-w-0 items-center justify-center rounded-sm px-2 text-center text-control-sm text-muted-foreground outline-none transition-colors duration-150 data-checked:text-foreground hover:text-foreground motion-reduce:transition-none"
           >
             {value === option.value && (
               <motion.span
@@ -844,7 +846,7 @@ const SegmentedTrack = ({
                     ? { duration: 0 }
                     : { damping: 35, stiffness: 400, type: "spring" }
                 }
-                className="pointer-events-none absolute inset-0 z-0 rounded-md border surface-control"
+                className="pointer-events-none absolute inset-0 z-0 rounded-sm border surface-control"
               />
             )}
             <span className="relative z-10 min-w-0 truncate">{option.label}</span>
@@ -875,7 +877,10 @@ const Boolean = ({
   };
 
   return (
-    <div className={cn(rowClass, className)} data-slot="control-boolean">
+    <div
+      data-slot="control-boolean"
+      className={cn(rowClass, presentation === "segments" && segmentedRowClass, className)}
+    >
       <span id={id} className={labelClass}>
         {label}
       </span>
@@ -938,7 +943,7 @@ const Segmented = ({
   };
 
   return (
-    <div data-slot="control-segmented" className={cn(rowClass, className)}>
+    <div data-slot="control-segmented" className={cn(rowClass, segmentedRowClass, className)}>
       <span id={id} className={labelClass}>
         {label}
       </span>
@@ -1033,88 +1038,6 @@ const Select = ({
   </SelectPrimitive.Root>
 );
 
-// A full six-digit hex colour, the only form the native colour input accepts.
-const hexColor = /^#[\da-f]{6}$/iu;
-
-type ColorProps = CommonProps & {
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
-  name?: string;
-};
-
-const Color = ({
-  label,
-  value,
-  defaultValue = "",
-  onValueChange,
-  disabled,
-  className,
-  name,
-}: ColorProps) => {
-  const [local, setLocal] = React.useState(defaultValue);
-  const [draft, setDraft] = React.useState(value ?? defaultValue);
-  const current = value ?? local;
-  const [previous, setPrevious] = React.useState(current);
-
-  if (previous !== current) {
-    setPrevious(current);
-    setDraft(current);
-  }
-
-  const valid = hexColor.test(current);
-  const swatchStyle: CSSVariableStyle = { "--control-color": valid ? current : "transparent" };
-
-  const change = (next: string) => {
-    setLocal(next);
-    setDraft(next);
-    onValueChange?.(next);
-  };
-
-  // The hex input is the Field control (the label targets it); the native color
-  // input has no Base UI part, so it carries the form name and always holds a
-  // valid hex, which replaces the old hidden input.
-  return (
-    <FieldPrimitive.Root
-      data-slot="control-color"
-      disabled={disabled}
-      className={cn(rowClass, className)}
-    >
-      <FieldPrimitive.Label className={labelClass}>{label}</FieldPrimitive.Label>
-      <InputPrimitive
-        aria-label={`${label} hex value`}
-        // Field.Label would name the input "Fill"; keep the hex-specific name.
-        aria-labelledby={undefined}
-        value={draft}
-        onValueChange={(next) => {
-          setDraft(next);
-
-          if (hexColor.test(next)) {
-            change(next);
-          }
-        }}
-        className={cn(valueClass, monoClass, "w-20 bg-transparent")}
-      />
-      <span
-        className="relative size-5 shrink-0 overflow-hidden rounded-md border surface-knob bg-(--control-color)!"
-        style={swatchStyle}
-      >
-        <input
-          aria-label={`Pick ${label}`}
-          type="color"
-          name={name}
-          disabled={disabled}
-          value={valid ? current : ""}
-          onChange={(event) => {
-            change(event.target.value);
-          }}
-          className="absolute inset-0 size-full cursor-pointer opacity-0"
-        />
-      </span>
-    </FieldPrimitive.Root>
-  );
-};
-
 type ImageProps = CommonProps & {
   src?: string;
   options?: readonly (Option & { src: string })[];
@@ -1127,7 +1050,7 @@ type ImageProps = CommonProps & {
 };
 
 const ImagePreview = ({ src }: { src: string }) => (
-  <span className="image-hairline size-6 shrink-0 overflow-hidden rounded-sm">
+  <span className="image-hairline size-5 shrink-0 overflow-hidden rounded-sm">
     <img alt="" src={src} className="size-full object-cover" />
   </span>
 );
@@ -1253,209 +1176,6 @@ const Image = ({
   );
 };
 
-interface PadValue {
-  x: number;
-  y: number;
-}
-
-type PadProps = CommonProps & {
-  value?: PadValue;
-  defaultValue?: PadValue;
-  onValueChange?: (value: PadValue) => void;
-  min?: number;
-  max?: number;
-  step?: number;
-};
-
-// Shared so the default prop keeps one identity across renders.
-const padOrigin: PadValue = { x: 0, y: 0 };
-
-/** Snaps a 0–1 fraction of the pad to the nearest step between `min` and `max`. */
-const snapToStep = (fraction: number, min: number, max: number, step: number) =>
-  clamp(min + Math.round(((max - min) * fraction) / step) * step, min, max);
-
-const Pad = ({
-  label,
-  value,
-  defaultValue = padOrigin,
-  onValueChange,
-  min = 0,
-  max = 100,
-  step = 1,
-  disabled,
-  className,
-}: PadProps) => {
-  const [local, setLocal] = React.useState(defaultValue);
-  const current = value ?? local;
-  const ref = React.useRef<HTMLDivElement>(null);
-  const span = max > min ? max - min : 1;
-
-  const pointStyle: CSSVariableStyle = {
-    "--control-point-x": `${((current.x - min) / span) * 100}%`,
-    "--control-point-y": `${100 - ((current.y - min) / span) * 100}%`,
-  };
-
-  const safeStep = step > 0 ? step : 1;
-
-  const change = (next: PadValue) => {
-    setLocal(next);
-    onValueChange?.(next);
-  };
-
-  const fromPointer = (event: React.PointerEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-
-    if (!rect) {
-      return;
-    }
-
-    // `span` keeps a one-unit range when min and max coincide.
-    const upper = min + span;
-
-    change({
-      x: snapToStep((event.clientX - rect.left) / rect.width, min, upper, safeStep),
-      y: snapToStep(1 - (event.clientY - rect.top) / rect.height, min, upper, safeStep),
-    });
-  };
-
-  return (
-    <div data-slot="control-pad" className={cn("rounded-lg border surface-control p-3", className)}>
-      <div className={cn(labelClass, "mb-2")}>{label}</div>
-      <div
-        ref={ref}
-        aria-hidden="true"
-        className="relative h-24 w-full touch-none rounded-md surface-well"
-        onPointerDown={(event) => {
-          if (disabled === true) {
-            return;
-          }
-
-          event.currentTarget.setPointerCapture(event.pointerId);
-          fromPointer(event);
-        }}
-        onPointerMove={(event) => {
-          if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-            fromPointer(event);
-          }
-        }}
-      >
-        <span
-          className="left-(--control-point-x) top-(--control-point-y) pointer-events-none absolute size-3 -translate-x-1/2 -translate-y-1/2 rounded-full border surface-knob bg-selection"
-          style={pointStyle}
-        />
-      </div>
-      <div className="mt-1.5 grid grid-cols-2 gap-1.5">
-        <ControlNumber
-          label="X"
-          value={current.x}
-          onValueChange={(x) => {
-            change({ ...current, x });
-          }}
-          min={min}
-          max={max}
-          step={step}
-          disabled={disabled}
-        />
-        <ControlNumber
-          label="Y"
-          value={current.y}
-          onValueChange={(y) => {
-            change({ ...current, y });
-          }}
-          min={min}
-          max={max}
-          step={step}
-          disabled={disabled}
-        />
-      </div>
-    </div>
-  );
-};
-
-type SpringValue =
-  | { type: "spring"; visualDuration: number; bounce: number }
-  | { type: "spring"; stiffness: number; damping: number; mass: number };
-
-interface EasingValue {
-  type: "easing";
-  duration: number;
-  ease: [number, number, number, number];
-}
-
-type TransitionValue = SpringValue | EasingValue;
-
-type SpringProps = CommonProps & {
-  value?: SpringValue;
-  defaultValue?: SpringValue;
-  onValueChange?: (value: SpringValue) => void;
-};
-
-type TransitionProps = CommonProps & {
-  value?: TransitionValue;
-  defaultValue?: TransitionValue;
-  onValueChange?: (value: TransitionValue) => void;
-};
-
-const defaultTimeSpring: SpringValue = { bounce: 0.2, type: "spring", visualDuration: 0.3 };
-const defaultPhysicsSpring: SpringValue = { damping: 25, mass: 1, stiffness: 200, type: "spring" };
-const defaultEasing: EasingValue = { duration: 0.3, ease: [0.25, 0.1, 0.25, 1], type: "easing" };
-
-const springIsTime = (
-  value: SpringValue,
-): value is Extract<SpringValue, { visualDuration: number }> => "visualDuration" in value;
-
-const CurveFrame = ({ path }: { path: string }) => (
-  <div aria-hidden="true" className="h-24 overflow-hidden rounded-lg border surface-control">
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="size-full text-foreground">
-      <path
-        d="M0 20 H100 M0 80 H100"
-        stroke="currentColor"
-        strokeOpacity="0.12"
-        strokeWidth="0.5"
-        strokeDasharray="2 2"
-      />
-      <path
-        d={path}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        vectorEffect="non-scaling-stroke"
-      />
-    </svg>
-  </div>
-);
-
-const SpringCurve = ({ value }: { value: SpringValue }) => {
-  const time = springIsTime(value);
-  const stiffness = time ? 200 : value.stiffness;
-  const mass = time ? 1 : value.mass;
-
-  const damping = time
-    ? 2 * Math.sqrt(stiffness * mass) * (1 - value.bounce * 0.75)
-    : value.damping;
-
-  const omega = Math.sqrt(stiffness / mass);
-  const ratio = damping / (2 * Math.sqrt(stiffness * mass));
-  const duration = time ? Math.max(0.1, value.visualDuration) * 2 : 1.5;
-
-  const points = Array.from({ length: 65 }, (_, index) => {
-    const t = (index / 64) * duration;
-
-    const response =
-      ratio < 1
-        ? 1 -
-          Math.exp(-ratio * omega * t) *
-            (Math.cos(omega * Math.sqrt(1 - ratio * ratio) * t) +
-              (ratio / Math.sqrt(1 - ratio * ratio)) *
-                Math.sin(omega * Math.sqrt(1 - ratio * ratio) * t))
-        : 1 - (1 + omega * t) * Math.exp(-omega * t);
-
-    return `${index === 0 ? "M" : "L"}${(index / 64) * 100} ${80 - response * 60}`;
-  });
-
-  return <CurveFrame path={points.join(" ")} />;
-};
-
 interface SectionProps {
   title: string;
   children: React.ReactNode;
@@ -1491,245 +1211,6 @@ const Section = ({
   </Collapsible>
 );
 
-/** Duration and bounce for a time spring; stiffness, damping and mass for a physics spring. */
-const SpringFields = ({
-  value,
-  onValueChange,
-  disabled,
-}: {
-  value: SpringValue;
-  onValueChange: (value: SpringValue) => void;
-  disabled?: boolean;
-}) =>
-  springIsTime(value) ? (
-    <>
-      <ControlNumber
-        label="Duration"
-        value={value.visualDuration}
-        onValueChange={(visualDuration) => {
-          onValueChange({ ...value, visualDuration });
-        }}
-        min={0.1}
-        max={2}
-        step={0.01}
-        formatValue={(v) => `${v.toFixed(2)} s`}
-        disabled={disabled}
-      />
-      <ControlNumber
-        label="Bounce"
-        value={value.bounce}
-        onValueChange={(bounce) => {
-          onValueChange({ ...value, bounce });
-        }}
-        min={0}
-        max={1}
-        step={0.01}
-        disabled={disabled}
-      />
-    </>
-  ) : (
-    <>
-      <ControlNumber
-        label="Stiffness"
-        value={value.stiffness}
-        onValueChange={(stiffness) => {
-          onValueChange({ ...value, stiffness });
-        }}
-        min={1}
-        max={1000}
-        step={1}
-        disabled={disabled}
-      />
-      <ControlNumber
-        label="Damping"
-        value={value.damping}
-        onValueChange={(damping) => {
-          onValueChange({ ...value, damping });
-        }}
-        min={1}
-        max={100}
-        step={1}
-        disabled={disabled}
-      />
-      <ControlNumber
-        label="Mass"
-        value={value.mass}
-        onValueChange={(mass) => {
-          onValueChange({ ...value, mass });
-        }}
-        min={0.1}
-        max={10}
-        step={0.1}
-        disabled={disabled}
-      />
-    </>
-  );
-
-const Spring = ({
-  label,
-  value,
-  defaultValue = defaultTimeSpring,
-  onValueChange,
-  disabled,
-  className,
-}: SpringProps) => {
-  const [local, setLocal] = React.useState<SpringValue>(defaultValue);
-  const current = value ?? local;
-
-  const cache = React.useRef<{ physics: SpringValue; time: SpringValue }>({
-    physics: defaultPhysicsSpring,
-    time: defaultTimeSpring,
-  });
-
-  React.useLayoutEffect(() => {
-    cache.current[springIsTime(current) ? "time" : "physics"] = current;
-  }, [current]);
-
-  const change = (next: SpringValue) => {
-    setLocal(next);
-    onValueChange?.(next);
-  };
-
-  return (
-    <Section title={label} className={className}>
-      <SpringCurve value={current} />
-      <Segmented
-        label="Type"
-        value={springIsTime(current) ? "time" : "physics"}
-        options={[
-          { label: "Time", value: "time" },
-          { label: "Physics", value: "physics" },
-        ]}
-        onValueChange={(mode) => {
-          change(cache.current[mode === "time" ? "time" : "physics"]);
-        }}
-        disabled={disabled}
-      />
-      <SpringFields value={current} onValueChange={change} disabled={disabled} />
-    </Section>
-  );
-};
-
-type TransitionMode = "easing" | "time" | "physics";
-
-const transitionModes: readonly { label: string; value: TransitionMode }[] = [
-  { label: "Easing", value: "easing" },
-  { label: "Time", value: "time" },
-  { label: "Physics", value: "physics" },
-];
-
-const transitionModeOf = (value: TransitionValue): TransitionMode => {
-  if (value.type === "easing") {
-    return "easing";
-  }
-
-  return springIsTime(value) ? "time" : "physics";
-};
-
-const Transition = ({
-  label,
-  value,
-  defaultValue = defaultEasing,
-  onValueChange,
-  disabled,
-  className,
-}: TransitionProps) => {
-  const [local, setLocal] = React.useState<TransitionValue>(defaultValue);
-  const current = value ?? local;
-
-  const cache = React.useRef<{ easing: EasingValue; time: SpringValue; physics: SpringValue }>({
-    easing: defaultEasing,
-    physics: defaultPhysicsSpring,
-    time: defaultTimeSpring,
-  });
-
-  const mode = transitionModeOf(current);
-
-  React.useLayoutEffect(() => {
-    if (current.type === "easing") {
-      cache.current.easing = current;
-    } else if (springIsTime(current)) {
-      cache.current.time = current;
-    } else {
-      cache.current.physics = current;
-    }
-  }, [current]);
-
-  const change = (next: TransitionValue) => {
-    setLocal(next);
-    onValueChange?.(next);
-  };
-
-  const updateEase = (index: number, next: number) => {
-    if (current.type !== "easing") {
-      return;
-    }
-
-    const ease: EasingValue["ease"] = [...current.ease];
-    ease[index] = next;
-    change({ ...current, ease });
-  };
-
-  return (
-    <Section title={label} className={className}>
-      {current.type === "easing" ? (
-        <CurveFrame
-          path={`M0 80 C${current.ease[0] * 100} ${80 - current.ease[1] * 60}, ${current.ease[2] * 100} ${80 - current.ease[3] * 60}, 100 20`}
-        />
-      ) : (
-        <SpringCurve value={current} />
-      )}
-      <Segmented
-        label="Type"
-        value={mode}
-        options={transitionModes}
-        onValueChange={(next) => {
-          const option = transitionModes.find((entry) => entry.value === next);
-
-          if (option) {
-            change(cache.current[option.value]);
-          }
-        }}
-        disabled={disabled}
-      />
-      {current.type === "easing" ? (
-        <>
-          <ControlNumber
-            label="Duration"
-            value={current.duration}
-            onValueChange={(duration) => {
-              change({ ...current, duration });
-            }}
-            min={0.1}
-            max={2}
-            step={0.01}
-            formatValue={(v) => `${v.toFixed(2)} s`}
-            disabled={disabled}
-          />
-          <div className="grid grid-cols-2 gap-1.5">
-            {(["X1", "Y1", "X2", "Y2"] as const).map((axis, index) => (
-              <ControlNumber
-                key={axis}
-                label={axis}
-                value={current.ease[index]}
-                onValueChange={(next) => {
-                  updateEase(index, next);
-                }}
-                min={index % 2 === 0 ? 0 : -1}
-                max={index % 2 === 0 ? 1 : 2}
-                step={0.01}
-                disabled={disabled}
-              />
-            ))}
-          </div>
-        </>
-      ) : (
-        <SpringFields value={current} onValueChange={change} disabled={disabled} />
-      )}
-    </Section>
-  );
-};
-
 type ActionProps = CommonProps & Omit<React.ComponentProps<"button">, "children" | "disabled">;
 
 const Action = ({ label, disabled, className, ...props }: ActionProps) => (
@@ -1746,19 +1227,15 @@ const Action = ({ label, disabled, className, ...props }: ActionProps) => (
 const Control = {
   Action,
   Boolean,
-  Color,
   Group,
   Image,
   Number: ControlNumber,
-  Pad,
   Row,
   Section,
   Segmented,
   Select,
-  Spring,
   Text,
   Textarea,
-  Transition,
 };
 
 export { Control };
@@ -1769,13 +1246,6 @@ export type {
   TextareaProps,
   BooleanProps,
   ChoiceProps,
-  ColorProps,
   ImageProps,
-  PadProps,
-  SpringProps,
-  TransitionProps,
-  SpringValue,
-  EasingValue,
-  TransitionValue,
   SectionProps,
 };

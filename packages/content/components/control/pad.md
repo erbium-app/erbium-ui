@@ -1,4 +1,0 @@
----
-title: "Pad"
-story: Pad
----

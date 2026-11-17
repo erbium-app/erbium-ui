@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Control } from "@erbium/ui/components/control";
 
-const shapes = [
+const orientations = [
   { label: "Portrait", value: "portrait" },
   { label: "Square", value: "square" },
   { label: "Landscape", value: "landscape" },
@@ -12,8 +12,7 @@ const ControlDemo = () => {
   const [opacity, setOpacity] = useState(0.6);
   const [scale, setScale] = useState(1.03);
   const [visible, setVisible] = useState(true);
-  const [shape, setShape] = useState("portrait");
-  const [color, setColor] = useState("");
+  const [orientation, setOrientation] = useState("portrait");
 
   return (
     <div className="w-72 rounded-xl border surface-panel p-3">
@@ -22,11 +21,10 @@ const ControlDemo = () => {
         <Control.Text label="Title" value={title} onValueChange={setTitle} />
         <Control.Select
           label="Photo Shape"
-          options={shapes}
-          value={shape}
-          onValueChange={setShape}
+          options={orientations}
+          value={orientation}
+          onValueChange={setOrientation}
         />
-        <Control.Color label="Shadow Tint" value={color} onValueChange={setColor} />
         <Control.Boolean label="Visible" checked={visible} onCheckedChange={setVisible} />
         <Control.Section title="Back Photo">
           <Control.Number label="Frames" steps={[1, 2, 3, 4]} defaultValue={3} />
