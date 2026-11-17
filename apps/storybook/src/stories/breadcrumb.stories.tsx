@@ -15,4 +15,4 @@ export const Dropdown = { ...showcases.Dropdown, name: "Dropdown" };
 
 export const CustomSeparator = { ...showcases.CustomSeparator, name: "Custom Separator" };
 
-export const LinkComponent = { ...showcases.LinkComponent, name: "Link Component" };
+export const LinkComponent = { ...showcases.LinkComponent, name: "TanStack Router" };

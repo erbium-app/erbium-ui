@@ -3,4 +3,4 @@ title: "Custom Separator"
 story: CustomSeparator
 ---
 
-Use a custom component as `children` for `<BreadcrumbSeparator />` to create a custom separator.
+Pass text or an icon to the `separator` prop. Breadcrumb uses the same separator when the trail collapses.

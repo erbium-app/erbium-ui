@@ -181,7 +181,7 @@
       "title": "Breadcrumb",
       "description": "Erbium breadcrumb component.",
       "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/icon", "@erbium/utils"],
+      "registryDependencies": ["@erbium/dropdown-menu", "@erbium/icon", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/breadcrumb.tsx",

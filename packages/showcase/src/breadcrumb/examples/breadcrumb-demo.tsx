@@ -1,24 +1,5 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@erbium/ui/components/breadcrumb";
+import { Breadcrumb } from "@erbium/ui/components/breadcrumb";
 
-const Demo = () => (
-  <Breadcrumb>
-    <BreadcrumbList>
-      <BreadcrumbItem>
-        <BreadcrumbLink href="/">Home</BreadcrumbLink>
-      </BreadcrumbItem>
-      <BreadcrumbSeparator />
-      <BreadcrumbItem>
-        <BreadcrumbPage>Components</BreadcrumbPage>
-      </BreadcrumbItem>
-    </BreadcrumbList>
-  </Breadcrumb>
-);
+const Demo = () => <Breadcrumb items={[{ href: "/", label: "Home" }]} currentPage="Components" />;
 
 export default Demo;

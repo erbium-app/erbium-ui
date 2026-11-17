@@ -547,7 +547,7 @@
         "exportName": "LinkComponent",
         "slug": "link-component",
         "source": "src/breadcrumb/variants/link-component.tsx",
-        "title": "Link Component"
+        "title": "TanStack Router"
       }
     ]
   },

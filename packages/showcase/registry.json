@@ -2728,7 +2728,7 @@
       "name": "breadcrumb-custom-separator",
       "type": "registry:block",
       "title": "Breadcrumb: Custom Separator",
-      "description": "Use a custom component as `children` for `<BreadcrumbSeparator />` to create a custom separator.",
+      "description": "Pass text or an icon to the `separator` prop. Breadcrumb uses the same separator when the trail collapses.",
       "registryDependencies": ["@erbium/breadcrumb", "@erbium/icon", "@erbium/styles"],
       "files": [
         {
@@ -2786,8 +2786,14 @@
       "name": "breadcrumb-ellipsis",
       "type": "registry:block",
       "title": "Breadcrumb: Collapsed",
-      "description": "We provide a `<BreadcrumbEllipsis />` component to show a collapsed state when the breadcrumb is too long.",
-      "registryDependencies": ["@erbium/breadcrumb", "@erbium/styles"],
+      "description": "Adjust the width to see the trail collapse. The ellipsis appears only when there are hidden parent pages. Select a page from the menu to navigate, or press Escape to return focus to the button.\n\nThe breadcrumb responds to its own container, so resizing a drawer or panel can change the visible trail without resizing the window. The first link stays visible whenever it fits beside the ellipsis and current page. With more room, the links closest to the current page come back first.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/breadcrumb",
+        "@erbium/link",
+        "@erbium/slider",
+        "@erbium/styles"
+      ],
       "files": [
         {
           "path": "src/breadcrumb/examples/breadcrumb-ellipsis.tsx",
@@ -2834,8 +2840,8 @@
     {
       "name": "breadcrumb-link-component",
       "type": "registry:block",
-      "title": "Breadcrumb: Link Component",
-      "description": "In a TanStack Router app, pass the Erbium `Link` to `BreadcrumbLink` through its `render` prop. Foresight predicts interest in the link and asks the router to preload its route. Use exact matching so an ancestor link is marked current only on its own route.\n\n```tsx\nimport { BreadcrumbLink } from \"@erbium/ui/components/breadcrumb\";\nimport { Link } from \"@erbium/ui/components/link\";\n\n<BreadcrumbLink render={<Link to=\"/projects\" activeOptions={{ exact: true }} />}>\n  Projects\n</BreadcrumbLink>;\n```\n\nThe preview uses in-memory routing. Select **Projects** to go up one level and **Open settings** to return.",
+      "title": "Breadcrumb: TanStack Router",
+      "description": "Derive the breadcrumb from TanStack Router’s [active route matches](https://tanstack.com/router/latest/docs/api/router/useMatchesHook). Define each title once with [`staticData`](https://tanstack.com/router/latest/docs/guide/static-route-data) on the route. The shared layout builds the trail from the matched route hierarchy, including the resolved path parameters.\n\n```tsx\n// routes/projects.tsx\nimport { createFileRoute, Outlet } from \"@tanstack/react-router\";\n\nexport const Route = createFileRoute(\"/projects\")({\n  component: Outlet,\n  staticData: { breadcrumb: \"Projects\" },\n});\n```\n\nSet `staticData: { breadcrumb: \"Settings\" }` on the nested settings route. Render `RouteBreadcrumb` in the shared layout alongside its `Outlet`:\n\n```tsx\nimport { trimPathRight, useMatches } from \"@tanstack/react-router\";\nimport { Breadcrumb } from \"@erbium/ui/components/breadcrumb\";\nimport { Link } from \"@erbium/ui/components/link\";\n\ndeclare module \"@tanstack/react-router\" {\n  interface StaticDataRouteOption {\n    breadcrumb?: string;\n  }\n}\n\nexport const RouteBreadcrumb = () => {\n  const matches = useMatches();\n  const labels = new Map<string, string>();\n\n  for (const match of matches) {\n    const label = match.staticData.breadcrumb;\n    if (label !== undefined) {\n      labels.set(trimPathRight(match.pathname), label);\n    }\n  }\n\n  const leaf = matches.at(-1);\n  if (!leaf) {\n    return null;\n  }\n\n  const currentPath = trimPathRight(leaf.pathname);\n  const currentPage = labels.get(currentPath);\n  if (currentPage === undefined) {\n    return null;\n  }\n\n  labels.delete(currentPath);\n  return (\n    <Breadcrumb\n      items={[...labels].map(([to, label]) => ({\n        id: to,\n        label,\n        render: <Link to={to} activeOptions={{ exact: true }} />,\n      }))}\n      currentPage={currentPage}\n    />\n  );\n};\n```\n\nLeave metadata off routes that should not add a crumb, such as pathless layouts. If a layout and its index share a URL, the deeper labeled match wins. The example skips pages with no label for the current URL. For a title that depends on fetched data, such as a project name, read that route’s loader data in the same adapter. If an ancestor requires search parameters, pass the search values required by that route to its link.\n\nThe preview uses in-memory routing. Select **Projects** to go up one level and **Open settings** to return. The same links work in the overflow menu when the trail collapses.",
       "dependencies": ["@tanstack/react-router@^1.170.46"],
       "registryDependencies": ["@erbium/breadcrumb", "@erbium/link", "@erbium/styles"],
       "files": [
@@ -2913,6 +2919,7 @@
         "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
+        "@erbium/slider",
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast"

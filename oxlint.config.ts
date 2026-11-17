@@ -26,8 +26,13 @@ export default defineConfig({
     { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
     { name: "erbium-typography", specifier: "./scripts/typography-lint.mjs" },
     { name: "erbium-sizing", specifier: "./scripts/sizing-lint.mjs" },
+    { name: "erbium-controls", specifier: "./scripts/controls-lint.mjs" },
   ],
   overrides: [
+    {
+      files: ["packages/showcase/src/**/*.{ts,tsx}"],
+      rules: { "erbium-controls/use-slider": "error" },
+    },
     {
       // Showcase catalogs import each variant twice: once as the rendered
       // component and once as its source text via Vite's `?raw` suffix. Those

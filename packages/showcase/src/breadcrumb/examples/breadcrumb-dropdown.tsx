@@ -22,18 +22,14 @@ export const BreadcrumbDropdown = () => (
   <Breadcrumb>
     <BreadcrumbList>
       <BreadcrumbItem>
-        <BreadcrumbLink render={<a href="/" />}>Home</BreadcrumbLink>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator>
         <Icon name="dot" />
       </BreadcrumbSeparator>
       <BreadcrumbItem>
         <DropdownMenu>
-          <DropdownMenuTrigger
-            render={
-              <button className="group group/breadcrumb-menu-trigger flex items-center gap-1" />
-            }
-          >
+          <DropdownMenuTrigger className="group/breadcrumb-menu-trigger flex items-center gap-1">
             Components
             <RotatingChevron className="size-3.5" />
           </DropdownMenuTrigger>
