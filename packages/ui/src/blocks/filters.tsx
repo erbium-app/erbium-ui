@@ -14,7 +14,6 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSearch,
-  DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -604,17 +603,21 @@ const FacetClear = ({ field }: { field: FilterField }) => {
   }
 
   return (
-    <>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem
-        className="justify-center"
-        onClick={() => {
-          removeRule(field);
-        }}
-      >
-        Clear filter
-      </DropdownMenuItem>
-    </>
+    // A searchable menu has no popup padding (its list pads itself), so the footer pads itself
+    // the same way and draws a full-width separator, as the search header does.
+    <div data-slot="filter-facet-footer" className="shrink-0">
+      <Separator variant="full" />
+      <div className="p-1">
+        <DropdownMenuItem
+          className="justify-center"
+          onClick={() => {
+            removeRule(field);
+          }}
+        >
+          Clear filter
+        </DropdownMenuItem>
+      </div>
+    </div>
   );
 };
 
@@ -639,7 +642,8 @@ const FilterFacet = ({ field, className }: FilterFacetProps) => {
           data-slot="filter-facet"
           variant="outline"
           size="sm"
-          className={cn("border-dashed", className)}
+          // Badges are as tall as the padded content box, so the padding goes and the height stays.
+          className={cn("border-dashed has-data-[slot=badge]:py-0", className)}
         >
           <Icon
             name={active ? (field.icon ?? "list-filter") : "circle-fading-plus"}
@@ -649,7 +653,7 @@ const FilterFacet = ({ field, className }: FilterFacetProps) => {
           {field.label}
           {active ? (
             <>
-              <Separator orientation="vertical" className="mx-0.5 h-4" />
+              <Separator orientation="vertical" className="mx-0.5 -my-px h-auto self-stretch" />
               <FacetSummary field={field} />
             </>
           ) : null}
