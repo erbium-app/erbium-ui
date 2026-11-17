@@ -9,7 +9,7 @@ Add Erbium components to your React application with the [Shadcn CLI](https://ui
 
 Use a React project with TypeScript and [Tailwind CSS v4](https://tailwindcss.com/docs/installation). The CLI needs a `components.json` file and configured import aliases. If your app already has Shadcn configured, skip to **Configure the registries**.
 
-Run all commands below in your application directory. The examples use Bun; `npx` can replace `bunx`.
+Run all commands below in your application directory. The examples use Bun. On the documentation site, each command block also offers npm, pnpm, and Yarn, and every block follows the package manager you choose.
 
 ## Set up your application
 
@@ -125,6 +125,19 @@ bun run dev
 
 Run `bun run build` to check the production build. Continue with [Using components](/docs/getting-started) for examples, providers, themes, and stories.
 
+## Track and update components
+
+The Erbium CLI records the revision of each component you install, so you can review upstream changes and merge them into your edited source later. Start tracking the styles and Button installed above:
+
+```sh
+bun add -d @erbium/cli
+bunx erbium init
+bunx erbium adopt styles button
+bunx erbium check
+```
+
+`adopt` records files that shadcn installed once they match the registry revision. Use `erbium add` for the components you install from now on. The [CLI guide](/docs/cli) covers updates, command options, and custom registries, including how to [build and host your own](/docs/cli#build-and-host-a-registry).
+
 ## Recommended tooling
 
 These tools are optional development dependencies in your application.
@@ -157,17 +170,17 @@ Choose the skills that match your work:
 - [Vercel](https://vercel.com/): [Building components](https://skills.sh/vercel/components.build/building-components), based on the [specification co-authored by Hayden Bleasel and Shadcn](https://components.build/), covers accessible component APIs. [React composition patterns](https://skills.sh/vercel-labs/agent-skills/vercel-composition-patterns) covers reusable React compositions.
 
 ```sh
-bunx skills add jakubkrehel/skills --skill better-typography better-accessibility better-layout better-writing better-colors
-bunx skills add emilkowalski/skill --skill animate review-animations
-bunx skills add vercel/components.build --skill building-components
-bunx skills add vercel-labs/agent-skills --skill vercel-composition-patterns
+bunx skills@latest add jakubkrehel/skills --skill better-typography better-accessibility better-layout better-writing better-colors
+bunx skills@latest add emilkowalski/skill --skill animate review-animations
+bunx skills@latest add vercel/components.build --skill building-components
+bunx skills@latest add vercel-labs/agent-skills --skill vercel-composition-patterns
 ```
 
 List installed skills and update the project’s skills with:
 
 ```sh
-bunx skills list
-bunx skills update --project
+bunx skills@latest list
+bunx skills@latest update --project
 ```
 
 ### Skills shipped with dependencies
@@ -201,19 +214,3 @@ Other dependencies, including Ultracite and TanStack Charts, can also expose pac
 Give your agent [llms.txt](/llms.txt) to discover Erbium’s documentation. Each documentation page is also available as Markdown by appending `.md` to its URL. Install [examples and stories](/docs/getting-started) alongside components when the agent needs composition and usage guidance.
 
 See [Typography](/docs/foundations/typography) for font roles, reading, and multilingual usage.
-
-## Track and update components
-
-Add the Erbium CLI when you want to record the versions you installed, review upstream changes, and merge updates into your local source.
-
-```sh
-bunx --package @erbium/cli erbium init
-bunx --package @erbium/cli erbium add styles button
-bunx --package @erbium/cli erbium check
-```
-
-If you installed those items with shadcn, run `erbium adopt styles button` once the files match the registry revision. See the [CLI guide](/docs/cli) for update workflows, command options, and registry configuration.
-
-## Publish your own registry
-
-Use `erbium registry build` to publish managed revisions alongside your shadcn registry. The [registry build guide](/docs/cli#build-and-host-a-registry) covers local validation, hosting, previews, and reports.

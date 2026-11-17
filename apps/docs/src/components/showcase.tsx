@@ -15,6 +15,7 @@ import { codePanelSurface } from "@erbium/ui/blocks/code-panel";
 import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
 import { Toaster } from "@erbium/ui/components/toast";
 import { Prose } from "./markdown";
+import { PackageCommand } from "./package-command";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@erbium/ui/components/tabs";
 import { Separator } from "@erbium/ui/components/separator";
 import { ThemeToggleIcon, RotatingChevron } from "@erbium/ui/components/stateful-icon";
@@ -100,7 +101,7 @@ export const Showcase = ({
   // (skeleton reveals, entrance motion, effects) plays again with the current args.
   const [mount, setMount] = useState(0);
 
-  const command = `npx shadcn@latest add @erbium-examples/${variant.name}-${variant.slug}`;
+  const command = `bunx shadcn@latest add @erbium-examples/${variant.name}-${variant.slug}`;
 
   return (
     <section id={variant.anchor} className="demo-section my-10 scroll-mt-8">
@@ -188,7 +189,7 @@ export const Showcase = ({
         </CollapsibleTrigger>
         <CollapsibleContent>
           <div className="pt-2">
-            <UICodeBlock code={command} language="bash" surface="command" />
+            <PackageCommand code={command} />
           </div>
         </CollapsibleContent>
       </Collapsible>

@@ -5,25 +5,25 @@ description: Install, track, and update component source, or publish your own Er
 
 The Erbium CLI copies components, styles, and examples into your project as source files. Edit them alongside the rest of your app. Erbium records the original bytes of each managed file so you can see what changed locally, review new releases, and merge upstream changes when you choose to update.
 
-Use Node.js 22.18 or later and Git in a TypeScript React project with shadcn configured. Follow [Installation](/docs/installation) for the app setup and global styles.
+Use Node.js 22.18 or later and Git in a TypeScript React project with shadcn configured. Follow [Installation](/docs/installation) for the app setup, global styles, and icon sprite.
 
 ## Install and track source
 
-Run these commands from the app directory. The examples below use the `erbium` executable. After installing `@erbium/cli` as a dev dependency, run it through your package manager, such as `npx erbium` or `bun run erbium`. You can also run it without adding a dependency using `bunx --package @erbium/cli erbium`.
+Run these commands from the app directory. Like [Installation](/docs/installation), the examples use Bun, and each command block offers npm, pnpm, and Yarn. Later sections show the bare `erbium` command, which you run through your package manager. To try the CLI without adding a dependency, use `bunx --package @erbium/cli erbium`.
 
 ```sh
-npm install -D @erbium/cli
-npx erbium init
-npx erbium search button
-npx erbium add styles button
-npx erbium check
+bun add -d @erbium/cli
+bunx erbium init
+bunx erbium search button
+bunx erbium add styles button
+bunx erbium check
 ```
 
 `init` adds the Erbium namespaces to `components.json` where missing and initializes `.erbium/lock.json`. Use `--agents` to add a local Erbium skill and an entry in `AGENTS.md`.
 
 `add` resolves registry dependencies and uses the aliases in `components.json` and your TypeScript config to place files and rewrite their imports. It installs missing packages with the project’s declared package manager, or detects Bun, pnpm, or Yarn from its lockfile and falls back to npm. Use `--skip-install` to handle package declarations yourself. A bare item name such as `button` means `@erbium/button`. Use the full `@erbium-examples/` name for an example.
 
-If you installed files with shadcn, use `erbium adopt styles button` to record them once they match the selected registry revision and their packages are declared. For an older install, use `erbium history button` to find a published commit and pass it to `erbium adopt button --at <commit>`.
+If you installed files with shadcn, as the Installation guide does, use `erbium adopt styles button` to record them once they match the selected registry revision and their packages are declared. For an older install, use `erbium history button` to find a published commit and pass it to `erbium adopt button --at <commit>`.
 
 ## Review and merge updates
 

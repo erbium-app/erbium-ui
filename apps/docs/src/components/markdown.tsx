@@ -23,6 +23,7 @@ import {
   TableCell,
   TableCaption,
 } from "@erbium/ui/components/table";
+import { PackageCommand } from "./package-command";
 
 const MarkdownLink = ({ href, children, ...props }: ComponentProps<"a">) => {
   const internal = href?.startsWith("/") === true && !/\.(?:md|json|txt|xml)$/u.test(href);
@@ -62,11 +63,17 @@ const MarkdownTable = (props: ComponentProps<"table">) => (
   />
 );
 
+const shellLanguages = new Set(["bash", "sh", "shell", "zsh"]);
+
 const isCodeText = (value: ReactNode): value is string => typeof value === "string";
 
 const MarkdownCode = ({ children, className, ...props }: ComponentProps<"code">) => {
   if (className?.startsWith("language-") === true && isCodeText(children)) {
     const language = className.slice(9);
+
+    if (shellLanguages.has(language)) {
+      return <PackageCommand code={children} className="not-typeset my-4" />;
+    }
 
     return <UICodeBlock code={children} language={language} className="not-typeset my-4" />;
   }
