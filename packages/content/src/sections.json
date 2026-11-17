@@ -25,7 +25,6 @@
       "calendar",
       "card",
       "carousel",
-      "chart",
       "checkbox",
       "collapsible",
       "combobox",
@@ -82,6 +81,21 @@
       "toggle-group",
       "toolbar",
       "tooltip"
+    ]
+  },
+  {
+    "title": "Charts",
+    "slug": "charts",
+    "kind": "chart",
+    "names": [
+      "chart",
+      "area-chart",
+      "bar-chart",
+      "line-chart",
+      "pie-chart",
+      "radar-chart",
+      "scatter-chart",
+      "heatmap-chart"
     ]
   },
   {

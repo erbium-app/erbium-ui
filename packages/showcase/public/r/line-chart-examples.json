@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All line-chart examples.",
+  "name": "line-chart-examples",
+  "registryDependencies": [
+    "@erbium-examples/line-chart-playground",
+    "@erbium-examples/line-chart-time"
+  ],
+  "title": "Line Chart examples",
+  "type": "registry:item"
+}

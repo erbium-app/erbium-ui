@@ -851,6 +851,100 @@
       ]
     },
     {
+      "description": "All area-chart examples.",
+      "name": "area-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/area-chart-playground",
+        "@erbium-examples/area-chart-stacked"
+      ],
+      "title": "Area Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "area-chart-playground",
+      "type": "registry:block",
+      "title": "Area Chart: Playground",
+      "description": "",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/area-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/area-chart/examples/data.ts",
+          "target": "@components/showcase/area-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/area-chart/variants/playground.tsx",
+          "target": "@components/showcase/area-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "area-chart-stacked",
+      "type": "registry:block",
+      "title": "Area Chart: Stacked",
+      "description": "Stacked areas keep the total on the top edge and give each series a layer of its own thickness.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/area-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/area-chart/examples/data.ts",
+          "target": "@components/showcase/area-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/area-chart/variants/stacked.tsx",
+          "target": "@components/showcase/area-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "area-chart-stories",
+      "type": "registry:item",
+      "title": "Area Chart stories",
+      "description": "All area-chart variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/area-chart",
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/area-chart/area-chart.stories.tsx",
+          "target": "@components/showcase/area-chart/area-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/area-chart/examples/data.ts",
+          "target": "@components/showcase/area-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/area-chart/variants/playground.tsx",
+          "target": "@components/showcase/area-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/area-chart/variants/stacked.tsx",
+          "target": "@components/showcase/area-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio-demo",
       "type": "registry:component",
       "title": "aspect ratio demo",
@@ -2487,6 +2581,126 @@
         {
           "path": "src/badge/variants/with-spinner.tsx",
           "target": "@components/showcase/badge/variants/with-spinner.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All bar-chart examples.",
+      "name": "bar-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/bar-chart-playground",
+        "@erbium-examples/bar-chart-stacked",
+        "@erbium-examples/bar-chart-horizontal"
+      ],
+      "title": "Bar Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "bar-chart-horizontal",
+      "type": "registry:block",
+      "title": "Bar Chart: Horizontal",
+      "description": "Horizontal bars list categories down the side, which leaves room for longer names. A single series hides the legend by default.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/bar-chart/variants/horizontal.tsx",
+          "target": "@components/showcase/bar-chart/variants/horizontal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart-playground",
+      "type": "registry:block",
+      "title": "Bar Chart: Playground",
+      "description": "",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/bar-chart/variants/playground.tsx",
+          "target": "@components/showcase/bar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart-stacked",
+      "type": "registry:block",
+      "title": "Bar Chart: Stacked",
+      "description": "Stacked bars show each month's total and how desktop and mobile divide it. Only the outer end of each stack is rounded.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/bar-chart/variants/stacked.tsx",
+          "target": "@components/showcase/bar-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart-stories",
+      "type": "registry:item",
+      "title": "Bar Chart stories",
+      "description": "All bar-chart variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/bar-chart",
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/bar-chart/bar-chart.stories.tsx",
+          "target": "@components/showcase/bar-chart/bar-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/bar-chart/variants/horizontal.tsx",
+          "target": "@components/showcase/bar-chart/variants/horizontal.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/bar-chart/variants/playground.tsx",
+          "target": "@components/showcase/bar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/bar-chart/variants/stacked.tsx",
+          "target": "@components/showcase/bar-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
           "type": "registry:component"
         }
       ]
@@ -5381,136 +5595,16 @@
       ]
     },
     {
-      "name": "chart-demo",
+      "name": "chart-composition",
       "type": "registry:component",
-      "title": "chart demo",
-      "description": "Erbium chart demo example.",
+      "title": "Chart: Composition",
+      "description": "A custom definition rendered with `Chart`: monthly revenue bars with a dashed target line. `chartTheme` and `chartTooltip` give it the same colors and tooltip as the chart types, and `ChartLegend` explains both marks.\n\n```tsx\nimport {\n  Chart,\n  ChartLegend,\n  chartTheme,\n  chartTooltip,\n  resolveChartSeries,\n} from \"@erbium/ui/charts/chart\";\nimport { barY, defineChart, ruleY } from \"@tanstack/charts\";\n\nconst definition = defineChart({\n  marks: [barY(revenue, { x: \"month\", y: \"revenue\", fill: \"var(--chart-1)\" }), ruleY([target])],\n  scales,\n  theme: chartTheme,\n  tooltip: chartTooltip,\n});\n```",
       "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
-          "path": "src/chart/examples/chart-demo.tsx",
-          "target": "@components/showcase/chart/examples/chart-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example",
-      "type": "registry:block",
-      "title": "Chart: Example",
-      "description": "A chart with the default configuration.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example.tsx",
-          "target": "@components/showcase/chart/variants/example.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-axis",
-      "type": "registry:block",
-      "title": "Chart: Example Axis",
-      "description": "Show chart axes and labels.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "path": "src/chart/examples/chart-example-axis.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-axis.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-axis.tsx",
-          "target": "@components/showcase/chart/variants/example-axis.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-grid",
-      "type": "registry:block",
-      "title": "Chart: Example Grid",
-      "description": "Show grid lines in a chart.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "path": "src/chart/examples/chart-example-grid.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-grid.tsx",
-          "target": "@components/showcase/chart/variants/example-grid.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-legend",
-      "type": "registry:block",
-      "title": "Chart: Legend",
-      "description": "TanStack Charts renders the legend from the chart definition. The example maps Desktop and Mobile to fixed colors and enables a legend labeled Device.\n\n```tsx\nimport { chartTextRole } from \"@erbium/ui/lib/typography\";\n\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  color: {\n    scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n    legend: colorLegend({\n      label: \"Device\",\n      items: colorLegendItems({\n        justify: \"start\",\n        gap: 16,\n        rowGap: 8,\n        indicator: { shape: \"dot\", width: 8, height: 8, gap: 7 },\n        label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n      }),\n    }),\n  },\n});\n```",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "path": "src/chart/examples/chart-example-legend.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-legend.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-legend.tsx",
-          "target": "@components/showcase/chart/variants/example-legend.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-tooltip",
-      "type": "registry:block",
-      "title": "Chart: Tooltip",
-      "description": "Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\n\n```tsx\nimport { tooltip } from \"@tanstack/charts/tooltip\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  focus: \"group-x\",\n  tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n});\n```\n\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "path": "src/chart/examples/chart-example-tooltip.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-tooltip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-tooltip.tsx",
-          "target": "@components/showcase/chart/variants/example-tooltip.tsx",
+          "path": "src/chart/variants/composition.tsx",
+          "target": "@components/showcase/chart/variants/composition.tsx",
           "type": "registry:component"
         }
       ]
@@ -5519,13 +5613,8 @@
       "description": "All chart examples.",
       "name": "chart-examples",
       "registryDependencies": [
-        "@erbium-examples/chart-playground",
         "@erbium-examples/chart-overview",
-        "@erbium-examples/chart-example",
-        "@erbium-examples/chart-example-grid",
-        "@erbium-examples/chart-example-axis",
-        "@erbium-examples/chart-example-tooltip",
-        "@erbium-examples/chart-example-legend"
+        "@erbium-examples/chart-composition"
       ],
       "title": "Chart examples",
       "type": "registry:item"
@@ -5534,38 +5623,25 @@
       "name": "chart-overview",
       "type": "registry:block",
       "title": "Chart: Overview",
-      "description": "",
+      "description": "Each chart type with its default settings.",
       "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/area-chart",
+        "@erbium/bar-chart",
+        "@erbium/chart",
+        "@erbium/line-chart",
+        "@erbium/pie-chart",
+        "@erbium/styles"
+      ],
       "files": [
         {
-          "path": "src/chart/examples/chart-demo.tsx",
-          "target": "@components/showcase/chart/examples/chart-demo.tsx",
+          "path": "src/chart/examples/data.ts",
+          "target": "@components/showcase/chart/examples/data.ts",
           "type": "registry:component"
         },
         {
           "path": "src/chart/variants/overview.tsx",
           "target": "@components/showcase/chart/variants/overview.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-playground",
-      "type": "registry:block",
-      "title": "Chart: Playground",
-      "description": "",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/playground.tsx",
-          "target": "@components/showcase/chart/variants/playground.tsx",
           "type": "registry:component"
         }
       ]
@@ -5578,13 +5654,16 @@
       "dependencies": ["@tanstack/charts@1.5.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/area-chart",
+        "@erbium/bar-chart",
         "@erbium/chart",
         "@erbium/csp-provider",
+        "@erbium/line-chart",
         "@erbium/overlay-provider",
+        "@erbium/pie-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast",
-        "@erbium/typography"
+        "@erbium/toast"
       ],
       "files": [
         {
@@ -5593,68 +5672,18 @@
           "type": "registry:file"
         },
         {
-          "path": "src/chart/examples/chart-demo.tsx",
-          "target": "@components/showcase/chart/examples/chart-demo.tsx",
+          "path": "src/chart/examples/data.ts",
+          "target": "@components/showcase/chart/examples/data.ts",
           "type": "registry:component"
         },
         {
-          "path": "src/chart/examples/chart-example-axis.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-axis.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example-grid.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example-legend.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-legend.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example-tooltip.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-tooltip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-axis.tsx",
-          "target": "@components/showcase/chart/variants/example-axis.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-grid.tsx",
-          "target": "@components/showcase/chart/variants/example-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-legend.tsx",
-          "target": "@components/showcase/chart/variants/example-legend.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example-tooltip.tsx",
-          "target": "@components/showcase/chart/variants/example-tooltip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/example.tsx",
-          "target": "@components/showcase/chart/variants/example.tsx",
+          "path": "src/chart/variants/composition.tsx",
+          "target": "@components/showcase/chart/variants/composition.tsx",
           "type": "registry:component"
         },
         {
           "path": "src/chart/variants/overview.tsx",
           "target": "@components/showcase/chart/variants/overview.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/chart/variants/playground.tsx",
-          "target": "@components/showcase/chart/variants/playground.tsx",
           "type": "registry:component"
         },
         {
@@ -11977,6 +12006,69 @@
       ]
     },
     {
+      "description": "All heatmap-chart examples.",
+      "name": "heatmap-chart-examples",
+      "registryDependencies": ["@erbium-examples/heatmap-chart-playground"],
+      "title": "Heatmap examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "heatmap-chart-playground",
+      "type": "registry:block",
+      "title": "Heatmap: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/heatmap-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/heatmap-chart/examples/data.ts",
+          "target": "@components/showcase/heatmap-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/heatmap-chart/variants/playground.tsx",
+          "target": "@components/showcase/heatmap-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "heatmap-chart-stories",
+      "type": "registry:item",
+      "title": "Heatmap stories",
+      "description": "All heatmap-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/heatmap-chart",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/heatmap-chart/examples/data.ts",
+          "target": "@components/showcase/heatmap-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/heatmap-chart/heatmap-chart.stories.tsx",
+          "target": "@components/showcase/heatmap-chart/heatmap-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/heatmap-chart/variants/playground.tsx",
+          "target": "@components/showcase/heatmap-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hover-card-basic",
       "type": "registry:block",
       "title": "Hover Card: Basic",
@@ -14052,6 +14144,94 @@
         {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All line-chart examples.",
+      "name": "line-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/line-chart-playground",
+        "@erbium-examples/line-chart-time"
+      ],
+      "title": "Line Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "line-chart-playground",
+      "type": "registry:block",
+      "title": "Line Chart: Playground",
+      "description": "",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/chart", "@erbium/line-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/line-chart/examples/data.ts",
+          "target": "@components/showcase/line-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/line-chart/variants/playground.tsx",
+          "target": "@components/showcase/line-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "line-chart-stories",
+      "type": "registry:item",
+      "title": "Line Chart stories",
+      "description": "All line-chart variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/line-chart",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/line-chart/examples/data.ts",
+          "target": "@components/showcase/line-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/line-chart/line-chart.stories.tsx",
+          "target": "@components/showcase/line-chart/line-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/line-chart/variants/playground.tsx",
+          "target": "@components/showcase/line-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/line-chart/variants/time.tsx",
+          "target": "@components/showcase/line-chart/variants/time.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "line-chart-time",
+      "type": "registry:component",
+      "title": "Line Chart: Time",
+      "description": "With `indexType=\"time\"`, the x axis is a UTC time scale and spaces dates by their real distance. `indexFormat` sets the tick and tooltip labels, and `format` sets the values.",
+      "registryDependencies": ["@erbium/line-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/line-chart/variants/time.tsx",
+          "target": "@components/showcase/line-chart/variants/time.tsx",
           "type": "registry:component"
         }
       ]
@@ -17064,6 +17244,96 @@
       ]
     },
     {
+      "name": "pie-chart-center",
+      "type": "registry:block",
+      "title": "Pie Chart: Center",
+      "description": "`center` places HTML over the donut's hole, here the total. It does not take pointer events, so slices under it still respond to hover.",
+      "registryDependencies": ["@erbium/pie-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/pie-chart/examples/data.ts",
+          "target": "@components/showcase/pie-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pie-chart/variants/center.tsx",
+          "target": "@components/showcase/pie-chart/variants/center.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All pie-chart examples.",
+      "name": "pie-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/pie-chart-playground",
+        "@erbium-examples/pie-chart-center"
+      ],
+      "title": "Pie Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "pie-chart-playground",
+      "type": "registry:block",
+      "title": "Pie Chart: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/pie-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/pie-chart/examples/data.ts",
+          "target": "@components/showcase/pie-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pie-chart/variants/playground.tsx",
+          "target": "@components/showcase/pie-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pie-chart-stories",
+      "type": "registry:item",
+      "title": "Pie Chart stories",
+      "description": "All pie-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/pie-chart",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/pie-chart/examples/data.ts",
+          "target": "@components/showcase/pie-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pie-chart/pie-chart.stories.tsx",
+          "target": "@components/showcase/pie-chart/pie-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/pie-chart/variants/center.tsx",
+          "target": "@components/showcase/pie-chart/variants/center.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/pie-chart/variants/playground.tsx",
+          "target": "@components/showcase/pie-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "popover-align",
       "type": "registry:block",
       "title": "Popover: Align",
@@ -18147,6 +18417,69 @@
       ]
     },
     {
+      "description": "All radar-chart examples.",
+      "name": "radar-chart-examples",
+      "registryDependencies": ["@erbium-examples/radar-chart-playground"],
+      "title": "Radar Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "radar-chart-playground",
+      "type": "registry:block",
+      "title": "Radar Chart: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/radar-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/radar-chart/examples/data.ts",
+          "target": "@components/showcase/radar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/radar-chart/variants/playground.tsx",
+          "target": "@components/showcase/radar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "radar-chart-stories",
+      "type": "registry:item",
+      "title": "Radar Chart stories",
+      "description": "All radar-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/radar-chart",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/radar-chart/examples/data.ts",
+          "target": "@components/showcase/radar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/radar-chart/radar-chart.stories.tsx",
+          "target": "@components/showcase/radar-chart/radar-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/radar-chart/variants/playground.tsx",
+          "target": "@components/showcase/radar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "radio-group-choice-card",
       "type": "registry:block",
       "title": "Radio Group: Choice Card",
@@ -18649,6 +18982,70 @@
         {
           "path": "src/resizable/variants/vertical.tsx",
           "target": "@components/showcase/resizable/variants/vertical.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All scatter-chart examples.",
+      "name": "scatter-chart-examples",
+      "registryDependencies": ["@erbium-examples/scatter-chart-playground"],
+      "title": "Scatter Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "scatter-chart-playground",
+      "type": "registry:block",
+      "title": "Scatter Chart: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/chart", "@erbium/scatter-chart", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/scatter-chart/examples/data.ts",
+          "target": "@components/showcase/scatter-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/scatter-chart/variants/playground.tsx",
+          "target": "@components/showcase/scatter-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scatter-chart-stories",
+      "type": "registry:item",
+      "title": "Scatter Chart stories",
+      "description": "All scatter-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/scatter-chart",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/scatter-chart/examples/data.ts",
+          "target": "@components/showcase/scatter-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/scatter-chart/scatter-chart.stories.tsx",
+          "target": "@components/showcase/scatter-chart/scatter-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/scatter-chart/variants/playground.tsx",
+          "target": "@components/showcase/scatter-chart/variants/playground.tsx",
           "type": "registry:component"
         }
       ]

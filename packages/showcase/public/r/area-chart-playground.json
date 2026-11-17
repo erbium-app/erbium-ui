@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "area-chart-playground",
+  "type": "registry:block",
+  "title": "Area Chart: Playground",
+  "description": "",
+  "dependencies": ["@tanstack/charts@1.5.0"],
+  "registryDependencies": ["@erbium/area-chart", "@erbium/chart", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n",
+      "path": "src/area-chart/examples/data.ts",
+      "target": "@components/showcase/area-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  fill: \"gradient\" | \"solid\";\n  grid: boolean;\n  legend: boolean;\n  stacked: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <AreaChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/area-chart/variants/playground.tsx",
+      "target": "@components/showcase/area-chart/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

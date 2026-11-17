@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bar-chart-stacked",
+  "type": "registry:block",
+  "title": "Bar Chart: Stacked",
+  "description": "Stacked bars show each month's total and how desktop and mobile divide it. Only the outer end of each stack is rounded.",
+  "dependencies": ["@tanstack/charts@1.5.0"],
+  "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+      "path": "src/bar-chart/examples/data.ts",
+      "target": "@components/showcase/bar-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/bar-chart/variants/stacked.tsx",
+      "target": "@components/showcase/bar-chart/variants/stacked.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

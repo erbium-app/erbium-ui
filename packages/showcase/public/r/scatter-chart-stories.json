@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scatter-chart-stories",
+  "type": "registry:item",
+  "title": "Scatter Chart stories",
+  "description": "All scatter-chart variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/chart",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/scatter-chart",
+    "@erbium/skeleton",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+      "path": "src/preview.tsx",
+      "target": "@components/showcase/preview.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "export const products = [\n  { category: \"Audio\", price: 49, rating: 3.9 },\n  { category: \"Audio\", price: 129, rating: 4.4 },\n  { category: \"Audio\", price: 249, rating: 4.6 },\n  { category: \"Audio\", price: 89, rating: 4.1 },\n  { category: \"Wearables\", price: 199, rating: 4 },\n  { category: \"Wearables\", price: 299, rating: 4.3 },\n  { category: \"Wearables\", price: 399, rating: 4.7 },\n  { category: \"Wearables\", price: 149, rating: 3.6 },\n  { category: \"Cameras\", price: 449, rating: 4.2 },\n  { category: \"Cameras\", price: 599, rating: 4.5 },\n  { category: \"Cameras\", price: 349, rating: 3.8 },\n];\n",
+      "path": "src/scatter-chart/examples/data.ts",
+      "target": "@components/showcase/scatter-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { ScatterChart } from \"@/registry/erbium/charts/scatter-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { chartNumberFormat } from \\\"@/registry/erbium/charts/chart\\\";\\nimport { ScatterChart } from \\\"@/registry/erbium/charts/scatter-chart\\\";\\nimport { products } from \\\"../examples/data\\\";\\n\\nconst priceFormat = chartNumberFormat(\\n  { currency: \\\"USD\\\", maximumFractionDigits: 0, style: \\\"currency\\\" },\\n  \\\"en\\\",\\n);\\n\\nconst ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, \\\"en\\\");\\n\\nconst Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <ScatterChart\\n      ariaLabel=\\\"Product price against average rating\\\"\\n      data={products}\\n      x=\\\"price\\\"\\n      y=\\\"rating\\\"\\n      group=\\\"category\\\"\\n      xLabel=\\\"Price\\\"\\n      yLabel=\\\"Rating\\\"\\n      xFormat={priceFormat}\\n      format={ratingFormat}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: ScatterChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per point and name the numeric fields with `x` and `y`. `group` colors points by a category, and the legend hides and shows each group.\\n\\n```tsx\\nimport { ScatterChart } from \\\"@/registry/erbium/charts/scatter-chart\\\";\\n\\n<ScatterChart\\n  ariaLabel=\\\"Price against rating\\\"\\n  data={products}\\n  x=\\\"price\\\"\\n  y=\\\"rating\\\"\\n  group=\\\"category\\\"\\n/>;\\n```\\n\\nName both axes with `xLabel` and `yLabel`. `format` formats y values and `xFormat` formats x values.\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof ScatterChart>;\n\nexport default { ...meta, title: \"Charts/Scatter Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\nexport const Playground: StoryObj<{\n  grid: boolean;\n  legend: boolean;\n  radius: number;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    grid: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    radius: { control: { max: 10, min: 2, type: \"number\" } },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { grid: true, legend: true, radius: 4, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n",
+      "path": "src/scatter-chart/scatter-chart.stories.tsx",
+      "target": "@components/showcase/scatter-chart/scatter-chart.stories.tsx",
+      "type": "registry:file"
+    },
+    {
+      "content": "import { chartNumberFormat } from \"@/registry/erbium/charts/chart\";\nimport { ScatterChart } from \"@/registry/erbium/charts/scatter-chart\";\nimport { products } from \"../examples/data\";\n\nconst priceFormat = chartNumberFormat(\n  { currency: \"USD\", maximumFractionDigits: 0, style: \"currency\" },\n  \"en\",\n);\n\nconst ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, \"en\");\n\nconst Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <ScatterChart\n      ariaLabel=\"Product price against average rating\"\n      data={products}\n      x=\"price\"\n      y=\"rating\"\n      group=\"category\"\n      xLabel=\"Price\"\n      yLabel=\"Rating\"\n      xFormat={priceFormat}\n      format={ratingFormat}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/scatter-chart/variants/playground.tsx",
+      "target": "@components/showcase/scatter-chart/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "heatmap-chart-playground",
+  "type": "registry:block",
+  "title": "Heatmap: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/heatmap-chart", "@erbium/styles"],
+  "files": [
+    {
+      "content": "export const days = [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"];\n\nexport const hours = [\"9am\", \"11am\", \"1pm\", \"3pm\", \"5pm\", \"7pm\"];\n\nexport const orders = days.flatMap((day, dayIndex) =>\n  hours.map((hour, hourIndex) => ({\n    day,\n    hour,\n    orders: Math.round(\n      20 + 30 * Math.sin((hourIndex + 1) / 2) + (dayIndex < 5 ? 15 : -10) + ((dayIndex * 7) % 11),\n    ),\n  })),\n);\n",
+      "path": "src/heatmap-chart/examples/data.ts",
+      "target": "@components/showcase/heatmap-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { HeatmapChart } from \"@/registry/erbium/charts/heatmap-chart\";\nimport { days, hours, orders } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <HeatmapChart\n      ariaLabel=\"Orders by weekday and hour\"\n      data={orders}\n      x=\"hour\"\n      y=\"day\"\n      value=\"orders\"\n      columns={hours}\n      rows={days}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/heatmap-chart/variants/playground.tsx",
+      "target": "@components/showcase/heatmap-chart/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radar-chart-stories",
+  "type": "registry:item",
+  "title": "Radar Chart stories",
+  "description": "All radar-chart variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/radar-chart",
+    "@erbium/skeleton",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+      "path": "src/preview.tsx",
+      "target": "@components/showcase/preview.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "export const skills = [\n  { ana: 86, ben: 64, skill: \"Speed\" },\n  { ana: 58, ben: 88, skill: \"Strength\" },\n  { ana: 74, ben: 70, skill: \"Stamina\" },\n  { ana: 92, ben: 55, skill: \"Agility\" },\n  { ana: 66, ben: 80, skill: \"Defense\" },\n  { ana: 80, ben: 72, skill: \"Vision\" },\n];\n\nexport const players = [\n  { key: \"ana\", label: \"Ana\" },\n  { key: \"ben\", label: \"Ben\" },\n] as const;\n",
+      "path": "src/radar-chart/examples/data.ts",
+      "target": "@components/showcase/radar-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { RadarChart } from \\\"@/registry/erbium/charts/radar-chart\\\";\\nimport { players, skills } from \\\"../examples/data\\\";\\n\\nconst Example = (args: { legend: boolean; points: boolean; rings: number; tooltip: boolean }) => (\\n  <div className=\\\"w-md max-w-full p-4\\\">\\n    <RadarChart\\n      ariaLabel=\\\"Skill ratings for two players\\\"\\n      data={skills}\\n      index=\\\"skill\\\"\\n      series={players}\\n      max={100}\\n      initialWidth={400}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: RadarChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per axis, with one numeric field per series. Set `max` when several radar charts should be compared, so their outer rings mean the same value.\\n\\n```tsx\\nimport { RadarChart } from \\\"@/registry/erbium/charts/radar-chart\\\";\\n\\n<RadarChart ariaLabel=\\\"Skills by player\\\" data={skills} index=\\\"skill\\\" series={players} max={100} />;\\n```\\n\\nRadar charts need axes on the same scale. With fewer than five axes, or axes in different units, use a [Bar Chart](/docs/charts/bar-chart).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof RadarChart>;\n\nexport default { ...meta, title: \"Charts/Radar Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\nexport const Playground: StoryObj<{\n  legend: boolean;\n  points: boolean;\n  rings: number;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    legend: { control: \"boolean\" },\n    points: { control: \"boolean\" },\n    rings: { control: { max: 8, min: 2, type: \"number\" } },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { legend: true, points: false, rings: 4, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n",
+      "path": "src/radar-chart/radar-chart.stories.tsx",
+      "target": "@components/showcase/radar-chart/radar-chart.stories.tsx",
+      "type": "registry:file"
+    },
+    {
+      "content": "import { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\nimport { players, skills } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; points: boolean; rings: number; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <RadarChart\n      ariaLabel=\"Skill ratings for two players\"\n      data={skills}\n      index=\"skill\"\n      series={players}\n      max={100}\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/radar-chart/variants/playground.tsx",
+      "target": "@components/showcase/radar-chart/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

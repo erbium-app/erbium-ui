@@ -2,15 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "description": "All chart examples.",
   "name": "chart-examples",
-  "registryDependencies": [
-    "@erbium-examples/chart-playground",
-    "@erbium-examples/chart-overview",
-    "@erbium-examples/chart-example",
-    "@erbium-examples/chart-example-grid",
-    "@erbium-examples/chart-example-axis",
-    "@erbium-examples/chart-example-tooltip",
-    "@erbium-examples/chart-example-legend"
-  ],
+  "registryDependencies": ["@erbium-examples/chart-overview", "@erbium-examples/chart-composition"],
   "title": "Chart examples",
   "type": "registry:item"
 }

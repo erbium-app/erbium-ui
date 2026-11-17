@@ -1,0 +1,48 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pie-chart-stories",
+  "type": "registry:item",
+  "title": "Pie Chart stories",
+  "description": "All pie-chart variants as portable React CSF stories.",
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/pie-chart",
+    "@erbium/skeleton",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "content": "export const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+      "path": "src/pie-chart/examples/data.ts",
+      "target": "@components/showcase/pie-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { PieChart } from \"@/registry/erbium/charts/pie-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\nimport { browsers } from \\\"../examples/data\\\";\\n\\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\\n  <div className=\\\"w-md max-w-full p-4\\\">\\n    <PieChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      value=\\\"visitors\\\"\\n      initialWidth={400}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport CenterExample from \"./variants/center\";\n\nconst CenterSource = \"import { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\nimport { browsers } from \\\"../examples/data\\\";\\n\\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\\n\\nconst Example = () => (\\n  <div className=\\\"w-md max-w-full p-4\\\">\\n    <PieChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      value=\\\"visitors\\\"\\n      initialWidth={400}\\n      center={\\n        <>\\n          <span className=\\\"text-subtitle tabular-nums\\\">{total.toLocaleString(\\\"en\\\")}</span>\\n          <span className=\\\"text-metadata text-muted-foreground\\\">Visitors</span>\\n        </>\\n      }\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: PieChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per slice. `index` names each slice and `value` sizes it. Slices take the chart colors in data order; pass `series` to set labels or colors by slice name.\\n\\n```tsx\\nimport { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\n\\n<PieChart ariaLabel=\\\"Visitors by browser\\\" data={browsers} index=\\\"browser\\\" value=\\\"visitors\\\" />;\\n```\\n\\nKeep a pie to five slices and group the rest into \\\"Other\\\". When slices are close in size, compare them in a [Bar Chart](/docs/charts/bar-chart) instead.\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof PieChart>;\n\nexport default { ...meta, title: \"Charts/Pie Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{ donut: boolean; legend: boolean; tooltip: boolean }> = {\n  argTypes: {\n    donut: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { donut: true, legend: true, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Center: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`center` places HTML over the donut's hole, here the total. It does not take pointer events, so slices under it still respond to hover.\" },\n      source: { code: CenterSource },\n    },\n  },\n  render: CenterExample,\n};\n",
+      "path": "src/pie-chart/pie-chart.stories.tsx",
+      "target": "@components/showcase/pie-chart/pie-chart.stories.tsx",
+      "type": "registry:file"
+    },
+    {
+      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\n\nconst Example = () => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      center={\n        <>\n          <span className=\"text-subtitle tabular-nums\">{total.toLocaleString(\"en\")}</span>\n          <span className=\"text-metadata text-muted-foreground\">Visitors</span>\n        </>\n      }\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/pie-chart/variants/center.tsx",
+      "target": "@components/showcase/pie-chart/variants/center.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/pie-chart/variants/playground.tsx",
+      "target": "@components/showcase/pie-chart/variants/playground.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+      "path": "src/preview.tsx",
+      "target": "@components/showcase/preview.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

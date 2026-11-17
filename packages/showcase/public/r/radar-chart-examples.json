@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All radar-chart examples.",
+  "name": "radar-chart-examples",
+  "registryDependencies": ["@erbium-examples/radar-chart-playground"],
+  "title": "Radar Chart examples",
+  "type": "registry:item"
+}

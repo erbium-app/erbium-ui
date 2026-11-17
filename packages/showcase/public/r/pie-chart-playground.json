@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pie-chart-playground",
+  "type": "registry:block",
+  "title": "Pie Chart: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/pie-chart", "@erbium/styles"],
+  "files": [
+    {
+      "content": "export const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+      "path": "src/pie-chart/examples/data.ts",
+      "target": "@components/showcase/pie-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/pie-chart/variants/playground.tsx",
+      "target": "@components/showcase/pie-chart/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

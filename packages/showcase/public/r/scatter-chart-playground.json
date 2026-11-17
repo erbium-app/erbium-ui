@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scatter-chart-playground",
+  "type": "registry:block",
+  "title": "Scatter Chart: Playground",
+  "description": "",
+  "registryDependencies": ["@erbium/chart", "@erbium/scatter-chart", "@erbium/styles"],
+  "files": [
+    {
+      "content": "export const products = [\n  { category: \"Audio\", price: 49, rating: 3.9 },\n  { category: \"Audio\", price: 129, rating: 4.4 },\n  { category: \"Audio\", price: 249, rating: 4.6 },\n  { category: \"Audio\", price: 89, rating: 4.1 },\n  { category: \"Wearables\", price: 199, rating: 4 },\n  { category: \"Wearables\", price: 299, rating: 4.3 },\n  { category: \"Wearables\", price: 399, rating: 4.7 },\n  { category: \"Wearables\", price: 149, rating: 3.6 },\n  { category: \"Cameras\", price: 449, rating: 4.2 },\n  { category: \"Cameras\", price: 599, rating: 4.5 },\n  { category: \"Cameras\", price: 349, rating: 3.8 },\n];\n",
+      "path": "src/scatter-chart/examples/data.ts",
+      "target": "@components/showcase/scatter-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { chartNumberFormat } from \"@/registry/erbium/charts/chart\";\nimport { ScatterChart } from \"@/registry/erbium/charts/scatter-chart\";\nimport { products } from \"../examples/data\";\n\nconst priceFormat = chartNumberFormat(\n  { currency: \"USD\", maximumFractionDigits: 0, style: \"currency\" },\n  \"en\",\n);\n\nconst ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, \"en\");\n\nconst Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <ScatterChart\n      ariaLabel=\"Product price against average rating\"\n      data={products}\n      x=\"price\"\n      y=\"rating\"\n      group=\"category\"\n      xLabel=\"Price\"\n      yLabel=\"Rating\"\n      xFormat={priceFormat}\n      format={ratingFormat}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/scatter-chart/variants/playground.tsx",
+      "target": "@components/showcase/scatter-chart/variants/playground.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

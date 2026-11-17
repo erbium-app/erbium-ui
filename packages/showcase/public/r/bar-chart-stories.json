@@ -1,0 +1,56 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "bar-chart-stories",
+  "type": "registry:item",
+  "title": "Bar Chart stories",
+  "description": "All bar-chart variants as portable React CSF stories.",
+  "dependencies": ["@tanstack/charts@1.5.0"],
+  "devDependencies": ["@storybook/react@^10.6.1"],
+  "registryDependencies": [
+    "@erbium/bar-chart",
+    "@erbium/chart",
+    "@erbium/csp-provider",
+    "@erbium/overlay-provider",
+    "@erbium/skeleton",
+    "@erbium/styles",
+    "@erbium/toast"
+  ],
+  "files": [
+    {
+      "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { BarChart } from \"@/registry/erbium/charts/bar-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = (args: {\\n  axis: boolean;\\n  grid: boolean;\\n  legend: boolean;\\n  orientation: \\\"vertical\\\" | \\\"horizontal\\\";\\n  stacked: boolean;\\n  tooltip: boolean;\\n}) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport StackedExample from \"./variants/stacked\";\n\nconst StackedSource = \"import { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by month, stacked by device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      stacked\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport HorizontalExample from \"./variants/horizontal\";\n\nconst HorizontalSource = \"import { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { browsers } from \\\"../examples/data\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      series={[{ key: \\\"visitors\\\", label: \\\"Visitors\\\" }]}\\n      orientation=\\\"horizontal\\\"\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: BarChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per category and list the numeric fields to draw in `series`. Each series takes the next chart color unless it sets `color`.\\n\\n```tsx\\nimport { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\n\\n<BarChart\\n  ariaLabel=\\\"Visitors by month and device\\\"\\n  data={visitors}\\n  index=\\\"month\\\"\\n  series={[\\n    { key: \\\"desktop\\\", label: \\\"Desktop\\\" },\\n    { key: \\\"mobile\\\", label: \\\"Mobile\\\" },\\n  ]}\\n/>;\\n```\\n\\nUse `stacked` to show totals and their parts, and `orientation=\\\"horizontal\\\"` for long category names. When many categories have long names on a narrow screen, prefer horizontal bars. For parts of a whole, use a [Pie Chart](/docs/charts/pie-chart).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof BarChart>;\n\nexport default { ...meta, title: \"Charts/Bar Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  axis: boolean;\n  grid: boolean;\n  legend: boolean;\n  orientation: \"vertical\" | \"horizontal\";\n  stacked: boolean;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    axis: { control: \"boolean\" },\n    grid: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    orientation: { control: \"inline-radio\", options: [\"vertical\", \"horizontal\"] },\n    stacked: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: {\n    axis: true,\n    grid: true,\n    legend: true,\n    orientation: \"vertical\",\n    stacked: false,\n    tooltip: true,\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Stacked: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Stacked bars show each month's total and how desktop and mobile divide it. Only the outer end of each stack is rounded.\" },\n      source: { code: StackedSource },\n    },\n  },\n  render: StackedExample,\n};\n\nexport const Horizontal: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Horizontal bars list categories down the side, which leaves room for longer names. A single series hides the legend by default.\" },\n      source: { code: HorizontalSource },\n    },\n  },\n  render: HorizontalExample,\n};\n",
+      "path": "src/bar-chart/bar-chart.stories.tsx",
+      "target": "@components/showcase/bar-chart/bar-chart.stories.tsx",
+      "type": "registry:file"
+    },
+    {
+      "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+      "path": "src/bar-chart/examples/data.ts",
+      "target": "@components/showcase/bar-chart/examples/data.ts",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      series={[{ key: \"visitors\", label: \"Visitors\" }]}\n      orientation=\"horizontal\"\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/bar-chart/variants/horizontal.tsx",
+      "target": "@components/showcase/bar-chart/variants/horizontal.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  grid: boolean;\n  legend: boolean;\n  orientation: \"vertical\" | \"horizontal\";\n  stacked: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/bar-chart/variants/playground.tsx",
+      "target": "@components/showcase/bar-chart/variants/playground.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+      "path": "src/bar-chart/variants/stacked.tsx",
+      "target": "@components/showcase/bar-chart/variants/stacked.tsx",
+      "type": "registry:component"
+    },
+    {
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+      "path": "src/preview.tsx",
+      "target": "@components/showcase/preview.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

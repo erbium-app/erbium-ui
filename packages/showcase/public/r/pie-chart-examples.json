@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All pie-chart examples.",
+  "name": "pie-chart-examples",
+  "registryDependencies": [
+    "@erbium-examples/pie-chart-playground",
+    "@erbium-examples/pie-chart-center"
+  ],
+  "title": "Pie Chart examples",
+  "type": "registry:item"
+}

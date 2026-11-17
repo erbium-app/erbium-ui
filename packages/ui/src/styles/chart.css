@@ -1,5 +1,17 @@
 .erbium-chart,
 .erbium-chart-tooltip {
+  /* TanStack Charts paints categorical series from these variables, so a
+     definition that sets no colors still uses Erbium's chart palette: the six
+     Vitesse accents, designed separately for light and dark. */
+  --ts-chart-1: var(--chart-1);
+  --ts-chart-2: var(--chart-2);
+  --ts-chart-3: var(--chart-3);
+  --ts-chart-4: var(--chart-4);
+  --ts-chart-5: var(--chart-5);
+  --ts-chart-6: var(--chart-6);
+  --ts-chart-focus-fill: var(--background);
+  --ts-chart-crosshair-marker-fill: var(--background);
+  --ts-chart-crosshair-label-halo: var(--background);
   --ts-chart-tooltip-background: var(--surface-overlay);
   --ts-chart-tooltip-color: var(--popover-foreground);
   --ts-chart-tooltip-border: none;
@@ -13,31 +25,16 @@
     0 8px 16px -4px var(--surface-shadow), 0 16px 32px -8px var(--surface-shadow-strong);
   --ts-chart-tooltip-padding: 0.375rem 0.5rem;
   --ts-chart-tooltip-font: var(--text-control--font-weight)
-    var(--text-control)/var(--text-control--line-height) var(--font-sans);
-  --ts-chart-tooltip-active-row-font-weight: var(--font-weight-semibold);
-  --ts-chart-tooltip-active-row-background: var(--accent);
-  --ts-chart-tooltip-active-row-border-radius: var(--radius-md);
-  --ts-chart-tooltip-active-row-shadow: none;
+    var(--text-control-sm)/var(--text-control-sm--line-height) var(--font-sans);
 }
 
-.erbium-chart .ts-chart-tooltip__rows,
-.erbium-chart-tooltip .ts-chart-tooltip__rows {
-  display: grid;
-  gap: 0;
-}
-
-.erbium-chart .ts-chart-tooltip__row,
-.erbium-chart-tooltip .ts-chart-tooltip__row {
-  min-height: 1.375rem;
-  padding: 0 0.25rem;
-
-  /* The tooltip sets text in the control role, and the library marks the
-     active row with data-active. Pair its semibold with the role's optical
-     size so the row keeps its width and the tooltip does not resize as the
-     pointer moves. */
-  &[data-active="true"] {
-    font-variation-settings: var(--text-control--selected-variation);
-  }
+/* The library marks the row under the pointer as active. Pair the semibold
+   with the role's optical size so the row keeps its width and the tooltip
+   does not resize as the pointer moves. */
+.erbium-chart [data-slot="chart-tooltip-row"][data-active],
+.erbium-chart-tooltip [data-slot="chart-tooltip-row"][data-active] {
+  font-variation-settings: var(--text-control--selected-variation);
+  font-weight: var(--font-weight-semibold);
 }
 
 @media (forced-colors: active) {

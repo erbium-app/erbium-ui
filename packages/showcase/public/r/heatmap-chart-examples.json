@@ -1,0 +1,8 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All heatmap-chart examples.",
+  "name": "heatmap-chart-examples",
+  "registryDependencies": ["@erbium-examples/heatmap-chart-playground"],
+  "title": "Heatmap examples",
+  "type": "registry:item"
+}

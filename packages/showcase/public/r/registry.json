@@ -940,6 +940,109 @@
       ]
     },
     {
+      "description": "All area-chart examples.",
+      "name": "area-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/area-chart-playground",
+        "@erbium-examples/area-chart-stacked"
+      ],
+      "title": "Area Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "area-chart-playground",
+      "type": "registry:block",
+      "title": "Area Chart: Playground",
+      "description": "",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/area-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n",
+          "path": "src/area-chart/examples/data.ts",
+          "target": "@components/showcase/area-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  fill: \"gradient\" | \"solid\";\n  grid: boolean;\n  legend: boolean;\n  stacked: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <AreaChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/area-chart/variants/playground.tsx",
+          "target": "@components/showcase/area-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "area-chart-stacked",
+      "type": "registry:block",
+      "title": "Area Chart: Stacked",
+      "description": "Stacked areas keep the total on the top edge and give each series a layer of its own thickness.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/area-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n",
+          "path": "src/area-chart/examples/data.ts",
+          "target": "@components/showcase/area-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <AreaChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/area-chart/variants/stacked.tsx",
+          "target": "@components/showcase/area-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "area-chart-stories",
+      "type": "registry:item",
+      "title": "Area Chart stories",
+      "description": "All area-chart variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/area-chart",
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { AreaChart } from \"@/registry/erbium/charts/area-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { AreaChart } from \\\"@/registry/erbium/charts/area-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = (args: {\\n  axis: boolean;\\n  curve: \\\"smooth\\\" | \\\"linear\\\" | \\\"step\\\";\\n  fill: \\\"gradient\\\" | \\\"solid\\\";\\n  grid: boolean;\\n  legend: boolean;\\n  stacked: boolean;\\n  tooltip: boolean;\\n}) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <AreaChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport StackedExample from \"./variants/stacked\";\n\nconst StackedSource = \"import { AreaChart } from \\\"@/registry/erbium/charts/area-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <AreaChart\\n      ariaLabel=\\\"Visitors by month, stacked by device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      stacked\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: AreaChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nArea charts take the same props as the [Line Chart](/docs/charts/line-chart), plus `stacked` and `fill`. The default `gradient` fill fades each series toward the baseline in its own color.\\n\\n```tsx\\nimport { AreaChart } from \\\"@/registry/erbium/charts/area-chart\\\";\\n\\n<AreaChart ariaLabel=\\\"Visitors by month\\\" data={visitors} index=\\\"month\\\" series={devices} stacked />;\\n```\\n\\nUnstacked areas overlap, so keep them to two or three series. When exact values matter more than shape, use a line chart or a table.\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof AreaChart>;\n\nexport default { ...meta, title: \"Charts/Area Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  fill: \"gradient\" | \"solid\";\n  grid: boolean;\n  legend: boolean;\n  stacked: boolean;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    axis: { control: \"boolean\" },\n    curve: { control: \"inline-radio\", options: [\"smooth\", \"linear\", \"step\"] },\n    fill: { control: \"inline-radio\", options: [\"gradient\", \"solid\"] },\n    grid: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    stacked: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: {\n    axis: true,\n    curve: \"smooth\",\n    fill: \"gradient\",\n    grid: true,\n    legend: true,\n    stacked: false,\n    tooltip: true,\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Stacked: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Stacked areas keep the total on the top edge and give each series a layer of its own thickness.\" },\n      source: { code: StackedSource },\n    },\n  },\n  render: StackedExample,\n};\n",
+          "path": "src/area-chart/area-chart.stories.tsx",
+          "target": "@components/showcase/area-chart/area-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n",
+          "path": "src/area-chart/examples/data.ts",
+          "target": "@components/showcase/area-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  fill: \"gradient\" | \"solid\";\n  grid: boolean;\n  legend: boolean;\n  stacked: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <AreaChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/area-chart/variants/playground.tsx",
+          "target": "@components/showcase/area-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <AreaChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/area-chart/variants/stacked.tsx",
+          "target": "@components/showcase/area-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio-demo",
       "type": "registry:component",
       "title": "aspect ratio demo",
@@ -2745,6 +2848,138 @@
           "content": "import { BadgeWithSpinner } from \"../examples/badge-spinner\";\n\nconst Example = () => <BadgeWithSpinner />;\n\nexport default Example;\n",
           "path": "src/badge/variants/with-spinner.tsx",
           "target": "@components/showcase/badge/variants/with-spinner.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All bar-chart examples.",
+      "name": "bar-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/bar-chart-playground",
+        "@erbium-examples/bar-chart-stacked",
+        "@erbium-examples/bar-chart-horizontal"
+      ],
+      "title": "Bar Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "bar-chart-horizontal",
+      "type": "registry:block",
+      "title": "Bar Chart: Horizontal",
+      "description": "Horizontal bars list categories down the side, which leaves room for longer names. A single series hides the legend by default.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      series={[{ key: \"visitors\", label: \"Visitors\" }]}\n      orientation=\"horizontal\"\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/bar-chart/variants/horizontal.tsx",
+          "target": "@components/showcase/bar-chart/variants/horizontal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart-playground",
+      "type": "registry:block",
+      "title": "Bar Chart: Playground",
+      "description": "",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  grid: boolean;\n  legend: boolean;\n  orientation: \"vertical\" | \"horizontal\";\n  stacked: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/bar-chart/variants/playground.tsx",
+          "target": "@components/showcase/bar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart-stacked",
+      "type": "registry:block",
+      "title": "Bar Chart: Stacked",
+      "description": "Stacked bars show each month's total and how desktop and mobile divide it. Only the outer end of each stack is rounded.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/bar-chart", "@erbium/chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/bar-chart/variants/stacked.tsx",
+          "target": "@components/showcase/bar-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart-stories",
+      "type": "registry:item",
+      "title": "Bar Chart stories",
+      "description": "All bar-chart variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/bar-chart",
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { BarChart } from \"@/registry/erbium/charts/bar-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = (args: {\\n  axis: boolean;\\n  grid: boolean;\\n  legend: boolean;\\n  orientation: \\\"vertical\\\" | \\\"horizontal\\\";\\n  stacked: boolean;\\n  tooltip: boolean;\\n}) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport StackedExample from \"./variants/stacked\";\n\nconst StackedSource = \"import { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by month, stacked by device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      stacked\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport HorizontalExample from \"./variants/horizontal\";\n\nconst HorizontalSource = \"import { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { browsers } from \\\"../examples/data\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      series={[{ key: \\\"visitors\\\", label: \\\"Visitors\\\" }]}\\n      orientation=\\\"horizontal\\\"\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: BarChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per category and list the numeric fields to draw in `series`. Each series takes the next chart color unless it sets `color`.\\n\\n```tsx\\nimport { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\n\\n<BarChart\\n  ariaLabel=\\\"Visitors by month and device\\\"\\n  data={visitors}\\n  index=\\\"month\\\"\\n  series={[\\n    { key: \\\"desktop\\\", label: \\\"Desktop\\\" },\\n    { key: \\\"mobile\\\", label: \\\"Mobile\\\" },\\n  ]}\\n/>;\\n```\\n\\nUse `stacked` to show totals and their parts, and `orientation=\\\"horizontal\\\"` for long category names. When many categories have long names on a narrow screen, prefer horizontal bars. For parts of a whole, use a [Pie Chart](/docs/charts/pie-chart).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof BarChart>;\n\nexport default { ...meta, title: \"Charts/Bar Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  axis: boolean;\n  grid: boolean;\n  legend: boolean;\n  orientation: \"vertical\" | \"horizontal\";\n  stacked: boolean;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    axis: { control: \"boolean\" },\n    grid: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    orientation: { control: \"inline-radio\", options: [\"vertical\", \"horizontal\"] },\n    stacked: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: {\n    axis: true,\n    grid: true,\n    legend: true,\n    orientation: \"vertical\",\n    stacked: false,\n    tooltip: true,\n  },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Stacked: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Stacked bars show each month's total and how desktop and mobile divide it. Only the outer end of each stack is rounded.\" },\n      source: { code: StackedSource },\n    },\n  },\n  render: StackedExample,\n};\n\nexport const Horizontal: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Horizontal bars list categories down the side, which leaves room for longer names. A single series hides the legend by default.\" },\n      source: { code: HorizontalSource },\n    },\n  },\n  render: HorizontalExample,\n};\n",
+          "path": "src/bar-chart/bar-chart.stories.tsx",
+          "target": "@components/showcase/bar-chart/bar-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/bar-chart/examples/data.ts",
+          "target": "@components/showcase/bar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      series={[{ key: \"visitors\", label: \"Visitors\" }]}\n      orientation=\"horizontal\"\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/bar-chart/variants/horizontal.tsx",
+          "target": "@components/showcase/bar-chart/variants/horizontal.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  grid: boolean;\n  legend: boolean;\n  orientation: \"vertical\" | \"horizontal\";\n  stacked: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/bar-chart/variants/playground.tsx",
+          "target": "@components/showcase/bar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <BarChart\n      ariaLabel=\"Visitors by month, stacked by device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/bar-chart/variants/stacked.tsx",
+          "target": "@components/showcase/bar-chart/variants/stacked.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
           "type": "registry:component"
         }
       ]
@@ -5952,151 +6187,17 @@
       ]
     },
     {
-      "name": "chart-demo",
+      "name": "chart-composition",
       "type": "registry:component",
-      "title": "chart demo",
-      "description": "Erbium chart demo example.",
+      "title": "Chart: Composition",
+      "description": "A custom definition rendered with `Chart`: monthly revenue bars with a dashed target line. `chartTheme` and `chartTooltip` give it the same colors and tooltip as the chart types, and `ChartLegend` explains both marks.\n\n```tsx\nimport {\n  Chart,\n  ChartLegend,\n  chartTheme,\n  chartTooltip,\n  resolveChartSeries,\n} from \"@erbium/ui/charts/chart\";\nimport { barY, defineChart, ruleY } from \"@tanstack/charts\";\n\nconst definition = defineChart({\n  marks: [barY(revenue, { x: \"month\", y: \"revenue\", fill: \"var(--chart-1)\" }), ruleY([target])],\n  scales,\n  theme: chartTheme,\n  tooltip: chartTooltip,\n});\n```",
       "dependencies": ["@tanstack/charts@1.5.0"],
       "registryDependencies": ["@erbium/chart", "@erbium/styles"],
       "files": [
         {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend ? { legend: colorLegend({ label: \"Device\" }) } : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    ...(options.tooltip ? { focus: \"group-x\" as const, tooltip: { use: tooltip } } : {}),\n  });\n\nconst Demo = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n\nexport default Demo;\n",
-          "path": "src/chart/examples/chart-demo.tsx",
-          "target": "@components/showcase/chart/examples/chart-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example",
-      "type": "registry:block",
-      "title": "Chart: Example",
-      "description": "A chart with the default configuration.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartExample } from \"../examples/chart-example\";\n\nconst Example = () => <ChartExample />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example.tsx",
-          "target": "@components/showcase/chart/variants/example.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-axis",
-      "type": "registry:block",
-      "title": "Chart: Example Axis",
-      "description": "Show chart axes and labels.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoAxis = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-axis.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-axis.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoAxis } from \"../examples/chart-example-axis\";\n\nconst Example = () => <ChartBarDemoAxis />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-axis.tsx",
-          "target": "@components/showcase/chart/variants/example-axis.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-grid",
-      "type": "registry:block",
-      "title": "Chart: Example Grid",
-      "description": "Show grid lines in a chart.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoGrid = () => (\n  <Chart\n    definition={visitorChart({ grid: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-grid.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoGrid } from \"../examples/chart-example-grid\";\n\nconst Example = () => <ChartBarDemoGrid />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-grid.tsx",
-          "target": "@components/showcase/chart/variants/example-grid.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-legend",
-      "type": "registry:block",
-      "title": "Chart: Legend",
-      "description": "TanStack Charts renders the legend from the chart definition. The example maps Desktop and Mobile to fixed colors and enables a legend labeled Device.\n\n```tsx\nimport { chartTextRole } from \"@erbium/ui/lib/typography\";\n\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  color: {\n    scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n    legend: colorLegend({\n      label: \"Device\",\n      items: colorLegendItems({\n        justify: \"start\",\n        gap: 16,\n        rowGap: 8,\n        indicator: { shape: \"dot\", width: 8, height: 8, gap: 7 },\n        label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n      }),\n    }),\n  },\n});\n```",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoLegend = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-legend.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-legend.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoLegend } from \"../examples/chart-example-legend\";\n\nconst Example = () => <ChartBarDemoLegend />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-legend.tsx",
-          "target": "@components/showcase/chart/variants/example-legend.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-example-tooltip",
-      "type": "registry:block",
-      "title": "Chart: Tooltip",
-      "description": "Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\n\n```tsx\nimport { tooltip } from \"@tanstack/charts/tooltip\";\n\nconst definition = defineChart({\n  marks,\n  scales,\n  focus: \"group-x\",\n  tooltip: { use: tooltip, className: \"erbium-chart-tooltip\" },\n});\n```\n\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoTooltip = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-tooltip.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-tooltip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoTooltip } from \"../examples/chart-example-tooltip\";\n\nconst Example = () => <ChartBarDemoTooltip />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-tooltip.tsx",
-          "target": "@components/showcase/chart/variants/example-tooltip.tsx",
+          "content": "import { barY, defineChart, ruleY } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport {\n  Chart,\n  ChartLegend,\n  chartTheme,\n  chartTooltip,\n  resolveChartSeries,\n} from \"@/registry/erbium/charts/chart\";\n\nconst revenue = [\n  { month: \"Jan\", revenue: 186 },\n  { month: \"Feb\", revenue: 305 },\n  { month: \"Mar\", revenue: 237 },\n  { month: \"Apr\", revenue: 173 },\n  { month: \"May\", revenue: 209 },\n  { month: \"Jun\", revenue: 264 },\n];\n\nconst target = 240;\n\nconst series = resolveChartSeries([\n  { key: \"revenue\", label: \"Revenue\" },\n  { color: \"var(--muted-foreground)\", key: \"target\", label: \"Target\" },\n]);\n\nconst definition = defineChart({\n  focus: \"group-x\",\n  marks: [\n    barY(revenue, { fill: \"var(--chart-1)\", inset: 1, radius: 4, x: \"month\", y: \"revenue\" }),\n    ruleY([target], { stroke: \"var(--muted-foreground)\", strokeDasharray: \"4 4\" }),\n  ],\n  scales: {\n    x: { scale: scaleBand },\n    y: { grid: true, nice: true, scale: scaleLinear },\n  },\n  theme: chartTheme,\n  tooltip: chartTooltip,\n});\n\nconst Example = () => (\n  <div className=\"flex w-2xl max-w-full flex-col gap-3 p-4\">\n    <ChartLegend series={series} />\n    <Chart\n      ariaLabel=\"Monthly revenue against a target of 240\"\n      definition={definition}\n      height={240}\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/chart/variants/composition.tsx",
+          "target": "@components/showcase/chart/variants/composition.tsx",
           "type": "registry:component"
         }
       ]
@@ -6105,13 +6206,8 @@
       "description": "All chart examples.",
       "name": "chart-examples",
       "registryDependencies": [
-        "@erbium-examples/chart-playground",
         "@erbium-examples/chart-overview",
-        "@erbium-examples/chart-example",
-        "@erbium-examples/chart-example-grid",
-        "@erbium-examples/chart-example-axis",
-        "@erbium-examples/chart-example-tooltip",
-        "@erbium-examples/chart-example-legend"
+        "@erbium-examples/chart-composition"
       ],
       "title": "Chart examples",
       "type": "registry:item"
@@ -6120,42 +6216,27 @@
       "name": "chart-overview",
       "type": "registry:block",
       "title": "Chart: Overview",
-      "description": "",
+      "description": "Each chart type with its default settings.",
       "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles"],
+      "registryDependencies": [
+        "@erbium/area-chart",
+        "@erbium/bar-chart",
+        "@erbium/chart",
+        "@erbium/line-chart",
+        "@erbium/pie-chart",
+        "@erbium/styles"
+      ],
       "files": [
         {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend ? { legend: colorLegend({ label: \"Device\" }) } : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    ...(options.tooltip ? { focus: \"group-x\" as const, tooltip: { use: tooltip } } : {}),\n  });\n\nconst Demo = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n\nexport default Demo;\n",
-          "path": "src/chart/examples/chart-demo.tsx",
-          "target": "@components/showcase/chart/examples/chart-demo.tsx",
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/chart/examples/data.ts",
+          "target": "@components/showcase/chart/examples/data.ts",
           "type": "registry:component"
         },
         {
-          "content": "import Demo from \"../examples/chart-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+          "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { LineChart } from \"@/registry/erbium/charts/line-chart\";\nimport { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers, devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"grid w-3xl max-w-full gap-8 p-4 sm:grid-cols-2\">\n    <BarChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      height={180}\n      initialWidth={320}\n    />\n    <LineChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      height={180}\n      initialWidth={320}\n    />\n    <AreaChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      height={180}\n      initialWidth={320}\n    />\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      height={180}\n      initialWidth={320}\n    />\n  </div>\n);\n\nexport default Example;\n",
           "path": "src/chart/variants/overview.tsx",
           "target": "@components/showcase/chart/variants/overview.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "chart-playground",
-      "type": "registry:block",
-      "title": "Chart: Playground",
-      "description": "",
-      "dependencies": ["@tanstack/charts@1.5.0"],
-      "registryDependencies": ["@erbium/chart", "@erbium/styles", "@erbium/typography"],
-      "files": [
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { visitorChart } from \"../examples/chart-example\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nconst Example = (args: {\n  height: number;\n  initialWidth: number;\n  grid: boolean;\n  axis: boolean;\n  tooltip: boolean;\n  legend: boolean;\n}) => (\n  <Chart\n    definition={visitorChart({\n      axis: args.axis,\n      grid: args.grid,\n      legend: args.legend,\n      tooltip: args.tooltip,\n    })}\n    height={args.height}\n    initialWidth={args.initialWidth}\n    ariaLabel=\"Visitors by month\"\n  />\n);\n\nexport default Example;\n",
-          "path": "src/chart/variants/playground.tsx",
-          "target": "@components/showcase/chart/variants/playground.tsx",
           "type": "registry:component"
         }
       ]
@@ -6168,97 +6249,40 @@
       "dependencies": ["@tanstack/charts@1.5.0"],
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
+        "@erbium/area-chart",
+        "@erbium/bar-chart",
         "@erbium/chart",
         "@erbium/csp-provider",
+        "@erbium/line-chart",
         "@erbium/overlay-provider",
+        "@erbium/pie-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast",
-        "@erbium/typography"
+        "@erbium/toast"
       ],
       "files": [
         {
-          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { visitorChart } from \\\"../examples/chart-example\\\";\\nimport { Chart } from \\\"@/registry/erbium/ui/chart\\\";\\n\\nconst Example = (args: {\\n  height: number;\\n  initialWidth: number;\\n  grid: boolean;\\n  axis: boolean;\\n  tooltip: boolean;\\n  legend: boolean;\\n}) => (\\n  <Chart\\n    definition={visitorChart({\\n      axis: args.axis,\\n      grid: args.grid,\\n      legend: args.legend,\\n      tooltip: args.tooltip,\\n    })}\\n    height={args.height}\\n    initialWidth={args.initialWidth}\\n    ariaLabel=\\\"Visitors by month\\\"\\n  />\\n);\\n\\nexport default Example;\\n\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import Demo from \\\"../examples/chart-demo\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"w-full min-w-72 max-w-2xl p-4\\\">\\n    <Demo />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport ExampleExample from \"./variants/example\";\n\nconst ExampleSource = \"import { ChartExample } from \\\"../examples/chart-example\\\";\\n\\nconst Example = () => <ChartExample />;\\n\\nexport default Example;\\n\";\n\nimport ExampleGridExample from \"./variants/example-grid\";\n\nconst ExampleGridSource = \"import { ChartBarDemoGrid } from \\\"../examples/chart-example-grid\\\";\\n\\nconst Example = () => <ChartBarDemoGrid />;\\n\\nexport default Example;\\n\";\n\nimport ExampleAxisExample from \"./variants/example-axis\";\n\nconst ExampleAxisSource = \"import { ChartBarDemoAxis } from \\\"../examples/chart-example-axis\\\";\\n\\nconst Example = () => <ChartBarDemoAxis />;\\n\\nexport default Example;\\n\";\n\nimport ExampleTooltipExample from \"./variants/example-tooltip\";\n\nconst ExampleTooltipSource = \"import { ChartBarDemoTooltip } from \\\"../examples/chart-example-tooltip\\\";\\n\\nconst Example = () => <ChartBarDemoTooltip />;\\n\\nexport default Example;\\n\";\n\nimport ExampleLegendExample from \"./variants/example-legend\";\n\nconst ExampleLegendSource = \"import { ChartBarDemoLegend } from \\\"../examples/chart-example-legend\\\";\\n\\nconst Example = () => <ChartBarDemoLegend />;\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: Chart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nCharts use [TanStack Charts](https://tanstack.com/charts) definitions. Import `Chart` from `@/registry/erbium/ui/chart`, then create marks and scales with `@tanstack/charts`. Define colors, axes, grid, focus, tooltip, and legend in the chart definition. Set a height and an accessible label on each chart. See the example stories for working compositions.\\n\\n## External documentation\\n\\nTanStack Charts supplies the chart definitions, scales, marks, legends, and tooltips used in these examples.\\n\\n- [TanStack Charts](https://tanstack.com/charts/latest)\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof Chart>;\n\nexport default { ...meta, title: \"Components/Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  height: number;\n  initialWidth: number;\n  grid: boolean;\n  axis: boolean;\n  tooltip: boolean;\n  legend: boolean;\n}> = {\n  argTypes: {\n    axis: { control: \"boolean\" },\n    grid: { control: \"boolean\" },\n    height: { control: { max: 600, min: 120, type: \"number\" } },\n    initialWidth: { control: { max: 960, min: 320, type: \"number\" } },\n    legend: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { axis: false, grid: false, height: 240, initialWidth: 640, legend: false, tooltip: false },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Example: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A chart with the default configuration.\" },\n      source: { code: ExampleSource },\n    },\n  },\n  render: ExampleExample,\n};\n\nexport const ExampleGrid: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show grid lines in a chart.\" },\n      source: { code: ExampleGridSource },\n    },\n  },\n  render: ExampleGridExample,\n};\n\nexport const ExampleAxis: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Show chart axes and labels.\" },\n      source: { code: ExampleAxisSource },\n    },\n  },\n  render: ExampleAxisExample,\n};\n\nexport const ExampleTooltip: Story = {\n  name: \"Tooltip\",\n  parameters: {\n    docs: {\n      description: { story: \"Hover or focus a bar to inspect its value. The chart definition enables grouped focus and TanStack Charts' tooltip extension. The shared month appears as the heading, with a value and color swatch for each device.\\n\\n```tsx\\nimport { tooltip } from \\\"@tanstack/charts/tooltip\\\";\\n\\nconst definition = defineChart({\\n  marks,\\n  scales,\\n  focus: \\\"group-x\\\",\\n  tooltip: { use: tooltip, className: \\\"erbium-chart-tooltip\\\" },\\n});\\n```\\n\\nConfigure tooltip content with `items`, `format`, or `formatGroup` in the definition. See the [TanStack Charts tooltip guide](https://tanstack.com/charts/latest/docs/framework/react/guides/tooltips-and-focus) for placement and formatting options.\" },\n      source: { code: ExampleTooltipSource },\n    },\n  },\n  render: ExampleTooltipExample,\n};\n\nexport const ExampleLegend: Story = {\n  name: \"Legend\",\n  parameters: {\n    docs: {\n      description: { story: \"TanStack Charts renders the legend from the chart definition. The example maps Desktop and Mobile to fixed colors and enables a legend labeled Device.\\n\\n```tsx\\nimport { chartTextRole } from \\\"@/registry/erbium/lib/typography\\\";\\n\\nimport { colorLegend, colorLegendItems } from \\\"@tanstack/charts/legend\\\";\\nimport { scaleOrdinal } from \\\"@tanstack/charts/scales/ordinal\\\";\\n\\nconst definition = defineChart({\\n  marks,\\n  scales,\\n  color: {\\n    scale: scaleOrdinal([\\\"Desktop\\\", \\\"Mobile\\\"], [\\\"var(--chart-1)\\\", \\\"var(--chart-2)\\\"]),\\n    legend: colorLegend({\\n      label: \\\"Device\\\",\\n      items: colorLegendItems({\\n        justify: \\\"start\\\",\\n        gap: 16,\\n        rowGap: 8,\\n        indicator: { shape: \\\"dot\\\", width: 8, height: 8, gap: 7 },\\n        label: { ...chartTextRole(\\\"metadata\\\"), fill: \\\"var(--muted-foreground)\\\" },\\n      }),\\n    }),\\n  },\\n});\\n```\" },\n      source: { code: ExampleLegendSource },\n    },\n  },\n  render: ExampleLegendExample,\n};\n",
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { Chart } from \"@/registry/erbium/charts/chart\";\n\nimport OverviewExample from \"./variants/overview\";\n\nconst OverviewSource = \"import { AreaChart } from \\\"@/registry/erbium/charts/area-chart\\\";\\nimport { BarChart } from \\\"@/registry/erbium/charts/bar-chart\\\";\\nimport { LineChart } from \\\"@/registry/erbium/charts/line-chart\\\";\\nimport { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\nimport { browsers, devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = () => (\\n  <div className=\\\"grid w-3xl max-w-full gap-8 p-4 sm:grid-cols-2\\\">\\n    <BarChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      height={180}\\n      initialWidth={320}\\n    />\\n    <LineChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      height={180}\\n      initialWidth={320}\\n    />\\n    <AreaChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      stacked\\n      height={180}\\n      initialWidth={320}\\n    />\\n    <PieChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      value=\\\"visitors\\\"\\n      height={180}\\n      initialWidth={320}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport CompositionExample from \"./variants/composition\";\n\nconst CompositionSource = \"import { barY, defineChart, ruleY } from \\\"@tanstack/charts\\\";\\nimport { scaleBand } from \\\"@tanstack/charts/scales/band\\\";\\nimport { scaleLinear } from \\\"@tanstack/charts/scales/linear\\\";\\nimport {\\n  Chart,\\n  ChartLegend,\\n  chartTheme,\\n  chartTooltip,\\n  resolveChartSeries,\\n} from \\\"@/registry/erbium/charts/chart\\\";\\n\\nconst revenue = [\\n  { month: \\\"Jan\\\", revenue: 186 },\\n  { month: \\\"Feb\\\", revenue: 305 },\\n  { month: \\\"Mar\\\", revenue: 237 },\\n  { month: \\\"Apr\\\", revenue: 173 },\\n  { month: \\\"May\\\", revenue: 209 },\\n  { month: \\\"Jun\\\", revenue: 264 },\\n];\\n\\nconst target = 240;\\n\\nconst series = resolveChartSeries([\\n  { key: \\\"revenue\\\", label: \\\"Revenue\\\" },\\n  { color: \\\"var(--muted-foreground)\\\", key: \\\"target\\\", label: \\\"Target\\\" },\\n]);\\n\\nconst definition = defineChart({\\n  focus: \\\"group-x\\\",\\n  marks: [\\n    barY(revenue, { fill: \\\"var(--chart-1)\\\", inset: 1, radius: 4, x: \\\"month\\\", y: \\\"revenue\\\" }),\\n    ruleY([target], { stroke: \\\"var(--muted-foreground)\\\", strokeDasharray: \\\"4 4\\\" }),\\n  ],\\n  scales: {\\n    x: { scale: scaleBand },\\n    y: { grid: true, nice: true, scale: scaleLinear },\\n  },\\n  theme: chartTheme,\\n  tooltip: chartTooltip,\\n});\\n\\nconst Example = () => (\\n  <div className=\\\"flex w-2xl max-w-full flex-col gap-3 p-4\\\">\\n    <ChartLegend series={series} />\\n    <Chart\\n      ariaLabel=\\\"Monthly revenue against a target of 240\\\"\\n      definition={definition}\\n      height={240}\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: Chart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Structure\\n\\nCharts live in `@erbium/ui/charts`, apart from the interface components. Each chart type is one file, such as `bar-chart` or `pie-chart`, built on this shared `chart` file.\\n\\n| Layer         | Owner                                          | Role                                                                                                                                                   |\\n| ------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |\\n| Math          | d3 (`d3-scale`, `d3-shape`, `d3-array`)        | Scales, curves, stacks, and pie angles. Bundled inside TanStack Charts; `d3-shape` is imported directly for curves.                                    |\\n| Engine        | [TanStack Charts](https://tanstack.com/charts) | Compiles a chart definition of marks, channels, and scales into a scene, lays out axes, and renders SVG with focus, keyboard navigation, and tooltips. |\\n| Design system | `charts/chart`                                 | Erbium's palette, theme, tooltip body, HTML legend, empty state, and value formatting.                                                                 |\\n| Chart types   | `charts/*-chart`                               | Typed props for common charts. Each builds a definition and renders it through `Chart`.                                                                |\\n\\n## Colors\\n\\nSeries take `--chart-1` to `--chart-6` in order: the six Vitesse accents (green, blue, cyan, orange, magenta, yellow), with separate values for light and dark themes. Give a series its own `color` to override it. `chart.css` points TanStack Charts' `--ts-chart-*` palette at the same tokens, so a hand-written definition also uses them. Past six series, group the smallest into one \\\"Other\\\" series.\\n\\n## Shared props\\n\\nEvery chart type takes `ariaLabel` (required), `height`, `legend`, `tooltip`, `format` (a function from number to text; `chartNumberFormat(options, locale)` builds one from `Intl.NumberFormat` options), `locale`, and `emptyMessage`. Charts with series take `series`, an array of `{ key, label, color }`, and the legend hides and shows series with `hiddenSeries`, `defaultHiddenSeries`, and `onHiddenSeriesChange`.\\n\\n## Custom charts\\n\\nWhen no chart type fits, write a TanStack Charts definition and render it with `Chart`. Use `chartTheme` for scene colors, `chartTooltip` for the styled tooltip, and `ChartLegend` with `resolveChartSeries` for a legend.\\n\\n## External documentation\\n\\nTanStack Charts supplies the chart definitions, scales, marks, legends, and tooltips used in these examples.\\n\\n- [TanStack Charts](https://tanstack.com/charts/latest)\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof Chart>;\n\nexport default { ...meta, title: \"Charts/Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Overview: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"Each chart type with its default settings.\" },\n      source: { code: OverviewSource },\n    },\n  },\n  render: OverviewExample,\n};\n\nexport const Composition: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"A custom definition rendered with `Chart`: monthly revenue bars with a dashed target line. `chartTheme` and `chartTooltip` give it the same colors and tooltip as the chart types, and `ChartLegend` explains both marks.\\n\\n```tsx\\nimport {\\n  Chart,\\n  ChartLegend,\\n  chartTheme,\\n  chartTooltip,\\n  resolveChartSeries,\\n} from \\\"@/registry/erbium/charts/chart\\\";\\nimport { barY, defineChart, ruleY } from \\\"@tanstack/charts\\\";\\n\\nconst definition = defineChart({\\n  marks: [barY(revenue, { x: \\\"month\\\", y: \\\"revenue\\\", fill: \\\"var(--chart-1)\\\" }), ruleY([target])],\\n  scales,\\n  theme: chartTheme,\\n  tooltip: chartTooltip,\\n});\\n```\" },\n      source: { code: CompositionSource },\n    },\n  },\n  render: CompositionExample,\n};\n",
           "path": "src/chart/chart.stories.tsx",
           "target": "@components/showcase/chart/chart.stories.tsx",
           "type": "registry:file"
         },
         {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend ? { legend: colorLegend({ label: \"Device\" }) } : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    ...(options.tooltip ? { focus: \"group-x\" as const, tooltip: { use: tooltip } } : {}),\n  });\n\nconst Demo = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n\nexport default Demo;\n",
-          "path": "src/chart/examples/chart-demo.tsx",
-          "target": "@components/showcase/chart/examples/chart-demo.tsx",
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n\nexport const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/chart/examples/data.ts",
+          "target": "@components/showcase/chart/examples/data.ts",
           "type": "registry:component"
         },
         {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoAxis = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-axis.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-axis.tsx",
+          "content": "import { barY, defineChart, ruleY } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport {\n  Chart,\n  ChartLegend,\n  chartTheme,\n  chartTooltip,\n  resolveChartSeries,\n} from \"@/registry/erbium/charts/chart\";\n\nconst revenue = [\n  { month: \"Jan\", revenue: 186 },\n  { month: \"Feb\", revenue: 305 },\n  { month: \"Mar\", revenue: 237 },\n  { month: \"Apr\", revenue: 173 },\n  { month: \"May\", revenue: 209 },\n  { month: \"Jun\", revenue: 264 },\n];\n\nconst target = 240;\n\nconst series = resolveChartSeries([\n  { key: \"revenue\", label: \"Revenue\" },\n  { color: \"var(--muted-foreground)\", key: \"target\", label: \"Target\" },\n]);\n\nconst definition = defineChart({\n  focus: \"group-x\",\n  marks: [\n    barY(revenue, { fill: \"var(--chart-1)\", inset: 1, radius: 4, x: \"month\", y: \"revenue\" }),\n    ruleY([target], { stroke: \"var(--muted-foreground)\", strokeDasharray: \"4 4\" }),\n  ],\n  scales: {\n    x: { scale: scaleBand },\n    y: { grid: true, nice: true, scale: scaleLinear },\n  },\n  theme: chartTheme,\n  tooltip: chartTooltip,\n});\n\nconst Example = () => (\n  <div className=\"flex w-2xl max-w-full flex-col gap-3 p-4\">\n    <ChartLegend series={series} />\n    <Chart\n      ariaLabel=\"Monthly revenue against a target of 240\"\n      definition={definition}\n      height={240}\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/chart/variants/composition.tsx",
+          "target": "@components/showcase/chart/variants/composition.tsx",
           "type": "registry:component"
         },
         {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoGrid = () => (\n  <Chart\n    definition={visitorChart({ grid: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-grid.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoLegend = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, legend: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-legend.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-legend.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { Chart } from \"@/registry/erbium/ui/chart\";\nimport { visitorChart } from \"./chart-example\";\n\nexport const ChartBarDemoTooltip = () => (\n  <Chart\n    definition={visitorChart({ axis: true, grid: true, tooltip: true })}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example-tooltip.tsx",
-          "target": "@components/showcase/chart/examples/chart-example-tooltip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { barY, defineChart, group } from \"@tanstack/charts\";\nimport { scaleBand } from \"@tanstack/charts/scales/band\";\nimport { scaleLinear } from \"@tanstack/charts/scales/linear\";\nimport { scaleOrdinal } from \"@tanstack/charts/scales/ordinal\";\nimport { tooltip } from \"@tanstack/charts/tooltip\";\nimport { colorLegend, colorLegendItems } from \"@tanstack/charts/legend\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\nimport { chartTextRole } from \"@/registry/erbium/lib/typography\";\n\nconst monthlyVisitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nconst visitors = monthlyVisitors.flatMap(({ month, desktop, mobile }) => [\n  { device: \"Desktop\", month, visitors: desktop },\n  { device: \"Mobile\", month, visitors: mobile },\n]);\n\nexport const visitorChart = (\n  options: { grid?: boolean; axis?: boolean; tooltip?: boolean; legend?: boolean } = {},\n) =>\n  defineChart({\n    color: {\n      scale: scaleOrdinal([\"Desktop\", \"Mobile\"], [\"var(--chart-1)\", \"var(--chart-2)\"]),\n      ...(options.legend\n        ? {\n            legend: colorLegend({\n              items: colorLegendItems<\"Desktop\" | \"Mobile\">({\n                gap: 16,\n                indicator: { gap: 7, height: 8, shape: \"dot\", width: 8 },\n                justify: \"start\",\n                label: { ...chartTextRole(\"metadata\"), fill: \"var(--muted-foreground)\" },\n                rowGap: 8,\n              }),\n              label: \"Device\",\n            }),\n          }\n        : {}),\n    },\n    marks: [\n      barY(visitors, {\n        color: \"device\",\n        inset: 1,\n        layout: group({ padding: 0.12 }),\n        radius: 4,\n        x: \"month\",\n        y: \"visitors\",\n        z: \"device\",\n      }),\n    ],\n    scales: {\n      x: {\n        axis: options.axis ? { ticks: { format: (value: string) => value.slice(0, 3) } } : false,\n        scale: scaleBand,\n      },\n      y: { grid: options.grid, nice: true, scale: scaleLinear },\n    },\n    theme: {\n      foreground: \"var(--foreground)\",\n      grid: \"var(--border)\",\n      muted: \"var(--muted-foreground)\",\n    },\n    ...(options.tooltip\n      ? {\n          focus: \"group-x\" as const,\n          tooltip: { className: \"erbium-chart-tooltip\", use: tooltip },\n        }\n      : {}),\n  });\n\nexport const ChartExample = () => (\n  <Chart\n    definition={visitorChart()}\n    height={240}\n    initialWidth={640}\n    ariaLabel=\"Desktop and mobile visitors by month\"\n  />\n);\n",
-          "path": "src/chart/examples/chart-example.tsx",
-          "target": "@components/showcase/chart/examples/chart-example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoAxis } from \"../examples/chart-example-axis\";\n\nconst Example = () => <ChartBarDemoAxis />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-axis.tsx",
-          "target": "@components/showcase/chart/variants/example-axis.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoGrid } from \"../examples/chart-example-grid\";\n\nconst Example = () => <ChartBarDemoGrid />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-grid.tsx",
-          "target": "@components/showcase/chart/variants/example-grid.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoLegend } from \"../examples/chart-example-legend\";\n\nconst Example = () => <ChartBarDemoLegend />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-legend.tsx",
-          "target": "@components/showcase/chart/variants/example-legend.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartBarDemoTooltip } from \"../examples/chart-example-tooltip\";\n\nconst Example = () => <ChartBarDemoTooltip />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example-tooltip.tsx",
-          "target": "@components/showcase/chart/variants/example-tooltip.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { ChartExample } from \"../examples/chart-example\";\n\nconst Example = () => <ChartExample />;\n\nexport default Example;\n",
-          "path": "src/chart/variants/example.tsx",
-          "target": "@components/showcase/chart/variants/example.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import Demo from \"../examples/chart-demo\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <Demo />\n  </div>\n);\n\nexport default Example;\n",
+          "content": "import { AreaChart } from \"@/registry/erbium/charts/area-chart\";\nimport { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { LineChart } from \"@/registry/erbium/charts/line-chart\";\nimport { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers, devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = () => (\n  <div className=\"grid w-3xl max-w-full gap-8 p-4 sm:grid-cols-2\">\n    <BarChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      height={180}\n      initialWidth={320}\n    />\n    <LineChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      height={180}\n      initialWidth={320}\n    />\n    <AreaChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      stacked\n      height={180}\n      initialWidth={320}\n    />\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      height={180}\n      initialWidth={320}\n    />\n  </div>\n);\n\nexport default Example;\n",
           "path": "src/chart/variants/overview.tsx",
           "target": "@components/showcase/chart/variants/overview.tsx",
-          "type": "registry:component"
-        },
-        {
-          "content": "import { visitorChart } from \"../examples/chart-example\";\nimport { Chart } from \"@/registry/erbium/ui/chart\";\n\nconst Example = (args: {\n  height: number;\n  initialWidth: number;\n  grid: boolean;\n  axis: boolean;\n  tooltip: boolean;\n  legend: boolean;\n}) => (\n  <Chart\n    definition={visitorChart({\n      axis: args.axis,\n      grid: args.grid,\n      legend: args.legend,\n      tooltip: args.tooltip,\n    })}\n    height={args.height}\n    initialWidth={args.initialWidth}\n    ariaLabel=\"Visitors by month\"\n  />\n);\n\nexport default Example;\n",
-          "path": "src/chart/variants/playground.tsx",
-          "target": "@components/showcase/chart/variants/playground.tsx",
           "type": "registry:component"
         },
         {
@@ -13237,6 +13261,75 @@
       ]
     },
     {
+      "description": "All heatmap-chart examples.",
+      "name": "heatmap-chart-examples",
+      "registryDependencies": ["@erbium-examples/heatmap-chart-playground"],
+      "title": "Heatmap examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "heatmap-chart-playground",
+      "type": "registry:block",
+      "title": "Heatmap: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/heatmap-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "export const days = [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"];\n\nexport const hours = [\"9am\", \"11am\", \"1pm\", \"3pm\", \"5pm\", \"7pm\"];\n\nexport const orders = days.flatMap((day, dayIndex) =>\n  hours.map((hour, hourIndex) => ({\n    day,\n    hour,\n    orders: Math.round(\n      20 + 30 * Math.sin((hourIndex + 1) / 2) + (dayIndex < 5 ? 15 : -10) + ((dayIndex * 7) % 11),\n    ),\n  })),\n);\n",
+          "path": "src/heatmap-chart/examples/data.ts",
+          "target": "@components/showcase/heatmap-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { HeatmapChart } from \"@/registry/erbium/charts/heatmap-chart\";\nimport { days, hours, orders } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <HeatmapChart\n      ariaLabel=\"Orders by weekday and hour\"\n      data={orders}\n      x=\"hour\"\n      y=\"day\"\n      value=\"orders\"\n      columns={hours}\n      rows={days}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/heatmap-chart/variants/playground.tsx",
+          "target": "@components/showcase/heatmap-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "heatmap-chart-stories",
+      "type": "registry:item",
+      "title": "Heatmap stories",
+      "description": "All heatmap-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/heatmap-chart",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "export const days = [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"];\n\nexport const hours = [\"9am\", \"11am\", \"1pm\", \"3pm\", \"5pm\", \"7pm\"];\n\nexport const orders = days.flatMap((day, dayIndex) =>\n  hours.map((hour, hourIndex) => ({\n    day,\n    hour,\n    orders: Math.round(\n      20 + 30 * Math.sin((hourIndex + 1) / 2) + (dayIndex < 5 ? 15 : -10) + ((dayIndex * 7) % 11),\n    ),\n  })),\n);\n",
+          "path": "src/heatmap-chart/examples/data.ts",
+          "target": "@components/showcase/heatmap-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { HeatmapChart } from \"@/registry/erbium/charts/heatmap-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { HeatmapChart } from \\\"@/registry/erbium/charts/heatmap-chart\\\";\\nimport { days, hours, orders } from \\\"../examples/data\\\";\\n\\nconst Example = (args: { legend: boolean; tooltip: boolean }) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <HeatmapChart\\n      ariaLabel=\\\"Orders by weekday and hour\\\"\\n      data={orders}\\n      x=\\\"hour\\\"\\n      y=\\\"day\\\"\\n      value=\\\"orders\\\"\\n      columns={hours}\\n      rows={days}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: HeatmapChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per cell, and name the column, row, and value fields with `x`, `y`, and `value`.\\n\\n```tsx\\nimport { HeatmapChart } from \\\"@/registry/erbium/charts/heatmap-chart\\\";\\n\\n<HeatmapChart\\n  ariaLabel=\\\"Orders by weekday and hour\\\"\\n  data={orders}\\n  x=\\\"hour\\\"\\n  y=\\\"day\\\"\\n  value=\\\"orders\\\"\\n/>;\\n```\\n\\nCells are one color at five strengths, mixed into the page background rather than interpolated, so they follow light and dark themes. `color` changes the base color; `columns` and `rows` fix the order of each axis. With only a few values, use a table or a [Bar Chart](/docs/charts/bar-chart).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof HeatmapChart>;\n\nexport default { ...meta, title: \"Charts/Heatmap\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\nexport const Playground: StoryObj<{ legend: boolean; tooltip: boolean }> = {\n  argTypes: { legend: { control: \"boolean\" }, tooltip: { control: \"boolean\" } },\n  args: { legend: true, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n",
+          "path": "src/heatmap-chart/heatmap-chart.stories.tsx",
+          "target": "@components/showcase/heatmap-chart/heatmap-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import { HeatmapChart } from \"@/registry/erbium/charts/heatmap-chart\";\nimport { days, hours, orders } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <HeatmapChart\n      ariaLabel=\"Orders by weekday and hour\"\n      data={orders}\n      x=\"hour\"\n      y=\"day\"\n      value=\"orders\"\n      columns={hours}\n      rows={days}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/heatmap-chart/variants/playground.tsx",
+          "target": "@components/showcase/heatmap-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hover-card-basic",
       "type": "registry:block",
       "title": "Hover Card: Basic",
@@ -15539,6 +15632,102 @@
           "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All line-chart examples.",
+      "name": "line-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/line-chart-playground",
+        "@erbium-examples/line-chart-time"
+      ],
+      "title": "Line Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "line-chart-playground",
+      "type": "registry:block",
+      "title": "Line Chart: Playground",
+      "description": "",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "registryDependencies": ["@erbium/chart", "@erbium/line-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n",
+          "path": "src/line-chart/examples/data.ts",
+          "target": "@components/showcase/line-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { LineChart } from \"@/registry/erbium/charts/line-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  grid: boolean;\n  legend: boolean;\n  points: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <LineChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/line-chart/variants/playground.tsx",
+          "target": "@components/showcase/line-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "line-chart-stories",
+      "type": "registry:item",
+      "title": "Line Chart stories",
+      "description": "All line-chart variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/charts@1.5.0"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/line-chart",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "import type { ChartValue } from \"@tanstack/charts\";\nimport { formatChartIndex } from \"@/registry/erbium/charts/chart\";\n\nexport const visitors = [\n  { desktop: 186, mobile: 80, month: \"January\" },\n  { desktop: 305, mobile: 200, month: \"February\" },\n  { desktop: 237, mobile: 120, month: \"March\" },\n  { desktop: 73, mobile: 190, month: \"April\" },\n  { desktop: 209, mobile: 130, month: \"May\" },\n  { desktop: 214, mobile: 140, month: \"June\" },\n];\n\nexport const devices = [\n  { key: \"desktop\", label: \"Desktop\" },\n  { key: \"mobile\", label: \"Mobile\" },\n] as const;\n\nexport const shortMonth = (value: ChartValue) => formatChartIndex(value).slice(0, 3);\n",
+          "path": "src/line-chart/examples/data.ts",
+          "target": "@components/showcase/line-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { LineChart } from \"@/registry/erbium/charts/line-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { LineChart } from \\\"@/registry/erbium/charts/line-chart\\\";\\nimport { devices, shortMonth, visitors } from \\\"../examples/data\\\";\\n\\nconst Example = (args: {\\n  axis: boolean;\\n  curve: \\\"smooth\\\" | \\\"linear\\\" | \\\"step\\\";\\n  grid: boolean;\\n  legend: boolean;\\n  points: boolean;\\n  tooltip: boolean;\\n}) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <LineChart\\n      ariaLabel=\\\"Visitors by month and device\\\"\\n      data={visitors}\\n      index=\\\"month\\\"\\n      indexFormat={shortMonth}\\n      series={devices}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport TimeExample from \"./variants/time\";\n\nconst TimeSource = \"import { LineChart } from \\\"@/registry/erbium/charts/line-chart\\\";\\n\\nconst start = Date.UTC(2026, 9, 1);\\nconst day = 24 * 60 * 60 * 1000;\\n\\nconst latency = Array.from({ length: 30 }, (_, index) => ({\\n  date: new Date(start + index * day),\\n  p50: 120 + Math.round(Math.sin(index / 3) * 18),\\n  p95: 260 + Math.round(Math.cos(index / 4) * 40),\\n}));\\n\\nconst dateFormat = new Intl.DateTimeFormat(\\\"en\\\", {\\n  day: \\\"numeric\\\",\\n  month: \\\"short\\\",\\n  timeZone: \\\"UTC\\\",\\n});\\n\\nconst Example = () => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <LineChart\\n      ariaLabel=\\\"Daily response time, median and 95th percentile\\\"\\n      data={latency}\\n      index=\\\"date\\\"\\n      indexType=\\\"time\\\"\\n      indexFormat={(value) => (value instanceof Date ? dateFormat.format(value) : String(value))}\\n      series={[\\n        { key: \\\"p50\\\", label: \\\"Median\\\" },\\n        { key: \\\"p95\\\", label: \\\"95th percentile\\\" },\\n      ]}\\n      format={(value) => `${value} ms`}\\n      initialWidth={640}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: LineChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per x value. `index` names the x field and `indexType` says how to read it: `category` (the default), `number`, or `time` for UTC dates.\\n\\n```tsx\\nimport { LineChart } from \\\"@/registry/erbium/charts/line-chart\\\";\\n\\n<LineChart ariaLabel=\\\"Visitors by month\\\" data={visitors} index=\\\"month\\\" series={devices} />;\\n```\\n\\n`curve` is `smooth` by default; use `linear` when each value is a discrete reading and `step` for values that hold until they change. For parts of a whole over time, use a stacked [Area Chart](/docs/charts/area-chart).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof LineChart>;\n\nexport default { ...meta, title: \"Charts/Line Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  grid: boolean;\n  legend: boolean;\n  points: boolean;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    axis: { control: \"boolean\" },\n    curve: { control: \"inline-radio\", options: [\"smooth\", \"linear\", \"step\"] },\n    grid: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    points: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { axis: true, curve: \"smooth\", grid: true, legend: true, points: false, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Time: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"With `indexType=\\\"time\\\"`, the x axis is a UTC time scale and spaces dates by their real distance. `indexFormat` sets the tick and tooltip labels, and `format` sets the values.\" },\n      source: { code: TimeSource },\n    },\n  },\n  render: TimeExample,\n};\n",
+          "path": "src/line-chart/line-chart.stories.tsx",
+          "target": "@components/showcase/line-chart/line-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import { LineChart } from \"@/registry/erbium/charts/line-chart\";\nimport { devices, shortMonth, visitors } from \"../examples/data\";\n\nconst Example = (args: {\n  axis: boolean;\n  curve: \"smooth\" | \"linear\" | \"step\";\n  grid: boolean;\n  legend: boolean;\n  points: boolean;\n  tooltip: boolean;\n}) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <LineChart\n      ariaLabel=\"Visitors by month and device\"\n      data={visitors}\n      index=\"month\"\n      indexFormat={shortMonth}\n      series={devices}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/line-chart/variants/playground.tsx",
+          "target": "@components/showcase/line-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { LineChart } from \"@/registry/erbium/charts/line-chart\";\n\nconst start = Date.UTC(2026, 9, 1);\nconst day = 24 * 60 * 60 * 1000;\n\nconst latency = Array.from({ length: 30 }, (_, index) => ({\n  date: new Date(start + index * day),\n  p50: 120 + Math.round(Math.sin(index / 3) * 18),\n  p95: 260 + Math.round(Math.cos(index / 4) * 40),\n}));\n\nconst dateFormat = new Intl.DateTimeFormat(\"en\", {\n  day: \"numeric\",\n  month: \"short\",\n  timeZone: \"UTC\",\n});\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <LineChart\n      ariaLabel=\"Daily response time, median and 95th percentile\"\n      data={latency}\n      index=\"date\"\n      indexType=\"time\"\n      indexFormat={(value) => (value instanceof Date ? dateFormat.format(value) : String(value))}\n      series={[\n        { key: \"p50\", label: \"Median\" },\n        { key: \"p95\", label: \"95th percentile\" },\n      ]}\n      format={(value) => `${value} ms`}\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/line-chart/variants/time.tsx",
+          "target": "@components/showcase/line-chart/variants/time.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "line-chart-time",
+      "type": "registry:component",
+      "title": "Line Chart: Time",
+      "description": "With `indexType=\"time\"`, the x axis is a UTC time scale and spaces dates by their real distance. `indexFormat` sets the tick and tooltip labels, and `format` sets the values.",
+      "registryDependencies": ["@erbium/line-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "import { LineChart } from \"@/registry/erbium/charts/line-chart\";\n\nconst start = Date.UTC(2026, 9, 1);\nconst day = 24 * 60 * 60 * 1000;\n\nconst latency = Array.from({ length: 30 }, (_, index) => ({\n  date: new Date(start + index * day),\n  p50: 120 + Math.round(Math.sin(index / 3) * 18),\n  p95: 260 + Math.round(Math.cos(index / 4) * 40),\n}));\n\nconst dateFormat = new Intl.DateTimeFormat(\"en\", {\n  day: \"numeric\",\n  month: \"short\",\n  timeZone: \"UTC\",\n});\n\nconst Example = () => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <LineChart\n      ariaLabel=\"Daily response time, median and 95th percentile\"\n      data={latency}\n      index=\"date\"\n      indexType=\"time\"\n      indexFormat={(value) => (value instanceof Date ? dateFormat.format(value) : String(value))}\n      series={[\n        { key: \"p50\", label: \"Median\" },\n        { key: \"p95\", label: \"95th percentile\" },\n      ]}\n      format={(value) => `${value} ms`}\n      initialWidth={640}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/line-chart/variants/time.tsx",
+          "target": "@components/showcase/line-chart/variants/time.tsx",
           "type": "registry:component"
         }
       ]
@@ -18860,6 +19049,105 @@
       ]
     },
     {
+      "name": "pie-chart-center",
+      "type": "registry:block",
+      "title": "Pie Chart: Center",
+      "description": "`center` places HTML over the donut's hole, here the total. It does not take pointer events, so slices under it still respond to hover.",
+      "registryDependencies": ["@erbium/pie-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "export const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/pie-chart/examples/data.ts",
+          "target": "@components/showcase/pie-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\n\nconst Example = () => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      center={\n        <>\n          <span className=\"text-subtitle tabular-nums\">{total.toLocaleString(\"en\")}</span>\n          <span className=\"text-metadata text-muted-foreground\">Visitors</span>\n        </>\n      }\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/pie-chart/variants/center.tsx",
+          "target": "@components/showcase/pie-chart/variants/center.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All pie-chart examples.",
+      "name": "pie-chart-examples",
+      "registryDependencies": [
+        "@erbium-examples/pie-chart-playground",
+        "@erbium-examples/pie-chart-center"
+      ],
+      "title": "Pie Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "pie-chart-playground",
+      "type": "registry:block",
+      "title": "Pie Chart: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/pie-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "export const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/pie-chart/examples/data.ts",
+          "target": "@components/showcase/pie-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/pie-chart/variants/playground.tsx",
+          "target": "@components/showcase/pie-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pie-chart-stories",
+      "type": "registry:item",
+      "title": "Pie Chart stories",
+      "description": "All pie-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/pie-chart",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "export const browsers = [\n  { browser: \"Chrome\", visitors: 275 },\n  { browser: \"Safari\", visitors: 200 },\n  { browser: \"Firefox\", visitors: 187 },\n  { browser: \"Edge\", visitors: 173 },\n  { browser: \"Other\", visitors: 90 },\n];\n",
+          "path": "src/pie-chart/examples/data.ts",
+          "target": "@components/showcase/pie-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { PieChart } from \"@/registry/erbium/charts/pie-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\nimport { browsers } from \\\"../examples/data\\\";\\n\\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\\n  <div className=\\\"w-md max-w-full p-4\\\">\\n    <PieChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      value=\\\"visitors\\\"\\n      initialWidth={400}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nimport CenterExample from \"./variants/center\";\n\nconst CenterSource = \"import { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\nimport { browsers } from \\\"../examples/data\\\";\\n\\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\\n\\nconst Example = () => (\\n  <div className=\\\"w-md max-w-full p-4\\\">\\n    <PieChart\\n      ariaLabel=\\\"Visitors by browser\\\"\\n      data={browsers}\\n      index=\\\"browser\\\"\\n      value=\\\"visitors\\\"\\n      initialWidth={400}\\n      center={\\n        <>\\n          <span className=\\\"text-subtitle tabular-nums\\\">{total.toLocaleString(\\\"en\\\")}</span>\\n          <span className=\\\"text-metadata text-muted-foreground\\\">Visitors</span>\\n        </>\\n      }\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: PieChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per slice. `index` names each slice and `value` sizes it. Slices take the chart colors in data order; pass `series` to set labels or colors by slice name.\\n\\n```tsx\\nimport { PieChart } from \\\"@/registry/erbium/charts/pie-chart\\\";\\n\\n<PieChart ariaLabel=\\\"Visitors by browser\\\" data={browsers} index=\\\"browser\\\" value=\\\"visitors\\\" />;\\n```\\n\\nKeep a pie to five slices and group the rest into \\\"Other\\\". When slices are close in size, compare them in a [Bar Chart](/docs/charts/bar-chart) instead.\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof PieChart>;\n\nexport default { ...meta, title: \"Charts/Pie Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\ntype Story = StoryObj;\n\nexport const Playground: StoryObj<{ donut: boolean; legend: boolean; tooltip: boolean }> = {\n  argTypes: {\n    donut: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { donut: true, legend: true, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n\nexport const Center: Story = {\n  parameters: {\n    docs: {\n      description: { story: \"`center` places HTML over the donut's hole, here the total. It does not take pointer events, so slices under it still respond to hover.\" },\n      source: { code: CenterSource },\n    },\n  },\n  render: CenterExample,\n};\n",
+          "path": "src/pie-chart/pie-chart.stories.tsx",
+          "target": "@components/showcase/pie-chart/pie-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst total = browsers.reduce((sum, row) => sum + row.visitors, 0);\n\nconst Example = () => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      center={\n        <>\n          <span className=\"text-subtitle tabular-nums\">{total.toLocaleString(\"en\")}</span>\n          <span className=\"text-metadata text-muted-foreground\">Visitors</span>\n        </>\n      }\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/pie-chart/variants/center.tsx",
+          "target": "@components/showcase/pie-chart/variants/center.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { PieChart } from \"@/registry/erbium/charts/pie-chart\";\nimport { browsers } from \"../examples/data\";\n\nconst Example = (args: { donut: boolean; legend: boolean; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <PieChart\n      ariaLabel=\"Visitors by browser\"\n      data={browsers}\n      index=\"browser\"\n      value=\"visitors\"\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/pie-chart/variants/playground.tsx",
+          "target": "@components/showcase/pie-chart/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "popover-align",
       "type": "registry:block",
       "title": "Popover: Align",
@@ -20067,6 +20355,75 @@
       ]
     },
     {
+      "description": "All radar-chart examples.",
+      "name": "radar-chart-examples",
+      "registryDependencies": ["@erbium-examples/radar-chart-playground"],
+      "title": "Radar Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "radar-chart-playground",
+      "type": "registry:block",
+      "title": "Radar Chart: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/radar-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "export const skills = [\n  { ana: 86, ben: 64, skill: \"Speed\" },\n  { ana: 58, ben: 88, skill: \"Strength\" },\n  { ana: 74, ben: 70, skill: \"Stamina\" },\n  { ana: 92, ben: 55, skill: \"Agility\" },\n  { ana: 66, ben: 80, skill: \"Defense\" },\n  { ana: 80, ben: 72, skill: \"Vision\" },\n];\n\nexport const players = [\n  { key: \"ana\", label: \"Ana\" },\n  { key: \"ben\", label: \"Ben\" },\n] as const;\n",
+          "path": "src/radar-chart/examples/data.ts",
+          "target": "@components/showcase/radar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\nimport { players, skills } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; points: boolean; rings: number; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <RadarChart\n      ariaLabel=\"Skill ratings for two players\"\n      data={skills}\n      index=\"skill\"\n      series={players}\n      max={100}\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/radar-chart/variants/playground.tsx",
+          "target": "@components/showcase/radar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "radar-chart-stories",
+      "type": "registry:item",
+      "title": "Radar Chart stories",
+      "description": "All radar-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/radar-chart",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "export const skills = [\n  { ana: 86, ben: 64, skill: \"Speed\" },\n  { ana: 58, ben: 88, skill: \"Strength\" },\n  { ana: 74, ben: 70, skill: \"Stamina\" },\n  { ana: 92, ben: 55, skill: \"Agility\" },\n  { ana: 66, ben: 80, skill: \"Defense\" },\n  { ana: 80, ben: 72, skill: \"Vision\" },\n];\n\nexport const players = [\n  { key: \"ana\", label: \"Ana\" },\n  { key: \"ben\", label: \"Ben\" },\n] as const;\n",
+          "path": "src/radar-chart/examples/data.ts",
+          "target": "@components/showcase/radar-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { RadarChart } from \\\"@/registry/erbium/charts/radar-chart\\\";\\nimport { players, skills } from \\\"../examples/data\\\";\\n\\nconst Example = (args: { legend: boolean; points: boolean; rings: number; tooltip: boolean }) => (\\n  <div className=\\\"w-md max-w-full p-4\\\">\\n    <RadarChart\\n      ariaLabel=\\\"Skill ratings for two players\\\"\\n      data={skills}\\n      index=\\\"skill\\\"\\n      series={players}\\n      max={100}\\n      initialWidth={400}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: RadarChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per axis, with one numeric field per series. Set `max` when several radar charts should be compared, so their outer rings mean the same value.\\n\\n```tsx\\nimport { RadarChart } from \\\"@/registry/erbium/charts/radar-chart\\\";\\n\\n<RadarChart ariaLabel=\\\"Skills by player\\\" data={skills} index=\\\"skill\\\" series={players} max={100} />;\\n```\\n\\nRadar charts need axes on the same scale. With fewer than five axes, or axes in different units, use a [Bar Chart](/docs/charts/bar-chart).\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof RadarChart>;\n\nexport default { ...meta, title: \"Charts/Radar Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\nexport const Playground: StoryObj<{\n  legend: boolean;\n  points: boolean;\n  rings: number;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    legend: { control: \"boolean\" },\n    points: { control: \"boolean\" },\n    rings: { control: { max: 8, min: 2, type: \"number\" } },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { legend: true, points: false, rings: 4, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n",
+          "path": "src/radar-chart/radar-chart.stories.tsx",
+          "target": "@components/showcase/radar-chart/radar-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import { RadarChart } from \"@/registry/erbium/charts/radar-chart\";\nimport { players, skills } from \"../examples/data\";\n\nconst Example = (args: { legend: boolean; points: boolean; rings: number; tooltip: boolean }) => (\n  <div className=\"w-md max-w-full p-4\">\n    <RadarChart\n      ariaLabel=\"Skill ratings for two players\"\n      data={skills}\n      index=\"skill\"\n      series={players}\n      max={100}\n      initialWidth={400}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/radar-chart/variants/playground.tsx",
+          "target": "@components/showcase/radar-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "radio-group-choice-card",
       "type": "registry:block",
       "title": "Radio Group: Choice Card",
@@ -20627,6 +20984,76 @@
           "content": "import ExampleResizableVertical from \"../examples/resizable-vertical\";\n\nconst Example = () => (\n  <div className=\"w-full min-w-72 max-w-2xl p-4\">\n    <ExampleResizableVertical />\n  </div>\n);\n\nexport default Example;\n",
           "path": "src/resizable/variants/vertical.tsx",
           "target": "@components/showcase/resizable/variants/vertical.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All scatter-chart examples.",
+      "name": "scatter-chart-examples",
+      "registryDependencies": ["@erbium-examples/scatter-chart-playground"],
+      "title": "Scatter Chart examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "scatter-chart-playground",
+      "type": "registry:block",
+      "title": "Scatter Chart: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/chart", "@erbium/scatter-chart", "@erbium/styles"],
+      "files": [
+        {
+          "content": "export const products = [\n  { category: \"Audio\", price: 49, rating: 3.9 },\n  { category: \"Audio\", price: 129, rating: 4.4 },\n  { category: \"Audio\", price: 249, rating: 4.6 },\n  { category: \"Audio\", price: 89, rating: 4.1 },\n  { category: \"Wearables\", price: 199, rating: 4 },\n  { category: \"Wearables\", price: 299, rating: 4.3 },\n  { category: \"Wearables\", price: 399, rating: 4.7 },\n  { category: \"Wearables\", price: 149, rating: 3.6 },\n  { category: \"Cameras\", price: 449, rating: 4.2 },\n  { category: \"Cameras\", price: 599, rating: 4.5 },\n  { category: \"Cameras\", price: 349, rating: 3.8 },\n];\n",
+          "path": "src/scatter-chart/examples/data.ts",
+          "target": "@components/showcase/scatter-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "import { chartNumberFormat } from \"@/registry/erbium/charts/chart\";\nimport { ScatterChart } from \"@/registry/erbium/charts/scatter-chart\";\nimport { products } from \"../examples/data\";\n\nconst priceFormat = chartNumberFormat(\n  { currency: \"USD\", maximumFractionDigits: 0, style: \"currency\" },\n  \"en\",\n);\n\nconst ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, \"en\");\n\nconst Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <ScatterChart\n      ariaLabel=\"Product price against average rating\"\n      data={products}\n      x=\"price\"\n      y=\"rating\"\n      group=\"category\"\n      xLabel=\"Price\"\n      yLabel=\"Rating\"\n      xFormat={priceFormat}\n      format={ratingFormat}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/scatter-chart/variants/playground.tsx",
+          "target": "@components/showcase/scatter-chart/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scatter-chart-stories",
+      "type": "registry:item",
+      "title": "Scatter Chart stories",
+      "description": "All scatter-chart variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/chart",
+        "@erbium/csp-provider",
+        "@erbium/overlay-provider",
+        "@erbium/scatter-chart",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "content": "export const products = [\n  { category: \"Audio\", price: 49, rating: 3.9 },\n  { category: \"Audio\", price: 129, rating: 4.4 },\n  { category: \"Audio\", price: 249, rating: 4.6 },\n  { category: \"Audio\", price: 89, rating: 4.1 },\n  { category: \"Wearables\", price: 199, rating: 4 },\n  { category: \"Wearables\", price: 299, rating: 4.3 },\n  { category: \"Wearables\", price: 399, rating: 4.7 },\n  { category: \"Wearables\", price: 149, rating: 3.6 },\n  { category: \"Cameras\", price: 449, rating: 4.2 },\n  { category: \"Cameras\", price: 599, rating: 4.5 },\n  { category: \"Cameras\", price: 349, rating: 3.8 },\n];\n",
+          "path": "src/scatter-chart/examples/data.ts",
+          "target": "@components/showcase/scatter-chart/examples/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "content": "// Generated from the Erbium showcase catalog and shared Markdown.\nimport { ShowcaseProviders, ShowcaseSurface } from \"../preview\";\nimport type { Meta, StoryObj } from \"@storybook/react\";\n\nimport { ScatterChart } from \"@/registry/erbium/charts/scatter-chart\";\n\nimport PlaygroundExample from \"./variants/playground\";\n\nconst PlaygroundSource = \"import { chartNumberFormat } from \\\"@/registry/erbium/charts/chart\\\";\\nimport { ScatterChart } from \\\"@/registry/erbium/charts/scatter-chart\\\";\\nimport { products } from \\\"../examples/data\\\";\\n\\nconst priceFormat = chartNumberFormat(\\n  { currency: \\\"USD\\\", maximumFractionDigits: 0, style: \\\"currency\\\" },\\n  \\\"en\\\",\\n);\\n\\nconst ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, \\\"en\\\");\\n\\nconst Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (\\n  <div className=\\\"w-2xl max-w-full p-4\\\">\\n    <ScatterChart\\n      ariaLabel=\\\"Product price against average rating\\\"\\n      data={products}\\n      x=\\\"price\\\"\\n      y=\\\"rating\\\"\\n      group=\\\"category\\\"\\n      xLabel=\\\"Price\\\"\\n      yLabel=\\\"Rating\\\"\\n      xFormat={priceFormat}\\n      format={ratingFormat}\\n      initialWidth={640}\\n      {...args}\\n    />\\n  </div>\\n);\\n\\nexport default Example;\\n\";\n\nconst meta = {\n  component: ScatterChart,\n  parameters: {\n    docs: {\n      description: {\n        component: \"## Usage\\n\\nPass one row per point and name the numeric fields with `x` and `y`. `group` colors points by a category, and the legend hides and shows each group.\\n\\n```tsx\\nimport { ScatterChart } from \\\"@/registry/erbium/charts/scatter-chart\\\";\\n\\n<ScatterChart\\n  ariaLabel=\\\"Price against rating\\\"\\n  data={products}\\n  x=\\\"price\\\"\\n  y=\\\"rating\\\"\\n  group=\\\"category\\\"\\n/>;\\n```\\n\\nName both axes with `xLabel` and `yLabel`. `format` formats y values and `xFormat` formats x values.\",\n      },\n    },\n    layout: \"centered\",\n  },\n  tags: [\"autodocs\"],\n} satisfies Meta<typeof ScatterChart>;\n\nexport default { ...meta, title: \"Charts/Scatter Chart\",  decorators: [(Story, context) => <ShowcaseProviders toast={false && context.viewMode !== \"docs\"}><ShowcaseSurface><Story /></ShowcaseSurface></ShowcaseProviders>] } satisfies Meta;\n\nexport const Playground: StoryObj<{\n  grid: boolean;\n  legend: boolean;\n  radius: number;\n  tooltip: boolean;\n}> = {\n  argTypes: {\n    grid: { control: \"boolean\" },\n    legend: { control: \"boolean\" },\n    radius: { control: { max: 10, min: 2, type: \"number\" } },\n    tooltip: { control: \"boolean\" },\n  },\n  args: { grid: true, legend: true, radius: 4, tooltip: true },\n  parameters: {\n    docs: {\n      description: { story: \"\" },\n      source: { code: PlaygroundSource },\n    },\n  },\n  render: PlaygroundExample,\n};\n",
+          "path": "src/scatter-chart/scatter-chart.stories.tsx",
+          "target": "@components/showcase/scatter-chart/scatter-chart.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "content": "import { chartNumberFormat } from \"@/registry/erbium/charts/chart\";\nimport { ScatterChart } from \"@/registry/erbium/charts/scatter-chart\";\nimport { products } from \"../examples/data\";\n\nconst priceFormat = chartNumberFormat(\n  { currency: \"USD\", maximumFractionDigits: 0, style: \"currency\" },\n  \"en\",\n);\n\nconst ratingFormat = chartNumberFormat({ maximumFractionDigits: 1 }, \"en\");\n\nconst Example = (args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean }) => (\n  <div className=\"w-2xl max-w-full p-4\">\n    <ScatterChart\n      ariaLabel=\"Product price against average rating\"\n      data={products}\n      x=\"price\"\n      y=\"rating\"\n      group=\"category\"\n      xLabel=\"Price\"\n      yLabel=\"Rating\"\n      xFormat={priceFormat}\n      format={ratingFormat}\n      initialWidth={640}\n      {...args}\n    />\n  </div>\n);\n\nexport default Example;\n",
+          "path": "src/scatter-chart/variants/playground.tsx",
+          "target": "@components/showcase/scatter-chart/variants/playground.tsx",
           "type": "registry:component"
         }
       ]

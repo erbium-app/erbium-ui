@@ -2,6 +2,7 @@ import sections from "./sections.json" with { type: "json" };
 
 export type DocumentationKind =
   | "block"
+  | "chart"
   | "foundation"
   | "component"
   | "provider"
@@ -17,6 +18,7 @@ interface DocumentationSection {
 
 export const kindPaths: Record<DocumentationKind, string> = {
   block: "blocks",
+  chart: "charts",
   component: "components",
   foundation: "foundations",
   hook: "hooks",
@@ -39,6 +41,7 @@ export const documentationSections: DocumentationSection[] = sections.map((secti
 
 export const kindTitles: Record<DocumentationKind, string> = {
   block: "Blocks",
+  chart: "Charts",
   component: "Components",
   foundation: "Foundations",
   hook: "Hooks",

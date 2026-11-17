@@ -1,7 +1,7 @@
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-/** @typedef {"registry:ui" | "registry:block" | "registry:hook" | "registry:lib"} SourceType */
+/** @typedef {"registry:ui" | "registry:block" | "registry:component" | "registry:hook" | "registry:lib"} SourceType */
 /** @typedef {{ path: string, target: string, type: string }} RegistryFile */
 
 /**
@@ -55,6 +55,7 @@ const statefulPrefix = /^stateful\/stateful-/u;
 /** @type {Record<string, SourceType>} */
 const typeByDirectory = {
   blocks: "registry:block",
+  charts: "registry:component",
   components: "registry:ui",
   hooks: "registry:hook",
 };
@@ -62,6 +63,7 @@ const typeByDirectory = {
 /** @type {Record<string, string>} */
 const targetByType = {
   "registry:block": "@components/blocks",
+  "registry:component": "@components/charts",
   "registry:hook": "@hooks",
   "registry:ui": "@ui",
 };
@@ -181,6 +183,7 @@ const withoutExtension = (file) => file.slice(0, -path.extname(file).length);
 const itemBySource = new Map();
 const componentRoot = path.join(sourceRoot, "components");
 const blockRoot = path.join(sourceRoot, "blocks");
+const chartRoot = path.join(sourceRoot, "charts");
 
 for (const filePath of await filesInRecursive(componentRoot)) {
   if (scriptExtensions.has(path.extname(filePath))) {
@@ -193,12 +196,21 @@ for (const filePath of await filesInRecursive(componentRoot)) {
   }
 }
 
-for (const filePath of await filesInRecursive(blockRoot)) {
-  if (scriptExtensions.has(path.extname(filePath))) {
-    itemBySource.set(
-      filePath,
-      withoutExtension(path.relative(blockRoot, filePath)).split(path.sep).join("-"),
-    );
+// Blocks and charts name items by their path inside their own directory.
+const namedRoots = [blockRoot, chartRoot];
+
+const namedListings = await Promise.all(
+  namedRoots.map(async (root) => await filesInRecursive(root)),
+);
+
+for (const [index, root] of namedRoots.entries()) {
+  for (const filePath of namedListings[index] ?? []) {
+    if (scriptExtensions.has(path.extname(filePath))) {
+      itemBySource.set(
+        filePath,
+        withoutExtension(path.relative(root, filePath)).split(path.sep).join("-"),
+      );
+    }
   }
 }
 

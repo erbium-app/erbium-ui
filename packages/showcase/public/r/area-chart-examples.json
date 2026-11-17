@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All area-chart examples.",
+  "name": "area-chart-examples",
+  "registryDependencies": [
+    "@erbium-examples/area-chart-playground",
+    "@erbium-examples/area-chart-stacked"
+  ],
+  "title": "Area Chart examples",
+  "type": "registry:item"
+}

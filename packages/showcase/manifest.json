@@ -162,6 +162,24 @@
     ]
   },
   {
+    "name": "area-chart",
+    "title": "Charts/Area Chart",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/area-chart/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Stacked",
+        "slug": "stacked",
+        "source": "src/area-chart/variants/stacked.tsx",
+        "title": "Stacked"
+      }
+    ]
+  },
+  {
     "name": "aspect-ratio",
     "title": "Components/Aspect Ratio",
     "variants": [
@@ -458,6 +476,30 @@
         "slug": "with-spinner",
         "source": "src/badge/variants/with-spinner.tsx",
         "title": "With Spinner"
+      }
+    ]
+  },
+  {
+    "name": "bar-chart",
+    "title": "Charts/Bar Chart",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/bar-chart/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Stacked",
+        "slug": "stacked",
+        "source": "src/bar-chart/variants/stacked.tsx",
+        "title": "Stacked"
+      },
+      {
+        "exportName": "Horizontal",
+        "slug": "horizontal",
+        "source": "src/bar-chart/variants/horizontal.tsx",
+        "title": "Horizontal"
       }
     ]
   },
@@ -973,14 +1015,8 @@
   },
   {
     "name": "chart",
-    "title": "Components/Chart",
+    "title": "Charts/Chart",
     "variants": [
-      {
-        "exportName": "Playground",
-        "slug": "playground",
-        "source": "src/chart/variants/playground.tsx",
-        "title": "Playground"
-      },
       {
         "exportName": "Overview",
         "slug": "overview",
@@ -988,34 +1024,10 @@
         "title": "Overview"
       },
       {
-        "exportName": "Example",
-        "slug": "example",
-        "source": "src/chart/variants/example.tsx",
-        "title": "Example"
-      },
-      {
-        "exportName": "ExampleGrid",
-        "slug": "example-grid",
-        "source": "src/chart/variants/example-grid.tsx",
-        "title": "Example Grid"
-      },
-      {
-        "exportName": "ExampleAxis",
-        "slug": "example-axis",
-        "source": "src/chart/variants/example-axis.tsx",
-        "title": "Example Axis"
-      },
-      {
-        "exportName": "ExampleTooltip",
-        "slug": "example-tooltip",
-        "source": "src/chart/variants/example-tooltip.tsx",
-        "title": "Tooltip"
-      },
-      {
-        "exportName": "ExampleLegend",
-        "slug": "example-legend",
-        "source": "src/chart/variants/example-legend.tsx",
-        "title": "Legend"
+        "exportName": "Composition",
+        "slug": "composition",
+        "source": "src/chart/variants/composition.tsx",
+        "title": "Composition"
       }
     ]
   },
@@ -2244,6 +2256,18 @@
     ]
   },
   {
+    "name": "heatmap-chart",
+    "title": "Charts/Heatmap",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/heatmap-chart/variants/playground.tsx",
+        "title": "Playground"
+      }
+    ]
+  },
+  {
     "name": "hover-card",
     "title": "Components/Hover Card",
     "variants": [
@@ -2624,6 +2648,24 @@
         "slug": "gallery",
         "source": "src/lightbox/variants/gallery.tsx",
         "title": "Gallery"
+      }
+    ]
+  },
+  {
+    "name": "line-chart",
+    "title": "Charts/Line Chart",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/line-chart/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Time",
+        "slug": "time",
+        "source": "src/line-chart/variants/time.tsx",
+        "title": "Time"
       }
     ]
   },
@@ -3174,6 +3216,24 @@
     ]
   },
   {
+    "name": "pie-chart",
+    "title": "Charts/Pie Chart",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/pie-chart/variants/playground.tsx",
+        "title": "Playground"
+      },
+      {
+        "exportName": "Center",
+        "slug": "center",
+        "source": "src/pie-chart/variants/center.tsx",
+        "title": "Center"
+      }
+    ]
+  },
+  {
     "name": "popover",
     "title": "Components/Popover",
     "variants": [
@@ -3360,6 +3420,18 @@
     ]
   },
   {
+    "name": "radar-chart",
+    "title": "Charts/Radar Chart",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/radar-chart/variants/playground.tsx",
+        "title": "Playground"
+      }
+    ]
+  },
+  {
     "name": "radio-group",
     "title": "Components/Radio Group",
     "variants": [
@@ -3452,6 +3524,18 @@
         "slug": "handle",
         "source": "src/resizable/variants/handle.tsx",
         "title": "Handle"
+      }
+    ]
+  },
+  {
+    "name": "scatter-chart",
+    "title": "Charts/Scatter Chart",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/scatter-chart/variants/playground.tsx",
+        "title": "Playground"
       }
     ]
   },

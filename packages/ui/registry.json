@@ -60,6 +60,21 @@
       ]
     },
     {
+      "name": "area-chart",
+      "type": "registry:component",
+      "title": "Area Chart",
+      "description": "Erbium area chart component.",
+      "dependencies": ["@tanstack/charts"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/area-chart.tsx",
+          "target": "@components/charts/area-chart.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "Aspect Ratio",
@@ -142,6 +157,21 @@
           "path": "src/components/badge.tsx",
           "target": "@ui/badge.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bar-chart",
+      "type": "registry:component",
+      "title": "Bar Chart",
+      "description": "Erbium bar chart component.",
+      "dependencies": ["@tanstack/charts"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/bar-chart.tsx",
+          "target": "@components/charts/bar-chart.tsx",
+          "type": "registry:component"
         }
       ]
     },
@@ -307,16 +337,16 @@
     },
     {
       "name": "chart",
-      "type": "registry:ui",
+      "type": "registry:component",
       "title": "Chart",
       "description": "Erbium chart component.",
-      "dependencies": ["@tanstack/charts"],
+      "dependencies": ["@tanstack/charts", "d3-shape"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
-          "path": "src/components/chart.tsx",
-          "target": "@ui/chart.tsx",
-          "type": "registry:ui"
+          "path": "src/charts/chart.tsx",
+          "target": "@components/charts/chart.tsx",
+          "type": "registry:component"
         }
       ]
     },
@@ -948,6 +978,21 @@
       ]
     },
     {
+      "name": "heatmap-chart",
+      "type": "registry:component",
+      "title": "Heatmap Chart",
+      "description": "Erbium heatmap chart component.",
+      "dependencies": ["@tanstack/charts"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/heatmap-chart.tsx",
+          "target": "@components/charts/heatmap-chart.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hotkeys",
       "type": "registry:lib",
       "title": "Hotkeys",
@@ -1102,6 +1147,21 @@
           "path": "src/blocks/lightbox.tsx",
           "target": "@components/blocks/lightbox.tsx",
           "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "line-chart",
+      "type": "registry:component",
+      "title": "Line Chart",
+      "description": "Erbium line chart component.",
+      "dependencies": ["@tanstack/charts"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/line-chart.tsx",
+          "target": "@components/charts/line-chart.tsx",
+          "type": "registry:component"
         }
       ]
     },
@@ -1351,6 +1411,21 @@
       ]
     },
     {
+      "name": "pie-chart",
+      "type": "registry:component",
+      "title": "Pie Chart",
+      "description": "Erbium pie chart component.",
+      "dependencies": ["@tanstack/charts"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/pie-chart.tsx",
+          "target": "@components/charts/pie-chart.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
@@ -1409,6 +1484,21 @@
       ]
     },
     {
+      "name": "radar-chart",
+      "type": "registry:component",
+      "title": "Radar Chart",
+      "description": "Erbium radar chart component.",
+      "dependencies": ["@tanstack/charts", "d3-shape"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/radar-chart.tsx",
+          "target": "@components/charts/radar-chart.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
@@ -1435,6 +1525,21 @@
           "path": "src/components/resizable.tsx",
           "target": "@ui/resizable.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scatter-chart",
+      "type": "registry:component",
+      "title": "Scatter Chart",
+      "description": "Erbium scatter chart component.",
+      "dependencies": ["@tanstack/charts"],
+      "registryDependencies": ["@erbium/chart"],
+      "files": [
+        {
+          "path": "src/charts/scatter-chart.tsx",
+          "target": "@components/charts/scatter-chart.tsx",
+          "type": "registry:component"
         }
       ]
     },

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All bar-chart examples.",
+  "name": "bar-chart-examples",
+  "registryDependencies": [
+    "@erbium-examples/bar-chart-playground",
+    "@erbium-examples/bar-chart-stacked",
+    "@erbium-examples/bar-chart-horizontal"
+  ],
+  "title": "Bar Chart examples",
+  "type": "registry:item"
+}

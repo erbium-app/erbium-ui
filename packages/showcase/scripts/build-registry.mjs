@@ -37,7 +37,7 @@ const namedCatalogs = new Map(
 );
 
 const importSpecifier = /(?:from\s*|import\s*(?:\(\s*)?)["'](?<specifier>[^"']+)["']/gu;
-const uiSpecifier = /@erbium\/ui\/(?:components|blocks|hooks|lib)\/[\w-]+/gu;
+const uiSpecifier = /@erbium\/ui\/(?:components|blocks|charts|hooks|lib)\/[\w-]+/gu;
 const frontmatter = /^---\r?\n[\s\S]*?\r?\n---\r?\n/u;
 const localTypesImport = /import type \{ Meta, StoryObj \} from "\.\.\/types";/u;
 const markdownImport = /import[^;]*from "@erbium\/content\/markdown";\s*/gu;

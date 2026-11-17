@@ -32,6 +32,7 @@
     "./brand/logo.css": "./src/styles/brand/logo.css",
     "./package.json": "./package.json",
     "./blocks/*": "./src/blocks/*.tsx",
+    "./charts/*": "./src/charts/*.tsx",
     "./assets/fonts/*": "./src/assets/fonts/*"
   },
   "scripts": {
@@ -56,6 +57,7 @@
     "@tanstack/react-table": "catalog:",
     "class-variance-authority": "catalog:",
     "cn": "^0.5.2",
+    "d3-shape": "3.2.0",
     "easing-gradients": "^0.0.3",
     "embla-carousel-react": "^8.6.0",
     "js.foresight": "4.2.1",
@@ -72,6 +74,7 @@
   "devDependencies": {
     "@tanstack/react-form": "1.33.5",
     "@tanstack/react-router": "catalog:",
+    "@types/d3-shape": "^3.1.8",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "effect": "4.1.4",
