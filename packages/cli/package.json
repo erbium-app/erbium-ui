@@ -16,6 +16,7 @@
     "url": "https://github.com/erbium-app/erbium-ui/issues"
   },
   "license": "MIT",
+  "author": "AvanVision Pty Ltd",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/erbium-app/erbium-ui.git",
@@ -26,6 +27,7 @@
   },
   "files": [
     "dist",
+    "LICENSE",
     "README.md"
   ],
   "type": "module",
