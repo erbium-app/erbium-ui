@@ -1,5 +1,7 @@
+import type * as React from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { Icon } from "./icon";
+import { menuEmptyClassName, menuListClassName } from "../lib/menu-styles";
 import { cn } from "../lib/utils";
 import { focusSearchInput } from "../lib/focus-search-input";
 import { Button } from "./button";
@@ -45,22 +47,31 @@ const MenuSearch = ({
   </div>
 );
 
-/** Only the list scrolls; search and other popup siblings stay fixed. */
-const MenuList = ({ className, children, ...props }: MenuPrimitive.List.Props) => (
+/**
+ * The scrolling frame of a menu list. Only the list scrolls; search and other popup siblings stay
+ * fixed. Wrap a Menu-based list part in it.
+ */
+const MenuScroll = ({ children }: { children: React.ReactNode }) => (
   <ScrollArea
     className="flex min-h-0 max-h-72 flex-col overflow-hidden overscroll-contain"
     fade="vertical"
     scrollbar="thin"
     viewportClassName="min-h-0 max-h-72 flex-1 overflow-x-hidden! scroll-py-1"
   >
+    {children}
+  </ScrollArea>
+);
+
+const MenuList = ({ className, children, ...props }: MenuPrimitive.List.Props) => (
+  <MenuScroll>
     <MenuPrimitive.List
       data-slot="menu-list"
-      className={cn("p-1 outline-none in-data-has-overflow-y:pe-3", className)}
+      className={cn(menuListClassName, className)}
       {...props}
     >
       {children}
     </MenuPrimitive.List>
-  </ScrollArea>
+  </MenuScroll>
 );
 
 const MenuEmpty = ({
@@ -70,14 +81,11 @@ const MenuEmpty = ({
 }: MenuPrimitive.Empty.Props) => (
   <MenuPrimitive.Empty
     data-slot="menu-empty"
-    className={cn(
-      "px-control-inset py-panel text-center text-control text-muted-foreground",
-      className,
-    )}
+    className={cn(menuEmptyClassName, className)}
     {...props}
   >
     {children}
   </MenuPrimitive.Empty>
 );
 
-export { MenuSearch, MenuList, MenuEmpty };
+export { MenuSearch, MenuList, MenuEmpty, MenuScroll };

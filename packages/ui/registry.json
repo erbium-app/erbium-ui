@@ -356,14 +356,13 @@
       "type": "registry:ui",
       "title": "Cascader",
       "description": "Erbium cascader component.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "@erbium-ui/react@^0.1.0"],
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/direction",
-        "@erbium/dropdown-menu",
         "@erbium/focus-search-input",
         "@erbium/icon",
         "@erbium/menu-search",
+        "@erbium/menu-styles",
         "@erbium/separator",
         "@erbium/skeleton-hints",
         "@erbium/stateful-icon",
@@ -888,6 +887,7 @@
         "@erbium/icon",
         "@erbium/kbd",
         "@erbium/menu-search",
+        "@erbium/menu-styles",
         "@erbium/separator",
         "@erbium/stateful-icon",
         "@erbium/utils"
@@ -1360,6 +1360,7 @@
         "@erbium/button",
         "@erbium/focus-search-input",
         "@erbium/icon",
+        "@erbium/menu-styles",
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/utils"
@@ -1369,6 +1370,19 @@
           "path": "src/components/menu-search.tsx",
           "target": "@ui/menu-search.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu-styles",
+      "type": "registry:lib",
+      "title": "Menu Styles",
+      "description": "Erbium menu styles lib.",
+      "files": [
+        {
+          "path": "src/lib/menu-styles.ts",
+          "target": "@lib/menu-styles.ts",
+          "type": "registry:lib"
         }
       ]
     },

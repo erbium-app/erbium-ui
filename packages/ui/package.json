@@ -43,6 +43,7 @@
     "@base-ui/react": "^1.9.0",
     "@base-ui/utils": "0.5.0",
     "@daypicker/react": "catalog:",
+    "@erbium-ui/react": "workspace:*",
     "@erbium/icons": "workspace:*",
     "@foresightjs/react": "1.0.0",
     "@hugeicons/core-free-icons": "catalog:",

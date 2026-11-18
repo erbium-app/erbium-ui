@@ -43,6 +43,54 @@ const dependencies = new Set([
   ...keysAt(packageJson, "peerDependencies"),
 ]);
 
+/**
+ * @param {unknown} value - A parsed package.json.
+ * @returns {string} Its version.
+ */
+const versionOf = (value) => {
+  if (!(value instanceof Object)) {
+    throw new TypeError("A workspace package.json must be an object.");
+  }
+
+  /** @type {[string, unknown][]} */
+  const fields = Object.entries(value);
+  const version = fields.find(([name]) => name === "version")?.[1];
+
+  // oxlint-disable-next-line anti-slop/no-runtime-typeof -- this is the I/O boundary: it parses a package.json read from disk.
+  if (typeof version !== "string") {
+    throw new TypeError("A published workspace package needs a version.");
+  }
+
+  return version;
+};
+
+/*
+ * Workspace packages that are published to npm. packages/ui depends on them as `workspace:*`,
+ * which means nothing outside the monorepo, so registry items name them with the range of the
+ * version this registry was built against.
+ */
+const publishedWorkspacePackages = new Map(
+  await Promise.all(
+    [["@erbium-ui/react", "../react/package.json"]].map(async ([name, manifest]) => {
+      /** @type {unknown} */
+      const workspacePackage = JSON.parse(
+        await readFile(path.join(packageRoot, manifest), "utf-8"),
+      );
+
+      /** @type {[string, string]} */
+      const entry = [name, `${name}@^${versionOf(workspacePackage)}`];
+
+      return entry;
+    }),
+  ),
+);
+
+/**
+ * @param {string} name - An npm package an item imports.
+ * @returns {string} The name, or a name with a version range for a published workspace package.
+ */
+const dependencySpec = (name) => publishedWorkspacePackages.get(name) ?? name;
+
 const sourceExtensions = [".tsx", ".ts", ".jsx", ".js", ".css"];
 const scriptExtensions = new Set([".ts", ".tsx"]);
 const titleWord = /(?:^|-)\w/gu;
@@ -259,7 +307,7 @@ const itemFor = async (sourceFile, name, type) => {
     }
 
     if (!specifier.startsWith(".") && dependencies.has(packageName(specifier))) {
-      npmDependencies.add(packageName(specifier));
+      npmDependencies.add(dependencySpec(packageName(specifier)));
     }
   }
 
