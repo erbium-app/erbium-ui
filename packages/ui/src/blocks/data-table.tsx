@@ -485,7 +485,13 @@ const DataTableContent = ({
                     <TableCell
                       key={cell.id}
                       data-align={cell.column.columnDef.meta?.align}
-                      className="data-[align=end]:text-end"
+                      // Fixed layout gives columns their width regardless of content, so
+                      // unwrapped text would run into the next column; clip it with an
+                      // ellipsis. Cells holding controls keep overflow visible for focus rings.
+                      className={cn(
+                        "data-[align=end]:text-end",
+                        sized && "not-has-[button,[role=checkbox]]:truncate",
+                      )}
                     >
                       <FlexRender cell={cell} />
                     </TableCell>
