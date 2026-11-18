@@ -54,7 +54,8 @@ export const Route = createFileRoute("/_app")({
 ## Anatomy
 
 ```text
-AppShell                      provider: sidebar mode, open state, width
+AppShell                      provider: sidebar mode, open state, width;
+│                             mounts DrawerProvider, DrawerIndent, Toaster
 ├── AppShellSidebar           inset sidebar; drawer on mobile
 │   ├── AppShellSidebarHeader
 │   ├── AppShellNav           scrolling <nav> landmark
@@ -68,6 +69,15 @@ AppShell                      provider: sidebar mode, open state, width
     │   └── AppShellActions
     └── AppShellContent       scrolling region for <Outlet />
 ```
+
+## App-wide parts
+
+The shell mounts the parts an app needs once, so a layout route needs nothing else around it:
+
+- `DrawerProvider` and `DrawerIndent` from [Drawer](/docs/components/drawer). The indent wraps the whole frame, so any drawer opened inside the shell scales the page back behind it. The fixed desktop sidebar follows the indent's `--drawer-indent-top` offset, so it stays in view when the page has scrolled.
+- `Toaster` from [Toast](/docs/components/toast), for notifications created with `toast.add`.
+
+Do not mount these again inside the shell. A shell rendered inside another shell, such as a preview on a documentation page, leaves them to the outer one.
 
 ## Without a header
 

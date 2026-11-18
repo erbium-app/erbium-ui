@@ -7,6 +7,7 @@ import type {
   RegisteredRouter,
 } from "@tanstack/react-router";
 import { Breadcrumb } from "../components/breadcrumb";
+import { DrawerIndent, DrawerProvider } from "../components/drawer";
 import type { BreadcrumbDestination } from "../components/breadcrumb";
 import {
   Sidebar,
@@ -26,6 +27,7 @@ import {
   useSidebar,
 } from "../components/sidebar";
 import type { SidebarMenuButtonProps } from "../components/sidebar";
+import { Toaster } from "../components/toast";
 import { useRouterPending } from "../hooks/use-router-pending";
 import { Option, Schema } from "effect";
 import { cn } from "../lib/utils";
@@ -74,6 +76,10 @@ const AppShellContext = React.createContext<{
   sidebar: "resizable",
   scroll: "content",
 });
+
+// True inside an AppShell, so a nested shell (a preview inside a documentation page) leaves the
+// indent and the toaster to the outer one.
+const AppShellFrameContext = React.createContext(false);
 
 const StoredSidebarState = Schema.Struct({
   open: Schema.Boolean,
@@ -142,7 +148,9 @@ type AppShellProps = Omit<
 
 /**
  * The persistent frame of an application: sidebar, header, and a content surface. Render it
- * once in a layout route around `<Outlet />`, so navigating replaces only the content.
+ * once in a layout route around `<Outlet />`, so navigating replaces only the content. It also
+ * mounts the app-wide parts an app needs once: a `DrawerProvider` with a `DrawerIndent` around
+ * the frame, so open drawers inset the page, and a `Toaster` for `toast.add`.
  */
 const AppShell = ({
   sidebar = "resizable",
@@ -166,8 +174,9 @@ const AppShell = ({
 
   const context = React.useMemo(() => ({ sidebar, scroll }), [sidebar, scroll]);
   const fixed = sidebar === "fixed";
+  const nested = React.use(AppShellFrameContext);
 
-  return (
+  const frame = (
     <AppShellContext value={context}>
       <SidebarProvider
         data-slot="app-shell"
@@ -197,16 +206,37 @@ const AppShell = ({
       </SidebarProvider>
     </AppShellContext>
   );
+
+  if (nested) {
+    return frame;
+  }
+
+  return (
+    <AppShellFrameContext value={true}>
+      <DrawerProvider>
+        <DrawerIndent>{frame}</DrawerIndent>
+        <Toaster />
+      </DrawerProvider>
+    </AppShellFrameContext>
+  );
 };
 
 const AppShellSidebar = ({
+  className,
   children,
   ...props
 }: Omit<React.ComponentProps<typeof Sidebar>, "variant" | "collapsible">) => {
   const { sidebar } = React.use(AppShellContext);
 
   return (
-    <Sidebar data-slot="app-shell-sidebar" variant="inset" collapsible="offcanvas" {...props}>
+    <Sidebar
+      data-slot="app-shell-sidebar"
+      variant="inset"
+      collapsible="offcanvas"
+      // While the drawer indent contains the fixed sidebar, it stays at the top of the screen.
+      className={cn("top-(--drawer-indent-top,0px)", className)}
+      {...props}
+    >
       {children}
       {sidebar === "resizable" && <SidebarRail />}
     </Sidebar>

@@ -46,35 +46,34 @@ bunx shadcn@latest add @erbium-examples/checkbox-examples
 Install the providers required by your interface:
 
 ```sh
-bunx shadcn@latest add @erbium/direction @erbium/overlay-provider @erbium/drawer @erbium/toast
+bunx shadcn@latest add @erbium/direction @erbium/drawer @erbium/toast
 ```
 
-Mount `OverlayProvider` around drawers. `DrawerIndent` wraps the page content that should inset when a drawer opens. Mount one `Toaster` for notifications created with `toast.add`.
+Mount `DrawerProvider` once around the app, and wrap the page content that should inset when a drawer opens in `DrawerIndent`. Mount one `Toaster` for notifications created with `toast.add`. An app built on the [App Shell](/docs/blocks/app-shell) block skips this step: the shell mounts all three.
 
 ```tsx
 import { Button } from "@/components/ui/button";
 import { DirectionProvider } from "@/components/ui/direction";
-import { DrawerIndent } from "@/components/ui/drawer";
-import { OverlayProvider } from "@/components/ui/overlay-provider";
+import { DrawerIndent, DrawerProvider } from "@/components/ui/drawer";
 import { Toaster, toast } from "@/components/ui/toast";
 
 export default function App() {
   return (
     <DirectionProvider direction="ltr">
-      <OverlayProvider>
+      <DrawerProvider>
         <DrawerIndent>
           <main className="min-h-screen p-8">
             <Button onClick={() => toast.add({ title: "Saved", type: "success" })}>Save</Button>
           </main>
         </DrawerIndent>
         <Toaster />
-      </OverlayProvider>
+      </DrawerProvider>
     </DirectionProvider>
   );
 }
 ```
 
-For RTL, set the document’s `dir="rtl"` and the [Direction Provider](/docs/providers/direction) to `direction="rtl"`. Keep fixed page chrome outside `DrawerIndent`. See [Overlay Provider](/docs/providers/overlay-provider) for drawer composition and [CSP Provider](/docs/providers/csp-provider) for nonce or external stylesheet requirements.
+For RTL, set the document’s `dir="rtl"` and the [Direction Provider](/docs/providers/direction) to `direction="rtl"`. Keep fixed page chrome outside `DrawerIndent`. See [Drawer](/docs/components/drawer) for the indent and [CSP Provider](/docs/providers/csp-provider) for nonce or external stylesheet requirements.
 
 ## Customize the design
 

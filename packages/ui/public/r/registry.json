@@ -71,7 +71,9 @@
       "dependencies": ["@tanstack/react-router", "effect"],
       "registryDependencies": [
         "@erbium/breadcrumb",
+        "@erbium/drawer",
         "@erbium/sidebar",
+        "@erbium/toast",
         "@erbium/use-router-pending",
         "@erbium/utils"
       ],
