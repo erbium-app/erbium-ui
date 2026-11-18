@@ -1,5 +1,4 @@
-import { useLayoutEffect } from "react";
-import type { ReactNode, RefObject } from "react";
+import type { ReactNode } from "react";
 import {
   Lightbox,
   LightboxCaption,
@@ -67,7 +66,7 @@ const ShowcaseGallery = ({
                     ref={morphRef}
                     path={path}
                     variant={variant}
-                    className="flex size-full flex-col overflow-auto overscroll-contain *:data-[slot=component-preview]:my-auto"
+                    fill
                     actions={
                       <LightboxClose
                         aria-label="Exit full screen"
@@ -95,35 +94,12 @@ const ShowcaseGallery = ({
   </ShowcaseStoreProvider>
 );
 
-// Hands the preview panel to the trigger as its morph element, so opening grows the panel into
-// the slide and closing shrinks it back, instead of morphing from the button.
-const MorphFrom = ({
-  morphRef,
-  target,
-}: {
-  morphRef: (node: HTMLElement | null) => void;
-  target: RefObject<HTMLElement | null>;
-}) => {
-  useLayoutEffect(() => {
-    morphRef(target.current);
-
-    return () => {
-      morphRef(null);
-    };
-  }, [morphRef, target]);
-
-  return null;
-};
-
-/** Opens a showcase full screen. Render it in the showcase's toolbar. */
-const ShowcaseFullScreenTrigger = ({
-  index,
-  frame,
-}: {
-  index: number;
-  /** The preview panel the open and close transitions morph from and to. */
-  frame: RefObject<HTMLElement | null>;
-}) => (
+/**
+ * Opens a showcase full screen. Render it in the showcase's toolbar: the frame around it is the
+ * element the open and close transitions morph from and to, so the panel grows into the slide and
+ * shrinks back into the section instead of morphing from the button.
+ */
+const ShowcaseFullScreenTrigger = ({ index }: { index: number }) => (
   <LightboxTrigger
     index={index}
     crossfade="both"
@@ -131,10 +107,18 @@ const ShowcaseFullScreenTrigger = ({
     render={<ToolbarButton size="icon-sm" />}
   >
     {({ morphRef }) => (
-      <>
-        <MorphFrom morphRef={morphRef} target={frame} />
-        <Icon name="arrow-expand-01" />
-      </>
+      <Icon
+        name="arrow-expand-01"
+        // DOM nodes are in the document before refs attach, so the enclosing frame is
+        // already there for the lookup, whatever order React attaches its own ref in.
+        ref={(icon) => {
+          morphRef(icon?.closest<HTMLElement>("[data-slot=showcase-frame]") ?? null);
+
+          return () => {
+            morphRef(null);
+          };
+        }}
+      />
     )}
   </LightboxTrigger>
 );

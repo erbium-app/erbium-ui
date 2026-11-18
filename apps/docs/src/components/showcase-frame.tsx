@@ -23,10 +23,11 @@ interface ShowcaseState {
   args: Args;
   /** Overrides the site theme for this showcase only. */
   appearance?: "light" | "dark";
-  /** Remounts the example and its providers so first-mount behaviour plays again. */
+  /**
+   * Bumped by refresh and reset. It keys the example, its providers and the controls, so
+   * first-mount behaviour plays again and the controls show the restored args.
+   */
   mount: number;
-  /** Resets the controls and the example after the args are restored. */
-  revision: number;
 }
 
 type ShowcaseUpdate = (update: (state: ShowcaseState) => ShowcaseState) => void;
@@ -40,19 +41,21 @@ const createShowcaseStore = () => {
   const states = new Map<string, ShowcaseState>();
   const listeners = new Map<string, Set<() => void>>();
 
+  const get = (variant: Variant) => {
+    const existing = states.get(variant.anchor);
+
+    if (existing !== undefined) {
+      return existing;
+    }
+
+    const initial: ShowcaseState = { args: variant.args, mount: 0 };
+    states.set(variant.anchor, initial);
+
+    return initial;
+  };
+
   return {
-    get: (variant: Variant) => {
-      const existing = states.get(variant.anchor);
-
-      if (existing !== undefined) {
-        return existing;
-      }
-
-      const initial: ShowcaseState = { args: variant.args, mount: 0, revision: 0 };
-      states.set(variant.anchor, initial);
-
-      return initial;
-    },
+    get,
     subscribe: (key: string, listener: () => void) => {
       const keyListeners = listeners.get(key) ?? new Set();
       keyListeners.add(listener);
@@ -63,13 +66,7 @@ const createShowcaseStore = () => {
       };
     },
     update: (variant: Variant, update: (state: ShowcaseState) => ShowcaseState) => {
-      const current = states.get(variant.anchor) ?? {
-        args: variant.args,
-        mount: 0,
-        revision: 0,
-      };
-
-      states.set(variant.anchor, update(current));
+      states.set(variant.anchor, update(get(variant)));
 
       for (const listener of listeners.get(variant.anchor) ?? []) {
         listener();
@@ -149,66 +146,77 @@ const ShowcaseFrame = ({
   path,
   variant,
   actions,
-  className,
+  fill = false,
   ref,
 }: {
   path: string;
   variant: Variant;
   /** Toolbar buttons after refresh and theme. */
   actions?: ReactNode;
-  className?: string;
+  /** Fill the container and scroll the example inside it, as a full-screen slide does. */
+  fill?: boolean;
+  /** The morph element of the full-screen transition: the panel plus its shadow. */
   ref?: Ref<HTMLDivElement>;
 }) => {
-  const [{ args, appearance, mount, revision }, update] = useShowcaseState(variant);
+  const [{ args, appearance, mount }, update] = useShowcaseState(variant);
   const siteDark = useTheme();
   const dark = appearance === undefined ? siteDark : appearance === "dark";
 
   return (
-    <div
-      ref={ref}
-      className={cn("showcase-content relative", codePanelSurface, appearance, className)}
-    >
-      <Toolbar aria-label="Showcase controls" className="absolute top-2 end-2 z-1">
-        <ToolbarButton
-          size="icon-sm"
-          aria-label="Refresh this showcase"
-          onClick={() => {
-            update((state) => ({ ...state, mount: state.mount + 1 }));
-          }}
-        >
-          <Icon name="refresh-cw" />
-        </ToolbarButton>
-        <ToolbarButton
-          size="icon-sm"
-          aria-label={
-            dark ? "Use light theme for this showcase" : "Use dark theme for this showcase"
-          }
-          onClick={() => {
-            changeTheme(() => {
-              flushSync(() => {
-                update((state) => ({ ...state, appearance: dark ? "light" : "dark" }));
+    // The panel's rim, catchlight and drop shadow are box shadows outside its box, and the
+    // full-screen morph clips its snapshot to the morph element's box. This transparent box
+    // reaches 8px past the panel (the panel's shadow reaches 6px) so the snapshot keeps the whole
+    // surface; its negative margin keeps the page layout as it was.
+    <div ref={ref} data-slot="showcase-frame" className={fill ? "size-full p-2" : "-m-2 p-2"}>
+      <div
+        className={cn(
+          "showcase-content relative",
+          codePanelSurface,
+          appearance,
+          fill && "flex size-full flex-col overflow-auto overscroll-contain",
+        )}
+      >
+        <Toolbar aria-label="Showcase controls" className="absolute top-2 end-2 z-1">
+          <ToolbarButton
+            size="icon-sm"
+            aria-label="Refresh this showcase"
+            onClick={() => {
+              update((state) => ({ ...state, mount: state.mount + 1 }));
+            }}
+          >
+            <Icon name="refresh-cw" />
+          </ToolbarButton>
+          <ToolbarButton
+            size="icon-sm"
+            aria-label={
+              dark ? "Use light theme for this showcase" : "Use dark theme for this showcase"
+            }
+            onClick={() => {
+              changeTheme(() => {
+                flushSync(() => {
+                  update((state) => ({ ...state, appearance: dark ? "light" : "dark" }));
+                });
               });
-            });
-          }}
-        >
-          <ThemeToggleIcon theme={dark ? "dark" : "light"} />
-        </ToolbarButton>
-        {actions}
-      </Toolbar>
-      <CatchBoundary getResetKey={() => `${revision}:${mount}`} errorComponent={PreviewError}>
-        <ShowcaseProviders key={mount}>
-          <ShowcaseSurface>
-            <Suspense fallback={<PreviewLoading />}>
-              <PreviewContent
-                key={revision}
-                path={path}
-                example={`${variant.name}/${variant.slug}`}
-                args={args}
-              />
-            </Suspense>
-          </ShowcaseSurface>
-        </ShowcaseProviders>
-      </CatchBoundary>
+            }}
+          >
+            <ThemeToggleIcon theme={dark ? "dark" : "light"} />
+          </ToolbarButton>
+          {actions}
+        </Toolbar>
+        <CatchBoundary getResetKey={() => mount} errorComponent={PreviewError}>
+          <ShowcaseProviders key={mount}>
+            <ShowcaseSurface fill={fill}>
+              <Suspense fallback={<PreviewLoading />}>
+                <PreviewContent
+                  path={path}
+                  example={`${variant.name}/${variant.slug}`}
+                  args={args}
+                />
+              </Suspense>
+            </ShowcaseSurface>
+          </ShowcaseProviders>
+        </CatchBoundary>
+      </div>
     </div>
   );
 };

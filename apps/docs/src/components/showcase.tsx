@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@erbium/ui/components/button";
 import {
   Collapsible,
@@ -71,11 +71,9 @@ export const Showcase = ({
   sources: DocPage["exampleSources"];
   separator?: boolean;
 }) => {
-  const [{ args, revision }, update] = useShowcaseState(variant);
-  const [code, setCode] = useState(false);
+  const [{ args, mount }, update] = useShowcaseState(variant);
   // Source mounts, and so highlights, on first view, then stays mounted with the hidden tab.
   const [sourceShown, setSourceShown] = useState(false);
-  const frame = useRef<HTMLDivElement>(null);
 
   const command = `bunx shadcn@latest add @erbium-examples/${variant.name}-${variant.slug}`;
 
@@ -85,10 +83,8 @@ export const Showcase = ({
       <h2 className="text-title font-semibold">{variant.title}</h2>
       <Prose tree={variant.tree} />
       <Tabs
-        value={code ? "code" : "preview"}
+        defaultValue="preview"
         onValueChange={(value) => {
-          setCode(value === "code");
-
           if (value === "code") {
             setSourceShown(true);
           }
@@ -104,15 +100,14 @@ export const Showcase = ({
         </TabsContent>
         <TabsContent value="preview" keepMounted>
           <ShowcaseFrame
-            ref={frame}
             path={path}
             variant={variant}
-            actions={<ShowcaseFullScreenTrigger index={index} frame={frame} />}
+            actions={<ShowcaseFullScreenTrigger index={index} />}
           />
         </TabsContent>
       </Tabs>
       <Controls
-        key={revision}
+        key={mount}
         args={args}
         defaults={variant.args}
         argTypes={variant.argTypes}
@@ -120,7 +115,7 @@ export const Showcase = ({
           update((state) => ({ ...state, args: next }));
         }}
         onReset={() => {
-          update((state) => ({ ...state, args: variant.args, revision: state.revision + 1 }));
+          update((state) => ({ ...state, args: variant.args, mount: state.mount + 1 }));
         }}
       />
       <Collapsible className="mt-3">

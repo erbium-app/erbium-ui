@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { TableOfContents } from "./table-of-contents";
 import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
@@ -13,16 +14,19 @@ import type { DocPage } from "@/content/types";
 import { pages } from "@/content/catalog";
 
 export const DocPageView = ({ page }: { page: DocPage }) => {
-  const leadHeading =
+  // The overview leads the page, above the prose; the other showcases follow it. This is also the
+  // order full screen steps through.
+  const lead =
     page.variants.find((variant) => variant.exportName === "Overview") ?? page.variants.at(0);
 
+  const showcases =
+    lead === undefined ? [] : [lead, ...page.variants.filter((variant) => variant !== lead)];
+
   const headings = [
-    ...(leadHeading === undefined ? [] : [{ id: leadHeading.anchor, title: leadHeading.title }]),
+    ...showcases.slice(0, 1).map((variant) => ({ id: variant.anchor, title: variant.title })),
     ...page.headings,
     ...page.colorSources.map((item) => ({ id: item.id, title: item.title })),
-    ...page.variants
-      .filter((variant) => variant !== leadHeading)
-      .map((variant) => ({ id: variant.anchor, title: variant.title })),
+    ...showcases.slice(1).map((variant) => ({ id: variant.anchor, title: variant.title })),
   ];
 
   const neighbors = page.name ? pages.filter((item) => item.section === page.section) : pages;
@@ -30,10 +34,6 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
 
   const previousPage = index > 0 ? neighbors.at(index - 1) : undefined;
   const nextPage = index === -1 ? undefined : neighbors.at(index + 1);
-  const lead = leadHeading;
-  // Page order, which is also the order full screen steps through.
-  const rest = page.variants.filter((variant) => variant !== lead);
-  const showcases = lead === undefined ? rest : [lead, ...rest];
 
   return (
     // Keyed by page, so showcase state and the full-screen gallery start over on navigation.
@@ -90,26 +90,19 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                 </div>
                 <Separator className="mt-6" variant="full" role="presentation" />
               </header>
-              {lead !== undefined && (
-                <Showcase
-                  key={`${lead.name}-${lead.slug}`}
-                  path={page.path}
-                  index={0}
-                  variant={lead}
-                  sources={page.exampleSources}
-                  separator={false}
-                />
-              )}
-              <Prose tree={page.tree} />
-              {rest.map((variant) => (
-                <Showcase
-                  key={`${variant.name}-${variant.slug}`}
-                  path={page.path}
-                  index={showcases.indexOf(variant)}
-                  variant={variant}
-                  sources={page.exampleSources}
-                />
+              {showcases.map((variant, order) => (
+                <Fragment key={variant.anchor}>
+                  <Showcase
+                    path={page.path}
+                    index={order}
+                    variant={variant}
+                    sources={page.exampleSources}
+                    separator={order > 0}
+                  />
+                  {order === 0 && <Prose tree={page.tree} />}
+                </Fragment>
               ))}
+              {showcases.length === 0 && <Prose tree={page.tree} />}
               {page.colorSources.map((item) => (
                 <section key={item.title} id={item.id}>
                   <h2 className="text-title">{item.title}</h2>
