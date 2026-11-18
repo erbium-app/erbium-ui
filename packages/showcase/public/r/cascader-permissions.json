@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cascader-permissions",
+  "type": "registry:component",
+  "title": "cascader permissions",
+  "description": "Erbium cascader permissions example.",
+  "registryDependencies": ["@erbium/cascader", "@erbium/icon", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import type { CascaderNode } from \"@/registry/erbium/ui/cascader\";\nimport { Icon } from \"@/registry/erbium/ui/icon\";\n\nconst scope = (area: string, actions: [string, string][]): CascaderNode[] =>\n  actions.map(([action, label]) => ({ value: `${area}.${action}`, label }));\n\n/** Permission scopes grouped by area. Leaves are `area.action` values. */\nexport const permissions: CascaderNode[] = [\n  {\n    value: \"billing\",\n    label: \"Billing\",\n    icon: <Icon name=\"credit-card\" aria-hidden=\"true\" />,\n    children: scope(\"billing\", [\n      [\"view\", \"View invoices\"],\n      [\"pay\", \"Pay invoices\"],\n      [\"plan\", \"Change plan\"],\n      [\"payment-method\", \"Update payment method\"],\n    ]),\n  },\n  {\n    value: \"members\",\n    label: \"Members\",\n    icon: <Icon name=\"user\" aria-hidden=\"true\" />,\n    children: [\n      {\n        value: \"members.view\",\n        label: \"View members\",\n        icon: <Icon name=\"eye\" aria-hidden=\"true\" />,\n      },\n      {\n        value: \"members.invite\",\n        label: \"Invite members\",\n        icon: <Icon name=\"plus-sign\" aria-hidden=\"true\" />,\n      },\n      {\n        value: \"members.remove\",\n        label: \"Remove members\",\n        icon: <Icon name=\"minus-sign\" aria-hidden=\"true\" />,\n      },\n      {\n        value: \"members.roles\",\n        label: \"Assign roles\",\n        icon: <Icon name=\"shield-01\" aria-hidden=\"true\" />,\n      },\n    ],\n  },\n  {\n    value: \"projects\",\n    label: \"Projects\",\n    icon: <Icon name=\"folder-01\" aria-hidden=\"true\" />,\n    children: scope(\"projects\", [\n      [\"view\", \"View projects\"],\n      [\"create\", \"Create projects\"],\n      [\"edit\", \"Edit settings\"],\n      [\"delete\", \"Delete projects\"],\n    ]),\n  },\n  {\n    value: \"domains\",\n    label: \"Domains\",\n    icon: <Icon name=\"globe\" aria-hidden=\"true\" />,\n    children: scope(\"domains\", [\n      [\"view\", \"View domains\"],\n      [\"add\", \"Add domains\"],\n      [\"remove\", \"Remove domains\"],\n    ]),\n  },\n  {\n    value: \"secrets\",\n    label: \"Secrets\",\n    icon: <Icon name=\"lock\" aria-hidden=\"true\" />,\n    children: scope(\"secrets\", [\n      [\"read\", \"Read secrets\"],\n      [\"write\", \"Write secrets\"],\n    ]),\n  },\n  {\n    value: \"support\",\n    label: \"Support\",\n    icon: <Icon name=\"lifebuoy\" aria-hidden=\"true\" />,\n    children: scope(\"support\", [\n      [\"open\", \"Open tickets\"],\n      [\"escalate\", \"Escalate tickets\"],\n    ]),\n  },\n];\n",
+      "path": "src/cascader/examples/cascader-permissions.tsx",
+      "target": "@components/showcase/cascader/examples/cascader-permissions.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cascader-disabled",
+  "type": "registry:component",
+  "title": "Cascader: Disabled",
+  "description": "A disabled leaf stays visible but cannot be picked, and a disabled level cannot be opened. Add a `description` to say why. `disabled` on `Cascader` disables the whole control. Without a search field, each level starts with a Back row.",
+  "registryDependencies": ["@erbium/cascader", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import {\n  Cascader,\n  CascaderContent,\n  CascaderList,\n  CascaderTrigger,\n  CascaderValue,\n} from \"@/registry/erbium/ui/cascader\";\nimport type { CascaderNode } from \"@/registry/erbium/ui/cascader\";\n\nconst plans: CascaderNode[] = [\n  {\n    value: \"starter\",\n    label: \"Starter\",\n    children: [\n      { value: \"starter-monthly\", label: \"Monthly\" },\n      { value: \"starter-yearly\", label: \"Yearly\" },\n    ],\n  },\n  {\n    value: \"team\",\n    label: \"Team\",\n    children: [\n      { value: \"team-monthly\", label: \"Monthly\" },\n      {\n        value: \"team-yearly\",\n        label: \"Yearly\",\n        description: \"Not offered in your region\",\n        disabled: true,\n      },\n    ],\n  },\n  {\n    value: \"enterprise\",\n    label: \"Enterprise\",\n    description: \"Contact sales\",\n    disabled: true,\n    children: [{ value: \"enterprise-custom\", label: \"Custom\" }],\n  },\n];\n\nexport default function CascaderDisabledExample() {\n  return (\n    <div className=\"flex flex-col gap-related\">\n      <Cascader items={plans}>\n        <CascaderTrigger aria-label=\"Plan\" className=\"w-56\">\n          <CascaderValue placeholder=\"Choose a plan\" />\n        </CascaderTrigger>\n        <CascaderContent>\n          <CascaderList />\n        </CascaderContent>\n      </Cascader>\n      <Cascader items={plans} defaultValue=\"starter-yearly\" disabled>\n        <CascaderTrigger aria-label=\"Current plan\" className=\"w-56\">\n          <CascaderValue />\n        </CascaderTrigger>\n        <CascaderContent>\n          <CascaderList />\n        </CascaderContent>\n      </Cascader>\n    </div>\n  );\n}\n",
+      "path": "src/cascader/variants/disabled.tsx",
+      "target": "@components/showcase/cascader/variants/disabled.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

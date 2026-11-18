@@ -5646,6 +5646,267 @@
       ]
     },
     {
+      "name": "cascader-controlled",
+      "type": "registry:block",
+      "title": "Cascader: Controlled",
+      "description": "Pass `value` and `onValueChange`. The second argument of `onValueChange` carries the picked node and its `path`, root first, so you do not have to look the node up again.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-data.ts",
+          "target": "@components/showcase/cascader/examples/cascader-data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/controlled.tsx",
+          "target": "@components/showcase/cascader/variants/controlled.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-custom",
+      "type": "registry:component",
+      "title": "Cascader: Custom",
+      "description": "Give nodes an `icon` and a `description` for richer rows, and pass a function to `CascaderValue` to render the selection your own way. It receives the path of each selected leaf.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/icon", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/variants/custom.tsx",
+          "target": "@components/showcase/cascader/variants/custom.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-demo",
+      "type": "registry:block",
+      "title": "cascader demo",
+      "description": "Erbium cascader demo example.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-data.ts",
+          "target": "@components/showcase/cascader/examples/cascader-data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/examples/cascader-demo.tsx",
+          "target": "@components/showcase/cascader/examples/cascader-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-disabled",
+      "type": "registry:component",
+      "title": "Cascader: Disabled",
+      "description": "A disabled leaf stays visible but cannot be picked, and a disabled level cannot be opened. Add a `description` to say why. `disabled` on `Cascader` disables the whole control. Without a search field, each level starts with a Back row.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/variants/disabled.tsx",
+          "target": "@components/showcase/cascader/variants/disabled.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All cascader examples.",
+      "name": "cascader-examples",
+      "registryDependencies": [
+        "@erbium-examples/cascader-playground",
+        "@erbium-examples/cascader-overview",
+        "@erbium-examples/cascader-controlled",
+        "@erbium-examples/cascader-multiple",
+        "@erbium-examples/cascader-custom",
+        "@erbium-examples/cascader-disabled",
+        "@erbium-examples/cascader-form"
+      ],
+      "title": "Cascader examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "cascader-form",
+      "type": "registry:block",
+      "title": "Cascader: Form",
+      "description": "Inside `field.Field`, the trigger shows the invalid state and a rejected submit shakes it. Touch the field when the popup closes, since focus moves to the search while it is open.",
+      "registryDependencies": [
+        "@erbium/cascader",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-data.ts",
+          "target": "@components/showcase/cascader/examples/cascader-data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/form.tsx",
+          "target": "@components/showcase/cascader/variants/form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-multiple",
+      "type": "registry:block",
+      "title": "Cascader: Multiple",
+      "description": "With `multiple`, leaves are checkbox items and the popup stays open while you pick. A level shows how many of its leaves are selected in place of its option count. `CascaderClear` adds a footer that clears the selection.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/icon", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-permissions.tsx",
+          "target": "@components/showcase/cascader/examples/cascader-permissions.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/multiple.tsx",
+          "target": "@components/showcase/cascader/variants/multiple.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-overview",
+      "type": "registry:block",
+      "title": "Cascader: Overview",
+      "description": "A city picker three levels deep. A continent opens its countries in place and a country its cities, with a back button in the search. The popup reopens on the level of the chosen city, and the trigger shows its whole path. Type in the search to find a place at any depth below the open level.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/field", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-data.ts",
+          "target": "@components/showcase/cascader/examples/cascader-data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/examples/cascader-demo.tsx",
+          "target": "@components/showcase/cascader/examples/cascader-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/overview.tsx",
+          "target": "@components/showcase/cascader/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-permissions",
+      "type": "registry:component",
+      "title": "cascader permissions",
+      "description": "Erbium cascader permissions example.",
+      "registryDependencies": ["@erbium/cascader", "@erbium/icon", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-permissions.tsx",
+          "target": "@components/showcase/cascader/examples/cascader-permissions.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-playground",
+      "type": "registry:block",
+      "title": "Cascader: Playground",
+      "description": "",
+      "registryDependencies": ["@erbium/cascader", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/cascader/examples/cascader-data.ts",
+          "target": "@components/showcase/cascader/examples/cascader-data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/playground.tsx",
+          "target": "@components/showcase/cascader/variants/playground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cascader-stories",
+      "type": "registry:item",
+      "title": "Cascader stories",
+      "description": "All cascader variants as portable React CSF stories.",
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/cascader",
+        "@erbium/csp-provider",
+        "@erbium/field",
+        "@erbium/form",
+        "@erbium/icon",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/cascader/cascader.stories.tsx",
+          "target": "@components/showcase/cascader/cascader.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/cascader/examples/cascader-data.ts",
+          "target": "@components/showcase/cascader/examples/cascader-data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/examples/cascader-demo.tsx",
+          "target": "@components/showcase/cascader/examples/cascader-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/examples/cascader-permissions.tsx",
+          "target": "@components/showcase/cascader/examples/cascader-permissions.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/controlled.tsx",
+          "target": "@components/showcase/cascader/variants/controlled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/custom.tsx",
+          "target": "@components/showcase/cascader/variants/custom.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/disabled.tsx",
+          "target": "@components/showcase/cascader/variants/disabled.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/form.tsx",
+          "target": "@components/showcase/cascader/variants/form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/multiple.tsx",
+          "target": "@components/showcase/cascader/variants/multiple.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/overview.tsx",
+          "target": "@components/showcase/cascader/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/cascader/variants/playground.tsx",
+          "target": "@components/showcase/cascader/variants/playground.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "chart-composition",
       "type": "registry:component",
       "title": "Chart: Composition",

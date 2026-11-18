@@ -323,6 +323,32 @@
       ]
     },
     {
+      "name": "cascader",
+      "type": "registry:ui",
+      "title": "Cascader",
+      "description": "Erbium cascader component.",
+      "dependencies": ["@base-ui/react"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/direction",
+        "@erbium/dropdown-menu",
+        "@erbium/focus-search-input",
+        "@erbium/icon",
+        "@erbium/menu-search",
+        "@erbium/separator",
+        "@erbium/skeleton-hints",
+        "@erbium/stateful-icon",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/components/cascader.tsx",
+          "target": "@ui/cascader.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "change-theme",
       "type": "registry:lib",
       "title": "Change Theme",

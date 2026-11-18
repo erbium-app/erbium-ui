@@ -1188,6 +1188,67 @@
     ]
   },
   {
+    "name": "cascader",
+    "title": "Components/Cascader",
+    "variants": [
+      {
+        "exportName": "Playground",
+        "slug": "playground",
+        "source": "src/cascader/variants/playground.tsx",
+        "usage": ["src/cascader/variants/playground.tsx", "src/cascader/examples/cascader-data.ts"],
+        "title": "Playground"
+      },
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/cascader/variants/overview.tsx",
+        "usage": [
+          "src/cascader/examples/cascader-demo.tsx",
+          "src/cascader/examples/cascader-data.ts"
+        ],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Controlled",
+        "slug": "controlled",
+        "source": "src/cascader/variants/controlled.tsx",
+        "usage": ["src/cascader/variants/controlled.tsx", "src/cascader/examples/cascader-data.ts"],
+        "title": "Controlled"
+      },
+      {
+        "exportName": "Multiple",
+        "slug": "multiple",
+        "source": "src/cascader/variants/multiple.tsx",
+        "usage": [
+          "src/cascader/variants/multiple.tsx",
+          "src/cascader/examples/cascader-permissions.tsx"
+        ],
+        "title": "Multiple"
+      },
+      {
+        "exportName": "Custom",
+        "slug": "custom",
+        "source": "src/cascader/variants/custom.tsx",
+        "usage": ["src/cascader/variants/custom.tsx"],
+        "title": "Custom"
+      },
+      {
+        "exportName": "Disabled",
+        "slug": "disabled",
+        "source": "src/cascader/variants/disabled.tsx",
+        "usage": ["src/cascader/variants/disabled.tsx"],
+        "title": "Disabled"
+      },
+      {
+        "exportName": "Form",
+        "slug": "form",
+        "source": "src/cascader/variants/form.tsx",
+        "usage": ["src/cascader/variants/form.tsx", "src/cascader/examples/cascader-data.ts"],
+        "title": "Form"
+      }
+    ]
+  },
+  {
     "name": "chart",
     "title": "Charts/Chart",
     "variants": [

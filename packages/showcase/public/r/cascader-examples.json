@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All cascader examples.",
+  "name": "cascader-examples",
+  "registryDependencies": [
+    "@erbium-examples/cascader-playground",
+    "@erbium-examples/cascader-overview",
+    "@erbium-examples/cascader-controlled",
+    "@erbium-examples/cascader-multiple",
+    "@erbium-examples/cascader-custom",
+    "@erbium-examples/cascader-disabled",
+    "@erbium-examples/cascader-form"
+  ],
+  "title": "Cascader examples",
+  "type": "registry:item"
+}
