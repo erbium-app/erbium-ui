@@ -8,7 +8,6 @@
   "registryDependencies": [
     "@erbium/csp-provider",
     "@erbium/logo-loader",
-    "@erbium/overlay-provider",
     "@erbium/skeleton",
     "@erbium/styles",
     "@erbium/toast",
@@ -52,7 +51,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { OverlayProvider } from \"@/registry/erbium/ui/overlay-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      <OverlayProvider>\n        {children}\n        {toast && <Toaster />}\n      </OverlayProvider>\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
+      "content": "import { CSPProvider } from \"@/registry/erbium/ui/csp-provider\";\nimport { SkeletonProvider } from \"@/registry/erbium/ui/skeleton\";\nimport { Toaster } from \"@/registry/erbium/ui/toast\";\nimport type { ReactNode } from \"react\";\n\nexport const ShowcaseProviders = ({\n  children,\n  toast = false,\n}: {\n  children?: ReactNode;\n  toast?: boolean;\n}) => (\n  <CSPProvider disableStyleElements>\n    <SkeletonProvider>\n      {children}\n      {toast && <Toaster />}\n    </SkeletonProvider>\n  </CSPProvider>\n);\n\nexport const ShowcaseSurface = ({ children }: { children?: ReactNode }) => (\n  <div\n    data-slot=\"component-preview\"\n    className=\"relative isolate mx-auto flex min-h-64 w-full min-w-0 max-w-3xl items-center justify-center gap-section p-5 font-sans text-foreground contain-layout sm:p-8 [&>.min-w-72.max-w-2xl]:flex [&>.min-w-72.max-w-2xl]:flex-col [&>.min-w-72.max-w-2xl]:items-center [&>.min-w-72.max-w-2xl]:justify-center\"\n  >\n    {children}\n  </div>\n);\n",
       "path": "src/preview.tsx",
       "target": "@components/showcase/preview.tsx",
       "type": "registry:component"

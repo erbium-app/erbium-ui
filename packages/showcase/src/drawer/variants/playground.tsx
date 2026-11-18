@@ -13,9 +13,7 @@ export const defaultProps = {
   modal: true,
   showCloseButton: false,
   showSwipeHandle: true,
-  swipeDirection: "down",
 } satisfies {
-  swipeDirection: "up" | "down" | "left" | "right";
   modal: boolean;
   showSwipeHandle: boolean;
   showCloseButton: boolean;
@@ -23,18 +21,13 @@ export const defaultProps = {
 
 export default function DrawerPlaygroundExample(
   args: {
-    swipeDirection: "up" | "down" | "left" | "right";
     modal: boolean;
     showSwipeHandle: boolean;
     showCloseButton: boolean;
   } = defaultProps,
 ) {
   return (
-    <Drawer
-      swipeDirection={args.swipeDirection}
-      modal={args.modal}
-      showSwipeHandle={args.showSwipeHandle}
-    >
+    <Drawer modal={args.modal} showSwipeHandle={args.showSwipeHandle}>
       <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
       <DrawerPanel showCloseButton={args.showCloseButton}>
         <DrawerHeader>

@@ -12,23 +12,19 @@ import {
 } from "@erbium/ui/components/drawer";
 
 export default function DrawerNestedExample() {
-  const isMobile = false;
-
-  const swipeDirection = isMobile ? "down" : "right";
-
   return (
-    <Drawer showSwipeHandle={isMobile} swipeDirection={swipeDirection}>
+    <Drawer showSwipeHandle>
       <DrawerTrigger render={<Button variant="secondary" />}>Open Drawer</DrawerTrigger>
       <DrawerPanel>
         <DrawerHeader>
           <DrawerTitle>Drawer</DrawerTitle>
-          <DrawerDescription>Open another drawer from the same direction.</DrawerDescription>
+          <DrawerDescription>Open another drawer on top of this one.</DrawerDescription>
         </DrawerHeader>
         <DrawerContent>
-          <div className="bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:aspect-video group-data-[swipe-axis=y]/drawer-popup:w-full" />
+          <div className="aspect-video w-full rounded-2xl bg-muted" />
         </DrawerContent>
         <DrawerFooter>
-          <Drawer showSwipeHandle={isMobile} swipeDirection={swipeDirection}>
+          <Drawer showSwipeHandle>
             <DrawerTrigger render={<Button variant="outline" />}>Open Nested Drawer</DrawerTrigger>
             <DrawerPanel>
               <DrawerHeader>
@@ -38,10 +34,10 @@ export default function DrawerNestedExample() {
                 </DrawerDescription>
               </DrawerHeader>
               <DrawerContent>
-                <div className="bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:aspect-video group-data-[swipe-axis=y]/drawer-popup:w-full" />
+                <div className="aspect-video w-full rounded-2xl bg-muted" />
               </DrawerContent>
               <DrawerFooter>
-                <Drawer showSwipeHandle={isMobile} swipeDirection={swipeDirection}>
+                <Drawer showSwipeHandle>
                   <DrawerTrigger render={<Button variant="outline" />}>
                     Open Third Drawer
                   </DrawerTrigger>
@@ -53,10 +49,10 @@ export default function DrawerNestedExample() {
                       </DrawerDescription>
                     </DrawerHeader>
                     <DrawerContent>
-                      <div className="bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:aspect-video group-data-[swipe-axis=y]/drawer-popup:w-full" />
+                      <div className="aspect-video w-full rounded-2xl bg-muted" />
                     </DrawerContent>
                     <DrawerFooter>
-                      <Drawer showSwipeHandle={isMobile} swipeDirection={swipeDirection}>
+                      <Drawer showSwipeHandle>
                         <DrawerTrigger render={<Button variant="outline" />}>
                           Open Fourth Drawer
                         </DrawerTrigger>
@@ -68,7 +64,7 @@ export default function DrawerNestedExample() {
                             </DrawerDescription>
                           </DrawerHeader>
                           <DrawerContent>
-                            <div className="bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:aspect-video group-data-[swipe-axis=y]/drawer-popup:w-full" />
+                            <div className="aspect-video w-full rounded-2xl bg-muted" />
                           </DrawerContent>
                           <DrawerFooter>
                             <DrawerClose render={<Button variant="outline" />}>Close</DrawerClose>

@@ -138,6 +138,6 @@
     "title": "Providers",
     "slug": "providers",
     "kind": "provider",
-    "names": ["csp-provider", "direction", "overlay-provider"]
+    "names": ["csp-provider", "direction"]
   }
 ]

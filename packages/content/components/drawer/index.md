@@ -1,9 +1,9 @@
 ---
 title: "Drawer"
-description: "A sliding panel for supporting content."
+description: "A bottom sheet for supporting content."
 ---
 
-A sliding panel for supporting content.
+A bottom sheet for supporting content. It rises from the bottom edge and is dismissed by swiping down.
 
 **Import:** `@erbium/ui/components/drawer`
 
@@ -58,6 +58,22 @@ Drawer
     └── DrawerFooter
 ```
 
+## Page indent
+
+`DrawerIndent` scales the page back behind an open drawer, rounds its visible part, and follows the swipe as the drawer is dismissed. It needs a `DrawerProvider` above both the indent and the drawers, so the indent knows when any drawer is open. Drawers work without a provider; they only skip the indent.
+
+```tsx
+import { DrawerIndent, DrawerProvider } from "@erbium/ui/components/drawer";
+
+<DrawerProvider>
+  <DrawerIndent>{/* the app */}</DrawerIndent>
+</DrawerProvider>;
+```
+
+Mount both once, around the app. [App Shell](/docs/blocks/app-shell) already mounts them. A nested `DrawerProvider` joins the outer one, so drawers inside it still drive the app's indent.
+
+While a drawer is open the indent's transform makes it the containing block for fixed descendants. Keep fixed chrome outside it, or offset it with `top-(--drawer-indent-top,0px)`: the scroll offset of the page, which the indent holds until the page is back at rest.
+
 ## Migrating from Vaul
 
 The base drawer now uses [Base UI](https://base-ui.com/react/components/drawer)
@@ -66,9 +82,7 @@ instead of Vaul. If you installed the previous base drawer, update your usage
 
 to the Base UI API.
 
-Use `down` instead of `bottom`, and `up` instead of `top`. `left` and `right`
-
-stay the same.
+The drawer opens from the bottom only. Remove Vaul's `direction` prop.
 
 For `DrawerTrigger`, pass the trigger element to the `render` prop.
 
@@ -86,17 +100,13 @@ API. Use Base UI props such as `disablePointerDismissal`, `modal`, `snapPoints`,
 
 or controlled `open` state for the behavior you need.
 
-Replace Vaul's `data-vaul-drawer-direction` selectors with Base UI's
+Replace `shouldScaleBackground` and Vaul's `[vaul-drawer-wrapper]` with
 
-`data-swipe-direction` selectors.
+`DrawerProvider` and `DrawerIndent`.
 
 Base UI also exposes attributes like `data-swiping`, `data-starting-style`, and
 
-`data-ending-style` for swipe and transition states. Descendants inside
-
-`DrawerPanel` can use `group-data-[swipe-axis=x]/drawer-popup` and
-
-`group-data-[swipe-axis=y]/drawer-popup` for axis-specific styling.
+`data-ending-style` for swipe and transition states.
 
 ## Search, touch controls, and the keyboard
 

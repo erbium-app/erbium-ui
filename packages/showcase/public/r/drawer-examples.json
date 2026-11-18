@@ -8,7 +8,6 @@
     "@erbium-examples/drawer-swipe-handle",
     "@erbium-examples/drawer-non-modal",
     "@erbium-examples/drawer-snap-points",
-    "@erbium-examples/drawer-position",
     "@erbium-examples/drawer-nested",
     "@erbium-examples/drawer-custom-sizes",
     "@erbium-examples/drawer-styling",

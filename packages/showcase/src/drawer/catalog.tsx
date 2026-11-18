@@ -26,10 +26,6 @@ import SnapPointsExample from "./variants/snap-points";
 
 import SnapPointsSource from "./examples/drawer-snap-points.tsx?raw";
 
-import PositionExample from "./variants/position";
-
-import PositionSource from "./examples/drawer-sides.tsx?raw";
-
 import NestedExample from "./variants/nested";
 
 import NestedSource from "./examples/drawer-nested.tsx?raw";
@@ -64,7 +60,6 @@ export default meta;
 type Story = StoryObj;
 
 export const Playground: StoryObj<{
-  swipeDirection: "up" | "down" | "left" | "right";
   modal: boolean;
   showSwipeHandle: boolean;
   showCloseButton: boolean;
@@ -73,7 +68,6 @@ export const Playground: StoryObj<{
     modal: { control: "boolean" },
     showCloseButton: { control: "boolean" },
     showSwipeHandle: { control: "boolean" },
-    swipeDirection: { control: "select", options: ["up", "down", "left", "right"] },
   },
   args: PlaygroundDefaults,
   parameters: {
@@ -123,16 +117,6 @@ export const SnapPoints: Story = {
     },
   },
   render: SnapPointsExample,
-};
-
-export const Position: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("drawer", "position") },
-      source: { code: PositionSource },
-    },
-  },
-  render: PositionExample,
 };
 
 export const Nested: Story = {

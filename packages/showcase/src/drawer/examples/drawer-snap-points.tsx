@@ -25,7 +25,7 @@ export default function DrawerSnapPointsExample() {
           </DrawerDescription>
         </DrawerHeader>
         <DrawerContent>
-          <div className="rounded-2xl bg-muted group-data-[swipe-axis=x]/drawer-popup:size-full group-data-[swipe-axis=y]/drawer-popup:h-80 group-data-[swipe-axis=y]/drawer-popup:w-full" />
+          <div className="rounded-2xl bg-muted h-80 w-full" />
         </DrawerContent>
         <DrawerFooter>
           <DrawerClose render={<Button />}>Close</DrawerClose>

@@ -200,7 +200,6 @@
         "@erbium/button",
         "@erbium/card",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -545,7 +544,6 @@
         "@erbium/field",
         "@erbium/icon",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -739,7 +737,6 @@
         "@erbium/alert",
         "@erbium/button",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -946,7 +943,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -1040,7 +1036,6 @@
         "@erbium/area-chart",
         "@erbium/chart",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -1169,7 +1164,6 @@
       "registryDependencies": [
         "@erbium/aspect-ratio",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -1367,7 +1361,6 @@
         "@erbium/csp-provider",
         "@erbium/dialog",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -1759,7 +1752,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -2353,7 +2345,6 @@
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -2594,7 +2585,6 @@
         "@erbium/badge",
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -2796,7 +2786,6 @@
         "@erbium/bar-chart",
         "@erbium/chart",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -3046,7 +3035,6 @@
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/stateful-icon",
@@ -3339,7 +3327,6 @@
         "@erbium/collapsible",
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/popover",
         "@erbium/skeleton",
         "@erbium/stateful-icon",
@@ -4037,7 +4024,6 @@
         "@erbium/input",
         "@erbium/input-group",
         "@erbium/number-field",
-        "@erbium/overlay-provider",
         "@erbium/popover",
         "@erbium/select",
         "@erbium/separator",
@@ -4477,7 +4463,6 @@
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -5053,7 +5038,6 @@
         "@erbium/field",
         "@erbium/icon",
         "@erbium/input-group",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -5386,7 +5370,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -5669,7 +5652,6 @@
         "@erbium/carousel",
         "@erbium/csp-provider",
         "@erbium/lightbox",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -5965,7 +5947,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -6098,7 +6079,6 @@
         "@erbium/chart",
         "@erbium/csp-provider",
         "@erbium/line-chart",
-        "@erbium/overlay-provider",
         "@erbium/pie-chart",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -6412,7 +6392,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/form",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
@@ -6780,7 +6759,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/icon-sprite",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
@@ -7089,7 +7067,6 @@
         "@erbium/field",
         "@erbium/icon",
         "@erbium/number-field",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/stateful-icon",
@@ -7498,7 +7475,6 @@
         "@erbium/icon",
         "@erbium/input-group",
         "@erbium/item",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -7822,7 +7798,6 @@
         "@erbium/command",
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -8164,7 +8139,6 @@
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -8549,7 +8523,6 @@
       "registryDependencies": [
         "@erbium/control",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/slider-scale",
         "@erbium/styles",
@@ -8759,7 +8732,6 @@
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/input-group",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -8862,7 +8834,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/scroll-area",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -9156,7 +9127,6 @@
         "@erbium/filter-rules",
         "@erbium/input-group",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -9413,7 +9383,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -9726,7 +9695,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -10003,7 +9971,6 @@
         "@erbium/copy-button",
         "@erbium/csp-provider",
         "@erbium/diff-view",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -10140,7 +10107,6 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/direction",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -10177,7 +10143,7 @@
       "name": "drawer-custom-sizes",
       "type": "registry:block",
       "title": "Drawer: Custom Sizes",
-      "description": "A vertical drawer sizes itself to its content and is capped at `calc(100dvh - 6rem)` by default. A side drawer spans `75%` of the viewport width, or `24rem` on larger screens.\n\nTo customize the height of a vertical drawer, use the `h-*` and `max-h-*` utilities on `DrawerPanel`.\n\nTo customize the width of a side drawer, use the `w-*` and `max-w-*` utilities on `DrawerPanel`.\n\nWhen the same component renders in multiple directions, scope an override to one axis using the `data-[swipe-axis=*]` variants.\n\nTo make a region of the drawer scrollable, make the scroll container a flex item. Avoid `h-full`, which does not resolve inside a content-sized drawer.\n\n```tsx\n<DrawerPanel className=\"h-[50vh]\">\n```\n\n```tsx\n<DrawerPanel className=\"w-96\">\n```\n\n```tsx\n<DrawerPanel className=\"data-[swipe-axis=y]:max-h-[50vh] data-[swipe-axis=x]:w-96\">\n```\n\n```tsx\n<DrawerPanel>\n  <DrawerHeader>...</DrawerHeader>\n  <DrawerContent>{/* Scrollable content */}</DrawerContent>\n  <DrawerFooter>...</DrawerFooter>\n</DrawerPanel>\n```",
+      "description": "The drawer sizes itself to its content and is capped at `calc(100dvh - 6rem)` by default. To customize its height, use the `h-*` and `max-h-*` utilities on `DrawerPanel`.\n\nTo make a region of the drawer scrollable, make the scroll container a flex item. Avoid `h-full`, which does not resolve inside a content-sized drawer.\n\n```tsx\n<DrawerPanel className=\"h-[50vh]\">\n```\n\n```tsx\n<DrawerPanel className=\"max-h-[50vh]\">\n```\n\n```tsx\n<DrawerPanel>\n  <DrawerHeader>...</DrawerHeader>\n  <DrawerContent>{/* Scrollable content */}</DrawerContent>\n  <DrawerFooter>...</DrawerFooter>\n</DrawerPanel>\n```",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dialog",
@@ -10221,7 +10187,6 @@
         "@erbium-examples/drawer-swipe-handle",
         "@erbium-examples/drawer-non-modal",
         "@erbium-examples/drawer-snap-points",
-        "@erbium-examples/drawer-position",
         "@erbium-examples/drawer-nested",
         "@erbium-examples/drawer-custom-sizes",
         "@erbium-examples/drawer-styling",
@@ -10303,25 +10268,6 @@
       ]
     },
     {
-      "name": "drawer-position",
-      "type": "registry:block",
-      "title": "Drawer: Position",
-      "description": "Use the `swipeDirection` prop to set the side of the drawer.\n\nAvailable options are `up`, `right`, `down`, and `left`.",
-      "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/drawer/examples/drawer-sides.tsx",
-          "target": "@components/showcase/drawer/examples/drawer-sides.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/drawer/variants/position.tsx",
-          "target": "@components/showcase/drawer/variants/position.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "drawer-responsive",
       "type": "registry:block",
       "title": "Drawer: Responsive",
@@ -10368,20 +10314,6 @@
       ]
     },
     {
-      "name": "drawer-sides",
-      "type": "registry:component",
-      "title": "drawer sides",
-      "description": "Erbium drawer sides example.",
-      "registryDependencies": ["@erbium/button", "@erbium/drawer", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/drawer/examples/drawer-sides.tsx",
-          "target": "@components/showcase/drawer/examples/drawer-sides.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "drawer-snap-points",
       "type": "registry:block",
       "title": "Drawer: Snap Points",
@@ -10413,7 +10345,6 @@
         "@erbium/dialog",
         "@erbium/drawer",
         "@erbium/field",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/styles",
@@ -10439,11 +10370,6 @@
         {
           "path": "src/drawer/examples/drawer-non-modal.tsx",
           "target": "@components/showcase/drawer/examples/drawer-non-modal.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/drawer/examples/drawer-sides.tsx",
-          "target": "@components/showcase/drawer/examples/drawer-sides.tsx",
           "type": "registry:component"
         },
         {
@@ -10487,11 +10413,6 @@
           "type": "registry:component"
         },
         {
-          "path": "src/drawer/variants/position.tsx",
-          "target": "@components/showcase/drawer/variants/position.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "src/drawer/variants/responsive.tsx",
           "target": "@components/showcase/drawer/variants/responsive.tsx",
           "type": "registry:component"
@@ -10527,7 +10448,7 @@
       "name": "drawer-styling",
       "type": "registry:block",
       "title": "Drawer: Styling",
-      "description": "The drawer exposes CSS variables for style-level customization. Set the sizing variables on `DrawerPanel`. Set the overlay variable on `[data-slot=drawer-overlay]` in your CSS.\n\n| Variable                       | Default                      | Description                                                             |\n| ------------------------------ | ---------------------------- | ----------------------------------------------------------------------- |\n| `--drawer-inset`               | `0px`                        | Floats the drawer from the viewport edges.                              |\n| `--drawer-bleed-background`    | `var(--color-surface-modal)` | Fills the gap behind the drawer on swipe overshoot.                     |\n| `--drawer-overlay-min-opacity` | `0`                          | Minimum overlay opacity. Defaults to `0.5` when snap points are active. |\n\nThe drawer also sets data attributes you can target with variants such as `data-[swipe-direction=down]:` on `DrawerPanel`, or `group-data-[swipe-axis=y]/drawer-popup:` on its descendants.\n\n| Attribute                 | Values                        | Set when                              |\n| ------------------------- | ----------------------------- | ------------------------------------- |\n| `data-swipe-direction`    | `up`, `right`, `down`, `left` | Always.                               |\n| `data-swipe-axis`         | `x`, `y`                      | Always.                               |\n| `data-snap-points`        | Present                       | The drawer has snap points.           |\n| `data-expanded`           | Present                       | The drawer is at the full snap point. |\n| `data-swiping`            | Present                       | A swipe is in progress.               |\n| `data-nested-drawer-open` | Present                       | A nested drawer is open on top.       |",
+      "description": "The drawer exposes CSS variables for style-level customization. Set the sizing variables on `DrawerPanel`. Set the overlay variable on `[data-slot=drawer-overlay]` in your CSS.\n\n| Variable                       | Default                      | Description                                                             |\n| ------------------------------ | ---------------------------- | ----------------------------------------------------------------------- |\n| `--drawer-inset`               | `0px`                        | Floats the drawer from the viewport edges.                              |\n| `--drawer-bleed-background`    | `var(--color-surface-modal)` | Fills the gap behind the drawer on swipe overshoot.                     |\n| `--drawer-overlay-min-opacity` | `0`                          | Minimum overlay opacity. Defaults to `0.5` when snap points are active. |\n\nThe drawer also sets data attributes you can target with variants such as `data-swiping:` on `DrawerPanel`, or `group-data-swiping/drawer-popup:` on its descendants.\n\n| Attribute                 | Values  | Set when                              |\n| ------------------------- | ------- | ------------------------------------- |\n| `data-snap-points`        | Present | The drawer has snap points.           |\n| `data-expanded`           | Present | The drawer is at the full snap point. |\n| `data-swiping`            | Present | A swipe is in progress.               |\n| `data-nested-drawer-open` | Present | A nested drawer is open on top.       |",
       "registryDependencies": [
         "@erbium/button",
         "@erbium/dialog",
@@ -10922,7 +10843,6 @@
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -11139,7 +11059,6 @@
         "@erbium/csp-provider",
         "@erbium/editable",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -11381,7 +11300,6 @@
         "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -11827,7 +11745,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/password-input",
         "@erbium/radio-group",
         "@erbium/select",
@@ -12136,7 +12053,6 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/file-tree",
-        "@erbium/overlay-provider",
         "@erbium/sidebar",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -12273,7 +12189,6 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/file-view",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -12482,7 +12397,6 @@
         "@erbium/input-group",
         "@erbium/item",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -12588,7 +12502,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/form",
-        "@erbium/overlay-provider",
         "@erbium/questionnaire",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -12682,7 +12595,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/heatmap-chart",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -12844,7 +12756,6 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/hover-card",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -13466,7 +13377,6 @@
         "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/popover",
         "@erbium/separator",
         "@erbium/skeleton",
@@ -13805,7 +13715,6 @@
         "@erbium/icon",
         "@erbium/input",
         "@erbium/input-group",
-        "@erbium/overlay-provider",
         "@erbium/password-input",
         "@erbium/select",
         "@erbium/skeleton",
@@ -14320,7 +14229,6 @@
         "@erbium/item",
         "@erbium/kbd",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/skeleton",
         "@erbium/stateful-icon",
@@ -14638,7 +14546,6 @@
         "@erbium/icon",
         "@erbium/input-group",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -14767,7 +14674,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/lightbox",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -14831,7 +14737,6 @@
         "@erbium/chart",
         "@erbium/csp-provider",
         "@erbium/line-chart",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -14947,7 +14852,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
@@ -15048,7 +14952,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/logo-loader",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -15288,7 +15191,6 @@
         "@erbium/icon",
         "@erbium/marker",
         "@erbium/message",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -15550,7 +15452,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/menubar",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -16145,7 +16046,6 @@
         "@erbium/marker",
         "@erbium/message",
         "@erbium/message-scroller",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -16331,7 +16231,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/message",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -16495,7 +16394,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/meter",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -16616,7 +16514,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/navigation-menu",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -16802,7 +16699,6 @@
         "@erbium/direction",
         "@erbium/field",
         "@erbium/number-field",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -17125,7 +17021,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/otp-field",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -17239,94 +17134,6 @@
         {
           "path": "src/otp-field/variants/status.tsx",
           "target": "@components/showcase/otp-field/variants/status.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/preview.tsx",
-          "target": "@components/showcase/preview.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "overlay-provider-demo",
-      "type": "registry:component",
-      "title": "overlay provider demo",
-      "description": "Erbium overlay provider demo example.",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/drawer",
-        "@erbium/overlay-provider",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/overlay-provider/examples/overlay-provider-demo.tsx",
-          "target": "@components/showcase/overlay-provider/examples/overlay-provider-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "description": "All overlay-provider examples.",
-      "name": "overlay-provider-examples",
-      "registryDependencies": ["@erbium-examples/overlay-provider-overview"],
-      "title": "Overlay Provider examples",
-      "type": "registry:item"
-    },
-    {
-      "name": "overlay-provider-overview",
-      "type": "registry:block",
-      "title": "Overlay Provider: Overview",
-      "description": "",
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/drawer",
-        "@erbium/overlay-provider",
-        "@erbium/styles"
-      ],
-      "files": [
-        {
-          "path": "src/overlay-provider/examples/overlay-provider-demo.tsx",
-          "target": "@components/showcase/overlay-provider/examples/overlay-provider-demo.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/overlay-provider/variants/overview.tsx",
-          "target": "@components/showcase/overlay-provider/variants/overview.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "overlay-provider-stories",
-      "type": "registry:item",
-      "title": "Overlay Provider stories",
-      "description": "All overlay-provider variants as portable React CSF stories.",
-      "devDependencies": ["@storybook/react@^10.6.1"],
-      "registryDependencies": [
-        "@erbium/button",
-        "@erbium/csp-provider",
-        "@erbium/drawer",
-        "@erbium/overlay-provider",
-        "@erbium/skeleton",
-        "@erbium/styles",
-        "@erbium/toast"
-      ],
-      "files": [
-        {
-          "path": "src/overlay-provider/examples/overlay-provider-demo.tsx",
-          "target": "@components/showcase/overlay-provider/examples/overlay-provider-demo.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/overlay-provider/overlay-provider.stories.tsx",
-          "target": "@components/showcase/overlay-provider/overlay-provider.stories.tsx",
-          "type": "registry:file"
-        },
-        {
-          "path": "src/overlay-provider/variants/overview.tsx",
-          "target": "@components/showcase/overlay-provider/variants/overview.tsx",
           "type": "registry:component"
         },
         {
@@ -17475,7 +17282,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/overlay-provider",
         "@erbium/pagination",
         "@erbium/select",
         "@erbium/skeleton",
@@ -17783,7 +17589,6 @@
         "@erbium/form",
         "@erbium/icon",
         "@erbium/input-group",
-        "@erbium/overlay-provider",
         "@erbium/password-input",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -17933,7 +17738,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/pie-chart",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -18122,7 +17926,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/popover",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -18361,7 +18164,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/progress",
         "@erbium/skeleton",
         "@erbium/slider",
@@ -18821,7 +18623,6 @@
         "@erbium/card",
         "@erbium/csp-provider",
         "@erbium/dialog",
-        "@erbium/overlay-provider",
         "@erbium/questionnaire",
         "@erbium/skeleton",
         "@erbium/stateful-button",
@@ -19084,7 +18885,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/radar-chart",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -19347,7 +19147,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/form",
-        "@erbium/overlay-provider",
         "@erbium/radio-group",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -19547,7 +19346,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/resizable",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -19655,7 +19453,6 @@
       "registryDependencies": [
         "@erbium/chart",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/scatter-chart",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -19783,7 +19580,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/skeleton",
@@ -19885,7 +19681,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -20148,7 +19943,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -20409,7 +20203,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -20566,7 +20359,6 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/shake",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -20721,7 +20513,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/sheet",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -20888,7 +20679,6 @@
         "@erbium/collapsible",
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/separator",
         "@erbium/sidebar",
         "@erbium/skeleton",
@@ -21000,7 +20790,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -21475,7 +21264,6 @@
         "@erbium/form",
         "@erbium/icon",
         "@erbium/item",
-        "@erbium/overlay-provider",
         "@erbium/select",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -21947,7 +21735,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/slider-scale",
@@ -22235,7 +22022,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/input-group",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
@@ -22407,7 +22193,6 @@
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/form",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/stateful-button",
         "@erbium/styles",
@@ -22608,7 +22393,6 @@
         "@erbium/dropdown-menu",
         "@erbium/field",
         "@erbium/menubar",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
@@ -22807,7 +22591,6 @@
         "@erbium/csp-provider",
         "@erbium/form",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/slider",
         "@erbium/stateful-icon",
@@ -23067,7 +22850,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -23394,7 +23176,6 @@
         "@erbium/field",
         "@erbium/form",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
@@ -23692,7 +23473,6 @@
         "@erbium/csp-provider",
         "@erbium/dropdown-menu",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
@@ -23915,7 +23695,6 @@
         "@erbium/field",
         "@erbium/icon",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/password-input",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -24053,7 +23832,6 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/text-morph",
@@ -24239,7 +24017,6 @@
         "@erbium/button",
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
@@ -24445,7 +24222,6 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -24777,7 +24553,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -24998,7 +24773,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -25217,7 +24991,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -25438,7 +25211,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/kbd",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -25621,7 +25393,6 @@
         "@erbium/csp-provider",
         "@erbium/field",
         "@erbium/input",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast"
@@ -25759,7 +25530,6 @@
         "@erbium/csp-provider",
         "@erbium/icon",
         "@erbium/input-group",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
@@ -25858,7 +25628,6 @@
         "@erbium/field",
         "@erbium/icon",
         "@erbium/item",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -25935,7 +25704,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -26012,7 +25780,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
@@ -26104,7 +25871,6 @@
         "@erbium/csp-provider",
         "@erbium/dialog",
         "@erbium/link",
-        "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",

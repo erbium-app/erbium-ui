@@ -860,12 +860,11 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Erbium drawer component.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "@base-ui/utils"],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/icon",
         "@erbium/modal-hotkeys-scope",
-        "@erbium/overlay-provider",
         "@erbium/scroll-area",
         "@erbium/utils"
       ],
@@ -1490,20 +1489,6 @@
         {
           "path": "src/components/otp-field.tsx",
           "target": "@ui/otp-field.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "overlay-provider",
-      "type": "registry:ui",
-      "title": "Overlay Provider",
-      "description": "Erbium overlay provider component.",
-      "dependencies": ["@base-ui/react"],
-      "files": [
-        {
-          "path": "src/components/overlay-provider.tsx",
-          "target": "@ui/overlay-provider.tsx",
           "type": "registry:ui"
         }
       ]

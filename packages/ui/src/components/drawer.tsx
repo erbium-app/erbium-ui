@@ -1,17 +1,16 @@
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
+import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { Icon } from "./icon";
 import { ModalHotkeysScope } from "../lib/modal-hotkeys-scope";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
-import { useOverlay } from "./overlay-provider";
 import { ScrollArea } from "./scroll-area";
 
 interface DrawerContextProps {
   hasSnapPoints: boolean;
   modal: DrawerPrimitive.Root.Props["modal"];
   showSwipeHandle: boolean;
-  swipeDirection: NonNullable<DrawerPrimitive.Root.Props["swipeDirection"]>;
 }
 
 const DrawerContext = React.createContext<DrawerContextProps | null>(null);
@@ -27,13 +26,110 @@ const useDrawer = () => {
   return context;
 };
 
+// True below a DrawerProvider, so an inner provider joins the outer one.
+const DrawerProviderContext = React.createContext(false);
+
 /**
- * Wraps the app's main UI. While any drawer is open it scales, rounds, and shifts away from the
- * drawer's edge over a dark layer, following the swipe. Transforms make it the containing block
- * for fixed descendants while a drawer is open, so keep fixed app chrome outside it.
+ * Coordinates every drawer inside it, so a `DrawerIndent` can follow whichever one is open. Mount
+ * it once around the app. A nested provider joins the outer one rather than starting its own, so
+ * a widget can mount one without hiding its drawers from the app's indent. Drawers work without
+ * a provider; only the indent needs it.
  */
-const DrawerIndent = ({ className, ...props }: DrawerPrimitive.Indent.Props) => {
-  const { indentDirection } = useOverlay("DrawerIndent");
+const DrawerProvider = ({ children }: DrawerPrimitive.Provider.Props) => {
+  const nested = React.use(DrawerProviderContext);
+
+  return (
+    <DrawerProviderContext value={true}>
+      {nested ? children : <DrawerPrimitive.Provider>{children}</DrawerPrimitive.Provider>}
+    </DrawerProviderContext>
+  );
+};
+
+/*
+ * The scroll offset of the page while a drawer opens. A page taller than the viewport scales
+ * around, and clips to, the part on screen. The scroll lock moves the offset from the document to
+ * the body on platforms with classic scrollbars, so both count. Offsets are read from layout,
+ * which the indent's transform does not change.
+ */
+const measureIndentTop = (indent: HTMLElement) =>
+  Math.max(0, window.scrollY + document.body.scrollTop - indent.offsetTop);
+
+/*
+ * Holds `--drawer-indent-top` at the offset from the moment a drawer opens until the page has
+ * eased back to rest, since the transform contains fixed descendants until then.
+ */
+const syncIndentTop = (element: HTMLElement) => {
+  const setTop = (top: number) => {
+    element.style.setProperty("--drawer-indent-top", `${top}px`);
+  };
+
+  const resetAtRest = () => {
+    if (element.dataset.active === undefined) {
+      setTop(0);
+    }
+  };
+
+  if (element.dataset.active !== undefined) {
+    setTop(measureIndentTop(element));
+
+    return;
+  }
+
+  // Reading the animations flushes styles, so the transition back to rest is listed.
+  const easing = element
+    .getAnimations()
+    .filter(
+      (animation) =>
+        animation instanceof CSSTransition && animation.transitionProperty === "transform",
+    );
+
+  if (easing.length === 0) {
+    resetAtRest();
+
+    return;
+  }
+
+  // A cancelled transition leaves the page at rest as well.
+  for (const animation of easing) {
+    animation.addEventListener("finish", resetAtRest);
+    animation.addEventListener("cancel", resetAtRest);
+  }
+};
+
+const useIndentTop = (indent: React.RefObject<HTMLDivElement | null>) => {
+  React.useLayoutEffect(() => {
+    const observer = new MutationObserver((records) => {
+      for (const record of records) {
+        if (record.target instanceof HTMLElement) {
+          syncIndentTop(record.target);
+        }
+      }
+    });
+
+    if (indent.current !== null) {
+      observer.observe(indent.current, { attributeFilter: ["data-active"] });
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [indent]);
+};
+
+/**
+ * Wraps the app's main UI inside a `DrawerProvider`. While any drawer is open the page scales
+ * back from the top of the screen, drops by the safe area, and rounds the visible part over a
+ * dark layer, easing back to rest as the drawer is swiped away. It works for a page taller than
+ * the viewport as well as one that scrolls inside its own container.
+ *
+ * The transform makes it the containing block for fixed descendants while a drawer is open. Keep
+ * fixed chrome outside it, or offset it with `top-(--drawer-indent-top,0px)`, the scroll offset
+ * the indent holds until the page is back at rest.
+ */
+const DrawerIndent = ({ className, ref, ...props }: DrawerPrimitive.Indent.Props) => {
+  const indent = React.useRef<HTMLDivElement>(null);
+  const mergedRef = useMergedRefs(ref, indent);
+  useIndentTop(indent);
 
   return (
     <>
@@ -42,19 +138,18 @@ const DrawerIndent = ({ className, ...props }: DrawerPrimitive.Indent.Props) => 
         className="fixed inset-0 bg-overlay-base"
       />
       <DrawerPrimitive.Indent
+        ref={mergedRef}
         data-slot="drawer-indent"
-        data-swipe-direction={indentDirection ?? undefined}
         className={cn(
           // Base.
-          "relative min-h-dvh bg-background",
-          // Motion. The transition is off while a swipe drives the progress.
-          "transition-[transform,border-radius] duration-[calc(450ms*var(--indent-transition))] ease-[cubic-bezier(0.32,0.72,0,1)] [--indent-transition:calc(1-clamp(0,calc(var(--drawer-swipe-progress)*100000),1))] motion-reduce:transition-none",
-          // Inset: scale, shift, and round, easing back to rest as the drawer is swiped away.
-          "[--indent-scale:calc(0.94+(0.06*var(--drawer-swipe-progress)))] [--indent-shift:calc((env(safe-area-inset-top,0px)+14px)*(1-var(--drawer-swipe-progress)))] [--indent-x:0px] [--indent-y:var(--indent-shift)]",
-          "data-active:transform-[scale(var(--indent-scale))_translate3d(var(--indent-x),var(--indent-y),0)] data-active:overflow-clip data-active:rounded-[calc(0.5rem*(1-var(--drawer-swipe-progress)))] data-active:will-change-transform",
-          // Direction: the origin sits on the drawer's edge and the page shifts away from it.
-          "origin-top data-[swipe-direction=up]:origin-bottom data-[swipe-direction=left]:origin-left data-[swipe-direction=right]:origin-right",
-          "data-[swipe-direction=up]:[--indent-y:calc(var(--indent-shift)*-1)] data-[swipe-direction=left]:[--indent-x:var(--indent-shift)] data-[swipe-direction=left]:[--indent-y:0px] data-[swipe-direction=right]:[--indent-x:calc(var(--indent-shift)*-1)] data-[swipe-direction=right]:[--indent-y:0px]",
+          "relative bg-background [--drawer-indent-top:0px]",
+          // Motion. The transition is off while a swipe drives the progress. Only the transform
+          // eases: the clip window is placed after `data-active` lands, and easing it would sweep
+          // it from the top of the document down to the screen.
+          "transition-transform duration-[calc(var(--transition-duration-drawer)*var(--indent-transition))] ease-ui-drawer [--indent-transition:calc(1-clamp(0,calc(var(--drawer-swipe-progress)*100000),1))] motion-reduce:transition-none",
+          // Inset: scale around the top of the screen, shift down, and round the visible part.
+          "origin-[50%_var(--drawer-indent-top)] [--indent-radius:calc(0.75rem*(1-var(--drawer-swipe-progress)))] [--indent-scale:calc(0.94+(0.06*var(--drawer-swipe-progress)))] [--indent-shift:calc((env(safe-area-inset-top,0px)+14px)*(1-var(--drawer-swipe-progress)))]",
+          "data-active:transform-[scale(var(--indent-scale))_translate3d(0,var(--indent-shift),0)] data-active:will-change-transform data-active:[clip-path:inset(var(--drawer-indent-top)_0_max(0px,calc(100%-var(--drawer-indent-top)-100lvh))_0_round_var(--indent-radius))]",
           className,
         )}
         {...props}
@@ -63,21 +158,23 @@ const DrawerIndent = ({ className, ...props }: DrawerPrimitive.Indent.Props) => 
   );
 };
 
+/**
+ * A bottom sheet, dismissed by swiping down. Below a `DrawerProvider`, an open drawer also
+ * insets the page wrapped in `DrawerIndent`.
+ */
 const Drawer = ({
   modal = true,
   showSwipeHandle = false,
   snapPoints,
-  swipeDirection = "down",
   ...props
-}: DrawerPrimitive.Root.Props & {
+}: Omit<DrawerPrimitive.Root.Props, "swipeDirection"> & {
   showSwipeHandle?: boolean;
 }) => {
-  useOverlay("Drawer");
   const hasSnapPoints = (snapPoints?.length ?? 0) > 0;
 
   const contextValue = React.useMemo(
-    () => ({ hasSnapPoints, modal, showSwipeHandle, swipeDirection }),
-    [hasSnapPoints, modal, showSwipeHandle, swipeDirection],
+    () => ({ hasSnapPoints, modal, showSwipeHandle }),
+    [hasSnapPoints, modal, showSwipeHandle],
   );
 
   return (
@@ -86,7 +183,7 @@ const Drawer = ({
         data-slot="drawer"
         modal={modal}
         snapPoints={snapPoints}
-        swipeDirection={swipeDirection}
+        swipeDirection="down"
         {...props}
       />
     </DrawerContext.Provider>
@@ -121,7 +218,7 @@ const DrawerSwipeHandle = ({ className, ...props }: React.ComponentProps<"div">)
     data-slot="drawer-swipe-handle"
     aria-hidden="true"
     className={cn(
-      "relative z-10 flex shrink-0 cursor-grab rtl:flex-row-reverse touch-none transition-opacity duration-200 group-data-nested-drawer-open/drawer-popup:opacity-0 group-data-nested-drawer-swiping/drawer-popup:opacity-100 group-data-[swipe-axis=x]/drawer-popup:h-full group-data-[swipe-axis=x]/drawer-popup:w-5 group-data-[swipe-axis=x]/drawer-popup:items-center group-data-[swipe-axis=y]/drawer-popup:h-5 group-data-[swipe-axis=y]/drawer-popup:w-full group-data-[swipe-axis=y]/drawer-popup:justify-center group-data-[swipe-direction=down]/drawer-popup:items-end group-data-[swipe-direction=left]/drawer-popup:order-last group-data-[swipe-direction=left]/drawer-popup:justify-start group-data-[swipe-direction=right]/drawer-popup:justify-end group-data-[swipe-direction=up]/drawer-popup:order-last group-data-[swipe-direction=up]/drawer-popup:items-start after:block after:shrink-0 after:rounded-full after:bg-input group-data-[swipe-axis=x]/drawer-popup:after:h-12 group-data-[swipe-axis=x]/drawer-popup:after:w-1 group-data-[swipe-axis=y]/drawer-popup:after:h-1 group-data-[swipe-axis=y]/drawer-popup:after:w-12 active:cursor-grabbing",
+      "relative z-10 flex h-5 w-full shrink-0 cursor-grab touch-none items-end justify-center transition-opacity duration-200 group-data-nested-drawer-open/drawer-popup:opacity-0 group-data-nested-drawer-swiping/drawer-popup:opacity-100 after:block after:h-1 after:w-12 after:shrink-0 after:rounded-full after:bg-input active:cursor-grabbing",
       className,
     )}
     {...props}
@@ -129,9 +226,8 @@ const DrawerSwipeHandle = ({ className, ...props }: React.ComponentProps<"div">)
 );
 
 /**
- * Base UI swipe directions are physical (`left` is dismissed by dragging left and exits through
- * the left edge), so the edge positioning below is physical too. Flex rows are reversed in RTL to
- * keep the swipe handle on its physical side; content inside the surface stays logical.
+ * The sheet rises from the bottom edge, stretches across the viewport, and grows with its
+ * content up to 6rem short of the top. Nested drawers stack behind the frontmost one.
  */
 const DrawerPanel = ({
   className,
@@ -141,24 +237,11 @@ const DrawerPanel = ({
 }: DrawerPrimitive.Popup.Props & {
   showCloseButton?: boolean;
 }) => {
-  const { hasSnapPoints, modal, showSwipeHandle, swipeDirection } = useDrawer();
-  const { setIndentDirection } = useOverlay("DrawerPanel");
-  const swipeAxis = swipeDirection === "down" || swipeDirection === "up" ? "y" : "x";
-
-  React.useLayoutEffect(() => {
-    setIndentDirection(swipeDirection);
-
-    return () => {
-      setIndentDirection((current) => (current === swipeDirection ? null : current));
-    };
-  }, [setIndentDirection, swipeDirection]);
-
-  const KeyboardProvider =
-    swipeDirection === "down" ? DrawerPrimitive.VirtualKeyboardProvider : React.Fragment;
+  const { hasSnapPoints, modal, showSwipeHandle } = useDrawer();
 
   return (
     <DrawerPanelContext.Provider value={true}>
-      <KeyboardProvider>
+      <DrawerPrimitive.VirtualKeyboardProvider>
         <DrawerPortal data-slot="drawer-portal">
           {modal === true && <DrawerOverlay data-snap-points={hasSnapPoints ? "" : undefined} />}
           <DrawerPrimitive.Viewport
@@ -168,33 +251,22 @@ const DrawerPanel = ({
           >
             <DrawerPrimitive.Popup
               data-slot="drawer-panel"
-              data-swipe-axis={swipeAxis}
               data-snap-points={hasSnapPoints ? "" : undefined}
               className={cn(
                 // Base.
-                "group/drawer-popup pointer-events-auto fixed z-50 m-(--drawer-inset,0px) flex h-(--drawer-content-height) max-h-(--drawer-content-max-height,none) min-h-0 w-(--drawer-content-width,auto) transform-[translate3d(var(--translate-x,0px),var(--translate-y,0px),0)_scale(var(--stack-scale))] flex-col surface-modal text-caption text-popover-foreground transition-[transform,height,opacity,filter] duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform outline-none select-none [interpolate-size:allow-keywords]",
+                "group/drawer-popup pointer-events-auto fixed inset-x-0 bottom-0 z-50 m-(--drawer-inset,0px) flex h-(--drawer-content-height) max-h-(--drawer-content-max-height) min-h-0 origin-bottom transform-[translate3d(0,var(--translate-y,0px),0)_scale(var(--stack-scale))] flex-col surface-modal text-caption text-popover-foreground transition-[transform,height,opacity,filter] duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform outline-none select-none [interpolate-size:allow-keywords]",
                 // Nested.
-                "data-nested-drawer-open:overflow-hidden data-nested-drawer-open:brightness-95",
-                // Bleed.
-                "after:pointer-events-none after:absolute after:bg-(--drawer-bleed-background,var(--color-surface-modal)) data-[swipe-axis=x]:after:inset-y-0 data-[swipe-axis=x]:after:w-(--bleed) data-[swipe-axis=y]:after:inset-x-0 data-[swipe-axis=y]:after:h-(--bleed) data-[swipe-direction=down]:after:top-full data-[swipe-direction=left]:after:right-full data-[swipe-direction=right]:after:left-full data-[swipe-direction=up]:after:bottom-full",
+                "data-nested-drawer-open:h-(--stack-height) data-nested-drawer-open:overflow-hidden data-nested-drawer-open:brightness-95",
+                // Bleed: the face continues below the bottom edge while the sheet overshoots.
+                "after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-(--bleed) after:bg-(--drawer-bleed-background,var(--color-surface-modal))",
                 // Sizing.
-                "[--drawer-content-height:var(--drawer-height,auto)] data-[swipe-axis=x]:[--drawer-content-width:75%] data-[swipe-axis=y]:[--drawer-content-max-height:calc(100dvh-6rem)] data-[swipe-axis=y]:data-snap-points:[--drawer-content-height:100dvh] data-[swipe-axis=x]:sm:[--drawer-content-width:24rem]",
+                "[--drawer-content-height:var(--drawer-height,auto)] [--drawer-content-max-height:calc(100dvh-6rem)] data-snap-points:[--drawer-content-height:100dvh]",
                 // Stack.
                 "[--bleed:3rem] [--peek:1rem] [--stack-height:var(--drawer-frontmost-height,var(--drawer-height,0px))] [--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-scale-base:max(0,calc(1-(var(--nested-drawers)*var(--stack-step))))] [--stack-scale:clamp(0,calc(var(--stack-scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--stack-shrink:calc(1-var(--stack-scale))] [--stack-step:0.05]",
+                // Position: snap point, swipe, and the stack's peek and shrink.
+                "[--closed-transform:translate3d(0,calc(100%+var(--drawer-inset,0px)+2px),0)] [--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--stack-shrink)*var(--stack-height)))]",
                 // Transitions.
                 "data-ending-style:transform-(--closed-transform) data-ending-style:opacity-[0.9999] data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-nested-drawer-swiping:duration-0 data-ending-style:data-nested-drawer-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-starting-style:transform-(--closed-transform) data-swiping:duration-0 data-ending-style:data-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)]",
-                // Axis: y.
-                "data-[swipe-axis=y]:inset-x-0 data-[swipe-axis=y]:data-nested-drawer-open:h-(--stack-height)",
-                // Axis: x.
-                "data-[swipe-axis=x]:inset-y-0 data-[swipe-axis=x]:flex-row data-[swipe-axis=x]:rtl:flex-row-reverse",
-                // Direction: down.
-                "data-[swipe-direction=down]:bottom-0 data-[swipe-direction=down]:origin-bottom data-[swipe-direction=down]:[--closed-transform:translate3d(0,calc(100%+var(--drawer-inset,0px)+2px),0)] data-[swipe-direction=down]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--stack-shrink)*var(--stack-height)))]",
-                // Direction: up.
-                "data-[swipe-direction=up]:top-0 data-[swipe-direction=up]:origin-top data-[swipe-direction=up]:[--closed-transform:translate3d(0,calc(-100%-var(--drawer-inset,0px)-2px),0)] data-[swipe-direction=up]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)+var(--stack-peek-offset)+(var(--stack-shrink)*var(--stack-height)))]",
-                // Direction: left.
-                "data-[swipe-direction=left]:left-0 data-[swipe-direction=left]:origin-left data-[swipe-direction=left]:[--closed-transform:translate3d(calc(-100%-var(--drawer-inset,0px)-2px),0,0)] data-[swipe-direction=left]:[--translate-x:calc(var(--drawer-swipe-movement-x)+var(--stack-peek-offset)+(var(--stack-shrink)*100%))]",
-                // Direction: right.
-                "data-[swipe-direction=right]:right-0 data-[swipe-direction=right]:origin-right data-[swipe-direction=right]:[--closed-transform:translate3d(calc(100%+var(--drawer-inset,0px)+2px),0,0)] data-[swipe-direction=right]:[--translate-x:calc(var(--drawer-swipe-movement-x)-var(--stack-peek-offset)-(var(--stack-shrink)*100%))]",
                 className,
               )}
               {...props}
@@ -228,7 +300,7 @@ const DrawerPanel = ({
             </DrawerPrimitive.Popup>
           </DrawerPrimitive.Viewport>
         </DrawerPortal>
-      </KeyboardProvider>
+      </DrawerPrimitive.VirtualKeyboardProvider>
     </DrawerPanelContext.Provider>
   );
 };
@@ -242,7 +314,7 @@ const DrawerHeader = ({ className, ...props }: React.ComponentProps<"div">) => {
     <div
       data-slot="drawer-header"
       className={cn(
-        "flex shrink-0 flex-col gap-related p-panel pb-3 group-data-[swipe-axis=y]/drawer-popup:text-center md:text-start max-sm:pb-4",
+        "flex shrink-0 flex-col gap-related p-panel pb-3 text-center md:text-start max-sm:pb-4",
         className,
       )}
       {...props}
@@ -313,6 +385,7 @@ const DrawerDescription = ({ className, ...props }: DrawerPrimitive.Description.
 export {
   Drawer,
   DrawerIndent,
+  DrawerProvider,
   DrawerPortal,
   DrawerOverlay,
   DrawerSwipeHandle,

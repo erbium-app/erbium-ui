@@ -2297,13 +2297,6 @@
         "title": "Snap Points"
       },
       {
-        "exportName": "Position",
-        "slug": "position",
-        "source": "src/drawer/variants/position.tsx",
-        "usage": ["src/drawer/examples/drawer-sides.tsx"],
-        "title": "Position"
-      },
-      {
         "exportName": "Nested",
         "slug": "nested",
         "source": "src/drawer/variants/nested.tsx",
@@ -3765,19 +3758,6 @@
         "source": "src/otp-field/variants/alphanumeric.tsx",
         "usage": ["src/otp-field/examples/otp-field-alphanumeric.tsx"],
         "title": "Alphanumeric"
-      }
-    ]
-  },
-  {
-    "name": "overlay-provider",
-    "title": "Providers/Overlay Provider",
-    "variants": [
-      {
-        "exportName": "Overview",
-        "slug": "overview",
-        "source": "src/overlay-provider/variants/overview.tsx",
-        "usage": ["src/overlay-provider/examples/overlay-provider-demo.tsx"],
-        "title": "Overview"
       }
     ]
   },

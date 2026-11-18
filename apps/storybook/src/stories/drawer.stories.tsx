@@ -13,8 +13,6 @@ export const NonModal = { ...showcases.NonModal, name: "Non Modal" };
 
 export const SnapPoints = { ...showcases.SnapPoints, name: "Snap Points" };
 
-export const Position = { ...showcases.Position, name: "Position" };
-
 export const Nested = { ...showcases.Nested, name: "Nested" };
 
 export const CustomSizes = { ...showcases.CustomSizes, name: "Custom Sizes" };

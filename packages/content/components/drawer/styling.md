@@ -11,13 +11,11 @@ The drawer exposes CSS variables for style-level customization. Set the sizing v
 | `--drawer-bleed-background`    | `var(--color-surface-modal)` | Fills the gap behind the drawer on swipe overshoot.                     |
 | `--drawer-overlay-min-opacity` | `0`                          | Minimum overlay opacity. Defaults to `0.5` when snap points are active. |
 
-The drawer also sets data attributes you can target with variants such as `data-[swipe-direction=down]:` on `DrawerPanel`, or `group-data-[swipe-axis=y]/drawer-popup:` on its descendants.
+The drawer also sets data attributes you can target with variants such as `data-swiping:` on `DrawerPanel`, or `group-data-swiping/drawer-popup:` on its descendants.
 
-| Attribute                 | Values                        | Set when                              |
-| ------------------------- | ----------------------------- | ------------------------------------- |
-| `data-swipe-direction`    | `up`, `right`, `down`, `left` | Always.                               |
-| `data-swipe-axis`         | `x`, `y`                      | Always.                               |
-| `data-snap-points`        | Present                       | The drawer has snap points.           |
-| `data-expanded`           | Present                       | The drawer is at the full snap point. |
-| `data-swiping`            | Present                       | A swipe is in progress.               |
-| `data-nested-drawer-open` | Present                       | A nested drawer is open on top.       |
+| Attribute                 | Values  | Set when                              |
+| ------------------------- | ------- | ------------------------------------- |
+| `data-snap-points`        | Present | The drawer has snap points.           |
+| `data-expanded`           | Present | The drawer is at the full snap point. |
+| `data-swiping`            | Present | A swipe is in progress.               |
+| `data-nested-drawer-open` | Present | A nested drawer is open on top.       |
