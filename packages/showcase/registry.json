@@ -851,6 +851,135 @@
       ]
     },
     {
+      "name": "app-shell-demo",
+      "type": "registry:component",
+      "title": "app shell demo",
+      "description": "Erbium app shell demo example.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/app-shell",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/link",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/app-shell/examples/app-shell-demo.tsx",
+          "target": "@components/showcase/app-shell/examples/app-shell-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "app-shell-documentation",
+      "type": "registry:block",
+      "title": "App Shell: Documentation",
+      "description": "",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/app-shell",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/link",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/app-shell/examples/app-shell-demo.tsx",
+          "target": "@components/showcase/app-shell/examples/app-shell-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/app-shell/variants/documentation.tsx",
+          "target": "@components/showcase/app-shell/variants/documentation.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "description": "All app-shell examples.",
+      "name": "app-shell-examples",
+      "registryDependencies": [
+        "@erbium-examples/app-shell-overview",
+        "@erbium-examples/app-shell-documentation"
+      ],
+      "title": "App Shell examples",
+      "type": "registry:item"
+    },
+    {
+      "name": "app-shell-overview",
+      "type": "registry:block",
+      "title": "App Shell: Overview",
+      "description": "",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "registryDependencies": [
+        "@erbium/app-shell",
+        "@erbium/button",
+        "@erbium/icon",
+        "@erbium/link",
+        "@erbium/styles"
+      ],
+      "files": [
+        {
+          "path": "src/app-shell/examples/app-shell-demo.tsx",
+          "target": "@components/showcase/app-shell/examples/app-shell-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/app-shell/variants/overview.tsx",
+          "target": "@components/showcase/app-shell/variants/overview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "app-shell-stories",
+      "type": "registry:item",
+      "title": "App Shell stories",
+      "description": "All app-shell variants as portable React CSF stories.",
+      "dependencies": ["@tanstack/react-router@^1.170.46"],
+      "devDependencies": ["@storybook/react@^10.6.1"],
+      "registryDependencies": [
+        "@erbium/app-shell",
+        "@erbium/button",
+        "@erbium/csp-provider",
+        "@erbium/icon",
+        "@erbium/link",
+        "@erbium/overlay-provider",
+        "@erbium/skeleton",
+        "@erbium/styles",
+        "@erbium/toast"
+      ],
+      "files": [
+        {
+          "path": "src/app-shell/app-shell.stories.tsx",
+          "target": "@components/showcase/app-shell/app-shell.stories.tsx",
+          "type": "registry:file"
+        },
+        {
+          "path": "src/app-shell/examples/app-shell-demo.tsx",
+          "target": "@components/showcase/app-shell/examples/app-shell-demo.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/app-shell/variants/documentation.tsx",
+          "target": "@components/showcase/app-shell/variants/documentation.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/app-shell/variants/overview.tsx",
+          "target": "@components/showcase/app-shell/variants/overview.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/preview.tsx",
+          "target": "@components/showcase/preview.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "description": "All area-chart examples.",
       "name": "area-chart-examples",
       "registryDependencies": [

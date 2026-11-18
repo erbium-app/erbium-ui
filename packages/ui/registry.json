@@ -60,6 +60,27 @@
       ]
     },
     {
+      "name": "app-shell",
+      "type": "registry:block",
+      "title": "App Shell",
+      "description": "Erbium app shell block.",
+      "dependencies": ["@tanstack/react-router", "effect"],
+      "registryDependencies": [
+        "@erbium/breadcrumb",
+        "@erbium/link",
+        "@erbium/sidebar",
+        "@erbium/use-router-pending",
+        "@erbium/utils"
+      ],
+      "files": [
+        {
+          "path": "src/blocks/app-shell.tsx",
+          "target": "@components/blocks/app-shell.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "area-chart",
       "type": "registry:component",
       "title": "Area Chart",

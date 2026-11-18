@@ -104,6 +104,7 @@
     "slug": "blocks",
     "kind": "block",
     "names": [
+      "app-shell",
       "code-block",
       "copy-button",
       "diff-view",

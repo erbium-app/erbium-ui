@@ -186,6 +186,29 @@
     ]
   },
   {
+    "name": "app-shell",
+    "title": "Blocks/App Shell",
+    "variants": [
+      {
+        "exportName": "Overview",
+        "slug": "overview",
+        "source": "src/app-shell/variants/overview.tsx",
+        "usage": ["src/app-shell/examples/app-shell-demo.tsx"],
+        "title": "Overview"
+      },
+      {
+        "exportName": "Documentation",
+        "slug": "documentation",
+        "source": "src/app-shell/variants/documentation.tsx",
+        "usage": [
+          "src/app-shell/variants/documentation.tsx",
+          "src/app-shell/examples/app-shell-demo.tsx"
+        ],
+        "title": "Documentation"
+      }
+    ]
+  },
+  {
     "name": "area-chart",
     "title": "Charts/Area Chart",
     "variants": [

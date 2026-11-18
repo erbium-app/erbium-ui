@@ -1,0 +1,11 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "description": "All app-shell examples.",
+  "name": "app-shell-examples",
+  "registryDependencies": [
+    "@erbium-examples/app-shell-overview",
+    "@erbium-examples/app-shell-documentation"
+  ],
+  "title": "App Shell examples",
+  "type": "registry:item"
+}
