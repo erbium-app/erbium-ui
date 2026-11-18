@@ -21,5 +21,6 @@ Track remaining work here. Remove completed tasks; source and documentation reco
 15. [Control primitives](./15-control-primitives.md)
 16. [Async states](./16-async-states.md)
 17. [Data table and data grid](./17-data-table.md)
+18. [Closed APIs](./18-closed-apis.md)
 
 Keep these notes aligned with the public roadmap when scope changes. Add components and stories for recurring needs, not inventory parity.
