@@ -5,7 +5,7 @@ description: "Headless page controls laid out so the number of items stays the s
 
 Previous, page and next controls for a page and a page count. The layout keeps boundary pages, pages around the current one and a gap marker for each run of hidden pages, and its number of items stays the same as the page moves, so the controls do not shift under the pointer. The parts are buttons for a page kept in state, or links for a page kept in the URL.
 
-The styled version is the [Pagination component](/docs/components/pagination).
+Use [styled Pagination](/docs/components/pagination) for Erbium’s previous, page, and next controls with optional preloading.
 
 **Import:** `@erbium-ui/react/pagination`
 

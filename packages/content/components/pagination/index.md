@@ -3,6 +3,8 @@ title: "Pagination"
 description: "Navigate between pages of content, with each page loaded before the click."
 ---
 
+This page covers Erbium’s styled Pagination. Build your own design with [unstyled Pagination from `@erbium-ui/react`](/docs/react/pagination) to reuse its page layout, accessible controls, and navigation state.
+
 ## Usage
 
 **Import:** `@erbium/ui/components/pagination`

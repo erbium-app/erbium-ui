@@ -47,7 +47,7 @@ export const kindTitles: Record<DocumentationKind, string> = {
   component: "Components",
   foundation: "Foundations",
   hook: "Hooks",
-  primitive: "React",
+  primitive: "@erbium-ui/react",
   provider: "Providers",
   utility: "Utilities",
 };

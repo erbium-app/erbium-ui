@@ -1,11 +1,20 @@
 ---
-title: "React"
-description: "Unstyled, accessible React primitives for the behavior behind Erbium's cascader, filters, editable and pagination."
+title: "@erbium-ui/react"
+description: "Unstyled React primitives for Cascader, Filters, Editable, and Pagination."
 ---
 
-`@erbium-ui/react` holds the behavior of Erbium's components that do more than style a Base UI part: state, keyboard handling, focus and accessibility. It ships no styles. Erbium's registry components are built on it, and you can build your own design on it the same way.
+`@erbium-ui/react` provides the state, interactions, and accessibility behind four Erbium components. Install it as an npm dependency to build those interfaces with your own markup and styles. The primitives handle behavior such as keyboard navigation, focus management, and selection.
 
-Use it when you want the behavior without Erbium's design. To use Erbium's components, install them through the registry as described in [Installation](/docs/installation); they install this package for you.
+Install styled Erbium components through the [Erbium registry](/docs/installation) for ready-to-use layouts and styles you can customize in your project. Registry items that use these primitives install `@erbium-ui/react` as a dependency.
+
+## Choose an implementation
+
+| Pattern                     | Build your own design                         | Use Erbium’s design                              |
+| --------------------------- | --------------------------------------------- | ------------------------------------------------ |
+| Pick from a tree of options | [Unstyled Cascader](/docs/react/cascader)     | [Styled Cascader](/docs/components/cascader)     |
+| Filter a list or table      | [Unstyled Filters](/docs/react/filters)       | [Styled Filters](/docs/blocks/filters)           |
+| Edit text in place          | [Unstyled Editable](/docs/react/editable)     | [Styled Editable](/docs/components/editable)     |
+| Navigate between pages      | [Unstyled Pagination](/docs/react/pagination) | [Styled Pagination](/docs/components/pagination) |
 
 ## Installation
 
@@ -19,30 +28,23 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 
 Each primitive has its own entry point, so you load only what you use.
 
-| Import                             | Contents                               | Runs on                                                   |
-| ---------------------------------- | -------------------------------------- | --------------------------------------------------------- |
-| `@erbium-ui/react/cascader`        | `Cascader` parts                       | Client                                                    |
-| `@erbium-ui/react/filters`         | Filters parts, adapters and utilities  | Utilities on server or client. Parts and hooks on client. |
-| `@erbium-ui/react/editable`        | `Editable` parts                       | Client                                                    |
-| `@erbium-ui/react/pagination`      | `Pagination` parts and `usePagination` | Client                                                    |
-| `@erbium-ui/react/pagination/core` | `getPagination` page layout            | Server or client                                          |
+| Import                             | Contents                              | Runs on                                                   |
+| ---------------------------------- | ------------------------------------- | --------------------------------------------------------- |
+| `@erbium-ui/react/cascader`        | `Cascader` parts                      | Client                                                    |
+| `@erbium-ui/react/filters`         | Filters parts, adapters and utilities | Utilities on server or client. Parts and hooks on client. |
+| `@erbium-ui/react/editable`        | `Editable` parts                      | Client                                                    |
+| `@erbium-ui/react/pagination`      | `Pagination` parts and layout hooks   | Client                                                    |
+| `@erbium-ui/react/pagination/core` | `getPagination` page layout           | Server or client                                          |
 
-Client entries start with `"use client"`, so the Next.js App Router and other React Server Components frameworks can render the parts from a server component. Server entries import nothing from React; use them in loaders, route validation and API handlers.
+Compose interactive parts and hooks in a client component when using React Server Components. The Filters utilities and `pagination/core` can also run in loaders, route validation, and API handlers.
 
 ## Conventions
 
 The primitives follow Base UI's conventions, so they compose with Base UI parts and with each other.
 
-- **Parts.** Each primitive is a namespace of parts, such as `Cascader.Root` and `Cascader.Trigger`. A part that does not apply in the current state renders nothing.
+- **Parts.** Compose the pieces you need, such as `Cascader.Root` and `Cascader.Trigger`. Each reference shows the parts and when they render.
 - **`render`.** Every part that renders an element takes `render`, an element or a function of props and state, to replace its element: `render={<MyButton />}` or `render={(props, state) => <a {...props} />}`.
-- **`className`.** A string, or a function of the part's state.
+- **`className`.** Pass a string, or a state callback on parts that support it.
 - **Data attributes.** Parts expose their state as `data-*` attributes, such as `data-editing` or `data-current`, for styling without JavaScript.
-- **Controlled or uncontrolled.** State props come in `value`, `defaultValue` and `onValueChange` sets. Pass the first to own the state.
-- **Change details.** Change callbacks receive `(value, details)`. `details.reason` says what caused the change, `details.event` is the DOM event, and `details.cancel()` rejects the change.
-
-## Primitives
-
-- [Cascader](/docs/react/cascader): a select whose options form a tree, opened one level at a time.
-- [Filters](/docs/react/filters): rules over the fields of a list or table, with pickers and editors.
-- [Editable](/docs/react/editable): text that becomes an input in place.
-- [Pagination](/docs/react/pagination): page controls with a constant number of items.
+- **Controlled or uncontrolled.** State props come in `value`, `defaultValue` and `onValueChange` sets. Use the controlled value and its change callback when your application owns the state.
+- **Change details.** State-change callbacks that support change details receive `(value, details)`. `details.reason` says what caused the change, `details.event` is the DOM event, and `details.cancel()` rejects the change.

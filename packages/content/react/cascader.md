@@ -5,7 +5,7 @@ description: "A headless select whose options form a tree, opened one level at a
 
 A select over a tree of options. A branch opens its level in place of the current one, inside the same popup, and a way back returns to the level above. Single and multiple selection, search at any depth, and form submission are built in. The popup, positioner and menu behavior are Base UI's `Menu`.
 
-The styled version is the [Cascader component](/docs/components/cascader).
+Use [styled Cascader](/docs/components/cascader) for a search field, option list, and trigger that share Erbium’s menu design.
 
 **Import:** `@erbium-ui/react/cascader`
 

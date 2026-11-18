@@ -141,7 +141,7 @@
     "names": ["csp-provider", "direction"]
   },
   {
-    "title": "React",
+    "title": "@erbium-ui/react",
     "slug": "react",
     "kind": "primitive",
     "names": ["cascader", "filters", "editable", "pagination"]

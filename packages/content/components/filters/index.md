@@ -3,11 +3,13 @@ title: "Filters"
 description: "Filter tables and lists with chips or faceted buttons that share one rule model."
 ---
 
+This page covers Erbium’s styled Filters. Build your own design with [unstyled Filters from `@erbium-ui/react`](/docs/react/filters) to reuse its filter rules, pickers, and editor bindings.
+
 ## Usage
 
-Filters have three layers:
+The styled Filters API has three parts:
 
-- **Core** (`@erbium/ui/lib/filter-rules`): field configs, rules, operators and the matcher. A rule is `{ type, operator, values }` and is stored as the value of a TanStack `ColumnFilter`, so `ColumnFiltersState` is the state for tables and lists alike. Rules are plain JSON, so they can go to a server, and `@erbium/ui/lib/filter-search` writes them to the URL (see [Shareable views](#shareable-views)).
+- **Rule helpers** (`@erbium/ui/lib/filter-rules`): Erbium’s field settings and shared rule utilities from the primitive. A rule is `{ type, operator, values }` and is stored as the value of a TanStack `ColumnFilter`, so `ColumnFiltersState` is the state for tables and lists alike. Rules are plain JSON, so they can go to a server, and `@erbium/ui/lib/filter-search` writes them to the URL (see [Shareable views](#shareable-views)).
 - **Adapters** (`@erbium/ui/hooks/use-filters`): `useTableFilters(table)` for a TanStack Table v9 table and `useListFilters({ items, fields })` for a plain list. Both return the same `Filters` shape. The table adapter subscribes to the v9 column-filter atom, so filter controls can consume the table from context.
 - **Layouts** (`@erbium/ui/blocks/filters`): `FilterBar` (chips added from a searchable menu) and `FilterFacets` (one button per field). Both are composed from the same value controls, built on the [Cascader](/docs/components/cascader), [Popover](/docs/components/popover), [Number Field](/docs/components/number-field) and [Calendar](/docs/components/calendar).
 

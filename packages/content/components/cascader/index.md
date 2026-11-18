@@ -3,6 +3,8 @@ title: "Cascader"
 description: "Pick a value from a tree of options, one level at a time."
 ---
 
+This page covers Erbium’s styled Cascader. Build your own design with [unstyled Cascader from `@erbium-ui/react`](/docs/react/cascader) to reuse its tree navigation, search, and selection.
+
 A select whose options form a tree. A row with children opens its level in place, inside the same popup, with a way back to the level before. The trigger shows the full path of the selection, because in a nested list the leaf alone is often ambiguous. Use it for region pickers, category trees, attribute pickers, permission scopes and anywhere else a flat list would be too long to scan.
 
 **Import:** `@erbium/ui/components/cascader`

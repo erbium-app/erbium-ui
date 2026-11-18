@@ -5,7 +5,7 @@ description: "Headless text that reads as text and becomes an input in place."
 
 Text that reads as text and becomes an input when activated. The input edits a draft; Enter or blur commits it, Escape discards it, and focus returns to the part that started editing. The preview and the input are both rendered, so a design can lay the input over the preview and keep the text in one box.
 
-The styled version is the [Editable component](/docs/components/editable).
+Use [styled Editable](/docs/components/editable) for a single-line editor that keeps its size while you edit.
 
 **Import:** `@erbium-ui/react/editable`
 

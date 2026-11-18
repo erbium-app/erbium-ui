@@ -5,7 +5,7 @@ description: "Headless filter rules over the fields of a list or table, with par
 
 Rules over the fields of a list or a TanStack table: one rule per field, with an operator and values. Rules are plain JSON in the shape of TanStack Table's column filters, so they can live in table state, in the URL or on a server. The parts edit one field's rule; the picker hooks give a [Cascader](/docs/react/cascader) the rows and change handling for adding filters and choosing options.
 
-The styled version is the [Filters block](/docs/blocks/filters).
+Use [styled Filters](/docs/blocks/filters) for ready-to-use filter chips, facets, and value editors.
 
 **Import:** `@erbium-ui/react/filters`
 

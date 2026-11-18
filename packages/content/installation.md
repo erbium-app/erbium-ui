@@ -5,6 +5,8 @@ description: Install Erbium UI with shadcn and manage component updates with the
 
 Add Erbium components to your React application with the [Shadcn CLI](https://ui.shadcn.com/docs/cli). It copies the source into your project and installs the dependencies. Import from those local files and edit them as needed. You do not need to clone this repository or install an `@erbium/ui` package.
 
+For unstyled primitives, follow the [`@erbium-ui/react` installation guide](/docs/react#installation).
+
 ## Set up with an agent
 
 Copy this prompt into your coding agent to run the steps on this page in a new or existing app. The agent also installs the Erbium CLI and records how to work with Erbium in your project, so later UI requests follow the [agent workflow](/docs/cli#work-with-an-agent).

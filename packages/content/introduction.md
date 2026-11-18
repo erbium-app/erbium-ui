@@ -3,7 +3,7 @@ title: Introduction
 description: An agent ready design system with taste built in
 ---
 
-Erbium UI is the open-source component library and design system behind [erbium.app](https://erbium.app). Copy components and blocks into your project and adapt them to your design.
+Erbium UI is the open-source component library and design system behind [erbium.app](https://erbium.app). Copy styled components and blocks into your project and adapt them to your design. Use [`@erbium-ui/react`](/docs/react) to build your own interfaces with Erbium’s unstyled Cascader, Filters, Editable, and Pagination primitives.
 
 We build on [Base UI](https://base-ui.com/), [Shadcn/ui](https://ui.shadcn.com/), and [coss ui](https://coss.com/ui), and [Shelf UI](https://shelfui.dev/). Design and motion draw from [Fluid Functionalism](https://www.fluidfunctionalism.com/), [Sonner](https://sonner.emilkowal.ski/), [Animate UI](https://animate-ui.com/), [Transition](https://transition.dev/), and [ReUI](https://reui.io/).
 

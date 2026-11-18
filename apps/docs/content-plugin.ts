@@ -2,7 +2,12 @@ import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import type { Plugin } from "vite-plus";
-import { documentationSections, documentFile, kindPaths } from "@erbium/content/taxonomy";
+import {
+  documentationSections,
+  documentFile,
+  kindPaths,
+  kindTitles,
+} from "@erbium/content/taxonomy";
 import { changelogDirectory, readChangelog } from "./changelog";
 import { releaseDay } from "./src/content/release-date";
 import registry from "../../packages/ui/registry.json" with { type: "json" };
@@ -23,7 +28,7 @@ const guideRoutes = [
   { file: "installation", href: "/docs/installation", section: "Guides" },
   { file: "getting-started", href: "/docs/getting-started", section: "Guides" },
   { file: "cli", href: "/docs/cli", section: "Guides" },
-  { file: "react/index", href: "/docs/react", section: "React" },
+  { file: "react/index", href: "/docs/react", section: kindTitles.primitive },
   {
     example: { name: "marker", slug: "shimmer" },
     file: "shimmer",
