@@ -55,10 +55,18 @@ type FilterScalar = string | number | boolean | Date;
 
 type FilterCell = FilterScalar | readonly FilterScalar[] | null | undefined;
 
+/**
+ * One choice of an option field. An option with `children` groups the options below it: the
+ * option menu opens it as a level, and only options without children are chosen and matched.
+ */
 interface FilterOption {
   value: string;
   label: string;
   icon?: IconName;
+  /** Options of the next level. Values must be unique across the whole tree. */
+  children?: FilterOption[];
+  /** Extra terms the option search matches, such as abbreviations or other spellings. */
+  keywords?: string[];
 }
 
 /** How a field is filtered: its type, its label, and what its editor offers. */
@@ -66,7 +74,10 @@ interface FilterFieldConfig {
   type: FilterType;
   label: string;
   icon?: IconName;
-  /** Option fields: the choices. Left out, they are read from the values in the data. */
+  /**
+   * Option fields: the choices, as a list or a tree. Left out, they are read from the values in
+   * the data.
+   */
   options?: FilterOption[];
   /** Text fields: the input placeholder. */
   placeholder?: string;
@@ -449,6 +460,23 @@ const toOptionCounts = (facets: Map<FilterCell, number>) => {
   return counts;
 };
 
+/** Finds an option at any depth of an option tree. */
+const findOption = (options: readonly FilterOption[], value: string): FilterOption | undefined => {
+  for (const option of options) {
+    if (option.value === value) {
+      return option;
+    }
+
+    const found = option.children === undefined ? undefined : findOption(option.children, value);
+
+    if (found !== undefined) {
+      return found;
+    }
+  }
+
+  return undefined;
+};
+
 /** The options of a field: its configured ones, or the values seen in the data, in order. */
 const resolveOptions = (config: FilterFieldConfig, counts: Map<string, number> | undefined) =>
   config.options ??
@@ -526,6 +554,7 @@ export {
   filterColumn,
   filterFn_rule,
   filterOperators,
+  findOption,
   formatDayKey,
   getOperatorLabel,
   hasFilterConfig,

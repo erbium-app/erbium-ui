@@ -12195,6 +12195,7 @@
       "registryDependencies": [
         "@erbium-examples/filters-overview",
         "@erbium-examples/filters-faceted",
+        "@erbium-examples/filters-nested-options",
         "@erbium-examples/filters-list",
         "@erbium-examples/filters-router"
       ],
@@ -12254,10 +12255,37 @@
       ]
     },
     {
+      "name": "filters-nested-options",
+      "type": "registry:block",
+      "title": "Filters: Nested options",
+      "description": "Option fields whose options form a tree. Area groups product areas (Platform opens API, which opens REST and GraphQL) and Assignee groups people by team. Each group opens in place in the same menu, with a back button and the group's name. The search finds options at any depth and shows the path to each one. Only options without children are chosen, so the items hold leaf values.",
+      "registryDependencies": [
+        "@erbium/badge",
+        "@erbium/empty",
+        "@erbium/filter-rules",
+        "@erbium/filters",
+        "@erbium/item",
+        "@erbium/styles",
+        "@erbium/use-filters"
+      ],
+      "files": [
+        {
+          "path": "src/filters/data.ts",
+          "target": "@components/showcase/filters/data.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/nested-options.tsx",
+          "target": "@components/showcase/filters/variants/nested-options.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "filters-overview",
       "type": "registry:block",
       "title": "Filters: Overview",
-      "description": "Chip mode on a TanStack table. Add a filter from the searchable menu: option fields open a searchable submenu with counts, and text, number and date fields open their editor in a new chip. Change a chip's operator or value in place.",
+      "description": "Chip mode on a TanStack table. Add a filter from the searchable menu: option fields open their options in place, in the same menu, with counts, and text, number and date fields open their editor in a new chip. Area is an option tree, so its groups open level by level. The search finds fields and options at any depth. Change a chip's operator or value in place.",
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/data-table",
@@ -12353,6 +12381,11 @@
         {
           "path": "src/filters/variants/list.tsx",
           "target": "@components/showcase/filters/variants/list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/filters/variants/nested-options.tsx",
+          "target": "@components/showcase/filters/variants/nested-options.tsx",
           "type": "registry:component"
         },
         {

@@ -6,6 +6,8 @@ import FacetedExample from "./variants/faceted";
 import FacetedSource from "./variants/faceted.tsx?raw";
 import ListExample from "./variants/list";
 import ListSource from "./variants/list.tsx?raw";
+import NestedOptionsExample from "./variants/nested-options";
+import NestedOptionsSource from "./variants/nested-options.tsx?raw";
 import RouterExample from "./variants/router";
 import RouterSource from "./variants/router.tsx?raw";
 
@@ -38,6 +40,16 @@ export const Faceted: Story = {
     },
   },
   render: FacetedExample,
+};
+
+export const NestedOptions: Story = {
+  parameters: {
+    docs: {
+      description: { story: variantDocumentation("filters", "nested-options") },
+      source: { code: NestedOptionsSource },
+    },
+  },
+  render: NestedOptionsExample,
 };
 
 export const List: Story = {

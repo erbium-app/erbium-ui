@@ -142,7 +142,7 @@ Without a search field, focus moves through the rows, and `→`, `←` and `Ente
 
 - The trigger is a button that opens a menu. Name it with a `FieldLabel htmlFor` its `id`, or with `aria-label`.
 - Leaves are `menuitemradio` or `menuitemcheckbox` items with `aria-checked`. A row with children is a `menuitem` with `aria-haspopup`, and its name includes its option count, or how many leaves below it are selected.
-- The search field is named after its level: "Search options" at the top and "Search Europe" inside Europe. Pass `aria-label` to `CascaderSearch` to replace it. The back button is named after the level it returns to.
+- The search field is named after its level: "Search options" at the top and "Search Europe" inside Europe. Pass `aria-label` to `CascaderSearch` to name the top level, as `placeholder` does; inside a level, both name the level. The back button is named after the level it returns to.
 - `CascaderEmpty` is a polite live region.
 
 ## Forms
@@ -165,6 +165,10 @@ Compose the cascader inside `field.Field` with `field.FieldError`, as with Selec
 >
 ```
 
+## Other triggers
+
+`CascaderTrigger` is the select-style button. For any other trigger, such as a toolbar button or a filter chip, place a `DropdownMenuTrigger` with `render` inside `Cascader`, as the [Filters](/docs/blocks/filters) block does for its add-filter menu and option chips.
+
 ## Compared with Dropdown Menu
 
-Use Dropdown Menu, with submenus, for actions. Use Cascader to choose a value from a tree: it owns the selection, keeps every level in one popup, shows the selection in the trigger and searches across levels.
+Use Dropdown Menu for actions, and keep its submenus for the rare action menu that needs them. Use Cascader to choose values from a tree: it owns the selection, keeps every level in one popup, shows the selection in the trigger and searches across levels. Nested choices built from submenus should move to Cascader.

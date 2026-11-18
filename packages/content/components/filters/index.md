@@ -9,7 +9,7 @@ Filters have three layers:
 
 - **Core** (`@erbium/ui/lib/filter-rules`): field configs, rules, operators and the matcher. A rule is `{ type, operator, values }` and is stored as the value of a TanStack `ColumnFilter`, so `ColumnFiltersState` is the state for tables and lists alike. Rules are plain JSON, so they can go to a server, and `@erbium/ui/lib/filter-search` writes them to the URL (see [Shareable views](#shareable-views)).
 - **Adapters** (`@erbium/ui/hooks/use-filters`): `useTableFilters(table)` for a TanStack Table v9 table and `useListFilters({ items, fields })` for a plain list. Both return the same `Filters` object.
-- **Layouts** (`@erbium/ui/blocks/filters`): `FilterBar` (chips added from a searchable menu) and `FilterFacets` (one button per field). Both are composed from the same value controls, built on the searchable [Dropdown Menu](/docs/components/dropdown-menu), [Popover](/docs/components/popover), [Number Field](/docs/components/number-field) and [Calendar](/docs/components/calendar).
+- **Layouts** (`@erbium/ui/blocks/filters`): `FilterBar` (chips added from a searchable menu) and `FilterFacets` (one button per field). Both are composed from the same value controls, built on the [Cascader](/docs/components/cascader), [Popover](/docs/components/popover), [Number Field](/docs/components/number-field) and [Calendar](/docs/components/calendar).
 
 ### Tables
 
@@ -67,6 +67,35 @@ const { filters, items } = useListFilters({ items: tasks, fields });
 ```
 
 Pass `columnFilters` and `onColumnFiltersChange` to keep the rules elsewhere, such as in the URL.
+
+## Option trees
+
+Options can form a tree. An option with `children` groups the options below it: the option menu opens it as a level in place, in the same popup, with a back button and the group's name, as the [Cascader](/docs/components/cascader) does. The search of a level finds options at any depth below it and shows the path to each one.
+
+```tsx
+const areaOptions: FilterOption[] = [
+  {
+    value: "platform",
+    label: "Platform",
+    icon: "cloud",
+    children: [
+      {
+        value: "api",
+        label: "API",
+        children: [
+          { value: "rest", label: "REST" },
+          { value: "graphql", label: "GraphQL" },
+        ],
+      },
+      { value: "auth", label: "Authentication", keywords: ["login", "SSO"] },
+    ],
+  },
+];
+```
+
+Only options without children are chosen, matched and counted, so rows and items hold leaf values (`"graphql"`, never `"api"`). Option values must be unique across the whole tree, and `keywords` adds terms the search matches. `findOption(options, value)` from the core looks an option up at any depth, for cell labels.
+
+The add-filter menu of `FilterBar` uses the same cascader: fields are its top level, an option field opens its options, and the search finds fields and options at any depth. Text, number and date fields are rows that add a filter and open its editor, and they show a check while the field has a filter.
 
 ## Shareable views
 
@@ -158,7 +187,7 @@ Option fields without `options` list the values found in the data. A rule with n
 
 ## Parts
 
-- `FilterBar`: chip mode. `FilterMenu` adds filters; each active filter is a `FilterChip` with its field, operator menu, value and a remove button.
+- `FilterBar`: chip mode. `FilterMenu` adds filters from a cascader of fields and their options; each active filter is a `FilterChip` with its field, operator menu, value and a remove button.
 - `FilterFacets`: faceted mode, one `FilterFacet` per field. Pass `fields` to choose and order them.
-- `FilterValueControl`: opens a field's value editor from any trigger. Once a summary only counts the chosen options ("3 selected"), hovering the trigger lists them in a tooltip. Use it to build other layouts.
-- `FilterOptionMenu`, `FilterValueEditor`, `FilterOperatorMenu`: the editors the layouts are built from.
+- `FilterValueControl`: opens a field's value editor from any trigger: `FilterOptionMenu` for option fields, a popover with `FilterValueEditor` for the others. Once a summary only counts the chosen options ("3 selected"), hovering the trigger lists them in a tooltip. Use it to build other layouts.
+- `FilterOptionMenu`, `FilterValueEditor`, `FilterOperatorMenu`: the editors the layouts are built from. `FilterOptionMenu` is a searchable, multiple [Cascader](/docs/components/cascader) of the field's options, opened from a `trigger`.

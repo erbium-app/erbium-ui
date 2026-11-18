@@ -10,6 +10,7 @@ import { Badge } from "@erbium/ui/components/badge";
 import { createDataTableColumnHelper, useDataTable } from "@erbium/ui/hooks/use-data-table";
 import type { DataTableQuery } from "@erbium/ui/lib/data-table-search";
 import {
+  areaOptions,
   labelOf,
   labelOptions,
   priorityOptions,
@@ -76,6 +77,14 @@ const columns = columnHelper.columns([
       },
     },
   }),
+  // An option tree: Platform opens API, which opens REST and GraphQL, in the same menu.
+  columnHelper.accessor("area", {
+    cell: (info) => labelOf(areaOptions, info.getValue()),
+    header: "Area",
+    meta: {
+      filter: { icon: "cube", label: "Area", options: areaOptions, type: "option" },
+    },
+  }),
   // No `options`: the choices and their counts come from the rows.
   columnHelper.accessor("assignee", {
     header: "Assignee",
@@ -84,7 +93,10 @@ const columns = columnHelper.columns([
   columnHelper.accessor("estimate", {
     cell: (info) => <span className="tabular-nums">{info.getValue()} h</span>,
     header: "Estimate",
-    meta: { align: "end", filter: { label: "Estimate", step: 1, type: "number" } },
+    meta: {
+      align: "end",
+      filter: { icon: "calculator", label: "Estimate", step: 1, type: "number" },
+    },
     size: 104,
   }),
   columnHelper.accessor("due", {

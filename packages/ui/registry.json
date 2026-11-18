@@ -1019,6 +1019,7 @@
         "@erbium/button-group",
         "@erbium/button-variants",
         "@erbium/calendar",
+        "@erbium/cascader",
         "@erbium/dropdown-menu",
         "@erbium/filter-rules",
         "@erbium/icon",

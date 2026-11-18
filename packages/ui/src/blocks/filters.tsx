@@ -5,18 +5,19 @@ import { ButtonGroup } from "../components/button-group";
 import { Calendar } from "../components/calendar";
 import type { DateRange } from "../components/calendar";
 import {
+  Cascader,
+  CascaderClear,
+  CascaderContent,
+  CascaderEmpty,
+  CascaderList,
+  CascaderSearch,
+} from "../components/cascader";
+import type { CascaderNode } from "../components/cascader";
+import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuEmpty,
-  DropdownMenuItem,
-  DropdownMenuList,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSearch,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../components/dropdown-menu";
 import { Icon } from "../components/icon";
@@ -29,6 +30,7 @@ import {
   changeOperator,
   createRule,
   filterOperators,
+  findOption,
   formatDayKey,
   getOperatorLabel,
   isFilterOperator,
@@ -39,14 +41,15 @@ import {
   isText,
   parseDayKey,
 } from "../lib/filter-rules";
-import type { FilterField, FilterValue, Filters } from "../lib/filter-rules";
+import type { FilterField, FilterOption, FilterValue, Filters } from "../lib/filter-rules";
 import { buttonVariants } from "../lib/button-variants";
 import { cn } from "../lib/utils";
 
 /*
  * Filter components. Every layout here reads the same `Filters` (from `useTableFilters` or
- * `useListFilters`) and edits values with the same controls: option fields in a searchable menu,
- * text, number and date fields in a popover. The layouts differ only in how they present fields.
+ * `useListFilters`) and edits values with the same controls: option fields in a searchable
+ * cascader, whose option trees open level by level in one popup, and text, number and date fields
+ * in a popover. The layouts differ only in how they present fields.
  */
 
 // Rule changes
@@ -84,7 +87,7 @@ const formatValue = (field: FilterField, value: FilterValue | undefined): string
     return dateFormat.format(parseDayKey(value));
   }
 
-  return field.options.find((option) => option.value === value)?.label ?? String(value);
+  return findOption(field.options, String(value))?.label ?? String(value);
 };
 
 /** The labels of an option field's chosen options, in the order they were chosen. */
@@ -121,42 +124,46 @@ const summarize = (field: FilterField): string | null => {
   return field.type === "text" ? `“${first ?? ""}”` : formatValue(field, first);
 };
 
-// Value editors
+// Option trees
 
-/** A searchable list of an option field's options, with their counts, for any menu popup. */
-const FilterOptionMenu = ({ field }: { field: FilterField }) => {
-  const chosen = new Set(field.rule?.values);
+/** The chosen option values of a field's rule. */
+const chosenValues = (field: FilterField) =>
+  (field.rule?.values ?? []).flatMap((value) => (value === null ? [] : [String(value)]));
 
-  return (
-    <>
-      <DropdownMenuSearch
-        aria-label={`Search ${field.label}`}
-        placeholder={`Search ${field.label.toLocaleLowerCase()}…`}
-      />
-      <DropdownMenuEmpty>No options found.</DropdownMenuEmpty>
-      <DropdownMenuList>
-        {field.options.map((option) => (
-          <DropdownMenuCheckboxItem
-            key={option.value}
-            label={option.label}
-            checked={chosen.has(option.value)}
-            onCheckedChange={(checked) => {
-              toggleOption(field, option.value, checked);
-            }}
-          >
-            {option.icon === undefined ? null : <Icon name={option.icon} aria-hidden="true" />}
-            <span className="truncate">{option.label}</span>
-            {field.counts === undefined ? null : (
-              <span className="ms-auto ps-4 text-muted-foreground tabular-nums">
-                {field.counts.get(option.value) ?? 0}
-              </span>
-            )}
-          </DropdownMenuCheckboxItem>
-        ))}
-      </DropdownMenuList>
-    </>
-  );
+/** Calls `visit` for each option that can be chosen: the options without children. */
+const forEachLeaf = (options: readonly FilterOption[], visit: (option: FilterOption) => void) => {
+  for (const option of options) {
+    if (option.children === undefined) {
+      visit(option);
+    } else {
+      forEachLeaf(option.children, visit);
+    }
+  }
 };
+
+/** An option tree as cascader nodes, each keyed by `nodeValue`. */
+const toOptionNodes = (
+  options: readonly FilterOption[],
+  nodeValue: (option: FilterOption) => string,
+): CascaderNode[] =>
+  options.map((option) => ({
+    children: option.children === undefined ? undefined : toOptionNodes(option.children, nodeValue),
+    icon: option.icon === undefined ? undefined : <Icon name={option.icon} aria-hidden="true" />,
+    keywords: option.keywords,
+    label: option.label,
+    value: nodeValue(option),
+  }));
+
+/** The content of an option row, with the option's count when the field has counts. */
+const OptionRow = ({ node, count }: { node: CascaderNode; count: number | undefined }) => (
+  <>
+    {node.icon}
+    <span className="truncate">{node.label}</span>
+    {count === undefined ? null : (
+      <span className="ms-auto ps-4 text-muted-foreground tabular-nums">{count}</span>
+    )}
+  </>
+);
 
 interface NumberInputProps {
   field: FilterField;
@@ -310,9 +317,70 @@ interface FilterValueControlProps {
 }
 
 /**
- * Opens a field's value editor from a trigger: a searchable menu for option fields, a popover for
- * the others. A text, number or date filter left without a value is removed when it closes. While
- * more options are chosen than a summary names, hovering the trigger lists them in a tooltip.
+ * An option field's options in a searchable cascader, opened from a trigger. Options with
+ * children open their level in place, and each option shows its count when the field has counts.
+ * While more options are chosen than a summary names, hovering the trigger lists them in a tooltip.
+ */
+const FilterOptionMenu = ({
+  field,
+  trigger,
+  open,
+  onOpenChange,
+  footer,
+  align = "start",
+}: FilterValueControlProps) => {
+  const { counts, options } = field;
+  const items = React.useMemo(() => toOptionNodes(options, (option) => option.value), [options]);
+
+  // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an
+  // open menu keeps its anchor) when one more chosen option turns the names into a count.
+  return (
+    <Tooltip disabled={!isCounted(field)}>
+      <Cascader
+        multiple
+        searchable
+        items={items}
+        value={chosenValues(field)}
+        open={open}
+        onOpenChange={onOpenChange}
+        onValueChange={(values) => {
+          if (values.length === 0) {
+            field.setRule(undefined);
+          } else {
+            setValues(field, values);
+          }
+        }}
+      >
+        <DropdownMenuTrigger render={<TooltipTrigger render={trigger} />} />
+        <CascaderContent align={align} className="w-64">
+          <CascaderSearch
+            aria-label={`Search ${field.label}`}
+            placeholder={`Search ${field.label.toLocaleLowerCase()}…`}
+          />
+          <CascaderEmpty>No options found.</CascaderEmpty>
+          <CascaderList>
+            {(node) => (
+              <OptionRow
+                node={node}
+                count={
+                  counts === undefined || node.children !== undefined
+                    ? undefined
+                    : (counts.get(node.value) ?? 0)
+                }
+              />
+            )}
+          </CascaderList>
+          {footer}
+        </CascaderContent>
+      </Cascader>
+      <TooltipContent>{optionLabels(field).join(", ")}</TooltipContent>
+    </Tooltip>
+  );
+};
+
+/**
+ * Opens a field's value editor from a trigger: a searchable cascader for option fields, a popover
+ * for the others. A text, number or date filter left without a value is removed when it closes.
  */
 const FilterValueControl = ({
   field,
@@ -323,19 +391,15 @@ const FilterValueControl = ({
   align = "start",
 }: FilterValueControlProps) => {
   if (isOptionType(field.type)) {
-    // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an
-    // open menu keeps its anchor) when one more chosen option turns the names into a count.
     return (
-      <Tooltip disabled={!isCounted(field)}>
-        <DropdownMenu searchable open={open} onOpenChange={onOpenChange}>
-          <DropdownMenuTrigger render={<TooltipTrigger render={trigger} />} />
-          <DropdownMenuContent align={align} className="w-60">
-            <FilterOptionMenu field={field} />
-            {footer}
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <TooltipContent>{optionLabels(field).join(", ")}</TooltipContent>
-      </Tooltip>
+      <FilterOptionMenu
+        field={field}
+        trigger={trigger}
+        open={open}
+        onOpenChange={onOpenChange}
+        footer={footer}
+        align={align}
+      />
     );
   }
 
@@ -465,21 +529,112 @@ interface FilterMenuProps {
   children?: React.ReactNode;
 }
 
+/** The menu value of a field, or of one of its options. JSON keeps any id and value apart. */
+const menuValue = (id: string, option?: string) =>
+  JSON.stringify(option === undefined ? [id] : [id, option]);
+
+interface MenuTarget {
+  field: FilterField;
+  /** The option a row chooses, or none for a field row. */
+  option?: string;
+}
+
 /**
- * The searchable menu that adds filters. Option fields open a searchable submenu of their
- * options; the other fields add an empty filter and hand off to its value editor.
+ * The fields as the top level of the add-filter menu. An option field opens its option tree; a
+ * text, number or date field is a row of its own, checked while the field has a filter.
+ */
+const toFieldTree = (fields: readonly FilterField[]) => {
+  const targets = new Map<string, MenuTarget>();
+  const counts = new Map<string, number>();
+  const selected: string[] = [];
+
+  const items = fields.map((field): CascaderNode => {
+    const value = menuValue(field.id);
+
+    const icon =
+      field.icon === undefined ? undefined : <Icon name={field.icon} aria-hidden="true" />;
+
+    targets.set(value, { field });
+
+    if (!isOptionType(field.type)) {
+      if (field.rule !== undefined) {
+        selected.push(value);
+      }
+
+      return { icon, label: field.label, value };
+    }
+
+    forEachLeaf(field.options, (option) => {
+      const key = menuValue(field.id, option.value);
+
+      targets.set(key, { field, option: option.value });
+
+      if (field.counts !== undefined) {
+        counts.set(key, field.counts.get(option.value) ?? 0);
+      }
+    });
+
+    for (const chosen of chosenValues(field)) {
+      selected.push(menuValue(field.id, chosen));
+    }
+
+    return {
+      children: toOptionNodes(field.options, (option) => menuValue(field.id, option.value)),
+      icon,
+      label: field.label,
+      value,
+    };
+  });
+
+  return { counts, items, selected, targets };
+};
+
+/**
+ * The searchable menu that adds filters, built on the cascader. Option fields open their options
+ * in place, and the search finds fields and options at any depth. Text, number and date fields
+ * add an empty filter and hand off to its value editor.
  */
 const FilterMenu = ({ filters, onFieldAdded, className, children = "Filter" }: FilterMenuProps) => {
+  const [open, setOpen] = React.useState(false);
   // The field to open once the menu has closed and returned focus to its trigger.
   const added = React.useRef<string | null>(null);
+  const { counts, items, selected, targets } = toFieldTree(filters.fields);
 
   return (
-    <DropdownMenu
+    <Cascader
+      multiple
       searchable
-      onOpenChangeComplete={(open) => {
-        if (!open && added.current !== null) {
+      items={items}
+      value={selected}
+      open={open}
+      onOpenChange={setOpen}
+      onOpenChangeComplete={(next) => {
+        if (!next && added.current !== null) {
           onFieldAdded?.(added.current);
           added.current = null;
+        }
+      }}
+      onValueChange={(values, { node }) => {
+        const target = node === null ? undefined : targets.get(node.value);
+
+        if (node === null || target === undefined) {
+          return;
+        }
+
+        const checked = values.includes(node.value);
+        const { field, option } = target;
+
+        if (option !== undefined) {
+          toggleOption(field, option, checked);
+        } else if (checked) {
+          if (field.rule === undefined) {
+            field.setRule(createRule(field.type));
+          }
+
+          added.current = field.id;
+          setOpen(false);
+        } else {
+          field.setRule(undefined);
         }
       }}
     >
@@ -487,49 +642,14 @@ const FilterMenu = ({ filters, onFieldAdded, className, children = "Filter" }: F
         <Icon name="list-filter" aria-hidden="true" data-icon="inline-start" />
         {children}
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-60">
-        <DropdownMenuSearch aria-label="Search fields" placeholder="Filter by…" />
-        <DropdownMenuEmpty>No fields found.</DropdownMenuEmpty>
-        <DropdownMenuList>
-          {filters.fields.map((field) => {
-            const icon =
-              field.icon === undefined ? null : <Icon name={field.icon} aria-hidden="true" />;
-
-            if (isOptionType(field.type)) {
-              return (
-                <DropdownMenuSub key={field.id} searchable>
-                  <DropdownMenuSubTrigger label={field.label} className="gap-related">
-                    {icon}
-                    {field.label}
-                  </DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent className="w-60">
-                    <FilterOptionMenu field={field} />
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
-              );
-            }
-
-            return (
-              <DropdownMenuItem
-                key={field.id}
-                label={field.label}
-                className="gap-related"
-                onClick={() => {
-                  if (field.rule === undefined) {
-                    field.setRule(createRule(field.type));
-                  }
-
-                  added.current = field.id;
-                }}
-              >
-                {icon}
-                {field.label}
-              </DropdownMenuItem>
-            );
-          })}
-        </DropdownMenuList>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      <CascaderContent className="w-64">
+        <CascaderSearch aria-label="Search filters" placeholder="Filter by…" />
+        <CascaderEmpty>No filters found.</CascaderEmpty>
+        <CascaderList>
+          {(node) => <OptionRow node={node} count={counts.get(node.value)} />}
+        </CascaderList>
+      </CascaderContent>
+    </Cascader>
   );
 };
 
@@ -611,23 +731,8 @@ const FacetClear = ({ field }: { field: FilterField }) => {
     );
   }
 
-  return (
-    // A searchable menu has no popup padding (its list pads itself), so the footer pads itself
-    // the same way and draws a full-width separator, as the search header does.
-    <div data-slot="filter-facet-footer" className="shrink-0">
-      <Separator variant="full" />
-      <div className="p-1">
-        <DropdownMenuItem
-          className="justify-center"
-          onClick={() => {
-            field.setRule(undefined);
-          }}
-        >
-          Clear filter
-        </DropdownMenuItem>
-      </div>
-    </div>
-  );
+  // Clearing the cascader's selection removes the filter.
+  return <CascaderClear>Clear filter</CascaderClear>;
 };
 
 interface FilterFacetProps {
@@ -645,7 +750,7 @@ const FilterFacet = ({ field, className }: FilterFacetProps) => {
   return (
     <FilterValueControl
       field={field}
-      footer={active ? <FacetClear field={field} /> : null}
+      footer={active || isOptionType(field.type) ? <FacetClear field={field} /> : null}
       trigger={
         <Button
           data-slot="filter-facet"

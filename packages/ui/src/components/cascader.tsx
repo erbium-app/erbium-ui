@@ -146,6 +146,7 @@ interface CascaderSharedProps {
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: MenuPrimitive.Root.Props["onOpenChange"];
+  onOpenChangeComplete?: MenuPrimitive.Root.Props["onOpenChangeComplete"];
 }
 
 interface CascaderSingleProps extends CascaderSharedProps {
@@ -183,6 +184,7 @@ const Cascader = (props: CascaderProps) => {
     items,
     name,
     onOpenChange,
+    onOpenChangeComplete,
     open,
     searchable = false,
   } = props;
@@ -333,6 +335,7 @@ const Cascader = (props: CascaderProps) => {
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={handleOpenChange}
+      onOpenChangeComplete={onOpenChangeComplete}
       disabled={disabled}
     >
       {children}
@@ -468,7 +471,8 @@ const CascaderContent = ({
 
 /**
  * Search field of the open level. It finds options at any depth below the level, and inside a
- * level it leads with a button back to the parent level.
+ * level it leads with a button back to the parent level. `placeholder` and `aria-label` apply to
+ * the top level; inside a level, both name the level.
  */
 const CascaderSearch = ({
   placeholder = "Search…",
@@ -544,7 +548,7 @@ const CascaderSearch = ({
         <MenuPrimitive.Input
           ref={setInput}
           data-slot="cascader-search-input"
-          aria-label={ariaLabel ?? (level === null ? "Search options" : `Search ${level.label}`)}
+          aria-label={level === null ? (ariaLabel ?? "Search options") : `Search ${level.label}`}
           placeholder={level === null ? placeholder : `Search ${level.label}…`}
           className="min-h-0 min-w-0 flex-1 bg-transparent py-0 text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
           {...mergeProps<typeof MenuPrimitive.Input>({ onKeyDown: handleKeyDown }, props)}

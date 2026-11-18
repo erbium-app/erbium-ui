@@ -2697,6 +2697,13 @@
         "title": "Faceted"
       },
       {
+        "exportName": "NestedOptions",
+        "slug": "nested-options",
+        "source": "src/filters/variants/nested-options.tsx",
+        "usage": ["src/filters/variants/nested-options.tsx", "src/filters/data.ts"],
+        "title": "Nested options"
+      },
+      {
         "exportName": "List",
         "slug": "list",
         "source": "src/filters/variants/list.tsx",
