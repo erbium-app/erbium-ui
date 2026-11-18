@@ -1012,7 +1012,7 @@
       "type": "registry:lib",
       "title": "Filter Rules",
       "description": "Erbium filter rules lib.",
-      "dependencies": ["@erbium/icons", "@tanstack/react-table"],
+      "dependencies": ["@erbium-ui/react@^0.1.0", "@erbium/icons"],
       "files": [
         {
           "path": "src/lib/filter-rules.ts",
@@ -1026,8 +1026,7 @@
       "type": "registry:lib",
       "title": "Filter Search",
       "description": "Erbium filter search lib.",
-      "dependencies": ["@tanstack/react-table"],
-      "registryDependencies": ["@erbium/filter-rules"],
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
       "files": [
         {
           "path": "src/lib/filter-search.ts",
@@ -1041,6 +1040,7 @@
       "type": "registry:block",
       "title": "Filters",
       "description": "Erbium filters block.",
+      "dependencies": ["@erbium-ui/react@^0.1.0", "@erbium/icons"],
       "registryDependencies": [
         "@erbium/badge",
         "@erbium/button",
@@ -2308,8 +2308,8 @@
       "type": "registry:hook",
       "title": "Use Filters",
       "description": "Erbium use filters hook.",
-      "dependencies": ["@tanstack/react-table"],
-      "registryDependencies": ["@erbium/filter-rules", "@erbium/filter-search"],
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
+      "registryDependencies": ["@erbium/filter-rules"],
       "files": [
         {
           "path": "src/hooks/use-filters.ts",

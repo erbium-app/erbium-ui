@@ -1,3 +1,10 @@
+import {
+  Filters as FiltersPrimitive,
+  useFieldPicker,
+  useOptionPicker,
+} from "@erbium-ui/react/filters";
+import type { CascaderNode as PrimitiveCascaderNode } from "@erbium-ui/react/cascader";
+import type { IconName } from "@erbium/icons";
 import * as React from "react";
 import { Badge } from "../components/badge";
 import { Button } from "../components/button";
@@ -17,7 +24,6 @@ import type { CascaderNode } from "../components/cascader";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "../components/dropdown-menu";
@@ -28,13 +34,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "../components/popover";
 import { Separator } from "../components/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../components/tooltip";
 import {
-  changeOperator,
   createRule,
   filterOperators,
   findOption,
   formatDayKey,
+  getFieldActions,
   getOperatorLabel,
-  isFilterOperator,
   isNumber,
   isOptionType,
   isRangeOperator,
@@ -42,33 +47,22 @@ import {
   isText,
   parseDayKey,
 } from "../lib/filter-rules";
-import type { FilterField, FilterOption, FilterValue, Filters } from "../lib/filter-rules";
+import type { FilterField, FilterValue, Filters } from "../lib/filter-rules";
 import { buttonVariants } from "../lib/button-variants";
 import { cn } from "../lib/utils";
 
 /*
- * Filter components. Every layout here reads the same `Filters` (from `useTableFilters` or
- * `useListFilters`) and edits values with the same controls: option fields in a searchable
- * cascader, whose option trees open level by level in one popup, and text, number and date fields
- * in a popover. The layouts differ only in how they present fields.
+ * Erbium's filter layouts on the @erbium-ui/react filters primitive. The primitive owns rule
+ * changes, the add-filter and option pickers' behavior, and the operator, remove, text value and
+ * clear parts; this file closes the design to three layouts (a bar of chips, facets, an add
+ * menu), fixed editors per type (a cascader for options, a number field pair, a calendar) and
+ * summaries that name up to two options.
  */
 
 // Rule changes
 
 const setValues = (field: FilterField, values: FilterValue[]) => {
-  field.setRule({ ...(field.rule ?? createRule(field.type)), values });
-};
-
-/** Checks or unchecks an option. Unchecking the last option removes the filter. */
-const toggleOption = (field: FilterField, value: string, checked: boolean) => {
-  const values = (field.rule?.values ?? []).filter((current) => current !== value);
-  const next = checked ? [...values, value] : values;
-
-  if (next.length === 0) {
-    field.setRule(undefined);
-  } else {
-    setValues(field, next);
-  }
+  getFieldActions(field).setValues(values);
 };
 
 // Summaries
@@ -127,33 +121,32 @@ const summarize = (field: FilterField): string | null => {
 
 // Option trees
 
-/** The chosen option values of a field's rule. */
-const chosenValues = (field: FilterField) =>
-  (field.rule?.values ?? []).flatMap((value) => (value === null ? [] : [String(value)]));
+const iconNode = (icon: IconName | undefined) =>
+  icon === undefined ? undefined : <Icon name={icon} aria-hidden="true" />;
 
-/** Calls `visit` for each option that can be chosen: the options without children. */
-const forEachLeaf = (options: readonly FilterOption[], visit: (option: FilterOption) => void) => {
-  for (const option of options) {
-    if (option.children === undefined) {
-      visit(option);
-    } else {
-      forEachLeaf(option.children, visit);
-    }
-  }
-};
-
-/** An option tree as cascader nodes, each keyed by `nodeValue`. */
-const toOptionNodes = (
-  options: readonly FilterOption[],
-  nodeValue: (option: FilterOption) => string,
+/**
+ * Picker rows as Erbium cascader nodes, with the icon their data names. Rows with a count are
+ * recorded in `counts` by value.
+ */
+const toCascaderNodes = <TData extends { count?: number }>(
+  nodes: readonly PrimitiveCascaderNode<TData>[],
+  icon: (data: TData) => IconName | undefined,
+  counts: Map<string, number>,
 ): CascaderNode[] =>
-  options.map((option) => ({
-    children: option.children === undefined ? undefined : toOptionNodes(option.children, nodeValue),
-    icon: option.icon === undefined ? undefined : <Icon name={option.icon} aria-hidden="true" />,
-    keywords: option.keywords,
-    label: option.label,
-    value: nodeValue(option),
-  }));
+  nodes.map((node) => {
+    if (node.data?.count !== undefined) {
+      counts.set(node.value, node.data.count);
+    }
+
+    return {
+      children:
+        node.children === undefined ? undefined : toCascaderNodes(node.children, icon, counts),
+      icon: node.data === undefined ? undefined : iconNode(icon(node.data)),
+      keywords: node.keywords === undefined ? undefined : [...node.keywords],
+      label: node.label,
+      value: node.value,
+    };
+  });
 
 /** The content of an option row, with the option's count when the field has counts. */
 const OptionRow = ({ node, count }: { node: CascaderNode; count: number | undefined }) => (
@@ -292,17 +285,10 @@ const FilterValueEditor = ({ field }: { field: FilterField }) => {
     return null;
   }
 
-  const [value] = field.rule?.values ?? [];
-
   return (
-    <Input
-      aria-label={field.label}
-      placeholder={field.placeholder ?? "Enter text…"}
-      value={value !== undefined && isText(value) ? value : ""}
-      onChange={(event) => {
-        setValues(field, [event.target.value]);
-      }}
-    />
+    <FiltersPrimitive.Field field={field}>
+      <FiltersPrimitive.Value render={<Input placeholder={field.placeholder ?? "Enter text…"} />} />
+    </FiltersPrimitive.Field>
   );
 };
 
@@ -330,27 +316,21 @@ const FilterOptionMenu = ({
   footer,
   align = "start",
 }: FilterValueControlProps) => {
-  const { counts, options } = field;
-  const items = React.useMemo(() => toOptionNodes(options, (option) => option.value), [options]);
+  const picker = useOptionPicker(field);
+  const counts = new Map<string, number>();
+  const items = toCascaderNodes(picker.items, (data) => data.option.icon, counts);
 
   // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an
   // open menu keeps its anchor) when one more chosen option turns the names into a count.
   return (
     <Tooltip disabled={!isCounted(field)}>
       <Cascader
+        {...picker}
         multiple
         searchable
         items={items}
-        value={chosenValues(field)}
         open={open}
         onOpenChange={onOpenChange}
-        onValueChange={(values) => {
-          if (values.length === 0) {
-            field.setRule(undefined);
-          } else {
-            setValues(field, values);
-          }
-        }}
       >
         <CascaderTrigger render={<TooltipTrigger render={trigger} />} />
         <CascaderContent align={align} className="w-64">
@@ -360,16 +340,7 @@ const FilterOptionMenu = ({
           />
           <CascaderEmpty>No options found.</CascaderEmpty>
           <CascaderList>
-            {(node) => (
-              <OptionRow
-                node={node}
-                count={
-                  counts === undefined || node.children !== undefined
-                    ? undefined
-                    : (counts.get(node.value) ?? 0)
-                }
-              />
-            )}
+            {(node) => <OptionRow node={node} count={counts.get(node.value)} />}
           </CascaderList>
           {footer}
         </CascaderContent>
@@ -408,8 +379,8 @@ const FilterValueControl = ({
     <Popover
       open={open}
       onOpenChange={(next) => {
-        if (!next && field.rule !== undefined && isRuleEmpty(field.rule)) {
-          field.setRule(undefined);
+        if (!next) {
+          getFieldActions(field).removeIfEmpty();
         }
 
         onOpenChange?.(next);
@@ -444,20 +415,15 @@ const FilterOperatorMenu = ({ field }: { field: FilterField }) => {
         {getOperatorLabel(field.type, rule.operator, count)}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
-        <DropdownMenuRadioGroup
-          value={rule.operator}
-          onValueChange={(operator) => {
-            if (isFilterOperator(operator)) {
-              field.setRule(changeOperator(rule, operator));
-            }
-          }}
-        >
-          {filterOperators[field.type].map((operator) => (
-            <DropdownMenuRadioItem key={operator} value={operator}>
-              {getOperatorLabel(field.type, operator, count)}
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
+        <FiltersPrimitive.Field field={field}>
+          <FiltersPrimitive.Operator>
+            {filterOperators[field.type].map((operator) => (
+              <DropdownMenuRadioItem key={operator} value={operator}>
+                {getOperatorLabel(field.type, operator, count)}
+              </DropdownMenuRadioItem>
+            ))}
+          </FiltersPrimitive.Operator>
+        </FiltersPrimitive.Field>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -508,16 +474,11 @@ const FilterChip = ({ field, open, onOpenChange, className }: FilterChipProps) =
           </Button>
         }
       />
-      <Button
-        variant="outline"
-        size="icon-sm"
-        aria-label={`Remove ${field.label} filter`}
-        onClick={() => {
-          field.setRule(undefined);
-        }}
-      >
-        <Icon name="x" aria-hidden="true" />
-      </Button>
+      <FiltersPrimitive.Field field={field}>
+        <FiltersPrimitive.Remove render={<Button variant="outline" size="icon-sm" />}>
+          <Icon name="x" aria-hidden="true" />
+        </FiltersPrimitive.Remove>
+      </FiltersPrimitive.Field>
     </ButtonGroup>
   );
 };
@@ -530,115 +491,23 @@ interface FilterMenuProps {
   children?: React.ReactNode;
 }
 
-/** The menu value of a field, or of one of its options. JSON keeps any id and value apart. */
-const menuValue = (id: string, option?: string) =>
-  JSON.stringify(option === undefined ? [id] : [id, option]);
-
-interface MenuTarget {
-  field: FilterField;
-  /** The option a row chooses, or none for a field row. */
-  option?: string;
-}
-
-/**
- * The fields as the top level of the add-filter menu. An option field opens its option tree; a
- * text, number or date field is a row of its own, checked while the field has a filter.
- */
-const toFieldTree = (fields: readonly FilterField[]) => {
-  const targets = new Map<string, MenuTarget>();
-  const counts = new Map<string, number>();
-  const selected: string[] = [];
-
-  const items = fields.map((field): CascaderNode => {
-    const value = menuValue(field.id);
-
-    const icon =
-      field.icon === undefined ? undefined : <Icon name={field.icon} aria-hidden="true" />;
-
-    targets.set(value, { field });
-
-    if (!isOptionType(field.type)) {
-      if (field.rule !== undefined) {
-        selected.push(value);
-      }
-
-      return { icon, label: field.label, value };
-    }
-
-    forEachLeaf(field.options, (option) => {
-      const key = menuValue(field.id, option.value);
-
-      targets.set(key, { field, option: option.value });
-
-      if (field.counts !== undefined) {
-        counts.set(key, field.counts.get(option.value) ?? 0);
-      }
-    });
-
-    for (const chosen of chosenValues(field)) {
-      selected.push(menuValue(field.id, chosen));
-    }
-
-    return {
-      children: toOptionNodes(field.options, (option) => menuValue(field.id, option.value)),
-      icon,
-      label: field.label,
-      value,
-    };
-  });
-
-  return { counts, items, selected, targets };
-};
-
 /**
  * The searchable menu that adds filters, built on the cascader. Option fields open their options
  * in place, and the search finds fields and options at any depth. Text, number and date fields
  * add an empty filter and hand off to its value editor.
  */
 const FilterMenu = ({ filters, onFieldAdded, className, children = "Filter" }: FilterMenuProps) => {
-  const [open, setOpen] = React.useState(false);
-  // The field to open once the menu has closed and returned focus to its trigger.
-  const added = React.useRef<string | null>(null);
-  const { counts, items, selected, targets } = toFieldTree(filters.fields);
+  const picker = useFieldPicker(filters, { onFieldAdded });
+  const counts = new Map<string, number>();
+
+  const items = toCascaderNodes(
+    picker.items,
+    (data) => (data.option === undefined ? data.field.icon : data.option.icon),
+    counts,
+  );
 
   return (
-    <Cascader
-      multiple
-      searchable
-      items={items}
-      value={selected}
-      open={open}
-      onOpenChange={setOpen}
-      onOpenChangeComplete={(next) => {
-        if (!next && added.current !== null) {
-          onFieldAdded?.(added.current);
-          added.current = null;
-        }
-      }}
-      onValueChange={(values, { node }) => {
-        const target = node === null ? undefined : targets.get(node.value);
-
-        if (node === null || target === undefined) {
-          return;
-        }
-
-        const checked = values.includes(node.value);
-        const { field, option } = target;
-
-        if (option !== undefined) {
-          toggleOption(field, option, checked);
-        } else if (checked) {
-          if (field.rule === undefined) {
-            field.setRule(createRule(field.type));
-          }
-
-          added.current = field.id;
-          setOpen(false);
-        } else {
-          field.setRule(undefined);
-        }
-      }}
-    >
+    <Cascader multiple {...picker} searchable items={items}>
       <CascaderTrigger render={<Button variant="outline" size="sm" className={className} />}>
         <Icon name="list-filter" aria-hidden="true" data-icon="inline-start" />
         {children}
@@ -682,15 +551,11 @@ const FilterBar = ({ filters, className, children, ...props }: FilterBarProps) =
         />
       ))}
       {filters.active.length === 0 ? null : (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => {
-            filters.clear();
-          }}
-        >
-          Clear
-        </Button>
+        <FiltersPrimitive.Root filters={filters}>
+          <FiltersPrimitive.Clear render={<Button variant="ghost" size="sm" />}>
+            Clear
+          </FiltersPrimitive.Clear>
+        </FiltersPrimitive.Root>
       )}
       {children}
     </div>
@@ -720,15 +585,14 @@ const FacetSummary = ({ field }: { field: FilterField }) => {
 const FacetClear = ({ field }: { field: FilterField }) => {
   if (!isOptionType(field.type)) {
     return (
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => {
-          field.setRule(undefined);
-        }}
-      >
-        Clear filter
-      </Button>
+      <FiltersPrimitive.Field field={field}>
+        <FiltersPrimitive.Remove
+          aria-label={undefined}
+          render={<Button variant="ghost" size="sm" />}
+        >
+          Clear filter
+        </FiltersPrimitive.Remove>
+      </FiltersPrimitive.Field>
     );
   }
 
@@ -804,16 +668,12 @@ const FilterFacets = ({ filters, fields, className, children, ...props }: Filter
         <FilterFacet key={field.id} field={field} />
       ))}
       {filters.active.length === 0 ? null : (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => {
-            filters.clear();
-          }}
-        >
-          Reset
-          <Icon name="x" aria-hidden="true" data-icon="inline-end" />
-        </Button>
+        <FiltersPrimitive.Root filters={filters}>
+          <FiltersPrimitive.Clear render={<Button variant="ghost" size="sm" />}>
+            Reset
+            <Icon name="x" aria-hidden="true" data-icon="inline-end" />
+          </FiltersPrimitive.Clear>
+        </FiltersPrimitive.Root>
       )}
     </div>
   );
