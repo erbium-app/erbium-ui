@@ -4,8 +4,7 @@
   "name": "sidebar-examples",
   "registryDependencies": [
     "@erbium-examples/sidebar-playground",
-    "@erbium-examples/sidebar-overview",
-    "@erbium-examples/sidebar-controlled-sidebar"
+    "@erbium-examples/sidebar-overview"
   ],
   "title": "Sidebar examples",
   "type": "registry:item"

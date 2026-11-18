@@ -4526,7 +4526,7 @@
         "exportName": "Playground",
         "slug": "playground",
         "source": "src/sidebar/variants/playground.tsx",
-        "usage": ["src/sidebar/variants/playground.tsx"],
+        "usage": ["src/sidebar/examples/sidebar-demo.tsx"],
         "title": "Playground"
       },
       {
@@ -4535,13 +4535,6 @@
         "source": "src/sidebar/variants/overview.tsx",
         "usage": ["src/sidebar/examples/sidebar-demo.tsx"],
         "title": "Overview"
-      },
-      {
-        "exportName": "ControlledSidebar",
-        "slug": "controlled-sidebar",
-        "source": "src/sidebar/variants/controlled-sidebar.tsx",
-        "usage": ["src/sidebar/examples/sidebar-controlled.tsx"],
-        "title": "Controlled Sidebar"
       }
     ]
   },

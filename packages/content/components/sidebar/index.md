@@ -135,6 +135,16 @@ The `SidebarProvider` component is used to provide the sidebar context to the `S
 | `minWidth`      | `number`                               | Smallest width the rail resizes to. Defaults to 224.                       |
 | `maxWidth`      | `number`                               | Largest width the rail resizes to. Defaults to 352.                        |
 
+Pass `open` and `onOpenChange` to control the sidebar:
+
+```tsx
+const [open, setOpen] = React.useState(false);
+
+<SidebarProvider open={open} onOpenChange={setOpen}>
+  <Sidebar />
+</SidebarProvider>;
+```
+
 `SidebarProvider` sets `--sidebar-width` (16rem) and `--sidebar-width-icon` (3rem) as classes. Override either one with a class on the provider; `cn` keeps the last value. The mobile sheet uses 18rem.
 
 To toggle the sidebar, `SidebarProvider` registers the `Mod+B` shortcut through TanStack Hotkeys — `Cmd+B` on macOS and `Ctrl+B` on Windows and Linux.

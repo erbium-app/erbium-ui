@@ -6,5 +6,3 @@ export default { ...meta, title: "Components/Sidebar" };
 export const Playground = { ...showcases.Playground, name: "Playground" };
 
 export const Overview = { ...showcases.Overview, name: "Overview" };
-
-export const ControlledSidebar = { ...showcases.ControlledSidebar, name: "Controlled Sidebar" };

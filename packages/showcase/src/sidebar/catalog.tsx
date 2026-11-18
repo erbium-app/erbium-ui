@@ -6,15 +6,11 @@ import { componentDocumentation, variantDocumentation } from "@erbium/content/ma
 
 import PlaygroundExample, { defaultProps as PlaygroundDefaults } from "./variants/playground";
 
-import PlaygroundSource from "./variants/playground.tsx?raw";
-
 import OverviewExample from "./variants/overview";
 
 import OverviewSource from "./examples/sidebar-demo.tsx?raw";
 
-import ControlledSidebarExample from "./variants/controlled-sidebar";
-
-import ControlledSidebarSource from "./examples/sidebar-controlled.tsx?raw";
+const PlaygroundSource = OverviewSource;
 
 const meta = {
   component: Sidebar,
@@ -24,7 +20,7 @@ const meta = {
         component: componentDocumentation("sidebar"),
       },
     },
-    layout: "centered",
+    layout: "padded",
   },
   tags: ["autodocs"],
 } satisfies Meta<typeof Sidebar>;
@@ -63,14 +59,4 @@ export const Overview: Story = {
     },
   },
   render: OverviewExample,
-};
-
-export const ControlledSidebar: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("sidebar", "controlled-sidebar") },
-      source: { code: ControlledSidebarSource },
-    },
-  },
-  render: ControlledSidebarExample,
 };

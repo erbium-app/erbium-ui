@@ -202,7 +202,8 @@
         "@erbium/csp-provider",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -546,7 +547,8 @@
         "@erbium/input",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -739,7 +741,8 @@
         "@erbium/csp-provider",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -945,7 +948,8 @@
         "@erbium/link",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -1038,7 +1042,8 @@
         "@erbium/csp-provider",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -1166,7 +1171,8 @@
         "@erbium/csp-provider",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -1364,7 +1370,8 @@
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -1755,7 +1762,8 @@
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -2347,7 +2355,8 @@
         "@erbium/icon",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -2587,7 +2596,8 @@
         "@erbium/icon",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -2788,7 +2798,8 @@
         "@erbium/csp-provider",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -3039,7 +3050,8 @@
         "@erbium/slider",
         "@erbium/stateful-icon",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -3332,7 +3344,8 @@
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/tooltip"
+        "@erbium/tooltip",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -4032,7 +4045,8 @@
         "@erbium/styles",
         "@erbium/textarea",
         "@erbium/toast",
-        "@erbium/tooltip"
+        "@erbium/tooltip",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -4465,7 +4479,8 @@
         "@erbium/kbd",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -5040,7 +5055,8 @@
         "@erbium/input-group",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -5374,7 +5390,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/table",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -5654,7 +5671,8 @@
         "@erbium/lightbox",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -5949,7 +5967,8 @@
         "@erbium/icon",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -6082,7 +6101,8 @@
         "@erbium/pie-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -6396,7 +6416,8 @@
         "@erbium/styles",
         "@erbium/table",
         "@erbium/toast",
-        "@erbium/use-drag-select"
+        "@erbium/use-drag-select",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -6762,7 +6783,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -7072,7 +7094,8 @@
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/tabs",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -7478,7 +7501,8 @@
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -7801,7 +7825,8 @@
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -8141,7 +8166,8 @@
         "@erbium/icon",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -8526,7 +8552,8 @@
         "@erbium/skeleton",
         "@erbium/slider-scale",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -8734,7 +8761,8 @@
         "@erbium/input-group",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -8837,7 +8865,8 @@
         "@erbium/scroll-area",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -9130,7 +9159,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-data-table"
+        "@erbium/use-data-table",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -9386,7 +9416,8 @@
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -9697,7 +9728,8 @@
         "@erbium/input",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -9975,7 +10007,8 @@
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle",
-        "@erbium/toggle-group"
+        "@erbium/toggle-group",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -10109,7 +10142,8 @@
         "@erbium/direction",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -10349,7 +10383,8 @@
         "@erbium/slider",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-is-mobile"
+        "@erbium/use-is-mobile",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -10845,7 +10880,8 @@
         "@erbium/icon",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -11061,7 +11097,8 @@
         "@erbium/kbd",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -11302,7 +11339,8 @@
         "@erbium/kbd",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -11753,7 +11791,8 @@
         "@erbium/styles",
         "@erbium/switch",
         "@erbium/textarea",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -12056,7 +12095,8 @@
         "@erbium/sidebar",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -12191,7 +12231,8 @@
         "@erbium/file-view",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -12401,7 +12442,8 @@
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/use-data-table",
-        "@erbium/use-filters"
+        "@erbium/use-filters",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -12505,7 +12547,8 @@
         "@erbium/questionnaire",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -12597,7 +12640,8 @@
         "@erbium/heatmap-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -12758,7 +12802,8 @@
         "@erbium/hover-card",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -13382,7 +13427,8 @@
         "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -13719,7 +13765,8 @@
         "@erbium/select",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -14234,7 +14281,8 @@
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/switch",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -14549,7 +14597,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/tooltip"
+        "@erbium/tooltip",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -14676,7 +14725,8 @@
         "@erbium/lightbox",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -14739,7 +14789,8 @@
         "@erbium/line-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -14855,7 +14906,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -14955,7 +15007,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-router-pending"
+        "@erbium/use-router-pending",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -15194,7 +15247,8 @@
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -15454,7 +15508,8 @@
         "@erbium/menubar",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -16051,7 +16106,8 @@
         "@erbium/styles",
         "@erbium/tabs",
         "@erbium/toast",
-        "@erbium/tooltip"
+        "@erbium/tooltip",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -16233,7 +16289,8 @@
         "@erbium/message",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -16396,7 +16453,8 @@
         "@erbium/meter",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -16516,7 +16574,8 @@
         "@erbium/navigation-menu",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -16701,7 +16760,8 @@
         "@erbium/number-field",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -17023,7 +17083,8 @@
         "@erbium/otp-field",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -17289,7 +17350,8 @@
         "@erbium/switch",
         "@erbium/table",
         "@erbium/toast",
-        "@erbium/use-pagination"
+        "@erbium/use-pagination",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -17592,7 +17654,8 @@
         "@erbium/password-input",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -17741,7 +17804,8 @@
         "@erbium/pie-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -17929,7 +17993,8 @@
         "@erbium/popover",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -18627,7 +18692,8 @@
         "@erbium/skeleton",
         "@erbium/stateful-button",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -18888,7 +18954,8 @@
         "@erbium/radar-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -19150,7 +19217,8 @@
         "@erbium/radio-group",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -19349,7 +19417,8 @@
         "@erbium/resizable",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -19456,7 +19525,8 @@
         "@erbium/scatter-chart",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -19584,7 +19654,8 @@
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -19684,7 +19755,8 @@
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -19947,7 +20019,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -20206,7 +20279,8 @@
         "@erbium/separator",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -20362,7 +20436,8 @@
         "@erbium/shake",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -20516,7 +20591,8 @@
         "@erbium/sheet",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -20567,50 +20643,11 @@
       ]
     },
     {
-      "name": "sidebar-controlled",
-      "type": "registry:component",
-      "title": "sidebar controlled",
-      "description": "Erbium sidebar controlled example.",
-      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/sidebar/examples/sidebar-controlled.tsx",
-          "target": "@components/showcase/sidebar/examples/sidebar-controlled.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "sidebar-controlled-sidebar",
-      "type": "registry:block",
-      "title": "Sidebar: Controlled Sidebar",
-      "description": "Use the `open` and `onOpenChange` props to control the sidebar.\n\n```tsx\nexport function AppSidebar() {\n  const [open, setOpen] = React.useState(false);\n\n  return (\n    <SidebarProvider open={open} onOpenChange={setOpen}>\n      <Sidebar />\n    </SidebarProvider>\n  );\n}\n```",
-      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/sidebar/examples/sidebar-controlled.tsx",
-          "target": "@components/showcase/sidebar/examples/sidebar-controlled.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/sidebar/variants/controlled-sidebar.tsx",
-          "target": "@components/showcase/sidebar/variants/controlled-sidebar.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "sidebar-demo",
       "type": "registry:component",
       "title": "sidebar demo",
       "description": "Erbium sidebar demo example.",
-      "registryDependencies": [
-        "@erbium/collapsible",
-        "@erbium/separator",
-        "@erbium/sidebar",
-        "@erbium/stateful-icon",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
       "files": [
         {
           "path": "src/sidebar/examples/sidebar-demo.tsx",
@@ -20624,8 +20661,7 @@
       "name": "sidebar-examples",
       "registryDependencies": [
         "@erbium-examples/sidebar-playground",
-        "@erbium-examples/sidebar-overview",
-        "@erbium-examples/sidebar-controlled-sidebar"
+        "@erbium-examples/sidebar-overview"
       ],
       "title": "Sidebar examples",
       "type": "registry:item"
@@ -20635,13 +20671,7 @@
       "type": "registry:block",
       "title": "Sidebar: Overview",
       "description": "",
-      "registryDependencies": [
-        "@erbium/collapsible",
-        "@erbium/separator",
-        "@erbium/sidebar",
-        "@erbium/stateful-icon",
-        "@erbium/styles"
-      ],
+      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
       "files": [
         {
           "path": "src/sidebar/examples/sidebar-demo.tsx",
@@ -20657,11 +20687,16 @@
     },
     {
       "name": "sidebar-playground",
-      "type": "registry:component",
+      "type": "registry:block",
       "title": "Sidebar: Playground",
       "description": "",
-      "registryDependencies": ["@erbium/sidebar", "@erbium/styles"],
+      "registryDependencies": ["@erbium/icon", "@erbium/sidebar", "@erbium/styles"],
       "files": [
+        {
+          "path": "src/sidebar/examples/sidebar-demo.tsx",
+          "target": "@components/showcase/sidebar/examples/sidebar-demo.tsx",
+          "type": "registry:component"
+        },
         {
           "path": "src/sidebar/variants/playground.tsx",
           "target": "@components/showcase/sidebar/variants/playground.tsx",
@@ -20676,25 +20711,18 @@
       "description": "All sidebar variants as portable React CSF stories.",
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
-        "@erbium/collapsible",
         "@erbium/csp-provider",
         "@erbium/icon",
-        "@erbium/separator",
         "@erbium/sidebar",
         "@erbium/skeleton",
-        "@erbium/stateful-icon",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/sidebar/examples/sidebar-controlled.tsx",
-          "target": "@components/showcase/sidebar/examples/sidebar-controlled.tsx",
           "type": "registry:component"
         },
         {
@@ -20706,11 +20734,6 @@
           "path": "src/sidebar/sidebar.stories.tsx",
           "target": "@components/showcase/sidebar/sidebar.stories.tsx",
           "type": "registry:file"
-        },
-        {
-          "path": "src/sidebar/variants/controlled-sidebar.tsx",
-          "target": "@components/showcase/sidebar/variants/controlled-sidebar.tsx",
-          "type": "registry:component"
         },
         {
           "path": "src/sidebar/variants/overview.tsx",
@@ -20796,7 +20819,8 @@
         "@erbium/table",
         "@erbium/tabs",
         "@erbium/toast",
-        "@erbium/toggle"
+        "@erbium/toggle",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -21270,7 +21294,8 @@
         "@erbium/switch",
         "@erbium/toast",
         "@erbium/toggle-group",
-        "@erbium/use-data-table"
+        "@erbium/use-data-table",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -22025,7 +22050,8 @@
         "@erbium/skeleton",
         "@erbium/spinner",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -22196,7 +22222,8 @@
         "@erbium/skeleton",
         "@erbium/stateful-button",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -22396,7 +22423,8 @@
         "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -22597,7 +22625,8 @@
         "@erbium/step-indicator",
         "@erbium/styles",
         "@erbium/tabs",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -22853,7 +22882,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/toggle-group"
+        "@erbium/toggle-group",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -23179,7 +23209,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/switch",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -23699,7 +23730,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/tabs",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -23835,7 +23867,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/text-morph",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -24020,7 +24053,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/textarea",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -24224,7 +24258,8 @@
         "@erbium/csp-provider",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -24556,7 +24591,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/toggle-group"
+        "@erbium/toggle-group",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -24776,7 +24812,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/toggle"
+        "@erbium/toggle",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -24995,7 +25032,8 @@
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/toggle",
-        "@erbium/toolbar"
+        "@erbium/toolbar",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25214,7 +25252,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/tooltip"
+        "@erbium/tooltip",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25395,7 +25434,8 @@
         "@erbium/input",
         "@erbium/skeleton",
         "@erbium/styles",
-        "@erbium/toast"
+        "@erbium/toast",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25534,7 +25574,8 @@
         "@erbium/stateful-icon",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-copy-to-clipboard"
+        "@erbium/use-copy-to-clipboard",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25631,7 +25672,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-drag-select"
+        "@erbium/use-drag-select",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25707,7 +25749,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-is-mobile"
+        "@erbium/use-is-mobile",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25783,7 +25826,8 @@
         "@erbium/skeleton",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-media-query"
+        "@erbium/use-media-query",
+        "@erbium/utils"
       ],
       "files": [
         {
@@ -25875,7 +25919,8 @@
         "@erbium/spinner",
         "@erbium/styles",
         "@erbium/toast",
-        "@erbium/use-predicted-intent"
+        "@erbium/use-predicted-intent",
+        "@erbium/utils"
       ],
       "files": [
         {
