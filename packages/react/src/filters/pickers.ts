@@ -168,6 +168,33 @@ const useOptionPicker = <TExtra extends object = object, TOptionExtra extends ob
   value: chosenValues(field),
 });
 
-export { useFieldPicker, useOptionPicker };
+/** Coordinates the add-field picker with the inline editor it opens. */
+const useFilterEditorState = () => {
+  const [openId, setOpenId] = React.useState<string | null>(null);
+
+  return {
+    onFieldAdded: setOpenId,
+    getEditorProps: (field: Pick<FilterField, "id" | "type">) => {
+      if (isOptionType(field.type)) {
+        return {};
+      }
+
+      return {
+        open: openId === field.id,
+        onOpenChange: (open: boolean) => {
+          setOpenId((current) => {
+            if (open) {
+              return field.id;
+            }
+
+            return current === field.id ? null : current;
+          });
+        },
+      };
+    },
+  };
+};
+
+export { useFieldPicker, useFilterEditorState, useOptionPicker };
 
 export type { FieldPickerData, FieldPickerOptions, OptionPickerData, PickerChangeDetails };

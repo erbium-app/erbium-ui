@@ -5,6 +5,7 @@ import {
   FiltersOperatorItem,
   FiltersRemove,
   FiltersRoot,
+  FiltersSummary,
   FiltersValue,
 } from "./parts";
 import type { Filters as FilterSet } from "./rules";
@@ -31,6 +32,7 @@ const Filters = {
   OperatorItem: FiltersOperatorItem,
   Remove: FiltersRemove,
   Root: FiltersRoot,
+  Summary: FiltersSummary,
   Value: FiltersValue,
 };
 
@@ -43,6 +45,8 @@ export type {
   FiltersFieldProps,
   FiltersOperatorItemProps,
   FiltersRootProps,
+  FiltersSummaryProps,
+  FiltersSummaryState,
   FiltersValueProps,
   UseFilterFieldReturnValue,
 } from "./parts";
@@ -59,7 +63,7 @@ export type {
   TableFiltersOptions,
 } from "./adapters";
 
-export { useFieldPicker, useOptionPicker } from "./pickers";
+export { useFieldPicker, useFilterEditorState, useOptionPicker } from "./pickers";
 
 export type {
   FieldPickerData,

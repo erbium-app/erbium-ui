@@ -1,6 +1,11 @@
 import {
   Filters as FiltersPrimitive,
+  getFilterEditor,
+  getFilterOperatorChoices,
+  getFilterSummary,
+  isOptionType,
   useFieldPicker,
+  useFilterEditorState,
   useOptionPicker,
 } from "@erbium-ui/react/filters";
 import type { IconName } from "@erbium/icons";
@@ -9,7 +14,6 @@ import { Badge } from "../components/badge";
 import { Button } from "../components/button";
 import { ButtonGroup } from "../components/button-group";
 import { Calendar } from "../components/calendar";
-import type { DateRange } from "../components/calendar";
 import {
   Cascader,
   CascaderClear,
@@ -31,21 +35,7 @@ import { NumberField, NumberFieldGroup, NumberFieldInput } from "../components/n
 import { Popover, PopoverContent, PopoverTrigger } from "../components/popover";
 import { Separator } from "../components/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../components/tooltip";
-import {
-  createRule,
-  filterOperators,
-  findOption,
-  formatDayKey,
-  getFieldActions,
-  getOperatorLabel,
-  isNumber,
-  isOptionType,
-  isRangeOperator,
-  isRuleEmpty,
-  isText,
-  parseDayKey,
-} from "../lib/filter-rules";
-import type { FilterField, FilterValue, Filters } from "../lib/filter-rules";
+import type { FilterField, Filters } from "../lib/filter-rules";
 import { buttonVariants } from "../lib/button-variants";
 import { cn } from "../lib/utils";
 
@@ -57,65 +47,11 @@ import { cn } from "../lib/utils";
  * summaries that name up to two options.
  */
 
-// Rule changes
-
-const setValues = (field: FilterField, values: FilterValue[]) => {
-  getFieldActions(field).setValues(values);
-};
-
-// Summaries
-
-const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: "medium" });
-
-const formatValue = (field: FilterField, value: FilterValue | undefined): string | null => {
-  if (value === null || value === undefined || value === "") {
-    return null;
-  }
-
-  if (field.type === "number" && isNumber(value)) {
-    return new Intl.NumberFormat(undefined, field.format).format(value);
-  }
-
-  if (field.type === "date" && isText(value)) {
-    return dateFormat.format(parseDayKey(value));
-  }
-
-  return findOption(field.options, String(value))?.label ?? String(value);
-};
-
-/** The labels of an option field's chosen options, in the order they were chosen. */
-const optionLabels = (field: FilterField): string[] =>
-  isOptionType(field.type)
-    ? (field.rule?.values ?? []).map((value) => formatValue(field, value) ?? "")
-    : [];
-
-/** Past this many chosen options, a summary counts them instead of naming them. */
-const namedOptionLimit = 2;
-
-const isCounted = (field: FilterField) => optionLabels(field).length > namedOptionLimit;
-
-/** What a field's value reads as in a chip or facet button, or `null` while it has none. */
-const summarize = (field: FilterField): string | null => {
-  const { rule } = field;
-
-  if (rule === undefined || isRuleEmpty(rule)) {
-    return null;
-  }
-
-  if (isOptionType(field.type)) {
-    const labels = optionLabels(field);
-
-    return isCounted(field) ? `${labels.length} selected` : labels.join(", ");
-  }
-
-  const [first, second] = rule.values;
-
-  if (isRangeOperator(rule.operator)) {
-    return `${formatValue(field, first) ?? "…"} – ${formatValue(field, second) ?? "…"}`;
-  }
-
-  return field.type === "text" ? `“${first ?? ""}”` : formatValue(field, first);
-};
+const summaryOptions = (field: FilterField) => ({
+  formatText: (text: string) => `“${text}”`,
+  maxOptionLabels: 2,
+  numberFormat: field.format,
+});
 
 // Option trees
 
@@ -138,129 +74,35 @@ const OptionRow = ({
   </>
 );
 
-interface NumberInputProps {
-  field: FilterField;
-  label: string;
-  value: number | null;
-  onValueChange: (value: number | null) => void;
-  placeholder?: number;
-}
+type FilterEditor = ReturnType<typeof getFilterEditor>;
 
-const NumberInput = ({ field, label, value, onValueChange, placeholder }: NumberInputProps) => (
-  <NumberField
-    size="sm"
-    value={value}
-    min={field.min}
-    max={field.max}
-    step={field.step}
-    format={field.format}
-    onValueChange={onValueChange}
-  >
+type NumberInputProps = Extract<FilterEditor, { type: "number" }>["start"];
+
+const NumberInput = ({ label, placeholder, ...props }: NumberInputProps) => (
+  <NumberField size="sm" {...props}>
     <NumberFieldGroup>
-      <NumberFieldInput
-        aria-label={label}
-        placeholder={
-          placeholder === undefined
-            ? undefined
-            : new Intl.NumberFormat(undefined, field.format).format(placeholder)
-        }
-      />
+      <NumberFieldInput aria-label={label} placeholder={placeholder} />
     </NumberFieldGroup>
   </NumberField>
 );
 
-const asNumber = (value: FilterValue | undefined) =>
-  value !== undefined && isNumber(value) ? value : null;
-
-const asDay = (value: FilterValue | undefined) =>
-  value !== undefined && isText(value) ? parseDayKey(value) : undefined;
-
-const NumberEditor = ({ field }: { field: FilterField }) => {
-  const rule = field.rule ?? createRule(field.type);
-  const [first, second] = rule.values;
-  const start = asNumber(first);
-  const end = asNumber(second);
-
-  if (!isRangeOperator(rule.operator)) {
-    return (
-      <NumberInput
-        field={field}
-        label={field.label}
-        value={start}
-        onValueChange={(value) => {
-          setValues(field, [value]);
-        }}
-      />
+const ValueEditor = ({ field, editor }: { field: FilterField; editor: FilterEditor }) => {
+  if (editor.type === "number") {
+    return editor.end === undefined ? (
+      <NumberInput {...editor.start} />
+    ) : (
+      <div className="grid grid-cols-2 gap-related">
+        <NumberInput {...editor.start} />
+        <NumberInput {...editor.end} />
+      </div>
     );
   }
 
-  return (
-    <div className="grid grid-cols-2 gap-related">
-      <NumberInput
-        field={field}
-        label={`${field.label} from`}
-        value={start}
-        placeholder={field.min ?? field.range?.[0]}
-        onValueChange={(value) => {
-          setValues(field, [value, end]);
-        }}
-      />
-      <NumberInput
-        field={field}
-        label={`${field.label} to`}
-        value={end}
-        placeholder={field.max ?? field.range?.[1]}
-        onValueChange={(value) => {
-          setValues(field, [start, value]);
-        }}
-      />
-    </div>
-  );
-};
-
-const DateEditor = ({ field }: { field: FilterField }) => {
-  const rule = field.rule ?? createRule(field.type);
-  const [first, second] = rule.values;
-
-  if (!isRangeOperator(rule.operator)) {
-    return (
-      <Calendar
-        mode="single"
-        defaultMonth={asDay(first)}
-        selected={asDay(first)}
-        onSelect={(selected: Date | undefined) => {
-          setValues(field, selected === undefined ? [] : [formatDayKey(selected)]);
-        }}
-      />
-    );
+  if (editor.type === "date") {
+    return <Calendar {...editor.calendar} />;
   }
 
-  return (
-    <Calendar
-      mode="range"
-      defaultMonth={asDay(first)}
-      selected={{ from: asDay(first), to: asDay(second) }}
-      onSelect={(selected: DateRange | undefined) => {
-        setValues(field, [
-          selected?.from === undefined ? null : formatDayKey(selected.from),
-          selected?.to === undefined ? null : formatDayKey(selected.to),
-        ]);
-      }}
-    />
-  );
-};
-
-/** The editor for a text, number or date field's value. Render inside a popover. */
-const FilterValueEditor = ({ field }: { field: FilterField }) => {
-  if (field.type === "number") {
-    return <NumberEditor field={field} />;
-  }
-
-  if (field.type === "date") {
-    return <DateEditor field={field} />;
-  }
-
-  if (field.type !== "text") {
+  if (editor.type !== "text") {
     return null;
   }
 
@@ -270,6 +112,11 @@ const FilterValueEditor = ({ field }: { field: FilterField }) => {
     </FiltersPrimitive.Field>
   );
 };
+
+/** The editor for a text, number or date field's value. Render inside a popover. */
+const FilterValueEditor = ({ field }: { field: FilterField }) => (
+  <ValueEditor field={field} editor={getFilterEditor(field, { numberFormat: field.format })} />
+);
 
 interface FilterValueControlProps {
   field: FilterField;
@@ -296,11 +143,12 @@ const FilterOptionMenu = ({
   align = "start",
 }: FilterValueControlProps) => {
   const picker = useOptionPicker(field);
+  const summary = getFilterSummary(field, summaryOptions(field));
 
   // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an
   // open menu keeps its anchor) when one more chosen option turns the names into a count.
   return (
-    <Tooltip disabled={!isCounted(field)}>
+    <Tooltip disabled={!summary.collapsed}>
       <Cascader {...picker} multiple searchable open={open} onOpenChange={onOpenChange}>
         <CascaderTrigger render={<TooltipTrigger render={trigger} />} />
         <CascaderContent align={align} className="w-64">
@@ -317,7 +165,7 @@ const FilterOptionMenu = ({
           {footer}
         </CascaderContent>
       </Cascader>
-      <TooltipContent>{optionLabels(field).join(", ")}</TooltipContent>
+      <TooltipContent>{summary.options.map(({ label }) => label).join(", ")}</TooltipContent>
     </Tooltip>
   );
 };
@@ -347,20 +195,15 @@ const FilterValueControl = ({
     );
   }
 
-  return (
-    <Popover
-      open={open}
-      onOpenChange={(next) => {
-        if (!next) {
-          getFieldActions(field).removeIfEmpty();
-        }
+  const editor = getFilterEditor(field, { numberFormat: field.format, onOpenChange });
 
-        onOpenChange?.(next);
-      }}
-    >
+  const { onOpenChange: handleOpenChange } = editor;
+
+  return (
+    <Popover open={open} onOpenChange={handleOpenChange}>
       <PopoverTrigger render={trigger} />
-      <PopoverContent align={align} className={field.type === "date" ? "w-auto" : "w-64"}>
-        <FilterValueEditor field={field} />
+      <PopoverContent align={align} className={editor.type === "date" ? "w-auto" : "w-64"}>
+        <ValueEditor field={field} editor={editor} />
         {footer}
       </PopoverContent>
     </Popover>
@@ -371,27 +214,25 @@ const FilterValueControl = ({
 
 /** The menu that changes a filter's operator. */
 const FilterOperatorMenu = ({ field }: { field: FilterField }) => {
-  const { rule } = field;
+  const choices = getFilterOperatorChoices(field);
 
-  if (rule === undefined) {
+  if (choices === null) {
     return null;
   }
-
-  const count = rule.values.length;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         render={<Button variant="outline" size="sm" className="text-muted-foreground" />}
       >
-        {getOperatorLabel(field.type, rule.operator, count)}
+        {choices.label}
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <FiltersPrimitive.Field field={field}>
           <FiltersPrimitive.Operator>
-            {filterOperators[field.type].map((operator) => (
+            {choices.items.map(({ label, operator }) => (
               <DropdownMenuRadioItem key={operator} value={operator}>
-                {getOperatorLabel(field.type, operator, count)}
+                {label}
               </DropdownMenuRadioItem>
             ))}
           </FiltersPrimitive.Operator>
@@ -410,50 +251,50 @@ interface FilterChipProps {
 }
 
 /** One active filter as a chip: field, operator, value, and a remove button. */
-const FilterChip = ({ field, open, onOpenChange, className }: FilterChipProps) => {
-  const summary = summarize(field);
-
-  return (
-    <ButtonGroup data-slot="filter-chip" aria-label={`${field.label} filter`} className={className}>
-      {/* The field segment takes the buttons' surface and size so the chip reads as one control. */}
-      <span
-        data-slot="filter-chip-field"
-        className={cn(
-          buttonVariants({ size: "sm", variant: "outline" }),
-          "pointer-events-none cursor-default",
-        )}
-      >
-        {field.icon === undefined ? null : (
-          <Icon
-            name={field.icon}
-            aria-hidden="true"
-            data-icon="inline-start"
-            className="text-muted-foreground"
-          />
-        )}
-        {field.label}
-      </span>
-      <FilterOperatorMenu field={field} />
-      <FilterValueControl
-        field={field}
-        open={open}
-        onOpenChange={onOpenChange}
-        trigger={
-          <Button variant="outline" size="sm" className="max-w-56">
-            <span className={cn("truncate", summary === null && "text-muted-foreground")}>
-              {summary ?? "Choose…"}
-            </span>
-          </Button>
-        }
-      />
-      <FiltersPrimitive.Field field={field}>
-        <FiltersPrimitive.Remove render={<Button variant="outline" size="icon-sm" />}>
-          <Icon name="x" aria-hidden="true" />
-        </FiltersPrimitive.Remove>
-      </FiltersPrimitive.Field>
-    </ButtonGroup>
-  );
-};
+const FilterChip = ({ field, open, onOpenChange, className }: FilterChipProps) => (
+  <ButtonGroup data-slot="filter-chip" aria-label={`${field.label} filter`} className={className}>
+    {/* The field segment takes the buttons' surface and size so the chip reads as one control. */}
+    <span
+      data-slot="filter-chip-field"
+      className={cn(
+        buttonVariants({ size: "sm", variant: "outline" }),
+        "pointer-events-none cursor-default",
+      )}
+    >
+      {field.icon === undefined ? null : (
+        <Icon
+          name={field.icon}
+          aria-hidden="true"
+          data-icon="inline-start"
+          className="text-muted-foreground"
+        />
+      )}
+      {field.label}
+    </span>
+    <FilterOperatorMenu field={field} />
+    <FilterValueControl
+      field={field}
+      open={open}
+      onOpenChange={onOpenChange}
+      trigger={
+        <Button variant="outline" size="sm" className="max-w-56">
+          <FiltersPrimitive.Field field={field}>
+            <FiltersPrimitive.Summary
+              className="truncate data-empty:text-muted-foreground"
+              options={summaryOptions(field)}
+              placeholder="Choose…"
+            />
+          </FiltersPrimitive.Field>
+        </Button>
+      }
+    />
+    <FiltersPrimitive.Field field={field}>
+      <FiltersPrimitive.Remove render={<Button variant="outline" size="icon-sm" />}>
+        <Icon name="x" aria-hidden="true" />
+      </FiltersPrimitive.Remove>
+    </FiltersPrimitive.Field>
+  </ButtonGroup>
+);
 
 interface FilterMenuProps {
   filters: Filters;
@@ -502,7 +343,7 @@ interface FilterBarProps extends Omit<React.ComponentProps<"div">, "children"> {
 
 /** Chip mode: an add-filter menu, a chip for each active filter, and a clear action. */
 const FilterBar = ({ filters, className, children, ...props }: FilterBarProps) => {
-  const [openId, setOpenId] = React.useState<string | null>(null);
+  const { getEditorProps, onFieldAdded: handleFieldAdded } = useFilterEditorState();
 
   return (
     <div
@@ -510,16 +351,9 @@ const FilterBar = ({ filters, className, children, ...props }: FilterBarProps) =
       className={cn("flex min-w-0 flex-wrap items-center gap-related", className)}
       {...props}
     >
-      <FilterMenu filters={filters} onFieldAdded={setOpenId} />
+      <FilterMenu filters={filters} onFieldAdded={handleFieldAdded} />
       {filters.active.map((field) => (
-        <FilterChip
-          key={field.id}
-          field={field}
-          open={isOptionType(field.type) ? undefined : openId === field.id}
-          onOpenChange={(open) => {
-            setOpenId(open ? field.id : null);
-          }}
-        />
+        <FilterChip key={field.id} field={field} {...getEditorProps(field)} />
       ))}
       {filters.active.length === 0 ? null : (
         <FiltersPrimitive.Root filters={filters}>
@@ -535,23 +369,18 @@ const FilterBar = ({ filters, className, children, ...props }: FilterBarProps) =
 
 // Faceted mode
 
-const FacetSummary = ({ field }: { field: FilterField }) => {
-  const chosen = field.rule?.values ?? [];
-
-  if (!isOptionType(field.type) || isCounted(field)) {
-    return (
-      <Badge variant="secondary" className="max-w-40">
-        <span className="truncate">{summarize(field)}</span>
-      </Badge>
-    );
-  }
-
-  return chosen.map((value) => (
-    <Badge key={String(value)} variant="secondary">
-      {formatValue(field, value)}
+const FacetSummary = ({ summary }: { summary: ReturnType<typeof getFilterSummary> }) =>
+  summary.collapsed || summary.options.length === 0 ? (
+    <Badge variant="secondary" className="max-w-40">
+      <span className="truncate">{summary.text}</span>
     </Badge>
-  ));
-};
+  ) : (
+    summary.options.map(({ value, label }) => (
+      <Badge key={value} variant="secondary">
+        {label}
+      </Badge>
+    ))
+  );
 
 const FacetClear = ({ field }: { field: FilterField }) => {
   if (!isOptionType(field.type)) {
@@ -581,7 +410,8 @@ interface FilterFacetProps {
  * Option fields mean "is any of"; text, number and date fields use their first operator.
  */
 const FilterFacet = ({ field, className }: FilterFacetProps) => {
-  const active = field.rule !== undefined && !isRuleEmpty(field.rule);
+  const summary = getFilterSummary(field, summaryOptions(field));
+  const active = summary.text !== null;
 
   return (
     <FilterValueControl
@@ -604,7 +434,7 @@ const FilterFacet = ({ field, className }: FilterFacetProps) => {
           {active ? (
             <>
               <Separator orientation="vertical" className="mx-0.5 -my-px h-auto self-stretch" />
-              <FacetSummary field={field} />
+              <FacetSummary summary={summary} />
             </>
           ) : null}
         </Button>

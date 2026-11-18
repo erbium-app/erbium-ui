@@ -3,6 +3,9 @@ import { Menu } from "@base-ui/react/menu";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { missingContext } from "../internal/dom";
+import { resolveStateProp } from "../internal/resolve";
+import { getFilterSummary } from "./presentation";
+import type { FilterSummary, FilterSummaryOptions } from "./presentation";
 import { filterOperators, getFieldActions, isFilterOperator, isRuleEmpty } from "./rules";
 import type { FilterField, FilterFieldActions, FilterOperator, Filters } from "./rules";
 
@@ -186,6 +189,43 @@ const FiltersValue = ({ index = 0, render, ...props }: FiltersValueProps) => {
   });
 };
 
+interface FiltersSummaryState extends FilterFieldState, FilterSummary {}
+
+interface FiltersSummaryProps extends Omit<
+  useRender.ComponentProps<"span", FiltersSummaryState>,
+  "children"
+> {
+  options?: FilterSummaryOptions;
+  placeholder?: React.ReactNode;
+  children?: React.ReactNode | ((state: FiltersSummaryState) => React.ReactNode);
+}
+
+/** The rule's formatted display value. */
+const FiltersSummary = ({
+  options,
+  placeholder,
+  children,
+  render,
+  ...props
+}: FiltersSummaryProps) => {
+  const { field } = useFieldContext("Filters.Summary");
+  const state = { ...fieldState(field), ...getFilterSummary(field, options) };
+
+  return useRender({
+    defaultTagName: "span",
+    props: mergeProps<"span">(
+      {
+        children:
+          children === undefined ? (state.text ?? placeholder) : resolveStateProp(children, state),
+      },
+      props,
+    ),
+    render,
+    state,
+    stateAttributesMapping: { options: () => null, text: () => null },
+  });
+};
+
 // Remove and clear
 
 /** Removes the field's rule. Its default name is "Remove <field> filter". */
@@ -241,6 +281,7 @@ export {
   FiltersOperatorItem,
   FiltersRemove,
   FiltersRoot,
+  FiltersSummary,
   FiltersValue,
   useFilterField,
   useFilters,
@@ -251,6 +292,8 @@ export type {
   FiltersFieldProps,
   FiltersOperatorItemProps,
   FiltersRootProps,
+  FiltersSummaryProps,
+  FiltersSummaryState,
   FiltersValueProps,
   UseFilterFieldReturnValue,
 };

@@ -85,6 +85,20 @@ const picker = useFieldPicker(filters, { onFieldAdded: (id) => openEditor(id) })
 
 The field picker lists fields, with option fields expanding into their options. Checking an option adds or extends its field's rule; choosing a text, number or date field adds an empty rule, closes the picker and calls `onFieldAdded` once focus has returned. Unchecking a field's last option removes its rule. Field picker rows carry their field, optional option, and optional facet count in `data`. Option picker rows carry their option and optional count. Spread either picker result into the styled Cascader as well. Its row renderer receives the same node, including `data`.
 
+## Summaries and editors
+
+Use `Filters.Summary` inside a field to display its current rule. It resolves nested option labels and formats numbers, dates, and partial ranges. Set `placeholder` for an empty rule and pass `options` for locale, text and range formatting, or a limit on the number of option labels. Render callbacks receive the formatted `text`, all selected `options` in rule order, and `collapsed` when the summary uses a count. `getFilterSummary(field, options)` provides the same data outside a field.
+
+```tsx
+<Filters.Field field={field}>
+  <Filters.Summary className="truncate" options={{ maxOptionLabels: 2 }} placeholder="Choose…" />
+</Filters.Field>
+```
+
+- `getFilterEditor(field)` returns `start` and optional `end` bindings for number inputs, or `calendar` props for a single date or range. Its `onOpenChange` removes a rule left empty when the editor closes.
+- `getFilterOperatorChoices(field)` provides the current label and the available operator items.
+- `useFilterEditorState()` connects a field picker's `onFieldAdded` to the corresponding editor's `getEditorProps(field)`.
+
 ## Server
 
 The same `@erbium-ui/react/filters` import provides server-safe utilities, including `createFilters`, `matchesRule`, `filterFn_rule` for TanStack Table, `filterColumn`, the rule helpers and the URL codec: `parseFilterSearch`, `toFilterSearch` and `validateFilterSearch`, which a router can call in `validateSearch`.
@@ -110,6 +124,7 @@ Scopes the parts inside it to one field. Takes `id`, or the `field` itself. Rend
 | `Operator`     | `Menu.RadioGroup` | The field's operator. Place it inside a Base UI menu.                                              |
 | `OperatorItem` | `Menu.RadioItem`  | `operator` prop.                                                                                   |
 | `Value`        | `<input>`         | One value of a text or number field. `index` picks the end of a range. Blank numbers write `null`. |
+| `Summary`      | `<span>`          | Displays the formatted rule. `data-collapsed` marks summaries that use a selection count.          |
 | `Remove`       | `<button>`        | Removes the field's rule. Named `Remove {label} filter`.                                           |
 | `Clear`        | `<button>`        | Removes every rule. Disabled while there are none.                                                 |
 

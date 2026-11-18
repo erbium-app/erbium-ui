@@ -2,6 +2,7 @@
 export {
   Filters,
   useFieldPicker,
+  useFilterEditorState,
   useFilterField,
   useFilterSearch,
   useFilters,
@@ -21,6 +22,8 @@ export type {
   FiltersFieldProps,
   FiltersOperatorItemProps,
   FiltersRootProps,
+  FiltersSummaryProps,
+  FiltersSummaryState,
   FiltersValueProps,
   ListFilterField,
   ListFiltersOptions,
