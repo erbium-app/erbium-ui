@@ -123,11 +123,16 @@ SidebarProvider
 
 The `SidebarProvider` component is used to provide the sidebar context to the `Sidebar` component. You should always wrap your application in a `SidebarProvider` component.
 
-| Name           | Type                      | Description                                  |
-| -------------- | ------------------------- | -------------------------------------------- |
-| `defaultOpen`  | `boolean`                 | Default open state of the sidebar.           |
-| `open`         | `boolean`                 | Open state of the sidebar (controlled).      |
-| `onOpenChange` | `(open: boolean) => void` | Sets open state of the sidebar (controlled). |
+| Name            | Type                                   | Description                                                                |
+| --------------- | -------------------------------------- | -------------------------------------------------------------------------- |
+| `defaultOpen`   | `boolean`                              | Default open state of the sidebar.                                         |
+| `open`          | `boolean`                              | Open state of the sidebar (controlled).                                    |
+| `onOpenChange`  | `(open: boolean) => void`              | Sets open state of the sidebar (controlled).                               |
+| `defaultWidth`  | `number`                               | Initial width in pixels. Unset, the width comes from `--sidebar-width`.    |
+| `width`         | `number`                               | Width in pixels (controlled). `undefined` falls back to `--sidebar-width`. |
+| `onWidthChange` | `(width: number \| undefined) => void` | Called when the rail resizes the sidebar (controlled).                     |
+| `minWidth`      | `number`                               | Smallest width the rail resizes to. Defaults to 224.                       |
+| `maxWidth`      | `number`                               | Largest width the rail resizes to. Defaults to 352.                        |
 
 `SidebarProvider` sets `--sidebar-width` (16rem) and `--sidebar-width-icon` (3rem) as classes. Override either one with a class on the provider; `cn` keeps the last value. The mobile sheet uses 18rem.
 
@@ -389,7 +394,11 @@ export function CustomTrigger() {
 
 ## SidebarRail
 
-The `SidebarRail` component is used to render a rail within a `Sidebar`. This rail can be used to toggle the sidebar.
+`SidebarRail` is the sidebar's edge. Drag it to resize the sidebar between `minWidth` and `maxWidth`; dragging past half the minimum collapses it, and dragging a collapsed sidebar's edge opens it again. A click toggles the sidebar.
+
+The rail is a focusable window splitter: the arrow keys resize it (Shift moves further), Home and End jump to the bounds, and Enter toggles the sidebar. Leave the rail out for a sidebar that should not resize.
+
+While a drag is in progress the provider's wrapper carries `data-resizing`, which turns off the width transitions. The new width reaches `onWidthChange` when the pointer is released.
 
 ```tsx
 <Sidebar>
