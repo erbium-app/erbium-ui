@@ -12,7 +12,7 @@ const newFile = { contents: after, name: "values.ts" };
 export default function DiffViewContextExample() {
   return (
     <DiffView
-      className="w-full max-w-4xl"
+      className="w-full"
       oldFile={oldFile}
       newFile={newFile}
       options={{ expansionLineCount: 10, parseDiffOptions: { context: 3 } }}

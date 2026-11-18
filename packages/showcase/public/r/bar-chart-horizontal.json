@@ -14,7 +14,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { browsers } from \"../examples/data\";\n\nexport default function BarChartHorizontalExample() {\n  return (\n    <div className=\"w-2xl max-w-full p-4\">\n      <BarChart\n        ariaLabel=\"Visitors by browser\"\n        data={browsers}\n        index=\"browser\"\n        series={[{ key: \"visitors\", label: \"Visitors\" }]}\n        orientation=\"horizontal\"\n        initialWidth={640}\n      />\n    </div>\n  );\n}\n",
+      "content": "import { BarChart } from \"@/registry/erbium/charts/bar-chart\";\nimport { browsers } from \"../examples/data\";\n\nexport default function BarChartHorizontalExample() {\n  return (\n    <div className=\"w-full p-4\">\n      <BarChart\n        ariaLabel=\"Visitors by browser\"\n        data={browsers}\n        index=\"browser\"\n        series={[{ key: \"visitors\", label: \"Visitors\" }]}\n        orientation=\"horizontal\"\n        initialWidth={640}\n      />\n    </div>\n  );\n}\n",
       "path": "src/bar-chart/variants/horizontal.tsx",
       "target": "@components/showcase/bar-chart/variants/horizontal.tsx",
       "type": "registry:component"

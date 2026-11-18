@@ -20,7 +20,7 @@ export default function ScatterChartPlaygroundExample(
   args: { grid: boolean; legend: boolean; radius: number; tooltip: boolean } = defaultProps,
 ) {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <ScatterChart
         ariaLabel="Product price against average rating"
         data={products}

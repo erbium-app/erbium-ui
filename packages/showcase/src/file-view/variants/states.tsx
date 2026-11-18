@@ -7,7 +7,7 @@ export default function FileViewStatesExample() {
   const [empty, setEmpty] = useState(false);
 
   return (
-    <div className="grid w-full max-w-4xl gap-4">
+    <div className="grid w-full gap-4">
       <Button
         variant="outline"
         size="sm"

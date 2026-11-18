@@ -28,7 +28,7 @@ export default function LineChartPlaygroundExample(
   } = defaultProps,
 ) {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <LineChart
         ariaLabel="Visitors by month and device"
         data={visitors}

@@ -63,7 +63,7 @@ const Shell = () => {
   const href = useLocation({ select: (location) => location.href });
 
   return (
-    <div className="flex w-full min-w-72 max-w-4xl flex-col gap-group p-4">
+    <div className="flex w-full min-w-72 flex-col gap-group p-4">
       <InputGroup>
         <InputGroupAddon>
           <span className="text-caption text-muted-foreground">URL</span>

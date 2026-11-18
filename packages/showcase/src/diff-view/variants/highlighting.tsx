@@ -8,7 +8,7 @@ export default function DiffViewHighlightingExample() {
   const [highlight, setHighlight] = useState<DiffViewOptions["lineDiffType"]>("word-alt");
 
   return (
-    <div className="grid w-full max-w-4xl gap-4">
+    <div className="grid w-full gap-4">
       <ToggleGroup
         aria-label="Inline change highlighting"
         value={[highlight ?? "word-alt"]}

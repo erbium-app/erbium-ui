@@ -99,8 +99,8 @@ export default function MessageScrollerOpeningPositionExample() {
   const [position, setPosition] = React.useState<"start" | "end" | "last-anchor">("last-anchor");
 
   return (
-    <div className="relative flex flex-col gap-group">
-      <Card className="mx-auto h-140 w-full max-w-sm">
+    <div className="relative flex h-full flex-col gap-group">
+      <Card className="mx-auto h-140 w-full max-w-sm shrink-0 grow">
         <CardHeader className="gap-1">
           <CardTitle>Opening Position</CardTitle>
           <CardDescription>Choose where a saved transcript opens.</CardDescription>

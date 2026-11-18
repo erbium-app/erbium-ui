@@ -9,7 +9,7 @@ export default function DiffViewLayoutsExample() {
   const [wrap, setWrap] = useState(false);
 
   return (
-    <div className="grid w-full max-w-4xl gap-4">
+    <div className="grid w-full gap-4">
       <div className="flex flex-wrap items-center gap-3">
         <ToggleGroup
           aria-label="Diff layout"

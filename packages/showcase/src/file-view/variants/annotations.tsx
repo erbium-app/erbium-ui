@@ -15,7 +15,7 @@ export default function FileViewAnnotationsExample() {
   const [selection, setSelection] = useState<SelectedLineRange | null>(null);
 
   return (
-    <div className="grid w-full max-w-4xl gap-4">
+    <div className="grid w-full gap-4">
       <div className="flex items-center justify-between gap-3">
         <p className="text-caption text-muted-foreground" aria-live="polite">
           {selection

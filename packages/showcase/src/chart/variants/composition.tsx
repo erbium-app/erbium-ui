@@ -49,7 +49,7 @@ const definition = defineChart({
 
 export default function ChartCompositionExample() {
   return (
-    <div className="flex w-2xl max-w-full flex-col gap-3 p-4">
+    <div className="flex w-full flex-col gap-3 p-4">
       <ChartLegend series={series} />
       <Chart
         ariaLabel="Monthly revenue against a target of 240"

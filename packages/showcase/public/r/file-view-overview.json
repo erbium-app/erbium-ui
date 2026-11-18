@@ -13,7 +13,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { FileView } from \"@/registry/erbium/blocks/file-view\";\nimport { file } from \"../examples/file\";\n\nexport default function FileViewExample() {\n  return <FileView file={file} className=\"w-full max-w-4xl\" />;\n}\n",
+      "content": "import { FileView } from \"@/registry/erbium/blocks/file-view\";\nimport { file } from \"../examples/file\";\n\nexport default function FileViewExample() {\n  return <FileView file={file} className=\"w-full\" />;\n}\n",
       "path": "src/file-view/variants/overview.tsx",
       "target": "@components/showcase/file-view/variants/overview.tsx",
       "type": "registry:component"

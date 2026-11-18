@@ -10,7 +10,7 @@ export default function HeatmapChartPlaygroundExample(
   args: { legend: boolean; tooltip: boolean } = defaultProps,
 ) {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <HeatmapChart
         ariaLabel="Orders by weekday and hour"
         data={orders}

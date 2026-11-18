@@ -124,7 +124,7 @@ export default function FiltersOverviewExample() {
   const table = useDataTable({ columns, data: tasks, onQueryChange: setQuery, query });
 
   return (
-    <div className="w-full min-w-72 max-w-4xl p-4">
+    <div className="w-full min-w-72 p-4">
       <DataTable table={table}>
         <DataTableToolbar>
           <DataTableFilters />

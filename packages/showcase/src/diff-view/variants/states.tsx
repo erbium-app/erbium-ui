@@ -3,7 +3,7 @@ import { oldFile, newFile } from "../examples/files";
 
 export default function DiffViewStatesExample() {
   return (
-    <div className="grid w-full max-w-4xl gap-6">
+    <div className="grid w-full gap-6">
       <div className="grid gap-2">
         <p className="text-caption text-muted-foreground">Added file</p>
         <DiffView oldFile={null} newFile={newFile} />

@@ -31,7 +31,7 @@ export default function AreaChartPlaygroundExample(
   } = defaultProps,
 ) {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <AreaChart
         ariaLabel="Visitors by month and device"
         data={visitors}

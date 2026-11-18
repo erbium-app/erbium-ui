@@ -77,7 +77,7 @@ export default function FiltersFacetedExample() {
   const table = useDataTable({ columns, data: tasks });
 
   return (
-    <div className="w-full min-w-72 max-w-4xl p-4">
+    <div className="w-full min-w-72 p-4">
       <DataTable table={table}>
         <DataTableToolbar>
           {/* One button per field; option counts follow the other active filters. */}

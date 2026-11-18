@@ -22,7 +22,7 @@ export default function DataTableClientExample() {
   });
 
   return (
-    <div className="flex w-full min-w-72 max-w-4xl flex-col gap-related p-4">
+    <div className="flex w-full min-w-72 flex-col gap-related p-4">
       <DataTable
         table={table}
         onRowClick={(row) => {

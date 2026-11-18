@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/diff-view", "@erbium/styles"],
   "files": [
     {
-      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst patch = `diff --git a/settings.json b/settings.json\n--- a/settings.json\n+++ b/settings.json\n@@ -1,3 +1,4 @@\n {\n-  \"theme\": \"light\"\n+  \"theme\": \"system\",\n+  \"wrap\": true\n }\n`;\n\nexport default function DiffViewPatchExample() {\n  return <DiffView className=\"w-full max-w-4xl\" patch={patch} options={{ diffStyle: \"unified\" }} />;\n}\n",
+      "content": "import { DiffView } from \"@/registry/erbium/blocks/diff-view\";\n\nconst patch = `diff --git a/settings.json b/settings.json\n--- a/settings.json\n+++ b/settings.json\n@@ -1,3 +1,4 @@\n {\n-  \"theme\": \"light\"\n+  \"theme\": \"system\",\n+  \"wrap\": true\n }\n`;\n\nexport default function DiffViewPatchExample() {\n  return <DiffView className=\"w-full\" patch={patch} options={{ diffStyle: \"unified\" }} />;\n}\n",
       "path": "src/diff-view/variants/patch.tsx",
       "target": "@components/showcase/diff-view/variants/patch.tsx",
       "type": "registry:component"

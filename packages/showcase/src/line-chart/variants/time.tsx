@@ -17,7 +17,7 @@ const dateFormat = new Intl.DateTimeFormat("en", {
 
 export default function LineChartTimeExample() {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <LineChart
         ariaLabel="Daily response time, median and 95th percentile"
         data={latency}

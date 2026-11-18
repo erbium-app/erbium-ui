@@ -28,7 +28,7 @@ export default function BarChartPlaygroundExample(
   } = defaultProps,
 ) {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <BarChart
         ariaLabel="Visitors by month and device"
         data={visitors}

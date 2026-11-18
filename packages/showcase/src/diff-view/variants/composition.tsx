@@ -17,7 +17,7 @@ export default function DiffViewCompositionExample() {
 
   return (
     <DiffView
-      className="w-full max-w-4xl"
+      className="w-full"
       oldFile={oldFile}
       newFile={newFile}
       options={{ diffStyle: unified ? "unified" : "split" }}

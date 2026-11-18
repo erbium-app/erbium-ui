@@ -21,7 +21,7 @@
       "type": "registry:component"
     },
     {
-      "content": "import { InvoicesTable } from \"../helpers\";\n\nexport default function DataTableEmptyExample() {\n  return (\n    <div className=\"w-full min-w-72 max-w-3xl p-4\">\n      <InvoicesTable empty />\n    </div>\n  );\n}\n",
+      "content": "import { InvoicesTable } from \"../helpers\";\n\nexport default function DataTableEmptyExample() {\n  return (\n    <div className=\"w-full min-w-72 p-4\">\n      <InvoicesTable empty />\n    </div>\n  );\n}\n",
       "path": "src/data-table/variants/empty.tsx",
       "target": "@components/showcase/data-table/variants/empty.tsx",
       "type": "registry:component"

@@ -99,9 +99,9 @@ const Shell = (): React.ReactElement => {
   const sidebar = shellRoute.useRouteContext({ select: selectSidebar });
 
   return (
-    // The frame contains the shell for this preview. In an app, the shell fills the viewport.
-    <div className="relative h-144 w-full overflow-hidden rounded-lg border contain-layout">
-      <AppShell sidebar={sidebar} storageKey={null} className="h-full min-h-0">
+    // The frame fills its container, at least 36rem tall. In an app, the shell fills the viewport.
+    <div className="relative flex h-full min-h-144 w-full flex-col overflow-hidden rounded-lg border contain-layout">
+      <AppShell sidebar={sidebar} storageKey={null} className="h-auto min-h-0 flex-1">
         <Navigation />
         <AppShellSurface>
           <AppShellHeader>

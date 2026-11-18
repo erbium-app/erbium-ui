@@ -14,11 +14,7 @@ export default function FileViewCompositionExample() {
   const [wrap, setWrap] = useState(false);
 
   return (
-    <FileView
-      file={file}
-      options={{ overflow: wrap ? "wrap" : "scroll" }}
-      className="w-full max-w-4xl"
-    >
+    <FileView file={file} options={{ overflow: wrap ? "wrap" : "scroll" }} className="w-full">
       <FileViewHeader>
         <FileViewTitle />
         <FileViewActions>

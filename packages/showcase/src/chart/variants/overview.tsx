@@ -6,7 +6,7 @@ import { browsers, devices, shortMonth, visitors } from "../examples/data";
 
 export default function ChartExample() {
   return (
-    <div className="grid w-3xl max-w-full gap-8 p-4 sm:grid-cols-2">
+    <div className="grid w-full gap-8 p-4 sm:grid-cols-2">
       <BarChart
         ariaLabel="Visitors by month and device"
         data={visitors}

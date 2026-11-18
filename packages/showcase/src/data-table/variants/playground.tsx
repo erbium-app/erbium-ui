@@ -11,7 +11,7 @@ export const defaultProps = {
 
 export default function DataTablePlaygroundExample(args: InvoicesTableProps = defaultProps) {
   return (
-    <div className="w-full min-w-72 max-w-3xl p-4">
+    <div className="w-full min-w-72 p-4">
       <InvoicesTable {...args} />
     </div>
   );

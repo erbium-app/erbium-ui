@@ -3,7 +3,7 @@ import { browsers } from "../examples/data";
 
 export default function BarChartHorizontalExample() {
   return (
-    <div className="w-2xl max-w-full p-4">
+    <div className="w-full p-4">
       <BarChart
         ariaLabel="Visitors by browser"
         data={browsers}
