@@ -58,6 +58,8 @@ interface CascaderValueState<TNode extends CascaderNode = CascaderNode> extends 
   paths: TNode[][];
   multiple: boolean;
   placeholder: boolean;
+  /** The default display text, or null for the placeholder. */
+  text: string | null;
 }
 
 interface CascaderValueProps<TNode extends CascaderNode = CascaderNode> extends Omit<
@@ -87,17 +89,18 @@ const CascaderValue = <TNode extends CascaderNode>({
     return entry === undefined ? [] : [entry.path];
   });
 
-  const valueState = { multiple: state.multiple, paths, placeholder: paths.length === 0 };
+  let text: string | null = null;
 
-  let content: React.ReactNode = placeholder;
-
-  if (children !== undefined) {
-    content = resolveStateProp(children, valueState);
-  } else if (state.multiple && paths.length > 0) {
-    content = paths.map((path) => path.at(-1)?.label).join(", ");
-  } else if (paths[0] !== undefined) {
-    content = paths[0].map((node) => node.label).join(" / ");
+  if (paths[0] !== undefined) {
+    text = state.multiple
+      ? paths.map((path) => path.at(-1)?.label).join(", ")
+      : paths[0].map((node) => node.label).join(" / ");
   }
+
+  const valueState = { multiple: state.multiple, paths, placeholder: text === null, text };
+
+  const content =
+    children === undefined ? (text ?? placeholder) : resolveStateProp(children, valueState);
 
   return useRender({
     defaultTagName: "span",
@@ -107,7 +110,7 @@ const CascaderValue = <TNode extends CascaderNode>({
     ),
     render,
     state: valueState,
-    stateAttributesMapping: { paths: () => null },
+    stateAttributesMapping: { paths: () => null, text: () => null },
   });
 };
 

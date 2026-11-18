@@ -1,16 +1,14 @@
 import * as React from "react";
-import { mergeProps } from "@base-ui/react/merge-props";
-import { useRender } from "@base-ui/react/use-render";
+import type { useRender } from "@base-ui/react/use-render";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import { Pagination as PaginationPrimitive } from "@erbium-ui/react/pagination";
-import type { PaginationTargetState } from "@erbium-ui/react/pagination";
-import type { PaginationOptions } from "../hooks/use-pagination";
+import type { PaginationOptions, PaginationTargetProps } from "@erbium-ui/react/pagination";
 import { usePredictedIntent } from "../hooks/use-predicted-intent";
 import { buttonVariants } from "../lib/button-variants";
 import { cn } from "../lib/utils";
 import { Icon } from "./icon";
-import { linkFromTarget, linkTarget } from "./link";
+import { hasLinkTarget, linkFromTarget, linkTarget } from "./link";
 import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 
 type PaginationSize = "default" | "icon" | "sm" | "icon-sm";
@@ -23,8 +21,7 @@ const pageClassName = (isActive: boolean | undefined, size: PaginationSize, clas
   );
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
-  <nav
-    aria-label="pagination"
+  <PaginationPrimitive.Nav
     data-slot="pagination"
     className={cn("mx-auto flex w-full justify-center", className)}
     {...props}
@@ -32,7 +29,7 @@ const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
 );
 
 const PaginationContent = ({ className, ...props }: React.ComponentProps<"ul">) => (
-  <ul
+  <PaginationPrimitive.List
     data-slot="pagination-content"
     className={cn("flex items-center gap-0.5", className)}
     {...props}
@@ -40,7 +37,7 @@ const PaginationContent = ({ className, ...props }: React.ComponentProps<"ul">) 
 );
 
 const PaginationItem = ({ ...props }: React.ComponentProps<"li">) => (
-  <li data-slot="pagination-item" {...props} />
+  <PaginationPrimitive.Item data-slot="pagination-item" {...props} />
 );
 
 interface PaginationLinkOwnProps {
@@ -72,23 +69,35 @@ function PaginationLink({
   className,
   isActive,
   size = "icon",
-  render,
-  to,
-  href,
   ...props
 }: PaginationLinkProps | (AnyLinkTargetProps & PaginationLinkOwnProps & { render?: never })) {
-  return useRender({
-    defaultTagName: "a",
-    props: mergeProps(
-      {
-        "aria-current": isActive === true ? "page" : undefined,
-        className: pageClassName(isActive, size, className),
-      },
-      props,
-    ),
-    render: linkTarget({ href, render, to }),
-    state: { active: isActive === true, slot: "pagination-link" },
-  });
+  const style = pageClassName(isActive, size, className);
+
+  if (hasLinkTarget(props)) {
+    return (
+      <PaginationPrimitive.Link
+        current={isActive}
+        data-slot="pagination-link"
+        className={style}
+        render={linkFromTarget(props)}
+      />
+    );
+  }
+
+  const { children, ...anchorProps } = props;
+
+  return (
+    <PaginationPrimitive.Link
+      {...anchorProps}
+      current={isActive}
+      data-slot="pagination-link"
+      className={style}
+    >
+      {/* The link overload also accepts a Router children callback. */}
+      {/* oxlint-disable-next-line anti-slop/no-runtime-typeof -- the Router children prop is a node or a render callback. */}
+      {typeof children === "function" ? children({ isActive: isActive === true }) : children}
+    </PaginationPrimitive.Link>
+  );
 }
 
 type PaginationButtonProps = Omit<React.ComponentProps<"button">, "type"> & {
@@ -101,40 +110,40 @@ type PaginationButtonProps = Omit<React.ComponentProps<"button">, "type"> & {
   onIntent?: () => void;
 };
 
-/**
- * A page button, for pages kept in state rather than in the URL, such as a table's page
- * index.
- */
+/** Supplies Erbium's preloading integration to a native button. */
+const IntentButton = ({
+  onIntent,
+  ref,
+  ...props
+}: React.ComponentProps<"button"> & { onIntent?: () => void }) => {
+  const intentRef = usePredictedIntent(
+    () => {
+      onIntent?.();
+    },
+    { enabled: onIntent !== undefined },
+  );
+
+  return <button type="button" {...props} ref={useMergedRefs(ref, intentRef)} />;
+};
+
+/** A standalone page button for pages kept in state. */
 const PaginationButton = ({
   className,
   isActive,
   size = "icon",
   onIntent,
-  disabled,
-  ref,
   ...props
-}: PaginationButtonProps) => {
-  const intentRef = usePredictedIntent(
-    () => {
-      onIntent?.();
-    },
-    { enabled: onIntent !== undefined && disabled !== true && isActive !== true },
-  );
-
-  return (
-    <button
-      type="button"
-      ref={useMergedRefs(ref, intentRef)}
-      aria-current={isActive === true ? "page" : undefined}
-      data-slot="pagination-button"
-      data-active={isActive === true ? "" : undefined}
-      data-disabled={disabled === true ? "" : undefined}
-      disabled={disabled}
-      className={pageClassName(isActive, size, className)}
-      {...props}
-    />
-  );
-};
+}: PaginationButtonProps) => (
+  <PaginationPrimitive.Button
+    {...props}
+    current={isActive}
+    data-slot="pagination-button"
+    className={pageClassName(isActive, size, className)}
+    render={(buttonProps, { canPrefetch }) => (
+      <IntentButton {...buttonProps} onIntent={canPrefetch ? onIntent : undefined} />
+    )}
+  />
+);
 
 interface PaginationStepOwnProps {
   /**
@@ -152,35 +161,42 @@ type PaginationStepImplementationProps =
   | PaginationStepProps
   | (AnyLinkTargetProps & PaginationStepOwnProps & { render?: never });
 
-// A plain `a` loses its `href`, and with it its role, so it keeps `role="link"`. A link or a
-// rendered element receives `disabled`, which router links and native buttons both honor.
-const disabledStepProps = (isPlainAnchor: boolean) =>
-  isPlainAnchor
-    ? { "aria-disabled": true, "data-disabled": "", href: undefined, role: "link" }
-    : { disabled: true };
+const StepLabel = ({ direction, text }: { direction: "previous" | "next"; text: string }) => (
+  <>
+    {direction === "previous" ? (
+      <Icon name="chevron-left" data-icon="inline-start" className="rtl:rotate-180" />
+    ) : null}
+    <span className="hidden sm:block">{text}</span>
+    {direction === "next" ? (
+      <Icon name="chevron-right" data-icon="inline-end" className="rtl:rotate-180" />
+    ) : null}
+  </>
+);
+
+const stepClassName = (direction: "previous" | "next", className?: string) =>
+  pageClassName(false, "default", cn(direction === "previous" ? "ps-1.5!" : "pe-1.5!", className));
 
 const PaginationStep = ({
   className,
-  disabled = false,
+  disabled,
+  direction,
   render,
   to,
   href,
-  children,
+  text,
   ...props
-}: PaginationStepImplementationProps & { children: React.ReactNode }) => {
-  const element = linkTarget({ href, render, to });
-
-  return useRender({
-    defaultTagName: "a",
-    props: mergeProps(
-      { children, className: pageClassName(false, "default", className) },
-      props,
-      // Applied last so nothing passed can make a disabled step navigable.
-      disabled ? disabledStepProps(element === undefined) : {},
-    ),
-    render: element,
-  });
-};
+}: PaginationStepImplementationProps & { direction: "previous" | "next"; text: string }) => (
+  <PaginationPrimitive.Step
+    {...props}
+    direction={direction}
+    disabled={disabled}
+    data-slot={`pagination-${direction}`}
+    className={stepClassName(direction, className)}
+    render={disabled === true ? render : linkTarget({ href, render, to })}
+  >
+    <StepLabel direction={direction} text={text} />
+  </PaginationPrimitive.Step>
+);
 
 /** The step to the previous page. It takes the same link options as `PaginationLink`. */
 function PaginationPrevious(props: PaginationStepProps): React.ReactElement;
@@ -200,17 +216,7 @@ function PaginationPrevious({
   text = "Previous",
   ...props
 }: PaginationStepImplementationProps) {
-  return (
-    <PaginationStep
-      aria-label="Go to previous page"
-      data-slot="pagination-previous"
-      className={cn("ps-1.5!", className)}
-      {...props}
-    >
-      <Icon name="chevron-left" data-icon="inline-start" className="rtl:rotate-180" />
-      <span className="hidden sm:block">{text}</span>
-    </PaginationStep>
-  );
+  return <PaginationStep direction="previous" className={className} text={text} {...props} />;
 }
 
 /** The step to the next page. It takes the same link options as `PaginationLink`. */
@@ -227,22 +233,11 @@ function PaginationNext<
 ): React.ReactElement;
 
 function PaginationNext({ className, text = "Next", ...props }: PaginationStepImplementationProps) {
-  return (
-    <PaginationStep
-      aria-label="Go to next page"
-      data-slot="pagination-next"
-      className={cn("pe-1.5!", className)}
-      {...props}
-    >
-      <span className="hidden sm:block">{text}</span>
-      <Icon name="chevron-right" data-icon="inline-end" className="rtl:rotate-180" />
-    </PaginationStep>
-  );
+  return <PaginationStep direction="next" className={className} text={text} {...props} />;
 }
 
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<"span">) => (
-  <span
-    aria-hidden
+  <PaginationPrimitive.Ellipsis
     data-slot="pagination-ellipsis"
     className={cn(
       "flex size-control items-center justify-center [&_svg:not([class*='size-'])]:size-4",
@@ -251,8 +246,7 @@ const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<"span"
     {...props}
   >
     <Icon name="more-horizontal" />
-    <span className="sr-only">More pages</span>
-  </span>
+  </PaginationPrimitive.Ellipsis>
 );
 
 /** Router's link options for one page. */
@@ -301,32 +295,46 @@ const PaginationControls = ({
   onPageIntent,
   ...props
 }: PaginationControlsProps) => {
-  const intent = (target: number | undefined) =>
-    target === undefined || onPageIntent === undefined
-      ? undefined
-      : () => {
-          onPageIntent(target);
-        };
+  const renderTarget = (
+    direction?: "previous" | "next",
+  ): Exclude<PaginationTargetProps["render"], React.ReactElement | undefined> =>
+    function renderPaginationTarget(targetProps, state) {
+      const target = state.intentPage;
 
-  // A step's element: a button for pages in state, or the page's link. A step with no page is a
-  // plain link without a destination.
-  const step = (state: PaginationTargetState) => {
-    if (onPageChange === undefined) {
-      return state.disabled
-        ? { disabled: true }
-        : { render: linkFromTarget(linkOptions(state.page)) };
-    }
+      const className =
+        direction === undefined ? pageClassName(state.current, "icon") : stepClassName(direction);
 
-    return {
-      disabled: state.disabled,
-      render: (
-        <PaginationButton
-          size="default"
-          onIntent={intent(state.disabled ? undefined : state.page)}
-        />
-      ),
+      const children =
+        direction === undefined ? (
+          targetProps.children
+        ) : (
+          <StepLabel direction={direction} text={direction === "previous" ? "Previous" : "Next"} />
+        );
+
+      const slot = direction ?? state.mode;
+      const styledProps = { ...targetProps, className, "data-slot": `pagination-${slot}` };
+
+      if (state.mode === "button") {
+        const onIntent =
+          target === undefined || onPageIntent === undefined
+            ? undefined
+            : () => {
+                onPageIntent(target);
+              };
+
+        return (
+          <IntentButton {...styledProps} onIntent={onIntent}>
+            {children}
+          </IntentButton>
+        );
+      }
+
+      if (state.disabled || linkOptions === undefined) {
+        return <a {...styledProps}>{children}</a>;
+      }
+
+      return linkFromTarget({ ...styledProps, ...linkOptions(state.page), children });
     };
-  };
 
   return (
     <PaginationPrimitive.Root
@@ -334,55 +342,25 @@ const PaginationControls = ({
       pageCount={pageCount}
       siblingCount={siblingCount}
       boundaryCount={boundaryCount}
-      onPageChange={
-        onPageChange === undefined
-          ? undefined
-          : (next) => {
-              onPageChange(next);
-            }
-      }
+      onPageChange={onPageChange}
     >
       <PaginationContent {...props}>
         <PaginationItem>
-          <PaginationPrimitive.Previous
-            render={(stepProps, state) => <PaginationPrevious {...stepProps} {...step(state)} />}
-          />
+          <PaginationPrimitive.Previous render={renderTarget("previous")} />
         </PaginationItem>
         <PaginationPrimitive.Items>
-          {(item) =>
-            item.type === "ellipsis" ? (
-              <PaginationItem key={item.key}>
+          {(item) => (
+            <PaginationItem>
+              {item.type === "ellipsis" ? (
                 <PaginationEllipsis />
-              </PaginationItem>
-            ) : (
-              <PaginationItem key={item.page}>
-                {onPageChange === undefined ? (
-                  <PaginationPrimitive.Page
-                    page={item.page}
-                    render={(pageProps, state) => (
-                      <PaginationLink
-                        {...pageProps}
-                        isActive={state.current}
-                        render={linkFromTarget(linkOptions(state.page))}
-                      />
-                    )}
-                  />
-                ) : (
-                  <PaginationPrimitive.Page
-                    page={item.page}
-                    render={
-                      <PaginationButton isActive={item.current} onIntent={intent(item.page)} />
-                    }
-                  />
-                )}
-              </PaginationItem>
-            )
-          }
+              ) : (
+                <PaginationPrimitive.Page page={item.page} render={renderTarget()} />
+              )}
+            </PaginationItem>
+          )}
         </PaginationPrimitive.Items>
         <PaginationItem>
-          <PaginationPrimitive.Next
-            render={(stepProps, state) => <PaginationNext {...stepProps} {...step(state)} />}
-          />
+          <PaginationPrimitive.Next render={renderTarget("next")} />
         </PaginationItem>
       </PaginationContent>
     </PaginationPrimitive.Root>

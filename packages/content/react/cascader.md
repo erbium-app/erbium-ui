@@ -66,7 +66,7 @@ const items: CascaderNode<{ flag: string }>[] = [
 ];
 ```
 
-Parts with node render callbacks accept the same node type as the root, for example `<Cascader.Rows<MyNode>>` or `<Cascader.Value<MyNode>>`. The value callback receives `paths`, `multiple`, and `placeholder`.
+Parts with node render callbacks accept the same node type as the root, for example `<Cascader.Rows<MyNode>>` or `<Cascader.Value<MyNode>>`. The value callback receives `paths`, `multiple`, `placeholder`, and the default display `text`.
 
 ## Selection
 

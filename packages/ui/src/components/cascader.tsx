@@ -159,20 +159,14 @@ const CascaderValue = <TNode extends CascaderNode = CascaderNode>({
     className={cn("min-w-0 flex-1 truncate text-start", className)}
     {...props}
   >
-    {({ multiple, paths }): React.ReactNode => {
+    {({ multiple, paths, text }): React.ReactNode => {
       if (children !== undefined) {
         return children(paths);
       }
 
-      if (paths.length === 0) {
-        return placeholder;
-      }
+      const [path] = paths;
 
-      return multiple ? (
-        paths.map((path) => path.at(-1)?.label).join(", ")
-      ) : (
-        <CascaderPath path={paths[0] ?? []} />
-      );
+      return !multiple && path !== undefined ? <CascaderPath path={path} /> : (text ?? placeholder);
     }}
   </CascaderPrimitive.Value>
 );

@@ -28,33 +28,13 @@ type EditableProps = Omit<
   triggerMode?: "click" | "doubleClick";
 };
 
-const Editable = ({
-  onValueChange,
-  onSubmit,
-  onCancel,
-  onEditingChange,
-  triggerMode = "click",
-  className,
-  ...props
-}: EditableProps) => (
+const Editable = ({ triggerMode = "click", className, ...props }: EditableProps) => (
   <EditablePrimitive.Root
     {...props}
     activationMode={triggerMode === "doubleClick" ? "dblclick" : "click"}
     data-slot="editable"
     render={<span />}
     className={cn("relative inline-grid min-w-[2ch] max-w-full align-middle text-field", className)}
-    onValueChange={(value) => {
-      onValueChange?.(value);
-    }}
-    onSubmit={(value) => {
-      onSubmit?.(value);
-    }}
-    onCancel={() => {
-      onCancel?.();
-    }}
-    onEditingChange={(editing) => {
-      onEditingChange?.(editing);
-    }}
   />
 );
 

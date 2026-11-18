@@ -71,6 +71,73 @@ describe("Pagination", () => {
     );
   });
 
+  it("supports uncontrolled button mode and supplies one prefetch destination per control", async () => {
+    const user = userEvent.setup();
+
+    render(
+      <Pagination.Nav>
+        <Pagination.Root mode="button" defaultPage={1} pageCount={3}>
+          <Pagination.List>
+            <Pagination.Item>
+              <Pagination.Previous
+                render={(props, state) => (
+                  <button {...props} type="button" data-intent={state.intentPage} />
+                )}
+              />
+            </Pagination.Item>
+            <Pagination.Item>
+              <Pagination.Page
+                page={1}
+                className={({ current }) => (current ? "current" : undefined)}
+              />
+            </Pagination.Item>
+            <Pagination.Item>
+              <Pagination.Next
+                render={(props, state) => (
+                  <button {...props} type="button" data-intent={state.intentPage} />
+                )}
+              />
+            </Pagination.Item>
+          </Pagination.List>
+        </Pagination.Root>
+      </Pagination.Nav>,
+    );
+
+    expect(screen.getByRole("navigation", { name: "pagination" })).toBeDefined();
+    const previous = screen.getByRole("button", { name: "Go to previous page" });
+    const next = screen.getByRole("button", { name: "Go to next page" });
+
+    expect(Object.hasOwn(previous.dataset, "intent")).toBe(false);
+    expect(screen.getByRole("button", { name: "1" }).className).toBe("current");
+    expect(next.dataset.intent).toBe("2");
+
+    await user.click(next);
+
+    expect(previous.dataset.intent).toBe("1");
+    expect(next.dataset.intent).toBe("3");
+  });
+
+  it("preserves standalone control semantics without a pagination root", () => {
+    render(
+      <>
+        <Pagination.Link current href="?page=1">
+          1
+        </Pagination.Link>
+        <Pagination.Step direction="previous" disabled href="?page=0" />
+        <Pagination.Step direction="next" disabled render={<button type="button">Next</button>} />
+      </>,
+    );
+
+    expect(screen.getByRole("link", { name: "1" }).getAttribute("aria-current")).toBe("page");
+    const previous = screen.getByRole("link", { name: "Go to previous page" });
+    expect(previous.hasAttribute("href")).toBe(false);
+    expect(previous.getAttribute("aria-disabled")).toBe("true");
+    expect(screen.getByRole("button", { name: "Go to next page" })).toHaveProperty(
+      "disabled",
+      true,
+    );
+  });
+
   it("keeps the page when onPageChange cancels", async () => {
     const user = userEvent.setup();
 

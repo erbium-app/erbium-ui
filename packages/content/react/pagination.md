@@ -14,36 +14,44 @@ The styled version is the [Pagination component](/docs/components/pagination).
 ```tsx
 import { Pagination } from "@erbium-ui/react/pagination";
 
-<nav aria-label="Pagination">
+<Pagination.Nav aria-label="Pagination">
   <Pagination.Root page={page} pageCount={pageCount} onPageChange={setPage}>
     <Pagination.List>
-      <Pagination.First />
-      <Pagination.Previous />
+      <Pagination.Item>
+        <Pagination.First />
+      </Pagination.Item>
+      <Pagination.Item>
+        <Pagination.Previous />
+      </Pagination.Item>
       <Pagination.Items>
         {(item) =>
           item.type === "page" ? (
-            <li key={item.page}>
+            <Pagination.Item>
               <Pagination.Page page={item.page} />
-            </li>
+            </Pagination.Item>
           ) : (
-            <li key={item.key}>
+            <Pagination.Item>
               <Pagination.Ellipsis />
-            </li>
+            </Pagination.Item>
           )
         }
       </Pagination.Items>
-      <Pagination.Next />
-      <Pagination.Last />
+      <Pagination.Item>
+        <Pagination.Next />
+      </Pagination.Item>
+      <Pagination.Item>
+        <Pagination.Last />
+      </Pagination.Item>
     </Pagination.List>
   </Pagination.Root>
-</nav>;
+</Pagination.Nav>;
 ```
 
-`Root` renders no element, so the `<nav>` and its label belong to your design.
+`Root` renders no element, so you can place its controls inside `Pagination.Nav` and supply a label for the landmark.
 
 ## Buttons or links
 
-With `onPageChange`, the parts are `<button>`s that change the page. Its details give a reason of `"page-press"`, `"previous-press"`, `"next-press"`, `"first-press"` or `"last-press"`, and `details.cancel()` keeps the current page.
+With `onPageChange` or `mode="button"`, the parts are `<button>`s that change the page. Its details give a reason of `"page-press"`, `"previous-press"`, `"next-press"`, `"first-press"` or `"last-press"`, and `details.cancel()` keeps the current page.
 
 With `getPageHref`, they are links:
 
@@ -55,7 +63,15 @@ For a router link, leave out both and render the link from the part's state, whi
 
 ```tsx
 <Pagination.Next
-  render={(props, state) => <Link {...props} to="." search={{ page: state.page }} />}
+  render={(props, { disabled, page }) =>
+    disabled ? (
+      <a {...props}>Next</a>
+    ) : (
+      <Link {...props} to="." search={{ page }}>
+        Next
+      </Link>
+    )
+  }
 />
 ```
 
@@ -63,7 +79,7 @@ A step with no page in its direction is disabled: a button gets `disabled`, and 
 
 ## Layout
 
-`getPagination({ page, pageCount, siblingCount, boundaryCount })` returns the layout without React, from `@erbium-ui/react/pagination/core`: `items`, the clamped `page` and `pageCount`, and `previousPage` and `nextPage`, which are `undefined` at either end. A gap of exactly one page shows that page instead of an ellipsis. Inside a root, `usePagination()` returns the same layout.
+`getPagination({ page, pageCount, siblingCount, boundaryCount })` returns the layout without React, from `@erbium-ui/react/pagination/core`: `items`, the clamped `page` and `pageCount`, and `previousPage` and `nextPage`, which are `undefined` at either end. A gap of exactly one page shows that page instead of an ellipsis. Inside a root, `usePagination()` reads its layout. Use `usePaginationLayout(options)` to compute it in React without a root.
 
 ## API reference
 
@@ -71,15 +87,18 @@ A step with no page in its direction is disabled: a button gets `disabled`, and 
 
 Holds the page and lays out the pages. Renders no element.
 
-| Prop                                    | Type               | Default |
-| --------------------------------------- | ------------------ | ------- |
-| `page` / `defaultPage` / `onPageChange` | `number`, from 1   | `1`     |
-| `pageCount`                             | `number`           | —       |
-| `siblingCount`                          | `number`           | `1`     |
-| `boundaryCount`                         | `number`           | `1`     |
-| `getPageHref`                           | `(page) => string` | —       |
+| Prop                                    | Type                 | Default  |
+| --------------------------------------- | -------------------- | -------- |
+| `page` / `defaultPage` / `onPageChange` | `number`, from 1     | `1`      |
+| `pageCount`                             | `number`             | —        |
+| `siblingCount`                          | `number`             | `1`      |
+| `boundaryCount`                         | `number`             | `1`      |
+| `getPageHref`                           | `(page) => string`   | —        |
+| `mode`                                  | `"button" \| "link"` | Inferred |
 
 ### Parts
+
+`Nav`, `List`, and `Item` render the navigation landmark, list, and list item. For layouts that supply their own destinations, `Link`, `Button`, and `Step` also work outside a root. `Link` and `Button` accept `current` and `disabled`. `Step` adds a default accessible label from its `direction`.
 
 | Part       | Element             | Notes                                                                      |
 | ---------- | ------------------- | -------------------------------------------------------------------------- |
@@ -92,4 +111,4 @@ Holds the page and lays out the pages. Renders no element.
 | `Last`     | `<button>` or `<a>` | Named "Go to last page".                                                   |
 | `Ellipsis` | `<span>`            | Hidden from assistive technology, with "More pages" as its default text.   |
 
-Page and step parts carry `data-current` and `data-disabled`, and pass `{ page, current, disabled }` as state to `render` and `className`.
+Page and step parts carry `data-current` and `data-disabled`, and pass `{ page, current, disabled, mode, intentPage }` to `render` and `className`. `intentPage` is undefined for disabled controls and the current page, so an app can wire its own prefetch strategy.

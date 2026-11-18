@@ -10,7 +10,7 @@
       "path": "src/hooks/use-pagination.ts",
       "target": "@hooks/use-pagination.ts",
       "type": "registry:hook",
-      "content": "import { useMemo } from \"react\";\nimport { getPagination } from \"@erbium-ui/react/pagination/core\";\nimport type { PaginationLayout, PaginationOptions } from \"@erbium-ui/react/pagination/core\";\n\n/*\n * The page layout from the @erbium-ui/react pagination core: boundary pages, sibling pages around\n * the current one and an ellipsis for each gap, with a constant item count as the page moves.\n */\n\n/** The laid out pages of a paginated view. */\ntype Pagination = PaginationLayout;\n\n/** Lays out the pages of a paginated view; see `getPagination`. */\nconst usePagination = ({ page, pageCount, siblingCount, boundaryCount }: PaginationOptions) =>\n  useMemo(\n    () => getPagination({ boundaryCount, page, pageCount, siblingCount }),\n    [boundaryCount, page, pageCount, siblingCount],\n  );\n\nexport { getPagination, usePagination };\n\nexport type { PaginationItem, PaginationOptions } from \"@erbium-ui/react/pagination/core\";\n\nexport type { Pagination };\n"
+      "content": "import type { PaginationLayout } from \"@erbium-ui/react/pagination/core\";\n\nexport { usePaginationLayout as usePagination } from \"@erbium-ui/react/pagination\";\n\nexport { getPagination } from \"@erbium-ui/react/pagination/core\";\n\nexport type { PaginationItem, PaginationOptions } from \"@erbium-ui/react/pagination/core\";\n\n/** The laid out pages of a paginated view. */\ntype Pagination = PaginationLayout;\n\nexport type { Pagination };\n"
     }
   ]
 }
