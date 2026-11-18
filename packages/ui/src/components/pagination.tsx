@@ -3,7 +3,8 @@ import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
-import { usePagination } from "../hooks/use-pagination";
+import { Pagination as PaginationPrimitive } from "@erbium-ui/react/pagination";
+import type { PaginationTargetState } from "@erbium-ui/react/pagination";
 import type { PaginationOptions } from "../hooks/use-pagination";
 import { usePredictedIntent } from "../hooks/use-predicted-intent";
 import { buttonVariants } from "../lib/button-variants";
@@ -285,9 +286,10 @@ type PaginationControlsProps = PaginationOptions &
   );
 
 /**
- * Previous, page, and next controls laid out by `usePagination`. With `linkOptions` the controls
- * are links, for pages in the URL; with `onPageChange` they are buttons, for pages in state
- * such as a table's.
+ * Previous, page, and next controls on the @erbium-ui/react pagination primitive, which lays out
+ * the pages and owns the current page's and the steps' semantics. With `linkOptions` the controls
+ * are links, for pages in the URL; with `onPageChange` they are buttons, for pages in state such
+ * as a table's.
  */
 const PaginationControls = ({
   page,
@@ -299,81 +301,91 @@ const PaginationControls = ({
   onPageIntent,
   ...props
 }: PaginationControlsProps) => {
-  const pagination = usePagination({ boundaryCount, page, pageCount, siblingCount });
+  const intent = (target: number | undefined) =>
+    target === undefined || onPageIntent === undefined
+      ? undefined
+      : () => {
+          onPageIntent(target);
+        };
 
-  // Buttons for state-driven pages; links otherwise.
-  const step = (target: number | undefined) => {
+  // A step's element: a button for pages in state, or the page's link. A step with no page is a
+  // plain link without a destination.
+  const step = (state: PaginationTargetState) => {
     if (onPageChange === undefined) {
-      return target === undefined
+      return state.disabled
         ? { disabled: true }
-        : { render: linkFromTarget(linkOptions(target)) };
+        : { render: linkFromTarget(linkOptions(state.page)) };
     }
 
     return {
-      disabled: target === undefined,
+      disabled: state.disabled,
       render: (
         <PaginationButton
           size="default"
-          onClick={() => {
-            if (target !== undefined) {
-              onPageChange(target);
-            }
-          }}
-          onIntent={
-            target === undefined || onPageIntent === undefined
-              ? undefined
-              : () => {
-                  onPageIntent(target);
-                }
-          }
+          onIntent={intent(state.disabled ? undefined : state.page)}
         />
       ),
     };
   };
 
   return (
-    <PaginationContent {...props}>
-      <PaginationItem>
-        <PaginationPrevious {...step(pagination.previousPage)} />
-      </PaginationItem>
-      {pagination.items.map((item) =>
-        item.type === "ellipsis" ? (
-          <PaginationItem key={item.key}>
-            <PaginationEllipsis />
-          </PaginationItem>
-        ) : (
-          <PaginationItem key={item.page}>
-            {onPageChange === undefined ? (
-              <PaginationLink
-                isActive={item.current}
-                render={linkFromTarget(linkOptions(item.page))}
-              >
-                {item.page}
-              </PaginationLink>
+    <PaginationPrimitive.Root
+      page={page}
+      pageCount={pageCount}
+      siblingCount={siblingCount}
+      boundaryCount={boundaryCount}
+      onPageChange={
+        onPageChange === undefined
+          ? undefined
+          : (next) => {
+              onPageChange(next);
+            }
+      }
+    >
+      <PaginationContent {...props}>
+        <PaginationItem>
+          <PaginationPrimitive.Previous
+            render={(stepProps, state) => <PaginationPrevious {...stepProps} {...step(state)} />}
+          />
+        </PaginationItem>
+        <PaginationPrimitive.Items>
+          {(item) =>
+            item.type === "ellipsis" ? (
+              <PaginationItem key={item.key}>
+                <PaginationEllipsis />
+              </PaginationItem>
             ) : (
-              <PaginationButton
-                isActive={item.current}
-                onClick={() => {
-                  onPageChange(item.page);
-                }}
-                onIntent={
-                  onPageIntent === undefined
-                    ? undefined
-                    : () => {
-                        onPageIntent(item.page);
-                      }
-                }
-              >
-                {item.page}
-              </PaginationButton>
-            )}
-          </PaginationItem>
-        ),
-      )}
-      <PaginationItem>
-        <PaginationNext {...step(pagination.nextPage)} />
-      </PaginationItem>
-    </PaginationContent>
+              <PaginationItem key={item.page}>
+                {onPageChange === undefined ? (
+                  <PaginationPrimitive.Page
+                    page={item.page}
+                    render={(pageProps, state) => (
+                      <PaginationLink
+                        {...pageProps}
+                        isActive={state.current}
+                        render={linkFromTarget(linkOptions(state.page))}
+                      />
+                    )}
+                  />
+                ) : (
+                  <PaginationPrimitive.Page
+                    page={item.page}
+                    render={
+                      <PaginationButton isActive={item.current} onIntent={intent(item.page)} />
+                    }
+                  />
+                )}
+              </PaginationItem>
+            )
+          }
+        </PaginationPrimitive.Items>
+        <PaginationItem>
+          <PaginationPrimitive.Next
+            render={(stepProps, state) => <PaginationNext {...stepProps} {...step(state)} />}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </PaginationPrimitive.Root>
   );
 };
 

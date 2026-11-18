@@ -905,7 +905,7 @@
       "type": "registry:ui",
       "title": "Editable",
       "description": "Erbium editable component.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
       "registryDependencies": ["@erbium/utils"],
       "files": [
         {
@@ -1514,7 +1514,12 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Erbium pagination component.",
-      "dependencies": ["@base-ui/react", "@base-ui/utils", "@tanstack/react-router"],
+      "dependencies": [
+        "@base-ui/react",
+        "@base-ui/utils",
+        "@erbium-ui/react@^0.1.0",
+        "@tanstack/react-router"
+      ],
       "registryDependencies": [
         "@erbium/button-variants",
         "@erbium/icon",
@@ -2351,6 +2356,7 @@
       "type": "registry:hook",
       "title": "Use Pagination",
       "description": "Erbium use pagination hook.",
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
       "files": [
         {
           "path": "src/hooks/use-pagination.ts",
