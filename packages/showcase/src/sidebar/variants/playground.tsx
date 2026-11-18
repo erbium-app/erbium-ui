@@ -18,7 +18,7 @@ export const defaultProps = {
   variant: "sidebar",
 } satisfies {
   side: "left" | "right";
-  variant: "sidebar" | "floating" | "inset";
+  variant: "sidebar" | "inset";
   collapsible: "offcanvas" | "icon" | "none";
   defaultOpen: boolean;
 };
@@ -26,7 +26,7 @@ export const defaultProps = {
 export default function SidebarPlaygroundExample(
   args: {
     side: "left" | "right";
-    variant: "sidebar" | "floating" | "inset";
+    variant: "sidebar" | "inset";
     collapsible: "offcanvas" | "icon" | "none";
     defaultOpen: boolean;
   } = defaultProps,

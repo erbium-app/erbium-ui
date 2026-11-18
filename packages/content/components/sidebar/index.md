@@ -53,15 +53,13 @@ export function AppSidebar() {
 
 ## Route links
 
-In a TanStack Router app, pass Erbium's `Link` to the `render` prop on `SidebarMenuButton` or `SidebarMenuSubButton` to use Foresight route preloading. Set `isActive` from the current route to apply the sidebar's active styling.
+In a TanStack Router app, pass Erbium's `Link` to the `render` prop on `SidebarMenuButton` or `SidebarMenuSubButton` to use Foresight route preloading. Router marks the current page's link with `aria-current="page"`, which applies the sidebar's active styling.
 
 ```tsx
 import { Link } from "@erbium/ui/components/link";
 import { SidebarMenuButton } from "@erbium/ui/components/sidebar";
 
-<SidebarMenuButton render={<Link to="/projects" />} isActive={isProjectsPage}>
-  Projects
-</SidebarMenuButton>;
+<SidebarMenuButton render={<Link to="/projects" />}>Projects</SidebarMenuButton>;
 ```
 
 ## Composition
@@ -157,7 +155,7 @@ The main `Sidebar` component used to render a collapsible sidebar.
 | Property      | Type                                                         | Description                       |
 | ------------- | ------------------------------------------------------------ | --------------------------------- |
 | `side`        | `left` or `right`                                            | The side of the sidebar.          |
-| `variant`     | `sidebar`, `floating`, or `inset`                            | The variant of the sidebar.       |
+| `variant`     | `sidebar` or `inset`                                         | The variant of the sidebar.       |
 | `collapsible` | `offcanvas`, `icon`, or `none`                               | Collapsible state of the sidebar. |
 | Prop          | Description                                                  |
 | -----------   | ------------------------------------------------------------ |
@@ -314,12 +312,10 @@ The `SidebarMenuButton` component is used to render a menu button within a `Side
 
 By default, the `SidebarMenuButton` renders a button but you can use the `render` prop to render a different component such as `Link` from `@erbium/ui/components/link` or an `a` tag. `Link` preloads the route before the click.
 
-Use the `isActive` prop to mark a menu item as active.
+A menu item with `aria-current="page"` shows as active. Router links set it on the current page; set it yourself on a plain anchor.
 
 ```tsx
-<SidebarMenuButton render={<a href="#" />} isActive>
-  Home
-</SidebarMenuButton>
+<SidebarMenuButton render={<a href="#" aria-current="page" />}>Home</SidebarMenuButton>
 ```
 
 ## SidebarMenuAction
@@ -391,6 +387,10 @@ export function CustomTrigger() {
   return <button onClick={toggleSidebar}>Toggle Sidebar</button>;
 }
 ```
+
+## Motion
+
+Opening and closing slides the sidebar over `duration-panel` (300ms) on `ease-ui-out`, `cubic-bezier(0.23, 1, 0.32, 1)`, which starts fast and settles without a linear tail. With the `inset` variant the content surface moves its leading margin on the same curve, so it lands with the sidebar instead of snapping at the end. The mobile drawer uses `ease-ui-drawer`. All of it turns off under `prefers-reduced-motion`.
 
 ## SidebarRail
 

@@ -116,7 +116,6 @@ const Navigation = ({ onNavigate }: { onNavigate?: () => void }) => {
                           aria-current={path === page.href ? "page" : undefined}
                         />
                       }
-                      isActive={path === page.href}
                       className="text-muted-foreground"
                     >
                       {page.title}

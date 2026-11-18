@@ -29,6 +29,9 @@ export const cn = createCn({
           ],
         },
       ],
+      // Motion tokens from theme.css, so a later `duration-*` or `ease-*` replaces an earlier one.
+      duration: [{ duration: ["ui-fast", "ui", "ui-slow", "panel", "drawer"] }],
+      ease: [{ ease: ["ui-out", "ui-move", "ui-drawer"] }],
       gap: [{ gap: ["related", "group", "section", "control-gap"] }],
       p: [{ p: ["panel", "panel-sm"] }],
       px: [{ px: ["panel", "related", "control-inset"] }],

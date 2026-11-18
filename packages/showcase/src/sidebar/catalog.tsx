@@ -35,7 +35,7 @@ type Story = StoryObj;
 
 export const Playground: StoryObj<{
   side: "left" | "right";
-  variant: "sidebar" | "floating" | "inset";
+  variant: "sidebar" | "inset";
   collapsible: "offcanvas" | "icon" | "none";
   defaultOpen: boolean;
 }> = {
@@ -43,7 +43,7 @@ export const Playground: StoryObj<{
     collapsible: { control: "select", options: ["offcanvas", "icon", "none"] },
     defaultOpen: { control: "boolean" },
     side: { control: "select", options: ["left", "right"] },
-    variant: { control: "select", options: ["sidebar", "floating", "inset"] },
+    variant: { control: "select", options: ["sidebar", "inset"] },
   },
   args: PlaygroundDefaults,
   parameters: {

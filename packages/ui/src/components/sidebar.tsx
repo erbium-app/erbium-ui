@@ -8,7 +8,6 @@ import { useIsMobile } from "../hooks/use-is-mobile";
 import { toAriaKeyShortcuts, useHotkeyPlatform } from "../lib/hotkeys";
 import { cn } from "../lib/utils";
 import type { CSSVariableStyle } from "../lib/utils";
-import { sidebarMenuButtonVariants, sidebarStyles } from "../lib/sidebar-styles";
 import { Button } from "./button";
 import { Input } from "./input";
 import { KbdHint } from "./kbd";
@@ -19,8 +18,6 @@ import { Skeleton } from "./skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import { SidebarToggleIcon } from "./stateful-icon";
 
-const SIDEBAR_COOKIE_NAME = "sidebar_state";
-const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_KEYBOARD_SHORTCUT = "Mod+B";
 
 // Resize bounds in pixels. Dragging the rail below half the minimum collapses the sidebar.
@@ -33,12 +30,10 @@ const SIDEBAR_RESIZE_STEP = 16;
 const SIDEBAR_DRAG_THRESHOLD = 4;
 
 const sidebarGapVariants = cva(
-  "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear group-data-resizing/sidebar-wrapper:transition-none group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180",
+  "relative w-(--sidebar-width) bg-transparent transition-[width] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 motion-reduce:transition-none",
   {
     variants: {
       variant: {
-        floating:
-          "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]",
         inset: "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]",
         sidebar: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
       },
@@ -47,16 +42,47 @@ const sidebarGapVariants = cva(
 );
 
 const sidebarContainerVariants = cva(
-  "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear group-data-resizing/sidebar-wrapper:transition-none data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:-left-(--sidebar-width) data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:-right-(--sidebar-width) md:flex",
+  "fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:-left-(--sidebar-width) data-[side=right]:right-0 data-[side=right]:group-data-[collapsible=offcanvas]:-right-(--sidebar-width) motion-reduce:transition-none md:flex",
   {
     variants: {
       variant: {
-        floating:
-          "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]",
         inset:
           "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]",
         sidebar:
           "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
+      },
+    },
+  },
+);
+
+const sidebarStyles = {
+  group: "relative flex w-full min-w-0 flex-col p-2",
+  groupContent: "w-full text-control-sm",
+  groupLabel:
+    "flex min-h-control shrink-0 items-center rounded-md px-2 text-control-sm text-muted-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-[margin,opacity] duration-ui ease-ui-out group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 [&>svg]:size-4 [&>svg]:shrink-0",
+  header: "flex flex-col gap-related p-2",
+  menu: "flex w-full min-w-0 flex-col gap-0",
+  menuItem: "group/menu-item relative",
+} as const;
+
+// Router links mark the current page with `aria-current="page"`, which styles the active row.
+const sidebarMenuButtonVariants = cva(
+  "peer/menu-button group/menu-button flex w-full items-center overflow-hidden rounded-md text-start text-control-sm outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-sidebar-size group-has-data-[slot=sidebar-menu-action]/menu-item:pe-8 group-data-[collapsible=icon]:size-control! group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:justify-center hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:hover:bg-sidebar-accent data-open:hover:text-sidebar-accent-foreground aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground [&_svg]:size-control-icon [&_svg]:shrink-0 [&>span:last-child]:truncate",
+  {
+    defaultVariants: {
+      size: "default",
+      variant: "default",
+    },
+    variants: {
+      size: {
+        default: "control-size touch-target text-control-sm",
+        lg: "control-size-lg touch-target [&_svg]:size-control-icon-lg text-control group-data-[collapsible=icon]:p-0!",
+        sm: "control-size-sm touch-target text-control-sm [&_svg]:size-control-icon-sm",
+      },
+      variant: {
+        default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+        outline:
+          "bg-background shadow-sidebar-outline hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-sidebar-outline-hover",
       },
     },
   },
@@ -131,14 +157,6 @@ const SidebarProvider = ({
       } else {
         setUncontrolledOpen(openState);
       }
-
-      // Persist the state so a server render can restore it.
-      void cookieStore.set({
-        expires: Date.now() + SIDEBAR_COOKIE_MAX_AGE * 1000,
-        name: SIDEBAR_COOKIE_NAME,
-        path: "/",
-        value: String(openState),
-      });
     },
     [setOpenProp],
   );
@@ -244,7 +262,7 @@ const Sidebar = ({
   ...props
 }: React.ComponentProps<"div"> & {
   side?: "left" | "right";
-  variant?: "sidebar" | "floating" | "inset";
+  variant?: "sidebar" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
 }) => {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
@@ -269,10 +287,9 @@ const Sidebar = ({
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetPanel
           dir={dir}
-          data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [--sidebar-width:18rem] [&>button]:hidden"
+          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground duration-ui-slow ease-ui-drawer [--sidebar-width:18rem] [&>button]:hidden"
           side={side}
         >
           <SidebarSheetHotkey
@@ -307,11 +324,7 @@ const Sidebar = ({
         className={cn(sidebarContainerVariants({ className, variant }))}
         {...props}
       >
-        <div
-          data-sidebar="sidebar"
-          data-slot="sidebar-inner"
-          className="flex size-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
-        >
+        <div data-slot="sidebar-inner" className="flex size-full flex-col bg-sidebar">
           {children}
         </div>
       </div>
@@ -335,7 +348,6 @@ const SidebarTrigger = ({
     <Button
       aria-expanded={isOpen}
       aria-keyshortcuts={toAriaKeyShortcuts(SIDEBAR_KEYBOARD_SHORTCUT, platform)}
-      data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon-sm"
@@ -455,7 +467,6 @@ const SidebarRail = ({
       aria-valuenow={open ? currentWidth : 0}
       aria-valuetext={open ? `${currentWidth} pixels` : "Collapsed"}
       tabIndex={0}
-      data-sidebar="rail"
       data-slot="sidebar-rail"
       title="Drag to resize, click to toggle"
       onClick={(event) => {
@@ -590,7 +601,7 @@ const SidebarRail = ({
         finishDrag(event);
       }}
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 touch-none outline-none transition-all ease-linear group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:inset-s-1/2 after:w-0.5 hover:after:bg-sidebar-border focus-visible:after:bg-ring sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
+        "absolute inset-y-0 z-20 hidden w-4 touch-none outline-none transition-all duration-panel ease-ui-out motion-reduce:transition-none group-data-[side=left]:-right-4 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:inset-s-1/2 after:w-0.5 hover:after:bg-sidebar-border focus-visible:after:bg-ring sm:flex ltr:-translate-x-1/2 rtl:-translate-x-1/2",
         "cursor-ew-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize rtl:[[data-side=left][data-state=collapsed]_&]:cursor-w-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize rtl:[[data-side=right][data-state=collapsed]_&]:cursor-e-resize",
         "group-data-[collapsible=offcanvas]:translate-x-0 rtl:group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:inset-s-full hover:group-data-[collapsible=offcanvas]:bg-sidebar",
@@ -608,7 +619,7 @@ const SidebarInset = ({ className, ...props }: React.ComponentProps<"main">) => 
   <main
     data-slot="sidebar-inset"
     className={cn(
-      "relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-2",
+      "relative flex w-full flex-1 flex-col bg-background transition-[margin] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none motion-reduce:transition-none md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-2",
       className,
     )}
     {...props}
@@ -616,27 +627,16 @@ const SidebarInset = ({ className, ...props }: React.ComponentProps<"main">) => 
 );
 
 const SidebarInput = ({ className, ...props }: React.ComponentProps<typeof Input>) => (
-  <Input
-    data-slot="sidebar-input"
-    data-sidebar="input"
-    className={cn("min-h-control w-full", className)}
-    {...props}
-  />
+  <Input data-slot="sidebar-input" className={cn("min-h-control w-full", className)} {...props} />
 );
 
 const SidebarHeader = ({ className, ...props }: React.ComponentProps<"div">) => (
-  <div
-    data-slot="sidebar-header"
-    data-sidebar="header"
-    className={cn(sidebarStyles.header, className)}
-    {...props}
-  />
+  <div data-slot="sidebar-header" className={cn(sidebarStyles.header, className)} {...props} />
 );
 
 const SidebarFooter = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="sidebar-footer"
-    data-sidebar="footer"
     className={cn(sidebarStyles.header, "carve-top", className)}
     {...props}
   />
@@ -645,7 +645,6 @@ const SidebarFooter = ({ className, ...props }: React.ComponentProps<"div">) => 
 const SidebarSeparator = ({ className, ...props }: React.ComponentProps<typeof Separator>) => (
   <Separator
     data-slot="sidebar-separator"
-    data-sidebar="separator"
     variant="inset"
     className={cn("mx-2 w-auto", className)}
     {...props}
@@ -666,7 +665,6 @@ const SidebarContent = ({
     viewportRender={
       <div
         data-slot="sidebar-content"
-        data-sidebar="content"
         className={cn("min-h-0 flex-1 group-data-[collapsible=icon]:overflow-hidden!", className)}
         {...props}
       />
@@ -680,12 +678,7 @@ const SidebarContent = ({
 );
 
 const SidebarGroup = ({ className, ...props }: React.ComponentProps<"div">) => (
-  <div
-    data-slot="sidebar-group"
-    data-sidebar="group"
-    className={cn(sidebarStyles.group, className)}
-    {...props}
-  />
+  <div data-slot="sidebar-group" className={cn(sidebarStyles.group, className)} {...props} />
 );
 
 const SidebarGroupLabel = ({
@@ -703,7 +696,6 @@ const SidebarGroupLabel = ({
     ),
     render,
     state: {
-      sidebar: "group-label",
       slot: "sidebar-group-label",
     },
   });
@@ -726,7 +718,6 @@ const SidebarGroupAction = ({
     ),
     render,
     state: {
-      sidebar: "group-action",
       slot: "sidebar-group-action",
     },
   });
@@ -734,33 +725,21 @@ const SidebarGroupAction = ({
 const SidebarGroupContent = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="sidebar-group-content"
-    data-sidebar="group-content"
     className={cn(sidebarStyles.groupContent, className)}
     {...props}
   />
 );
 
 const SidebarMenu = ({ className, ...props }: React.ComponentProps<"ul">) => (
-  <ul
-    data-slot="sidebar-menu"
-    data-sidebar="menu"
-    className={cn(sidebarStyles.menu, className)}
-    {...props}
-  />
+  <ul data-slot="sidebar-menu" className={cn(sidebarStyles.menu, className)} {...props} />
 );
 
 const SidebarMenuItem = ({ className, ...props }: React.ComponentProps<"li">) => (
-  <li
-    data-slot="sidebar-menu-item"
-    data-sidebar="menu-item"
-    className={cn(sidebarStyles.menuItem, className)}
-    {...props}
-  />
+  <li data-slot="sidebar-menu-item" className={cn(sidebarStyles.menuItem, className)} {...props} />
 );
 
 const SidebarMenuButton = ({
   render,
-  isActive = false,
   variant = "default",
   size = "default",
   tooltip,
@@ -768,7 +747,6 @@ const SidebarMenuButton = ({
   ...props
 }: useRender.ComponentProps<"button"> &
   React.ComponentProps<"button"> & {
-    isActive?: boolean;
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
   } & VariantProps<typeof sidebarMenuButtonVariants>) => {
   const { isMobile, state } = useSidebar();
@@ -784,8 +762,6 @@ const SidebarMenuButton = ({
     ),
     render: hasTooltip ? <TooltipTrigger render={render} /> : render,
     state: {
-      active: isActive,
-      sidebar: "menu-button",
       size,
       slot: "sidebar-menu-button",
     },
@@ -827,7 +803,7 @@ const SidebarMenuAction = ({
         className: cn(
           "absolute top-1.5 end-1 flex aspect-square w-5 items-center justify-center rounded-md p-0 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground transition-transform group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 after:absolute after:-inset-2 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:after:hidden [&>svg]:size-4 [&>svg]:shrink-0",
           showOnHover &&
-            "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-data-active/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-100 md:opacity-0",
+            "group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 peer-aria-[current=page]/menu-button:text-sidebar-accent-foreground aria-expanded:opacity-100 md:opacity-0",
           className,
         ),
       },
@@ -835,7 +811,6 @@ const SidebarMenuAction = ({
     ),
     render,
     state: {
-      sidebar: "menu-action",
       slot: "sidebar-menu-action",
     },
   });
@@ -843,9 +818,8 @@ const SidebarMenuAction = ({
 const SidebarMenuBadge = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     data-slot="sidebar-menu-badge"
-    data-sidebar="menu-badge"
     className={cn(
-      "pointer-events-none absolute inset-e-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-control-sm text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 peer-data-active/menu-button:text-sidebar-accent-foreground",
+      "pointer-events-none absolute inset-e-1 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-control-sm text-sidebar-foreground tabular-nums select-none group-data-[collapsible=icon]:hidden peer-hover/menu-button:text-sidebar-accent-foreground peer-data-[size=default]/menu-button:top-1.5 peer-data-[size=lg]/menu-button:top-2.5 peer-data-[size=sm]/menu-button:top-1 peer-aria-[current=page]/menu-button:text-sidebar-accent-foreground",
       className,
     )}
     {...props}
@@ -873,16 +847,11 @@ const SidebarMenuSkeleton = ({
   return (
     <div
       data-slot="sidebar-menu-skeleton"
-      data-sidebar="menu-skeleton"
       className={cn("flex min-h-control items-center gap-related rounded-md px-2", className)}
       {...props}
     >
-      {showIcon && <Skeleton className="size-4 rounded-md" data-sidebar="menu-skeleton-icon" />}
-      <Skeleton
-        className="h-4 max-w-(--skeleton-width) flex-1"
-        data-sidebar="menu-skeleton-text"
-        style={skeletonStyle}
-      />
+      {showIcon && <Skeleton className="size-4 rounded-md" />}
+      <Skeleton className="h-4 max-w-(--skeleton-width) flex-1" style={skeletonStyle} />
     </div>
   );
 };
@@ -890,7 +859,6 @@ const SidebarMenuSkeleton = ({
 const SidebarMenuSub = ({ className, ...props }: React.ComponentProps<"ul">) => (
   <ul
     data-slot="sidebar-menu-sub"
-    data-sidebar="menu-sub"
     className={cn(
       "mx-3.5 flex min-w-0 translate-x-px rtl:-translate-x-px flex-col gap-1 carve-start px-2.5 py-0.5 group-data-[collapsible=icon]:hidden",
       className,
@@ -902,7 +870,6 @@ const SidebarMenuSub = ({ className, ...props }: React.ComponentProps<"ul">) => 
 const SidebarMenuSubItem = ({ className, ...props }: React.ComponentProps<"li">) => (
   <li
     data-slot="sidebar-menu-sub-item"
-    data-sidebar="menu-sub-item"
     className={cn("group/menu-sub-item relative", className)}
     {...props}
   />
@@ -911,20 +878,18 @@ const SidebarMenuSubItem = ({ className, ...props }: React.ComponentProps<"li">)
 const SidebarMenuSubButton = ({
   render,
   size = "md",
-  isActive = false,
   className,
   ...props
 }: useRender.ComponentProps<"a"> &
   React.ComponentProps<"a"> & {
     size?: "sm" | "md";
-    isActive?: boolean;
   }) =>
   useRender({
     defaultTagName: "a",
     props: mergeProps<"a">(
       {
         className: cn(
-          "flex min-h-control-sm min-w-0 -translate-x-px rtl:translate-x-px items-center gap-related overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-control data-[size=sm]:text-control-sm data-active:bg-sidebar-accent data-active:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+          "flex min-h-control-sm min-w-0 -translate-x-px rtl:translate-x-px items-center gap-related overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-control data-[size=sm]:text-control-sm aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
           className,
         ),
       },
@@ -932,8 +897,6 @@ const SidebarMenuSubButton = ({
     ),
     render,
     state: {
-      active: isActive,
-      sidebar: "menu-sub-button",
       size,
       slot: "sidebar-menu-sub-button",
     },

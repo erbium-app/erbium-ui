@@ -253,10 +253,6 @@ interface AppShellNavRowProps {
   badge?: React.ReactNode;
 }
 
-// Router's Link marks the active row with `data-status="active"` and `aria-current="page"`.
-const activeRowClassName =
-  "data-[status=active]:bg-sidebar-accent data-[status=active]:text-sidebar-accent-foreground";
-
 /**
  * A navigation row. Takes Router's link options (`to`, `params`, `search`, `activeOptions`),
  * so destinations stay typed, preload ahead of the click, and mark themselves active.
@@ -283,10 +279,7 @@ function AppShellNavLink({
   AppShellNavRowProps) {
   return (
     <SidebarMenuItem data-slot="app-shell-nav-link">
-      <SidebarMenuButton
-        render={<Link {...linkProps} />}
-        className={cn(activeRowClassName, className)}
-      >
+      <SidebarMenuButton render={<Link {...linkProps} />} className={className}>
         {icon}
         <span>{label}</span>
       </SidebarMenuButton>
@@ -301,7 +294,7 @@ const AppShellNavAction = ({
   icon,
   badge,
   ...props
-}: Omit<React.ComponentProps<typeof SidebarMenuButton>, "children" | "isActive" | "render"> &
+}: Omit<React.ComponentProps<typeof SidebarMenuButton>, "children" | "render"> &
   AppShellNavRowProps) => (
   <SidebarMenuItem data-slot="app-shell-nav-action">
     <SidebarMenuButton type="button" {...props}>

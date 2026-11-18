@@ -1776,7 +1776,6 @@
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/sheet",
-        "@erbium/sidebar-styles",
         "@erbium/skeleton",
         "@erbium/stateful-icon",
         "@erbium/tooltip",
@@ -1788,20 +1787,6 @@
           "path": "src/components/sidebar.tsx",
           "target": "@ui/sidebar.tsx",
           "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "sidebar-styles",
-      "type": "registry:lib",
-      "title": "Sidebar Styles",
-      "description": "Erbium sidebar styles lib.",
-      "dependencies": ["class-variance-authority"],
-      "files": [
-        {
-          "path": "src/lib/sidebar-styles.ts",
-          "target": "@lib/sidebar-styles.ts",
-          "type": "registry:lib"
         }
       ]
     },

@@ -100,6 +100,20 @@
   --radius: 0.625rem;
 }
 
+/* Motion vocabulary. Keep frequent UI feedback under 200ms and reserve the panel and drawer
+   timings for surfaces that move across the layout. `ease-ui-out` settles quickly without a
+   linear start; `ease-ui-drawer` matches gesture-driven sheets. */
+@theme {
+  --ease-ui-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-ui-move: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-ui-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --transition-duration-ui-fast: 120ms;
+  --transition-duration-ui: 180ms;
+  --transition-duration-ui-slow: 240ms;
+  --transition-duration-panel: 300ms;
+  --transition-duration-drawer: 450ms;
+}
+
 @theme inline {
   --color-footer: var(--footer);
   --color-muted-hover: var(--muted-hover);
