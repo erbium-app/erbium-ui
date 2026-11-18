@@ -34,7 +34,6 @@
   "sideEffects": false,
   "exports": {
     "./cascader": "./src/cascader/index.ts",
-    "./cascader/tree": "./src/cascader/tree.ts",
     "./editable": "./src/editable/index.ts",
     "./filters": "./src/filters/index.ts",
     "./filters/core": "./src/filters/core.ts",
@@ -47,10 +46,6 @@
       "./cascader": {
         "types": "./dist/cascader/index.d.ts",
         "default": "./dist/cascader/index.js"
-      },
-      "./cascader/tree": {
-        "types": "./dist/cascader/tree.d.ts",
-        "default": "./dist/cascader/tree.js"
       },
       "./editable": {
         "types": "./dist/editable/index.d.ts",

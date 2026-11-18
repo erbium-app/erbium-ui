@@ -45,8 +45,10 @@ const Fixture = ({ withClear = false, ...props }: FixtureProps) => (
         <Cascader.Popup aria-label="Places">
           {props.searchable === true ? (
             <>
-              <Cascader.Back />
-              <Cascader.Search />
+              <Cascader.SearchGroup data-testid="search-group">
+                <Cascader.Back />
+                <Cascader.Search />
+              </Cascader.SearchGroup>
               <Cascader.Empty>No results</Cascader.Empty>
             </>
           ) : null}
@@ -59,7 +61,10 @@ const Fixture = ({ withClear = false, ...props }: FixtureProps) => (
                   <Cascader.Item row={row}>
                     <Cascader.ItemIndicator data-testid={`indicator-${row.node.value}`} />
                     {row.node.label}
-                    <Cascader.ItemTrail data-testid={`trail-${row.node.value}`} />
+                    <Cascader.ItemTrail
+                      fallback="Direct option"
+                      data-testid={`trail-${row.node.value}`}
+                    />
                     <Cascader.ItemCount data-testid={`count-${row.node.value}`} />
                   </Cascader.Item>
                 )}
@@ -120,6 +125,60 @@ describe("Cascader single", () => {
       expect(screen.queryByRole("menu")).toBeNull();
     });
     expect(trigger().textContent).toBe("Europe / Germany / Berlin");
+  });
+
+  it("passes the original nodes to search, rows, value rendering and change details", async () => {
+    interface Place extends CascaderNode {
+      children?: Place[];
+      code: string;
+    }
+
+    const leaf: Place = { code: "BER", label: "Berlin", value: "berlin" };
+
+    const branch: Place = {
+      children: [leaf],
+      code: "DE",
+      label: "Germany",
+      value: "germany",
+    };
+
+    const onValueChange = vi.fn<NonNullable<CascaderRootSingleProps<Place>["onValueChange"]>>();
+    const filter = vi.fn((node: Place, query: string) => node.code === query);
+    const user = userEvent.setup();
+
+    render(
+      <Cascader.Root items={[branch]} filter={filter} onValueChange={onValueChange} searchable>
+        <Cascader.Trigger>
+          <Cascader.Value<Place>>
+            {({ paths }) => paths[0]?.map((node) => node.code).join(" / ") ?? "Pick a place"}
+          </Cascader.Value>
+        </Cascader.Trigger>
+        <Cascader.Portal>
+          <Cascader.Positioner>
+            <Cascader.Popup>
+              <Cascader.Search />
+              <Cascader.List>
+                <Cascader.Level>
+                  <Cascader.Rows<Place>>
+                    {(row) => <Cascader.Item row={row}>{row.node.code}</Cascader.Item>}
+                  </Cascader.Rows>
+                </Cascader.Level>
+              </Cascader.List>
+            </Cascader.Popup>
+          </Cascader.Positioner>
+        </Cascader.Portal>
+      </Cascader.Root>,
+    );
+
+    await openMenu(user);
+    await user.type(screen.getByRole("searchbox"), "BER");
+    await user.click(await screen.findByRole("menuitemradio", { name: "BER" }));
+
+    const details = onValueChange.mock.calls[0]?.[1];
+    expect(filter.mock.calls.at(-1)?.[0]).toBe(leaf);
+    expect(details?.node).toBe(leaf);
+    expect(details?.path[0]).toBe(branch);
+    expect(screen.getByRole("button", { name: "DE / BER" })).toBeDefined();
   });
 
   it("reopens on the level that holds the selection", async () => {
@@ -243,11 +302,32 @@ describe("Cascader keyboard without search", () => {
 });
 
 describe("Cascader search", () => {
+  it("focuses the field from the search surface and tracks nested levels", async () => {
+    const user = userEvent.setup();
+    render(<Fixture searchable />);
+    await openMenu(user);
+
+    const group = screen.getByTestId("search-group");
+    expect(Object.hasOwn(group.dataset, "nested")).toBe(false);
+    await user.click(item("Europe"));
+    expect(Object.hasOwn(group.dataset, "nested")).toBe(true);
+
+    const search = screen.getByRole("searchbox", { name: "Search Europe" });
+    search.blur();
+    await user.click(group);
+    expect(document.activeElement).toBe(search);
+
+    await user.click(screen.getByRole("button", { name: "Back to all options" }));
+    expect(Object.hasOwn(group.dataset, "nested")).toBe(false);
+    expect(document.activeElement).toBe(search);
+  });
+
   it("finds options below the level and shows their trail", async () => {
     const user = userEvent.setup();
 
     render(<Fixture searchable />);
     await openMenu(user);
+    expect(screen.getByTestId("trail-antarctica").textContent).toBe("Direct option");
     await user.type(screen.getByRole("searchbox", { name: "Search options" }), "münch");
 
     await waitFor(() => {

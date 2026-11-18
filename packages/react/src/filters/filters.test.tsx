@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vite-plus/test";
 import { Cascader } from "../cascader";
-import type { CascaderRow } from "../cascader";
+import type { CascaderNode, CascaderRow } from "../cascader";
 import { Filters, useFieldPicker, useFilterField, useListFilters, useOptionPicker } from "./index";
 import type { FieldPickerData, FilterState, ListFilterField } from "./index";
 
@@ -80,7 +80,7 @@ const FieldPicker = ({
             <Cascader.List>
               <Cascader.Level>
                 <Cascader.Rows>
-                  {(row: CascaderRow<FieldPickerData>) => (
+                  {(row: CascaderRow<CascaderNode<FieldPickerData>>) => (
                     <Cascader.Item row={row}>
                       {row.node.label}
                       {row.node.data?.count === undefined ? null : ` (${row.node.data.count})`}

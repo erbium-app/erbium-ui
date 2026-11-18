@@ -8,7 +8,6 @@ import { dataFlag, visuallyHidden } from "../internal/dom";
 import { assignRef, resolveStateProp } from "../internal/resolve";
 import type { StateProp } from "../internal/resolve";
 import { CascaderItemContext, useCascaderContext, useCascaderItemContext } from "./context";
-import type { CascaderContextValue, CascaderState } from "./context";
 import { getLevelRows } from "./tree";
 import type { CascaderNode, CascaderRow } from "./tree";
 
@@ -51,32 +50,36 @@ type ClassName<TState> = StateProp<string | undefined, TState>;
 
 // Value
 
-interface CascaderValueState extends Record<string, unknown> {
+interface CascaderValueState<TNode extends CascaderNode = CascaderNode> extends Record<
+  string,
+  unknown
+> {
   /** Each selected leaf's path, root first. */
-  paths: CascaderNode[][];
+  paths: TNode[][];
+  multiple: boolean;
   placeholder: boolean;
 }
 
-interface CascaderValueProps extends Omit<
-  useRender.ComponentProps<"span", CascaderValueState>,
+interface CascaderValueProps<TNode extends CascaderNode = CascaderNode> extends Omit<
+  useRender.ComponentProps<"span", CascaderValueState<TNode>>,
   "children" | "className"
 > {
-  className?: ClassName<CascaderValueState>;
+  className?: ClassName<CascaderValueState<TNode>>;
   /** Shown while nothing is selected. */
   placeholder?: React.ReactNode;
   /** Replaces the default text: the single path joined with " / ", or the leaf labels joined with ", ". */
-  children?: React.ReactNode | ((state: CascaderValueState) => React.ReactNode);
+  children?: React.ReactNode | ((state: CascaderValueState<TNode>) => React.ReactNode);
 }
 
 /** The selection as text. */
-const CascaderValue = ({
+const CascaderValue = <TNode extends CascaderNode>({
   children,
   className,
   placeholder,
   render,
   ...props
-}: CascaderValueProps) => {
-  const { index, state } = useCascaderContext("Cascader.Value");
+}: CascaderValueProps<TNode>) => {
+  const { index, state } = useCascaderContext<TNode>("Cascader.Value");
 
   const paths = state.selected.flatMap((value) => {
     const entry = index.get(value);
@@ -84,7 +87,7 @@ const CascaderValue = ({
     return entry === undefined ? [] : [entry.path];
   });
 
-  const valueState: CascaderValueState = { paths, placeholder: paths.length === 0 };
+  const valueState = { multiple: state.multiple, paths, placeholder: paths.length === 0 };
 
   let content: React.ReactNode = placeholder;
 
@@ -118,6 +121,38 @@ const CascaderTrigger = (props: Menu.Trigger.Props) => {
 };
 
 // Search
+
+/** Groups the search field and its controls. Pressing the surrounding surface focuses the field. */
+const CascaderSearchGroup = ({ render, ...props }: useRender.ComponentProps<"div">) => {
+  const { actions, state } = useSearchable("Cascader.SearchGroup");
+
+  return useRender({
+    defaultTagName: "div",
+    props: mergeProps<"div">(
+      {
+        onPointerDown(event) {
+          const { target } = event;
+
+          if (
+            event.button === 0 &&
+            !event.defaultPrevented &&
+            !state.disabled &&
+            target instanceof Element &&
+            !target.closest(
+              "input, button, a, select, textarea, [role=button], [contenteditable]",
+            ) &&
+            actions.focusSearch()
+          ) {
+            event.preventDefault();
+          }
+        },
+      },
+      props,
+    ),
+    render,
+    state: { nested: state.levelNode !== null },
+  });
+};
 
 interface CascaderSearchProps extends Menu.Input.Props {
   /** The field's name at the top level. Defaults to "Search options". */
@@ -359,16 +394,16 @@ const CascaderLevelLabel = ({ children, ...props }: Menu.GroupLabel.Props) => {
   return <Menu.GroupLabel {...props}>{children ?? state.levelNode.label}</Menu.GroupLabel>;
 };
 
-interface CascaderRowsProps<TData = unknown> {
-  /** Renders one row; give the returned element `key={row.node.value}`. */
-  children: (row: CascaderRow<TData>) => React.ReactNode;
+interface CascaderRowsProps<TNode extends CascaderNode = CascaderNode> {
+  /** Renders one row. Rows keys each result by its node value. */
+  children: (row: CascaderRow<TNode>) => React.ReactNode;
 }
 
 /**
  * The rows of the open level, or its search matches at any depth below it. Renders no element of
  * its own.
  */
-const CascaderRows = <TData,>({ children }: CascaderRowsProps<TData>) => {
+const CascaderRows = <TNode extends CascaderNode>({ children }: CascaderRowsProps<TNode>) => {
   const { items, match, state } = useCascaderContext("Cascader.Rows");
   const query = React.useDeferredValue(state.query.trim());
 
@@ -379,9 +414,9 @@ const CascaderRows = <TData,>({ children }: CascaderRowsProps<TData>) => {
 
   const rows = React.useMemo(() => getLevelRows(nodes, query, match), [match, nodes, query]);
 
-  // SAFETY: TData only types what the caller put in `data`; these rows hold the caller's own nodes.
-  // oxlint-disable-next-line typescript/no-unsafe-type-assertion -- context cannot carry the caller's TData generic, so the rows are re-typed to the type the caller declared for their own items.
-  return (rows as CascaderRow<TData>[]).map((row) => (
+  // SAFETY: Rows contain the original nodes provided to the root.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  return (rows as CascaderRow<TNode>[]).map((row) => (
     <React.Fragment key={row.node.value}>{children(row)}</React.Fragment>
   ));
 };
@@ -459,6 +494,7 @@ const CascaderItem = ({
     ...props,
     className: (base: BaseItemState) => resolveStateProp(className, toState(base)),
     "data-kind": row.kind,
+    "data-multiple": dataFlag(state.multiple),
     "data-search-result": dataFlag(row.trail.length > 0),
     "data-selected": dataFlag(selected),
     "data-value": node.value,
@@ -562,24 +598,27 @@ const CascaderItemIndicator = (
 interface CascaderItemTrailProps extends Omit<useRender.ComponentProps<"span">, "children"> {
   /** Replaces the default text, the trail labels joined with " / ". */
   children?: (trail: CascaderNode[]) => React.ReactNode;
+  /** Content for a direct child, when there is no trail. */
+  fallback?: React.ReactNode;
 }
 
 /** The path from the open level to a search match. Renders nothing for a direct child. */
-const CascaderItemTrail = ({ children, render, ...props }: CascaderItemTrailProps) => {
+const CascaderItemTrail = ({ children, fallback, render, ...props }: CascaderItemTrailProps) => {
   const { row } = useCascaderItemContext("Cascader.ItemTrail");
+  const hasTrail = row.trail.length > 0;
+  let content = fallback;
+
+  if (hasTrail) {
+    content =
+      children === undefined
+        ? row.trail.map((node) => node.label).join(" / ")
+        : children(row.trail);
+  }
 
   return useRender({
     defaultTagName: "span",
-    enabled: row.trail.length > 0,
-    props: mergeProps<"span">(
-      {
-        children:
-          children === undefined
-            ? row.trail.map((node) => node.label).join(" / ")
-            : children(row.trail),
-      },
-      props,
-    ),
+    enabled: hasTrail || (fallback !== undefined && fallback !== null),
+    props: mergeProps<"span">({ children: content }, props),
     render,
   });
 };
@@ -677,22 +716,6 @@ const CascaderClear = ({ render, ...props }: useRender.ComponentProps<"button">)
   });
 };
 
-// Hook
-
-interface UseCascaderReturnValue {
-  state: CascaderState;
-  actions: CascaderContextValue["actions"];
-  /** Every node by value, with its path from the top. */
-  index: CascaderContextValue["index"];
-}
-
-/** The cascader's state and actions, for parts the namespace does not cover. */
-const useCascader = (): UseCascaderReturnValue => {
-  const { actions, index, state } = useCascaderContext("useCascader");
-
-  return { actions, index, state };
-};
-
 export {
   CascaderBack,
   CascaderBackItem,
@@ -708,9 +731,9 @@ export {
   CascaderRows,
   CascaderSearch,
   CascaderSearchClear,
+  CascaderSearchGroup,
   CascaderTrigger,
   CascaderValue,
-  useCascader,
 };
 
 export type {
@@ -724,5 +747,4 @@ export type {
   CascaderSearchProps,
   CascaderValueProps,
   CascaderValueState,
-  UseCascaderReturnValue,
 };

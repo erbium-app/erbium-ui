@@ -14,6 +14,7 @@ import {
   CascaderRows,
   CascaderSearch,
   CascaderSearchClear,
+  CascaderSearchGroup,
   CascaderTrigger,
   CascaderValue,
 } from "./parts";
@@ -41,27 +42,16 @@ const Cascader = {
   Rows: CascaderRows,
   Search: CascaderSearch,
   SearchClear: CascaderSearchClear,
+  SearchGroup: CascaderSearchGroup,
   Trigger: CascaderTrigger,
   Value: CascaderValue,
 };
 
 export { Cascader };
 
-export { useCascader } from "./parts";
-
-export {
-  countSelectedBelow,
-  createCascaderIndex,
-  getLevelOf,
-  getLevelRows,
-  getPathTo,
-} from "./tree";
-
 export type {
-  CascaderActions,
   CascaderLevelChangeDetails,
   CascaderLevelChangeReason,
-  CascaderState,
   CascaderValueChangeDetails,
   CascaderValueChangeReason,
 } from "./context";
@@ -77,9 +67,8 @@ export type {
   CascaderSearchProps,
   CascaderValueProps,
   CascaderValueState,
-  UseCascaderReturnValue,
 } from "./parts";
 
 export type { CascaderRootMultipleProps, CascaderRootProps, CascaderRootSingleProps } from "./root";
 
-export type { CascaderIndex, CascaderMatch, CascaderNode, CascaderRow } from "./tree";
+export type { CascaderNode, CascaderRow } from "./tree";

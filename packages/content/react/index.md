@@ -21,8 +21,7 @@ Each primitive has its own entry point, so you load only what you use.
 
 | Import                             | Contents                                                    | Runs on          |
 | ---------------------------------- | ----------------------------------------------------------- | ---------------- |
-| `@erbium-ui/react/cascader`        | `Cascader` parts, `useCascader`, tree helpers               | Client           |
-| `@erbium-ui/react/cascader/tree`   | Tree indexing, level rows and search                        | Server or client |
+| `@erbium-ui/react/cascader`        | `Cascader` parts                                            | Client           |
 | `@erbium-ui/react/filters`         | `Filters` parts, list, table and URL adapters, picker hooks | Client           |
 | `@erbium-ui/react/filters/core`    | Rule model, matching, table filter function, URL codec      | Server or client |
 | `@erbium-ui/react/editable`        | `Editable` parts                                            | Client           |

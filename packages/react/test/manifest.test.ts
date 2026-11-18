@@ -34,7 +34,10 @@ describe("package manifest", () => {
       });
     }
 
-    expect(Object.keys(published).toSorted()).toEqual(Object.keys(manifest.exports).toSorted());
+    const expectedSubpaths = [...all.map(subpath), "./package.json"].toSorted();
+
+    expect(Object.keys(published).toSorted()).toEqual(expectedSubpaths);
+    expect(Object.keys(manifest.exports).toSorted()).toEqual(expectedSubpaths);
   });
 
   it("ships only the build output", () => {

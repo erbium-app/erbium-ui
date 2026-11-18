@@ -19,14 +19,14 @@ import {
   getLevelOf,
   getPathTo,
 } from "./tree";
-import type { CascaderMatch, CascaderNode } from "./tree";
+import type { CascaderMatch, CascaderNode, CascaderTreeNode } from "./tree";
 
-interface CascaderRootSharedProps extends Omit<
+interface CascaderRootSharedProps<TNode extends CascaderNode> extends Omit<
   Menu.Root.Props,
   "children" | "defaultValue" | "value"
 > {
   /** The option tree. Type `data` on the nodes for what a styled layer renders. */
-  items: readonly CascaderNode[];
+  items: readonly TNode[];
   children?: React.ReactNode;
   /**
    * Adds a search field that filters the open level and finds options at any depth below it.
@@ -34,7 +34,7 @@ interface CascaderRootSharedProps extends Omit<
    */
   searchable?: boolean;
   /** Replaces the search match. Defaults to a locale-aware substring test on label and keywords. */
-  filter?: CascaderMatch;
+  filter?: CascaderMatch<TNode>;
   /** The open level as branch values from the top. Controlled. */
   level?: readonly string[];
   /** The open level when uncontrolled. */
@@ -51,27 +51,33 @@ interface CascaderRootSharedProps extends Omit<
   form?: string;
 }
 
-interface CascaderRootSingleProps extends CascaderRootSharedProps {
+interface CascaderRootSingleProps<
+  TNode extends CascaderNode = CascaderNode,
+> extends CascaderRootSharedProps<TNode> {
   multiple?: false;
   value?: string | null;
   defaultValue?: string | null;
-  onValueChange?: (value: string | null, details: CascaderValueChangeDetails) => void;
+  onValueChange?: (value: string | null, details: CascaderValueChangeDetails<TNode>) => void;
 }
 
-interface CascaderRootMultipleProps extends CascaderRootSharedProps {
+interface CascaderRootMultipleProps<
+  TNode extends CascaderNode = CascaderNode,
+> extends CascaderRootSharedProps<TNode> {
   /** Picks any number of leaves. The popup stays open while picking. */
   multiple: true;
   value?: readonly string[];
   defaultValue?: readonly string[];
-  onValueChange?: (value: string[], details: CascaderValueChangeDetails) => void;
+  onValueChange?: (value: string[], details: CascaderValueChangeDetails<TNode>) => void;
 }
 
-type CascaderRootProps = CascaderRootSingleProps | CascaderRootMultipleProps;
+type CascaderRootProps<TNode extends CascaderNode = CascaderNode> =
+  | CascaderRootSingleProps<TNode>
+  | CascaderRootMultipleProps<TNode>;
 
 const toList = (value: string | null): readonly string[] => (value === null ? [] : [value]);
 
 /** The props that differ between single and multiple roots, as one shape. */
-const selectionOf = (props: CascaderRootProps) =>
+const selectionOf = <TNode extends CascaderNode>(props: CascaderRootProps<TNode>) =>
   props.multiple === true
     ? {
         defaultValue: props.defaultValue ?? [],
@@ -90,7 +96,11 @@ const selectionOf = (props: CascaderRootProps) =>
  * Holds the selection, the open level and the search text, and renders Base UI's `Menu.Root`.
  * Every `Menu.Root` prop passes through.
  */
-const CascaderRoot = (props: CascaderRootProps) => {
+function CascaderRoot<TNode extends CascaderTreeNode<TNode>>(
+  props: CascaderRootProps<TNode>,
+): React.JSX.Element;
+function CascaderRoot(props: CascaderRootProps): React.JSX.Element;
+function CascaderRoot<TNode extends CascaderTreeNode<TNode>>(props: CascaderRootProps<TNode>) {
   const {
     children,
     defaultLevel,
@@ -136,7 +146,17 @@ const CascaderRoot = (props: CascaderRootProps) => {
   }, []);
 
   const { contains } = Menu.useFilter();
-  const match = React.useMemo(() => filter ?? createMatch(contains), [contains, filter]);
+
+  const match = React.useMemo<CascaderMatch>(() => {
+    if (filter === undefined) {
+      return createMatch(contains);
+    }
+
+    return (node, search) =>
+      // SAFETY: Rows are built from this root's items, including nodes in nested levels.
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      filter(node as TNode, search);
+  }, [contains, filter]);
 
   const selectedCounts = React.useMemo(
     () => countSelectedBelow(index, selected),
@@ -164,9 +184,11 @@ const CascaderRoot = (props: CascaderRootProps) => {
       node: CascaderNode | null,
       event: Event | undefined,
     ) => {
-      const details: CascaderValueChangeDetails = createChangeDetails(reason, event, {
-        node,
-        path: node === null ? [] : (index.get(node.value)?.path ?? [node]),
+      const entry = node === null ? undefined : index.get(node.value);
+
+      const details: CascaderValueChangeDetails<TNode> = createChangeDetails(reason, event, {
+        node: entry?.node ?? null,
+        path: entry?.path ?? [],
       });
 
       onMultipleChange?.([...next], details);
@@ -195,7 +217,15 @@ const CascaderRoot = (props: CascaderRootProps) => {
         }
       },
       focusSearch: () => {
-        searchRef.current?.focus();
+        const input = searchRef.current;
+
+        if (input === null || input.disabled) {
+          return false;
+        }
+
+        input.focus();
+
+        return true;
       },
       select: (node, event) => {
         if (selected[0] !== node.value || selected.length !== 1) {
@@ -278,7 +308,7 @@ const CascaderRoot = (props: CascaderRootProps) => {
           ))}
     </CascaderContext>
   );
-};
+}
 
 export { CascaderRoot };
 

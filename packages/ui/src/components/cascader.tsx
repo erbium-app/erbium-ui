@@ -1,18 +1,13 @@
 import * as React from "react";
 import type { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import {
-  Cascader as CascaderPrimitive,
-  createCascaderIndex,
-  useCascader,
-} from "@erbium-ui/react/cascader";
+import { Cascader as CascaderPrimitive } from "@erbium-ui/react/cascader";
 import type {
-  CascaderIndex,
-  CascaderMatch,
-  CascaderNode as CascaderPrimitiveNode,
+  CascaderNode as PrimitiveNode,
+  CascaderRootMultipleProps,
+  CascaderRootSingleProps,
   CascaderRow,
   CascaderValueChangeDetails,
 } from "@erbium-ui/react/cascader";
-import { focusSearchInput } from "../lib/focus-search-input";
 import {
   menuChoiceIndicatorClassName,
   menuChoiceItemClassName,
@@ -40,190 +35,40 @@ import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 // Tree
 
 /** One option of a cascader. A node with `children` opens a level; a node without is a leaf. */
-interface CascaderNode {
-  /** Stable unique id, and the committed value of a leaf. */
-  value: string;
-  /** Display text, used for search and typeahead. */
-  label: string;
+interface CascaderNode extends Omit<PrimitiveNode, "children" | "data" | "keywords"> {
   /** Leading icon of the row. */
   icon?: React.ReactNode;
   /** Secondary line under the label. */
   description?: string;
   /** Nodes of the next level. */
   children?: CascaderNode[];
-  /** Keeps the node visible but unselectable; a disabled level cannot be opened. */
-  disabled?: boolean;
   /** Extra terms the search matches alongside the label. */
   keywords?: string[];
 }
 
-/** The primitive's node, carrying the Erbium node it was made from as `data`. */
-type PrimitiveNode = CascaderPrimitiveNode<CascaderNode>;
+type CascaderChangeDetails = Pick<CascaderValueChangeDetails<CascaderNode>, "node" | "path">;
 
-const toPrimitiveNodes = (nodes: readonly CascaderNode[]): PrimitiveNode[] =>
-  nodes.map((node) => ({
-    children: node.children === undefined ? undefined : toPrimitiveNodes(node.children),
-    data: node,
-    disabled: node.disabled,
-    keywords: node.keywords,
-    label: node.label,
-    value: node.value,
-  }));
+type StyledRootProps =
+  | "items"
+  | "children"
+  | "searchable"
+  | "filter"
+  | "disabled"
+  | "name"
+  | "open"
+  | "defaultOpen"
+  | "onOpenChange"
+  | "onOpenChangeComplete"
+  | "multiple"
+  | "value"
+  | "defaultValue"
+  | "onValueChange";
 
-const toNodes = (path: readonly CascaderPrimitiveNode<CascaderNode>[]): CascaderNode[] =>
-  path.flatMap((node) => (node.data === undefined ? [] : [node.data]));
+type CascaderProps =
+  | Pick<CascaderRootSingleProps<CascaderNode>, StyledRootProps>
+  | Pick<CascaderRootMultipleProps<CascaderNode>, StyledRootProps>;
 
-const NodesContext = React.createContext<CascaderIndex<CascaderNode> | null>(null);
-
-/** Every Erbium node by value, with its path from the top. */
-const useNodes = (part: string) => {
-  const index = React.use(NodesContext);
-
-  if (index === null) {
-    throw new Error(`${part} must be used within Cascader`);
-  }
-
-  return index;
-};
-
-/** The Erbium nodes on the path to a value, root first. */
-const pathOf = (index: CascaderIndex<CascaderNode>, value: string) =>
-  toNodes(index.get(value)?.path ?? []);
-
-// Root
-
-interface CascaderChangeDetails {
-  /** The leaf that was picked or toggled, or `null` when the selection was cleared. */
-  node: CascaderNode | null;
-  /** The leaf's ancestors and the leaf itself, root first. Empty when cleared. */
-  path: CascaderNode[];
-}
-
-interface CascaderSharedProps {
-  /** The option tree. */
-  items: readonly CascaderNode[];
-  children?: React.ReactNode;
-  /** Lets `CascaderSearch` filter the open level, as `searchable` on `DropdownMenu` does. */
-  searchable?: boolean;
-  /** Replaces the search match. Defaults to a locale-aware substring test on label and keywords. */
-  filter?: (node: CascaderNode, query: string) => boolean;
-  disabled?: boolean;
-  /** Submits each selected value under this name with a surrounding form. */
-  name?: string;
-  open?: boolean;
-  defaultOpen?: boolean;
-  onOpenChange?: MenuPrimitive.Root.Props["onOpenChange"];
-  onOpenChangeComplete?: MenuPrimitive.Root.Props["onOpenChangeComplete"];
-}
-
-interface CascaderSingleProps extends CascaderSharedProps {
-  multiple?: false;
-  value?: string | null;
-  defaultValue?: string | null;
-  onValueChange?: (value: string | null, details: CascaderChangeDetails) => void;
-}
-
-interface CascaderMultipleProps extends CascaderSharedProps {
-  /** Picks any number of leaves; the popup stays open while picking. */
-  multiple: true;
-  value?: string[];
-  defaultValue?: string[];
-  onValueChange?: (value: string[], details: CascaderChangeDetails) => void;
-}
-
-type CascaderProps = CascaderSingleProps | CascaderMultipleProps;
-
-/**
- * A select whose options form a tree. A row with children opens its level in place, inside the
- * same popup, and the search of a level finds options at any depth below it.
- */
-const Cascader = (props: CascaderProps) => {
-  const {
-    children,
-    defaultOpen,
-    disabled,
-    filter,
-    items,
-    name,
-    onOpenChange,
-    onOpenChangeComplete,
-    open,
-    searchable,
-  } = props;
-
-  const nodes = React.useMemo(() => toPrimitiveNodes(items), [items]);
-  const index = React.useMemo(() => createCascaderIndex(nodes), [nodes]);
-
-  // The primitive matches its own nodes; the filter is written against Erbium's.
-  const match = React.useMemo<CascaderMatch | undefined>(
-    () =>
-      filter === undefined
-        ? undefined
-        : (node, query) => {
-            const source = index.get(node.value)?.node.data;
-
-            return source !== undefined && filter(source, query);
-          },
-    [filter, index],
-  );
-
-  const toDetails = (details: CascaderValueChangeDetails): CascaderChangeDetails =>
-    details.node === null
-      ? { node: null, path: [] }
-      : {
-          node: index.get(details.node.value)?.node.data ?? null,
-          path: pathOf(index, details.node.value),
-        };
-
-  const shared = {
-    defaultOpen,
-    disabled,
-    filter: match,
-    items: nodes,
-    name,
-    onOpenChange,
-    onOpenChangeComplete,
-    open,
-    searchable,
-  };
-
-  let root: React.ReactNode;
-
-  if (props.multiple === true) {
-    const onMultipleChange = props.onValueChange;
-
-    root = (
-      <CascaderPrimitive.Root
-        {...shared}
-        multiple
-        value={props.value}
-        defaultValue={props.defaultValue}
-        onValueChange={(value, details) => {
-          onMultipleChange?.(value, toDetails(details));
-        }}
-      >
-        {children}
-      </CascaderPrimitive.Root>
-    );
-  } else {
-    const onSingleChange = props.onValueChange;
-
-    root = (
-      <CascaderPrimitive.Root
-        {...shared}
-        value={props.value}
-        defaultValue={props.defaultValue}
-        onValueChange={(value, details) => {
-          onSingleChange?.(value, toDetails(details));
-        }}
-      >
-        {children}
-      </CascaderPrimitive.Root>
-    );
-  }
-
-  return <NodesContext value={index}>{root}</NodesContext>;
-};
+const Cascader = (props: CascaderProps) => <CascaderPrimitive.Root {...props} />;
 
 // Trigger and value
 
@@ -291,36 +136,29 @@ const CascaderPath = ({ path }: { path: CascaderNode[] }) =>
   );
 
 /** The selection: the full path of a single leaf, or the labels of several. */
-const CascaderValue = ({ className, placeholder, children, ...props }: CascaderValueProps) => {
-  const index = useNodes("CascaderValue");
-  const { state } = useCascader();
+const CascaderValue = ({ className, placeholder, children, ...props }: CascaderValueProps) => (
+  <CascaderPrimitive.Value<CascaderNode>
+    data-slot="cascader-value"
+    className={cn("min-w-0 flex-1 truncate text-start", className)}
+    {...props}
+  >
+    {({ multiple, paths }): React.ReactNode => {
+      if (children !== undefined) {
+        return children(paths);
+      }
 
-  return (
-    <CascaderPrimitive.Value
-      data-slot="cascader-value"
-      className={cn("min-w-0 flex-1 truncate text-start", className)}
-      {...props}
-    >
-      {({ paths }): React.ReactNode => {
-        const selected = paths.map((path) => pathOf(index, path.at(-1)?.value ?? ""));
+      if (paths.length === 0) {
+        return placeholder;
+      }
 
-        if (children !== undefined) {
-          return children(selected);
-        }
-
-        if (selected.length === 0) {
-          return placeholder;
-        }
-
-        return state.multiple ? (
-          selected.map((path) => path.at(-1)?.label).join(", ")
-        ) : (
-          <CascaderPath path={selected[0] ?? []} />
-        );
-      }}
-    </CascaderPrimitive.Value>
-  );
-};
+      return multiple ? (
+        paths.map((path) => path.at(-1)?.label).join(", ")
+      ) : (
+        <CascaderPath path={paths[0] ?? []} />
+      );
+    }}
+  </CascaderPrimitive.Value>
+);
 
 // Popup
 
@@ -360,50 +198,36 @@ const CascaderSearch = ({
   placeholder = "Search…",
   "aria-label": ariaLabel,
   ...props
-}: MenuPrimitive.Input.Props) => {
-  const { state } = useCascader();
-
-  return (
-    <div data-slot="cascader-search" className="shrink-0">
-      <div
-        className="flex search-input-row items-center"
-        onPointerDown={(event) => {
-          focusSearchInput(event.currentTarget, event);
-        }}
+}: MenuPrimitive.Input.Props) => (
+  <div data-slot="cascader-search" className="shrink-0">
+    <CascaderPrimitive.SearchGroup className="group/cascader-search flex search-input-row items-center">
+      <Icon
+        name="search-01"
+        aria-hidden="true"
+        className="size-control-icon shrink-0 text-muted-foreground group-data-nested/cascader-search:hidden"
+      />
+      <CascaderPrimitive.Back
+        render={<Button variant="ghost" size="icon-xs" className="-ms-1 shrink-0 rtl:rotate-180" />}
       >
-        {state.levelNode === null ? (
-          <Icon
-            name="search-01"
-            aria-hidden="true"
-            className="size-control-icon shrink-0 text-muted-foreground"
-          />
-        ) : (
-          <CascaderPrimitive.Back
-            render={
-              <Button variant="ghost" size="icon-xs" className="-ms-1 shrink-0 rtl:rotate-180" />
-            }
-          >
-            <Icon name="chevron-left" aria-hidden="true" />
-          </CascaderPrimitive.Back>
-        )}
-        <CascaderPrimitive.Search
-          data-slot="cascader-search-input"
-          aria-label={ariaLabel}
-          placeholder={placeholder}
-          className="min-h-0 min-w-0 flex-1 bg-transparent py-0 text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-          {...props}
-        />
-        <CascaderPrimitive.SearchClear
-          aria-label="Clear search"
-          render={<Button variant="ghost" size="icon-xs" />}
-        >
-          <Icon name="x" aria-hidden="true" />
-        </CascaderPrimitive.SearchClear>
-      </div>
-      <Separator variant="full" />
-    </div>
-  );
-};
+        <Icon name="chevron-left" aria-hidden="true" />
+      </CascaderPrimitive.Back>
+      <CascaderPrimitive.Search
+        data-slot="cascader-search-input"
+        aria-label={ariaLabel}
+        placeholder={placeholder}
+        className="min-h-0 min-w-0 flex-1 bg-transparent py-0 text-field outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        {...props}
+      />
+      <CascaderPrimitive.SearchClear
+        aria-label="Clear search"
+        render={<Button variant="ghost" size="icon-xs" />}
+      >
+        <Icon name="x" aria-hidden="true" />
+      </CascaderPrimitive.SearchClear>
+    </CascaderPrimitive.SearchGroup>
+    <Separator variant="full" />
+  </div>
+);
 
 /** Shown when the search of the open level matches nothing. */
 const CascaderEmpty = ({
@@ -439,37 +263,28 @@ const CascaderItem = ({
   row: CascaderRow<CascaderNode>;
   render: CascaderRenderRow | undefined;
 }) => {
-  const { state } = useCascader();
-  const node = row.node.data;
-
-  if (node === undefined) {
-    return null;
-  }
-
-  const branch = row.kind === "branch";
+  const { node } = row;
 
   return (
     <CascaderPrimitive.Item
       row={row}
-      data-slot={branch ? "cascader-branch" : "cascader-item"}
+      data-slot={row.kind === "branch" ? "cascader-branch" : "cascader-item"}
       className={cn(
-        branch ? menuItemClassName : menuChoiceItemClassName,
+        row.kind === "branch" ? menuItemClassName : menuChoiceItemClassName,
         "group/cascader-item gap-related",
       )}
     >
-      {branch ? null : (
-        <span className={menuChoiceIndicatorClassName}>
-          {state.multiple ? (
-            <CascaderPrimitive.ItemIndicator className="group/check-indicator inline-grid">
-              <CheckboxStateIcon className="size-control-icon" />
-            </CascaderPrimitive.ItemIndicator>
-          ) : (
-            <CascaderPrimitive.ItemIndicator keepMounted={false}>
-              <Icon name="check" />
-            </CascaderPrimitive.ItemIndicator>
-          )}
+      <CascaderPrimitive.ItemIndicator
+        className={cn(menuChoiceIndicatorClassName, "group/check-indicator inline-grid")}
+      >
+        <span className="hidden group-data-multiple/cascader-item:inline-grid">
+          <CheckboxStateIcon className="size-control-icon" />
         </span>
-      )}
+        <Icon
+          name="check"
+          className="group-data-multiple/cascader-item:hidden group-data-unchecked/check-indicator:invisible"
+        />
+      </CascaderPrimitive.ItemIndicator>
       <span data-slot="cascader-item-content" className="flex min-w-0 flex-1 flex-col">
         <span className="flex min-w-0 items-center gap-related">
           {render === undefined ? (
@@ -484,14 +299,10 @@ const CascaderItem = ({
         <CascaderPrimitive.ItemTrail
           data-slot="cascader-item-description"
           className={secondaryLineClassName}
+          fallback={node.description}
         />
-        {row.trail.length > 0 || node.description === undefined ? null : (
-          <span data-slot="cascader-item-description" className={secondaryLineClassName}>
-            {node.description}
-          </span>
-        )}
       </span>
-      {branch ? (
+      {row.kind === "branch" ? (
         <>
           <CascaderPrimitive.ItemCount
             data-slot="cascader-branch-count"
@@ -529,8 +340,8 @@ const CascaderList = ({ children, className, ...props }: CascaderListProps) => (
       </CascaderPrimitive.BackItem>
       <CascaderPrimitive.Level data-filter-section="">
         <CascaderPrimitive.LevelLabel data-slot="cascader-label" className={menuLabelClassName} />
-        <CascaderPrimitive.Rows>
-          {(row: CascaderRow<CascaderNode>) => <CascaderItem row={row} render={children} />}
+        <CascaderPrimitive.Rows<CascaderNode>>
+          {(row) => <CascaderItem row={row} render={children} />}
         </CascaderPrimitive.Rows>
       </CascaderPrimitive.Level>
     </CascaderPrimitive.List>

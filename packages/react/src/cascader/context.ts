@@ -13,13 +13,13 @@ type CascaderLevelChangeReason =
   | "backspace-key"
   | "open";
 
-type CascaderValueChangeDetails = ChangeDetails<
+type CascaderValueChangeDetails<TNode extends CascaderNode = CascaderNode> = ChangeDetails<
   CascaderValueChangeReason,
   {
     /** The leaf that was picked or toggled, or `null` when the selection was cleared. */
-    node: CascaderNode | null;
+    node: TNode | null;
     /** The leaf's ancestors and the leaf itself, root first. Empty when cleared. */
-    path: CascaderNode[];
+    path: TNode[];
   }
 >;
 
@@ -31,16 +31,16 @@ interface CascaderLevelChangeCause {
   event?: Event;
 }
 
-interface CascaderState {
+interface CascaderState<TNode extends CascaderNode = CascaderNode> {
   multiple: boolean;
   /** Selected leaf values, in selection order. */
   selected: readonly string[];
   /** Branch values from the top to the open level. Empty at the top level. */
   level: readonly string[];
   /** The branch whose children are on screen, or `null` at the top level. */
-  levelNode: CascaderNode | null;
+  levelNode: TNode | null;
   /** The branch above the open level, or `null` at or one below the top. */
-  parentNode: CascaderNode | null;
+  parentNode: TNode | null;
   /** The search text of the open level. */
   query: string;
   searchable: boolean;
@@ -58,15 +58,15 @@ interface CascaderActions {
   /** Returns to the parent level. */
   back: (cause?: CascaderLevelChangeCause) => void;
   /** Moves focus to the search field, when there is one. */
-  focusSearch: () => void;
+  focusSearch: () => boolean;
 }
 
-interface CascaderContextValue {
-  state: CascaderState;
+interface CascaderContextValue<TNode extends CascaderNode = CascaderNode> {
+  state: CascaderState<TNode>;
   actions: CascaderActions;
-  index: CascaderIndex;
-  items: readonly CascaderNode[];
-  match: CascaderMatch;
+  index: CascaderIndex<TNode>;
+  items: readonly TNode[];
+  match: CascaderMatch<TNode>;
   /** Selected leaves below each branch. */
   selectedCounts: ReadonlyMap<string, number>;
   /** Registers the search field, which keeps focus while levels change. */
@@ -75,8 +75,11 @@ interface CascaderContextValue {
 
 const CascaderContext = React.createContext<CascaderContextValue | null>(null);
 
-const useCascaderContext = (part: string) =>
-  React.use(CascaderContext) ?? missingContext(part, "<Cascader.Root>");
+const useCascaderContext = <TNode extends CascaderNode = CascaderNode>(part: string) =>
+  // SAFETY: Callers use the same node type for the root and its typed parts.
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+  (React.use(CascaderContext) as CascaderContextValue<TNode> | null) ??
+  missingContext(part, "<Cascader.Root>");
 
 interface CascaderItemContextValue {
   row: CascaderRow;

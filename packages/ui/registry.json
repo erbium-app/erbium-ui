@@ -359,7 +359,6 @@
       "dependencies": ["@base-ui/react", "@erbium-ui/react@^0.1.0"],
       "registryDependencies": [
         "@erbium/button",
-        "@erbium/focus-search-input",
         "@erbium/icon",
         "@erbium/menu-search",
         "@erbium/menu-styles",

@@ -16,8 +16,7 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 
 | Import                             | Contents                                               | Runs on          |
 | ---------------------------------- | ------------------------------------------------------ | ---------------- |
-| `@erbium-ui/react/cascader`        | `Cascader` parts, `useCascader`, tree helpers          | Client           |
-| `@erbium-ui/react/cascader/tree`   | Tree indexing, level rows and search, without React    | Server or client |
+| `@erbium-ui/react/cascader`        | `Cascader` parts                                       | Client           |
 | `@erbium-ui/react/filters`         | `Filters` parts, adapters, picker hooks, and the core  | Client           |
 | `@erbium-ui/react/filters/core`    | Rule model, matching, table filter function, URL codec | Server or client |
 | `@erbium-ui/react/editable`        | `Editable` parts                                       | Client           |

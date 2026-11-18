@@ -1,4 +1,4 @@
 {
   "client": ["cascader/index", "editable/index", "filters/index", "pagination/index"],
-  "server": ["cascader/tree", "filters/core", "pagination/core"]
+  "server": ["filters/core", "pagination/core"]
 }
