@@ -22,6 +22,7 @@ Reviewed 2026-11-17. This is a recurring acceptance checklist, not a list of mis
 - [ ] For `packages/ui/src` changes, run `bun run ui:registry`.
 - [ ] For showcase source or shared content changes, run `bun run showcase:generate` and `bun run showcase:registry`.
 - [ ] Run `bun run showcase:check` to verify generated adapters and registries. Do not hand-edit generated output.
+  - Known issue: after its generate and registry steps, `showcase:check` runs `vp run check` over the whole repository, so it fails on existing lint errors in unrelated files and never reaches the docs and Storybook builds. Until those errors are fixed (see [14](./14-ci-and-deploy.md)), treat it as passing for a change when the generate and registry steps pass and none of the reported errors are in edited files, and run `bun run docs:build` and `bun run storybook:build` separately when the change affects them.
 
 ## Repository checks
 

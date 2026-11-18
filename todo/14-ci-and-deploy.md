@@ -35,6 +35,17 @@ Approve items by number, ship each as its own commit, and record before and afte
 3. Gate prod deploys on green checks: either deploy from a GitHub Actions job that `needs:` the checks and turn off Workers Builds auto-deploy, or keep Workers Builds and protect `main` behind PRs.
 4. Merge queue running the full suite. Applies only if work moves to a PR flow; decide first.
 
+`bun run showcase:check` has the same problem. It chains the generate and registry checks, the whole-repository `vp run check`, and the docs and Storybook builds, so the existing lint errors stop it at the check step and the builds never run. The stateful button and its demo are already clean. The remaining errors sit in:
+
+- `apps/docs/src/components`: `control-metadata.ts`, `theme.ts`.
+- `apps/storybook/.storybook`: `docs-container.tsx`, `main.ts`, `preview.ts`.
+- `apps/website/src/main.ts`.
+- `packages/content/src/markdown.ts`.
+- `packages/showcase/src`: `catalog.ts`, `types.ts`, `sources.ts`, `form/examples/form-value.ts`, `item/examples/item-settings-panel.tsx`, `marker/examples/marker-status.tsx`.
+- `packages/ui/src`: `lib/copy-to-clipboard.ts`, `lib/file-icons.ts`, `lib/typography.ts`, `lib/diff-icons.ts`, `lib/diff-accessibility.ts`, `lib/shake.ts`, `components/text-morph.tsx`, `components/icon-sprite.tsx`, `components/resizable.tsx`, `components/scroll-area.tsx`, `blocks/code-block.tsx`, `hooks/use-drag-select.ts`, `hooks/use-copy-to-clipboard.ts`.
+
+Re-run `bun run showcase:check` for the current list before starting. Either fix them, one commit per area, or give `showcase:check` the same changed-files check and ratchet as item 1. Fix without disable comments unless a rule is wrong for the code, and put the reason in the comment. `copy-to-clipboard.ts` has the same pass-through `onError: (error: unknown)` case as the stateful button, which was handled with a reasoned `anti-slop/no-unknown-parameters` disable.
+
 ### B. Cloudflare deploy speed (target about 1m10s)
 
 5. Install only deploy dependencies: `bun install --frozen-lockfile --filter docs --filter @erbium/infra` (confirm workspace dependencies resolve), and enable the Workers Builds build cache. Expected 5–8s.

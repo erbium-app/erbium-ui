@@ -24,8 +24,8 @@ Recorded 2026-11-18. Implement these; do not reopen them without the owner.
    - After `errorDuration` return to `"idle"`, using the same debouncer pattern as the success reset.
    - Controlled mode (`state` prop) accepts `"error"` too.
 2. **One live region in StatefulButton.**
-   - Replace the two `role="status"` spans that toggle `aria-hidden` (`stateful-button.tsx:124-145`) with one always-mounted sr-only `role="status"` element whose text changes: empty in idle, "Loading", the success label, the error label. Error text may use `role="alert"` only if VoiceOver testing shows polite is missed.
-   - The visual layers become `aria-hidden` decoration. Remove the `aria-label` on the status spans (it duplicates the sr-only text).
+   - Replace the two `<output>` status layers that toggle `aria-hidden` (they were `role="status"` spans until the lint fix described under the StatefulButton findings) with one always-mounted sr-only `<output>` whose text changes: empty in idle, "Loading", the success label, the error label. Use `<output>`, not `role="status"` on a span, because `jsx-a11y/prefer-tag-over-role` rejects the span. Error text may use `role="alert"` only if VoiceOver testing shows polite is missed.
+   - The visual layers become `aria-hidden` decoration. Remove the `aria-label` on the status layers (it duplicates the sr-only text). This also removes the `anti-slop/no-runtime-typeof` disable comment on the success layer's `aria-label`, which exists only to read a string `successLabel`.
    - The button's accessible name must stay the idle label in every state (keep the idle children in the accessibility tree, or set `aria-label` from them when they are a string; verify which works).
 3. **SubmitButton shows the error state on a failed submit.** `form.SubmitButton` (`packages/ui/src/components/form.tsx:457`) maps a submit whose handler threw or rejected to `"error"`. The message itself is the consumer's job: field errors through `field.FieldError`, request failures through a toast or an inline alert. Shared primitives own the state and the announcement; consumers own the message text and recovery.
 4. **Progress renders its default track only when no `ProgressTrack` child is passed.**
@@ -46,7 +46,13 @@ Recorded 2026-11-18. Implement these; do not reopen them without the owner.
 
 ### StatefulButton (`packages/ui/src/components/stateful-button.tsx`)
 
-- A rejected promise returns to `idle` and only calls the optional `onError` (lines 97-101). Without `onError` the failure is lost. Fixed by decisions 1-2.
+- A rejected promise returns to `idle` and only calls the optional `onError` (the `catch` branch of the `settle` helper). Without `onError` the failure is lost. Fixed by decisions 1-2.
+- Lint fix already landed (`fix(ui): handle stateful button promise errors with catch`). The click promise used to settle through `then(onFulfilled, onRejected)`, which `promise/prefer-catch`, `promise/prefer-await-to-callbacks` and `promise/always-return` reject. It now goes through an async `settle` helper. Keep these properties when adding the error state:
+  - `handleClick` stays synchronous up to `changeState("loading")`, so the loading state and `inFlight` are set during the click.
+  - The success branch sits after the `try`/`catch`, not inside the `try`, matching the old two-argument `then`: an error thrown while entering success is not routed to `onError`, and an error thrown by `onError` still rejects the helper's promise (unhandled, as before). Decision 1's `"error"` transition and `reportError` fallback go in the `catch` branch.
+  - A non-native thenable now has its `then` called a microtask later than before, because `await` adopts it in a job. Native promises settle on the same microtask as before.
+- Three disable comments in the file carry their reasons; revisit them with this work: `anti-slop/no-unknown-parameters` on the `onError` prop (the rejection reason is passed through unread), `anti-slop/no-runtime-typeof` on the thenable check (`instanceof Promise` would miss cross-realm promises and thenables), and `anti-slop/no-runtime-typeof` on the success `aria-label` (goes away with decision 2).
+- `disabled` is combined as `disabled === true || busy`. Do not change it to `disabled ?? busy`: an explicit `disabled={false}` would then stop the busy button from disabling.
 - The status spans never change text; they only flip `aria-hidden`. Screen readers announce that inconsistently.
 - Focus retention works: `focusableWhenDisabled` is set while busy. Keep it.
 
@@ -94,7 +100,7 @@ Each step: edit, run `bunx vp check <edited files>` (and `bunx stylelint` on edi
 5. [ ] Rewrite both async search examples (decision 5). Add an "Async search" section to the autocomplete and combobox docs in `packages/content/components/` covering failures, retries, cancellation, stale responses, status messages, and what the consumer owns.
 6. [ ] Alert dialog async-confirm example.
 7. [ ] Avatar fallback delay: decide and implement or drop.
-8. [ ] Regenerate: `bun run ui:registry` for `packages/ui/src`; `bun run showcase:generate` and `bun run showcase:registry` for showcase and content; `bun run showcase:check` must pass. Never hand-edit generated files.
+8. [ ] Regenerate: `bun run ui:registry` for `packages/ui/src`; `bun run showcase:generate` and `bun run showcase:registry` for showcase and content; `bun run showcase:check` must pass. Never hand-edit generated files. `showcase:check` currently fails at its whole-repository `vp run check` step on existing lint errors in unrelated files (see [14](./14-ci-and-deploy.md)); until those are fixed, confirm its generate and registry steps pass and that none of its reported errors are in files this work touched.
 9. [ ] Testing setup (decision 6) in its own commit, then play functions for: autocomplete and combobox fast typing, stale responses, no match, error and retry, clearing, keyboard selection; StatefulButton success and error; Progress single track in all three states; axe on each story.
 10. [ ] Manual verification in Storybook, recorded here:
     - [ ] Autocomplete start-addon spacing with placeholder and typed text at `sm`, `default`, `lg`, in LTR and RTL, with clear and trigger.
