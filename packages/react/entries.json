@@ -1,0 +1,4 @@
+{
+  "client": ["cascader/index"],
+  "server": ["cascader/tree"]
+}
