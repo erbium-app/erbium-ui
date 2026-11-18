@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from "@erbium/ui/components/alert
 import { Button } from "@erbium/ui/components/button";
 
 export const DocPageError = ({ error, reset }: ErrorComponentProps) => (
-  <main id="main-content" className="docs-page surface-panel border border-transparent rounded-xl">
+  <article id="main-content" tabIndex={-1} className="docs-page outline-none">
     <div className="docs-page-body">
       <div className="docs-page-inner flex flex-col items-start gap-4">
         <Alert variant="error">
@@ -19,5 +19,5 @@ export const DocPageError = ({ error, reset }: ErrorComponentProps) => (
         </Button>
       </div>
     </div>
-  </main>
+  </article>
 );

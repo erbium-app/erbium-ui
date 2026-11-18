@@ -9,30 +9,18 @@
 
 :root {
   --docs-tight-gap: 0.35rem;
-  --docs-navigation-inset: 0.65rem;
-  --docs-sidebar-inset: 0.7rem;
   --docs-pagination-block: 0.85rem;
   --docs-page-action-gap: 1.15rem;
   --docs-sidebar-width: 15rem;
-  --site-gutter: 1.5rem;
-  --site-max-width: 90rem;
-  --site-section-space: 1.5rem;
-  --site-column-gap: 1.5rem;
+  --docs-max-width: 90rem;
   --docs-page-padding-inline: 2.5rem;
   --docs-page-padding-start: 2rem;
   --docs-page-padding-end: 2rem;
-  --docs-title-line-height: calc(var(--text-display) * var(--text-display--line-height));
   --docs-description-gap: 0.75rem;
-  --docs-description-line-height: calc(var(--text-body) * var(--text-body--line-height));
-  --docs-header-midpoint: calc(
-    (
-        var(--docs-title-line-height) + var(--docs-description-gap) +
-          var(--docs-description-line-height)
-      ) /
-      2
-  );
 }
 
+/* The shell scrolls the page, as the site always has. Anchors land clear of the viewport's top
+   edge, and the stable gutter keeps the layout still between short and long pages. */
 html {
   font-optical-sizing: auto;
   scroll-padding-top: 2rem;
@@ -51,53 +39,30 @@ body {
   @apply subpixel-antialiased;
 }
 
-.site-shell {
-  margin-inline: max(var(--site-gutter), calc((100% - var(--site-max-width))/2)) var(--site-gutter);
-}
-
-.docs-frame {
-  display: grid;
-  min-height: 100svh;
-  align-items: start;
-  background-color: transparent;
-  gap: var(--site-column-gap);
-  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+/* The frame of ui.erbium.app: the sidebar sits in a gutter that grows on wide screens, as if
+   the site were centred in --docs-max-width, and the page panel keeps --docs-frame-gap from
+   the sidebar and the viewport edges. */
+.docs-shell {
+  --docs-frame-gap: 1.5rem;
+  --docs-sidebar-gutter: max(var(--docs-frame-gap), calc((100vw - var(--docs-max-width)) / 2));
+  --sidebar-inset-gap: var(--docs-frame-gap);
+  --sidebar-width: calc(
+    var(--docs-sidebar-gutter) + var(--docs-sidebar-width) + var(--docs-frame-gap)
+  );
 }
 
 .docs-sidebar {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100svh;
-  padding-top: var(--site-section-space);
+  padding-inline-start: var(--docs-sidebar-gutter);
 }
 
-.sidebar-heading {
-  gap: calc(var(--docs-page-padding-start) + 1px + var(--docs-header-midpoint) - 3.5rem);
-}
-
-.site-page-content {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-}
-
-/* The page panel fills the viewport so short pages keep the pagination at the
-   bottom of the panel, without overflowing into a scroll. */
-@media (width >= 959px) {
-  .site-page-content {
-    min-height: 100svh;
-  }
-}
-
+/* The page fills the surface, so short pages keep the pagination at the bottom. */
 .docs-page {
-  min-width: 0;
-  padding: var(--docs-page-padding-start) var(--docs-page-padding-inline)
-    var(--docs-page-padding-end);
-  margin-block: var(--site-section-space);
   display: flex;
+  min-width: 0;
   flex: 1 0 auto;
   flex-direction: column;
+  padding: var(--docs-page-padding-start) var(--docs-page-padding-inline)
+    var(--docs-page-padding-end);
 }
 
 .docs-page-body {
@@ -109,10 +74,10 @@ body {
 }
 
 .docs-page-inner {
+  display: flex;
   width: 100%;
   min-width: 0;
   max-width: 48rem;
-  display: flex;
   flex-direction: column;
   align-self: stretch;
   grid-column: 1;
@@ -148,68 +113,6 @@ body {
   @apply font-selected;
 }
 
-.mobile-site-header {
-  display: none;
-}
-
-.docs-mobile-panel {
-  right: auto;
-  left: auto;
-  width: min(18rem, calc(100vw - 2rem));
-  max-width: none;
-  height: 100dvh;
-  padding: 0;
-  background: var(--sidebar);
-  border-inline-end: 1px solid var(--sidebar-border);
-  box-shadow: none;
-  color: var(--sidebar-foreground);
-  inset-inline: 0 auto;
-}
-
-.mobile-sidebar-search {
-  flex-shrink: 0;
-  padding: calc(1rem + env(safe-area-inset-top, 0px)) 1rem 1rem;
-}
-
-.mobile-sidebar-footer {
-  flex-shrink: 0;
-  padding-bottom: env(safe-area-inset-bottom, 0);
-  margin-inline: 1rem;
-}
-
-/* Appears only when a navigation outlasts the delay, so cached pages show no bar. */
-.route-progress {
-  position: fixed;
-  z-index: 100;
-  height: 2px;
-  background: var(--primary);
-  inset-block-start: 0;
-  inset-inline: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-
-[dir="rtl"] .route-progress {
-  transform-origin: right center;
-}
-
-.route-progress[data-active] {
-  opacity: 1;
-  transform: scaleX(0.85);
-  transition:
-    opacity 120ms linear 150ms,
-    transform 4s cubic-bezier(0.1, 0.7, 0.2, 1) 150ms;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .route-progress[data-active] {
-    transform: scaleX(1);
-    transition: opacity 120ms linear 150ms;
-  }
-}
-
 .skip-link {
   position: fixed;
   z-index: 100;
@@ -240,12 +143,6 @@ body {
   }
 }
 
-@media (width >= 1280px) {
-  :root {
-    --docs-title-line-height: 2.5rem;
-  }
-}
-
 @media (width <= 1200px) {
   .docs-page-body {
     display: flex;
@@ -264,56 +161,29 @@ body {
 @media (width <= 1100px) {
   :root {
     --docs-sidebar-width: 13rem;
-    --site-column-gap: 1rem;
   }
 }
 
 @media (width < 959px) {
   :root {
-    --site-gutter: 1rem;
-    --site-section-space: 0rem;
-    --docs-page-padding-inline: 0rem;
-    --docs-page-padding-start: 0.5rem;
-    --docs-page-padding-end: 2rem;
+    --docs-page-padding-inline: 1.5rem;
+    --docs-page-padding-start: 1.5rem;
   }
 
-  body {
-    background: var(--surface-panel);
-  }
-
-  .docs-frame {
-    display: block;
-  }
-
-  .docs-sidebar,
   .docs-toc {
     display: none;
-  }
-
-  .mobile-site-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--gap-group);
-    padding-block: 0.75rem;
-  }
-
-  .docs-page {
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
   }
 
   .docs-page-inner {
     max-width: none;
   }
+}
 
-  .mobile-site-header button,
-  .mobile-sidebar-footer button,
-  .mobile-sidebar-footer a {
-    min-width: 2.75rem;
-    min-height: 2.75rem;
+/* Below the shell's mobile breakpoint the surface fills the screen. */
+@media (width < 48rem) {
+  :root {
+    --docs-page-padding-inline: 1rem;
+    --docs-page-padding-start: 1rem;
   }
 }
 

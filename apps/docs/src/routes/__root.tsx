@@ -57,9 +57,9 @@ export const Route = createRootRoute({
     ],
   }),
   notFoundComponent: () => (
-    <main id="main-content" className="docs-page surface-panel rounded-xl">
+    <article id="main-content" tabIndex={-1} className="docs-page outline-none">
       <h1 className="text-display">Page not found</h1>
       <Link to="/">Return to documentation</Link>
-    </main>
+    </article>
   ),
 });

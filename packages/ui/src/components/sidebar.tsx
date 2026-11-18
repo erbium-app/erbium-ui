@@ -47,7 +47,7 @@ const sidebarContainerVariants = cva(
     variants: {
       variant: {
         inset:
-          "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]",
+          "p-(--sidebar-inset-gap) group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]",
         sidebar:
           "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-e group-data-[side=right]:border-s",
       },
@@ -231,8 +231,9 @@ const SidebarProvider = ({
       <div
         data-slot="sidebar-wrapper"
         // Override a width with a class, e.g. `[--sidebar-width:20rem]`; `cn` keeps the last one.
+        // `--sidebar-inset-gap` spaces an inset sidebar and its surface from the viewport edges.
         className={cn(
-          "group/sidebar-wrapper flex min-h-svh w-full [--sidebar-width-icon:3rem] [--sidebar-width:16rem] has-data-[variant=inset]:bg-sidebar data-resizing:cursor-ew-resize data-resizing:select-none",
+          "group/sidebar-wrapper flex min-h-svh w-full [--sidebar-inset-gap:--spacing(2)] [--sidebar-width-icon:3rem] [--sidebar-width:16rem] has-data-[variant=inset]:bg-sidebar data-resizing:cursor-ew-resize data-resizing:select-none",
           className,
         )}
         style={wrapperStyle}
@@ -615,11 +616,16 @@ const SidebarRail = ({
   );
 };
 
+/*
+ * The main content beside the sidebar. Beside a plain sidebar it shares the page background.
+ * Beside an inset sidebar it is the raised content panel: `surface-panel` gives it the panel
+ * face, perimeter, catchlight, and drop shadow above the sidebar's canvas, in both themes.
+ */
 const SidebarInset = ({ className, ...props }: React.ComponentProps<"main">) => (
   <main
     data-slot="sidebar-inset"
     className={cn(
-      "relative flex w-full flex-1 flex-col bg-background transition-[margin] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none motion-reduce:transition-none md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-2",
+      "relative flex w-full flex-1 flex-col bg-background transition-[margin] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none motion-reduce:transition-none md:peer-data-[variant=inset]:m-(--sidebar-inset-gap) md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:surface-panel md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-(--sidebar-inset-gap)",
       className,
     )}
     {...props}

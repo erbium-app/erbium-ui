@@ -63,10 +63,26 @@ AppShell                      provider: sidebar mode, open state, width
 │   │       └── AppShellNavAction  button row
 │   └── AppShellSidebarFooter
 └── AppShellSurface           raised surface beside the sidebar
-    ├── AppShellHeader        sidebar trigger, progress bar
+    ├── AppShellHeader        optional: sidebar trigger, progress bar
     │   ├── AppShellBreadcrumbs | AppShellTitle
     │   └── AppShellActions
     └── AppShellContent       scrolling region for <Outlet />
+```
+
+## Without a header
+
+The header is optional. Leave it out when pages carry their own titles, as a documentation site does. The header is where the sidebar trigger lives, so place `AppShellTrigger` yourself, for example in a bar shown only on mobile. With a fixed sidebar the trigger hides on desktop and opens the drawer on mobile.
+
+```tsx
+<AppShellSurface>
+  <div className="flex items-center justify-between md:hidden">
+    <Brand />
+    <AppShellTrigger />
+  </div>
+  <AppShellContent>
+    <Outlet />
+  </AppShellContent>
+</AppShellSurface>
 ```
 
 ## Sidebar modes
@@ -106,8 +122,20 @@ The header reads the active route matches, so pages do not build their own heade
 
 While a navigation resolves, a thin bar along the header's bottom edge fades in after a short delay, so quick navigations show nothing. Use a route's `pendingComponent` with the measured `Skeleton` for content that is not known yet.
 
-`AppShellContent` carries `data-scroll-restoration-id`, so Router restores its scroll position per entry when the router sets `scrollRestoration: true`.
+When only the content scrolls (the default), `AppShellContent` carries `data-scroll-restoration-id`, so Router restores its scroll position per entry when the router sets `scrollRestoration: true`. Add `'[data-slot="app-shell-content"]'` to the router's `scrollToTopSelectors` so a new page starts at the top, since the window itself does not scroll. The region is `aria-busy` while a navigation resolves.
+
+## Scrolling
+
+`scroll="content"` (the default) fills the viewport and scrolls only `AppShellContent`, so the header stays in place, as in an application.
+
+`scroll="page"` scrolls the document instead, as on a documentation site. The sidebar stays fixed, the surface grows with its content, and a header sticks to the top of the viewport. The browser owns scrolling, so Router's window scroll restoration, anchor links, and the mobile toolbar that collapses on scroll work without setup, and `scrollToTopSelectors` is not needed.
+
+```tsx
+<AppShell sidebar="fixed" scroll="page">
+```
 
 ## Layout
 
-The shell fills the viewport (`h-svh`) and the surface fills the remaining height, so the header stays in place and only the content scrolls. The header height is `--app-shell-header-height`.
+With `scroll="content"` the shell fills the viewport (`h-svh`) and the surface fills the remaining height, so the header stays in place and only the content scrolls. The header height is `--app-shell-header-height`.
+
+The sidebar sits on the page canvas (`bg-sidebar`) and the surface is a `surface-panel`: the panel face, perimeter, and drop shadow raise it above the canvas in both themes. On mobile the surface fills the screen with the same panel face. `--sidebar-inset-gap` (default `--spacing(2)`) sets the space around the sidebar and between the surface and the viewport; set it on `AppShell` for a roomier frame.

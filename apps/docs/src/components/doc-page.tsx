@@ -31,11 +31,7 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
   const lead = leadHeading;
 
   return (
-    <main
-      id="main-content"
-      tabIndex={-1}
-      className="docs-page surface-panel border border-transparent rounded-xl outline-none"
-    >
+    <article id="main-content" tabIndex={-1} className="docs-page outline-none">
       <div className="docs-page-body">
         <div className="docs-page-inner">
           <div className="grow *:last:mb-0">
@@ -202,6 +198,6 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
         </div>
         <TableOfContents key={page.path} headings={headings} />
       </div>
-    </main>
+    </article>
   );
 };

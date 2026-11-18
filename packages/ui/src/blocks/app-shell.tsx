@@ -58,8 +58,21 @@ const crumbOf = (match: AnyRouteMatch) =>
  */
 type AppShellSidebarMode = "resizable" | "fixed";
 
-const AppShellContext = React.createContext<{ sidebar: AppShellSidebarMode }>({
+/**
+ * What scrolls. `content`: the shell fills the viewport and only `AppShellContent` scrolls, so
+ * the header stays in place, as in an application. `page`: the document scrolls and the surface
+ * grows with its content beside the fixed sidebar, as on a documentation site. The browser then
+ * owns scrolling: scroll restoration, anchors, find in page, and the mobile toolbar that
+ * collapses as the page scrolls.
+ */
+type AppShellScrollMode = "content" | "page";
+
+const AppShellContext = React.createContext<{
+  sidebar: AppShellSidebarMode;
+  scroll: AppShellScrollMode;
+}>({
   sidebar: "resizable",
+  scroll: "content",
 });
 
 const StoredSidebarState = Schema.Struct({
@@ -122,6 +135,7 @@ type AppShellProps = Omit<
   "defaultOpen" | "open" | "onOpenChange" | "defaultWidth" | "width" | "onWidthChange"
 > & {
   sidebar?: AppShellSidebarMode;
+  scroll?: AppShellScrollMode;
   /** Where a resizable sidebar remembers its open state and width. `null` remembers nothing. */
   storageKey?: string | null;
 };
@@ -132,6 +146,7 @@ type AppShellProps = Omit<
  */
 const AppShell = ({
   sidebar = "resizable",
+  scroll = "content",
   storageKey = "app-shell",
   className,
   children,
@@ -149,7 +164,7 @@ const AppShell = ({
     }
   };
 
-  const context = React.useMemo(() => ({ sidebar }), [sidebar]);
+  const context = React.useMemo(() => ({ sidebar, scroll }), [sidebar, scroll]);
   const fixed = sidebar === "fixed";
 
   return (
@@ -157,6 +172,7 @@ const AppShell = ({
       <SidebarProvider
         data-slot="app-shell"
         data-sidebar-mode={sidebar}
+        data-scroll={scroll}
         open={fixed || state.open}
         onOpenChange={
           fixed
@@ -170,7 +186,8 @@ const AppShell = ({
           update({ ...state, width });
         }}
         className={cn(
-          "h-svh min-h-0 overflow-hidden [--app-shell-header-height:--spacing(12)]",
+          "[--app-shell-header-height:--spacing(12)]",
+          scroll === "content" && "h-svh min-h-0 overflow-hidden",
           className,
         )}
         {...props}
@@ -204,24 +221,61 @@ const AppShellSidebarFooter = (props: React.ComponentProps<typeof SidebarFooter>
   <SidebarFooter data-slot="app-shell-sidebar-footer" {...props} />
 );
 
-/** The scrolling navigation landmark between the sidebar's header and footer. */
+/*
+ * Scrolls the current page's row into view when the shell mounts and after each navigation,
+ * so a long navigation never hides where the reader is. Router links mark that row with
+ * `aria-current="page"`; the frame waits for the links to render the new location.
+ */
+const useRevealCurrentRow = (nav: React.RefObject<HTMLElement | null>) => {
+  const router = useRouter();
+
+  React.useEffect(() => {
+    let frame = 0;
+
+    const reveal = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        nav.current?.querySelector('[aria-current="page"]')?.scrollIntoView({ block: "nearest" });
+      });
+    };
+
+    reveal();
+    const unsubscribe = router.subscribe("onResolved", reveal);
+
+    return () => {
+      unsubscribe();
+      cancelAnimationFrame(frame);
+    };
+  }, [nav, router]);
+};
+
+/**
+ * The scrolling navigation landmark between the sidebar's header and footer. It keeps the
+ * current page's row in view.
+ */
 const AppShellNav = ({
   label,
   className,
   children,
   ...props
-}: React.ComponentProps<"nav"> & { label: string }) => (
-  <SidebarContent>
-    <nav
-      data-slot="app-shell-nav"
-      aria-label={label}
-      className={cn("flex flex-col", className)}
-      {...props}
-    >
-      {children}
-    </nav>
-  </SidebarContent>
-);
+}: Omit<React.ComponentProps<"nav">, "ref"> & { label: string }) => {
+  const nav = React.useRef<HTMLElement>(null);
+  useRevealCurrentRow(nav);
+
+  return (
+    <SidebarContent>
+      <nav
+        ref={nav}
+        data-slot="app-shell-nav"
+        aria-label={label}
+        className={cn("flex flex-col", className)}
+        {...props}
+      >
+        {children}
+      </nav>
+    </SidebarContent>
+  );
+};
 
 /** A labelled group of navigation rows. */
 const AppShellNavSection = ({
@@ -264,8 +318,10 @@ function AppShellNavLink<
   const TMaskFrom extends string = TFrom,
   const TMaskTo extends string = "",
 >(
-  props: Omit<LinkComponentProps<"a", TRouter, TFrom, TTo, TMaskFrom, TMaskTo>, "children"> &
-    AppShellNavRowProps,
+  // An intersection rather than `Omit`, which would resolve Router's conditional types early
+  // and stop `to` inferring from the value, so destinations built from data would not type.
+  props: LinkComponentProps<"a", TRouter, TFrom, TTo, TMaskFrom, TMaskTo> &
+    AppShellNavRowProps & { children?: never },
 ): React.ReactElement;
 
 // The implementation accepts the options of any link; the overload restores the generics.
@@ -305,14 +361,17 @@ const AppShellNavAction = ({
   </SidebarMenuItem>
 );
 
-/** The raised surface beside the sidebar that holds the header and the routed content. */
+/**
+ * The raised surface beside the sidebar that holds the header and the routed content. On
+ * desktop it is a `surface-panel` above the sidebar's canvas; on mobile, where the sidebar is
+ * a drawer, it fills the screen with the same panel face, so content reads on one colour.
+ * `overflow-clip` rounds its content without making it a scroll container, so sticky content
+ * inside a page-scrolling shell sticks to the viewport.
+ */
 const AppShellSurface = ({ className, ...props }: React.ComponentProps<typeof SidebarInset>) => (
   <SidebarInset
     data-slot="app-shell-surface"
-    className={cn(
-      "min-h-0 min-w-0 overflow-hidden md:peer-data-[variant=inset]:ring-1 md:peer-data-[variant=inset]:ring-sidebar-border",
-      className,
-    )}
+    className={cn("min-h-0 min-w-0 overflow-clip bg-surface-panel", className)}
     {...props}
   />
 );
@@ -332,23 +391,42 @@ const AppShellPendingBar = () => {
 };
 
 /**
- * The header at the top of the surface. It holds the sidebar trigger (mobile only for a fixed
- * sidebar) and the navigation progress bar; compose a breadcrumb trail or a title, and the
- * actions, inside it.
+ * The sidebar toggle. A fixed sidebar never collapses on desktop, so its trigger shows only
+ * on mobile, where it opens the drawer. `AppShellHeader` renders one; a shell without a header
+ * places this wherever its mobile layout needs it.
+ */
+const AppShellTrigger = ({ className, ...props }: React.ComponentProps<typeof SidebarTrigger>) => {
+  const { sidebar } = React.use(AppShellContext);
+
+  return (
+    <SidebarTrigger
+      data-slot="app-shell-trigger"
+      className={cn(sidebar === "fixed" && "md:hidden", className)}
+      {...props}
+    />
+  );
+};
+
+/**
+ * The optional header at the top of the surface. It holds the sidebar trigger and the
+ * navigation progress bar; compose a breadcrumb trail or a title, and the actions, inside it.
+ * Leave it out for a surface that is all content, and render `AppShellTrigger` instead. When
+ * the page scrolls, the header sticks to the top of the viewport.
  */
 const AppShellHeader = ({ className, children, ...props }: React.ComponentProps<"header">) => {
-  const { sidebar } = React.use(AppShellContext);
+  const { scroll } = React.use(AppShellContext);
 
   return (
     <header
       data-slot="app-shell-header"
       className={cn(
         "relative flex h-(--app-shell-header-height) shrink-0 items-center gap-related carve-bottom px-3",
+        scroll === "page" && "sticky top-0 z-10 bg-surface-panel",
         className,
       )}
       {...props}
     >
-      <SidebarTrigger className={cn("-ms-1", sidebar === "fixed" && "md:hidden")} />
+      <AppShellTrigger className="-ms-1" />
       {children}
       <AppShellPendingBar />
     </header>
@@ -467,17 +545,32 @@ const AppShellActions = ({ className, children, ...props }: React.ComponentProps
 };
 
 /**
- * The scrolling region for routed content. Router restores its scroll position per entry when
- * the router enables `scrollRestoration`.
+ * The region for routed content. In a content-scrolling shell it is the scroll container:
+ * Router restores its scroll position per entry when the router enables `scrollRestoration`,
+ * and listing `[data-slot="app-shell-content"]` in the router's `scrollToTopSelectors` starts a
+ * new page at the top. In a page-scrolling shell the window scrolls and Router handles it
+ * without either. The region is `aria-busy` while a navigation resolves, since the previous
+ * page stays on screen until the next one is ready.
  */
-const AppShellContent = ({ className, ...props }: React.ComponentProps<"div">) => (
-  <div
-    data-slot="app-shell-content"
-    data-scroll-restoration-id="app-shell-content"
-    className={cn("relative min-h-0 flex-1 overflow-y-auto overscroll-contain", className)}
-    {...props}
-  />
-);
+const AppShellContent = ({ className, ...props }: React.ComponentProps<"div">) => {
+  const { scroll } = React.use(AppShellContext);
+  const pending = useRouterPending();
+  const scrolls = scroll === "content";
+
+  return (
+    <div
+      data-slot="app-shell-content"
+      data-scroll-restoration-id={scrolls ? "app-shell-content" : undefined}
+      aria-busy={pending || undefined}
+      className={cn(
+        "relative flex-1",
+        scrolls && "min-h-0 overflow-y-auto overscroll-contain",
+        className,
+      )}
+      {...props}
+    />
+  );
+};
 
 export {
   AppShell,
@@ -494,7 +587,8 @@ export {
   AppShellSidebarHeader,
   AppShellSurface,
   AppShellTitle,
+  AppShellTrigger,
   useAppShellCrumbs,
 };
 
-export type { AppShellProps, AppShellSidebarMode };
+export type { AppShellProps, AppShellScrollMode, AppShellSidebarMode };
