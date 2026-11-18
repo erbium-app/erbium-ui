@@ -1,4 +1,4 @@
 {
-  "client": ["cascader/index"],
-  "server": ["cascader/tree"]
+  "client": ["cascader/index", "filters/index"],
+  "server": ["cascader/tree", "filters/core"]
 }

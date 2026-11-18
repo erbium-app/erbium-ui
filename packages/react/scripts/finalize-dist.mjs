@@ -40,16 +40,58 @@ const markClient = async (entry) => {
   }
 };
 
+const importPattern = /\bfrom\s*["'](?<specifier>[^"']+)["']/gu;
+const clientPackages = /^(?:react|react-dom|@base-ui\/)/u;
+
+/**
+ * Checks a server entry and every module it imports from the build: none may be a client module
+ * or import React or Base UI, so a server can import the entry.
+ *
+ * @param {string} file - A built module.
+ * @param {string} entry - The server entry it is reached from.
+ * @param {Set<string>} seen - Modules already checked.
+ * @returns {Promise<void>}
+ */
+const checkServerModule = async (file, entry, seen) => {
+  if (seen.has(file)) {
+    return;
+  }
+
+  seen.add(file);
+  const code = await read(file);
+  const name = path.relative(dist, file);
+
+  if (directivePattern.test(code)) {
+    throw new Error(`Server entry ${entry} reaches ${name}, which starts with "use client".`);
+  }
+
+  const relative = [];
+
+  for (const match of code.matchAll(importPattern)) {
+    const specifier = match.groups?.specifier ?? "";
+
+    if (clientPackages.test(specifier)) {
+      throw new Error(`Server entry ${entry} reaches ${name}, which imports ${specifier}.`);
+    }
+
+    if (specifier.startsWith(".")) {
+      relative.push(path.join(path.dirname(file), specifier));
+    }
+  }
+
+  await Promise.all(
+    relative.map(async (next) => {
+      await checkServerModule(next, entry, seen);
+    }),
+  );
+};
+
 /**
  * @param {string} entry - A server entry path.
  * @returns {Promise<void>}
  */
 const checkServer = async (entry) => {
-  const code = await read(path.join(dist, `${entry}.js`));
-
-  if (directivePattern.test(code)) {
-    throw new Error(`Server entry ${entry} must not start with "use client".`);
-  }
+  await checkServerModule(path.join(dist, `${entry}.js`), entry, new Set());
 };
 
 await Promise.all([
