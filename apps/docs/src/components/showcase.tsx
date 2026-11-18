@@ -13,7 +13,6 @@ import {
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
 import { codePanelSurface } from "@erbium/ui/blocks/code-panel";
 import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
-import { Toaster } from "@erbium/ui/components/toast";
 import { Prose } from "./markdown";
 import { PackageCommand } from "./package-command";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@erbium/ui/components/tabs";
@@ -214,9 +213,3 @@ export const Showcase = ({
     </section>
   );
 };
-
-export const ShowcaseToaster = () => (
-  <ShowcaseProviders>
-    <Toaster />
-  </ShowcaseProviders>
-);

@@ -7,7 +7,7 @@ import { Separator } from "@erbium/ui/components/separator";
 import { CopyPageButton, Prose } from "./markdown";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
-import { Showcase, ShowcaseToaster } from "./showcase";
+import { Showcase } from "./showcase";
 import type { DocPage } from "@/content/types";
 import { pages } from "@/content/catalog";
 
@@ -197,7 +197,6 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
               </Link>
             )}
           </nav>
-          {page.name === "toast" && <ShowcaseToaster />}
         </div>
         <TableOfContents key={page.path} headings={headings} />
       </div>
