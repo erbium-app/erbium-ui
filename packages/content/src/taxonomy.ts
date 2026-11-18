@@ -7,7 +7,8 @@ export type DocumentationKind =
   | "component"
   | "provider"
   | "utility"
-  | "hook";
+  | "hook"
+  | "primitive";
 
 interface DocumentationSection {
   title: string;
@@ -22,6 +23,7 @@ export const kindPaths: Record<DocumentationKind, string> = {
   component: "components",
   foundation: "foundations",
   hook: "hooks",
+  primitive: "react",
   provider: "providers",
   utility: "utilities",
 };
@@ -45,6 +47,15 @@ export const kindTitles: Record<DocumentationKind, string> = {
   component: "Components",
   foundation: "Foundations",
   hook: "Hooks",
+  primitive: "React",
   provider: "Providers",
   utility: "Utilities",
 };
+
+/**
+ * The Markdown file of a documentation page, without its extension. Pages of the styled
+ * components live in their own folders with example pages beside them; @erbium-ui/react pages
+ * document code and API only, one file each.
+ */
+export const documentFile = (kind: DocumentationKind, name: string) =>
+  kind === "primitive" ? `react/${name}` : `components/${name}/index`;

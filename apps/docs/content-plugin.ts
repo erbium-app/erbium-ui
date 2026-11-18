@@ -2,7 +2,7 @@ import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
 import type { Plugin } from "vite-plus";
-import { documentationSections, kindPaths } from "@erbium/content/taxonomy";
+import { documentationSections, documentFile, kindPaths } from "@erbium/content/taxonomy";
 import { changelogDirectory, readChangelog } from "./changelog";
 import { releaseDay } from "./src/content/release-date";
 import registry from "../../packages/ui/registry.json" with { type: "json" };
@@ -23,6 +23,7 @@ const guideRoutes = [
   { file: "installation", href: "/docs/installation", section: "Guides" },
   { file: "getting-started", href: "/docs/getting-started", section: "Guides" },
   { file: "cli", href: "/docs/cli", section: "Guides" },
+  { file: "react/index", href: "/docs/react", section: "React" },
   {
     example: { name: "marker", slug: "shimmer" },
     file: "shimmer",
@@ -35,10 +36,15 @@ const guideRoutes = [
 export const docsCatalog = () => ({
   components: documentationSections.flatMap((section) =>
     section.names.map((name) => ({
-      ...frontmatter(`components/${name}/index`),
+      ...frontmatter(documentFile(section.kind, name)),
+      file: documentFile(section.kind, name),
+      // Registry files belong to the styled components; @erbium-ui/react pages link their source.
       files:
-        registry.items.find((item) => item.name === name)?.files?.map(({ path }) => ({ path })) ??
-        [],
+        section.kind === "primitive"
+          ? []
+          : (registry.items
+              .find((item) => item.name === name)
+              ?.files?.map(({ path }) => ({ path })) ?? []),
       href: `/docs/${kindPaths[section.kind]}/${name}`,
       kind: section.kind,
       name,
@@ -95,7 +101,7 @@ export const contentPlugin = (): Plugin => {
         // The catalog reads these files directly; watching them puts them in the module
         // graph, so an edit invalidates the catalog like any other import.
         for (const file of [
-          ...components.map((component) => `content/components/${component.name}/index.md`),
+          ...components.map((component) => `content/${component.file}.md`),
           ...guides.map((guide) => `content/${guide.file}.md`),
           "ui/registry.json",
         ]) {

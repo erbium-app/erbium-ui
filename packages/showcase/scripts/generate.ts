@@ -41,7 +41,11 @@ const runCommand = (command: string, args: string[], options: { cwd: string }): 
   execFileSync(command, args, options);
 };
 
-const sections = sectionsJson satisfies DocumentationSection[];
+// The @erbium-ui/react section documents the headless primitives without showcases, under the
+// same names as the styled components.
+const sections = (sectionsJson satisfies DocumentationSection[]).filter(
+  (section) => section.kind !== "primitive",
+);
 
 const classifiedNames = sections.flatMap((section) => section.names);
 

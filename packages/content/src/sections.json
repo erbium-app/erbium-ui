@@ -139,5 +139,11 @@
     "slug": "providers",
     "kind": "provider",
     "names": ["csp-provider", "direction"]
+  },
+  {
+    "title": "React",
+    "slug": "react",
+    "kind": "primitive",
+    "names": ["cascader", "filters", "editable", "pagination"]
   }
 ]

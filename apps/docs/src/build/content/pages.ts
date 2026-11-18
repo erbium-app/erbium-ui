@@ -26,12 +26,14 @@ const document = (file: string) => {
 export const getPage = async (path: string) => {
   const component = components.find((item) => item.href === path);
   const guide = guides.find((item) => item.href === path);
-  const file = component ? `components/${component.name}/index` : guide?.file;
+  const file = component ? component.file : guide?.file;
+  // @erbium-ui/react pages document code and API: no showcase examples or component references.
+  const primitive = component?.kind === "primitive";
   const section = component?.section ?? guide?.section;
   if (file === undefined || section === undefined) return null;
   const content = document(file);
   const headings = headingsFor(content.tree);
-  const exampleName = component?.name ?? guide?.example?.name ?? "";
+  const exampleName = primitive ? "" : (component?.name ?? guide?.example?.name ?? "");
   const exampleSlug = guide?.example?.slug;
   const examples = (exampleName === "" ? [] : await showcaseExampleControls(exampleName)).filter(
     (example) => exampleSlug === undefined || example.slug === exampleSlug,
@@ -42,10 +44,12 @@ export const getPage = async (path: string) => {
     name: component?.name ?? "",
     section,
     headings,
-    reference: component ? componentReference(component.name) : undefined,
-    sourceUrl: component?.files[0]
-      ? `https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`
-      : undefined,
+    reference: component && !primitive ? componentReference(component.name) : undefined,
+    sourceUrl: primitive
+      ? `https://github.com/erbium-app/erbium-ui/tree/main/packages/react/src/${component.name}`
+      : component?.files[0]
+        ? `https://github.com/erbium-app/erbium-ui/blob/main/packages/ui/${component.files[0].path}`
+        : undefined,
     image: ogPageForRoute(path).imagePath,
     colorSources: component?.name === "colors" ? colorExamples() : [],
     variants: examples.map((example) => ({

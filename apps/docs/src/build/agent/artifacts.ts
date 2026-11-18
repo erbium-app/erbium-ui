@@ -105,8 +105,20 @@ for (const component of components) {
     );
     continue;
   }
+  if (component.kind === "primitive") {
+    agentPages.push(
+      page(
+        component.href,
+        component.title,
+        component.description,
+        component.section,
+        body(`${component.file}.md`),
+      ),
+    );
+    continue;
+  }
   const included = new Set<string>();
-  const blocks = [body(`components/${component.name}/index.md`)];
+  const blocks = [body(`${component.file}.md`)];
   if (component.kind !== "foundation" && component.files?.length) {
     blocks.push("## Component source");
     for (const file of component.files) {

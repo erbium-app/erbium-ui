@@ -42,6 +42,8 @@ declare module "virtual:docs-catalog" {
   export const components: (CatalogPage & {
     name: string;
     kind: DocumentationKind;
+    /** The page's Markdown file under packages/content, without its extension. */
+    file: string;
     files: { path: string }[];
   })[];
 
