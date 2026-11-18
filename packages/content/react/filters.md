@@ -87,7 +87,7 @@ The field picker lists fields, with option fields expanding into their options. 
 
 ## Server
 
-`@erbium-ui/react/filters/core` has no React dependency. It exports `createFilters`, `matchesRule`, `filterFn_rule` for TanStack Table, `filterColumn`, the rule helpers and the URL codec: `parseFilterSearch`, `toFilterSearch` and `validateFilterSearch`, which a router can call in `validateSearch`.
+The same `@erbium-ui/react/filters` import provides server-safe utilities, including `createFilters`, `matchesRule`, `filterFn_rule` for TanStack Table, `filterColumn`, the rule helpers and the URL codec: `parseFilterSearch`, `toFilterSearch` and `validateFilterSearch`, which a router can call in `validateSearch`.
 
 ## API reference
 

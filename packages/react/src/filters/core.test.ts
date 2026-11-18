@@ -13,8 +13,8 @@ import {
   parseFilterSearch,
   toFilterSearch,
   validateFilterSearch,
-} from "./core";
-import type { Filters, FilterRule, FilterState } from "./core";
+} from "@erbium-ui/react/filters";
+import type { Filters, FilterRule, FilterState } from "@erbium-ui/react/filters";
 
 const rule = (overrides: Partial<FilterRule> & Pick<FilterRule, "type">): FilterRule => ({
   ...createRule(overrides.type),

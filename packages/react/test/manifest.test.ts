@@ -6,7 +6,7 @@ import manifest from "../package.json" with { type: "json" };
 import entries from "../entries.json" with { type: "json" };
 
 const packageRoot = path.dirname(import.meta.dirname);
-const all = [...entries.client, ...entries.server];
+const all = [...entries.client, ...entries.server, ...Object.keys(entries.facades)];
 
 const sourceExports: Partial<Record<string, string>> = manifest.exports;
 

@@ -14,14 +14,13 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 
 ## Entry points
 
-| Import                             | Contents                                               | Runs on          |
-| ---------------------------------- | ------------------------------------------------------ | ---------------- |
-| `@erbium-ui/react/cascader`        | `Cascader` parts                                       | Client           |
-| `@erbium-ui/react/filters`         | `Filters` parts, adapters, picker hooks, and the core  | Client           |
-| `@erbium-ui/react/filters/core`    | Rule model, matching, table filter function, URL codec | Server or client |
-| `@erbium-ui/react/editable`        | `Editable` parts                                       | Client           |
-| `@erbium-ui/react/pagination`      | `Pagination` parts, `usePagination`, and the core      | Client           |
-| `@erbium-ui/react/pagination/core` | `getPagination` page layout                            | Server or client |
+| Import                             | Contents                                          | Runs on                                                   |
+| ---------------------------------- | ------------------------------------------------- | --------------------------------------------------------- |
+| `@erbium-ui/react/cascader`        | `Cascader` parts                                  | Client                                                    |
+| `@erbium-ui/react/filters`         | Filters parts, adapters and utilities             | Utilities on server or client. Parts and hooks on client. |
+| `@erbium-ui/react/editable`        | `Editable` parts                                  | Client                                                    |
+| `@erbium-ui/react/pagination`      | `Pagination` parts, `usePagination`, and the core | Client                                                    |
+| `@erbium-ui/react/pagination/core` | `getPagination` page layout                       | Server or client                                          |
 
 Client entries start with `"use client"`, so React Server Components frameworks such as the Next.js App Router can render their parts from a server component. Entries marked server or client are plain functions and import nothing from React.
 

@@ -1,6 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { clientEntries, packageRoot, serverEntries } from "./entries.mjs";
+import { clientEntries, facades, packageRoot, serverEntries } from "./entries.mjs";
 
 /*
  * Marks client entries with "use client" and checks the build output.
@@ -50,9 +50,10 @@ const clientPackages = /^(?:react|react-dom|@base-ui\/)/u;
  * @param {string} file - A built module.
  * @param {string} entry - The server entry it is reached from.
  * @param {Set<string>} seen - Modules already checked.
+ * @param {string} [boundary] - The facade’s private client entry.
  * @returns {Promise<void>}
  */
-const checkServerModule = async (file, entry, seen) => {
+const checkServerModule = async (file, entry, seen, boundary) => {
   if (seen.has(file)) {
     return;
   }
@@ -60,6 +61,10 @@ const checkServerModule = async (file, entry, seen) => {
   seen.add(file);
   const code = await read(file);
   const name = path.relative(dist, file);
+
+  if (file === boundary && directivePattern.test(code)) {
+    return;
+  }
 
   if (directivePattern.test(code)) {
     throw new Error(`Server entry ${entry} reaches ${name}, which starts with "use client".`);
@@ -81,7 +86,7 @@ const checkServerModule = async (file, entry, seen) => {
 
   await Promise.all(
     relative.map(async (next) => {
-      await checkServerModule(next, entry, seen);
+      await checkServerModule(next, entry, seen, boundary);
     }),
   );
 };
@@ -94,10 +99,25 @@ const checkServer = async (entry) => {
   await checkServerModule(path.join(dist, `${entry}.js`), entry, new Set());
 };
 
+const facadeEntries = Object.entries(facades);
+const boundaries = [...clientEntries, ...Object.values(facades)];
+
+await Promise.all(boundaries.map(markClient));
+
 await Promise.all([
-  ...clientEntries.map(markClient),
   ...serverEntries.map(checkServer),
-  ...[...clientEntries, ...serverEntries].map(
+  ...facadeEntries.map(async ([entry, client]) => {
+    /** @type {Set<string>} */
+    const seen = new Set();
+    const boundary = path.join(dist, `${client}.js`);
+
+    await checkServerModule(path.join(dist, `${entry}.js`), entry, seen, boundary);
+
+    if (!seen.has(boundary)) {
+      throw new Error(`Facade ${entry} must re-export its client entry ${client}.`);
+    }
+  }),
+  ...[...boundaries, ...serverEntries, ...Object.keys(facades)].map(
     async (entry) => await read(path.join(dist, `${entry}.d.ts`)),
   ),
 ]);

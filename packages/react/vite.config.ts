@@ -23,11 +23,29 @@ export default defineConfig({
     clean: true,
     dts: { generator: "tsgo", tsgo: { path: tsc } },
     entry: Object.fromEntries(
-      [...entries.client, ...entries.server].map((entry) => [entry, source(entry)]),
+      [
+        ...entries.client,
+        ...entries.server,
+        ...Object.keys(entries.facades),
+        ...Object.values(entries.facades),
+      ].map((entry) => [entry, source(entry)]),
     ),
     format: ["esm"],
     outDir: "dist",
     platform: "neutral",
+    // Keep the client re-export in its own module so the public facade stays server-safe.
+    plugins: [
+      {
+        name: "filters-client-boundary",
+        resolveId(id, importer) {
+          if (id === "./client" && importer?.endsWith("/src/filters/index.ts") === true) {
+            return { external: true, id: "./client.js" };
+          }
+
+          return null;
+        },
+      },
+    ],
     sourcemap: false,
     target: "es2022",
   },

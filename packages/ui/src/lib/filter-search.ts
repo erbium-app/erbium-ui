@@ -15,11 +15,11 @@ export {
   parseFilterSearch,
   toFilterSearch,
   validateFilterSearch,
-} from "@erbium-ui/react/filters/core";
+} from "@erbium-ui/react/filters";
 
 export type {
   FilterSearch,
   FilterSearchColumn,
   FilterSearchFields,
   SearchParams,
-} from "@erbium-ui/react/filters/core";
+} from "@erbium-ui/react/filters";

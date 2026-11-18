@@ -2,8 +2,8 @@ import {
   createFilters as createCoreFilters,
   filterColumn as coreFilterColumn,
   hasFilterConfig as coreHasFilterConfig,
-} from "@erbium-ui/react/filters/core";
-import type * as Core from "@erbium-ui/react/filters/core";
+} from "@erbium-ui/react/filters";
+import type * as Core from "@erbium-ui/react/filters";
 import type { IconName } from "@erbium/icons";
 
 /*
@@ -88,7 +88,7 @@ export {
   matchesRule,
   operatorLabels,
   parseDayKey,
-} from "@erbium-ui/react/filters/core";
+} from "@erbium-ui/react/filters";
 
 export type {
   FilterCell,
@@ -98,7 +98,7 @@ export type {
   FilterScalar,
   FilterType,
   FilterValue,
-} from "@erbium-ui/react/filters/core";
+} from "@erbium-ui/react/filters";
 
 export type {
   FilterColumnMeta,

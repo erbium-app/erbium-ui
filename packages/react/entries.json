@@ -1,4 +1,7 @@
 {
-  "client": ["cascader/index", "editable/index", "filters/index", "pagination/index"],
-  "server": ["filters/core", "pagination/core"]
+  "client": ["cascader/index", "editable/index", "pagination/index"],
+  "server": ["pagination/core"],
+  "facades": {
+    "filters/index": "filters/client"
+  }
 }

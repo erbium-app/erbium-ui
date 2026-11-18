@@ -10,7 +10,7 @@
       "path": "src/lib/filter-search.ts",
       "target": "@lib/filter-search.ts",
       "type": "registry:lib",
-      "content": "/*\n * Filters in the URL. Each field with a rule gets one search param, named by the field id, so a\n * filtered view is a link that can be shared or bookmarked:\n *\n *   ?status=todo,in-progress&estimate=between.2,8&title=contains.api\n *\n * The codec lives in the @erbium-ui/react filter core and is router agnostic; it is safe to call\n * in a route's `validateSearch` on the server.\n */\n\nexport {\n  decodeFilterParam,\n  encodeFilterParam,\n  getColumnFilterFields,\n  parseFilterSearch,\n  toFilterSearch,\n  validateFilterSearch,\n} from \"@erbium-ui/react/filters/core\";\n\nexport type {\n  FilterSearch,\n  FilterSearchColumn,\n  FilterSearchFields,\n  SearchParams,\n} from \"@erbium-ui/react/filters/core\";\n"
+      "content": "/*\n * Filters in the URL. Each field with a rule gets one search param, named by the field id, so a\n * filtered view is a link that can be shared or bookmarked:\n *\n *   ?status=todo,in-progress&estimate=between.2,8&title=contains.api\n *\n * The codec lives in the @erbium-ui/react filter core and is router agnostic; it is safe to call\n * in a route's `validateSearch` on the server.\n */\n\nexport {\n  decodeFilterParam,\n  encodeFilterParam,\n  getColumnFilterFields,\n  parseFilterSearch,\n  toFilterSearch,\n  validateFilterSearch,\n} from \"@erbium-ui/react/filters\";\n\nexport type {\n  FilterSearch,\n  FilterSearchColumn,\n  FilterSearchFields,\n  SearchParams,\n} from \"@erbium-ui/react/filters\";\n"
     }
   ]
 }

@@ -36,7 +36,6 @@
     "./cascader": "./src/cascader/index.ts",
     "./editable": "./src/editable/index.ts",
     "./filters": "./src/filters/index.ts",
-    "./filters/core": "./src/filters/core.ts",
     "./pagination": "./src/pagination/index.ts",
     "./pagination/core": "./src/pagination/core.ts",
     "./package.json": "./package.json"
@@ -54,10 +53,6 @@
       "./filters": {
         "types": "./dist/filters/index.d.ts",
         "default": "./dist/filters/index.js"
-      },
-      "./filters/core": {
-        "types": "./dist/filters/core.d.ts",
-        "default": "./dist/filters/core.js"
       },
       "./pagination": {
         "types": "./dist/pagination/index.d.ts",
