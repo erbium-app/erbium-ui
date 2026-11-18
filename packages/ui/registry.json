@@ -67,7 +67,6 @@
       "dependencies": ["@tanstack/react-router", "effect"],
       "registryDependencies": [
         "@erbium/breadcrumb",
-        "@erbium/link",
         "@erbium/sidebar",
         "@erbium/use-router-pending",
         "@erbium/utils"
@@ -201,8 +200,13 @@
       "type": "registry:ui",
       "title": "Breadcrumb",
       "description": "Erbium breadcrumb component.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/dropdown-menu", "@erbium/icon", "@erbium/utils"],
+      "dependencies": ["@base-ui/react", "@tanstack/react-router"],
+      "registryDependencies": [
+        "@erbium/dropdown-menu",
+        "@erbium/icon",
+        "@erbium/link",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/components/breadcrumb.tsx",
@@ -235,12 +239,14 @@
         "@base-ui/react",
         "@base-ui/utils",
         "@tanstack/react-hotkeys",
+        "@tanstack/react-router",
         "class-variance-authority"
       ],
       "registryDependencies": [
         "@erbium/button-variants",
         "@erbium/hotkeys",
         "@erbium/kbd",
+        "@erbium/link",
         "@erbium/skeleton-hints",
         "@erbium/spinner",
         "@erbium/utils"
@@ -1443,8 +1449,8 @@
       "type": "registry:ui",
       "title": "Navigation Menu",
       "description": "Erbium navigation menu component.",
-      "dependencies": ["@base-ui/react", "class-variance-authority"],
-      "registryDependencies": ["@erbium/stateful-icon", "@erbium/utils"],
+      "dependencies": ["@base-ui/react", "@tanstack/react-router", "class-variance-authority"],
+      "registryDependencies": ["@erbium/link", "@erbium/stateful-icon", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/navigation-menu.tsx",
@@ -1507,10 +1513,11 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Erbium pagination component.",
-      "dependencies": ["@base-ui/react", "@base-ui/utils"],
+      "dependencies": ["@base-ui/react", "@base-ui/utils", "@tanstack/react-router"],
       "registryDependencies": [
         "@erbium/button-variants",
         "@erbium/icon",
+        "@erbium/link",
         "@erbium/use-pagination",
         "@erbium/use-predicted-intent",
         "@erbium/utils"

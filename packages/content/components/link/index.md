@@ -34,34 +34,34 @@ Prediction comes from [ForesightJS](https://foresightjs.com), through the same `
 
 Prediction turns itself off on slow connections and when the browser asks to save data.
 
-## Composition
+## Components that navigate
 
-Components that take a link through `render` work with `Link` unchanged:
+Navigation components take Router's link options themselves and render `Link` inside, so they preload the same way. `to` (with `params`, `search`, `hash`, and `activeOptions`) names a route, typed against your route tree; `href` takes a fully built or external URL.
 
 ```tsx
-<SidebarMenuButton render={<Link to="/inbox" />} isActive={pathname === "/inbox"}>
-  Inbox
-</SidebarMenuButton>
+<SidebarMenuButton to="/inbox">Inbox</SidebarMenuButton>
 
-<BreadcrumbLink render={<Link to="/projects" />}>Projects</BreadcrumbLink>
+<BreadcrumbLink to="/projects">Projects</BreadcrumbLink>
 
-<NavigationMenuLink render={<Link to="/docs" />} className={navigationMenuTriggerStyle()}>
-  Documentation
-</NavigationMenuLink>
+<NavigationMenuLink to="/docs">Documentation</NavigationMenuLink>
 
+<PaginationLink to="." search={{ page: 2 }}>2</PaginationLink>
+
+<Button to="/projects/new" variant="outline">
+  New project
+</Button>
+```
+
+Router marks the current page's link with `aria-current="page"`, which each component styles as active.
+
+For components that only render a link, such as `Item`, pass `Link` through `render`:
+
+```tsx
 <Item render={<Link to="/settings/billing" />}>
   <ItemContent>
     <ItemTitle>Billing</ItemTitle>
   </ItemContent>
 </Item>
-```
-
-For a link styled as a button, put `buttonVariants` on `Link` rather than rendering a `Button` as a link:
-
-```tsx
-<Link to="/projects/new" className={buttonVariants({ variant: "outline" })}>
-  New project
-</Link>
 ```
 
 ## Router configuration

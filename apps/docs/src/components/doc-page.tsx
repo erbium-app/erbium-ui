@@ -1,11 +1,12 @@
 import { TableOfContents } from "./table-of-contents";
+import { Button } from "@erbium/ui/components/button";
 import { buttonVariants } from "@erbium/ui/lib/button-variants";
+import { Link } from "@erbium/ui/components/link";
 import { Icon } from "@erbium/ui/components/icon";
 import { Separator } from "@erbium/ui/components/separator";
 import { CopyPageButton, Prose } from "./markdown";
 import { CodeBlock } from "@erbium/ui/blocks/code-block";
 import { CopyButton } from "@erbium/ui/blocks/copy-button";
-import { Link } from "@erbium/ui/components/link";
 import { Showcase, ShowcaseToaster } from "./showcase";
 import type { DocPage } from "@/content/types";
 import { pages } from "@/content/catalog";
@@ -40,24 +41,26 @@ export const DocPageView = ({ page }: { page: DocPage }) => {
                 <h1 className="text-display text-foreground min-w-0 wrap-anywhere">{page.title}</h1>
                 <div className="flex shrink-0 gap-(--docs-tight-gap)">
                   {previousPage !== undefined && (
-                    <Link
+                    <Button
                       to={previousPage.href}
-                      className={buttonVariants({ size: "icon-sm", variant: "outline" })}
+                      size="icon-sm"
+                      variant="outline"
                       aria-label={`Previous: ${previousPage.title}`}
                       title={previousPage.title}
                     >
                       <Icon name="arrow-left-01" className="rtl:rotate-180" />
-                    </Link>
+                    </Button>
                   )}
                   {nextPage !== undefined && (
-                    <Link
+                    <Button
                       to={nextPage.href}
-                      className={buttonVariants({ size: "icon-sm", variant: "outline" })}
+                      size="icon-sm"
+                      variant="outline"
                       aria-label={`Next: ${nextPage.title}`}
                       title={nextPage.title}
                     >
                       <Icon name="arrow-right-01" className="rtl:rotate-180" />
-                    </Link>
+                    </Button>
                   )}
                 </div>
               </div>

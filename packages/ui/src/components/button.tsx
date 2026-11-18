@@ -3,12 +3,15 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
 import { useHotkey } from "@tanstack/react-hotkeys";
 import type { RegisterableHotkey } from "@tanstack/react-hotkeys";
+import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import type { VariantProps } from "class-variance-authority";
 import { toAriaKeyShortcuts, useHotkeyPlatform } from "../lib/hotkeys";
 import { skeletonBlock } from "../lib/skeleton-hints";
 import { cn } from "../lib/utils";
 import { buttonVariants } from "../lib/button-variants";
 import { Kbd, KbdHint } from "./kbd";
+import { hasLinkTarget, TargetLink } from "./link";
+import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 import { Spinner } from "./spinner";
 
 type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>;
@@ -27,18 +30,94 @@ const spinnerSizes = {
 
 const ButtonHotkeyContext = React.createContext<RegisterableHotkey | undefined>(undefined);
 
-type ButtonProps = ButtonPrimitive.Props &
-  VariantProps<typeof buttonVariants> & {
+interface ButtonOwnProps extends VariantProps<typeof buttonVariants> {
+  /**
+   * A shortcut that clicks the button while it is mounted, enabled and not loading. While the
+   * user holds one of its modifiers, a badge shows it above the button,
+   * unless a `ButtonShortcut` already labels it. Sets `aria-keyshortcuts` for chords.
+   */
+  hotkey?: RegisterableHotkey;
+}
+
+type ButtonElementProps = ButtonPrimitive.Props &
+  NoTargetProps &
+  ButtonOwnProps & {
     loading?: boolean;
-    /**
-     * A shortcut that clicks the button while it is mounted, enabled and not loading. While the
-     * user holds one of its modifiers, a badge shows it above the button,
-     * unless a `ButtonShortcut` already labels it. Sets `aria-keyshortcuts` for chords.
-     */
-    hotkey?: RegisterableHotkey;
   };
 
-const Button = ({
+// A link styled as a button. Its children are plain content, so the hotkey badge can follow.
+type ButtonLinkProps = (AnyLinkTargetProps | HrefTargetProps) &
+  ButtonOwnProps & { children?: React.ReactNode };
+
+/* Clicks the control on its hotkey while it is enabled, and names the registration for
+   devtools and shortcut lists. */
+const useButtonHotkey = (
+  hotkey: RegisterableHotkey | undefined,
+  enabled: boolean,
+  name: string | undefined,
+) => {
+  const ref = React.useRef<HTMLElement>(null);
+
+  // Clicking the element runs the consumer's onClick, a form submit, or the link.
+  useHotkey(
+    hotkey,
+    () => {
+      ref.current?.click();
+    },
+    { enabled, meta: name === undefined ? undefined : { name } },
+  );
+
+  return ref;
+};
+
+const hotkeyClassName =
+  "relative has-[[data-slot=button-shortcut]]:[&>[data-slot=kbd-hint-anchor]]:hidden";
+
+/**
+ * A link that looks like a button. It keeps the link role, which a Base UI `Button` would
+ * replace with `role="button"`.
+ */
+const ButtonLink = ({
+  className,
+  hotkey,
+  variant = "default",
+  size = "default",
+  "aria-keyshortcuts": ariaKeyShortcuts,
+  children,
+  ref,
+  ...target
+}: ButtonLinkProps) => {
+  const platform = useHotkeyPlatform();
+
+  const hotkeyRef = useButtonHotkey(
+    hotkey,
+    !("disabled" in target && target.disabled === true),
+    target["aria-label"] ?? target.title,
+  );
+
+  return (
+    <ButtonHotkeyContext.Provider value={hotkey}>
+      <TargetLink
+        data-slot="button"
+        data-size={size}
+        data-variant={variant}
+        aria-keyshortcuts={ariaKeyShortcuts ?? toAriaKeyShortcuts(hotkey, platform)}
+        className={cn(
+          buttonVariants({ size, variant }),
+          hotkey !== undefined && hotkeyClassName,
+          className,
+        )}
+        ref={useMergedRefs(ref, hotkeyRef)}
+        {...target}
+      >
+        {children}
+        {hotkey !== undefined && <KbdHint hotkey={hotkey} />}
+      </TargetLink>
+    </ButtonHotkeyContext.Provider>
+  );
+};
+
+const ButtonElement = ({
   children,
   className,
   disabled,
@@ -51,24 +130,13 @@ const Button = ({
   "aria-keyshortcuts": ariaKeyShortcuts,
   ref,
   ...props
-}: ButtonProps) => {
+}: ButtonElementProps) => {
   const iconOnly = size?.startsWith("icon") ?? false;
   const spinnerSize = size === null ? "default" : spinnerSizes[size];
   const inactive = disabled === true || loading;
-  const buttonRef = React.useRef<HTMLElement>(null);
-  const mergedRef = useMergedRefs(ref, buttonRef);
   const platform = useHotkeyPlatform();
-  // Names the registration for devtools and shortcut lists.
-  const name = props["aria-label"] ?? props.title;
-
-  // Clicking the element runs the consumer's onClick, a form submit, or a rendered link.
-  useHotkey(
-    hotkey,
-    () => {
-      buttonRef.current?.click();
-    },
-    { enabled: !inactive, meta: name === undefined ? undefined : { name } },
-  );
+  const buttonRef = useButtonHotkey(hotkey, !inactive, props["aria-label"] ?? props.title);
+  const mergedRef = useMergedRefs(ref, buttonRef);
 
   return (
     <ButtonHotkeyContext.Provider value={hotkey}>
@@ -85,8 +153,7 @@ const Button = ({
         className={cn(
           buttonVariants({ size, variant }),
           // KbdHint hides its badge when Base UI marks the anchor hidden.
-          hotkey !== undefined &&
-            "relative has-[[data-slot=button-shortcut]]:[&>[data-slot=kbd-hint-anchor]]:hidden",
+          hotkey !== undefined && hotkeyClassName,
           className,
         )}
         ref={mergedRef}
@@ -105,6 +172,33 @@ const Button = ({
     </ButtonHotkeyContext.Provider>
   );
 };
+
+type ButtonProps = ButtonElementProps;
+
+/**
+ * A button. Given Router's link options it is a link that looks like a button: `to` names a
+ * route, which preloads ahead of the click, and `href` a fully built or external URL.
+ */
+function Button<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: (
+    | (LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & { to: string })
+    | HrefTargetProps
+  ) &
+    ButtonOwnProps & { children?: React.ReactNode },
+): React.ReactElement;
+
+// The button signature comes last, so `ComponentProps<typeof Button>` reads a button's props.
+function Button(props: ButtonProps): React.ReactElement;
+
+function Button(props: ButtonProps | ButtonLinkProps) {
+  return hasLinkTarget(props) ? <ButtonLink {...props} /> : <ButtonElement {...props} />;
+}
 
 /** Labels a shortcut inside a button. Without `hotkey`, it labels the hotkey of its button. */
 const ButtonShortcut = ({ className, hotkey, ...props }: React.ComponentProps<typeof Kbd>) => {

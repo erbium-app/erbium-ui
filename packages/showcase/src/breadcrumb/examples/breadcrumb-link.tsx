@@ -50,7 +50,8 @@ const RouteBreadcrumb = () => {
       items={[...labels].map(([to, label]) => ({
         id: to,
         label,
-        render: <Link to={to} activeOptions={{ exact: true }} />,
+        to,
+        activeOptions: { exact: true },
       }))}
       currentPage={currentPage}
     />

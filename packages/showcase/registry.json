@@ -2970,7 +2970,7 @@
       "name": "breadcrumb-link-component",
       "type": "registry:block",
       "title": "Breadcrumb: TanStack Router",
-      "description": "Derive the breadcrumb from TanStack Router’s [active route matches](https://tanstack.com/router/latest/docs/api/router/useMatchesHook). Define each title once with [`staticData`](https://tanstack.com/router/latest/docs/guide/static-route-data) on the route. The shared layout builds the trail from the matched route hierarchy, including the resolved path parameters.\n\n```tsx\n// routes/projects.tsx\nimport { createFileRoute, Outlet } from \"@tanstack/react-router\";\n\nexport const Route = createFileRoute(\"/projects\")({\n  component: Outlet,\n  staticData: { breadcrumb: \"Projects\" },\n});\n```\n\nSet `staticData: { breadcrumb: \"Settings\" }` on the nested settings route. Render `RouteBreadcrumb` in the shared layout alongside its `Outlet`:\n\n```tsx\nimport { trimPathRight, useMatches } from \"@tanstack/react-router\";\nimport { Breadcrumb } from \"@erbium/ui/components/breadcrumb\";\nimport { Link } from \"@erbium/ui/components/link\";\n\ndeclare module \"@tanstack/react-router\" {\n  interface StaticDataRouteOption {\n    breadcrumb?: string;\n  }\n}\n\nexport const RouteBreadcrumb = () => {\n  const matches = useMatches();\n  const labels = new Map<string, string>();\n\n  for (const match of matches) {\n    const label = match.staticData.breadcrumb;\n    if (label !== undefined) {\n      labels.set(trimPathRight(match.pathname), label);\n    }\n  }\n\n  const leaf = matches.at(-1);\n  if (!leaf) {\n    return null;\n  }\n\n  const currentPath = trimPathRight(leaf.pathname);\n  const currentPage = labels.get(currentPath);\n  if (currentPage === undefined) {\n    return null;\n  }\n\n  labels.delete(currentPath);\n  return (\n    <Breadcrumb\n      items={[...labels].map(([to, label]) => ({\n        id: to,\n        label,\n        render: <Link to={to} activeOptions={{ exact: true }} />,\n      }))}\n      currentPage={currentPage}\n    />\n  );\n};\n```\n\nLeave metadata off routes that should not add a crumb, such as pathless layouts. If a layout and its index share a URL, the deeper labeled match wins. The example skips pages with no label for the current URL. For a title that depends on fetched data, such as a project name, read that route’s loader data in the same adapter. If an ancestor requires search parameters, pass the search values required by that route to its link.\n\nThe preview uses in-memory routing. Select **Projects** to go up one level and **Open settings** to return. The same links work in the overflow menu when the trail collapses.",
+      "description": "Derive the breadcrumb from TanStack Router’s [active route matches](https://tanstack.com/router/latest/docs/api/router/useMatchesHook). Define each title once with [`staticData`](https://tanstack.com/router/latest/docs/guide/static-route-data) on the route. The shared layout builds the trail from the matched route hierarchy, including the resolved path parameters.\n\n```tsx\n// routes/projects.tsx\nimport { createFileRoute, Outlet } from \"@tanstack/react-router\";\n\nexport const Route = createFileRoute(\"/projects\")({\n  component: Outlet,\n  staticData: { breadcrumb: \"Projects\" },\n});\n```\n\nSet `staticData: { breadcrumb: \"Settings\" }` on the nested settings route. Render `RouteBreadcrumb` in the shared layout alongside its `Outlet`:\n\n```tsx\nimport { trimPathRight, useMatches } from \"@tanstack/react-router\";\nimport { Breadcrumb } from \"@erbium/ui/components/breadcrumb\";\n\ndeclare module \"@tanstack/react-router\" {\n  interface StaticDataRouteOption {\n    breadcrumb?: string;\n  }\n}\n\nexport const RouteBreadcrumb = () => {\n  const matches = useMatches();\n  const labels = new Map<string, string>();\n\n  for (const match of matches) {\n    const label = match.staticData.breadcrumb;\n    if (label !== undefined) {\n      labels.set(trimPathRight(match.pathname), label);\n    }\n  }\n\n  const leaf = matches.at(-1);\n  if (!leaf) {\n    return null;\n  }\n\n  const currentPath = trimPathRight(leaf.pathname);\n  const currentPage = labels.get(currentPath);\n  if (currentPage === undefined) {\n    return null;\n  }\n\n  labels.delete(currentPath);\n  return (\n    <Breadcrumb\n      items={[...labels].map(([to, label]) => ({\n        id: to,\n        label,\n        to,\n        activeOptions: { exact: true },\n      }))}\n      currentPage={currentPage}\n    />\n  );\n};\n```\n\nLeave metadata off routes that should not add a crumb, such as pathless layouts. If a layout and its index share a URL, the deeper labeled match wins. The example skips pages with no label for the current URL. For a title that depends on fetched data, such as a project name, read that route’s loader data in the same adapter. If an ancestor requires search parameters, pass the search values required by that route to its link.\n\nThe preview uses in-memory routing. Select **Projects** to go up one level and **Open settings** to return. The same links work in the overflow menu when the trail collapses.",
       "dependencies": ["@tanstack/react-router@^1.170.46"],
       "registryDependencies": ["@erbium/breadcrumb", "@erbium/link", "@erbium/styles"],
       "files": [
@@ -3503,7 +3503,7 @@
       "name": "button-as-link",
       "type": "registry:component",
       "title": "Button: As Link",
-      "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.\n\nFor a TanStack Router destination, apply the same styles to Erbium's `Link` to enable Foresight route preloading.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\nimport { buttonVariants } from \"@erbium/ui/lib/button-variants\";\n\n<Link to=\"/projects\" className={buttonVariants()}>\n  Projects\n</Link>;\n```",
+      "description": "Give `Button` TanStack Router's link options to make a link that looks like a button. `to` names a route, typed against your routes, which preloads before the click; `href` takes a fully built or external URL. The link keeps its link role, and `hotkey` still works.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements.\n\n```tsx\nimport { Button } from \"@erbium/ui/components/button\";\n\n<Button to=\"/projects\">Projects</Button>;\n<Button href=\"https://github.com/erbium\" variant=\"outline\">\n  GitHub\n</Button>;\n```",
       "registryDependencies": ["@erbium/button", "@erbium/styles"],
       "files": [
         {
@@ -4472,13 +4472,11 @@
       "registryDependencies": [
         "@erbium/button",
         "@erbium/button-group",
-        "@erbium/button-variants",
         "@erbium/csp-provider",
         "@erbium/direction",
         "@erbium/dropdown-menu",
         "@erbium/icon",
         "@erbium/kbd",
-        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
         "@erbium/styles",
@@ -16564,9 +16562,9 @@
       "name": "navigation-menu-link-component",
       "type": "registry:component",
       "title": "Navigation Menu: Link Component",
-      "description": "In a TanStack Router app, pass Erbium's `Link` to `NavigationMenuLink` through `render`. The menu still manages focus and keyboard navigation, while Foresight can preload the destination before activation. The menu applies its active styles when the router marks a link with `aria-current=\"page\"`. Use `href` for ordinary anchors.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\n\nimport { NavigationMenuItem, NavigationMenuLink } from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink render={<Link to=\"/docs\" />}>Documentation</NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
+      "description": "`NavigationMenuLink` takes TanStack Router's link options. `to` names a route, typed against your routes, and the destination preloads before activation; `href` takes a fully built or external URL. The menu still manages focus and keyboard navigation, and applies its active styles when the router marks a link with `aria-current=\"page\"`.\n\n```tsx\nimport { NavigationMenuItem, NavigationMenuLink } from \"@erbium/ui/components/navigation-menu\";\n\nexport function NavigationMenuDemo() {\n  return (\n    <NavigationMenuItem>\n      <NavigationMenuLink to=\"/docs\">Documentation</NavigationMenuLink>\n    </NavigationMenuItem>\n  );\n}\n```",
       "dependencies": ["@tanstack/react-router@^1.170.46"],
-      "registryDependencies": ["@erbium/link", "@erbium/navigation-menu", "@erbium/styles"],
+      "registryDependencies": ["@erbium/navigation-menu", "@erbium/styles"],
       "files": [
         {
           "path": "src/navigation-menu/variants/link-component.tsx",
@@ -16617,7 +16615,6 @@
       "devDependencies": ["@storybook/react@^10.6.1"],
       "registryDependencies": [
         "@erbium/csp-provider",
-        "@erbium/link",
         "@erbium/navigation-menu",
         "@erbium/overlay-provider",
         "@erbium/skeleton",
@@ -17428,11 +17425,10 @@
       "name": "pagination-router",
       "type": "registry:block",
       "title": "Pagination: Router",
-      "description": "Pages kept in the URL. `renderLink` returns the UI `Link` for each page, so a page starts loading when the pointer heads for its link. Each page takes 900 ms to load. Move toward a page number and click it, then turn prediction off and compare.",
+      "description": "Pages kept in the URL. `linkOptions` returns Router's link options for each page, and every control renders a link that starts loading its page when the pointer heads for it. Each page takes 900 ms to load. Move toward a page number and click it, then turn preloading off and compare.",
       "dependencies": ["@tanstack/react-router@^1.170.46"],
       "registryDependencies": [
         "@erbium/field",
-        "@erbium/link",
         "@erbium/pagination",
         "@erbium/styles",
         "@erbium/switch"
@@ -17479,7 +17475,6 @@
       "registryDependencies": [
         "@erbium/csp-provider",
         "@erbium/field",
-        "@erbium/link",
         "@erbium/overlay-provider",
         "@erbium/pagination",
         "@erbium/select",

@@ -1,6 +1,10 @@
+import type * as React from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
+import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import { cva } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { hasLinkTarget, linkFromTarget } from "./link";
+import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 import { RotatingChevron } from "./stateful-icon";
 
 const NavigationMenuPositioner = ({
@@ -101,16 +105,69 @@ const NavigationMenuContent = ({ className, ...props }: NavigationMenuPrimitive.
   />
 );
 
-const NavigationMenuLink = ({ className, ...props }: NavigationMenuPrimitive.Link.Props) => (
-  <NavigationMenuPrimitive.Link
-    data-slot="navigation-menu-link"
-    className={cn(
-      "flex items-center gap-related rounded-lg p-2 text-control transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-md [&:is([data-active],[aria-current=page])]:bg-muted-selected [&:is([data-active],[aria-current=page])]:hover:bg-muted [&:is([data-active],[aria-current=page])]:focus:bg-muted [&_svg:not([class*='size-'])]:size-4",
-      className,
-    )}
-    {...props}
-  />
-);
+type NavigationMenuLinkOwnProps = Pick<
+  NavigationMenuPrimitive.Link.Props,
+  "active" | "closeOnClick"
+>;
+
+type NavigationMenuLinkProps =
+  | (NavigationMenuPrimitive.Link.Props & NoTargetProps)
+  | (HrefTargetProps & NavigationMenuLinkOwnProps);
+
+/**
+ * A menu link. It takes Router's link options: `to` names a route, which preloads ahead of the
+ * click and is marked current by Router; `href` names a fully built or external URL.
+ */
+function NavigationMenuLink(props: NavigationMenuLinkProps): React.ReactElement;
+
+// Restores Router's generics, so `to` and `params` type against the app's routes.
+function NavigationMenuLink<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & NavigationMenuLinkOwnProps,
+): React.ReactElement;
+
+function NavigationMenuLink({
+  active,
+  closeOnClick,
+  ...props
+}:
+  | NavigationMenuLinkProps
+  | (AnyLinkTargetProps & NavigationMenuLinkOwnProps & { render?: never })) {
+  const linkClassName =
+    "flex items-center gap-related rounded-lg p-2 text-control transition-all outline-none hover:bg-muted focus:bg-muted focus-visible:outline-1 in-data-[slot=navigation-menu-content]:rounded-md [&:is([data-active],[aria-current=page])]:bg-muted-selected [&:is([data-active],[aria-current=page])]:hover:bg-muted [&:is([data-active],[aria-current=page])]:focus:bg-muted [&_svg:not([class*='size-'])]:size-4";
+
+  // A destination renders `Link`, which takes the link options; the menu keeps its behaviour.
+  if (hasLinkTarget(props)) {
+    const { className, ...target } = props;
+
+    return (
+      <NavigationMenuPrimitive.Link
+        data-slot="navigation-menu-link"
+        active={active}
+        closeOnClick={closeOnClick}
+        className={cn(linkClassName, className)}
+        render={linkFromTarget(target)}
+      />
+    );
+  }
+
+  const { className, ...rest } = props;
+
+  return (
+    <NavigationMenuPrimitive.Link
+      data-slot="navigation-menu-link"
+      active={active}
+      closeOnClick={closeOnClick}
+      className={cn(linkClassName, className)}
+      {...rest}
+    />
+  );
+}
 
 const NavigationMenuIndicator = ({
   className,

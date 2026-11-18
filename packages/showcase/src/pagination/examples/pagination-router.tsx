@@ -4,12 +4,10 @@ import {
   createRootRouteWithContext,
   createRoute,
   createRouter,
-  Link as RouterLink,
   RouterProvider,
   useLocation,
 } from "@tanstack/react-router";
 import { Field, FieldLabel } from "@erbium/ui/components/field";
-import { Link } from "@erbium/ui/components/link";
 import { Pagination, PaginationControls } from "@erbium/ui/components/pagination";
 import { Switch } from "@erbium/ui/components/switch";
 
@@ -79,14 +77,17 @@ const Controls = () => {
   const page = useCurrentPage();
   const predict = use(PredictContext);
   const { markClick } = use(TimingContext);
-  const PageLink = predict ? Link : RouterLink;
 
   return (
     <Pagination onClickCapture={markClick}>
       <PaginationControls
         page={page}
         pageCount={pageCount}
-        renderLink={(target) => <PageLink to="/" search={{ page: target }} />}
+        linkOptions={(target) => ({
+          preload: predict ? undefined : false,
+          search: { page: target },
+          to: "/",
+        })}
       />
     </Pagination>
   );
@@ -161,7 +162,7 @@ export default function PaginationRouterExample() {
       </TimingContext>
       <Field orientation="horizontal" className="justify-center">
         <Switch checked={predict} onCheckedChange={setPredict} />
-        <FieldLabel>Predict intent</FieldLabel>
+        <FieldLabel>Preload pages</FieldLabel>
       </Field>
     </div>
   );

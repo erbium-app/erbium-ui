@@ -2,12 +2,15 @@ import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { useMergedRefs } from "@base-ui/utils/useMergedRefs";
+import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import { usePagination } from "../hooks/use-pagination";
 import type { PaginationOptions } from "../hooks/use-pagination";
 import { usePredictedIntent } from "../hooks/use-predicted-intent";
 import { buttonVariants } from "../lib/button-variants";
 import { cn } from "../lib/utils";
 import { Icon } from "./icon";
+import { linkFromTarget, linkTarget } from "./link";
+import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 
 type PaginationSize = "default" | "icon" | "sm" | "icon-sm";
 
@@ -39,35 +42,53 @@ const PaginationItem = ({ ...props }: React.ComponentProps<"li">) => (
   <li data-slot="pagination-item" {...props} />
 );
 
-type PaginationLinkProps = useRender.ComponentProps<"a"> & {
+interface PaginationLinkOwnProps {
   isActive?: boolean;
   size?: PaginationSize;
-};
+}
+
+type PaginationLinkProps = ((useRender.ComponentProps<"a"> & NoTargetProps) | HrefTargetProps) &
+  PaginationLinkOwnProps;
 
 /**
- * A page link. It renders an `a` by default; pass a router link to `render`, such as
- * `<Link to="." search={{ page }} />` from `@erbium/ui/components/link`, so the page
- * preloads before the click.
+ * A page link. It takes Router's link options, such as `to="." search={{ page }}`, so the page
+ * preloads before the click; `href` takes a fully built URL.
  */
-const PaginationLink = ({
+function PaginationLink(props: PaginationLinkProps): React.ReactElement;
+
+// Restores Router's generics, so `to` and `search` type against the app's routes.
+function PaginationLink<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & PaginationLinkOwnProps,
+): React.ReactElement;
+
+function PaginationLink({
   className,
   isActive,
   size = "icon",
   render,
+  to,
+  href,
   ...props
-}: PaginationLinkProps) =>
-  useRender({
+}: PaginationLinkProps | (AnyLinkTargetProps & PaginationLinkOwnProps & { render?: never })) {
+  return useRender({
     defaultTagName: "a",
-    props: mergeProps<"a">(
+    props: mergeProps(
       {
         "aria-current": isActive === true ? "page" : undefined,
         className: pageClassName(isActive, size, className),
       },
       props,
     ),
-    render,
+    render: linkTarget({ href, render, to }),
     state: { active: isActive === true, slot: "pagination-link" },
   });
+}
 
 type PaginationButtonProps = Omit<React.ComponentProps<"button">, "type"> & {
   isActive?: boolean;
@@ -114,20 +135,26 @@ const PaginationButton = ({
   );
 };
 
-type PaginationStepProps = useRender.ComponentProps<"a"> & {
+interface PaginationStepOwnProps {
   /**
-   * Marks the step unavailable, on the first or last page. Without `render`, the link loses
-   * its `href`. With `render`, `disabled` passes to the rendered element: a router `Link`
-   * drops its `href`, and a `PaginationButton` disables natively.
+   * Marks the step unavailable, on the first or last page. A plain step loses its `href`; a
+   * link drops its destination, and a rendered `PaginationButton` disables natively.
    */
   disabled?: boolean;
   text?: string;
-};
+}
 
-// A default `a` loses its `href`, and with it its role, so it keeps `role="link"`. A rendered
-// element receives `disabled`, which router links and native buttons both honor.
-const disabledStepProps = (isDefaultLink: boolean) =>
-  isDefaultLink
+type PaginationStepProps = ((useRender.ComponentProps<"a"> & NoTargetProps) | HrefTargetProps) &
+  PaginationStepOwnProps;
+
+type PaginationStepImplementationProps =
+  | PaginationStepProps
+  | (AnyLinkTargetProps & PaginationStepOwnProps & { render?: never });
+
+// A plain `a` loses its `href`, and with it its role, so it keeps `role="link"`. A link or a
+// rendered element receives `disabled`, which router links and native buttons both honor.
+const disabledStepProps = (isPlainAnchor: boolean) =>
+  isPlainAnchor
     ? { "aria-disabled": true, "data-disabled": "", href: undefined, role: "link" }
     : { disabled: true };
 
@@ -135,46 +162,82 @@ const PaginationStep = ({
   className,
   disabled = false,
   render,
+  to,
+  href,
   children,
   ...props
-}: PaginationStepProps & { children: React.ReactNode }) => {
-  const element = useRender({
+}: PaginationStepImplementationProps & { children: React.ReactNode }) => {
+  const element = linkTarget({ href, render, to });
+
+  return useRender({
     defaultTagName: "a",
-    props: mergeProps<"a">(
+    props: mergeProps(
       { children, className: pageClassName(false, "default", className) },
       props,
-      // Applied last so a passed `href` cannot make a disabled step navigable.
-      disabled ? disabledStepProps(render === undefined) : {},
+      // Applied last so nothing passed can make a disabled step navigable.
+      disabled ? disabledStepProps(element === undefined) : {},
     ),
-    render,
+    render: element,
   });
-
-  return element;
 };
 
-const PaginationPrevious = ({ className, text = "Previous", ...props }: PaginationStepProps) => (
-  <PaginationStep
-    aria-label="Go to previous page"
-    data-slot="pagination-previous"
-    className={cn("ps-1.5!", className)}
-    {...props}
-  >
-    <Icon name="chevron-left" data-icon="inline-start" className="rtl:rotate-180" />
-    <span className="hidden sm:block">{text}</span>
-  </PaginationStep>
-);
+/** The step to the previous page. It takes the same link options as `PaginationLink`. */
+function PaginationPrevious(props: PaginationStepProps): React.ReactElement;
 
-const PaginationNext = ({ className, text = "Next", ...props }: PaginationStepProps) => (
-  <PaginationStep
-    aria-label="Go to next page"
-    data-slot="pagination-next"
-    className={cn("pe-1.5!", className)}
-    {...props}
-  >
-    <span className="hidden sm:block">{text}</span>
-    <Icon name="chevron-right" data-icon="inline-end" className="rtl:rotate-180" />
-  </PaginationStep>
-);
+function PaginationPrevious<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & PaginationStepOwnProps,
+): React.ReactElement;
+
+function PaginationPrevious({
+  className,
+  text = "Previous",
+  ...props
+}: PaginationStepImplementationProps) {
+  return (
+    <PaginationStep
+      aria-label="Go to previous page"
+      data-slot="pagination-previous"
+      className={cn("ps-1.5!", className)}
+      {...props}
+    >
+      <Icon name="chevron-left" data-icon="inline-start" className="rtl:rotate-180" />
+      <span className="hidden sm:block">{text}</span>
+    </PaginationStep>
+  );
+}
+
+/** The step to the next page. It takes the same link options as `PaginationLink`. */
+function PaginationNext(props: PaginationStepProps): React.ReactElement;
+
+function PaginationNext<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & PaginationStepOwnProps,
+): React.ReactElement;
+
+function PaginationNext({ className, text = "Next", ...props }: PaginationStepImplementationProps) {
+  return (
+    <PaginationStep
+      aria-label="Go to next page"
+      data-slot="pagination-next"
+      className={cn("pe-1.5!", className)}
+      {...props}
+    >
+      <span className="hidden sm:block">{text}</span>
+      <Icon name="chevron-right" data-icon="inline-end" className="rtl:rotate-180" />
+    </PaginationStep>
+  );
+}
 
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<"span">) => (
   <span
@@ -191,20 +254,26 @@ const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<"span"
   </span>
 );
 
+/** Router's link options for one page. */
+type PaginationLinkOptions =
+  | Omit<AnyLinkTargetProps, "children">
+  | Omit<HrefTargetProps, "children">;
+
 type PaginationControlsProps = PaginationOptions &
   Omit<React.ComponentProps<"ul">, "children"> &
   (
     | {
         /**
-         * Returns the link for a page, for pages kept in the URL. Use a router link so the
-         * page preloads before the click: `(page) => <Link to="." search={{ page }} />`.
+         * Returns Router's link options for a page, for pages kept in the URL, so each page
+         * preloads before the click: `(page) => ({ to: ".", search: { page } })`. Build typed
+         * options with Router's `linkOptions`.
          */
-        renderLink: (page: number) => React.ReactElement;
+        linkOptions: (page: number) => PaginationLinkOptions;
         onPageChange?: never;
         onPageIntent?: never;
       }
     | {
-        renderLink?: never;
+        linkOptions?: never;
         /** Called with the chosen page, for pages kept in state. Renders buttons. */
         onPageChange: (page: number) => void;
         /**
@@ -216,7 +285,7 @@ type PaginationControlsProps = PaginationOptions &
   );
 
 /**
- * Previous, page, and next controls laid out by `usePagination`. With `renderLink` the controls
+ * Previous, page, and next controls laid out by `usePagination`. With `linkOptions` the controls
  * are links, for pages in the URL; with `onPageChange` they are buttons, for pages in state
  * such as a table's.
  */
@@ -225,7 +294,7 @@ const PaginationControls = ({
   pageCount,
   siblingCount,
   boundaryCount,
-  renderLink,
+  linkOptions,
   onPageChange,
   onPageIntent,
   ...props
@@ -235,7 +304,9 @@ const PaginationControls = ({
   // Buttons for state-driven pages; links otherwise.
   const step = (target: number | undefined) => {
     if (onPageChange === undefined) {
-      return target === undefined ? { disabled: true } : { render: renderLink(target) };
+      return target === undefined
+        ? { disabled: true }
+        : { render: linkFromTarget(linkOptions(target)) };
     }
 
     return {
@@ -273,7 +344,10 @@ const PaginationControls = ({
         ) : (
           <PaginationItem key={item.page}>
             {onPageChange === undefined ? (
-              <PaginationLink isActive={item.current} render={renderLink(item.page)}>
+              <PaginationLink
+                isActive={item.current}
+                render={linkFromTarget(linkOptions(item.page))}
+              >
                 {item.page}
               </PaginationLink>
             ) : (

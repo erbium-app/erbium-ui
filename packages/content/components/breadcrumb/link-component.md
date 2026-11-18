@@ -20,7 +20,6 @@ Set `staticData: { breadcrumb: "Settings" }` on the nested settings route. Rende
 ```tsx
 import { trimPathRight, useMatches } from "@tanstack/react-router";
 import { Breadcrumb } from "@erbium/ui/components/breadcrumb";
-import { Link } from "@erbium/ui/components/link";
 
 declare module "@tanstack/react-router" {
   interface StaticDataRouteOption {
@@ -56,7 +55,8 @@ export const RouteBreadcrumb = () => {
       items={[...labels].map(([to, label]) => ({
         id: to,
         label,
-        render: <Link to={to} activeOptions={{ exact: true }} />,
+        to,
+        activeOptions: { exact: true },
       }))}
       currentPage={currentPage}
     />

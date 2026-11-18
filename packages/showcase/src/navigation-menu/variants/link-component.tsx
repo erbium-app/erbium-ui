@@ -7,7 +7,6 @@ import {
   Outlet,
   RouterProvider,
 } from "@tanstack/react-router";
-import { Link } from "@erbium/ui/components/link";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -20,12 +19,12 @@ const Navigation = () => (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuLink render={<Link to="/" activeOptions={{ exact: true }} />}>
+          <NavigationMenuLink to="/" activeOptions={{ exact: true }}>
             Home
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuLink render={<Link to="/docs" />}>Documentation</NavigationMenuLink>
+          <NavigationMenuLink to="/docs">Documentation</NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

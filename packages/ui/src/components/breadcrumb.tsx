@@ -2,6 +2,7 @@ import * as React from "react";
 import { Menu } from "@base-ui/react/menu";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
+import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import { cn } from "../lib/utils";
 import {
   DropdownMenu,
@@ -10,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "./dropdown-menu";
 import { Icon } from "./icon";
+import { linkFromTarget, linkTarget } from "./link";
+import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 
 const BreadcrumbNav = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav aria-label="breadcrumb" data-slot="breadcrumb" className={cn(className)} {...props} />
@@ -36,20 +39,44 @@ const BreadcrumbItem = ({ className, ...props }: React.ComponentProps<"li">) => 
 
 const breadcrumbLinkClassName = "transition-colors hover:text-foreground";
 
-const BreadcrumbLink = ({ className, render, ...props }: useRender.ComponentProps<"a">) =>
-  useRender({
+type BreadcrumbLinkProps = (useRender.ComponentProps<"a"> & NoTargetProps) | HrefTargetProps;
+
+/**
+ * A parent page. It takes Router's link options: `to` names a route, which preloads ahead of
+ * the click; `href` names a fully built or external URL.
+ */
+function BreadcrumbLink(props: BreadcrumbLinkProps): React.ReactElement;
+
+// Restores Router's generics, so `to` and `params` type against the app's routes.
+function BreadcrumbLink<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo>): React.ReactElement;
+
+function BreadcrumbLink({
+  className,
+  render,
+  to,
+  href,
+  ...props
+}: BreadcrumbLinkProps | (AnyLinkTargetProps & { render?: never })) {
+  return useRender({
     defaultTagName: "a",
-    props: mergeProps<"a">(
+    props: mergeProps(
       {
         className: cn(breadcrumbLinkClassName, className),
       },
       props,
     ),
-    render,
+    render: linkTarget({ href, render, to }),
     state: {
       slot: "breadcrumb-link",
     },
   });
+}
 
 const BreadcrumbPage = ({ className, ...props }: React.ComponentProps<"span">) => (
   <span
@@ -84,12 +111,23 @@ const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<"span"
   </span>
 );
 
-/** A parent page, ordered from the root toward the current page. */
+/**
+ * A parent page, ordered from the root toward the current page. It takes Router's link options:
+ * `to` (with `params` and `search`) names a route, and `href` a fully built or external URL.
+ * Build typed options with Router's `linkOptions`.
+ */
 type BreadcrumbDestination = {
-  /** Stable key for destinations that do not have a unique href. */
+  /** Stable key for destinations that do not have a unique `to` or `href`. */
   id?: string;
   label: string;
-} & ({ href: string; render?: never } | { href?: never; render: React.ReactElement });
+} & (Omit<AnyLinkTargetProps, "children"> | Omit<HrefTargetProps, "children">);
+
+const destinationKey = ({ id, to, href, label }: BreadcrumbDestination) =>
+  id ?? to ?? href ?? label;
+
+// Splits a destination into its label and the link options its `Link` takes.
+const destinationLink = ({ id: _id, label: _label, ...target }: BreadcrumbDestination) =>
+  linkFromTarget(target);
 
 const overflowTriggerClassName =
   "inline-flex size-7 shrink-0 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground data-popup-open:bg-accent focus-visible:outline-2 focus-visible:outline-ring";
@@ -110,9 +148,8 @@ const OverflowMenu = ({
         <DropdownMenuList>
           {items.map((item) => (
             <Menu.LinkItem
-              key={item.id ?? item.href ?? item.label}
-              href={item.href}
-              render={item.render}
+              key={destinationKey(item)}
+              render={destinationLink(item)}
               className="row-size flex items-center rounded-md text-control-sm wrap-anywhere whitespace-normal outline-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
               closeOnClick
             >
@@ -251,11 +288,9 @@ const BreadcrumbTrail = ({
           }
 
           return (
-            <React.Fragment key={item.id ?? item.href ?? item.label}>
+            <React.Fragment key={destinationKey(item)}>
               <BreadcrumbItem className={hidden && "shrink-0"}>
-                <BreadcrumbLink href={item.href} render={item.render}>
-                  {item.label}
-                </BreadcrumbLink>
+                <BreadcrumbLink render={destinationLink(item)}>{item.label}</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="shrink-0">{separator}</BreadcrumbSeparator>
             </React.Fragment>
@@ -276,7 +311,7 @@ const BreadcrumbTrail = ({
       >
         <BreadcrumbList ref={measureRef} className="w-max flex-nowrap whitespace-nowrap">
           {items.map((item) => (
-            <BreadcrumbItem key={item.id ?? item.href ?? item.label}>
+            <BreadcrumbItem key={destinationKey(item)}>
               <span className={breadcrumbLinkClassName}>{item.label}</span>
             </BreadcrumbItem>
           ))}

@@ -9,20 +9,19 @@ description: "Navigate between pages of content, with each page loaded before th
 
 `PaginationControls` renders previous, page, and next controls for a page and a page count. It works in one of two modes, chosen by where the page lives:
 
-- **In the URL:** pass `renderLink`. Every control is a link, so pages can be opened in a new tab, shared, and restored with the back button.
+- **In the URL:** pass `linkOptions`, which returns Router's link options for a page. Every control is a link, so pages can be opened in a new tab, shared, and restored with the back button.
 - **In state:** pass `onPageChange`, and optionally `onPageIntent`. Every control is a button. Use this for tables and panels whose page is not part of the address.
 
-Both modes start loading a page before it is clicked. Links do it through the UI `Link`, which preloads the route when the user is about to follow it. Buttons call `onPageIntent` at the same moment, so the page can be fetched ahead of time.
+Both modes start loading a page before it is clicked. Links preload the route when the user is about to follow it. Buttons call `onPageIntent` at the same moment, so the page can be fetched ahead of time.
 
 ```tsx
-import { Link } from "@erbium/ui/components/link";
 import { Pagination, PaginationControls } from "@erbium/ui/components/pagination";
 
 <Pagination>
   <PaginationControls
     page={page}
     pageCount={pageCount}
-    renderLink={(page) => <Link to="." search={(previous) => ({ ...previous, page })} />}
+    linkOptions={(page) => ({ to: ".", search: (previous) => ({ ...previous, page }) })}
   />
 </Pagination>;
 ```
@@ -74,7 +73,7 @@ function Invoices() {
       <PaginationControls
         page={page}
         pageCount={data.pageCount}
-        renderLink={(page) => <Link to="." search={(previous) => ({ ...previous, page })} />}
+        linkOptions={(page) => ({ to: ".", search: (previous) => ({ ...previous, page }) })}
       />
     </Pagination>
   );
@@ -171,7 +170,7 @@ function InvoicesTable() {
 
 With Effect Atom, prefetch by reading the page's atom from the registry: `registry.get(invoicesAtom(page))` starts the request, and the idle TTL keeps the result until the click mounts it.
 
-A table whose rows are already on the client, using `createPaginatedRowModel`, has nothing to fetch; leave out `onPageIntent`. A table whose page should survive a reload or be shareable belongs in the URL: use `renderLink` and read the page from the search param as above.
+A table whose rows are already on the client, using `createPaginatedRowModel`, has nothing to fetch; leave out `onPageIntent`. A table whose page should survive a reload or be shareable belongs in the URL: use `linkOptions` and read the page from the search param as above.
 
 ## Building your own layout
 
@@ -183,9 +182,9 @@ import { usePagination } from "@erbium/ui/hooks/use-pagination";
 const { items, previousPage, nextPage } = usePagination({ page, pageCount });
 ```
 
-- `PaginationLink` renders a page link. Pass a router link to `render`, and `isActive` for the current page.
+- `PaginationLink` renders a page link. It takes Router's link options (`to`, `search`) or an `href`, and `isActive` for the current page.
 - `PaginationButton` renders a page button. `onIntent` is called before the press.
-- `PaginationPrevious` and `PaginationNext` take `render` like `PaginationLink`. `disabled` marks a step with no page: a plain link loses its `href`, and a rendered router link or button is disabled.
+- `PaginationPrevious` and `PaginationNext` take link options like `PaginationLink`, or a `PaginationButton` through `render`. `disabled` marks a step with no page: the link or button is disabled.
 
 ## Composition
 

@@ -3,11 +3,11 @@
   "name": "button-as-link",
   "type": "registry:component",
   "title": "Button: As Link",
-  "description": "You can use the `buttonVariants` helper to make a link look like a button.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.\n\nFor a TanStack Router destination, apply the same styles to Erbium's `Link` to enable Foresight route preloading.\n\n```tsx\nimport { Link } from \"@erbium/ui/components/link\";\nimport { buttonVariants } from \"@erbium/ui/lib/button-variants\";\n\n<Link to=\"/projects\" className={buttonVariants()}>\n  Projects\n</Link>;\n```",
+  "description": "Give `Button` TanStack Router's link options to make a link that looks like a button. `to` names a route, typed against your routes, which preloads before the click; `href` takes a fully built or external URL. The link keeps its link role, and `hotkey` still works.\n\n**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role=\"button\"`, which overrides the semantic link role on `<a>` elements.\n\n```tsx\nimport { Button } from \"@erbium/ui/components/button\";\n\n<Button to=\"/projects\">Projects</Button>;\n<Button href=\"https://github.com/erbium\" variant=\"outline\">\n  GitHub\n</Button>;\n```",
   "registryDependencies": ["@erbium/button", "@erbium/styles"],
   "files": [
     {
-      "content": "import { buttonVariants } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonAsLinkExample() {\n  return (\n    <a className={buttonVariants({ variant: \"outline\" })} href=\"#button-as-link\">\n      Open section\n    </a>\n  );\n}\n",
+      "content": "import { Button } from \"@/registry/erbium/ui/button\";\n\nexport default function ButtonAsLinkExample() {\n  return (\n    <Button variant=\"outline\" href=\"#button-as-link\">\n      Open section\n    </Button>\n  );\n}\n",
       "path": "src/button/variants/as-link.tsx",
       "target": "@components/showcase/button/variants/as-link.tsx",
       "type": "registry:component"

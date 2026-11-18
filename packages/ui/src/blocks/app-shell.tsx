@@ -26,7 +26,6 @@ import {
   useSidebar,
 } from "../components/sidebar";
 import type { SidebarMenuButtonProps } from "../components/sidebar";
-import { Link } from "../components/link";
 import { useRouterPending } from "../hooks/use-router-pending";
 import { Option, Schema } from "effect";
 import { cn } from "../lib/utils";
@@ -482,8 +481,8 @@ const AppShellBreadcrumbs = ({
       crumbs.slice(0, -1).map((crumb): BreadcrumbDestination => ({
         id: crumb.id,
         label: crumb.label,
-        // The path is already resolved, so it goes to Router as an href rather than a route.
-        render: <Link to={crumb.pathname} />,
+        // The matched path is already resolved, so its params are filled in.
+        to: crumb.pathname,
       })),
     [crumbs],
   );

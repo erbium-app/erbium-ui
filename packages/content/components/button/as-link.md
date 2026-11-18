@@ -3,17 +3,15 @@ title: "As Link"
 story: AsLink
 ---
 
-You can use the `buttonVariants` helper to make a link look like a button.
+Give `Button` TanStack Router's link options to make a link that looks like a button. `to` names a route, typed against your routes, which preloads before the click; `href` takes a fully built or external URL. The link keeps its link role, and `hotkey` still works.
 
-**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role="button"`, which overrides the semantic link role on `<a>` elements. Use `buttonVariants` with a plain `<a>` tag instead.
-
-For a TanStack Router destination, apply the same styles to Erbium's `Link` to enable Foresight route preloading.
+**Do not use `<Button render={<a />} nativeButton={false} />` for links.** The Base UI `Button` component always applies `role="button"`, which overrides the semantic link role on `<a>` elements.
 
 ```tsx
-import { Link } from "@erbium/ui/components/link";
-import { buttonVariants } from "@erbium/ui/lib/button-variants";
+import { Button } from "@erbium/ui/components/button";
 
-<Link to="/projects" className={buttonVariants()}>
-  Projects
-</Link>;
+<Button to="/projects">Projects</Button>;
+<Button href="https://github.com/erbium" variant="outline">
+  GitHub
+</Button>;
 ```

@@ -2,7 +2,7 @@ import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { useHotkey } from "@tanstack/react-hotkeys";
-import type { AnyRouter, LinkComponentProps, RegisteredRouter } from "@tanstack/react-router";
+import type { AnyRouter, RegisteredRouter } from "@tanstack/react-router";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { useIsMobile } from "../hooks/use-is-mobile";
@@ -12,7 +12,8 @@ import type { CSSVariableStyle } from "../lib/utils";
 import { Button } from "./button";
 import { Input } from "./input";
 import { KbdHint } from "./kbd";
-import { Link } from "./link";
+import { linkTarget } from "./link";
+import type { AnyLinkTargetProps, HrefTargetProps, LinkTargetProps, NoTargetProps } from "./link";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { Sheet, SheetPanel, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
@@ -622,12 +623,17 @@ const SidebarRail = ({
  * The main content beside the sidebar. Beside a plain sidebar it shares the page background.
  * Beside an inset sidebar it is the raised content panel: `surface-panel` gives it the panel
  * face, perimeter, catchlight, and drop shadow above the sidebar's canvas, in both themes.
+ * When an inset sidebar collapses offcanvas there is no canvas left to raise it above, so the
+ * panel eases out to the viewport edges and drops its corners and frame. An icon sidebar stays
+ * on screen, so the panel keeps its frame and only takes the gap back at its start edge.
  */
 const SidebarInset = ({ className, ...props }: React.ComponentProps<"main">) => (
   <main
     data-slot="sidebar-inset"
     className={cn(
-      "relative flex w-full flex-1 flex-col bg-background transition-[margin] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none motion-reduce:transition-none md:peer-data-[variant=inset]:m-(--sidebar-inset-gap) md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:surface-panel md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ms-(--sidebar-inset-gap)",
+      "relative flex w-full flex-1 flex-col bg-background transition-[margin,border-radius,box-shadow] duration-panel ease-ui-out group-data-resizing/sidebar-wrapper:transition-none motion-reduce:transition-none",
+      "md:peer-data-[variant=inset]:m-(--sidebar-inset-gap) md:peer-data-[variant=inset]:ms-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:surface-panel md:peer-data-[variant=inset]:peer-data-[collapsible=icon]:ms-(--sidebar-inset-gap)",
+      "md:peer-data-[variant=inset]:peer-data-[collapsible=offcanvas]:m-0 md:peer-data-[variant=inset]:peer-data-[collapsible=offcanvas]:rounded-none md:peer-data-[variant=inset]:peer-data-[collapsible=offcanvas]:shadow-none",
       className,
     )}
     {...props}
@@ -746,46 +752,23 @@ const SidebarMenuItem = ({ className, ...props }: React.ComponentProps<"li">) =>
   <li data-slot="sidebar-menu-item" className={cn(sidebarStyles.menuItem, className)} {...props} />
 );
 
-/* Menu rows navigate with Router's own link options and render Erbium's `Link`: `to` (with
-   `params`, `search`, `hash`, `activeOptions`) names a route, which preloads ahead of the click
-   and marks the current page with `aria-current="page"`; `href` names a fully built or external
-   target. Without either the row is a button. */
-type SidebarLinkProps<
-  TRouter extends AnyRouter = RegisteredRouter,
-  TFrom extends string = string,
-  TTo extends string | undefined = undefined,
-  TMaskFrom extends string = TFrom,
-  TMaskTo extends string = "",
-> = LinkComponentProps<"a", TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & { render?: never };
-
+/* Menu rows navigate with Router's own link options (see `link.tsx`): `to` names a route, which
+   preloads ahead of the click and marks the current page with `aria-current="page"`; `href`
+   names a fully built or external target. Without either the row is a button. */
 type SidebarButtonProps = useRender.ComponentProps<"button"> &
-  React.ComponentProps<"button"> & { to?: never; href?: never };
+  React.ComponentProps<"button"> &
+  NoTargetProps;
 
-// Router's link types require `to` beside a bare `href`, so an `href` row has its own props.
-type SidebarHrefProps = Omit<React.ComponentProps<"a">, "href"> & {
-  href: string;
-  to?: never;
-  render?: never;
-};
-
-// What the implementations see: a button's props, or the options of any link, which pass
-// through to `Link`. The overloads restore Router's generics for callers.
 type SidebarRowImplementationProps =
   | SidebarButtonProps
-  | SidebarHrefProps
-  | (Omit<LinkComponentProps<"a", RegisteredRouter, string, string>, "render"> &
-      Pick<SidebarButtonProps, "render">);
-
-// The element a row renders: `Link` for a destination, which receives the row's link options
-// with its other props, otherwise the caller's `render`.
-const rowElement = ({ to, href, render }: SidebarRowImplementationProps) =>
-  to === undefined && href === undefined ? render : <Link to={to} href={href} />;
+  | HrefTargetProps
+  | (AnyLinkTargetProps & Pick<SidebarButtonProps, "render">);
 
 interface SidebarMenuButtonOwnProps extends VariantProps<typeof sidebarMenuButtonVariants> {
   tooltip?: string | React.ComponentProps<typeof TooltipContent>;
 }
 
-type SidebarMenuButtonProps = (SidebarButtonProps | SidebarHrefProps) & SidebarMenuButtonOwnProps;
+type SidebarMenuButtonProps = (SidebarButtonProps | HrefTargetProps) & SidebarMenuButtonOwnProps;
 
 /** A menu row: a link when given `to`, otherwise a button. */
 function SidebarMenuButton(props: SidebarMenuButtonProps): React.ReactElement;
@@ -799,7 +782,7 @@ function SidebarMenuButton<
   const TMaskFrom extends string = TFrom,
   const TMaskTo extends string = "",
 >(
-  props: SidebarLinkProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & SidebarMenuButtonOwnProps,
+  props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & SidebarMenuButtonOwnProps,
 ): React.ReactElement;
 
 function SidebarMenuButton({
@@ -814,7 +797,7 @@ function SidebarMenuButton({
 }: SidebarRowImplementationProps & SidebarMenuButtonOwnProps) {
   const { isMobile, state } = useSidebar();
   const hasTooltip = tooltip !== undefined && tooltip !== "";
-  const element = rowElement({ href, render, to });
+  const element = linkTarget({ href, render, to });
 
   const comp = useRender({
     defaultTagName: "button",
@@ -943,7 +926,7 @@ interface SidebarMenuSubButtonOwnProps {
   size?: "sm" | "md";
 }
 
-type SidebarMenuSubButtonProps = (SidebarButtonProps | SidebarHrefProps) &
+type SidebarMenuSubButtonProps = (SidebarButtonProps | HrefTargetProps) &
   SidebarMenuSubButtonOwnProps;
 
 /** A submenu row: a link when given `to`, otherwise a button. */
@@ -956,7 +939,7 @@ function SidebarMenuSubButton<
   const TMaskFrom extends string = TFrom,
   const TMaskTo extends string = "",
 >(
-  props: SidebarLinkProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & SidebarMenuSubButtonOwnProps,
+  props: LinkTargetProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & SidebarMenuSubButtonOwnProps,
 ): React.ReactElement;
 
 function SidebarMenuSubButton({
@@ -978,7 +961,7 @@ function SidebarMenuSubButton({
       },
       props,
     ),
-    render: rowElement({ href, render, to }),
+    render: linkTarget({ href, render, to }),
     state: {
       size,
       slot: "sidebar-menu-sub-button",
