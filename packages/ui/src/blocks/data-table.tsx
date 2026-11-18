@@ -89,6 +89,9 @@ interface DataTableProps<TData extends RowData> extends React.ComponentProps<"di
 /** Opens a row by id, when the table's rows can be opened. */
 const RowClickContext = React.createContext<((rowId: string) => void) | undefined>(undefined);
 
+/** The rows on screen are being replaced, so their selection is not shown. */
+const LoadingContext = React.createContext(false);
+
 const interactive =
   "a, button, input, label, select, textarea, [contenteditable], [role=button], [role=checkbox], [role=menuitem], [role=switch]";
 
@@ -419,76 +422,80 @@ const DataTableContent = ({
 
   return (
     <Skeleton loading={loading} id={id} label={label} error={error}>
-      <Table className={cn(sized && "table-fixed", className)} {...props}>
-        {sized ? (
-          <colgroup>
-            {columns.map((column) => (
-              <col key={column.id} style={{ width: column.columnDef.size }} />
-            ))}
-          </colgroup>
-        ) : null}
-        <TableHeader {...skeletonKnown}>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                const sorted = header.column.getIsSorted();
+      <LoadingContext value={loading}>
+        <Table className={cn(sized && "table-fixed", className)} {...props}>
+          {sized ? (
+            <colgroup>
+              {columns.map((column) => (
+                <col key={column.id} style={{ width: column.columnDef.size }} />
+              ))}
+            </colgroup>
+          ) : null}
+          <TableHeader {...skeletonKnown}>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  const sorted = header.column.getIsSorted();
 
-                return (
-                  <TableHead
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    aria-sort={sorted === false ? undefined : ariaSort[sorted]}
-                    data-align={header.column.columnDef.meta?.align}
-                    className="data-[align=end]:text-end"
-                  >
-                    {header.isPlaceholder ? null : (
-                      <div className="flex items-center in-data-[align=end]:justify-end">
-                        <DataTableColumnHeader header={header} />
-                      </div>
-                    )}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {rows.length === 0 && !loading ? (
-            <TableRow className="hover:bg-transparent">
-              <TableCell colSpan={columns.length} className="p-0 whitespace-normal">
-                {empty ?? <DataTableEmpty />}
-              </TableCell>
-            </TableRow>
-          ) : (
-            rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() ? "selected" : undefined}
-                className={cn(openRow !== undefined && "cursor-pointer")}
-                onClick={
-                  openRow === undefined
-                    ? undefined
-                    : (event) => {
-                        if (isRowClick(event)) {
-                          openRow(row.id);
-                        }
-                      }
-                }
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    data-align={cell.column.columnDef.meta?.align}
-                    className="data-[align=end]:text-end"
-                  >
-                    <FlexRender cell={cell} />
-                  </TableCell>
-                ))}
+                  return (
+                    <TableHead
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      aria-sort={sorted === false ? undefined : ariaSort[sorted]}
+                      data-align={header.column.columnDef.meta?.align}
+                      className="data-[align=end]:text-end"
+                    >
+                      {header.isPlaceholder ? null : (
+                        <div className="flex items-center in-data-[align=end]:justify-end">
+                          <DataTableColumnHeader header={header} />
+                        </div>
+                      )}
+                    </TableHead>
+                  );
+                })}
               </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {rows.length === 0 && !loading ? (
+              <TableRow className="hover:bg-transparent">
+                <TableCell colSpan={columns.length} className="p-0 whitespace-normal">
+                  {empty ?? <DataTableEmpty />}
+                </TableCell>
+              </TableRow>
+            ) : (
+              rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  // The selected tint is a cell background, which the skeleton would draw as a
+                  // block over the row, so loading rows show plain; it returns with the rows.
+                  data-state={!loading && row.getIsSelected() ? "selected" : undefined}
+                  className={cn(openRow !== undefined && "cursor-pointer")}
+                  onClick={
+                    openRow === undefined
+                      ? undefined
+                      : (event) => {
+                          if (isRowClick(event)) {
+                            openRow(row.id);
+                          }
+                        }
+                  }
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell
+                      key={cell.id}
+                      data-align={cell.column.columnDef.meta?.align}
+                      className="data-[align=end]:text-end"
+                    >
+                      <FlexRender cell={cell} />
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </LoadingContext>
     </Skeleton>
   );
 };
@@ -594,29 +601,40 @@ const DataTableActionBar = ({ className, children, ...props }: React.ComponentPr
   );
 };
 
-/** The header of a selection column: selects every row on the page. */
+/**
+ * The header of a selection column: selects every row on the page. Checked when every row on the
+ * page is selected, and mixed while any row is selected, on this page or another, so a selection
+ * made elsewhere stays in view.
+ */
 const DataTableSelectAll = <TData extends RowData>({
   table,
-}: HeaderContext<DataTableFeatures, TData>) => (
-  // Rows and the table keep their identity when the selection changes, so the checkbox
-  // subscribes to the selection to render again.
-  <Subscribe source={table.atoms.rowSelection}>
-    {() => {
-      const all = table.getIsAllPageRowsSelected();
+}: HeaderContext<DataTableFeatures, TData>) => {
+  // While rows load, the page they belong to is not on screen yet, so the header cannot say
+  // whether all of them are selected, nor select the rows being replaced.
+  const loading = React.use(LoadingContext);
 
-      return (
-        <Checkbox
-          aria-label="Select all rows on this page"
-          checked={all}
-          indeterminate={!all && table.getIsSomePageRowsSelected()}
-          onCheckedChange={(checked) => {
-            table.toggleAllPageRowsSelected(checked);
-          }}
-        />
-      );
-    }}
-  </Subscribe>
-);
+  return (
+    // Rows and the table keep their identity when the selection changes, so the checkbox
+    // subscribes to the selection to render again.
+    <Subscribe source={table.atoms.rowSelection}>
+      {() => {
+        const all = !loading && table.getIsAllPageRowsSelected();
+
+        return (
+          <Checkbox
+            aria-label="Select all rows on this page"
+            checked={all}
+            indeterminate={!all && table.getSelectedRowIds().length > 0}
+            disabled={loading}
+            onCheckedChange={(checked) => {
+              table.toggleAllPageRowsSelected(checked);
+            }}
+          />
+        );
+      }}
+    </Subscribe>
+  );
+};
 
 /** The cell of a selection column: selects its row. */
 const DataTableSelectRow = <TData extends RowData>({

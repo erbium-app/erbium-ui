@@ -78,15 +78,6 @@
   }
 
   /*
-   * The selected-row tint is the one paint cells do hold. Rows being refetched are not chosen
-   * rows yet, so the skeleton draws them plain; the tint returns with the reveal if they stay
-   * selected.
-   */
-  [skullet-loading] tr[data-state="selected"] > td {
-    background-color: transparent !important;
-  }
-
-  /*
    * Known content (`skeletonKnown`) stays readable. The engine makes text transparent on the
    * content around it, and that colour is inherited, so it is restored here.
    */
