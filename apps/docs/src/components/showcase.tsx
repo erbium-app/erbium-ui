@@ -1,60 +1,22 @@
-import { use, useState, Suspense } from "react";
-import { CatchBoundary } from "@tanstack/react-router";
-import type { ShowcaseStory } from "@erbium/showcase/catalog";
-import { ShowcaseProviders, ShowcaseSurface } from "@erbium/showcase/preview";
+import { useRef, useState } from "react";
 import { Button } from "@erbium/ui/components/button";
-import { Toolbar, ToolbarButton } from "@erbium/ui/components/toolbar";
-import { Icon } from "@erbium/ui/components/icon";
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@erbium/ui/components/collapsible";
 import { CodeBlock as UICodeBlock } from "@erbium/ui/blocks/code-block";
-import { codePanelSurface } from "@erbium/ui/blocks/code-panel";
-import { Alert, AlertTitle, AlertDescription } from "@erbium/ui/components/alert";
 import { Prose } from "./markdown";
 import { PackageCommand } from "./package-command";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@erbium/ui/components/tabs";
 import { Separator } from "@erbium/ui/components/separator";
-import { ThemeToggleIcon, RotatingChevron } from "@erbium/ui/components/stateful-icon";
-import { changeTheme } from "@erbium/ui/lib/change-theme";
-import { flushSync } from "react-dom";
-import { useTheme } from "./theme";
+import { RotatingChevron } from "@erbium/ui/components/stateful-icon";
 
 import { Controls } from "./controls";
-import { examplesRequest } from "./preview-resources";
+import { ShowcaseFrame, useShowcaseState } from "./showcase-frame";
+import type { Variant } from "./showcase-frame";
+import { ShowcaseFullScreenTrigger } from "./showcase-gallery";
 import type { DocPage } from "@/content/types";
-
-const PreviewError = () => (
-  <Alert variant="error">
-    <AlertTitle>Preview could not load.</AlertTitle>
-    <AlertDescription>Refresh the showcase to retry.</AlertDescription>
-  </Alert>
-);
-
-type Args = NonNullable<ShowcaseStory["args"]>;
-
-// Shown only on client navigation before an example chunk arrives. The surface keeps
-// its minimum height, so the example replaces this without shifting the page.
-const PreviewLoading = () => <output aria-label="Loading preview" className="sr-only" />;
-
-const PreviewContent = ({ path, example, args }: { path: string; example: string; args: Args }) => {
-  const examples = use(examplesRequest(path));
-
-  if (!Object.hasOwn(examples, example)) {
-    throw new Error(`Missing example: ${example}`);
-  }
-
-  const Example = examples[example];
-
-  return (
-    <Example
-      key={JSON.stringify(Object.entries(args).filter(([key]) => key.startsWith("default")))}
-      {...args}
-    />
-  );
-};
 
 // The source ships with the page, so the lines show at once and highlighting lands in place.
 const SourceContent = ({
@@ -96,27 +58,24 @@ const SourceContent = ({
 
 export const Showcase = ({
   path,
+  index,
   variant,
   sources,
   separator = true,
 }: {
   /** The page path, which keys the page's examples. */
   path: string;
-  variant: DocPage["variants"][number];
+  /** The showcase's position on the page, which is its slide in full screen. */
+  index: number;
+  variant: Variant;
   sources: DocPage["exampleSources"];
   separator?: boolean;
 }) => {
-  const [args, setArgs] = useState<Args>(variant.args);
+  const [{ args, revision }, update] = useShowcaseState(variant);
   const [code, setCode] = useState(false);
   // Source mounts, and so highlights, on first view, then stays mounted with the hidden tab.
   const [sourceShown, setSourceShown] = useState(false);
-  const siteDark = useTheme();
-  const [appearance, setAppearance] = useState<"light" | "dark">();
-  const dark = appearance === undefined ? siteDark : appearance === "dark";
-  const [revision, setRevision] = useState(0);
-  // Refresh remounts the example and its providers so first-mount behaviour
-  // (skeleton reveals, entrance motion, effects) plays again with the current args.
-  const [mount, setMount] = useState(0);
+  const frame = useRef<HTMLDivElement>(null);
 
   const command = `bunx shadcn@latest add @erbium-examples/${variant.name}-${variant.slug}`;
 
@@ -144,48 +103,12 @@ export const Showcase = ({
           {sourceShown && <SourceContent files={variant.files} sources={sources} />}
         </TabsContent>
         <TabsContent value="preview" keepMounted>
-          <div className={`showcase-content relative ${codePanelSurface} ${appearance ?? ""}`}>
-            <Toolbar aria-label="Showcase controls" className="absolute top-2 end-2 z-1 gap-0.5">
-              <ToolbarButton
-                size="icon-xs"
-                aria-label="Refresh this showcase"
-                onClick={() => {
-                  setMount((value) => value + 1);
-                }}
-              >
-                <Icon name="refresh-cw" className="size-4" />
-              </ToolbarButton>
-              <ToolbarButton
-                size="icon-xs"
-                aria-label={
-                  dark ? "Use light theme for this showcase" : "Use dark theme for this showcase"
-                }
-                onClick={() => {
-                  changeTheme(() => {
-                    flushSync(() => {
-                      setAppearance(dark ? "light" : "dark");
-                    });
-                  });
-                }}
-              >
-                <ThemeToggleIcon theme={dark ? "dark" : "light"} />
-              </ToolbarButton>
-            </Toolbar>
-            <CatchBoundary getResetKey={() => `${revision}:${mount}`} errorComponent={PreviewError}>
-              <ShowcaseProviders key={mount}>
-                <ShowcaseSurface>
-                  <Suspense fallback={<PreviewLoading />}>
-                    <PreviewContent
-                      key={revision}
-                      path={path}
-                      example={`${variant.name}/${variant.slug}`}
-                      args={args}
-                    />
-                  </Suspense>
-                </ShowcaseSurface>
-              </ShowcaseProviders>
-            </CatchBoundary>
-          </div>
+          <ShowcaseFrame
+            ref={frame}
+            path={path}
+            variant={variant}
+            actions={<ShowcaseFullScreenTrigger index={index} frame={frame} />}
+          />
         </TabsContent>
       </Tabs>
       <Controls
@@ -193,10 +116,11 @@ export const Showcase = ({
         args={args}
         defaults={variant.args}
         argTypes={variant.argTypes}
-        onChange={setArgs}
+        onChange={(next) => {
+          update((state) => ({ ...state, args: next }));
+        }}
         onReset={() => {
-          setArgs(variant.args);
-          setRevision((value) => value + 1);
+          update((state) => ({ ...state, args: variant.args, revision: state.revision + 1 }));
         }}
       />
       <Collapsible className="mt-3">
