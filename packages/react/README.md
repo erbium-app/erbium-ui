@@ -14,12 +14,15 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 
 ## Entry points
 
-| Import                           | Contents                                               | Runs on          |
-| -------------------------------- | ------------------------------------------------------ | ---------------- |
-| `@erbium-ui/react/cascader`      | `Cascader` parts, `useCascader`, tree helpers          | Client           |
-| `@erbium-ui/react/cascader/tree` | Tree indexing, level rows and search, without React    | Server or client |
-| `@erbium-ui/react/filters`       | `Filters` parts, adapters, picker hooks, and the core  | Client           |
-| `@erbium-ui/react/filters/core`  | Rule model, matching, table filter function, URL codec | Server or client |
+| Import                             | Contents                                               | Runs on          |
+| ---------------------------------- | ------------------------------------------------------ | ---------------- |
+| `@erbium-ui/react/cascader`        | `Cascader` parts, `useCascader`, tree helpers          | Client           |
+| `@erbium-ui/react/cascader/tree`   | Tree indexing, level rows and search, without React    | Server or client |
+| `@erbium-ui/react/filters`         | `Filters` parts, adapters, picker hooks, and the core  | Client           |
+| `@erbium-ui/react/filters/core`    | Rule model, matching, table filter function, URL codec | Server or client |
+| `@erbium-ui/react/editable`        | `Editable` parts                                       | Client           |
+| `@erbium-ui/react/pagination`      | `Pagination` parts, `usePagination`, and the core      | Client           |
+| `@erbium-ui/react/pagination/core` | `getPagination` page layout                            | Server or client |
 
 Client entries start with `"use client"`, so React Server Components frameworks such as the Next.js App Router can render their parts from a server component. Entries marked server or client are plain functions and import nothing from React.
 
@@ -108,6 +111,45 @@ export const TaskList = ({ tasks }: { tasks: Task[] }) => {
 ```
 
 `useTableFilters(table)` reads a TanStack table instead, and `useFilterSearch` keeps the rules in the URL. `useFieldPicker` and `useOptionPicker` return props for a multiple `Cascader.Root`, which adds filters and picks options. Types such as `FilterOption<{ icon: string }>` add the fields your design reads; they are always optional.
+
+## Editable
+
+Text that reads as text and becomes an input in place. Enter commits, Escape cancels, and blur commits; focus returns to the part that started editing.
+
+```tsx
+import { Editable } from "@erbium-ui/react/editable";
+
+<Editable.Root defaultValue="Untitled" onValueChange={(value, { reason }) => save(value)}>
+  <Editable.Preview />
+  <Editable.Input aria-label="Title" />
+</Editable.Root>;
+```
+
+## Pagination
+
+Page controls laid out so the number of items stays the same as the page moves. With `onPageChange` the parts are buttons; with `getPageHref`, or a router link passed through `render`, they are links.
+
+```tsx
+import { Pagination } from "@erbium-ui/react/pagination";
+
+<nav aria-label="Pagination">
+  <Pagination.Root page={page} pageCount={20} onPageChange={setPage}>
+    <Pagination.List>
+      <Pagination.Previous />
+      <Pagination.Items>
+        {(item) =>
+          item.type === "page" ? (
+            <Pagination.Page key={item.page} page={item.page} />
+          ) : (
+            <Pagination.Ellipsis key={item.key} />
+          )
+        }
+      </Pagination.Items>
+      <Pagination.Next />
+    </Pagination.List>
+  </Pagination.Root>
+</nav>;
+```
 
 ## License
 

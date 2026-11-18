@@ -5,9 +5,11 @@
   "keywords": [
     "accessible",
     "cascader",
+    "editable",
     "erbium",
     "filters",
     "headless",
+    "pagination",
     "primitives",
     "react",
     "unstyled"
@@ -33,8 +35,11 @@
   "exports": {
     "./cascader": "./src/cascader/index.ts",
     "./cascader/tree": "./src/cascader/tree.ts",
+    "./editable": "./src/editable/index.ts",
     "./filters": "./src/filters/index.ts",
     "./filters/core": "./src/filters/core.ts",
+    "./pagination": "./src/pagination/index.ts",
+    "./pagination/core": "./src/pagination/core.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -47,6 +52,10 @@
         "types": "./dist/cascader/tree.d.ts",
         "default": "./dist/cascader/tree.js"
       },
+      "./editable": {
+        "types": "./dist/editable/index.d.ts",
+        "default": "./dist/editable/index.js"
+      },
       "./filters": {
         "types": "./dist/filters/index.d.ts",
         "default": "./dist/filters/index.js"
@@ -54,6 +63,14 @@
       "./filters/core": {
         "types": "./dist/filters/core.d.ts",
         "default": "./dist/filters/core.js"
+      },
+      "./pagination": {
+        "types": "./dist/pagination/index.d.ts",
+        "default": "./dist/pagination/index.js"
+      },
+      "./pagination/core": {
+        "types": "./dist/pagination/core.d.ts",
+        "default": "./dist/pagination/core.js"
       },
       "./package.json": "./package.json"
     },
