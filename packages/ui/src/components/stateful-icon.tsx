@@ -205,7 +205,10 @@ interface ThemeToggleIconProps {
   className?: string;
 }
 
-/** Sun and moon icons rotate and scale as the active theme changes. */
+/**
+ * Sun and moon icons rotate and scale as the active theme changes. Like `StatefulIcon`, the
+ * glyphs take their size from the control around them (a button sizes them to its icon size).
+ */
 const ThemeToggleIcon = ({ theme, className }: ThemeToggleIconProps) => {
   const reduceMotion = useReducedMotion() === true;
   const transition = { duration: reduceMotion ? 0 : 0.2 };
@@ -214,25 +217,25 @@ const ThemeToggleIcon = ({ theme, className }: ThemeToggleIconProps) => {
   return (
     <span
       aria-hidden="true"
-      className={cn("relative inline-grid size-4 shrink-0 align-middle", className)}
+      className={cn("inline-grid shrink-0 align-middle *:col-start-1 *:row-start-1", className)}
       data-slot="theme-toggle-icon"
       data-theme={theme}
     >
       <motion.span
         animate={{ rotate: isDark ? -90 : 0, scale: isDark ? 0 : 1 }}
-        className="absolute inset-0"
+        className="grid place-items-center"
         initial={false}
         transition={transition}
       >
-        <Icon name="sun-03" className="size-full" />
+        <Icon name="sun-03" />
       </motion.span>
       <motion.span
         animate={{ rotate: isDark ? 0 : 90, scale: isDark ? 1 : 0 }}
-        className="absolute inset-0"
+        className="grid place-items-center"
         initial={false}
         transition={transition}
       >
-        <Icon name="moon-02" className="size-full" />
+        <Icon name="moon-02" />
       </motion.span>
     </span>
   );
