@@ -8,7 +8,6 @@ import type {
 } from "@tanstack/react-router";
 import { Breadcrumb } from "../components/breadcrumb";
 import type { BreadcrumbDestination } from "../components/breadcrumb";
-import { Link } from "../components/link";
 import {
   Sidebar,
   SidebarContent,
@@ -26,6 +25,8 @@ import {
   SidebarTrigger,
   useSidebar,
 } from "../components/sidebar";
+import type { SidebarMenuButtonProps } from "../components/sidebar";
+import { Link } from "../components/link";
 import { useRouterPending } from "../hooks/use-router-pending";
 import { Option, Schema } from "effect";
 import { cn } from "../lib/utils";
@@ -335,7 +336,7 @@ function AppShellNavLink({
   AppShellNavRowProps) {
   return (
     <SidebarMenuItem data-slot="app-shell-nav-link">
-      <SidebarMenuButton render={<Link {...linkProps} />} className={className}>
+      <SidebarMenuButton {...linkProps} className={className}>
         {icon}
         <span>{label}</span>
       </SidebarMenuButton>
@@ -350,7 +351,7 @@ const AppShellNavAction = ({
   icon,
   badge,
   ...props
-}: Omit<React.ComponentProps<typeof SidebarMenuButton>, "children" | "render"> &
+}: Omit<Extract<SidebarMenuButtonProps, { href?: never }>, "children" | "render"> &
   AppShellNavRowProps) => (
   <SidebarMenuItem data-slot="app-shell-nav-action">
     <SidebarMenuButton type="button" {...props}>

@@ -1767,12 +1767,18 @@
       "type": "registry:ui",
       "title": "Sidebar",
       "description": "Erbium sidebar component.",
-      "dependencies": ["@base-ui/react", "@tanstack/react-hotkeys", "class-variance-authority"],
+      "dependencies": [
+        "@base-ui/react",
+        "@tanstack/react-hotkeys",
+        "@tanstack/react-router",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "@erbium/button",
         "@erbium/hotkeys",
         "@erbium/input",
         "@erbium/kbd",
+        "@erbium/link",
         "@erbium/scroll-area",
         "@erbium/separator",
         "@erbium/sheet",

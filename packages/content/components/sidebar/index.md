@@ -51,15 +51,18 @@ export function AppSidebar() {
 }
 ```
 
-## Route links
+## Links
 
-In a TanStack Router app, pass Erbium's `Link` to the `render` prop on `SidebarMenuButton` or `SidebarMenuSubButton` to use Foresight route preloading. Router marks the current page's link with `aria-current="page"`, which applies the sidebar's active styling.
+`SidebarMenuButton` and `SidebarMenuSubButton` take TanStack Router's link options. With `to` a row is a router link: `to`, `params`, `search`, `hash`, and `activeOptions` type against your routes, the route preloads before the click, and Router marks the current page with `aria-current="page"`, which applies the active styling. `href` takes a fully built or external URL. Without either, the row is a button.
 
 ```tsx
-import { Link } from "@erbium/ui/components/link";
 import { SidebarMenuButton } from "@erbium/ui/components/sidebar";
 
-<SidebarMenuButton render={<Link to="/projects" />}>Projects</SidebarMenuButton>;
+<SidebarMenuButton to="/projects/$projectId" params={{ projectId }}>
+  Project
+</SidebarMenuButton>
+<SidebarMenuButton href="https://github.com/erbium">GitHub</SidebarMenuButton>
+<SidebarMenuButton onClick={createProject}>New project</SidebarMenuButton>
 ```
 
 ## Composition
@@ -297,7 +300,7 @@ The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 <SidebarMenu>
   {projects.map((project) => (
     <SidebarMenuItem key={project.name}>
-      <SidebarMenuButton render={<a href={project.url} />}>
+      <SidebarMenuButton to={project.to}>
         <project.icon />
         <span>{project.name}</span>
       </SidebarMenuButton>
@@ -310,12 +313,10 @@ The `SidebarMenu` component is used for building a menu within a `SidebarGroup`.
 
 The `SidebarMenuButton` component is used to render a menu button within a `SidebarMenuItem`.
 
-By default, the `SidebarMenuButton` renders a button but you can use the `render` prop to render a different component such as `Link` from `@erbium/ui/components/link` or an `a` tag. `Link` preloads the route before the click.
-
-A menu item with `aria-current="page"` shows as active. Router links set it on the current page; set it yourself on a plain anchor.
+It renders a button, or a router link when given `to` or `href` (see [Links](#links)). A row with `aria-current="page"` shows as active, which Router sets on the current page's link.
 
 ```tsx
-<SidebarMenuButton render={<a href="#" aria-current="page" />}>Home</SidebarMenuButton>
+<SidebarMenuButton to="/">Home</SidebarMenuButton>
 ```
 
 ## SidebarMenuAction
@@ -324,7 +325,7 @@ The `SidebarMenuAction` component is used to render a menu action within a `Side
 
 ```tsx
 <SidebarMenuItem>
-  <SidebarMenuButton render={<a href="#" />}>
+  <SidebarMenuButton to="/">
     <Home />
     <span>Home</span>
   </SidebarMenuButton>

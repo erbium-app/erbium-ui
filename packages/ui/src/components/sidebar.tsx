@@ -2,6 +2,7 @@ import * as React from "react";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { useHotkey } from "@tanstack/react-hotkeys";
+import type { AnyRouter, LinkComponentProps, RegisteredRouter } from "@tanstack/react-router";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { useIsMobile } from "../hooks/use-is-mobile";
@@ -11,6 +12,7 @@ import type { CSSVariableStyle } from "../lib/utils";
 import { Button } from "./button";
 import { Input } from "./input";
 import { KbdHint } from "./kbd";
+import { Link } from "./link";
 import { ScrollArea } from "./scroll-area";
 import { Separator } from "./separator";
 import { Sheet, SheetPanel, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
@@ -744,29 +746,85 @@ const SidebarMenuItem = ({ className, ...props }: React.ComponentProps<"li">) =>
   <li data-slot="sidebar-menu-item" className={cn(sidebarStyles.menuItem, className)} {...props} />
 );
 
-const SidebarMenuButton = ({
+/* Menu rows navigate with Router's own link options and render Erbium's `Link`: `to` (with
+   `params`, `search`, `hash`, `activeOptions`) names a route, which preloads ahead of the click
+   and marks the current page with `aria-current="page"`; `href` names a fully built or external
+   target. Without either the row is a button. */
+type SidebarLinkProps<
+  TRouter extends AnyRouter = RegisteredRouter,
+  TFrom extends string = string,
+  TTo extends string | undefined = undefined,
+  TMaskFrom extends string = TFrom,
+  TMaskTo extends string = "",
+> = LinkComponentProps<"a", TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & { render?: never };
+
+type SidebarButtonProps = useRender.ComponentProps<"button"> &
+  React.ComponentProps<"button"> & { to?: never; href?: never };
+
+// Router's link types require `to` beside a bare `href`, so an `href` row has its own props.
+type SidebarHrefProps = Omit<React.ComponentProps<"a">, "href"> & {
+  href: string;
+  to?: never;
+  render?: never;
+};
+
+// What the implementations see: a button's props, or the options of any link, which pass
+// through to `Link`. The overloads restore Router's generics for callers.
+type SidebarRowImplementationProps =
+  | SidebarButtonProps
+  | SidebarHrefProps
+  | (Omit<LinkComponentProps<"a", RegisteredRouter, string, string>, "render"> &
+      Pick<SidebarButtonProps, "render">);
+
+// The element a row renders: `Link` for a destination, which receives the row's link options
+// with its other props, otherwise the caller's `render`.
+const rowElement = ({ to, href, render }: SidebarRowImplementationProps) =>
+  to === undefined && href === undefined ? render : <Link to={to} href={href} />;
+
+interface SidebarMenuButtonOwnProps extends VariantProps<typeof sidebarMenuButtonVariants> {
+  tooltip?: string | React.ComponentProps<typeof TooltipContent>;
+}
+
+type SidebarMenuButtonProps = (SidebarButtonProps | SidebarHrefProps) & SidebarMenuButtonOwnProps;
+
+/** A menu row: a link when given `to`, otherwise a button. */
+function SidebarMenuButton(props: SidebarMenuButtonProps): React.ReactElement;
+
+// The link overload restores Router's generics, so `to` and `params` type against the app's
+// routes. It follows the button overload, which matches every row without `to`.
+function SidebarMenuButton<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: SidebarLinkProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & SidebarMenuButtonOwnProps,
+): React.ReactElement;
+
+function SidebarMenuButton({
   render,
+  to,
+  href,
   variant = "default",
   size = "default",
   tooltip,
   className,
   ...props
-}: useRender.ComponentProps<"button"> &
-  React.ComponentProps<"button"> & {
-    tooltip?: string | React.ComponentProps<typeof TooltipContent>;
-  } & VariantProps<typeof sidebarMenuButtonVariants>) => {
+}: SidebarRowImplementationProps & SidebarMenuButtonOwnProps) {
   const { isMobile, state } = useSidebar();
   const hasTooltip = tooltip !== undefined && tooltip !== "";
+  const element = rowElement({ href, render, to });
 
   const comp = useRender({
     defaultTagName: "button",
-    props: mergeProps<"button">(
+    props: mergeProps(
       {
         className: cn(sidebarMenuButtonVariants({ size, variant }), className),
       },
       props,
     ),
-    render: hasTooltip ? <TooltipTrigger render={render} /> : render,
+    render: hasTooltip ? <TooltipTrigger render={element} /> : element,
     state: {
       size,
       slot: "sidebar-menu-button",
@@ -791,7 +849,7 @@ const SidebarMenuButton = ({
       />
     </Tooltip>
   );
-};
+}
 
 const SidebarMenuAction = ({
   className,
@@ -881,18 +939,37 @@ const SidebarMenuSubItem = ({ className, ...props }: React.ComponentProps<"li">)
   />
 );
 
-const SidebarMenuSubButton = ({
+interface SidebarMenuSubButtonOwnProps {
+  size?: "sm" | "md";
+}
+
+type SidebarMenuSubButtonProps = (SidebarButtonProps | SidebarHrefProps) &
+  SidebarMenuSubButtonOwnProps;
+
+/** A submenu row: a link when given `to`, otherwise a button. */
+function SidebarMenuSubButton(props: SidebarMenuSubButtonProps): React.ReactElement;
+
+function SidebarMenuSubButton<
+  TRouter extends AnyRouter = RegisteredRouter,
+  const TFrom extends string = string,
+  const TTo extends string | undefined = undefined,
+  const TMaskFrom extends string = TFrom,
+  const TMaskTo extends string = "",
+>(
+  props: SidebarLinkProps<TRouter, TFrom, TTo, TMaskFrom, TMaskTo> & SidebarMenuSubButtonOwnProps,
+): React.ReactElement;
+
+function SidebarMenuSubButton({
   render,
+  to,
+  href,
   size = "md",
   className,
   ...props
-}: useRender.ComponentProps<"a"> &
-  React.ComponentProps<"a"> & {
-    size?: "sm" | "md";
-  }) =>
-  useRender({
-    defaultTagName: "a",
-    props: mergeProps<"a">(
+}: SidebarRowImplementationProps & SidebarMenuSubButtonOwnProps) {
+  return useRender({
+    defaultTagName: "button",
+    props: mergeProps(
       {
         className: cn(
           "flex min-h-control-sm min-w-0 -translate-x-px rtl:translate-x-px items-center gap-related overflow-hidden rounded-md px-2 text-sidebar-foreground outline-hidden focus-visible:bg-sidebar-accent focus-visible:text-sidebar-accent-foreground group-data-[collapsible=icon]:hidden hover:bg-sidebar-accent hover:text-sidebar-accent-foreground active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[size=md]:text-control data-[size=sm]:text-control-sm aria-[current=page]:bg-sidebar-accent aria-[current=page]:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
@@ -901,12 +978,13 @@ const SidebarMenuSubButton = ({
       },
       props,
     ),
-    render,
+    render: rowElement({ href, render, to }),
     state: {
       size,
       slot: "sidebar-menu-sub-button",
     },
   });
+}
 
 export {
   Sidebar,
@@ -934,3 +1012,5 @@ export {
   SidebarTrigger,
   useSidebar,
 };
+
+export type { SidebarMenuButtonProps, SidebarMenuSubButtonProps };
