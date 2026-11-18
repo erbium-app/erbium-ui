@@ -22,8 +22,8 @@ import type { FilterFieldExtra, FilterOptionExtra, Filters } from "../lib/filter
 
 /**
  * Filters for a TanStack table. Columns opt in with `filterColumn(…)`, or with a `meta.filter`
- * config and `filterFn: filterFn_rule`. Call this where `useTable` is called, so the filters
- * re-render with the table. Register `columnFacetingFeature` with `facetedUniqueValues` and
+ * config and `filterFn: filterFn_rule`. The hook subscribes to the column-filter atom.
+ * Register `columnFacetingFeature` with `facetedUniqueValues` and
  * `facetedMinMaxValues` for option counts and number ranges that follow the other filters.
  */
 const useTableFilters = (table: FilterableTable, options?: TableFiltersOptions): Filters =>

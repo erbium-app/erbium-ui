@@ -1,3 +1,5 @@
+import type { CascaderNode } from "../cascader/tree";
+
 /*
  * The filter core. It knows nothing about React or how filters are drawn: it describes fields,
  * the rules people build on them, and how a rule matches a value. Tables and lists share it, and
@@ -65,13 +67,12 @@ type FilterStateUpdate = (last: FilterState) => FilterState;
  */
 type FilterOption<TExtra extends object = object> = FilterOptionBase<TExtra> & Partial<TExtra>;
 
-interface FilterOptionBase<TExtra extends object> {
-  value: string;
-  label: string;
+interface FilterOptionBase<TExtra extends object> extends Pick<
+  CascaderNode,
+  "value" | "label" | "keywords" | "disabled"
+> {
   /** Options of the next level. Values must be unique across the whole tree. */
   children?: FilterOption<TExtra>[];
-  /** Extra terms the option search matches, such as abbreviations or other spellings. */
-  keywords?: string[];
 }
 
 /**

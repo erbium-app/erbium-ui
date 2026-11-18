@@ -3,7 +3,6 @@ import {
   useFieldPicker,
   useOptionPicker,
 } from "@erbium-ui/react/filters";
-import type { CascaderNode as PrimitiveCascaderNode } from "@erbium-ui/react/cascader";
 import type { IconName } from "@erbium/icons";
 import * as React from "react";
 import { Badge } from "../components/badge";
@@ -20,7 +19,6 @@ import {
   CascaderSearch,
   CascaderTrigger,
 } from "../components/cascader";
-import type { CascaderNode } from "../components/cascader";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -121,38 +119,19 @@ const summarize = (field: FilterField): string | null => {
 
 // Option trees
 
-const iconNode = (icon: IconName | undefined) =>
-  icon === undefined ? undefined : <Icon name={icon} aria-hidden="true" />;
-
-/**
- * Picker rows as Erbium cascader nodes, with the icon their data names. Rows with a count are
- * recorded in `counts` by value.
- */
-const toCascaderNodes = <TData extends { count?: number }>(
-  nodes: readonly PrimitiveCascaderNode<TData>[],
-  icon: (data: TData) => IconName | undefined,
-  counts: Map<string, number>,
-): CascaderNode[] =>
-  nodes.map((node) => {
-    if (node.data?.count !== undefined) {
-      counts.set(node.value, node.data.count);
-    }
-
-    return {
-      children:
-        node.children === undefined ? undefined : toCascaderNodes(node.children, icon, counts),
-      icon: node.data === undefined ? undefined : iconNode(icon(node.data)),
-      keywords: node.keywords === undefined ? undefined : [...node.keywords],
-      label: node.label,
-      value: node.value,
-    };
-  });
-
-/** The content of an option row, with the option's count when the field has counts. */
-const OptionRow = ({ node, count }: { node: CascaderNode; count: number | undefined }) => (
+/** The content of a picker row, including its facet count when available. */
+const OptionRow = ({
+  label,
+  icon,
+  count,
+}: {
+  label: string;
+  icon: IconName | undefined;
+  count: number | undefined;
+}) => (
   <>
-    {node.icon}
-    <span className="truncate">{node.label}</span>
+    {icon === undefined ? null : <Icon name={icon} aria-hidden="true" />}
+    <span className="truncate">{label}</span>
     {count === undefined ? null : (
       <span className="ms-auto ps-4 text-muted-foreground tabular-nums">{count}</span>
     )}
@@ -317,21 +296,12 @@ const FilterOptionMenu = ({
   align = "start",
 }: FilterValueControlProps) => {
   const picker = useOptionPicker(field);
-  const counts = new Map<string, number>();
-  const items = toCascaderNodes(picker.items, (data) => data.option.icon, counts);
 
   // The tooltip is always mounted and only disabled, so the trigger keeps its element (and an
   // open menu keeps its anchor) when one more chosen option turns the names into a count.
   return (
     <Tooltip disabled={!isCounted(field)}>
-      <Cascader
-        {...picker}
-        multiple
-        searchable
-        items={items}
-        open={open}
-        onOpenChange={onOpenChange}
-      >
+      <Cascader {...picker} multiple searchable open={open} onOpenChange={onOpenChange}>
         <CascaderTrigger render={<TooltipTrigger render={trigger} />} />
         <CascaderContent align={align} className="w-64">
           <CascaderSearch
@@ -339,8 +309,10 @@ const FilterOptionMenu = ({
             placeholder={`Search ${field.label.toLocaleLowerCase()}…`}
           />
           <CascaderEmpty>No options found.</CascaderEmpty>
-          <CascaderList>
-            {(node) => <OptionRow node={node} count={counts.get(node.value)} />}
+          <CascaderList<(typeof picker.items)[number]>>
+            {({ label, data }) => (
+              <OptionRow label={label} icon={data.option.icon} count={data.count} />
+            )}
           </CascaderList>
           {footer}
         </CascaderContent>
@@ -498,16 +470,9 @@ interface FilterMenuProps {
  */
 const FilterMenu = ({ filters, onFieldAdded, className, children = "Filter" }: FilterMenuProps) => {
   const picker = useFieldPicker(filters, { onFieldAdded });
-  const counts = new Map<string, number>();
-
-  const items = toCascaderNodes(
-    picker.items,
-    (data) => (data.option === undefined ? data.field.icon : data.option.icon),
-    counts,
-  );
 
   return (
-    <Cascader multiple {...picker} searchable items={items}>
+    <Cascader multiple {...picker} searchable>
       <CascaderTrigger render={<Button variant="outline" size="sm" className={className} />}>
         <Icon name="list-filter" aria-hidden="true" data-icon="inline-start" />
         {children}
@@ -515,8 +480,14 @@ const FilterMenu = ({ filters, onFieldAdded, className, children = "Filter" }: F
       <CascaderContent className="w-64">
         <CascaderSearch aria-label="Search filters" placeholder="Filter by…" />
         <CascaderEmpty>No filters found.</CascaderEmpty>
-        <CascaderList>
-          {(node) => <OptionRow node={node} count={counts.get(node.value)} />}
+        <CascaderList<(typeof picker.items)[number]>>
+          {({ label, data }) => (
+            <OptionRow
+              label={label}
+              icon={data.option === undefined ? data.field.icon : data.option.icon}
+              count={data.count}
+            />
+          )}
         </CascaderList>
       </CascaderContent>
     </Cascader>

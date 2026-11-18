@@ -1,13 +1,8 @@
 import * as React from "react";
+import type { CascaderValueChangeDetails } from "../cascader/context";
 import type { CascaderNode } from "../cascader/tree";
-import { createRule, forEachLeafOption, getFieldActions, isOptionType } from "./rules";
+import { createRule, getFieldActions, isOptionType } from "./rules";
 import type { FilterField, FilterOption, Filters } from "./rules";
-
-/*
- * Bindings from filters to a cascader. Each hook returns props for a multiple cascader root: the
- * headless `Cascader.Root` takes them as they are, and a styled cascader can map `items` to its
- * own node shape first, since node values are kept.
- */
 
 /** What a field picker row stands for: a field, or one option of an option field. */
 interface FieldPickerData<TExtra extends object = object, TOptionExtra extends object = object> {
@@ -25,10 +20,17 @@ interface OptionPickerData<TOptionExtra extends object = object> {
   count?: number;
 }
 
-/** The change details a picker reads: which row was toggled. A cascader passes more. */
-interface PickerChangeDetails {
-  node: { value: string } | null;
+/** A cascader node with the picker data available on every row. */
+interface PickerNode<TData> extends CascaderNode<TData> {
+  children?: PickerNode<TData>[];
+  data: TData;
 }
+
+/** The part of a cascader change a picker reads. */
+type PickerChangeDetails<TData = FieldPickerData> = Pick<
+  CascaderValueChangeDetails<PickerNode<TData>>,
+  "node"
+>;
 
 interface FieldPickerOptions {
   /**
@@ -50,10 +52,11 @@ const countOf = (field: FilterField, option: FilterOption) =>
 const toOptionNodes = <TData, TOptionExtra extends object>(
   options: readonly FilterOption<TOptionExtra>[],
   toNode: (option: FilterOption<TOptionExtra>) => { value: string; data: TData },
-): CascaderNode<TData>[] =>
+): PickerNode<TData>[] =>
   options.map((option) => ({
     ...toNode(option),
     children: option.children === undefined ? undefined : toOptionNodes(option.children, toNode),
+    disabled: option.disabled,
     keywords: option.keywords,
     label: option.label,
   }));
@@ -76,14 +79,11 @@ const useFieldPicker = <TExtra extends object = object, TOptionExtra extends obj
   const [open, setOpen] = React.useState(false);
   const added = React.useRef<string | null>(null);
 
-  const targets = new Map<string, Data>();
   const value: string[] = [];
 
-  const items = filters.fields.map((field): CascaderNode<Data> => {
+  const items = filters.fields.map((field): PickerNode<Data> => {
     const fieldValue = pickerValue(field.id);
     const data: Data = { field };
-
-    targets.set(fieldValue, data);
 
     if (!isOptionType(field.type)) {
       if (field.rule !== undefined) {
@@ -92,14 +92,6 @@ const useFieldPicker = <TExtra extends object = object, TOptionExtra extends obj
 
       return { data, label: field.label, value: fieldValue };
     }
-
-    forEachLeafOption(field.options, (option) => {
-      targets.set(pickerValue(field.id, option.value), {
-        count: countOf(field, option),
-        field,
-        option,
-      });
-    });
 
     for (const chosen of chosenValues(field)) {
       value.push(pickerValue(field.id, chosen));
@@ -127,15 +119,15 @@ const useFieldPicker = <TExtra extends object = object, TOptionExtra extends obj
         added.current = null;
       }
     },
-    onValueChange: (values: string[], details: PickerChangeDetails) => {
-      const target = details.node === null ? undefined : targets.get(details.node.value);
+    onValueChange: (values: string[], details: PickerChangeDetails<Data>) => {
+      const { node } = details;
 
-      if (details.node === null || target === undefined) {
+      if (node === null) {
         return;
       }
 
-      const checked = values.includes(details.node.value);
-      const { field, option } = target;
+      const checked = values.includes(node.value);
+      const { field, option } = node.data;
 
       if (option !== undefined) {
         getFieldActions(field).toggleOption(option.value, checked);

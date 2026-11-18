@@ -33,9 +33,14 @@ interface FilterableColumn {
   getFacetedMinMaxValues?: () => undefined | [number, number];
 }
 
+interface ColumnFiltersAtom {
+  get: () => FilterState;
+  subscribe?: (listener: () => void) => { unsubscribe: () => void };
+}
+
 /** The parts of a table the adapter reads and changes. */
 interface FilterableTable {
-  atoms: { columnFilters?: { get: () => FilterState } };
+  atoms: { columnFilters?: ColumnFiltersAtom };
   getAllLeafColumns: () => FilterableColumn[];
   setColumnFilters: (updater: FilterStateUpdate) => void;
 }
@@ -52,8 +57,8 @@ const noFilters: FilterState = [];
 
 /**
  * Filters for a TanStack table. Columns opt in with `filterColumn(…)`, or with a `meta.filter`
- * config and `filterFn: filterFn_rule`. Rules live in the table's column filter state; call this
- * where the table is created, so the filters re-render with it.
+ * config and `filterFn: filterFn_rule`. Subscribes to the table's column-filter atom so the
+ * filter controls also update when rendered below the table owner.
  *
  * Register faceting with unique values and min/max values for option counts and number ranges
  * that follow the other active filters.
@@ -62,6 +67,20 @@ const useTableFilters = <TExtra extends object = object, TOptionExtra extends ob
   table: FilterableTable,
   { counts }: TableFiltersOptions = {},
 ): Filters<TExtra, TOptionExtra> => {
+  const atom = table.atoms.columnFilters;
+
+  const subscribe = React.useCallback(
+    (listener: () => void) => {
+      const subscription = atom?.subscribe?.(listener);
+
+      return () => subscription?.unsubscribe();
+    },
+    [atom],
+  );
+
+  const getSnapshot = React.useCallback(() => atom?.get() ?? noFilters, [atom]);
+  const state = React.useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+
   const sources = table
     .getAllLeafColumns()
     .flatMap((column): FilterSource<TExtra, TOptionExtra>[] => {
@@ -85,7 +104,7 @@ const useTableFilters = <TExtra extends object = object, TOptionExtra extends ob
       ];
     });
 
-  return createFilters(sources, table.atoms.columnFilters?.get() ?? noFilters, (update) => {
+  return createFilters(sources, state, (update) => {
     table.setColumnFilters(update);
   });
 };

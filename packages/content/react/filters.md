@@ -62,14 +62,14 @@ const { filters, items } = useListFilters({
   },
 });
 
-// A TanStack table: columns opt in with filterColumn(config).
+// TanStack Table v9: columns opt in with filterColumn(config).
 const filters = useTableFilters(table);
 
 // The URL: one search param per field, such as ?status=todo,done&estimate=between.2,8
 const { value, onValueChange } = useFilterSearch({ search, fields, onSearchChange });
 ```
 
-`useListFilters` and `useTableFilters` count options and number ranges under the other active filters. Pass `value` and `onValueChange` to `useListFilters`, or table state, to own the rules.
+`useListFilters` and `useTableFilters` count options and number ranges under the other active filters. For TanStack Table v9, register `columnFilteringFeature` and the faceting feature and row-model factories you need. The adapter subscribes to `columnFilters` even when the table owner selects a different state slice. To control the rules, pass `value` and `onValueChange` to `useListFilters`, or supply the table’s `state.columnFilters` and `onColumnFiltersChange`.
 
 ## Pickers
 
@@ -83,7 +83,7 @@ const picker = useFieldPicker(filters, { onFieldAdded: (id) => openEditor(id) })
 </Cascader.Root>;
 ```
 
-The field picker lists fields, with option fields expanding into their options. Checking an option adds or extends its field's rule; choosing a text, number or date field adds an empty rule, closes the picker and calls `onFieldAdded` once focus has returned. Unchecking a field's last option removes its rule. Each row's `data` holds its field, option and count.
+The field picker lists fields, with option fields expanding into their options. Checking an option adds or extends its field's rule; choosing a text, number or date field adds an empty rule, closes the picker and calls `onFieldAdded` once focus has returned. Unchecking a field's last option removes its rule. Field picker rows carry their field, optional option, and optional facet count in `data`. Option picker rows carry their option and optional count. Spread either picker result into the styled Cascader as well. Its row renderer receives the same node, including `data`.
 
 ## Server
 

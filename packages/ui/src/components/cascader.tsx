@@ -35,18 +35,19 @@ import { CheckboxStateIcon, RotatingChevron } from "./stateful-icon";
 // Tree
 
 /** One option of a cascader. A node with `children` opens a level; a node without is a leaf. */
-interface CascaderNode extends Omit<PrimitiveNode, "children" | "data" | "keywords"> {
+interface CascaderNode extends PrimitiveNode {
   /** Leading icon of the row. */
   icon?: React.ReactNode;
   /** Secondary line under the label. */
   description?: string;
   /** Nodes of the next level. */
-  children?: CascaderNode[];
-  /** Extra terms the search matches alongside the label. */
-  keywords?: string[];
+  children?: readonly CascaderNode[];
 }
 
-type CascaderChangeDetails = Pick<CascaderValueChangeDetails<CascaderNode>, "node" | "path">;
+type CascaderChangeDetails<TNode extends CascaderNode = CascaderNode> = Pick<
+  CascaderValueChangeDetails<TNode>,
+  "node" | "path"
+>;
 
 type StyledRootProps =
   | "items"
@@ -64,11 +65,19 @@ type StyledRootProps =
   | "defaultValue"
   | "onValueChange";
 
-type CascaderProps =
-  | Pick<CascaderRootSingleProps<CascaderNode>, StyledRootProps>
-  | Pick<CascaderRootMultipleProps<CascaderNode>, StyledRootProps>;
+type CascaderProps<TNode extends CascaderNode = CascaderNode> =
+  | Pick<CascaderRootSingleProps<TNode>, StyledRootProps>
+  | Pick<CascaderRootMultipleProps<TNode>, StyledRootProps>;
 
-const Cascader = (props: CascaderProps) => <CascaderPrimitive.Root {...props} />;
+function Cascader<TNode extends CascaderNode & { children?: readonly TNode[] }>(
+  props: CascaderProps<TNode>,
+): React.JSX.Element;
+function Cascader(props: CascaderProps): React.JSX.Element;
+function Cascader<TNode extends CascaderNode & { children?: readonly TNode[] }>(
+  props: CascaderProps<TNode>,
+) {
+  return <CascaderPrimitive.Root {...props} />;
+}
 
 // Trigger and value
 
@@ -116,11 +125,14 @@ const CascaderTrigger = ({
   );
 };
 
-interface CascaderValueProps extends Omit<React.ComponentProps<"span">, "children"> {
+interface CascaderValueProps<TNode extends CascaderNode> extends Omit<
+  React.ComponentProps<"span">,
+  "children"
+> {
   /** Shown while nothing is selected. */
   placeholder?: React.ReactNode;
   /** Renders the selection. Receives the path of each selected leaf, root first. */
-  children?: (paths: CascaderNode[][]) => React.ReactNode;
+  children?: (paths: TNode[][]) => React.ReactNode;
 }
 
 const CascaderPath = ({ path }: { path: CascaderNode[] }) =>
@@ -136,8 +148,13 @@ const CascaderPath = ({ path }: { path: CascaderNode[] }) =>
   );
 
 /** The selection: the full path of a single leaf, or the labels of several. */
-const CascaderValue = ({ className, placeholder, children, ...props }: CascaderValueProps) => (
-  <CascaderPrimitive.Value<CascaderNode>
+const CascaderValue = <TNode extends CascaderNode = CascaderNode>({
+  className,
+  placeholder,
+  children,
+  ...props
+}: CascaderValueProps<TNode>) => (
+  <CascaderPrimitive.Value<TNode>
     data-slot="cascader-value"
     className={cn("min-w-0 flex-1 truncate text-start", className)}
     {...props}
@@ -246,22 +263,25 @@ const CascaderEmpty = ({
 
 // List
 
-type CascaderRenderRow = (node: CascaderNode) => React.ReactNode;
+type CascaderRenderRow<TNode extends CascaderNode> = (node: TNode) => React.ReactNode;
 
-interface CascaderListProps extends Omit<MenuPrimitive.List.Props, "children"> {
+interface CascaderListProps<TNode extends CascaderNode> extends Omit<
+  MenuPrimitive.List.Props,
+  "children"
+> {
   /** Renders the content of each row. Defaults to the node's icon, label and description. */
-  children?: CascaderRenderRow;
+  children?: CascaderRenderRow<TNode>;
 }
 
 const secondaryLineClassName = "truncate text-metadata text-muted-foreground";
 
 /** One row: a radio or checkbox item for a leaf, a row that opens the level of one with children. */
-const CascaderItem = ({
+const CascaderItem = <TNode extends CascaderNode>({
   row,
   render,
 }: {
-  row: CascaderRow<CascaderNode>;
-  render: CascaderRenderRow | undefined;
+  row: CascaderRow<TNode>;
+  render: CascaderRenderRow<TNode> | undefined;
 }) => {
   const { node } = row;
 
@@ -324,7 +344,11 @@ const CascaderItem = ({
  * children opens its level in place. While searched, it lists every match below the level with
  * the path that leads there.
  */
-const CascaderList = ({ children, className, ...props }: CascaderListProps) => (
+const CascaderList = <TNode extends CascaderNode = CascaderNode>({
+  children,
+  className,
+  ...props
+}: CascaderListProps<TNode>) => (
   <MenuScroll>
     <CascaderPrimitive.List
       data-slot="cascader-list"
@@ -340,7 +364,7 @@ const CascaderList = ({ children, className, ...props }: CascaderListProps) => (
       </CascaderPrimitive.BackItem>
       <CascaderPrimitive.Level data-filter-section="">
         <CascaderPrimitive.LevelLabel data-slot="cascader-label" className={menuLabelClassName} />
-        <CascaderPrimitive.Rows<CascaderNode>>
+        <CascaderPrimitive.Rows<TNode>>
           {(row) => <CascaderItem row={row} render={children} />}
         </CascaderPrimitive.Rows>
       </CascaderPrimitive.Level>

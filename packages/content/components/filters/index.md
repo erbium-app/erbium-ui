@@ -8,7 +8,7 @@ description: "Filter tables and lists with chips or faceted buttons that share o
 Filters have three layers:
 
 - **Core** (`@erbium/ui/lib/filter-rules`): field configs, rules, operators and the matcher. A rule is `{ type, operator, values }` and is stored as the value of a TanStack `ColumnFilter`, so `ColumnFiltersState` is the state for tables and lists alike. Rules are plain JSON, so they can go to a server, and `@erbium/ui/lib/filter-search` writes them to the URL (see [Shareable views](#shareable-views)).
-- **Adapters** (`@erbium/ui/hooks/use-filters`): `useTableFilters(table)` for a TanStack Table v9 table and `useListFilters({ items, fields })` for a plain list. Both return the same `Filters` object.
+- **Adapters** (`@erbium/ui/hooks/use-filters`): `useTableFilters(table)` for a TanStack Table v9 table and `useListFilters({ items, fields })` for a plain list. Both return the same `Filters` shape. The table adapter subscribes to the v9 column-filter atom, so filter controls can consume the table from context.
 - **Layouts** (`@erbium/ui/blocks/filters`): `FilterBar` (chips added from a searchable menu) and `FilterFacets` (one button per field). Both are composed from the same value controls, built on the [Cascader](/docs/components/cascader), [Popover](/docs/components/popover), [Number Field](/docs/components/number-field) and [Calendar](/docs/components/calendar).
 
 ### Tables
