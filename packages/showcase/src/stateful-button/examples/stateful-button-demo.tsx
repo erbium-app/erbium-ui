@@ -11,7 +11,12 @@ export const AsyncStatefulButton = ({
   successLabel: string;
   variant?: ComponentProps<typeof StatefulButton>["variant"];
 }) => {
-  const request = useAsyncDebouncer(async () => {}, { wait: 1200 });
+  const request = useAsyncDebouncer(
+    async () => {
+      // An app sends its request here; the debouncer's wait stands in for the request's latency.
+    },
+    { wait: 1200 },
+  );
 
   return (
     <StatefulButton
