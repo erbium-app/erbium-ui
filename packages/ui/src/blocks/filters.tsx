@@ -11,6 +11,7 @@ import {
   CascaderEmpty,
   CascaderList,
   CascaderSearch,
+  CascaderTrigger,
 } from "../components/cascader";
 import type { CascaderNode } from "../components/cascader";
 import {
@@ -351,7 +352,7 @@ const FilterOptionMenu = ({
           }
         }}
       >
-        <DropdownMenuTrigger render={<TooltipTrigger render={trigger} />} />
+        <CascaderTrigger render={<TooltipTrigger render={trigger} />} />
         <CascaderContent align={align} className="w-64">
           <CascaderSearch
             aria-label={`Search ${field.label}`}
@@ -638,10 +639,10 @@ const FilterMenu = ({ filters, onFieldAdded, className, children = "Filter" }: F
         }
       }}
     >
-      <DropdownMenuTrigger render={<Button variant="outline" size="sm" className={className} />}>
+      <CascaderTrigger render={<Button variant="outline" size="sm" className={className} />}>
         <Icon name="list-filter" aria-hidden="true" data-icon="inline-start" />
         {children}
-      </DropdownMenuTrigger>
+      </CascaderTrigger>
       <CascaderContent className="w-64">
         <CascaderSearch aria-label="Search filters" placeholder="Filter by…" />
         <CascaderEmpty>No filters found.</CascaderEmpty>

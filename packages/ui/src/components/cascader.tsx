@@ -376,16 +376,34 @@ const useLevelKeys = () => {
 
 // Parts
 
-/** Select-style button that shows the value and opens the popup. */
+/**
+ * Opens the popup. By default it is a select-style button that shows the value. Pass `render`
+ * to use another element, such as a toolbar `Button`: that element is then the whole trigger,
+ * and the select styles, size and chevron are left out.
+ */
 const CascaderTrigger = ({
   className,
   size = "default",
   children,
+  render,
   ...props
 }: MenuPrimitive.Trigger.Props & {
   size?: "sm" | "default";
 }) => {
   const { state } = useCascader("CascaderTrigger");
+
+  if (render !== undefined) {
+    return (
+      <DropdownMenuTrigger
+        data-slot="cascader-trigger"
+        render={render}
+        className={className}
+        {...props}
+      >
+        {children}
+      </DropdownMenuTrigger>
+    );
+  }
 
   return (
     <DropdownMenuTrigger

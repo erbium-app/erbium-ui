@@ -167,7 +167,16 @@ Compose the cascader inside `field.Field` with `field.FieldError`, as with Selec
 
 ## Other triggers
 
-`CascaderTrigger` is the select-style button. For any other trigger, such as a toolbar button or a filter chip, place a `DropdownMenuTrigger` with `render` inside `Cascader`, as the [Filters](/docs/blocks/filters) block does for its add-filter menu and option chips.
+`CascaderTrigger` is a select-style button by default. Pass `render` to use another element, such as a toolbar button or a filter chip. That element is then the whole trigger: the select styles, `size` and the chevron are left out. Dropdown Menu's trigger takes `render` the same way.
+
+```tsx
+<CascaderTrigger render={<Button variant="outline" size="sm" />}>
+  <Icon name="list-filter" data-icon="inline-start" />
+  Filter
+</CascaderTrigger>
+```
+
+The [Filters](/docs/blocks/filters) block uses this for its add-filter menu and option chips.
 
 ## Compared with Dropdown Menu
 
