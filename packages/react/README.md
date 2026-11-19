@@ -1,6 +1,6 @@
 # @erbium-ui/react
 
-Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing and pagination. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
+Unstyled, accessible React primitives for components that hold real behavior: cascading selects, filter builders, inline editing, pagination and sliders. Each primitive is a set of parts in the style of [Base UI](https://base-ui.com): you render the parts, style them with `className`, and read their state from `data-*` attributes.
 
 Erbium UI's styled components are built on these primitives. Use this package directly when you want the behavior with your own design.
 
@@ -21,6 +21,8 @@ React 19 and `@base-ui/react` 1.9 or later are peer dependencies.
 | `@erbium-ui/react/editable`        | `Editable` parts                                  | Client                                                    |
 | `@erbium-ui/react/pagination`      | `Pagination` parts, `usePagination`, and the core | Client                                                    |
 | `@erbium-ui/react/pagination/core` | `getPagination` page layout                       | Server or client                                          |
+| `@erbium-ui/react/slider`          | `Slider` parts, `useSlider`, and the core         | Client                                                    |
+| `@erbium-ui/react/slider/core`     | Scales, steps and marks                           | Server or client                                          |
 
 Client entries start with `"use client"`, so React Server Components frameworks such as the Next.js App Router can render their parts from a server component. Entries marked server or client are plain functions and import nothing from React.
 
@@ -147,6 +149,24 @@ import { Pagination } from "@erbium-ui/react/pagination";
     </Pagination.List>
   </Pagination.Root>
 </nav>;
+```
+
+## Slider
+
+Base UI's slider with uneven `steps`, a `"log"` or custom `scale`, and `marks`. Callbacks, form values and announced values stay real values while Base UI runs on track positions.
+
+```tsx
+import { Slider } from "@erbium-ui/react/slider";
+
+<Slider.Root scale="log" min={20} max={20000} defaultValue={440} marks>
+  <Slider.Control>
+    <Slider.Track>
+      <Slider.Indicator />
+    </Slider.Track>
+    <Slider.Marks>{(mark) => <Slider.Mark mark={mark} />}</Slider.Marks>
+    <Slider.Thumbs aria-label="Frequency" />
+  </Slider.Control>
+</Slider.Root>;
 ```
 
 ## License

@@ -21762,7 +21762,6 @@
         "@erbium/field",
         "@erbium/skeleton",
         "@erbium/slider",
-        "@erbium/slider-scale",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/utils"

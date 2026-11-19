@@ -3,7 +3,7 @@ title: "Slider"
 description: "Adjust a value within a range."
 ---
 
-Adjust a value within a range.
+Adjust a value within a range. The behavior comes from the [unstyled Slider](/docs/react/slider) in `@erbium-ui/react`; this component adds Erbium's track, thumbs, marks and labels.
 
 **Import:** `@erbium/ui/components/slider`
 
@@ -28,7 +28,7 @@ import { Slider } from "@erbium/ui/components/slider";
 | A range across orders of magnitude (20 Hz–20 kHz)     | `scale="log"`                                 |
 | A compact numeric row in a settings panel or sidebar  | `Control.Number` from the Control component   |
 
-`Slider` and `Control.Number` share the same scale code (`@erbium/ui/lib/slider-scale`), so `steps` and `scale="log"` behave the same in both: the same positions, the same snapping and the same keys.
+`Slider` and `Control.Number` share the same scale code (`@erbium-ui/react/slider/core`), so `steps` and `scale="log"` behave the same in both: the same positions, the same snapping and the same keys.
 
 ## Props
 

@@ -12,6 +12,7 @@
     "pagination",
     "primitives",
     "react",
+    "slider",
     "unstyled"
   ],
   "homepage": "https://ui.erbium.app/docs/react",
@@ -38,6 +39,8 @@
     "./filters": "./src/filters/index.ts",
     "./pagination": "./src/pagination/index.ts",
     "./pagination/core": "./src/pagination/core.ts",
+    "./slider": "./src/slider/index.ts",
+    "./slider/core": "./src/slider/core.ts",
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -61,6 +64,14 @@
       "./pagination/core": {
         "types": "./dist/pagination/core.d.ts",
         "default": "./dist/pagination/core.js"
+      },
+      "./slider": {
+        "types": "./dist/slider/index.d.ts",
+        "default": "./dist/slider/index.js"
+      },
+      "./slider/core": {
+        "types": "./dist/slider/core.d.ts",
+        "default": "./dist/slider/core.js"
       },
       "./package.json": "./package.json"
     },

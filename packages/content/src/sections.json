@@ -144,6 +144,6 @@
     "title": "@erbium-ui/react",
     "slug": "react",
     "kind": "primitive",
-    "names": ["cascader", "filters", "editable", "pagination"]
+    "names": ["cascader", "filters", "editable", "pagination", "slider"]
   }
 ]

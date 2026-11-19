@@ -1838,8 +1838,8 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "Erbium slider component.",
-      "dependencies": ["@base-ui/react"],
-      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/slider-scale", "@erbium/utils"],
+      "dependencies": ["@erbium-ui/react@^0.1.0"],
+      "registryDependencies": ["@erbium/skeleton-hints", "@erbium/utils"],
       "files": [
         {
           "path": "src/components/slider.tsx",
