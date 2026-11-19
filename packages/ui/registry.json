@@ -1262,7 +1262,12 @@
       "title": "Lightbox",
       "description": "Erbium lightbox block.",
       "dependencies": ["@hugeicons/core-free-icons", "@hugeicons/react", "@ramka/react"],
-      "registryDependencies": ["@erbium/button", "@erbium/step-indicator", "@erbium/utils"],
+      "registryDependencies": [
+        "@erbium/button",
+        "@erbium/step-indicator",
+        "@erbium/tooltip",
+        "@erbium/utils"
+      ],
       "files": [
         {
           "path": "src/blocks/lightbox.tsx",

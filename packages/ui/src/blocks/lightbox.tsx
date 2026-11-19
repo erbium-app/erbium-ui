@@ -13,6 +13,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import { cn } from "../lib/utils";
 import { Button } from "../components/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "../components/tooltip";
 import { StepIndicator, StepIndicatorItem } from "./step-indicator";
 
 /*!
@@ -377,7 +378,7 @@ type LightboxStepIndicatorProps = Omit<
   | "autoplay"
   | "variant"
 > & {
-  /** Accessible slide names in gallery order. Defaults to "Slide N". */
+  /** Slide titles in gallery order, used for accessible names and tooltips. Defaults to "Slide N". */
   labels?: string[];
 };
 
@@ -400,11 +401,14 @@ const LightboxStepIndicator = ({ labels, className, ...props }: LightboxStepIndi
         }}
       >
         {Array.from({ length: itemCount }, (_, index) => (
-          <StepIndicatorItem
-            key={index}
-            index={index}
-            label={labels?.[index] ?? `Slide ${index + 1}`}
-          />
+          <Tooltip key={index}>
+            <StepIndicatorItem
+              index={index}
+              label={labels?.[index] ?? `Slide ${index + 1}`}
+              render={<TooltipTrigger />}
+            />
+            <TooltipContent>{labels?.[index] ?? `Slide ${index + 1}`}</TooltipContent>
+          </Tooltip>
         ))}
       </StepIndicator>
       <LightboxPrimitive.Counter className="sr-only" />

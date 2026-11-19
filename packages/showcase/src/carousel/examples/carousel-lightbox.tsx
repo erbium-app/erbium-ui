@@ -108,8 +108,12 @@ export default function CarouselLightboxExample() {
           ))}
         </LightboxSlides>
 
-        <LightboxHeader>
-          <LightboxClose />
+        <LightboxHeader className="grid grid-cols-[1fr_auto_1fr]">
+          <div />
+          <LightboxStepIndicator labels={photos.map((photo) => photo.caption)} />
+          <div className="flex items-center gap-2 justify-self-end">
+            <LightboxClose />
+          </div>
         </LightboxHeader>
 
         <LightboxPrevious />
@@ -117,7 +121,6 @@ export default function CarouselLightboxExample() {
 
         <LightboxFooter>
           <LightboxCaption />
-          <LightboxStepIndicator />
         </LightboxFooter>
       </LightboxContent>
     </Lightbox>

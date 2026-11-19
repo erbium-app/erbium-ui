@@ -89,10 +89,14 @@ export default function GalleryExample() {
           ))}
         </LightboxSlides>
 
-        <LightboxHeader>
-          <LightboxZoomOut />
-          <LightboxZoomIn />
-          <LightboxClose />
+        <LightboxHeader className="grid grid-cols-[1fr_auto_1fr]">
+          <div />
+          <LightboxStepIndicator labels={photos.map((photo) => photo.caption)} />
+          <div className="flex items-center gap-2 justify-self-end">
+            <LightboxZoomOut />
+            <LightboxZoomIn />
+            <LightboxClose />
+          </div>
         </LightboxHeader>
 
         <LightboxPrevious />
@@ -100,7 +104,6 @@ export default function GalleryExample() {
 
         <LightboxFooter>
           <LightboxCaption />
-          <LightboxStepIndicator />
           <LightboxThumbnailStrip>
             <LightboxThumbnailStripTrack aria-label="Workspace photo thumbnails">
               {photos.map((photo, index) => (

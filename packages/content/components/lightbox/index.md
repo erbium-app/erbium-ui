@@ -27,7 +27,7 @@ Use `LightboxStepIndicator` inside `LightboxHeader` or `LightboxFooter` for clic
 </LightboxHeader>
 ```
 
-`labels` supplies accessible names in slide order; otherwise the buttons are named “Slide 1”, “Slide 2”, and so on. The current slide is marked with `aria-current`, and slide changes are announced to screen readers. The indicator uses the design system's `StepIndicator` dots variant and replaces the numeric `LightboxCounter`.
+`labels` supplies accessible names and hover/focus tooltips in slide order; otherwise the buttons are named “Slide 1”, “Slide 2”, and so on. The current slide is marked with `aria-current`, and slide changes are announced to screen readers. The indicator uses the design system's `StepIndicator` dots variant and replaces the numeric `LightboxCounter`.
 
 ## Accessibility
 
