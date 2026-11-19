@@ -7,7 +7,7 @@
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlSectionExample() {\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Section title=\"Shadow\">\n        <Control.Number label=\"Blur\" defaultValue={14} min={0} max={50} />\n        <Control.Boolean label=\"Enabled\" defaultChecked />\n      </Control.Section>\n    </Control.Group>\n  );\n}\n",
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlSectionExample() {\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Section title=\"Shadow\">\n        <Control.Number label=\"Blur\" defaultValue={14} min={0} max={50} />\n        <Control.Toggle label=\"Enabled\" defaultChecked />\n      </Control.Section>\n    </Control.Group>\n  );\n}\n",
       "path": "src/control/variants/section.tsx",
       "target": "@components/showcase/control/variants/section.tsx",
       "type": "registry:component"

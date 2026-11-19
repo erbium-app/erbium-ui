@@ -601,13 +601,12 @@
       "type": "registry:ui",
       "title": "Control",
       "description": "Erbium control component.",
-      "dependencies": ["@base-ui/react", "motion"],
+      "dependencies": ["@base-ui/react", "@erbium-ui/react@^0.1.0", "motion"],
       "registryDependencies": [
         "@erbium/collapsible",
         "@erbium/icon",
         "@erbium/scroll-area",
         "@erbium/separator",
-        "@erbium/slider-scale",
         "@erbium/stateful-icon",
         "@erbium/text-morph",
         "@erbium/utils"
@@ -1845,19 +1844,6 @@
           "path": "src/components/slider.tsx",
           "target": "@ui/slider.tsx",
           "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "slider-scale",
-      "type": "registry:lib",
-      "title": "Slider Scale",
-      "description": "Erbium slider scale lib.",
-      "files": [
-        {
-          "path": "src/lib/slider-scale.ts",
-          "target": "@lib/slider-scale.ts",
-          "type": "registry:lib"
         }
       ]
     },

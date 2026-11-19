@@ -14,14 +14,7 @@ export default function ControlLogarithmicNumberExample() {
         defaultValue={440}
         formatValue={hertz}
       />
-      <Control.Number
-        label="Scale"
-        scale="log"
-        mode="continuous"
-        min={0.01}
-        max={100}
-        defaultValue={1}
-      />
+      <Control.Number label="Scale" scale="log" min={0.01} max={100} defaultValue={1} />
     </Control.Group>
   );
 }

@@ -1,5 +1,6 @@
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
-import { motion, useReducedMotion } from "motion/react";
+import { domMax, LazyMotion, useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
 import { cn } from "../lib/utils";
 
 const Tabs = ({ className, orientation = "horizontal", ...props }: TabsPrimitive.Root.Props) => (
@@ -25,46 +26,33 @@ const TabsList = ({ className, children, ...props }: TabsPrimitive.List.Props) =
       {...props}
     >
       {children}
-      <TabsPrimitive.Indicator
-        data-slot="tabs-indicator"
-        className="pointer-events-none absolute top-0 left-0 z-0 rounded-md border surface-control"
-        render={(indicatorProps, state) => {
-          const position = state.activeTabPosition;
-          const size = state.activeTabSize;
+      <LazyMotion features={domMax}>
+        <TabsPrimitive.Indicator
+          data-slot="tabs-indicator"
+          // Base UI places the indicator over the active tab through these variables; Motion's
+          // layout animation then moves and resizes it with transforms.
+          className="pointer-events-none absolute top-(--active-tab-top) left-(--active-tab-left) z-0 h-(--active-tab-height) w-(--active-tab-width) rounded-md border surface-control"
+          render={(indicatorProps) => {
+            /* Motion owns these handler names with different signatures; the
+               indicator never receives them, so they are dropped. */
+            const {
+              onAnimationStart: _onAnimationStart,
+              onDrag: _onDrag,
+              onDragEnd: _onDragEnd,
+              onDragStart: _onDragStart,
+              ...motionProps
+            } = indicatorProps;
 
-          if (!position || !size || size.width === 0 || size.height === 0) {
-            return <span {...indicatorProps} />;
-          }
-
-          /* Motion owns these handler names with different signatures; the
-             indicator never receives them, so they are dropped. */
-          const {
-            onAnimationStart: _onAnimationStart,
-            onDrag: _onDrag,
-            onDragEnd: _onDragEnd,
-            onDragStart: _onDragStart,
-            ...motionProps
-          } = indicatorProps;
-
-          return (
-            <motion.span
-              {...motionProps}
-              initial={false}
-              animate={{
-                height: size.height,
-                width: size.width,
-                x: position.left,
-                y: position.top,
-              }}
-              transition={
-                shouldReduceMotion === true
-                  ? { duration: 0 }
-                  : { damping: 35, stiffness: 400, type: "spring" }
-              }
-            />
-          );
-        }}
-      />
+            return (
+              <m.span
+                {...motionProps}
+                layout={shouldReduceMotion !== true}
+                transition={{ damping: 35, stiffness: 400, type: "spring" }}
+              />
+            );
+          }}
+        />
+      </LazyMotion>
     </TabsPrimitive.List>
   );
 };
@@ -73,7 +61,7 @@ const TabsTrigger = ({ className, ...props }: TabsPrimitive.Tab.Props) => (
   <TabsPrimitive.Tab
     data-slot="tabs-trigger"
     className={cn(
-      "relative z-10 inline-flex segmented-size flex-1 items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm whitespace-nowrap text-muted-foreground transition-colors duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring data-active:text-foreground has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 data-disabled:pointer-events-none data-disabled:opacity-50 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
+      "relative z-10 inline-flex segmented-size flex-1 items-center justify-center gap-control-gap rounded-md border border-transparent bg-transparent px-control-inset py-0 text-control-sm whitespace-nowrap text-muted-foreground transition-colors duration-150 group-data-vertical/tabs:w-full group-data-vertical/tabs:justify-start hover:text-foreground focus-visible:border-ring has-data-[icon=inline-end]:pe-1 has-data-[icon=inline-start]:ps-1 motion-reduce:transition-none data-disabled:pointer-events-none data-disabled:opacity-50 data-active:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-control-icon",
       className,
     )}
     {...props}

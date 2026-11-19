@@ -8326,34 +8326,6 @@
       ]
     },
     {
-      "name": "control-boolean",
-      "type": "registry:component",
-      "title": "Control: Boolean",
-      "description": "",
-      "registryDependencies": ["@erbium/control", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/control/variants/boolean.tsx",
-          "target": "@components/showcase/control/variants/boolean.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "control-continuous-number",
-      "type": "registry:component",
-      "title": "Control: Continuous Number",
-      "description": "Continuous mode drags smoothly across the range and accepts any in-range number through the value editor. Arrow keys move the value by `step` (ten steps with Shift or Page Up/Down), and Home and End jump to either end.",
-      "registryDependencies": ["@erbium/control", "@erbium/styles"],
-      "files": [
-        {
-          "path": "src/control/variants/continuous-number.tsx",
-          "target": "@components/showcase/control/variants/continuous-number.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "control-demo",
       "type": "registry:component",
       "title": "control demo",
@@ -8371,7 +8343,7 @@
       "name": "control-discrete-number",
       "type": "registry:component",
       "title": "Control: Discrete Number",
-      "description": "Discrete mode accepts uneven steps and moves one allowed value per arrow key (ten with Shift). Home and End jump to the first and last value, and a typed value snaps to the nearest step.",
+      "description": "`steps` lists the allowed values, including uneven gaps. Each arrow key press moves one allowed value (ten with Shift), Home and End jump to the first and last, and a typed value snaps to the nearest step. `marks` puts a dot on each allowed value.",
       "registryDependencies": ["@erbium/control", "@erbium/styles"],
       "files": [
         {
@@ -8387,12 +8359,11 @@
       "registryDependencies": [
         "@erbium-examples/control-overview",
         "@erbium-examples/control-number",
-        "@erbium-examples/control-continuous-number",
         "@erbium-examples/control-discrete-number",
         "@erbium-examples/control-logarithmic-number",
         "@erbium-examples/control-text",
         "@erbium-examples/control-textarea",
-        "@erbium-examples/control-boolean",
+        "@erbium-examples/control-toggle",
         "@erbium-examples/control-segmented",
         "@erbium-examples/control-select",
         "@erbium-examples/control-image",
@@ -8422,7 +8393,7 @@
       "name": "control-image",
       "type": "registry:component",
       "title": "Control: Image",
-      "description": "",
+      "description": "Compose an image row inside `Control.Row`: `Control.ImageSelect` picks a preset and `Control.ImageUpload` opens the file picker. Either works alone, and both take their name from the row's label.",
       "registryDependencies": ["@erbium/control", "@erbium/styles"],
       "files": [
         {
@@ -8436,7 +8407,7 @@
       "name": "control-logarithmic-number",
       "type": "registry:component",
       "title": "Control: Logarithmic Number",
-      "description": "`scale=\"log\"` spreads values by ratio, so a frequency or zoom row gives the low end as much room as the high end. It works in both modes: discrete rows round onto `step`, continuous rows keep four significant digits. Arrow keys move 1% of the row (10% with Shift). The value editor still accepts any in-range number, and a log scale needs `min` above zero.",
+      "description": "`scale=\"log\"` spreads values by ratio, so a frequency or zoom row gives the low end as much room as the high end. Values round onto `step`, or keep four significant digits without one. Arrow keys move 1% of the row (10% with Shift). A log scale needs `min` above zero.",
       "registryDependencies": ["@erbium/control", "@erbium/styles"],
       "files": [
         {
@@ -8550,7 +8521,6 @@
         "@erbium/control",
         "@erbium/csp-provider",
         "@erbium/skeleton",
-        "@erbium/slider-scale",
         "@erbium/styles",
         "@erbium/toast",
         "@erbium/utils"
@@ -8574,16 +8544,6 @@
         {
           "path": "src/control/variants/action.tsx",
           "target": "@components/showcase/control/variants/action.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/control/variants/boolean.tsx",
-          "target": "@components/showcase/control/variants/boolean.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "src/control/variants/continuous-number.tsx",
-          "target": "@components/showcase/control/variants/continuous-number.tsx",
           "type": "registry:component"
         },
         {
@@ -8647,6 +8607,11 @@
           "type": "registry:component"
         },
         {
+          "path": "src/control/variants/toggle.tsx",
+          "target": "@components/showcase/control/variants/toggle.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "src/preview.tsx",
           "target": "@components/showcase/preview.tsx",
           "type": "registry:component"
@@ -8677,6 +8642,20 @@
         {
           "path": "src/control/variants/textarea.tsx",
           "target": "@components/showcase/control/variants/textarea.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "control-toggle",
+      "type": "registry:component",
+      "title": "Control: Toggle",
+      "description": "`Control.Toggle` shows Off and On as two segments. `Control.Switch` is the compact form of the same choice.",
+      "registryDependencies": ["@erbium/control", "@erbium/styles"],
+      "files": [
+        {
+          "path": "src/control/variants/toggle.tsx",
+          "target": "@components/showcase/control/variants/toggle.tsx",
           "type": "registry:component"
         }
       ]

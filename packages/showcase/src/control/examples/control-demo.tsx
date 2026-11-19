@@ -25,9 +25,9 @@ export default function ControlExample() {
           value={orientation}
           onValueChange={setOrientation}
         />
-        <Control.Boolean label="Visible" checked={visible} onCheckedChange={setVisible} />
+        <Control.Toggle label="Visible" checked={visible} onCheckedChange={setVisible} />
         <Control.Section title="Back Photo">
-          <Control.Number label="Frames" steps={[1, 2, 3, 4]} defaultValue={3} />
+          <Control.Number label="Frames" steps={[1, 2, 3, 4]} defaultValue={3} marks />
           <Control.Number
             label="Scale"
             value={scale}
@@ -41,7 +41,7 @@ export default function ControlExample() {
             value={opacity}
             min={0}
             max={1}
-            mode="continuous"
+            step={0.01}
             formatValue={(value) => value.toFixed(2)}
             onValueChange={setOpacity}
           />

@@ -5,12 +5,11 @@
   "registryDependencies": [
     "@erbium-examples/control-overview",
     "@erbium-examples/control-number",
-    "@erbium-examples/control-continuous-number",
     "@erbium-examples/control-discrete-number",
     "@erbium-examples/control-logarithmic-number",
     "@erbium-examples/control-text",
     "@erbium-examples/control-textarea",
-    "@erbium-examples/control-boolean",
+    "@erbium-examples/control-toggle",
     "@erbium-examples/control-segmented",
     "@erbium-examples/control-select",
     "@erbium-examples/control-image",

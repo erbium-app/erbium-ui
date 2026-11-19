@@ -1,4 +1,0 @@
----
-title: "Boolean"
-story: Boolean
----

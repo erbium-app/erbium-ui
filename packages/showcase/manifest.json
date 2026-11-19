@@ -1794,18 +1794,11 @@
         "title": "Overview"
       },
       {
-        "exportName": "Number",
+        "exportName": "NumberRow",
         "slug": "number",
         "source": "src/control/variants/number.tsx",
         "usage": ["src/control/variants/number.tsx", "src/control/helpers.tsx"],
         "title": "Number"
-      },
-      {
-        "exportName": "ContinuousNumber",
-        "slug": "continuous-number",
-        "source": "src/control/variants/continuous-number.tsx",
-        "usage": ["src/control/variants/continuous-number.tsx"],
-        "title": "Continuous Number"
       },
       {
         "exportName": "DiscreteNumber",
@@ -1836,11 +1829,11 @@
         "title": "Textarea"
       },
       {
-        "exportName": "Boolean",
-        "slug": "boolean",
-        "source": "src/control/variants/boolean.tsx",
-        "usage": ["src/control/variants/boolean.tsx"],
-        "title": "Boolean"
+        "exportName": "Toggle",
+        "slug": "toggle",
+        "source": "src/control/variants/toggle.tsx",
+        "usage": ["src/control/variants/toggle.tsx"],
+        "title": "Toggle"
       },
       {
         "exportName": "Segmented",

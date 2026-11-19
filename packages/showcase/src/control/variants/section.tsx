@@ -5,7 +5,7 @@ export default function ControlSectionExample() {
     <Control.Group className="w-72">
       <Control.Section title="Shadow">
         <Control.Number label="Blur" defaultValue={14} min={0} max={50} />
-        <Control.Boolean label="Enabled" defaultChecked />
+        <Control.Toggle label="Enabled" defaultChecked />
       </Control.Section>
     </Control.Group>
   );

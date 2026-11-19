@@ -3,11 +3,11 @@
   "name": "control-image",
   "type": "registry:component",
   "title": "Control: Image",
-  "description": "",
+  "description": "Compose an image row inside `Control.Row`: `Control.ImageSelect` picks a preset and `Control.ImageUpload` opens the file picker. Either works alone, and both take their name from the row's label.",
   "registryDependencies": ["@erbium/control", "@erbium/styles"],
   "files": [
     {
-      "content": "import { useState } from \"react\";\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlImageExample() {\n  const [filename, setFilename] = useState(\"Cover Photo\");\n\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Image\n        label={filename}\n        options={[\n          {\n            label: \"Warm\",\n            src: \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23d4976c'/%3E%3C/svg%3E\",\n            value: \"warm\",\n          },\n          {\n            label: \"Cool\",\n            src: \"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%236394bf'/%3E%3C/svg%3E\",\n            value: \"cool\",\n          },\n        ]}\n        onFileChange={(file) => {\n          setFilename(file?.name ?? \"Cover Photo\");\n        }}\n      />\n    </Control.Group>\n  );\n}\n",
+      "content": "import { useState } from \"react\";\nimport { Control } from \"@/registry/erbium/ui/control\";\n\nconst swatch = (color: string) =>\n  `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23${color}'/%3E%3C/svg%3E`;\n\nconst presets = [\n  { label: \"Warm\", src: swatch(\"d4976c\"), value: \"warm\" },\n  { label: \"Cool\", src: swatch(\"6394bf\"), value: \"cool\" },\n];\n\nexport default function ControlImageExample() {\n  const [filename, setFilename] = useState(\"Cover Photo\");\n\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Row label={filename}>\n        <Control.ImageSelect options={presets} />\n        <Control.ImageUpload\n          onFileChange={(file) => {\n            setFilename(file?.name ?? \"Cover Photo\");\n          }}\n        />\n      </Control.Row>\n      <Control.Row label=\"Avatar\">\n        <Control.ImageUpload src={swatch(\"8a9a5b\")}>Change</Control.ImageUpload>\n      </Control.Row>\n    </Control.Group>\n  );\n}\n",
       "path": "src/control/variants/image.tsx",
       "target": "@components/showcase/control/variants/image.tsx",
       "type": "registry:component"

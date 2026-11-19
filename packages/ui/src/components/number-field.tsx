@@ -44,7 +44,7 @@ const createGrouping = (
 
   const digits = Array.from({ length: 10 }, (_, digit) => formatter.format(digit));
 
-  return { digits, format: (value) => formatter.format(value), group };
+  return { digits, group, format: (value) => formatter.format(value) };
 };
 
 /**
@@ -199,7 +199,7 @@ const NumberFieldGroup = ({ className, ...props }: NumberFieldPrimitive.Group.Pr
   <NumberFieldPrimitive.Group
     data-slot="number-field-group"
     className={cn(
-      "relative flex min-h-control w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm motion-reduce:transition-none has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo data-disabled:pointer-events-none data-disabled:opacity-50 dark:has-aria-invalid:border-invalid [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      "relative flex min-h-control w-full min-w-0 items-stretch rounded-lg border surface-field text-field text-foreground tabular-nums transition-[color,background-color,box-shadow] duration-150 group-data-[size=lg]/number-field:min-h-control-lg group-data-[size=sm]/number-field:min-h-control-sm has-aria-invalid:border-error has-aria-invalid:ring-[1.5px] has-aria-invalid:ring-invalid-halo motion-reduce:transition-none dark:has-aria-invalid:border-invalid data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
       className,
     )}
     {...props}
@@ -284,13 +284,11 @@ const NumberFieldInputLayers = ({
   }
 
   React.useEffect(() => {
-    // In case the morph never reports back, e.g. text torph left unanimated.
-    const timeout =
-      morphingValue === null
-        ? undefined
-        : window.setTimeout(() => {
-            setMorphingValue(null);
-          }, 1000);
+    // In case the morph never reports back, e.g. text torph left unanimated. Each value gets
+    // its own timer, which clears only that value; at rest it is a no-op.
+    const timeout = window.setTimeout(() => {
+      setMorphingValue((current) => (current === morphingValue ? null : current));
+    }, 1000);
 
     return () => {
       window.clearTimeout(timeout);
@@ -322,7 +320,7 @@ const NumberFieldInputLayers = ({
         data-slot="number-field-display"
         className={cn(
           layerClass,
-          "invisible group-data-morphing/number-field-input:visible group-data-composing/number-field-input:invisible",
+          "invisible group-data-composing/number-field-input:invisible group-data-morphing/number-field-input:visible",
         )}
       >
         <TextMorph
@@ -338,7 +336,7 @@ const NumberFieldInputLayers = ({
         {...inputProps}
         className={cn(
           // Composition text isn't in Base UI's value yet, so it shows natively.
-          "relative size-full min-w-0 bg-transparent px-2.5 text-transparent caret-foreground outline-none [text-align:inherit] placeholder:text-muted-foreground selection:bg-ring/25 group-data-composing/number-field-input:text-foreground group-data-[size=sm]/number-field:px-2",
+          "relative size-full min-w-0 bg-transparent px-2.5 [text-align:inherit] text-transparent caret-foreground outline-none group-data-composing/number-field-input:text-foreground group-data-[size=sm]/number-field:px-2 selection:bg-ring/25 placeholder:text-muted-foreground",
           inputProps.className,
         )}
       />
@@ -458,7 +456,7 @@ const NumberFieldScrubArea = ({
           fill="var(--color-cursor-fill)"
           stroke="var(--color-cursor-stroke)"
         >
-          <path d="M19.5 5.5L6.49737 5.51844V2L1 6.9999L6.5 12L6.49737 8.5L19.5 8.5V12L25 6.9999L19.5 2V5.5Z" />
+          <path d="M19.5 5.5L6.5 5.52V2L1 7L6.5 12L6.5 8.5L19.5 8.5V12L25 7L19.5 2V5.5Z" />
         </svg>
       </NumberFieldPrimitive.ScrubAreaCursor>
     </NumberFieldPrimitive.ScrubArea>

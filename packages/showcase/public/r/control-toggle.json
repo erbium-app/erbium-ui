@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "control-toggle",
+  "type": "registry:component",
+  "title": "Control: Toggle",
+  "description": "`Control.Toggle` shows Off and On as two segments. `Control.Switch` is the compact form of the same choice.",
+  "registryDependencies": ["@erbium/control", "@erbium/styles"],
+  "files": [
+    {
+      "content": "import { Control } from \"@/registry/erbium/ui/control\";\n\nexport default function ControlToggleExample() {\n  return (\n    <Control.Group className=\"w-72\">\n      <Control.Toggle label=\"Visible\" defaultChecked />\n      <Control.Switch label=\"Reduced motion\" />\n    </Control.Group>\n  );\n}\n",
+      "path": "src/control/variants/toggle.tsx",
+      "target": "@components/showcase/control/variants/toggle.tsx",
+      "type": "registry:component"
+    }
+  ]
+}

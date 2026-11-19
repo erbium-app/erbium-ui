@@ -6,6 +6,7 @@ export default function ControlDiscreteNumberExample() {
       label="Quality"
       steps={[0.1, 0.5, 0.7, 1.3]}
       defaultValue={0.7}
+      marks
       className="w-72"
     />
   );

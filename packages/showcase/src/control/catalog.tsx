@@ -8,13 +8,9 @@ import OverviewExample from "./variants/overview";
 
 import OverviewSource from "./examples/control-demo.tsx?raw";
 
-import NumberExample from "./variants/number";
+import NumberRowExample from "./variants/number";
 
-import NumberSource from "./variants/number.tsx?raw";
-
-import ContinuousNumberExample from "./variants/continuous-number";
-
-import ContinuousNumberSource from "./variants/continuous-number.tsx?raw";
+import NumberRowSource from "./variants/number.tsx?raw";
 
 import DiscreteNumberExample from "./variants/discrete-number";
 
@@ -32,9 +28,9 @@ import TextareaExample from "./variants/textarea";
 
 import TextareaSource from "./variants/textarea.tsx?raw";
 
-import BooleanExample from "./variants/boolean";
+import ToggleExample from "./variants/toggle";
 
-import BooleanSource from "./variants/boolean.tsx?raw";
+import ToggleSource from "./variants/toggle.tsx?raw";
 
 import SegmentedExample from "./variants/segmented";
 
@@ -91,24 +87,14 @@ export const Overview: Story = {
   render: OverviewExample,
 };
 
-export const Number: Story = {
+export const NumberRow: Story = {
   parameters: {
     docs: {
       description: { story: variantDocumentation("control", "number") },
-      source: { code: NumberSource },
+      source: { code: NumberRowSource },
     },
   },
-  render: NumberExample,
-};
-
-export const ContinuousNumber: Story = {
-  parameters: {
-    docs: {
-      description: { story: variantDocumentation("control", "continuous-number") },
-      source: { code: ContinuousNumberSource },
-    },
-  },
-  render: ContinuousNumberExample,
+  render: NumberRowExample,
 };
 
 export const DiscreteNumber: Story = {
@@ -151,14 +137,14 @@ export const Textarea: Story = {
   render: TextareaExample,
 };
 
-export const Boolean: Story = {
+export const Toggle: Story = {
   parameters: {
     docs: {
-      description: { story: variantDocumentation("control", "boolean") },
-      source: { code: BooleanSource },
+      description: { story: variantDocumentation("control", "toggle") },
+      source: { code: ToggleSource },
     },
   },
-  render: BooleanExample,
+  render: ToggleExample,
 };
 
 export const Segmented: Story = {

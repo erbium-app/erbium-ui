@@ -4,7 +4,9 @@ Reviewed 2026-11-18. Proposed additions to `Control` (`packages/ui/src/component
 
 ## Current set
 
-`Number` (continuous, discrete, logarithmic), `Text`, `Textarea`, `Boolean` (switch or segments), `Segmented`, `Select`, `Image`, `Action`, `Row`, `Section`, `Group`.
+`Number` (on `@erbium-ui/react/slider`: steps, scales, marks), `Text`, `Textarea`, `Toggle`, `Switch`, `Segmented`, `Select`, `Action`, `Row` with the `ImageSelect` and `ImageUpload` parts, `Section`, `Group`.
+
+Redesigned on 2026-11-19 with one member per kind of row instead of mode props: `Boolean presentation` became `Toggle` and `Switch`, `Image` became parts composed in `Row`, and `mode` and `showSteps` became `step` and `marks`.
 
 Removed on 2026-11-18: `Color` (fell back to the browser colour picker), `Pad`, `Spring` and `Transition` (motion-tool abstractions with no product use).
 
@@ -47,4 +49,4 @@ Curve and spring editors, the XY pad and gradient editors. They serve motion too
 
 ## Open question
 
-Whether `Image` stays. It is rare in CRM settings but fits an image editor and avatar or logo settings.
+Whether the image parts stay. It is rare in CRM settings but fits an image editor and avatar or logo settings.
